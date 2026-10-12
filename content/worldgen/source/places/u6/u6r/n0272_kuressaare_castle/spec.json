@@ -12,23 +12,24 @@
   },
   "visualBrief": "Square dolomite convent building with a small open courtyard, broad red roof fields sloping inward, massive northern Sturvolt, slender eastern Tall Hermann, crenellated gallery and timber gate oriel.",
   "mediumFiContext": {
-    "scale": "1",
+    "groundY": -3,
+    "scale": 1,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     43.2450008392334,
-    38.20000076293945,
+    40.889437198638916,
     44.334999084472656
   ],
   "actualBounds": {
     "min": [
       -21.625,
-      0,
+      -2.089437961578369,
       -23.049999237060547
     ],
     "max": [
       21.6200008392334,
-      38.20000076293945,
+      38.79999923706055,
       21.28499984741211
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "longitudinal": "+X east-southeast, 32.26 degrees south of east",
     "front": "-Z northeast gate; Sturvolt at -X/-Z and Tall Hermann at +X/-Z",
-    "origin": "Mapped building center; architectural base Y=0"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "relation/414356 exact Q1768091",
@@ -46,7 +47,9 @@
     ],
     "publishedSquareSideMeters": 43,
     "publishedDefenceTowerHeightMeters": 37,
-    "mappedApproximateHeightMeters": 25
+    "mappedApproximateHeightMeters": 25,
+    "originalMasterHash": "sha256:e49a8a86aa042811f1a397a8726f38e3903eaea7d3827e0c051e188bd0ea59c2",
+    "originalMasterRecipe": "packages/worldgen/scripts/kuressaare-castle-model.mjs#buildKuressaareRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -65,11 +68,13 @@
       "Massive northern and slender eastern square towers with red pyramidal roofs",
       "Square courtyard compound with inward-sloping red roof fields and open L-shaped court",
       "Crenellated perimeter gallery and two-storey timber gate oriel"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "OSM outer/courtyard outlines, museum dimensions and tour photographs, LUMIA floor plans and section",
-    "scope": "Convent building exterior and courtyard; excludes wider fortress, moat and separate buildings"
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://linnus.samu.ee/en/about-the-castle/",
@@ -79,8 +84,8 @@
     "https://www.openstreetmap.org/relation/414356"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Research frame only; geographic seating pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       22.479324007,
       58.246897902
@@ -99,7 +104,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Northern Sturvolt and eastern Tall Hermann resolve the signed map axis; northeast gate faces -Z. Terrain and approach seating require in-world review."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two inspected aerial pictures confirm the square stone convent, open court, inward-sloping red roofs, massive Sturvolt and slender Tall Hermann. Standard viewer PMTiles and cached building outline set location and signed tower/gate orientation. The flat site varies by less than1m at sampled corners; a reconstructed0.6m working rise and bounded foundation skirts clear that coarse surface. Anchor 22.479324007,58.246897902; heading -0.563076620916; standard PMTiles datum 9.787413303227948m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "Two inspected aerial pictures confirm the square stone convent, open court, inward-sloping red roofs, massive Sturvolt and slender Tall Hermann. Standard viewer PMTiles and cached building outline set location and signed tower/gate orientation. The flat site varies by less than1m at sampled corners; a reconstructed0.6m working rise and bounded foundation skirts clear that coarse surface. Anchor 22.479324007,58.246897902; heading -0.563076620916; standard PMTiles datum 9.787413303227948m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        22.479324007,
+        58.246897902
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Mapped42.607×41.783m footprint agrees with published43m plan. Northern tower reaches37m including finial; published datum is unspecified. Watchtower38.2m, outer wall20.4m, court wall13.6m and roof/eave levels inferred from the architect section and photographs. Map25m height carries an explicit uncertainty note.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -148,12 +163,11 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Original medium-fi reconstruction, not a conservation survey.",
-    "Intermediate elevations and watchtower38.2m height inferred; the published37m defence-tower datum is unspecified.",
-    "Fine tracery, diamond glazing lattice, complete interiors and fixtures omitted.",
-    "Tour predates some2024 interior changes; exterior masses cross-checked against contemporary architect photographs.",
-    "Wider fortress, bastions, moat, Cannon Tower and neighboring buildings omitted.",
-    "Actual terrain seating, continuous-motion shimmer and physical-device performance pending."
+    "Pictures and standard viewer PMTiles define approximate current exterior fit; no bespoke surveys or exact thresholds.",
+    "Detailed original architectural geometry and recipe remain unchanged. An independent derivative adjusts working datum and extends bounded foundation skirts.",
+    "Square convent, open court, two contrasting towers, red roof fields, crenellated gallery and timber gate oriel provide identity. Openings, roof junctions, floor heights and carving remain approximate.",
+    "This model covers the main convent building; surrounding star fort, moat, bridges, trees and navigable interiors remain outside its scope. No artificial hill or ground cutout.",
+    "Four shared material graphs and local opaque glass; no embedded texture images. Physical-device timing and continuous-motion shimmer remain pending."
   ],
   "qaCameras": [
     {
@@ -235,15 +249,196 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kuressaare-runtime-model.mjs",
+    "export": "buildKuressaareReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kuressaare-runtime-model.mjs",
+    "export": "buildKuressaareReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKuressaareReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildKuressaareReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKuressaareReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kuressaare-skyline",
+      "position": [
+        65,
+        48,
+        -64
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kuressaare-district",
+      "position": [
+        65,
+        48,
+        -64
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kuressaare-street",
+      "position": [
+        65,
+        48,
+        -64
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kuressaare-closeup",
+      "position": [
+        65,
+        48,
+        -64
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve unequal square towers, red inward roof ring and open courtyard in every LOD. Closer levels add aperture rhythm, cloister windows, raised gate and bowl.",
   "mesh": {
     "triangles": 8215,
-    "vertices": 17013,
+    "vertices": 24645,
     "materials": 5,
-    "bytes": 714300,
-    "sha256": "sha256:e49a8a86aa042811f1a397a8726f38e3903eaea7d3827e0c051e188bd0ea59c2"
+    "bytes": 989068,
+    "sha256": "sha256:b255bd14d90f61dc49b3604a931d8e03fdf353bdcbff55d9122f9db12ba25b7e"
   }
 }

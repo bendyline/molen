@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Chicago’s asymmetrically stepped blue-glass tower, with rounded mapped corners, detailed stainless-steel spandrels, three setbacks, terrace rails, radial glass canopy, original riverfront sign lettering and a423.2 m stepped spire.
+Chicago riverfront tower with four rounded glass volumes, asymmetric terraces, stainless bands, mapped ornamental spire and river-facing lettering.
 
 ## Evidence and reconstruction
 
@@ -19,9 +19,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-80,651 triangles; 180,535 vertices; 7 material groups; 7,471,112 bytes. Native bounds: -55.508, 0.000, -21.769 to 54.377, 423.200, 21.960. Source hash: `sha256:7a028673ed911e3fb83fa61973e4bcb0286e843a407a7323196e9a0a65188944`.
+9,885 triangles; 26,737 vertices; 4 material groups; 1,084,016 bytes. Native bounds: -55.508, 0.000, -21.744 to 54.337, 423.200, 21.830. Source hash: `sha256:c992f25955b339dc8a1dc9dc59c21d07856a8eeef787187aee7faf9d018055aa`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X northeast","front":"+Z southeast riverfront","origin":"Ground-level center of signed mapped footprint at the tower entrance datum"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -31,7 +31,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0174` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Fine glazing schedule, canopy ribs, sign letter shapes and restaurant planting are reconstructed. Separate lower riverwalk terraces and circular parking ramp below the entrance datum are excluded. Shared stainless materials require the viewer’s sky reflections for their intended appearance.
+- Original 80651-triangle, 7471112-byte detailed master remains exactly reproducible from the unchanged global recipe. Reviewed source and four browser levels retain four rounded asymmetric mapped volumes, three setbacks, pale stainless floor bands, tall offset crown and a three-section 423.2 m spire. Near levels retain the reconstructed Wabash canopy, terrace rails/selected planting and original geometric serif sign. Distant levels aggregate floor/column coverage and terrace detail; skyline keeps a sign band instead of legible letters. Continuous glazing plus long strips replace per-cell frames, and the canopy uses thin opaque upper/lower daylight glazing faces. Intermediate stage heights are approximate map data, not surveyed sections; marketed 92 floors differ from current CVU 98, while occupied height 340.1 m and architectural/tip height 423.2 m agree. Crown/antenna radii derive from the mapped parts; panel rhythm, canopy ribs/curvature, serif stroke widths, planting and exact sign elevation are reconstructed. The 140 ft sign span follows its installer. Three shared 256 px concrete, stainless and granite graphs; no embedded images or copied photographic textures. Riverwalk descending terraces, underground/double-helix parking ramp, interiors, exact entrance thresholds and terrain slope remain outside the tower-shell asset. No terrain-grade or physical phone/laptop performance claim.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

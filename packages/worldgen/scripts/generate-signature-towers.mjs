@@ -4,7 +4,7 @@ import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { encodeAuthoredAssembly } from './authored-glb-assembly.mjs';
 import {
@@ -23,6 +23,7 @@ import {
   readStructureCollections,
   selectedStructureIds,
 } from './structure-collections.mjs';
+import { readOptionalJson } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
@@ -215,7 +216,7 @@ function geographicProposal(study, mapped) {
   return proposal;
 }
 
-for (const study of signatureTowers.filter(
+for (let study of signatureTowers.filter(
   (study) => !expandedSelection || expandedSelection.includes(study.id),
 )) {
   const member = collectionMember(collections, study.id);
@@ -233,6 +234,48 @@ for (const study of signatureTowers.filter(
   const key = member?.sourceKey ?? `${study.id.toLowerCase()}_${study.key}`;
   const assetId = `molen.worldgen.structure.${key}`;
   const dir = structureSourceDirectory(key);
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (reviewScope) {
+    if (reviewScope.fidelityTarget !== 'medium-fi')
+      throw new Error(`${study.id}: review scope must use medium-fi`);
+    study = {
+      ...study,
+      ...Object.fromEntries(
+        [
+          'brief',
+          'sourceFacts',
+          'reconstruction',
+          'nativeAxes',
+          'limitations',
+          'surfaceOverrides',
+          'camera',
+          'previewGround',
+          'previewTerrain',
+          'previewEntities',
+          'sourceDocuments',
+        ]
+          .filter((key) => Object.hasOwn(reviewScope, key))
+          .map((key) => [key, reviewScope[key]]),
+      ),
+      fidelityTarget: reviewScope.fidelityTarget,
+      appearance: reviewScope.appearance,
+      mediumFiContext: reviewScope.mediumFiContext,
+      ...(reviewScope.mapFrame ? { mapFrame: reviewScope.mapFrame } : {}),
+      qaCameras: [
+        ...study.qaCameras.map((camera) => ({
+          ...camera,
+          ...(reviewScope.qaCameraOverrides?.[camera.name] ?? {}),
+        })),
+        ...(reviewScope.qaCameras ?? []),
+      ],
+      ...(reviewScope.geographic
+        ? {
+            geographic: () => reviewScope.geographic,
+            geographicNote: reviewScope.geographicNote,
+          }
+        : {}),
+    };
+  }
   if (study.mapFrame) {
     if (study.mapFrame !== 'map-frame.json')
       throw new Error(`${study.id}: source-local map frame must use map-frame.json`);
@@ -269,7 +312,18 @@ for (const study of signatureTowers.filter(
   }
   const out = new MeshBufferBuilder(),
     used = new Map();
-  study.build(mappedBuilder(out, used, study.surfaceOverrides), mapped);
+  let build = study.build;
+  if (reviewScope?.sourceGeometry) {
+    const definition = reviewScope.sourceGeometry;
+    if (
+      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(definition.module) ||
+      typeof definition.export !== 'string'
+    )
+      throw new Error(`${study.id}: invalid source geometry override`);
+    build = (await import(pathToFileURL(resolve(root, definition.module)).href))[definition.export];
+    if (typeof build !== 'function') throw new Error(`${study.id}: missing source geometry export`);
+  }
+  build(mappedBuilder(out, used, study.surfaceOverrides), mapped);
   const mesh = out.finalize();
   if (study.id === 'N0144') smoothMeshNormals(mesh, ['wall'], 30);
   if (study.smoothSlots) smoothMeshNormals(mesh, study.smoothSlots, 30);
@@ -281,7 +335,7 @@ for (const study of signatureTowers.filter(
     max[i % 3] = Math.max(max[i % 3], mesh.positions[i]);
   }
   const encoded = Buffer.from(
-    study.encodeAssembly
+    study.encodeAssembly && !reviewScope?.sourceGeometry
       ? study.encodeAssembly((build, name) => {
           const partBuilder = new MeshBufferBuilder(),
             partUsed = new Map();
@@ -360,7 +414,7 @@ for (const study of signatureTowers.filter(
     ...(study.mediumFiContext ? { mediumFiContext: study.mediumFiContext } : {}),
     size,
     actualBounds: { min, max },
-    ...(study.encodeAssembly
+    ...(study.encodeAssembly && !reviewScope?.sourceGeometry
       ? {
           assembly: {
             uniqueMeshes: gltf.meshes.length,
@@ -413,6 +467,9 @@ for (const study of signatureTowers.filter(
     fidelityStatus: 'pending',
     limitations: study.limitations,
     qaCameras: study.qaCameras,
+    ...(reviewScope?.sourceGeometry ? { sourceGeometry: reviewScope.sourceGeometry } : {}),
+    ...(reviewScope?.runtimeLodOverlay ? { runtimeLodOverlay: reviewScope.runtimeLodOverlay } : {}),
+    ...(reviewScope?.qaLodCameras ? { qaLodCameras: reviewScope.qaLodCameras } : {}),
     importOptions: { optimize: false },
     importReason:
       study.importReason ??
@@ -479,6 +536,7 @@ for (const study of signatureTowers.filter(
   if (study.previewGround === false)
     scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
   if (study.previewTerrain) scene.terrain = study.previewTerrain;
+  if (study.previewEntities) scene.entities.push(...study.previewEntities);
   const optional = (
     await readdir(dir).catch((e) => {
       if (e.code === 'ENOENT') return [];
@@ -494,6 +552,7 @@ for (const study of signatureTowers.filter(
         'qa.json',
         'map-parts.json',
         'map-frame.json',
+        'review-scope.json',
       ].includes(name),
     )
     .sort();

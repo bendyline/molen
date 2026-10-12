@@ -1,0 +1,1323 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0248_bran_castle",
+  "sourceHash": "sha256:b25949c6ee650d1837c75839acf40e8acf4768811d0555b38d3d471b0de1ea11",
+  "runtimeHash": "sha256:07fc69ba8fca25813830b61138456f0db51303987cfa35018a01d160e0eea87e",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:fdee629103e2c1f13387e6e21f8eebf81bdab0591ce6d28dc2040455a6c09199",
+      "bytes": 66704,
+      "gzipBytes": 12855,
+      "triangles": 786,
+      "cpuBytes": 65268,
+      "gpuBytes": 65268,
+      "errorMeters": 1.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:6cab733364a16acf9df4b976cb72420edf01a485b8a27208ada935cbccaf1bda",
+      "bytes": 166116,
+      "gzipBytes": 42856,
+      "triangles": 2504,
+      "cpuBytes": 157552,
+      "gpuBytes": 157552,
+      "errorMeters": 0.75,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:f95c232df9589328983cf70b9a7643dcf0e8fe2dd9cd160c0d792fd669b3a50d",
+      "bytes": 305048,
+      "gzipBytes": 71224,
+      "triangles": 4424,
+      "cpuBytes": 296440,
+      "gpuBytes": 296440,
+      "errorMeters": 0.35,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:84f5488be43628539589a0747f3f893547fdbd339f3416237a8ea1cbb4cfc743",
+      "bytes": 2553220,
+      "gzipBytes": 799483,
+      "triangles": 33258,
+      "cpuBytes": 2544556,
+      "gpuBytes": 2544556,
+      "errorMeters": 0.15,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:44a34ff64de0d55168ad64ad44d1da2af2f56f9c13344aeaab539c3b5623381b"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:59b26298c1fbcf701754b3d7080266e1f5dc6cfac4c97bd3f0f58a44dc46a315"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:9367bfca1df0e383228b151a49132bae93261940e03e0ca7f59f8dbd5aad1476",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.2677,
+          94.53790000000001,
+          250.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:3950d1d57df39f6eb1875b677722a5628657e21f0bf51a90c12155d458b491a9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.2677,
+          94.53790000000001,
+          250.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:6797b09c2757e4918c759865722e8a37742e06ebf2d5146b56e1247b9964f376",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.2677,
+          94.53790000000001,
+          250.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:0752c6b7972e612ef180e9c9141b55d34a69ad6acfdd83785be7aca4a9675ba4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.2677,
+          94.53790000000001,
+          250.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:c7af357759ac5c1917751ea8f21e343daea9a2b29b4e68387aa574b43ddee062",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 17450,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:a17f516a77c426ae6883fdfde3c6554ae6792aef545a7afcfe74c8c14502c533",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 17450,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c81987417823f302ab4ec143a534b2d2b6224d7f8dde6c4feb5ce825d1e30a79",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 17450,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:05b91d71aa95acfca442e99e7220ad7e32f50d641820c19b0341b08feec35111",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 17450,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:823043209467fa0158519973c40118a66754b73549f5388655377062774d944a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15732,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.2677,
+          316.5379,
+          1009.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:6a82222bd838a085e4ecf438ecfd593c538d00c8f15351d3974cee958e2e0c2a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15732,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.2677,
+          316.5379,
+          1009.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:8c6306884eda3ab49c9bfd007d7d2803033eb5bec50103b2b6e5cc899ab7ffba",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15732,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.2677,
+          316.5379,
+          1009.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:20e94ea8c4b9534250fe305d5017129ff27341cdfa739fcc0da96e8447ee6b6d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15732,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.2677,
+          316.5379,
+          1009.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:aa30a651fa2d6ba7d8bf38a486884ee7da13443d5d7fa1b125edf94ec1e16694",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9492,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.2677,
+          316.5379,
+          1009.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/round-western-tower.png",
+      "hash": "sha256:9b9f4569c2fd55fa7f5966a3a2e08f3020c2b5e66a7276444e7b66efb8657ec9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -46,
+          25,
+          31
+        ],
+        "lookAt": [
+          -17,
+          18,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/keep-scallops-and-belfry.png",
+      "hash": "sha256:82e93ede73e54e81b9cedd53739f931dc43d6a24f750612b2124c2df7106ac71",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -25,
+          38,
+          -43
+        ],
+        "lookAt": [
+          -5,
+          28,
+          -9
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/keep-steep-roof.png",
+      "hash": "sha256:97f018090d16933332f9b20e83ccfc6f07fde060b0e1db472b7de91a1d510a59",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -3,
+          33,
+          35
+        ],
+        "lookAt": [
+          -5,
+          28,
+          -8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-stone-tower.png",
+      "hash": "sha256:83fdfb19db16a7b6a04cbc4add81f65855319a94799d70873083b01fc44a186c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          55,
+          27,
+          -1
+        ],
+        "lookAt": [
+          20,
+          17,
+          -4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-stair-turret.png",
+      "hash": "sha256:135ab24f439cbf80c5fcc7fc537328fd99971af8ecb60b60063fe5a889f03459",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          18,
+          20,
+          38
+        ],
+        "lookAt": [
+          5,
+          15,
+          10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-courtyard-gallery.png",
+      "hash": "sha256:3eb3880a1c91403253896279a5221306dcad1ba4897e68b9b08d8a0c976329ca",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -4,
+          14,
+          -1
+        ],
+        "lookAt": [
+          -8,
+          8,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/courtyard-well.png",
+      "hash": "sha256:e72868406280b820e0dc37d2b12cd1799c6675392dc3ab0280ea4eab6368d775",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          4,
+          13,
+          1
+        ],
+        "lookAt": [
+          -5,
+          5.5,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-entry-stairs.png",
+      "hash": "sha256:7a17274cb745ef00f0f05ed17d5fb831be9d22a0f5977b6d492620f49612c9c1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          21,
+          8,
+          31
+        ],
+        "lookAt": [
+          13,
+          5,
+          13
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/courtyard-roof-plan.png",
+      "hash": "sha256:58befdfc734f0187c7323efc807d1ccf6cb43941dcb10bd49d6be893be96a1c8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          90,
+          0.2
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bran-skyline.png",
+      "hash": "sha256:b42a9bc339ede927db24c5dad7b6fa589783d24e23e759f14a0b585ed78ad0dc",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15732,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          48,
+          73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bran-district.png",
+      "hash": "sha256:96135c36251197c1bfedff473739f2dbdb3c99e40766e9b6ec093a318697db0c",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 17450,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          48,
+          73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bran-street.png",
+      "hash": "sha256:0c0ebad4de1b0dcc4396eb31b3be2f9a8bbdd07029e8532bb9b588cadab1a877",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 19370,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          48,
+          73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-bran-closeup.png",
+      "hash": "sha256:4715ca2b5d88629c3b4fef6dc11dfee70708259e04342a099fa8565b48cd5914",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          48,
+          73
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:4f9d0b45e216eaea26f92687c30351f4134e9a4d80d811d5b92afa68387035c4",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15732,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:a17f516a77c426ae6883fdfde3c6554ae6792aef545a7afcfe74c8c14502c533",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 17450,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a83cbf879353cca160ae698f1400f04b242356872d1de0120fcecc66a0c74533",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 19370,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:56a74298eca42908e139d9a2ff463c11de72cdbb13342979d4f537430cea389d",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48204,
+        "groundY": -15,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u84/n0248_bran_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.2677,
+          202.5379,
+          505.9797
+        ],
+        "lookAt": [
+          0.2677,
+          49.5379,
+          1.9797
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Cass Gilbert’s neo-Gothic terra-cotta skyscraper: mapped U-shaped base, offset Broadway tower, recessed individual windows, projecting mullions and sill courses, pointed openings, nested entrance archivolts, corner tourelles, copper pyramid and numerous small pinnacles.
+Complete Woolworth exterior: U-shaped western court, cream Gothic tower and tourelles, compound green copper crown and recessed Broadway Tudor portal.
 
 ## Evidence and reconstruction
 
@@ -18,9 +18,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-137,916 triangles; 313,066 vertices; 4 material groups; 12,928,080 bytes. Native bounds: -29.803, 0.000, -22.820 to 29.803, 241.402, 22.820. Source hash: `sha256:c7c9911e8b6166634508a892bace711ef53d2b5f1d4b28b20a44f46f3e636e94`.
+122,851 triangles; 286,299 vertices; 7 material groups; 11,785,112 bytes. Native bounds: -29.441, 0.000, -22.413 to 29.803, 241.402, 22.820. Source hash: `sha256:77bf8822184dc51134b52d99db03a748be8fd06e79ffc2efaa42caedd508cae9`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X toward Broadway southeast","front":"+X Broadway portal","origin":"Ground contact in exact-Q217652 mapped parcel frame"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -30,7 +30,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0157` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Gothic windows, projecting trim, pointed openings and finials are modeled; individual sculptural faces, heraldic carving and polychrome tile motifs are simplified. Roof reflects the recognizable copper pyramid, not an unbuilt restoration proposal.
+- Whole medium-fi Woolworth parcel retains the U-shaped base, open western light court, Broadway tower, two setbacks, eight mapped corner tourelles and241.4016m published792ft height. Original137916-triangle master recipe is preserved unchanged and reproducible. Reviewed source corrects the false sharp entrance to a genuinely recessed depressed Tudor arch with three-bay transom, center revolving enclosure, side doors and balcony. Compound crown now has large green copper pyramid, dormers, octagonal window lantern, smaller pyramid and finial; lower western wings have shallow copper mansard/dormer ribbons. These shapes follow inspected primary city/owner/restoration images; individual roof and doorway dimensions are reconstructed, not a surveyed plan. The published1983 designation describes historic tourelles and730ft gallery; current owner and2019 restoration photographs distinguish the recognizable compound roof from restoration details. Roof subdivisions194/224/236.2/237.8m are fitted within the published total using the mapped envelope. Seven-foot2.1336m granite water table and lower four-story limestone have separate shared bindings; glazed cream terra cotta uses generic shared ceramic coating with blue accents, copper and bronze use existing shared graphs. No embedded or copied reference images. Continuous piers, pointed upper windows, sill courses and finials are explicit source geometry; street drops tiny frames, district merges window bands, skyline keeps all principal masses and the crown lantern. Sculptural faces, heraldic carving, exact polychrome motifs, interior, current hardware, lower chateau roof layouts and temporary barriers are simplified or omitted. Lower roof ribbons and dormer counts are illustrative. Opaque glass and graphic window overlays are medium-fi abstractions; only the Broadway portal is cut through the facade layers. Ground grade, night, physical-device timing and full-scene memory remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

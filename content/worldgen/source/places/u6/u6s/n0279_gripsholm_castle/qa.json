@@ -1,9 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0279_gripsholm_castle",
-  "sourceHash": "sha256:e483025ba991dcefc9228e9dd2340f4c4413f1e4ab8842877dca873f63e83717",
-  "runtimeHash": "sha256:a8a21ad9e3023c5a37e7e4d3360b189eaf4f93f9136b1d45d767b70b71ffa4ac",
-  "captureReportHash": "sha256:9bc88c775b28e122495c28578c2cae64b661790052a94f5f0ccd1b76a1b8ca32",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:8c679a79283d0796c058a44aa09fb3cc1f4c31a29668677fcbd373e3bc9161fa",
+  "sourceHash": "sha256:76a5ea01e166b1f3f09c6a15ab5464f2a8acd1db5ba20bde58b2cc44ff9d98f7",
+  "runtimeHash": "sha256:75abf8500da8e1f41a521e95d00f870099034b92b6e6fe3ec9536dd01daf7436",
+  "captureReportHash": "sha256:cf4bbdf9f8a7384baa847d46062750c6eb92bda97003ac01fd077104f7201453",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -19,11 +21,11 @@
       "shots/stepped-brick-dormers.png",
       "shots/outer-court-tiled-wings.png"
     ],
-    "notes": "Inspected all 11 portable views. Recognition comes from four brick towers with distinct faceted copper caps: tall open lantern, broad shallow helmet, onion cap and smaller hipped head. Open polygonal inner court and elongated outer court remain visible in top view. Stepped brick dormers, low tiled wings, foundations and real northwest entrance passage survive close views. Compound proportions follow the mapped building/courtyard plan; cap profiles, facade rhythm and heights are interpreted from primary photos."
+    "notes": "Inspected the aerial picture and49 final rendered views. Brick castle core, four different copper cap profiles, tall open lantern, stepped dormers, two open courts and low outer tiled wings retain the pictured identity. North-up mapped outline/courtyard alignment agrees with approximate northwest entrance/southeast core sign. Source/medium-fi PMTiles views show bounded foundation contact."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:decd3a36ea356fcd25e7176e80c06daf32849b6f050a875a624ab0bb2737e274",
+    "captureReportHash": "sha256:b4cd289e319f1383f214426d5aeebbeb13b4d4e307baaf4d71d096dca65fed20",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -34,13 +36,14 @@
       "shots/shared/two-open-courts.png",
       "shots/shared/northwest-entrance.png",
       "shots/shared/stepped-brick-dormers.png",
-      "shots/shared/outer-court-tiled-wings.png"
+      "shots/shared/outer-court-tiled-wings.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 10 shared-loader views. Six merged groups use five shared 256² brick, granite, limestone, oxidized-copper and ceramic-tile graphs plus untextured blue-grey glass. Copper finish remains rough and predominantly dielectric. Physical repeats and linear vertex tints; zero embedded/private images, research-photo textures, baked light or AO. Every graph loads once per view, and eviction disposes all geometry. Minor angular roof joins reflect the simplified compound roof plan."
+    "notes": "Five common graphs provide granite foundations, brick, limestone, copper and ceramic roof tile; opaque glass is a local slot. Close lantern/dormer views show consistent shared surface detail. Six GLBs contain zero images; shared cache reuse and unload pass. Context houses are synthetic style comparisons, not Mariefred data."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5b6a95a59870508742c7363c64e7b26730a9bec39489b0597515334fe1f28938",
+    "captureReportHash": "sha256:ba339068ccee967205db51d5f798bcefd4930067ab2cb518acab47e7c71314e2",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -61,22 +64,33 @@
       "medium-fi/northwest-entrance.png",
       "medium-fi/stepped-brick-dormers.png",
       "medium-fi/outer-court-tiled-wings.png",
+      "medium-fi/whole-gripsholm-skyline.png",
+      "medium-fi/whole-gripsholm-district.png",
+      "medium-fi/whole-gripsholm-street.png",
+      "medium-fi/whole-gripsholm-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all 23 canonical Earth-rig frames: street/block/skyline, noon/late, Economy/High, untextured silhouette, six architectural cameras and four same-camera LODs. Warm brick, cream bands, dark green copper and darker tiles fit the synthetic Swedish-cottage context. Skyline retains the four different tower caps, open lantern, both courtyard holes, stepped dormers and entrance void in 943 triangles. District adds sparse windows; street adds fuller window rhythm and clock face; closeup adds selected planar surrounds and broad clock hands. All levels retain Y0 and 42m maximum. Skyline facets reduce maximum X by 1.205m versus closeup; static transitions show expected window and band changes. Continuous-motion shimmer/pop and physical-device timing remain unmeasured. Review neighbors and flat ground are synthetic, not actual Mariefred terrain."
+    "notes": "Inspected noon/late economy/high, silhouette, identity cameras and matched four-tier comparisons. Skyline retains distinct cap silhouettes and both court holes; district restores openings, entrance and stepped dormers; street/closeup add roof/trim detail. Counts935/2497/4061/5247 and311828initialbytes fit budgets."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Exact Q714783 relation/2848711 supplies the 137.835×63.929m building compound and two courtyard holes. Anchor [17.219554949,59.256010491] and heading -0.787257418369rad establish a provisional local map frame, with +X southeast from forecourt toward core. Official visitor map corroborates entrance/core sign but does not verify terrain seating or every facade. Tower centers/radii are approximate arc fits; wall heights 8.5–26m and tallest roof 42m are visual estimates without a surveyed height datum. Actual grounds have level differences. Lake/island terrain, drawbridge, remote estate buildings and interiors are excluded. Real-site orientation, ground datum and replacement fit need in-world review. Inactive draft, replaceFootprint=false."
+    "status": "passed",
+    "placementHash": "sha256:6c38a4c2298bc9887b57c127bbb9bc4448c119a8802ac554c862b74410e878bb",
+    "mapFrameHash": "sha256:8d6c83292e4f1d97fd923026b13d77678e519f28a71bffc3e7b858e2f617d69e",
+    "notes": "The inspected aerial picture confirms the brick castle, four different copper roof caps, open tall lantern, stepped dormers and lower tiled outer wings. Standard viewer PMTiles and the retained mapped building/courtyard outlines set approximate location, scale and northwest entrance/southeast core sign. A reconstructed2m working court clears coarse island ground; bounded foundations extend beneath sampled slopes. Exact shore and tower elevations remain approximate. Anchor 17.219554949,59.256010491; heading -0.787257418369; standard PMTiles datum 12.530517079873508m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source has 5,247 triangles, six merged groups, five shared material graphs and zero images. Recognition and mapped open courts precede surface detail. Hard normals and 6/12/16-sided tower bodies make the architectural facets explicit. Fine joints, glazing bars, balusters, wires, carved ornament and interiors are omitted. Photographs and visitor map are linked evidence only. Historical tower names are not assigned to unverified positions; roof labels are positional."
+    "notes": "Approximate current castle building compound from inspected picture and standard viewer PMTiles. Tower heights, cap dimensions, openings, roof junctions and exact thresholds reconstructed; no independent named-tower identification claimed. Island/lake shore, drawbridge, estate buildings, boats, trees and interiors excluded. Physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source has 5,247 triangles, six merged groups, five shared material graphs and zero images. Recognition and mapped open courts precede surface detail. Hard normals and 6/12/16-sided tower bodies make the architectural facets explicit. Fine joints, glazing bars, balusters, wires, carved ornament and interiors are omitted. Photographs and visitor map are linked evidence only. Historical tower names are not assigned to unverified positions; roof labels are positional.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -84,259 +98,197 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/models/source.glb",
-        "hash": "sha256:e483025ba991dcefc9228e9dd2340f4c4413f1e4ab8842877dca873f63e83717",
-        "bytes": 626436,
+        "hash": "sha256:76a5ea01e166b1f3f09c6a15ab5464f2a8acd1db5ba20bde58b2cc44ff9d98f7",
+        "bytes": 633368,
         "triangles": 5247,
-        "vertices": 15549,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
           -69.00475311279297,
-          0,
+          -4.957035541534424,
           -32.08571243286133
         ],
         "max": [
           69.0982437133789,
-          42,
+          44,
           31.96500015258789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.glb",
-        "hash": "sha256:a8a21ad9e3023c5a37e7e4d3360b189eaf4f93f9136b1d45d767b70b71ffa4ac",
-        "bytes": 625876,
+        "hash": "sha256:75abf8500da8e1f41a521e95d00f870099034b92b6e6fe3ec9536dd01daf7436",
+        "bytes": 632804,
         "triangles": 5247,
-        "vertices": 15549,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
           -69.00475311279297,
-          0,
+          -4.957035541534424,
           -32.08571243286133
         ],
         "max": [
           69.0982437133789,
-          42,
+          44,
           31.96500015258789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
         "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.skyline.glb",
-        "hash": "sha256:b39a0c9ea87a5281449a45543a6f6a9ca08c04ee2ffcf189223985a627e70312",
-        "bytes": 79804,
-        "triangles": 943,
-        "vertices": 2021,
+        "hash": "sha256:1af4b566d13d14d67625e99090c8fbc7a2ed66d17a37007d7fa676151108e435",
+        "bytes": 95072,
+        "triangles": 935,
         "materials": 1,
-        "sharedGraphs": 0,
         "images": 0,
         "min": [
           -69.00475311279297,
-          0,
+          -4.903118133544922,
           -32.25
         ],
         "max": [
           67.89326477050781,
-          42,
+          44,
           31.96500015258789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
-        "file": "model.district.glb",
         "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.district.glb",
-        "hash": "sha256:c76bd456f21fffd9bb01d25e8d503bc9431a8058ae758c8859111b1df72e804e",
-        "bytes": 209564,
+        "hash": "sha256:b1f2d58dda833214a274a9284c57265b36f4518e977003a708ac7b1431ce6e83",
+        "bytes": 216756,
         "triangles": 2497,
-        "vertices": 5203,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
           -69.00475311279297,
-          0,
+          -4.9664835929870605,
           -31.96500015258789
         ],
         "max": [
           68.94222259521484,
-          42,
+          44,
           31.96500015258789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "street",
-        "file": "model.street.glb",
         "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.street.glb",
-        "hash": "sha256:c7795771b43e70a673f9f954e2516e3ef6d83467e816d084118e331e8a43c5a5",
-        "bytes": 317096,
+        "hash": "sha256:358906984299d52c2896cd714c4a7b816f95e3816c0092981ba5ebd1eb79cbfd",
+        "bytes": 349992,
         "triangles": 4061,
-        "vertices": 7929,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
           -69.00475311279297,
-          0,
+          -4.957035541534424,
           -32.08571243286133
         ],
         "max": [
           69.0982437133789,
-          42,
+          44,
           31.96500015258789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
         "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.closeup.glb",
-        "hash": "sha256:ae88ef44db23671f8d23e36affee5a2df4378fffde5c4cfd79c9762ff2eba77f",
-        "bytes": 395488,
+        "hash": "sha256:d61fe580e308ec4ac29c21b4ce5a43bfbc4a1083129d6783a9675324e278cd64",
+        "bytes": 438104,
         "triangles": 5247,
-        "vertices": 9909,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
           -69.00475311279297,
-          0,
+          -4.957035541534424,
           -32.08571243286133
         ],
         "max": [
           69.0982437133789,
-          42,
+          44,
           31.96500015258789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       }
     ],
-    "notes": "All six GLBs pass with zero errors/warnings, no images, Y0 attachment and 42m maximum. Unused-UV informational notices are expected for external shared graphs. Two targeted LOD tests pass deterministic-byte, monotonic detail, polygon/download, shared-surface and homogeneous GPU-attribute checks."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "All six selected GLBs pass Khronos validation with zero errors and warnings. Original detailed architectural master/recipe preserved. Registered derivative retains upward court caps at the2m working datum, extends bounded foundation bottoms below coarse PMTiles ground and bakes actual shared graph means in the far model. Current source/runtime/capture hashes and shared cache cleanup pass."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:b43cb6620d754c785804efb67b082a628d653a09bbef85c9343248cc5c321271",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.skyline.glb",
-        "hash": "sha256:b39a0c9ea87a5281449a45543a6f6a9ca08c04ee2ffcf189223985a627e70312",
-        "bytes": 79804,
-        "triangles": 943,
-        "vertices": 2021,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -69.00475311279297,
-          0,
-          -32.25
-        ],
-        "max": [
-          67.89326477050781,
-          42,
-          31.96500015258789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "hash": "sha256:1af4b566d13d14d67625e99090c8fbc7a2ed66d17a37007d7fa676151108e435",
+        "bytes": 95072,
+        "gzipBytes": 16276,
+        "triangles": 935,
+        "cpuBytes": 93668,
+        "gpuBytes": 93668,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.district.glb",
-        "hash": "sha256:c76bd456f21fffd9bb01d25e8d503bc9431a8058ae758c8859111b1df72e804e",
-        "bytes": 209564,
+        "hash": "sha256:b1f2d58dda833214a274a9284c57265b36f4518e977003a708ac7b1431ce6e83",
+        "bytes": 216756,
+        "gzipBytes": 52721,
         "triangles": 2497,
-        "vertices": 5203,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -69.00475311279297,
-          0,
-          -31.96500015258789
-        ],
-        "max": [
-          68.94222259521484,
-          42,
-          31.96500015258789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 209492,
+        "gpuBytes": 209492,
+        "errorMeters": 0.7,
+        "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.street.glb",
-        "hash": "sha256:c7795771b43e70a673f9f954e2516e3ef6d83467e816d084118e331e8a43c5a5",
-        "bytes": 317096,
+        "hash": "sha256:358906984299d52c2896cd714c4a7b816f95e3816c0092981ba5ebd1eb79cbfd",
+        "bytes": 349992,
+        "gzipBytes": 82435,
         "triangles": 4061,
-        "vertices": 7929,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -69.00475311279297,
-          0,
-          -32.08571243286133
-        ],
-        "max": [
-          69.0982437133789,
-          42,
-          31.96500015258789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 342716,
+        "gpuBytes": 342716,
+        "errorMeters": 0.3,
+        "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u6/u6s/n0279_gripsholm_castle/model.closeup.glb",
-        "hash": "sha256:ae88ef44db23671f8d23e36affee5a2df4378fffde5c4cfd79c9762ff2eba77f",
-        "bytes": 395488,
+        "hash": "sha256:d61fe580e308ec4ac29c21b4ce5a43bfbc4a1083129d6783a9675324e278cd64",
+        "bytes": 438104,
+        "gzipBytes": 102162,
         "triangles": 5247,
-        "vertices": 9909,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -69.00475311279297,
-          0,
-          -32.08571243286133
-        ],
-        "max": [
-          69.0982437133789,
-          42,
-          31.96500015258789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 430832,
+        "gpuBytes": 430832,
+        "errorMeters": 0.1,
+        "drawCalls": 6
       }
     ],
-    "initialDownloadBytes": 289368,
-    "notes": "Skyline/district/street/closeup: 943/2497/4061/5247 triangles and 79804/209564/317096/395488 bytes. Initial skyline plus district is 289368 bytes, excluding shared graph downloads. Strict medium-fi audit has no findings; recipe Biome has no errors/warnings; byte-identical source regeneration passes. All LOD budgets met. Detailed master remains separately generated. Checks scoped to Gripsholm without dependency audit, engine-wide checks or unrelated model regeneration."
-  }
+    "initialBytes": 311828,
+    "notes": "skyline: 935 triangles, 95072 bytes, 1 draws; district: 2497 triangles, 216756 bytes, 6 draws; street: 4061 triangles, 349992 bytes, 6 draws; closeup: 5247 triangles, 438104 bytes, 6 draws. Initial skyline+district 311828 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke surveys or exact thresholds.",
+    "Original detailed architectural master/recipe preserved; registered derivative fits working courts and bounded foundation bottoms.",
+    "Four different copper roof silhouettes, open lantern, two open courts, stepped dormers and real northwest passage retain identity. Tower heights/cap dimensions reconstructed; no independent named-tower identification.",
+    "Castle building compound only; island/lake terrain, drawbridge, remote estate buildings, boats, trees and interiors excluded.",
+    "Five common material graphs and local opaque glass; six merged groups reflect the mixed compound. Zero embedded images. Physical-device timing pending."
+  ]
 }

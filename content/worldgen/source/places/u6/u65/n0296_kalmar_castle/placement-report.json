@@ -1,12 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0296_kalmar_castle",
-  "inputHash": "sha256:b2a82c294f41ea652acced1bfc9db7763a71a57ea8c5f8ab68442fd0bd9fe7ad",
-  "sourceHash": "sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c",
-  "runtimeHash": "sha256:e837fad0c3def639911f688b7e8b16054cb3c6e696a80a87b453ce47204eb833",
-  "placementHash": "sha256:b7c68722c7876ab470544caf54bcc911925648e7d084eff5ee577bd9e843977c",
+  "inputHash": "sha256:bf532c30a623769eacc221967b9911834aebb0060fa42e95ddfb2f66c04f43a9",
+  "placementHash": "sha256:be8d4d95eb9093c6dce6e924e9c5314510f53a7436098a6f101d213bb79761fc",
   "entry": {
-    "id": "n0296.kalmar_castle",
+    "id": "next1000.n0296",
     "title": "Kalmar Castle",
     "asset": "molen.worldgen.structure.n0296_kalmar_castle",
     "anchor": [
@@ -16,26 +14,24 @@
     "heading": 0,
     "datum": "terrain",
     "elevation": 0,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q648226",
+      "maxDistance": 80
+    },
+    "replaceFootprint": false,
     "terrainReference": {
       "anchor": [
         16.355425549,
         56.657997261
       ],
-      "modelHeight": 4.2,
-      "basis": "Original provisional castle-platform attachment Y4.2; outer coastal defenses descend to Y0.3. No primary numeric vertical dimension or surveyed datum verified. Real terrain, moat and coastline registration remain pending."
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
     },
-    "bounds": [
-      16.353608758781213,
-      56.65703172631399,
-      16.357122623758237,
-      56.65908247793962
-    ],
-    "orientation": "fixed",
-    "replaceFootprint": false,
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/relation/1331955",
-    "note": "Exact Q648226 relation 1331955 preserves the castle footprint and irregular courtyard. Separately attributed mapped corner towers, Kuretornet, outer defenses, coast and western bridge. Native +X east/+Z south coordinates bake orientation; heading 0. Roofs, heights, apertures, defense sections and selected Renaissance details are original photographic estimates. No verified current kitchen-extension footprint, real vertical datum, terrain/moat/coast fit or complete site fidelity. Inactive draft with footprint replacement off."
+    "note": "The inspected aerial picture supports the open court, copper helmets, steep dark roofs, stepped gables and bounded island defenses. Retained east/south map coordinates with heading0 set approximate footprint and western approach. Standard viewer PMTiles supply surrounding terrain; reconstructed court floorY4.7 is above coarse ground and the island/pier toes reach the same sampler at every level. Broad water simulation and terrain cutouts are excluded. Anchor 16.355425549,56.657997261; heading 0; standard PMTiles datum 6.099512477948403m. Floors are reconstructed and foundations extend below the coarse sampled ground. The western bridge deck and railings slope toward the sampled outer approach; its inner end retains the reconstructed court level. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Inactive exact-relation draft. Coordinate arithmetic, baked heading 0 and all-level geographic extent verified. Original heights, unresolved current kitchen extension, real terrain/moat/coast datum and access fit need geographic/current-site review."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

@@ -21,11 +21,11 @@ Seven existing shared256-square stone/lime plaster/copper/painted metal/timber/b
 
 ## Model and axes
 
-6,844 triangles; 20,532 vertices; 8 material groups; 825,888 bytes. Native bounds: -70.559, 0.000, -33.523 to 70.894, 38.000, 32.784. Source hash: `sha256:48c1c41f347c996f1384fb2dca43b3ac5575b9791f2ea3763e9dbb6f27131cdd`.
+6,954 triangles; 20,862 vertices; 8 material groups; 839,136 bytes. Native bounds: -70.559, -1.311, -33.523 to 70.894, 42.572, 32.784. Source hash: `sha256:a60704ec23541c779b3f323057000d16c6be37de99c5644437f97ae408091e9e`.
 
-{"up":"+Y","longitudinal":"Native+X east,+Z south, current WGS84 component traces; runtime heading0.","origin":"Exact castle horizontal map anchor. Provisional common ground/courtyard Y0; actual rocky rise and grades belong to host terrain."}
+{"up":"+Y","longitudinal":"Native+X east,+Z south, current WGS84 component traces; runtime heading0.","origin":"Original horizontal map anchor; local Y0=4m N2000 reconstructed bailey datum. Upper courts8.572m from City of Turku inner-court height point. Signed +X East/+Z South and heading0."}
 
-Exact-QID current castle outline and separate components retain native East/South heading0. Common courtyard Y0 is provisional; rocky west approach/grade attachment and exterior fidelity need site review.
+Native+X East,+Z South and heading0 retain all attributed mapped parts. Source-local city heights establish8.572m N2000 in the inner court; lower bailey4m is reconstructed and not claimed measured. Sparse interpolated review terrain and foundations are included; host terrain resolution/datum agreement controls final ground fit.
 
 ## Reproduce
 
@@ -33,14 +33,13 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0305` (
 
 ## Pending work
 
-- Native East/South mapped traces retain heading0. Coordinate arithmetic is not a visual site-fit approval.
-- Official west/east tower totals38/32m and maximum3m wall thickness are preserved. Other OSM heights include mapper photo estimates; no common surveyed datum or facade measurement verified.
-- Three mapped courtyards are open; timber/gallery bridge starts at mapped Y15. Original arch profiles, roof axes/pitches, facade bay spacing, patchy lime plaster and ground attachment remain estimated.
-- Nearby merchants warehouses, wooden cottages, park, natural rocky rise, vegetation, port development and historic1827reconstruction are separate or excluded.
-- Seven existing shared256-square stone, lime plaster, patinated copper, painted metal, timber, brick and gravel graphs. Linear palette tints and metric repeats; flat glass. No unique embedded/new texture or downloaded mesh.
-- Research photos/PDF remain private references; only attribution and original numeric controls ship. City planning aerial is2023, not a2026survey.
-- Interiors, heraldry, fine window grids, museum exhibits, accessibility ramps and walkable collision certification excluded or pending.
-- Actual rock/grade attachment, exterior/geographic/medium-fi review and physical ordinary-laptop/phone performance remain pending.
+- Current medium-fi exterior reconstructs architectural sections from operator photos and original attributed17part map traces. Official west/east totals38/32m are kept relative to upper court; exact height datums, roof pitches, windows and plaster shapes are not surveys.
+- Measured city inner-court height8.572m N2000 anchors both adjoining upper courts. Lower bailey4m, eastern stair dimensions and between-observation grades are original reconstruction; no interior bailey city height point was returned.
+- The source terrain is an original4m grid interpolation of27 city spot heights and107 contour fragments, with explicit court constraints. It is not a downloaded official DTM. Host terrain needs compatible N2000 datum and adequate local resolution.
+- Foundations extend below interpolated ground and the three passage openings remain visible. No interior navigation or walkable collision certification. Western approach/ramp and current harbour street works are outside this landmark scope.
+- Seven existing shared256-square irregular stone, lime plaster, copper, painted metal, wood, brick and gravel graphs; opaque local glass. Flat far stone uses the current graph mean and retains coarse plaster coverage. No new, embedded or photographic texture.
+- Nearby cottages/warehouses, park vegetation, natural rock microdetail, port development, interior exhibits, heraldry, exact painted ornaments and window grids are excluded. Operator photographs and planning aerial remain private research references.
+- Physical phone/laptop timing and downtown memory are unmeasured; browser byte, triangle, draw and unloading checks are separate from physical-device validation.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

@@ -25,11 +25,11 @@ Five existing shared256-square limestone, ceramic tile, painted metal, timber an
 
 ## Model and axes
 
-6,923 triangles; 20,769 vertices; 7 material groups; 834,820 bytes. Native bounds: -74.554, 0.000, -79.530 to 43.949, 54.000, 145.569. Source hash: `sha256:658a2ab457e0ddada76a90d219c33f77f9cbcad3f2e88d706665eade3179940c`.
+6,923 triangles; 20,769 vertices; 7 material groups; 834,836 bytes. Native bounds: -74.554, -28.054, -79.530 to 43.949, 37.000, 145.569. Source hash: `sha256:502d5cfe8223e0c2732001af078cfc99103d62bc3037202f75c16b4a0c5ff44b`.
 
-{"up":"+Y","longitudinal":"Native+X east,+Z south, heading0; original footprint and gateway coordinates preserved.","origin":"Castle horizontal anchor. Provisional court attachment modelY25; actual hillside tower baseY0. Common hill/bridge datum unverified."}
+{"up":"+Y","longitudinal":"Native+X east,+Z south, heading0; original footprint and gateway coordinates preserved.","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South original controls, heading0. Provisional court attachment modelY25 above hillside tower baseY0; real hill/bridge datum and section approval pending.
+The inspected aerial picture supports the crenellated fortress with rectangular towers, open courts, roofed north towers and long walled hillside stair to the lower tower. Retained map controls set approximate plan scale and heading0. Standard viewer PMTiles supply the hill. The main court is reconstructed8m above the anchor datum; bounded outer wall and museum footings reach sampled terrain. The lower tower preserves its13m exterior height on its own PMTiles floor; its stair and walled link meet that tower and the main wall walk. Anchor -9.133459014,38.713919369; heading 0; standard PMTiles datum 89.69677216774184m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -37,34 +37,13 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0308` (
 
 ## Pending work
 
-- Exact castle1382432568/Q636780, southern/eastern barbican27022973, current museum168984058, separate hillside tower591833135 and149-step link83388706 are independently attributed map features. Native+X east,+Z south, heading0.
-- Operator identifies ten perimeter turrets plus one interior tower and two places-of-arms. Current roofed north towers, crenellated south/east towers, periscope, two flags, divider, gateways and moat remain separate original geometry. The destroyed historic keep or complete former royal residence is not invented.
-- Operator Palace Tower plan7.6 by10m is approximate. Observatory111.229m is an absolute altitude; no relative tower height or common hill datum is implied. Tower/wall heights, inner footprint returns, parapet spacing, courtY25, palace roofs and hillside stair rise are current-photo estimates.
-- Raw interior way246379169 is labelled São Lourenço but conflicts with the actual mapped hillside tower and operator location. The raw name is retained in evidence but not propagated as runtime identity; only its footprint and mapper13m height guide the central tower draft.
-- Royal-palace museum envelope and adjacent current ruin arches are original exterior estimates. Fine archaeological foundations, museum interiors, exhibitions, statues, heraldry, cannon collection, temporary furniture, vegetation, natural hill, adjacent neighborhood/church and the city-wide77-tower Fernandine wall are separate or pending.
-- Five existing shared256-square limestone, ceramic roof tile, painted metal, timber and gravel graphs use linear tints and metric repeats. Glass/flag colors remain flat; no unique embedded/new texture or copied photograph/mesh.
-- Operator photographs and site diagram are private references only; no bitmap, plan or operator mesh redistributed.
-- Geographic, current-site facade/section and medium-fi approval require inspected renders; placement stays draft until actual hill/court/bridge/stair attachment is resolved. Physical laptops/phones and continuous LOD measurements pending.
+- Approximate exterior and hill fit from the inspected picture and standard viewer PMTiles; no bespoke survey or exact court/observatory altitude claims.
+- Original detailed master/hash/recipe preserved. Eleven fortress towers, two courts, gateways, bridges, current museum and lower hillside tower/link remain distinct; restoration fixtures and masonry details are interpreted.
+- Five common limestone/tile/painted-metal/wood/aggregate graphs plus explicit glass and flag colors; no embedded images or broad duplicate natural hill.
+- Interiors, collision and physical-device timing excluded; footprint replacement remains off.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 
 © OpenStreetMap contributors; Castelo de São Jorge and its credited photographers. Preview terrain: Mapzen Terrain Tiles and source contributors; independent public height query: Direção-Geral do Território.
-
-## Terrain research preview
-
-The separate17×17 PNG16 heightfield comes from289 coarse Mapzen Terrarium
-samples. It adds context to portable and Earth-rig captures without adding
-bytes to any landmark GLB. See `relief-grid.json` for tile URLs/hashes,
-attribution and the64.70m provisional datum; `terrain-review.json` retains
-independent DGT public-height comparisons and their limitations. This is a
-research slope, not a measured castle terrain or a certified elevation.
-
-The unchanged architecture intersects the coarse hill at the main entrance,
-south/east courts and lower barbican; parts of the northern foundations and
-museum float. Isolated shared-material captures confirm that those model
-sections exist. The actual courtyard terraces, museum ledge/wing levels,
-footings and hillside stair grades remain unresolved. No contact flattening
-or invented retaining walls were added. Portable visual, medium-fi,
-geographic and fidelity acceptance remain pending; placement stays inactive.

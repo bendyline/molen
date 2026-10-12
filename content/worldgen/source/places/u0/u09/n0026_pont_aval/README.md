@@ -31,3 +31,5 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 - The absolute placement is consistent with current IGN NGF-IGN69 terrain/water and BD TOPO3D road evidence. Hosts using a different height reference need a datum conversion; official road coordinates have2.5m stated altitude accuracy.
 - The exterior reflects photographs and available aerial; changes to traffic markings or lamps since those images require current reference verification.
 - The crossing ends at its abutments; adjacent elevated motorway ramps remain separate map-driven structures.
+- The source is archival geometry, not a verified depiction of current motorway traffic allocation. Closeup draws selected precast seams and pier ribs at reduced frequency; no change to surveyed span stations or box dimensions is implied.
+- Skyline/district/street/closeup are independently authored 1000/4000/16000/64000-triangle derivatives. Error allowances describe simplified components, not a measured whole-mesh Hausdorff distance.

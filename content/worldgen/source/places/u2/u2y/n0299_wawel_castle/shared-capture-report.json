@@ -1,12 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0299_wawel_castle",
-  "inputHash": "sha256:188434e36d45214442093fc9ea6ff3feffc94b42fedb8d375c0a9a0a30ae032c",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:3663f3993c679fcf882519c538797dda06f16fbe5748e68de30545df1f31eaa9",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "inputHash": "sha256:aca2be4624771d291c6ba394eaf4cf09f3e160ed6b834d0c03183da7c9a5c438",
+  "sourceHash": "sha256:d64a83cf5b14811c835793ad8808a37da26f2bf1eb7bab825c69d038262c075f",
+  "runtimeHash": "sha256:8bb6c1691d436e212cf4d3e870143672e8235c1e1e4e505e174a55c2371aa3d0",
+  "reviewGroundY": -4,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:d7c2f59875501f0f0531c2da4392073a7f2ef1e0c368a2fb1918e5a8335d49f2",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:0871bb2b11e5e97f647143ec6d0cd4d9029db11809d59d6fdc4d8dffab849e60",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -16,9 +19,9 @@
       "path": "materials/plaster_lime.matgraph.json",
       "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
     },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    "matgraph:molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
     },
     "matgraph:molen.worldgen.material.metal_copper": {
       "path": "materials/metal_copper.matgraph.json",
@@ -36,15 +39,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:861e821aa78e4b3e198e2370f79c84d291dabeae74cbdc3cfc3a3cc25757db09",
+      "hash": "sha256:ed01714cff8eb56d3a651d5f3f60dfbfc42fefce700b4bf21e162ffc976454ec",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -56,34 +59,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -94,15 +115,15 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:a814a572f7c7a23c329a056ea8afedb9a7026ecff09d28185b058c30754e27ce",
+      "hash": "sha256:0eb2fd146fa70b901b1b26f940124d15a8fe168e5a4ce54d5c9abb70e8a5ce0a",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -114,34 +135,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -152,15 +191,15 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:975248ba7e880b0e704684ce70e719410d4fff5b47d5d17653c999447c42dbcf",
+      "hash": "sha256:ffa91ad37d0db2ca05213fa2545d82a3be2b57effece7a8b818df1cbafe0f0f6",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -172,34 +211,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -210,15 +267,15 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:6dffa611c3ba9d87e9fcd2a07e50851f87ef367ecf938b7daea015eca51624e1",
+      "hash": "sha256:c0a16cf109bb6e4a33dec2afcc193389710b6683708343edb02cc8fb08f4b2a9",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -230,34 +287,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -268,24 +343,24 @@
     },
     {
       "path": "shots/shared/courtyard-galleries.png",
-      "hash": "sha256:c13cca7ee3f352350510bf0e76f07c24e8431169ca813e9429d1e045a121f8a2",
+      "hash": "sha256:c3018f1e004fa73edcf4b4db3f8523599fb55831a6051b5fb0e47be67be81499",
       "camera": {
         "name": "courtyard-galleries",
         "position": [
           -3,
-          26,
+          20,
           17
         ],
         "lookAt": [
           6,
-          20,
+          14,
           -31
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -297,34 +372,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -335,24 +428,24 @@
     },
     {
       "path": "shots/shared/court-plan.png",
-      "hash": "sha256:81ab2d353ab52d3630993dea4e5861dcaaff526ca4bb22cb203712fdb3d30b5b",
+      "hash": "sha256:a7c7a4d0a391fd1004120930688d772ca9d7ada829c82e07720ca1e839df631b",
       "camera": {
         "name": "court-plan",
         "position": [
           0,
-          170,
+          164,
           -5
         ],
         "lookAt": [
           0,
-          20,
+          14,
           -5
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -364,34 +457,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -402,24 +513,24 @@
     },
     {
       "path": "shots/shared/northern-copper-helms.png",
-      "hash": "sha256:14b47aff0c26eab24b7bfc8a2b79c25cef9ad208e83b922b1d3df69db229415b",
+      "hash": "sha256:c36b63dcc1b9130c0b6488bec19c96fdc3344bb79b04d19ffa7010129a6667ac",
       "camera": {
         "name": "northern-copper-helms",
         "position": [
           8,
-          65,
+          59,
           -160
         ],
         "lookAt": [
           3,
-          31,
+          25,
           -50
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -431,34 +542,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -469,24 +598,24 @@
     },
     {
       "path": "shots/shared/senator-and-south-wall.png",
-      "hash": "sha256:6beee160cfbfe436229862a336236dde658fbd3a68966a4e24d1a95c3a2feee5",
+      "hash": "sha256:f00629803bc330738fc309b81b2cfe13cb3e8fa2413c8fb51426c88a6dc40563",
       "camera": {
         "name": "senator-and-south-wall",
         "position": [
           52,
-          52,
+          46,
           110
         ],
         "lookAt": [
           10,
-          24,
+          18,
           35
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -498,34 +627,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -536,24 +683,24 @@
     },
     {
       "path": "shots/shared/berrecci-entry.png",
-      "hash": "sha256:304437bfa7258871f9bb2572fcd21d9a58940c561e08c7f1a4d0742a4555efdf",
+      "hash": "sha256:69b0504026a7b55c20c1c8c8b2512ee902b490dd2ab8c549ea07b9ead7fab8db",
       "camera": {
         "name": "berrecci-entry",
         "position": [
           -92,
-          24,
+          18,
           1
         ],
         "lookAt": [
           -40,
-          13,
+          7,
           -16
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -565,34 +712,52 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
@@ -603,24 +768,24 @@
     },
     {
       "path": "shots/shared/eastern-pavilion.png",
-      "hash": "sha256:11c29a8bc52c77af9b13d6c2eb4d60c88afb0e690fcff2ac98804d73f2974140",
+      "hash": "sha256:f95bc5c8d4579a54581fd57ae308b95e5e3489ac18b34d3ef94a458fe747a7f2",
       "camera": {
         "name": "eastern-pavilion",
         "position": [
           118,
-          50,
+          44,
           -20
         ],
         "lookAt": [
           45,
-          27,
+          21,
           -23
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0299_wawel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
         "position": [
           0,
           0,
@@ -632,39 +797,133 @@
         "bounds": {
           "min": [
             -69.00800323486328,
-            0,
+            -9.27707576751709,
             -67.4000015258789
           ],
           "max": [
             63.86199951171875,
-            43.54999923706055,
+            37.54999923706055,
             64.55020904541016
           ]
         },
+        "reviewGroundY": -4,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "801dd5c9-48b7-49fe-a7e1-2e7863f9bee5",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "3d1fc143-9dd0-4e87-877a-e4a5df3d218f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "cbab64c8-582b-4832-98ef-1524fea87f8d",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "ade5f6c3-70ee-4937-b971-3d8a44f2550a",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "543041b0-ced0-46b1-9132-9133ab80c159",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "2aa4b046-8fa7-448e-ba40-645107f2ec7a"
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
         },
         "loads": [
           "molen.worldgen.structure.n0299_wawel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 8,
+        "renderedTriangles": 23063
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:d9769f3ccb252763f93a2f3380bf065fa7b71dcc6c665547cf9243321bb632f0",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0299_wawel_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0299",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 7,
+        "triangles": 23061,
+        "bounds": {
+          "min": [
+            -69.00800323486328,
+            -9.27707576751709,
+            -67.4000015258789
+          ],
+          "max": [
+            63.86199951171875,
+            37.54999923706055,
+            64.55020904541016
+          ]
+        },
+        "reviewGroundY": -4,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "e4557dc6-bf1e-4df9-8027-9f63b84225ca",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "455dca08-8631-47bc-99a6-aa98ba523018",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "7309c844-8562-419e-8630-4da4a2963aba",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "d7fd4788-f3d3-4d3f-b925-b7535c51ea1d",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e78a194e-d408-403b-aec1-d579bb9edec4",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "9ff48e72-d490-489c-90f0-289aa697d866"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0299_wawel_castle"
+        ],
+        "selectionBounds": [
+          19.934809133760616,
+          50.05325014265947,
+          19.938390866239384,
+          50.05554982978687
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0299",
+            "coordinate": [
+              19.9366,
+              50.0544
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0299"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 9,
         "renderedTriangles": 23063
       }
     }

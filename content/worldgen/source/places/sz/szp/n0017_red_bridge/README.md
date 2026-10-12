@@ -25,7 +25,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 ## Reconstruction limits
 
-- Arch stations, minor surface details and footing elevations are interpreted from primary photographs, not engineering survey or photogrammetry.
-- Historic and restored stone positions are reconstructed; shared raw mineral textures establish library consistency while geometry carries actual joints.
-- Adjacent hotel, river landscaping and stairs up the distant cliff are separate scenery.
-- Real terrain fitting and final placement approval remain pending.
+- Owner picture/PMTiles approximate exterior scope; no bespoke survey or per-artifact source research.
+- Detailed stone-by-stone source remains unchanged and hash-reproduced. Independent browser shells preserve all five openings, pointed profiles, rounded cutwaters, low parapets and mapped bent landings; canonical sandstone, basalt and fired-clay graphs are shared.
+- Browser models simplify exact masonry, restored color patches, brick bands, drains and mouldings; source retains all detailed geometry. Original80m body and92.429m approach extent remain distinct.
+- PMTiles approach samples differ4.2m; reconstructed corridor and bounded ground opening are approximate visualization. Riverbed/bank contacts, neighboring scenery and physical-device performance remain unmeasured. Footprint replacement off.

@@ -1,0 +1,908 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0643_kiipsaare_lighthouse",
+  "sourceHash": "sha256:9c2753a05a758c658c153516c8f8e8ca6493ab8cf339bf0c523615a40350e35c",
+  "runtimeHash": "sha256:041977f61fd994f201578ee325d48b2055fa83da37197b93eeca32312e199fb3",
+  "fixtureHash": "sha256:f55930ad1e6f65444be9b7980501d0eef3dc3c6d3706028226a99cf0509c2cb6",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4268,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c222a08026d0da475e1d091d967886a3765bf34768d428b78b73e1dffbfd53ef",
+      "bytes": 59880,
+      "gzipBytes": 12321,
+      "triangles": 800,
+      "cpuBytes": 58440,
+      "gpuBytes": 58440,
+      "errorMeters": 0.3,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:df6bd4083ebab9d279ff8efd3e7ec808242d3d4da26da3a064d155d6ec2dce62",
+      "bytes": 241684,
+      "gzipBytes": 59631,
+      "triangles": 3372,
+      "cpuBytes": 237852,
+      "gpuBytes": 237852,
+      "errorMeters": 0.12,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:c3175d69b25d7e3d35d0329f9a0bd5751674af74e1b1a2bfb8e0afad66abaa74",
+      "bytes": 1014588,
+      "gzipBytes": 251893,
+      "triangles": 13632,
+      "cpuBytes": 1012320,
+      "gpuBytes": 1012320,
+      "errorMeters": 0,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:c3175d69b25d7e3d35d0329f9a0bd5751674af74e1b1a2bfb8e0afad66abaa74",
+      "bytes": 1014588,
+      "gzipBytes": 251893,
+      "triangles": 13632,
+      "cpuBytes": 1012320,
+      "gpuBytes": 1012320,
+      "errorMeters": 0,
+      "drawCalls": 3
+    }
+  ],
+  "terrainFixture": {},
+  "fixtureEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.05,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            60,
+            0.1,
+            60
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#4c6e77",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Synthetic procedural neighbors at review Y=0; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:58355113967d96d1d319d44fed9321756d46de8e0a9bd4aeaeee77650b7760cd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:fa674da0f79ff7cfc09797d435a1b38f311f452bc15fbea24d5a9f1330a58960",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:cdecc487046b85854d83e1b3b15dbb1cce930e57a97ec144aa108f8178e913e8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:c91a633b9510948d2ea09bd10d098d24ef160fe57e4f31bed355a8dd7844a2e9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:6e3db2994f5de2f69a3e0f59c129f583cb3e5f2a3c2f405f625cd23485b87095",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 7654,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7a4b7cdad958e5098c7ef00cfb06742169066f94ac588d910c967ac3cfaa16e6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 7654,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:0a5f4082a71f614434e140179c3b9a9aaddc54d28d0514ded57bea18b70b65a7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 9,
+        "triangles": 7654,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:a084e3bb830bd9102ac83ca667c64629a419655146954a5daef95dc2f1ca5e6a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 7654,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:702c742eaddd3072164f6137365faaff2e4c56cbe08eb57720592b0b831bdb8a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 5082,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:4f91ce8469b437dd3168bee7ba2e8c91b67eade9a75f448c5f0bc379b778b181",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 5082,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:01d1bb981b8775be147eb15e2fe3427059c3aed593a8c384536847331baa9a47",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 5082,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:902136508c5e0a7664459b1b3b998806a6b47bd64c43913b123d5aaa4d8dd784",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 5082,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:dda88bb95db533a9f3f8376d51cd6d07411aeb493a0ca299fc9521c99f0c998c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 814,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-gallery.png",
+      "hash": "sha256:5313cc5d37ccda8bf8daa2567d3ed2d57b3ab748c07c9887dd53221756f05792",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          7,
+          24,
+          9
+        ],
+        "lookAt": [
+          -0.8,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-shaft.png",
+      "hash": "sha256:8ff0c88de1bed1a75bd6fadb021156d808d1c3e8175a5c840378c4b6abfd0d63",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          5,
+          12,
+          9
+        ],
+        "lookAt": [
+          -0.4,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-entry.png",
+      "hash": "sha256:32aac17f130a32fa80361506d22cbc0b1f7e2a57d9b73cc6d23266c121ea823a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          4,
+          2.5,
+          6
+        ],
+        "lookAt": [
+          -0.1,
+          1.4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/far-silhouette.png",
+      "hash": "sha256:b3a71825447b17b78a783f151d1f27cac97c73ab5d744c51bff9d2b15e6540d6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          24,
+          15,
+          36
+        ],
+        "lookAt": [
+          -0.4,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/gallery-district.png",
+      "hash": "sha256:67863b824a0599ea3a9afc0c515d539117142683c34785d779ca5ea1ff8244a8",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 7646,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          4.5,
+          24,
+          6
+        ],
+        "lookAt": [
+          -0.8,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/windows-district.png",
+      "hash": "sha256:f71fcca3791cefbbaa26567a770085476ffff59a9c08e897857c60d33a13df1e",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 6510,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          3,
+          7.2,
+          5
+        ],
+        "lookAt": [
+          -0.25,
+          6.9,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/gallery-street.png",
+      "hash": "sha256:d0b9093f785c52d05a351edcad2db6f69461d675e6752f8937585a1da2db68b2",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          4.5,
+          24,
+          6
+        ],
+        "lookAt": [
+          -0.8,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:a4e3b991cda01dd008b019d4adce18c95fe888ea5b40b4c3209f74c0625f6700",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 5082,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7a4b7cdad958e5098c7ef00cfb06742169066f94ac588d910c967ac3cfaa16e6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 7654,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:909b97c66283a025c6ef8164f765515d86322ca9133846425eb75e182596d150",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d622b127b018b94f9d1e7b6fea75af7cb2e7020c5c6ea9670cab23bb8d9dd05a",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 17914,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.wood_vertical": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+        "contextScale": 1
+      }
+    }
+  ],
+  "errors": []
+}

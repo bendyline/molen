@@ -12,27 +12,21 @@
   },
   "visualBrief": "H-plan palace with a through passage, repeated projecting bow windows, three-level green mansards, central bays and circular balconies, pointed tower arches, layered cornices, ribbed crown and glazed lighthouse.",
   "size": [
-    31.049999237060547,
+    31,
     100,
-    47.739444732666016
+    47.73114013671875
   ],
   "actualBounds": {
     "min": [
-      -15.524999618530273,
+      -15.5,
       0,
-      -23.869722366333008
+      -23.865570068359375
     ],
     "max": [
-      15.524999618530273,
+      15.5,
       100,
-      23.869722366333008
+      23.865570068359375
     ]
-  },
-  "assembly": {
-    "uniqueMeshes": 4,
-    "meshInstances": 116,
-    "storedTriangles": 646738,
-    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
   },
   "nativeAxes": {
     "up": "+Y",
@@ -53,7 +47,9 @@
     "entrances": [
       "Avenida de Mayo 1370",
       "Hipólito Yrigoyen 1373"
-    ]
+    ],
+    "originalMasterHash": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8",
+    "originalMasterRecipe": "packages/worldgen/scripts/barolo-palace-model.mjs#baroloPalaceStudy.encodeAssembly"
   },
   "reconstruction": {
     "basis": "Original geometry reconstructed from owner front, mansard, tower and lantern photographs; municipal heritage book photo plates and H-plan description; rear photograph by Elsapucai; aerial photograph linked by El Ojo del Arte. Intermediate elevations, light-court dimensions, tower offset, mouldings and decorative motifs are approximate.",
@@ -131,14 +127,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Geographic registration is unresolved: the cached 60 m frontage conflicts with the documented 30.88 m frontage. This model is catalogued but not automatically placed.",
-    "Maximum exterior fidelity remains pending. H-plan proportions, intermediate heights, tower offset, dome curvature, balcony profiles and ornamental relief are photographic reconstructions without measured drawings.",
-    "The rear uses the observed related façade vocabulary but requires a more complete elevation reference. Light-court windows, roofs and party walls are schematic.",
-    "Owner height is 100 m; national heritage lists 103 m, and dome heights differ between references. This model uses 100 m and records the disagreement.",
-    "Mansard tiling, figurative sculptures, exact façade inscriptions, full shopfront signs, modern air-conditioning equipment and surveyed passage furnishings remain unauthored. No third-party photographs or meshes are embedded."
+    "Original 49608172-byte instanced master is preserved and reproducible from the original baroloPalaceStudy.encodeAssembly (new optional runtime arch-relief switch does not change original master bytes), hash sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8, 870924 expanded /646738 stored triangles, four parts/116 placements and five material groups with three shared graphs and zero images. The new browser source uses the existing authored close-up reconstruction, reducing moulding/arch sampling and relief while retaining H-plan light courts, 7.5 m wide/13.5 m high through passage, repeated projecting bow bays, three-level green mansards, curved balconies, pointed arches, offset tower, ribbed crown and clear lighthouse. Skyline now retains passage and H-plan; district/street omit subpixel concentric arch-relief tubes while retaining arched glazing silhouettes to meet triangle budgets, close retains authored 62940-triangle facade. Owner 100 m overall height is retained; national 103 m overall and municipal 86 m/owner 90 m dome figures remain separate. Plot dimensions 30.88 by 44.21 m and passage dimensions follow the municipal book and owner. Intermediate elevations, bay profiles, mansard shape, tower center -14 m, court widths, ornament and lighthouse mechanism are photographic reconstructions, not measured drawings. Rear and light courts remain schematic; interiors, exact inscriptions/sculpture, shop signage and modern rooftop equipment are not modeled. Three canonical shared concrete, painted-metal and marble graphs plus opaque glazing and 52-percent clear lantern glazing give five groups with zero embedded images. Geographic registration remains unresolved: exact-QID OSM way 1386044833 spans about 60 m rather than the documented 30.88 m frontage; no stretch or footprint replacement is allowed. Official cadastral download was denied by automatic approval review; permission is pending. Physical-device performance measurements and terrain grade remain unmeasured."
   ],
   "qaCameras": [
     {
@@ -283,6 +275,237 @@
         30,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-palacio",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ]
+    },
+    {
+      "name": "open-passage-street",
+      "position": [
+        0,
+        5,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        25
+      ]
+    },
+    {
+      "name": "open-h-plan-courts",
+      "position": [
+        55,
+        74,
+        35
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/barolo-runtime-model.mjs",
+    "export": "buildBaroloCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/barolo-runtime-model.mjs",
+    "export": "buildBaroloReviewedSkyline",
+    "errorMeters": 7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBaroloDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildBaroloStreet",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-barolo-skyline",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-barolo-district",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-barolo-street",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-barolo-closeup",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-passage-street",
+      "position": [
+        0,
+        5,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        25
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-h-plan-courts",
+      "position": [
+        55,
+        74,
+        35
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -290,10 +513,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 870924,
-    "vertices": 1640060,
+    "triangles": 62940,
+    "vertices": 127964,
     "materials": 5,
-    "bytes": 49608172,
-    "sha256": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8"
+    "bytes": 5365120,
+    "sha256": "sha256:fcb0a63abd36b33013ce8513ccd3d73b0e751e39956523368f0e595ce0f3881d"
   }
 }

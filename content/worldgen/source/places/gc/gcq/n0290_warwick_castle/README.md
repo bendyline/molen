@@ -24,11 +24,11 @@ Mapped curtain/domestic/court rings reproduce attributed OpenStreetMap data unde
 
 ## Model and axes
 
-8,649 triangles; 25,947 vertices; 5 material groups; 1,040,976 bytes. Native bounds: -84.653, 0.000, -54.876 to 103.000, 40.000, 54.876. Source hash: `sha256:dac27326e5e7818a427fb3b48c043861696b3787a1a0187946bf928f0e57f18a`.
+8,649 triangles; 25,947 vertices; 5 material groups; 1,041,000 bytes. Native bounds: -84.653, -17.772, -54.876 to 103.000, 34.000, 54.876. Source hash: `sha256:cb18d533e9cbbbfb3c31c5b16db382fbaefae5eb45fd2ed09d3fe94660a33c72`.
 
-{"up":"+Y","lateral":"+X approximately north-east along cached axis;main gate faces +X","longitudinal":"+Z approximately south-east on river/domestic-range side","origin":"Cached map envelope center;Y0 estimated lower river-facing Caesar/retaining footing,Y11 inferred court/Guy base. Signed orientation and terrain datum pending."}
+{"up":"+Y","lateral":"+X approximately north-east along cached axis;main gate faces +X","longitudinal":"+Z approximately south-east on river/domestic-range side","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Original approximate exterior on mapped castle/court rings;inactive until real-site review.
+Two inspected pictures confirm polygonal Guy tower, lobed Caesar tower, clocked twin-turret gatehouse, castellated domestic ranges and stepped motte/ramparts. Retained mapped outline/court and standard viewer PMTiles set approximate location, scale and northeast gate/river-side orientation. A6m downward derivative offset puts the reconstructed court at Y5 above the PMTiles working datum. Bounded lower footing vertices extend below coarse terrain; court, bank and stepped motte remain an explicit approximate reconstruction. Anchor -1.585265184,52.279577946; heading 0.789464883642; standard PMTiles datum 63.38437334827418m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -36,12 +36,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0290` (
 
 ## Pending work
 
-- Original approximate current exterior;full mapped curtain/domestic/court rings retained near. Upper geometry,tower radii/lobes,window/roof rhythm,motte,terrain proxy and approach are estimates,not an architectural survey.
-- Operator publishes Guy29m/Caesar40m local tower heights;Guy baseY11,courtY11 and lower Caesar footingY0 are inferred relative alignment. Modeled maximumY40 is not a surveyed absolute datum. Other heights are estimates. Historic England calls Caesar trilobed,operator says quatrefoil;three pronounced lobes are interpreted from inspected images.
-- Three identities:many-sided Guy tower,lobed two-stage Caesar tower and crenellated gate/barbican around open court. Street adds Gothic window/bay rhythm,corbels,clock diamond and domestic roofs/chimneys. Fine lattice,lettering,flags,balusters,stone joints,microbevels and interiors omitted.
-- Existing shared256²sandstone,slate and timber graphs,linear palette tints,metric UVs and actual graph means at skyline. Opaque blue-grey glass;untextured turf/roof supports. No photographs,unique textures,baked shadows or AO embedded.
-- Grass motte/terrain proxy and synthetic British-townhouse neighbors are review context,not surveyed site terrain. Mill,weir,river,outer parks and visitor infrastructure are not members of this castle exterior bundle. Real-site completeness/attachments and signed placement remain pending.
-- Inactive geographic draft,replaceFootprint=false. Forced resident LOD samples do not certify adaptive streaming,network upgrades,subframe shimmer or physical-device timing.
+- Approximate current exterior and fit from two inspected pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Relative tower-local heights retained; reconstructed court, bank, motte and approach levels are not surveyed ground.
+- Three common graphs plus local grass/paving/clock-color and dark recess slots, zero embedded images. No trees, water levels, interiors or terrain cutouts.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

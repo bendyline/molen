@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-4,497 triangles; 12,459 vertices; 8 material groups; 506,992 bytes. Native bounds: -58.001, 0.000, -52.969 to 60.969, 28.000, 53.113. Source hash: `sha256:a1fc1184c189cc0c9f0cf66c8292ad3cb8dc0fe5f7f01eee00845f9c6a8fbc8e`.
+4,497 triangles; 13,491 vertices; 8 material groups; 544,180 bytes. Native bounds: -58.001, -8.483, -52.969 to 60.969, 31.200, 53.113. Source hash: `sha256:d84571ccf618f14c63fef54b3ba29ed83cf876ce1c47b515d1f8f82bfacc70f3`.
 
-{"up":"+Y","longitudinal":"+X northeast,44.4915 degrees north of east","front":"West entry(-X,-Z),north Bishop(+X,-Z),southeast Styr(-X,+Z)","origin":"Mapped castle compound center,provisional flat courtyard attachmentY=0"}
+{"up":"+Y","longitudinal":"+X northeast,44.4915 degrees north of east","front":"West entry(-X,-Z),north Bishop(+X,-Z),southeast Styr(-X,+Z)","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Whole compound mapped footprint,not a solid building or church footprint. Signed tower orientation based on operator aerial; actual terrain,heights,approaches and footprint replacement need in-world review before activation.
+The inspected aerial picture confirms the irregular brick enclosure, open west/Styr crowns, pyramid-capped Bishop tower, covered wall walk and lower museum ranges. Standard viewer PMTiles and the retained compound outline establish location, scale and signed orientation. A reconstructed3.2m level court clears the coarse mound; bounded tower/wall foundations extend beneath sampled ground. Anchor 25.323548196,50.738747737; heading 0.776523631346; standard PMTiles datum 186.99930980801582m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -31,13 +31,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0277` (
 
 ## Pending work
 
-- Mapped compound fixes plan but individual tower/body outlines,annex dimensions,heights,window positions,roof profiles and crown ornament are visual interpretations,not surveys.
-- Entry and Styr heights vary27–28m in primary sources; model selects28m and27m respectively.
-- Bishop13.5m reference has ambiguous extent/datum. Using it for brick body plus an inferred7m roof is an explicit interpretation,not a verified20.5m total. The hill and relative footing heights remain unmeasured.
-- Contemporary church excavation cover is modeled;1.52m map height belongs to ruins,not shelter. No full medieval church or destroyed palace is recreated.
-- Compound includes open courtyard and sparse lawns/paving. Neither flat review ground nor demonstration neighbors prove real Lutsk placement.
-- Geographic activation,terrain seating and footprint replacement pending. Physical laptop/phone performance and continuous-motion LOD shimmer remain unmeasured.
-- No copied photos or unique textures ship. Fine mortar,stone joints,sculpture,thin rails/wires,temporary structures and interiors omitted under medium-fi.
+- Approximate current exterior using inspected picture and standard viewer PMTiles; no bespoke survey or exact threshold research.
+- Original detailed architectural master and recipe preserved; independent derivative fits a level working court and bounded foundations.
+- Three differently capped towers, buttressed open entry, covered timber walk, open court and contemporary excavation shelter define identity. Heights/openings and crown details reconstructed.
+- Upper castle exterior only; lower castle, neighborhood, full natural mound, destroyed palace/church, temporary events and interiors excluded.
+- Six shared material graphs and local glass/lawn slots; eight merged groups justified by the mixed campus. Zero embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

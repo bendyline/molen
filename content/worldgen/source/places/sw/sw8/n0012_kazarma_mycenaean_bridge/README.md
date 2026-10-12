@@ -18,7 +18,7 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-97254 triangles; 11613072 bytes; 2 material groups. SHA256: sha256:f84ee3da46d21a01e511b4268160a6f0b7b1e0c5d63b7e7968d00ce6464a8100.
+97266 triangles; 11614512 bytes; 2 material groups. SHA256: sha256:a128c2ada15a1b85cbfa1e66ddc4fc6a8a04c50b73168e8baf6b879689359fc2.
 
 Shared surfaces (gravel, stone_limestone_weathered) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
@@ -28,4 +28,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 - Original detailed exterior; individual boulder shapes, hidden tunnel joints and full retaining-wing extent are interpreted from photographs and published overall dimensions.
 - No modern safety parapet, regular Roman voussoirs, embedded source photograph or surrounding landscape is invented.
-- The 22 m published length includes retaining wings; do not stretch the 7.943 m mapped central bridge path to 22 m. Exact rocky-bank exposure and streambed height require local terrain review.
+- Retaining-wing road height and gully shoulders are photo-scaled relative reconstructions. Conflicting coarse DEM samples cannot resolve this narrow opening; no surveyed streambed, absolute elevation or measured public DTM is claimed.
+- Source-local terrain is an explicitly reconstructed dry-gully context, with the runtime tunnel opening rasterized into it. The host independently supplies real terrain; relative off-center bank contact avoids anchoring the bridge to a smoothed mid-gully sample.
+- The97254triangle/11613072byte original master remains byte-reproducible, hashf84ee3da46d21a01e511b4268160a6f0b7b1e0c5d63b7e7968d00ce6464a8100. The current detailed derivative corrects hidden core face winding and closes crown bedding. Separate browser models retain major photo-scaled Cyclopean boulders/corbels while replacing tiny gravel and buried back-face stones with two shared256-square materials.
+- The opposite facade and stone depths remain interpreted. No current stream flow, vegetation, modern road, precise hidden foundations or walkable navigation certification is claimed. Physical-device timings remain pending.

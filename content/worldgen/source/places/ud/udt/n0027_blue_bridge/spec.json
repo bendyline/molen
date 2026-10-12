@@ -10,22 +10,22 @@
     "latitude": 59.931666666,
     "longitude": 30.308888888
   },
-  "visualBrief": "The unusually broad Blue Bridge over the Moika: surviving ribbed cast-iron upstream vault, smoother concrete downstream face, granite splayed quays, ornate blue Moika railings and the parking square above.",
+  "visualBrief": "Compact Blue Bridge: split cast/concrete vault, granite abutments and splayed quay walls, ornate blue railing impressions, lanterns and representative parking marks. Detailed master remains independently reproducible.",
   "size": [
-    31.5,
-    8.140000343322754,
-    114.49414825439453
+    31.340539932250977,
+    8.0600004196167,
+    116.64183044433594
   ],
   "actualBounds": {
     "min": [
-      -15.75,
+      -15.670269966125488,
       0,
-      -57.247074127197266
+      -58.32091522216797
     ],
     "max": [
-      15.75,
-      8.140000343322754,
-      57.247074127197266
+      15.670269966125488,
+      8.0600004196167,
+      58.32091522216797
     ]
   },
   "nativeAxes": {
@@ -44,7 +44,10 @@
     "restorationYears": [
       2013,
       2015
-    ]
+    ],
+    "originalMasterHash": "sha256:981d51934c5a7bb582fc34e1c1fc75deedc6fc30e4d0bf38eb38f2acab3906b5",
+    "originalMasterRecipe": "packages/worldgen/scripts/blue-bridge-model.mjs#buildBlueBridge",
+    "reviewScope": "Original926900-triangle/71885356-byte master reproduced exactly; independent24230-triangle medium-fi source simplifies vault ribs, casting and masonry."
   },
   "reconstruction": {
     "intradosSpringAboveWaterMeters": 0.62,
@@ -72,7 +75,7 @@
     ],
     "source": "https://www.openstreetmap.org/relation/3299061",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:f74a21756c9109ff941bcf31b9ca28e0d1fa98fdc68152d03ad366f2d5e3497d",
+    "mapGeometryHash": "sha256:d552dd75b2bab90003d05d0287c77b45c12971c70b5c94c6a35123547152b2dd",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "anchor": [
@@ -80,9 +83,73 @@
       59.931663492
     ],
     "heading": -1.1348311311998964,
-    "elevationMode": "sea-level",
-    "elevationMeters": 0,
-    "notes": "Mapped longest axis follows the Moika; model +X is the short crossing axis, rotated90degrees toward the southeast. Upstream ribbed cast face is negativeZ. Provisional water datum and quay contacts require terrain review."
+    "elevationMode": "terrain-contact",
+    "notes": "Two inspected street pictures establish blue quatrefoil/circle cast railing, plain inner rail, lantern context and plaza pavement. Existing vault dimensions are retained from the source. Standard viewer PMTiles Moika crossing and square confirm the short southeast crossing axis and broad downstream width. Retain29.4m crossing,95.4m cornice width and113.85m splayed-quay extent; nominal97.3m width is a separate definition. West/east road samples18.9794/19.0298m differ0.05m; source endpoint3.25m gives approximatebase15.7294m. Urban terrain includes bridge/roof imprint, so the source normal-water reference remains approximate. Narrow canal opening and bounded preview contacts remove that imprint; exact water stage/quay levels and parking layout are unverified.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two inspected street pictures establish blue quatrefoil/circle cast railing, plain inner rail, lantern context and plaza pavement. Existing vault dimensions are retained from the source. Standard viewer PMTiles Moika crossing and square confirm the short southeast crossing axis and broad downstream width. Retain29.4m crossing,95.4m cornice width and113.85m splayed-quay extent; nominal97.3m width is a separate definition. West/east road samples18.9794/19.0298m differ0.05m; source endpoint3.25m gives approximatebase15.7294m. Urban terrain includes bridge/roof imprint, so the source normal-water reference remains approximate. Narrow canal opening and bounded preview contacts remove that imprint; exact water stage/quay levels and parking layout are unverified.",
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        30.308773042496988,
+        59.93182634989128
+      ],
+      "modelHeight": 3.25,
+      "basis": "Approximate western PMTiles road contact."
+    },
+    "bounds": [
+      30.30777297571967,
+      59.93127358277492,
+      30.310075960280333,
+      59.932053401225076
+    ],
+    "replaceRoads": {
+      "length": 29.4,
+      "width": 95.4,
+      "outline": [
+        [
+          -14.7,
+          -47.7
+        ],
+        [
+          14.7,
+          -47.7
+        ],
+        [
+          14.7,
+          47.7
+        ],
+        [
+          -14.7,
+          47.7
+        ]
+      ],
+      "deckHeights": [
+        3.25,
+        3.25
+      ],
+      "includeConnectedApproaches": true
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -7.85,
+          -47.7
+        ],
+        [
+          7.85,
+          -47.7
+        ],
+        [
+          7.85,
+          47.7
+        ],
+        [
+          -7.85,
+          47.7
+        ]
+      ],
+      "basis": "Known canal opening under the broad bridge removes coarse bridge imprint; visual correction, no excavation survey."
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -117,12 +184,221 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Broad Blue Bridge plaza with low split vault, splayed granite quays and blue circular/quatrefoil handrails.",
+    "exclusions": "Surrounding square/buildings, Neptune gauge, vehicles and exact casting/text."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/blue-bridge-browser-model.mjs",
+    "export": "buildBlueBridgeCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/blue-bridge-browser-model.mjs",
+    "export": "buildBlueBridgeSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBlueBridgeDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.17,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBlueBridgeStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.17,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBlueBridgeCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.17,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-blue-skyline",
+      "position": [
+        79,
+        52,
+        95
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-blue-district",
+      "position": [
+        79,
+        52,
+        95
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-blue-street",
+      "position": [
+        79,
+        52,
+        95
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-blue-closeup",
+      "position": [
+        79,
+        52,
+        95
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
-    "Absolute road and water levels need site-elevation verification.",
-    "The bridge parking geometry requires a current aerial registration; adjacent square pavement and the Neptune gauge outside the bridge are separate site structures.",
-    "Arch rib pitch, casting ornament profiles and lantern dimensions are photograph-based reconstructions, without fabrication drawings."
+    "Two inspected street pictures establish blue quatrefoil/circle cast railing, plain inner rail, lantern context and plaza pavement. Existing vault dimensions are retained from the source. Standard viewer PMTiles Moika crossing and square confirm the short southeast crossing axis and broad downstream width. Retain29.4m crossing,95.4m cornice width and113.85m splayed-quay extent; nominal97.3m width is a separate definition. West/east road samples18.9794/19.0298m differ0.05m; source endpoint3.25m gives approximatebase15.7294m. Urban terrain includes bridge/roof imprint, so the source normal-water reference remains approximate. Narrow canal opening and bounded preview contacts remove that imprint; exact water stage/quay levels and parking layout are unverified.",
+    "Shared granite/concrete/painted metal are reused. Low tiers merge casting patterns and omit ribs; closer levels add quatrefoil/circle impressions and representative cast ribs. Exact curls, rib pitch, bolts, individual masonry, parking stripes and Cyrillic sign lettering are simplified; the sign is an unlettered plaque. Original master preserves detailed reconstruction.",
+    "No bespoke datum or parking-registration research. Physical-device timings remain unmeasured."
   ],
   "qaCameras": [
     {
@@ -274,10 +550,10 @@
   },
   "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
   "mesh": {
-    "triangles": 926900,
-    "vertices": 1687752,
+    "triangles": 24230,
+    "vertices": 72690,
     "materials": 6,
-    "bytes": 71885356,
-    "sha256": "sha256:981d51934c5a7bb582fc34e1c1fc75deedc6fc30e4d0bf38eb38f2acab3906b5"
+    "bytes": 2911068,
+    "sha256": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466"
   }
 }

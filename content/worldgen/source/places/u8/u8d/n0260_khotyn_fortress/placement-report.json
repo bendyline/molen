@@ -1,18 +1,17 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0260_khotyn_fortress",
-  "sourceHash": "sha256:1ee9d2ca9c81ab2bdf617202b1e5458b64c6332a189e1478f4a27ad656e55e69",
-  "runtimeHash": "sha256:29646dd4c9a99bfc98228f1b9accb8d618bfbe7daa4a87ef42aa8e887200eced",
-  "placementHash": "sha256:72aba6a58806de5c50cc384ea6307e798ee8169ae094fb1d91cf3ce60afeb2a2",
+  "inputHash": "sha256:4bee2d11f5c873532f09a6269924b447e95108c4787450297e9922eab26f1c92",
+  "placementHash": "sha256:790d8c2c089615c5143f3d83c4c2783afdfca2ad7dccf8750937004b8e8981f0",
   "entry": {
     "id": "next1000.n0260",
     "title": "Khotyn Fortress",
     "asset": "molen.worldgen.structure.n0260_khotyn_fortress",
     "anchor": [
-      26.498333333,
-      48.521944444
+      26.498528407744324,
+      48.52213188288293
     ],
-    "heading": 0.3615025578499,
+    "heading": 0.2658474118833337,
     "datum": "terrain",
     "elevation": 0,
     "orientation": "fixed",
@@ -21,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        26.498528407744324,
+        48.52213188288293
+      ],
+      "modelHeight": 0,
+      "basis": "Retained decoded126.3247 m working anchor datum; vertical reference/vintage unverified."
+    },
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://www.openstreetmap.org/relation/8520372",
-    "note": "undefined Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "preview",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=26.4969,48.5205,26.5002,48.5233",
+    "note": "Fresh exact-QID relation8520372 v24 identifies the wider fortress, not this inner-citadel model. Named north/gate/west/southwest/east tower, palace, chapel, barracks, well and western curtain plans are retained separately; no false exact-QID tag on each component. Revised anchor[26.498528407744324,48.52213188288293] and heading0.2658474118833337 align north/gate centroid axis: +X east-northeast74.768065 degrees, +Z south-southeast164.768065 degrees toward entry. River/barracks +X, west towers/palace -X, north keep -Z. Main river-curtain connections and convex court envelope are reconstructed from component plans and reserve diagram, not an extracted exact fortress polygon. Original schematic frame retained in sourceFacts, original master unchanged. Retained16641-value4 m terrain grid uses decoded datum126.3247 m;3.164162 m pixel interval is not verified native resolution/survey accuracy. Maximum occupied court-envelope sample plus0.25 m selects rigid court8.4609 m/common architecture shift-15.5391 m. Foundation floor-5.6185 m is buried; bounded court masonry plinth leaves host terrain outside and under bridge. No whole-fortress/city/river terrain replacement. Datum/vintage and building contamination unverified. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0031_pont_del_diable",
-  "inputHash": "sha256:ca03fe4ae2adfdb815f95d9133a98f5f51c0a6f3bf1ec327e3114b6276b4ce67",
-  "captureReportHash": "sha256:4813ff35f920a99d91a97ba5d29457d99c5662a6a4db5844b86877c4f6d07d28",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:e84f29e359573c3422f49d13495cc8f32da2ba454031234898e0319268aaf662",
+  "sourceHash": "sha256:daae1b1614f4ceb5e8801ac2bdc3ce472d0aeadca0529019a9b48ed5e09c717b",
+  "runtimeHash": "sha256:cbf8697640c3f6572af0c199fdd02da59a33c2c6b60297488f8aa0ff52ba9538",
+  "captureReportHash": "sha256:99cf78895e9332d18119996ccf4e1c16b129db00c56bed62bb86433747e8678b",
   "visualReview": {
     "status": "passed",
-    "scope": "Current exterior render integrity; maximum fidelity remains pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -22,13 +24,14 @@
       "shots/shelter-roof.png",
       "shots/east-small-arch.png",
       "shots/roman-gateway.png",
-      "shots/gateway-crown.png"
+      "shots/gateway-crown.png",
+      "shots/east-small-arch-above-bank.png"
     ],
-    "notes": "All16 current portable frames inspected. Corrected inward cutwater faces and made inner arch rings follow variable deck width; all final views recaptured. The arches remain open, the summit passage can be seen through, stairs follow the independently sampled LiDAR profile, and the gateway retains its separate stone bases and copper cap. Fine masonry and ruined surfaces remain stylized rather than surveyed."
+    "notes": "Inspected all17 final source images: overview, four turntables, both elevations, plan, west stonework, main intrados, continuous cutwater, summit passage, roof, small east arch in two views, Roman gateway and copper crown. Unequal arches, humpback stair walk and shelter agree with the inspected oblique picture. Corrected cutwater layers, bridge end faces, arch-edge course gaps and formerly buried camera. Colored masonry remains a stylized impression, not exact conservation blocks."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:7ddbaa50f78d66320f73a4758e95208646cf06fc65d13b8361a261b3e4ae8bab",
+    "captureReportHash": "sha256:36aa04da334250978bfa80c5bda516ece0d9fff94f059035c76bb684eb63c6c2",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -45,33 +48,263 @@
       "shots/shared/east-small-arch.png",
       "shots/shared/roman-gateway.png",
       "shots/shared/gateway-crown.png",
+      "shots/shared/east-small-arch-above-bank.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All16 current world-viewer frames inspected. Four canonical graphs are read once each, with zero embedded images. Viewer samples the separate bank coordinate, applies the reference-height subtraction, and unloads with zero live geometry. The fixture uses a synthetic bank datum and does not certify actual terrain fit. Cap panel pattern and masonry regularity remain fidelity limits."
+    "notes": "Inspected all17 final shared-viewer images including mapped north-up placement. Four canonical sandstone, limestone, painted-metal and copper graphs reused without embedded images. Directed route, complete geometry, western terrain reference, bounded road replacement, bridge ground opening/restoration, shared graph cache and unloading pass. Geographic flat staging is separate from the reconstructed PMTiles preview context."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:1aaec46004b2ab102cf2af8f367a5ce028893e8058a6e78663f59290e86bd84a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-elevation.png",
+      "medium-fi/north-elevation.png",
+      "medium-fi/deck-plan.png",
+      "medium-fi/west-ashlar.png",
+      "medium-fi/main-intrados.png",
+      "medium-fi/pier-cutwater.png",
+      "medium-fi/summit-passage.png",
+      "medium-fi/shelter-roof.png",
+      "medium-fi/east-small-arch.png",
+      "medium-fi/roman-gateway.png",
+      "medium-fi/gateway-crown.png",
+      "medium-fi/east-small-arch-above-bank.png",
+      "medium-fi/whole-pont-skyline.png",
+      "medium-fi/whole-pont-district.png",
+      "medium-fi/whole-pont-street.png",
+      "medium-fi/whole-pont-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all33 final lighting, LOD and transition views. All four tiers preserve the unequal open arches, humpback envelope, summit shelter and Roman gateway. Low tiers merge stonework, steps and rails; closer tiers restore stairs, double voussoir impressions and larger colored stone patches. Skyline curve segmentation improved without exceeding1k triangles. The continuous cutwater and small east arch remain visible. Coarse terrain is corrected only for the fitting context; surrounding slopes and synthetic neighbors are approximate."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:6e0359d6cf43bd87b54d1192cf0549001dda01e843cb47865939639cb8ef8bfe",
-    "notes": "Three exact-QID map ways establish the complete125m route and summit passage, with the Roman gate independently located at the east end.255ICGC responses constrain bank/stair/roof elevations. A1m northward mesh offset follows sampled shelter edges. North-up fixture inspected; actual river level, bank geometry and host-terrain agreement still require validation."
+    "status": "passed",
+    "placementHash": "sha256:5dd6116c412467a21ff509778d10cfb2f3943f515c51209022b00e1cbdacba76",
+    "mapFrameHash": "sha256:3709b9b703df9b3b1aa3afb9cadcb5a368e783ae084cee7abedfbb0430348414",
+    "notes": "One inspected oblique picture establishes the unequal pointed arches, red/pale stone, humpback stair walk, roofed summit shelter and surviving Roman gateway. Existing authored profile and span controls are retained. Standard viewer PMTiles places the east-directed crossing at the Llobregat route;125.0414m mapped path and nominal130m are separate definitions. Native -1m lateral adjustment retained. West approach PMTiles56.9653m versus native14.91m gives approximate origin42.0553m, close to retainedICGC41.9m. East-bank PMTiles34.8258m conflicts with the original authored gateway threshold; approximate local preview contacts retain that source profile rather than certifying a new datum. Bounded opening removes bridge imprint. Exact bank joins, water stage, stone courses and crown restoration appearance remain limited;2007picture does not verify2026copper cap."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior and approximate picture/PMTiles fitting. Retain125.0414m mapped route and nominal130m as separate definitions,36.4/16.4/5.5m authored clear spans, graded walkway and -1m lateral adjustment. Western PMTiles contact gives approximate42.0553m origin,0.1553m above retainedICGC41.9m. East-bank coarse DEM conflicts with the authored profile; reconstructed local contacts retain that profile and raw samples remain available. Exact threshold joins, bank/water levels, individual stonework and2026copper-cap appearance are limited; the inspected2007picture does not verify current restoration. Modern road/rail bridges excluded. Physical-device timing remains pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Detailed original reconstruction with published clear spans, shared materials and LiDAR-constrained envelope. Fine block sizes, arch intrados, shelter/gateway depth, repairs and copper sheet detail are approximate. Current2026 restoration is represented without its obsolete safety net. Do not count as complete."
+    "notes": "Detailed original reconstruction with published clear spans, shared materials and LiDAR-constrained envelope. Fine block sizes, arch intrados, shelter/gateway depth, repairs and copper sheet detail are approximate. Current2026 restoration is represented without its obsolete safety net. Do not count as complete.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sp/sp3/n0031_pont_del_diable/models/source.glb",
+        "hash": "sha256:daae1b1614f4ceb5e8801ac2bdc3ce472d0aeadca0529019a9b48ed5e09c717b",
+        "bytes": 6496876,
+        "triangles": 54116,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -62.575706481933594,
+          -1.2000000476837158,
+          -6
+        ],
+        "max": [
+          68.92070770263672,
+          29.389999389648438,
+          3.680000066757202
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sp/sp3/n0031_pont_del_diable/model.glb",
+        "hash": "sha256:cbf8697640c3f6572af0c199fdd02da59a33c2c6b60297488f8aa0ff52ba9538",
+        "bytes": 6496436,
+        "triangles": 54116,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -62.575706481933594,
+          -1.2000000476837158,
+          -6
+        ],
+        "max": [
+          68.92070770263672,
+          29.389999389648438,
+          3.680000066757202
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sp/sp3/n0031_pont_del_diable/model.skyline.glb",
+        "hash": "sha256:3b07abfdce45baf102fd8efde46f1d1afe5a25ca709dd70a9fe0f0f070bf1af3",
+        "bytes": 103816,
+        "triangles": 992,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -62.52070617675781,
+          -1.2000000476837158,
+          -6
+        ],
+        "max": [
+          68.92070770263672,
+          29.389999389648438,
+          3.549999952316284
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sp/sp3/n0031_pont_del_diable/model.district.glb",
+        "hash": "sha256:097d686facb87315d84bf2e0775f3779fd17020f82699ed3af8bff9c639b3db4",
+        "bytes": 286776,
+        "triangles": 3108,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -62.575706481933594,
+          -1.2000000476837158,
+          -6
+        ],
+        "max": [
+          68.92070770263672,
+          29.389999389648438,
+          3.549999952316284
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sp/sp3/n0031_pont_del_diable/model.street.glb",
+        "hash": "sha256:026f9774f0fbf3f05a92c1a525b48b295c7a32333d055182b8fbfc2e963b19b3",
+        "bytes": 1170332,
+        "triangles": 13012,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -62.575706481933594,
+          -1.2000000476837158,
+          -6
+        ],
+        "max": [
+          68.92070770263672,
+          29.389999389648438,
+          3.680000066757202
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sp/sp3/n0031_pont_del_diable/model.closeup.glb",
+        "hash": "sha256:d645a1f1fb1d324706c88b82311e7594be649203c3c456cd0495d33dd3d42ae8",
+        "bytes": 4986588,
+        "triangles": 54116,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -62.575706481933594,
+          -1.2000000476837158,
+          -6
+        ],
+        "max": [
+          68.92070770263672,
+          29.389999389648438,
+          3.680000066757202
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
     },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0
-    },
-    "triangles": 369096,
-    "materials": 4,
-    "sharedGraphs": 4,
-    "embeddedImages": 0
-  }
+    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original369096-triangle30955476-byte master reproduced exactly at sha256:f72226567cf184a03ac60d574b1aa65dfd3c4fbd9417d1fff02665d061445291. Original recipe, map geometry and existing ICGC profile preserved. Independent compact source54116triangles; browser992/3108/13012/54116meet1k/4k/16k/64k. Initial390592bytes. Final output hashes and shared graphs verified after geometry corrections."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:a180c5b38fa2bc1b43caf7e5d49f91ac766379bc5db5c26ccc5d1923ac074f38",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:3b07abfdce45baf102fd8efde46f1d1afe5a25ca709dd70a9fe0f0f070bf1af3",
+        "bytes": 103816,
+        "gzipBytes": 15059,
+        "triangles": 992,
+        "cpuBytes": 102396,
+        "gpuBytes": 102396,
+        "errorMeters": 2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:097d686facb87315d84bf2e0775f3779fd17020f82699ed3af8bff9c639b3db4",
+        "bytes": 286776,
+        "gzipBytes": 66434,
+        "triangles": 3108,
+        "cpuBytes": 281664,
+        "gpuBytes": 281664,
+        "errorMeters": 1,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:026f9774f0fbf3f05a92c1a525b48b295c7a32333d055182b8fbfc2e963b19b3",
+        "bytes": 1170332,
+        "gzipBytes": 251741,
+        "triangles": 13012,
+        "cpuBytes": 1165200,
+        "gpuBytes": 1165200,
+        "errorMeters": 0.4,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:d645a1f1fb1d324706c88b82311e7594be649203c3c456cd0495d33dd3d42ae8",
+        "bytes": 4986588,
+        "gzipBytes": 1111875,
+        "triangles": 54116,
+        "cpuBytes": 4981416,
+        "gpuBytes": 4981416,
+        "errorMeters": 0.2,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 390592,
+    "notes": "skyline: 992 triangles, 103816 bytes, 1 draws; district: 3108 triangles, 286776 bytes, 4 draws; street: 13012 triangles, 1170332 bytes, 4 draws; closeup: 54116 triangles, 4986588 bytes, 4 draws. Initial skyline+district 390592 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "One inspected oblique picture establishes the unequal pointed arches, red/pale stone, humpback stair walk, roofed summit shelter and surviving Roman gateway. Existing authored profile and span controls are retained. Standard viewer PMTiles places the east-directed crossing at the Llobregat route;125.0414m mapped path and nominal130m are separate definitions. Native -1m lateral adjustment retained. West approach PMTiles56.9653m versus native14.91m gives approximate origin42.0553m, close to retainedICGC41.9m. East-bank PMTiles34.8258m conflicts with the original authored gateway threshold; approximate local preview contacts retain that source profile rather than certifying a new datum. Bounded opening removes bridge imprint. Exact bank joins, water stage, stone courses and crown restoration appearance remain limited;2007picture does not verify2026copper cap.",
+    "Four canonical shared graphs reused. Lower tiers merge steps, masonry and voussoirs; closeup retains larger colored stone impressions. Gateway remains ruined without conjectural capitals. Original detailed reconstruction preserved. Physical-device timings unmeasured.",
+    "Cutwater uses a continuous tapered body rather than separated course volumes. East small-arch camera raised above the coarse fixture bank."
+  ]
 }

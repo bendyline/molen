@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The Los Angeles granite-and-glass tower with mapped concentric and orthogonal setbacks, individually modeled projecting triangular window bays, broad terrace belts, a sixteen-fold stone/glass crown, circular helipad and renewed glazed lobby.
+Los Angeles granite-and-glass tower with mapped concentric/orthogonal setbacks, triangular window bays, folded stone/glass crown, landing roof and renovated lobby.
 
 ## Evidence and reconstruction
 
@@ -17,11 +17,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-130,716 triangles; 384,366 vertices; 5 material groups; 15,408,960 bytes. Native bounds: -30.497, 0.000, -24.649 to 29.941, 310.300, 24.614. Source hash: `sha256:bb5c2ee768b3f391562f8f76d42347f08e9ba19a00e9ff4607361fe75113994e`.
+39,679 triangles; 118,023 vertices; 4 material groups; 4,727,812 bytes. Native bounds: -30.497, 0.000, -24.651 to 29.943, 310.300, 24.616. Source hash: `sha256:c8b0e3c500e25ca582fb537bdea1c1bac96c999156840976c27f15cb4ef4a29a`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X northeast","front":"+Z southeast","origin":"Ground-level mapped center at lower Fifth Street entrance datum"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Fresh OSM API on 2026-10-10 confirms unchanged exact Q57900 whole outline 23973401 and eleven independent mapped tower parts. Signed heading 1.086317737338 retained: native +X northeast, +Z southeast. Lower Fifth Street entrance faces southwest on -X toward the library. Different circular and orthogonal setbacks retain their mapped signs; crown is centered on mapped highest part 495115500. Ground Y=0 is lower entry datum. Approximate mapped stages at 195/225/250/280/295 m support the architect isometric setback sequence; they are not surveyed floor sections. Accept 2 m footprint / 1 degree reconstruction allowance, automatic replacement disabled. Hill steps, terrain slope and exact doorway thresholds are unmeasured.
 
 ## Reproduce
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0176` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Individual granite panel pitch, triangular window projection and entrance canopy are reconstructed from primary photographs. Tenant lettering, current rooftop branding and rooftop service furniture are omitted. Separate Bunker Hill stairs/landscape are outside the tower footprint; interior spaces are not modeled.
+- Original 130716-triangle, 15408960-byte master remains exactly reproducible from the unchanged world-tower recipe. Reviewed source and four browser levels preserve eleven mapped circular/orthogonal volumes, all setbacks, sixteen folded crown bays, glazed collar, closed circular landing roof and renewed ground lobby. Street/close-up retain reconstructed projecting triangular window profiles and long granite bands/piers; district flattens window projections and aggregates floors, skyline averages stone/glass coverage. Published 310.3 m tip and owner 30 ft (9.144 m) lobby follow current primary descriptions. Individual setback heights are approximate map data; architect isometric corroborates the ordering rather than survey dimensions. Owner/CVU count 72 stories while architect calls it 73; CVU completion 1990 differs from owner 1989. Crown phase/radii, bay spacing/projection, rail and canopy details remain reconstructions. Entrance canopy repair includes upward-facing opaque surfaces so it is visible from above; no interior transparency layer. Three shared 256 px graphs, zero embedded images. Tenant/roof lettering, flagpole and service furniture, interiors, separate Bunker Hill Steps/plaza landscape, parking and local sloped terrain are excluded. Native shaft allowances 1.5 / 0.75 / 0.3 / 0.1 m exclude omitted fine joints/reveals and distant canopy. No physical-device performance or surveyed grade claim. Close-up compresses the original 0.13 m window inset to 0.025 m, retaining the projecting bay peak and vertical reveals. Horizontal reveals merge into a continuous backing; street omits the shallow vertical reveals and aggregates three floor rows. These fine recess simplifications do not remove the main folded bay profile.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

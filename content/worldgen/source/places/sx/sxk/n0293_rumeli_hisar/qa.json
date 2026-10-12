@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0293_rumeli_hisar",
-  "inputHash": "sha256:4410fd09bf52fa7e341bb8b4e481f43a28c3e659ac08bf5bea2697f455c672a4",
-  "sourceHash": "sha256:1d0258086ab366cac08fea36dc2ab34c408cb794cf6c5d645da9f5384c73090c",
-  "runtimeHash": "sha256:7699f02a74c6e3cb382273b7d77d93b371cac0aa71f4c8fd74a1d75b69a2c0c1",
-  "captureReportHash": "sha256:8ba04d8956a9bdd06eebd6f5a9a8deb4edbd8887422bbeb357368e6551c78a36",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:ec21cb1a26ae9fc6756226e515fd890c6f90250da9a5e56fe03f5fc80e0afffe",
+  "sourceHash": "sha256:2f30ffb0b1c3596adf69d0840150492fcf4e990cb2a574695e66ad722ac0ab7f",
+  "runtimeHash": "sha256:e7154079be2f2cb9de5caed8037c3701b386754d01b63c2f1ef72b67f11cea84",
+  "captureReportHash": "sha256:22b3b12f0846034d79cff2883ee3f28813a0258d66af8afbe473fce461f73413",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,11 +22,11 @@
       "shots/sea-gate-passage.png",
       "shots/mosque-and-courtyard.png"
     ],
-    "notes": "Inspected all twelve final portable views. Three stepped roofless hollow towers, elongated sloping curtain enclosure, ten mapped minor circular bastions, original forecourt and distinct mosque roof render. Sea-gate camera was lowered to its opening; an intersecting forecourt wall now shares the actual sea-gate cut. Wall vertices sample rendered terrain triangles. Synthetic review floor lies below the native cropped terrain; it is not real host terrain. Render acceptance covers this authored draft, not completeness or real-site fidelity."
+    "notes": "Inspected all 12 final portable views. Three stepped roofless towers, twelve-sided seaward lower body, crenellated sloping curtains, smaller bastions, sea gate, open court and mapped mosque remain readable. The inspected exterior tower picture supports the crown/masonry treatment; the second picture informs stone/brick appearance only and its interior is excluded."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:963bfaaaf36f80f38b4c5c6a7b2c9bc8aac798aa75654cc0944fdd52435bd4d1",
+    "captureReportHash": "sha256:5a6cb331fc56531b825a823666c8fce4dcc6e36c357955e56fb2ed3923b2ecf8",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,13 +38,14 @@
       "shots/shared/hillside-open-court.png",
       "shots/shared/own-wall-plan.png",
       "shots/shared/sea-gate-passage.png",
-      "shots/shared/mosque-and-courtyard.png"
+      "shots/shared/mosque-and-courtyard.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected eleven final shared-loader frames. Four existing256-square graphs (stone_drywall,brick,gravel,tile_ceramic) supply metric UV surfaces with linear palette tints; grass is untextured. Each graph reads once and unloading leaves zero live model geometries. One far group, four district groups and five street/closeup groups. Far colors bake measured graph means. No new or embedded images, research-photo textures or downloaded meshes."
+    "notes": "Inspected all 12 final shared-material views. Common rubble, brick, gravel and tile graphs are reused with an explicit color slot. Roofless crowns, circular upper bodies, real gate opening and tiled mosque roof read correctly. Retained east/south map outline and Bosphorus-facing forecourt fit approximately. Material-cache reuse and unload checks passed."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d31c8dcb5ff2e698a618d4bc6229558951408a610ee28843d307a02a0a0c6bb8",
+    "captureReportHash": "sha256:b2562d017117d07d93a58f1dec28dff6e57fb83aa9f2c67713e48b39b4462a49",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -65,25 +67,33 @@
       "medium-fi/own-wall-plan.png",
       "medium-fi/sea-gate-passage.png",
       "medium-fi/mosque-and-courtyard.png",
+      "medium-fi/whole-rumeli-skyline.png",
+      "medium-fi/whole-rumeli-district.png",
+      "medium-fi/whole-rumeli-street.png",
+      "medium-fi/whole-rumeli-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all24 final Earth-rig views: twelve distance/time/mode combinations, silhouette, seven architecture cameras and four forced runtime levels. Tower steps,12-sided Halil lower body and open court persist; real apertures show at district and closer. Colors and materials read under neutral tone mapping/exposure1 beside synthetic Anatolian houses. Flat floor and synthetic neighbors do not approve actual Istanbul placement. Native hill and terraces remain coarse. No physical-device, continuous adaptive transition or walkable-collision approval."
+    "notes": "Inspected all 28 final medium-fi views: noon/late light, high/economy quality, silhouette, seven identity views and all four matched tiers. Towers, enclosure, sea gate and open hillside court remain consistent. All wall/tower footings use one PMTiles sampler across LODs and the broad duplicate terrain patch is omitted; host terrain supplies the hillside."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:2a778dae1b9c0e2a5dbd109be684970c3ce78a9846bf228a63b5fc622571cd1b",
-    "mapGeometryHash": "sha256:f04408dfcaceaccf53f07e4bca44f3430b45a402f58580e4f9b56abb690285a8",
-    "coordinateRoundTripErrorMeters": 0.0006782547629066164,
-    "mapCoordinateSamples": 420,
-    "notes": "All420 own map coordinates reconstruct within0.7mm in the east/south frame. Exact-QID relation and mosque envelope retained independently; raw relation roles preserved with explicit geometric reinterpretation. Published tower heights22/21/28m do not establish terrace elevations. Gates and forecourt/square bastions are estimated; no exact mapped entrance association. Union-of-all-level bounds and native anchor terrain reference are recorded. Real host terrain, datum blending, footprint/court correspondence and current-site visual placement require review; draft stays inactive."
+    "status": "passed",
+    "placementHash": "sha256:8d6674faafe929a1d4c09301576372c8c9af3676fe6c7d66a5f553a9b16bae7d",
+    "mapFrameHash": "sha256:f04408dfcaceaccf53f07e4bca44f3430b45a402f58580e4f9b56abb690285a8",
+    "notes": "Inspected exterior tower picture confirms stepped roofless masonry crowns by the Bosphorus; the second picture informs stone/brick appearance only, with its interior excluded. Retained east/south wall, tower and courtyard geometry and standard viewer PMTiles set approximate location, scale and seaward orientation. The derivative omits the duplicated terrain patch, uses the same PMTiles sampler for all wall/tower-footing LODs and translates the old study datum to the21.351156683452786m PMTiles anchor datum. Tower floor pads retain a level rim above sampled coarse ground with bounded footings reaching it. Anchor 29.056189597,41.084874691; heading 0; standard PMTiles datum 21.351156683452786m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate exterior and map fit from inspected pictures and standard viewer PMTiles. The old study datum is translated to the21.351156683452786m PMTiles anchor datum. Roofless towers, estimated forecourt and mosque remain exterior interpretations; restoration/visitor fixtures are not exhaustively reconstructed. No bespoke survey, exact thresholds, interiors, vegetation, waterline/simulation or terrain cutouts. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Primary Turkish Museums photographs/descriptions, tourism overview and municipal laser-scan paper inform the restored roofless fortress interpretation. Three published tower heights and mapped arc controls retained; Halil lower body has twelve facets. Tower steps/radii, wall thickness/heights, battlements, five gates, forecourt/square defenses and selected slits are estimates. Exact current mosque roof/minaret, restoration state, surviving passages, circulation/stairs, visitor infrastructure and terrace layout need further source-specific authoring and review. No complete Rumeli site approval."
+    "notes": "Primary Turkish Museums photographs/descriptions, tourism overview and municipal laser-scan paper inform the restored roofless fortress interpretation. Three published tower heights and mapped arc controls retained; Halil lower body has twelve facets. Tower steps/radii, wall thickness/heights, battlements, five gates, forecourt/square defenses and selected slits are estimates. Exact current mosque roof/minaret, restoration state, surviving passages, circulation/stairs, visitor infrastructure and terrace layout need further source-specific authoring and review. No complete Rumeli site approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -91,231 +101,196 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/sx/sxk/n0293_rumeli_hisar/models/source.glb",
-        "hash": "sha256:1d0258086ab366cac08fea36dc2ab34c408cb794cf6c5d645da9f5384c73090c",
-        "bytes": 1916772,
-        "triangles": 15946,
-        "materials": 5,
+        "hash": "sha256:2f30ffb0b1c3596adf69d0840150492fcf4e990cb2a574695e66ad722ac0ab7f",
+        "bytes": 1846108,
+        "triangles": 15360,
+        "materials": 4,
         "images": 0,
         "min": [
-          -69.4739990234375,
-          10.068437576293945,
-          -128.64199829101562
+          -68.33399963378906,
+          -12.848531723022461,
+          -128.63800048828125
         ],
         "max": [
           71.25,
-          72.9985580444336,
+          49.753543853759766,
           121.49400329589844
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.glb",
-        "hash": "sha256:7699f02a74c6e3cb382273b7d77d93b371cac0aa71f4c8fd74a1d75b69a2c0c1",
-        "bytes": 1916276,
-        "triangles": 15946,
-        "materials": 5,
+        "hash": "sha256:e7154079be2f2cb9de5caed8037c3701b386754d01b63c2f1ef72b67f11cea84",
+        "bytes": 1845684,
+        "triangles": 15360,
+        "materials": 4,
         "images": 0,
         "min": [
-          -69.4739990234375,
-          10.068437576293945,
-          -128.64199829101562
+          -68.33399963378906,
+          -12.848531723022461,
+          -128.63800048828125
         ],
         "max": [
           71.25,
-          72.9985580444336,
+          49.753543853759766,
           121.49400329589844
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.skyline.glb",
-        "hash": "sha256:b267da10058d4f451a4f196c5e9a5899e5a77f9bdfb7b8137e4e3d84b6aee77f",
-        "bytes": 79860,
-        "triangles": 987,
+        "hash": "sha256:2bc7c586b61d36e24ae243757165a7a6a7ba3d53ed1a1b65c974152a7f825ea5",
+        "bytes": 97468,
+        "triangles": 1000,
         "materials": 1,
         "images": 0,
         "min": [
-          -69.0459976196289,
-          10.181875228881836,
-          -128.64199829101562
+          -68.31400299072266,
+          -12.7619047164917,
+          -127.0484848022461
         ],
         "max": [
           71.24612426757812,
-          72.9985580444336,
+          49.753543853759766,
           119.65690612792969
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.district.glb",
-        "hash": "sha256:77e47304a48f51578824672d9a560becb4e885621ada875275acad9443e4cced",
-        "bytes": 333144,
-        "triangles": 3841,
-        "materials": 4,
+        "hash": "sha256:d099adb942eeefa243ba74a8b8934c09780b8eb0965de93ae3e7fafeb30ac0a6",
+        "bytes": 316804,
+        "triangles": 3747,
+        "materials": 3,
         "images": 0,
         "min": [
-          -69.0459976196289,
-          10.039999961853027,
-          -128.64199829101562
+          -68.31400299072266,
+          -12.829207420349121,
+          -128.6179962158203
         ],
         "max": [
           71.25,
-          72.9985580444336,
+          49.753543853759766,
           121.4739990234375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 4
+        "warnings": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.street.glb",
-        "hash": "sha256:56d00baac4b7be0844ba4369280f5e3b160fcda50e4a67ada78b59d8ad17110b",
-        "bytes": 1085464,
-        "triangles": 12231,
-        "materials": 5,
+        "hash": "sha256:e92af3652c5f727d1ff762faabb6cc2e6288c8b75c25ac87e8b83807f359cec7",
+        "bytes": 1026584,
+        "triangles": 11733,
+        "materials": 4,
         "images": 0,
         "min": [
-          -69.4739990234375,
-          10.039999961853027,
-          -128.64199829101562
+          -68.31400299072266,
+          -12.854975700378418,
+          -128.6179962158203
         ],
         "max": [
           71.25,
-          72.9985580444336,
+          49.753543853759766,
           121.4739990234375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.closeup.glb",
-        "hash": "sha256:26b644f0b97a5c72f1e962fbc17b5b911bca583b78cb92f680410278f7e5f645",
-        "bytes": 1411468,
-        "triangles": 15946,
-        "materials": 5,
+        "hash": "sha256:ad47fa96d97fb3dcf9b74e888d3226849bee31e8efc51eda8f50b2d1c1d43c55",
+        "bytes": 1339564,
+        "triangles": 15360,
+        "materials": 4,
         "images": 0,
         "min": [
-          -69.4739990234375,
-          10.068437576293945,
-          -128.64199829101562
+          -68.33399963378906,
+          -12.848531723022461,
+          -128.63800048828125
         ],
         "max": [
           71.25,
-          72.9985580444336,
+          49.753543853759766,
           121.49400329589844
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       }
     ],
-    "notes": "All six GLBs have zero errors/warnings and no embedded images. Five focused geometry tests pass byte-deterministic LOD budgets/GPU view layout, three published tower heights/open crowns,12-facet Halil identity, physical clearance of all five estimated gates and rendered-terrain height sampling. Four source-discovery regressions also pass, including capture reports not invalidating model inputs. Strict medium-fi audit passes; scene validates and simulates30ticks with hash sha256:c231b407a210f6b934788321b71a0d14736b82fb226c6ce576e01e643af8f8eb. Imported coarse hull is not approved for walking."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Four tiers contain 1000/3747/11733/15360 triangles and initial skyline+district downloads total 414272 bytes. Separate POSITION/NORMAL streams retained."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:a63fa4194d15c355f2efd92b0921611d6b81d112c8af880c6a4e835ca4b3cc2f",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.skyline.glb",
-        "hash": "sha256:b267da10058d4f451a4f196c5e9a5899e5a77f9bdfb7b8137e4e3d84b6aee77f",
-        "bytes": 79860,
-        "triangles": 987,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -69.0459976196289,
-          10.181875228881836,
-          -128.64199829101562
-        ],
-        "max": [
-          71.24612426757812,
-          72.9985580444336,
-          119.65690612792969
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "file": "model.skyline.glb",
+        "hash": "sha256:2bc7c586b61d36e24ae243757165a7a6a7ba3d53ed1a1b65c974152a7f825ea5",
+        "bytes": 97468,
+        "gzipBytes": 16379,
+        "triangles": 1000,
+        "cpuBytes": 96036,
+        "gpuBytes": 96036,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.district.glb",
-        "hash": "sha256:77e47304a48f51578824672d9a560becb4e885621ada875275acad9443e4cced",
-        "bytes": 333144,
-        "triangles": 3841,
-        "materials": 4,
-        "images": 0,
-        "min": [
-          -69.0459976196289,
-          10.039999961853027,
-          -128.64199829101562
-        ],
-        "max": [
-          71.25,
-          72.9985580444336,
-          121.4739990234375
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 4
+        "file": "model.district.glb",
+        "hash": "sha256:d099adb942eeefa243ba74a8b8934c09780b8eb0965de93ae3e7fafeb30ac0a6",
+        "bytes": 316804,
+        "gzipBytes": 96764,
+        "triangles": 3747,
+        "cpuBytes": 312932,
+        "gpuBytes": 312932,
+        "errorMeters": 0.7,
+        "drawCalls": 3
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.street.glb",
-        "hash": "sha256:56d00baac4b7be0844ba4369280f5e3b160fcda50e4a67ada78b59d8ad17110b",
-        "bytes": 1085464,
-        "triangles": 12231,
-        "materials": 5,
-        "images": 0,
-        "min": [
-          -69.4739990234375,
-          10.039999961853027,
-          -128.64199829101562
-        ],
-        "max": [
-          71.25,
-          72.9985580444336,
-          121.4739990234375
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "file": "model.street.glb",
+        "hash": "sha256:e92af3652c5f727d1ff762faabb6cc2e6288c8b75c25ac87e8b83807f359cec7",
+        "bytes": 1026584,
+        "gzipBytes": 292044,
+        "triangles": 11733,
+        "cpuBytes": 1021520,
+        "gpuBytes": 1021520,
+        "errorMeters": 0.3,
+        "drawCalls": 4
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/sx/sxk/n0293_rumeli_hisar/model.closeup.glb",
-        "hash": "sha256:26b644f0b97a5c72f1e962fbc17b5b911bca583b78cb92f680410278f7e5f645",
-        "bytes": 1411468,
-        "triangles": 15946,
-        "materials": 5,
-        "images": 0,
-        "min": [
-          -69.4739990234375,
-          10.068437576293945,
-          -128.64199829101562
-        ],
-        "max": [
-          71.25,
-          72.9985580444336,
-          121.49400329589844
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "file": "model.closeup.glb",
+        "hash": "sha256:ad47fa96d97fb3dcf9b74e888d3226849bee31e8efc51eda8f50b2d1c1d43c55",
+        "bytes": 1339564,
+        "gzipBytes": 370637,
+        "triangles": 15360,
+        "cpuBytes": 1334484,
+        "gpuBytes": 1334484,
+        "errorMeters": 0.1,
+        "drawCalls": 4
       }
     ],
-    "initialDownloadBytes": 413004,
-    "notes": "987/3841/12231/15946 triangles meet skyline/district/street/closeup limits. Initial skyline+district413004bytes before shared material transfers; near closeup1411468bytes. Material groups1/4/5/5. Physical laptop/phone timing, streaming and continuous LOD upgrades remain pending."
-  }
+    "initialBytes": 414272,
+    "notes": "skyline: 1000 triangles, 97468 bytes, 1 draws; district: 3747 triangles, 316804 bytes, 3 draws; street: 11733 triangles, 1026584 bytes, 4 draws; closeup: 15360 triangles, 1339564 bytes, 4 draws. Initial skyline+district 414272 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from inspected pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Roofless towers, forecourt and mosque are an exterior interpretation; ongoing restoration and visitor fixtures are not exhaustively reconstructed.",
+    "Four common graphs plus explicit color slot, zero embedded images. Terrain comes from the host; interiors, waterline/simulation, vegetation and terrain cutouts excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

@@ -22,11 +22,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-337,000 triangles; 672,132 vertices; 10 material groups; 28,246,264 bytes. Native bounds: -109.648, 0.000, -92.368 to 104.678, 64.000, 91.818. Source hash: `sha256:19d963e651b26285ce37f136aac82dd41fe21fb689ca37b4cd863a8501e18e9a`.
+22,120 triangles; 43,704 vertices; 7 material groups; 1,842,988 bytes. Native bounds: -109.667, -4.800, -92.288 to 104.598, 59.000, 91.747. Source hash: `sha256:48427727465e6fde6e07fc6324bb91809f67415926f38f4e84a6253775b81368`.
 
-{"up":"+Y","longitudinal":"+X approximately north","front":"+Z approximately east","origin":"Cached OSM anchor at provisional fortress wall foot"}
+{"up":"+Y","longitudinal":"+X approximately north","front":"+Z approximately east","origin":"Exact-Q189358 component frame;Y0 reconstructed courtyard floor."}
 
-Draft geographic placement; keep courtyard open, preserve source orientation, and verify vertical datum against terrain before activation.
+Fresh exact-Q189358 relation1588209 and13 component ways agree with retained source vertices within1mm. Native+X5.043deg points north;+Z95.043deg points east. Mapped lighthouse node1400918158/Q20042645 fixes north-east corner,chapel fixes south-east and the flat Cannon tower lies south-west; signed entrance points north. ModelY0 is reconstructed courtyard floor,Trumpeter top59m above it. Site absolute datum is not claimed; CBS62m above water implies3m courtyard-to-water,not a survey. Occupied walls extend4.8m below the relative floor; curtain walls are narrow masonry with estimated1.2m crest. Ground-contact policy uses courtyard-relative host terrain. No land plinth,whole-precinct replacement,moat excavation or synthetic ground presented as measured Danish DHM.
 
 ## Reproduce
 
@@ -34,13 +34,13 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0244` (
 
 ## Pending work
 
-- Maximum fidelity remains pending. Individual exterior reconstruction uses measured horizontal map coordinates and a referenced Trumpeter height; other heights and exact facade openings are proportional estimates.
-- Royal heraldic reliefs and figurative sculpture are represented by abstract stonework, not faithful sculptural replicas. Exact gable scrolls, clock faces, roof junctions and copper replacement patches need refinement.
-- Fortress edges follow selected mapped moat and embankment lines. Wall height is reconstructed. Full crownwork, ravelins, coastal batteries, moat excavation and surrounding garrison buildings are outside the present source scope.
-- Four courtyard stair turrets and corner spires require further dimension checks. The five-meter courtyard datum is provisional and must not be treated as terrain-verified.
-- No interiors, temporary scaffolding, photographic textures or recreation of the removed Renaissance fountain. Shared sandstone, limestone, copper, granite, brick, timber, metal and local PBR glazing/turf.
+- Original detailed337000-triangle/28246264-byte master remains exactly reproducible atsha256:19d963e651b26285ce37f136aac82dd41fe21fb689ca37b4cd863a8501e18e9a from kronborg-castle-model.mjs#kronborgStudy.build. Independent reviewed browser geometry uses courtyard origin,buried foundations,narrow masonry and continuous north gate paving.
+- Fresh exact-Q189358 relation1588209 and13 component ways agree with retained source vertices within1mm. Native+X5.043deg points north;+Z95.043deg points east. Mapped lighthouse node1400918158/Q20042645 fixes north-east corner,chapel fixes south-east and the flat Cannon tower lies south-west; signed entrance points north. ModelY0 is reconstructed courtyard floor,Trumpeter top59m above it. Site absolute datum is not claimed; CBS62m above water implies3m courtyard-to-water,not a survey. Occupied walls extend4.8m below the relative floor; curtain walls are narrow masonry with estimated1.2m crest. Ground-contact policy uses courtyard-relative host terrain. No land plinth,whole-precinct replacement,moat excavation or synthetic ground presented as measured Danish DHM.
+- Medium-fi exterior reconstruction: other tower and wall heights,window spacing,gable scrolls,roof junctions and stair turret profiles are proportional estimates. Royal figurative reliefs,inscriptions,clock faces and weathering patches are simplified.
+- Full crownwork,ravelins,coastal batteries,landscape,moat and interiors are supplied by other layers or omitted. No copied photos or individually modeled stone joints. Shared sandstone,copper,granite,brick,timber and painted-metal graphs plus opaque PBR glass.
+- Public national Danish DHM requires API-key access; no numeric DHM was retrieved. Relative courtyard contact and occupied foundations are reviewed; exact terrain slopes,absolute sea/vertical datum and every defensive wall ground fit remain unverified. Physical laptop/phone timings remain pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

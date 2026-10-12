@@ -1,9 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0280_trakai_island_castle",
-  "sourceHash": "sha256:a5927908ae27efecc59d9de106e657b50977b4ed0a7f23623d906c92abc75da1",
-  "runtimeHash": "sha256:d6ecaeb0f64e7369e217443509160c56bc46388a7beab0636e68e1a93eb06a62",
-  "captureReportHash": "sha256:f95ffbbc6d1133371f76e6696415a3ef69ad0c4859f1dd8a1b0e7456e7cfc012",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:2c8b1100922ca61e55a098f63a177d1a23a36fbe88e6f9c59ab7cad01adad3fe",
+  "sourceHash": "sha256:c23a599e45316f02ed885efc96bb25d6303f04214547d440b6a68164026e5c97",
+  "runtimeHash": "sha256:a748ab137ce3ad6cb911e1f4245355b6d646d22162958482eeecf0224ed3e004",
+  "captureReportHash": "sha256:8e6392d08104406cd856f3f00507c7d54ed843e01918716628b02d198f91d68e",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -19,11 +21,11 @@
       "shots/palace-wood-gallery.png",
       "shots/moat-bridge-and-casemates.png"
     ],
-    "notes": "Inspected all 11 final portable views. Recognition comes from three faceted cone-roof corner towers, a square arched entrance tower, open trapezoidal forecourt, western casemate and separate ducal palace with tall gabled donjon. Two open courts and short connecting bridge remain visible in top view. Corrected palace wing steps to follow mapped courtyard edges and aligned wooden gallery posts/decks/canopies with those walls. Changed the gallery review camera to inspect it below the canopy. Forecourt controls and elevation details remain interpretive."
+    "notes": "Inspected the aerial reference and49 final views. Separate ducal palace/gabled donjon, open trapezoidal forecourt, three red cone corner towers, entrance tower, western casemate and short connecting bridge retain identity. Mapped palace/courtyard registration matches the approximate island placement; forecourt alignment remains a picture-based estimate because the retained relation covers only the palace."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:0a8f47a552bc44e89bf507859214f1363658fd666642f91ba7fa46fbf26a2441",
+    "captureReportHash": "sha256:d52491a0c0b08965ed548ec4c0075f755368add2ba4a9ec432b2f0af616a35d6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -34,13 +36,14 @@
       "shots/shared/two-open-courts.png",
       "shots/shared/entry-passage.png",
       "shots/shared/palace-wood-gallery.png",
-      "shots/shared/moat-bridge-and-casemates.png"
+      "shots/shared/moat-bridge-and-casemates.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 10 final shared-loader views. Five merged groups use four shared 256² brick, granite, ceramic-tile and plain-wood graphs plus untextured blue-grey glass. Physical repeat UVs and linear vertex tints. Zero embedded images, private research textures, baked illumination or AO. Each graph loads once per view, and geometry disposes fully on eviction. Foundations, pitched roofs, broad buttresses and gallery beams read as hard planes."
+    "notes": "Four common graphs provide granite foundations, brick, ceramic tile and plain wood, with local opaque glass. Close palace gallery and tower views show readable shared masonry/tile/wood surfaces. All six GLBs contain zero images; shared cache reuse and unload pass."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:395812640b6491ffc99cda56c4c5f36483fba65a337af0e51b2efc5d3493e45b",
+    "captureReportHash": "sha256:a110e7b6504c9e45618b1fa981b2b96ca0bdbfd6f05da1264b0034db6d8146dc",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -61,22 +64,33 @@
       "medium-fi/entry-passage.png",
       "medium-fi/palace-wood-gallery.png",
       "medium-fi/moat-bridge-and-casemates.png",
+      "medium-fi/whole-trakai-skyline.png",
+      "medium-fi/whole-trakai-district.png",
+      "medium-fi/whole-trakai-street.png",
+      "medium-fi/whole-trakai-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all 23 final canonical Earth-rig views: street/block/skyline, noon/late, Economy/High, untextured silhouette, six architectural cameras and four same-camera LODs. Warm brick, pale stone bases, darker terracotta roofs and restrained blue-grey glazing fit synthetic procedural context. Increased context framing for the compound extent. Hand-authored skyline preserves three cone towers, entry and donjon voids, distinct palace/forecourt and connecting bridge in 612 triangles. District adds sparse windows and broad bridge rails; street adds window rhythm, buttresses, gallery posts and gable stripes; closeup adds selected planar surrounds. All levels retain Y0 and 33m maximum. Skyline facet count changes maximum X by 0.475m and maximum Z by 0.452m. Static transitions show expected detail changes. Continuous-motion shimmer/pop and physical-device timings remain unmeasured. Flat review ground and neighbors do not verify real Trakai terrain."
+    "notes": "Inspected noon/late economy/high, silhouette, identity cameras and matched four-tier comparisons. Skyline preserves the separate palace and forecourt hierarchy, gabled donjon and three cones; district restores sparse openings/bridge, street/closeup add arches and timber gallery. Counts612/1358/2926/3386 and186760initialbytes fit budgets."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Exact Q1482013 relation/3111261 supplies only the 38.019×35.269m palace and its courtyard, not the whole castle. Anchor [24.934056788,54.652709433] and heading -1.112277445339rad are a cached provisional palace frame. Forecourt uses a sparse interpretive trace of Figure1/page124 in the primary 2023 archaeological report, with approximate scale50/135m per pixel and visually aligned pixel origin[240,123]. Roof centers can differ from ground positions. Planned historical donjon9.2×9.6m/33m is documented by museum and article, not a current survey; roof ridge at33m is a modeling interpretation. Other towers, wall heights, roofs, gallery and bridge levels are estimated. Island/lake terrain, long public shore bridge, trees, boats, interiors and temporary works excluded. Compound registration, facade direction, moat/terrain datum and replacement need in-world review. Inactive draft, replaceFootprint=false."
+    "status": "passed",
+    "placementHash": "sha256:15b5a3de9fd68c160f38275b395c7a85c3cf962e543ead4103513e2e2db000bd",
+    "mapFrameHash": "sha256:8a6c8f58f5de2c7c91b0cca7a7b80a6a1423156d2098ff8cbbf95ea71a975414",
+    "notes": "The inspected aerial picture confirms the separate palace/gabled donjon, open trapezoidal forecourt, three cone-capped corners, entrance tower and long casemate. Standard viewer PMTiles and the retained palace/courtyard outline establish approximate island location and forecourt approach sign. The mapped relation covers the palace only; whole-compound alignment remains an exterior estimate. A reconstructed1.3m working court clears the coarse island ground and bounded foundations extend beneath samples; short connecting bridge retained at its inferred level. Anchor 24.934056788,54.652709433; heading -1.112277445339; standard PMTiles datum 145.11330053210258m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source 3,386 triangles, five merged groups, four shared graphs and no images. Compound hierarchy and open courts precede surface ornament. Flat architectural normals and 8/12/16-sided corner towers; real brick/stone/terracotta colors converted from sRGB. Broad windows, buttresses and gallery members; no fine joints, carvings, glazing bars, balusters, wires or interiors. Reference images and archaeological plan remain linked research, with excavation overlays excluded from appearance and geometry."
+    "notes": "Approximate current exterior using picture and standard viewer PMTiles. Palace relation does not prove exact forecourt registration; footprint replacement stays off. Roof/bridge levels, tower dimensions, openings and exact thresholds reconstructed. Lake/island terrain, long shore bridge, trees, boats, excavation overlays, temporary works and interiors excluded. Physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source 3,386 triangles, five merged groups, four shared graphs and no images. Compound hierarchy and open courts precede surface ornament. Flat architectural normals and 8/12/16-sided corner towers; real brick/stone/terracotta colors converted from sRGB. Broad windows, buttresses and gallery members; no fine joints, carvings, glazing bars, balusters, wires or interiors. Reference images and archaeological plan remain linked research, with excavation overlays excluded from appearance and geometry.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -84,259 +98,198 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u9/u99/n0280_trakai_island_castle/models/source.glb",
-        "hash": "sha256:a5927908ae27efecc59d9de106e657b50977b4ed0a7f23623d906c92abc75da1",
-        "bytes": 409548,
+        "hash": "sha256:c23a599e45316f02ed885efc96bb25d6303f04214547d440b6a68164026e5c97",
+        "bytes": 409580,
         "triangles": 3386,
-        "vertices": 10158,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -34.386085510253906,
-          0,
+          -2.155055522918701,
           -24
         ],
         "max": [
           88.30555725097656,
-          33,
+          34.29999923706055,
           106.9732437133789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.glb",
-        "hash": "sha256:d6ecaeb0f64e7369e217443509160c56bc46388a7beab0636e68e1a93eb06a62",
-        "bytes": 409048,
+        "hash": "sha256:a748ab137ce3ad6cb911e1f4245355b6d646d22162958482eeecf0224ed3e004",
+        "bytes": 409084,
         "triangles": 3386,
-        "vertices": 10158,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -34.386085510253906,
-          0,
+          -2.155055522918701,
           -24
         ],
         "max": [
           88.30555725097656,
-          33,
+          34.29999923706055,
           106.9732437133789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
         "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.skyline.glb",
-        "hash": "sha256:41891b8c974eb961b8ae2d666a81e9ad28b393c04b983214438755120bdf267d",
-        "bytes": 53228,
+        "hash": "sha256:bf996e253226d2aac0757ed1466b99451f8ef060ebff4e835735d9ab6ee05444",
+        "bytes": 63700,
         "triangles": 612,
-        "vertices": 1338,
         "materials": 1,
-        "sharedGraphs": 0,
         "images": 0,
         "min": [
           -33.945064544677734,
-          0,
+          -2.1603569984436035,
           -24
         ],
         "max": [
           87.83039093017578,
-          33,
+          34.29999923706055,
           106.52084350585938
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
-        "file": "model.district.glb",
         "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.district.glb",
-        "hash": "sha256:dd085daae428a4a1d59e3f0108508f98b782cd740ddb761d5e0dba9c93983f56",
-        "bytes": 112760,
+        "hash": "sha256:00abd13956fc686da3b48bd08ab156a209df7873c3e4524a85af41f2d210a848",
+        "bytes": 123060,
         "triangles": 1358,
-        "vertices": 2738,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -34.27092361450195,
-          0,
+          -2.1579318046569824,
           -24
         ],
         "max": [
           88.18148040771484,
-          33,
+          34.29999923706055,
           106.85511016845703
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "street",
-        "file": "model.street.glb",
         "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.street.glb",
-        "hash": "sha256:3c7440b6490802f527e8ad90d248da666fac6a0dd8c1614ba12761524d3b2048",
-        "bytes": 213940,
+        "hash": "sha256:bc5ccd86a71c0df6c660d0aa409804f7a7733bd43ddff388d1647be882f4adc4",
+        "bytes": 260684,
         "triangles": 2926,
-        "vertices": 5286,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -34.386085510253906,
-          0,
+          -2.155055522918701,
           -24
         ],
         "max": [
           88.30555725097656,
-          33,
+          34.29999923706055,
           106.9732437133789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
         "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.closeup.glb",
-        "hash": "sha256:2ae10c01b234f9c15dd131b85296d1532760e92e73f31f1ba81309de0658a869",
-        "bytes": 249256,
+        "hash": "sha256:a1f4f1b67e78660dbe1d53f39fd513f9ff718794701069075046de5ad9e8e014",
+        "bytes": 299524,
         "triangles": 3386,
-        "vertices": 6190,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -34.386085510253906,
-          0,
+          -2.155055522918701,
           -24
         ],
         "max": [
           88.30555725097656,
-          33,
+          34.29999923706055,
           106.9732437133789
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       }
     ],
-    "notes": "All six GLBs pass with zero errors/warnings, no images, Y0 attachment and 33m maximum. Unused-UV informational notices are expected for external graphs. Two targeted LOD tests verify deterministic bytes, increasing detail, budgets, actual brick binding and homogeneous GPU attribute component types."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six selected GLBs pass Khronos validation with zero errors and warnings. Original architectural master/recipe preserved. Registered derivative keeps upward court caps at the1.3m working plane, extends bounded foundations below coarse PMTiles samples and uses actual shared material means in the far model. Camera overrides track the working height; current source/runtime/capture hashes and shared cache cleanup pass."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:4310c6c033e07f9d21cbe05f0dbe4b7adf217e8ddd69aa9bf3b7d7ecce9e6390",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.skyline.glb",
-        "hash": "sha256:41891b8c974eb961b8ae2d666a81e9ad28b393c04b983214438755120bdf267d",
-        "bytes": 53228,
+        "hash": "sha256:bf996e253226d2aac0757ed1466b99451f8ef060ebff4e835735d9ab6ee05444",
+        "bytes": 63700,
+        "gzipBytes": 9740,
         "triangles": 612,
-        "vertices": 1338,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -33.945064544677734,
-          0,
-          -24
-        ],
-        "max": [
-          87.83039093017578,
-          33,
-          106.52084350585938
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "cpuBytes": 62280,
+        "gpuBytes": 62280,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.district.glb",
-        "hash": "sha256:dd085daae428a4a1d59e3f0108508f98b782cd740ddb761d5e0dba9c93983f56",
-        "bytes": 112760,
+        "hash": "sha256:00abd13956fc686da3b48bd08ab156a209df7873c3e4524a85af41f2d210a848",
+        "bytes": 123060,
+        "gzipBytes": 25963,
         "triangles": 1358,
-        "vertices": 2738,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -34.27092361450195,
-          0,
-          -24
-        ],
-        "max": [
-          88.18148040771484,
-          33,
-          106.85511016845703
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "cpuBytes": 116940,
+        "gpuBytes": 116940,
+        "errorMeters": 0.7,
+        "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.street.glb",
-        "hash": "sha256:3c7440b6490802f527e8ad90d248da666fac6a0dd8c1614ba12761524d3b2048",
-        "bytes": 213940,
+        "hash": "sha256:bc5ccd86a71c0df6c660d0aa409804f7a7733bd43ddff388d1647be882f4adc4",
+        "bytes": 260684,
+        "gzipBytes": 56361,
         "triangles": 2926,
-        "vertices": 5286,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -34.386085510253906,
-          0,
-          -24
-        ],
-        "max": [
-          88.30555725097656,
-          33,
-          106.9732437133789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "cpuBytes": 254544,
+        "gpuBytes": 254544,
+        "errorMeters": 0.3,
+        "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u9/u99/n0280_trakai_island_castle/model.closeup.glb",
-        "hash": "sha256:2ae10c01b234f9c15dd131b85296d1532760e92e73f31f1ba81309de0658a869",
-        "bytes": 249256,
+        "hash": "sha256:a1f4f1b67e78660dbe1d53f39fd513f9ff718794701069075046de5ad9e8e014",
+        "bytes": 299524,
+        "gzipBytes": 64682,
         "triangles": 3386,
-        "vertices": 6190,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -34.386085510253906,
-          0,
-          -24
-        ],
-        "max": [
-          88.30555725097656,
-          33,
-          106.9732437133789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "cpuBytes": 293376,
+        "gpuBytes": 293376,
+        "errorMeters": 0.1,
+        "drawCalls": 5
       }
     ],
-    "initialDownloadBytes": 165988,
-    "notes": "Skyline/district/street/closeup:612/1358/2926/3386 triangles and53228/112760/213940/249256 bytes. Initial skyline plus district165988 bytes excludes shared graph downloads. Strict medium-fi audit has no findings; recipe Biome has no errors/warnings; byte-identical source regeneration passes. All caps met. Detailed source master remains generated separately. Checks scoped to Trakai without dependency audit, engine-wide suite or unrelated model generation."
-  }
+    "initialBytes": 186760,
+    "notes": "skyline: 612 triangles, 63700 bytes, 1 draws; district: 1358 triangles, 123060 bytes, 5 draws; street: 2926 triangles, 260684 bytes, 5 draws; closeup: 3386 triangles, 299524 bytes, 5 draws. Initial skyline+district 186760 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed architectural master/recipe preserved; derivative fits working courts and bounded foundation bottoms.",
+    "Palace/gabled donjon, three red cone roofs, entry passage, open forecourt, casemate, timber gallery and short connecting bridge retain identity. Fine openings and roof/bridge levels reconstructed.",
+    "Mapped relation is palace only; forecourt placement is approximate and footprint replacement remains off.",
+    "Lake/island terrain, long public shore bridge, trees, boats, excavation overlays, temporary structures and interiors excluded.",
+    "Four common material graphs and local opaque glass; zero embedded images. Physical-device timing pending."
+  ]
 }

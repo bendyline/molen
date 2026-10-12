@@ -1,9 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0266_eltz_castle",
-  "sourceHash": "sha256:21a46ad8431c67f07a0f2a3a1ca066ead258597edccc2378486237d59156c474",
-  "runtimeHash": "sha256:6b89dcd12d1430b474d38ce3a8cf131ec84d0406b5b048e5bf7074ee6913afa1",
-  "placementHash": "sha256:4050801d7d123e02f2b97540a4a0070f4c753adba242f9324303ff84b7ecf507",
+  "inputHash": "sha256:cc29c84b2cd07b380af268929d9d76bcd1e35a460f32e48785215f49aae993a1",
+  "placementHash": "sha256:4b03701b726ae5c71eaee32d8e16792e97e620beccccbe0f3f74339dd035e5b7",
   "entry": {
     "id": "next1000.n0266",
     "title": "Eltz Castle",
@@ -21,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        7.336610781,
+        50.205058905
+      ],
+      "modelHeight": 0,
+      "basis": "Retained140.498m DGM1 working datum; floors/thresholds reconstructed and acquisition unknown."
+    },
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://www.openstreetmap.org/way/238981197",
-    "note": "Owner plan resolves north-facing outer gate; reconstructed slope levels and outbuildings still need real-site terrain review. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "preview",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=7.3357,50.2043,7.3381,50.2065",
+    "note": "Fresh exact way238981197 v12/Q153426 main footprint agrees within0.000719m rounding. Anchor[7.336610781,50.205058905], heading1.510444051141: +X N3.457931 degrees to north outer gate, +Z E93.457931 degrees to Coach House. Owner numbered plan, section and actual south/east/gate/court/west-aerial photographs sign frame. Fresh mapped outbuildings238981207/232357192/232357193 and bridge531706381 correct draft offsets and extend approach to27.565m. Retained official one-meter Float32 DGM1 crop in EPSG25832/DHHN2016, reference date2024-03-15 with acquisition unknown, working datum140.498m. Court1.6368m; inner gate1.2934m; north gate-7.0034m; outer bridge-8.4437m, separate outbuilding floors. Bounded foundations extend below sampled ground. No survey accuracy, full-site slab or terrain cutout. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

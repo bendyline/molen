@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-  "inputHash": "sha256:305808770a6ed8b5c12bc120809e8f0d339ffdd25c0257276b33c692299fdb09",
-  "sourceHash": "sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5",
-  "runtimeHash": "sha256:ed404d86a6790570cf7f1c978fd00ccd39f27bad45592b9396eed1d9363a227e",
-  "captureReportHash": "sha256:b8752b0183effedfcb8511247d852a53a4d525c28e769d6ed0dc60b1d186a113",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:b03e12fc99881429d9b89602b2dd5af2722184bbec7a2d4ea8bcbc9b81bfa132",
+  "sourceHash": "sha256:a077e82001ec7afeba6b09d3ac363da713b0ffab1b150831f71fa585a13200f0",
+  "runtimeHash": "sha256:411cb8d68c5341c764329c01fac3be64f5123180d6d462903767e359b0656be0",
+  "captureReportHash": "sha256:d85b6965768b203fecccf1fa0b2d14883b4dad5bc40258c4d3a9f515d1241967",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +21,11 @@
       "shots/church-and-upper-gates.png",
       "shots/mapped-plan.png"
     ],
-    "notes": "Inspected all11 final portable views and all44 final portable/shared/Earth frames. Summit U-shaped mass,open court,roof/turret identity,church/chapel,14 mapped gate buildings and stepped defensive walls remain distinct. Fixed internal reveals that blocked the bent Kulmer passage,Float32 degeneracy/winding and principal window panes hidden behind the irregular mapped facade. This accepts rendered architecture only;coarse terrain visibly leaves some floating/embedded wall/gate contacts,so terrain/fidelity and full medium-fi review remain pending."
+    "notes": "Inspected all11 final portable views. Pale summit wings and open court, slate roof groups, round turrets, square entry tower, church and descending gate/wall route remain readable. The inspected aerial picture supports summit and upper-gate exterior identity. Fourteen mapped gate structures retain authored masses and openings."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:97eeac74c13802d5f8a02b17820094aa1a01dffa52d1705070fc483b9e5b8199",
+    "captureReportHash": "sha256:bfcb5153745bb6ef72da4812539c89975be9924949c0fa7f72fc7feafdba24b6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,13 +36,14 @@
       "shots/shared/south-gallery.png",
       "shots/shared/gate-approach.png",
       "shots/shared/church-and-upper-gates.png",
-      "shots/shared/mapped-plan.png"
+      "shots/shared/mapped-plan.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all10 shared-loader frames and full-size west-front/south-gallery views. Five existing256-square lime plaster,raw limestone,slate,plain wood and gravel graphs;flat blue-grey glass,linear tints and metric repeats. Six near groups,one far. Each graph read once;eviction leaves zero live model geometry. No embedded/new texture image,operator photo texture or downloaded mesh. Flat-stage material review is separate from terrain fit."
+    "notes": "Inspected all11 final shared-material views. Five common plaster/limestone/slate/wood/aggregate graphs plus explicit glass color are reused. Roofs, passage openings and pale summit read correctly. Retained map outlines support approximate heading0 fit; cache reuse and unload passed. Flat shared fixture tests materials and orientation rather than hillside terrain."
   },
   "mediumFiReview": {
-    "status": "pending",
-    "captureReportHash": "sha256:7fa1bf8990e5690ac13524f92e99707fdc2009a81ad31e4f8f8bcb2b0fc4379b",
+    "status": "passed",
+    "captureReportHash": "sha256:b119965a01534a9e417efa5bfd8a4f9f05d3a352dfbcd374d7d841b2bbe0ca5a",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -62,25 +64,33 @@
       "medium-fi/gate-approach.png",
       "medium-fi/church-and-upper-gates.png",
       "medium-fi/mapped-plan.png",
+      "medium-fi/whole-hochosterwitz-skyline.png",
+      "medium-fi/whole-hochosterwitz-district.png",
+      "medium-fi/whole-hochosterwitz-street.png",
+      "medium-fi/whole-hochosterwitz-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all23 refreshed Earth-rig frames:12 distance/time/mode combinations,silhouette,six architectural views and four forced levels. Added the source-local numerical hill as a separate fixture,centered review cameras vertically and placed synthetic neighbors outside the hill tile. Graph/palette and polygon budgets are coherent in Economy/High,neutral mapping/exposure1. Some gate/wall contacts still float or embed on coarse research terrain,so full ground-contact/medium-fi acceptance remains pending. Terrain and PNG hashes bind the fixture. Forced frames do not prove live upgrades or physical device performance."
+    "notes": "Inspected all27 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. Surrounding hill is actual retained coarse PMTiles terrain. One sampler drives walls/routes at every level; reconstructed gate/summit floors are raised only where necessary to clear it, and wall/toe vertices reach sampled ground. Primary masses remain consistent."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:4ed44d983f5ed981c1dd4f3ea9acf5a513f6d836fc5c7938afaaa158dc6e094e",
-    "mapGeometryHash": "sha256:82c2b158a25663f369e2a08661ac0e78d5401253657dfa70c7ddf329e5eaa74f",
-    "coordinateRoundTripErrorMeters": 0.0006714390569443676,
-    "mapCoordinateSamples": 1079,
-    "notes": "1079 original attributed map coordinate samples reconstruct within0.672mm. ExactQ679248 summit,14 independently named gates/passages,church/chapel,45wall polygons,18secondary footprints and route traces preserve source identity. Native East/South geometry bakes heading0;all-level padded union bounds are registered. Provisional summit modelHeight92.0827 and gate/wall levels derive from one coarse Terrarium datum. Narrow terraces,stairs,path sections,facade bearing and real terrain contacts require site review. Draft inactive;replacement off."
+    "status": "passed",
+    "placementHash": "sha256:e96b6e5b386de90edf8757822d51e21d07ac9bdebb77f4786a3bdbce7f1e6ab4",
+    "mapFrameHash": "sha256:43aff5d420e47c1093ccc287966cc76b08199b1b6edc1d5a618300ae3a8c0b2e",
+    "notes": "The inspected aerial picture supports pale summit wings, dark slate roofs, round turrets, entry tower and descending walls/gates. Retained east/south map geometry sets approximate location, scale and orientation. Standard viewer PMTiles supply the hill; the derivative translates the old611.9699m first-gate study datum to the703.9600882109237m anchor datum, uses one retained PMTiles sampler for walls/routes at every level and raises reconstructed gate/summit floors only enough to clear coarse ground. No terrain mesh is embedded in the architecture. Anchor 14.452350896,46.755908856; heading 0; standard PMTiles datum 703.9600882109237m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate exterior/hillside fit from inspected aerial picture and standard viewer PMTiles. The original611.9699m first-gate study datum translates to the703.9600882109237m anchor datum. Gate/floor and wall levels are reconstruction choices on coarse data. Individual ornament, archaeological detail, interiors, collision, vegetation, water simulation and terrain cutouts excluded. Footprint replacement stays off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Castle-operator current exterior,upper court,gate and church descriptions/photos guide this original exterior. All building heights,roof/turret/spire sections,bay counts,apertures,gallery/court profiles and ground contacts are photographic estimates;no primary surveyed architectural dimensions verified. Fine heraldry,portrait reliefs,frescos,inscriptions,balusters,interior rooms/museum collections and inclined railway machinery are simplified/excluded or separate. Coarse terrain misses terraces;older aerial views may differ from current restoration. Full exterior/current-site fidelity remains pending."
+    "notes": "Castle-operator current exterior,upper court,gate and church descriptions/photos guide this original exterior. All building heights,roof/turret/spire sections,bay counts,apertures,gallery/court profiles and ground contacts are photographic estimates;no primary surveyed architectural dimensions verified. Fine heraldry,portrait reliefs,frescos,inscriptions,balusters,interior rooms/museum collections and inclined railway machinery are simplified/excluded or separate. Coarse terrain misses terraces;older aerial views may differ from current restoration. Full exterior/current-site fidelity remains pending.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -88,19 +98,19 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u2/u26/n0301_hochosterwitz_castle/models/source.glb",
-        "hash": "sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5",
-        "bytes": 1982548,
-        "triangles": 16490,
+        "hash": "sha256:a077e82001ec7afeba6b09d3ac363da713b0ffab1b150831f71fa585a13200f0",
+        "bytes": 1958060,
+        "triangles": 16286,
         "materials": 6,
         "images": 0,
         "min": [
           -124.96099853515625,
-          -7.0696001052856445,
+          -100.53038024902344,
           -135.14698791503906
         ],
         "max": [
           78.34054565429688,
-          115.78269958496094,
+          25.5540771484375,
           59.58934020996094
         ],
         "errors": 0,
@@ -109,19 +119,19 @@
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.glb",
-        "hash": "sha256:ed404d86a6790570cf7f1c978fd00ccd39f27bad45592b9396eed1d9363a227e",
-        "bytes": 1981980,
-        "triangles": 16490,
+        "hash": "sha256:411cb8d68c5341c764329c01fac3be64f5123180d6d462903767e359b0656be0",
+        "bytes": 1957488,
+        "triangles": 16286,
         "materials": 6,
         "images": 0,
         "min": [
           -124.96099853515625,
-          -7.0696001052856445,
+          -100.53038024902344,
           -135.14698791503906
         ],
         "max": [
           78.34054565429688,
-          115.78269958496094,
+          25.5540771484375,
           59.58934020996094
         ],
         "errors": 0,
@@ -130,19 +140,19 @@
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.skyline.glb",
-        "hash": "sha256:2712c5ab941b0c87a24f47b4f070d126ea5550782482701a8974265d244c34ba",
-        "bytes": 92348,
+        "hash": "sha256:55f178ea5d8e687898bf3e48b82a7c7dcad3c4ddf2072e647fa484e659dfa9a5",
+        "bytes": 103328,
         "triangles": 986,
         "materials": 1,
         "images": 0,
         "min": [
           -120.51499938964844,
-          -7.0696001052856445,
+          -100.53038024902344,
           -134.968994140625
         ],
         "max": [
           78.29499816894531,
-          113.08270263671875,
+          22.854080200195312,
           59.573001861572266
         ],
         "errors": 0,
@@ -151,19 +161,19 @@
       {
         "name": "district",
         "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.district.glb",
-        "hash": "sha256:9c1103d907d46ffbc8af0553ade991fdc4ae28c251f82a359c7c95f115255777",
-        "bytes": 372440,
-        "triangles": 3757,
+        "hash": "sha256:90576e3273d3a19494e2c5cc56a1c778241fb3af0d2aa376ae315ca503f48504",
+        "bytes": 360316,
+        "triangles": 3626,
         "materials": 6,
         "images": 0,
         "min": [
           -124.96099853515625,
-          -7.0696001052856445,
+          -100.53038024902344,
           -134.968994140625
         ],
         "max": [
           78.3138656616211,
-          113.08270263671875,
+          22.854080200195312,
           59.59890365600586
         ],
         "errors": 0,
@@ -172,19 +182,19 @@
       {
         "name": "street",
         "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.street.glb",
-        "hash": "sha256:fdf729c9bfa4a855c455f0dd8aa6a242c783a8724576eeb9a5b214b6538e72a9",
-        "bytes": 1441656,
-        "triangles": 14954,
+        "hash": "sha256:622c3c565daacfe4aa07eb6a2302fdf21483f6bf5b565e8476a9a484a3e09022",
+        "bytes": 1421136,
+        "triangles": 14750,
         "materials": 6,
         "images": 0,
         "min": [
           -124.96099853515625,
-          -7.0696001052856445,
+          -100.53038024902344,
           -135.14698791503906
         ],
         "max": [
           78.34054565429688,
-          115.71684265136719,
+          25.48822784423828,
           59.58934020996094
         ],
         "errors": 0,
@@ -193,116 +203,91 @@
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.closeup.glb",
-        "hash": "sha256:d67534ada314ae2fd0bbc00ae2e9d0d108b1c5519e1bcf29fcae8f8bab26ab46",
-        "bytes": 1618888,
-        "triangles": 16490,
+        "hash": "sha256:743ac172534b657110be73dd46df94c89a395bfefbb971848531aea7e2fbb5c5",
+        "bytes": 1598688,
+        "triangles": 16286,
         "materials": 6,
         "images": 0,
         "min": [
           -124.96099853515625,
-          -7.0696001052856445,
+          -100.53038024902344,
           -135.14698791503906
         ],
         "max": [
           78.34054565429688,
-          115.78269958496094,
+          25.5540771484375,
           59.58934020996094
         ],
         "errors": 0,
         "warnings": 0
       }
     ],
-    "notes": "All six GLBs have zero errors/warnings and no embedded images. Six focused checks pass:byte-deterministic four-level budgets,five shared graphs,homogeneous GPU attribute layouts,14 distinct mapped gates,all gate passages open at head height including both Kulmer bend segments,open summit court,all seven principal west-front windows visible,and all2401 research hill samples accurate within1.222mm after16-bit PNG decode. Scoped source/import checks and scene validation/30-tick simulation pass;simulation hash sha256:efde3fc7362ac780ba3f1ae8b1b776b69677b1f27c5705d50655f5fc76871ef3. No walkable collision certification."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain986/3626/14750/16286 triangles; initial skyline+district download totals463644 bytes. Separate POSITION/NORMAL streams retained. Runtime architecture has no embedded terrain mesh."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:272d6466c72255fcf5ce9def7af978f6480b690ddb85b16b6061a9fd97516b6e",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.skyline.glb",
-        "hash": "sha256:2712c5ab941b0c87a24f47b4f070d126ea5550782482701a8974265d244c34ba",
-        "bytes": 92348,
+        "file": "model.skyline.glb",
+        "hash": "sha256:55f178ea5d8e687898bf3e48b82a7c7dcad3c4ddf2072e647fa484e659dfa9a5",
+        "bytes": 103328,
+        "gzipBytes": 21498,
         "triangles": 986,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -120.51499938964844,
-          -7.0696001052856445,
-          -134.968994140625
-        ],
-        "max": [
-          78.29499816894531,
-          113.08270263671875,
-          59.573001861572266
-        ],
-        "errors": 0,
-        "warnings": 0
+        "cpuBytes": 101892,
+        "gpuBytes": 101892,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.district.glb",
-        "hash": "sha256:9c1103d907d46ffbc8af0553ade991fdc4ae28c251f82a359c7c95f115255777",
-        "bytes": 372440,
-        "triangles": 3757,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -124.96099853515625,
-          -7.0696001052856445,
-          -134.968994140625
-        ],
-        "max": [
-          78.3138656616211,
-          113.08270263671875,
-          59.59890365600586
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.district.glb",
+        "hash": "sha256:90576e3273d3a19494e2c5cc56a1c778241fb3af0d2aa376ae315ca503f48504",
+        "bytes": 360316,
+        "gzipBytes": 131333,
+        "triangles": 3626,
+        "cpuBytes": 352964,
+        "gpuBytes": 352964,
+        "errorMeters": 0.7,
+        "drawCalls": 6
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.street.glb",
-        "hash": "sha256:fdf729c9bfa4a855c455f0dd8aa6a242c783a8724576eeb9a5b214b6538e72a9",
-        "bytes": 1441656,
-        "triangles": 14954,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -124.96099853515625,
-          -7.0696001052856445,
-          -135.14698791503906
-        ],
-        "max": [
-          78.34054565429688,
-          115.71684265136719,
-          59.58934020996094
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.street.glb",
+        "hash": "sha256:622c3c565daacfe4aa07eb6a2302fdf21483f6bf5b565e8476a9a484a3e09022",
+        "bytes": 1421136,
+        "gzipBytes": 472155,
+        "triangles": 14750,
+        "cpuBytes": 1413736,
+        "gpuBytes": 1413736,
+        "errorMeters": 0.3,
+        "drawCalls": 6
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/u2/u26/n0301_hochosterwitz_castle/model.closeup.glb",
-        "hash": "sha256:d67534ada314ae2fd0bbc00ae2e9d0d108b1c5519e1bcf29fcae8f8bab26ab46",
-        "bytes": 1618888,
-        "triangles": 16490,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -124.96099853515625,
-          -7.0696001052856445,
-          -135.14698791503906
-        ],
-        "max": [
-          78.34054565429688,
-          115.78269958496094,
-          59.58934020996094
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.closeup.glb",
+        "hash": "sha256:743ac172534b657110be73dd46df94c89a395bfefbb971848531aea7e2fbb5c5",
+        "bytes": 1598688,
+        "gzipBytes": 544128,
+        "triangles": 16286,
+        "cpuBytes": 1591288,
+        "gpuBytes": 1591288,
+        "errorMeters": 0.1,
+        "drawCalls": 6
       }
     ],
-    "initialDownloadBytes": 464788,
-    "notes": "986/3757/14954/16490 triangles meet four medium-fi caps;groups1/6/6/6. Initial skyline+district 464788 bytes before shared textures;closeup 1618888 bytes. Skyline retains summit,church/turret identity and all14 gates,while omitting windows,crenels,paths and small secondary buildings.6m skyline error is an authoring estimate,not a measured Hausdorff bound. Continuous loading/upgrades and physical devices remain pending."
-  }
+    "initialBytes": 463644,
+    "notes": "skyline: 986 triangles, 103328 bytes, 1 draws; district: 3626 triangles, 360316 bytes, 6 draws; street: 14750 triangles, 1421136 bytes, 6 draws; closeup: 16286 triangles, 1598688 bytes, 6 draws. Initial skyline+district 463644 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate exterior and hillside fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Fourteen mapped gate masses/openings, church, summit and walls are interpreted; individual ornamental/archaeological detail, interiors and collision excluded.",
+    "Five common graphs plus explicit glass color slot, zero embedded images. Host terrain supplies the hill; vegetation, water simulation and terrain cutouts excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

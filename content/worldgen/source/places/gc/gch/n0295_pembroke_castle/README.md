@@ -28,11 +28,11 @@ Five existing256-square shared graphs, linear palette and central metric repeats
 
 ## Model and axes
 
-14,971 triangles; 44,913 vertices; 7 material groups; 1,800,592 bytes. Native bounds: -71.060, 0.400, -73.150 to 76.285, 40.000, 72.105. Source hash: `sha256:10961af60023dbb13174f3007af7ea6ec0d9d5a6e7944d285ed06ae386d66910`.
+14,971 triangles; 44,913 vertices; 7 material groups; 1,800,580 bytes. Native bounds: -71.060, -8.470, -73.150 to 76.285, 33.000, 72.105. Source hash: `sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c`.
 
-{"up":"+Y","front":"Oblique southeastern main entrance, baked in East/South coordinates","longitudinal":"+Z south","origin":"Wikidata reference coordinate; original plateauY15 attachment plane over native datum2.5m. Cliff and Wogan descend below it."}
+{"up":"+Y","front":"Oblique southeastern main entrance, baked in East/South coordinates","longitudinal":"+Z south","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native+X east/+Z south encodes the actual mapped oblique passage with heading0. PlatformY15 is a provisional attachment plane; cliff/Wogan extend below. Raw coarseDEM is retained separately. Real vertical registration/cutout and site association require review.
+Reference picture shows the high round keep, roofless hall and gatehouse silhouettes above a bounded riverside cliff. Retained east/south mapped controls and standard viewer PMTiles set approximate location, scale, orientation and coarse ground. Reconstructed court floor atY8 stays above coarse terrain; the cliff base reaches the same PMTiles sampler at all levels. The Wogan mouth is an approximate exterior feature; the original detailed section and master remain preserved. Anchor -4.920555555,51.676944444; heading 0; standard PMTiles datum 10.602262091697735m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -40,13 +40,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0295` (
 
 ## Pending work
 
-- Exact identity is a map node. Nearby physical traces have no shared exact-QID area; their castle association and current physical fit need geographic review. Some east/StAnne traces explicitly warn that they are inaccurate.
-- Published keep dimensions and cave measurements are retained. Other heights/thicknesses, missing wall/roof partitions, windows, arches, stairs, restored towers and low barbican are original estimates.
-- Coarse Terrarium data peaks near13.77m while published cave floor9–10mOD and5m chamber height imply a higher overlying hall. Native datum2.5m and plateauY15 (absolute17.5m) are original provisional section controls. Preserve the raw DEM and this unresolved difference; real vertical registration/blending remains pending.
-- Wogan chamber is a simplified exterior/dark interior volume with published approximate bounds; its rock form, masonry aperture positions and complete spiral circulation are not surveyed.
-- No full rooms, exhibits, vault interiors, inscriptions, exact archaeological ruins or walkable circulation/collision are complete. GreatMap is a schematic original visitor prop, not reproduced artwork.
-- Only existing shared low-frequency256-square graph textures are used; private photos/plans and operator rendered navigation model are not copied or redistributed.
-- Synthetic captures and authored LODs do not approve real site fit, continuous streaming or physical-device performance. Keep placement inactive with footprint replacement off.
+- Approximate exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Ruins, cliff shape, Wogan aperture and reconstructed floors are approximate; full interiors, complete cave circulation, collision and water simulation excluded.
+- Five common graphs plus explicit glass/foliage color slots; zero embedded images. Host terrain supplies the surrounding hillside; bounded castle cliff retained.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

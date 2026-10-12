@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0256_durham_castle",
-  "inputHash": "sha256:c7dc0d1955fb8229b17b05ffa6889b7f8a0187bfbc7098c924d4489497562a28",
-  "captureReportHash": "sha256:541d6085401cb1cf04ab60d99858d8ca0cb5d5a5620a113527110f3e6a9e5034",
+  "reviewedOn": "2026-10-11",
+  "inputHash": "sha256:6103a9f0b1febf8b2111dbdbd20bad41074c690a9e771382f4583210f8d340f2",
+  "sourceHash": "sha256:73b88ba498c26a91599d7dd67edd01fb0919e4f691fa66cebde394c8eaf1d1b1",
+  "runtimeHash": "sha256:3a7ef3c94770bdcba30318a12d717a2326b9c841d51533fb3c51a08c7442e67f",
+  "captureReportHash": "sha256:c2031d6aa92b21aa6ad28a3a18e33b3da6c29c22d6503ddb100cf67ce7babe46",
   "visualReview": {
     "status": "passed",
-    "scope": "Technical exterior rendering only; maximum architectural fidelity and geographic approval remain pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -20,13 +22,16 @@
       "shots/octagonal-keep.png",
       "shots/gatehouse-open-passage.png",
       "shots/north-and-west-ranges.png",
-      "shots/motte-retaining-walls.png"
+      "shots/motte-retaining-walls.png",
+      "shots/open-gatehouse-ground-ray.png",
+      "shots/west-hall-feet.png",
+      "shots/bounded-motte-and-retained-hill.png"
     ],
-    "notes": "Inspected all 14 final portable frames. Open bailey, separate octagonal keep, two mapped retaining arcs, Great Hall domed turrets, oriel and porch, low gallery, upper hall, clock stair, chapel and gate passage render. Corrected inverted hall/garden-stair partition, overlapping stair and oriel walls, two exposed upper-hall ends and inward porch step risers, then recaptured the entire model. Rear elevations and concealed roofs remain approximations awaiting further architectural reference work."
+    "notes": "Actually inspected92 final images:17 portable,17 shared-material,33 medium-fi and25 retained-terrain placement views. Three actual Durham University photos were inspected: courtyard panorama, view from the keep, and keep/motte beside the chapel; the medieval reconstruction drawing is a separate state. The west Great Hall has four octagonal ogee-capped turrets, tall pointed windows and the projecting oriel/Cosin porch. Low Tunstall Gallery sits in front of the taller north hall with clock stair, chapel and separate raised octagonal keep. Roofless landscaped bailey and genuinely open southern gatehouse remain visible. Inspection found inward-facing foundation skirts under west hall and gatehouse; reversing those faces removed the apparent unsupported gaps. Sparse rear elevations, exact bay counts, ogee profiles, roof junctions, shelf shapes and stairs are medium-fi reconstructions. Cathedral, Library, Norman interior vaults and wider city are outside scope."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:874720ff6df0f111b84131eeae8eb4aef31119fd875113a74bdd4fd27c86b10b",
+    "captureReportHash": "sha256:a59d2eeaf936eccdea83349db6c8c75b234e574a2c8256fd0eaf0c470cf68273",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -40,144 +45,307 @@
       "shots/shared/octagonal-keep.png",
       "shots/shared/gatehouse-open-passage.png",
       "shots/shared/north-and-west-ranges.png",
-      "shots/shared/motte-retaining-walls.png"
+      "shots/shared/motte-retaining-walls.png",
+      "shots/shared/open-gatehouse-ground-ray.png",
+      "shots/shared/west-hall-feet.png",
+      "shots/shared/bounded-motte-and-retained-hill.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 13 final world-viewer asset-review views. Six reusable graphs (sandstone, raw limestone, slate, wood, painted metal and gravel) each load once. No embedded images. Disposal leaves zero live model geometries. Chapel detail camera intentionally crops surrounding structures; isolated asset rendering does not certify terrain alignment."
+    "notes": "Four reusable material graphs supply sandstone, plain wood, painted metal and slate. Sandstone tints also supply carved trim, foundations and courtyard surfaces; opaque glass and lawn remain local color slots. All17 final shared-material views were inspected: warm stone body/trim, dark recessed windows and subdued slate roofs remain coherent. Original microscopic masonry and leadwork geometry is preserved in the original detailed recipe; independent derivative uses common surfaces for ordinary seams. Major tracery and architectural projections remain geometry near the building. Each common graph is read once, skyline bakes shared linear means in one draw, and all six validated GLBs contain zero images. The shared sandstone is a stylistic interpretation, not a photographic survey."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7ee35129d7f964ab69cb0eaa3e6f7039f48030109d26cbd010a526f23307ecd9",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/castle-and-open-bailey.png",
+      "medium-fi/great-hall-four-domed-turrets.png",
+      "medium-fi/cosin-porch-and-oriel.png",
+      "medium-fi/tunstall-gallery-and-clock.png",
+      "medium-fi/chapel-and-motte.png",
+      "medium-fi/octagonal-keep.png",
+      "medium-fi/gatehouse-open-passage.png",
+      "medium-fi/north-and-west-ranges.png",
+      "medium-fi/motte-retaining-walls.png",
+      "medium-fi/open-gatehouse-ground-ray.png",
+      "medium-fi/west-hall-feet.png",
+      "medium-fi/bounded-motte-and-retained-hill.png",
+      "medium-fi/whole-durham-skyline.png",
+      "medium-fi/whole-durham-district.png",
+      "medium-fi/whole-durham-street.png",
+      "medium-fi/whole-durham-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All33 final style images inspected across noon/late light, economy/high settings, architectural cameras, whole-model tiers and transitions. Skyline907 triangles keeps the whole compound, four turret crowns, distinct raised keep, low gallery/taller hall, roofless bailey, open gate and bounded shelves. District2815 adds representative sparse windows/common materials; street15731 restores bay rhythm, mouldings and battlements; close-up29885 adds pointed tracery, window reveals, ogee crowns, Cosin porch and abstract heraldic reserves. Strict medium-fi reports zero findings. Ordinary repeated details disappear with distance without substituting generic architecture. Skyline is a distant silhouette and has no close-range battlement/window detail. Diagnostic terrain and synthetic surrounding buildings are context only."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:2e447268d4a96d009736cc5cd80abe1836b3a5985e3c09cd1e3418c8cd2898a4",
-    "notes": "Q752266 main ranges use exact way/81522967. Separate mapped keep way/81522969 and gatehouse way/81522972 are retained. Draft anchor [-1.576564741,54.775561357], heading 0.524419899749; native +X 30.047 degrees north of east. replaceFootprint=false. Courtyard Y=0.12 and keep platform Y=10 are provisional; terrain and directional fit review remain pending."
+    "status": "passed",
+    "placementHash": "sha256:d809013eac01ccc6174972be40c7e34fd25ee5d9c8b910b8b884ab1cc99351da",
+    "mapFrameHash": "sha256:991ecc11971e9a9f5c2a69274b34546ee7c07b43987fc0b8dc4bf3b7e0d72f0d",
+    "notes": "Fresh Durham Castle main way81522967 v38 Q752266, keep81522969 v15, gate81522972 v13 and chapel81522956 v6 support signed heading0.524419899749 at [-1.576564741,54.775561357]. Native +X northeast bearing59.952953 degrees, +Z southeast149.952953: Great Hall -X, gallery/north range -Z, raised keep +X,+Z and gate -X,+Z agree with primary photos. Two original main vertices project onto the current boundary and vanished service block1435108879 is excluded; current court/gate rings are retained. Cached vertex differences4.22 m represent a small4.105 m² plan revision, not wholesale building displacement. Public terrain16641 values on3 m grid uses working decoded datum63.0892 m and source raster pixel interval2.75546317 m. Court floor3.9693 m/common shift3.8493 m and separate keep floor14.1927 m/shift4.1927 m follow occupied ground maxima plus0.25 m. Edge-sampled skirts extend4 m below retained terrain; mapped motte retaining paths support bounded interpreted shelves with1.2 m crest allowance. No outlier filter, ground cut or whole-hill replacement. Public terrain cannot resolve exact cellar floors or motte retaining-wall grades."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted current medium-fi exterior, with explicit reconstructed details. Original193007-triangle,16407064-byte master reproduces at sha256:7fee2a5d8b31bbce3e59a071d8eeb7a8db12714ef718b19592cb1b84aaf4f6a8 from unchanged durham-castle-model.mjs#durhamStudy.build and original map-parts.json. Independent derivative preserves those original inputs. Four Historic England entries were re-read for actual hall/gallery/keep/gate traits, and three University actual photographs were visually inspected. Exact window rhythms, tracery, heraldry, carvings, roof junctions and rear elevations are reconstructed; figurative angels/arms remain abstract reserves, not generic statues. Interiors and wider precinct are excluded. Coarse ground datum/vintage, native resolution and under-building contamination are unverified; pixel interval is not surveyed vertical accuracy. Plain fitted basement skirts and motte shelves do not claim measured wall heights or fully walkable access. Physical laptop/phone timings remain unmeasured."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Maximum exterior fidelity remains pending: rear elevation window rhythms, precise stone tracery, roof junctions, heraldic shields and figurative porch carvings need more bespoke reference work. Plain reserved panels are not complete carvings. Motte and floor elevations are inferred from courtyard photographs. In-world terrain contact and orientation review remain pending; replaceFootprint=false. Interior rooms, Norman Chapel vaults, Cathedral, Palace Green Library and surrounding city are outside this exterior asset. Detailed master and four independent runtime levels share central surfaces. Physical laptop and phone performance measurements remain pending."
+    "notes": "Maximum exterior fidelity remains pending: rear elevation window rhythms, precise stone tracery, roof junctions, heraldic shields and figurative porch carvings need more bespoke reference work. Plain reserved panels are not complete carvings. Motte and floor elevations are inferred from courtyard photographs. In-world terrain contact and orientation review remain pending; replaceFootprint=false. Interior rooms, Norman Chapel vaults, Cathedral, Palace Green Library and surrounding city are outside this exterior asset. Detailed master and four independent runtime levels share central surfaces. Physical laptop and phone performance measurements remain pending.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 8
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcw/n0256_durham_castle/models/source.glb",
+        "hash": "sha256:73b88ba498c26a91599d7dd67edd01fb0919e4f691fa66cebde394c8eaf1d1b1",
+        "bytes": 2703140,
+        "triangles": 29885,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -49.31658172607422,
+          -16.28413963317871,
+          -34.02204132080078
+        ],
+        "max": [
+          67.83865356445312,
+          34.3927001953125,
+          70.68374633789062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.glb",
+        "hash": "sha256:3a7ef3c94770bdcba30318a12d717a2326b9c841d51533fb3c51a08c7442e67f",
+        "bytes": 2702576,
+        "triangles": 29885,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -49.31658172607422,
+          -16.28413963317871,
+          -34.02204132080078
+        ],
+        "max": [
+          67.83865356445312,
+          34.3927001953125,
+          70.68374633789062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.skyline.glb",
+        "hash": "sha256:a5cbbbc2f6689cdd4d1f2e7ee86be9769ca62d53a47556d0239eed6054f48d63",
+        "bytes": 81252,
+        "triangles": 907,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -49.14099884033203,
+          -12.652810096740723,
+          -33.85100173950195
+        ],
+        "max": [
+          67.56243896484375,
+          34.3927001953125,
+          70.3974380493164
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.district.glb",
+        "hash": "sha256:be53ead305500bca88125794994d7f9d0bd67a332267a903a518ebdf4bb378bf",
+        "bytes": 203256,
+        "triangles": 2815,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -49.14099884033203,
+          -16.28413963317871,
+          -33.85100173950195
+        ],
+        "max": [
+          67.73809814453125,
+          34.3927001953125,
+          70.59300994873047
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.street.glb",
+        "hash": "sha256:e1a839257c0a23c1a54c4cd4f6eac2050e13133c18379432c135509bc2446ec9",
+        "bytes": 1195876,
+        "triangles": 15731,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -49.31658172607422,
+          -16.28413963317871,
+          -34.02204132080078
+        ],
+        "max": [
+          67.83865356445312,
+          34.3927001953125,
+          70.68374633789062
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.closeup.glb",
+        "hash": "sha256:b94c2eb408dfcce42fd75706401e893ab206ece3788620cfb19c655e9888c47a",
+        "bytes": 2163256,
+        "triangles": 29885,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -49.31658172607422,
+          -16.28413963317871,
+          -34.02204132080078
+        ],
+        "max": [
+          67.83865356445312,
+          34.3927001953125,
+          70.68374633789062
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node_modules/.bin/vitest.cmd run test/durham-runtime-lods.test.mjs",
+      "passed": 3
     },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 8
-    },
-    "validatorLimitations": "Unused-UV notices reflect external shared procedural surfaces. Valid geometry does not establish architectural accuracy.",
-    "triangles": 193007,
-    "vertices": 391289,
-    "materials": 8,
-    "sharedGraphs": 6,
-    "embeddedImages": 0
+    "notes": "Three focused checks pass: exact original source bytes, current derivative/runtime/terrain hashes and signed fresh map reconciliation; all four tiers retain roofless bailey, three lateral open gatehouse rays and independently raised keep. New front-face-only west footing tests catch the inward-facing faces found during visual review and prove exposed walls now face outward at every tier. Child-process rebuild is byte-identical within1000/4000/16000/64000 triangles,8 draws and3 MB initial budgets. POSITION/NORMAL use separate12-byte streams. Six GLBs have zero Khronos errors/warnings/images. Five normal-placement states sample anchor once, three host-ground probes agree within0.015 m fixture offset, three footing rays hit fitted structure and three gate rays stay open. Five unloads retain host ground and dispose every model geometry. Remaining contacts/intersections are visual checks; exhaustive manifold verification or architectural survey is not claimed."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "scope": "Inspected same-camera master/LOD comparison; geometry/download budgets, deterministic generation and homogeneous attribute buffer views verified. Physical laptop/phone measurements remain pending.",
-    "notes": "953 / 3169 / 15467 / 29825 triangles; initial skyline plus district 321504 bytes. Street 1181760 bytes; closeup 2162176 bytes; detailed source 16407064 bytes. All 45 authored-LOD checks passed and both Durham cases passed again after the local corrections. Source regeneration is byte-identical. Four independent levels preserve the castle plan, open courtyard and separate keep.",
+    "recipeHash": "sha256:509ec0a8a27d6d19859a811ef27511f37ff1a263e167aca58a388565f8e60f23",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.skyline.glb",
-        "hash": "sha256:3110ff0b6e010e14b8d5af776af95387aaf1cab2f5165e2e763ad399caf0d4a9",
-        "bytes": 79892,
-        "triangles": 953,
-        "vertices": 2021,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -49.14099884033203,
-          0,
-          -33.85100173950195
-        ],
-        "max": [
-          67.56199645996094,
-          30.200000762939453,
-          70.39749908447266
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "hash": "sha256:a5cbbbc2f6689cdd4d1f2e7ee86be9769ca62d53a47556d0239eed6054f48d63",
+        "bytes": 81252,
+        "gzipBytes": 17159,
+        "triangles": 907,
+        "cpuBytes": 79820,
+        "gpuBytes": 79820,
+        "errorMeters": 1.5,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.district.glb",
-        "hash": "sha256:9a20234c6883938db2aa3e620760c352bced811818bff2d30eac4537ec9ef04b",
-        "bytes": 241612,
-        "triangles": 3169,
-        "vertices": 6015,
-        "materials": 5,
-        "sharedGraphs": 3,
-        "images": 0,
-        "min": [
-          -49.14099884033203,
-          0,
-          -33.85100173950195
-        ],
-        "max": [
-          67.73799896240234,
-          30.200000762939453,
-          70.59300231933594
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "hash": "sha256:be53ead305500bca88125794994d7f9d0bd67a332267a903a518ebdf4bb378bf",
+        "bytes": 203256,
+        "gzipBytes": 62629,
+        "triangles": 2815,
+        "cpuBytes": 198368,
+        "gpuBytes": 198368,
+        "errorMeters": 0.7,
+        "drawCalls": 4
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.street.glb",
-        "hash": "sha256:dda347f121df7b01ec09e151afc6c7cff8206e1564e5f91de569e7a6120fbaa3",
-        "bytes": 1181760,
-        "triangles": 15467,
-        "vertices": 30013,
-        "materials": 7,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -49.31658172607422,
-          0,
-          -34.02204132080078
-        ],
-        "max": [
-          67.8388900756836,
-          30.200000762939453,
-          70.68367004394531
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "hash": "sha256:e1a839257c0a23c1a54c4cd4f6eac2050e13133c18379432c135509bc2446ec9",
+        "bytes": 1195876,
+        "gzipBytes": 290417,
+        "triangles": 15731,
+        "cpuBytes": 1189760,
+        "gpuBytes": 1189760,
+        "errorMeters": 0.3,
+        "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/gc/gcw/n0256_durham_castle/model.closeup.glb",
-        "hash": "sha256:aa2146b6a874d9fd7b70f17f06114b534521c131d5c5d401c8f434c1efa42642",
-        "bytes": 2162176,
-        "triangles": 29825,
-        "vertices": 54820,
-        "materials": 8,
-        "sharedGraphs": 6,
-        "images": 0,
-        "min": [
-          -49.31658172607422,
-          0,
-          -34.02204132080078
-        ],
-        "max": [
-          67.8388900756836,
-          30.200000762939453,
-          70.68367004394531
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "hash": "sha256:b94c2eb408dfcce42fd75706401e893ab206ece3788620cfb19c655e9888c47a",
+        "bytes": 2163256,
+        "gzipBytes": 524468,
+        "triangles": 29885,
+        "cpuBytes": 2155932,
+        "gpuBytes": 2155932,
+        "errorMeters": 0.15,
+        "drawCalls": 6
       }
-    ]
+    ],
+    "initialBytes": 284508,
+    "notes": "skyline: 907 triangles / 81252 bytes / 1 draws; district: 2815 triangles / 203256 bytes / 4 draws; street: 15731 triangles / 1195876 bytes / 5 draws; closeup: 29885 triangles / 2163256 bytes / 6 draws. Initial skyline+district284508 bytes. Derivative source2703140 bytes, imported runtime2702576 bytes. Physical laptop/phone timings pending."
+  },
+  "limitations": [
+    "Original193007-triangle /16407064-byte master reproduces at sha256:7fee2a5d8b31bbce3e59a071d8eeb7a8db12714ef718b19592cb1b84aaf4f6a8 from unchanged durham-castle-model.mjs#durhamStudy.build and original map-parts.json.",
+    "Fresh Durham Castle Q752266 main way81522967 v38, keep81522969 v15, gatehouse81522972 v13 and chapel81522956 v6 sign heading0.524419899749 at [-1.576564741,54.775561357]. Native +X northeast bearing59.952953 degrees; +Z southeast149.952953 degrees. Great Hall toward -X, gallery/north range -Z, raised keep +X,+Z and southern gatehouse -X,+Z preserve component separation. University actual courtyard, keep/motte and view-from-keep photos inspected; medieval reconstruction drawing is a different state. Two changed main vertices project onto fresh boundary; disappeared service block1435108879 excluded, current court/gate rings recorded. Original main/court cached vertex-to-current-vertex distance4.22 m reflects a small4.105 m² plan revision; horizontal placement is not a surveyed facade. Numeric ground16641 samples on3 m grid, decoded working datum63.0892 m. Court3.9693 m/common shift3.8493 m and separate keep14.1927 m/shift4.1927 m are independently fitted to occupied ground plus0.25 m. Retaining paths support bounded interpreted shelves with terrain-buried toes; original whole-landscape slab is absent. No cut or whole-hill replacement.",
+    "Three-meter diagnostic grid samples a coarse public raster; pixel interval is not verified native resolution or surveyed vertical accuracy. Datum/vintage and under-building contamination remain unverified. No outlier filter is used.",
+    "Court floor is maximum occupied court sample plus0.25 m; separate keep floor is maximum occupied keep vertex plus0.25 m. Common range shift and separate keep shift preserve relative source architectural proportions. Intermediate motte shelves are reconstructed, not surveyed.",
+    "The two mapped motte retaining paths define interpreted bounded skirts/shelves, not an entire castle-hill replacement. Host terrain is retained; no ground cut or whole-landscape slab. Exact rear building grades and cellar levels are unresolved.",
+    "Original193007-triangle detailed master and original plan file remain unchanged; independent derivative reconciles current plan changes and removes disappeared small service feature1435108879. Main range slice topology projects changed old vertices onto the fresh outline, preserving authored facade arrangement.",
+    "Accepted medium-fi exterior: west Great Hall with four octagonal ogee-capped turrets, oriel/Cosin porch; Black Stairs, low gallery with taller north hall, clock stair, chapel, separate raised octagonal keep with corner buttresses, genuinely open southern gatehouse, landscaped roofless bailey and bounded motte retaining shelves. Exact window rhythms/tracery, heraldic/figurative carvings, roof junctions and rear elevations are reconstructed; figurative angel/arms remain abstract reserves, not generic statues. Interiors/Norman vaults, Cathedral, Palace Green Library and wider city are outside scope.",
+    "Four reusable graphs supply sandstone, wood, painted metal and slate. Sandstone tints also supply carved trim/court surfaces; opaque glass and grass remain local color slots. No embedded images. Ordinary masonry/leadwork use shared surfaces, skyline uses baked common linear means.",
+    "Public coarse ground cannot resolve surveyed motte shelves, rear/under-building floors, cellar levels or exact foot placement on every host terrain. Retaining crest allowances1.2 m, shelf shapes and stair proportions are interpreted. Physical laptop/phone timings remain pending."
+  ],
+  "terrainReview": {
+    "status": "passed",
+    "report": "shots/grade/report.json",
+    "captureReportHash": "sha256:11994373cbbde9bdab32c18c17d375d03fc285e2cc98461f20b29d7782954c9a",
+    "fixtureHash": "sha256:3e3f713990ccf69da5680654baab8e6c1aa5c471658510a5d4a89b6c2008d588",
+    "gradeHash": "sha256:e004faadc68ceaf71480a2a048bb04c370fb54577f552068cd2b6b9951ce532f",
+    "inspectedFrames": [
+      "shots/grade/master-whole-castle-and-bailey.png",
+      "shots/grade/master-open-signed-gatehouse.png",
+      "shots/grade/master-west-hall-feet.png",
+      "shots/grade/master-raised-keep-and-retaining-shelves.png",
+      "shots/grade/master-gallery-and-clock.png",
+      "shots/grade/skyline-whole-castle-and-bailey.png",
+      "shots/grade/skyline-open-signed-gatehouse.png",
+      "shots/grade/skyline-west-hall-feet.png",
+      "shots/grade/skyline-raised-keep-and-retaining-shelves.png",
+      "shots/grade/skyline-gallery-and-clock.png",
+      "shots/grade/district-whole-castle-and-bailey.png",
+      "shots/grade/district-open-signed-gatehouse.png",
+      "shots/grade/district-west-hall-feet.png",
+      "shots/grade/district-raised-keep-and-retaining-shelves.png",
+      "shots/grade/district-gallery-and-clock.png",
+      "shots/grade/street-whole-castle-and-bailey.png",
+      "shots/grade/street-open-signed-gatehouse.png",
+      "shots/grade/street-west-hall-feet.png",
+      "shots/grade/street-raised-keep-and-retaining-shelves.png",
+      "shots/grade/street-gallery-and-clock.png",
+      "shots/grade/closeup-whole-castle-and-bailey.png",
+      "shots/grade/closeup-open-signed-gatehouse.png",
+      "shots/grade/closeup-west-hall-feet.png",
+      "shots/grade/closeup-raised-keep-and-retaining-shelves.png",
+      "shots/grade/closeup-gallery-and-clock.png"
+    ],
+    "notes": "Actually inspected all25 final normal-placement images after reversing the inward-facing foundation skirts. West hall and gatehouse now show continuous exterior feet rather than open gaps; separate raised keep and bounded motte shelves remain distinct. Five states cover master and all four browser levels, whole compound, gate passage, exposed west feet, keep shelves and gallery/clock. Three retained-ground probes, two exposed west footing rays and one keep footing ray pass; three lateral gate rays stay open. Five unloads leave host terrain intact and dispose every model geometry. Floor allowances, motte shelves and plain foundation depth remain coarse-ground interpretations, not surveyed retaining walls or walkable interior access. Numeric ground, three exposed footings, three passage rays per state and five unloads are hash-bound."
   }
 }

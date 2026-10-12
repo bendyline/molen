@@ -14,7 +14,7 @@
     "squareCoreSideMeters": 11.75,
     "visibleRomanBodyMeters": 34.38,
     "platformWidthMeters": 32.4,
-    "basis": "A Coruña municipal Tower in Numbers page; 2024 original photo confirms current external geometry."
+    "basis": "A Coruña municipal dimensions, UNESCO identity and inspected 2024 exterior. The 55 m model extent, published hill elevation and mapped height=1 are separate; minor podium/tier dimensions remain reconstruction estimates."
   },
   "referencePages": [
     "https://www.coruna.gal/the-tower/en/discover-the-tower/curiosities-of-the-tower?argIdioma=en",
@@ -26,18 +26,23 @@
   "nativeAxes": {
     "up": "+Y",
     "front": "+Z",
-    "origin": "Ground contact beneath the polygonal platform. +X/+Z parallel the principal square shaft faces."
+    "origin": "Ground contact below the polygonal podium; +Y up; +Z is the modeled broad landing and entrance-facing elevation, directed northeast (about 59 degrees true); +X faces northwest. The offset staircase/lightning cylinder lies west-northwest of the lantern. The separate narrow northwest podium access is outside this single-landing reconstruction."
   },
   "geographicProposal": {
     "anchor": [
       -8.406524144,
       43.385941653
     ],
-    "heading": -1.028578798746,
+    "heading": 2.113013854843793,
     "elevationMode": "terrain-contact",
-    "source": "https://www.openstreetmap.org/way/255916025",
+    "source": "https://www.openstreetmap.org/way/255916025#map=20/43.38594/-8.40652",
     "status": "preview-proposal",
-    "notes": "Exact-QID footprint supplies position and undirected face axes. Square symmetry leaves90-degree ambiguity for the front and offset service spine; facade facing remains to be reviewed. Published11.75m shaft versus12.725m mapped envelope retained separately; no forced XY scaling."
+    "notes": "+Y up; +Z is the modeled broad landing and entrance-facing elevation, directed northeast (about 59 degrees true); +X faces northwest. The offset staircase/lightning cylinder lies west-northwest of the lantern. The separate narrow northwest podium access is outside this single-landing reconstruction. Signed quadrant is visually reconstructed from inspected north-up map/aerial access and roof layout, not surveyed camera or entrance azimuth. The square map envelope remains 12.7 m versus the published 11.75 m core; no XY stretch. Platform radius, parapet, minor openings, upper-stage allocation and fittings are photo-proportioned. Host terrain-contact Y=0 is a viewer convention, not the 57 m hill elevation or a surveyed tide/vertical datum. Excavated visitor annex, inscription edicule, separate northwest access, interiors and entire park are not included.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5dea234a075806128db26544372c677d2b3d285cd5f74b0d44dab4d69c49fb15",
+    "mapGeometryLicense": "ODbL 1.0 map evidence; aerial imagery and reference photographs retain provider rights and are not redistributed.",
+    "attribution": "© OpenStreetMap contributors; Google Maps imagery credits Airbus and Maxar Technologies; municipal A Coruña and FMA reference views."
   },
   "limitations": [
     "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates.",
@@ -97,11 +102,147 @@
         27,
         0
       ]
+    },
+    {
+      "name": "reverse-facade",
+      "position": [
+        -16,
+        20,
+        -27
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    {
+      "name": "spine-reverse",
+      "position": [
+        14,
+        49,
+        -17
+      ],
+      "lookAt": [
+        1.2,
+        48,
+        0
+      ]
+    },
+    {
+      "name": "podium-overhead",
+      "position": [
+        17,
+        31,
+        24
+      ],
+      "lookAt": [
+        0,
+        1.4,
+        0
+      ]
     }
   ],
   "assetId": "molen.worldgen.structure.n0637_tower_of_hercules",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "Warm granite square Roman-core lighthouse with forty staggered real niches, helical bands, heavy cornice, two octagonal stages, dark lantern and offset stone stair/lightning cylinder.",
+    "master": "Original 13060-triangle source master retained byte-for-byte through an isolated leaf recipe; original shared lighthouse module remains unchanged.",
+    "browser": "Skyline keeps the polygonal podium with open landing and steps, square shaft and helical bands, two complete upper stages, dark lantern and the full-height offset cylinder. District retains real recessed aperture backs while dropping projecting window trims and reducing regular circular subdivisions. Street and closeup reproduce the complete original exterior.",
+    "epoch": "Modern exterior following the 2024 credited photograph; no operative beacon or invented interior.",
+    "exclusions": "Signed quadrant is visually reconstructed from inspected north-up map/aerial access and roof layout, not surveyed camera or entrance azimuth. The square map envelope remains 12.7 m versus the published 11.75 m core; no XY stretch. Platform radius, parapet, minor openings, upper-stage allocation and fittings are photo-proportioned. Host terrain-contact Y=0 is a viewer convention, not the 57 m hill elevation or a surveyed tide/vertical datum. Excavated visitor annex, inscription edicule, separate northwest access, interiors and entire park are not included."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hercules-detail-model.mjs",
+    "export": "buildHerculesMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hercules-browser-model.mjs",
+    "export": "buildHerculesSkyline",
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHerculesDistrict",
+        "errorMeters": 0.28,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "cornice-district",
+      "position": [
+        13,
+        38,
+        16
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-district",
+      "position": [
+        13,
+        49,
+        -17
+      ],
+      "lookAt": [
+        1,
+        48,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "recess-street",
+      "position": [
+        11,
+        16,
+        14
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -16.200000762939453,
@@ -113,6 +254,13 @@
       55,
       18.799999237060547
     ]
+  },
+  "mesh": {
+    "triangles": 13060,
+    "vertices": 23664,
+    "materials": 4,
+    "bytes": 1011416,
+    "sha256": "sha256:017a0c8f3ae087c2fd368752b6c07479cc9b17e6e527dadd9bb31d0854a00760"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

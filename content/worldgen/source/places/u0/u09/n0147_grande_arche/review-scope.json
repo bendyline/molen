@@ -1,0 +1,130 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.paris_mansard",
+    "scale": 2
+  },
+  "appearance": {
+    "identity": "Open granite cube, side glazing and panelled underside, raised parvis stair, four external lifts and suspended cloud.",
+    "epoch": "Established post2017 granite exterior; reference photographs from2021/2022.",
+    "master": "Original22776triangle recipe retained; current source adds missing panelled soffit from operator photographs.",
+    "exclusions": "Cloud tension shape, opening/stair dimensions, elevator car levels reconstructed. Mural, roof furniture, interiors and surveyed parvis excluded."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/grande-arche-runtime-model.mjs",
+    "export": "buildGrandeArcheCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/grande-arche-runtime-model.mjs",
+    "export": "buildGrandeArcheSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "street": {
+        "export": "buildGrandeArcheStreet",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "roof",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "district": {
+        "export": "buildGrandeArcheDistrict",
+        "errorMeters": 2.8,
+        "surfaces": {
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "roof",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "open-cube-district",
+      "position": [
+        0,
+        61,
+        175
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "cloud-street",
+      "position": [
+        38,
+        36,
+        75
+      ],
+      "lookAt": [
+        0,
+        32,
+        10
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "soffit-street",
+      "position": [
+        0,
+        70,
+        50
+      ],
+      "lookAt": [
+        0,
+        98.5,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

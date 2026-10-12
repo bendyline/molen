@@ -12,31 +12,32 @@
   },
   "visualBrief": "Current multi-period hilltop fortress:square flint-and-pale-stone Great Tower with east forebuilding,14inner mural towers,lowered outer defenses,northern spur,Constable gate,church/octagonal Roman pharos and selected later barracks.",
   "mediumFiContext": {
-    "scale": "4",
+    "groundY": -115,
+    "scale": 4,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
-    504.26600646972656,
-    112.50495910644531,
-    639.7979736328125
+    452.59568786621094,
+    111.51131248474121,
+    524.2254791259766
   ],
   "actualBounds": {
     "min": [
-      -248.3350067138672,
-      0,
-      -277.4119873046875
+      -223.20899963378906,
+      -80.96624755859375,
+      -231.39561462402344
     ],
     "max": [
-      255.93099975585938,
-      112.50495910644531,
-      362.385986328125
+      229.38668823242188,
+      30.54506492614746,
+      292.8298645019531
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X east",
     "longitudinal": "+Z south",
-    "origin": "Cached whole-site map rectangle center;relative terrain datum is the minimum sampled boundary elevation,declared by recipe."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "way/26658038 exactQ950970",
@@ -51,7 +52,9 @@
     "innerMuralTowers": 14,
     "terrainDatumMeters": 24.615042199399998,
     "keepPadElevationMeters": 111.82,
-    "churchPadElevationMeters": 113
+    "churchPadElevationMeters": 113,
+    "originalMasterHash": "sha256:6f3aa14c0637ae25dbfb156d7353cea9ccef608e768230e35396ca2f21b5ed1b",
+    "originalMasterRecipe": "packages/worldgen/scripts/dover-castle-model.mjs#buildDoverRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -72,12 +75,13 @@
       "Square Great Tower with four clasping corner turrets and lower forebuilding",
       "Layered fortified hill with concentric inner ward and reduced outer defenses",
       "Separate cruciform St Mary church and surviving octagonal Roman pharos"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Cached exact-QID whole-site boundary plus original architectural interpretation of English Heritage current aerial and primary factual descriptions. Official phased diagram inspected privately to distinguish standing/underground/lost elements;neither diagram nor traced vector geometry is redistributed.",
-    "registration": "Native east/south frame,heading0. Internal approximate plan and coarse DEM pads require signed site/terrain review. Inactive geographic draft,replaceFootprint=false.",
-    "heightDatum": "Mixed-source DEM relative patch,flattened estimated keep/inner-ward and church pads;all other building elevations estimated. Keep25.3m and surviving pharos19m documented primary dimensions."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://www.english-heritage.org.uk/visit/places/dover-castle/history-and-stories/history-dover/",
@@ -88,8 +92,8 @@
     "https://github.com/tilezen/joerd/blob/master/docs/data-sources.md"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive geographic draft;review pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       1.322679734,
       51.129258466
@@ -108,7 +112,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Native true east/south,heading0. Approximate internal geometry and relative DEM patch need host-terrain datum and signed whole-site fit review."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected aerial picture confirms the square Great Tower, concentric mural towers, gatehouses, church/pharos group and later barracks. The retained east/south site frame and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the embedded hill, uses host PMTiles terrain, reconstructs level keep/church floors above coarse sampled ground and extends their bounded wall bottoms beneath it. Anchor 1.322679734,51.129258466; heading 0; standard PMTiles datum 110.20328505915221m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "Inspected aerial picture confirms the square Great Tower, concentric mural towers, gatehouses, church/pharos group and later barracks. The retained east/south site frame and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the embedded hill, uses host PMTiles terrain, reconstructs level keep/church floors above coarse sampled ground and extends their bounded wall bottoms beneath it. Anchor 1.322679734,51.129258466; heading 0; standard PMTiles datum 110.20328505915221m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        1.322679734,
+        51.129258466
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Exact cached compound boundary,primary keep/pharos heights and original estimated internal massing with cached40m mixed-source terrain samples.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -135,6 +149,15 @@
       ]
     },
     {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.slate",
       "slot": "roof",
       "uv": "repeats",
@@ -157,24 +180,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Approximate current exterior compound reconstruction. Individual footprints,wall lines,church orientation and barrack lengths are author estimates;live OSM footprint requests returned429. Cached OSM boundary is retained exactly,not extruded as a building.",
-    "Documented keep25.3m and surviving pharos19m are above their estimated pads. All other heights and topography corrections estimated. Coarse DEM cannot resolve deep moat profiles,cliff faces or narrow terrace levels. Host terrain,vertical datum,heading and internal plan fit pending.",
-    "Selected14inner square mural towers and northern gate/barbican;outer wall follows an approximate reduced circuit. Only surviving broad crowns,not a complete medieval crenellation reconstruction. Later earthen-backed east walls remain lower.",
-    "Underground medieval/wartime tunnels and buried structures,interiors,thin railings,individual masonry joints,parked cars,trees and minor modern visitor fixtures excluded. Moats are dry ground,not a water feature.",
-    "Shared256² limestone,granite,slate and brick graphs;no unique textures or copied research images. No baked shading or AO.",
-    "Synthetic English terrace context is a style comparison,not Dover surroundings. Physical devices and actual adaptive-streaming transitions unmeasured. Inactive geographic draft,replaceFootprint=false."
+    "Approximate current exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact door/threshold review.",
+    "Original master recipe, relative terrain and hash preserved. Runtime derivative contains architecture without a duplicate mountain.",
+    "Keep/church working floor levels are reconstructed; outer walls follow coarse terrain. Internal site plan is approximate; no tunnels, interior, terrain cutouts or lost structures.",
+    "Five shared material graphs plus a local dark recess slot; zero embedded images. Site footprint replacement stays off; physical-device timing remains unmeasured."
   ],
   "qaCameras": [
     {
       "name": "great-tower-and-concentric-ward",
       "position": [
         -260,
-        185.3849578006,
+        99.79671494084779,
         110
       ],
       "lookAt": [
         -78,
-        100.3849578006,
+        14.796714940847792,
         -35
       ]
     },
@@ -182,12 +203,12 @@
       "name": "flint-keep-and-forebuilding",
       "position": [
         -6,
-        100.3849578006,
+        14.796714940847792,
         -18
       ],
       "lookAt": [
         -78,
-        100.3849578006,
+        14.796714940847792,
         -35
       ]
     },
@@ -195,12 +216,12 @@
       "name": "roman-pharos-and-saxon-church",
       "position": [
         0,
-        120.3849578006,
+        34.79671494084779,
         166
       ],
       "lookAt": [
         62,
-        100.3849578006,
+        14.796714940847792,
         96
       ]
     },
@@ -208,12 +229,12 @@
       "name": "western-curtain-and-constable-gate",
       "position": [
         -310,
-        93.3849578006,
+        7.796714940847792,
         50
       ],
       "lookAt": [
         -183,
-        65.3849578006,
+        -20.203285059152208,
         5
       ]
     },
@@ -221,12 +242,12 @@
       "name": "northern-spur-and-reduced-defenses",
       "position": [
         -350,
-        135.3849578006,
+        49.79671494084779,
         -310
       ],
       "lookAt": [
         -165,
-        70.3849578006,
+        -15.203285059152208,
         -177
       ]
     },
@@ -234,14 +255,213 @@
       "name": "later-barracks-and-chalk-hill",
       "position": [
         310,
-        175.3849578006,
+        89.79671494084779,
         440
       ],
       "lookAt": [
         75,
-        60.384957800600006,
+        -25.203285059152208,
         215
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/dover-runtime-model.mjs",
+    "export": "buildDoverReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dover-runtime-model.mjs",
+    "export": "buildDoverReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDoverReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDoverReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDoverReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-dover-skyline",
+      "position": [
+        650,
+        360,
+        670
+      ],
+      "lookAt": [
+        0,
+        -15,
+        40
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-dover-district",
+      "position": [
+        650,
+        360,
+        670
+      ],
+      "lookAt": [
+        0,
+        -15,
+        40
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-dover-street",
+      "position": [
+        650,
+        360,
+        670
+      ],
+      "lookAt": [
+        0,
+        -15,
+        40
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-dover-closeup",
+      "position": [
+        650,
+        360,
+        670
+      ],
+      "lookAt": [
+        0,
+        -15,
+        40
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -249,10 +469,10 @@
   },
   "importReason": "Keep the Great Tower,layered hill defenses and Roman/Saxon church group readable in compact shared-material levels.",
   "mesh": {
-    "triangles": 4590,
-    "vertices": 13770,
-    "materials": 5,
-    "bytes": 554036,
-    "sha256": "sha256:6f3aa14c0637ae25dbfb156d7353cea9ccef608e768230e35396ca2f21b5ed1b"
+    "triangles": 4732,
+    "vertices": 14196,
+    "materials": 6,
+    "bytes": 571596,
+    "sha256": "sha256:828ca564441df5aaf6c59fd6d7ac3e811a648881de370a243a8e505745b7b49b"
   }
 }

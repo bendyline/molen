@@ -1,0 +1,559 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Carlos Zapata’s asymmetric lotus tower with a floor-by-floor curved glazed exterior, inclined upper leaf, projecting oval helipad with open safety net, lower mechanical belt and glazed retail podium under its floating steel canopy.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z toward the mapped southern helipad projection",
+    "front": "+X toward the retail podium",
+    "origin": "Exact-QID mapped outer envelope center; tower center is offset to the west of the podium."
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 262.5,
+    "tipHeightMeters": 264,
+    "occupiedHeightMeters": 240.1,
+    "helipadHeightMeters": 191.4,
+    "helipadCantileverMeters": 22,
+    "floors": 68,
+    "facadePanelsReported": 6000,
+    "constructionCompleted": 2010,
+    "heightSource": "Council on Vertical Urbanism / Skyscraper Center",
+    "facadeSource": "Meinhardt Facade Technology: inward taper at lower 20 floors, bespoke panels, 22 m helipad cantilever.",
+    "sourceDiscrepancies": "Turner178m is49th-floor observation deck, not helipad; registry181.9m observatory differs. Turner52nd/registry55th helipad floor labels differ; registry191.4m helipad height governs. Five retailstories versus sixlevels retained as different counts. OSM269m roofpart rejected against262.5m published architectural height.",
+    "originalMasterHash": "sha256:beaa86c5e99dfc2cb6ad76418007c73361b838773d67aef512cd42de47d7c1f8",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-bitexco-model.mjs#bitexcoStudy.build",
+    "surfaceMeans": {
+      "stone_limestone_raw": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ]
+    }
+  },
+  "reconstruction": {
+    "plan": "Northern tower cusp, podium outline and rooftop landing marking are registered in the exact-QID map frame. The outer mapped southern lobe contains the helipad projection and is not blindly used as a shaft footprint. Smooth typical-floor lens controls and profile samples reconstruct the published plan and public engineering photographs; dimensioned floor drawings remain unavailable.",
+    "towerControlsXZ": [
+      [
+        -13.5,
+        -30.8
+      ],
+      [
+        -10.8,
+        -30.55
+      ],
+      [
+        -7.4,
+        -26
+      ],
+      [
+        -2.9,
+        -15.1
+      ],
+      [
+        -0.75,
+        -4.2
+      ],
+      [
+        -2.05,
+        3.7
+      ],
+      [
+        -9,
+        11
+      ],
+      [
+        -18.8,
+        18.8
+      ],
+      [
+        -21.15,
+        19.2
+      ],
+      [
+        -24.5,
+        15.4
+      ],
+      [
+        -30.5,
+        4.1
+      ],
+      [
+        -32.4,
+        -4.5
+      ],
+      [
+        -28.85,
+        -14.55
+      ],
+      [
+        -20.9,
+        -25.3
+      ]
+    ],
+    "towerProfileSamples": [
+      [
+        0,
+        0.82,
+        0.84,
+        0.9
+      ],
+      [
+        22.5,
+        0.88,
+        0.89,
+        0.4
+      ],
+      [
+        72,
+        0.985,
+        0.99,
+        0
+      ],
+      [
+        110,
+        1,
+        1,
+        0
+      ],
+      [
+        150,
+        0.965,
+        0.97,
+        -0.1
+      ],
+      [
+        178,
+        0.915,
+        0.92,
+        -0.6
+      ],
+      [
+        191.4,
+        0.895,
+        0.89,
+        -0.8
+      ],
+      [
+        220,
+        0.825,
+        0.86,
+        -1
+      ],
+      [
+        262.5,
+        0.75,
+        0.82,
+        -1.2
+      ]
+    ],
+    "facadeColumns": 104,
+    "levelDatumsMeters": [
+      0.25,
+      5.5,
+      9.75,
+      14,
+      18.25,
+      22.5,
+      26.116279069767444,
+      29.732558139534884,
+      33.348837209302324,
+      36.96511627906977,
+      40.581395348837205,
+      44.19767441860465,
+      47.81395348837209,
+      51.43023255813954,
+      55.04651162790697,
+      58.66279069767442,
+      62.27906976744186,
+      65.8953488372093,
+      69.51162790697674,
+      73.12790697674419,
+      76.74418604651163,
+      80.36046511627907,
+      83.97674418604652,
+      87.59302325581395,
+      91.20930232558139,
+      94.82558139534883,
+      98.44186046511628,
+      102.05813953488372,
+      105.67441860465117,
+      109.29069767441861,
+      112.90697674418605,
+      116.52325581395348,
+      120.13953488372093,
+      123.75581395348837,
+      127.37209302325581,
+      130.98837209302326,
+      134.6046511627907,
+      138.22093023255815,
+      141.83720930232556,
+      145.45348837209303,
+      149.06976744186045,
+      152.6860465116279,
+      156.30232558139534,
+      159.91860465116278,
+      163.53488372093022,
+      167.15116279069767,
+      170.7674418604651,
+      174.38372093023256,
+      178,
+      181.9,
+      186.6,
+      191.4,
+      195.84375,
+      200.2875,
+      204.73125000000002,
+      209.175,
+      213.61875,
+      218.0625,
+      222.50625,
+      226.95,
+      231.39375,
+      235.8375,
+      240.28125,
+      244.725,
+      249.16875,
+      253.6125,
+      258.05625,
+      262.5
+    ],
+    "upperLeaf": "Inclined cut across the changing floor perimeter, closed by a separate framed front; crown plane and profile are reconstructed.",
+    "helipad": {
+      "deckY": 191.4,
+      "ellipseCenterXZ": [
+        -18.8,
+        10
+      ],
+      "radiiXZ": [
+        16.45,
+        22
+      ],
+      "note": "Oval deck plan and soffit thickness are reconstructed around the mapped landing square; cantilever and orientation need comparison with construction drawings."
+    },
+    "footprintEvidence": "map-parts.json: exact parent way/804073951; five constituent mapped parts, including rooftop landing square way/1231606415."
+  },
+  "limitations": [
+    "Original bitexcoStudy.build is preserved unchanged and reproduces315402triangles/27557128bytes. Separate reviewed master retains smooth asymmetric lotus lens/inward lower20-floor taper, inclined upper leaf clipped exactly at floor crossings and closed cut curtain, narrow top roof/equipment264m, projecting closed oval191.4m helipad with separate soffit/ribs/open safety net/H/circle/mapped landing square, independent six-level irregular podium with continuous recessed entry and asymmetric floating canopy/supports. Flat projecting facade strips replace repeated closed mullion/transom beam uploads; near72spaced curve samples versus original104, original floor datums and.65m spandrels retained. Near pad64sides/32net supports/two perimeter crosswires/one intermediate radial replaces160/80/four/three. Street48curve samples/everythird floor plus explicit profile datums/48pad sides/coarse net and3m podium bays; district32curve samples/profile datums/24pad sides/coarse net/6m podium bays; skyline20curve samples/profile datums/16pad sides/closed pad and underside without markings/net or fine facaderhythm. District omits flat horizontal frame strips; skyline uses four canopy uprights and merges the thin podium foundation into its ground wall. All retain the109.291–112.907m dark mechanical belt, crown closure, asymmetrical mappedpodium, entrance void and canopy supports. Canonical limestone approximates both pale podium stone and foundation, paintedmetal carries dark recess/soffit, stainless handles and opaqueglass palette retain four near groups. Glass panel unique cutting is represented by varying floor/lens geometry, not6000individual hardware assemblies. Podium canopy/entry dimensions, crown profile, equipment and exact safety-net construction unsurveyed; hidden interiors/underground and branding excluded. Physical-device/densecity timings and global simplification bounds remain unmeasured."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_limestone_raw",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "carved": {
+      "graph": "stone_limestone_raw",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "recess": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": 0.737047755372,
+    "reviewStatus": "reviewed signed crown/podium/mapped landing square medium-fi frame",
+    "orientationConfidence": "unchanged independent raw six rings and primary completed skyline/base photos",
+    "notes": "Fresh2026-10-10 exactQ638512 parent804073951 and allfive constituent rings retain unchanged raw coordinates against independently preserved original evidence. Anchor[106.704428701,10.771853631]/heading.737047755372 retains native+X northeast bearing47.769degrees toward irregular retail podium and native+Z southeast bearing137.769degrees toward mapped landing square1231606415. Independent raw upperroof parts1222241872/74 and southwest lens/northern cusp sign the direction; mapped roof-direction127.5degrees is a coarse tag, not substituted for geometry. The original parent local scaled-Mercator outline matches within.002m rounding; podium and landing square are separately projected using original local tangent conversion. Parent outline includes upper projections and must not be extruded as a floorplate. Published262.5m architectural,264m tip,240.1m occupied,191.4m helipad and68floors retained; raw269m part height rejected as conflicting. Turner178m refers to49th-floor observatory, not helipad; registry181.9m observatory is separate. Turner52nd/registry55th helipad floor labels disagree;191.4m height governs. Six retail levels follow facadeengineer and mappedpodium. Lens controls, inclinedcrown, canopy/entrance/detail dimensions remain reconstructed from primary completed photos without dimensioned plans. Y0 is approximate local apron; no surveyed curb grade/cadastral accuracy or footprint replacement. Underground floors/interiors/tenant branding and temporary constructionexcluded.",
+    "evidence": "Fresh2026-10-10 exactQ638512 parent804073951 and allfive constituent rings retain unchanged raw coordinates against independently preserved original evidence. Anchor[106.704428701,10.771853631]/heading.737047755372 retains native+X northeast bearing47.769degrees toward irregular retail podium and native+Z southeast bearing137.769degrees toward mapped landing square1231606415. Independent raw upperroof parts1222241872/74 and southwest lens/northern cusp sign the direction; mapped roof-direction127.5degrees is a coarse tag, not substituted for geometry. The original parent local scaled-Mercator outline matches within.002m rounding; podium and landing square are separately projected using original local tangent conversion. Parent outline includes upper projections and must not be extruded as a floorplate. Published262.5m architectural,264m tip,240.1m occupied,191.4m helipad and68floors retained; raw269m part height rejected as conflicting. Turner178m refers to49th-floor observatory, not helipad; registry181.9m observatory is separate. Turner52nd/registry55th helipad floor labels disagree;191.4m height governs. Six retail levels follow facadeengineer and mappedpodium. Lens controls, inclinedcrown, canopy/entrance/detail dimensions remain reconstructed from primary completed photos without dimensioned plans. Y0 is approximate local apron; no surveyed curb grade/cadastral accuracy or footprint replacement. Underground floors/interiors/tenant branding and temporary constructionexcluded.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh2026-10-10 exactQ638512 parent804073951 and allfive constituent rings retain unchanged raw coordinates against independently preserved original evidence. Anchor[106.704428701,10.771853631]/heading.737047755372 retains native+X northeast bearing47.769degrees toward irregular retail podium and native+Z southeast bearing137.769degrees toward mapped landing square1231606415. Independent raw upperroof parts1222241872/74 and southwest lens/northern cusp sign the direction; mapped roof-direction127.5degrees is a coarse tag, not substituted for geometry. The original parent local scaled-Mercator outline matches within.002m rounding; podium and landing square are separately projected using original local tangent conversion. Parent outline includes upper projections and must not be extruded as a floorplate. Published262.5m architectural,264m tip,240.1m occupied,191.4m helipad and68floors retained; raw269m part height rejected as conflicting. Turner178m refers to49th-floor observatory, not helipad; registry181.9m observatory is separate. Turner52nd/registry55th helipad floor labels disagree;191.4m height governs. Six retail levels follow facadeengineer and mappedpodium. Lens controls, inclinedcrown, canopy/entrance/detail dimensions remain reconstructed from primary completed photos without dimensioned plans. Y0 is approximate local apron; no surveyed curb grade/cadastral accuracy or footprint replacement. Underground floors/interiors/tenant branding and temporary constructionexcluded.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "georeferencing-baseline.json",
+    "map-parts.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/bitexco-runtime-model.mjs",
+    "export": "buildBitexcoReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bitexco-runtime-model.mjs",
+    "export": "buildBitexcoSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBitexcoDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "recess": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildBitexcoStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "recess": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBitexcoCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "recess": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-bitexco",
+      "position": [
+        -540,
+        220,
+        620
+      ],
+      "lookAt": [
+        -12,
+        129,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-bitexco-skyline",
+      "position": [
+        -540,
+        220,
+        620
+      ],
+      "lookAt": [
+        -12,
+        129,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bitexco-district",
+      "position": [
+        -540,
+        220,
+        620
+      ],
+      "lookAt": [
+        -12,
+        129,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bitexco-street",
+      "position": [
+        -540,
+        220,
+        620
+      ],
+      "lookAt": [
+        -12,
+        129,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bitexco-closeup",
+      "position": [
+        -540,
+        220,
+        620
+      ],
+      "lookAt": [
+        -12,
+        129,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-helipad",
+      "position": [
+        -67,
+        225,
+        91
+      ],
+      "lookAt": [
+        -18,
+        191,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-inclined-crown",
+      "position": [
+        -94,
+        274,
+        105
+      ],
+      "lookAt": [
+        -16,
+        237,
+        -17
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-canopy",
+      "position": [
+        85,
+        53,
+        69
+      ],
+      "lookAt": [
+        13,
+        19,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

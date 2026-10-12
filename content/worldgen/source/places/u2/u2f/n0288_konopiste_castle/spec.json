@@ -12,23 +12,24 @@
   },
   "visualBrief": "Cream quadrangular castle with two mapped open courts,terracotta pitched roofs,dominant round keep with corbelled upper gallery/red cone,square-topped corner rooms with broad timber crosses,stepped gabled dormers,stone terrace and open pointed courtyard loggia.",
   "mediumFiContext": {
-    "scale": "2",
-    "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse"
+    "groundY": -40,
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     85.55000305175781,
-    49.5,
+    64.49799537658691,
     57.19599914550781
   ],
   "actualBounds": {
     "min": [
       -42.650001525878906,
-      0,
+      -14.39799690246582,
       -25.395999908447266
     ],
     "max": [
       42.900001525878906,
-      49.5,
+      50.099998474121094,
       31.799999237060547
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "lateral": "+X approximately east along cached mapped axis; axis is undirected",
     "longitudinal": "+Z interpreted as the photographed southern terrace side; signed registration pending",
-    "origin": "Cached map envelope center;Y0 estimated lower external footing,Y4.8 estimated courtyard/terrace deck."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "relation/282741 exactQ744016",
@@ -48,7 +49,9 @@
     "measuredHeightAvailable": false,
     "bodyEaveEstimateMeters": 22,
     "roofRidgeEstimateMeters": 28,
-    "keepMaximumEstimateMeters": 49.5
+    "keepMaximumEstimateMeters": 49.5,
+    "originalMasterHash": "sha256:f50d844dfd4d4b97c5e379b65a0168348c507bae7dfcdb254c737e860cd1f446",
+    "originalMasterRecipe": "packages/worldgen/scripts/konopiste-castle-model.mjs#buildKonopisteRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -91,12 +94,13 @@
       "Two open courtyard rings and cream quadrangular wings",
       "Large round keep with overhanging gallery/red cone",
       "Square-topped corner rooms with red pyramids and stepped facade dormers"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Cached exact-Q744016 relation282741 outer ring and two courtyard holes;original roof,tower,terrace and facade controls interpreted from current operator/primary photographer views.",
-    "heightDatum": "All heights estimated. Y4.8 courtyard/terrace deck,Y22 body eave,Y28 main ridge,Y34–38 keep gallery,Y48 cone,Y49.5 finial. Mapped one-level tag contradicts visible facade and is not used as storey evidence.",
-    "registration": "Cached undirected axis -0.117875714253 and anchor[14.656541475,49.779576024]. Southern facade interpretation,signed direction,roof/tower/terrace attachments and terrain/base datum pending. Inactive geographic draft."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://www.zamek-konopiste.cz/en/about/history",
@@ -112,8 +116,8 @@
     "https://www.openstreetmap.org/relation/282741"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive geographic draft;review pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       14.656541475,
       49.779576024
@@ -132,7 +136,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Undirected cached axis. Signed southern-facade direction,estimated tower/roof/terrace fit,height/terrain datum and completeness pending."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected picture confirms the cream quadrangular castle, dominant round keep with corbelled upper gallery/red cone, red roofline and timber-cross corner rooms. Retained mapped outer/two-court rings and standard viewer PMTiles set approximate location, scale and south-terrace orientation. The original4.8m reconstructed court/terrace floor receives a0.6m working rise; bounded wall bottoms extend beneath the coarse sampled hill. Anchor 14.656541475,49.779576024; heading -0.117875714253; standard PMTiles datum 384.34631015663166m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "Inspected picture confirms the cream quadrangular castle, dominant round keep with corbelled upper gallery/red cone, red roofline and timber-cross corner rooms. Retained mapped outer/two-court rings and standard viewer PMTiles set approximate location, scale and south-terrace orientation. The original4.8m reconstructed court/terrace floor receives a0.6m working rise; bounded wall bottoms extend beneath the coarse sampled hill. Anchor 14.656541475,49.779576024; heading -0.117875714253; standard PMTiles datum 384.34631015663166m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        14.656541475,
+        49.779576024
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Cached exact mapped wall/courtyard rings;all heights and separate roof/tower/terrace controls are original photo-based estimates.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -141,8 +155,17 @@
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
     {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.stone_limestone",
-      "slot": "wall",
+      "slot": "foundation",
       "uv": "repeats",
       "repeatMeters": [
         2.4,
@@ -181,24 +204,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Original approximate current exterior on the full cached mapped wall rings and two courtyard holes. Tower circles,upper rooms,roof ridges,dormers,terrace and loggia are estimated controls,not a measured architectural survey.",
-    "All heights are estimates;modeled maximum49.5m. One mapped level is inconsistent with inspected facade and is not treated as documented storeys. North corner upper rooms and courtyard bay are less certain than the photographed southern facade/main keep.",
-    "Four existing shared256²graphs:lime plaster,limestone,ceramic tile and timber. Linear palette tints,metricUVs,flat architecture and faceted round towers. No copied photographs,unique textures,baked shadows orAO.",
-    "Thin balusters,spires/flags,shutter slats,masonry joints,statuary,lettering,microbevels and full interiors omitted. Railings are chunky panels;terrace arches contain opaque glass panes,upper court loggia is genuinely open.",
-    "Synthetic Bohemian-townhouse neighbors and flat review ground are style comparisons,not real-site evidence. Inactive draft,replaceFootprint=false. Signed orientation,roof/tower/terrace fit,height datum and host terrain remain pending.",
-    "Preloaded forced-LOD camera samples do not certify automatic selection,network upgrades,subframe shimmer or physical-device frame timing."
+    "Approximate current exterior from one inspected picture and standard viewer PMTiles, without survey accuracy or exact thresholds.",
+    "Original detailed architectural master/hash/recipe preserved. Court, terrace, roof and tower dimensions remain reconstructed.",
+    "Five common graphs plus explicit dark recess slot, zero embedded images. Hill/forest supplied by host; no embedded hill, terrain cutouts or interiors.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "southern-terrace-corners-and-keep",
       "position": [
         95,
-        42,
+        42.6,
         95
       ],
       "lookAt": [
         3,
-        20,
+        20.6,
         6
       ]
     },
@@ -206,12 +227,12 @@
       "name": "round-keep-gallery-and-cone",
       "position": [
         85,
-        47,
+        47.6,
         -18
       ],
       "lookAt": [
         34.3,
-        35,
+        35.6,
         1.2
       ]
     },
@@ -219,12 +240,12 @@
       "name": "two-open-courtyards",
       "position": [
         48,
-        114,
+        114.6,
         64
       ],
       "lookAt": [
         0,
-        16,
+        16.6,
         0
       ]
     },
@@ -232,12 +253,12 @@
       "name": "western-court-open-pointed-loggia",
       "position": [
         -8,
-        17,
+        17.6,
         -5
       ],
       "lookAt": [
         -25,
-        15,
+        15.6,
         2
       ]
     },
@@ -245,12 +266,12 @@
       "name": "stepped-dormers-and-timber-tower-room",
       "position": [
         -56,
-        33,
+        33.6,
         63
       ],
       "lookAt": [
         -24,
-        25,
+        25.6,
         19
       ]
     },
@@ -258,14 +279,213 @@
       "name": "northern-wing-and-corner-towers",
       "position": [
         -84,
-        48,
+        48.6,
         -76
       ],
       "lookAt": [
         0,
-        19,
+        19.6,
         -5
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/konopiste-runtime-model.mjs",
+    "export": "buildKonopisteReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/konopiste-runtime-model.mjs",
+    "export": "buildKonopisteReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKonopisteReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildKonopisteReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKonopisteReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-konopiste-skyline",
+      "position": [
+        115,
+        82,
+        120
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-konopiste-district",
+      "position": [
+        115,
+        82,
+        120
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-konopiste-street",
+      "position": [
+        115,
+        82,
+        120
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-konopiste-closeup",
+      "position": [
+        115,
+        82,
+        120
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -276,7 +496,7 @@
     "triangles": 17454,
     "vertices": 52362,
     "materials": 6,
-    "bytes": 2098088,
-    "sha256": "sha256:f50d844dfd4d4b97c5e379b65a0168348c507bae7dfcdb254c737e860cd1f446"
+    "bytes": 2098280,
+    "sha256": "sha256:66f4ddc7692e3d7fc79cb7b76d70fec6074d000ff37be372bd88dad840f19471"
   }
 }

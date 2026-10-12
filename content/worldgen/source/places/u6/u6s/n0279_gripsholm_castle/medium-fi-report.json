@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0279_gripsholm_castle",
-  "sourceHash": "sha256:e483025ba991dcefc9228e9dd2340f4c4413f1e4ab8842877dca873f63e83717",
-  "runtimeHash": "sha256:a8a21ad9e3023c5a37e7e4d3360b189eaf4f93f9136b1d45d767b70b71ffa4ac",
-  "fixtureHash": "sha256:ae4e3b886fee436426cf854ccdab3685d7305de05cdfe017dc17b341d8f323b6",
+  "sourceHash": "sha256:76a5ea01e166b1f3f09c6a15ab5464f2a8acd1db5ba20bde58b2cc44ff9d98f7",
+  "runtimeHash": "sha256:75abf8500da8e1f41a521e95d00f870099034b92b6e6fe3ec9536dd01daf7436",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,513 +23,606 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 4268,
+  "neighborTriangles": 4556,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:b39a0c9ea87a5281449a45543a6f6a9ca08c04ee2ffcf189223985a627e70312",
-      "bytes": 79804,
-      "gzipBytes": 19932,
-      "triangles": 943,
-      "cpuBytes": 78416,
-      "gpuBytes": 78416,
-      "errorMeters": 1.5,
+      "hash": "sha256:1af4b566d13d14d67625e99090c8fbc7a2ed66d17a37007d7fa676151108e435",
+      "bytes": 95072,
+      "gzipBytes": 16276,
+      "triangles": 935,
+      "cpuBytes": 93668,
+      "gpuBytes": 93668,
+      "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:c76bd456f21fffd9bb01d25e8d503bc9431a8058ae758c8859111b1df72e804e",
-      "bytes": 209564,
-      "gzipBytes": 51992,
+      "hash": "sha256:b1f2d58dda833214a274a9284c57265b36f4518e977003a708ac7b1431ce6e83",
+      "bytes": 216756,
+      "gzipBytes": 52721,
       "triangles": 2497,
-      "cpuBytes": 202292,
-      "gpuBytes": 202292,
-      "errorMeters": 1.5,
+      "cpuBytes": 209492,
+      "gpuBytes": 209492,
+      "errorMeters": 0.7,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:c7795771b43e70a673f9f954e2516e3ef6d83467e816d084118e331e8a43c5a5",
-      "bytes": 317096,
-      "gzipBytes": 77360,
+      "hash": "sha256:358906984299d52c2896cd714c4a7b816f95e3816c0092981ba5ebd1eb79cbfd",
+      "bytes": 349992,
+      "gzipBytes": 82435,
       "triangles": 4061,
-      "cpuBytes": 309812,
-      "gpuBytes": 309812,
-      "errorMeters": 0.5,
+      "cpuBytes": 342716,
+      "gpuBytes": 342716,
+      "errorMeters": 0.3,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:ae88ef44db23671f8d23e36affee5a2df4378fffde5c4cfd79c9762ff2eba77f",
-      "bytes": 395488,
-      "gzipBytes": 96213,
+      "hash": "sha256:d61fe580e308ec4ac29c21b4ce5a43bfbc4a1083129d6783a9675324e278cd64",
+      "bytes": 438104,
+      "gzipBytes": 102162,
       "triangles": 5247,
-      "cpuBytes": 388208,
-      "gpuBytes": 388208,
-      "errorMeters": 0.15,
+      "cpuBytes": 430832,
+      "gpuBytes": 430832,
+      "errorMeters": 0.1,
       "drawCalls": 6
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:e53e92fcc7a6292ccfd822ffee6bb1f7a49150bb89f0771487edf3695510e4bc"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:f10718faa8deb4f2b6319b3feddc48e39f303a2f37caf5605520e8dc28b92be9"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:5b0c7eee033ba3a761de4a9a2dac8939f5df62e38be9501a1f390c3136c3a629",
+      "hash": "sha256:340111b752921c91020355e8e842a6a3cd2585d389aee53959ae8687b5754768",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
-          58.099999999999994
+          33.646699999999996,
+          37.7215,
+          58.03959999999999
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:65e7f5fa7408d37162c330be0be312b61f5699c7a18553e7ecb05296a4e1aa62",
+      "hash": "sha256:f81b6869bd2ecd561bd4f8f20492268bf6f3e8446e97e79c9ab6c27bcfbebb0c",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
-          58.099999999999994
+          33.646699999999996,
+          37.7215,
+          58.03959999999999
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:3aba540340a802c8f1de81818d045e88465eaee950f29546df26cf89bb48adbc",
+      "hash": "sha256:9e013f3601b52e01b99963f3f0b597006ebacb0db664f49ab7ffaec030952813",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
-          58.099999999999994
+          33.646699999999996,
+          37.7215,
+          58.03959999999999
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:418db07d8da6b02b678d79e621c210af0ab40b84fa8eb8e54a27c6022dacc888",
+      "hash": "sha256:22b6e41bbbbab22f6a73e5358800f3c9b9dc91ded6ae77161a47d11253f613fb",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
-          58.099999999999994
+          33.646699999999996,
+          37.7215,
+          58.03959999999999
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:1976482e23a2d50267b7eac4c0f59a1d15c47a2dab275b6ee0fc3740bf031365",
+      "hash": "sha256:753102b6ac500bc14a3fefda2d491f2d87155edad01ffc25a2349399489a0d71",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 6767,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 59535,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:a63e540f8c1fa1b5150db877bb8d8699e3c38e94e8fbad12c6116b23e341621b",
+      "hash": "sha256:0df65fe896343c1abe1e7a119eeb39e775354726fa9cdca39fbc7cc2c100ec0a",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 6767,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 59535,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:0dd5823470962cfa28725ed42c074f979b5c0bd3b595ee6e942c957ed1e09b17",
+      "hash": "sha256:4e258d946c4d067f29432d9c06b72945312a0d6a2b76b99301fc4082e5e06193",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 6767,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 59535,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:280e6634022a1b2695c0f470eb11ee668727db99b4ee14c74e601a3204989736",
+      "hash": "sha256:48c10726af8e59da50087669cfd04274febc92a0177b90b613fe6d1249e2bd70",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 6767,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 59535,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:9b1b72ca3780d049beba3959c5eaf16bb6d6b0b91d3773bc9d157727c43efb6b",
+      "hash": "sha256:1f1ca756891e36ef0707e17719b4019ef6e131fd576d214ea75321e8479d1e94",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 5213,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57973,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
-          235.2
+          135.84669999999997,
+          89.5215,
+          235.1396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:18aa017d8b32d80ef3092a86875aa52e30fb0ec196bedccbb4965788f5bec51c",
+      "hash": "sha256:ad68a1e5fdae09401db68bb85c3b3f3bf25289ce4aca8608a00f1c2912177911",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5213,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57973,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
-          235.2
+          135.84669999999997,
+          89.5215,
+          235.1396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:4eed38fc1f098e380393867de8d4779f700a83df9a4ef45b7df83c5bb2b3a5fc",
+      "hash": "sha256:9bd1ec5b394aee6dbf742778bb6b5ea4fbd8c80c96ccd500ba1880fe27cec9f5",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 5213,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57973,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
-          235.2
+          135.84669999999997,
+          89.5215,
+          235.1396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:169b0a709fd25cce9a394726920445376a91cca444a93ec3ae0a4075a3699ba5",
+      "hash": "sha256:4f414dd277bcb1a135025fd33858d6d165bfb47b5b1d84e57d39d4d862365404",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5213,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57973,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
-          235.2
+          135.84669999999997,
+          89.5215,
+          235.1396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:c823088bb8685d61fb8820c13fff93ec9fced418d94d9dc95bf70d1bc590f565",
+      "hash": "sha256:954db0349621d6e2dded087107b118d5383763c95b559ae594daf98b6cf89e28",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 945,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53417,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
-          235.2
+          135.84669999999997,
+          89.5215,
+          235.1396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/four-copper-caps.png",
-      "hash": "sha256:b735d1b38452ba80c63426309e80bacbe5c9f6abd2e47d02f3f63234d786e44f",
+      "hash": "sha256:d83572a58495708eb27c127dcdf0892c7114d26b5cafe5189c3b84f485322c32",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
           115,
           40,
@@ -541,29 +634,35 @@
           1
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/clock-open-lantern.png",
-      "hash": "sha256:1d0ba2808c56e552a132df70ade471b5ab83b98acea5d5e7e6b03f62b806336c",
+      "hash": "sha256:c262450a4c3b1c6783c440230dea902143fa6425b2cc62ce82c86a9bb04da953",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
           65,
           34,
@@ -575,29 +674,35 @@
           -24
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/two-open-courts.png",
-      "hash": "sha256:21c410c05c23afc6aa9e64eaed8f678c9ac5a9ef49e05bd49c9afffcd39b196c",
+      "hash": "sha256:d8ebfeb2f059428f31ab86dfe5ea7ac3cc14bcfb4a71853886b19337cf8f47a3",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
           0,
           185,
@@ -609,29 +714,35 @@
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/northwest-entrance.png",
-      "hash": "sha256:80f841b7a9e9e1698ee4e79dc039bba6acdb331ce99d14cb21272ac9f3171406",
+      "hash": "sha256:6b44b7d93153af9bb9f0cf6eb24217faebb7e8baf2838e2e69cb1623eecefacb",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
           -109,
           17,
@@ -643,29 +754,35 @@
           12
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/stepped-brick-dormers.png",
-      "hash": "sha256:d6e388e81f27d74d6762b84dc8ce3e1bc2ab4dee075f1457f685dc7f23dd8768",
+      "hash": "sha256:659159e7d22b4ce0bf5111868d850e8fcb70ce316fed637d54a3b6b45f591554",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
           68,
           33,
@@ -677,29 +794,35 @@
           12
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/outer-court-tiled-wings.png",
-      "hash": "sha256:0634872453759ac3ab2ced81670e3e32b29cd8ca27a05069f490d3074bd01fb4",
+      "hash": "sha256:212c748cffde2f715059e5f29caa19dcdefe6db45ac8bd11189782e9ed8531cd",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
           -25,
           43,
@@ -711,152 +834,338 @@
           2
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gripsholm-skyline.png",
+      "hash": "sha256:4cebb02e2bc5a3494c066a345313fb37691e5d01d010c91491794c70cbfde276",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57973,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          92,
+          130
+        ],
+        "lookAt": [
+          15,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gripsholm-district.png",
+      "hash": "sha256:8a9edf800b99724c70b4148d98eddc6233ba41547f869b26e5f38a8f68cb35db",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59535,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          92,
+          130
+        ],
+        "lookAt": [
+          15,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gripsholm-street.png",
+      "hash": "sha256:02f4ba81f412b346d8aba6bc1bbb91592a3c3bf4a99386fd285527a935a657f7",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 61099,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          92,
+          130
+        ],
+        "lookAt": [
+          15,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gripsholm-closeup.png",
+      "hash": "sha256:bc7f25a50923e2070d20023bd6eeb001d349956ade31e5a3d0f5b6ff221ebda4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          92,
+          130
+        ],
+        "lookAt": [
+          15,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:1e48e215919c137d8f78d72fe2c30e9af5012e7e4da2d4f3ca806d9bc7b25e1b",
+      "hash": "sha256:8f13e61228997d235cc829df5da65c49f8ac9f006c8e4f33708d6f85387d61f8",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5213,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57973,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:a63e540f8c1fa1b5150db877bb8d8699e3c38e94e8fbad12c6116b23e341621b",
+      "hash": "sha256:0df65fe896343c1abe1e7a119eeb39e775354726fa9cdca39fbc7cc2c100ec0a",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 6767,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 59535,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:ee1456c03139c4a20ea5e747b0e0c4a59b2d5a29675ef472a87d347298362e5a",
+      "hash": "sha256:7787facc09800b200c885410739053b4d1c44a521c1ba48ad52be7b07fb20abd",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 8331,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 61099,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:e278176b7d010adb2d0135dd5203e03b666dbc0b25a0e8ed671e903d96a911d2",
+      "hash": "sha256:429bd5fd7d5d1c626fef7b15f2506b713a5e69c362066ef9f0a04fdabd9414ed",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9517,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62285,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u6s/n0279_gripsholm_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
-          117.6
+          67.94669999999999,
+          62.921499999999995,
+          117.5396
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
-          0
+          0.0467,
+          27.2215,
+          -0.0604
         ],
         "graphReads": {
-          "molen.worldgen.material.wood_vertical": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_granite": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     }
   ],

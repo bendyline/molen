@@ -127,6 +127,8 @@ describe('agricultural regions', () => {
     expect(prepared.rules).toHaveLength(0);
     const base = environment.scatter([x, z, x + 100, z + 100]);
     if (!base) throw new Error('Missing regional scatter');
+    const rule = base.doc.rules[0];
+    if (!rule) throw new Error('Missing regional scatter rule');
     const legacy = {
       ...base,
       acceptsRule: () => true,
@@ -134,7 +136,7 @@ describe('agricultural regions', () => {
         ...base.doc,
         rules: [
           {
-            ...base.doc.rules[0]!,
+            ...rule,
             id: 'legacy.farmland',
             classes: ['farmland'],
             densityPerHectare: 1000,
@@ -178,8 +180,11 @@ describe('agricultural regions', () => {
     const scatter = withAgricultureRules(
       environment.scatter([x, z, x + 100, z + 100]),
       prepared.rules,
-    )!;
+    );
+    if (!scatter) throw new Error('Missing agriculture scatter');
     const budget = worldgenTileBudgetForQuality('high', 0);
+    if (budget.maxAgricultureInstances === undefined)
+      throw new Error('Missing agriculture instance budget');
     const result = samplePlacements({
       ...scatter,
       request: scatterRequestFromTile(prepared.tile, geom, scatter.doc.defaults.avoid, 1),
@@ -193,22 +198,24 @@ describe('agricultural regions', () => {
     for (const entry of placements)
       for (let i = 0; i < entry.data.length; i += 10) {
         count++;
-        const px = entry.data[i]!,
-          pz = entry.data[i + 2]!;
+        const px = entry.data[i],
+          pz = entry.data[i + 2];
+        if (px === undefined || pz === undefined) throw new Error('Missing placement coordinates');
         expect(px > 40 && px < 60 && pz > 40 && pz < 60).toBe(false);
       }
-    expect(count).toBeLessThanOrEqual(budget.maxAgricultureInstances!);
+    expect(count).toBeLessThanOrEqual(budget.maxAgricultureInstances);
   });
   it('covers every habitat, supplies three annual forms, and shifts coarse seasons by hemisphere', () => {
     expect(catalog.profiles.every((profile) => profile.agriculture)).toBe(true);
-    const corn = environment.library.crops.get('molen.ecology.crop.maize')!;
+    const corn = environment.library.crops.get('molen.ecology.crop.maize');
+    if (!corn?.variants) throw new Error('Missing maize variants');
     expect(corn.variants).toHaveLength(3);
     expect(agricultureStage(corn, 4, -100)).toBe('sown');
     expect(agricultureStage(corn, 10, 100)).toBe('sown');
     expect(agricultureStage(corn, 1, -100)).toBe('stubble');
     expect(agricultureStage(corn, 1, -100, true)).toBe('mature');
     expect(agricultureStage(corn, 2, 100, true, { sowingMonth: 2, harvestMonth: 8 })).toBe('sown');
-    for (const model of corn.variants!)
+    for (const model of corn.variants)
       for (const stage of ['sown', 'growing', 'ripe', 'stubble'])
         expect(environment.library.plants[`${model}.${stage}`]).toBeDefined();
   });

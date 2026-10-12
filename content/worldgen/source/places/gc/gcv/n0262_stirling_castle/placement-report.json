@@ -1,9 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0262_stirling_castle",
-  "sourceHash": "sha256:0a9d94514eda91bd42a7db43933e46aa059242a5b0ca28be9a23096429ccced4",
-  "runtimeHash": "sha256:81d28aa95250a39941d86dce471618badd6b0e6ff316cfedac8764ee22b364a5",
-  "placementHash": "sha256:d03de71e4dc87660ff2a674e858a8b28547512b6d229096d1dee4ab7e3c50f70",
+  "inputHash": "sha256:76d9185c83427135a212c3789e855544de349fc4a60f627933c36ef344350022",
+  "placementHash": "sha256:5d3f3afba438ef7aa42136871b0adb4c0b6e62ab3dcaaf05ff1d7130d8c5ed23",
   "entry": {
     "id": "next1000.n0262",
     "title": "Stirling Castle",
@@ -21,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -3.948153826,
+        56.124036337
+      ],
+      "modelHeight": 0,
+      "basis": "Retained102.05 m working datum; vertical transformation/vintage unverified."
+    },
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://api.openstreetmap.org/api/0.6/map.json?bbox=-3.9510,56.1219,-3.9446,56.1262",
-    "note": "undefined Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "preview",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-3.9510,56.1219,-3.9446,56.1262",
+    "note": "Fresh castle boundary way100542995 v12/Q756268 and26 mapped components retain source plan to within0.000676 m rounded vertex difference. Anchor[-3.948153826,56.124036337], heading0.7346639643808965: +X northeast47.906855 degrees, +Z southeast137.906855 degrees toward New Port/Forework. This is a campus boundary, not a building-replacement footprint. Great Hall northeast, palace southwest and Nether Bailey northwest sign the frame. New Port center[-3.68025,112.9895] and front axis derive from way68955248; front entrance node7003329479 confirms the mapped outer wall plane (front bearing about188.15 degrees, south-southwest). Source orientation0.73 was corrected independently to atan2(-7.506,6.238). Retained public Scottish Phase4 2017–2019 EPSG27700 DTM has native0.5 m cells and129²4 m diagnostic samples, working datum102.05 m. OSTN15 reports1 m horizontal accuracy; native cell size is not survey accuracy and vertical transformation/vintage at the individual cells remain unverified. Inner close4.0559 m, architecture shift-3.9441 m, forework floor-5.9490 m, New Port-9.7861 m and north gate-7.9155 m are reconstructed fitting levels. Bounded buried masonry terraces and entrance aprons meet retained ground. The volcanic cliff and open lower-bailey ground remain host terrain. No ground cutout. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

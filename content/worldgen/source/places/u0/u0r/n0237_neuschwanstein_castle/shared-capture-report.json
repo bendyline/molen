@@ -1,11 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-  "inputHash": "sha256:7154d0c85570ccd337e7dcb53483ad8b353a59b3a92002974746dab8cf5f15b3",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
+  "inputHash": "sha256:790002bb11b38819e4a8b6ede92df23020e8b0bf42cda9bd6322da5ee82778da",
+  "sourceHash": "sha256:d70ed386c9739982a3e43b68f16cb31edb67039a96c13edea006dd705cac7080",
+  "runtimeHash": "sha256:9dc9104998d24f000cb3cf4061dcf5df298f96e9f68d16c03dcbade5a2f97d43",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:9141523a7a4fab334205ae71557a682e0e652e7e310163e863be513ddfa4208d",
   "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
-  "placementHash": null,
+  "clippingMode": "legacy",
+  "placementHash": "sha256:9831107745aae1de86b9e65b3a91835c09efd47a45159b135c8419781d6a0c11",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -14,14 +18,6 @@
     "matgraph:molen.worldgen.material.stone_limestone": {
       "path": "materials/stone_limestone.matgraph.json",
       "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
-    },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
-    },
-    "matgraph:molen.worldgen.material.stone_sandstone": {
-      "path": "materials/stone_sandstone.matgraph.json",
-      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
     },
     "matgraph:molen.worldgen.material.metal_copper": {
       "path": "materials/metal_copper.matgraph.json",
@@ -38,272 +34,316 @@
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
-    },
-    "matgraph:molen.worldgen.material.stone_limestone_weathered": {
-      "path": "materials/stone_limestone_weathered.matgraph.json",
-      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:01a462334f15aeb5aa5b25f09fe50d901408992681a42f2ee65cb2f66937826c",
+      "hash": "sha256:01f5febbb5f3b0d02e54a1a7201ffb54a3a4269799c3b3968ac5a6879351c48c",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:5a8be68b007ba6b7454868593f22b8d8d756fe1ffc73f78aee7f3962bbcd9c8e",
+      "hash": "sha256:168db8f78655c09a5d989ee7658660524425fae580c1c9ef4fec24d6986e2127",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:45e9145b66a97dd2e5b27d6bebf4ce151507b01733f3d325ab2dce4dccfbf8ef",
+      "hash": "sha256:b00432cd562808f1cce283982c91a44febf4e165705bcc682781586ec8c0eafa",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:1faf40acd669bb22c020636530f3bd3eded568e5ac53f94ba717ef77676e415c",
+      "hash": "sha256:e1be45894545ffcafdb81114c4aad95d2252d6753170e0200276a640f56003e7",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/southern-palas-and-bower.png",
-      "hash": "sha256:d3e77404e2bc1358d5bb7f87755887f0e0ef661791f4a8492ea65f967e0ccecc",
+      "hash": "sha256:b8339e1ad34190562c6c66e9353f49b73c2f5f0e3caec3a72c8f43d7188b31f8",
       "camera": {
         "name": "southern-palas-and-bower",
         "position": [
@@ -319,64 +359,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/northwest-towers.png",
-      "hash": "sha256:8de3a23b50021f42ec1dba5280d69d075bbb2a041ad82f1d51c71602a1102924",
+      "hash": "sha256:6e8b47c8d6270bb995ec3c5f0ac855609879b7dac614475093fda57260d69077",
       "camera": {
         "name": "northwest-towers",
         "position": [
@@ -392,64 +444,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/palas-court-gable.png",
-      "hash": "sha256:0f5274df951edcbd9b6101184c58bf5fd25aba1ea8ac89cb2641073763427554",
+      "hash": "sha256:920c1e9d0fccf8980a66651b792dbf0e345f961f9721f90b6b05ccef7ccbf145",
       "camera": {
         "name": "palas-court-gable",
         "position": [
@@ -465,64 +529,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/western-open-galleries.png",
-      "hash": "sha256:28769f1c841b448676139eb5e8c3b2327a586a4d8398dbade4e7db5fbba2055f",
+      "hash": "sha256:04f11c96530e37ac010fc1b9f78b955d558ad2e6e7ee5d2bd9976f1eb870b485",
       "camera": {
         "name": "western-open-galleries",
         "position": [
@@ -538,64 +614,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/main-stair-crown.png",
-      "hash": "sha256:8968f3c529cfe432dd6b4570e51c526feefe149c6347e481caf9c1c22e4131fb",
+      "hash": "sha256:cca79f5927b979e1272b67fa407a1d501677407ed541d5c8a112b3a0b9d5a01a",
       "camera": {
         "name": "main-stair-crown",
         "position": [
@@ -611,64 +699,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/knights-house-and-square-tower.png",
-      "hash": "sha256:17863cb4cf06f26cb1d70f21c1d9ed4bc7c028967a93915331ab4aaa51a8461b",
+      "hash": "sha256:fed56fed962fd8856c9b90934c2a8758fc497a0ad261b35d919e68374f86ccda",
       "camera": {
         "name": "knights-house-and-square-tower",
         "position": [
@@ -684,64 +784,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/gatehouse-outer-brick.png",
-      "hash": "sha256:e845c78557f8ac6557eb389c0a0d76c76c3929fb4d20e0acd499dc4eecb471cf",
+      "hash": "sha256:559559a99832cb9fd175d03ebe89460a07e549864bbd478f0bfc6fa242d70199",
       "camera": {
         "name": "gatehouse-outer-brick",
         "position": [
@@ -757,64 +869,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/gatehouse-inner-clock.png",
-      "hash": "sha256:88c8d6b718d54e90f04b36da13863732b6f9670015c29a535c1e281cefe9d31d",
+      "hash": "sha256:6ada2c8fcd6618a334ab1484017391ad671339a7bec2421f23a7eb52c1f19ded",
       "camera": {
         "name": "gatehouse-inner-clock",
         "position": [
@@ -830,64 +954,76 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
       }
     },
     {
       "path": "shots/shared/two-courtyards-and-roofs.png",
-      "hash": "sha256:d0f3a68ec38da11fc8c8d7d2f96da69989b3262a956619b8e32c5c08121b882a",
+      "hash": "sha256:690c687d0c0ce566410a23a7b10046cc618c7cf972e552ef689de7077f47dbc3",
       "camera": {
         "name": "two-courtyards-and-roofs",
         "position": [
@@ -903,59 +1039,742 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 11,
-        "triangles": 234177,
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
         "bounds": {
           "min": [
-            -76.30733489990234,
-            0,
-            -27
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
           ],
           "max": [
-            77,
+            69.74724799726746,
             65,
-            24.049999237060547
+            52.4096442519504
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "bbd89722-7b9a-4212-8e55-bc95722ed740",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "75ee2b68-8033-47db-ab21-e9b1dc7c1516",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "4a4f7413-4275-48ff-9277-119001d8f40e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "8099ffb3-60eb-4cee-89f8-f678965034bc",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "f0d7049d-ef02-421f-ae90-638aa81b54d2",
-          "worldgen:matgraph:molen.worldgen.material.slate": "eb47e57a-925b-40ff-9b30-128a51718764",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "0a1dc009-dd0c-4df2-87af-4d6b953c9ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "83a353f1-fd53-455b-9888-2fa838ece9fd",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "245a50e3-fabc-4e84-bed8-42904a825e8d"
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
         },
         "loads": [
           "molen.worldgen.structure.n0237_neuschwanstein_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 12,
-        "renderedTriangles": 234179
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/whole-reviewed-neuschwanstein.png",
+      "hash": "sha256:559ef01638de529f407dce08d51d9f2b037ae771b6cca8788b720e6fa3b118a3",
+      "camera": {
+        "name": "whole-reviewed-neuschwanstein",
+        "position": [
+          -155,
+          95,
+          180
+        ],
+        "lookAt": [
+          -5,
+          28,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/signed-occupied-plan.png",
+      "hash": "sha256:3c3a547689445c13a9bf947aca08d15993b85f2141b53a24d30f52c8b9d43824",
+      "camera": {
+        "name": "signed-occupied-plan",
+        "position": [
+          0,
+          180,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/open-gateway-through.png",
+      "hash": "sha256:657aff67e50d0be28fafc374793d4dc7a4d15525c245bad7e6226246e1a05f13",
+      "camera": {
+        "name": "open-gateway-through",
+        "position": [
+          96,
+          4.5,
+          3.4
+        ],
+        "lookAt": [
+          50,
+          4.5,
+          3.4
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/corrected-north-stair.png",
+      "hash": "sha256:3bd98957206bf675242d9d0cdb7352e251aa40f9eee9936847a7bbf5faa51203",
+      "camera": {
+        "name": "corrected-north-stair",
+        "position": [
+          -85,
+          64,
+          -34
+        ],
+        "lookAt": [
+          -55.2,
+          53,
+          -8
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/corrected-inner-clock.png",
+      "hash": "sha256:aba9827093374db9df59d80614b6a09b2186625ffe1806d7f0bd34b70af1db5a",
+      "camera": {
+        "name": "corrected-inner-clock",
+        "position": [
+          28,
+          24,
+          3.4
+        ],
+        "lookAt": [
+          55,
+          22,
+          3.4
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/corrected-seven-metre-court-step.png",
+      "hash": "sha256:e8ba768d6882bc8ead01c94bacb8c1f6b2d83edf981f836c4857052adbbd8ca4",
+      "camera": {
+        "name": "corrected-seven-metre-court-step",
+        "position": [
+          49,
+          4,
+          1
+        ],
+        "lookAt": [
+          43,
+          5,
+          -8.2
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/lower-court-open-vault.png",
+      "hash": "sha256:94387cf220344443c1a4bdc95d190bb0465d476b37d3fb56bf3ceee130182ea6",
+      "camera": {
+        "name": "lower-court-open-vault",
+        "position": [
+          48,
+          4,
+          3.4
+        ],
+        "lookAt": [
+          60,
+          5,
+          3.4
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 58379
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:f9c009fc7b8d9041e2da3172ff146120965edcb341d0c52013108d4ffe03bafd",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0237_neuschwanstein_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0237",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.381105898007,
+        "meshes": 8,
+        "triangles": 58313,
+        "bounds": {
+          "min": [
+            -78.18556891936339,
+            -7,
+            -43.372665725894805
+          ],
+          "max": [
+            69.74724799726746,
+            65,
+            52.4096442519504
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "c4298622-e5d0-4343-b47b-4a7f05cefacc",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "893cb955-c5dd-4d4a-bb9d-5c3ab6637618",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "192c26b6-6323-44c5-86e8-5c0c300d809c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "27527456-5e91-4af2-b260-7780c4a075dd",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "4dae82ab-f25e-46dc-99e8-071a7967cfbf",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "afe0a10d-63a7-4fb9-8816-5b44f623965c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0237_neuschwanstein_castle"
+        ],
+        "selectionBounds": [
+          10.7478301015389,
+          47.55640507481955,
+          10.751237806461102,
+          47.55870476194692
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0237",
+            "coordinate": [
+              10.75021803,
+              47.55770701
+            ],
+            "height": 1
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0237"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 10,
+        "renderedTriangles": 58379
       }
     }
   ],
@@ -965,8 +1784,9 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

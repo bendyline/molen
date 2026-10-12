@@ -315,8 +315,9 @@ export function* samplePlacementsSteps(
           let margin = false;
           for (const ring of [polygon.ring, ...(polygon.holes ?? [])]) {
             for (let i = 0; i < ring.length; i++) {
-              const a = ring[i]!,
-                b = ring[(i + 1) % ring.length]!;
+              const a = ring[i],
+                b = ring[(i + 1) % ring.length];
+              if (!a || !b) continue;
               // Request clipping boundaries are not field edges. Buffered source edges remain.
               if (
                 (Math.abs(a[0] - b[0]) < 0.001 &&

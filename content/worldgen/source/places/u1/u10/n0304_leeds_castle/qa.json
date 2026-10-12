@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0304_leeds_castle",
-  "inputHash": "sha256:4a73c548ba4312d308ee153fc849435de31e35d7e4730f51b05af5f181d95ed0",
-  "sourceHash": "sha256:a10423a135cedf41c195722ffcc0de7e7dd7d1235674b8a4983e219e09db78a8",
-  "runtimeHash": "sha256:976b74698099c59b8b360e56dc895ceda4111fb7a266396efea90261dc13e4a7",
-  "captureReportHash": "sha256:629dc9c9dc870892e6a51d7009f11e7a4975f85ebb994b36e5cff2c533fee7a4",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:eed3e2060192fec3d8bb8eb4c9c30f17a3bcdf2d8bc70be641ce5f9c55048c19",
+  "sourceHash": "sha256:d16b54283a0f86440f462d94a9e9e5c41b4530f2a8f7dab7e021e1bd9878df27",
+  "runtimeHash": "sha256:87e977079a474c8ac684619ad339af7da6fefe61e441ca6ef72f1e5bd33ed39b",
+  "captureReportHash": "sha256:aa6e37aff9a765767abfa2ff771a71e1ca10f354be06e6135256f6e19d6404e1",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +21,11 @@
       "shots/gatehouse-passage.png",
       "shots/mapped-roofs-and-islands.png"
     ],
-    "notes": "Inspected all11 final portable views. Four mapped main building roofs are complete; hollow D-shaped Gloriette and court, New Castle/octagonal towers, covered bridge/two water arches, Maidens Tower, gateway and island curtain remain distinct. Corrected a chimney outside the Gloriette roof and its vertical roof contact, a thin foundation wall across the bridge channel and gaps between drive surface segments. Both Gloriette chimneys now sit on supported roof polygons. Main entrance has a closed timber door; southwest gatehouse passage remains open. Exterior draft with estimated sections and provisional attachment."
+    "notes": "Eleven final portable frames inspected against the operator aerial, southern elevation and restoration photograph, plus the Historic England listing. Both islands, Gloriette open court, New Castle octagonal corner/front turrets, Maiden and gatehouse roofs, bell turret, low curtains, covered bridge with two pointed water arches and bath passages remain complete. Six-triangle mapped approach connects the entrance bridge to the outer shore. Corrected source review terrain no longer fills the water channel or breaks through roofs/court floors. Temporary 2023 scaffolding and most outer barbican are excluded."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:360e528ea2f40dbe397b183952a378cc5e1a828dc0032163bbe7252ec6f30444",
+    "captureReportHash": "sha256:dfbb8b58c050393d683c73900f52df7e5593bd53bc7cd58e6e2cb03770863dde",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,13 +36,14 @@
       "shots/shared/covered-bridge-water-arches.png",
       "shots/shared/maidens-tower-and-bath.png",
       "shots/shared/gatehouse-passage.png",
-      "shots/shared/mapped-roofs-and-islands.png"
+      "shots/shared/mapped-roofs-and-islands.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all10 shared viewer views, including full-size bridge, courtyard and gateway images. Five existing256-square sandstone masonry, raw limestone, flat clay tile, timber and gravel graphs use linear tints and metric repeats. Glass/lawn are flat. Seven near material groups and one skyline group; no embedded/new image, photographic texture or downloaded mesh. Each graph reads once; unload leaves zero live model geometry and restores stage ground. Isolated Y0 fixture ground is provisional; it contains no lake."
+    "notes": "Eleven final shared-material and geographic frames inspected. Five existing 256-square stone_sandstone, stone_limestone_raw, tile_flat, wood_plain and gravel graphs load once; glass and lawn use flat palette colors. The absolute review ground now uses56.28m instead of Y0, eliminating perspective separation between the placement and ground opening. North-up traces match the unrotated native mapped castle/islands. Covered bridge openings remain clear. Unload disposes every live model geometry and restores the ground opening. No embedded image or copied architectural mesh/photo texture."
   },
   "mediumFiReview": {
-    "status": "pending",
-    "captureReportHash": "sha256:d38927b6de488374d98b1d784ace2764048c5bf760daeae6b70037873489c0e5",
+    "status": "passed",
+    "captureReportHash": "sha256:6a77d54a938798f599ebb473a37858d4c50b4588cad3597fff665a34988b8e1e",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -67,20 +69,24 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected23 final Earth-rig frames:12 distance/time/mode combinations, an untextured silhouette, six architectural views and four forced levels. Both main castle masses, bridge and open court persist across levels; roof/wall palette and budgets remain coherent. Synthetic regional houses provide a style fixture, not actual estate geography. Fixture ground occupies the moat plane; actual water/shore attachment and architectural appearance remain unverified. No geographic or medium-fi completion claim."
+    "notes": "Twenty-three final browser frames inspected at noon and late lighting, economy/high and three distances, silhouette, six detail views and four forced transitions. Source-local DTM review terrain and an explicit palette lake surface remain present at all four levels; the lake channel no longer appears as grass. Both islands, four mapped buildings and open court survive the distant silhouette. Near arches, gate route, raised turret parapets, chimneys and window mullions remain clear. Coarse roof mean caps and faceted distant turrets are intentional. Synthetic Cotswold neighbors and the finite lake plane are review context, not actual surrounding development or bathymetry."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:6f28fdc8a98eb69adb8b85f05597acf4930ae63ee8ba17fc5ac0740a9567e810",
-    "mapGeometryHash": "sha256:e9ef4af3ede42903b5de51ec1927af5f6491e28903fd9e60092e3bcb6823ab20",
-    "coordinateRoundTripErrorMeters": 0.0006814308389960504,
-    "mapCoordinateSamples": 292,
-    "notes": "292 attributed original map samples reconstruct within0.682mm. Exact-QID relation, separate current component footprints, courtyard, island and entrance routes retain native East/South heading0. Padded all-level bounds include the whole model. Coordinate arithmetic is verified; water/bailey datum, shore/approach fit and facade orientation require actual-site review. Placement is inactive and footprint replacement is off."
+    "status": "passed",
+    "placementHash": "sha256:f559d6146cf12d53e2398afc1e44c625664f36ef6ef934c2c53f7fd45ef13b2f",
+    "mapFrameHash": "sha256:e9ef4af3ede42903b5de51ec1927af5f6491e28903fd9e60092e3bcb6823ab20",
+    "notes": "Attributed relation6941053 Q746876 and original component/island/bridge traces retained at anchor0.630100728,51.248785815, native+X East/+Z South and heading0. Plan angle-0.8 is already baked into geometry and must not be applied again. Original292 coordinate samples round-trip within0.682mm. Public EA2022 1m DTM gives a flat56.28m ODN lake level and mapped bailey-path median62.245m; uniform current floor62.28m is reconstructed near that median. Four-meter source grid retains raw observations; only the review height fixture sinks terrain under the21-point hull to keep the arches/water channel open. Bridge endpoint/path approach is mapped, width and last two elevation controls reconstructed. Matching host ODN terrain/water is required; footprint replacement remains off."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh medium-fi exterior approval replaces the earlier incomplete draft. Preserved original11749-triangle recipe reproduces sourcea10423a135cedf41c195722ffcc0de7e7dd7d1235674b8a4983e219e09db78a8 unchanged. Current leaf raises4.4m provisional floor to6m above the archived lake datum and adds the connecting approach, retaining mapped footprints and architectural features. Roof pitches, upper elevations, windows, arches, uniform floors and fine ornament are declared reconstruction. The2022 DTM removes bridges/buildings and cannot establish their floor heights or current seasonal water. No interior navigation, exact inscriptions, temporary scaffolding or copied photograph texture."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Operator aerial/exterior/restoration photographs guide original current architecture; Historic England confirms two islands, D-shaped hollow Gloriette, two pointed covered-bridge arches, octagonal New Castle turrets and current two-storey Maiden/gatehouse architecture. No primary numeric architectural heights were verified. All metric heights, roof/window/aperture sections and water/bailey attachment are original estimates. Fairfax Courtyard, detached service buildings, parkland, moat/terrain, vegetation, interiors, fine tracery/heraldry and full outer barbican archaeology excluded or separate. Actual architectural/site fidelity remains pending."
+    "notes": "Operator aerial/exterior/restoration photographs guide original current architecture; Historic England confirms two islands, D-shaped hollow Gloriette, two pointed covered-bridge arches, octagonal New Castle turrets and current two-storey Maiden/gatehouse architecture. No primary numeric architectural heights were verified. All metric heights, roof/window/aperture sections and water/bailey attachment are original estimates. Fairfax Courtyard, detached service buildings, parkland, moat/terrain, vegetation, interiors, fine tracery/heraldry and full outer barbican archaeology excluded or separate. Actual architectural/site fidelity remains pending.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -88,9 +94,9 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/models/source.glb",
-        "hash": "sha256:a10423a135cedf41c195722ffcc0de7e7dd7d1235674b8a4983e219e09db78a8",
-        "bytes": 1413956,
-        "triangles": 11749,
+        "hash": "sha256:d16b54283a0f86440f462d94a9e9e5c41b4530f2a8f7dab7e021e1bd9878df27",
+        "bytes": 1414664,
+        "triangles": 11755,
         "materials": 7,
         "images": 0,
         "min": [
@@ -100,7 +106,7 @@
         ],
         "max": [
           55.78587341308594,
-          20.649999618530273,
+          22.25,
           74.41899871826172
         ],
         "errors": 0,
@@ -109,9 +115,9 @@
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.glb",
-        "hash": "sha256:976b74698099c59b8b360e56dc895ceda4111fb7a266396efea90261dc13e4a7",
-        "bytes": 1413328,
-        "triangles": 11749,
+        "hash": "sha256:87e977079a474c8ac684619ad339af7da6fefe61e441ca6ef72f1e5bd33ed39b",
+        "bytes": 1414036,
+        "triangles": 11755,
         "materials": 7,
         "images": 0,
         "min": [
@@ -121,7 +127,7 @@
         ],
         "max": [
           55.78587341308594,
-          20.649999618530273,
+          22.25,
           74.41899871826172
         ],
         "errors": 0,
@@ -130,19 +136,19 @@
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.skyline.glb",
-        "hash": "sha256:7db72c55b08828d87debd0ccab276a128e2974058fe409d507d53e3896606179",
-        "bytes": 75312,
-        "triangles": 850,
+        "hash": "sha256:0d293e88f30ecfa2072b56c0af6682a775a85ce7fae43972086cbdcfb4183ab7",
+        "bytes": 75924,
+        "triangles": 856,
         "materials": 1,
         "images": 0,
         "min": [
-          -96.5489273071289,
+          -108.5080795288086,
           0,
           -86.25999450683594
         ],
         "max": [
           55.65800094604492,
-          18.799999237060547,
+          20.399999618530273,
           73.03800201416016
         ],
         "errors": 0,
@@ -151,9 +157,9 @@
       {
         "name": "district",
         "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.district.glb",
-        "hash": "sha256:2210d3cb95331b35377ddb1f3134f4f8288587b4fb335ec2938fc87992830642",
-        "bytes": 263576,
-        "triangles": 2899,
+        "hash": "sha256:150a4c6eabf11e81fc4feed38d2f50af9d46813681df00a723ff4959b5c564e4",
+        "bytes": 264172,
+        "triangles": 2905,
         "materials": 7,
         "images": 0,
         "min": [
@@ -163,7 +169,7 @@
         ],
         "max": [
           55.67304992675781,
-          20.25,
+          21.850000381469727,
           74.41899871826172
         ],
         "errors": 0,
@@ -172,9 +178,9 @@
       {
         "name": "street",
         "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.street.glb",
-        "hash": "sha256:b965c490d51721396a639e42e5864093f59e05be2d964f36e6f4b3f98f217092",
-        "bytes": 1058760,
-        "triangles": 11719,
+        "hash": "sha256:e9fd00697df8bb2ebc4cb160338a71bbd59f23998294d3a375fb687276297983",
+        "bytes": 1059156,
+        "triangles": 11725,
         "materials": 7,
         "images": 0,
         "min": [
@@ -184,7 +190,7 @@
         ],
         "max": [
           55.78587341308594,
-          20.649999618530273,
+          22.25,
           74.41899871826172
         ],
         "errors": 0,
@@ -193,9 +199,9 @@
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.closeup.glb",
-        "hash": "sha256:6c44ed205596ab09ad01fb390f54016ad1c86c58de80da42081bec2b2e6ae81e",
-        "bytes": 1061532,
-        "triangles": 11749,
+        "hash": "sha256:a413e244d86235d8a369b5bd17e73a318f8c07dfaa8164383470608889a4b227",
+        "bytes": 1061928,
+        "triangles": 11755,
         "materials": 7,
         "images": 0,
         "min": [
@@ -205,104 +211,87 @@
         ],
         "max": [
           55.78587341308594,
-          20.649999618530273,
+          22.25,
           74.41899871826172
         ],
         "errors": 0,
         "warnings": 0
       }
     ],
-    "notes": "All six GLBs have zero errors/warnings and no embedded images. Nine focused tests pass: deterministic four-level budgets/shared surfaces/GPU layouts; exact mapped identity; open court; sampled coverage of all four main roofs; unobstructed full foundation channel; supported Gloriette chimneys; both covered-bridge water arches; mapped gatehouse passage; bath watergate arches. Checks caught and repaired an unintended water-level arch slab, a diagonal foundation wall and unsupported chimney. Scoped source/import/LOD/strict medium-fi checks pass; capture includes scene validation and30-tick simulation with hash sha256:061d8a5c3ee6af3b3782e1586f5d85752bb2adf2c2fa02afa67af34216089763. No walkable collision certification."
+    "tests": [
+      "leeds-lods: nine preserved architecture and layout checks",
+      "leeds-current-lods: public terrain controls and strict budgets",
+      "all four levels retain clear water arches, court and gate route",
+      "exact current source and forced derivative regeneration",
+      "targeted source, LOD and strict medium-fi checks"
+    ],
+    "notes": "Six current GLBs validate with zero Khronos errors/warnings and no images. Twelve focused checks pass across the preserved nine-check recipe and three current tests: deterministic strict LOD budgets and separate vertex streams, exact mapped identity/roof coverage, open Gloriette court and all four scaled water arches, gate route, supported chimneys,29 terrain samples, current floor/path controls, exact current source hash and forced derivative regeneration. Source check, strict medium-fi audit and LOD checker pass. Convex collision remains an exterior envelope, not walkable castle navigation."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:eba6b1a6033a2f961cbde3b069e980de1d566511c2e9fc1d5e83575b71ff5028",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.skyline.glb",
-        "hash": "sha256:7db72c55b08828d87debd0ccab276a128e2974058fe409d507d53e3896606179",
-        "bytes": 75312,
-        "triangles": 850,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -96.5489273071289,
-          0,
-          -86.25999450683594
-        ],
-        "max": [
-          55.65800094604492,
-          18.799999237060547,
-          73.03800201416016
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.skyline.glb",
+        "hash": "sha256:0d293e88f30ecfa2072b56c0af6682a775a85ce7fae43972086cbdcfb4183ab7",
+        "bytes": 75924,
+        "gzipBytes": 20010,
+        "triangles": 856,
+        "cpuBytes": 74508,
+        "gpuBytes": 74508,
+        "errorMeters": 2,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.district.glb",
-        "hash": "sha256:2210d3cb95331b35377ddb1f3134f4f8288587b4fb335ec2938fc87992830642",
-        "bytes": 263576,
-        "triangles": 2899,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -127.91580200195312,
-          0,
-          -86.25999450683594
-        ],
-        "max": [
-          55.67304992675781,
-          20.25,
-          74.41899871826172
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.district.glb",
+        "hash": "sha256:150a4c6eabf11e81fc4feed38d2f50af9d46813681df00a723ff4959b5c564e4",
+        "bytes": 264172,
+        "gzipBytes": 80775,
+        "triangles": 2905,
+        "cpuBytes": 255792,
+        "gpuBytes": 255792,
+        "errorMeters": 0.7,
+        "drawCalls": 7
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.street.glb",
-        "hash": "sha256:b965c490d51721396a639e42e5864093f59e05be2d964f36e6f4b3f98f217092",
-        "bytes": 1058760,
-        "triangles": 11719,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -127.91580200195312,
-          0,
-          -86.62646484375
-        ],
-        "max": [
-          55.78587341308594,
-          20.649999618530273,
-          74.41899871826172
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.street.glb",
+        "hash": "sha256:e9fd00697df8bb2ebc4cb160338a71bbd59f23998294d3a375fb687276297983",
+        "bytes": 1059156,
+        "gzipBytes": 261241,
+        "triangles": 11725,
+        "cpuBytes": 1050776,
+        "gpuBytes": 1050776,
+        "errorMeters": 0,
+        "drawCalls": 7
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/u1/u10/n0304_leeds_castle/model.closeup.glb",
-        "hash": "sha256:6c44ed205596ab09ad01fb390f54016ad1c86c58de80da42081bec2b2e6ae81e",
-        "bytes": 1061532,
-        "triangles": 11749,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -127.91580200195312,
-          0,
-          -86.62646484375
-        ],
-        "max": [
-          55.78587341308594,
-          20.649999618530273,
-          74.41899871826172
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.closeup.glb",
+        "hash": "sha256:a413e244d86235d8a369b5bd17e73a318f8c07dfaa8164383470608889a4b227",
+        "bytes": 1061928,
+        "gzipBytes": 261792,
+        "triangles": 11755,
+        "cpuBytes": 1053548,
+        "gpuBytes": 1053548,
+        "errorMeters": 0,
+        "drawCalls": 7
       }
     ],
-    "initialDownloadBytes": 338888,
-    "notes": "850/2899/11719/11749 triangles across skyline/district/street/closeup meet the medium-fi caps. Initial skyline+district338888bytes; closeup1061532bytes before shared textures. Draw groups1/7/7/7. Distant outlines simplify within original0.75/0.3m authoring tolerances; court and both bridge arches persist. Physical laptop/phone performance and continuous upgrades remain pending."
-  }
+    "initialBytes": 340096,
+    "notes": "856/2905/11725/11755triangles and1/7/7/7draws; initial340096bytes and close-up1061928bytes meet3MBphone/6MBlaptop initial budgets. Shared graphs and independent GPU attribute streams are retained. Authored2/.7/0/0m allowances reserve coarse skyline roof/turret simplification; they are not a measured whole-mesh Hausdorff bound. Detailed master remains1414664bytes with all original architecture plus current ground repairs. Physical-device timings and downtown-memory measurements remain pending."
+  },
+  "limitations": [
+    "Current medium-fi exterior uses attributed current map traces, Historic England architectural descriptions and operator photos. Numeric roof/window/turret sections and arch dimensions remain photographic reconstruction; no surveyed architectural heights.",
+    "Public2022 composite DTM supplies flat lake56.28m ODN and mapped bailey path61.562–62.762m, median62.245m. Uniform62.28m castle floor is reconstructed. DTM building removal makes the Gloriette court too low; it is not used as a measured floor.",
+    "Original4.4m rise master is preserved. The current6m floor derivative stretches subfloor masonry and arches and raises upper architecture1.6m without changing horizontal footprints. Convex ground cutout prevents host terrain poking through the island/castle; matched ODN water and terrain are required.",
+    "Source4m review grid samples the public1m DTM using a2m nominal-accuracy horizontal transform. Terrain under the convex architectural/island envelope is sunk below water with6m grid padding, water cells lowered0.35m and an opaque flat review lake inserted. Raw heights remain in terrain-grid.json. Fixture is not current water survey, bathymetry or host-terrain certification.",
+    "Gloriette courtyard, covered-bridge/bath water arches and mapped gate route are open geometry. Window panes are stylized opaque blue-grey. Convex collision is not a walkthrough navigation mesh.",
+    "Fairfax Courtyard, detached service buildings, parkland, trees, fine tracery/heraldry/interiors, temporary2023scaffolding and full outer barbican archaeology are excluded. The model includes only the nearby mapped fragment.",
+    "Five existing shared256-square sandstone, raw limestone, flat clay tile, wood and gravel graphs; flat opaque glass/lawn, metric UVs and linear tints. No embedded/new photo texture or downloaded building mesh. Operator photographs remain private research.",
+    "Physical phone/laptop timing, downtown memory and seasonal water-level fluctuations remain unmeasured.",
+    "Mapped connecting footpath94361177 joins the entrance bridge to the outer approach. Width3m and final two level controls are reconstructed; first two heights sample the public DTM. Full barbican archaeology remains excluded."
+  ]
 }

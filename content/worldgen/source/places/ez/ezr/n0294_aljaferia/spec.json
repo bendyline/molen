@@ -12,23 +12,24 @@
   },
   "visualBrief": "Six round east towers and26m rectangular Trovador, three physically open roof courts, selected lobed Taifa colonnades and formal garden, tiled barracks and throne-gallery wings, distinct flat contemporary hemiciclo, chapel glazing and mapped access bridges over an estimated moat.",
   "mediumFiContext": {
-    "scale": "3.0",
-    "neighborStyle": "molen.worldgen.regional.mediterranean.detached"
+    "groundY": 0,
+    "scale": 3.2,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
   },
   "size": [
-    154.25253295898438,
-    30.5,
-    133.75095748901367
+    145.35380935668945,
+    34.463616609573364,
+    122.48750686645508
   ],
   "actualBounds": {
     "min": [
-      -68.14007568359375,
-      -4.5,
-      -63.90884780883789
+      -59.24135208129883,
+      -2.9636166095733643,
+      -52.6453971862793
     ],
     "max": [
       86.11245727539062,
-      26,
+      31.5,
       69.84210968017578
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "front": "+X east, mapped main entrance",
     "longitudinal": "+Z south",
-    "origin": "Exact-QID map anchor; palace platformY0 is attachment plane. Moat extends below it and needs host terrain cutout."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "trovadorHeightMeters": 26,
@@ -47,7 +48,9 @@
     "mappedTrovadorSpanMeters": 18.317,
     "roundEastTowers": 6,
     "openCourtyards": 3,
-    "surveyedVerticalDatum": false
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:81270adc954535bfe938f16e1edecbf39cc0e674ebbf12f5ca5ba4a05d4f41be",
+    "originalMasterRecipe": "packages/worldgen/scripts/aljaferia-palace-model.mjs#buildAljaferiaRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -100,12 +103,13 @@
       "Six round fortified east towers and tall rectangular Trovador",
       "Three open courtyards with different palace/barracks wings",
       "Taifa arcades, tiled historic roofs and distinct flat contemporary parliament volume"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "scope": "Multi-period exterior, six east round towers, Trovador, three open courts, selected Taifa arcades, tiled barracks wings, flat contemporary parliament volume, moat/scarp and two mapped bridges.",
-    "basis": "Own attributed OSM coordinates plus original interpretation of Aragón heritage and museum photographs, and restoration architects’ exterior/section drawings. No downloaded model or photo texture.",
-    "referenceState": "Restored present-day palace interpretation. Heights apart from Trovador, roof partitions, actual restoration detail and moat envelope are estimates."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://api.openstreetmap.org/api/0.6/map?bbox=-0.899,41.6554,-0.8954,41.6575",
@@ -126,8 +130,8 @@
     "https://bibliotecavirtual.aragon.es/es/catalogo_imagenes/grupo.do?path=3717944"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive draft; real terrain cutout/datum, dimension conflict and current-state fidelity pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       -0.897048689,
       41.656484624
@@ -153,7 +157,18 @@
     "mapGeometryHash": "sha256:41b3d845da147583d5c2ec7d3109c0f48fa3c905c89f1a119f0bdf322c35427c",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "replaceFootprint": false
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected exterior picture supports six round crenellated east towers, warm pale masonry and a raised scarp. Retained east/south map coordinates set approximate footprint, scale and entrance orientation. Standard viewer PMTiles supply the ground; the derivative retains palace geometry and bounded scarp, omits duplicated moat grass/outer terrain walls and slopes the access bridges toward coarse approach ground. Courtyard floors stay above sampled terrain. The original detailed source master remains reproducible. Anchor -0.897048689,41.656484624; heading 0; standard PMTiles datum 206.4844743505745m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected exterior picture supports six round crenellated east towers, warm pale masonry and a raised scarp. Retained east/south map coordinates set approximate footprint, scale and entrance orientation. Standard viewer PMTiles supply the ground; the derivative retains palace geometry and bounded scarp, omits duplicated moat grass/outer terrain walls and slopes the access bridges toward coarse approach ground. Courtyard floors stay above sampled terrain. The original detailed source master remains reproducible. Anchor -0.897048689,41.656484624; heading 0; standard PMTiles datum 206.4844743505745m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -0.897048689,
+        41.656484624
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Own exact-QID map relation, court holes, circle arc fits and entrance/bridge paths. Published26m Trovador height/12m depth; mapped18.317m width explicitly differs from published16.5m. Other dimensions are photographic estimates.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -171,12 +186,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        2.4,
-        1.6
+        1.8,
+        1.5
       ]
     },
     {
@@ -220,25 +235,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "The mapped Trovador edge is18.317m while the published width is16.5m. Model uses current map span, published12m depth and26m height; exact exterior measure and reconstruction state remain pending.",
-    "Only source plan coordinates are measured here. Other heights, round-tower radii fits, apertures, columns, roof partitioning, moat/scarp and bridge widths are original estimates.",
-    "Selected external and courtyard identity features are authored; full interior rooms, ornate inscriptions, ceilings, exhibits, contemporary fixtures and walkable collision are not complete.",
-    "Moat extends below nativeY0. Real terrain cutout, ground datum, bridges/approaches and site fit are unverified; do not activate or replace procedural footprint yet.",
-    "Private research photos/plans/sections are not distributed or used as textures. Six existing shared graphs supply surfaces with linear tints and metric UVs.",
-    "Synthetic portable/shared/Earth captures, four LODs and source determinism do not establish geographic fidelity, physical laptop/phone timing or continuous streaming acceptance.",
-    "Selected north/south portico backing doors and modern hall facade are original photographic interpretations. Door count, recess depths and interior room layout are approximate; detailed historic ornament and exact restoration fixture geometry remain pending."
+    "Approximate exterior and fit from a reference picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Trovador dimensions, restoration details and ornate Taifa decoration remain interpreted; interiors and collision excluded.",
+    "Six common graphs plus two explicit color slots, zero embedded images. The raised scarp is bounded; an excavated dry moat cannot be resolved by coarse terrain and no terrain cutout is added.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "six-tower-east-front",
       "position": [
         117.9513843145258,
-        29,
+        34.5,
         -6.039117343373826
       ],
       "lookAt": [
         44.24322981570925,
-        7,
+        12.5,
         -10.175294367945112
       ]
     },
@@ -246,12 +258,12 @@
       "name": "trovador-north",
       "position": [
         12.038426413486292,
-        45,
+        50.5,
         -96.54572123862908
       ],
       "lookAt": [
         9.675377018279972,
-        17,
+        22.5,
         -36.0608801827429
       ]
     },
@@ -259,12 +271,12 @@
       "name": "open-three-court-plan",
       "position": [
         0.09336674801711524,
-        205,
+        210.5,
         0.9956317845291544
       ],
       "lookAt": [
         0,
-        0,
+        5.5,
         0
       ]
     },
@@ -272,12 +284,12 @@
       "name": "taifa-north-portico",
       "position": [
         7.996456719892349,
-        3.4,
+        8.9,
         10.29838239370089
       ],
       "lookAt": [
         6.315855255584274,
-        3.4,
+        8.9,
         -7.622989727823888
       ]
     },
@@ -285,12 +297,12 @@
       "name": "taifa-south-portico",
       "position": [
         6.876055743686965,
-        3.4,
+        8.9,
         -1.649199020648961
       ],
       "lookAt": [
         8.836757452046385,
-        3.4,
+        8.9,
         19.259068454463282
       ]
     },
@@ -298,12 +310,12 @@
       "name": "modern-hemiciclo",
       "position": [
         32.979777498178095,
-        5.5,
+        11,
         -23.18047187118212
       ],
       "lookAt": [
         33.66474717795702,
-        4.7,
+        10.2,
         -5.165733001640227
       ]
     },
@@ -311,14 +323,252 @@
       "name": "mapped-east-portal",
       "position": [
         66.5825603717771,
-        3.2,
+        8.7,
         -18.296520279513686
       ],
       "lookAt": [
         44.858946002846075,
-        3.2,
+        8.7,
         -22.888314999443267
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/aljaferia-runtime-model.mjs",
+    "export": "buildAljaferiaReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/aljaferia-runtime-model.mjs",
+    "export": "buildAljaferiaReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAljaferiaReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAljaferiaReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAljaferiaReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-aljaferia-skyline",
+      "position": [
+        210,
+        155,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-aljaferia-district",
+      "position": [
+        210,
+        155,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-aljaferia-street",
+      "position": [
+        210,
+        155,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-aljaferia-closeup",
+      "position": [
+        210,
+        155,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -326,10 +576,10 @@
   },
   "importReason": "Preserve distinct Aljafería courtyard voids, six round towers, tall Trovador, Taifa arches and contrasting historic/contemporary roof masses with four authored levels.",
   "mesh": {
-    "triangles": 18094,
-    "vertices": 54282,
+    "triangles": 18078,
+    "vertices": 54234,
     "materials": 8,
-    "bytes": 2175792,
-    "sha256": "sha256:81270adc954535bfe938f16e1edecbf39cc0e674ebbf12f5ca5ba4a05d4f41be"
+    "bytes": 2173884,
+    "sha256": "sha256:d7aebaf752d170ac60b0f14e239f8c64d569fe0b0e84b919845b24e075d3cde3"
   }
 }

@@ -1,0 +1,503 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e9b283",
+      "court": "#e7b9a8",
+      "stone": "#e9e3d8",
+      "granite": "#a7aaa9",
+      "roof": "#679d7b",
+      "copper": "#89b69a",
+      "gold": "#dac278",
+      "glass": "#4d6178",
+      "frame": "#bdad83",
+      "paving": "#b9b2a6",
+      "frieze": "#ccab9b",
+      "pediment": "#d7cbb7"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "stone": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "copper": [
+        0.635757,
+        0.680369,
+        0.617469
+      ],
+      "painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "paving": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 7,
+    "identityFeatures": [
+      "Rounded salmon near-square castle enclosing an open octagonal courtyard",
+      "Green church dome and tall gold spire with smaller river-side dome",
+      "Distinct south pediment and north raised entrance pavilion"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Main entrance faces roughly south-southeast; native +X east and +Z south",
+    "longitudinal": "All horizontal map angles baked into East/South geometry; heading0",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactCastleRelation": 238571,
+    "courtyardHoleWays": [
+      40542341,
+      193109634,
+      193109636
+    ],
+    "mappedBuildingLevels": 3,
+    "exteriorFacadeCompositions": 4,
+    "numericPrimaryVerticalHeightVerified": false,
+    "originalMasterHash": "sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952",
+    "originalMasterRecipe": "packages/worldgen/scripts/saint-michaels-castle-model.mjs#buildSaintMichaelRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from inspected entrance picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Spire/dome profiles, columns, inscriptions and restoration details are interpreted; interiors and collision excluded.",
+    "Six common graphs plus explicit glass color slot; zero embedded images. A reversible bounded ground opening and authored paved apron suppress the PMTiles mound under the palace; adjacent raw PMTiles terrain is retained. Actual urban ground datum is not surveyed.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      30.337604476,
+      59.94037844
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum.",
+    "terrainReference": {
+      "anchor": [
+        30.337604476,
+        59.939480124715885
+      ],
+      "modelHeight": -21.52127808470276,
+      "basis": "Standard viewer PMTiles point100m south of the model anchor, outside the reconstructed palace/plaza opening; native height preserves the retained PMTiles working datum."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -83,
+          -84
+        ],
+        [
+          86,
+          -84
+        ],
+        [
+          86,
+          86
+        ],
+        [
+          -83,
+          86
+        ]
+      ],
+      "basis": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum."
+    }
+  },
+  "geographicNote": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-cutout.terrain.json",
+    "terrain-cutout.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/saint-michaels-runtime-model.mjs",
+    "export": "buildSaintMichaelReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "granite": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.8,
+      "metallic": 0.05
+    },
+    "painted": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.65,
+      "metallic": 0.1
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/saint-michaels-runtime-model.mjs",
+    "export": "buildSaintMichaelReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSaintMichaelReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "painted": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildSaintMichaelReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "painted": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSaintMichaelReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "painted": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-cutout.terrain.json",
+    "heightmap": "terrain-cutout.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-saintmichael-skyline",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-saintmichael-district",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-saintmichael-street",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-saintmichael-closeup",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -21.15,
+    "scale": 3.6,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
+  },
+  "camera": {
+    "position": [
+      210,
+      132,
+      210
+    ],
+    "lookAt": [
+      0,
+      -7.5,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "south-pediment-and-entry": {
+      "position": [
+        52.77481058541777,
+        9,
+        129.91851048897257
+      ],
+      "lookAt": [
+        24.383514369637176,
+        -5,
+        49.794017983947604
+      ]
+    },
+    "north-colonnade": {
+      "position": [
+        -39.223976650257114,
+        10,
+        -136.65459983381493
+      ],
+      "lookAt": [
+        -8.873194133150195,
+        -4,
+        -47.68926950452721
+      ]
+    },
+    "church-and-west-facade": {
+      "position": [
+        -128.0700357420097,
+        27,
+        45.804649818990605
+      ],
+      "lookAt": [
+        -37.21182604401377,
+        8,
+        14.80810597173247
+      ]
+    },
+    "river-dome": {
+      "position": [
+        139.17103822180167,
+        26,
+        -41.13905832983806
+      ],
+      "lookAt": [
+        54.5928233383363,
+        2,
+        -16.511318540601266
+      ]
+    },
+    "court-plan": {
+      "position": [
+        7.593719785705687,
+        169,
+        0.5791543975331348
+      ],
+      "lookAt": [
+        7.593719785705687,
+        -6,
+        0.5791543975331348
+      ]
+    },
+    "open-courtyard": {
+      "position": [
+        15.019975082444615,
+        -13,
+        22.347267137677996
+      ],
+      "lookAt": [
+        -1.7698195014868734,
+        -7,
+        -26.86759644873647
+      ]
+    }
+  }
+}

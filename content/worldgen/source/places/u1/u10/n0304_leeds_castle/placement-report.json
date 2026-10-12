@@ -1,10 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0304_leeds_castle",
-  "inputHash": "sha256:4a73c548ba4312d308ee153fc849435de31e35d7e4730f51b05af5f181d95ed0",
-  "sourceHash": "sha256:a10423a135cedf41c195722ffcc0de7e7dd7d1235674b8a4983e219e09db78a8",
-  "runtimeHash": "sha256:976b74698099c59b8b360e56dc895ceda4111fb7a266396efea90261dc13e4a7",
-  "placementHash": "sha256:6f28fdc8a98eb69adb8b85f05597acf4930ae63ee8ba17fc5ac0740a9567e810",
+  "inputHash": "sha256:eed3e2060192fec3d8bb8eb4c9c30f17a3bcdf2d8bc70be641ce5f9c55048c19",
+  "placementHash": "sha256:f559d6146cf12d53e2398afc1e44c625664f36ef6ef934c2c53f7fd45ef13b2f",
   "entry": {
     "id": "next1000.n0304",
     "title": "Leeds Castle",
@@ -14,32 +12,107 @@
       51.248785815
     ],
     "heading": 0,
-    "datum": "terrain",
-    "elevation": 0,
+    "datum": "sea-level",
+    "elevation": 56.28,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q746876",
       "maxDistance": 80
     },
     "replaceFootprint": false,
-    "minLevel": 13,
-    "status": "draft",
-    "source": "https://www.openstreetmap.org/relation/6941053",
-    "bounds": [
-      0.6282646624584041,
-      51.24811711809716,
-      0.6309016237585686,
-      51.24956417343684
-    ],
-    "terrainReference": {
-      "anchor": [
-        0.630100728,
-        51.248785815
+    "groundCutout": {
+      "outline": [
+        [
+          -95.867,
+          49.416
+        ],
+        [
+          -78.781,
+          20.195
+        ],
+        [
+          -41.601,
+          -16.385
+        ],
+        [
+          28.448,
+          -81.963
+        ],
+        [
+          32.587,
+          -84.167
+        ],
+        [
+          36.886,
+          -86.26
+        ],
+        [
+          42.732,
+          -84.991
+        ],
+        [
+          48.906,
+          -80.694
+        ],
+        [
+          50.174,
+          -73.803
+        ],
+        [
+          55.839,
+          -17.164
+        ],
+        [
+          55.658,
+          -11.564
+        ],
+        [
+          54.648,
+          -6.154
+        ],
+        [
+          45.387,
+          17.935
+        ],
+        [
+          31.814,
+          47.891
+        ],
+        [
+          28.49,
+          52.032
+        ],
+        [
+          23.264,
+          55.25
+        ],
+        [
+          -2.894,
+          64.79
+        ],
+        [
+          -8.914,
+          66.704
+        ],
+        [
+          -38.89,
+          73.038
+        ],
+        [
+          -47.091,
+          74.419
+        ],
+        [
+          -52.47,
+          72.905
+        ]
       ],
-      "modelHeight": 0,
-      "basis": "Provisional visible moat plane Y0 and bailey floor Y4.4. Lake elevation, shore contact and terrain attachment are unverified."
+      "basis": "Convex mapped castle/island/entrance envelope removes coarse host terrain beneath the authored island floor and connecting arches. Host lake polygons remain independent; detailed castle surface substitutes for removed ground while visible, restored on eviction."
     },
-    "note": "Exact-QID castle relation6941053, current component footprints, Gloriette court, mapped gatehouse route and island retain original attributed controls and native East/South heading0. Original New Castle/octagonal turrets, hollow Gloriette/bell tower, covered bridge with two open pointed arches, Maidens Tower/bath arches, southwest gatehouse, low curtain and entrance bridge. Metric sections and heights are photographic estimates. Detached Fairfax Courtyard, service buildings, parkland, moat/terrain, interiors and full outer barbican archaeology excluded or separate. Inactive pending actual-site water/shore datum, terrain and exterior review; footprint replacement off."
+    "minLevel": 13,
+    "status": "preview",
+    "source": "https://www.openstreetmap.org/relation/6941053",
+    "note": "Native +X East,+Z South and heading0 retain attributed castle relation6941053, component footprints, island and approach. Absolute base56.28m ODN uses the public Environment Agency DTM flat lake surface; current uniform bailey62.28m sits near the mapped path median62.245m. Floor, arch sections and current water level remain declared reconstruction. Host water/terrain must match ODN; no tidal sea-level assumption. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
   },
-  "review": "Inactive geographic draft. Attribution, coordinate arithmetic and all-level bounds verified. Actual moat/shore attachment, terrain, facade orientation and current architecture remain pending."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

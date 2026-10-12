@@ -1,7 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0227_first_canadian_place",
-  "placementHash": "sha256:f52238620eebc0c68607feded02deaedd7a7db2606323e9311ce17a1cffaa693",
+  "inputHash": "sha256:f0b03c5fec8bd2697193882e858cdb3fc28d6da2f55ce947ef503cd86fc1b50a",
+  "placementHash": "sha256:a35952029ba8eacbc93e38bafcac97c70b70a35bef03fedb7dcba615ae295ebf",
   "entry": {
     "id": "next1000.n0227",
     "title": "First Canadian Place",
@@ -18,11 +19,11 @@
       "wikidata": "Q1052475",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
     "minLevel": 11,
     "status": "preview",
-    "source": "https://www.openstreetmap.org/way/27767627",
-    "note": "Exact-QID tower footprint; independently inferred office rectangle is not stretched to the map. Signed entrance/podium registration and real street slope remain pending. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-79.3834,43.64805,-79.3808,43.6502",
+    "note": "Fresh raw Q1052475 way 27767627 matches the independently preserved ground outline within 0.002 m projection rounding. Anchor [-79.381691573,43.648765146] and heading 0.277301287909 remain fixed: native +X ENE at 74.112 degrees and +Z SSE at 164.112 degrees. Actually inspected owner north-annotated level-27 plan supports the four corner recesses and independently inferred 190 ft by 180 ft office envelope. The original photographer labels the 355 m north mast and supplies a view from the geographically southwest CN Tower; that actual photograph shows the tall open northern lattice and shorter white-topped southern mast, signing the north/south rooftop allocation independently of the map rectangle. The model places those at [-7,-19] and [-7,19], with the shorter center mast [7,0]. Exact mast offsets and secondary tip height remain reconstructed. Street approaches and pier spacing are reconstructed within the tower envelope, not a surveyed entrance inventory. The fresh map also includes wider office outlines 61429747 and 366222382, but neither labels a complete measured FCP retail podium: one has layer 5 and the other an explicit subdivision warning. Those wider site masses are excluded from this tower asset rather than stretching the tower to them. Mapped 292 m is retained separately from registry architecture 298.1 m, tip 355 m and highest occupied floor 287.1 m; body parapet 289.9 m is the photographer working datum. Y0 is approximate entrance grade, without surveyed pavement slope. No footprint replacement. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

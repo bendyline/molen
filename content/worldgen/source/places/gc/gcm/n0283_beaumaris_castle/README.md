@@ -17,11 +17,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-6,071 triangles; 15,561 vertices; 4 material groups; 635,876 bytes. Native bounds: -59.973, 0.000, -77.918 to 56.527, 17.600, 72.900. Source hash: `sha256:1da3b3af8ac20f9955c4e4ed7c555649bc9ff3fce42be9f3bed9c322dcc1cad6`.
+6,071 triangles; 18,213 vertices; 4 material groups; 731,364 bytes. Native bounds: -59.973, -2.160, -77.918 to 56.527, 19.200, 72.900. Source hash: `sha256:c7dfda06edfd13c6729ae8f422b60a2f3e877a8c1adb50ee8e5f4f2ad5b4ae50`.
 
-{"up":"+Y","longitudinal":"+Z toward the sea gate and dock","lateral":"+X across the inner ward toward the chapel tower","origin":"Cached outer-castle rectangle center;provisional flat ground datumY0,ward surfaceY0.6"}
+{"up":"+Y","longitudinal":"+Z toward the sea gate and dock","lateral":"+X across the inner ward toward the chapel tower","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Approximate mapped-plan exterior. Ground and heights estimated;heading toward mapped dock. Inactive until whole-site/terrain review.
+The inspected aerial picture confirms roofless concentric wards, six squat inner towers, twin-D gatehouses, lower outer circuit and partial moat. Standard viewer PMTiles and the retained outline set approximate location, scale and sea-gate/dock orientation. A reconstructed1.6m working rise clears coarse ground around the castle; bounded wall/tower bottoms extend beneath sampled terrain. Moat/dock blue surfaces remain an approximate visual interpretation, with no terrain cutout or water simulation. Anchor -4.089706701,53.26470434; heading 0.26314714676; standard PMTiles datum 7.4077225530211805m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -29,14 +29,12 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0283` (
 
 ## Pending work
 
-- Approximate current roofless exterior study. Cached OSM outer outline and primary scaled plan inform controls,but internal tower centers,gate bodies,wall thicknesses and all elevations are inferred rather than surveyed.
-- Y0 flat authoring datum and17.6m highest northern stair turret are estimates. No sampled terrain or measured anchor elevation. Ground contact and actual street/shore elevation need review.
-- Inner towers and south gate remain squat;lost roofs,unbuilt upper stories and dashed buried walls are not reconstructed as complete medieval buildings. Selected low footings only;no complete interiors or circulation/collision certification.
-- Moat is approximate opaque blue strips along the north/west defenses and a dock study surface,not a current waterline polygon or engine water simulation. Eastern former moat stays dry. Dock is a surviving wall study;coastline/town walls and demolished mill excluded.
-- Selected broad parapet remnants and genuine gate/hall openings survive;individual arrow loops,stone joints,thin rails,modern access fixtures,trees and visitor center excluded.
-- Shared256² limestone,weathered limestone and wood graphs;ground/water remain untextured. Research images not redistributed;no baked light or AO.
-- Heading0.263147147rad uses the mapped dock to disambiguate the plan axis. Signed orientation,whole-site fit,moat overlap,temporal state and footprint replacement remain pending. Inactive draft,replaceFootprint=false.
-- Synthetic English-terrace review context is not the real Beaumaris shore;physical laptop/phone timing and continuous-motion LOD behavior remain unmeasured.
+- Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Original detailed architectural master/recipe preserved; derivative fits working wards and bounded foundations.
+- Roofless squat towers, twin-D gatehouses, five north-hall openings, lower outer ring, sea gate and low unfinished foundations retain identity. Fine openings and wall/tower dimensions reconstructed.
+- Moat is an approximate opaque surface on partial strips and dock study; no exact present waterline or engine water simulation, no terrain cutout. Eastern former moat stays dry.
+- Lost roofs/unbuilt stories, coast/town walls, demolished mill, trees, visitor center, modern fixtures and interiors excluded. Footprint replacement stays off.
+- Three common material graphs and local grass/water color slot; zero embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

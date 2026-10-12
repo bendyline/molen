@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0012_kazarma_mycenaean_bridge",
-  "inputHash": "sha256:c46f4ec6ee918f4e327cd6abfe38a520da348cc7f1287467201d4dc319242e1a",
-  "placementHash": "sha256:c236de918fe713c53a9b44655fece2f12d3ccd76db995a791b82d36f254b2e8a",
+  "inputHash": "sha256:c39217765c6ce33ddfbdb198f71512bd0cc9729750fdb2a0709b24c01160a992",
+  "placementHash": "sha256:ab19c5cd428f82dbccd2e7b3ff688e3fe353a6ec3ba52a30a0c94ee3a12abe67",
   "entry": {
     "id": "next1000.n0012",
     "title": "Kazarma Mycenaean Bridge",
@@ -19,11 +19,40 @@
       "wikidata": "Q254087",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -1.05,
+          -3
+        ],
+        [
+          0.85,
+          -3
+        ],
+        [
+          0.85,
+          3
+        ],
+        [
+          -1.05,
+          3
+        ]
+      ],
+      "basis": "Corbelled passage only; buried22m retaining-wing bases remain occluded by host banks."
+    },
+    "terrainReference": {
+      "anchor": [
+        22.937516075210258,
+        37.59354958784614
+      ],
+      "modelHeight": 3.3865278982487883,
+      "basis": "Original reconstructed road at southwest wing native[-11,0]; host terrain supplies bank height. Published22m extent and photographs inform relative road profile; no absolute terrain datum is assumed."
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/306121794",
-    "note": "Exact mapped bridge path fixes central crossing and signed travel axis. Full retaining wings reconstructed beyond the short mapped crossing; riverbed threshold Y0 requires local terrain agreement. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "ExactQ254087 crossing fixes north-northeast+X and east-southeast+Z. Host ground is sampled at the reconstructed southwest retaining-wing road contact11m from center, modelHeight3.386528; mid-gully DEM height is not assumed to be the threshold. The narrow terrain opening keeps the corbelled tunnel clear. Photographs establish relative bank-road/gully shape; surrounding bank profiles are reconstruction, not an elevation survey. Host terrain resolution can change exposed buried wings. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

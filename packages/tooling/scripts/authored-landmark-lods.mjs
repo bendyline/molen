@@ -109,6 +109,11 @@ import {
   buildSalahSkyline,
 } from '../../worldgen/scripts/salah-citadel-model.mjs';
 import {
+  buildSanjoRuntime,
+  buildSanjoSkyline,
+  sanjoRuntimeSurfaces,
+} from '../../worldgen/scripts/sanjo-ohashi-model.mjs';
+import {
   buildSaoJorgeRuntime,
   buildSaoJorgeSkyline,
   saoJorgeSurfaces,
@@ -441,6 +446,14 @@ const ksiazPalmServiceData = [
   '../../../content/worldgen/source/places/u3/u35/ksiaz_palm_boiler_range/surface-means.json',
 ];
 const recipes = {
+  'molen.worldgen.structure.n0021_sanjo_ohashi_bridge': {
+    build: buildSanjoSkyline,
+    levels: buildSanjoRuntime,
+    surfaces: sanjoRuntimeSurfaces,
+    source: '../../worldgen/scripts/sanjo-ohashi-runtime.mjs',
+    data: '../../worldgen/scripts/bridge-pattern-materials.mjs',
+    errorMeters: 0.8,
+  },
   'molen.worldgen.structure.ksiaz_palm_administration': {
     build: (o) => buildKsiazPalmServiceSkyline(o, 'ksiaz_palm_administration'),
     levels: (o, level) => buildKsiazPalmService(o, 'ksiaz_palm_administration', level),
@@ -1791,6 +1804,17 @@ export async function landmarkLodRecipeHash(id) {
             : ''),
       )
     : baseRecipeHash;
+}
+
+/** Shared surfaces explicitly declared by a browser recipe, including geometry-to-texture patterns. */
+export function authoredSurfaceRefs(id) {
+  return [
+    ...new Set(
+      Object.values(recipes[id]?.surfaces ?? {}).flatMap((s) =>
+        s.graph ? [`matgraph:molen.worldgen.material.${s.graph}`] : [],
+      ),
+    ),
+  ];
 }
 
 export async function authoredSkyline(id) {

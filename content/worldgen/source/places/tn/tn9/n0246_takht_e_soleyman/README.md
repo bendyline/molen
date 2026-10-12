@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Oval stone enclosure with 38 bastions, mapped spring lake, roofless fire sanctuaries, columned western halls, tall broken west-iwan spine, octagonal foundations and the oblique four-column red-stone hall.
+Oval stone enclosure with 38 bastions, mapped spring lake, roofless fire sanctuaries, columned western halls, tall broken west-iwan spine, octagonal foundations and the oblique four-column red-stone hall. Includes the documented modern protective canopy over the red-stone hall.
 
 ## Evidence and reconstruction
 
@@ -22,11 +22,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-817,410 triangles; 1,641,262 vertices; 8 material groups; 68,898,992 bytes. Native bounds: -206.017, 0.000, -163.419 to 204.154, 23.200, 163.807. Source hash: `sha256:41b6f6084c0178b38b404cefe961b44af4931cfea734ba1b0ac5c6ea266f5901`.
+62,331 triangles; 128,587 vertices; 6 material groups; 5,380,860 bytes. Native bounds: -205.014, -4.800, -162.005 to 203.840, 22.000, 163.061. Source hash: `sha256:426db508128de79e7b0959e9c4e2dea554603424c51a9ac0e82d3313c026300e`.
 
-{"up":"+Y","longitudinal":"+X north","front":"+Z east","origin":"OSM enclosure anchor at provisional plateau contact"}
+{"up":"+Y","longitudinal":"+X north","front":"+Z east","origin":"Fresh mapped enclosure frame;Y0 relative local plateau floor."}
 
-Keep as a draft until terrain, enclosure and lake registration are visually verified in the world viewer.
+Fresh named OSM way/203537193 v7 retains UNESCO ref1077 and English Wikipedia identity; the enclosing way and mapped lake way/314769016 agree with retained geometry within1mm. Native +X is true north and +Z true east, heading π/2. Northern fire sanctuary, west iwan and southern lake establish the signed layout. The nomination explicitly distinguishes old southeast Sasanian and new south Ilkhanid entrances; the southwest marks in Huff’s phase plans are other excavated remains, not a reason to mirror the site. Gate stations, all internal ruins and 38 tower stations remain proportional reconstructions. Model Y0 is the local plateau floor. Occupied wall feet extend4.8m below it. Only the mapped lake has a flat local opaque water surface atY+.025m; no land slab or whole-precinct replacement is used. The host supplies geological terrain; no measured Iranian elevation datum, bathymetry or continuous hydrologic integration is asserted.
 
 ## Reproduce
 
@@ -34,14 +34,15 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0246` (
 
 ## Pending work
 
-- Maximum fidelity remains pending. Interior plans are visually registered approximations, not a photogrammetric survey. Individual wall positions, present erosion profiles and archaeological phase boundaries need measured refinement.
-- Thirty-eight bastions are documented, but the tower stations and surviving heights are reconstructed. The north, old southeast and newer south entrances need local measured alignment.
-- The west iwan is modeled as a broken northern wall with partial vault springing. Its 22 m remaining peak, broken edges, side niches and octagonal foundations are proportional estimates. No complete ancient roof is asserted.
-- Fire-temple corner piers, restored arches, basins and column stumps are interpreted from plans and photographs. Exact restoration dates and current condition are unverified; temporary scaffolding is excluded.
-- Shared stone, travertine, brick and sandstone are used without embedded images. The spring uses local PBR color, without bathymetry or a bespoke water shader. Small stones and weathering are procedural details.
-- The plateau slab is provisional. Full geological mound, distant Zendan/Belqeis sites, surrounding village and modern visitor structures are outside this asset. Terrain fit and hydrology remain pending.
+- Original detailed817410-triangle/68898992-byte master remains exactly reproducible atsha256:41b6f6084c0178b38b404cefe961b44af4931cfea734ba1b0ac5c6ea266f5901 from takht-e-soleyman-model.mjs#takhtStudy.build. Reviewed geometry is a separate medium-fi ruin reconstruction with no filled land plinth.
+- Fresh named OSM way/203537193 v7 retains UNESCO ref1077 and English Wikipedia identity; the enclosing way and mapped lake way/314769016 agree with retained geometry within1mm. Native +X is true north and +Z true east, heading π/2. Northern fire sanctuary, west iwan and southern lake establish the signed layout. The nomination explicitly distinguishes old southeast Sasanian and new south Ilkhanid entrances; the southwest marks in Huff’s phase plans are other excavated remains, not a reason to mirror the site. Gate stations, all internal ruins and 38 tower stations remain proportional reconstructions. Model Y0 is the local plateau floor. Occupied wall feet extend4.8m below it. Only the mapped lake has a flat local opaque water surface atY+.025m; no land slab or whole-precinct replacement is used. The host supplies geological terrain; no measured Iranian elevation datum, bathymetry or continuous hydrologic integration is asserted.
+- The large northern court, two distinct fire-temple groups, rectangular and circular hall pillars, cross-shaped cells, tall broken north spine of the western iwan and two octagonal foundations are retained. Published archaeological phase plans guide relative positions; no exact internal survey, modern erosion profile or phase-complete reconstruction is claimed.
+- The iwan peak is a22m proportional estimate above the local plateau; surviving temple-wall heights, all tower heights and gate dimensions are approximate. Ruins remain roofless except interpreted restoration arches and vault springing. Scaffolding, protective railings and temporary covers are omitted.
+- The red-stone four-column hall retains its20.5m side and oblique plan. A modern metal protective canopy is included from the nomination slide list and Stefan Bschorer’s2014 photograph; its26.4m span,5.5m ridge and post positions are estimates, and its exact current condition is not verified.
+- Five common material graphs provide limestone, travertine, brick, sandstone and painted metal, plus opaque locally colored water. Carved stone and dark recesses share limestone with vertex tints. No embedded photos, individual stone geometry at every course, ancient decoration or hand-copied bitmap textures.
+- Geological plateau and terrain slopes, absolute elevation datum, lake bathymetry, springs and channel water continuity are host-layer responsibilities. No numeric site DTM or real-terrain-fit capture was obtained. Synthetic review stages prove local geometry/contact only. Surrounding town,Zendan/Belqeis and modern ticket buildings are outside scope. Physical phone/laptop measurements remain pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

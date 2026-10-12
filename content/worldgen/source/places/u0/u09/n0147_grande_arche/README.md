@@ -15,7 +15,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-22,776 triangles; 54,576 vertices; 4 material groups; 2,240,860 bytes. Native bounds: -53.570, 0.000, -56.025 to 53.570, 111.728, 56.025. Source hash: `sha256:d959b6b13fd64328d83eaec9c0dcdbd2c5ebad5ad983541af6f9b2c4e795f229`.
+23,716 triangles; 56,592 vertices; 4 material groups; 2,324,716 bytes. Native bounds: -53.570, 0.000, -56.040 to 53.570, 111.728, 56.040. Source hash: `sha256:f658050a2adce167684b6623b9b4e9d9ccd3187728f727b44c7129369136ad9a`.
 
 {"up":"+Y","longitudinal":"+Z along the published 112 m depth","front":"+Z toward the southeast historic axis","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
@@ -30,4 +30,4 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0147` (
 - Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
 - Cloud membrane shape, opening dimensions, stair count and elevator car elevations are exterior approximations. The internal mural is not reproduced.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

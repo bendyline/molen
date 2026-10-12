@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0233_china_world_trade_center_tower_iii",
-  "inputHash": "sha256:f620da4845249661dcab44e28220923bf9fd0aaf2fcf20b0451519b60b5b7143",
-  "captureReportHash": "sha256:6918d9b81b410be72eb95ee22012b70d39a52700ec6b6e30e257a11a8aed9270",
+  "reviewedOn": "2026-10-10",
+  "inputHash": "sha256:1f5b05f2cef9438252385ba590a7df4fd934e1133d907abe0cc06eb83b7d8996",
+  "sourceHash": "sha256:db1ab9f866d7c192434286c2c41ca109d20a32282a0d05fb33e05e5205966b4d",
+  "runtimeHash": "sha256:80ae79f30b6c9e08431f8c41aaf0ea6a4cae6822d235ab7848980a1172e491dc",
+  "captureReportHash": "sha256:188de089b1ee1c157add22bf0295b0abbfac13ae4f4e091256d533e9c2ab91ab",
   "visualReview": {
     "status": "passed",
-    "scope": "Current render integrity only; maximum exterior fidelity and geographic fit remain pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -22,13 +24,20 @@
       "shots/office-entrance.png",
       "shots/crown-lattice.png",
       "shots/roof-helipad.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/whole-reviewed-china-world.png",
+      "shots/alternating-fins-and-returns.png",
+      "shots/east-clear-canopy-and-vestibules.png",
+      "shots/west-office-entry.png",
+      "shots/open-crown-and-helipad.png",
+      "shots/roof-open-top.png",
+      "shots/mapped-individual-tower.png"
     ],
-    "notes": "Inspected all 16 portable frames. Taper, alternating curtain-wall slopes, projecting glass fins and brackets, service belts, recessed corners, diamond base shading, crown lattice, canopies and vestibules render. Initial panels faced inward; corrected their winding and added closed returns at recessed corners, then regenerated all captures. Rooftop equipment, vestibules and finer facade dimensions remain reconstructions."
+    "notes": "Actually inspected all 90 final images: 23 portable, 23 shared, 44 medium-fi, after the roof support repair. Four complete turntables and dedicated whole views show the taper and separate open four-sided crown. Near samples show alternating curtain slopes, 600 mm glass fins, continuous chamfer recess returns, two service belts, full-height lobby diamonds, clear glazed canopies and four illustrative open-sector revolving drums. Top views show the centered schematic helipad, circle/H marking and gaps between roof platform and outer crown; slab and marking winding is upward. Added four steel supports connect the platform to the service-core roof, with independent ray tests, rather than leaving it unsupported. Thin fins and facade lines alias in far/portable views and their close back faces read pale through BLEND; no inspected principal wall, corner return or crown mass is missing. Exact drum height/positions and entry widths are reconstructed from photos."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:24df4d755ab0dfdd0209f00dacbbb4dfbef017b98dae5b4f7950a35ee79e4757",
+    "captureReportHash": "sha256:e3ec7364d24b67b4ce1a7767429c3e623287554df9906fdd03bf1d9cdd4c2086",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -45,79 +54,278 @@
       "shots/shared/crown-lattice.png",
       "shots/shared/roof-helipad.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/whole-reviewed-china-world.png",
+      "shots/shared/alternating-fins-and-returns.png",
+      "shots/shared/east-clear-canopy-and-vestibules.png",
+      "shots/shared/west-office-entry.png",
+      "shots/shared/open-crown-and-helipad.png",
+      "shots/shared/roof-open-top.png",
+      "shots/shared/mapped-individual-tower.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 16 world-viewer frames including the map-outline view. Four canonical metal/concrete/stone graphs each load once. Glazing uses local PBR; no embedded images. Viewer eviction leaves zero live model geometries. Fine facade lines show distant aliasing; geometric continuity and material loading are intact."
+    "notes": "Three canonical reusable graphs supply stainless metal frames/fin edges/canopies/crown, plain concrete slabs/platform and granite ground pads/lobby core. Opaque blue glazing, 52-percent clear lobby/fin/crown/door/canopy glazing and separate recess tint yield six near groups, with one BLEND group. Actual world-viewer frames show subdued silver metal, transparent fin/canopy panels and light granite ground contact. Original master retains four graphs including painted metal; current source/import/four derivatives embed zero images. Each shared graph is read once and viewer eviction disposes all live geometry. Skyline combines canonical surface means into one opaque draw; district uses four groups. Reference photography is not a runtime texture."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c8522d235248db5cc634cd3b2d4daecaf8ef6f8ec1c65b1f75ced496a6994cbc",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/alternating-curtain-wall.png",
+      "medium-fi/glass-fin-brackets.png",
+      "medium-fi/recessed-corner.png",
+      "medium-fi/service-belt.png",
+      "medium-fi/base-diamonds.png",
+      "medium-fi/hotel-canopy.png",
+      "medium-fi/hotel-vestibule.png",
+      "medium-fi/office-entrance.png",
+      "medium-fi/crown-lattice.png",
+      "medium-fi/roof-helipad.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-reviewed-china-world.png",
+      "medium-fi/alternating-fins-and-returns.png",
+      "medium-fi/east-clear-canopy-and-vestibules.png",
+      "medium-fi/west-office-entry.png",
+      "medium-fi/open-crown-and-helipad.png",
+      "medium-fi/roof-open-top.png",
+      "medium-fi/mapped-individual-tower.png",
+      "medium-fi/whole-china-world-skyline.png",
+      "medium-fi/whole-china-world-district.png",
+      "medium-fi/whole-china-world-street.png",
+      "medium-fi/whole-china-world-closeup.png",
+      "medium-fi/alternating-fins-and-returns.png",
+      "medium-fi/east-clear-canopy-and-vestibules.png",
+      "medium-fi/west-office-entry.png",
+      "medium-fi/open-crown-and-helipad.png",
+      "medium-fi/roof-open-top.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected all 44 current noon/late economy/high, feature, whole-level and transition views. Skyline keeps taper/chamfers, color service bands, simplified diamonds/canopy and open framed crown in one opaque draw, with flat crown members and opaque screens. District groups four floor intervals and retains coarse crown fins/framing. Street retains all working facade rows with coarser 10/7 fin spacing and 8 lobby diamonds per side; close has 36/32 fins and 18/16 diamonds, flat metal leading strips, finer canopy ribs and clear crown screens. Dedicated whole-level views show every complete level despite automatic context/silhouette cameras cropping the upper tower. Near diamond/crown/canopy detailing reads more clearly; fine strips and shadows alias. Crown and four-sided envelope persist across transitions; skyline crown looks more solid because of opaque screens. Synthetic cottage context and flat geographic ground do not certify Beijing terrain or adjacent site grade."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:c2a2ed4cb7d52a0039d21ffbba9923db0efb85635361d5be0bab464b06f493aa",
-    "notes": "Exact Q2006129 match to OSM way 116944490 supplies tower center and rectangular plan axis. Cached yaw maps native -Z east, supporting the SOM hotel entrance description; opposite office entry faces west. The flat-terrain fixture confirms these sides and tower-envelope visualization, but actual canopy extent, site terrain and adjoining structures are not verified."
+    "status": "passed",
+    "placementHash": "sha256:3bcc2980e1f062240447c8652bceb8477828bd66f4c54b970f209a756d49fab8",
+    "mapFrameHash": "sha256:f49c0a8644e8ffbfc8624f409567d7d564771c26158d7ca0820d137f6a069911",
+    "notes": "Fresh exact Q2006129 way 116944490 independently confirms the individual 330 m/74-level China World Tower A rectangular footprint, unchanged from the cached 58.465 by 52.803 m ring within 0.002 m rounding. Retain anchor [116.45236545,39.91097545] and heading -1.568897708342: native +X north bearing 359.89 degrees, -Z east bearing 89.89 degrees for the hotel, and +Z west bearing 269.89 degrees for offices. SOM explicitly documents office entrance west and hotel entrance east, supplying the signed cardinal control that the rectangle alone lacks. Primary architect whole/base/fin/canopy photographs and facade-consultant pages 10/11 were actually inspected. Authored body half dimensions 28.65/25.8 m sit about 0.6 m inside the exact mapped rectangle; chamfers/recesses simplify its ring and projecting diamond fins/canopies intentionally extend beyond it. Entrance sides are documented but centered offsets, vestibule positions, widths and canopy extents are illustrative photo reconstructions, not surveyed. Separate ballroom/retail annexes, mall, road skywalk, fountains, Tower B and actual terrain/plaza grade remain outside this individual tower. Flat geographic capture certifies relative footprint and facing only. Actually inspected the final north-up placement image: exact magenta tower rectangle bounds the body with the stated minor inset; diamond fins project slightly outside and separately modeled canopies point east/right hotel and west/left office. The individual tower is registered separately from all annexes. Signed facing uses the architect description, not a rectangle-only guess; centered entrance/vestibule offsets remain explicitly approximate. This is relative placement review, with actual plaza grade unmeasured."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Original chinaWorldTowerStudy.encodeAssembly remains byte-reconstitutable: 40771324 bytes, sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3, 938584 expanded /485508 stored triangles, five mesh parts/seven placements, seven groups/four shared graphs and no embedded images. The new flattened browser source and four authored levels preserve taper, recessed chamfer returns, alternating-floor curtain wall, 600 mm glass fins at street/close, two service belts, full-height lobby diamonds, four-sided tall crown with open corner/top gaps, schematic roof plant/helipad and east hotel/west office canopies with four illustrative revolving drums. Close retains narrow flat metal fin leading edges and finer curtain rhythm instead of hundreds of thousands of solid facade prisms; street coarsens fin/diamond spacing; district groups floor rows and uses opaque crown screens; skyline keeps silhouette/service color bands, coarse diamonds and open framed crown in one opaque draw. Three canonical shared graphs (stainless metal, concrete and granite) plus opaque glazing, 52-percent clear glazing and recess palette yield six near groups with no bitmap copies. Published 74/80/81 floor labels describe different schedules and remain distinct; 70 equal tower intervals are a working facade division, not a surveyed floor schedule. Intermediate taper dimensions, alternating-depth amplitudes, service levels 122.6/134.9 and 238.8/251.3 m, 294 m crown base, braces, fine bay counts, canopy heights and dimensions, drums, generic lobby fitout, rooftop equipment and 327 m helipad datum are inferred. Helipad existence follows SOM opening report; precise platform datum and roof equipment layout are unaudited. Glass frit, LED strips, fountain courts, annexes, interiors and structural bolts are not modeled. Actual phone/laptop dense-city measurements remain pending. Source recipe additionally supplies four schematic steel platform supports tied to the core roof. Fresh facade PDF pages 10/11 and architect photographs establish the thin glass fin and alternating curtain-wall systems; building program totals remain distinguished rather than forcing one number into a false floor survey."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "SOM exterior/base/corner photos and Meinhardt facade brochure pages 10–11. Taper dimensions, bay counts, intermediate heights, crown braces, entrance widths and roof equipment are inferred, not surveyed. Geographic fit and maximum exterior fidelity remain pending. Cardinal entrance sides are documented; exact facade yaw, ground contact and canopy extent need real-site review. Published floor totals conflict (74, 80, 81); the model does not claim a surveyed floor schedule. Intermediate floor divisions, taper, crown base and service belts are reconstructions. Crown braces, helipad, roof plant, revolving vestibules, canopy structure and lobby details follow visible forms but lack construction drawings. The large adjoining shopping mall, ballroom annex, skywalks, landscaped water courts and neighboring Tower B are separate structures and remain outside this individual tower asset. Fins use transparent local PBR with modeled metal edges; their exact frit pattern and programmable night lighting remain unauthored. No reference photography or third-party mesh is embedded."
+    "notes": "SOM exterior/base/corner photos and Meinhardt facade brochure pages 10–11. Taper dimensions, bay counts, intermediate heights, crown braces, entrance widths and roof equipment are inferred, not surveyed. Geographic fit and maximum exterior fidelity remain pending. Cardinal entrance sides are documented; exact facade yaw, ground contact and canopy extent need real-site review. Published floor totals conflict (74, 80, 81); the model does not claim a surveyed floor schedule. Intermediate floor divisions, taper, crown base and service belts are reconstructions. Crown braces, helipad, roof plant, revolving vestibules, canopy structure and lobby details follow visible forms but lack construction drawings. The large adjoining shopping mall, ballroom annex, skywalks, landscaped water courts and neighboring Tower B are separate structures and remain outside this individual tower asset. Fins use transparent local PBR with modeled metal edges; their exact frit pattern and programmable night lighting remain unauthored. No reference photography or third-party mesh is embedded.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 28
-    },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 28
-    },
-    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by the validator and reported as information. Independent transform/count/bounds checks and Molen renders cover instancing; other information concerns unused fallback attributes.",
-    "expandedTriangles": 938584,
-    "uniqueMeshTriangles": 485508,
-    "uniquePositionVertices": 970376,
-    "uniqueMeshes": 5,
-    "instances": 7,
-    "materials": 7,
-    "sharedGraphs": 4,
-    "embeddedImages": 0
-  },
-  "runtimeLodReview": {
-    "status": "passed",
-    "scope": "Visual integrity and local byte/layout checks; physical-device measurements pending.",
-    "notes": "Inspected master and all four runtime levels side by side. The authored skyline preserves taper, corner recesses, canopy and open crown framing in 39,800 bytes. District, street and closeup are 2.03, 2.74 and 9.66 MB. The 40.77 MB detailed master is preserved separately. Skyline plus district total less than 3 MB. Thin repeated fins alias at distance; device frame time is not measured.",
-    "levels": [
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wx/wx4/n0233_china_world_trade_center_tower_iii/models/source.glb",
+        "hash": "sha256:db1ab9f866d7c192434286c2c41ca109d20a32282a0d05fb33e05e5205966b4d",
+        "bytes": 4727692,
+        "triangles": 56000,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -30.46546745300293,
+          0,
+          -38.900001525878906
+        ],
+        "max": [
+          30.46546745300293,
+          330,
+          33.79999923706055
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wx/wx4/n0233_china_world_trade_center_tower_iii/model.glb",
+        "hash": "sha256:80ae79f30b6c9e08431f8c41aaf0ea6a4cae6822d235ab7848980a1172e491dc",
+        "bytes": 4727156,
+        "triangles": 56000,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -30.46546745300293,
+          0,
+          -38.900001525878906
+        ],
+        "max": [
+          30.46546745300293,
+          330,
+          33.79999923706055
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
       {
         "name": "skyline",
-        "hash": "sha256:0f5b20ba8d74aefbd95db88046ec5fcaf6cff1da8af55307d0f16bb1a6f86123",
-        "bytes": 39800,
-        "triangles": 496,
+        "path": "content/worldgen/assets/places/wx/wx4/n0233_china_world_trade_center_tower_iii/model.skyline.glb",
+        "hash": "sha256:610a0c22e59486da8ebaca2a1502a55bb62e83c7d82897ebdfa3f9098da98a30",
+        "bytes": 73620,
+        "triangles": 924,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -30.350000381469727,
+          0,
+          -38.099998474121094
+        ],
+        "max": [
+          30.350000381469727,
+          329.8038330078125,
+          33
+        ],
         "errors": 0,
         "warnings": 0
       },
       {
         "name": "district",
-        "hash": "sha256:f84a7d03b6440caf9d7dfe9f321a6358d41d3015141d6743d8c82dc5775f2da7",
-        "bytes": 2034396,
-        "triangles": 24449,
+        "path": "content/worldgen/assets/places/wx/wx4/n0233_china_world_trade_center_tower_iii/model.district.glb",
+        "hash": "sha256:e4a40704daba5f668e46ce2196a1cffc5befec2e7f3a2a3d8398e3633c505a10",
+        "bytes": 222432,
+        "triangles": 3160,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -30.350000381469727,
+          0,
+          -38.099998474121094
+        ],
+        "max": [
+          30.350000381469727,
+          330,
+          33
+        ],
         "errors": 0,
         "warnings": 0
       },
       {
         "name": "street",
-        "hash": "sha256:dfc001d0c2dba59414821abcf7582f46a0b6c0ca6c8a6087720b7628928c5076",
-        "bytes": 2736544,
-        "triangles": 31176,
+        "path": "content/worldgen/assets/places/wx/wx4/n0233_china_world_trade_center_tower_iii/model.street.glb",
+        "hash": "sha256:a652f8c793105daaeb92923d3d84dac37203c1d8d8a0a98b48f16d52d3013f13",
+        "bytes": 1057516,
+        "triangles": 15836,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -30.466846466064453,
+          0,
+          -38.900001525878906
+        ],
+        "max": [
+          30.466846466064453,
+          330,
+          33.79999923706055
+        ],
         "errors": 0,
         "warnings": 0
       },
       {
         "name": "closeup",
-        "hash": "sha256:18e7454f768ef58ce5cd01157a8ac6b88488e070069a4218053838554a7cea73",
-        "bytes": 9656612,
-        "triangles": 96741,
+        "path": "content/worldgen/assets/places/wx/wx4/n0233_china_world_trade_center_tower_iii/model.closeup.glb",
+        "hash": "sha256:4150a5b41de90bda813c579a9ac80c60eae40e39f2736c0937a2822721cf00d3",
+        "bytes": 3692404,
+        "triangles": 56000,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -30.46546745300293,
+          0,
+          -38.900001525878906
+        ],
+        "max": [
+          30.46546745300293,
+          330,
+          33.79999923706055
+        ],
         "errors": 0,
         "warnings": 0
       }
-    ]
-  }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/china-world-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: original 40771324-byte instanced master is reproduced with its exact recorded hash, changed-ID generator check and source/import hashes agree, and full-precision exact-QID footprint reprojection matches cached rounding within 0.002 m. Independent yaw sign checks confirm east hotel/west office. Rays at three heights on all four sides check outward winding and envelope errors; downward rays verify the open crown beside equipment, upward slab/roof faces, ground contact and both canopy levels. A support ray catches unsupported roof platforms. Near samples verify 600 mm same-height glass-fin projection, clear-alpha binding, open drum sectors and absence of an opaque drum pane. All browser levels rebuild byte-identically inside triangle/download/draw budgets with independent 12-byte POSITION/NORMAL uploads. Six Khronos validations have zero errors/warnings and zero images; strict medium-fi findings are empty. These sampled checks do not certify survey accuracy or exhaustive topology."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:da59a8b8025d6e13adb41451c0f2ee00a9d8b71a4aba08b8fe59e4b730e5fac2",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:610a0c22e59486da8ebaca2a1502a55bb62e83c7d82897ebdfa3f9098da98a30",
+        "bytes": 73620,
+        "gzipBytes": 12274,
+        "triangles": 924,
+        "cpuBytes": 72216,
+        "gpuBytes": 72216,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:e4a40704daba5f668e46ce2196a1cffc5befec2e7f3a2a3d8398e3633c505a10",
+        "bytes": 222432,
+        "gzipBytes": 45285,
+        "triangles": 3160,
+        "cpuBytes": 217680,
+        "gpuBytes": 217680,
+        "errorMeters": 0.75,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:a652f8c793105daaeb92923d3d84dac37203c1d8d8a0a98b48f16d52d3013f13",
+        "bytes": 1057516,
+        "gzipBytes": 207905,
+        "triangles": 15836,
+        "cpuBytes": 1050420,
+        "gpuBytes": 1050420,
+        "errorMeters": 0.3,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:4150a5b41de90bda813c579a9ac80c60eae40e39f2736c0937a2822721cf00d3",
+        "bytes": 3692404,
+        "gzipBytes": 742307,
+        "triangles": 56000,
+        "cpuBytes": 3685260,
+        "gpuBytes": 3685260,
+        "errorMeters": 0.15,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 296052,
+    "notes": "skyline: 924 triangles /73620 bytes /1 groups; district: 3160 triangles /222432 bytes /4 groups; street: 15836 triangles /1057516 bytes /6 groups; closeup: 56000 triangles /3692404 bytes /6 groups. Initial skyline/district 296052 bytes, within 3 MB phone/6 MB laptop targets. Reviewed source 4727692 bytes /56000 triangles; import 4727156 bytes. Original 938584 expanded-triangle detailed master remains preserved through its unchanged recipe and verified hash. Physical device and dense-city timings remain unmeasured."
+  },
+  "limitations": [
+    "Original chinaWorldTowerStudy.encodeAssembly remains byte-reconstitutable: 40771324 bytes, sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3, 938584 expanded /485508 stored triangles, five mesh parts/seven placements, seven groups/four shared graphs and no embedded images. The new flattened browser source and four authored levels preserve taper, recessed chamfer returns, alternating-floor curtain wall, 600 mm glass fins at street/close, two service belts, full-height lobby diamonds, four-sided tall crown with open corner/top gaps, schematic roof plant/helipad and east hotel/west office canopies with four illustrative revolving drums. Close retains narrow flat metal fin leading edges and finer curtain rhythm instead of hundreds of thousands of solid facade prisms; street coarsens fin/diamond spacing; district groups floor rows and uses opaque crown screens; skyline keeps silhouette/service color bands, coarse diamonds and open framed crown in one opaque draw. Three canonical shared graphs (stainless metal, concrete and granite) plus opaque glazing, 52-percent clear glazing and recess palette yield six near groups with no bitmap copies. Published 74/80/81 floor labels describe different schedules and remain distinct; 70 equal tower intervals are a working facade division, not a surveyed floor schedule. Intermediate taper dimensions, alternating-depth amplitudes, service levels 122.6/134.9 and 238.8/251.3 m, 294 m crown base, braces, fine bay counts, canopy heights and dimensions, drums, generic lobby fitout, rooftop equipment and 327 m helipad datum are inferred. Helipad existence follows SOM opening report; precise platform datum and roof equipment layout are unaudited. Glass frit, LED strips, fountain courts, annexes, interiors and structural bolts are not modeled. Actual phone/laptop dense-city measurements remain pending."
+  ]
 }

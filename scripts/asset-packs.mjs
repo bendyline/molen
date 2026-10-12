@@ -533,6 +533,8 @@ export async function fetchAssets({
   fetchImpl = fetch,
   log = console.log,
 } = {}) {
+  const { fetchReviews } = await import('./review-packs.mjs');
+  await fetchReviews({ root, offline, fetchImpl, log });
   const current = await assetInputs(root);
   const stamp = await readStamp(root);
   if (!force && stamp?.key === current.key && prefix.startsWith(stamp.prefix)) {

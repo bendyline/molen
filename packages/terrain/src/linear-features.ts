@@ -81,8 +81,12 @@ export class TerrainSurfaceMeshBuilder {
   ): void {
     const entry = this.attributes.get(name) ?? { size, values: [] };
     while (entry.values.length < start * size) entry.values.push(0);
-    for (let i = start; i < this.vertexCount; i++)
-      entry.values.push(...sample(this.positions[i * 3]!, this.positions[i * 3 + 2]!));
+    for (let i = start; i < this.vertexCount; i++) {
+      const x = this.positions[i * 3],
+        z = this.positions[i * 3 + 2];
+      if (x === undefined || z === undefined) throw new Error('Missing terrain surface vertex');
+      entry.values.push(...sample(x, z));
+    }
     this.attributes.set(name, entry);
   }
   constructor(readonly context: TerrainPyramidTileLayerContext) {}

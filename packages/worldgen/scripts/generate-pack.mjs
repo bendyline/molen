@@ -15,6 +15,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { architecturalMaterialCatalog } from './architectural-material-catalog.mjs';
+import { bridgePatternDescriptions, bridgePatternGraphs } from './bridge-pattern-materials.mjs';
 import { formatJson } from './format-json.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -1297,6 +1298,11 @@ const MATERIALS = {
     ),
   },
 };
+for (const [name, graph] of Object.entries(bridgePatternGraphs))
+  MATERIALS[name] = {
+    ...graph,
+    doc: bridgePatternDescriptions[name],
+  };
 
 function materialDocument(entry) {
   // A physical response travels with the shared material instead of depending on a wall/roof slot.

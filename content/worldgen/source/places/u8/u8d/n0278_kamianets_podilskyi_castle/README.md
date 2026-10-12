@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-4,182 triangles; 12,234 vertices; 6 material groups; 494,304 bytes. Native bounds: -91.900, 0.000, -62.491 to 96.732, 35.000, 50.586. Source hash: `sha256:564cf387f7ff1641251bf7eda0f9c84e70b04246ab66d7392c3caee6173c9eae`.
+4,182 triangles; 12,546 vertices; 6 material groups; 505,556 bytes. Native bounds: -91.900, -11.932, -62.491 to 96.732, 46.000, 50.586. Source hash: `sha256:0ee9e78fa6f41e462ff89dfd3b9066f07572e98b01aeaf567d52a19ffe5d8229`.
 
-{"up":"+Y","longitudinal":"+X toward northwest end / New West tower; -X toward southeast entry and Papal tower","front":"Northern cone towers and lower gate court at+Z;Papal/southern chain at-Z","origin":"Reference identity coordinate,not surveyed courtyard center; provisional flat courtyard attachmentY=0"}
+{"up":"+Y","longitudinal":"+X toward northwest end / New West tower; -X toward southeast entry and Papal tower","front":"Northern cone towers and lower gate court at+Z;Papal/southern chain at-Z","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Whole mapped boundary includes defenses/approach and is not extruded as a building. Exact old-castle orientation,position,terrain and footprint replacement need in-world review.
+The inspected aerial picture confirms the asymmetric Old Castle tower chain, two tall northern cones with warm crown bands, broad Papal cap, paired open western bastion and lower outer courts. Standard viewer PMTiles and the retained site frame establish approximate reference-anchor placement and northwest/southeast sign. The parent map ring is a broad compound boundary, not an exact tower footprint. A reconstructed11m working court clears coarse western ground; bounded walls/towers extend below sampled terrain. Individual tower centers and elevations remain approximate. Anchor 26.5625,48.67333333; heading 2.356194490192345; standard PMTiles datum 172.23851829222582m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -30,13 +30,12 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0278` (
 
 ## Pending work
 
-- Published historic approximate180m long/50m wide descriptions and traced plan establish hierarchy,not a current metric tower survey. Diagram is scaled anisotropically;individual tower centers,dimensions,heights,roof pitches and facades remain interpretations.
-- All tower heights are inferred;maximum35m is a visual proportion target,not verified measurement. Native reference anchor is not surveyed courtyard center;NW/SE sign is interpreted and exact angle/position remain pending.
-- Historical1928 plan and roof descriptions differ from current restoration. Current municipal photo guides tall conical north roofs,broad Papal cap and open western bastion;fine crown/window details are approximate. No removed1876 Stanislaw gate or destroyed Black tower is recreated.
-- Separate New Castle hornwork,river-level Water tower,canyon terrain,city bridge and adjoining city fortifications excluded. FlatY0 does not represent real levels;outer courts have simplified attachment elevations.
-- Geographic placement,terrain seating and footprint replacement pending;inactive draft,replaceFootprint=false. Synthetic context views are not actual Kamianets map data.
-- No research photo ships as texture. Shared256² graphs supply limestone,brick,lime plaster,shingle and plain wood. Fine stone joints,carved coats of arms,thin rails,wires and interiors omitted under medium-fi.
-- Physical laptop/phone performance and continuous-motion LOD shimmer remain unmeasured.
+- Approximate current Old Castle exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Original architectural recipe/master preserved; independent derivative fits the working court and bounded foundation bottoms.
+- Asymmetric towers, pointed northern roofs, warm crown bands, broad Papal cap, open western bastion, gate corner and outer courts retain identity. Dimensions and tower positions reconstructed.
+- Reference anchor and axis are approximate; whole-site outline does not validate individual tower registration. Footprint replacement remains off.
+- Separate New Castle earthworks, river-level Water tower, canyon, city bridge, removed gates and interiors excluded. Outer court elevations simplified.
+- Five common material graphs and local opaque glass; no embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

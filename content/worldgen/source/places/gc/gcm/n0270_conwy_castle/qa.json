@@ -1,9 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0270_conwy_castle",
-  "sourceHash": "sha256:58cbbd6888f8f94e8e8b7b656f528be093b292e0f059f7a450f97eb907dd9117",
-  "runtimeHash": "sha256:b62b9e3000b65d25225e56af069b0cf1e35288b3e825652f26ba2d2e85f9345d",
-  "captureReportHash": "sha256:f6a1d55bd8eb777997fd5911fd71f6183fc6d2d7da96bd090d56a4704ae0cf12",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:5032243a2954f22e02f22c256d2f3e417a3eb82c33cb0fbe7fe69a73b439499e",
+  "sourceHash": "sha256:844e6ad1da5e7737d2cee1a73060a33471719adcdc1294f5490c8d83a95585a8",
+  "runtimeHash": "sha256:bb60c26a5eb9f6df35e1d59082f95473893cf77f88bed55f6ae75447e4274ad8",
+  "captureReportHash": "sha256:dff450b36bb1ec70eb05ff65183ed4973419e33cefce7ace1ad7d3884a3b9c95",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -19,11 +21,11 @@
       "shots/great-hall-arch.png",
       "shots/castle-plan.png"
     ],
-    "notes": "Inspected all 11 final portable frames. Eight open round towers, four taller eastern stair turrets, faceted southern great-hall range, two open wards, roofless royal rooms and low end barbicans remain legible. Changed triangular hall arches to curved pointed profiles, extended the royal arch into both support walls, cooled the stone palette and moved the great-hall camera. Main tower lobes follow the mapped perimeter; internal walls and most relative elevations are approximations based on the Cadw plan and current operator photographs. No historical roofs or whitewash were reconstructed over the current ruin."
+    "notes": "All49 current views inspected:11 portable,11 shared-material/map placement and27 medium-fi comparisons. Eight open towers, four tall eastern stair turrets, paired roofless wards, low end barbicans and bent south hall match the inspected overhead pictures. Tower centers and enclosure follow the mapped castle frame. Hall openings and arch remain visible; partitioning, battlements and coping details are simplified."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f3c587814c5fa1b4ee5d075969d616e6f4d0220643d8ea321fc1010268f55e44",
+    "captureReportHash": "sha256:717b85b7ddf151f2ff35f2678a7a42eab8e4afe4e780a7206ae9cf0a1fba2638",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -34,13 +36,14 @@
       "shots/shared/east-royal-turrets.png",
       "shots/shared/west-entry.png",
       "shots/shared/great-hall-arch.png",
-      "shots/shared/castle-plan.png"
+      "shots/shared/castle-plan.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 10 final shared-loader views. Limestone, sandstone, slate and wood graphs each load once; local grass tint is the fifth merged group. No embedded or private images. Unloading releases all model geometries. No baked directional lighting, shadows or AO."
+    "notes": "All11 final shared-loader views inspected. Common limestone, sandstone, slate and wood graphs provide reusable masonry and walkway texture; ward grass uses a local foliage tint. Each graph loads once; unload releases model geometry. Skyline uses actual shared linear means in one draw, other tiers use five. Six GLBs contain zero embedded bitmap textures."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d6aea03d2b12867cf7d34716ec8db792bdf3d09022553b273dadaf2c7923f1c0",
+    "captureReportHash": "sha256:d69a654b69e06cb99151dfb849f28caf1698b65777b603bf9ce08a026c0f7336",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -61,22 +64,33 @@
       "medium-fi/west-entry.png",
       "medium-fi/great-hall-arch.png",
       "medium-fi/castle-plan.png",
+      "medium-fi/whole-conwy-skyline.png",
+      "medium-fi/whole-conwy-district.png",
+      "medium-fi/whole-conwy-street.png",
+      "medium-fi/whole-conwy-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all 23 final canonical Earth-rig frames: three distances, noon/late light, Economy/High, untextured silhouette, six architecture views and four same-camera LOD views. Grey masonry, restrained pink sandstone details and dark recessed chapel slate remain coherent beside procedural English terraces. Skyline preserves eight hollow towers, four taller stair turrets and two open wards; distant windows, low barbican turrets, footings and hall arches drop out. Closer tiers add crenellations, surviving arches, openings and selected visitor bridge details. Synthetic flat-ground context does not establish actual rock or approach seating. Continuous-motion shimmer and physical-device performance remain unverified."
+    "notes": "All27 current medium-fi images inspected, including matched tiers and transitions.863-triangle skyline preserves hollow towers, raised stair turrets, open wards and barbicans;3816 district adds merlons and sparse openings;9520 street and11944 close-up add window reveals, hall arch, buttresses and broad coping. All four triangle ceilings pass. PMTiles ground supplies site fit; neighboring English terraces are synthetic diagnostic context."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "OSM way/52467063 supplies the exact Q756830 identity, anchor [-3.82555084,53.280022417], heading 0.07442147105 and 122.293×58.695m plan. East river barbican and west town entrance resolve +X about 4.26 degrees north of east. Most tower centers approximate mapped lobes; northwest tower and internal rooms use the Cadw plan and aerial. Cached Wikidata 30m height lacks a reference and is provisional. Cadw monument heights (27m curtain and 41m towers) are above river, not model-ground elevations. Inferred court and groundModelY=2m are not applied by the inactive draft registrar. Actual bedrock, courtyard, western entry and neighboring bridge contact remain pending. replaceFootprint=false."
+    "status": "passed",
+    "placementHash": "sha256:b1cef82e0b9ddb798ef3cb00c12f6416aa60d7b2afa4ee95b94526de8b9aa335",
+    "mapFrameHash": "sha256:1c391f839e1c20cc4d8986232672bec6243a6c0b17155ba3618f30b5467a9341",
+    "notes": "Two overhead pictures confirm eight open round towers, paired roofless wards and the bent south hall. Standard viewer PMTiles and the cached exact castle outline set placement and east-west orientation. Court3.5m above the working sample clears the coarse rock surface; western town entry and eastern river barbican remain approximate. Anchor -3.82555084,53.280022417; heading 0.07442147105; standard PMTiles datum 8.781932169860132m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Reviewed against docs-src/guide/medium-fi.md. The 11944-triangle source master preserves the present ruin silhouette and plan with five merged groups, four shared 256² graphs and no unique textures. Palette colors decode sRGB to linear; skyline applies the shared-texture mean. Fine masonry, tracery and complete stairs are omitted. Most halls and towers stay roofless. Appearance approval is separate from map/terrain approval."
+    "notes": "Accepted bounded current medium-fi exterior using reference pictures plus standard viewer PMTiles. Court3.5m above the coarse working sample and bounded foundations give approximate terrain seating. Roofless wards, tower voids and surviving hall arch are retained. Copings, openings, internal partitions, stair turrets, western entry and east barbican remain reconstructed. No surveyed threshold or complete rock-contact accuracy, navigable interiors, adjacent bridges, town walls, vegetation or artificial hill is claimed. Physical-device timings and continuous-motion shimmer remain pending."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The 11944-triangle source master preserves the present ruin silhouette and plan with five merged groups, four shared 256² graphs and no unique textures. Palette colors decode sRGB to linear; skyline applies the shared-texture mean. Fine masonry, tracery and complete stairs are omitted. Most halls and towers stay roofless. Appearance approval is separate from map/terrain approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -84,259 +98,197 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/gc/gcm/n0270_conwy_castle/models/source.glb",
-        "hash": "sha256:58cbbd6888f8f94e8e8b7b656f528be093b292e0f059f7a450f97eb907dd9117",
-        "bytes": 1305620,
+        "hash": "sha256:844e6ad1da5e7737d2cee1a73060a33471719adcdc1294f5490c8d83a95585a8",
+        "bytes": 1436532,
         "triangles": 11944,
-        "vertices": 32196,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -60.79999923706055,
-          0,
+          -4.865563869476318,
           -29.479999542236328
         ],
         "max": [
           60.79999923706055,
-          30,
+          31.5,
           29.479999542236328
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.glb",
-        "hash": "sha256:b62b9e3000b65d25225e56af069b0cf1e35288b3e825652f26ba2d2e85f9345d",
-        "bytes": 1305128,
+        "hash": "sha256:bb60c26a5eb9f6df35e1d59082f95473893cf77f88bed55f6ae75447e4274ad8",
+        "bytes": 1436044,
         "triangles": 11944,
-        "vertices": 32196,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -60.79999923706055,
-          0,
+          -4.865563869476318,
           -29.479999542236328
         ],
         "max": [
           60.79999923706055,
-          30,
+          31.5,
           29.479999542236328
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
         "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.skyline.glb",
-        "hash": "sha256:a575a27865680283bf7170d82f306e328d2f4e261f7ed982e66d0d36dc0d087c",
-        "bytes": 74248,
-        "triangles": 927,
-        "vertices": 1869,
+        "hash": "sha256:931d6c621e1b9e7ce50e096b6cb6fd5890d788d11814d2dedd1790cd61f61b77",
+        "bytes": 86664,
+        "triangles": 863,
         "materials": 1,
-        "sharedGraphs": 0,
         "images": 0,
         "min": [
           -60.73423385620117,
-          0,
+          -4.793466091156006,
           -28.61983871459961
         ],
         "max": [
           59.73916244506836,
-          30,
+          31.5,
           28.53275489807129
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
-        "file": "model.district.glb",
         "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.district.glb",
-        "hash": "sha256:015970f0951eee39d2d13f728b89656911dffd7702a08c92d5299b71cc419b32",
-        "bytes": 289256,
+        "hash": "sha256:01ab33363da40587944eca97bca9998636dab8d058e5c7ff1f0b1ade14f9bbe4",
+        "bytes": 325092,
         "triangles": 3816,
-        "vertices": 7264,
         "materials": 4,
-        "sharedGraphs": 3,
         "images": 0,
         "min": [
           -60.79999923706055,
-          0,
+          -4.846452236175537,
           -29.36807632446289
         ],
         "max": [
           60.79999923706055,
-          30,
+          31.5,
           29.36739730834961
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 4
+        "warnings": 0
       },
       {
         "name": "street",
-        "file": "model.street.glb",
         "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.street.glb",
-        "hash": "sha256:f23dfd268f85655d698bc4f0170da0ccfe93e7f2db398c423227b290ca724911",
-        "bytes": 683896,
+        "hash": "sha256:e6f07ca9edc9d1666df30f25aa89166507cd522080db5e33d61021c0f1d01851",
+        "bytes": 743164,
         "triangles": 9520,
-        "vertices": 17244,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -60.79999923706055,
-          0,
+          -4.852878093719482,
           -29.479999542236328
         ],
         "max": [
           60.79999923706055,
-          30,
+          31.5,
           29.479999542236328
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
         "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.closeup.glb",
-        "hash": "sha256:3d8789307912c9f807585c5c8d19495076aa1d7f9c4fb3d5123b3e4cb01b45ce",
-        "bytes": 843304,
+        "hash": "sha256:ca18895fbf22dda462421b03af0c162a1a18c11e5abf5ceab8b05cef0b448718",
+        "bytes": 903148,
         "triangles": 11944,
-        "vertices": 21268,
         "materials": 5,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -60.79999923706055,
-          0,
+          -4.865563869476318,
           -29.479999542236328
         ],
         "max": [
           60.79999923706055,
-          30,
+          31.5,
           29.479999542236328
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "warnings": 0
       }
     ],
-    "notes": "All six GLBs have zero errors/warnings, zero images, minY=0 and maxY=30m. Two targeted tests pass for deterministic levels, height, triangle/download budgets, external materials and homogeneous GPU attribute layouts. Unused-UV informational messages are expected for externally bound graphs."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Changed source and four authored tiers pass finite attributes, normal/winding and Float32 degeneracy checks. Six current GLBs pass Khronos validation with zero errors/warnings/images; source/runtime hashes match. Production shared cache and eviction checks pass. Original Conwy geometry and recipe remain intact, with an independent datum/foundation derivative. No full repository rebuild, dependency audit or bespoke survey research was run."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:8fefea8ef7f682f246c9236ca3f017d8932e5d58722befcd9e36517e90f59ef5",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.skyline.glb",
-        "hash": "sha256:a575a27865680283bf7170d82f306e328d2f4e261f7ed982e66d0d36dc0d087c",
-        "bytes": 74248,
-        "triangles": 927,
-        "vertices": 1869,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -60.73423385620117,
-          0,
-          -28.61983871459961
-        ],
-        "max": [
-          59.73916244506836,
-          30,
-          28.53275489807129
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "hash": "sha256:931d6c621e1b9e7ce50e096b6cb6fd5890d788d11814d2dedd1790cd61f61b77",
+        "bytes": 86664,
+        "gzipBytes": 13940,
+        "triangles": 863,
+        "cpuBytes": 85244,
+        "gpuBytes": 85244,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.district.glb",
-        "hash": "sha256:015970f0951eee39d2d13f728b89656911dffd7702a08c92d5299b71cc419b32",
-        "bytes": 289256,
+        "hash": "sha256:01ab33363da40587944eca97bca9998636dab8d058e5c7ff1f0b1ade14f9bbe4",
+        "bytes": 325092,
+        "gzipBytes": 77546,
         "triangles": 3816,
-        "vertices": 7264,
-        "materials": 4,
-        "sharedGraphs": 3,
-        "images": 0,
-        "min": [
-          -60.79999923706055,
-          0,
-          -29.36807632446289
-        ],
-        "max": [
-          60.79999923706055,
-          30,
-          29.36739730834961
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 4
+        "cpuBytes": 320224,
+        "gpuBytes": 320224,
+        "errorMeters": 0.7,
+        "drawCalls": 4
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.street.glb",
-        "hash": "sha256:f23dfd268f85655d698bc4f0170da0ccfe93e7f2db398c423227b290ca724911",
-        "bytes": 683896,
+        "hash": "sha256:e6f07ca9edc9d1666df30f25aa89166507cd522080db5e33d61021c0f1d01851",
+        "bytes": 743164,
+        "gzipBytes": 171694,
         "triangles": 9520,
-        "vertices": 17244,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -60.79999923706055,
-          0,
-          -29.479999542236328
-        ],
-        "max": [
-          60.79999923706055,
-          30,
-          29.479999542236328
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "cpuBytes": 737164,
+        "gpuBytes": 737164,
+        "errorMeters": 0.3,
+        "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/gc/gcm/n0270_conwy_castle/model.closeup.glb",
-        "hash": "sha256:3d8789307912c9f807585c5c8d19495076aa1d7f9c4fb3d5123b3e4cb01b45ce",
-        "bytes": 843304,
+        "hash": "sha256:ca18895fbf22dda462421b03af0c162a1a18c11e5abf5ceab8b05cef0b448718",
+        "bytes": 903148,
+        "gzipBytes": 210413,
         "triangles": 11944,
-        "vertices": 21268,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -60.79999923706055,
-          0,
-          -29.479999542236328
-        ],
-        "max": [
-          60.79999923706055,
-          30,
-          29.479999542236328
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "cpuBytes": 897148,
+        "gpuBytes": 897148,
+        "errorMeters": 0.1,
+        "drawCalls": 5
       }
     ],
-    "initialDownloadBytes": 363504,
-    "notes": "Skyline/district/street/closeup: 927/3816/9520/11944 triangles and 74248/289256/683896/843304 bytes. Initial combined geometry payload 363504 bytes excludes shared graphs. Source regeneration is byte-identical; strict medium-fi audit and recipe Biome check pass. Checks were scoped to this model."
-  }
+    "initialBytes": 411756,
+    "notes": "skyline: 863 triangles, 86664 bytes, 1 draws; district: 3816 triangles, 325092 bytes, 4 draws; street: 9520 triangles, 743164 bytes, 5 draws; closeup: 11944 triangles, 903148 bytes, 5 draws. Initial skyline+district 411756 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Picture and standard PMTiles fit, not surveyed geometry or thresholds.",
+    "Detailed original Conwy geometry and recipe remain preserved. The independent derivative adjusts working datum and bounded foundation contact.",
+    "Eight open towers, four stair turrets, paired roofless wards and bent hall range provide identity. Openings, copings, wall scars, platforms and internal partitions remain approximate.",
+    "Coarse terrain does not resolve exact rock contact or approaches. No artificial hill, terrain cutout, navigable interiors, town walls or adjacent bridges are included.",
+    "Four common material graphs and local foliage tint; no embedded texture images. Physical-device timing and continuous-motion shimmer remain pending."
+  ]
 }

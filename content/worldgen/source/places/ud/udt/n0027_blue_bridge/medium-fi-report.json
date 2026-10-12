@@ -1,0 +1,1341 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0027_blue_bridge",
+  "sourceHash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
+  "runtimeHash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c4580e47d8e9420ec105d176259e4b22fa3fe2207f6cbeb827feaee107158fc8",
+      "bytes": 67272,
+      "gzipBytes": 9086,
+      "triangles": 656,
+      "cpuBytes": 65856,
+      "gpuBytes": 65856,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e2647f6355ad5b0c05b3752b7850fd4809cfc80a76c51390093e94be7b381f3c",
+      "bytes": 205940,
+      "gzipBytes": 36456,
+      "triangles": 2240,
+      "cpuBytes": 199884,
+      "gpuBytes": 199884,
+      "errorMeters": 1,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:5529b0637fe85cd6ab7e62cd5a31c6fe9f3e2f6bee31aa2016554f26b76122b0",
+      "bytes": 949448,
+      "gzipBytes": 186976,
+      "triangles": 12038,
+      "cpuBytes": 942312,
+      "gpuBytes": 942312,
+      "errorMeters": 0.4,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:7fac11cc9a9b4b88bea6710eaac027ab972176c7bc9fae2d4f02b878abc21e0c",
+      "bytes": 1884040,
+      "gzipBytes": 367162,
+      "triangles": 24230,
+      "cpuBytes": 1876872,
+      "gpuBytes": 1876872,
+      "errorMeters": 0.2,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-fit.terrain.json",
+      "hash": "sha256:24ca177f541994187154040be7ec195dee5d142f6b8ad0fd72acbe1a7ff9cd9f"
+    },
+    "heightmap": {
+      "path": "terrain-fit.height.png",
+      "hash": "sha256:da34ba9596675a8b205aaa1a970b990d7102adffa610cc6f4409351e2bfe68b1"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-canal",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            15.7,
+            0.06,
+            200
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#607f86",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:27cca6b9f44905fa6dda5fce4a79ef0c5bb38ada91197e640680575f32f61f7e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          48,
+          30.03,
+          83
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:2603f39415a86fd02ba49a8c83f6f562539de115f5a06acc55db2b8299067b41",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          48,
+          30.03,
+          83
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:596a8cf7c750d671cd6b8957ef0055eca5ae1c4d900933fb61b053112e268745",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          48,
+          30.03,
+          83
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:55c1822a9d8abb933b187e9da35f7855b88977488ce93d08e6c14cc2639f5db2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          48,
+          30.03,
+          83
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:daa210939aa71118edc2160ebb4b866d8fd6fb9e2311f7f31f4430fdb86e9096",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 27610,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:09407828aabb9c7ccf79b126bc032c3fc928dbf57187f7c679298d6733a5a3f7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27610,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:7606327d495c1c95815ab8fe47bd0f98edfa7a4f80ea6e9d6e5ac8ffa587b200",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 27610,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:b3d02c3f3c50b68592af925054ad40387531c2bd4694a3ab532fbac10e88e6c4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27610,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:45187a31d500ba7ca2007859cae2429217fe0c310189e12c0fc05e80b903dfa5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 26026,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          194,
+          104.03,
+          336
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:331b71bff1854308fe365d77c76dddf96281774a2bbf5e50cb28c4bdaf2aac71",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 26026,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          194,
+          104.03,
+          336
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:822ef7c0e603e315189740c127a530678ee700fa68654f7e2b598079a601477b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 26026,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          194,
+          104.03,
+          336
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:3cea0277de4289eaa66657f167a6e97fc9f1859bf0854219265f786d002a85f1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 26026,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          194,
+          104.03,
+          336
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:dc22cc601cfa8a7db0220c335ee6c465216a80fa704f558f806a6da60f00178b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 21470,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          194,
+          104.03,
+          336
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/upstream-cast-face.png",
+      "hash": "sha256:158e59e717d9f40b312a41c3c2e632712cc2be851599f61256eaf31728967eab",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          5,
+          -77
+        ],
+        "lookAt": [
+          0,
+          2,
+          -47.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/downstream-concrete-face.png",
+      "hash": "sha256:92c680cbd47e14f486ab1f370477ee8efabbb523e1f27cb87d06fc0a00f7dd5f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          5,
+          77
+        ],
+        "lookAt": [
+          0,
+          2,
+          47.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/upstream-cast-ribs.png",
+      "hash": "sha256:05ad02abd0b46b422bf20794bc6da80eeea8f85ca915182d0e1dcdc7318a9a39",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          3,
+          1.5,
+          -60
+        ],
+        "lookAt": [
+          0,
+          2,
+          -47.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cast-vault-soffit.png",
+      "hash": "sha256:27f3553f07459c693c4b9d3fdb061902c5cb558090023ca56f5991771a51cd0e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          1,
+          -42
+        ],
+        "lookAt": [
+          0,
+          2,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/concrete-vault-soffit.png",
+      "hash": "sha256:40c72f1c97ccf6094277bf814547ed26d51d6f25add6b743e20a37c1269f953f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          1,
+          41
+        ],
+        "lookAt": [
+          0,
+          2,
+          12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/moika-cast-railing.png",
+      "hash": "sha256:c5bbcd2a17940245e880826f3462ce59d4b77e26cb487a128a0421ce2cc7df3b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1,
+          5,
+          -52.5
+        ],
+        "lookAt": [
+          0,
+          4.2,
+          -47.7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/granite-wingwalls.png",
+      "hash": "sha256:02404eb64f4edc788b31032ffa482c254bc3fd199672a9537d5e913739605535",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          21,
+          7,
+          -67
+        ],
+        "lookAt": [
+          10,
+          2,
+          -52
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/restored-lantern.png",
+      "hash": "sha256:909eef033e4be6d9f8a146f310e5c8a5ec020ab89d648e8f8d7c9cd0b2f7d39a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          12,
+          9,
+          -54
+        ],
+        "lookAt": [
+          8.75,
+          7,
+          -48.4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cyrillic-name-sign.png",
+      "hash": "sha256:a47c973cb931380672ee57819dd26d2b4c81c6994c4f701bef02d5cf92db0c87",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          11,
+          7,
+          -56
+        ],
+        "lookAt": [
+          9.2,
+          6.6,
+          -51.2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/parking-square.png",
+      "hash": "sha256:f6059733f9d84b05fdd7280858473eb9e5a1c917092578385fd04fe1eb778974",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          33,
+          27,
+          0
+        ],
+        "lookAt": [
+          0,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/deck-plan.png",
+      "hash": "sha256:8c31152b52c99844f7234c6ea8a81e6d4118772c372679ca0e9886d5a4609e67",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          160,
+          0.01
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-blue-skyline.png",
+      "hash": "sha256:8ca789f96a242c7ffcc2b24b592f2182ec535a5e0e1f22d1b7d00a5c221f6372",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 26026,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          79,
+          52,
+          95
+        ],
+        "lookAt": [
+          0,
+          2,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-blue-district.png",
+      "hash": "sha256:05f7003abf36a36200da7e839cd1a665dc2f9e4770d06cdf26b322fd405bcd9d",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27610,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          79,
+          52,
+          95
+        ],
+        "lookAt": [
+          0,
+          2,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-blue-street.png",
+      "hash": "sha256:60a6eda962a09cf03b4c3e001dda7f57f41470a51f1c1ca907d147c50b859394",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37408,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          79,
+          52,
+          95
+        ],
+        "lookAt": [
+          0,
+          2,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-blue-closeup.png",
+      "hash": "sha256:c312a3f1c0ed2be1e1c61a4c1305fba5b90b7f6f4fdeb87ac2ad69b86881a6e5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          79,
+          52,
+          95
+        ],
+        "lookAt": [
+          0,
+          2,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:e2e4f1cef8dd6e435b5fbb3f31a21891aa66cae0a45c6ec5b3c193039183bce4",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 26026,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:09407828aabb9c7ccf79b126bc032c3fc928dbf57187f7c679298d6733a5a3f7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 27610,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2ab2ad6d33fd3b834fd83aa78c49c90a615635714fcd1baebfc7961ef64bf9be",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 37408,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:17049b8f1f28257b97c4ddbd6c67e24bc881a2e1002bae8ae425e41e69420cbe",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49600,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          97,
+          66.03,
+          168
+        ],
+        "lookAt": [
+          0,
+          15.030000000000001,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

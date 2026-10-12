@@ -1,0 +1,16 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 227,
+  "nodes": [
+    { "id": "checks", "type": "checker", "params": { "scale": 2 } },
+    {
+      "id": "color",
+      "type": "ramp",
+      "input": "checks",
+      "params": { "stops": [{ "t": 0, "color": "#bcc1bf" }, { "t": 1, "color": "#d2d4ce" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.88 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough" }
+}

@@ -4,46 +4,51 @@
   "kind": "model",
   "files": {
     "main": "model.glb",
-    "variants": {}
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
   },
-  "hash": "sha256:d88b88eae83a09a620488823e08b028a9165ad55de265638f9b7ea6c51936f88",
-  "sourceHash": "sha256:9b2a71df21b1d1dc6034808c35f4ec8c5ef91b00833b40daba5c5dfc2b5c4036",
+  "hash": "sha256:68f524685fd80d3f8f90125e3363633843bde0562d7bdcb93e8630897c32813d",
+  "sourceHash": "sha256:1e544640a9d57c44488e69abfd0eb2a82427660371a4d70736b9498d3d992f2b",
   "bounds": {
     "aabb": {
       "min": [
-        -114.2685,
-        0,
-        -78.5011
+        -114.3868,
+        -2.57,
+        -78.6446
       ],
       "max": [
-        137.1166,
+        137.2911,
         38,
-        112.7733
+        112.7743
       ]
     },
     "sphere": {
       "center": [
-        11.4241,
-        19,
-        17.1361
+        11.4521,
+        17.715,
+        17.0648
       ],
-      "radius": 140.2288
+      "radius": 140.3746
     }
   },
   "stats": {
-    "triangles": 4905,
-    "vertices": 14715,
+    "triangles": 5973,
+    "vertices": 17919,
     "meshes": 1,
     "primitives": 7,
     "materials": 7,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 592168
+    "sizeBytes": 720344
   },
   "nodes": [
     {
       "name": "worldgen",
-      "triangles": 4905
+      "triangles": 5973
     }
   ],
   "nodesTruncated": false,
@@ -111,33 +116,88 @@
       {
         "node": "worldgen",
         "points": [
-          -114.2685,
-          0,
-          -78.5011,
-          -114.2685,
-          0,
-          112.7733,
-          -114.2685,
+          -114.3868,
+          -2.57,
+          -78.6446,
+          -114.3868,
+          -2.57,
+          112.7743,
+          -114.3868,
           38,
-          -78.5011,
-          -114.2685,
+          -78.6446,
+          -114.3868,
           38,
-          112.7733,
-          137.1166,
-          0,
-          -78.5011,
-          137.1166,
-          0,
-          112.7733,
-          137.1166,
+          112.7743,
+          137.2911,
+          -2.57,
+          -78.6446,
+          137.2911,
+          -2.57,
+          112.7743,
+          137.2911,
           38,
-          -78.5011,
-          137.1166,
+          -78.6446,
+          137.2911,
           38,
-          112.7733
+          112.7743
         ]
       }
     ]
   },
-  "extensionsUsed": []
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "masterHash": "sha256:68f524685fd80d3f8f90125e3363633843bde0562d7bdcb93e8630897c32813d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:7ece37dbecb5c55191c83b133537b5358d2ce12c0eca3cdab19244340c6bd73e",
+        "bytes": 70316,
+        "gzipBytes": 23035,
+        "triangles": 755,
+        "cpuBytes": 68900,
+        "gpuBytes": 68900,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:d0b0edeb8ec7218be72e062daf031b44b125a451318131012af591c6c7fcb4d6",
+        "bytes": 312628,
+        "gzipBytes": 97253,
+        "triangles": 3284,
+        "cpuBytes": 305224,
+        "gpuBytes": 305224,
+        "errorMeters": 1.5,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:229150b98b6bae9267d3373f6dfbb2f697ad786d933bfee991dbb6eaa1a44cfc",
+        "bytes": 598244,
+        "gzipBytes": 189292,
+        "triangles": 5973,
+        "cpuBytes": 589664,
+        "gpuBytes": 589664,
+        "errorMeters": 0.5,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:229150b98b6bae9267d3373f6dfbb2f697ad786d933bfee991dbb6eaa1a44cfc",
+        "bytes": 598244,
+        "gzipBytes": 189292,
+        "triangles": 5973,
+        "cpuBytes": 589664,
+        "gpuBytes": 589664,
+        "errorMeters": 0.15,
+        "drawCalls": 7
+      }
+    ],
+    "recipeHash": "sha256:09b241c7922fac58ed0abe32390dbdddea57b2b71550ad6f7e787798bad48936"
+  }
 }

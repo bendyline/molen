@@ -11,28 +11,28 @@
       "closeup": "model.closeup.glb"
     }
   },
-  "hash": "sha256:20f1ea4531fa1d3ef91e04cb8bd46ad779544ca13d8b7eefaf7c04130d3e53f4",
-  "sourceHash": "sha256:450e52235e1bb5e3b91f8576aa0afaefc32aa99c67f9257fc439df355244ca0e",
+  "hash": "sha256:22884124d3e37bd8c3105896e1c935ad91c9aa6e26ab934827d5ec3407602020",
+  "sourceHash": "sha256:1a72f7525190785b18f4e481506f4eac6fd4ff2c5a5a471fb320314e49d0c07a",
   "bounds": {
     "aabb": {
       "min": [
         -79,
-        0,
+        -16.1658,
         -55
       ],
       "max": [
-        49.65,
-        60,
+        93.0776,
+        52,
         69
       ]
     },
     "sphere": {
       "center": [
-        -14.675,
-        30,
+        7.0388,
+        17.9171,
         7
       ],
-      "radius": 81.9677
+      "radius": 101.2191
     }
   },
   "stats": {
@@ -43,7 +43,7 @@
     "materials": 7,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 944068
+    "sizeBytes": 944104
   },
   "nodes": [
     {
@@ -63,15 +63,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "stone_sandstone-wall",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "wall-wall",
+      "name": "metal_bronze_cast-roof",
       "slots": [
         "baseColor"
       ],
@@ -87,7 +79,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "metal_bronze_cast-trim",
+      "name": "wood_plain-trim",
       "slots": [
         "baseColor"
       ],
@@ -95,7 +87,15 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "wood_plain-trim",
+      "name": "stone_sandstone-foundation",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "foundation-foundation",
       "slots": [
         "baseColor"
       ],
@@ -117,28 +117,28 @@
         "node": "worldgen",
         "points": [
           -79,
-          0,
+          -16.1658,
           -55,
           -79,
-          0,
+          -16.1658,
           69,
           -79,
-          60,
+          52,
           -55,
           -79,
-          60,
+          52,
           69,
-          49.65,
-          0,
+          93.0776,
+          -16.1658,
           -55,
-          49.65,
-          0,
+          93.0776,
+          -16.1658,
           69,
-          49.65,
-          60,
+          93.0776,
+          52,
           -55,
-          49.65,
-          60,
+          93.0776,
+          52,
           69
         ]
       }
@@ -147,57 +147,57 @@
   "extensionsUsed": [],
   "runtimeLods": {
     "recipe": 1,
-    "masterHash": "sha256:20f1ea4531fa1d3ef91e04cb8bd46ad779544ca13d8b7eefaf7c04130d3e53f4",
+    "masterHash": "sha256:22884124d3e37bd8c3105896e1c935ad91c9aa6e26ab934827d5ec3407602020",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:7393e023adedc9ce23d6434ed446b6201dee09a068e1862c0e7c59e3111c83c7",
-        "bytes": 92312,
-        "gzipBytes": 24043,
-        "triangles": 993,
-        "cpuBytes": 90956,
-        "gpuBytes": 90956,
+        "hash": "sha256:80bcba6cbf85e29105c1b96873f00c2426a50a6b6864265e4c2fa99e3ab462c2",
+        "bytes": 104088,
+        "gzipBytes": 19400,
+        "triangles": 991,
+        "cpuBytes": 102716,
+        "gpuBytes": 102716,
         "errorMeters": 1,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:0bb6a05b812cbacbd01d4733be79162b4d337967f163edea6d4109b630d4a5ea",
-        "bytes": 278728,
-        "gzipBytes": 79772,
+        "hash": "sha256:0121f99e7021958c013a2fe81367ea3a363beb88515e56a4ef9935ffa5275882",
+        "bytes": 280684,
+        "gzipBytes": 79603,
         "triangles": 2914,
-        "cpuBytes": 271576,
-        "gpuBytes": 271576,
-        "errorMeters": 1.5,
+        "cpuBytes": 273520,
+        "gpuBytes": 273520,
+        "errorMeters": 0.7,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:3b06b763bb43fb93c8b348fdbe923651c652bd0a6cf8457e41380adee30a66b8",
-        "bytes": 649772,
-        "gzipBytes": 150931,
+        "hash": "sha256:3882cba7a82cc990e0660242787e619c9fdaf9979a3a6539f81820accf8e977d",
+        "bytes": 649636,
+        "gzipBytes": 151199,
         "triangles": 7119,
-        "cpuBytes": 641432,
-        "gpuBytes": 641432,
-        "errorMeters": 0.5,
+        "cpuBytes": 641288,
+        "gpuBytes": 641288,
+        "errorMeters": 0.3,
         "drawCalls": 7
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:d87b6adf363592c0af9242c0163e1fdfe178ad7cd7a23fab425c4a53428570c7",
-        "bytes": 674684,
-        "gzipBytes": 156022,
+        "hash": "sha256:02505f2ac7451daf336409e05717661b5441051d92e01ff1c9f4b64c56e53c87",
+        "bytes": 674548,
+        "gzipBytes": 155577,
         "triangles": 7839,
-        "cpuBytes": 666344,
-        "gpuBytes": 666344,
-        "errorMeters": 0.15,
+        "cpuBytes": 666200,
+        "gpuBytes": 666200,
+        "errorMeters": 0.1,
         "drawCalls": 7
       }
     ],
-    "recipeHash": "sha256:00d80cc7052948452c18a51989d66859e1c804b171da3a2c3e918d5404878b50"
+    "recipeHash": "sha256:052be13e0e40cb9a0f0a791428cdd659da64ffda01eeffcc2ef9fc6186734c9e"
   }
 }

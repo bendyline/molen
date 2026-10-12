@@ -5,13 +5,20 @@ dist-types/
 coverage/
 .tmp/
 shots/
-# Authored structure reviews and gallery images are part of their source bundles.
-!content/worldgen/source/places/**/shots/
-!content/worldgen/source/places/**/shots/**
-!content/worldgen/source/reusable/**/shots/
-!content/worldgen/source/reusable/**/shots/**
-!content/worldgen/source/map-structures/*/shots/
-!content/worldgen/source/map-structures/*/shots/**
+# Full-size review images are restored from review-lock.json (pnpm reviews:fetch).
+# Keep reports, source textures/heightmaps and small preview.png thumbnails in Git.
+/content/worldgen/source/places/**/medium-fi/*.png
+/content/worldgen/source/places/**/medium-fi/*.jpg
+/content/worldgen/source/places/**/medium-fi/*.jpeg
+/content/worldgen/source/places/**/medium-fi/*.webp
+/content/worldgen/source/reusable/**/medium-fi/*.png
+/content/worldgen/source/reusable/**/medium-fi/*.jpg
+/content/worldgen/source/reusable/**/medium-fi/*.jpeg
+/content/worldgen/source/reusable/**/medium-fi/*.webp
+/content/worldgen/source/map-structures/**/medium-fi/*.png
+/content/worldgen/source/map-structures/**/medium-fi/*.jpg
+/content/worldgen/source/map-structures/**/medium-fi/*.jpeg
+/content/worldgen/source/map-structures/**/medium-fi/*.webp
 test-results/
 .turbo/
 .artifacts/

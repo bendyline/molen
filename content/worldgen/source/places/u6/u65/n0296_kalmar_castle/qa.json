@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0296_kalmar_castle",
-  "inputHash": "sha256:b2a82c294f41ea652acced1bfc9db7763a71a57ea8c5f8ab68442fd0bd9fe7ad",
-  "sourceHash": "sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c",
-  "runtimeHash": "sha256:e837fad0c3def639911f688b7e8b16054cb3c6e696a80a87b453ce47204eb833",
-  "captureReportHash": "sha256:7044e68816f6586fed540841d8af936ed056fca88192d0a7f578357477bb2122",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:bf532c30a623769eacc221967b9911834aebb0060fa42e95ddfb2f66c04f43a9",
+  "sourceHash": "sha256:a7d9df6d5d7142e1dd2fe4ddd91e5abece7591f899f71585833b50aa01ee5960",
+  "runtimeHash": "sha256:b887a739fd8297b2084a184dea786255000aba7863fcef8164dceb2427a21f5d",
+  "captureReportHash": "sha256:f8616d9f43a30eaf22b0f490d5702572f687fb21b4d6fc923f33300a41f1dcbb",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,12 +22,11 @@
       "shots/four-copper-helmets.png",
       "shots/western-timber-approach.png"
     ],
-    "notes": "Inspected all 12 final portable frames. Four dark gabled wings surround a physical open courtyard; distinct flared copper corner helmets, square Kuretornet/open lantern, selected white stepped gables, original well canopy, coast defenses/cannon towers and western bridge remain distinct. Corrected inward-facing roof-cap undersides that disappeared through backface culling, extended the old gate cutting envelope through the complete western wall, clipped overlapping curved tunnel returns and bounded low cannon-tower windows. Acceptance covers an original exterior draft, with schematic details and estimated vertical dimensions. Roof-coverage repair: inspected all regenerated frames, including the full-size eastern-wing and overhead shared views. Main roof eaves now follow the mapped exterior walls and courtyard; the broad exposed eastern/northern wall-cap slabs are covered. The courtyard remains open and all four detail levels preserve coverage.",
-    "captureReportHash": "sha256:7044e68816f6586fed540841d8af936ed056fca88192d0a7f578357477bb2122"
+    "notes": "Inspected all12 final portable views after correcting the western bridge approach. Open Renaissance court, four copper helmets, Kuretornet, steep dark roofs, stepped gables, court well, true gate passage and bounded island defenses remain readable. The inspected aerial picture supports this exterior layout and roof treatment."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8042ba4bd2a5e4ed0de55633b189a7e89fef50a2acb9603dea395694f10803dc",
+    "captureReportHash": "sha256:2e6ca853fb04d2f6fc14b692f07b21c39f4293332a372583b195eeda64ad56ed",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -38,13 +38,14 @@
       "shots/shared/court-well-and-portals.png",
       "shots/shared/sea-renaissance-gables.png",
       "shots/shared/four-copper-helmets.png",
-      "shots/shared/western-timber-approach.png"
+      "shots/shared/western-timber-approach.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 11 final shared-loader frames, including full-size Kuretornet and corner roof caps. Six existing 256-square rubble, raw limestone, lime plaster, copper, standing-seam metal and gravel graphs with linear tints and central metric UV repeats. Master and LOD metal roof bindings now agree through per-study surface overrides. Bridge deck/rails use brown-tinted gravel as a material approximation. Glass/grass are untextured. Eight merged near/district groups, one far; each graph read once, eviction leaves zero live model geometries. No embedded/new images, photo textures or downloaded model. Skyline tints use measured graph means. Roof-coverage repair: inspected all regenerated frames, including the full-size eastern-wing and overhead shared views. Main roof eaves now follow the mapped exterior walls and courtyard; the broad exposed eastern/northern wall-cap slabs are covered. The courtyard remains open and all four detail levels preserve coverage."
+    "notes": "Inspected all12 final shared-material views. Six common rubble/limestone/plaster/copper/standing-seam/aggregate graphs plus explicit glass/foliage color slots are reused. Copper helmets, roof seams, plaster court and real gate passage read correctly. Retained map outline supports approximate heading0 placement; cache reuse and unload passed."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:57067e769919e7714b754d9fcad7d3703ba2f0ace725ad7ce6d889ed0461e46f",
+    "captureReportHash": "sha256:d67f933ed4d23630d628d54a39b1b9be831334df494f61f3b993452eaf49217c",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -66,25 +67,33 @@
       "medium-fi/sea-renaissance-gables.png",
       "medium-fi/four-copper-helmets.png",
       "medium-fi/western-timber-approach.png",
+      "medium-fi/whole-kalmar-skyline.png",
+      "medium-fi/whole-kalmar-district.png",
+      "medium-fi/whole-kalmar-street.png",
+      "medium-fi/whole-kalmar-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all 24 final Earth-rig frames: twelve time/distance/mode combinations, silhouette, seven architectural cameras and four forced detail levels. Copper corner helmets, square western lantern tower and dark four-wing roof/open courtyard survive at skyline distance. Selected gates, defense passages, gables and well appear closer. Earth neutral mapping/exposure 1 and synthetic neighbors; fixed captures do not approve real site fit, continuous streaming/upgrades or physical-device timing. Roof-coverage repair: inspected all regenerated frames, including the full-size eastern-wing and overhead shared views. Main roof eaves now follow the mapped exterior walls and courtyard; the broad exposed eastern/northern wall-cap slabs are covered. The courtyard remains open and all four detail levels preserve coverage."
+    "notes": "Inspected all28 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. Court floorY4.7 remains above coarse terrain; island and pier toes reach PMTiles ground. Western bridge deck and rails slope toward its sampled outer approach. Four levels retain the same main masses."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:b7c68722c7876ab470544caf54bcc911925648e7d084eff5ee577bd9e843977c",
-    "mapGeometryHash": "sha256:ec57e7ccf4be43f8d19a9d3e9151b457854aab9a7244490979df0dcff5aa06fb",
-    "coordinateRoundTripErrorMeters": 0.0006949121665984487,
-    "mapCoordinateSamples": 341,
-    "notes": "341 original mapped samples reconstruct within 0.695mm in native East/South coordinates. Exact-QID castle relation and separately mapped corner towers/outer defenses preserve their attribution. Curved western fort passage follows mapped segments; the old-gate cutting envelope extrapolates a centerline ending within the thick tower. All heights and platform Y4.2 are original estimates. Real terrain, vertical datum, moat/coast/water and bridge access fit remain pending. Current 2013–14 kitchen-extension geometry is unresolved. Inactive draft with footprint replacement off."
+    "status": "passed",
+    "placementHash": "sha256:be8d4d95eb9093c6dce6e924e9c5314510f53a7436098a6f101d213bb79761fc",
+    "mapFrameHash": "sha256:37af01a7064c6a4c5041c327a75c3b7e8ed528005f4ca070c408e8d89ca3b506",
+    "notes": "The inspected aerial picture supports the open court, copper helmets, steep dark roofs, stepped gables and bounded island defenses. Retained east/south map coordinates with heading0 set approximate footprint and western approach. Standard viewer PMTiles supply surrounding terrain; reconstructed court floorY4.7 is above coarse ground and the island/pier toes reach the same sampler at every level. Broad water simulation and terrain cutouts are excluded. Anchor 16.355425549,56.657997261; heading 0; standard PMTiles datum 6.099512477948403m. Floors are reconstructed and foundations extend below the coarse sampled ground. The western bridge deck and railings slope toward the sampled outer approach; its inner end retains the reconstructed court level."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and fit from inspected aerial picture and standard viewer PMTiles. Tower profiles, restoration detail and low island levels are interpreted. Bounded island/defenses retained; surrounding coast/water supplied by host data. No bespoke survey, exact thresholds, interiors, collision or terrain cutout. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Owner SFV aerial/moat photographs and operator history/development guide this original exterior. Main map relation preserves irregular courtyard; four separately mapped corner towers and west Kuretornet, cannon towers and defenses are represented. No primary numeric vertical dimension verified. Roof profiles, stepped Renaissance gables, gates, well canopy and defense/ground section are photographic estimates. Full interior rooms/vaults, sculpture, inscriptions, exhibits, archaeological detail and walkable circulation/collision are incomplete. Detached offsite cottage and temporary objects omitted. Present kitchen extension acknowledged without inventing a verified footprint. No completed current-site fidelity approval."
+    "notes": "Owner SFV aerial/moat photographs and operator history/development guide this original exterior. Main map relation preserves irregular courtyard; four separately mapped corner towers and west Kuretornet, cannon towers and defenses are represented. No primary numeric vertical dimension verified. Roof profiles, stepped Renaissance gables, gates, well canopy and defense/ground section are photographic estimates. Full interior rooms/vaults, sculpture, inscriptions, exhibits, archaeological detail and walkable circulation/collision are incomplete. Detached offsite cottage and temporary objects omitted. Present kitchen extension acknowledged without inventing a verified footprint. No completed current-site fidelity approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -92,231 +101,196 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/models/source.glb",
-        "hash": "sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c",
-        "bytes": 1160536,
+        "hash": "sha256:a7d9df6d5d7142e1dd2fe4ddd91e5abece7591f899f71585833b50aa01ee5960",
+        "bytes": 1160524,
         "triangles": 9633,
         "materials": 8,
         "images": 0,
         "min": [
           -111.14054870605469,
-          0.30000001192092896,
+          -4.825041770935059,
           -120.78579711914062
         ],
         "max": [
           103.81574249267578,
-          49.5,
+          50,
           107.46282958984375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.glb",
-        "hash": "sha256:e837fad0c3def639911f688b7e8b16054cb3c6e696a80a87b453ce47204eb833",
-        "bytes": 1159836,
+        "hash": "sha256:b887a739fd8297b2084a184dea786255000aba7863fcef8164dceb2427a21f5d",
+        "bytes": 1159824,
         "triangles": 9633,
         "materials": 8,
         "images": 0,
         "min": [
           -111.14054870605469,
-          0.30000001192092896,
+          -4.825041770935059,
           -120.78579711914062
         ],
         "max": [
           103.81574249267578,
-          49.5,
+          50,
           107.46282958984375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "warnings": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.skyline.glb",
-        "hash": "sha256:03fc8baa4fe9884b91cffea70a242be40daef8e951bc868160be2ecbc7706625",
-        "bytes": 92468,
+        "hash": "sha256:db4d25012a66b83905b5a8e3b02c7301db8c6dfd98db872f8e73ecc0e53073e1",
+        "bytes": 103484,
         "triangles": 990,
         "materials": 1,
         "images": 0,
         "min": [
           -111.14054870605469,
-          0.30000001192092896,
+          -4.825041770935059,
           -120.78579711914062
         ],
         "max": [
           103.81574249267578,
-          49.5,
+          50,
           107.46282958984375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.district.glb",
-        "hash": "sha256:9bbec343ac524919babe111b3f088a81b1b644660f11564299ce9da684dbbc6b",
-        "bytes": 296740,
+        "hash": "sha256:c40a36c8bdd33e4dd034f1e3881fb747fb3856ce9e57aff5a62cb7edbe5773cf",
+        "bytes": 296568,
         "triangles": 3197,
         "materials": 8,
         "images": 0,
         "min": [
           -111.14054870605469,
-          0.30000001192092896,
+          -4.825041770935059,
           -120.78579711914062
         ],
         "max": [
           103.81574249267578,
-          49.5,
+          50,
           107.46282958984375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "warnings": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.street.glb",
-        "hash": "sha256:c66df0bdc84ff11b65e75c4124dfe6d5cff88a66637a2343b15f9e8cd67e759c",
-        "bytes": 647924,
+        "hash": "sha256:d07b5ed40feb349c09ad916f3afd7030de83f509f199ff98a9d1d17ef2fcdce4",
+        "bytes": 647776,
         "triangles": 7100,
         "materials": 8,
         "images": 0,
         "min": [
           -111.14054870605469,
-          0.30000001192092896,
+          -4.825041770935059,
           -120.78579711914062
         ],
         "max": [
           103.81574249267578,
-          49.5,
+          50,
           107.46282958984375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "warnings": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.closeup.glb",
-        "hash": "sha256:53fd7c6a0f2eb0085fa39a9cc3406de981dd1b902c4ff5b7b5b609c4bf287731",
-        "bytes": 877148,
+        "hash": "sha256:e8b4141a5faf3a538f7ad7a000a4fd8681c63e374c237271f7b7df9e66f986d9",
+        "bytes": 877036,
         "triangles": 9633,
         "materials": 8,
         "images": 0,
         "min": [
           -111.14054870605469,
-          0.30000001192092896,
+          -4.825041770935059,
           -120.78579711914062
         ],
         "max": [
           103.81574249267578,
-          49.5,
+          50,
           107.46282958984375
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "warnings": 0
       }
     ],
-    "notes": "Six regenerated GLBs have zero Khronos errors/warnings and no embedded images. Eight focused regressions pass: deterministic bytes, all four budgets/shared bindings/homogeneous GPU views; open courtyard; mapped eastern/northern roof coverage; complete old gate passage; bent fort tunnel; distinct helmets/finials; bounded cannon windows/open lantern; outward roof-cap undersides. The mapped roof-coverage regression failed on the prior model before this repair. Scoped strict medium-fi, LOD and source-generator checks passed. Existing scene integration is unchanged; imported coarse hull is not walkable collision approval."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain990/3197/7100/9633 triangles; initial skyline+district download totals400052 bytes. Separate POSITION/NORMAL streams retained."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:f0bd0773f714d7531e2f58cee887f62b18fdef909227492a028981a0f41cd3e1",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.skyline.glb",
-        "hash": "sha256:03fc8baa4fe9884b91cffea70a242be40daef8e951bc868160be2ecbc7706625",
-        "bytes": 92468,
+        "file": "model.skyline.glb",
+        "hash": "sha256:db4d25012a66b83905b5a8e3b02c7301db8c6dfd98db872f8e73ecc0e53073e1",
+        "bytes": 103484,
+        "gzipBytes": 20920,
         "triangles": 990,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -111.14054870605469,
-          0.30000001192092896,
-          -120.78579711914062
-        ],
-        "max": [
-          103.81574249267578,
-          49.5,
-          107.46282958984375
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "cpuBytes": 102060,
+        "gpuBytes": 102060,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.district.glb",
-        "hash": "sha256:9bbec343ac524919babe111b3f088a81b1b644660f11564299ce9da684dbbc6b",
-        "bytes": 296740,
+        "file": "model.district.glb",
+        "hash": "sha256:c40a36c8bdd33e4dd034f1e3881fb747fb3856ce9e57aff5a62cb7edbe5773cf",
+        "bytes": 296568,
+        "gzipBytes": 89436,
         "triangles": 3197,
-        "materials": 8,
-        "images": 0,
-        "min": [
-          -111.14054870605469,
-          0.30000001192092896,
-          -120.78579711914062
-        ],
-        "max": [
-          103.81574249267578,
-          49.5,
-          107.46282958984375
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "cpuBytes": 286956,
+        "gpuBytes": 286956,
+        "errorMeters": 0.7,
+        "drawCalls": 8
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.street.glb",
-        "hash": "sha256:c66df0bdc84ff11b65e75c4124dfe6d5cff88a66637a2343b15f9e8cd67e759c",
-        "bytes": 647924,
+        "file": "model.street.glb",
+        "hash": "sha256:d07b5ed40feb349c09ad916f3afd7030de83f509f199ff98a9d1d17ef2fcdce4",
+        "bytes": 647776,
+        "gzipBytes": 193839,
         "triangles": 7100,
-        "materials": 8,
-        "images": 0,
-        "min": [
-          -111.14054870605469,
-          0.30000001192092896,
-          -120.78579711914062
-        ],
-        "max": [
-          103.81574249267578,
-          49.5,
-          107.46282958984375
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "cpuBytes": 638120,
+        "gpuBytes": 638120,
+        "errorMeters": 0.3,
+        "drawCalls": 8
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/u6/u65/n0296_kalmar_castle/model.closeup.glb",
-        "hash": "sha256:53fd7c6a0f2eb0085fa39a9cc3406de981dd1b902c4ff5b7b5b609c4bf287731",
-        "bytes": 877148,
+        "file": "model.closeup.glb",
+        "hash": "sha256:e8b4141a5faf3a538f7ad7a000a4fd8681c63e374c237271f7b7df9e66f986d9",
+        "bytes": 877036,
+        "gzipBytes": 251590,
         "triangles": 9633,
-        "materials": 8,
-        "images": 0,
-        "min": [
-          -111.14054870605469,
-          0.30000001192092896,
-          -120.78579711914062
-        ],
-        "max": [
-          103.81574249267578,
-          49.5,
-          107.46282958984375
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 8
+        "cpuBytes": 867376,
+        "gpuBytes": 867376,
+        "errorMeters": 0.1,
+        "drawCalls": 8
       }
     ],
-    "initialDownloadBytes": 389208,
-    "notes": "990/3197/7100/9633 triangles meet skyline/district/street/closeup budgets. Initial skyline plus district download 389208 bytes before shared materials; closeup 877148 bytes. Material groups 1/8/8/8. Physical-device timing and continuous loading/upgrades remain pending."
-  }
+    "initialBytes": 400052,
+    "notes": "skyline: 990 triangles, 103484 bytes, 1 draws; district: 3197 triangles, 296568 bytes, 8 draws; street: 7100 triangles, 647776 bytes, 8 draws; closeup: 9633 triangles, 877036 bytes, 8 draws. Initial skyline+district 400052 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Tower profiles, aperture/restoration detail and low island levels are interpreted; interiors and collision excluded.",
+    "Six common graphs plus explicit glass/foliage color slots, zero embedded images. Bounded island/defenses retained; surrounding coast and water come from host data.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

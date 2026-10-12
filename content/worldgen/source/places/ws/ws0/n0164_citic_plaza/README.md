@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Guangzhou’s square pale-glass office tower with a teal central slot, independently mapped split crown, round inner roof drum, original geometric 中信 sign and paired390.2 m white masts.
+Complete main office tower with pale split side slabs, teal center, round crown/lobby, dark base, geometric 中信 sign and twin390.2m white masts.
 
 ## Evidence and reconstruction
 
@@ -17,9 +17,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-74,676 triangles; 157,380 vertices; 5 material groups; 6,565,104 bytes. Native bounds: -23.916, 0.000, -25.460 to 23.916, 390.200, 25.460. Source hash: `sha256:b153fed1974da91e257d1987bd8a429d450aa34e9a6a7637ef2fb72676a73992`.
+9,422 triangles; 26,758 vertices; 5 material groups; 1,079,648 bytes. Native bounds: -23.875, 0.000, -23.873 to 23.875, 390.200, 23.873. Source hash: `sha256:576e16aa72548ce42a228dfceb7285a89f2df876174b9b2835ecd2916f86bccd`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east along paired mast/sign baseline","front":"+Z south toward Sports Centre; exact entrance unverified","origin":"Ground-contact center of mapped main office tower"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0164` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Curtain-wall subdivisions, small canopy dimensions and sign stroke outlines are reconstructed. One OSM mast says391.1 m; both follow the published390.2 m architectural top. Two apartment towers and retail podium are excluded.
+- Main office tower only, preserving original74676-triangle detailed recipe. Reviewed exterior includes pale-glass split side slabs, teal central shaft and round inner crown, dark lower band, reconstructed round glazed lobby with four mapped dark corner piers, original geometric 中信 sign and paired390.2m white spires. One mapped mast says391.1m; CVU390.2m architectural/tip datum is used for both. CVU occupied296.9m is distinguished from approximate mapped297m office roof,310.8m crown,321.9m side tips and344m sign/support. Facade band spacing, lobby radius, trim widths and sign stroke/brace shapes are approximations from map and actual reference photos. Exact entrances/doors not surveyed. Generic previous4.3m entry canopies are replaced by photo-supported recessed cylindrical lobby. Two separate38-storey apartment towers, shopping arcade/retail podium, basement, plazas, landscaping and interiors remain outside main-tower asset. Quantity surveyor arcade3-storey,2010 developer mall5-storey and current mapretail4-storey descriptions differ and do not establish current arcade model heights. Shared256px concrete/granite/painted-metal surfaces plus component tint; opaque palette glass, zero embedded photographs. True grade, night/sign lighting and physical-device performance unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

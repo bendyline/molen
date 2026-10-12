@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0637_tower_of_hercules",
-  "inputHash": "sha256:7bb12ab5f69f16c6e3abe6072b98a0d8d28b237d4b3867735f9684aa08b45af8",
-  "captureReportHash": "sha256:4c99ad5b9346ce9f14e1fd0b6a6d0deaed3431a827b85ee092f53952380274ce",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:e278b49ee1b8f9618c194b17b13303b2e43d920f144043ecc19df5864b3464d1",
+  "sourceHash": "sha256:017a0c8f3ae087c2fd368752b6c07479cc9b17e6e527dadd9bb31d0854a00760",
+  "runtimeHash": "sha256:ac54dc345f1bd3a89185227b26db8e4735382bbe0cb6d473ace23f67167284c7",
+  "captureReportHash": "sha256:b6a604d6c8267465a6e8638dea63502a5a595bfe61ad5bd9ae9e6360703046ac",
   "visualReview": {
     "status": "passed",
-    "scope": "Visible static exterior geometry in all inspected fallback and shared frames; not a survey or maximum-fidelity certification.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -15,29 +17,16 @@
       "shots/near-facade.png",
       "shots/near-lantern.png",
       "shots/near-platform.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/reverse-facade.png",
+      "shots/spine-reverse.png",
+      "shots/podium-overhead.png"
     ],
-    "notes": "Reviewed all nine final fallback and all nine final shared frames in contact sheets, plus full-size facade, lantern, platform and north-up views across the final iterations. The platform stair has an open landing, octagonal upper arcade details sit on outward-facing surfaces, and all facade openings now clear the rising perimeter band. Square shaft, paired niches, two upper tiers, offset lightning spine, lantern and gallery are visibly connected. Thin guy wires and fine moldings alias at distance; individual finials and surface weathering remain simplified."
+    "notes": "All twelve portable frames inspected. The square shaft, forty staggered paired blind/open niches, rising perimeter bands, cornice, concave shoulder, two complete octagonal stages, upper arches, dark lantern, gallery rail, offset stone staircase/lightning cylinder and guy wires remain intact. The polygonal podium has an open broad landing and eight descending steps. Reverse elevations and overhead podium are complete. Default close street views deliberately frame the shaft, with separate full silhouette and lantern views; their cropped top is not missing geometry. Original master hash is unchanged."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "fixtureHash": "sha256:6095a205450080bb99180525d2761937c86e4e7530267ffd3bcb9e8ba109a4b5",
-    "inputHash": "sha256:7bb12ab5f69f16c6e3abe6072b98a0d8d28b237d4b3867735f9684aa08b45af8",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.stone_ashlar": {
-        "path": "materials/stone_ashlar.matgraph.json",
-        "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.stone_granite": {
-        "path": "materials/stone_granite.matgraph.json",
-        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
-      }
-    },
+    "captureReportHash": "sha256:ac3111bad4521b08ae696831813eff1224e58cff389148e2f4572c9f77573531",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -47,18 +36,257 @@
       "shots/shared/near-lantern.png",
       "shots/shared/near-platform.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/reverse-facade.png",
+      "shots/shared/spine-reverse.png",
+      "shots/shared/podium-overhead.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Three canonical shared references supply ashlar masonry, joint-free granite trim and painted metal. Course directions and physical repeat scale remain coherent on the square shaft and polygonal stages; no missing maps or model-specific bitmap copies were observed. The regular light-colored masonry and uniform trim are a reusable material approximation. Surveyed granite block dimensions, patch repairs, staining and maritime weathering remain required for maximum fidelity.",
-    "captureReportHash": "sha256:8f2493a1151a66a9a9bff139d6874e6e81b3e5da483a0eb7175858834569df3c"
+    "notes": "All twelve shared/geographic views inspected. Metric procedural ashlar, granite trim and painted metal read each canonical graph once; opaque local dark ports and lantern panels remain intentional PBR approximations. Warm stone is consistent with the shared catalog; individually weathered reference blocks and exact masonry coursing are not copied as textures. Recess backs, helical bands and open landing remain readable. North-up placement keeps the 11.75 m core centered within the separate mapped 12.7 m envelope, with broad landing northeast and offset cylinder west-northwest. Unloading releases all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:28da7b460408b287c8f692920b44c040d7ffa02e039392379338b16cfa4765be",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-facade.png",
+      "medium-fi/near-lantern.png",
+      "medium-fi/near-platform.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/reverse-facade.png",
+      "medium-fi/spine-reverse.png",
+      "medium-fi/podium-overhead.png",
+      "medium-fi/cornice-district.png",
+      "medium-fi/lantern-district.png",
+      "medium-fi/recess-street.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All twenty-seven medium-fi frames inspected across noon/late economy/high, all model cameras, three targeted LOD details and four same-camera transitions. Skyline retains the complete square shaft, paired aperture contrast, ascending bands, stepped podium, both octagonal tiers, lantern and full-height offset cylinder; projecting trims, upper arcade beams, gallery pickets and guy wires are intentionally omitted at far distance. District retains actual .3 m aperture recesses and the arcade/gallery with fewer regular subdivisions. Street and closeup use the complete original 13060-triangle exterior. Synthetic Cotswold neighbors are palette/context checks and do not represent the real headland. No missing cap or broken major silhouette observed."
   },
   "geographicReview": {
-    "status": "pending",
-    "notes": "The north-up capture shows the cached exact-QID OSM shaft outline centered on and parallel to the authored square shaft axes. The published 11.75 m core and mapped approximately 12.7 m envelope remain separate; no arbitrary fit scaling was applied. Square symmetry leaves a 90-degree ambiguity in facade/spine facing. The preview uses flat terrain contact and does not prove the actual hill, platform heights, museum access, facade azimuth or surrounding site fit."
+    "status": "passed",
+    "placementHash": "sha256:d4d550681275e9ac7da787bdd646263a74f91a626da5f0054166dd228f641a23",
+    "mapFrameHash": "sha256:5dea234a075806128db26544372c677d2b3d285cd5f74b0d44dab4d69c49fb15",
+    "notes": "Exact-Q245151 OSM way255916025 anchors -8.406524144,43.385941653. The existing rectangle supplies undirected face axes; inspected north-up OSM and Google Maps Airbus/Maxar aerial views distinguish the broad northeast stepped landing, separate narrow northwest opening and west/northwest roof staircase cylinder. Heading2.113013854843793 selects the 180-degree sign of the previous -1.028578798746 axis, with modeled +Z roughly59 degrees true and +/-15 degrees visual uncertainty. Roof imagery has relief displacement and only establishes quadrant, not surveyed offset positions. The 12.7 m map envelope is distinct from the published11.75 m core; no XY stretch. Mapped height1 is rejected as a tower-height control. Y0 beneath the podium meets host terrain as a viewer convention; the supporting hill height57 m is not added as a model offset. Flat review terrain does not claim actual hill morphology or surveyed platform elevation. Footprint replacement is disabled."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi modern exterior follows the inspected2024 Wolfgang Fricke photograph, municipal tower dimensions and UNESCO identity, corroborated by FMA credited exterior views. The detailed source is retained byte-for-byte in an isolated leaf recipe so existing lighthouse approvals remain unaffected. Minor tiers, moldings, facade openings, parapet and fitting dimensions are reconstructed. The excavated visitor annex, inscription edicule, separate narrow northwest podium access, interior museum/spiral circulation, entire park, operating navigation light and exact hill/vertical datum are outside this single-tower exterior. Historical maximum-fidelity pending notes are retained as old scope; current approval applies to this explicitly limited medium-fi reconstruction."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates. No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation. Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates. Total55m includes the modeled platform and lightning spine; the allocation among upper tiers and the spine position is photo-estimated. Museum interior, adjacent service structures, terrain, historic excavations and exact lighting installations are omitted. Exact per-facade opening elevations, blind/open niche allocation, arched reliefs, finials, podium access arrangement and material weathering are reconstructed; visible integrity approval does not certify those dimensions."
-  }
+    "notes": "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates. No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation. Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates. Total55m includes the modeled platform and lightning spine; the allocation among upper tiers and the spine position is photo-estimated. Museum interior, adjacent service structures, terrain, historic excavations and exact lighting installations are omitted. Exact per-facade opening elevations, blind/open niche allocation, arched reliefs, finials, podium access arrangement and material weathering are reconstructed; visible integrity approval does not certify those dimensions.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ez/ezd/n0637_tower_of_hercules/models/source.glb",
+        "hash": "sha256:017a0c8f3ae087c2fd368752b6c07479cc9b17e6e527dadd9bb31d0854a00760",
+        "bytes": 1011416,
+        "triangles": 13060,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -16.200000762939453,
+          0,
+          -16.200000762939453
+        ],
+        "max": [
+          16.200000762939453,
+          55,
+          18.799999237060547
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ez/ezd/n0637_tower_of_hercules/model.glb",
+        "hash": "sha256:ac54dc345f1bd3a89185227b26db8e4735382bbe0cb6d473ace23f67167284c7",
+        "bytes": 1010992,
+        "triangles": 13060,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -16.200000762939453,
+          0,
+          -16.200000762939453
+        ],
+        "max": [
+          16.200000762939453,
+          55,
+          18.799999237060547
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ez/ezd/n0637_tower_of_hercules/model.skyline.glb",
+        "hash": "sha256:f1e74dbd2ccb8d2aadd55954567f75ffbd4928abb0af2161937eb825f1cf8921",
+        "bytes": 70644,
+        "triangles": 932,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -16.200000762939453,
+          0,
+          -16.200000762939453
+        ],
+        "max": [
+          16.200000762939453,
+          55,
+          18.799999237060547
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ez/ezd/n0637_tower_of_hercules/model.district.glb",
+        "hash": "sha256:100bbf573a41d7f75c1cfb5c12576f05d8cd2674c044fb19928ad07d9c93861a",
+        "bytes": 283592,
+        "triangles": 3696,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -16.200000762939453,
+          0,
+          -16.200000762939453
+        ],
+        "max": [
+          16.200000762939453,
+          55,
+          18.799999237060547
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ez/ezd/n0637_tower_of_hercules/model.street.glb",
+        "hash": "sha256:ff378dfaaef2ef5c83ed2bdd8a2f6c4705bcecfeca116d6fe394c6fcf6d58d79",
+        "bytes": 1011236,
+        "triangles": 13060,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -16.200000762939453,
+          0,
+          -16.200000762939453
+        ],
+        "max": [
+          16.200000762939453,
+          55,
+          18.799999237060547
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ez/ezd/n0637_tower_of_hercules/model.closeup.glb",
+        "hash": "sha256:ff378dfaaef2ef5c83ed2bdd8a2f6c4705bcecfeca116d6fe394c6fcf6d58d79",
+        "bytes": 1011236,
+        "triangles": 13060,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -16.200000762939453,
+          0,
+          -16.200000762939453
+        ],
+        "max": [
+          16.200000762939453,
+          55,
+          18.799999237060547
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": "Four focused tests pass: one-sided rays verify all forty real aperture backs at district/street/closeup, complete podium top, open parapet landing, steps and full-height offset rod at every level; isolated master regenerates the exact original SHA256; signed map placement distinguishes the northeast landing and excludes the mapped height=1 tag; all four browser files reproduce identical bytes within strict triangle/draw/download budgets and reuse three canonical graphs.",
+    "notes": "Six GLBs passed Khronos validation with zero errors, zero warnings and zero embedded images. Source/import remain13060 triangles; skyline/district/street/closeup are932/3696/13060/13060 with1/4/4/4 draws. One-sided aperture, complete podium, stair opening and offset rod rays pass. Original master and four derivative files regenerate exact bytes. The old reduction skyline with17 m geometric error and over-budget4566-triangle district are replaced by authored far levels."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d144e6fb11368fd84acdb2ab83906942cacaa8ef5d9e40111d5e2572a1326671",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:f1e74dbd2ccb8d2aadd55954567f75ffbd4928abb0af2161937eb825f1cf8921",
+        "bytes": 70644,
+        "gzipBytes": 12765,
+        "triangles": 932,
+        "cpuBytes": 69240,
+        "gpuBytes": 69240,
+        "errorMeters": 0.35,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:100bbf573a41d7f75c1cfb5c12576f05d8cd2674c044fb19928ad07d9c93861a",
+        "bytes": 283592,
+        "gzipBytes": 44215,
+        "triangles": 3696,
+        "cpuBytes": 278640,
+        "gpuBytes": 278640,
+        "errorMeters": 0.28,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:ff378dfaaef2ef5c83ed2bdd8a2f6c4705bcecfeca116d6fe394c6fcf6d58d79",
+        "bytes": 1011236,
+        "gzipBytes": 169525,
+        "triangles": 13060,
+        "cpuBytes": 1008624,
+        "gpuBytes": 1008624,
+        "errorMeters": 0,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:ff378dfaaef2ef5c83ed2bdd8a2f6c4705bcecfeca116d6fe394c6fcf6d58d79",
+        "bytes": 1011236,
+        "gzipBytes": 169525,
+        "triangles": 13060,
+        "cpuBytes": 1008624,
+        "gpuBytes": 1008624,
+        "errorMeters": 0,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 354236,
+    "notes": "Initial skyline plus district is 354236 bytes; street and closeup are 1011236/1011236 bytes. Three reused256-square canonical graphs, metric UVs and separate GPU attribute streams are retained; skyline has measured shared graph means baked into its colors. Far allowances .35/.28 m describe regular faceting and local fitting simplification, not a measured full-mesh Hausdorff bound. Original near levels retain all detailed geometry. Physical phone/laptop timings remain pending."
+  },
+  "limitations": [
+    "Original exterior reconstruction from documented main dimensions and inspected references. Individual moldings, sections, weathering, openings and fittings are photo-proportioned estimates.",
+    "No interior visitor route, surveyed collision model, operating navigation-light simulation or exact optical assembly is included. Lantern glazing is a restrained opaque PBR approximation.",
+    "Shared material references use metric UVs with portable vertex-color PBR fallback. Maximum-fidelity, lit shared-surface and geographic fit reviews remain separate pending gates.",
+    "Total55m includes the modeled platform and lightning spine; the allocation among upper tiers and the spine position is photo-estimated. Museum interior, adjacent service structures, terrain, historic excavations and exact lighting installations are omitted."
+  ]
 }

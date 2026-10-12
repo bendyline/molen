@@ -1,10 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0687_fnb_stadium",
-  "captureReportHash": "sha256:b9a555e71dc69811fd50c6e390b7072c1f9b3b25dc8542973b3ac50f29486218",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:1f79876b579557d30551b26e243c9a11a68fe5ac677d31640911a2b2ede1d91c",
+  "sourceHash": "sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01",
+  "runtimeHash": "sha256:0ca42a36babb08f158dc745f4abad158a152975d4cf2aec42e0497375daffcdf",
+  "captureReportHash": "sha256:8245de272b8821c75ff22a8eb6c589abbb85c23b443e2e6bf21096ee622ce958",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed published exterior and open bowl.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -19,27 +22,11 @@
       "shots/near-west-hospitality.png",
       "shots/far-calabash.png"
     ],
-    "notes": "All twelve portable and twelve shared frames inspected, with full-resolution GFRC light slots, western hospitality and placement. The corrected hospitality glazing faces the bowl and clears the seats. Individual panel joints and true light openings, inclined feet, triangular ring truss, undulating roof, three orange tiers and podium stairs form coherent visible geometry."
+    "notes": "Inspected all12 portable detailed-master views against the full exterior picture. Rounded calabash, earth-tone panel mosaic with short true openings, white undulating roof/opening, inclined feet, spatial roof ring, three-tier orange bowl and western hospitality band remain intact. Original278406-triangle master is unchanged."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:d38d75c9dabaafeb0500dc637677eb3386c56e201fba933be7dd1b73c2284a56",
-    "fixtureHash": "sha256:89963376bdbdbaaaa998a456de621835fe473bf28f5ef1a08c3927496e7d9a61",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.membrane": {
-        "path": "materials/membrane.matgraph.json",
-        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "captureReportHash": "sha256:a56353c3c79e79096b8e6d642f436166450b0e7718134ee131850f1e44e9d05d",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -54,17 +41,257 @@
       "shots/shared/far-calabash.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Shared concrete, painted steel and membrane use physical UV scales. Earth-tone concrete tints and local roof glazing are preserved. Geographic rendering with sky-PMREM and unloading checks passed."
+    "notes": "Inspected all12 shared-material master views. Common concrete/painted-metal/membrane graphs plus local seat/glass/turf colors remain readable; cache reuse and unload passed. Retained stadium/roof/pitch map controls and heading align the structure. The bounded ground opening activates and restores on unload. Flat shared fixture verifies materials/orientation/cutout behavior, not surveyed site grades. Detailed master/import, placement, shared graphs and source cameras remain unchanged after final browser-only seating/rounded-bowl corrections."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:55fb29badfd95a248b32b8076a535d521db0ea7f15198242687bbbb14df36112",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-gfrc-panels.png",
+      "medium-fi/near-inclined-feet.png",
+      "medium-fi/near-roof-membrane.png",
+      "medium-fi/near-ring-truss.png",
+      "medium-fi/near-orange-bowl.png",
+      "medium-fi/near-west-hospitality.png",
+      "medium-fi/far-calabash.png",
+      "medium-fi/whole-fnb-skyline.png",
+      "medium-fi/whole-fnb-district.png",
+      "medium-fi/whole-fnb-street.png",
+      "medium-fi/whole-fnb-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all28 final medium-fi browser views across light, quality, identity, silhouette and four matched levels. The last near-tier corrections restore stepped rows and44 closeup aisle bands using the original rounded-bowl math. Calabash, roof/opening, three-tier bowl, hospitality asymmetry, supports and ground aperture remain consistent. Near tiers retain facade ribs, triangular roof ring, field lines and goal frames; distant tiers simplify those details."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:46cda690c5de31b424ef05e84d9c960b2d21a37f0d8a0f8881692f26259bfd2c",
-    "notes": "Exact mapped stadium, separate roof loops and pitch polygon establish the anchor and nearly north-south axis; western hospitality removes facade ambiguity. North-up frame follows the mapped calabash belly. Native Y0 is the local field and structural foot datum, with the finite-width inclined footing cross-sections embedded 0.232m below it."
+    "placementHash": "sha256:881679802e4a28580e560f7dc9acaf0bb23eb9015f775fda48e3af4deaae6551",
+    "mapFrameHash": "sha256:c4b0f319b1cf36ae086a82f177e61247c5a6bb747cb977660be0702cb9ee607f",
+    "notes": "The inspected exterior picture supports the broad rounded calabash, earth-tone mosaic, white undulating roof and inclined feet. Retained stadium/roof/pitch loops and western hospitality band set approximate scale and signed heading. Standard viewer PMTiles working datum 1696.3178584257548m contains high samples under the stadium. The existing reversible ground opening follows only the stadium/podium footprint and preserves surrounding raw PMTiles. The model supplies its own level pitch/apron and bounded podium; browser outer skirt toes meet surrounding sampled terrain. Field/floor and grade remain reconstructed, not surveyed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current stadium exterior and ground fit from the inspected picture and standard viewer PMTiles. Existing reversible cutout suppresses coarse terrain only within the stadium/podium footprint; raw surrounding terrain is retained. Model supplies a level pitch/apron and bounded podium/outer skirt. Panel mosaic/window inventory, row/seat impressions, exact grade, structural joints and fixture inventory are interpreted. No spectator-count, bespoke survey, full interiors/collision or physical-device timing claim. Footprint replacement remains off."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed published exterior in Molen shared material style.",
-    "notes": "The roof designer, fabrication analyst and GFRC supplier establish the distinct calabash profile, eight panel colors, short light slots, 120 facade sectors, sixty roof cantilevers and three-chord ring supported at twenty-eight locations. Original geometry was compared with five engineer photographs. The designer’s 40m roof datum governs over the conflicting supplier summary. Panel mosaic, individual seat distribution, connection phases and minor podium levels are reconstructed; transient event graphics and enclosed hospitality interiors are outside the exterior scope."
-  }
+    "notes": "The roof designer, fabrication analyst and GFRC supplier establish the distinct calabash profile, eight panel colors, short light slots, 120 facade sectors, sixty roof cantilevers and three-chord ring supported at twenty-eight locations. Original geometry was compared with five engineer photographs. The designer’s 40m roof datum governs over the conflicting supplier summary. Panel mosaic, individual seat distribution, connection phases and minor podium levels are reconstructed; transient event graphics and enclosed hospitality interiors are outside the exterior scope.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/ke/ke7/n0687_fnb_stadium/models/source.glb",
+        "hash": "sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01",
+        "bytes": 22988388,
+        "triangles": 278406,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -156.12649536132812,
+          -0.2316112220287323,
+          -157.84434509277344
+        ],
+        "max": [
+          157.09698486328125,
+          40,
+          155.2191925048828
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.glb",
+        "hash": "sha256:0ca42a36babb08f158dc745f4abad158a152975d4cf2aec42e0497375daffcdf",
+        "bytes": 22987800,
+        "triangles": 278406,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -156.12649536132812,
+          -0.2316112220287323,
+          -157.84434509277344
+        ],
+        "max": [
+          157.09698486328125,
+          40,
+          155.2191925048828
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.skyline.glb",
+        "hash": "sha256:51b145d8ccc47f5bb0791e1f5b66631e2f2e48876304edea002d25ce88fa9713",
+        "bytes": 84760,
+        "triangles": 858,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -156.12649536132812,
+          -0.28806400299072266,
+          -157.67526245117188
+        ],
+        "max": [
+          156.8553466796875,
+          40,
+          155.09104919433594
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.district.glb",
+        "hash": "sha256:d8167ee6b530af7aacf4a2debd592dde971634ce5b511cd29ea2004a1ca1bb30",
+        "bytes": 349220,
+        "triangles": 3530,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -156.12649536132812,
+          -0.3499999940395355,
+          -157.67526245117188
+        ],
+        "max": [
+          156.8553466796875,
+          39.584678649902344,
+          155.09104919433594
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.street.glb",
+        "hash": "sha256:d6302950bd7f9ca6b30ca3a9f3574ed12a26a4dcd663199a2b6d77823abfeee7",
+        "bytes": 1481536,
+        "triangles": 15228,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -156.12649536132812,
+          -0.3499999940395355,
+          -157.67526245117188
+        ],
+        "max": [
+          156.8553466796875,
+          40,
+          155.09104919433594
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.closeup.glb",
+        "hash": "sha256:ba8bb62fa2c3d000874cd27bb6594471bb1e39604c9babb99cac7a3d99e6ef2a",
+        "bytes": 6205012,
+        "triangles": 62020,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -156.12649536132812,
+          -0.3499999940395355,
+          -157.8860626220703
+        ],
+        "max": [
+          157.00872802734375,
+          40,
+          155.17298889160156
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe retained byte-for-byte. Final levels contain858/3530/15228/62020 triangles; initial skyline+district totals433980 bytes. Separate POSITION/NORMAL streams retained. Far colors use actual shared graph means."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:05744ad5cda7233abde59931c5a6fcf44a97d1a1285ab92c0ca64dd312fb066c",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:51b145d8ccc47f5bb0791e1f5b66631e2f2e48876304edea002d25ce88fa9713",
+        "bytes": 84760,
+        "gzipBytes": 24984,
+        "triangles": 858,
+        "cpuBytes": 83340,
+        "gpuBytes": 83340,
+        "errorMeters": 4,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:d8167ee6b530af7aacf4a2debd592dde971634ce5b511cd29ea2004a1ca1bb30",
+        "bytes": 349220,
+        "gzipBytes": 110562,
+        "triangles": 3530,
+        "cpuBytes": 342156,
+        "gpuBytes": 342156,
+        "errorMeters": 2,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:d6302950bd7f9ca6b30ca3a9f3574ed12a26a4dcd663199a2b6d77823abfeee7",
+        "bytes": 1481536,
+        "gzipBytes": 448158,
+        "triangles": 15228,
+        "cpuBytes": 1474416,
+        "gpuBytes": 1474416,
+        "errorMeters": 1.2,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:ba8bb62fa2c3d000874cd27bb6594471bb1e39604c9babb99cac7a3d99e6ef2a",
+        "bytes": 6205012,
+        "gzipBytes": 1823822,
+        "triangles": 62020,
+        "cpuBytes": 6197856,
+        "gpuBytes": 6197856,
+        "errorMeters": 0.5,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 433980,
+    "notes": "skyline: 858 triangles, 84760 bytes, 1 draws; district: 3530 triangles, 349220 bytes, 6 draws; street: 15228 triangles, 1481536 bytes, 6 draws; closeup: 62020 triangles, 6205012 bytes, 6 draws. Initial skyline+district 433980 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior and ground fit from the inspected picture and standard viewer PMTiles; no bespoke survey or exact pitch/grade datum.",
+    "Original detailed master/hash/recipe preserved. Browser derivatives retain calabash, roof/opening, three-tier bowl, supports and western hospitality asymmetry; mosaic colors, panel windows, row impressions and joints are interpreted.",
+    "The existing reversible ground opening suppresses coarse terrain only within the stadium/podium footprint. Raw surrounding PMTiles are retained and restore on unload. Bounded pitch/apron and podium are model architecture, not broad duplicated landscape.",
+    "Three shared concrete/painted-metal/membrane graphs plus explicit seat/glass/turf colors; zero embedded images. Full fixture/seat inventory, interiors, collision and physical-device timing excluded. Footprint replacement remains off."
+  ]
 }

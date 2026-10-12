@@ -1,0 +1,529 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "4 World Trade Center: separate notched parallelogram and upper trapezoid, northwest triangular terrace, finely jointed silver glass, vertical mechanical louvres, clear tall lobby, revolving entrances and independent mapped retail envelope.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-southeast along local map frame",
+    "front": "+Z south-southwest",
+    "origin": "Mapped ground-envelope center at terrain contact. Independent office plan has an explicit inferred offset."
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 297.7,
+    "highestOccupiedMeters": 279.9,
+    "lobbyFinishedCeilingMeters": 14.0208,
+    "ownerFloorIntervalMeters": 4.0894,
+    "architectUnitMeters": [
+      1.524,
+      4.1148
+    ],
+    "lowerOfficeLabels": [
+      15,
+      54
+    ],
+    "upperOfficeLabels": [
+      57,
+      72
+    ],
+    "physicalFloorsCouncil": 65,
+    "marketedFloorLabels": 72,
+    "originalMasterHash": "sha256:ea8d66e6a03e5838e8f356a64bc4cda85c108bb40f4cb111228870e40b3fa19b",
+    "originalMasterRecipe": "packages/worldgen/scripts/four-world-trade-center-model.mjs#fourWorldTradeCenterStudy.build",
+    "surfaceMeans": {
+      "stone_marble": [
+        0.9160827848592121,
+        0.9160827848592121,
+        0.9160827848592121
+      ],
+      "metal_stainless": [
+        0.818960257808076,
+        0.8228885700850488,
+        0.8228885700850488
+      ]
+    }
+  },
+  "reconstruction": {
+    "lowerPlan": [
+      [
+        -34.96,
+        -25.42
+      ],
+      [
+        22.952,
+        -25.42
+      ],
+      [
+        22.952,
+        -19.66
+      ],
+      [
+        27.12,
+        -20.96
+      ],
+      [
+        40.09,
+        30.759999999999998
+      ],
+      [
+        -17.389999999999997,
+        30.759999999999998
+      ],
+      [
+        -17.389999999999997,
+        25.22
+      ],
+      [
+        -21.7,
+        26.3
+      ]
+    ],
+    "upperPlan": [
+      [
+        -4.5,
+        -25.42
+      ],
+      [
+        22.952,
+        -25.42
+      ],
+      [
+        22.952,
+        -19.66
+      ],
+      [
+        27.12,
+        -20.96
+      ],
+      [
+        40.09,
+        30.759999999999998
+      ],
+      [
+        -17.389999999999997,
+        30.759999999999998
+      ],
+      [
+        -17.389999999999997,
+        25.22
+      ],
+      [
+        -21.7,
+        26.3
+      ]
+    ],
+    "officeOffsetXZ": [
+      2.6,
+      2.7
+    ],
+    "lowerBase": 46.80419999999995,
+    "lowerTop": 210.38019999999997,
+    "upperBase": 218.55899999999997,
+    "upperTop": 283.9894,
+    "tip": 297.7,
+    "planBasis": "Owner level-28 plan has 38 visible nominal five-foot units along the north edge, giving 57.912 m. Remaining edges and recesses are inferred from drawing proportions. Translation [2.6,2.7] is provisional within the separate map envelope.",
+    "verticalBasis": "The level-72 occupied-floor datum and owner interval place level 57 at 218.559 m. Two transfer intervals and forty lower offices determine the lower stack. Mechanical/floor-label conventions and the one-inch glass-unit/slab difference remain unresolved.",
+    "materials": "Canonical stone, marble, wood, painted metal and stainless graphs; individual PBR panes and geometric joints without reference-photo textures."
+  },
+  "limitations": [
+    "Original fourWorldTradeCenterStudy.build is preserved unchanged and reproduces67854triangles/5623924bytes. Reviewed near master preserves separate ground retail envelope, notched lowerparallelogram and uppertrapezoid, genuinely absent northwest triangular upperregion with closed terrace/rail,298m silvertower andthreevertical plantbands, tall46ft finished lobby with glazed views to darkcore/warm portals, open revolvingdrums/four rotorleaves/balanceddoors/canopies. Near24side drumbands/16samples per curvedsector/24x4footrim replace original64/30/64x8 without filling entrance openings; two near levels retain folded louvres. Street halves facade bays/floors and lobbypanerows; district retains eightfloor/12m rhythm, wider plantfins and transparent lobby; skyline broad opaque glazing replaces transparent sorting and omits lobby mullions/columns/portals/rooftrim/pavingjoints and plantfins, retaining allprincipal masses, terraces/roof closure and open entrance geometry. Two reusable graphs stone_marble/metal_stainless plus opaque/clear glass produce four near drawgroups; tintedmarble approximates black granite/core and warmwoodportal without literal woodgrain. Original source recipe retains separate granite/marble/wood/painted/stainless materials. Skyline bakes measured linear texturemeans. Detailedtenant interiors/hangingwire sculpture/branding/underground omitted. Owner13ft5slab versus architect13ft6glassunit remains distinct; marketed72 vs registry65physical floors are not treated as equalcounts. Officeplan edge57.912m inferred from38fivefoot units; remaining proportions and translation unsurveyed. No claim to maximum-fidelity as-built or measured grade. Physicalphone/laptop and densecity timing remain pending. Primary architect memorial-facing lobby photograph24_01 actually inspected:paired revolvingdrums with balanceddoor between them. Reviewed source relocates the two eastfrontage study doors onto the divided Greenwichwest frontage around its mappedjoin; exact center/jamb spacing remains reconstructed. Streetentrance camera now explicitly views this correction."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "marble": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "recess": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "localRef": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "geographic": {
+    "heading": -0.513459789133,
+    "reviewStatus": "reviewed signed ownerplan/architectnorthwest terrace/publicmunicipal medium-fi frame",
+    "orientationConfidence": "independent north-annotated owner plan, architect siteplan andfreshrawOSM/BIN envelope",
+    "notes": "Fresh2026-10-10 exactQ1351208 OSMway278033587/rawring and independent NYC BIN1088795 photogrammetric outline confirm the separate ground envelope. Preserved anchor[-74.012017084,40.710325481]/heading-.513459789133: native+X ESE bearing119.419degrees towardChurchStreet and native+Z SSW bearing209.419degrees towardLibertyStreet. Owner level28plan actually inspected with north annotation: Greenwichwest,Churcheast,Libertysouth; opposed northeast/southwest corner notches and architect upperplan northwest triangular cut independently sign direction, not a180degree arbitrary rectangle. Architect siteplan independently labels memorialwest/3WTCnorth/Libertysouth. Office floorplate remains separate from base envelope; reconstructed57.912m edge and[2.6,2.7]translation retained with undimensioned proportions, not independently surveyed. Raw OSMring agrees within.002m rounding. Municipal ground/roof attributes not used as meter datums. Y0 is approximate localpavement, no measured curbgrade or footprintreplacement. Lobbydoor allocation and plant pitch are visual reconstructions, not an as-built door survey.",
+    "evidence": "Fresh2026-10-10 exactQ1351208 OSMway278033587/rawring and independent NYC BIN1088795 photogrammetric outline confirm the separate ground envelope. Preserved anchor[-74.012017084,40.710325481]/heading-.513459789133: native+X ESE bearing119.419degrees towardChurchStreet and native+Z SSW bearing209.419degrees towardLibertyStreet. Owner level28plan actually inspected with north annotation: Greenwichwest,Churcheast,Libertysouth; opposed northeast/southwest corner notches and architect upperplan northwest triangular cut independently sign direction, not a180degree arbitrary rectangle. Architect siteplan independently labels memorialwest/3WTCnorth/Libertysouth. Office floorplate remains separate from base envelope; reconstructed57.912m edge and[2.6,2.7]translation retained with undimensioned proportions, not independently surveyed. Raw OSMring agrees within.002m rounding. Municipal ground/roof attributes not used as meter datums. Y0 is approximate localpavement, no measured curbgrade or footprintreplacement. Lobbydoor allocation and plant pitch are visual reconstructions, not an as-built door survey.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh2026-10-10 exactQ1351208 OSMway278033587/rawring and independent NYC BIN1088795 photogrammetric outline confirm the separate ground envelope. Preserved anchor[-74.012017084,40.710325481]/heading-.513459789133: native+X ESE bearing119.419degrees towardChurchStreet and native+Z SSW bearing209.419degrees towardLibertyStreet. Owner level28plan actually inspected with north annotation: Greenwichwest,Churcheast,Libertysouth; opposed northeast/southwest corner notches and architect upperplan northwest triangular cut independently sign direction, not a180degree arbitrary rectangle. Architect siteplan independently labels memorialwest/3WTCnorth/Libertysouth. Office floorplate remains separate from base envelope; reconstructed57.912m edge and[2.6,2.7]translation retained with undimensioned proportions, not independently surveyed. Raw OSMring agrees within.002m rounding. Municipal ground/roof attributes not used as meter datums. Y0 is approximate localpavement, no measured curbgrade or footprintreplacement. Lobbydoor allocation and plant pitch are visual reconstructions, not an as-built door survey.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "georeferencing-baseline.json",
+    "municipal-footprint.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/four-wtc-runtime-model.mjs",
+    "export": "buildFourWtcReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/four-wtc-runtime-model.mjs",
+    "export": "buildFourWtcSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFourWtcDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "recess": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildFourWtcStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "recess": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFourWtcCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "recess": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-four-wtc",
+      "position": [
+        -590,
+        255,
+        650
+      ],
+      "lookAt": [
+        0,
+        149,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-four-wtc-skyline",
+      "position": [
+        -590,
+        255,
+        650
+      ],
+      "lookAt": [
+        0,
+        149,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-four-wtc-district",
+      "position": [
+        -590,
+        255,
+        650
+      ],
+      "lookAt": [
+        0,
+        149,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-four-wtc-street",
+      "position": [
+        -590,
+        255,
+        650
+      ],
+      "lookAt": [
+        0,
+        149,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-four-wtc-closeup",
+      "position": [
+        -590,
+        255,
+        650
+      ],
+      "lookAt": [
+        0,
+        149,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-northwest-terrace",
+      "position": [
+        -95,
+        268,
+        -110
+      ],
+      "lookAt": [
+        -17,
+        220,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-doors",
+      "position": [
+        -65,
+        7,
+        -10
+      ],
+      "lookAt": [
+        -36,
+        3,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-terrace",
+      "position": [
+        -53,
+        241,
+        -58
+      ],
+      "lookAt": [
+        -17,
+        218.559,
+        -7
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

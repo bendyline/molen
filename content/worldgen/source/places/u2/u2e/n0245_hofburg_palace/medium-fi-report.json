@@ -1,0 +1,1437 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0245_hofburg_palace",
+  "sourceHash": "sha256:c42e9629f63ef486480159eb3d707a8fc2dd3abd53969939766c23503075a975",
+  "runtimeHash": "sha256:3ad45cf969c2dabb633a31ea3dbf1017098f99298176ac6f3419bd426501061e",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:93103b18a3cef0f7fb84ae044e2a8082d0295dfc83986c2debe46dc3f68e7ab4",
+      "bytes": 78976,
+      "gzipBytes": 15181,
+      "triangles": 974,
+      "cpuBytes": 77556,
+      "gpuBytes": 77556,
+      "errorMeters": 9,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:0492202ec9982c012dd375b77bf4ec8cb8fda7e3392218411a8ce0749f170843",
+      "bytes": 308972,
+      "gzipBytes": 97536,
+      "triangles": 3995,
+      "cpuBytes": 300456,
+      "gpuBytes": 300456,
+      "errorMeters": 3,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:fb77dc8e75d9112300ec6004913b6849c572b1139f800b62245a104b5e778daf",
+      "bytes": 1102420,
+      "gzipBytes": 294011,
+      "triangles": 14599,
+      "cpuBytes": 1093840,
+      "gpuBytes": 1093840,
+      "errorMeters": 1,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:3b784c8a62359da7f87ff6062d982c1398247d7bffecfdf539c4deda3d89fa69",
+      "bytes": 4778304,
+      "gzipBytes": 1225512,
+      "triangles": 59792,
+      "cpuBytes": 4768468,
+      "gpuBytes": 4768468,
+      "errorMeters": 0.3,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:fb33c2e3bd3dcf58e2db5974af89458cf815764935c9c72cea7d61bdc939376b"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:ed35919ad3aeca5f013ed0880be0e2b8e3186baf5d5985833930e6f8959d93f8"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:f0d913d35a6524132a035ac144aef22b62ddd49bb4eb45e46e27f50879e4cb31",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          47.7136,
+          54.35,
+          94.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:f483d76210cd6fb9e4d8b198df5aa0a96964a31ffdd03df14849ff6a8dcef381",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          47.7136,
+          54.35,
+          94.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:536343fe7195981bee5bb0ffb4bd4295f3c6692daa8c90c15674a562ab76301b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          47.7136,
+          54.35,
+          94.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:7379b8145cb5f17439736f0372495af3a3765a66c7e00ecc514b42dd4b49e95a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          47.7136,
+          54.35,
+          94.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:3ce543c4772ef4404ec6df8a40332744d1f586b72600308b3506137545f805a8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 44029,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:fe44ef0e718bdeb141320f3953c9d39f5b0ab6ea2cdf0a5d7f774f2b076466c8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44029,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:af4ad68a666cb9958b0650b6200fbe8f1d467a94398a92308772407d157d4bba",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 44029,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d39cf2f23ff386617a87c0ca367ba2fce92a8e2001a513d67dc5013645b9ae52",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44029,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2dc251989c025558c96a5d8def1c3b29205d40e57dc6f2c27bbaed45d0bdfe39",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 41008,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          193.7136,
+          128.35,
+          347.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:05aa2262faee335cb8cf93ec083d695704cba4e88a9f3b0848a441515ed0e9e6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41008,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          193.7136,
+          128.35,
+          347.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:561ee1ac723b76710b164defe7fdc48b6b4c934c8edc9f6c5bc7846deaa1edb1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 41008,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          193.7136,
+          128.35,
+          347.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:2d9ac690e7a5909d2651e39c5c8054046451929bf3fd4c48eeceb97d22e295be",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41008,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          193.7136,
+          128.35,
+          347.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:24816b4952b56213e5f60afbad01fc02859832c46ec3eff05755702042397a19",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 34768,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          193.7136,
+          128.35,
+          347.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/michaeler-three-domes.png",
+      "hash": "sha256:6f756b93d1f8933656034047e77b4fa47d2202503a2565ef053c8d10d0ea7fa4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          264,
+          70,
+          121
+        ],
+        "lookAt": [
+          157,
+          23,
+          18
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/neue-burg-curved-front.png",
+      "hash": "sha256:efdea89f51a38e580272df634837018a5917cf530c87c33431ec2c2be11f2d8a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          11,
+          63,
+          -183
+        ],
+        "lookAt": [
+          -101,
+          20,
+          -93
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/amalien-clock.png",
+      "hash": "sha256:660127fce91fe8f3471d73ea7eefa782e301587dfc901d3a0d47ef4dad79ec9c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 99654,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          124,
+          40,
+          -58
+        ],
+        "lookAt": [
+          179,
+          22,
+          -111
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/inner-burg-and-chancellery.png",
+      "hash": "sha256:42c67267050462d744a1af3cc17c98610f075a8b97a63314ae22b27912c8726a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 99654,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          94,
+          55,
+          -94
+        ],
+        "lookAt": [
+          155,
+          17,
+          -51
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/swiss-court-roofs.png",
+      "hash": "sha256:bd0ce8b08583e7b14353d2f48546343883b68e84aac886cd33d4563f3d020a43",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 99654,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          93,
+          120,
+          49
+        ],
+        "lookAt": [
+          63,
+          16,
+          -6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/stallburg-and-riding-school.png",
+      "hash": "sha256:0a92e58c4a0c6717c6484511e3c3948e4f368621cbdbd2c03f3a9f5e660d3993",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          180,
+          100,
+          175
+        ],
+        "lookAt": [
+          103,
+          15,
+          101
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/library-and-augustiner.png",
+      "hash": "sha256:5134a00b2049bfd1ad30c6720979d5b3359ef8605365efbb865eb9d2686620bc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          25,
+          108,
+          215
+        ],
+        "lookAt": [
+          -43,
+          21,
+          100
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/albertina-and-palmenhaus.png",
+      "hash": "sha256:da59feedefdd46ff00393675b5e5b2aa99d887b66b60511c23eacb474b4a7bb9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          -302,
+          98,
+          162
+        ],
+        "lookAt": [
+          -155,
+          14,
+          130
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/complete-open-courtyard-plan.png",
+      "hash": "sha256:2c92aa9e6a8e0981116ead369703978374e03dfca29c6a66b5324f16073bdcf9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          15,
+          580,
+          15
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/michaeler-low-passage.png",
+      "hash": "sha256:a0948f58b3f0f48dca39696fa988cca80d25cca76cc2b6a924713510f5b8132f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 99654,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          182,
+          3.2,
+          37
+        ],
+        "lookAt": [
+          120,
+          3.2,
+          -25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/raised-albertina-canopy-pylon.png",
+      "hash": "sha256:0996f11cd25fc17d828e9c26c5c50a9c84710a85728db449f2110996243f34d0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          -270,
+          25,
+          267
+        ],
+        "lookAt": [
+          -200,
+          13,
+          198
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-hofburg-skyline.png",
+      "hash": "sha256:05b05b85caef14d4558ba766e2fd733134dd52a09275ccb8839f44ce42162476",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41008,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          420,
+          275,
+          370
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-hofburg-district.png",
+      "hash": "sha256:72a631032a0cda2c5e3a3f785530431109509c4664f2a343154055341e22f645",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44029,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          420,
+          275,
+          370
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-hofburg-street.png",
+      "hash": "sha256:85dd85d56bdab984e979046f1093b2e3b52f56d11d323ebe7fd37c23db6ad412",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 54633,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          420,
+          275,
+          370
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-hofburg-closeup.png",
+      "hash": "sha256:c1b31e6c79438b6b36b8c2102be91345ddac62a9b91822acbb6a2f856dafe62a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          420,
+          275,
+          370
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2eb5fc0e1af3261c860f29e7b42426a8b32b57e17a63d841934c70203b783ea0",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41008,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:fe44ef0e718bdeb141320f3953c9d39f5b0ab6ea2cdf0a5d7f774f2b076466c8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 44029,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:83e797a9fa9ad75492b792ff3646332d75061e269dc95c67104cb30649516557",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 54633,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:9dcc7f35ea30470c6f62f71032c113237e729fea7ca34aa8e035827fb7a7fbcc",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 99826,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0245_hofburg_palace/terrain-review.height.png"
+        },
+        "position": [
+          96.7136,
+          90.35,
+          179.248
+        ],
+        "lookAt": [
+          -0.2864,
+          39.35,
+          11.248
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

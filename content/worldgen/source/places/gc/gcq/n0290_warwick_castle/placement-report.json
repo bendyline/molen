@@ -1,9 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0290_warwick_castle",
-  "sourceHash": "sha256:dac27326e5e7818a427fb3b48c043861696b3787a1a0187946bf928f0e57f18a",
-  "runtimeHash": "sha256:976dfdbbd5ed64a605df9d2e37dcbe59c347e77c17b7a122f1b684b34b7dd8de",
-  "placementHash": "sha256:0e3268005b418b154cef15c713671cb98085f4ee61a032486c4260add10f31b2",
+  "inputHash": "sha256:d3449d36ac35bcb6ca73f11e9a5bcbffb5710526ec53d5d6ce1694d72ee1740d",
+  "placementHash": "sha256:a2d34e352e18e220f32fade51cdd9da94ebf01af8d89bb88112f3204a4cd9a1b",
   "entry": {
     "id": "next1000.n0290",
     "title": "Warwick Castle",
@@ -21,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -1.585265184,
+        52.279577946
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    },
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/relation/553839",
-    "note": "Undirected cached axis. Signed gate direction,relative tower/base datum,motte/approach fit and real terrain pending. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Two inspected pictures confirm polygonal Guy tower, lobed Caesar tower, clocked twin-turret gatehouse, castellated domestic ranges and stepped motte/ramparts. Retained mapped outline/court and standard viewer PMTiles set approximate location, scale and northeast gate/river-side orientation. A6m downward derivative offset puts the reconstructed court at Y5 above the PMTiles working datum. Bounded lower footing vertices extend below coarse terrain; court, bank and stepped motte remain an explicit approximate reconstruction. Anchor -1.585265184,52.279577946; heading 0.789464883642; standard PMTiles datum 63.38437334827418m. Floors are reconstructed and foundations extend below the coarse sampled ground. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

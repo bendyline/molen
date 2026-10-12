@@ -1,9 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0276_miramare_castle",
-  "sourceHash": "sha256:293f7a85a18c1adfebe199f966807d004023cfac4b6a5074768d47d0c0f0532d",
-  "runtimeHash": "sha256:4f864463e47bb92277cc8f854fbf65a610eb3ba45b5d2b602e6a103998fbd132",
-  "captureReportHash": "sha256:28991eef6468a96e032fb81475aa697b0653ed2c51dc0a8b1b0e661974005929",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:957c1baad82abe0869c4d67f920cb3c8ba40b726b92a5fcfa0ff33e34f480c3c",
+  "sourceHash": "sha256:e1cdf8fce5b324f87672329372771c9c76588ad5243d771a9050c43b4bfe470a",
+  "runtimeHash": "sha256:6d1c78cda9fb1f27dc53cdf2b56c8a778003bf9a28d7a567b5db23d3e0f5a1d5",
+  "captureReportHash": "sha256:6b2db5cffaba6be17f797a73e242ede4af7d0c1305fa17a07197305b525b168e",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -19,11 +21,11 @@
       "shots/angled-east-wing.png",
       "shots/mapped-building-plan.png"
     ],
-    "notes": "Inspected all11 final portable views. Recognition comes from ivory angled wings and crenellated parapets, the southwest square clock tower with four corner turrets, recessed tall stair glazing, mixed paired/triple round-headed windows and the projecting sea-side window bay. The landward pavilion interrupts the facade with taller paired openings and two turrets. Low roof pitches remain concealed by the parapet. Corrected inward-facing stair glazing, duplicated overlapping windows and wing parapets crossing the clock face. The footprint follows exact mapped Q165069 outline; heights and facade detail remain interpreted from current museum photographs."
+    "notes": "Inspected the coastal aerial picture and49 final rendered views. Ivory angled wings, recessed stair hall, broad crenellations, arched window rhythm, projecting sea-side bay and southwest four-turret clock tower retain identity. North-up outline alignment places the clock tower on the pictured sea side. Source/medium-fi PMTiles views show bounded foundation contact on the coarse inland/coastal slope."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cb97502f24623769343d1543abb10a6e59b4d86feabc5437edb919a1a1479bba",
+    "captureReportHash": "sha256:5834ebc97796c9a62553510f80c7d0c72e3af3edde250bc73759340485f26678",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -34,13 +36,14 @@
       "shots/shared/recessed-stair-entrance.png",
       "shots/shared/sea-side-window-bay.png",
       "shots/shared/angled-east-wing.png",
-      "shots/shared/mapped-building-plan.png"
+      "shots/shared/mapped-building-plan.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all10 final shared-loader views. Three merged groups: shared256² limestone and slate graphs plus untextured blue-grey glass. Both graphs load once per view at physical repeat scale; no embedded/private images, copied photographs, baked light or AO. Ivory palette decodes sRGB to linear. Unloading disposes all model geometry."
+    "notes": "Two common graphs supply limestone masonry and slate roof surfaces, with one local opaque glass slot. Close bay/entrance/tower views show shared masonry detail and consistent ivory tint. All six GLBs contain zero images; shared material cache reuse and unload pass."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fdc4e65a992af89cf62c9f445745e7456b693e05cbc8a8cccbc0958f72e34f7f",
+    "captureReportHash": "sha256:bfd19e76b7f540e2893db99dfdc9d4428d49cc7d5d831f126f57fcf6d6b68b95",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -61,22 +64,33 @@
       "medium-fi/sea-side-window-bay.png",
       "medium-fi/angled-east-wing.png",
       "medium-fi/mapped-building-plan.png",
+      "medium-fi/whole-miramare-skyline.png",
+      "medium-fi/whole-miramare-district.png",
+      "medium-fi/whole-miramare-street.png",
+      "medium-fi/whole-miramare-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all23 final canonical Earth-rig frames: street/block/skyline, noon/late, Economy/High, silhouette, six architectural views and four same-camera LODs. Ivory walls and darker slate sit coherently beside demonstrative procedural neighbors. Hand-authored skyline retains angled wings, recessed connection, tall square tower, corner turret and crenellation silhouette. District adds sparse opening rhythm and four clock faces, street adds selected window bay and cornices, closeup adds selected planar surrounds. No subpixel rails or flag wires. All levels keep groundY0 and the same mapped base outline; tiny turret/end-face differences remain below0.4m. Synthetic flat ground and English terrace examples establish appearance, not actual Trieste placement. Continuous-motion shimmer and physical-device performance remain unmeasured."
+    "notes": "Inspected noon/late economy/high, silhouette, six identity cameras and matched four-tier comparisons. Skyline preserves angled masses, clock tower and corner turrets; district restores broad crenellations and windows; street/closeup carry paired/triple arches, bay and selected trim. Counts858/3424/7418/9918 and395376initialbytes fit runtime budgets."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Exact Q165069 way/361092895 supplies60.48×33.574m footprint,anchor[13.712453245,45.702528846],heading0.008338727695. The southwest clock tower and landward/sea-side primary views resolve axis sign. The published35m tower height is above sea; modelY0 attaches to a provisional terrace, with29m tower top inferred using an approximate6m sea-to-terrace offset. This is not a surveyed datum conversion. Other elevations, pavilions and openings are inferred. Park, Castelletto, cliff and terrace retaining walls excluded. Actual terrain/approaches and mapped-footprint replacement need in-world review. Draft inactive,replaceFootprint=false. Synthetic captures do not establish geographic acceptance."
+    "status": "passed",
+    "placementHash": "sha256:fe1fa2fc6c3d92ed931200ce71bf94f9ea422cd2208322547cc97e8e0bc62067",
+    "mapFrameHash": "sha256:ad077fd6a40f5d9f67199924129afc257df3d74028d511a401f4fd53f1a098b9",
+    "notes": "The inspected aerial picture confirms the ivory angled crenellated wings, recessed entrance, sea-side bay and southwest square clock tower with four corner turrets. Standard viewer PMTiles and the retained building outline set approximate coastal location and signed orientation. Coarse inland ground rises above the anchor sample; a reconstructed7.2m working rise clears it, with bounded castle foundations extending below the sampled slope. This is approximate fit, not a surveyed sea/terrace datum. Anchor 13.712453245,45.702528846; heading 0.008338727695; standard PMTiles datum 3.7358245453613077m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source9918triangles,3 merged groups,2 shared graphs and zero images. Shape, ivory Istrian cladding, square tower/corner turrets, angled wings and selected rounded openings carry identity. Fine stone joints/carving, coats of arms, balustrades, glazing bars, full interiors and flag/guy wires omitted. Repeated openings merge by material; near surrounds are planar and restricted to selected bays. Research photographs are linked evidence only. All dimensions/elevations except mapped footprint and separately documented published tower-above-sea facts are approximate."
+    "notes": "Approximate current building exterior from inspected picture and standard viewer PMTiles. Working terrace elevation is reconstructed and does not claim precise conversion to sea level. Park, Castelletto, jetty, terrace retaining walls, full cliff and interiors excluded. Fine carving, openings and elevation subdivisions remain approximate; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Source9918triangles,3 merged groups,2 shared graphs and zero images. Shape, ivory Istrian cladding, square tower/corner turrets, angled wings and selected rounded openings carry identity. Fine stone joints/carving, coats of arms, balustrades, glazing bars, full interiors and flag/guy wires omitted. Repeated openings merge by material; near surrounds are planar and restricted to selected bays. Research photographs are linked evidence only. All dimensions/elevations except mapped footprint and separately documented published tower-above-sea facts are approximate.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -84,259 +98,197 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/models/source.glb",
-        "hash": "sha256:293f7a85a18c1adfebe199f966807d004023cfac4b6a5074768d47d0c0f0532d",
-        "bytes": 1042572,
+        "hash": "sha256:e1cdf8fce5b324f87672329372771c9c76588ad5243d771a9050c43b4bfe470a",
+        "bytes": 1192508,
         "triangles": 9918,
-        "vertices": 25590,
         "materials": 3,
-        "sharedGraphs": 2,
         "images": 0,
         "min": [
           -31.51534080505371,
-          0,
+          -5.2358245849609375,
           -17.656999588012695
         ],
         "max": [
           31.105941772460938,
-          29,
+          36.20000076293945,
           17.656999588012695
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.glb",
-        "hash": "sha256:4f864463e47bb92277cc8f854fbf65a610eb3ba45b5d2b602e6a103998fbd132",
-        "bytes": 1042216,
+        "hash": "sha256:6d1c78cda9fb1f27dc53cdf2b56c8a778003bf9a28d7a567b5db23d3e0f5a1d5",
+        "bytes": 1192152,
         "triangles": 9918,
-        "vertices": 25590,
         "materials": 3,
-        "sharedGraphs": 2,
         "images": 0,
         "min": [
           -31.51534080505371,
-          0,
+          -5.2358245849609375,
           -17.656999588012695
         ],
         "max": [
           31.105941772460938,
-          29,
+          36.20000076293945,
           17.656999588012695
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "warnings": 0
       },
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
         "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.skyline.glb",
-        "hash": "sha256:881e642ab66874d672ecb37a18f07f4b06f9f2b299207ffdac9c22f912b16f40",
-        "bytes": 69792,
-        "triangles": 862,
-        "vertices": 1756,
+        "hash": "sha256:a437cbaba9aef54fd22492cd57cf10075aeb6dd47e8502ecb02827a50eaadbbe",
+        "bytes": 85712,
+        "triangles": 858,
         "materials": 1,
-        "sharedGraphs": 0,
         "images": 0,
         "min": [
           -31.317941665649414,
-          0,
+          -5.2358245849609375,
           -17.48699951171875
         ],
         "max": [
           30.940000534057617,
-          29,
+          36.20000076293945,
           17.48699951171875
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
-        "file": "model.district.glb",
         "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.district.glb",
-        "hash": "sha256:ec7ccd2753e4daff66f73e871d62119f2448d24f2eef152b647dc049fc7119c7",
-        "bytes": 254072,
+        "hash": "sha256:c8b8ab4a15005b523b30be144c17a989ff980216d28e14cc1087e46942bf492d",
+        "bytes": 309664,
         "triangles": 3424,
-        "vertices": 6382,
         "materials": 3,
-        "sharedGraphs": 2,
         "images": 0,
         "min": [
           -31.476421356201172,
-          0,
+          -5.2358245849609375,
           -17.64699935913086
         ],
         "max": [
           31.100000381469727,
-          29,
+          36.20000076293945,
           17.64699935913086
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "warnings": 0
       },
       {
         "name": "street",
-        "file": "model.street.glb",
         "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.street.glb",
-        "hash": "sha256:d9fbe58b569e4eea5f555c86301eb6871668bcd2ee2e180dc60ba41456e00c57",
-        "bytes": 539192,
+        "hash": "sha256:55ac248bcbcfc3be90339eef6fb672e3018c4d662a1199d5a5994ca7dcb3e895",
+        "bytes": 681472,
         "triangles": 7418,
-        "vertices": 13636,
         "materials": 3,
-        "sharedGraphs": 2,
         "images": 0,
         "min": [
           -31.51534080505371,
-          0,
+          -5.2358245849609375,
           -17.656999588012695
         ],
         "max": [
           31.105941772460938,
-          29,
+          36.20000076293945,
           17.656999588012695
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "warnings": 0
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
         "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.closeup.glb",
-        "hash": "sha256:5a6fcfb199406fe549fc295b806716bdca8d4ab9a75952d0721d8642e63c934a",
-        "bytes": 698192,
+        "hash": "sha256:56055947c83668e26dfda3bd532018bf89a2bc0508ab50620cc0fc3318444e3a",
+        "bytes": 945412,
         "triangles": 9918,
-        "vertices": 17636,
         "materials": 3,
-        "sharedGraphs": 2,
         "images": 0,
         "min": [
           -31.51534080505371,
-          0,
+          -5.2358245849609375,
           -17.656999588012695
         ],
         "max": [
           31.105941772460938,
-          29,
+          36.20000076293945,
           17.656999588012695
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "warnings": 0
       }
     ],
-    "notes": "All six GLBs pass with zero errors/warnings,zero images,groundY0 and29m maximum. Two targeted LOD tests pass deterministic bytes, increasing detail, geometry/download caps, shared bindings and homogeneous GPU attribute component types. Informational unused-UV notices are expected for externally bound material graphs."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "All six selected GLBs pass Khronos validation with zero errors and warnings. Original architectural master/recipe preserved. Registered derivative uses the authored skyline export with shared linear color means, raises working terrace7.2m to clear coarse inland ground and extends bounded foundation bottoms below PMTiles samples. Camera overrides track the working height; source/runtime/capture hashes and shared cache cleanup pass."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:66e2a4316e711900dd2638c8219399a3288b95e4bae9f6da251cba4869d19ac3",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.skyline.glb",
-        "hash": "sha256:881e642ab66874d672ecb37a18f07f4b06f9f2b299207ffdac9c22f912b16f40",
-        "bytes": 69792,
-        "triangles": 862,
-        "vertices": 1756,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -31.317941665649414,
-          0,
-          -17.48699951171875
-        ],
-        "max": [
-          30.940000534057617,
-          29,
-          17.48699951171875
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "hash": "sha256:a437cbaba9aef54fd22492cd57cf10075aeb6dd47e8502ecb02827a50eaadbbe",
+        "bytes": 85712,
+        "gzipBytes": 14814,
+        "triangles": 858,
+        "cpuBytes": 84276,
+        "gpuBytes": 84276,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.district.glb",
-        "hash": "sha256:ec7ccd2753e4daff66f73e871d62119f2448d24f2eef152b647dc049fc7119c7",
-        "bytes": 254072,
+        "hash": "sha256:c8b8ab4a15005b523b30be144c17a989ff980216d28e14cc1087e46942bf492d",
+        "bytes": 309664,
+        "gzipBytes": 71218,
         "triangles": 3424,
-        "vertices": 6382,
-        "materials": 3,
-        "sharedGraphs": 2,
-        "images": 0,
-        "min": [
-          -31.476421356201172,
-          0,
-          -17.64699935913086
-        ],
-        "max": [
-          31.100000381469727,
-          29,
-          17.64699935913086
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "cpuBytes": 305844,
+        "gpuBytes": 305844,
+        "errorMeters": 0.7,
+        "drawCalls": 3
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.street.glb",
-        "hash": "sha256:d9fbe58b569e4eea5f555c86301eb6871668bcd2ee2e180dc60ba41456e00c57",
-        "bytes": 539192,
+        "hash": "sha256:55ac248bcbcfc3be90339eef6fb672e3018c4d662a1199d5a5994ca7dcb3e895",
+        "bytes": 681472,
+        "gzipBytes": 156348,
         "triangles": 7418,
-        "vertices": 13636,
-        "materials": 3,
-        "sharedGraphs": 2,
-        "images": 0,
-        "min": [
-          -31.51534080505371,
-          0,
-          -17.656999588012695
-        ],
-        "max": [
-          31.105941772460938,
-          29,
-          17.656999588012695
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "cpuBytes": 677640,
+        "gpuBytes": 677640,
+        "errorMeters": 0.3,
+        "drawCalls": 3
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u2/u21/n0276_miramare_castle/model.closeup.glb",
-        "hash": "sha256:5a6fcfb199406fe549fc295b806716bdca8d4ab9a75952d0721d8642e63c934a",
-        "bytes": 698192,
+        "hash": "sha256:56055947c83668e26dfda3bd532018bf89a2bc0508ab50620cc0fc3318444e3a",
+        "bytes": 945412,
+        "gzipBytes": 216714,
         "triangles": 9918,
-        "vertices": 17636,
-        "materials": 3,
-        "sharedGraphs": 2,
-        "images": 0,
-        "min": [
-          -31.51534080505371,
-          0,
-          -17.656999588012695
-        ],
-        "max": [
-          31.105941772460938,
-          29,
-          17.656999588012695
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 3
+        "cpuBytes": 941580,
+        "gpuBytes": 941580,
+        "errorMeters": 0.1,
+        "drawCalls": 3
       }
     ],
-    "initialDownloadBytes": 323864,
-    "notes": "Skyline/district/street/closeup:862/3424/7418/9918triangles and69792/254072/539192/698192bytes. Initial skyline plus district323864bytes excludes shared graph downloads. Strict medium-fi audit, recipe Biome and byte-identical source regeneration pass. Skyline drops parapet underside/end faces and sparse ornament to fit1000triangles. Master is preserved separately. Checks were scoped to Miramare with no dependency audit, engine-wide suite or unrelated generator rebuild."
-  }
+    "initialBytes": 395376,
+    "notes": "skyline: 858 triangles, 85712 bytes, 1 draws; district: 3424 triangles, 309664 bytes, 3 draws; street: 7418 triangles, 681472 bytes, 3 draws; closeup: 9918 triangles, 945412 bytes, 3 draws. Initial skyline+district 395376 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior based on inspected picture and standard viewer PMTiles; no bespoke survey or precise terrace/sea elevation conversion.",
+    "Original detailed architectural master/recipe preserved; independent derivative fits working datum and bounded foundation bottoms.",
+    "Angled ivory wings, southwest four-turret clock tower, paired/triple arched windows, recessed hall and bay preserve identity. Fine stone carving and openings are reconstructed.",
+    "Castle building footprint only. Park, Castelletto, terrace retaining walls, jetty, full coastal cliff and interiors excluded. No artificial terrain cutout.",
+    "Two shared material graphs and local opaque glass; zero embedded images. Physical-device timing pending."
+  ]
 }

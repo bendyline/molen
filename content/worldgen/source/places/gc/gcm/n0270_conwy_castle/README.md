@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-11,944 triangles; 32,196 vertices; 5 material groups; 1,305,620 bytes. Native bounds: -60.800, 0.000, -29.480 to 60.800, 30.000, 29.480. Source hash: `sha256:58cbbd6888f8f94e8e8b7b656f528be093b292e0f059f7a450f97eb907dd9117`.
+11,944 triangles; 35,832 vertices; 5 material groups; 1,436,532 bytes. Native bounds: -60.800, -4.866, -29.480 to 60.800, 31.500, 29.480. Source hash: `sha256:844e6ad1da5e7737d2cee1a73060a33471719adcdc1294f5490c8d83a95585a8`.
 
-{"up":"+Y","longitudinal":"+X east, about 4.26 degrees north of east","front":"+X river barbican; -X western town entrance","origin":"Mapped outline center; foundations Y=0, proposed courtyard Y=2m"}
+{"up":"+Y","longitudinal":"+X east, about 4.26 degrees north of east","front":"+X river barbican; -X western town entrance","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Map-aligned perimeter and named plan components resolve orientation. Tower heights, internal walls and court datum remain approximate; geographic activation awaits terrain review.
+Two overhead pictures confirm eight open round towers, paired roofless wards and the bent south hall. Standard viewer PMTiles and the cached exact castle outline set placement and east-west orientation. Court3.5m above the working sample clears the coarse rock surface; western town entry and eastern river barbican remain approximate. Anchor -3.82555084,53.280022417; heading 0.07442147105; standard PMTiles datum 8.781932169860132m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -31,10 +31,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0270` (
 
 ## Pending work
 
-- Simplified current ruin exterior; lower interiors, fine tracery and stairs abbreviated.
-- Tower elevations are inferred; cached30m maximum lacks a reference. River-relative published heights are distinct from model heights.
-- Town walls, adjacent bridges, visitor buildings and natural bedrock omitted.
-- Actual terrain seating, continuous-motion shimmer and physical-device performance pending.
+- Picture and standard PMTiles fit, not surveyed geometry or thresholds.
+- Detailed original Conwy geometry and recipe remain preserved. The independent derivative adjusts working datum and bounded foundation contact.
+- Eight open towers, four stair turrets, paired roofless wards and bent hall range provide identity. Openings, copings, wall scars, platforms and internal partitions remain approximate.
+- Coarse terrain does not resolve exact rock contact or approaches. No artificial hill, terrain cutout, navigable interiors, town walls or adjacent bridges are included.
+- Four common material graphs and local foliage tint; no embedded texture images. Physical-device timing and continuous-motion shimmer remain pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

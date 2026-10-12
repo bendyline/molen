@@ -45,7 +45,11 @@
     "elevationMode": "terrain-contact",
     "status": "preview-proposal",
     "source": "https://www.openstreetmap.org/way/265419490",
-    "notes": "Tower core centered on mapped upper control-room circular parts. Elongated base +Z axis aligns with mapped opposed sloped wings, north/south roof directions349.5/169.5degrees. Upper tower rotational symmetry has no facade ambiguity; unsupported four-way entry canopies were removed."
+    "notes": "Tower core centered on mapped upper control-room circular parts. Elongated base +Z axis aligns with mapped opposed sloped wings, north/south roof directions349.5/169.5degrees. Upper tower rotational symmetry has no facade ambiguity; unsupported four-way entry canopies were removed.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ffb52421da7fe5fc1a241fd3f00f6132cc11adcc4ca546bebfd475c590259973",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -104,6 +108,34 @@
         65,
         0
       ]
+    },
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        140,
+        90,
+        220
+      ],
+      "lookAt": [
+        0,
+        66,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        140,
+        90,
+        220
+      ],
+      "lookAt": [
+        0,
+        66,
+        0
+      ],
+      "reviewLod": "district"
     }
   ],
   "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
@@ -115,6 +147,23 @@
   "assetId": "molen.worldgen.structure.n0644_jeddah_light",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.siheyuan"
+  },
+  "appearance": {
+    "identity": "Pale narrow tower, paired flared base wings, bronze spherical capsule with sixteen arched panes, small arcade belt and stacked flat-topped control rooms.",
+    "master": "Preserve original87188-triangle exterior and cited photo-proportioned dimensional study.",
+    "browser": "Four medium-fi derivatives retain silhouette and capsule. Shared painted metal/concrete graphs and local tinted glazing; no embedded images.",
+    "context": "Neighbor blocks in review fixtures are synthetic scale references, not reconstructed Jeddah buildings.",
+    "exclusions": "Interiors, individual fasteners, optical equipment and transient port equipment; mapped footprints and photo-proportioned capsule dimensions are not a survey."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/jeddah-skyline-model.mjs",
+    "export": "buildJeddahSkyline",
+    "errorMeters": 2
+  },
   "actualBounds": {
     "min": [
       -28.261030197143555,
@@ -126,6 +175,13 @@
       131.39999389648438,
       41.26142883300781
     ]
+  },
+  "mesh": {
+    "triangles": 87188,
+    "vertices": 211388,
+    "materials": 3,
+    "bytes": 8658592,
+    "sha256": "sha256:7f417fc648085c6af7dd032c21c8741afc749557040fbc4e682e30227d7598cf"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

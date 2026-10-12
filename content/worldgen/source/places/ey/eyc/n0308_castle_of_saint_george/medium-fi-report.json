@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0308_castle_of_saint_george",
-  "sourceHash": "sha256:658a2ab457e0ddada76a90d219c33f77f9cbcad3f2e88d706665eade3179940c",
-  "runtimeHash": "sha256:c34df7f651b658cc59525c6c1968ba1dc645487711c57eb9e87cc10ab581a2d0",
-  "fixtureHash": "sha256:1ba4310b401880bcebc368fc2ba02cb9a4358a498f6e03d2057ad1ccc352069c",
+  "sourceHash": "sha256:502d5cfe8223e0c2732001af078cfc99103d62bc3037202f75c16b4a0c5ff44b",
+  "runtimeHash": "sha256:971a55b3415a4d155b05318ba7ae420996098c698fb8e166936635983c84ea79",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,97 +23,98 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 10190,
+  "neighborTriangles": 9870,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:c5aa305219e5a3ef3eb8b88b4f2ce607aec060494c458d61cd9f1943a06ac39d",
-      "bytes": 88808,
-      "gzipBytes": 22139,
+      "hash": "sha256:b6eab57577953e62ad369acb29d27c835f7cc48a47464f185d4e5e32370e8529",
+      "bytes": 101896,
+      "gzipBytes": 18954,
       "triangles": 996,
-      "cpuBytes": 87408,
-      "gpuBytes": 87408,
+      "cpuBytes": 100476,
+      "gpuBytes": 100476,
       "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:2bf66f90591f55d003c229cb2c44300c54e5cf944361e75fa7b14f19cf3bea65",
-      "bytes": 355516,
-      "gzipBytes": 98424,
+      "hash": "sha256:b9ce76f2a0e9288ed941489e3231b6d09fd4df1191783ff4de46941763da6eec",
+      "bytes": 355592,
+      "gzipBytes": 99734,
       "triangles": 3932,
-      "cpuBytes": 348348,
-      "gpuBytes": 348348,
-      "errorMeters": 1.5,
+      "cpuBytes": 348420,
+      "gpuBytes": 348420,
+      "errorMeters": 0.7,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:c5f9db610098e469a6750b1d681e80ff0b714b63581027d5625ae676bf3681a2",
-      "bytes": 651404,
-      "gzipBytes": 173488,
+      "hash": "sha256:f109ff0d4515873679059e21f7a134165c601c588e875072ecf6760c4300f179",
+      "bytes": 651476,
+      "gzipBytes": 174640,
       "triangles": 6923,
-      "cpuBytes": 643064,
-      "gpuBytes": 643064,
-      "errorMeters": 0.5,
+      "cpuBytes": 643136,
+      "gpuBytes": 643136,
+      "errorMeters": 0.3,
       "drawCalls": 7
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:c5f9db610098e469a6750b1d681e80ff0b714b63581027d5625ae676bf3681a2",
-      "bytes": 651404,
-      "gzipBytes": 173488,
+      "hash": "sha256:f109ff0d4515873679059e21f7a134165c601c588e875072ecf6760c4300f179",
+      "bytes": 651476,
+      "gzipBytes": 174640,
       "triangles": 6923,
-      "cpuBytes": 643064,
-      "gpuBytes": 643064,
-      "errorMeters": 0.15,
+      "cpuBytes": 643136,
+      "gpuBytes": 643136,
+      "errorMeters": 0.1,
       "drawCalls": 7
     }
   ],
   "terrainFixture": {
     "descriptor": {
-      "path": "qa-terrain.json",
-      "hash": "sha256:88a315bfeb84aab5950bd0c71c33b33b6e50820261bba335022fe3732563b024"
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:b975310f5b101616ccd24d655b26f538eda11058b03fff8910d9b8934566aa2a"
     },
     "heightmap": {
-      "path": "qa-heightmap.png",
-      "hash": "sha256:bfcdc21d12f3607fc097fd7b6d0446cdb467ba3e82c831a62133d552b55a2607"
+      "path": "terrain-review.height.png",
+      "hash": "sha256:89716cea6ac04fa65b8a54853c8564d8b8cba82fcbfa49b3d25414d1248cef34"
     }
   },
+  "fixtureEntities": [],
   "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:0e874de13cd628577cbdd70148b9ce5616166d370738f0a3826605548968aa00",
+      "hash": "sha256:488f98be60a65d0036c089baf7994d8ad614d292fe0334da396efadd7bf7914a",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          32.6972,
-          53,
-          116.0193
+          195.89720000000003,
+          118.873,
+          398.21930000000003
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -121,37 +122,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:83b80b1b40ea6a16bf38c2ac6142926ca15b4be7333350fdf56cc4dc6591a681",
+      "hash": "sha256:9f556a344c395023ffda2fd40f70684e8579a7e79f8c28cba90e4f128b6df512",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          32.6972,
-          53,
-          116.0193
+          195.89720000000003,
+          118.873,
+          398.21930000000003
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -159,37 +161,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:4cbd662ef6dfb9eff9c362a46d27bd33a6f7e4958fc54c9e4024717ce2c48336",
+      "hash": "sha256:f166fa49c996521943d7c156a04dd1205194d8417aaa7f34fb435ad8863b59a1",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          32.6972,
-          53,
-          116.0193
+          195.89720000000003,
+          118.873,
+          398.21930000000003
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -197,37 +200,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:2f6442b732a663d114a85df8be551908327c8874a9581fd1f81eae06ababfda8",
+      "hash": "sha256:4c9fa1c43e907e64da3465bb677bd35bf4772bdc8427fff48b024467dc81fe3e",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          32.6972,
-          53,
-          116.0193
+          195.89720000000003,
+          118.873,
+          398.21930000000003
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -235,37 +239,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:4434e02ea7510c5a3cf610b6209f3c0e85e034ffe5fcfc093b26145184070196",
+      "hash": "sha256:e0a3aa0842960f1599976630fd632ee3a861896dae939b0d443d3efc3575f901",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 14764,
-        "groundY": -31,
+        "triangles": 66284,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -273,37 +278,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:519fd42adf544291fa4ce9d1619e6a3fcfbaa7e699a061105df649f96ae84d39",
+      "hash": "sha256:3fd04a77183d218af404e910b5556b81c4b3853c6d26f6b41ae9c1b0312c6390",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 14764,
-        "groundY": -31,
+        "triangles": 66284,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -311,37 +317,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:8437947ceb90f64c831b6c5cf1ccbc0b6b1954dfac8249d704778a8ef88e96f6",
+      "hash": "sha256:31f072f6d45722cae9ac5faf5732441b019298719cb22444d5cac1b61b5353b7",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 12,
-        "triangles": 14764,
-        "groundY": -31,
+        "triangles": 66284,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -349,37 +356,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:c1a9c39a94a2b28ff7a122408c838583aa8451d5a8d4ab0436a3b26da700aa36",
+      "hash": "sha256:7375040af1dd6f7f2a455e220c46bc221ecc9ed5fad2f1ab6308ce91f89cf7e8",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 14764,
-        "groundY": -31,
+        "triangles": 66284,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -387,37 +395,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:fe86275cee9ff3cb8697d4f556145cc687226b41fc70ddcda2338c2f8206cd61",
+      "hash": "sha256:81f4dced171216a5d49a2fc27d039edc8d5d63c6ce863b6fd2ad4c284efd0bf9",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 11828,
-        "groundY": -31,
+        "triangles": 63348,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          178.6972,
-          127,
-          369.0193
+          838.2972,
+          444.47300000000007,
+          1511.4193
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -425,37 +434,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:733511b2ab7e17da93d80345d07ebbf52fe31344dee5b819b7f9cca34e69394e",
+      "hash": "sha256:764817b5f439d8c7074e54e6c9e704eda28488af38e4467e8f5f7b613b24bc6d",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 11828,
-        "groundY": -31,
+        "triangles": 63348,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          178.6972,
-          127,
-          369.0193
+          838.2972,
+          444.47300000000007,
+          1511.4193
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -463,37 +473,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:0c4687a9b2983760a9b95f43cf60163eaf6caa428e98088b28d80a078e04f4cb",
+      "hash": "sha256:273e456dff0069659da6e45b396173e8d36eab07ce3993876a79c700422a94a7",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
         "drawCalls": 7,
-        "triangles": 11828,
-        "groundY": -31,
+        "triangles": 63348,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          178.6972,
-          127,
-          369.0193
+          838.2972,
+          444.47300000000007,
+          1511.4193
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -501,37 +512,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:4513fd59ee0db8b48657914e4c5dc4a03d4cfcd9c64eb6787f19e5f4a25943c9",
+      "hash": "sha256:d7163b4b38e17ec0361929611714db5867e33a7a6eae1f325cb226ef0904c20b",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 11828,
-        "groundY": -31,
+        "triangles": 63348,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          178.6972,
-          127,
-          369.0193
+          838.2972,
+          444.47300000000007,
+          1511.4193
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -539,37 +551,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:0e7af42373c9255563b66b0c7a46e8682e078bd5e2c48dc6a5e5e49b4bdb339d",
+      "hash": "sha256:208c655c7a057594338f8fcde0a1d75a0f3296d74324d55d0688a84c2eb89de9",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 3,
-        "triangles": 1638,
-        "groundY": -31,
+        "triangles": 53478,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          178.6972,
-          127,
-          369.0193
+          838.2972,
+          444.47300000000007,
+          1511.4193
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -577,37 +590,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/southern-towers-and-moat.png",
-      "hash": "sha256:b4d6e7e4e6a670cdb441ecaf5c32f8de592430457643da1e71e3e9f812263287",
+      "hash": "sha256:3d8df757c83a8640ecb40ce39fc91aac6b3147fcf314ea2871e310346205bc0a",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           3,
-          71,
+          54,
           126
         ],
         "lookAt": [
           -4,
-          35,
+          18,
           26
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -615,37 +629,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/two-courts-and-divider.png",
-      "hash": "sha256:7c56cc09476190c366cb2c23acb060911cd084db7e161b4d7fe4a2306a81d284",
+      "hash": "sha256:57a66c7f8843ef15016ee53d12bcca53c37af43ba2f5827a852c34ee4cab593a",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           -1,
-          146,
+          129,
           -2
         ],
         "lookAt": [
           -1,
-          25,
+          8,
           -2.01
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -653,37 +668,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/northern-roofed-towers.png",
-      "hash": "sha256:8140e8e72f475eaf0761e475894a01f2aafca540a0a13464475f7020e6f08ee3",
+      "hash": "sha256:6f4375f2a5ec0793e9005cec093e0f502d1a0aa326ac6ed9afa6c0f99fe44383",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           -9,
-          56,
+          39,
           -118
         ],
         "lookAt": [
           -8,
-          36,
+          19,
           -29
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -691,37 +707,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/eastern-gateway-and-bridge.png",
-      "hash": "sha256:453b4c6645912f0ebd7f50235ed9d5d94c9e036624c786e6e9f55d36255e77d7",
+      "hash": "sha256:c52482da655ee7ff05b0654db301c5b5f234530fb51c92810528c11a06b23ad9",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           82,
-          33,
+          16,
           9
         ],
         "lookAt": [
           24,
-          27,
+          10,
           9
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -729,37 +746,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/main-gateway-and-periscope.png",
-      "hash": "sha256:e48aec3e38609d84b937d64617dd9cf2144c459008366d0662e2b930378471db",
+      "hash": "sha256:f37dbfa6073094f833949e507838afebde173dc62d3d15a48bdd8db65f124bf1",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           14,
-          40,
+          23,
           57
         ],
         "lookAt": [
           1,
-          29,
+          12,
           29
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -767,37 +785,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/hillside-tower-and-stair.png",
-      "hash": "sha256:92d2ee8df782a291ad6c2a950516f27dab04758318f12713912d6ecd3a2b0f98",
+      "hash": "sha256:310339b1e695ec93fb4aac3b972698029b179440cb8686a9ff38c2730127e583",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           -110,
-          51,
+          34,
           -120
         ],
         "lookAt": [
           -48,
-          18,
+          1,
           -48
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -805,37 +824,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/museum-and-palace-remains.png",
-      "hash": "sha256:c54770cfb9c3eecbf34059a8e16dbf08ad44dc6be45e8585ad8157ef4d32c1e4",
+      "hash": "sha256:be608f6d7a8d1e2a305e87484104139e094563a96706e9e46a006fcdf2129e10",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 17751,
-        "groundY": -31,
+        "triangles": 69271,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
           18,
-          48,
+          31,
           101
         ],
         "lookAt": [
           -43,
-          29,
+          12,
           75
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -843,37 +863,194 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-saojorge-skyline.png",
+      "hash": "sha256:0bb9fd687f9f2feb07632e5861695b391d69871f2f84ffec160127412c4796eb",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 63348,
+        "groundY": -53,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
+        },
+        "position": [
+          -176,
+          120,
+          181
+        ],
+        "lookAt": [
+          -12,
+          2,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-saojorge-district.png",
+      "hash": "sha256:877b9fd1fb3a3940e9e491818382317be26ec6799ee7a647501682d30c4c67c5",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 66284,
+        "groundY": -53,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
+        },
+        "position": [
+          -176,
+          120,
+          181
+        ],
+        "lookAt": [
+          -12,
+          2,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-saojorge-street.png",
+      "hash": "sha256:5bc8385585f5cefc9214371fc758bfd2f0ca3291136870b3f642f93cd44ac503",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 69275,
+        "groundY": -53,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
+        },
+        "position": [
+          -176,
+          120,
+          181
+        ],
+        "lookAt": [
+          -12,
+          2,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-saojorge-closeup.png",
+      "hash": "sha256:583611876442546eb46ea5f7be3095a2a4702ceaf30992a22b06465d83576834",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 69275,
+        "groundY": -53,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
+        },
+        "position": [
+          -176,
+          120,
+          181
+        ],
+        "lookAt": [
+          -12,
+          2,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:b53911d24068eee73aed6fe2962b1be4c12776e30aa42129ec2c42e3889ac7f6",
+      "hash": "sha256:8928da421fe816c50908bb54ea6ef20be531c533cd468a6b19f667013c7dbcc2",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 11828,
-        "groundY": -31,
+        "triangles": 63348,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -881,37 +1058,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:519fd42adf544291fa4ce9d1619e6a3fcfbaa7e699a061105df649f96ae84d39",
+      "hash": "sha256:3fd04a77183d218af404e910b5556b81c4b3853c6d26f6b41ae9c1b0312c6390",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 12,
-        "triangles": 14764,
-        "groundY": -31,
+        "triangles": 66284,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -919,37 +1097,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:d917ef6a6e3156c731fa564855e364591286a9ac4e5efb45909c645ca70a3346",
+      "hash": "sha256:5eac681ed7b2d80be261760dcee8f3ef390fd11e933287b86373fdc47c0b913a",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -957,37 +1136,38 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:35db133319682d0dfd13a7942f06b39bec376da16d9f860274bc9eaaca76e62b",
+      "hash": "sha256:bdab28ec788715ee7d7399eab6c6d63b2a030e0451281cbebf3bf4f40080a0a7",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 13,
-        "triangles": 17755,
-        "groundY": -31,
+        "triangles": 69275,
+        "groundY": -53,
         "terrainFixture": {
-          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-terrain.json",
-          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/qa-heightmap.png"
+          "descriptor": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ey/eyc/n0308_castle_of_saint_george/terrain-review.height.png"
         },
         "position": [
-          81.6972,
-          89,
-          201.0193
+          411.4972,
+          277.273,
+          772.2193000000001
         ],
         "lookAt": [
           -15.3028,
-          38,
+          52.873000000000005,
           33.0193
         ],
         "graphReads": {
-          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
@@ -995,8 +1175,9 @@
           "molen.worldgen.material.gravel": 1,
           "molen.worldgen.material.wood_plain": 1
         },
-        "neighborStyle": "molen.worldgen.regional.mediterranean.detached",
-        "contextScale": 1
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
       }
     }
   ],

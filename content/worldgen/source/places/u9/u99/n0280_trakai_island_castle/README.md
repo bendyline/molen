@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-3,386 triangles; 10,158 vertices; 5 material groups; 409,548 bytes. Native bounds: -34.386, 0.000, -24.000 to 88.306, 33.000, 106.973. Source hash: `sha256:a5927908ae27efecc59d9de106e657b50977b4ed0a7f23623d906c92abc75da1`.
+3,386 triangles; 10,158 vertices; 5 material groups; 409,580 bytes. Native bounds: -34.386, -2.155, -24.000 to 88.306, 34.300, 106.973. Source hash: `sha256:c23a599e45316f02ed885efc96bb25d6303f04214547d440b6a68164026e5c97`.
 
-{"up":"+Y","longitudinal":"+Z southwest toward forecourt and approach;palace side wings lie along Z","lateral":"+X southeast across palace wings","origin":"Cached palace map-frame center;not whole-compound center;provisional flat groundY0"}
+{"up":"+Y","longitudinal":"+Z southwest toward forecourt and approach;palace side wings lie along Z","lateral":"+X southeast across palace wings","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Mapped identity covers palace only. Whole-compound trace is visually aligned,not surveyed. Actual island,terrain,moat,shore bridge,facade orientation and footprint replacement pending.
+The inspected aerial picture confirms the separate palace/gabled donjon, open trapezoidal forecourt, three cone-capped corners, entrance tower and long casemate. Standard viewer PMTiles and the retained palace/courtyard outline establish approximate island location and forecourt approach sign. The mapped relation covers the palace only; whole-compound alignment remains an exterior estimate. A reconstructed1.3m working court clears the coarse island ground and bounded foundations extend beneath samples; short connecting bridge retained at its inferred level. Anchor 24.934056788,54.652709433; heading -1.112277445339; standard PMTiles datum 145.11330053210258m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -30,13 +30,12 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0280` (
 
 ## Pending work
 
-- Mapped relation3111261 is only the ducal palace. Whole compound is not represented by that38×35m footprint. Forecourt uses sparse primary-plan pixel trace at50/135m per pixel,visually aligned to the palace,not a current metric survey.
-- Museum and archaeological paper describe planned historical donjon9.2×9.6m and33m height. The restored tower may differ;33m roof ridge is an authoring interpretation. All other roof heights,radii,wall levels,openings and buttresses are inferred from photos.
-- Aerial reference contains excavation overlays and temporary works;these do not ship as textures or structures. Photograph lighting is not baked into materials.
-- FlatY0 does not model island,moat or lake levels. Short connecting bridge is approximate;long public shore bridge,island terrain,trees,boats,interiors and temporary works excluded.
-- Geographic orientation,compound registration,terrain seating and footprint replacement require in-world review. Inactive draft,replaceFootprint=false. Synthetic context neighbors and flat ground do not verify real Trakai terrain.
-- Four shared256² graphs supply brick,granite,ceramic tile and plain wood;blue-grey glass is untextured. Research remains linked evidence only. Fine stone joints,carvings,balusters,glazing bars and wires omitted.
-- Physical laptop/phone timings and continuous-motion LOD shimmer remain unmeasured.
+- Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Original detailed architectural master/recipe preserved; derivative fits working courts and bounded foundation bottoms.
+- Palace/gabled donjon, three red cone roofs, entry passage, open forecourt, casemate, timber gallery and short connecting bridge retain identity. Fine openings and roof/bridge levels reconstructed.
+- Mapped relation is palace only; forecourt placement is approximate and footprint replacement remains off.
+- Lake/island terrain, long public shore bridge, trees, boats, excavation overlays, temporary structures and interiors excluded.
+- Four common material graphs and local opaque glass; zero embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

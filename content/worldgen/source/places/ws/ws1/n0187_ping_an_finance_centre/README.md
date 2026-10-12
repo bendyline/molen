@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-245,790 triangles; 703,374 vertices; 5 material groups; 28,274,144 bytes. Native bounds: -38.519, 0.000, -38.519 to 44.799, 599.167, 38.519. Source hash: `sha256:2447ecffcfefa2e88845c8ab4fb3b8b8ec2dfb61b7186b6f6eddb07c131d88d2`.
+56,588 triangles; 153,144 vertices; 3 material groups; 6,194,616 bytes. Native bounds: -38.519, 0.000, -38.519 to 44.799, 599.167, 38.519. Source hash: `sha256:543515859c463e6f302bff8ca78596c30e3919226e6668e922819870fca4e474`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east","front":"+X east Yitian Road entry","origin":"Mapped North Tower envelope at reconstructed open-air entrance grade"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Fresh OSM API2026-10-10 confirms Q1077308 whole535860513 and54 facade/crown patches unchanged from independently saved2026-09-28 map-parts. Signed heading0.0005397205 keeps +X east toward separately mapped Yitian Road996752254 and the completed architect entrance photograph; +Z south. Double-notched lower plan, sloped facade patches and9.1m upper cap support the North Tower reconstruction; skillion tags are surface slopes, not occupied roof solids. SourceY0 is reconstructed open-air entrance grade, not surveyed elevation. Current CVU599.1m tip/555.6m occupied/562.2m observatory override architect/engineer rounded600m. Ground envelope reconstruction allowance2m/1degree excludes projecting folded entry canopy; no automatic footprint replacement. Separate retail podium, South Tower, landscape, moving equipment and interiors excluded.
 
 ## Reproduce
 
@@ -31,7 +31,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0187` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Fine cladding seams, seven mechanical belt datums, pointed pier profiles, exterior cross-brace sections, revolving doors and crown access details are photograph reconstructions within mapped sectional evidence. The shared stainless graph approximates the fine Deco Linen embossing, without copying a vendor texture. Separate retail podium, South Tower, landscape, moving maintenance rigs and interior fit-out are excluded. The earlier660m antenna design is not modeled.
+- Original245790-triangle/28274144-byte master remains byte-reproducible from unchanged recipe. Reviewed source uses full backing glass/steel faces, merged pointed pier spans, continuous facade seals and sparse physical steel joints/louvres instead of repeated framed pane islands. Double-notched taper, eight supercolumn casings, seven mechanical-band intervals, recessed diagonal strips, sloping glazed roof, four separate open crown legs, small pyramid, eastern folded canopy, splayed braces and three revolving doors retained. Skyline omits separate piers, braces, joints, louvres and fine tip/entry frames, averaging shared steel/stone colours into one group. District restores sampled piers and coarse recessed braces; street restores all nine face piers, aggregate seams/louvres and roof/door grids; close-up restores fine seams/louvres and32-sided doors within64000triangles. Original fine repeat density is preserved through original recipe, not every small master component in reviewed source. Canonical stainless and granite graphs approximate Deco Linen steel and dark stone; coated canopy/recess shares steel/glazing respectively to keep three near draws. Zero embedded images. Individual dimensions/roof datums/door offsets are reconstructions; finite along-ray1.5/.75/.3/.1m comparisons exclude intentionally omitted narrow seams/louvres/piers/braces, not a global surface-distance bound. Physical-device performance and surveyed grade unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

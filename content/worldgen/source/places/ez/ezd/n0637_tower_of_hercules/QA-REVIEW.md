@@ -1,0 +1,31 @@
+# Tower of Hercules — current medium-fi review
+
+Reviewed2026-10-09. All51 final images inspected.
+
+## Evidence and placement
+
+Exact-Q245151 OSM way255916025 anchors -8.406524144,43.385941653. The existing rectangle supplies undirected face axes; inspected north-up OSM and Google Maps Airbus/Maxar aerial views distinguish the broad northeast stepped landing, separate narrow northwest opening and west/northwest roof staircase cylinder. Heading2.113013854843793 selects the 180-degree sign of the previous -1.028578798746 axis, with modeled +Z roughly59 degrees true and +/-15 degrees visual uncertainty. Roof imagery has relief displacement and only establishes quadrant, not surveyed offset positions. The 12.7 m map envelope is distinct from the published11.75 m core; no XY stretch. Mapped height1 is rejected as a tower-height control. Y0 beneath the podium meets host terrain as a viewer convention; the supporting hill height57 m is not added as a model offset. Flat review terrain does not claim actual hill morphology or surveyed platform elevation. Footprint replacement is disabled.
+
+Accepted medium-fi modern exterior follows the inspected2024 Wolfgang Fricke photograph, municipal tower dimensions and UNESCO identity, corroborated by FMA credited exterior views. The detailed source is retained byte-for-byte in an isolated leaf recipe so existing lighthouse approvals remain unaffected. Minor tiers, moldings, facade openings, parapet and fitting dimensions are reconstructed. The excavated visitor annex, inscription edicule, separate narrow northwest podium access, interior museum/spiral circulation, entire park, operating navigation light and exact hill/vertical datum are outside this single-tower exterior. Historical maximum-fidelity pending notes are retained as old scope; current approval applies to this explicitly limited medium-fi reconstruction.
+
+[Municipal dimensions](https://www.coruna.gal/the-tower/en/discover-the-tower/curiosities-of-the-tower?argIdioma=en), [municipal staircase explanation](https://www.coruna.gal/tower/en/descubrela/inside-the-tower?argIdioma=gl), [UNESCO](https://whc.unesco.org/en/list/1312/), [FMA engineering exterior](https://www.ingenieria-civil.org/GOING/obra.php?id=120), [Wolfgang Fricke2024 photograph](https://commons.wikimedia.org/wiki/File:Torre_de_Hercules,_A_Coruna,_Spain_06-2024.jpg), [mapped access](https://www.openstreetmap.org/way/255916025#map=20/43.38594/-8.40652), [inspected north-up aerial](https://www.google.com/maps/@43.38594165,-8.40652414,150m/data=!3m1!1e3). Reference imagery is consulted, not redistributed.
+
+## Geometry and browser cost
+
+Six GLBs passed Khronos validation with zero errors, zero warnings and zero embedded images. Source/import remain13060 triangles; skyline/district/street/closeup are932/3696/13060/13060 with1/4/4/4 draws. One-sided aperture, complete podium, stair opening and offset rod rays pass. Original master and four derivative files regenerate exact bytes. The old reduction skyline with17 m geometric error and over-budget4566-triangle district are replaced by authored far levels.
+
+Initial skyline plus district is 354236 bytes; street and closeup are 1011236/1011236 bytes. Three reused256-square canonical graphs, metric UVs and separate GPU attribute streams are retained; skyline has measured shared graph means baked into its colors. Far allowances .35/.28 m describe regular faceting and local fitting simplification, not a measured full-mesh Hausdorff bound. Original near levels retain all detailed geometry. Physical phone/laptop timings remain pending.
+
+Four focused tests pass: one-sided rays verify all forty real aperture backs at district/street/closeup, complete podium top, open parapet landing, steps and full-height offset rod at every level; isolated master regenerates the exact original SHA256; signed map placement distinguishes the northeast landing and excludes the mapped height=1 tag; all four browser files reproduce identical bytes within strict triangle/draw/download budgets and reuse three canonical graphs.
+
+Source SHA256 sha256:017a0c8f3ae087c2fd368752b6c07479cc9b17e6e527dadd9bb31d0854a00760; runtime SHA256 sha256:ac54dc345f1bd3a89185227b26db8e4735382bbe0cb6d473ace23f67167284c7.
+
+## Inspected appearance
+
+All twelve portable frames inspected. The square shaft, forty staggered paired blind/open niches, rising perimeter bands, cornice, concave shoulder, two complete octagonal stages, upper arches, dark lantern, gallery rail, offset stone staircase/lightning cylinder and guy wires remain intact. The polygonal podium has an open broad landing and eight descending steps. Reverse elevations and overhead podium are complete. Default close street views deliberately frame the shaft, with separate full silhouette and lantern views; their cropped top is not missing geometry. Original master hash is unchanged.
+
+All twelve shared/geographic views inspected. Metric procedural ashlar, granite trim and painted metal read each canonical graph once; opaque local dark ports and lantern panels remain intentional PBR approximations. Warm stone is consistent with the shared catalog; individually weathered reference blocks and exact masonry coursing are not copied as textures. Recess backs, helical bands and open landing remain readable. North-up placement keeps the 11.75 m core centered within the separate mapped 12.7 m envelope, with broad landing northeast and offset cylinder west-northwest. Unloading releases all model geometry.
+
+All twenty-seven medium-fi frames inspected across noon/late economy/high, all model cameras, three targeted LOD details and four same-camera transitions. Skyline retains the complete square shaft, paired aperture contrast, ascending bands, stepped podium, both octagonal tiers, lantern and full-height offset cylinder; projecting trims, upper arcade beams, gallery pickets and guy wires are intentionally omitted at far distance. District retains actual .3 m aperture recesses and the arcade/gallery with fewer regular subdivisions. Street and closeup use the complete original 13060-triangle exterior. Synthetic Cotswold neighbors are palette/context checks and do not represent the real headland. No missing cap or broken major silhouette observed.
+
+Current reports bind inspected pixels and inputs; previous fidelity notes remain historical.

@@ -3,6 +3,8 @@ import { expect, it } from 'vitest';
 import {
   buildHaapsaluRuntime,
   haapsaluChurchPoint,
+  haapsaluCurtainWalls,
+  haapsaluGroundY,
   haapsaluMuseumOpenings,
   haapsaluParts,
   haapsaluStudy,
@@ -99,12 +101,41 @@ it('covers both nave roof slopes, lower side roofs and projecting baptismal chap
   }
 });
 
-it('keeps the main courtyard open above its paving instead of capping it at the38m envelope height', () => {
+it('keeps the court open and follows real ground instead of capping it at the38m envelope height', () => {
   for (const d of [0, 1, 2, 3]) {
     const hits = downward(capture(haapsaluParts.museum, d), [11, -27]);
-    expect(hits[0]?.slot).toBe('paving');
-    expect(50 - hits[0].distance).toBeCloseTo(k.courtY, 4);
+    if (d === 0) expect(hits).toHaveLength(0);
+    else {
+      expect(hits[0]?.slot).toBe('paving');
+      expect(Math.abs(50 - hits[0].distance - haapsaluGroundY([11, -27]) - 0.04)).toBeLessThan(0.2);
+    }
     expect(k.museum.outerTop.every((y) => y < 23)).toBe(true);
+  }
+});
+
+it('keeps the long curtain footings below official ground through the near levels', () => {
+  const relief = JSON.parse(readFileSync(new URL('terrain-grid.json', root)));
+  expect(relief.verticalDatum).toBe('EH2000');
+  expect(relief.source.horizontalCRS).toBe('EPSG:3301');
+  expect(relief.source.bytes).toBe(941132);
+  expect(haapsaluGroundY([0, 0]) + relief.modelDatumElevationMeters).toBeCloseTo(7.172, 1);
+  expect(haapsaluGroundY(k.clockTower.center) + relief.modelDatumElevationMeters).toBeCloseTo(
+    8.321,
+    1,
+  );
+  for (const d of [1, 2, 3]) {
+    const mesh = capture(haapsaluCurtainWalls, d);
+    let footings = 0;
+    for (const t of mesh)
+      for (const p of t.p) {
+        const ground = haapsaluGroundY([p[0], p[2]]);
+        if (p[1] < ground + 0.1) {
+          expect(p[1]).toBeLessThanOrEqual(ground);
+          expect(ground - p[1]).toBeLessThan(0.3);
+          footings++;
+        }
+      }
+    expect(footings).toBeGreaterThan(300);
   }
 });
 

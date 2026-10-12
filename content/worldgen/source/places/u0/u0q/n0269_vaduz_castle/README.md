@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-6,623 triangles; 17,361 vertices; 5 material groups; 707,688 bytes. Native bounds: -39.100, 0.000, -29.750 to 38.000, 30.000, 27.500. Source hash: `sha256:14db85eb73fc00da51eab3962f57efe761e7a26c9e60796cd3eb1eae7feaae42`.
+6,623 triangles; 19,869 vertices; 5 material groups; 797,996 bytes. Native bounds: -39.100, -15.506, -29.750 to 38.000, 35.500, 27.500. Source hash: `sha256:0a45fd31a960cefa9b3632510fb72eb73b50c70559a13d91dead39298eeb0b82`.
 
-{"up":"+Y","longitudinal":"+X north, about1.23degrees east of true north","front":"-Z west toward Vaduz and Rhine valley","origin":"Mapped compound center; west foundationsY=0, internal courtY=4.5m"}
+{"up":"+Y","longitudinal":"+X north, about1.23degrees east of true north","front":"-Z west toward Vaduz and Rhine valley","origin":"Site anchor; Y0 PMTiles working datum."}
 
-Mapped complete compound establishes anchor and axis. Internal reconstructions and lower foundation skirts require actual terrain review before activation.
+Appearance checked against two aerial pictures; signed north-south orientation distinguishes covered south roundel from open north roundel. Standard viewer Protomaps/Mapzen PMTiles set location and hillside fit at anchor 9.52434566,47.139574837 and heading 1.549323723192. Y0 is the working terrain sample 563.3922911400916m; reconstructed court10m above it clears the coarse hillside and bounded foundations extend below sampled ground. Exterior walls and floors are approximate, not surveyed.
 
 ## Reproduce
 
@@ -30,9 +30,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0269` (
 
 ## Pending work
 
-- Simplified present exterior; internal wing dimensions and most heights inferred, not surveyed.
-- No interiors, mountain mesh, private textures or distant estate grounds.
-- Actual hillside seating, continuous-motion shimmer and physical-device performance pending.
+- Reference pictures plus standard viewer PMTiles define an approximate current exterior fit. No bespoke sources or survey accuracy.
+- Detailed original Vaduz geometry is preserved; only its courtyard capture camera is raised to clear the revised court. Reviewed derivative keeps its architecture, changes working vertical datum and extends bounded foundations.
+- Roundels, stone keep, tiled roofs, timber hoarding and cream residence provide identity. Window/shutter rhythm, individual roof pitches and outer curtain remain approximate.
+- Coarse PMTiles terrain does not resolve thresholds, narrow passages or exact cliff contact. No terrain cutout, interiors, forest or artificial hill is claimed.
+- Four reusable material graphs plus local opaque glass; no embedded textures. Physical laptop/phone timing and continuous-motion shimmer remain pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

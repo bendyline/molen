@@ -1,0 +1,505 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#dfd0b0",
+      "plaster": "#eee8d5",
+      "tile": "#9a7559",
+      "metal": "#828c8b",
+      "wood": "#ad875f",
+      "paving": "#d1cab9",
+      "glass": "#4d6178",
+      "accent": "#e8e1d2"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "stone": [
+        0.527226,
+        0.504248,
+        0.457096
+      ],
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "tile": [
+        0.559267,
+        0.552465,
+        0.529503
+      ],
+      "metal": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ],
+      "paving": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 8,
+    "identityFeatures": [
+      "Complete irregular roofed castle ring and open courtyard",
+      "White crenellated clock tower and two national/municipal flags",
+      "Round/pentagonal towers, steep brown roofs and modern glazed courtyard additions"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "Native+X east,+Z south; mapped components and passage, heading0.",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactCastleWay": 5821190,
+    "buildingRelation": 2326426,
+    "courtyardHole": 174281987,
+    "buildingPartCount": 15,
+    "publishedDimensions": {
+      "viewingPlatformAltitude": 400,
+      "platformRaisedBy": 1.2,
+      "platformRaiseYear": 1982,
+      "source": "https://www.ljubljanskigrad.si/en/experiences/viewing-tower-and-pipers-tower/",
+      "precision": "Operator-published altitude and change, not a relative tower height or ground survey"
+    },
+    "originalMasterHash": "sha256:0698f5f9812c27937dc561ada53b47f1b812391d90b8f99369643b87d7a81346",
+    "originalMasterRecipe": "packages/worldgen/scripts/ljubljana-castle-model.mjs#buildLjubljanaRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate exterior and hill fit from an inspected picture and standard viewer PMTiles; no bespoke survey or exact height claims.",
+    "Original detailed master/hash/recipe retained. Fifteen castle parts, tower terrace, flags, real entrance passage and arcade are retained; ornament and restored fixtures are interpreted.",
+    "Six common limestone/lime-plaster/tile/painted-metal/wood/aggregate graphs plus explicit glass and flag colors; no embedded images or broad duplicate hill.",
+    "Interiors, collision and physical-device timing excluded; footprint replacement remains off."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.508474674,
+      46.048810087
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected exterior picture supports the irregular roofed castle ring, open court, white clock/viewing tower, brown pitched roofs, rounded towers and modern glazed court additions. Retained mapped components and east passage set approximate scale and heading0. Standard viewer PMTiles supply the surrounding hill. Architecture rises2m so its reconstructed courtyard remains above the coarse crest; bounded foundation toes meet the sampled ground. Anchor 14.508474674,46.048810087; heading 0; standard PMTiles datum 356.4304543632578m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected exterior picture supports the irregular roofed castle ring, open court, white clock/viewing tower, brown pitched roofs, rounded towers and modern glazed court additions. Retained mapped components and east passage set approximate scale and heading0. Standard viewer PMTiles supply the surrounding hill. Architecture rises2m so its reconstructed courtyard remains above the coarse crest; bounded foundation toes meet the sampled ground. Anchor 14.508474674,46.048810087; heading 0; standard PMTiles datum 356.4304543632578m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        14.508474674,
+        46.048810087
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected exterior picture supports the irregular roofed castle ring, open court, white clock/viewing tower, brown pitched roofs, rounded towers and modern glazed court additions. Retained mapped components and east passage set approximate scale and heading0. Standard viewer PMTiles supply the surrounding hill. Architecture rises2m so its reconstructed courtyard remains above the coarse crest; bounded foundation toes meet the sampled ground. Anchor 14.508474674,46.048810087; heading 0; standard PMTiles datum 356.4304543632578m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/ljubljana-runtime-model.mjs",
+    "export": "buildLjubljanaReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.77,
+      "metallic": 0.08
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.28,
+      "metallic": 0.12
+    },
+    "accent": {
+      "slot": "trim",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.87,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ljubljana-runtime-model.mjs",
+    "export": "buildLjubljanaReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLjubljanaReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "accent": {
+            "slot": "trim",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildLjubljanaReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "accent": {
+            "slot": "trim",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLjubljanaReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.77,
+            "metallic": 0.08
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.12
+          },
+          "accent": {
+            "slot": "trim",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-ljubljana-skyline",
+      "position": [
+        -128,
+        111,
+        144
+      ],
+      "lookAt": [
+        5,
+        17,
+        -4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ljubljana-district",
+      "position": [
+        -128,
+        111,
+        144
+      ],
+      "lookAt": [
+        5,
+        17,
+        -4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ljubljana-street",
+      "position": [
+        -128,
+        111,
+        144
+      ],
+      "lookAt": [
+        5,
+        17,
+        -4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ljubljana-closeup",
+      "position": [
+        -128,
+        111,
+        144
+      ],
+      "lookAt": [
+        5,
+        17,
+        -4
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 2.5,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "camera": {
+    "position": [
+      -128,
+      111,
+      144
+    ],
+    "lookAt": [
+      5,
+      17,
+      -4
+    ]
+  },
+  "qaCameraOverrides": {
+    "southwest-clock-and-bays": {
+      "position": [
+        -101,
+        51,
+        97
+      ],
+      "lookAt": [
+        -25,
+        21,
+        14
+      ]
+    },
+    "northwest-roofed-wings": {
+      "position": [
+        -83,
+        42,
+        -109
+      ],
+      "lookAt": [
+        -12,
+        18,
+        -20
+      ]
+    },
+    "eastern-bridge-and-passage": {
+      "position": [
+        104,
+        24,
+        -11
+      ],
+      "lookAt": [
+        49,
+        11,
+        -13
+      ]
+    },
+    "courtyard-arcade-and-glazing": {
+      "position": [
+        9,
+        14,
+        4
+      ],
+      "lookAt": [
+        -4,
+        13,
+        -27
+      ]
+    },
+    "open-clock-terrace": {
+      "position": [
+        -61,
+        53,
+        42
+      ],
+      "lookAt": [
+        -42,
+        33,
+        29
+      ]
+    },
+    "mapped-courtyard-overhead": {
+      "position": [
+        4,
+        171,
+        -4
+      ],
+      "lookAt": [
+        4,
+        2,
+        -4.01
+      ]
+    }
+  }
+}

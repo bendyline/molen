@@ -30,11 +30,11 @@ Four existing shared material graphs with metric UVs; no embedded/new images or 
 
 ## Model and axes
 
-15,946 triangles; 47,838 vertices; 5 material groups; 1,916,772 bytes. Native bounds: -69.474, 10.068, -128.642 to 71.250, 72.999, 121.494. Source hash: `sha256:1d0258086ab366cac08fea36dc2ab34c408cb794cf6c5d645da9f5384c73090c`.
+15,360 triangles; 46,080 vertices; 4 material groups; 1,846,108 bytes. Native bounds: -68.334, -12.849, -128.638 to 71.250, 49.754, 121.494. Source hash: `sha256:2f30ffb0b1c3596adf69d0840150492fcf4e990cb2a574695e66ad722ac0ab7f`.
 
-{"up":"+Y","longitudinal":"+Z south","front":"+X east toward Bosphorus","origin":"Exact-QID cached map anchor; native Y0 is coarse DEM sample-grid minimum, not real host ground datum."}
+{"up":"+Y","longitudinal":"+Z south","front":"+X east toward Bosphorus","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Raw multipolygon roles appear reversed. Model retains open court and independently authored towers. Map identity is exact; forecourt interpretation and host terrain fit require review before activation.
+Inspected exterior tower picture confirms stepped roofless masonry crowns by the Bosphorus; the second picture informs stone/brick appearance only, with its interior excluded. Retained east/south wall, tower and courtyard geometry and standard viewer PMTiles set approximate location, scale and seaward orientation. The derivative omits the duplicated terrain patch, uses the same PMTiles sampler for all wall/tower-footing LODs and translates the old study datum to the21.351156683452786m PMTiles anchor datum. Tower floor pads retain a level rim above sampled coarse ground with bounded footings reaching it. Anchor 29.056189597,41.084874691; heading 0; standard PMTiles datum 21.351156683452786m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -42,12 +42,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0293` (
 
 ## Pending work
 
-- Own attributed wall coordinates and mapped tower arcs are not a surveyed castle model. Raw outer/inner relation roles appear reversed; corrected site/court interpretation and original polygonal Halil base remain explicit source controls.
-- Published tower heights are22/21/28m; thickness, step levels, battlement dimensions, aperture positions, original forecourt/square-bastion positions and wall heights are photographic estimates.
-- Coarse20m terrain samples do not resolve terraced foundations. Ground pads, stairs and native minimum datum need real host-terrain and vertical-datum review.
-- Mapped mosque body is distinct from its estimated roof and minaret stub. Current mosque state, restoration fixtures, landscaping and visitor infrastructure remain pending; vegetation will belong to host terrain/ecology.
-- Research photographs and navigation plan stay private. No downloaded mesh, scan or unique photographic texture is embedded. Interiors use selected visible floors and hollow walls; full floor-by-floor rooms, inscriptions, exhibits, cannon collection and walkable collision are not complete.
-- Each LOD must preserve the three stepped towers, narrow sloping enclosure, minor defenses and open courtyard. Actual continuous transitions, physical laptop/phone timing and geographic activation require review.
+- Approximate current exterior and fit from inspected pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Roofless towers, forecourt and mosque are an exterior interpretation; ongoing restoration and visitor fixtures are not exhaustively reconstructed.
+- Four common graphs plus explicit color slot, zero embedded images. Terrain comes from the host; interiors, waterline/simulation, vegetation and terrain cutouts excluded.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

@@ -8,7 +8,7 @@ Tapered 120 m stainless steel monument, separate reflective geological pattern i
 
 Catalog N0975, [Q1134365](https://www.wikidata.org/wiki/Q1134365). Dublin City Council and fabricator dimensions fix the 120 m cone, 3 m base and 150 mm tip. IMOA fixes 11,884 holes of 15 mm diameter over the upper 12 m. Surround/grating/bollards are scaled from the inspected architect photograph, not a site survey.
 
-Spire centre at street pavement datum. +Z is the provisional southern approach; axial form is rotationally symmetric but the base pattern is not; +Y is up. The geographic proposal identifies its anchor and orientation evidence separately from remaining terrain and azimuth uncertainty.
+Native +X east,+Z south,+Y vertical; heading0 preserves cardinal axes around the mapped circular exact-Q1134365 monument. The cone and grating are axial; reconstructed stencil marks and eight regularized bollards have no certified compass phase. No entrance bearing is asserted.. +Z south-facing review axis; +Y is up. The geographic proposal identifies its anchor and orientation evidence separately from remaining terrain and azimuth uncertainty.
 
 Source facts and measured references are recorded in spec.json. References: [1](https://www.visitdublin.com/the-spire), [2](https://aqua-design.ie/case-studies/the-spire-dublin/), [3](https://www.imoa.info/molybdenum-uses/molybdenum-grade-stainless-steels/architecture/stainless-steel-spire-graces.php), [4](https://www.publicart.ie/fileadmin/user_upload/PDF_Folder/The_Spire_of_Dublin_-_Science_and_Technology_in_Action.pdf), [5](https://www.newsteelconstruction.com/wp/making-the-dublin-spire/), [6](https://www.openstreetmap.org/way/96578181). Reference pages and images are not redistributed.
 
@@ -22,10 +22,6 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N09
 
 ## Remaining detail and review
 
-- The unique base stencil is an original stratified reconstruction. Its complete individual island shapes and azimuth require a measured or photographic unwrap before maximum-fidelity approval.
-- Exact frustum joints, hole row layout and stagger are unresolved. Hole count and diameter are faithful; the present explicit layout is reconstructed.
-- Current night lighting, basal lighting, maintenance door and service hardware remain unfinished. The static pale diffuser represents daylight rather than an active beacon.
-- Ground surround and bollards follow early architect photographs and require comparison with the present streetscape. No surrounding tram tracks or buildings are baked into the model.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Medium-fi static daylight exterior:120m,3m base and0.15m tip follow fabricator/tourism engineering facts. Exact11884physical15mm holes remain in the original instanced master; budgeted close-up substitutes11884opaque daylight diffuser marks, street/district average subpixel perforations. Base artwork is original geological-strata reconstruction with reduced marks at distance, not a traced full architect stencil or a certified azimuth. Surround8.1m and eight regularized bollards follow inspected early architect photograph, not a current street survey; current grating/bollard phase, maintenance hatches, night beacon and wind animation are outside this daylight scope. Map2.2m ring/121.2m height are not sizing controls. Host terrain sets street datum; no footprint replacement or surrounding streets/rails baked in.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

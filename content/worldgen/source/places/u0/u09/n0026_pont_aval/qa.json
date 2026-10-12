@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0026_pont_aval",
-  "inputHash": "sha256:f1b2b84e08cd111b9f61556b74649d5828a5bcc69a33d9dd03dee7ce1cb6b84b",
-  "captureReportHash": "sha256:f3f5eb9d47292d30678a709bf447cc9b44a8c7327566e30a9a25a73b59764c25",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:e220e0795d1ed706a341cbfd01c56a98f4dd7d4dca224330ac0472f0d0ce20e9",
+  "sourceHash": "sha256:b35978c95576f9ef5d29ad00017e6bc77ccb3bb0fc5f60b2d15a20c5b070ac2a",
+  "runtimeHash": "sha256:131356609e72b6307a7b19d34ecfc9bb98e32fdccbb1a752ee0671da1d613f9e",
+  "captureReportHash": "sha256:08646da09fc51870adc66d1299af83af0aee0b5d8d1924aaea4302169072b6c5",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,11 +28,11 @@
       "shots/drain-and-barrier.png",
       "shots/mapped-deck-plan.png"
     ],
-    "notes": "All18 current portable frames inspected. Four unequal spans, separate tapered box girders, ribbed piers, skewed abutments, cornices, railings, drainage, service conduits, median lamps and eight lanes render. Preview framing includes the full bridge. Fine fluting aliases in non-antialiased portable overview frames; the shared close view resolves it."
+    "notes": "All 18 portable source images inspected. Detailed paired carriageways follow the skew and curved east flare. Four haunched box girders remain independent above tapered fluted piers. Cornice seams, nine paired median lamps, narrow maintenance kerbs, sparse drain pipes and road markings agree with the inspected archival engineering section and 2012 close photographs. Detailed pier ribs produce aliasing in the portable untextured fallback, while the shared-material render resolves them more coherently. Original 248848-triangle master is byte-identical."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cddb4ce3a3cb68e749cf9e852076833b0b481b93a9e0c4dff257debbe568928a",
+    "captureReportHash": "sha256:26ffcf20a531ffc2898918fa146cb8ad3c8f6fd392becba2a7f46a61e5328da3",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -47,28 +50,551 @@
       "shots/shared/road-and-median.png",
       "shots/shared/lamp-arm.png",
       "shots/shared/drain-and-barrier.png",
-      "shots/shared/mapped-deck-plan.png"
+      "shots/shared/mapped-deck-plan.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "All 17 current shared-material views inspected: complete asymmetric span/plan, box soffits, fluted piers, skewed abutments, haunches, lamps, drains, barriers, cornices and road. Shared concrete/stone/metal bindings and resource unload pass. This standard fixture uses standalone asset review for extended bounds; separate IGN terrain reports exercise actual geographic model clipping, both procedural motorway approaches and resource unloading."
+    "notes": "All 18 final shared/geographic images inspected. Four canonical concrete, granite, painted metal and stainless graphs are read once. Concrete has restrained metric surface variation; kerbs and lamp fittings remain distinct from flat asphalt and lane markings. North-up overlay follows the actual curved/skewed outline, including unequal end offsets. Flat colored water is a placement review surface, not terrain evidence. Unload disposes all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:458362ba610a260c77880c8dfee6046562dbd59c15f1133f25519b5f4bb20866",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/south-elevation.png",
+      "medium-fi/north-elevation.png",
+      "medium-fi/box-soffits.png",
+      "medium-fi/river-piers.png",
+      "medium-fi/haunched-girders.png",
+      "medium-fi/east-bank-piers.png",
+      "medium-fi/skew-west-abutment.png",
+      "medium-fi/skew-east-abutment.png",
+      "medium-fi/precast-cornice.png",
+      "medium-fi/road-and-median.png",
+      "medium-fi/lamp-arm.png",
+      "medium-fi/drain-and-barrier.png",
+      "medium-fi/mapped-deck-plan.png",
+      "medium-fi/four-boxes-district.png",
+      "medium-fi/road-street.png",
+      "medium-fi/pier-ribs-closeup.png",
+      "medium-fi/curved-east-street.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 34 final medium-fi images inspected in the common noon/late, economy/high rig and identical transition camera. Skyline retains four box/support ranks and median lamp silhouette; district restores barriers and bearings; street adds restrained railings and road lines; closeup restores selected fluted piers, precast joints, service pipes, elliptical lamps and drains. The district soffit camera was moved inside the synthetic foreground-neighbor ring so all four girders are visible. Synthetic cottages are style comparison props, not a reconstruction of Paris or evidence of local ground. Fine far fittings are intentionally omitted and no large body disappears during transitions."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:36b28abc76cd0045f77f5ebeb9bb9709efa8ec583cb8b151405095dbb021546c",
-    "terrainReports": [
+    "mapFrameHash": "sha256:2064638f88d5598277d56ea6d82ba7902924938e0d6094e4e4be2dd2d06d7cfa",
+    "notes": "Anchor 2.264339604,48.834900398 and heading -0.063240259176 retain exact-Q2073282 way 433835333 and the reviewed curved/skewed map frame. Native +X goes east to the left-bank Issy interchange, +Z south/downstream, +Y up. Structural spans west-to-east 67.47/92/81.48/71.55 m retain 312.5 m total; 336 m aligned bounds include skewed ends. Source Y=0 uses archival normal-water NGF-IGN69 26.34 m; deck centers remain 39.20/42.75 m absolute. Eight fresh street/closeup terrain-and-road views were inspected against all 66049 unchanged IGN ground samples and independently mapped elevated motorway axes. Both derivatives retain river and bank placement and elevated approach ends. Bank road clearances 7.84/10.63 m are expected above-ground ramp heights, not missing ground connections. Small plan seams at clipped road joins remain within independently stated 3 m horizontal/2.5 m vertical road-source accuracy; no exact seam survey is claimed. Host terrain must use or convert this vertical frame. No channel carving, terrain fitting, invented bathymetry or subterranean piles are used.",
+    "terrainReviews": [
       {
-        "path": "content/earth/structures/evidence/bridge-terrain/ign/N0026-fit-report.json",
-        "hash": "sha256:14159c60672f1db171617407b424cd1bc19c1d2afe078a57fccc664ecee2da96"
+        "level": "street",
+        "path": "shots/terrain-street/review.json",
+        "hash": "sha256:1fc31659e30b8d23e39db5da0d98feeb9d5d70d33e329734c96fe51379df0ed8",
+        "frames": [
+          {
+            "name": "bank-oblique",
+            "position": [
+              147.65625,
+              172.5,
+              246.09375
+            ],
+            "lookAt": [
+              0,
+              4.5,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                131.8084243405326,
+                172.5,
+                254.93340547239717
+              ],
+              "actualPosition": [
+                131.8084243405326,
+                172.5,
+                254.93340547239717
+              ],
+              "target": [
+                0,
+                4.5,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-street/bank-oblique.png",
+            "hash": "sha256:80e0bce881990fed4e7a22cefb32329c9467e954e6edb56149b2111e2f7e53ea",
+            "sourceEvidencePath": "shots/N0026-roads-street/bank-oblique.png"
+          },
+          {
+            "name": "side-elevation",
+            "position": [
+              0,
+              8.25,
+              328.125
+            ],
+            "lookAt": [
+              0,
+              8.25,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                -20.736881316848145,
+                8.25,
+                327.4690785065759
+              ],
+              "actualPosition": [
+                -20.736881316848145,
+                10.759723609229841,
+                327.4690785065759
+              ],
+              "target": [
+                0,
+                8.25,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-street/side-elevation.png",
+            "hash": "sha256:04a1ad63696959ed69ceba0b8e133358ea8b3e5c81cb4656db653ed88e1c01fe",
+            "sourceEvidencePath": "shots/N0026-roads-street/side-elevation.png"
+          },
+          {
+            "name": "reverse-bank",
+            "position": [
+              -164.0625,
+              129.84375,
+              -246.09375
+            ],
+            "lookAt": [
+              0,
+              4.5,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                -148.18187826588468,
+                129.84375,
+                -255.9702495391709
+              ],
+              "actualPosition": [
+                -148.18187826588468,
+                129.84375,
+                -255.9702495391709
+              ],
+              "target": [
+                0,
+                4.5,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-street/reverse-bank.png",
+            "hash": "sha256:52d99c474cac53e9fac2a253453ead7845712b771936e02843c07a13b1d821e6",
+            "sourceEvidencePath": "shots/N0026-roads-street/reverse-bank.png"
+          },
+          {
+            "name": "plan",
+            "position": [
+              0,
+              328.125,
+              0.001
+            ],
+            "lookAt": [
+              0,
+              0,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                -0.00006319811448944196,
+                328.125,
+                0.00099800053550303
+              ],
+              "actualPosition": [
+                -0.00006319811448944196,
+                328.125,
+                0.00099800053550303
+              ],
+              "target": [
+                0,
+                0,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-street/plan.png",
+            "hash": "sha256:26629ccfb9ee89ebce51ba93afdf1f1cf0d7d1e02d7ba9899aed8e4eb2fc7b59",
+            "sourceEvidencePath": "shots/N0026-roads-street/plan.png"
+          }
+        ]
       },
       {
-        "path": "content/earth/structures/evidence/bridge-terrain/ign/N0026-roads-fit-report.json",
-        "hash": "sha256:ede038d2a8f5982555a91eebde6443c60ed6217390884aafbff217f213d7ac06"
+        "level": "closeup",
+        "path": "shots/terrain-closeup/review.json",
+        "hash": "sha256:5219fc2cc01c1d65fba4dfa509f8a2a7bbbcf143fa56415b466d931929bbbebf",
+        "frames": [
+          {
+            "name": "bank-oblique",
+            "position": [
+              147.65625,
+              172.5,
+              246.09375
+            ],
+            "lookAt": [
+              0,
+              4.5,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                131.8084243405326,
+                172.5,
+                254.93340547239717
+              ],
+              "actualPosition": [
+                131.8084243405326,
+                172.5,
+                254.93340547239717
+              ],
+              "target": [
+                0,
+                4.5,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-closeup/bank-oblique.png",
+            "hash": "sha256:9941a3ee2ff432c9be6fb71e26facdd82d18b2b50688ca811b11c7e73748d6d4",
+            "sourceEvidencePath": "shots/N0026-roads-closeup/bank-oblique.png"
+          },
+          {
+            "name": "side-elevation",
+            "position": [
+              0,
+              8.25,
+              328.125
+            ],
+            "lookAt": [
+              0,
+              8.25,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                -20.736881316848145,
+                8.25,
+                327.4690785065759
+              ],
+              "actualPosition": [
+                -20.736881316848145,
+                10.759723609229841,
+                327.4690785065759
+              ],
+              "target": [
+                0,
+                8.25,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-closeup/side-elevation.png",
+            "hash": "sha256:10a7897e6638c11b15e9cc690bc63714fea20cc8a1978cc6dea3b5079439c9e6",
+            "sourceEvidencePath": "shots/N0026-roads-closeup/side-elevation.png"
+          },
+          {
+            "name": "reverse-bank",
+            "position": [
+              -164.0625,
+              129.84375,
+              -246.09375
+            ],
+            "lookAt": [
+              0,
+              4.5,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                -148.18187826588468,
+                129.84375,
+                -255.9702495391709
+              ],
+              "actualPosition": [
+                -148.18187826588468,
+                129.84375,
+                -255.9702495391709
+              ],
+              "target": [
+                0,
+                4.5,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-closeup/reverse-bank.png",
+            "hash": "sha256:9df79ba567e900700bbed9851942d58b25176087003b8976d5b72101614513a3",
+            "sourceEvidencePath": "shots/N0026-roads-closeup/reverse-bank.png"
+          },
+          {
+            "name": "plan",
+            "position": [
+              0,
+              328.125,
+              0.001
+            ],
+            "lookAt": [
+              0,
+              0,
+              0
+            ],
+            "fov": 55,
+            "pose": {
+              "requestedPosition": [
+                -0.00006319811448944196,
+                328.125,
+                0.00099800053550303
+              ],
+              "actualPosition": [
+                -0.00006319811448944196,
+                328.125,
+                0.00099800053550303
+              ],
+              "target": [
+                0,
+                0,
+                -4.656612873077393e-10
+              ]
+            },
+            "path": "shots/terrain-closeup/plan.png",
+            "hash": "sha256:3516d4d9d195bf0e5be96b340d34ec6554c7106022ba22ed055002def6c3dce4",
+            "sourceEvidencePath": "shots/N0026-roads-closeup/plan.png"
+          }
+        ]
       }
-    ],
-    "notes": "Directed skewed/curved footprint and unequal spans are reviewed. The 26.34 m native origin agrees with the independent IGN RGE ALTI water surface. Authored road endpoints 39.20/42.75 m follow the primary longitudinal section; independent BD TOPO 3D motorway elevations corroborate the elevated approaches within their stated 2.5 m vertical accuracy. Eight current production terrain frames inspected, including both mapped carriageways rendered procedurally. The exact loaded-model polygon removes their covered fragments and distinct endpoint heights join the retained elevated approaches. Bare-ground endpoint clearances 7.84/10.63 m are expected for this motorway viaduct. Host terrain and road elevations must use NGF-IGN69 or an explicit vertical conversion; this review does not certify every global DEM or submerged foundation bathymetry."
+    ]
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior uses AFGC/Prade 1982 printed page 81 sections and inspected Mbzt 2012 photographs. The April 2026 Paris account confirms the crossing and length but does not establish current lane allocation. The master remains unchanged; browser levels retain structural spans, four box dimensions and spacing, skewed plan and curved flare. Closeup reduces repetition of pier ribs, rail pickets and precast seams. Fine interlocking expansion fingers, service hangers, dense pickets, unverified protective mesh, current traffic controls and neighboring ramps remain outside the viewer derivative scope."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "248,848-triangle exterior follows ministry longitudinal and cross sections and close photographs. Current site details, protective web mesh visible in2012 photos and updated traffic markings still need a final exterior revision before maximum-fidelity approval."
-  }
+    "notes": "248,848-triangle exterior follows ministry longitudinal and cross sections and close photographs. Current site details, protective web mesh visible in2012 photos and updated traffic markings still need a final exterior revision before maximum-fidelity approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u09/n0026_pont_aval/models/source.glb",
+        "hash": "sha256:b35978c95576f9ef5d29ad00017e6bc77ccb3bb0fc5f60b2d15a20c5b070ac2a",
+        "bytes": 20205860,
+        "triangles": 248848,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -168.2805633544922,
+          0,
+          -21.198898315429688
+        ],
+        "max": [
+          167.8624267578125,
+          29.836759567260742,
+          20.952743530273438
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u09/n0026_pont_aval/model.glb",
+        "hash": "sha256:131356609e72b6307a7b19d34ecfc9bb98e32fdccbb1a752ee0671da1d613f9e",
+        "bytes": 20205276,
+        "triangles": 248848,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -168.2805633544922,
+          0,
+          -21.198898315429688
+        ],
+        "max": [
+          167.8624267578125,
+          29.836759567260742,
+          20.952743530273438
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u09/n0026_pont_aval/model.skyline.glb",
+        "hash": "sha256:190aeb382bdb527bed3ec54545c5e139016ead684e0b098f013d90248b82b300",
+        "bytes": 75052,
+        "triangles": 944,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -168.09519958496094,
+          0,
+          -21.198898315429688
+        ],
+        "max": [
+          167.50186157226562,
+          29.779300689697266,
+          20.899343490600586
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u09/n0026_pont_aval/model.district.glb",
+        "hash": "sha256:7b546130db1bd9880ac4666f78e6545fbe747e6702e8d784a90ade44c238081f",
+        "bytes": 260388,
+        "triangles": 3736,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -168.2805633544922,
+          0,
+          -21.198898315429688
+        ],
+        "max": [
+          167.8624267578125,
+          29.836759567260742,
+          20.952733993530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u09/n0026_pont_aval/model.street.glb",
+        "hash": "sha256:fc27ac6d61312e9b2d1acf4119cdddb441028199bd1f21b16502eb6c41c1e230",
+        "bytes": 1025184,
+        "triangles": 15112,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -168.2805633544922,
+          0,
+          -21.198898315429688
+        ],
+        "max": [
+          167.8624267578125,
+          29.836759567260742,
+          20.952733993530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u09/n0026_pont_aval/model.closeup.glb",
+        "hash": "sha256:644a409895e00618908c86de881b5f0185d39a264cb83a34b7210c33abc3dfb7",
+        "bytes": 3865308,
+        "triangles": 56576,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -168.2805633544922,
+          0,
+          -21.198898315429688
+        ],
+        "max": [
+          167.8624267578125,
+          29.836759567260742,
+          20.952760696411133
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": "Three focused tests passed: one-sided rays verify continuous curved deck coverage, four independent box soffits, open inter-girder gaps and outward-facing piers at all four levels; the original source hash and signed map/archival deck controls remain explicit; all derivatives rebuild byte-identically within strict triangle/draw/download budgets using four canonical shared graphs.",
+    "notes": "Six current GLBs pass Khronos validation with zero errors, zero warnings and zero embedded images. Derivatives contain 944/3736/15112/56576 triangles. Reversed simple-pier winding was repaired without changing the source master; front-facing ray tests check all four levels. Continuous decks and independently separated box soffits are covered by targeted rays. Source hash, current runtime hash, LOD hashes and shared graph bytes remain individually bound."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:31fc810379104dde615bb24dc3df6fa38603d308bc88d2d44f820c4a45dbd626",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:190aeb382bdb527bed3ec54545c5e139016ead684e0b098f013d90248b82b300",
+        "bytes": 75052,
+        "gzipBytes": 17747,
+        "triangles": 944,
+        "cpuBytes": 73632,
+        "gpuBytes": 73632,
+        "errorMeters": 0.8,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:7b546130db1bd9880ac4666f78e6545fbe747e6702e8d784a90ade44c238081f",
+        "bytes": 260388,
+        "gzipBytes": 77373,
+        "triangles": 3736,
+        "cpuBytes": 255408,
+        "gpuBytes": 255408,
+        "errorMeters": 0.55,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:fc27ac6d61312e9b2d1acf4119cdddb441028199bd1f21b16502eb6c41c1e230",
+        "bytes": 1025184,
+        "gzipBytes": 279201,
+        "triangles": 15112,
+        "cpuBytes": 1017888,
+        "gpuBytes": 1017888,
+        "errorMeters": 0.55,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:644a409895e00618908c86de881b5f0185d39a264cb83a34b7210c33abc3dfb7",
+        "bytes": 3865308,
+        "gzipBytes": 1170605,
+        "triangles": 56576,
+        "cpuBytes": 3857952,
+        "gpuBytes": 3857952,
+        "errorMeters": 0.2,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 335440,
+    "notes": "Initial skyline plus district totals 335440 bytes; street 1025184 bytes and closeup 3865308 bytes. Four reused 256-square canonical graphs are resolved centrally and their measured linear-color means are baked into skyline. Levels use 1/4/6/6 draws and separate attribute streams; no image is embedded. Component allowances 0.8/0.55/0.55/0.2 m cover faceting and omitted fine fittings, not a measured whole-mesh Hausdorff bound. Physical phone/laptop timings remain unmeasured."
+  },
+  "limitations": [
+    "The absolute placement is consistent with current IGN NGF-IGN69 terrain/water and BD TOPO3D road evidence. Hosts using a different height reference need a datum conversion; official road coordinates have2.5m stated altitude accuracy.",
+    "The exterior reflects photographs and available aerial; changes to traffic markings or lamps since those images require current reference verification.",
+    "The crossing ends at its abutments; adjacent elevated motorway ramps remain separate map-driven structures.",
+    "The source is archival geometry, not a verified depiction of current motorway traffic allocation. Closeup draws selected precast seams and pier ribs at reduced frequency; no change to surveyed span stations or box dimensions is implied.",
+    "Skyline/district/street/closeup are independently authored 1000/4000/16000/64000-triangle derivatives. Error allowances describe simplified components, not a measured whole-mesh Hausdorff distance."
+  ]
 }

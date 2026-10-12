@@ -1,0 +1,345 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Hong Kong’s silver-blue eight-pointed steel tower: four suspended triangular wings with paired half-pyramid terminations, two refuge bands, stepped glass crown and open spoked mast, above exposed braced columns, pools and a mapped curving retail gallery.",
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z southwest toward Queen’s Road",
+    "longAxis": "+X southeast along the main frontage"
+  },
+  "sourceFacts": {
+    "architect": "Dennis Lau & Ng Chun Man (DLN)",
+    "completed": 1998,
+    "heightMeters": 346,
+    "occupiedHeightMeters": 275,
+    "physicalFloors": 73,
+    "typicalFloorAreaSquareMeters": 2070,
+    "steelFrame": true,
+    "plan": "Two square systems at45degrees; four projecting triangular wings",
+    "publicBase": "Elevated superstructure and retail gallery; four principal columns standing in reflecting pools",
+    "contractorMarketingStoreys": 80,
+    "originalMasterHash": "sha256:700afba565e85d7c30e2c00281a3c9fbfda4cdae9c6e6d2631ad1ee585082f7d",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-center-model.mjs#centerStudy.build",
+    "surfaceMeans": {
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
+  },
+  "reconstruction": {
+    "geometry": "DLN’s floorplan and original construction elevation govern the star, four half-pyramids, stepped cleaning floor and exposed mast. Independently mapped tower, gallery, roof facets and SW entrance retain their signed positions. Lower and upper face datums follow the published elevation proportions inside the confirmed346m tip and275m occupied datum; coarse map roof heights are checks, not a survey.",
+    "facade": "Silver-blue unitized panes, fine transoms, physical neon housings, dark refuge/louver bands, BMU sliding panels and broad sloping roof panes. Open spoked mast collars and its ladder are based on the construction photographer’s close-up. Ground columns, X braces, pools, atrium/escalators and bamboo retain public permeability."
+  },
+  "limitations": [
+    "Original centerStudy.build remains unchanged and byte-reproduces488748triangles/43189992bytes. Separate reviewed source retains full square tower/four projecting triangular wings with genuinely sloping lower/upper halfpyramids, two refuge bands, stepped glazed crown/BMUdoors,346m closed mast and two thin conical open-around-mast collars/spokes/ladder, four fullheightexposedcolumns/eightXbraces/pools/open undercroft, C-shaped irregulargallery with atrium slabcutout and southwest glazed entry/escalators, bamboo gardens/steps/benches. Flatcontinuousglass and projectedmullion/transom/neon strips replace repeated closedpane beams, near2.86m bays ratherthan1.43m;61main/55wing course pitch retained with explicit141–149/248–256m refuge intervals and.38m sampled louvers. Roofgrid is3m near, trianglepane bands3m; mast24side/24x6tori replace40side/72x10, collars24side replace72 and ladderrungs.64m replace.32m. Near bamboo3stems/4pairedleaftriangles perplant and chunky roofshoots replace7dense stems/allnodes/tiny leaves. Wood/foliage/recess share tinted granite/paintedmetal to keepfourgroups alongside opaque vision and52percent BLEND entryglass; bamboo grain/bench species and glazing transparency remain stylized. Skyline omits facade/course/neon/louver/railings/columnjoints/steps/bamboo/benches/mastspokes/ladder/poolcoping/entrydoorframes, retains four upper mast braces/all principal volumes, refuge bands, openbase/braces/gallerycourt and entry/escalatorbeams; gallery collinearjogs narrowed under.4m; one5.5–11.3m raised gallery volume replaces separated slabs while retaining atrium slabcutout/courtyard and glassouterwall; supports sampled only on16m-plus edges. District restores full-width32m courses/2.4m louvers,8sidemast/collars/fourspokes/four upper braces/two coarse arrival steps, four coarseplantclusters, supports sampled on8m-plus gallery edges and dark BMUdoor patches. Street restores8.58m bays/12m courses/.8m louvers,12sidemast/collars and twelve spokes, everysecond escalatorstep and sampledgalleryrails. Close-up restores nearpitch/pane rhythm/24sidemast/12spokes/.64mladder and everyescalatorstep. Mainstar/galleryrelativegrades/pools/finefacadegrid/intermediateheights/atriumfitout/BMUdoorphase unsurveyed; physicaldevice/densecity timings and globalerrorbounds unmeasured. One reconstructed northeast bench/planter is relocated from[31,-28] to[26,-31]m so its whole base rests within independently mapped gallery roof; original recipe position remains preserved. Skyline mast is five-sided and entryglass is palette-baked opaque, while later levels preserve52percent transparent atrium. District/street retain both long mast ladder rails; rungs remain close-up only. District neon housings are sampled everysecond retainedcourse."
+  ],
+  "surfaceOverrides": {
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "localRef": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52,
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "alphaMode": "BLEND",
+      "doubleSided": true
+    }
+  },
+  "geographic": {
+    "heading": -0.5813691738393112,
+    "reviewStatus": "reviewed signed Queen’s Road entrance and irregular gallery medium-fi frame",
+    "orientationConfidence": "independent exact raw tower/gallery/entrances and primary front/plaza photos",
+    "notes": "Fresh2026-10-10 all19 raw way rings andsix entrance nodes are exact unchanged against independently preserved original local frame. ExactQ130478 tower148228888/address99Queen’s Road and irregular gallery148461575 retain anchor[114.154728212,22.284613112]/heading-.5813691738393112. Original local scaled-Mercator tower projection agrees within.001m numerical rounding. Native+X southeast bearing123.31degrees and+Z southwest bearing213.31degrees register mapped roof-direction213.31/123.31degree facets and separately mapped southwest Queen’s Road entrance10219320513 at[-12.83839,29.96369]m. Primary DLN completed front and plaza/atrium photos plus raw southwest entrance/gallery shape sign90/180degree star ambiguities. Mainstar42.2x42.86m square plus8.92m triangular wings and irregularcurvinggallery are photographic/map reconstruction; accepted wholeenvelope1m/2degreebearing allowance, not cadastral accuracy. All four groundcolumns/pools remain exposed under raised superstructure; gallery is not courtyard fill. Published346m tip/275moccupied and73physicalfloors retained; contractor80storeys is a distinct marketing/construction count. Upperwing270m/roof302m/low35.4m/intermediate courses/refuge bands/BMUdetails unsurveyed reconstructed proportions, not literal coarse raw minimumheight30m/roof300m extrusion. Y0 shared publicapron approximate; no surveyed slopingcurb. No footprint replacement. Neighboring frontage, underground garage, hidden steel core, operational gondolas/nightlight programming/tenant signs excluded.",
+    "evidence": "Fresh2026-10-10 all19 raw way rings andsix entrance nodes are exact unchanged against independently preserved original local frame. ExactQ130478 tower148228888/address99Queen’s Road and irregular gallery148461575 retain anchor[114.154728212,22.284613112]/heading-.5813691738393112. Original local scaled-Mercator tower projection agrees within.001m numerical rounding. Native+X southeast bearing123.31degrees and+Z southwest bearing213.31degrees register mapped roof-direction213.31/123.31degree facets and separately mapped southwest Queen’s Road entrance10219320513 at[-12.83839,29.96369]m. Primary DLN completed front and plaza/atrium photos plus raw southwest entrance/gallery shape sign90/180degree star ambiguities. Mainstar42.2x42.86m square plus8.92m triangular wings and irregularcurvinggallery are photographic/map reconstruction; accepted wholeenvelope1m/2degreebearing allowance, not cadastral accuracy. All four groundcolumns/pools remain exposed under raised superstructure; gallery is not courtyard fill. Published346m tip/275moccupied and73physicalfloors retained; contractor80storeys is a distinct marketing/construction count. Upperwing270m/roof302m/low35.4m/intermediate courses/refuge bands/BMUdetails unsurveyed reconstructed proportions, not literal coarse raw minimumheight30m/roof300m extrusion. Y0 shared publicapron approximate; no surveyed slopingcurb. No footprint replacement. Neighboring frontage, underground garage, hidden steel core, operational gondolas/nightlight programming/tenant signs excluded.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh2026-10-10 all19 raw way rings andsix entrance nodes are exact unchanged against independently preserved original local frame. ExactQ130478 tower148228888/address99Queen’s Road and irregular gallery148461575 retain anchor[114.154728212,22.284613112]/heading-.5813691738393112. Original local scaled-Mercator tower projection agrees within.001m numerical rounding. Native+X southeast bearing123.31degrees and+Z southwest bearing213.31degrees register mapped roof-direction213.31/123.31degree facets and separately mapped southwest Queen’s Road entrance10219320513 at[-12.83839,29.96369]m. Primary DLN completed front and plaza/atrium photos plus raw southwest entrance/gallery shape sign90/180degree star ambiguities. Mainstar42.2x42.86m square plus8.92m triangular wings and irregularcurvinggallery are photographic/map reconstruction; accepted wholeenvelope1m/2degreebearing allowance, not cadastral accuracy. All four groundcolumns/pools remain exposed under raised superstructure; gallery is not courtyard fill. Published346m tip/275moccupied and73physicalfloors retained; contractor80storeys is a distinct marketing/construction count. Upperwing270m/roof302m/low35.4m/intermediate courses/refuge bands/BMUdetails unsurveyed reconstructed proportions, not literal coarse raw minimumheight30m/roof300m extrusion. Y0 shared publicapron approximate; no surveyed slopingcurb. No footprint replacement. Neighboring frontage, underground garage, hidden steel core, operational gondolas/nightlight programming/tenant signs excluded.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "georeferencing-baseline.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/center-runtime-model.mjs",
+    "export": "buildCenterReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/center-runtime-model.mjs",
+    "export": "buildCenterSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCenterDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildCenterStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCenterCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-center",
+      "position": [
+        -525,
+        226,
+        610
+      ],
+      "lookAt": [
+        -3,
+        164,
+        -3
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-center-skyline",
+      "position": [
+        -525,
+        226,
+        610
+      ],
+      "lookAt": [
+        -3,
+        164,
+        -3
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-center-district",
+      "position": [
+        -525,
+        226,
+        610
+      ],
+      "lookAt": [
+        -3,
+        164,
+        -3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-center-street",
+      "position": [
+        -525,
+        226,
+        610
+      ],
+      "lookAt": [
+        -3,
+        164,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-center-closeup",
+      "position": [
+        -525,
+        226,
+        610
+      ],
+      "lookAt": [
+        -3,
+        164,
+        -3
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-exposed-base",
+      "position": [
+        42,
+        11,
+        48
+      ],
+      "lookAt": [
+        5,
+        15,
+        16
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-star-wings",
+      "position": [
+        62,
+        97,
+        88
+      ],
+      "lookAt": [
+        0,
+        74,
+        25
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-atrium",
+      "position": [
+        -28,
+        10,
+        49
+      ],
+      "lookAt": [
+        -14,
+        8,
+        21
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

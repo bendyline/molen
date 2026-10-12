@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-3,883 triangles; 11,649 vertices; 8 material groups; 470,460 bytes. Native bounds: -92.700, 0.000, -304.695 to 133.649, 54.000, 99.627. Source hash: `sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130`.
+3,765 triangles; 11,295 vertices; 8 material groups; 456,320 bytes. Native bounds: -92.700, -22.754, -304.695 to 133.649, 46.000, 99.627. Source hash: `sha256:e98101005da11a113bf5b3a6382024eae71d55a5f019b8adcf2a7c6939308d7d`.
 
-{"up":"+Y","longitudinal":"+Z south toward Munk Tower and Prince Carl bastion","lateral":"+X east toward Kongens gate","origin":"Cached castle-frame center,with unverified outer-site terrace datumY0;castle court attachmentY12m"}
+{"up":"+Y","longitudinal":"+Z south toward Munk Tower and Prince Carl bastion","lateral":"+X east toward Kongens gate","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Exact castle footprint/court only. Whole inner-fortress silhouette is approximate and excludes modern administrative parcels. Heading0,east/south nativeaxes;current terrain and absolute fit pending.
+The inspected aerial picture confirms two clock spires, open castle court, stepped gables and mixed stone/brick wings. Standard viewer PMTiles and the retained castle footprint establish approximate coastal location and east/south orientation. A reconstructed8m datum reduction places the original12m court at4m above the PMTiles anchor sample; bounded stone terrace/foundation bottoms extend to coarse ground. Broad invented lower lawn terrain and study pond surfaces are omitted so host terrain supplies the lower precinct. Wider building/bastion layout remains approximate. Anchor 10.736251164,59.906686713; heading 0; standard PMTiles datum 21.632957278541383m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -30,15 +30,12 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0282` (
 
 ## Pending work
 
-- Only the castle ring and courtyard are map-derived. Wider inner-fortress outline,bastions,building centers,pond shapes and depths are approximately interpreted from a primary isometric diagram with no scale. No current wider-site map retrieved;not a fully verified whole-fortress reconstruction.
-- All elevations and tower widths,cap profiles,gable steps,window rhythm,gate clearances,terrace slopes and opening positions are estimates. Spire54m and castle court12m are provisional values relative to a made-up lower-groundY0,not actual elevations or tower height claims. Castle footprint has small simplifications around roofs and attachments.
-- Two visually distinctive clock stair towers are rendered;their exact attachment positions and name-to-tower correspondence need a measured castle plan. Named northern/southern in controls to avoid false identification.
-- Gate passages are open geometry. Main entrance position is interpreted;no interiors or claimed accessible/collision-certified route. Historical demolished Vågehals and removed outer defenses are not rebuilt.
-- Modern southern/eastern Armed Forces offices and Armed Forces Museum complex,trees,artillery,memorial sculpture,interiors,harbor/quay and terrain outside the enclosure are excluded. Study covers the recognizable inner fortress,not every administrative parcel.
-- Stepped terraced ground is sparse authoring geometry,not sampled real terrain;outer contours need corrected registration and terrain blending. Ponds are opaque study surfaces using shared blue color,not engine water simulation.
-- Shared256² brick,granite,slate,ceramic-tile,copper and lime-plaster graphs;blue-grey glazing and terraced ground untextured. No research photos redistributed,no baked lighting/AO,no individual bricks or subpixel rails.
-- Native+X east/+Z south,heading0. Signed orientation,vertical datum,whole-site fit,temporal state and footprint replacement require in-world review. Inactive draft,replaceFootprint=false. Synthetic review context is not the real Oslo shore.
-- Physical laptop/phone timing and continuous-motion LOD shimmer remain unmeasured.
+- Approximate current inner-fortress exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Original detailed architectural/terrace study master and recipe preserved; derivative fits working datum and bounded stone foundations while omitting broad lower terrain/pond surfaces.
+- Two clock spires, stepped gables, open castle court, lower towers, stone bastions and selected low museums/magazines/barracks retain identity. Fine openings, names-to-tower assignment and elevations reconstructed.
+- Only the castle/court are map-derived; broader inner-fortress layout is approximate and footprint replacement remains off.
+- Host supplies lower terrain. Study pond depressions, modern military administrative parcels, full harbor/quay, trees, artillery, memorials, demolished defenses and interiors excluded.
+- Six common material graphs and local glass/upper terrace color slots; eight merged groups justified by the mixed precinct. Zero embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

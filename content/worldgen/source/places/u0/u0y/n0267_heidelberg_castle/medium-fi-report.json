@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0267_heidelberg_castle",
-  "sourceHash": "sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180",
-  "runtimeHash": "sha256:35725ebc4ad3311e233e5f12a4efe40d09a2b81a277b8e4050430fc6521bab54",
-  "fixtureHash": "sha256:ae4e3b886fee436426cf854ccdab3685d7305de05cdfe017dc17b341d8f323b6",
+  "sourceHash": "sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab",
+  "runtimeHash": "sha256:c907d5baf66ddf324d767d5caf219072eb38138f1b7d55d6064142787b93c762",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,75 +28,90 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:ddd5942eae142ec5608495a927981ecba5368619484fd170687ac3c4d6aaa31d",
-      "bytes": 79644,
-      "gzipBytes": 12200,
-      "triangles": 904,
-      "cpuBytes": 78252,
-      "gpuBytes": 78252,
-      "errorMeters": 1.5,
+      "hash": "sha256:24b0a5f3b622159372db49892b87872c94e53fac37e7433777dc7e5d5dd2e46b",
+      "bytes": 87300,
+      "gzipBytes": 17350,
+      "triangles": 967,
+      "cpuBytes": 85868,
+      "gpuBytes": 85868,
+      "errorMeters": 2,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:bd0c6b339fecb324ebee21903a7ca8db4dc6e04c00b6be542a6263fd0477b5e4",
-      "bytes": 218108,
-      "gzipBytes": 44056,
-      "triangles": 2896,
-      "cpuBytes": 212208,
-      "gpuBytes": 212208,
-      "errorMeters": 1.5,
+      "hash": "sha256:300709b667f80f28240665800b1f2a193206e5ce81fce8737373dabf350a416d",
+      "bytes": 297132,
+      "gzipBytes": 69518,
+      "triangles": 3355,
+      "cpuBytes": 290960,
+      "gpuBytes": 290960,
+      "errorMeters": 1,
       "drawCalls": 5
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:2ecf79cf127b3bb2f88a2ed7ccdf42e291130eeae7345f9ed114b335db26b4ca",
-      "bytes": 384524,
-      "gzipBytes": 78177,
-      "triangles": 5182,
-      "cpuBytes": 378636,
-      "gpuBytes": 378636,
+      "hash": "sha256:979bea53634086370afcfe55b8972485c9aa61271f9321664ad9fd3d29cb621f",
+      "bytes": 516040,
+      "gzipBytes": 117650,
+      "triangles": 5787,
+      "cpuBytes": 509852,
+      "gpuBytes": 509852,
       "errorMeters": 0.5,
       "drawCalls": 5
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:7eecddc25e4d3e3ed226be4a6161fc4e9d63445a1607cfbf26d239ab4b4aab1e",
-      "bytes": 524328,
-      "gzipBytes": 105427,
-      "triangles": 6948,
-      "cpuBytes": 518436,
-      "gpuBytes": 518436,
-      "errorMeters": 0.15,
+      "hash": "sha256:a14448b77c9a225afd6e571806d577a1657f65a105b3edffd79185bec92c1d85",
+      "bytes": 668908,
+      "gzipBytes": 153206,
+      "triangles": 7655,
+      "cpuBytes": 662720,
+      "gpuBytes": 662720,
+      "errorMeters": 0.2,
       "drawCalls": 5
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:6eda6ff4399dcec6c8ef752f770ca08bc03a54f94b5405cf108b80ba5dd599a9"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:c19e3f11ecace2a3890185e91ed46b4e627898f5babb925fc0680f003a5ea3ec"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:8c566054e2617947e1c5d5732db6ad90fd7ac1b254db6e63528362bd25d0fb31",
+      "hash": "sha256:d7e71d3b41eef9942147ab49d3c6b80c16524745071b84eb223c80ccc80704f5",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          104.6042,
+          64.3731,
+          180.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -106,29 +121,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:69d91eadcaf067867fe8a4aca93073e38901d38338507d98758ef9f436a17601",
+      "hash": "sha256:5e97192f94d4c15c261fe5dbacf676c2b8bb1e43226d3bc0afeb9e2c9efbe176",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          104.6042,
+          64.3731,
+          180.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -138,29 +158,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:377fdff3914a39754abde542afd600806d969cce4d5dbf6dff56ee1473109e7f",
+      "hash": "sha256:7fdfce389537f2087689cf790bccb3047011abb59c812a7de8b073c24ff954d5",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          104.6042,
+          64.3731,
+          180.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -170,29 +195,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:46872542b37544648c01ef8e000e86e57d656cc359cf0a036d77d6e9f6352a97",
+      "hash": "sha256:3a1b22ad691c9937c5dd7c3df4652939f53ea3cd4bcf2569eb582d76e7252eda",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          104.6042,
+          64.3731,
+          180.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -202,29 +232,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:a775082c61b68ca24fa654e5a742b34704cff5f5c3470eab4bef495186966ed9",
+      "hash": "sha256:f3534e142b5491b323ce84ba09958e76be64d3e91b27382c0860837113fa066f",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 10,
-        "triangles": 11170,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 64109,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -234,29 +269,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:50e0f8b7450f5b1d474ca9db420144e68d9fc0d371ac69d86f4b7eb3d139ad74",
+      "hash": "sha256:de69e01677bee64184dbe476cc665a02fb4c51e2e3ba6a85d85ccc9b6d288dc1",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 11170,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 64109,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -266,29 +306,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:50ef4274a83b6c643e9655974a265fce0fc98f22f50dfd0b3fd62214915be265",
+      "hash": "sha256:0777548f7936a9d8dfd0ee3108aa5ab17310ddd33d646e8c832411a0bc9c4041",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 10,
-        "triangles": 11170,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 64109,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -298,29 +343,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:072ed136afde8a0f682f8f1d4d5a52b7e3e030f29f38e0d3343ea02772efdd86",
+      "hash": "sha256:0b944d24c3117b8018099dbe7cc82ef33cce43ea5454451fc0c12cee982b187c",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 11170,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 64109,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -330,29 +380,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:3e4732ae6e71ba3198aa65b8dc6e02df6592f82a5a306aaba69c80adbddb3666",
+      "hash": "sha256:fafdc551660db1ec234656d4fc144bebeec0a196ffd62284e2f645f1efda2d24",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 9178,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 61721,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          396.6042,
+          212.3731,
+          686.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -362,29 +417,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:6f67c0aa970fb3528220f7ceed2db2b5fb95e1eb71dc3f3bc02ca5c8818835fa",
+      "hash": "sha256:370f80014a818ee0b033ec58f0ecfad94b520c9917bcf97facf9a252ab27aaf2",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 9178,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 61721,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          396.6042,
+          212.3731,
+          686.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -394,29 +454,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:98db46740f27d63ec8ca9fefb22fc32f0800d9e46e41769e88270c57c8cbeb04",
+      "hash": "sha256:afd636e299d207c49328e555ebb8143531a90c17392e9fe9f416a4c6c02ec4a3",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 9178,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 61721,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          396.6042,
+          212.3731,
+          686.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -426,29 +491,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:1852e1e94566cbb4e851af008e2a47c50226643eb43ebe84ffad1ab78e34be1d",
+      "hash": "sha256:c9512a74a1ee21e6d02b9021cc5d9ccbf73f23ad237e08994aab28e57d0cb2ce",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 9178,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 61721,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          396.6042,
+          212.3731,
+          686.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -458,29 +528,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:11f8b93d390fc0b1cd2b668130a19053e1f43b1c3f256c0670f8907d846f6e76",
+      "hash": "sha256:a0083276c83c3eb714ae634af6d38ab0d5d61d3b3f6add84c1c19b0be287b5ec",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 906,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53449,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          396.6042,
+          212.3731,
+          686.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -490,20 +565,25 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/south-gate-and-broken-tower.png",
-      "hash": "sha256:a2fc2d345658b07fbd549823a0a6d04a39575b372b695a081757252ca50407f3",
+      "hash": "sha256:4ba98e3392d33a5c8c3fd5e441f76920ea236dbd9ae462d2337cb1bae3c26e8c",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
           230,
           100,
@@ -522,20 +602,25 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/north-terrace-and-friedrich.png",
-      "hash": "sha256:e2ae1bb24b835a43503fef348645ce97160483862f2810eab8036659fba83f2b",
+      "hash": "sha256:850b73c606a856d5fe2ea0b41785de6a6ed79b4504eef8f5aa74f364a914ca43",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
           -230,
           100,
@@ -554,20 +639,25 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/west-english-wing.png",
-      "hash": "sha256:870104cc3a778d67dd50f286627e86e1b6bffc832e204ef876ac741266c7b130",
+      "hash": "sha256:144b631018afb5886437e4ad6d4f3f4f2f8c99b88e89d2e1e1eed6a808b513a7",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
           -10,
           110,
@@ -586,20 +676,25 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/east-ruined-wings.png",
-      "hash": "sha256:771d1adecebb24fbd0967884e9ea72a044cd811e42b3c6c54925a41a176620c5",
+      "hash": "sha256:922348650ac3884f32e4e677d97c1eb64de15c1df4f5f7c7b3c1a07c22449712",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
           5,
           115,
@@ -618,20 +713,25 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyard-facades.png",
-      "hash": "sha256:67c460898acb1d879b621c1c7d18db1a8661de360240872edeb22b288a3f211c",
+      "hash": "sha256:9662f211b0e334da7cb4b3bfc0f72012ee7111316730bffdcb21523b9c5cccaf",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
           25,
           46,
@@ -650,20 +750,25 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/compound-plan.png",
-      "hash": "sha256:9c2274d3aee2024608ed9c25003652e61f7940aee5b762728e26c52f71ac4db5",
+      "hash": "sha256:03158993ce56e4929c79c35957fdd898566e9d773d1e9d1da9b41b2f065a4dc5",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
           0,
           365,
@@ -682,29 +787,182 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-heidelberg-skyline.png",
+      "hash": "sha256:96f65d9dcfc2b168f222cf397c3fbceb75345a6e6465a255ff934549b8d2f269",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 61721,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          170,
+          100,
+          160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-heidelberg-district.png",
+      "hash": "sha256:c8706736fd2abf6dd528683517db1453315a7ea818a85efa9e66e8f57ef1a6a2",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 64109,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          170,
+          100,
+          160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-heidelberg-street.png",
+      "hash": "sha256:80a28ad17fd2a6850ae6a017d6993217897df393b77e6cf1edccce90a2f54746",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 66541,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          170,
+          100,
+          160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-heidelberg-closeup.png",
+      "hash": "sha256:e21ebe2f055a97d02d1bd2eb5ac8635c1fecdbd0c0e250e2ad9e8fb78bae0415",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
+        "position": [
+          170,
+          100,
+          160
+        ],
+        "lookAt": [
+          0,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:94bac4c4c3cf7d13e9a62d1d60967bbcee93bc0e6b42419f83be0832313d6c45",
+      "hash": "sha256:10f03649bdbc1cbe5ecf9eb844bf9408512bed5d6af5d9cfb188cc2820a497f6",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 9178,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 61721,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -714,29 +972,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:50e0f8b7450f5b1d474ca9db420144e68d9fc0d371ac69d86f4b7eb3d139ad74",
+      "hash": "sha256:de69e01677bee64184dbe476cc665a02fb4c51e2e3ba6a85d85ccc9b6d288dc1",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 11170,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 64109,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -746,29 +1009,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:8cc6bf84a45ad3042d1263de5de6ca25f86e11771b7f5fb390ec50d2f1fefb95",
+      "hash": "sha256:adaed1264ed41dd7224a7b12424c8ec7ccc5c9a5f2f8f48ecb4fd697a600eea2",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 13456,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 66541,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -778,29 +1046,34 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:62b36f04f3947bed56ce4acc18f21e361d1166485b3d073edd0154aa649792d9",
+      "hash": "sha256:c6528ab6b729b61a3d2f8810f0905d603a4aea43ed01f243c37fdaadebe19b5b",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 15222,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 68409,
+        "groundY": -64,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u0/u0y/n0267_heidelberg_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          202.6042,
+          136.3731,
+          350.9694
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          8.6042,
+          34.3731,
+          14.9694
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -810,7 +1083,8 @@
           "molen.worldgen.material.slate": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 3
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     }
   ],

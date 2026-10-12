@@ -1,11 +1,16 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0023_jamuna_bridge",
-  "inputHash": "sha256:ef65086e71041d1e12bde4db9613d6a0c0dda3d96bb416eb6fabf7356a68ddaf",
-  "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
-  "footprintEvidenceHash": "sha256:35cb765d596daf599ecc12cdb2649af56d011fef6a448ab4616c9abd74864e7b",
+  "inputHash": "sha256:705bbf9483e050ea8d1e265be8dc5f0259b3bc1f8dcbd01e1a529196ff367c90",
+  "sourceHash": "sha256:a3e86afbb0da5e4bfae5b35f6e554be03c4b6b03f428b62ecfdeeadda91f1879",
+  "runtimeHash": "sha256:a3c896dffb22fb2821062adfb4cace0f354e9a7abc73dd4e86f59f71f485d5b8",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "footprintEvidenceHash": "sha256:2c8837a974bac0d24a5a75907775b6848b98aeac0954d303e5a40473c651ce40",
   "reflectionMode": "sky-pmrem",
-  "placementHash": "sha256:70b935d5dce49e34e07edc3594209a62188f170fa7f43bcc70604a3fc35188e4",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:6464642166bc0163f2b032e60a80d78e5e7bf903f4565870dd8abc89d9a62a81",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -23,7 +28,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:4a82e348ff9395ab63b887220abc7174a62f06c815bb211113ab182a374223fa",
+      "hash": "sha256:f51e1a84cdf7b092752de528d3b0b04a989fa619be9ea4df5467a627fe1f6c31",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -33,56 +38,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:452580f54d2031c0e3bee939f5f16a268089f3deac5617cc99ed6c9eceb5f4fb",
+      "hash": "sha256:db51c9c540e26ac6ee1abcb2fe77705cdab58a16063d02a81e8e5e04882b509b",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -92,56 +120,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:cae48299ceaf72000ccd276f3dc4192cdd8829a421db8ca1e7bdc2515abed52c",
+      "hash": "sha256:5ba8812ee52b3e5ac530253c4f97fcc32af819afccfd113ab3bcfa907d6b255c",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -151,56 +202,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:532348e77c2d323f1fc8ebbefc59d1bd43d5ddb0ebe0765d79a4aebfdc7224be",
+      "hash": "sha256:b2068d24f395975598cd3aae57294f6aaa3bbcb3a9824a09c95f2edd7167e5a8",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -210,56 +284,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/south-elevation.png",
-      "hash": "sha256:63ee4b23e4b75f0813c599b303f06c0699406c45d6e7325baecf84b96524a72a",
+      "hash": "sha256:8ab8cfcd01f1ae89c1cb4de888a533ec887647509f0e6cdd3f6bc730dc2505ae",
       "camera": {
         "name": "south-elevation",
         "position": [
@@ -278,56 +375,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/plan-curve.png",
-      "hash": "sha256:dff0dcf819867ec655182d4a886b0f27550217e0c1c7064e6c68ba679be0aceb",
+      "hash": "sha256:59bbf35a1cdf90777587aa751efe8efc1914f2cb417010d01b62133ce72412b8",
       "camera": {
         "name": "plan-curve",
         "position": [
@@ -346,56 +466,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/typical-span.png",
-      "hash": "sha256:9d88c4fc09110c336f1473ec1617b54dc622d4df51f6a76a644b473c89a54fce",
+      "hash": "sha256:110116687bbf87d4bee489eadbca867fa37d849ca682c83a350ec5da541f1a51",
       "camera": {
         "name": "typical-span",
         "position": [
@@ -414,56 +557,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/box-soffit.png",
-      "hash": "sha256:1bb763d99554117e89df85991d13372dff4bc0dbc59048fa65ca2c70d0196582",
+      "hash": "sha256:37a809292baacc64cc77e1f7ab33a92717953f00050e14f01f3875d28bb5e5c4",
       "camera": {
         "name": "box-soffit",
         "position": [
@@ -482,56 +648,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/pier-bearing.png",
-      "hash": "sha256:a4df263f95cf63b194209e6393f9a8c65eb283540a9f4da8beb6e8a6d199c579",
+      "hash": "sha256:4d4fad8980f599aae82a091ac6d3b43b2529e54a28a9c88b5c6386e95496b485",
       "camera": {
         "name": "pier-bearing",
         "position": [
@@ -550,56 +739,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/north-pylon.png",
-      "hash": "sha256:acca8a44b6f9fce84b76f16980a6df7f00cf5c59b45dfa2787e98757e210d29b",
+      "hash": "sha256:25e8bdceb723633d84e2af05f25221cb5900e9c4556ba9f34ff1cb97e981cdf5",
       "camera": {
         "name": "north-pylon",
         "position": [
@@ -618,56 +830,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/insulator-arms.png",
-      "hash": "sha256:b5acad712228863c36e153bb161a85ea6255feefc4a1fafad6178971e562d260",
+      "hash": "sha256:6a6831c5e1345d31de2e47dcb269428c564232ea030c41c83d798817e6d75fb4",
       "camera": {
         "name": "insulator-arms",
         "position": [
@@ -686,56 +921,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/road-deck.png",
-      "hash": "sha256:2618d958b747a84754a8e7e1387749e6eb544273ab210aa7a568274f81f7939e",
+      "hash": "sha256:f4c3f5c9baa57a5687da74219db95b5193f8f584341e91c0546cebf7cc0a330a",
       "camera": {
         "name": "road-deck",
         "position": [
@@ -754,56 +1012,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/gas-suspension.png",
-      "hash": "sha256:74948e1308cd4a5633aa2f7f3c01d6d408f58c574b2c150fd346a0d7961e82f6",
+      "hash": "sha256:d0b456e5809c0d331581403f8d45a633f067ea8c5274dc32f19f483457c59bf0",
       "camera": {
         "name": "gas-suspension",
         "position": [
@@ -822,56 +1103,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/west-approach.png",
-      "hash": "sha256:c60b4add6ac972810037d21e3302db29cd0a6ad8325de56fed3ddcb679945a8f",
+      "hash": "sha256:c9504aec4749c0a55fa4a8b602f0c1f1a54dba4f04bd39ff7236c13da3a0b72a",
       "camera": {
         "name": "west-approach",
         "position": [
@@ -890,56 +1194,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/east-approach.png",
-      "hash": "sha256:b0a22ced13fe2697f73a8219bc5068642c6544145023b5cf8e17fb0d67ee71b2",
+      "hash": "sha256:7c491c0e38c54a5600a1c884a32553d9ef713895ea164c1bcd400b53f2c0ee7d",
       "camera": {
         "name": "east-approach",
         "position": [
@@ -958,56 +1285,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 1687994
+        "draws": 6,
+        "renderedTriangles": 61965
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:5331f9af9f2477114164f94cf21d87869ceefbbd48867e81f432f78fd20dae44",
+      "hash": "sha256:f0445aee64e87f4ca19917a6d46e2a253553eea9a814df819d03b3e9a8aaf7b4",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1017,51 +1367,74 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0023",
         "position": [
+          -2592.971243623644,
           0,
-          0,
-          0
+          -2592.971243623644
         ],
-        "heading": -0.037944163141,
-        "meshes": 6,
-        "triangles": 1463352,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 60188,
         "bounds": {
           "min": [
-            -2516.112626983534,
+            -2515.370741609484,
             0,
-            -242.91771819552497
+            -156.1121127642691
           ],
           "max": [
-            2516.3122787492953,
-            52.74607849121094,
-            237.5104959835051
+            2506.100533720106,
+            52.56504440307617,
+            236.0946743451059
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -2515.370743804831,
+            0,
+            -156.11221934733385
+          ],
+          "max": [
+            2506.100359311898,
+            52.56504440307617,
+            236.09467004975195
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "58a16aa3-4822-42c1-9b57-6d6d04de85a4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "98e5d065-f21e-4429-8db7-f3d494d75629",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "67a7fcdc-a4e5-4e2f-b42e-6a377918fdb9"
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "6379bc6c-614a-474e-931d-a94ff4af52ee",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "3772cc04-149e-413d-ab7c-e3d4411cb0b4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fba235a2-1a66-4127-881c-6a07a87561f4"
         },
         "loads": [
           "molen.worldgen.structure.n0023_jamuna_bridge"
         ],
         "selectionBounds": [
-          89.77571407509737,
-          24.39746152820293,
-          89.7782392789026,
-          24.39976121533016
+          89.75139940804968,
+          24.375316172859662,
+          89.8025539459503,
+          24.421902285829027
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0023",
+            "coordinate": [
+              89.80235018238986,
+              24.396419174475696
+            ],
+            "height": 12.4
+          }
         ],
         "visibleStructures": [
           "next1000.n0023"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 1687994
+        "draws": 7,
+        "renderedTriangles": 61965
       }
     }
   ],
@@ -1071,8 +1444,9 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true
   },
   "errors": [],
   "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."

@@ -1,0 +1,421 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#d2c6ac",
+      "wall": "#e1d3b7",
+      "trim": "#eadecb",
+      "roof": "#697177",
+      "wood": "#ba9875",
+      "recess": "#4d6178",
+      "paving": "#aaa59a",
+      "grass": "#8aa065",
+      "clock": "#45617c",
+      "gold": "#e7b52a"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "sandstone": [
+        0.684938,
+        0.602377,
+        0.467682
+      ],
+      "slate": [
+        0.59493,
+        0.632794,
+        0.653753
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ]
+    },
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Polygonal Guy tower and lobed two-stage Caesar tower",
+      "Twin-turret clock gatehouse and projecting barbican",
+      "Open court,castellated river ranges and stepped motte"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X approximately north-east along cached axis;main gate faces +X",
+    "longitudinal": "+Z approximately south-east on river/domestic-range side",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/553839 exactQ941276",
+    "mappedEnvelopeMeters": [
+      158.229,
+      102.573
+    ],
+    "operatorLocalTowerHeightsMeters": {
+      "Guy": 29,
+      "Caesar": 40
+    },
+    "measuredCommonDatumAvailable": false,
+    "maximumModelY": 40,
+    "originalMasterHash": "sha256:dac27326e5e7818a427fb3b48c043861696b3787a1a0187946bf928f0e57f18a",
+    "originalMasterRecipe": "packages/worldgen/scripts/warwick-castle-model.mjs#buildWarwickRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from two inspected pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Relative tower-local heights retained; reconstructed court, bank, motte and approach levels are not surveyed ground.",
+    "Three common graphs plus local grass/paving/clock-color and dark recess slots, zero embedded images. No trees, water levels, interiors or terrain cutouts.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -1.585265184,
+      52.279577946
+    ],
+    "heading": 0.789464883642,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two inspected pictures confirm polygonal Guy tower, lobed Caesar tower, clocked twin-turret gatehouse, castellated domestic ranges and stepped motte/ramparts. Retained mapped outline/court and standard viewer PMTiles set approximate location, scale and northeast gate/river-side orientation. A6m downward derivative offset puts the reconstructed court at Y5 above the PMTiles working datum. Bounded lower footing vertices extend below coarse terrain; court, bank and stepped motte remain an explicit approximate reconstruction. Anchor -1.585265184,52.279577946; heading 0.789464883642; standard PMTiles datum 63.38437334827418m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Two inspected pictures confirm polygonal Guy tower, lobed Caesar tower, clocked twin-turret gatehouse, castellated domestic ranges and stepped motte/ramparts. Retained mapped outline/court and standard viewer PMTiles set approximate location, scale and northeast gate/river-side orientation. A6m downward derivative offset puts the reconstructed court at Y5 above the PMTiles working datum. Bounded lower footing vertices extend below coarse terrain; court, bank and stepped motte remain an explicit approximate reconstruction. Anchor -1.585265184,52.279577946; heading 0.789464883642; standard PMTiles datum 63.38437334827418m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -1.585265184,
+        52.279577946
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "Two inspected pictures confirm polygonal Guy tower, lobed Caesar tower, clocked twin-turret gatehouse, castellated domestic ranges and stepped motte/ramparts. Retained mapped outline/court and standard viewer PMTiles set approximate location, scale and northeast gate/river-side orientation. A6m downward derivative offset puts the reconstructed court at Y5 above the PMTiles working datum. Bounded lower footing vertices extend below coarse terrain; court, bank and stepped motte remain an explicit approximate reconstruction. Anchor -1.585265184,52.279577946; heading 0.789464883642; standard PMTiles datum 63.38437334827418m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/warwick-runtime-model.mjs",
+    "export": "buildWarwickReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "sandstone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "foliage": {
+      "slot": "foundation",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/warwick-runtime-model.mjs",
+    "export": "buildWarwickReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWarwickReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildWarwickReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWarwickReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-warwick-skyline",
+      "position": [
+        155,
+        105,
+        145
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-warwick-district",
+      "position": [
+        155,
+        105,
+        145
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-warwick-street",
+      "position": [
+        155,
+        105,
+        145
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-warwick-closeup",
+      "position": [
+        155,
+        105,
+        145
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -22,
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "camera": {
+    "position": [
+      155,
+      105,
+      145
+    ],
+    "lookAt": [
+      0,
+      13,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "main-towers-gate-and-barbican": {
+      "position": [
+        184,
+        49,
+        -35
+      ],
+      "lookAt": [
+        44,
+        19,
+        5
+      ]
+    },
+    "caesar-lobes-and-upper-stage": {
+      "position": [
+        104,
+        25,
+        84
+      ],
+      "lookAt": [
+        61,
+        19,
+        43
+      ]
+    },
+    "open-court-and-domestic-roofs": {
+      "position": [
+        -12,
+        152,
+        127
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    },
+    "courtyard-clock-and-gate-opening": {
+      "position": [
+        5,
+        18,
+        6.6
+      ],
+      "lookAt": [
+        56,
+        18,
+        6.6
+      ]
+    },
+    "river-domestic-window-bays": {
+      "position": [
+        -30,
+        29,
+        102
+      ],
+      "lookAt": [
+        -5,
+        14,
+        39
+      ]
+    },
+    "motte-gate-and-stepped-ramparts": {
+      "position": [
+        -26,
+        36,
+        -4
+      ],
+      "lookAt": [
+        -61,
+        20,
+        0
+      ]
+    }
+  }
+}

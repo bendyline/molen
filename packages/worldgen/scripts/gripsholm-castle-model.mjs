@@ -592,7 +592,11 @@ function dormer(o, x, z, angle, d) {
     [-1.1, 26.1, 1.35],
     [-w / 2, 26.1, 1.35],
   ];
-  const ids = earcut(p.map((v) => [v[0], v[1]]).flat(), null, 2);
+  const ids = earcut(
+    p.flatMap((v) => [v[0], v[1]]),
+    null,
+    2,
+  );
   for (let i = 0; i < ids.length; i += 3)
     face(
       q,

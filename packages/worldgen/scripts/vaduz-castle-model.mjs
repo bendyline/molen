@@ -772,7 +772,7 @@ export const vaduzStudy = {
     { name: 'north-open-roundel', position: [110, 46, 2], lookAt: [5, 12, 1] },
     { name: 'south-covered-roundel', position: [-108, 44, -8], lookAt: [-10, 13, 3] },
     { name: 'east-keep-and-roundels', position: [5, 54, 112], lookAt: [-1, 13, 7] },
-    { name: 'inner-court', position: [7, 10, 0.5], lookAt: [-13, 13, -3] },
+    { name: 'inner-court', position: [7, 16, 0.5], lookAt: [-13, 19, -3] },
     { name: 'compound-plan', position: [0, 155, 1], lookAt: [0, 4.5, 0] },
   ],
 };

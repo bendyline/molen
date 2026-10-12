@@ -16,11 +16,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-431,590 triangles; 947,882 vertices; 6 material groups; 39,306,480 bytes. Native bounds: -35.914, 0.000, -35.190 to 35.914, 282.550, 35.039. Source hash: `sha256:63978404408ea1e020db09ae433c501c1c821f7551a99f3dde0d402a81f163ea`.
+16,020 triangles; 39,788 vertices; 4 material groups; 1,627,408 bytes. Native bounds: -35.914, 0.000, -30.328 to 35.914, 282.550, 30.328. Source hash: `sha256:6b7cd97d005f7763a18bfdb9ff7371e591a827f41a491fa683147426cd24235e`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X southeast","front":"+Z southwest Wall Street","origin":"Ground-level mapped plot center at bank street datum"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Fresh OSM API on 2026-10-10 confirms unchanged exact Q218305 whole outline 278042253 and twenty-nine separately retained mapped parts, including roof 286057109. Signed heading -0.668872591958 retained: native +X southeast, +Z southwest. Wall Street facade is +Z south/southwest; the longer Pine Street pavilion is -Z north/northeast. Shaft remains east of plot center. Roof rectangle supplies its signed copper-pyramid frame. Ground Y=0 is bank street datum. LPC Pine/Wall elevations and cadastral plan support these asymmetric sides. Mapped part heights are estimates rather than surveyed storey sections. Accept 2 m footprint / 1 degree reconstruction allowance; automatic footprint replacement disabled. Local slope and door thresholds are unmeasured.
 
 ## Reproduce
 
@@ -28,7 +28,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0177` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- The exterior geometry follows mapped setback heights and LPC original elevations/photos. Fine terracotta relief, window replacement variation, roof seams and spire profiles are reconstructed; tenant lettering, individual mechanical fittings and flags are omitted. Published927ft height includes the final finial/pole envelope.
+- Original 431590-triangle, 39306480-byte detailed master remains exactly reproducible from the unchanged world-tower recipe. Reviewed source/four browser levels preserve L-shaped base, unequal Wall/Pine pavilions, mapped asymmetric setbacks and courts, limestone street colonnades, buff brick piers, darker spandrels, contrasting upper ornament, four Gothic wall dormers, turquoise copper pyramid and two-stage octagonal lantern/pole. Continuous facade backing and long piers replace independent window frames; district/street aggregate floors and skyline averages materials. Four dormers gain closed returns and the pyramid gains a top cap. Fine relief, replacement-window variations, copper seam pitch, and lantern section sizes are reconstructed. Original granite ground veneer uses a gray tint on the shared limestone graph in this medium-fi exterior. Published 927 ft sets the 282.5496 m envelope; LPC 71 floors and current owner 72 remain distinct. Three shared 256 px graphs, opaque glazing and zero images. Tenant lettering, moving flags, detailed doorway mechanisms, interiors/basement vaults, equipment and neighbouring buildings are excluded. 1.5 / 0.75 / 0.3 / 0.1 m shaft probe allowances exclude omitted fine relief/frames and distant facade subdivisions. No physical-device performance or surveyed grade claim.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

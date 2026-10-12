@@ -44,9 +44,23 @@ for (const entry of knownSourceEntries().filter((e) => e.hasModel)) {
     )
     .map(([path]) => path)
     .sort();
+  const spec = JSON.parse(await readFile(resolve(dir, 'spec.json'), 'utf8'));
+  for (const definition of [spec.runtimeLodOverlay, spec.sourceGeometry].filter(Boolean)) {
+    const module = definition.module;
+    if (
+      typeof module !== 'string' ||
+      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module)
+    )
+      throw new Error(`${entry.assetId}: invalid runtime overlay source`);
+    await dependencies(module);
+    if (!recipes.includes(module)) recipes.push(module);
+    recipes.sort();
+  }
   const generatorCandidates = jobs
     .filter((job) => recipes.some((path) => job.dependencies.includes(path)))
     .map(({ id }) => id);
+  if (spec.runtimeLodOverlay && !generatorCandidates.includes('worldgen-runtime-lods'))
+    generatorCandidates.push('worldgen-runtime-lods');
   entries.push({
     assetId: entry.assetId,
     candidateId: entry.candidateId,

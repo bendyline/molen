@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0241_wartburg",
-  "inputHash": "sha256:ff7b4b5b6eec73c920472a9311f0e15cb389a85210832634689c172dd38cd7b6",
-  "captureReportHash": "sha256:1f1a70d084b374a9e6657493994ec1ff152dc759529cab72affff5acc400aafd",
+  "reviewedOn": "2026-10-11",
+  "inputHash": "sha256:3ca7801ac06952e205069b650643d349fbe2730a916ab73e40a6d131b1526db8",
+  "sourceHash": "sha256:454ebff90f26342831c28192c85b7123db0815f25655df82d704a04b48cb0354",
+  "runtimeHash": "sha256:74d180642d41c40e3bd614f4f73b052c4aeb66c5c58af37107635db974a158b8",
+  "captureReportHash": "sha256:386b6e3b08b7bb1f160111d4ef92022ab735827a4a9097750d5850b95355dad0",
   "visualReview": {
     "status": "passed",
-    "scope": "Current render integrity only. Maximum exterior fidelity and geographic fit remain pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -20,13 +22,14 @@
       "shots/northern-gatehouse.png",
       "shots/northern-court-galleries.png",
       "shots/western-halls.png",
-      "shots/two-open-courts-plan.png"
+      "shots/two-open-courts-plan.png",
+      "shots/signed-occupied-plan.png"
     ],
-    "notes": "Inspected 14 portable frames. Corrected floating chimney placement, gable materials, South Tower stair direction and roof winding, outward gate arch surfaces, and obstructed Palas/South Tower cameras. Courtyards remain open. Palas, keep and cross, white South Tower, timber halls and bent covered galleries are separately arranged. Exact roof profiles, carving and site levels remain approximate."
+    "notes": "Actually inspected all15 portable,15 shared,31 medium-fi and30 retained-terrain final images. Romanesque grouped Palas arches and copper roof, sandstone Bergfried/gold cross, distinct white South Tower, half-timbered Gadem/Vogtei/Ritterhaus, bent galleries and two open courts remain recognizable. Owner visitor illustration, South Tower/Gadem and Palas court photographs were compared; owner Vogtei photo establishes the half-hip roof, lower stone floors and projecting oriel. The former gable is now a clipped half-hip. South Tower rises22.5m above its working floor. The covered stair is shifted onto the tower face and has a small top landing and dark doorway. The new terrain camera shows its roof attached rather than relying on a cropped underside view. Gate passage geometry is open; the east gallery formerly crossing the north gate is subtracted from its arched tunnel. No copied photography or exact sculpture is claimed."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9d80d024f874a96ed6c82cf9090170471d5da3534f25e055bb59be03bd1517ff",
+    "captureReportHash": "sha256:3b1c0c95fbab31deb8a554a8771acaa44d96ef191562d6b1329de8e248bd7e8b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -40,144 +43,304 @@
       "shots/shared/northern-gatehouse.png",
       "shots/shared/northern-court-galleries.png",
       "shots/shared/western-halls.png",
-      "shots/shared/two-open-courts-plan.png"
+      "shots/shared/two-open-courts-plan.png",
+      "shots/shared/signed-occupied-plan.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected 13 shared-material studio views. Nine canonical graphs load once each; glazing is local PBR and no images are embedded. Final gate view shows an open curved arch. Unload leaves zero live model geometries. Studio views do not establish geographic fit."
+    "notes": "Seven common sandstone,lime plaster,timber,slate,ceramic tile,copper and painted-metal graphs provide metric surface detail; opaque local PBR glazing is the eighth near draw. Carved trim deliberately reuses sandstone grain and gold accents reuse painted-metal grain with vertex tint. Skyline multiplies vertex colors by baked graph linear means into one draw. All6GLBs contain0embedded images. Every graph is read once,each shared capture unload leaves0model geometries. Roof tiles and masonry are shared procedural textures,not repeated physical brick/tile meshes."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:36474b22722fcefcb60ac38a109d9db4594e06fb061ad58bece0a77650aba70e",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/palas-court-arcades.png",
+      "medium-fi/palas-east-roof.png",
+      "medium-fi/bergfried-and-cross.png",
+      "medium-fi/south-tower-and-gadem.png",
+      "medium-fi/vogtei-oriel.png",
+      "medium-fi/northern-gatehouse.png",
+      "medium-fi/northern-court-galleries.png",
+      "medium-fi/western-halls.png",
+      "medium-fi/two-open-courts-plan.png",
+      "medium-fi/signed-occupied-plan.png",
+      "medium-fi/whole-wartburg-skyline.png",
+      "medium-fi/whole-wartburg-district.png",
+      "medium-fi/whole-wartburg-street.png",
+      "medium-fi/whole-wartburg-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected31final images across noon/late lighting,economy/high quality,feature cameras,four whole-model detail levels and transitions. Near models retain grouped Palas lights,timber braces,oriel,cross,crenels and covered stair. District drops small facade/stair detail; skyline keeps roof colors,two towers,cross and open courts. All levels remain within1000/4000/16000/64000triangles and8draws. The flat synthetic context intentionally clips below-datum foundations and the low north gate; its detached-looking low parts are not site-contact evidence. Dedicated retained-terrain views establish the relative hillside contact. Architectural height bands,bay counts and roof junctions are reconstructed exterior approximations."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:5af92f93b85ad7d511ed01b2ac03af7b0101f11e7a5f535b62bdc186f9af85d8",
-    "notes": "Signed source-local meter frame anchored at exact Q151545 node [10.3063142,50.965902], heading 1.3697714204430447 from South Tower toward Torhaus. Named individual footprint ways are not an occupied precinct polygon. Heights and site datum remain provisional. Draft placement and replaceFootprint=false retained."
+    "status": "passed",
+    "placementHash": "sha256:6a461dd7c091d2e6dc1bf72e0b06acec9cfd99a6de29930665494cdf8cd202c3",
+    "mapFrameHash": "sha256:cdbb345ee3aa83e57466f41bbd5060421ff096acb1bac7323e850cd6421d2215",
+    "notes": "Fresh exact-Q151545 node2272817622 and21 individual occupied ways match original coordinates within1.3mm. Native+X348.48deg follows South Tower to north gate,+Z78.48deg faces Palas east exterior. Both courtyards remain open and precinct replacement stays disabled. Retained Thüringen DGM1 November2022 bare-earth1mXYZ values sampled into a3m native grid establish relative contact. Y0 is court reference[-20,0] at406.905m DHHN2016,used relatively; no absolute height is imposed. Southern court declines3.3m,keep court rises2.7m,northern entrance drops5.3m. Separate range floors and long gallery gradients are photographic working reconstructions; foundations extend below the sampled hillside. The viewer must supply fine local terrain and neither model nor fixture substitutes a floor survey. Independently inspected north-up placement matches the21-part component envelope; the envelope is for visibility/indexing only. Whole-footprint replacement is disabled so the two open courts are not filled. The Hofburg terrain reference fixes runtimeY0 relative to host data rather than forcing the source absolute DHHN2016 elevation."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Original detailed master18803828bytes/227673triangles remains exactly reproducible atsha256:573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372 from wartburg-castle-model.mjs#wartburgStudy.build. Separate reviewed source supplies corrected ground contact,South Tower22.5m relative floor and Vogtei half-hip roof. Fresh exact-Q151545 node2272817622 and21 individual occupied ways match original coordinates within1.3mm. Native+X348.48deg follows South Tower to north gate,+Z78.48deg faces Palas east exterior. Both courtyards remain open and precinct replacement stays disabled. Retained Thüringen DGM1 November2022 bare-earth1mXYZ values sampled into a3m native grid establish relative contact. Y0 is court reference[-20,0] at406.905m DHHN2016,used relatively; no absolute height is imposed. Southern court declines3.3m,keep court rises2.7m,northern entrance drops5.3m. Separate range floors and long gallery gradients are photographic working reconstructions; foundations extend below the sampled hillside. The viewer must supply fine local terrain and neither model nor fixture substitutes a floor survey. Seven shared sandstone,lime plaster,timber,slate,ceramic tile,copper and painted-metal graphs plus opaque PBR glazing. Small carved/gold accents use common graph grain with vertex tint. Skyline bakes graph linear means into one draw; no copied photo textures or embedded bitmaps. Exterior medium-fi reconstruction. The3.8m cross follows owner record;34m keep top remains reconstructed because map40–46m tags conflict with owner description. South Tower22.5m meets owner more-than22m description. Eaves,bays,oriel tracery,gallery slopes and roof junctions are not surveyed as-built values. No exact heraldic lions,sculptural capitals,interiors,landscape hill or temporary works. Grade-source.xyz preserves exact cropped public1m samples; independent signed fixture uses3m grid. Source metadata givesNovember2022 laser capture,EPSG25832/EPSG7837,GCG2016,height accuracy.15–.30m. Open ground under roofs may be interpolated. Physical laptop/phone measurements remain pending. Covered-stair doorway is an opaque exterior treatment,not a navigable interior. Heraldic lions,precise Gothic tracery,sculptural capitals and interiors are omitted. The canonical material grain and roof tints follow common Molen style rather than photographic weathering."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Maximum fidelity remains pending: exterior reconstruction is not surveyed as-built geometry. Heights, stair elevations, roof junctions, window spacing and weathering require more source comparison. Palas heraldic lions and carved capitals, precise Gothic oriel tracery and roof dormers are incomplete. No sculpture is claimed as a faithful individual reproduction. The keep height is deliberately provisional because OSM height tags disagree with the owner description. Cross is 3.8 m; ground and parapet datums need measurement. Vogtei roof is represented as a gable instead of its exact half-hip profile. Gadem roof intersections and covered South Tower stair attachment need further review. No interiors, landscape hill, trees, temporary works or photographic textures. Open courtyard voids are preserved. Shared sandstone, raw limestone, plaster, timber, slate, tile, copper, painted metal and gold-colored stainless graphs; local PBR glazing."
+    "notes": "Maximum fidelity remains pending: exterior reconstruction is not surveyed as-built geometry. Heights, stair elevations, roof junctions, window spacing and weathering require more source comparison. Palas heraldic lions and carved capitals, precise Gothic oriel tracery and roof dormers are incomplete. No sculpture is claimed as a faithful individual reproduction. The keep height is deliberately provisional because OSM height tags disagree with the owner description. Cross is 3.8 m; ground and parapet datums need measurement. Vogtei roof is represented as a gable instead of its exact half-hip profile. Gadem roof intersections and covered South Tower stair attachment need further review. No interiors, landscape hill, trees, temporary works or photographic textures. Open courtyard voids are preserved. Shared sandstone, raw limestone, plaster, timber, slate, tile, copper, painted metal and gold-colored stainless graphs; local PBR glazing.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 10
-    },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 10
-    },
-    "validatorLimitations": "Unused-UV information reflects procedural material graphs resolved by Molen; geometry validation does not certify architectural accuracy.",
-    "triangles": 227673,
-    "vertices": 446281,
-    "materials": 10,
-    "sharedGraphs": 9,
-    "embeddedImages": 0
-  },
-  "runtimeLodReview": {
-    "status": "passed",
-    "scope": "Common-camera visual comparison, triangle/download budgets, deterministic LOD checks and separated vertex layouts. Physical-device measurements remain pending.",
-    "notes": "976 / 2144 / 10204 / 22843 triangles. Initial skyline plus district is 247432 bytes; street 775684 bytes; close-up 1629032 bytes. Source master remains 18803828 bytes. Distant skyline omits minor outbuildings and cistern detail but retains the two courts and principal tower/roof silhouettes.",
-    "levels": [
+    "results": [
       {
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.skyline.glb",
-        "hash": "sha256:f649c1187be02ab3a8376cf745dc008a5f66149afddfb8661975649168c91add",
-        "bytes": 80196,
-        "triangles": 976,
-        "vertices": 2026,
-        "materials": 1,
-        "sharedGraphs": 0,
+        "name": "source",
+        "path": "content/worldgen/source/places/u1/u1p/n0241_wartburg/models/source.glb",
+        "hash": "sha256:454ebff90f26342831c28192c85b7123db0815f25655df82d704a04b48cb0354",
+        "bytes": 1805172,
+        "triangles": 23028,
+        "materials": 8,
         "images": 0,
         "min": [
           -60.47112274169922,
-          0,
-          -22.712684631347656
-        ],
-        "max": [
-          91.37000274658203,
-          34,
-          25.458349227905273
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
-      },
-      {
-        "name": "district",
-        "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.district.glb",
-        "hash": "sha256:3a2b8bd94f2424d9ded27d1919860456d790f6c75b0bdd1c0d526bfb7ae36031",
-        "bytes": 167236,
-        "triangles": 2144,
-        "vertices": 3988,
-        "materials": 9,
-        "sharedGraphs": 8,
-        "images": 0,
-        "min": [
-          -60.47112274169922,
-          0,
-          -30.975000381469727
-        ],
-        "max": [
-          91.37000274658203,
-          34,
-          25.458349227905273
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 9
-      },
-      {
-        "name": "street",
-        "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.street.glb",
-        "hash": "sha256:3f2fd74ebed7c737b24284523afe0cb694364fdea28c8fb4ebadc53009b65444",
-        "bytes": 775684,
-        "triangles": 10204,
-        "vertices": 19544,
-        "materials": 9,
-        "sharedGraphs": 8,
-        "images": 0,
-        "min": [
-          -60.47112274169922,
-          -0.06499999761581421,
-          -31.11050796508789
-        ],
-        "max": [
-          91.50080871582031,
-          34,
-          25.458349227905273
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 9
-      },
-      {
-        "name": "closeup",
-        "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.closeup.glb",
-        "hash": "sha256:371b9e33d24f90986fae647b7eb8b22b5ce3520f06704b61479b0e317cb50b81",
-        "bytes": 1629032,
-        "triangles": 22843,
-        "vertices": 41107,
-        "materials": 10,
-        "sharedGraphs": 9,
-        "images": 0,
-        "min": [
-          -60.47112274169922,
-          -0.06499999761581421,
+          -11.278854370117188,
           -31.11050796508789
         ],
         "max": [
           91.50271606445312,
-          34,
+          36.70000076293945,
           25.458349227905273
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 10
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.glb",
+        "hash": "sha256:74d180642d41c40e3bd614f4f73b052c4aeb66c5c58af37107635db974a158b8",
+        "bytes": 1804476,
+        "triangles": 23028,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -11.278854370117188,
+          -31.11050796508789
+        ],
+        "max": [
+          91.50271606445312,
+          36.70000076293945,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.skyline.glb",
+        "hash": "sha256:42457fe9a32814992333476a8e0ea67e36f5a4d36243f668d76214a7862b7d1f",
+        "bytes": 79820,
+        "triangles": 968,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -10.668035507202148,
+          -22.712684631347656
+        ],
+        "max": [
+          91.37000274658203,
+          36.70000076293945,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.district.glb",
+        "hash": "sha256:e3251564c68f31eb2a335c197179328ba24946747fa3787692dbc1cf9d6c9b1a",
+        "bytes": 168120,
+        "triangles": 2149,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -11.278854370117188,
+          -30.975000381469727
+        ],
+        "max": [
+          91.37000274658203,
+          36.70000076293945,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.street.glb",
+        "hash": "sha256:ac979e86a37620341ed41bb900f57bebe0d59daefb4fe34761cb7da5e95a80c9",
+        "bytes": 786296,
+        "triangles": 10341,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -11.278854370117188,
+          -31.11050796508789
+        ],
+        "max": [
+          91.50080871582031,
+          36.70000076293945,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u1/u1p/n0241_wartburg/model.closeup.glb",
+        "hash": "sha256:7063778ec285e9aa3475b415331ef1844327ea683141601c8a7f5c333cae2f52",
+        "bytes": 1642188,
+        "triangles": 23028,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -60.47112274169922,
+          -11.278854370117188,
+          -31.11050796508789
+        ],
+        "max": [
+          91.50271606445312,
+          36.70000076293945,
+          25.458349227905273
+        ],
+        "errors": 0,
+        "warnings": 0
       }
-    ]
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/wartburg-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: original227673-triangle/18803828-byte master reproduces exact hash; current source/import hashes and fresh21-part map frame match; retainedXYZ hash,3225finite native-grid values and November2022 metadata are verified. Rays preserve four open-court probes,the two distinct tower tops and both truly open gate passages in every browser level. All derivatives rebuild byte-identically within triangle/draw/download budgets with separate12-byte POSITION/NORMAL streams. SixGLBs pass Khronos validation with0errors/0warnings and0images. Strict medium-fi findings are empty. Independent horizontal terrain-fixture rays check mapped foundation walls in master/street/close. These sampled checks are not exhaustive manifold/as-built certification."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:90c5de788a62c63d33e262793a75be9144f8413f76a0433116fdbd79fb45bdfa",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:42457fe9a32814992333476a8e0ea67e36f5a4d36243f668d76214a7862b7d1f",
+        "bytes": 79820,
+        "gzipBytes": 17206,
+        "triangles": 968,
+        "cpuBytes": 78384,
+        "gpuBytes": 78384,
+        "errorMeters": 5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:e3251564c68f31eb2a335c197179328ba24946747fa3787692dbc1cf9d6c9b1a",
+        "bytes": 168120,
+        "gzipBytes": 49870,
+        "triangles": 2149,
+        "cpuBytes": 158412,
+        "gpuBytes": 158412,
+        "errorMeters": 2,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:ac979e86a37620341ed41bb900f57bebe0d59daefb4fe34761cb7da5e95a80c9",
+        "bytes": 786296,
+        "gzipBytes": 217575,
+        "triangles": 10341,
+        "cpuBytes": 776544,
+        "gpuBytes": 776544,
+        "errorMeters": 0.6,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:7063778ec285e9aa3475b415331ef1844327ea683141601c8a7f5c333cae2f52",
+        "bytes": 1642188,
+        "gzipBytes": 477844,
+        "triangles": 23028,
+        "cpuBytes": 1632392,
+        "gpuBytes": 1632392,
+        "errorMeters": 0.2,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 247940,
+    "notes": "skyline:968triangles/79820bytes/1draws; district:2149triangles/168120bytes/8draws; street:10341triangles/786296bytes/8draws; closeup:23028triangles/1642188bytes/8draws. Initial skyline+district247940bytes. Reviewed source1805172bytes;import1804476bytes. Original18.8MB detailed master remains separately reproducible. Physical laptop/phone dense-view timings remain unmeasured."
+  },
+  "limitations": [
+    "Original detailed master18803828bytes/227673triangles remains exactly reproducible atsha256:573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372 from wartburg-castle-model.mjs#wartburgStudy.build. Separate reviewed source supplies corrected ground contact,South Tower22.5m relative floor and Vogtei half-hip roof.",
+    "Fresh exact-Q151545 node2272817622 and21 individual occupied ways match original coordinates within1.3mm. Native+X348.48deg follows South Tower to north gate,+Z78.48deg faces Palas east exterior. Both courtyards remain open and precinct replacement stays disabled. Retained Thüringen DGM1 November2022 bare-earth1mXYZ values sampled into a3m native grid establish relative contact. Y0 is court reference[-20,0] at406.905m DHHN2016,used relatively; no absolute height is imposed. Southern court declines3.3m,keep court rises2.7m,northern entrance drops5.3m. Separate range floors and long gallery gradients are photographic working reconstructions; foundations extend below the sampled hillside. The viewer must supply fine local terrain and neither model nor fixture substitutes a floor survey.",
+    "Seven shared sandstone,lime plaster,timber,slate,ceramic tile,copper and painted-metal graphs plus opaque PBR glazing. Small carved/gold accents use common graph grain with vertex tint. Skyline bakes graph linear means into one draw; no copied photo textures or embedded bitmaps.",
+    "Exterior medium-fi reconstruction. The3.8m cross follows owner record;34m keep top remains reconstructed because map40–46m tags conflict with owner description. South Tower22.5m meets owner more-than22m description. Eaves,bays,oriel tracery,gallery slopes and roof junctions are not surveyed as-built values. No exact heraldic lions,sculptural capitals,interiors,landscape hill or temporary works.",
+    "Grade-source.xyz preserves exact cropped public1m samples; independent signed fixture uses3m grid. Source metadata givesNovember2022 laser capture,EPSG25832/EPSG7837,GCG2016,height accuracy.15–.30m. Open ground under roofs may be interpolated. Physical laptop/phone measurements remain pending."
+  ],
+  "terrainReview": {
+    "status": "passed",
+    "report": "shots/grade/report.json",
+    "captureReportHash": "sha256:ebb5ea3b20c0c54635eff1b2b74c9febc65357e8a45bf726efdcfaf564cebbb8",
+    "fixtureHash": "sha256:dd4ff6e16513f0425ad7fad4c1562e25852d37d27c7bef03319c80b2e0033ef9",
+    "gradeHash": "sha256:43cf02373ae80259733c03d623c53bcec93c6787b24aae717dfa3fb972106e9e",
+    "inspectedFrames": [
+      "shots/grade/master-whole-eastern-hillside.png",
+      "shots/grade/master-southern-court-and-stair.png",
+      "shots/grade/master-palas-and-open-court.png",
+      "shots/grade/master-keep-and-two-courts.png",
+      "shots/grade/master-vogtei-and-gallery.png",
+      "shots/grade/master-northern-entry-grade.png",
+      "shots/grade/skyline-whole-eastern-hillside.png",
+      "shots/grade/skyline-southern-court-and-stair.png",
+      "shots/grade/skyline-palas-and-open-court.png",
+      "shots/grade/skyline-keep-and-two-courts.png",
+      "shots/grade/skyline-vogtei-and-gallery.png",
+      "shots/grade/skyline-northern-entry-grade.png",
+      "shots/grade/district-whole-eastern-hillside.png",
+      "shots/grade/district-southern-court-and-stair.png",
+      "shots/grade/district-palas-and-open-court.png",
+      "shots/grade/district-keep-and-two-courts.png",
+      "shots/grade/district-vogtei-and-gallery.png",
+      "shots/grade/district-northern-entry-grade.png",
+      "shots/grade/street-whole-eastern-hillside.png",
+      "shots/grade/street-southern-court-and-stair.png",
+      "shots/grade/street-palas-and-open-court.png",
+      "shots/grade/street-keep-and-two-courts.png",
+      "shots/grade/street-vogtei-and-gallery.png",
+      "shots/grade/street-northern-entry-grade.png",
+      "shots/grade/closeup-whole-eastern-hillside.png",
+      "shots/grade/closeup-southern-court-and-stair.png",
+      "shots/grade/closeup-palas-and-open-court.png",
+      "shots/grade/closeup-keep-and-two-courts.png",
+      "shots/grade/closeup-vogtei-and-gallery.png",
+      "shots/grade/closeup-northern-entry-grade.png"
+    ],
+    "notes": "Actually inspected all30final terrain images:six cameras across master and four browser levels. Public Thüringen DGM1 retains exact1mXYZ crop,November2022 airborne laser capture,EPSG25832/EPSG7837,GCG2016 and documented.15–.30m vertical accuracy. Bilinear reprojection yields a3m native fixture relative to Hofburg[-20,0],406.905m DHHN2016. The southern court descends about3.3m,the keep court rises2.7m,northern entrance falls5.3m. The photographic working range floors and gallery gradients remain separate from bare-earth interpolation under roofs. Foundations extend below retained slopes with minimum edge sampling. Three probes at actual grid vertices show.015m clearance and check signed coordinate/datum integration; horizontal rays independently test the occupied walls of Palas,keep,SouthTower,Vogtei and east gallery. Five unload cycles each leave0model geometries. No terrain hill is duplicated,no whole-court ground cutout is imposed. Skyline/district intentionally omit the stair and facade ornament; street/close restore them. The steep eastern/northern cliff is host terrain,not asset geometry. Fine paving,retaining steps and doorway floor elevations remain reconstructed; host terrain must provide comparable site detail."
   }
 }

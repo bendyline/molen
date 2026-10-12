@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0275_dublin_castle",
-  "sourceHash": "sha256:2c0581c7d1f82f7fc14473f121f65eee2157d6cf38b4826ce35b2bb53641efab",
-  "runtimeHash": "sha256:3a6899e27d04556877bb2516110ce25f3cf47ccd04f170fe10c4871747d9244d",
-  "fixtureHash": "sha256:ae4e3b886fee436426cf854ccdab3685d7305de05cdfe017dc17b341d8f323b6",
+  "sourceHash": "sha256:8ede701f4a7ed4a1c541d3a5566585c1fccb521c7c56fed4c85bb18eff042682",
+  "runtimeHash": "sha256:a0c345aedcf037df19ae6efee6c4f271986e50ee316031b0398f9f9733ae4f52",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,75 +28,90 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:e7ee32910b6833be7dd088152874436c8afa75c91e4324b91fbf9f09f9575ac9",
-      "bytes": 71556,
-      "gzipBytes": 16930,
-      "triangles": 946,
-      "cpuBytes": 70152,
-      "gpuBytes": 70152,
-      "errorMeters": 0.7,
+      "hash": "sha256:75319cfbd0fef49df657f18aa52c262f6be2932dcbcbefac6373e938702471eb",
+      "bytes": 75760,
+      "gzipBytes": 13411,
+      "triangles": 773,
+      "cpuBytes": 74336,
+      "gpuBytes": 74336,
+      "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:efc90fd51f8d594ad0ecd7ca0f649a68d34863016c0c2dec309b937a014ed99b",
-      "bytes": 300672,
-      "gzipBytes": 75099,
-      "triangles": 3921,
-      "cpuBytes": 292304,
-      "gpuBytes": 292304,
-      "errorMeters": 1.5,
+      "hash": "sha256:5fa6a29281943a90ad21ada70c6d240e9ef9a50503886421d4c7a7057ed2b97c",
+      "bytes": 333660,
+      "gzipBytes": 81357,
+      "triangles": 3826,
+      "cpuBytes": 325248,
+      "gpuBytes": 325248,
+      "errorMeters": 0.7,
       "drawCalls": 7
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:cc6103d2aa38e052714df203186004ad631469a1484de9e296b65bf18dba522a",
-      "bytes": 585996,
-      "gzipBytes": 139259,
-      "triangles": 7706,
-      "cpuBytes": 577636,
-      "gpuBytes": 577636,
-      "errorMeters": 0.5,
+      "hash": "sha256:f857b7a408ff105370db61e4b90be418cedc6861a1f19143479309068bf02646",
+      "bytes": 659056,
+      "gzipBytes": 147309,
+      "triangles": 7611,
+      "cpuBytes": 650648,
+      "gpuBytes": 650648,
+      "errorMeters": 0.3,
       "drawCalls": 7
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:26f6cf1be66a08591978652e7017bd15a80b71bd5d0212514eb195287a1697c6",
-      "bytes": 775936,
-      "gzipBytes": 188214,
-      "triangles": 10334,
-      "cpuBytes": 767572,
-      "gpuBytes": 767572,
-      "errorMeters": 0.15,
+      "hash": "sha256:e505c84afab24bd3980765d5019c6199c4f11f9647eef0fe1a2f603ca5ce8d92",
+      "bytes": 878016,
+      "gzipBytes": 201383,
+      "triangles": 10239,
+      "cpuBytes": 869600,
+      "gpuBytes": 869600,
+      "errorMeters": 0.1,
       "drawCalls": 7
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:966acecd88c2491b9400c46ee8aac8dac148ee43e605d455367cbb780be01ff0"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:58136fc3878714ac2fb951c50d73b4af43686b8e4c68f2a1b7fa17a94dff79d1"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:c71c434339b5bbf041058caf7b87e595a6704b32cffb2e31b7b14f855c4113b5",
+      "hash": "sha256:e17f993263b67c285531ec156f34c1097d6799d7a9145cbeb11a2b10a88f570f",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          57.599999999999994,
-          31.2,
-          99.6
+          52.141999999999996,
+          49.5487,
+          93.69489999999999
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -108,29 +123,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:aab6dc0c0df3525ed39ebbc4c29e978e54e8fbdb98edbed97d1ac019578773b4",
+      "hash": "sha256:af407f674c752f1a0a97d1e0b5eb60577af41bffeb664cc9ceb8fbc2879dd469",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          57.599999999999994,
-          31.2,
-          99.6
+          52.141999999999996,
+          49.5487,
+          93.69489999999999
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -142,29 +162,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:a36782a8da370f65b057000f2a0a61aa5a90dd84d11c7b5a2dcfe15a8dcf102d",
+      "hash": "sha256:0b6473e4e6af9275c4f1e21f5789bc24d3e7da8cd8a1b5cac807dbdf8612dd43",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          57.599999999999994,
-          31.2,
-          99.6
+          52.141999999999996,
+          49.5487,
+          93.69489999999999
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -176,29 +201,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:8f32a6f4505b07efbcddc69b079dd678c802ac0ec55e14f01471a45ad74bfe1a",
+      "hash": "sha256:3b6d22b6f0747157ced44febff41ddd20639810edf9516e5a8562ecef826c293",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          57.599999999999994,
-          31.2,
-          99.6
+          52.141999999999996,
+          49.5487,
+          93.69489999999999
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -210,29 +240,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:f0f672053f9a684767f05e8f1e680cd594a43d424ad25ebe84690f2702d2e01c",
+      "hash": "sha256:e8ad9a424e1982eba6db603dbf23449d760eaf01a611766685d7220c8b0c4fd7",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 8479,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60864,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -244,29 +279,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:afc731d9c5e1be9b4832ef5345142c164278002a971f72059ed88bb7c04b567f",
+      "hash": "sha256:f74e2e9b9c9a36b00a0dd68a67ebddfea4bd7c4ad3ea6144744ad7c4f5aa29aa",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 8479,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60864,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -278,29 +318,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:3ce9519f234262f0d4008e343b4542f66b4015970c932cb24e507f421d37346b",
+      "hash": "sha256:1cd1119e2ad82c7f647d00971153d12f5e6cf296c5812bb98e3315f001be8b9d",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 8479,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60864,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -312,29 +357,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:28c5503b6bc7883c471191c153b48ff57dd06de681b0b17e4684f819f3ee84ff",
+      "hash": "sha256:e0a1cb91e69a7150ccd761825b276ca297fb2bf427d57a73f5a4ed0ffbd19bf6",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 8479,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60864,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -346,29 +396,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:4d080d3b7a09d3be2510dc90d411de7c9ea508b552c09a5e419638f0c0f2f9b7",
+      "hash": "sha256:7e5c09d50725c19d6038c5add625fb92d5d7908838ffee8d8261d41133e172b5",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 5504,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57811,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          232.79999999999998,
-          120,
-          403.2
+          227.34199999999998,
+          138.3487,
+          397.2949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -380,29 +435,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:899962ebcdbc0338f0dbf46dc5349bcff50269288bf85ae0ff01fc21c14a541b",
+      "hash": "sha256:abd6a86cf757286cdfe8fb62c133b95e9eac853fae486973ce77722365512b69",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5504,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57811,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          232.79999999999998,
-          120,
-          403.2
+          227.34199999999998,
+          138.3487,
+          397.2949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -414,29 +474,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:f85956b4cde0aab650303cba758b51c7b9753688dbf71edae1c51c86337ce549",
+      "hash": "sha256:85babbf6ce4d6318038f12daf3354a3218d79e0124942cae247ee31b3381d870",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 5504,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57811,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          232.79999999999998,
-          120,
-          403.2
+          227.34199999999998,
+          138.3487,
+          397.2949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -448,29 +513,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:322119895f7346edb33eaac80fadd44333a52b744ff6a1917d808a9f210dbf2c",
+      "hash": "sha256:f7b37cd05768dc6ee23a4f0bc8b017f46d5be3505d76f06290ac0f551fbec0d3",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5504,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57811,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          232.79999999999998,
-          120,
-          403.2
+          227.34199999999998,
+          138.3487,
+          397.2949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -482,29 +552,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:c702e539d2af40348c3eb38f89400e3c210e80d822f28450a9d09bc58d82ff5f",
+      "hash": "sha256:5125c76a35ecfe699cbbf09e288bca7c75ddc5780f8a679eef5cf4b9d52429a4",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 948,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53255,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          232.79999999999998,
-          120,
-          403.2
+          227.34199999999998,
+          138.3487,
+          397.2949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -516,20 +591,25 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/record-tower-and-gothic-chapel.png",
-      "hash": "sha256:b74f04f1b3ad0d3cfa60e8f2157a73ee321b53bf030c61fe3f3acfef3177d745",
+      "hash": "sha256:5dd0acc7c1f14afdab45c26f62e619a31caafcafc0683af406306d688ce1aacc",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
           62,
           34,
@@ -550,20 +630,25 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/bedford-tower-and-gates.png",
-      "hash": "sha256:410f7c289df13222a23b2539e066c11931c7b34170cb87eb2bf465e469e3727f",
+      "hash": "sha256:a32d3a7a937a4aead4469c3957e167f1424f10b7970bb0be292bb6e07e9084c9",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 14846,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 67231,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
           -57,
           27,
@@ -584,20 +669,25 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/upper-court-brick-quadrangle.png",
-      "hash": "sha256:4a4d7e876c2c61f16f3e5887ca4f6788c4fee5599cbddb93ffe708115cd2aa88",
+      "hash": "sha256:540e350748bcb820bab14d39caeea3dd00343b1d8c6653ce3aa38723285910bc",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 14846,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 67231,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
           -90,
           37,
@@ -618,20 +708,25 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/garden-and-painted-state-wings.png",
-      "hash": "sha256:706816386178b39c31af315b6e62e8549ac1e9d18d551eeca4dd06168a7fddb1",
+      "hash": "sha256:28fac35a65cc994c947f8f4a507410837e21edc5bca391de8aba0f205c1af1c9",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
           -12,
           40,
@@ -652,20 +747,25 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/chester-beatty-and-coach-house.png",
-      "hash": "sha256:76c1e82163a80d66a246438031c1cd15c6e5d94561aa8af68f894c940fcb1344",
+      "hash": "sha256:68a0dab7b0f82793edb314df655fc7720ba8571f113170b00857c321460ad28d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
           -17,
           37,
@@ -686,20 +786,25 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/current-campus-plan.png",
-      "hash": "sha256:d6c08df1ae1c8a27e69c75409b63851407b3776463ac31dc0fb59bf193d4b055",
+      "hash": "sha256:2adeb2393ab1b1ef3a6c4760a13e09786b0549c87625ccd2149abc1aebba725c",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
           0,
           360,
@@ -720,29 +825,190 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dublin-skyline.png",
+      "hash": "sha256:03fe3a97d60e86d17d0e09c71341b4fcca8b01120fbfe733c0cfe469bb6f2c18",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57811,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
+        "position": [
+          185,
+          130,
+          170
+        ],
+        "lookAt": [
+          0,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dublin-district.png",
+      "hash": "sha256:9da25231feaad0b20477bf4b6e2f9727a72cbbb08842b33b0d2c7f812d608dc5",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 60864,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
+        "position": [
+          185,
+          130,
+          170
+        ],
+        "lookAt": [
+          0,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dublin-street.png",
+      "hash": "sha256:ff5dd9afe4eaea499d2279f0da3af7d8478360fc18027be1935412add8083dc8",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 64649,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
+        "position": [
+          185,
+          130,
+          170
+        ],
+        "lookAt": [
+          0,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-dublin-closeup.png",
+      "hash": "sha256:f427132481bdc2c5341d3813f8ea1f88dea6b678ea29ac23dc71cb1b5b2e3210",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
+        "position": [
+          185,
+          130,
+          170
+        ],
+        "lookAt": [
+          0,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:f37a5d6dfc97b3daa67cc3d80d4afd0669e88c217c7ab55bb17ea382e8abb919",
+      "hash": "sha256:bc83b297ca3247278d1b1c71f371675f20a2767c0257cdc3829f25ec3a2282ba",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5504,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57811,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -754,29 +1020,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:afc731d9c5e1be9b4832ef5345142c164278002a971f72059ed88bb7c04b567f",
+      "hash": "sha256:f74e2e9b9c9a36b00a0dd68a67ebddfea4bd7c4ad3ea6144744ad7c4f5aa29aa",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 8479,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60864,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -788,29 +1059,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:cddb5faf41d98062dcda43c43fcdadbff1926c1d7eb97900ac66d11bd56532a7",
+      "hash": "sha256:10d1e197b94ab60fef4a0882b32dd0c20b409b6e3d0da68180703938819b5289",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 12264,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 64649,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -822,29 +1098,34 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:2f4c043d487be701921c461ff580901d4b0b6a287f93bc79f73e609e6647f650",
+      "hash": "sha256:4b9bf2ead381b74adc039ee7f369d1e3608945fee13ad0e4c7bef69858588626",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 14892,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 67277,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gc7/n0275_dublin_castle/terrain-review.height.png"
+        },
         "position": [
-          116.39999999999999,
-          74.39999999999999,
-          201.6
+          110.942,
+          92.74869999999999,
+          195.6949
         ],
         "lookAt": [
-          0,
-          13.2,
-          0
+          -5.458,
+          31.5487,
+          -5.9051
         ],
         "graphReads": {
           "molen.worldgen.material.brick_flemish": 1,
@@ -856,7 +1137,8 @@
           "molen.worldgen.material.metal_copper": 1
         },
         "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 1.2
+        "contextScale": 1.2,
+        "reflections": "sky-pmrem"
       }
     }
   ],

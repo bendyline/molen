@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-5,247 triangles; 15,549 vertices; 6 material groups; 626,436 bytes. Native bounds: -69.005, 0.000, -32.086 to 69.098, 42.000, 31.965. Source hash: `sha256:e483025ba991dcefc9228e9dd2340f4c4413f1e4ab8842877dca873f63e83717`.
+5,247 triangles; 15,741 vertices; 6 material groups; 633,368 bytes. Native bounds: -69.005, -4.957, -32.086 to 69.098, 44.000, 31.965. Source hash: `sha256:76a5ea01e166b1f3f09c6a15ab5464f2a8acd1db5ba20bde58b2cc44ff9d98f7`.
 
-{"up":"+Y","longitudinal":"+X southeast from outer forecourt toward the four-tower core","front":"Outer entrance at-X northwest;lake-facing facades around the core;two courts remain open","origin":"Mapped building rectangle center;provisional flat ground attachmentY=0"}
+{"up":"+Y","longitudinal":"+X southeast from outer forecourt toward the four-tower core","front":"Outer entrance at-X northwest;lake-facing facades around the core;two courts remain open","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Exact mapped building ring and two courtyard holes retained. Official visitor map supplies entrance/core sign,not completed geographic review. Actual ground differences,shore approach,height datum and footprint replacement pending.
+The inspected aerial picture confirms the brick castle, four different copper roof caps, open tall lantern, stepped dormers and lower tiled outer wings. Standard viewer PMTiles and the retained mapped building/courtyard outlines set approximate location, scale and northwest entrance/southeast core sign. A reconstructed2m working court clears coarse island ground; bounded foundations extend beneath sampled slopes. Exact shore and tower elevations remain approximate. Anchor 17.219554949,59.256010491; heading -0.787257418369; standard PMTiles datum 12.530517079873508m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -30,13 +30,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0279` (
 
 ## Pending work
 
-- Mapped parent outline and courtyard holes establish body plan. Tower centers/radii approximate arc fits;individual roof profiles,elevations,window positions,dormers and ornament are visual interpretations.
-- No surveyed/published heights in the selected primary references. Tallest roof42m and body elevations are inferred proportions. Roof overhangs and lower-LOD facet approximations broaden the mapped envelope.
-- Tower names have not been independently matched to each source-local arc;position/roof labels avoid claiming that identification. Photo-based cap assignments and northwest entrance sign remain subject to real-site review.
-- FlatY0 does not represent actual ground differences,lake shore or island. Drawbridge,remote estate buildings,boats,trees and interiors excluded;model scope is the castle building compound.
-- Geographic activation,terrain seating and footprint replacement pending;inactive research draft,replaceFootprint=false. Review context neighbors/flat ground are synthetic,not actual Mariefred terrain.
-- Five shared256² graphs supply brick,granite,limestone,oxidized copper and roof tile;glass is untextured. Research photos/maps linked only. No fine mortar,thin glazing bars,carved ornament,wires or railings.
-- Physical laptop/phone performance and continuous-motion LOD shimmer remain unmeasured.
+- Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke surveys or exact thresholds.
+- Original detailed architectural master/recipe preserved; registered derivative fits working courts and bounded foundation bottoms.
+- Four different copper roof silhouettes, open lantern, two open courts, stepped dormers and real northwest passage retain identity. Tower heights/cap dimensions reconstructed; no independent named-tower identification.
+- Castle building compound only; island/lake terrain, drawbridge, remote estate buildings, boats, trees and interiors excluded.
+- Five common material graphs and local opaque glass; six merged groups reflect the mixed compound. Zero embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

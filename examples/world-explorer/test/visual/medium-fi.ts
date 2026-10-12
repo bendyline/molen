@@ -1,5 +1,10 @@
 /** Isolated asset review in a synthetic Earth-style block; never geographic-fit evidence. */
-import { MaterialResolver } from '@bendyline/molen-client';
+import {
+  createWebGlSkyReflectionFilter,
+  MaterialResolver,
+  reflectionStateFromLights,
+  SkyReflections,
+} from '@bendyline/molen-client';
 import { createMaterialBakeWorkerPool } from '@bendyline/molen-materials';
 import { validateByKind } from '@bendyline/molen-schema';
 import { createTerrainObject } from '@bendyline/molen-terrain/client';
@@ -99,6 +104,32 @@ let neighborPositions = [
   [88, -71],
 ].map(([x, z]) => [x * contextScale, z * contextScale]);
 const reviewCenter = terrainDescriptor ? sidecar.bounds.sphere.center : [0, 0, 0];
+// Source-local review surfaces (such as moat water) accompany the research terrain.
+// Only explicit palette boxes are accepted; no source scripts or asset loads run here.
+const fixtureEntities = JSON.parse(contextOptions.get('fixtureEntities') ?? '[]');
+for (const entity of fixtureEntities) {
+  const { transform, renderable } = entity.components ?? {};
+  if (
+    renderable?.kind !== 'primitive' ||
+    renderable.ref !== 'box' ||
+    !/^palette:#[0-9a-f]{6}$/i.test(renderable.materialRef ?? '') ||
+    ![transform?.pos, transform?.rot, transform?.scale].every(
+      (v, i) => Array.isArray(v) && v.length === (i === 1 ? 4 : 3) && v.every(Number.isFinite),
+    )
+  )
+    throw new Error('Invalid source-local review surface');
+  const surface = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshStandardMaterial({ color: renderable.materialRef.slice(8), roughness: 1 }),
+  );
+  surface.name = entity.id;
+  surface.position.fromArray(transform.pos);
+  surface.quaternion.fromArray(transform.rot);
+  surface.scale.fromArray(transform.scale);
+  surface.castShadow = renderable.shadows?.cast ?? false;
+  surface.receiveShadow = renderable.shadows?.receive ?? false;
+  scene.add(surface);
+}
 if (terrainDescriptor || terrainHeightmap) {
   if (!terrainDescriptor || !terrainHeightmap) throw new Error('Incomplete terrain fixture');
   const checked = validateByKind('terrain', await read(terrainDescriptor));
@@ -133,13 +164,12 @@ if (terrainDescriptor || terrainHeightmap) {
   ];
 }
 scene.background = new THREE.Color(EARTH_SKY_PALETTE.dayHorizon);
-scene.add(
-  new THREE.HemisphereLight(
-    EARTH_SKY_PALETTE.dayHorizon,
-    EARTH_SKY_PALETTE.ground,
-    EARTH_LIGHTING.dayAmbient,
-  ),
+const hemisphere = new THREE.HemisphereLight(
+  EARTH_SKY_PALETTE.dayHorizon,
+  EARTH_SKY_PALETTE.ground,
+  EARTH_LIGHTING.dayAmbient,
 );
+scene.add(hemisphere);
 const sun = new THREE.DirectionalLight(EARTH_SKY_PALETTE.sun, EARTH_LIGHTING.sunIntensity);
 sun.castShadow = true;
 sun.shadow.mapSize.set(2048, 2048);
@@ -233,6 +263,14 @@ renderer.toneMapping = THREE.NeutralToneMapping;
 renderer.toneMappingExposure = EARTH_EXPOSURE;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.append(renderer.domElement);
+// Explicit opt-in preserves the original direct-light fixture for prior reviews.
+const reflections =
+  contextOptions.get('reflections') === '1'
+    ? new SkyReflections(scene, createWebGlSkyReflectionFilter(renderer))
+    : undefined;
+if (reflections) {
+  window.addEventListener('pagehide', () => reflections.dispose(), { once: true });
+}
 const camera = new THREE.PerspectiveCamera(
   43,
   innerWidth / innerHeight,
@@ -278,6 +316,12 @@ function view(options: View = {}) {
     ];
   camera.position.set(p[0], p[1], p[2]);
   camera.lookAt(look[0], look[1], look[2]);
+  if (reflections) {
+    hemisphere.intensity = EARTH_LIGHTING.dayAmbient;
+    reflections.update(reflectionStateFromLights(hemisphere, sun, scene.background, 0));
+    // PMREM now supplies sky irradiance; avoid adding it again through hemisphere light.
+    hemisphere.intensity = 0;
+  }
   renderer.render(scene, camera);
   const label = document.querySelector('#label');
   if (label)
@@ -298,6 +342,7 @@ function view(options: View = {}) {
     graphReads: { ...graphReads },
     neighborStyle,
     contextScale,
+    reflections: reflections ? 'sky-pmrem' : 'none',
   };
 }
 Object.assign(window, {

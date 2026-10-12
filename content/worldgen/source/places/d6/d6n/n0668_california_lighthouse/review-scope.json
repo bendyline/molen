@@ -1,0 +1,202 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z southwest entrance",
+    "origin": "Native+Z entrance faces southwest at heading-1.2rad, toward the former keeper house/restaurant and road approach visible in the owner aerial. Exact-Q2279321 tower node is the origin. This is a photograph-derived bearing with approximately15degree uncertainty, not a surveyed doorway azimuth. Four staggered window ranks rotate with the entry."
+  },
+  "sourceFacts": {
+    "structureHeightMeters": 30,
+    "focalHeightMeters": 55,
+    "structureHeightExcludesVane": true,
+    "baseDiameterPhotoApproxMeters": 5.3,
+    "basis": "Royal Netherlands Navy2026 HP2B light4000/J6330 lists30m stone structure and55m focal elevation. Owner Monuments Fund Aruba publishes restoration history and opposed daylight/night/aerial facade photographs. Those photographs govern the14 staggered stair windows, octagonal pedestal, light-pink plaster, gallery stack and green cap; small dimensions are photograph-proportioned.",
+    "originalMasterHash": "sha256:2e7ace4149fece384c104dca2cf8f42a32e3ef53cea871f53cb0eaa468e265c0",
+    "reviewScope": "Static restored2016 exterior from owner daylight, sunset and aerial photographs. Published30m structural height excludes the thin vane;55m focal elevation does not mean55m tower height. Base5.3m diameter, pedestal/cup/gallery profiles, pediments and minor fittings are photo-proportioned. Night light sectors, interior staircase, current visitor status, detached restaurant/landscape, exact weathering and vane animation are outside this medium-fi architectural scope."
+  },
+  "appearance": {
+    "identity": "Restored pale-rose taper over an octagonal cream-trimmed pedestal, fourteen staggered pedimented windows and four upper vents, projecting gallery cup, narrow service drum, two metal gallery decks, green domed lantern, vane and southwest entrance steps.",
+    "master": "Exact preserved original restored California Lighthouse.",
+    "browser": "Full taper/pedestal/cup/gallery/green cap/vane/steps at all distances; near levels retain all14 recessed staggered windows,4 vents, pediments, entry and ladder.",
+    "exclusions": "Static restored2016 exterior from owner daylight, sunset and aerial photographs. Published30m structural height excludes the thin vane;55m focal elevation does not mean55m tower height. Base5.3m diameter, pedestal/cup/gallery profiles, pediments and minor fittings are photo-proportioned. Night light sectors, interior staircase, current visitor status, detached restaurant/landscape, exact weathering and vane animation are outside this medium-fi architectural scope."
+  },
+  "geographic": {
+    "anchor": [
+      -70.0513486,
+      12.6137665
+    ],
+    "heading": -1.2,
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/540121391",
+    "notes": "Native+Z entrance faces southwest at heading-1.2rad, toward the former keeper house/restaurant and road approach visible in the owner aerial. Exact-Q2279321 tower node is the origin. This is a photograph-derived bearing with approximately15degree uncertainty, not a surveyed doorway azimuth. Four staggered window ranks rotate with the entry. Static restored2016 exterior from owner daylight, sunset and aerial photographs. Published30m structural height excludes the thin vane;55m focal elevation does not mean55m tower height. Base5.3m diameter, pedestal/cup/gallery profiles, pediments and minor fittings are photo-proportioned. Night light sectors, interior staircase, current visitor status, detached restaurant/landscape, exact weathering and vane animation are outside this medium-fi architectural scope.",
+    "replaceFootprint": false
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/california-browser-model.mjs",
+    "export": "buildCaliforniaSkyline",
+    "errorMeters": 0.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCaliforniaDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildCaliforniaStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCaliforniaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "full-tower-district",
+      "position": [
+        24,
+        19,
+        35
+      ],
+      "lookAt": [
+        0,
+        15.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "windows-street",
+      "position": [
+        6.2,
+        12.5,
+        8.1
+      ],
+      "lookAt": [
+        0,
+        12.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "entry-street",
+      "position": [
+        6.3,
+        4.8,
+        8.4
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

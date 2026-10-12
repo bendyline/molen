@@ -1,12 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0298_egeskov_castle",
-  "inputHash": "sha256:e039f66fff46cf1f698a491d3babd527a50791e68c8a8708e856a611d19e9667",
-  "sourceHash": "sha256:bf3387f77e0e719b436a4455a8e96a126c6ebaced229ae156f812cd9d232ca24",
-  "runtimeHash": "sha256:cd04a06fb7fdcfc2f496b29419a774e948fd7d6f5b14a2c55c2284bf53d7300b",
-  "placementHash": "sha256:395adcafd8b37d40aae0a30556cf2c7a58642958c7dbfcc11b52fcb79abaf614",
+  "inputHash": "sha256:3ddd7491a87e6ec5bcdc785f375ce4795bcdedb560187cdaf27b37dfbbc9b476",
+  "placementHash": "sha256:ca5ffed91979a507b4350f5d06eee3528d5a53fb93a5c11f244ad2ec324e8aee",
   "entry": {
-    "id": "n0298.egeskov_castle",
+    "id": "next1000.n0298",
     "title": "Egeskov Castle",
     "asset": "molen.worldgen.structure.n0298_egeskov_castle",
     "anchor": [
@@ -16,26 +14,24 @@
     "heading": 0,
     "datum": "terrain",
     "elevation": 0,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q857504",
+      "maxDistance": 80
+    },
+    "replaceFootprint": false,
     "terrainReference": {
       "anchor": [
         10.49020274,
         55.176204696
       ],
-      "modelHeight": 0.3,
-      "basis": "Provisional visible water attachmentY0.3 above model bottomY0. Actual lake surface elevation,shore terrain,approach and bridge vertical section remain unverified."
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
     },
-    "bounds": [
-      10.489213893590865,
-      55.175888218814,
-      10.490891719688234,
-      55.176408210991674
-    ],
-    "orientation": "fixed",
-    "replaceFootprint": false,
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/96858366",
-    "note": "Exact-QID way96858366 and separately mapped current gatehouse,annex,entrance passages and east footbridge retain attribution. Native East/South geometry bakes heading0. Twin longhouses,stepped gables,two copper-helmed round towers,west clock/stair tower,current low gate wing and physical near passages are represented. All vertical sections are original estimates; no verified primary numeric height. Removed historic gatehouse tower excluded. Inactive pending actual lake/shore/terrain and current-site fit; footprint replacement off."
+    "note": "The inspected aerial picture supports twin steep tiled roofs, elaborate stepped brick gables, copper-capped circular corner towers, separate gatehouse and bridges. Retained east/south mapped coordinates set approximate footprint and orientation. Standard viewer PMTiles supply coarse placement ground; reconstructed foundation and access paths are raised1m with toes extending below it, and the east bridge slopes toward its sampled shore endpoint. Actual lake waterline is supplied by host water data and is not surveyed here. Anchor 10.49020274,55.176204696; heading 0; standard PMTiles datum 63.09605669230223m. Floors are reconstructed and foundations extend below the coarse sampled ground. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Inactive mapped draft. Attribution,coordinate arithmetic,baked heading and all-level bounds verified. Heights,lake/shore/deck sections and actual current-site fit require geographic review."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

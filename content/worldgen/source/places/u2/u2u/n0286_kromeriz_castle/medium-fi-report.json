@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0286_kromeriz_castle",
-  "sourceHash": "sha256:0213e6c9f0272d90b1e65ef8ae278cf52a049835ceff7b2883ce4c03c0d34dd8",
-  "runtimeHash": "sha256:4c1aa7076774ae2098c0c1151210642087dca54f8b9b776dff3f0d13852cab1d",
-  "fixtureHash": "sha256:4bd02cf3d45bf8190334b21c7149e3bc6ff9e195e047d08614adfc48b37b9560",
+  "sourceHash": "sha256:67581665352993521bdd7fbf02b2d6c60782bc13bd206ba6e9ccd4692c576cb3",
+  "runtimeHash": "sha256:2dc3bc3ac5b94374ea5cd7944894fad5904dbef4e81cc41d9f95a06418bd7a95",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,794 +23,1149 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 2720,
+  "neighborTriangles": 4556,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:99ca2da014cc89816fa6a563f60346c3390121278f62600d303264ac33ee3ff3",
-      "bytes": 71584,
-      "gzipBytes": 16380,
+      "hash": "sha256:4390feed88282b7c39a7448caf3c2de5d2a736398a1b28fb86f794f174201804",
+      "bytes": 87632,
+      "gzipBytes": 13835,
       "triangles": 879,
-      "cpuBytes": 70184,
-      "gpuBytes": 70184,
+      "cpuBytes": 86204,
+      "gpuBytes": 86204,
       "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:de21b8d2475af5b474e76fb65313a90fc1d22a6dc42ef0ac1c39babf26eed0eb",
-      "bytes": 146044,
-      "gzipBytes": 35129,
+      "hash": "sha256:3397962eb6539b29cb76f2fbfe785ff7352bad2f4128aa2af2d28d47bc3bf911",
+      "bytes": 153432,
+      "gzipBytes": 36643,
       "triangles": 1711,
-      "cpuBytes": 138896,
-      "gpuBytes": 138896,
-      "errorMeters": 1.5,
+      "cpuBytes": 146060,
+      "gpuBytes": 146060,
+      "errorMeters": 0.7,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:b1b81e595fc7f8dc9a225b62e53509c24e20f7a0d1dc640fe1c6eeb23d0df85a",
-      "bytes": 329180,
-      "gzipBytes": 71712,
+      "hash": "sha256:dda8882b22a028ef22688652cca7efa69cdcfc78698afcf77e6f8418a0c1dd24",
+      "bytes": 342080,
+      "gzipBytes": 73719,
       "triangles": 3865,
-      "cpuBytes": 321992,
-      "gpuBytes": 321992,
-      "errorMeters": 0.5,
+      "cpuBytes": 334700,
+      "gpuBytes": 334700,
+      "errorMeters": 0.3,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:0797500eb9ab239589b30552a7c2f239d8504cd03cb73a4238966f64144b5c47",
-      "bytes": 1139688,
-      "gzipBytes": 206256,
+      "hash": "sha256:0881e004b1b9f3f42b669fea378c80fbd84faad5742e77d9e5cd8c37e7f46992",
+      "bytes": 1143508,
+      "gzipBytes": 209431,
       "triangles": 12897,
-      "cpuBytes": 1132472,
-      "gpuBytes": 1132472,
-      "errorMeters": 0.15,
+      "cpuBytes": 1136108,
+      "gpuBytes": 1136108,
+      "errorMeters": 0.1,
       "drawCalls": 6
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:b57b0b5b1e8e425d54c8c3fb7bf3fcb1b6dfd050108f4ea427ed24f1e87b4a04"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:b977894610f04586f38c3188e39f2aecfe5efa108969dac3ba66aab1355e305d"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:de5877e8a21e2ce84086cba197dc423df5b855472d10061df1f2f9aca523e599",
+      "hash": "sha256:85990ca90931d12b0184ab6e531d9b4e6035c71cc8746d146be9dbc7e717974f",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
-          166
+          96.1331,
+          93.64699999999999,
+          166.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:02171e3f45fb7b71034ae573fc0f148808a2d3e044fbb7155a78f577947845eb",
+      "hash": "sha256:3e311600f1653a067ececa84ee9865d8a5a8183e9e6555b2d35bcb82e8da0402",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
-          166
+          96.1331,
+          93.64699999999999,
+          166.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:d711c1e0732215e667514937b3317198c2ea3029c85bc54e4f8ef5aad9b9af33",
+      "hash": "sha256:37422f03cbc5be8c1e3d13f12e2c48cb86718a693d76414ff1008be22dd2f0f4",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
-          166
+          96.1331,
+          93.64699999999999,
+          166.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:dffdfdfaeeaf73cebf8d5172703cc797ce7700b7c87f7a1a3d850618a3690bb1",
+      "hash": "sha256:48bf5a50fd17759985f012007fda9c90b95609727e92cb86e425cb2c35f5d385",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
-          166
+          96.1331,
+          93.64699999999999,
+          166.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:005c56ce2cac7ef7c19de91b1717f396da6d2f19d20cae40d2f469f41045b907",
+      "hash": "sha256:3b5231e24a18270ce7c6839d67b73aa0741eb1e998deadf5ee6c390388b629c1",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 4433,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58749,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:7fa4dcb3fb20de58debe2c3e334cd8118b8276d279c88e8735d58db67a24a7d1",
+      "hash": "sha256:fd83445f949faf7402956c56ca936eac9f5f2c28c4088c1e8deac15819cbb977",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 4433,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58749,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:1723d39a160fd9e601f05d3ad623a6f54b6e58b9bfd523c5bf18967c6aae89b8",
+      "hash": "sha256:42ff3828576d65a73321794fedb6f3d08b318b3d75f470984376e0a8a211f6fe",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 4433,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58749,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:afc4a2060f903beb57c5e3beb2a563b4a46e4d1a46bc549842ba775c792d760e",
+      "hash": "sha256:79f79fd989315274cff563584e9701aa26c4963376d546bf6d4acb8b5cb1ea81",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 4433,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58749,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:896ac15a9716a0810d46984b68f96fbbab3d8a1a9a846ac7e04cf98df11761a4",
+      "hash": "sha256:a4851ea252eed3b11d9dfa993e6d24df918cce4b2d57e1a0369d61f30d3c6d39",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 3601,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
-          672
+          388.1331,
+          241.647,
+          672.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:18d8f8da9e35e469f182cfc97dda74d069b8595e37ad77637835cb8a01cbdf69",
+      "hash": "sha256:ae2ade4afaa2db84ccd67397608e8578e8ea623036e4be7a2af75dcfb2d36df7",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 3601,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
-          672
+          388.1331,
+          241.647,
+          672.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:5fa23650e91ed3872766485565bff43dbf96a801d5bb5dc0924e08d023262978",
+      "hash": "sha256:d5047390b58ec9785861bb41d39c5b83ccacd3bb4add8a1bda66d352be40133e",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 3601,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
-          672
+          388.1331,
+          241.647,
+          672.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:bca2df9bdd11f6eb840aac6ddd55db87ddae955d9ba4e7b82bfacec80f5d0ab2",
+      "hash": "sha256:42b4d7c9495a10ec6bf9e75e6522eca5593bec1e2cec35b3566017fcac0ebaa2",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 3601,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
-          672
+          388.1331,
+          241.647,
+          672.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:246f99fce2078184071a89ceeab57b1a9e15a8336532267e437ea8d388998082",
+      "hash": "sha256:ed2edef8de048afa82023d18c4f20e3ebb3e887c4a4c3d08f71ce3855544169f",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 881,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53361,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
-          672
+          388.1331,
+          241.647,
+          672.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/garden-portico-and-tower.png",
-      "hash": "sha256:524d3733ddabc20d35e43a876da0a18eb8175fdd81e13c84d72e312ab8ede1d2",
+      "hash": "sha256:32b0642354c9f5731b53c5b742a5590f3724fbee2214949cc6b2a0a2af0c973a",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
           85,
-          64,
+          68.4,
           133
         ],
         "lookAt": [
           0,
-          28,
+          32.4,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/clock-and-open-copper-lantern.png",
-      "hash": "sha256:d27fc0a15521e55c23fbcfebfb1d4067bbd356017bcf0d93eb832840e5cac179",
+      "hash": "sha256:6ea86668bf557ec16ba8c1d4a65fa942bfb6e3d68b9ff6c50f4f000f8242954d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
           48,
-          67,
+          71.4,
           -57
         ],
         "lookAt": [
           5.7,
-          61,
+          65.4,
           -8.7
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyard-and-upper-roof-panels.png",
-      "hash": "sha256:ead833c81ff4d1dd889da8b4c0788f22baf4b6a25790fbeca73d6f245f4d2b4a",
+      "hash": "sha256:621f00a823b6b30ff0c0dc2ebd17ba2b5383819b647a60865e34aa12cab4569e",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
           61,
-          135,
+          139.4,
           76
         ],
         "lookAt": [
           0,
-          31,
+          35.4,
           4
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyard-window-rhythm.png",
-      "hash": "sha256:2cb74b6365704a6d1b6f461a31d1f69d9ab5ff5948796a9cdbd848e061e387ca",
+      "hash": "sha256:c10ffbf3be5e8aaff3ccc04296426818917b5384d32c435956856e0583eb15ee",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
           5,
-          22,
+          26.4,
           14
         ],
         "lookAt": [
           -25,
-          19,
+          23.4,
           6
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/town-facade-and-tower.png",
-      "hash": "sha256:a636d8a400e4937f50470cc8eb6b3fd3ab6474e71fba3faf2e18de7e3d359102",
+      "hash": "sha256:84c273cbf569979f9d4d40afe87cbdaa81654d7f6713d8b8382d947baba4450f",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
           -60,
-          58,
+          62.4,
           -122
         ],
         "lookAt": [
           0,
-          28,
+          32.4,
           -10
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/garden-corner-projections.png",
-      "hash": "sha256:2e09d5bbcce0fc195104b88b43deb73c7f80240044a1d96cdf514adc3a80d98e",
+      "hash": "sha256:8e1579f7d244fb5b9c72717101134990d9573f5953673cf36a3f069edce7652d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
           -122,
-          63,
+          67.4,
           78
         ],
         "lookAt": [
           0,
-          29,
+          33.4,
           10
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kromeriz-skyline.png",
+      "hash": "sha256:89fbc362ce789bc66140a3d5d07b71257306f6218d3127f0348b16d8c76326f3",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
+        "position": [
+          150,
+          115,
+          150
+        ],
+        "lookAt": [
+          0,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kromeriz-district.png",
+      "hash": "sha256:5c0ddb652795a393f844a77eb67a5455105252303e975e69d8fd4b0bb1c01237",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 58749,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
+        "position": [
+          150,
+          115,
+          150
+        ],
+        "lookAt": [
+          0,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kromeriz-street.png",
+      "hash": "sha256:33990f0a60a13706ce5879912e03840a7192c20a0fcd6e4afd93b1e25bc5dff3",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 60903,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
+        "position": [
+          150,
+          115,
+          150
+        ],
+        "lookAt": [
+          0,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kromeriz-closeup.png",
+      "hash": "sha256:149a90dc178a4430a6dc93eedc7f05739a26bb0b99c648292a66fe82d815b41a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
+        "position": [
+          150,
+          115,
+          150
+        ],
+        "lookAt": [
+          0,
+          30,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:50bdc60a2aa0c7279d22b9eb722161dc48f0768ae4bb2501e90856bbdf7b209b",
+      "hash": "sha256:375785c16d0b76e5d785c54767f1c3680c136622d902bccedc7b7fde97d3def6",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 3601,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57917,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:7fa4dcb3fb20de58debe2c3e334cd8118b8276d279c88e8735d58db67a24a7d1",
+      "hash": "sha256:fd83445f949faf7402956c56ca936eac9f5f2c28c4088c1e8deac15819cbb977",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 4433,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58749,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:83595cc586345e68ce306b769af3e0f0ebc1640943e6447cdeeb1aee64c6f2c1",
+      "hash": "sha256:33eecb483bd9a9a29f322b2d10c097d3c00ffcc2c0c899db5638af34b34e3ae5",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 6587,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 60903,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:dd073f507d8549d01cd1b7d08216388cd6dfdb76fe38f4e6395485355df6ad93",
+      "hash": "sha256:5e6f656bf7ddb4a5b28cde4fd6d0cd9d782576ee8fbd782db3042b68aa01907d",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15619,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69935,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2u/n0286_kromeriz_castle/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
-          336
+          194.1331,
+          165.647,
+          336.0008
         ],
         "lookAt": [
-          0,
-          22,
-          0
+          0.1331,
+          63.647,
+          0.0008
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 2
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     }
   ],

@@ -360,7 +360,7 @@ export const rodsherStudies = [
     size: [7, 20.5, 8],
     metricTriangleUv: true,
     visualBrief:
-      'Red octagonal tower with broad lower pedestal, reduced upper shaft, two opposed pairs of deep arched windows, flared masonry gallery, circular railed watch room, two pairs of south-facing solar panels, wire-mesh lantern balcony, clear framed lantern, riveted domed roof, red ventilator and cardinal vane.',
+      'Red octagonal tower with broad lower pedestal, reduced upper shaft, two opposed pairs of deep arched windows, flared masonry gallery, circular railed watch room, four solar panels on the authored+Z facade, wire-mesh lantern balcony, clear framed lantern, riveted domed roof, red ventilator and cardinal vane. Reviewed compass bearing is recorded separately in review-scope.json and map-frame.json.',
     sourceFacts: {
       publishedStructureHeightMeters: 18.8976,
       publishedFocalHeightMeters: 20,

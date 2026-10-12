@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0562_maiden_tower",
-  "inputHash": "sha256:7f6949d12f7098140f03bf024fda95400e124a302c46eb6afc1b44cea7987f1f",
-  "captureReportHash": "sha256:99e5404b16a274934f580ef447a2c6853c53b9e5005af65977c5f1dfb2a31ef8",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:067cd7f202cbd58bf25e74dcebf12cf51c260dcec7bd73f124abd3d10297e223",
+  "sourceHash": "sha256:2ed5b01856b931eec9876813ceb9633672b0e23f68b93c4a2f1157b29578d480",
+  "runtimeHash": "sha256:f4358451ae380e6700047d5471a70c6c8b81a05218cd6eb70c3c5fb5966a873d",
+  "captureReportHash": "sha256:e16ac81488559ddddb2422e12a78b1b9bc3f926f9e83147c02cdb39593421a6d",
   "visualReview": {
     "status": "passed",
-    "scope": "Static detailed exterior preview; maximum fidelity remains pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -15,13 +17,15 @@
       "shots/near-bands.png",
       "shots/near-west-door.png",
       "shots/roof-parapet.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/buttress-roof.png",
+      "shots/slit-reveals.png"
     ],
-    "notes": "Inspected every listed standard frame: asymmetric cylindrical tower and rounded seaside buttress, slit recesses, horizontal relief courses, western arched entrance, roof and parapet. The annular ledges are now closed and no longer expose sky. Small relief courses produce visible subpixel aliasing in the distant untextured views; this is recorded for future LOD refinement, not treated as maximum-fidelity approval."
+    "notes": "Actually inspected all eleven final portable frames: full silhouette, four angles, upper band/slit detail, west doorway, round and buttress roof terraces. The reference photograph supports the smooth lower shaft, numerous raised upper courses and rounded seaside arm. Original roof slab was corrected to an inset buttress terrace with continuous closed parapet; a low proportional stairhead interprets the reserve illustration and satellite context. Earlier row-specific angular cuts left small masonry wedges at slit edges; the final shared cuts and segmented reveals correct them. Detailed untextured source bands show subpixel aliasing at distant raw-master views, so budgeted far derivatives average them rather than use this master at distance."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:7cfe0c5222470ad5157d9fc413b6567917656853e82c78aba792433c67b87b69",
+    "captureReportHash": "sha256:104fa4af491a9bbbd3d39cd98790106f99995fe2da57fd2816128c870da31b5f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -31,17 +35,258 @@
       "shots/shared/near-west-door.png",
       "shots/shared/roof-parapet.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/buttress-roof.png",
+      "shots/shared/slit-reveals.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all four shared-material angles, four near/far details and north-up placement fixture. The new continuous cylindrical UVs remove bunched mortar joints from the curved wall; planar buttress and recess surfaces retain metric scale. Shared limestone and metal bind correctly. Course relief, recesses, roof and parapet remain legible. Generic regular stone texture and estimated buttress nose still need site-specific refinement. Placement fixture shows the mapped seaward arm direction; perspective prevents treating the ground-outline overlay as a metric fit survey."
+    "notes": "Actually inspected all eleven final shared-texture frames and the north-up placement overlay. Shared limestone provides the same metric masonry on the cylinder, rounded buttress and roof; painted metal serves the small gate bar. Two canonical256px graphs resolve once each and unloading disposes the model with zero live geometries. No model-private or embedded image exists. Texture grain and regular bonds approximate the historic irregular limestone; exact damaged blocks and mortar are not copied from photographs. Cylindrical meter UVs are explicitly passed through the documented metric:uv interface in the final derivatives rather than restarting planar projection at every facet. Current near renders show continuous masonry across the curved body."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0dd760718c3e2c2abb77ac0e9730b5d1812598bf8859bddf5123f6425cee95d3",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-bands.png",
+      "medium-fi/near-west-door.png",
+      "medium-fi/roof-parapet.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/buttress-roof.png",
+      "medium-fi/slit-reveals.png",
+      "medium-fi/whole-district.png",
+      "medium-fi/west-door-street.png",
+      "medium-fi/buttress-roof-closeup.png",
+      "medium-fi/upper-courses-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected all27final medium-fi frames: economy/high quality, noon/late light, full skyline/district, six source-detail cameras, four derivative-detail cameras and four transitions. Every level keeps the complete31m cylinder, asymmetric rounded arm, western entrance, slit indications and open roof terraces. Skyline/district average the upper masonry into low-contrast tonal groups, avoiding distant raw-master band aliasing; near levels retain43individual raised courses. Close views preserve recessed slit backing and the arched opaque entrance beside its narrow gate bar. Canonical baked linear graph averages keep far and near colors consistent. Source rays and actual final roof images confirm the buttress terrace is recessed below its parapet. Synthetic neighboring cottages are a fixture and do not claim regional accuracy."
   },
   "geographicReview": {
-    "status": "pending",
-    "notes": "Exact-QID OSM outline supplies anchor and long axis. Source cylinder diameter follows the official 16.5 m figure. Lowest-base origin uses the documented 31 m side height, while the opposite ground side differs by about 3 m; real DEM contact and the estimated rounded buttress nose require a site fit review."
+    "status": "passed",
+    "placementHash": "sha256:e7385436be582acb63aaac293d76fcdc45b5da375c36d8efec3f831c336c3624",
+    "mapFrameHash": "sha256:67c6a7631e2d07312ec7e3d7947546c1241a965c77bd9aa80ebceef31d684f57",
+    "notes": "Cached attributed OSM way299418016 for Q842822, captured2026-09-27T16:21:24.079Z, supplies the17-point asymmetric outline and center[49.837270733,40.366150763]. Actual north-up Google satellite inspected2026-10-09 confirms the cylinder west of the rounded eastern/southeastern arm beside Neftchilar Avenue. Heading0.081716996579rad maps native+X slightly north of east and the western doorway toward west/slightly south. Published Presidential Library text independently identifies the western arched entrance. Roof/shadow displacement and map generalization leave approximately two-metre positional and five-degree angular uncertainty. The rebuilt fixture checks this signed transform, not a surveyed roof or terrain fit. The final placement overlay actually inspected fits the retained17-point closed asymmetric OSM frame, with the rounded reconstructed nose extending roughly1m beyond its generalized map chord. Height31m uses the northern lowest-base datum; the published southern height28m reflects a3m grade difference. Ground0 is provisional terrain contact at the low base; no unverified fixed elevation offset is added. Flat-terrain capture proves signed placement and native-footprint retention, not surveyed slope/foundation contact. Replacement remains disabled."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Complete static medium-fi tower exterior. Original detailed heritage recipe remains byte-reproducible. Published 16.5 m cylinder, 31 m north-side height envelope, smooth lower 12 m, upper raised masonry courses, western arched doorway, eight narrow slit indications, circular open roof parapet and asymmetric rounded seaside buttress remain. The reviewed roof restores an inset buttress terrace and closed parapet instead of the draft solid top slab; a small sloping stairhead is proportionally interpreted from the reserve illustration and satellite roof context, not a measured current fitting. Forty-three course positions and slit heights are photographic estimates, not a block survey. Skyline/district average course groups into broad low-contrast tonal zones; street/closeup preserve individual physical raised bands. The original inscription panel preserves published dimensions without invented text. Museum interior, well, buried foundations and separately mapped adjoining low defensive buildings are separate scope. No private bitmap is embedded; two canonical shared material graphs supply metric limestone and painted metal. Ground0 is the lowest exterior base, not the roof, and the reported three-metre grade difference requires real terrain fitting. Flat fixtures cannot certify slope or foundation contact. Cached exact-QID OSM outline and actual north-up satellite establish the directed eastern/southeastern arm; projected roof displacement prevents surveyed placement. Native footprint is retained and replacement disabled. The exact preserved original draft reproduces sha256:97114a556ff77b2889762573d3005b343e42a2e096200e99d2a8c3971fd99889. The reviewed leaf preserves its factual dimensions and principal apertures while making separate budgeted whole-building derivatives. The reserve image is explicitly a1996illustration, and the saved bathhouse image is explicitly excluded. No current maximum-fidelity or epigraphic survey approval is implied."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Maximum fidelity remains pending: exact rib and slit survey, asymmetric ground contact, individual weathered limestone blocks, inscriptions, roof access fittings, interiors and adjoining structures are omitted or simplified. Distant relief aliasing needs an appropriate LOD treatment. This QA approves the current detailed exterior preview only."
-  }
+    "notes": "Maximum fidelity remains pending: exact rib and slit survey, asymmetric ground contact, individual weathered limestone blocks, inscriptions, roof access fittings, interiors and adjoining structures are omitted or simplified. Distant relief aliasing needs an appropriate LOD treatment. This QA approves the current detailed exterior preview only.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/tp/tp5/n0562_maiden_tower/models/source.glb",
+        "hash": "sha256:2ed5b01856b931eec9876813ceb9633672b0e23f68b93c4a2f1157b29578d480",
+        "bytes": 7165020,
+        "triangles": 85366,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -13.151052474975586,
+          0,
+          -8.333999633789062
+        ],
+        "max": [
+          14.311613082885742,
+          31,
+          8.46928882598877
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/tp/tp5/n0562_maiden_tower/model.glb",
+        "hash": "sha256:f4358451ae380e6700047d5471a70c6c8b81a05218cd6eb70c3c5fb5966a873d",
+        "bytes": 7164632,
+        "triangles": 85366,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -13.151052474975586,
+          0,
+          -8.333999633789062
+        ],
+        "max": [
+          14.311613082885742,
+          31,
+          8.46928882598877
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/tp/tp5/n0562_maiden_tower/model.skyline.glb",
+        "hash": "sha256:648ebc902999d212e9b40d67432665239cdbbbbf793b773b903fdbbddf4fa52f",
+        "bytes": 48920,
+        "triangles": 648,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -13.146624565124512,
+          0,
+          -8.329000473022461
+        ],
+        "max": [
+          14.217207908630371,
+          31,
+          8.35099983215332
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/tp/tp5/n0562_maiden_tower/model.district.glb",
+        "hash": "sha256:2e2c0053692fc74d769c0c03b8c9599e8a43a1a632c4b7925c0ea0404d2019e7",
+        "bytes": 178864,
+        "triangles": 2946,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -13.146624565124512,
+          0,
+          -8.329000473022461
+        ],
+        "max": [
+          14.196489334106445,
+          31,
+          8.37295150756836
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/tp/tp5/n0562_maiden_tower/model.street.glb",
+        "hash": "sha256:cbf112c78bf5a3e054e79f5aae9e4330907f0f85106073346eb37e7ab4099116",
+        "bytes": 939184,
+        "triangles": 14542,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -13.151052474975586,
+          0,
+          -8.333999633789062
+        ],
+        "max": [
+          14.293487548828125,
+          31,
+          8.468988418579102
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/tp/tp5/n0562_maiden_tower/model.closeup.glb",
+        "hash": "sha256:7886eef789e12aa527e70d644284bf3fb9feea13e2a1fa8712313c087641e989",
+        "bytes": 3324344,
+        "triangles": 47880,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -13.151052474975586,
+          0,
+          -8.333999633789062
+        ],
+        "max": [
+          14.311613082885742,
+          31,
+          8.46928882598877
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": [
+      "maiden-current-lods.test.mjs: three focused checks passed",
+      "Six Khronos GLBs: zero errors, warnings and images",
+      "Strict medium-fi and pinned derivative checks passed",
+      "49 final frames actually inspected"
+    ],
+    "notes": "Six final Khronos GLBs validate with zero errors, zero warnings and zero embedded images. Three focused tests pass exact original source reproduction; identity, signed heading and closed17-point frame; full height/base/rounded arm; deep opaque western doorway beside gate bar; closed recessed slit backing; round and buttress roof-floor rays; explicit metric cylinder coordinates; exact forced four-level regeneration; shared graph identity; triangle/draw/initial-download budgets and separate12-byte POSITION/NORMAL buffers. Strict medium-fi and pinned derivative checks pass. Every final image was actually inspected after the final build and tests."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:09cc74f7cb0d7d1c6202d558439d21f8f7ea4f39c3132b3fab1cc5bf77b77a87",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:648ebc902999d212e9b40d67432665239cdbbbbf793b773b903fdbbddf4fa52f",
+        "bytes": 48920,
+        "gzipBytes": 9519,
+        "triangles": 648,
+        "cpuBytes": 47520,
+        "gpuBytes": 47520,
+        "errorMeters": 0.35,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:2e2c0053692fc74d769c0c03b8c9599e8a43a1a632c4b7925c0ea0404d2019e7",
+        "bytes": 178864,
+        "gzipBytes": 38835,
+        "triangles": 2946,
+        "cpuBytes": 176292,
+        "gpuBytes": 176292,
+        "errorMeters": 0.17,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:cbf112c78bf5a3e054e79f5aae9e4330907f0f85106073346eb37e7ab4099116",
+        "bytes": 939184,
+        "gzipBytes": 167554,
+        "triangles": 14542,
+        "cpuBytes": 935412,
+        "gpuBytes": 935412,
+        "errorMeters": 0.2,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:7886eef789e12aa527e70d644284bf3fb9feea13e2a1fa8712313c087641e989",
+        "bytes": 3324344,
+        "gzipBytes": 523648,
+        "triangles": 47880,
+        "cpuBytes": 3320556,
+        "gpuBytes": 3320556,
+        "errorMeters": 0.04,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 227784,
+    "notes": "Reviewed source contains85366triangles and7165020bytes; runtime import7164632bytes. Skyline/district/street/closeup contain648/2946/14542/47880triangles, with approximately49/179/939/3324KB respectively. Initial skyline+district transfer is227784bytes, below3MBphone and6MBlaptop targets. At most three draws and two shared graphs are used, with separate attribute streams. The original detailed recipe remains reproducible. Physical phone/laptop timings and actual sloping host terrain contact remain unmeasured."
+  },
+  "limitations": [
+    "Complete static medium-fi tower exterior. Original detailed heritage recipe remains byte-reproducible. Published 16.5 m cylinder, 31 m north-side height envelope, smooth lower 12 m, upper raised masonry courses, western arched doorway, eight narrow slit indications, circular open roof parapet and asymmetric rounded seaside buttress remain. The reviewed roof restores an inset buttress terrace and closed parapet instead of the draft solid top slab; a small sloping stairhead is proportionally interpreted from the reserve illustration and satellite roof context, not a measured current fitting. Forty-three course positions and slit heights are photographic estimates, not a block survey. Skyline/district average course groups into broad low-contrast tonal zones; street/closeup preserve individual physical raised bands. The original inscription panel preserves published dimensions without invented text. Museum interior, well, buried foundations and separately mapped adjoining low defensive buildings are separate scope. No private bitmap is embedded; two canonical shared material graphs supply metric limestone and painted metal. Ground0 is the lowest exterior base, not the roof, and the reported three-metre grade difference requires real terrain fitting. Flat fixtures cannot certify slope or foundation contact. Cached exact-QID OSM outline and actual north-up satellite establish the directed eastern/southeastern arm; projected roof displacement prevents surveyed placement. Native footprint is retained and replacement disabled."
+  ]
 }

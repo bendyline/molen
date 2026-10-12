@@ -12,31 +12,32 @@
   },
   "visualBrief": "Current Saint Michael’s Castle: rounded near-square salmon exterior around an open octagonal court and two triangular service courts, low green roofs, gold church spire and separate river dome/lantern, monumental south pediment/obelisks, north colonnade/balcony/stair and physically open mapped south entrance.",
   "mediumFiContext": {
-    "scale": "1.0",
-    "neighborStyle": "molen.worldgen.regional.atlantic.detached"
+    "groundY": -21.15,
+    "scale": 3.6,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
   },
   "size": [
-    134.41759872436523,
-    56.400001525878906,
-    136.86905670166016
+    173,
+    59.699079513549805,
+    174
   ],
   "actualBounds": {
     "min": [
-      -60.97860336303711,
-      0,
-      -69.96644592285156
+      -85,
+      -24.2990779876709,
+      -86
     ],
     "max": [
-      73.43899536132812,
-      56.400001525878906,
-      66.9026107788086
+      88,
+      35.400001525878906,
+      88
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "front": "Main entrance faces roughly south-southeast; native +X east and +Z south",
     "longitudinal": "All horizontal map angles baked into East/South geometry; heading0",
-    "origin": "Exact-QID mapped research anchor; provisional attachment Y0. Current local ground, north stair and south passage datum require real-site review."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "exactCastleRelation": 238571,
@@ -47,7 +48,9 @@
     ],
     "mappedBuildingLevels": 3,
     "exteriorFacadeCompositions": 4,
-    "numericPrimaryVerticalHeightVerified": false
+    "numericPrimaryVerticalHeightVerified": false,
+    "originalMasterHash": "sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952",
+    "originalMasterRecipe": "packages/worldgen/scripts/saint-michaels-castle-model.mjs#buildSaintMichaelRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -103,12 +106,13 @@
       "Rounded salmon near-square castle enclosing an open octagonal courtyard",
       "Green church dome and tall gold spire with smaller river-side dome",
       "Distinct south pediment and north raised entrance pavilion"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "scope": "Current castle exterior: rounded near-square envelope, open octagonal main court and two triangular service courts, salmon plaster and low green roofs, west church dome/gold spire, smaller east river dome/lantern, south pediment/obelisks and north colonnade/balcony/stair.",
-    "basis": "Original geometry from attributed current map traces, primary Russian Museum façade descriptions/photos and original exterior/courtyard/aerial photographers. No downloaded mesh, photo texture or printed-plan trace.",
-    "referenceState": "Current exterior interpretation. Detached guard pavilions, Peter I/Paul I monuments, bridges, embankments, moat channels, gardens and interiors are separate objects or excluded; historical fortifications are not reconstructed as current geography."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://api.openstreetmap.org/api/0.6/map?bbox=30.3358,59.9397,30.3393,59.9413",
@@ -121,8 +125,8 @@
     "https://upload.wikimedia.org/wikipedia/commons/b/bb/%D0%9C%D0%B8%D1%85%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9_%D0%B7%D0%B0%D0%BC%D0%BE%D0%BA_2.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive draft: actual local terrain, north stair and south entrance contacts remain unverified.",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       30.337604476,
       59.94037844
@@ -142,10 +146,42 @@
     ],
     "wikidataId": "Q2000542",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:149cc3ea1c62e8be8b4be853bf84140f3d8fac2e2a11d1681f6372b4f4a45fd1",
+    "mapGeometryHash": "sha256:5191f9565926cfa2a07310a88bae16bb15e76e5bc77e34646ce6f493bd841689",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "replaceFootprint": false
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum.",
+    "notes": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum.",
+    "terrainReference": {
+      "anchor": [
+        30.337604476,
+        59.939480124715885
+      ],
+      "modelHeight": -21.52127808470276,
+      "basis": "Standard viewer PMTiles point100m south of the model anchor, outside the reconstructed palace/plaza opening; native height preserves the retained PMTiles working datum."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -83,
+          -84
+        ],
+        [
+          86,
+          -84
+        ],
+        [
+          86,
+          86
+        ],
+        [
+          -83,
+          86
+        ]
+      ],
+      "basis": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum."
+    }
   },
   "scaleBasis": "Original horizontal traces retain exact-QID relation238571 and all three courtyard rings, plus separate mapped south entrance route. The undirected map plan angle is used only as an authoring basis; geometry is baked into native East/South coordinates with heading0. All heights, roof sections, dome/lantern profiles, spire position and height, window/column counts, obelisks, stair and floor sections are photographic estimates from museum views and original photographers; no primary surveyed vertical dimensions verified.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -181,12 +217,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        1.2,
-        1.2
+        2.4,
+        1.6
       ]
     },
     {
@@ -212,26 +248,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exact-QID castle relation, all three courtyard rings and separately mapped south passage retain attribution. Native East/South geometry bakes heading0; the map plan axis alone is not geographic/facade approval.",
-    "All vertical sections, roof profiles, church/river dome and lantern forms, spire position/height, column/window counts, obelisks, stairs and floor contacts are original photographic estimates. No primary surveyed vertical height verified.",
-    "Current exterior captures guide rounded corners, open main and service courts, salmon plaster, green roofs, west church gold spire, east dome/lantern and separate south/north entrance compositions. Fine sculpture, heraldry, inscriptions, niches, balusters and interior rooms are simplified or excluded.",
-    "Provisional attachment Y0, north stair and south passage floor have no real-site terrain or vertical-datum approval. No walkable collision claim.",
-    "Detached guard pavilions, monuments to Peter I/Paul I, bridges, current water/embankments/gardens and historic moat fortifications are not merged into this castle GLB.",
-    "Six existing shared 256-square graphs plus flat glass use linear tints and metric UV repeats. No new/embedded image, photo texture, downloaded mesh or printed drawing trace.",
-    "Museum and primary photographers references are private research only, not redistributed. An aerial photograph dated2016 and courtyard photograph dated2013 supplement current museum photos; current roof/site alterations require further review.",
-    "Synthetic Molen/Earth renders do not prove actual terrain fit, continuous streaming transitions or physical ordinary-laptop/phone performance."
+    "Approximate current exterior and fit from inspected entrance picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Spire/dome profiles, columns, inscriptions and restoration details are interpreted; interiors and collision excluded.",
+    "Six common graphs plus explicit glass color slot; zero embedded images. A reversible bounded ground opening and authored paved apron suppress the PMTiles mound under the palace; adjacent raw PMTiles terrain is retained. Actual urban ground datum is not surveyed.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "south-pediment-and-entry",
       "position": [
         52.77481058541777,
-        30,
+        9,
         129.91851048897257
       ],
       "lookAt": [
         24.383514369637176,
-        16,
+        -5,
         49.794017983947604
       ]
     },
@@ -239,12 +271,12 @@
       "name": "north-colonnade",
       "position": [
         -39.223976650257114,
-        31,
+        10,
         -136.65459983381493
       ],
       "lookAt": [
         -8.873194133150195,
-        17,
+        -4,
         -47.68926950452721
       ]
     },
@@ -252,12 +284,12 @@
       "name": "church-and-west-facade",
       "position": [
         -128.0700357420097,
-        48,
+        27,
         45.804649818990605
       ],
       "lookAt": [
         -37.21182604401377,
-        29,
+        8,
         14.80810597173247
       ]
     },
@@ -265,12 +297,12 @@
       "name": "river-dome",
       "position": [
         139.17103822180167,
-        47,
+        26,
         -41.13905832983806
       ],
       "lookAt": [
         54.5928233383363,
-        23,
+        2,
         -16.511318540601266
       ]
     },
@@ -278,12 +310,12 @@
       "name": "court-plan",
       "position": [
         7.593719785705687,
-        190,
+        169,
         0.5791543975331348
       ],
       "lookAt": [
         7.593719785705687,
-        15,
+        -6,
         0.5791543975331348
       ]
     },
@@ -291,14 +323,231 @@
       "name": "open-courtyard",
       "position": [
         15.019975082444615,
-        8,
+        -13,
         22.347267137677996
       ],
       "lookAt": [
         -1.7698195014868734,
-        14,
+        -7,
         -26.86759644873647
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/saint-michaels-runtime-model.mjs",
+    "export": "buildSaintMichaelReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/saint-michaels-runtime-model.mjs",
+    "export": "buildSaintMichaelReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSaintMichaelReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "painted": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildSaintMichaelReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "painted": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSaintMichaelReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "painted": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.1
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-saintmichael-skyline",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-saintmichael-district",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-saintmichael-street",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-saintmichael-closeup",
+      "position": [
+        210,
+        132,
+        210
+      ],
+      "lookAt": [
+        0,
+        -7.5,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -306,10 +555,10 @@
   },
   "importReason": "Preserve open main/service courtyards, rounded salmon envelope, gold church spire and river dome, separate south pediment/obelisks and north colonnade through four source-authored levels.",
   "mesh": {
-    "triangles": 17128,
-    "vertices": 51384,
+    "triangles": 17138,
+    "vertices": 51414,
     "materials": 7,
-    "bytes": 2059596,
-    "sha256": "sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952"
+    "bytes": 2060744,
+    "sha256": "sha256:ca6dcc23f4a5d5e80f59de2bb600ef71c45d1996b8494e412a6becacc471b24c"
   }
 }

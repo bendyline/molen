@@ -1,12 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0296_kalmar_castle",
-  "inputHash": "sha256:b2a82c294f41ea652acced1bfc9db7763a71a57ea8c5f8ab68442fd0bd9fe7ad",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:ec57e7ccf4be43f8d19a9d3e9151b457854aab9a7244490979df0dcff5aa06fb",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "inputHash": "sha256:bf532c30a623769eacc221967b9911834aebb0060fa42e95ddfb2f66c04f43a9",
+  "sourceHash": "sha256:a7d9df6d5d7142e1dd2fe4ddd91e5abece7591f899f71585833b50aa01ee5960",
+  "runtimeHash": "sha256:b887a739fd8297b2084a184dea786255000aba7863fcef8164dceb2427a21f5d",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:37af01a7064c6a4c5041c327a75c3b7e8ed528005f4ca070c408e8d89ca3b506",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:be8d4d95eb9093c6dce6e924e9c5314510f53a7436098a6f101d213bb79761fc",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
@@ -16,9 +19,9 @@
       "path": "materials/stone_drywall.matgraph.json",
       "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
     },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    "matgraph:molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
     },
     "matgraph:molen.worldgen.material.metal_copper": {
       "path": "materials/metal_copper.matgraph.json",
@@ -36,15 +39,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:ca7b58a1cea828e6825ede41c0449f9f539444362735559fada5415596c6061b",
+      "hash": "sha256:3ae33c79c1328fbd42d410e54cb4bb55503f95fac93020c86a17b58f52222ddb",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -56,34 +59,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -94,15 +115,15 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:864d90fe10f1be60b392103957171b38deb8e8bebf9f76c939e836f2b175c3a6",
+      "hash": "sha256:9bfac4be8bd02655777089bb7207319babdd4a6dfac20272026e44a35f0751e3",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -114,34 +135,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -152,15 +191,15 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:b6941fd8c81b4376e9ecd09d0cbef9432cf58a987a2db6f1949b51f214835391",
+      "hash": "sha256:adad237f9309b8fe4f56f28d814d145e557f48fa42aca94b3307807f02cd689c",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -172,34 +211,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -210,15 +267,15 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:3d5ac66c541bdd4ed002cb75f3d2dbb301f4be5c89328c37c379df088d3df9b8",
+      "hash": "sha256:7113f8f0d64b5bc7623d6356957038242e406c667d257889891de34689dcab2b",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -230,34 +287,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -268,24 +343,24 @@
     },
     {
       "path": "shots/shared/western-kuretornet.png",
-      "hash": "sha256:13e73fc55cde1effe6798ca932ce366071bd834d63202c362502bd5d08e4bc43",
+      "hash": "sha256:bf948b993031501e8595b8a16d3b368990da76eed1a750b869f250ce26e5630a",
       "camera": {
         "name": "western-kuretornet",
         "position": [
           -65.51823667536213,
-          29,
+          29.5,
           -62.09960276001153
         ],
         "lookAt": [
           -18.017153993225016,
-          28,
+          28.5,
           -15.886540277367375
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -297,34 +372,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -335,24 +428,24 @@
     },
     {
       "path": "shots/shared/old-gate-passage.png",
-      "hash": "sha256:3d076e3f253ed0e382f137c7f7a9ea631e8ae97ac8174a216280111c1ef8edce",
+      "hash": "sha256:d05d42a37072f892e0f913f690f4506a2ec265ff52829bf3d096550d3d90568c",
       "camera": {
         "name": "old-gate-passage",
         "position": [
           -29.818734522120497,
-          6.3,
+          6.8,
           -26.73654935662602
         ],
         "lookAt": [
           -2.398129799094802,
-          6.3,
+          6.8,
           -16.101210310616203
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -364,34 +457,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -402,24 +513,24 @@
     },
     {
       "path": "shots/shared/open-courtyard-plan.png",
-      "hash": "sha256:ae721930ce7ef5c0c845c250e93cbf1c9ff9cc147554f963d3dc6fc703eb6894",
+      "hash": "sha256:88ceaf81983ededccc375094774975fd26c24c25c1fd0c92ce3f9288a6584a10",
       "camera": {
         "name": "open-courtyard-plan",
         "position": [
           3.88473341520596,
-          165,
+          165.5,
           3.1478319988179546
         ],
         "lookAt": [
           3.88473341520596,
-          5,
+          5.5,
           3.1478319988179546
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -431,34 +542,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -469,24 +598,24 @@
     },
     {
       "path": "shots/shared/court-well-and-portals.png",
-      "hash": "sha256:6f1500d6ac9f763f9a0a49ca6a2f32c17b49c56a5757d48cda124e3a0876e609",
+      "hash": "sha256:2f3106f8b56c4b7a5c632408ce78488c99e6ffacf7da3cd01d31ec8ec62b13df",
       "camera": {
         "name": "court-well-and-portals",
         "position": [
           -9.001355146621062,
-          10,
+          10.5,
           15.873739494032229
         ],
         "lookAt": [
           12.511237461965445,
-          9,
+          9.5,
           -2.7329356323031924
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -498,34 +627,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -536,24 +683,24 @@
     },
     {
       "path": "shots/shared/sea-renaissance-gables.png",
-      "hash": "sha256:e0931bd4e1a9681d210ee02c40ad2c8414875aa12e85e6002e8476e09d4dc277",
+      "hash": "sha256:cb4a12162cadc37dc7f95b67aac16eddd1dc5b749bb9f7f0dded775945f25895",
       "camera": {
         "name": "sea-renaissance-gables",
         "position": [
           80.02550835324277,
-          28,
+          28.5,
           64.84533917564987
         ],
         "lookAt": [
           26.71094778995573,
-          18,
+          18.5,
           24.21828375757166
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -565,34 +712,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -603,24 +768,24 @@
     },
     {
       "path": "shots/shared/four-copper-helmets.png",
-      "hash": "sha256:c7a26d64b158e545375ffe751b6e6f652631b42fb9198834700aa46cce01930e",
+      "hash": "sha256:42c9ddba970c5435ee528d99e77351c35ee985be6729f9f601145e6e1ea830a4",
       "camera": {
         "name": "four-copper-helmets",
         "position": [
           -10.78107641263967,
-          64,
+          64.5,
           100.66662004549883
         ],
         "lookAt": [
           0,
-          25,
+          25.5,
           0
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -632,34 +797,52 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
@@ -670,24 +853,24 @@
     },
     {
       "path": "shots/shared/western-timber-approach.png",
-      "hash": "sha256:99d709593e4e52bdef2b2342de9c2b346dc45b508fdd53fa5c1e50803d8cad27",
+      "hash": "sha256:415d62db20cf8a45d5d93880d2c2f128f5ef641e2c1217ce082b0b8d0e20dec0",
       "camera": {
         "name": "western-timber-approach",
         "position": [
           -110.71408087504598,
-          12,
+          12.5,
           -52.38694776367275
         ],
         "lookAt": [
           -53.16718028000944,
-          6,
+          6.5,
           -39.22054233527343
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0296_kalmar_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
         "position": [
           0,
           0,
@@ -699,39 +882,133 @@
         "bounds": {
           "min": [
             -111.14054870605469,
-            0.30000001192092896,
+            -4.825041770935059,
             -120.78579711914062
           ],
           "max": [
             103.81574249267578,
-            49.5,
+            50,
             107.46282958984375
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "8f7cc8b7-adfd-42ca-ba1c-9ddafdbd31e9",
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "9c847ae1-0fde-42ce-9178-5a7a6e014da3",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "65873f8b-583f-455a-afa5-b2095cbc3762",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "caa76e7f-1d6d-4937-a337-e962c42a7598",
-          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "513713d1-0859-424d-881c-5ad5fde62d0c",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "ed83652a-1237-4f22-ba4e-f449ddc8bfad"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
         },
         "loads": [
           "molen.worldgen.structure.n0296_kalmar_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_standing_seam": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
+        "renderedTriangles": 9635
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:ee7f944f0876d9ea37a35e0bbb146599dda5a27b7a660d1dd822ab84686470e5",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0296_kalmar_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0296",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 9633,
+        "bounds": {
+          "min": [
+            -111.14054870605469,
+            -4.825041770935059,
+            -120.78579711914062
+          ],
+          "max": [
+            103.81574249267578,
+            50,
+            107.46282958984375
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "c60cd102-bdd2-4374-a81b-36166207a102",
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "6095fa02-7e28-4230-a132-abfd7268658d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "df2824a3-0e6f-49e2-ace6-27cfeee4f144",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "7ab95a07-202a-4cd8-bbaa-6884c44c6d9c",
+          "worldgen:matgraph:molen.worldgen.material.metal_standing_seam": "7daaf462-7867-4b6f-8357-30ce44e3de1c",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "b3912505-c8f0-4e10-bf3a-4ef59e3cb558"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0296_kalmar_castle"
+        ],
+        "selectionBounds": [
+          16.353333537484122,
+          56.65684739989955,
+          16.35751756051588,
+          56.6591470870271
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0296",
+            "coordinate": [
+              16.355425549,
+              56.657997261
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0296"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 10,
         "renderedTriangles": 9635
       }
     }

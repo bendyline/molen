@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0285_corvin_castle",
-  "sourceHash": "sha256:4a40af1bb4f94a1349e8c0ccb4c02633956382953d69733285d014fb60b676d3",
-  "runtimeHash": "sha256:c7b02a6a3d8cdbcdb54f08ba6d6c4e0c416f70ddb316301a587954d1f576c183",
-  "fixtureHash": "sha256:4bd02cf3d45bf8190334b21c7149e3bc6ff9e195e047d08614adfc48b37b9560",
+  "sourceHash": "sha256:27175a017af5e99ded045e07fe522210cf1587612c4d5560a707ac3c02cf5eb6",
+  "runtimeHash": "sha256:0dadead329384eb47100c8f087bcab4f2fed03ae52b85aa9bb5941a5e7c7a2ed",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,817 +23,1122 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 11646,
+  "neighborTriangles": 4556,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:c9bc5792dff27bab3a61622903764cd27299b4bdedc4f405fb8f0435ca8c78d9",
-      "bytes": 70712,
-      "gzipBytes": 15802,
+      "hash": "sha256:0b0872c101ba4172b547d5f72ec7572cef1faa9c3d3ee0a01e1c90e4eb6322c6",
+      "bytes": 85576,
+      "gzipBytes": 13681,
       "triangles": 862,
-      "cpuBytes": 69324,
-      "gpuBytes": 69324,
+      "cpuBytes": 84156,
+      "gpuBytes": 84156,
       "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:831597d2abd0a1d8df876ea384d0e71bf4553157c6f4e28e8320a3f3336fbd81",
-      "bytes": 99312,
-      "gzipBytes": 23276,
+      "hash": "sha256:7d63bbea4750e8daac7fb95a0345dd5ee0d0096629b93f8ccc8c513b78f5e5f7",
+      "bytes": 101988,
+      "gzipBytes": 24649,
       "triangles": 1152,
-      "cpuBytes": 92304,
-      "gpuBytes": 92304,
-      "errorMeters": 1.5,
+      "cpuBytes": 94752,
+      "gpuBytes": 94752,
+      "errorMeters": 0.7,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:d0b90bcdb25f3f8d5434d04e201a2a01e09692a3cd7449734a25b1fe010f8e4e",
-      "bytes": 215284,
-      "gzipBytes": 51823,
+      "hash": "sha256:8990906c3e080a0c2744e5b336fe292247b42c30fe6463bf34869a13a263e5c0",
+      "bytes": 241332,
+      "gzipBytes": 56016,
       "triangles": 2868,
-      "cpuBytes": 208224,
-      "gpuBytes": 208224,
-      "errorMeters": 0.5,
+      "cpuBytes": 234072,
+      "gpuBytes": 234072,
+      "errorMeters": 0.3,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:8cff5c6158717c548539bd90de925cb5b736cf59122a94410244ea1fc6b49528",
-      "bytes": 486204,
-      "gzipBytes": 100585,
+      "hash": "sha256:5c43586b0f424a47ace3aab22f8145a5e697281cad3a4dab5a8d6b5c49785a9a",
+      "bytes": 512324,
+      "gzipBytes": 104705,
       "triangles": 5936,
-      "cpuBytes": 479136,
-      "gpuBytes": 479136,
-      "errorMeters": 0.15,
+      "cpuBytes": 505056,
+      "gpuBytes": 505056,
+      "errorMeters": 0.1,
       "drawCalls": 6
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:ffa1ed2c21dd0516e147c8a937f37da010b4e07a25235bcbe303f08e62036a64"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:34d2d21b95434ea038893770ab90c411487d4df890caf65cddf4f67e5c86498c"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:558a02d06a73e9cedb7dfbbed31c56cee0310836793fa4a084b8b314837ea5bd",
+      "hash": "sha256:3165c178f98e6c86c20861982ea82e0f12f3b93792fb2a9dff5a8c38ef9014e0",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          84,
-          45.5,
-          145.25
+          85.3025,
+          62.7816,
+          115.845
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:6500c000acf0fb5d9b199c607c22a546b3278d0ecc94808a311607588bbbbd36",
+      "hash": "sha256:e0e058a773da073caefe7165c8e7b3f2f7ef96b28d7220d8b7392cbd5f9a5f01",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          84,
-          45.5,
-          145.25
+          85.3025,
+          62.7816,
+          115.845
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:e933f1996fdf6382b2f8cbd4962c31a4747c90cad69982212ce3ef6f25083969",
+      "hash": "sha256:f8794896440d20ce43d79d2daa2964a206ea8c67d1822fc43db8f0995dbc7c4c",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          84,
-          45.5,
-          145.25
+          85.3025,
+          62.7816,
+          115.845
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:64f58c35f8b4c929b40063c78cb10d040e0eed90da030b197795ad7d37a5d54b",
+      "hash": "sha256:f991b45c23dda2c12bbae1992e4965cd9ea1ee2708f72f1290a77f83ade9447d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          84,
-          45.5,
-          145.25
+          85.3025,
+          62.7816,
+          115.845
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:b7591dd17bb71991c0ced2b003fe947734ee4dabef637bf4c4e30679b407dcee",
+      "hash": "sha256:19a01e4d98acb51c82dff0cee63578ac27f0bffbd6c38acca1be6a7532999721",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 12800,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58190,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:f7e3e72aa8638986af07788e6e66346d879a6ed00aab8ac961986953e0408058",
+      "hash": "sha256:48c6243da2d4285999b854f4a55c3e4afcfe7268425fc8675b515f608a1055e9",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 12800,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58190,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:06e23bdba825642d4c23d5e09301e50cc752aee922c8e965c23cda6590ce4266",
+      "hash": "sha256:8106d27e245e8f6515356bdb0bb1d4cedc55aac12f05ee680d43a984af77fdd0",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 12800,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58190,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:e35d5948eefaf9e9e118b7c1a5e09844fd056abb22eba25e9cd7eb050a031e3b",
+      "hash": "sha256:adb966547655b86405bad106fc09e5aa9c4e61d542612ef78eaa9401bb9b5b84",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 12800,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58190,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:48f5e6074c0dfb0709f28608b3b4dda81d97849b19f72e7458f8983f41ae6eaf",
+      "hash": "sha256:1887b013a44e9f15dc839e8b2e7009602c932c47ad9310145ed86cd0f2537a80",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 12510,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57900,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          339.5,
-          175,
-          588
+          340.8025,
+          192.2816,
+          558.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:3a79519155dff30c67b2d5de103dc72b4fdc6c8a53342be4dad84d51f90049df",
+      "hash": "sha256:8804b9750003463a272d9ecd58887ad5a2512ae24e30bdf9d44444cb487ac44c",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 12510,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57900,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          339.5,
-          175,
-          588
+          340.8025,
+          192.2816,
+          558.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:f8ef15dd69c23ecc127cb20a25713c5fa16716e0c9884bd7e148cef13bde26c7",
+      "hash": "sha256:50ef09fe25ca19f15e21d7b9f000ba8feafe115a9b958bdbad758fe69855dedc",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 12510,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57900,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          339.5,
-          175,
-          588
+          340.8025,
+          192.2816,
+          558.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:f2d649873037fe149b0a349edff603f5422a3e9fc89cc117a156fddcc5c3b4e2",
+      "hash": "sha256:589559390da712ac6d2a03f5bff81b7d15604e298efe8d948cd7465e1c439989",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 12510,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57900,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          339.5,
-          175,
-          588
+          340.8025,
+          192.2816,
+          558.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:72299226c31161cb6d185746ea40cd3cf4316d106dabbb1d997dc586fe5a7229",
+      "hash": "sha256:2091b263284fb9c2bf44610fae6d968cbaf9b5043fc369555c80ecd5cd0b04da",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 864,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53344,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          339.5,
-          175,
-          588
+          340.8025,
+          192.2816,
+          558.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/bridge-gate-and-painted-tower.png",
-      "hash": "sha256:c2eb989ec9fd5b02e46c2845c7dd14186033549b94b6ecbc131e9a24c252f7f2",
+      "hash": "sha256:e0245aa6618ab9c05c7eafbb4cef55bf3f027fa4105bdc58a957cf677782f9bf",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
           104,
-          52,
+          52.8,
           -125
         ],
         "lookAt": [
           31,
-          24,
+          24.8,
           -20
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/gothic-palace-four-oriels.png",
-      "hash": "sha256:4898099116b2b923acbd8c0562b349adf492be8f93ffab718453ffb9fd288770",
+      "hash": "sha256:d4cfbf9d7ccc4d4dda813b4608a8fd3bef60fbb22d4bdbb5b5371823b936e1cd",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17580,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 62970,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
           -16,
-          38,
+          38.8,
           -79
         ],
         "lookAt": [
           5,
-          24,
+          24.8,
           -23
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/neboisa-open-gallery.png",
-      "hash": "sha256:0b5e8b5a4c5f3fcc307eeaaf07af1b5a51b699258f8961a87dafe2e354648e0f",
+      "hash": "sha256:69a755e8bd25a6260babc9208b19ae52138a248508209c9a922a6a3d58cf33ec",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
           -95,
-          37,
+          37.8,
           -63
         ],
         "lookAt": [
           -35,
-          16,
+          16.8,
           -21
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/courtyard-two-level-loggia.png",
-      "hash": "sha256:a1fb9632832ebbd1e1e26ba6e17acb2cb0765c8ff24413243984acafe82f861c",
+      "hash": "sha256:8e2310fc222b2c3f30a7acc76eb26865149a17dee89dd6e7956f237468a199c9",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17580,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 62970,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
           8,
-          29,
+          29.8,
           8
         ],
         "lookAt": [
           4,
-          15,
+          15.8,
           -14
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/chapel-and-white-tower.png",
-      "hash": "sha256:5fb890049a80bfc091ba173be1a39b4a6122045becd8858fcc9b4e1ae48a4c91",
+      "hash": "sha256:99f06ea12ffcc9978e5cf1354f567e171016844913f3f0778d1f857458111a2c",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
           52,
-          55,
+          55.8,
           90
         ],
         "lookAt": [
           10,
-          24,
+          24.8,
           18
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/roofline-and-open-court.png",
-      "hash": "sha256:665e5f803e7be0dda8a2ebfdd38e97c59e363d609b09451725c81832d0e3b59c",
+      "hash": "sha256:59ed7c1e9725065b7d8869940018701ff635a60356d4aaa62cc761ec4e53a9a4",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
           60,
-          93,
+          93.8,
           72
         ],
         "lookAt": [
           12,
-          21,
+          21.8,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-corvin-skyline.png",
+      "hash": "sha256:ce36ee77e94ccf1c761ce11e2a8ffe7f17f3df97fe3de0ab12abccc1250b9a9f",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57900,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          105,
+          155
+        ],
+        "lookAt": [
+          0,
+          17,
+          -22
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-corvin-district.png",
+      "hash": "sha256:023ffae7c971775184e0d275602db54f6db300b1c116753d5ce32bd77c63f86b",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 58190,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          105,
+          155
+        ],
+        "lookAt": [
+          0,
+          17,
+          -22
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-corvin-street.png",
+      "hash": "sha256:f61bb02cc45a3677e3e86fade0fb6175c5ae95ba0df95475999189f1f0b2405f",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59906,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          105,
+          155
+        ],
+        "lookAt": [
+          0,
+          17,
+          -22
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-corvin-closeup.png",
+      "hash": "sha256:71e1d49dcf4c91be4dee62a2088b4d86c9567f05365f21cb181dc3f4f4d294f2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
+        "position": [
+          155,
+          105,
+          155
+        ],
+        "lookAt": [
+          0,
+          17,
+          -22
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:d36538d77374985056288ec36d3547e3758409793ba4f6437ad7bf719e6bc45c",
+      "hash": "sha256:b2f4ebc98313a6bacbbd98916a207e2b891c28fa878500e2e22891610f9c626d",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 12510,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57900,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:f7e3e72aa8638986af07788e6e66346d879a6ed00aab8ac961986953e0408058",
+      "hash": "sha256:48c6243da2d4285999b854f4a55c3e4afcfe7268425fc8675b515f608a1055e9",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 12800,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 58190,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:c0c36332f0e0583b303a99dd6b82d67f7bbab4d8ab389fbf9c8e14597989b44e",
+      "hash": "sha256:573498db57ec3d4c7416036e53982724d3786263253f380abc79a509150f2aa7",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 14516,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 59906,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:37465616ad4b9734d61d76d59baefcce043a8a6ff7cf266c3e6a9fbd5b363220",
+      "hash": "sha256:811bab0fcdf375ac022eb4d02d63a9859b5071ff770db593b3a402e16ea3524d",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17584,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 62974,
+        "groundY": -22,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u8/u80/n0285_corvin_castle/terrain-review.height.png"
+        },
         "position": [
-          169.75,
-          108.5,
-          294
+          171.0525,
+          125.7816,
+          264.595
         ],
         "lookAt": [
-          0,
-          19.25,
-          0
+          1.3025,
+          36.5316,
+          -29.405
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
-        "contextScale": 1.75
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 1.75,
+        "reflections": "sky-pmrem"
       }
     }
   ],

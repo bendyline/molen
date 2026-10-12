@@ -1,0 +1,458 @@
+{
+  "format": "molen/matgraph@1",
+  "size": [256, 256],
+  "seed": 226,
+  "alphaCoverage": true,
+  "nodes": [
+    { "id": "u", "type": "gradient", "params": { "kind": "linear", "angleDeg": 0 } },
+    { "id": "v", "type": "gradient", "params": { "kind": "linear", "angleDeg": 90 } },
+    { "id": "inv-u", "type": "invert", "input": "u", "params": {} },
+    { "id": "inv-v", "type": "invert", "input": "v", "params": {} },
+    {
+      "id": "grid-0",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.010825317547305483, "color": "#ffffff" },
+          { "t": 0.01299038105676658, "color": "#000000" },
+          { "t": 0.48700961894323347, "color": "#000000" },
+          { "t": 0.4891746824526945, "color": "#ffffff" },
+          { "t": 0.5108253175473055, "color": "#ffffff" },
+          { "t": 0.5129903810567665, "color": "#000000" },
+          { "t": 0.9870096189432335, "color": "#000000" },
+          { "t": 0.9891746824526945, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "grid-projection-1",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.25000000000000006 }
+    },
+    {
+      "id": "grid-1",
+      "type": "ramp",
+      "input": "grid-projection-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.005412658773652646, "color": "#ffffff" },
+          { "t": 0.006495190528383175, "color": "#000000" },
+          { "t": 0.24350480947161662, "color": "#000000" },
+          { "t": 0.24458734122634715, "color": "#ffffff" },
+          { "t": 0.25541265877365266, "color": "#ffffff" },
+          { "t": 0.25649519052838315, "color": "#000000" },
+          { "t": 0.4935048094716166, "color": "#000000" },
+          { "t": 0.4945873412263472, "color": "#ffffff" },
+          { "t": 0.5054126587736526, "color": "#ffffff" },
+          { "t": 0.5064951905283832, "color": "#000000" },
+          { "t": 0.7435048094716167, "color": "#000000" },
+          { "t": 0.7445873412263472, "color": "#ffffff" },
+          { "t": 0.7554126587736526, "color": "#ffffff" },
+          { "t": 0.7564951905283832, "color": "#000000" },
+          { "t": 0.9935048094716167, "color": "#000000" },
+          { "t": 0.9945873412263471, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "grid-projection-2",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.25000000000000006 }
+    },
+    {
+      "id": "grid-2",
+      "type": "ramp",
+      "input": "grid-projection-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.005412658773652742, "color": "#ffffff" },
+          { "t": 0.00649519052838329, "color": "#000000" },
+          { "t": 0.24350480947161673, "color": "#000000" },
+          { "t": 0.24458734122634726, "color": "#ffffff" },
+          { "t": 0.25541265877365277, "color": "#ffffff" },
+          { "t": 0.25649519052838327, "color": "#000000" },
+          { "t": 0.49350480947161673, "color": "#000000" },
+          { "t": 0.49458734122634723, "color": "#ffffff" },
+          { "t": 0.5054126587736527, "color": "#ffffff" },
+          { "t": 0.5064951905283833, "color": "#000000" },
+          { "t": 0.7435048094716167, "color": "#000000" },
+          { "t": 0.7445873412263473, "color": "#ffffff" },
+          { "t": 0.7554126587736527, "color": "#ffffff" },
+          { "t": 0.7564951905283833, "color": "#000000" },
+          { "t": 0.9935048094716167, "color": "#000000" },
+          { "t": 0.9945873412263473, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-lines-0-0",
+      "type": "ramp",
+      "input": "inv-u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.0062500000000000056, "color": "#ffffff" },
+          { "t": 0.007499999999999984, "color": "#000000" },
+          { "t": 0.3258333333333333, "color": "#000000" },
+          { "t": 0.3270833333333333, "color": "#ffffff" },
+          { "t": 0.3395833333333333, "color": "#ffffff" },
+          { "t": 0.34083333333333327, "color": "#000000" },
+          { "t": 0.6591666666666667, "color": "#000000" },
+          { "t": 0.6604166666666665, "color": "#ffffff" },
+          { "t": 0.6729166666666666, "color": "#ffffff" },
+          { "t": 0.6741666666666667, "color": "#000000" },
+          { "t": 0.9925, "color": "#000000" },
+          { "t": 0.99375, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-extent-0-0",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.3441586508806388, "color": "#ffffff" },
+          { "t": 0.3463237143900999, "color": "#000000" },
+          { "t": 0.6536762856098999, "color": "#000000" },
+          { "t": 0.655841349119361, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-0-0",
+      "type": "blend",
+      "inputs": { "a": "median-lines-0-0", "b": "median-extent-0-0" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "median-lines-0-1",
+      "type": "ramp",
+      "input": "inv-u",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.15916666666666673, "color": "#000000" },
+          { "t": 0.1604166666666667, "color": "#ffffff" },
+          { "t": 0.17291666666666672, "color": "#ffffff" },
+          { "t": 0.1741666666666667, "color": "#000000" },
+          { "t": 0.4925, "color": "#000000" },
+          { "t": 0.49374999999999997, "color": "#ffffff" },
+          { "t": 0.50625, "color": "#ffffff" },
+          { "t": 0.5075, "color": "#000000" },
+          { "t": 0.8258333333333333, "color": "#000000" },
+          { "t": 0.8270833333333333, "color": "#ffffff" },
+          { "t": 0.8395833333333333, "color": "#ffffff" },
+          { "t": 0.8408333333333333, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "median-extent-0-1",
+      "type": "ramp",
+      "input": "v",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.15367628560990004, "color": "#000000" },
+          { "t": 0.15584134911936115, "color": "#ffffff" },
+          { "t": 0.8441586508806386, "color": "#ffffff" },
+          { "t": 0.8463237143900997, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "median-0-1",
+      "type": "blend",
+      "inputs": { "a": "median-lines-0-1", "b": "median-extent-0-1" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "median-normal-1",
+      "type": "blend",
+      "inputs": { "a": "inv-u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.5000000000000001 }
+    },
+    {
+      "id": "median-tangent-1",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.24999999999999994 }
+    },
+    {
+      "id": "median-lines-1-0",
+      "type": "ramp",
+      "input": "median-normal-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.1591666666666666, "color": "#000000" },
+          { "t": 0.1604166666666666, "color": "#ffffff" },
+          { "t": 0.1729166666666666, "color": "#ffffff" },
+          { "t": 0.17416666666666658, "color": "#000000" },
+          { "t": 0.49249999999999994, "color": "#000000" },
+          { "t": 0.4937499999999999, "color": "#ffffff" },
+          { "t": 0.50625, "color": "#ffffff" },
+          { "t": 0.5075, "color": "#000000" },
+          { "t": 0.8258333333333333, "color": "#000000" },
+          { "t": 0.8270833333333333, "color": "#ffffff" },
+          { "t": 0.8395833333333333, "color": "#ffffff" },
+          { "t": 0.8408333333333333, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "median-extent-1-0",
+      "type": "ramp",
+      "input": "median-tangent-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.17207932544031943, "color": "#ffffff" },
+          { "t": 0.17316185719504998, "color": "#000000" },
+          { "t": 0.32683814280495005, "color": "#000000" },
+          { "t": 0.32792067455968055, "color": "#ffffff" },
+          { "t": 0.6720793254403195, "color": "#ffffff" },
+          { "t": 0.67316185719505, "color": "#000000" },
+          { "t": 0.82683814280495, "color": "#000000" },
+          { "t": 0.8279206745596805, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-1-0",
+      "type": "blend",
+      "inputs": { "a": "median-lines-1-0", "b": "median-extent-1-0" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "median-lines-1-1",
+      "type": "ramp",
+      "input": "median-normal-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.006249999999999948, "color": "#ffffff" },
+          { "t": 0.007499999999999926, "color": "#000000" },
+          { "t": 0.32583333333333325, "color": "#000000" },
+          { "t": 0.3270833333333333, "color": "#ffffff" },
+          { "t": 0.3395833333333333, "color": "#ffffff" },
+          { "t": 0.34083333333333327, "color": "#000000" },
+          { "t": 0.6591666666666666, "color": "#000000" },
+          { "t": 0.6604166666666665, "color": "#ffffff" },
+          { "t": 0.6729166666666666, "color": "#ffffff" },
+          { "t": 0.6741666666666667, "color": "#000000" },
+          { "t": 0.9924999999999999, "color": "#000000" },
+          { "t": 0.99375, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-extent-1-1",
+      "type": "ramp",
+      "input": "median-tangent-1",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.07683814280495004, "color": "#000000" },
+          { "t": 0.07792067455968059, "color": "#ffffff" },
+          { "t": 0.4220793254403194, "color": "#ffffff" },
+          { "t": 0.42316185719504995, "color": "#000000" },
+          { "t": 0.57683814280495, "color": "#000000" },
+          { "t": 0.5779206745596805, "color": "#ffffff" },
+          { "t": 0.9220793254403193, "color": "#ffffff" },
+          { "t": 0.92316185719505, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "median-1-1",
+      "type": "blend",
+      "inputs": { "a": "median-lines-1-1", "b": "median-extent-1-1" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "median-normal-2",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "v" },
+      "params": { "mode": "mix", "factor": 0.5000000000000001 }
+    },
+    {
+      "id": "median-tangent-2",
+      "type": "blend",
+      "inputs": { "a": "u", "b": "inv-v" },
+      "params": { "mode": "mix", "factor": 0.24999999999999994 }
+    },
+    {
+      "id": "median-lines-2-0",
+      "type": "ramp",
+      "input": "median-normal-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.00625, "color": "#ffffff" },
+          { "t": 0.0075, "color": "#000000" },
+          { "t": 0.32583333333333336, "color": "#000000" },
+          { "t": 0.32708333333333334, "color": "#ffffff" },
+          { "t": 0.33958333333333335, "color": "#ffffff" },
+          { "t": 0.3408333333333333, "color": "#000000" },
+          { "t": 0.6591666666666667, "color": "#000000" },
+          { "t": 0.6604166666666667, "color": "#ffffff" },
+          { "t": 0.6729166666666667, "color": "#ffffff" },
+          { "t": 0.6741666666666667, "color": "#000000" },
+          { "t": 0.9925, "color": "#000000" },
+          { "t": 0.99375, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-extent-2-0",
+      "type": "ramp",
+      "input": "median-tangent-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.07683814280494998, "color": "#000000" },
+          { "t": 0.07792067455968053, "color": "#ffffff" },
+          { "t": 0.42207932544031934, "color": "#ffffff" },
+          { "t": 0.42316185719504995, "color": "#000000" },
+          { "t": 0.57683814280495, "color": "#000000" },
+          { "t": 0.5779206745596804, "color": "#ffffff" },
+          { "t": 0.9220793254403193, "color": "#ffffff" },
+          { "t": 0.92316185719505, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "median-2-0",
+      "type": "blend",
+      "inputs": { "a": "median-lines-2-0", "b": "median-extent-2-0" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "median-lines-2-1",
+      "type": "ramp",
+      "input": "median-normal-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#000000" },
+          { "t": 0.15916666666666665, "color": "#000000" },
+          { "t": 0.16041666666666668, "color": "#ffffff" },
+          { "t": 0.1729166666666667, "color": "#ffffff" },
+          { "t": 0.1741666666666667, "color": "#000000" },
+          { "t": 0.4925, "color": "#000000" },
+          { "t": 0.49374999999999997, "color": "#ffffff" },
+          { "t": 0.50625, "color": "#ffffff" },
+          { "t": 0.5075, "color": "#000000" },
+          { "t": 0.8258333333333334, "color": "#000000" },
+          { "t": 0.8270833333333334, "color": "#ffffff" },
+          { "t": 0.8395833333333335, "color": "#ffffff" },
+          { "t": 0.8408333333333334, "color": "#000000" },
+          { "t": 1, "color": "#000000" }
+        ]
+      }
+    },
+    {
+      "id": "median-extent-2-1",
+      "type": "ramp",
+      "input": "median-tangent-2",
+      "params": {
+        "stops": [
+          { "t": 0, "color": "#ffffff" },
+          { "t": 0.17207932544031934, "color": "#ffffff" },
+          { "t": 0.1731618571950499, "color": "#000000" },
+          { "t": 0.32683814280495, "color": "#000000" },
+          { "t": 0.32792067455968055, "color": "#ffffff" },
+          { "t": 0.6720793254403193, "color": "#ffffff" },
+          { "t": 0.6731618571950498, "color": "#000000" },
+          { "t": 0.82683814280495, "color": "#000000" },
+          { "t": 0.8279206745596804, "color": "#ffffff" },
+          { "t": 1, "color": "#ffffff" }
+        ]
+      }
+    },
+    {
+      "id": "median-2-1",
+      "type": "blend",
+      "inputs": { "a": "median-lines-2-1", "b": "median-extent-2-1" },
+      "params": { "mode": "multiply", "factor": 1 }
+    },
+    {
+      "id": "union-0",
+      "type": "blend",
+      "inputs": { "a": "grid-0", "b": "grid-1" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-1",
+      "type": "blend",
+      "inputs": { "a": "grid-2", "b": "median-0-0" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-2",
+      "type": "blend",
+      "inputs": { "a": "median-0-1", "b": "median-1-0" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-3",
+      "type": "blend",
+      "inputs": { "a": "median-1-1", "b": "median-2-0" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-4",
+      "type": "blend",
+      "inputs": { "a": "union-0", "b": "union-1" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-5",
+      "type": "blend",
+      "inputs": { "a": "union-2", "b": "union-3" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-6",
+      "type": "blend",
+      "inputs": { "a": "union-4", "b": "union-5" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "union-7",
+      "type": "blend",
+      "inputs": { "a": "union-6", "b": "median-2-1" },
+      "params": { "mode": "add", "factor": 1 }
+    },
+    {
+      "id": "color",
+      "type": "ramp",
+      "input": "union-7",
+      "params": { "stops": [{ "t": 0, "color": "#eeeeee00" }, { "t": 1, "color": "#eeeeeeff" }] }
+    },
+    { "id": "rough", "type": "const", "params": { "value": 0.5 } },
+    { "id": "metal", "type": "const", "params": { "value": 0.1 } }
+  ],
+  "outputs": { "baseColor": "color", "roughness": "rough", "metalness": "metal" }
+}

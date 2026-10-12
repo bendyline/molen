@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0022_dragon_river_bridge",
-  "inputHash": "sha256:6511bb31116bec4e2734262d415d5c444bab72d767c9e1c7e10e5549265d82aa",
-  "placementHash": "sha256:0a469844779dc221cb07efaf131457416404bfa6d8554d3721718daac3e55eed",
+  "inputHash": "sha256:a111d3d5103907e60d4db4a06a4fd5d1d45de6eacffff0f7c53f03d77f7b1f81",
+  "placementHash": "sha256:c62ff8be5bf9107e585c122d8afbf799f84a7c27123ecc9ade165c71affa8ca3",
   "entry": {
     "id": "next1000.n0022",
     "title": "Dragon Bridge, Da Nang",
@@ -19,11 +19,52 @@
       "wikidata": "Q5305270",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        108.2241767433691,
+        16.06103998225592
+      ],
+      "modelHeight": 7.2,
+      "basis": "Approximate west approach from standard viewer PMTiles."
+    },
+    "bounds": [
+      108.22430396466723,
+      16.06068552484029,
+      108.23077609108645,
+      16.061617845284754
+    ],
+    "replaceRoads": {
+      "length": 666,
+      "width": 35,
+      "outline": [
+        [
+          -333,
+          -17.5
+        ],
+        [
+          333,
+          -17.5
+        ],
+        [
+          333,
+          17.5
+        ],
+        [
+          -333,
+          17.5
+        ]
+      ],
+      "deckHeights": [
+        7.2,
+        10.9244
+      ],
+      "includeConnectedApproaches": true
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/694831926",
-    "note": "Exact mapped Q5305270/way694831926 gives axis, independently resolved east-facing dragon head. Published666m extent is shorter than coarse760.74m map polygon. Aerial support spacing gives provisional west-abutment offset9m from mapped start, shifting model origin38.3m west of polygon center. Vertical datum and approach fit remain pending. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "Inspected one elevated daytime picture: three yellow tube arches, folded scales, layered east-facing head, broad road deck and side promenades. Standard viewer PMTiles confirms the east/west crossing across Han River. Retain666m authored extent and the existing provisional38.3m westward origin correction; the coarse760.74m map polygon includes extra approaches and is not used to stretch the bridge. West/east PMTiles approaches4.0784/7.8028m give approximatebase-3.1216m and browser deck endpoints7.2/10.9244m; a5m rise between them is reconstructed. River surface0m and submerged pier bases are approximate. Exact tide, engineering vertical curve, terminal joins and head plate outlines remain unverified. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

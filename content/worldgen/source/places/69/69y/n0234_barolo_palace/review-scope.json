@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "brief": "H-plan palace with a through passage, repeated projecting bow windows, three-level green mansards, central bays and circular balconies, pointed tower arches, layered cornices, ribbed crown and glazed lighthouse.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z toward Hipólito Yrigoyen",
+    "front": "-Z toward Avenida de Mayo",
+    "origin": "Working parcel center at pavement datum, not a verified geographic anchor"
+  },
+  "sourceFacts": {
+    "plotWidthMeters": 30.88,
+    "plotDepthMeters": 44.21,
+    "passageWidthMeters": 7.5,
+    "passageHeightMeters": 13.5,
+    "ownerOverallHeightMeters": 100,
+    "municipalDomeHeightMeters": 86,
+    "ownerDomeHeightMeters": 90,
+    "nationalHeritageOverallHeightMeters": 103,
+    "cadastralParcel": "012-039-004",
+    "entrances": [
+      "Avenida de Mayo 1370",
+      "Hipólito Yrigoyen 1373"
+    ],
+    "originalMasterHash": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8",
+    "originalMasterRecipe": "packages/worldgen/scripts/barolo-palace-model.mjs#baroloPalaceStudy.encodeAssembly"
+  },
+  "reconstruction": {
+    "basis": "Original geometry reconstructed from owner front, mansard, tower and lantern photographs; municipal heritage book photo plates and H-plan description; rear photograph by Elsapucai; aerial photograph linked by El Ojo del Arte. Intermediate elevations, light-court dimensions, tower offset, mouldings and decorative motifs are approximate.",
+    "bodyRoofMeters": 40.1,
+    "mansardTopMeters": 52.4,
+    "towerCenterXZ": [
+      0,
+      -14
+    ],
+    "overallHeightChoiceMeters": 100
+  },
+  "limitations": [
+    "Original 49608172-byte instanced master is preserved and reproducible from the original baroloPalaceStudy.encodeAssembly (new optional runtime arch-relief switch does not change original master bytes), hash sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8, 870924 expanded /646738 stored triangles, four parts/116 placements and five material groups with three shared graphs and zero images. The new browser source uses the existing authored close-up reconstruction, reducing moulding/arch sampling and relief while retaining H-plan light courts, 7.5 m wide/13.5 m high through passage, repeated projecting bow bays, three-level green mansards, curved balconies, pointed arches, offset tower, ribbed crown and clear lighthouse. Skyline now retains passage and H-plan; district/street omit subpixel concentric arch-relief tubes while retaining arched glazing silhouettes to meet triangle budgets, close retains authored 62940-triangle facade. Owner 100 m overall height is retained; national 103 m overall and municipal 86 m/owner 90 m dome figures remain separate. Plot dimensions 30.88 by 44.21 m and passage dimensions follow the municipal book and owner. Intermediate elevations, bay profiles, mansard shape, tower center -14 m, court widths, ornament and lighthouse mechanism are photographic reconstructions, not measured drawings. Rear and light courts remain schematic; interiors, exact inscriptions/sculpture, shop signage and modern rooftop equipment are not modeled. Three canonical shared concrete, painted-metal and marble graphs plus opaque glazing and 52-percent clear lantern glazing give five groups with zero embedded images. Geographic registration remains unresolved: exact-QID OSM way 1386044833 spans about 60 m rather than the documented 30.88 m frontage; no stretch or footprint replacement is allowed. Official cadastral download was denied by automatic approval review; permission is pending. Physical-device performance measurements and terrain grade remain unmeasured."
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "marble": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "localRef": "palette:#feffff",
+      "opacity": 0.52,
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/barolo-runtime-model.mjs",
+    "export": "buildBaroloCloseup"
+  },
+  "sourceDocuments": [
+    "reference-metadata.json",
+    "review-scope.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/barolo-runtime-model.mjs",
+    "export": "buildBaroloReviewedSkyline",
+    "errorMeters": 7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBaroloDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildBaroloStreet",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-palacio",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ]
+    },
+    {
+      "name": "open-passage-street",
+      "position": [
+        0,
+        5,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        25
+      ]
+    },
+    {
+      "name": "open-h-plan-courts",
+      "position": [
+        55,
+        74,
+        35
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-barolo-skyline",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-barolo-district",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-barolo-street",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-barolo-closeup",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-passage-street",
+      "position": [
+        0,
+        5,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        25
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-h-plan-courts",
+      "position": [
+        55,
+        74,
+        35
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}
+

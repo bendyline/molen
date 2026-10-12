@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-349,299 triangles; 718,009 vertices; 9 material groups; 30,044,980 bytes. Native bounds: -87.832, 0.000, -44.520 to 89.028, 79.200, 44.520. Source hash: `sha256:5cb6e4124350dee11d4dd9368b9ae214494f141b73d15c7d050fcf08c45838e7`.
+43,413 triangles; 95,481 vertices; 8 material groups; 3,962,856 bytes. Native bounds: -87.832, -22.705, -44.520 to 81.763, 68.744, 46.246. Source hash: `sha256:e29f4d2b22153497ccfde330a25ed08ce2419d8e8960e1d470139252921c7b62`.
 
-{"up":"+Y","longitudinal":"+X east-southeast, 14.565 degrees south of east","front":"+X entrance; +Z south-southwest","origin":"Mapped enclosure anchor, provisional lower Eagle Gate height"}
+{"up":"+Y","longitudinal":"+X east-southeast, 14.565 degrees south of east","front":"+X entrance; +Z south-southwest","origin":"Signed enclosure anchor; Y0 decoded 835.9281 m numeric terrain working datum."}
 
-Draft placement; the 30 m relative entrance/court datum and ramp connections need topographic verification.
+Fresh exact-Q156457 enclosure way 93612350 v51 and 43 mapped parts use native +X ESE at 104.564815 degrees, +Z SSW at 194.564815 degrees, heading -0.254203978258. Several shared entrance nodes changed since the original source: up to 12.203 m nearest-vertex displacement is recorded as a map-version difference. The independent derivative uses fresh geometry; original evidence and recipe remain reproducible. Eagle and upper gate passage centers/bearings follow the mapped covered roads. Retained coarse numeric terrain has a 4225-value 4 m native grid and decoded anchor working datum 835.9281 m. One rigid -10.4563 m shift meets mapped approach grade +0.08 m; court is 19.5437 m above anchor. The 30 m relative entry-to-court rise remains a reconstruction supported by independent 825/855 map tags, not a connected vertical survey. Only the lowest owned entrance roads and Eagle gate use a 434.096-square-meter ground cut; its enclosed island retains sampled grade. Upper court and mountain remain uncut. Mapped structural skirts extend four meters below retained terrain.
 
 ## Reproduce
 
@@ -31,13 +31,16 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0252` (
 
 ## Pending work
 
-- Maximum fidelity pending: no as-built measured elevations were available. Palace heights, roof ridges, tower crowns, dormers, window modules and chapel details are architectural reconstructions from references.
-- The original 1854 elevations are design drawings rather than a current measured survey. The courtyard photograph is from 2005; the model excludes temporary modern scaffolding and does not claim a surveyed 2026 state.
-- Spiral road centerlines and covered layers are mapped, but ramp gradients, retaining wall thickness, vault shapes and gate clearances are estimated. Supporting skirts are provisional; actual rock contour, grade and terrain contact remain unfinished.
-- The forested mountain, distant water tower, parking buildings, vegetation/ivy, statuary, museum interiors and inaccessible casemates are outside this exterior asset.
-- Shared sandstone, raw limestone, limestone, granite, slate, wood and painted metal surfaces carry exterior materials; no embedded photographs. Procedural masonry joints and slate courses are approximations.
+- Original 349299-triangle / 30044980-byte master remains independently reproducible at sha256:5cb6e4124350dee11d4dd9368b9ae214494f141b73d15c7d050fcf08c45838e7 from hohenzollern-castle-model.mjs#hohenzollernStudy.build and unchanged original map-parts.json.
+- Fresh exact-Q156457 enclosure way 93612350 v51 and 43 mapped parts use native +X ESE at 104.564815 degrees, +Z SSW at 194.564815 degrees, heading -0.254203978258. Several shared entrance nodes changed since the original source: up to 12.203 m nearest-vertex displacement is recorded as a map-version difference. The independent derivative uses fresh geometry; original evidence and recipe remain reproducible. Eagle and upper gate passage centers/bearings follow the mapped covered roads. Retained coarse numeric terrain has a 4225-value 4 m native grid and decoded anchor working datum 835.9281 m. One rigid -10.4563 m shift meets mapped approach grade +0.08 m; court is 19.5437 m above anchor. The 30 m relative entry-to-court rise remains a reconstruction supported by independent 825/855 map tags, not a connected vertical survey. Only the lowest owned entrance roads and Eagle gate use a 434.096-square-meter ground cut; its enclosed island retains sampled grade. Upper court and mountain remain uncut. Mapped structural skirts extend four meters below retained terrain.
+- Coarse terrain does not resolve the sharp summit, bastion feet or covered spiral entrance; exact vertical datum, native resolution and vintage remain unverified.
+- One rigid shift puts the fresh mapped approach start 0.08 m above decoded grade. The existing 30 m relative court height is retained as an explicit reconstruction; independent map elevation tags 825 and 855 are not a connected survey.
+- Mapped structural skirts extend below sampled terrain. A narrow connected lowest-road and Eagle-gate ground cut clears only owned civil surfaces; upper court and mountain remain host terrain.
+- Accepted exterior scope includes the horseshoe palace, independent tower forms, two chapels, court, bastion enclosure and multilevel spiral entrance. The forested mountain, water tower, parking buildings, ivy, statuary, museum rooms and inaccessible casemates are separate scope.
+- Normal architecture follows the official illustrated plan, historic design elevations and courtyard photograph; temporary restoration scaffolding is omitted. These are not measured current elevations. Fine facade/window counts, gate body envelopes and vault shapes remain approximate.
+- Six reusable graphs provide granite, sandstone, limestone, timber, painted metal and slate. Carved trim shares sandstone with distinct tint; slate courses use the shared texture rather than copied roof geometry. Opaque PBR glass and garden tint have no images. Skyline bakes common linear means; physical phone/laptop timings remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

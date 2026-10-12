@@ -12,23 +12,24 @@
   },
   "visualBrief": "Restored Trakai compound with open trapezoidal forecourt,three cone-roof corner towers,arched entry tower,western casemate and separate open-court ducal palace with a tall gabled donjon,short wooden bridge and stone precinct.",
   "mediumFiContext": {
-    "scale": "1.25",
+    "groundY": -3,
+    "scale": 1.25,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     122.69164276123047,
-    33,
+    36.45505475997925,
     130.9732437133789
   ],
   "actualBounds": {
     "min": [
       -34.386085510253906,
-      0,
+      -2.155055522918701,
       -24
     ],
     "max": [
       88.30555725097656,
-      33,
+      34.29999923706055,
       106.9732437133789
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "longitudinal": "+Z southwest toward forecourt and approach;palace side wings lie along Z",
     "lateral": "+X southeast across palace wings",
-    "origin": "Cached palace map-frame center;not whole-compound center;provisional flat groundY0"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "relation/3111261 exact Q1482013 palace multipolygon only",
@@ -50,7 +51,9 @@
       "depth": 9.6,
       "height": 33
     },
-    "forecourtMetricSurvey": false
+    "forecourtMetricSurvey": false,
+    "originalMasterHash": "sha256:a5927908ae27efecc59d9de106e657b50977b4ed0a7f23623d906c92abc75da1",
+    "originalMasterRecipe": "packages/worldgen/scripts/trakai-castle-model.mjs#buildTrakaiRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -69,13 +72,13 @@
       "Three faceted red-tile cone towers and square arched entrance",
       "Open trapezoidal forecourt with long western casemate",
       "Separate U-shaped palace,tall gabled donjon and connecting bridge"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Exact cached palace footprint/courtyard,museum tower dimensions,primary2023 archaeological site plan and current official municipal aerial/approach photos. Forecourt shape and component controls are interpretive traces.",
-    "heightDatum": "33m donjon follows documented planned historical height,not a new restored-tower survey. Other tower radii/heights,casemate elevations,roofs,wallwalks,bridge and attachment levels are inferred.",
-    "scope": "Restored palace with open inner court,tall donjon,trapezoidal open forecourt,three corner towers,entry tower,western casemate,curtains,palace precinct and short connecting bridge. No lake/island terrain,long shore approach bridge,trees,boats,interiors or modern temporary works.",
-    "registration": "Exact cached relation covers palace only. Whole-compound pixel trace is approximately scaled and visually aligned,not georeferenced component-by-component. Direction,terrain,moat,bridge levels and replacement fit pending;inactive draft."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://trakaimuziejus.lt/en/apie-mus/salos_pilis/",
@@ -85,8 +88,8 @@
     "https://www.openstreetmap.org/relation/3111261"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive geographic draft;review pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       24.934056788,
       54.652709433
@@ -105,7 +108,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Cached palace frame and approximate whole-castle trace;forecourt registration,restored heights,moat/bridge levels,terrain and direction require real-site review."
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the separate palace/gabled donjon, open trapezoidal forecourt, three cone-capped corners, entrance tower and long casemate. Standard viewer PMTiles and the retained palace/courtyard outline establish approximate island location and forecourt approach sign. The mapped relation covers the palace only; whole-compound alignment remains an exterior estimate. A reconstructed1.3m working court clears the coarse island ground and bounded foundations extend beneath samples; short connecting bridge retained at its inferred level. Anchor 24.934056788,54.652709433; heading -1.112277445339; standard PMTiles datum 145.11330053210258m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms the separate palace/gabled donjon, open trapezoidal forecourt, three cone-capped corners, entrance tower and long casemate. Standard viewer PMTiles and the retained palace/courtyard outline establish approximate island location and forecourt approach sign. The mapped relation covers the palace only; whole-compound alignment remains an exterior estimate. A reconstructed1.3m working court clears the coarse island ground and bounded foundations extend beneath samples; short connecting bridge retained at its inferred level. Anchor 24.934056788,54.652709433; heading -1.112277445339; standard PMTiles datum 145.11330053210258m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        24.934056788,
+        54.652709433
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Mapped palace38.019×35.269m;primary archaeological site-plan forecourt trace at50/135m per pixel. Donjon9.2×9.6m/33m is a documented historical plan,not current as-built survey. Other dimensions are photo-based estimates.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -154,25 +167,24 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Mapped relation3111261 is only the ducal palace. Whole compound is not represented by that38×35m footprint. Forecourt uses sparse primary-plan pixel trace at50/135m per pixel,visually aligned to the palace,not a current metric survey.",
-    "Museum and archaeological paper describe planned historical donjon9.2×9.6m and33m height. The restored tower may differ;33m roof ridge is an authoring interpretation. All other roof heights,radii,wall levels,openings and buttresses are inferred from photos.",
-    "Aerial reference contains excavation overlays and temporary works;these do not ship as textures or structures. Photograph lighting is not baked into materials.",
-    "FlatY0 does not model island,moat or lake levels. Short connecting bridge is approximate;long public shore bridge,island terrain,trees,boats,interiors and temporary works excluded.",
-    "Geographic orientation,compound registration,terrain seating and footprint replacement require in-world review. Inactive draft,replaceFootprint=false. Synthetic context neighbors and flat ground do not verify real Trakai terrain.",
-    "Four shared256² graphs supply brick,granite,ceramic tile and plain wood;blue-grey glass is untextured. Research remains linked evidence only. Fine stone joints,carvings,balusters,glazing bars and wires omitted.",
-    "Physical laptop/phone timings and continuous-motion LOD shimmer remain unmeasured."
+    "Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed architectural master/recipe preserved; derivative fits working courts and bounded foundation bottoms.",
+    "Palace/gabled donjon, three red cone roofs, entry passage, open forecourt, casemate, timber gallery and short connecting bridge retain identity. Fine openings and roof/bridge levels reconstructed.",
+    "Mapped relation is palace only; forecourt placement is approximate and footprint replacement remains off.",
+    "Lake/island terrain, long public shore bridge, trees, boats, excavation overlays, temporary structures and interiors excluded.",
+    "Four common material graphs and local opaque glass; zero embedded images. Physical-device timing pending."
   ],
   "qaCameras": [
     {
       "name": "three-cones-and-entry",
       "position": [
         137,
-        26,
+        27.3,
         157
       ],
       "lookAt": [
         49,
-        11,
+        12.3,
         64
       ]
     },
@@ -180,12 +192,12 @@
       "name": "palace-donjon",
       "position": [
         67,
-        28,
+        29.3,
         52
       ],
       "lookAt": [
         0,
-        19,
+        20.3,
         7
       ]
     },
@@ -193,12 +205,12 @@
       "name": "two-open-courts",
       "position": [
         22,
-        240,
+        241.3,
         37
       ],
       "lookAt": [
         22,
-        0,
+        1.3,
         37
       ]
     },
@@ -206,12 +218,12 @@
       "name": "entry-passage",
       "position": [
         90,
-        9,
+        10.3,
         116
       ],
       "lookAt": [
         56,
-        4,
+        5.3,
         82
       ]
     },
@@ -219,12 +231,12 @@
       "name": "palace-wood-gallery",
       "position": [
         0,
-        8.5,
+        9.8,
         2.5
       ],
       "lookAt": [
         -3.56,
-        8,
+        9.3,
         -3.7
       ]
     },
@@ -232,14 +244,195 @@
       "name": "moat-bridge-and-casemates",
       "position": [
         -56,
-        50,
+        51.3,
         27
       ],
       "lookAt": [
         3,
-        7,
+        8.3,
         37
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/trakai-runtime-model.mjs",
+    "export": "buildTrakaiReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/trakai-runtime-model.mjs",
+    "export": "buildTrakaiReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTrakaiReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildTrakaiReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTrakaiReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-trakai-skyline",
+      "position": [
+        165,
+        95,
+        190
+      ],
+      "lookAt": [
+        22,
+        15,
+        37
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-trakai-district",
+      "position": [
+        165,
+        95,
+        190
+      ],
+      "lookAt": [
+        22,
+        15,
+        37
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-trakai-street",
+      "position": [
+        165,
+        95,
+        190
+      ],
+      "lookAt": [
+        22,
+        15,
+        37
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-trakai-closeup",
+      "position": [
+        165,
+        95,
+        190
+      ],
+      "lookAt": [
+        22,
+        15,
+        37
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -250,7 +443,7 @@
     "triangles": 3386,
     "vertices": 10158,
     "materials": 5,
-    "bytes": 409548,
-    "sha256": "sha256:a5927908ae27efecc59d9de106e657b50977b4ed0a7f23623d906c92abc75da1"
+    "bytes": 409580,
+    "sha256": "sha256:c23a599e45316f02ed885efc96bb25d6303f04214547d440b6a68164026e5c97"
   }
 }

@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0284_dover_castle",
-  "sourceHash": "sha256:6f3aa14c0637ae25dbfb156d7353cea9ccef608e768230e35396ca2f21b5ed1b",
-  "runtimeHash": "sha256:2422eb7f370bf18d013a1ebbf71eae882b14fda1d30c395caf3066da98b2ec8e",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
+  "inputHash": "sha256:c5adf006e8c25a724640b5fc0cae2b9444218dfcaafcba7637704e1596c8247b",
+  "sourceHash": "sha256:828ca564441df5aaf6c59fd6d7ac3e811a648881de370a243a8e505745b7b49b",
+  "runtimeHash": "sha256:bce9d2d0df976e19d0c0eeae644b979f91fe55ede2c12656a2bee31693d09708",
+  "reviewGroundY": -115,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
   "footprintEvidenceHash": "sha256:1969f36bc7ceb727aebf9b519a6db92a32fd700e0af3945bad478a9c41dbc103",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:35e79d3a44fc7d3ebd93b891b6cdf5d34343dd4540123fc6557e469bd1703260",
-  "placementHash": null,
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:0fbea866eac730f910a900075adbf40c6a988698e05afa8b1f4cf7bfc6124534",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -25,601 +26,879 @@
     "matgraph:molen.worldgen.material.stone_granite": {
       "path": "materials/stone_granite.matgraph.json",
       "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+    },
+    "matgraph:molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:49cc7afeb814e20564ad4379763da88a2439c1716656c358cde0ab452ab22343",
+      "hash": "sha256:936b0fe5ba2c994525eba04910e498f88504387035b7470163c2193c5bbd84a5",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:58e34ef7529f3b26a779925fe8698aa41cfb2a67e0571a39ef731ab68cd325c4",
+      "hash": "sha256:b85586150a5b0625db9f6bc93318e0cc04c9a4c8b11eda252ca5d96d620e07e2",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:6068672a0dcb234668133677feceeb74e41f23a9d026cde5efd74289e15c5207",
+      "hash": "sha256:6dd86a1cd2275f82a38a129bdb24725b3aa919d6f0535eef1a2d95db64938445",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:5b07eac5e8d5a649769e783c51a43a814a03c976373fcd552d191271878dddd0",
+      "hash": "sha256:6c2bc226152461c0b905e1ca83d7ec23de0fb39618db88a58698c95a98c378ac",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/great-tower-and-concentric-ward.png",
-      "hash": "sha256:92d7012acacd9564ff143b6ec5860906526a5208934cc0a7eb03701be088013d",
+      "hash": "sha256:b9c003c707b46ee4b4639818478c4ca6c1c7c6593525f61fe9e2e7b44238b8e2",
       "camera": {
         "name": "great-tower-and-concentric-ward",
         "position": [
           -260,
-          185.3849578006,
+          99.79671494084779,
           110
         ],
         "lookAt": [
           -78,
-          100.3849578006,
+          14.796714940847792,
           -35
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/flint-keep-and-forebuilding.png",
-      "hash": "sha256:46168a538625702c2e71caaa73d6303caf7c72a9cf7a681984aea5caede6182b",
+      "hash": "sha256:2dc5d2aa3e894252c272c7c9f850480f0cae3961ea3ba2bdc4d20d81df87a103",
       "camera": {
         "name": "flint-keep-and-forebuilding",
         "position": [
           -6,
-          100.3849578006,
+          14.796714940847792,
           -18
         ],
         "lookAt": [
           -78,
-          100.3849578006,
+          14.796714940847792,
           -35
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/roman-pharos-and-saxon-church.png",
-      "hash": "sha256:31abcdc86a48440b99137fe22e1fa9343e54e4701a7cd77718e72b38aa00a4da",
+      "hash": "sha256:5081aedf24e823b8bee5236f72e0b7629a48bbeba564d716d452d7a041f427e0",
       "camera": {
         "name": "roman-pharos-and-saxon-church",
         "position": [
           0,
-          120.3849578006,
+          34.79671494084779,
           166
         ],
         "lookAt": [
           62,
-          100.3849578006,
+          14.796714940847792,
           96
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/western-curtain-and-constable-gate.png",
-      "hash": "sha256:3607aad4b5268072da22ca75a6342894ece8269791e527637fc52849f4a1a9a0",
+      "hash": "sha256:ed138a1a87eb0905a7771592e254f62c0b87054f2a48775aa0f169e3283c269a",
       "camera": {
         "name": "western-curtain-and-constable-gate",
         "position": [
           -310,
-          93.3849578006,
+          7.796714940847792,
           50
         ],
         "lookAt": [
           -183,
-          65.3849578006,
+          -20.203285059152208,
           5
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/northern-spur-and-reduced-defenses.png",
-      "hash": "sha256:8192890dd428aa52a66e6aaf6eb8e527c4ca3d4eefaddd3958ea6602e04a7b43",
+      "hash": "sha256:0a3afcaeb37443cfaba2bb660fb8dcfa2e94f585b95a165b5155fa81debecf71",
       "camera": {
         "name": "northern-spur-and-reduced-defenses",
         "position": [
           -350,
-          135.3849578006,
+          49.79671494084779,
           -310
         ],
         "lookAt": [
           -165,
-          70.3849578006,
+          -15.203285059152208,
           -177
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
       }
     },
     {
       "path": "shots/shared/later-barracks-and-chalk-hill.png",
-      "hash": "sha256:74f6ab0eee548f54338395dfa7bb1458129703e382871901577fa2a5d09328a1",
+      "hash": "sha256:4f10a3b0707bc36b44f82bf8bed88434df682136d70872bf8582f82d7dc90831",
       "camera": {
         "name": "later-barracks-and-chalk-hill",
         "position": [
           310,
-          175.3849578006,
+          89.79671494084779,
           440
         ],
         "lookAt": [
           75,
-          60.384957800600006,
+          -25.203285059152208,
           215
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0284_dover_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
         "position": [
           0,
           0,
           0
         ],
         "heading": 0,
-        "meshes": 5,
-        "triangles": 4590,
+        "meshes": 6,
+        "triangles": 4732,
         "bounds": {
           "min": [
-            -248.3350067138672,
-            0,
-            -277.4119873046875
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
           ],
           "max": [
-            255.93099975585938,
-            112.50495910644531,
-            362.385986328125
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
           ]
         },
+        "reviewGroundY": -115,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "7efda2dc-35eb-462c-8deb-500e4aa45f44",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "21c00376-3b43-4e7f-beea-def895d4eed6",
-          "worldgen:matgraph:molen.worldgen.material.slate": "47aff96e-1839-4f1c-952b-1a51f8037989",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "f53f67b0-8a34-4286-894f-59cf65464386"
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
         },
         "loads": [
           "molen.worldgen.structure.n0284_dover_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_granite": 1
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
         },
-        "draws": 6,
-        "renderedTriangles": 4592
+        "draws": 7,
+        "renderedTriangles": 4734
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:0c6706a4b8cb53e70881bee5df4e378788de52da7ea76f2b7dbd26bc03c21f1d",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0284_dover_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0284",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 6,
+        "triangles": 4732,
+        "bounds": {
+          "min": [
+            -223.20899963378906,
+            -80.96624755859375,
+            -231.39561462402344
+          ],
+          "max": [
+            229.38668823242188,
+            30.54506492614746,
+            292.8298645019531
+          ]
+        },
+        "reviewGroundY": -115,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "60404eab-e448-42d4-94f1-ce59fcbc1420",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e986b729-7595-49af-9082-576a8d9a9277",
+          "worldgen:matgraph:molen.worldgen.material.slate": "20d1fe9a-be9a-4b65-932b-a43a5572bc75",
+          "worldgen:matgraph:molen.worldgen.material.stone_granite": "64758004-3a08-4189-974c-6ad9d7c1072e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "8a772363-573b-44af-9579-16084072b0fc"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0284_dover_castle"
+        ],
+        "selectionBounds": [
+          1.3208475054083326,
+          51.12810860812233,
+          1.3245119625916675,
+          51.13040829524976
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0284",
+            "coordinate": [
+              1.322679734,
+              51.129258466
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0284"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 4734
       }
     }
   ],

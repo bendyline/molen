@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0302_liechtenstein_castle",
-  "sourceHash": "sha256:4ba0f40b52b388cf74f02c6f243a2e4b70d7db25a7081043696efd79f596e641",
-  "runtimeHash": "sha256:bb343d8cf4aedecd745b4e8a535b3a803f5e986d4f7e4e013aa0ba71a131040a",
-  "fixtureHash": "sha256:1ba4310b401880bcebc368fc2ba02cb9a4358a498f6e03d2057ad1ccc352069c",
+  "sourceHash": "sha256:40373d3cba18b61a02241020786c81a9a125bfa97051c2aa9193b1fdf9143a20",
+  "runtimeHash": "sha256:498a2acfc576daebc21c199f547dc52225aa65b8328e447a6b917b64433c0c39",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,887 +23,1122 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 3934,
+  "neighborTriangles": 8272,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:c34f8af724bb9579697dc3b4d9d202996efa2af31d8b65df81a9106c67e1e0c4",
-      "bytes": 64180,
-      "gzipBytes": 17557,
-      "triangles": 667,
-      "cpuBytes": 62756,
-      "gpuBytes": 62756,
-      "errorMeters": 2.5,
+      "hash": "sha256:5a0fdd7e083e814a2bc6547e07a60e2f88b62304f5097a63ad972578cfadab4d",
+      "bytes": 68052,
+      "gzipBytes": 14881,
+      "triangles": 635,
+      "cpuBytes": 66632,
+      "gpuBytes": 66632,
+      "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:c46b4a7e0b5f8570713815bc7b133a29173cb3f9d883430041b2df6ce52eed98",
-      "bytes": 213844,
-      "gzipBytes": 67466,
-      "triangles": 2124,
-      "cpuBytes": 206500,
-      "gpuBytes": 206500,
-      "errorMeters": 1.5,
-      "drawCalls": 6
+      "hash": "sha256:b3f5f017c2d7529eb5e39ceb8a15dbaa4e3a3666135eef34720a514776f46696",
+      "bytes": 200432,
+      "gzipBytes": 68357,
+      "triangles": 1965,
+      "cpuBytes": 194312,
+      "gpuBytes": 194312,
+      "errorMeters": 0.7,
+      "drawCalls": 5
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:94c830e8a5f3aa2688d5383daa06a688d384575c1df32c722b512bf4b051a656",
-      "bytes": 552116,
-      "gzipBytes": 161881,
-      "triangles": 5357,
-      "cpuBytes": 544748,
-      "gpuBytes": 544748,
-      "errorMeters": 0.5,
-      "drawCalls": 6
+      "hash": "sha256:bec336b86aeda141fa5c51daddafc587fb0adb4c0a92320d6758b6ea776d7429",
+      "bytes": 540432,
+      "gzipBytes": 161659,
+      "triangles": 5211,
+      "cpuBytes": 534296,
+      "gpuBytes": 534296,
+      "errorMeters": 0.3,
+      "drawCalls": 5
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:a82d7197357d47f93f75c2e17b94dd0bdf11ed36856a9dd92738f58a83279138",
-      "bytes": 553316,
-      "gzipBytes": 162124,
-      "triangles": 5371,
-      "cpuBytes": 545948,
-      "gpuBytes": 545948,
-      "errorMeters": 0.15,
-      "drawCalls": 6
+      "hash": "sha256:759cbbbcf300f86ae667544cc25dd376210859769fc55cd19d4d150a5ac06a8d",
+      "bytes": 541632,
+      "gzipBytes": 161946,
+      "triangles": 5225,
+      "cpuBytes": 535496,
+      "gpuBytes": 535496,
+      "errorMeters": 0.1,
+      "drawCalls": 5
     }
   ],
-  "terrainFixture": {},
-  "context": "Synthetic procedural neighbors at review Y=-8.3; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:fe2cdb3a9b85ed4f4dd5eb54450458c474cfb3132ab2fdde2def7f8530d83d56"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:04a13bd7fb7133a61a895f9ce22ea66b01b98d44b0ffeacb81c452b689d0c8c8"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:c11a34f487b67e4c1809c53cb93a72fe1540c8aefe52eb29d59b79743b27f624",
+      "hash": "sha256:2f10d2a6a2e04ace31b573e403cc72bd1a576ec18f782f444d48861a9e876be3",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          76.80000000000001,
-          41.6,
-          132.8
+          118.0511,
+          73.1969,
+          196.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:8b93750b943df181e5dc68ff0bbfcbfde1def7af024e70285b95bc90a9ebb53f",
+      "hash": "sha256:2ffe01f40c3f55799cee7389088f86d777c62cfcfc78c3513212d421669ab45b",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          76.80000000000001,
-          41.6,
-          132.8
+          118.0511,
+          73.1969,
+          196.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:c0dfa9d195bc4da140b031416702a0ef867a6ac3df86aa0fbb052d6fa5aed5f0",
+      "hash": "sha256:249785a2bf38ff64820e4ccb7d29738beb50087572fa0e6f0c3a0466f58f7b13",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          76.80000000000001,
-          41.6,
-          132.8
+          118.0511,
+          73.1969,
+          196.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:5870fe3b6a68dc614d572604582743ca3c5240e312b3421c580bbf1804d53ee3",
+      "hash": "sha256:cc15b9823c27065ed652b9a4089e4a56467359f2ac572d1bcc30973b6cd457c7",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          76.80000000000001,
-          41.6,
-          132.8
+          118.0511,
+          73.1969,
+          196.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:e9013a618fcecb3c17e8f5575d0c6fd11538fcebefb3e2d4489b341bdfb2563a",
+      "hash": "sha256:24c73f542a06e8f2a488cf22164858718532af16ffbfeefd909dbd05ec7ed345",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 6060,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 62719,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:df698767e06e73279beb668bfcbc6cef5f7144b4c750ff358ac69e165180d372",
+      "hash": "sha256:d7d9c8925442845897fdd2ac7e441e239b675f4d78d10dcc81e2c708a3e4e0d6",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 6060,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 62719,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:cd49d7354401cfbc9290e00b05e8a9c37ac72f59aa1185e2bbada4081bb18568",
+      "hash": "sha256:d0a656cc919a3c000d6f02f61995685896a27b0168318d8c7ca14e72670bc0bc",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 11,
-        "triangles": 6060,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 62719,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:b4fb4980c9d10d94d450496ed1eb1b1ea60a4f06186f96215819cf0d4748db24",
+      "hash": "sha256:1ad9a8a7fad4fc6445bbc1040c6bcd97884ac929afa39b5be6acf1cb2e0e2cb0",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 6060,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 62719,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:cf3e1e0b82bb5d9ac076122d8684bd68f692e5ae0fb8626ec8e042073ad11eb5",
+      "hash": "sha256:7a629b17fce825e7ca2ec69cb10764fccc7449940449919061495c83e6689c92",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 4603,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "drawCalls": 7,
+        "triangles": 61389,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          310.40000000000003,
-          160,
-          537.6
+          439.2511,
+          235.99690000000004,
+          753.1662
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:1b2e88809f86859ba71d47dca91e39eff926b92b50407c56d601773d4d129283",
+      "hash": "sha256:8443e9a5298099cf11d4b67d1c2e7b69b68053b370714558b9bc8710644341ac",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 4603,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "drawCalls": 7,
+        "triangles": 61389,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          310.40000000000003,
-          160,
-          537.6
+          439.2511,
+          235.99690000000004,
+          753.1662
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:7bef586aa4fb4c084c2bcce536806a9e48e2e714cd7aa3e55df7c55407345074",
+      "hash": "sha256:76b0950c05167c7af6b5bc1ed873751952f74811da3a6afbbf296fa0387238dc",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 4603,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "drawCalls": 7,
+        "triangles": 61389,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          310.40000000000003,
-          160,
-          537.6
+          439.2511,
+          235.99690000000004,
+          753.1662
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:ee7e5dbea244984b300125036cd09ad8c15b1f14fa5bfa676c959673b3485ccd",
+      "hash": "sha256:93765f9e077790d06db9f3fba754180b33f584f8880df8a9e11c677eb5c8a5c0",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 4603,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "drawCalls": 7,
+        "triangles": 61389,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          310.40000000000003,
-          160,
-          537.6
+          439.2511,
+          235.99690000000004,
+          753.1662
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:a60c0441d3af54d50c99a219ea3c16de938301d2afac45f1ad8c93f251882e6b",
+      "hash": "sha256:7f705ecdf67dc0c9ab382ca24f0ae1fa25a66e711feb3aabcfedbace75958e73",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 669,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "drawCalls": 3,
+        "triangles": 53117,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          310.40000000000003,
-          160,
-          537.6
+          439.2511,
+          235.99690000000004,
+          753.1662
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/west-keep-and-oriel.png",
-      "hash": "sha256:c143490ab6f086bc2dcc9f029be64f9821d75d9ea0ca5661b31bf0a9ebf367ee",
+      "hash": "sha256:8fbe2e0f980acc0e683bbfa939449fd4ef23d2293184b5dfc62967bc6bc323f4",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
           -65.77099084843171,
-          33,
+          36,
           -12.17278779965839
         ],
         "lookAt": [
           -15.290129771276934,
-          24,
+          27,
           4.81787625178468
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/south-palas-and-arcade.png",
-      "hash": "sha256:7ae002e67e090dbd28732d7682558fc3ff14129f310807c86ad596f2d7a77264",
+      "hash": "sha256:4fdb453f7ffa9f76aca2777182d6925f8a28c2dfb5dca1098b4a6cc95b91871d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
           26.515679144358977,
-          26,
+          29,
           46.582386794940064
         ],
         "lookAt": [
           4.237265367569129,
-          17,
+          20,
           2.6543515601365355
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/east-tower-and-gate.png",
-      "hash": "sha256:3e59b15f7adabe9f8fcc8ecf5b05a0598f6d5f4c253639dcbc6bc2b5840accdb",
+      "hash": "sha256:94ccd8d31702056e48f1632b65010c631483c3180492a4991f4e53f35639a37d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
           74.093485800436,
-          24,
+          27,
           0.39415979068114027
         ],
         "lookAt": [
           21.96745914844181,
-          10,
+          13,
           -4.175013600162314
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/gatehouse-arch.png",
-      "hash": "sha256:06b8b508e344b6446b78a345a454b289f49615d5d3b0f5555d53c061f550d711",
+      "hash": "sha256:4150d60389a78520d3b9f5a49355ef989fe6c930400ee8c38544be5e9575f600",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 9289,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65961,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
           51.759703318319424,
-          -1,
+          2,
           -10.292381279351899
         ],
         "lookAt": [
           31.589445527850998,
-          -1,
+          2,
           -1.4515272105388792
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/roof-plan.png",
-      "hash": "sha256:1640d8cc3022d0195217c3fe52ae295fbbfca8b1a1f8360825bab4d131ea617d",
+      "hash": "sha256:b9c602b2577bddc2104790f9aeae55a65b0f9d49a4a8c1199cf32f3b5971bd52",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
           12.711796102707385,
-          103,
+          106,
           7.963054680409606
         ],
         "lookAt": [
           12.711796102707385,
-          10,
+          13,
           7.963054680409606
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/north-palas.png",
-      "hash": "sha256:308400ff242ce1af44399e4202848219a59b9676b85a4a1232a3d024942133f2",
+      "hash": "sha256:15cd0285e8d8afec4f1b3b253d14e834b73f95b48ae596e8efd8e3c4670951d5",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
           -22.209278947302945,
-          29,
+          32,
           -49.31275624664359
         ],
         "lookAt": [
           -1.7972013579733817,
-          17,
+          20,
           -4.665840468650705
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-liechtenstein-skyline.png",
+      "hash": "sha256:4b5a6116c6ed02499c2521a81e9a4a4b1d1158111bfa7ddce15f9775e6488d19",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 61389,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
+        "position": [
+          135,
+          100,
+          125
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-liechtenstein-district.png",
+      "hash": "sha256:217f73d1a7301a58f6e46cdad2aab9d0fc7a64a2476de8870278ad136b6edb5a",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 62719,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
+        "position": [
+          135,
+          100,
+          125
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-liechtenstein-street.png",
+      "hash": "sha256:22bb4bb659d093e11cc623ea124e6f396defc1339589ed5a51384aa3fa8e1023",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 65965,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
+        "position": [
+          135,
+          100,
+          125
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-liechtenstein-closeup.png",
+      "hash": "sha256:0e34ab8a388982c57b80724f29232c9d6d764e687a58eef03517b0f989bc6e32",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
+        "position": [
+          135,
+          100,
+          125
+        ],
+        "lookAt": [
+          0,
+          16,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:14911bc7ae06afb8a1f95cb3fdf362ff17bfb68f2484062a545c00a890ccd6d5",
+      "hash": "sha256:0e1bb70f2f7e820522c784dd37f29ad8c2c972660fb8a07178e5bfa4c7af2fc2",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 4603,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "drawCalls": 7,
+        "triangles": 61389,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:df698767e06e73279beb668bfcbc6cef5f7144b4c750ff358ac69e165180d372",
+      "hash": "sha256:d7d9c8925442845897fdd2ac7e441e239b675f4d78d10dcc81e2c708a3e4e0d6",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 6060,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 62719,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:7cd3dd4f7dcb778132a40fbb2824c0204db590fa9c82bfd1a87d04b538ebfa3d",
+      "hash": "sha256:4b9dfeffd3bb4ca2701d0182bc94efbb5596b58f4fd86645512d081766f70631",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9293,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65965,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:302794c48f04fd5e7b442a7d374db75aee9f9e69afd8694be130344cf20badaa",
+      "hash": "sha256:384f8c7497324e0b1510c2fce8b7d7850f8405854cd60db0950888bd051c86e1",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 9307,
-        "groundY": -8.3,
-        "terrainFixture": null,
+        "triangles": 65979,
+        "groundY": -37,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/terrain-review.height.png"
+        },
         "position": [
-          155.20000000000002,
-          99.2,
-          268.8
+          225.8511,
+          152.39690000000002,
+          383.56620000000004
         ],
         "lookAt": [
-          0,
-          17.6,
-          0
+          12.4511,
+          40.1969,
+          13.9662
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.tile_flat": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 1.6
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 2.2,
+        "reflections": "sky-pmrem"
       }
     }
   ],

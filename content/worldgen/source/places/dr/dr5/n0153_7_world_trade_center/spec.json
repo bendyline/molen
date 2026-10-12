@@ -11,6 +11,10 @@
     "longitude": -74.012
   },
   "visualBrief": "The current2006 tower: a mapped oblique parallelogram of pale reflective glazing, concave stainless-steel spandrels, detailed triangular metal scrim above the ground lobby, and mapped rooftop service volumes.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.brownstone",
+    "scale": 3
+  },
   "size": [
     81.71539306640625,
     226.02999877929688,
@@ -41,6 +45,12 @@
     "heightMeters": 225.8568,
     "facade": "Low-iron glass, concave316 stainless steel spandrels, triangular metal scrim"
   },
+  "appearance": {
+    "identity": "Current2006 oblique pale glass tower, concave floor spandrels, podium steel scrim, ground lobby and offset mapped roof plant.",
+    "epoch": "Current2006 building; owner identifies52floors and741ft; map snapshot2026-09-27.",
+    "master": "Original4832-triangle detail recipe retained; current master adds a continuous support curb beneath the offset roof plant. Original detailed geometry and shared surfaces are preserved.",
+    "exclusions": "Individual micro-prism orientations, LED art, lobby interior, exact facade hardware and sidewalk survey."
+  },
   "reconstruction": {
     "plan": "Exact current-building way277890516; roof parts1530740417/418; source map-parts.json",
     "heightDatum": "SOM741 ft preferred to rounded228 m OSM roof value",
@@ -68,11 +78,14 @@
     "source": "https://www.openstreetmap.org/way/277890516",
     "groundModelY": 0,
     "featureIds": [
-      "way/277890516"
+      "way/277890516",
+      "way/1530740417",
+      "way/1530740418",
+      "way/1547351734"
     ],
     "wikidataId": "Q270066",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7ee5df1d0d8ed36889abe466433dec5cdac765b23433a30bc7275e0b89d32f05",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "notes": "Signed mapped oblique footprint is the completed2006 building, with exact-QID start_date2006 and independently mapped roof service part. Ground datumY0; no historical destroyed building substituted."
@@ -111,7 +124,7 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
     "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
@@ -184,15 +197,93 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/seven-wtc-runtime-model.mjs",
+    "export": "buildSevenWtcCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/seven-wtc-runtime-model.mjs",
+    "export": "buildSevenWtcSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSevenWtcDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "steel-scrim-district",
+      "position": [
+        -68,
+        24,
+        97
+      ],
+      "lookAt": [
+        -8,
+        17,
+        24
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "roof-plant-district",
+      "position": [
+        78,
+        265,
+        118
+      ],
+      "lookAt": [
+        6,
+        223,
+        0
+      ],
+      "reviewLod": "district"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 4832,
-    "vertices": 13624,
+    "triangles": 4852,
+    "vertices": 13672,
     "materials": 5,
-    "bytes": 551604,
-    "sha256": "sha256:fab49ffd00a437bfb22dfb0f211b344da819264e62c4960ef2ad5065250a8d21"
+    "bytes": 553576,
+    "sha256": "sha256:5c0b77ec0b6773166e023dfdfce7d1e141097c51b27588dea8792468c0ca867e"
   }
 }

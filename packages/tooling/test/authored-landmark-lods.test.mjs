@@ -283,7 +283,7 @@ it('leaves both n0288 courtyards open through all authored levels', async () => 
         const v = ((c[2] - a[2]) * (x - c[0]) + (a[0] - c[0]) * (z - c[2])) / denominator,
           w = 1 - u - v;
         if (u >= 0 && v >= 0 && w >= 0)
-          expect(u * a[1] + v * b[1] + w * c[1], level + ' courtyard overhead').toBeLessThan(5);
+          expect(u * a[1] + v * b[1] + w * c[1], `${level} courtyard overhead`).toBeLessThan(5);
       }
   }
 });
@@ -307,10 +307,10 @@ it('preserves n0289 courtyard and actual gate and arcade openings', async () => 
     const triangles = [];
     buildCastelNuovoRuntime({ addTriangle: (_s, _r, p) => triangles.push(p) }, level);
     for (const y of hits(triangles, [0, 2, 1], [-5, 0]))
-      expect(y, level + ' open court').toBeLessThanOrEqual(5);
+      expect(y, `${level} open court`).toBeLessThanOrEqual(5);
     for (const y of [8, 25])
       for (const x of hits(triangles, [2, 1, 0], [6.5, y]))
-        expect(x < -52 || x > -27, level + ' gate corridor').toBe(true);
+        expect(x < -52 || x > -27, `${level} gate corridor`).toBe(true);
     if (['street', 'closeup'].includes(level)) {
       const a = [17.031, 26.215],
         b = [-29.001, 10.515],
@@ -328,7 +328,7 @@ it('preserves n0289 courtyard and actual gate and arcade openings', async () => 
       );
       const crossings = hits(local, [0, 1, 2], [0, 7]);
       expect(crossings.length).toBeGreaterThan(0);
-      for (const z of crossings) expect(Math.abs(z), level + ' arcade opening').toBeGreaterThan(1);
+      for (const z of crossings) expect(Math.abs(z), `${level} arcade opening`).toBeGreaterThan(1);
     }
   }
 });
@@ -357,8 +357,8 @@ it('leaves n0290 court and gate/barbican passage open at all levels', async () =
           w = 1 - u - v;
         if (u < 0 || v < 0 || w < 0) continue;
         const hit = u * a[2] + v * b[2] + w * c[2];
-        if (axes[2] === 1) expect(hit, level + ' court overhead').toBeLessThanOrEqual(11);
-        else expect(hit < 52 || hit > 82, level + ' gate passage').toBe(true);
+        if (axes[2] === 1) expect(hit, `${level} court overhead`).toBeLessThanOrEqual(11);
+        else expect(hit < 52 || hit > 82, `${level} gate passage`).toBe(true);
       }
   }
 });
@@ -381,10 +381,10 @@ it('keeps n0291 both mapped courtyard spaces open at every runtime level', async
           w = 1 - u - v;
         if (u < 0 || v < 0 || w < 0) continue;
         const y = u * a[1] + v * b[1] + w * c[1];
-        expect(y, level + ' court overhead').toBeLessThanOrEqual(13.1);
+        expect(y, `${level} court overhead`).toBeLessThanOrEqual(13.1);
         if (Math.abs(y - 13.05) < 0.01) floor = true;
       }
-      expect(floor, level + ' courtyard floor').toBe(true);
+      expect(floor, `${level} courtyard floor`).toBe(true);
     }
   }
 });
@@ -409,9 +409,9 @@ it('keeps n0291 west gable outward and roof joins covered', async () => {
     const triangles = [];
     buildKsiazRuntime({ addTriangle: (s, _r, p, n) => triangles.push({ s, p, n }) }, level);
     const west = hits(triangles, [2, 1, 0], [-8, 38]).sort((a, b) => a.depth - b.depth)[0];
-    expect(west, level + ' west gable must exist').toBeDefined();
+    expect(west, `${level} west gable must exist`).toBeDefined();
     expect(west.depth).toBeLessThan(-47);
-    expect(west.n[0], level + ' outward west normal').toBeLessThan(-0.9);
+    expect(west.n[0], `${level} outward west normal`).toBeLessThan(-0.9);
     for (const point of [
       [0, -17],
       [-30, 5],
@@ -420,7 +420,7 @@ it('keeps n0291 west gable outward and roof joins covered', async () => {
       [43, 26],
     ]) {
       const roof = hits(triangles, [0, 2, 1], point).sort((a, b) => b.depth - a.depth)[0];
-      expect(roof, level + ' covered roof junction ' + point).toBeDefined();
+      expect(roof, `${level} covered roof junction ${point}`).toBeDefined();
       expect(roof.depth).toBeGreaterThanOrEqual(33);
       expect(roof.s).toBe('tile');
       expect(roof.n[1]).toBeGreaterThan(0.1);

@@ -1,0 +1,502 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#c9b392",
+      "wall": "#dec4a4",
+      "pink": "#dda799",
+      "trim": "#eee5cd",
+      "roof": "#b3684c",
+      "wood": "#967556",
+      "recess": "#4d6178",
+      "paving": "#aaa59a",
+      "grass": "#8aa065",
+      "bronze": "#877966",
+      "clock": "#e6d3ab"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "sandstone": [
+        0.684938,
+        0.602377,
+        0.467682
+      ],
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "tile": [
+        0.559267,
+        0.552465,
+        0.529503
+      ],
+      "bronze": [
+        0.799457,
+        0.813803,
+        0.772519
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ]
+    },
+    "materialBudget": 7,
+    "identityFeatures": [
+      "Tall square/octagonal main tower with onion dome and lantern",
+      "Paired western steep red roof towers with bronze finials",
+      "Pink Baroque eastwing above stone garden terraces"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X approximately east-north-east;Baroque entrance faces +X",
+    "longitudinal": "+Z approximately south-south-east",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/9821066 exactQ738109",
+    "mappedCastleEnvelopeMeters": [
+      98.17,
+      61.243
+    ],
+    "operatorMainTowerLocalHeightMeters": 47,
+    "publishedOriginalTowerPlanMeters": [
+      10.5,
+      11.5
+    ],
+    "measuredCommonDatumAvailable": false,
+    "maximumModelY": 60,
+    "siteCoverage": "Castle and approximate terrace core only;full site scope pending in site-parts.json",
+    "originalMasterHash": "sha256:450e52235e1bb5e3b91f8576aa0afaefc32aa99c67f9257fc439df355244ca0e",
+    "originalMasterRecipe": "packages/worldgen/scripts/ksiaz-castle-model.mjs#buildKsiazRuntime",
+    "runtimePowderTowerControl": [
+      88.89756493084487,
+      47.64031319972397
+    ]
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current castle/terrace exterior from one inspected picture and standard viewer PMTiles, without bespoke survey or exact thresholds.",
+    "Original detailed master/hash/recipe preserved. Court, terraces, roof and tower dimensions remain reconstructed; separate Powder Tower control follows retained map location with approximate body/roof dimensions.",
+    "Five common graphs plus explicit garden-color and dark recess slots, zero embedded images. Forest, exact terrace planting/water, interiors and terrain cutouts excluded.",
+    "Castle/terrace model review does not approve the complete designated heritage ensemble, remote Palm House or separately modeled park buildings. Their individual reviews remain independent.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      16.291558848,
+      50.842218729
+    ],
+    "heading": 0.487948990682,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected aerial picture confirms coral-pink Baroque entrance wing, tall domed central tower, paired western roof towers, buff stone ranges and stepped garden terraces. Retained mapped castle/court rings and standard viewer PMTiles set approximate location, scale and entrance-facing orientation. The derivative reconstructs a working court at Y5, keeps terrace tops above coarse ground and moves the separate Powder Tower to its retained mapped position at native [88.89756493084487,47.64031319972397] with a coarse-ground footing. This review covers the castle/terrace model; separately modeled park buildings retain their own QA status. Anchor 16.291558848,50.842218729; heading 0.487948990682; standard PMTiles datum 392.7276846126304m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Inspected aerial picture confirms coral-pink Baroque entrance wing, tall domed central tower, paired western roof towers, buff stone ranges and stepped garden terraces. Retained mapped castle/court rings and standard viewer PMTiles set approximate location, scale and entrance-facing orientation. The derivative reconstructs a working court at Y5, keeps terrace tops above coarse ground and moves the separate Powder Tower to its retained mapped position at native [88.89756493084487,47.64031319972397] with a coarse-ground footing. This review covers the castle/terrace model; separately modeled park buildings retain their own QA status. Anchor 16.291558848,50.842218729; heading 0.487948990682; standard PMTiles datum 392.7276846126304m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        16.291558848,
+        50.842218729
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "Inspected aerial picture confirms coral-pink Baroque entrance wing, tall domed central tower, paired western roof towers, buff stone ranges and stepped garden terraces. Retained mapped castle/court rings and standard viewer PMTiles set approximate location, scale and entrance-facing orientation. The derivative reconstructs a working court at Y5, keeps terrace tops above coarse ground and moves the separate Powder Tower to its retained mapped position at native [88.89756493084487,47.64031319972397] with a coarse-ground footing. This review covers the castle/terrace model; separately modeled park buildings retain their own QA status. Anchor 16.291558848,50.842218729; heading 0.487948990682; standard PMTiles datum 392.7276846126304m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/ksiaz-runtime-model.mjs",
+    "export": "buildKsiazReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "sandstone": {
+      "slot": "foundation",
+      "graph": "stone_sandstone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "bronze": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.7,
+      "metallic": 0.2
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "foliage": {
+      "slot": "foundation",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ksiaz-runtime-model.mjs",
+    "export": "buildKsiazReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKsiazReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "sandstone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildKsiazReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "sandstone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKsiazReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "sandstone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-ksiaz-skyline",
+      "position": [
+        150,
+        105,
+        165
+      ],
+      "lookAt": [
+        0,
+        17,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ksiaz-district",
+      "position": [
+        150,
+        105,
+        165
+      ],
+      "lookAt": [
+        0,
+        17,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ksiaz-street",
+      "position": [
+        150,
+        105,
+        165
+      ],
+      "lookAt": [
+        0,
+        17,
+        10
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ksiaz-closeup",
+      "position": [
+        150,
+        105,
+        165
+      ],
+      "lookAt": [
+        0,
+        17,
+        10
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -51,
+    "scale": 1.7,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "camera": {
+    "position": [
+      150,
+      105,
+      165
+    ],
+    "lookAt": [
+      0,
+      17,
+      10
+    ]
+  },
+  "qaCameraOverrides": {
+    "baroque-east-front-and-central-lantern": {
+      "position": [
+        117,
+        31,
+        17
+      ],
+      "lookAt": [
+        35,
+        25,
+        8
+      ]
+    },
+    "west-towers-and-gable": {
+      "position": [
+        -124,
+        33,
+        -7
+      ],
+      "lookAt": [
+        -35,
+        18,
+        -8
+      ]
+    },
+    "courtyard-and-roof-layout": {
+      "position": [
+        5,
+        147,
+        45
+      ],
+      "lookAt": [
+        0,
+        17,
+        2
+      ]
+    },
+    "south-gallery-and-terraces": {
+      "position": [
+        -35,
+        27,
+        107
+      ],
+      "lookAt": [
+        -9,
+        18,
+        23
+      ]
+    },
+    "main-tower-dome-and-lantern": {
+      "position": [
+        64,
+        50,
+        -31
+      ],
+      "lookAt": [
+        19,
+        37,
+        4
+      ]
+    },
+    "terrace-levels-and-pavilion": {
+      "position": [
+        -41,
+        8,
+        99
+      ],
+      "lookAt": [
+        -17,
+        1,
+        49
+      ]
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "mapped-powder-tower",
+      "position": [
+        120,
+        25,
+        84
+      ],
+      "lookAt": [
+        89,
+        10,
+        48
+      ]
+    }
+  ]
+}

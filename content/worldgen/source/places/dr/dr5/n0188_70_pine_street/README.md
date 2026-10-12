@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The1932 Cities Service Building: asymmetric mapped Art Deco setbacks, individually recessed sash windows and brick spandrels, monumental portals with miniature tower portraits, decorative terrace railings and tiered glass lantern below the stainless spire.
+Complete medium-fi70Pine: asymmetric58-part Art Deco tower, five entrances, recessed brick sash bays, fan terrace railings, tiered lantern and stainless spire.
 
 ## Evidence and reconstruction
 
@@ -17,7 +17,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-539,422 triangles; 1,316,264 vertices; 8 material groups; 53,863,296 bytes. Native bounds: -39.345, 0.000, -20.654 to 39.941, 290.170, 20.413. Source hash: `sha256:a048f2d4e4918bda4df26e325fd076fb3575b1c8c79a7b440e5957d1e2dd3468`.
+540,264 triangles; 1,317,926 vertices; 8 material groups; 53,933,232 bytes. Native bounds: -39.345, 0.000, -20.654 to 39.941, 290.170, 20.285. Source hash: `sha256:b88222ce970484350c7130657dd0daa1691f40650af12373ed67633606d6ab6e`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0188` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Intermediate map-part heights, individual pane pitch, fine portal relief shapes, brick colors and terrace grille rhythm are reconstructions from primary exterior documentation. Ground follows a single entry datum; the street slope, separate enclosed Pine Street footbridge, adjacent buildings, tenant signs and interior spaces are excluded. Source landmark report is2011; later replacement sash is approximated within the same openings.
+- Whole medium-fi exterior retains58 mapped masonry, lantern and spire parts; asymmetric base, slender eastern slab, repeated setbacks, five street portals, two tower portraits and27ft lantern below97ft spire. Original539422-triangle detailed recipe remains reproducible in Git. Reviewed source adds three revolving-door forms at western Pine/Cedar and Pearl entrances; door dimensions and exact present hardware are original reconstruction, not surveyed. LPC2011 photos/text inform historic fabric; current owner corroborates restored Art Deco building and residential conversion. Original master retains generic reconstructed facade pitch, reliefs and fan railings, without copied meshes or photo textures. District uses canonical window_punched as generic bay motif. Street/closeup merge repeated piers, reveal strips and spandrels; closeup keeps abstract brick motifs and simplified fan rails. Minute lettering, inscriptions and fine grillwork are below browser error. Full parcel footprint is preserved without scaling. Street slope, actual grade, night performance and physical-device timings are unmeasured. Separate Pine footbridge, adjoining buildings, interiors and tenant branding are outside this asset. The reviewed western Pine portal now follows accessible mapped doorwayx-13.874, correcting its previous9.1m offset.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

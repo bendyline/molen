@@ -5,8 +5,10 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
-import { landmarkLodRecipeHash } from './authored-landmark-lods.mjs';
+import { knownSourceEntries } from '../../worldgen/scripts/structure-source-paths.mjs';
+import { authoredSurfaceRefs } from './authored-landmark-lods.mjs';
 import { LANDMARK_LOD_LEVELS } from './landmark-lods.mjs';
+import { landmarkLodRecipeHash } from './source-runtime-lods.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'), 'utf8'));
@@ -47,6 +49,20 @@ for (const [id, path] of Object.entries(pack.assets).filter(
   const shared = new Set(
     (masterJson.materials ?? []).map((m) => m.extras?.molenSurface?.ref).filter(Boolean),
   );
+  const sourceEntry = knownSourceEntries().find((entry) => entry.assetId === id);
+  const spec = sourceEntry
+    ? JSON.parse(await readFile(resolve(root, sourceEntry.sourcePath, 'spec.json'), 'utf8'))
+    : undefined;
+  const declaredRefs = new Set(authoredSurfaceRefs(id));
+  for (const detail of Object.values(spec?.runtimeLodOverlay?.authoredLevels ?? {}))
+    for (const surface of Object.values(detail.surfaces ?? {}))
+      if (surface.graph) declaredRefs.add(`matgraph:molen.worldgen.material.${surface.graph}`);
+  for (const ref of declaredRefs) {
+    const path = pack.materials[ref.slice('matgraph:'.length)];
+    assert(path, `${id}: authored shared surface is not registered: ${ref}`);
+    await readFile(resolve(root, 'content/worldgen', path));
+    shared.add(ref);
+  }
   for (const [i, level] of sidecar.runtimeLods.levels.entries()) {
     assert.equal(sidecar.files.variants[level.name], level.file);
     const bytes = await readFile(resolve(directory, level.file));

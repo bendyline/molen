@@ -48,11 +48,38 @@
     "facadeSystem": "Four-corner story-height unitized glazing, curved surfaces optimized from the original NURBS geometry",
     "podiumFloors": 3,
     "primaryIdentityOverride": "HOK identifies south residential, north hotel and west office; inconsistent OSM hotel/commercial tags are retained in evidence, not used to swap these roles.",
-    "facadePose": "Daytime; behind-glass LED media is inactive"
+    "facadePose": "Daytime; behind-glass LED media is inactive",
+    "architectStoreys": {
+      "southResidential": 39,
+      "northHotel": 36
+    },
+    "engineerApproximateAboveGroundHeightsMeters": [
+      140,
+      160,
+      170
+    ],
+    "engineerExecutionYears": [
+      2008,
+      2012
+    ],
+    "originalMasterHash": "sha256:a68a35dcd6d4a70289117247913290dd8a508d158c4e08af4e694656cbc329d5",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-flame-model.mjs#buildFlame",
+    "surfaceMeans": {
+      "stone_limestone": [
+        0.7539,
+        0.710243,
+        0.616244
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
   },
   "reconstruction": {
     "plan": "Each curved triangular tower has its own attributed mapped ring and outward crown axis. Three unequal heights and native cardinal frame retain the ensemble arrangement, without replacing the complex with a single bounding-box tower.",
-    "facade": "Dense quadrilateral panes with physical narrow metal mullions follow the curved shell. Paired dark upper maintenance slots and partial lower slots are reconstructed from completed engineer photographs. No visible diagonal triangulation or animated flame texture is baked into the geometry.",
+    "facade": "Continuous quadrilateral blue-grey glazing follows the curved shell; source floor and plan sampling provides subtle panel tint variation. Paired upper and partial lower dark maintenance slots are retained. Three-centimetre individual mullions are below the medium-fi extent threshold and omitted, rather than modeled as repeated closed cell frames. Shared stone and coated-metal textures supply podium and trim; no visible diagonal grid or animated LED texture is baked into the shaft.",
     "crown": "Curved pointed flicks follow a smooth vertical contraction of the mapped wing plan, with an outward apex. Their exact NURBS definition is not published in the available primary references, so sectional curvature and pane pitch remain explicit reconstructions.",
     "podium": "The mapped common retail base has individually glazed fronts; eastern stepped stone pavilions, central barrel-glazed atrium, small curved terrace pool, west-central red cinema and north hotel canopy follow the engineer aerial photograph. Fine dimensions and elevations are photograph-derived."
   },
@@ -67,7 +94,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed three-tower ensemble",
     "anchor": [
       49.82657160078091,
       40.359642187881434
@@ -85,10 +112,13 @@
     ],
     "wikidataId": "Q80499",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:ff51440001df47b3007be0c4f298c726e8ad68d1bde6b3e21f7cba1e41f18737",
+    "mapGeometryHash": "sha256:baa3af0e023ed45639bbba93b21d75d0695f3a2f9c0558b39d9179593c41f6a7",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Source-local separately mapped south residential, north hotel and west office rings retain their own centers and flame axes. The shared podium centroid is the ensemble anchor; its outline alone is not mistaken for all three tower feet. Cardinal+X east/+Z south retains HOK identities over contradictory raw map function tags. GroundY0 is a common entry reference; real hillside entry offsets and plaza grading are outside this exterior model."
+    "orientationConfidence": "independent four-way rings and architect cardinal-use identities",
+    "notes": "Fresh2026-10-10 OSM API retains four independent ways253081850(south residential),253081914(north hotel),253082095(west office),687226634(shared podium), exactly matching independent original source-local geometries. HOK supplies tower-use compass identities; contradictory raw OSM hotel/commercial labels remain evidence and do not swap the towers. Cardinal heading0 gives+X east/+Z south; outward crown axes follow each mapped wing separately. Podium area centroid [49.82657160078091,40.359642187881434] remains the common anchor. Original projection uses40.3598latitude; projected mapped ring nodes agree within3mm. Towers rise from reconstructed commonY0 despite real hillside entrance offsets. Accept2m ground-envelope/1degree reconstruction allowance, excluding canopy/pavilions reconstructed from engineer aerial; no automatic footprint replacement. Unequal182/165/161m CVU heights differ from engineer140/160/170m local above-ground approximations. Terrain grading, LED media and interiors excluded.",
+    "evidence": "Fresh2026-10-10 OSM API retains four independent ways253081850(south residential),253081914(north hotel),253082095(west office),687226634(shared podium), exactly matching independent original source-local geometries. HOK supplies tower-use compass identities; contradictory raw OSM hotel/commercial labels remain evidence and do not swap the towers. Cardinal heading0 gives+X east/+Z south; outward crown axes follow each mapped wing separately. Podium area centroid [49.82657160078091,40.359642187881434] remains the common anchor. Original projection uses40.3598latitude; projected mapped ring nodes agree within3mm. Towers rise from reconstructed commonY0 despite real hillside entrance offsets. Accept2m ground-envelope/1degree reconstruction allowance, excluding canopy/pavilions reconstructed from engineer aerial; no automatic footprint replacement. Unequal182/165/161m CVU heights differ from engineer140/160/170m local above-ground approximations. Terrain grading, LED media and interiors excluded.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -96,30 +126,12 @@
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
     {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "wall",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
       "ref": "matgraph:molen.worldgen.material.stone_limestone",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
         2.4,
         1.6
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
       ]
     },
     {
@@ -133,11 +145,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "The primary engineer describes the three shells as related NURBS/developable surfaces, but the exact control points are not available; sectional curves, unitized pane pitch, maintenance-slot levels, podium pavilion details and roof furnishings are original reconstructions from completed HOK and Werner Sobek photographs. Heights are rounded published values. The media facade is a static daytime exterior; changing LED programs, signs, interior fit-out and sloping off-site landscaping are excluded."
+    "Original68737triangles/7786092byte detailed master remains exactly reproducible through unchanged buildFlame recipe. Reviewed source retains original1.36m Hermite-sampled plan and original floor datums, curved pointed crowns, paired/partial dark maintenance slots, cut common podium, three stepped picture-window pavilions, curved roof pool, red cinema, glazed barrel atrium, hotel canopy and two cylindrical doors. Continuous atrium shell and merged frame strips reduce repeated pane islands; retained canopy/roof geometry closes the exterior. Skyline uses coarse wing sections and averaged shared graph colours with a continuous podium and closed stone pavilions, omitting fine maintenance slots, pavilion windows/skylights, vents and door framing. District restores dark maintenance bands, cut podium and pavilion windows; street restores facade sampling and sparse vent/joint sampling; close-up restores original facade/ring detail and entry hardware. Canonical limestone approximates concrete; coated-metal and one opaque palette-glass group retain three near draw groups with zero embedded images. Exact NURBS control points, hillside grading, section pitch, slot elevations and pavilion/entrance dimensions remain reconstructions; no surveyed terrain or physical-device-performance claim. Finite twelve-ray comparisons at six heights per tower use4/1.5/.5/.1m skyline/district/street/close-up along-ray allowances, excluding omitted fine trim; the804triangle ensemble skyline is deliberately coarser than the separately authored single-tower skylines. This is not a global Hausdorff bound."
   ],
   "qaCameras": [
     {
@@ -295,6 +306,284 @@
         84,
         -26
       ]
+    },
+    {
+      "name": "whole-reviewed-ensemble",
+      "position": [
+        420,
+        262,
+        430
+      ],
+      "lookAt": [
+        -23,
+        86,
+        -26
+      ]
+    },
+    {
+      "name": "east-pavilion-cut-roofs",
+      "position": [
+        94,
+        43,
+        -30
+      ],
+      "lookAt": [
+        34,
+        13,
+        -28
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/flame-runtime-model.mjs",
+    "export": "buildFlameReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/flame-runtime-model.mjs",
+    "export": "buildFlameSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildFlameDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildFlameStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildFlameCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-flames-skyline",
+      "position": [
+        420,
+        262,
+        430
+      ],
+      "lookAt": [
+        -23,
+        86,
+        -26
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-flames-district",
+      "position": [
+        420,
+        262,
+        430
+      ],
+      "lookAt": [
+        -23,
+        86,
+        -26
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-flames-street",
+      "position": [
+        420,
+        262,
+        430
+      ],
+      "lookAt": [
+        -23,
+        86,
+        -26
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-flames-closeup",
+      "position": [
+        420,
+        262,
+        430
+      ],
+      "lookAt": [
+        -23,
+        86,
+        -26
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-hotel-curved-flick",
+      "position": [
+        112,
+        111,
+        -224
+      ],
+      "lookAt": [
+        0,
+        84,
+        -112
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-arrival-canopy",
+      "position": [
+        67,
+        14,
+        -93
+      ],
+      "lookAt": [
+        24,
+        6,
+        -103
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-atrium-merged-shell",
+      "position": [
+        34,
+        59,
+        14
+      ],
+      "lookAt": [
+        -9,
+        13,
+        -25
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-separated-crowns",
+      "position": [
+        134,
+        236,
+        167
+      ],
+      "lookAt": [
+        -21,
+        119,
+        -25
+      ],
+      "reviewLod": "district"
     }
   ],
   "importOptions": {
@@ -302,10 +591,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 68737,
-    "vertices": 193267,
-    "materials": 6,
-    "bytes": 7786092,
-    "sha256": "sha256:a68a35dcd6d4a70289117247913290dd8a508d158c4e08af4e694656cbc329d5"
+    "triangles": 63578,
+    "vertices": 177790,
+    "materials": 3,
+    "bytes": 7165720,
+    "sha256": "sha256:1e41b7462b990ec34ca54bd3cc513c37247897951a7b032a60aec668d823ea41"
   }
 }

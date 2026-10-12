@@ -1,12 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0288_konopiste_castle",
-  "sourceHash": "sha256:f50d844dfd4d4b97c5e379b65a0168348c507bae7dfcdb254c737e860cd1f446",
-  "runtimeHash": "sha256:144c310561468ea1272d770f0c3e4fdc9633465daac5d1a638100b4a29206527",
-  "captureReportHash": "sha256:bfaeca1934a397163cf58448728b016cd1d47601aa4cb68e8917441df6ce135c",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:513f800361906d8ce810f4af03c6a2d5ad79a5df948399331ba067d2ff1be834",
+  "sourceHash": "sha256:66f4ddc7692e3d7fc79cb7b76d70fec6074d000ff37be372bd88dad840f19471",
+  "runtimeHash": "sha256:7d8975d6ca71b752ef385bff292b67d4d71f69237d2e818f1b2960ec035a9b1e",
+  "captureReportHash": "sha256:9e185f26a0c1d5f71153615fb5cacf69034dab7d9a79d745a325b022b2e79d12",
   "visualReview": {
     "status": "passed",
-    "notes": "Inspected 11 final portable frames. Cream twin-courtyard castle,red roofs,large round keep with overhanging gallery/cone,square upper corner rooms with broad timber crosses,stepped dormers,stone glazed-arch terrace and genuinely open pointed court loggia are represented. Overhead review caught roof triangulation covering the courts;convex enclosing ridges corrected it. Final glass facing is corrected. Current metric height and attachment controls are estimates.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -19,11 +20,12 @@
       "shots/western-court-open-pointed-loggia.png",
       "shots/stepped-dormers-and-timber-tower-room.png",
       "shots/northern-wing-and-corner-towers.png"
-    ]
+    ],
+    "notes": "Inspected all 11 final portable views. Cream wings, dominant round keep with corbelled upper gallery/red cone, timber-cross corner rooms, stepped dormers, southern terrace and two open courts retain the inspected picture's identity. Bounded foundations reach coarse PMTiles ground without an embedded hill."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "notes": "Inspected 10 final shared-loader views. Four existing shared256² graphs:lime plaster,limestone,ceramic tile and plain timber. Six merged material groups near,one skyline. Linear vertex tints,metricUVs,no embedded images,unique textures,baked light orAO. Each graph reads once per view;unload leaves zero live model geometries. Court loggia openings are real geometry;terrace arches contain opaque blue-grey panes.",
+    "captureReportHash": "sha256:650268ffb1c86975684caf3b9bed0868e18c25163b29842819ac48d0a03c1ba2",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -34,13 +36,14 @@
       "shots/shared/two-open-courtyards.png",
       "shots/shared/western-court-open-pointed-loggia.png",
       "shots/shared/stepped-dormers-and-timber-tower-room.png",
-      "shots/shared/northern-wing-and-corner-towers.png"
+      "shots/shared/northern-wing-and-corner-towers.png",
+      "shots/shared/placement.png"
     ],
-    "captureReportHash": "sha256:c260f127f0b041da993012fdcd8095df701d07520ecf3a62cd4190b22e09943d"
+    "notes": "Inspected all 11 final shared-material views. Five common graphs provide plaster, limestone, tile, timber and paving; dark recesses remain explicit. Red roofs, timber crosses, gallery corbels, stepped dormers and pointed loggia read correctly. Retained mapped envelope and terrace orientation fit approximately. Material-cache reuse and unload checks passed."
   },
   "mediumFiReview": {
     "status": "passed",
-    "notes": "Inspected 23 final canonical Earth-rig frames at street,block and skyline distances,noon/late light,Economy/High,plus silhouette,six architectural views and four matched-camera levels. Scale2 synthetic Bohemian townhouse neighbors are style context,not real Konopiště geography. Cream walls/terracotta roofs remain readable without shadows;far retains twin open courts,keep and smaller square-topped towers. Existing graph averages modulate flat skyline tints. Thin balusters,spires,shutter slats,joints and statuary are omitted. Visual review corrected roof holes and terrace-glass facing.",
+    "captureReportHash": "sha256:910598f09c81201bb06f371a8cb5e4d22209fa661b214b43f7cca4151b59ad29",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -61,65 +64,33 @@
       "medium-fi/western-court-open-pointed-loggia.png",
       "medium-fi/stepped-dormers-and-timber-tower-room.png",
       "medium-fi/northern-wing-and-corner-towers.png",
+      "medium-fi/whole-konopiste-skyline.png",
+      "medium-fi/whole-konopiste-district.png",
+      "medium-fi/whole-konopiste-street.png",
+      "medium-fi/whole-konopiste-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "captureReportHash": "sha256:b0bb216587f5c3e7973952167b6fd2abd2d3a66af5fd83ce7054c788ffb2bbda"
-  },
-  "motionReview": {
-    "status": "passed",
-    "notes": "Inspected 36 ordered approach/retreat samples through preloaded forced skyline,district,street and closeup. Y0 footing,Y4.8 court,Y22 main eave,Y28 main ridge andY49.5 keep maximum remain fixed. Castle body and tower masses do not disappear or shift in the samples. District adds windows/dormers,street adds shutter rhythm,terrace glazing,court arches and corbels,closeup adds broad frames. Added details,facets,material/shadow response and silhouette differences make switches visible. Closest views intentionally crop the keep tip/outer wings. Resident forced levels do not certify automatic selection,network upgrades,subframe shimmer or physical-device timing.",
-    "inspectedFrames": [
-      "motion/sweep-00.png",
-      "motion/sweep-01.png",
-      "motion/sweep-02.png",
-      "motion/sweep-03.png",
-      "motion/sweep-04.png",
-      "motion/sweep-05.png",
-      "motion/sweep-06.png",
-      "motion/sweep-07.png",
-      "motion/sweep-08.png",
-      "motion/sweep-09.png",
-      "motion/sweep-10.png",
-      "motion/sweep-11.png",
-      "motion/sweep-12.png",
-      "motion/sweep-13.png",
-      "motion/sweep-14.png",
-      "motion/sweep-15.png",
-      "motion/sweep-16.png",
-      "motion/sweep-17.png",
-      "motion/sweep-18.png",
-      "motion/sweep-19.png",
-      "motion/sweep-20.png",
-      "motion/sweep-21.png",
-      "motion/sweep-22.png",
-      "motion/sweep-23.png",
-      "motion/sweep-24.png",
-      "motion/sweep-25.png",
-      "motion/sweep-26.png",
-      "motion/sweep-27.png",
-      "motion/sweep-28.png",
-      "motion/sweep-29.png",
-      "motion/sweep-30.png",
-      "motion/sweep-31.png",
-      "motion/sweep-32.png",
-      "motion/sweep-33.png",
-      "motion/sweep-34.png",
-      "motion/sweep-35.png"
-    ],
-    "captureReportHash": "sha256:de3b3518bc0c0d80da1b7089eeee7891166ec11f20991e3b5b15100bae43e091"
+    "notes": "Inspected all 27 final medium-fi views: noon/late light, high/economy quality, silhouette, six feature views and all four matched tiers. Keep, roofline, terrace and both court openings persist through upgrades; close tiers add facade details. Coarse PMTiles hill is supplied separately by the host."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Cached exactQ744016 relation282741 supplies the83.567×50.131m mapped wall envelope,two courtyard holes,anchor[14.656541475,49.779576024] and undirected axis-0.117875714253. Full mapped rings are retained in the master;far removes only small plan deviations. Every height,roof ridge,tower upper room,dormer,terrace/loggia attachment and ground datum is an estimate. Mapped building:levels=1 contradicts inspected facades and is rejected as height/storey evidence. North upper-room and court bay interpretation is less certain than photographed southern facade/keep. Signed facade direction,model/base terrain fit,attachment footprints and complete site fit require review. Draft inactive,replaceFootprint=false. OSM geometry separately attributed underODbL-1.0;operator/photographer images remain external research,not textures or copied meshes."
+    "status": "passed",
+    "placementHash": "sha256:b52497e69a5042ddad7f0522f7cc8f5dbab62a0be50221b4fda7bb8a213ba00d",
+    "mapFrameHash": "sha256:d542442ba3fdd5a0f90bdb3be2a53eb0ffbdf022b42e344b473cd983ba22002c",
+    "notes": "Inspected picture confirms the cream quadrangular castle, dominant round keep with corbelled upper gallery/red cone, red roofline and timber-cross corner rooms. Retained mapped outer/two-court rings and standard viewer PMTiles set approximate location, scale and south-terrace orientation. The original4.8m reconstructed court/terrace floor receives a0.6m working rise; bounded wall bottoms extend beneath the coarse sampled hill. Anchor 14.656541475,49.779576024; heading -0.117875714253; standard PMTiles datum 384.34631015663166m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Reviewed against docs-src/guide/medium-fi.md. Identity comes from mapped twin courts,dominant conical keep and square-topped corner rooms/stepped dormers. Preserved source has17,454 triangles. Flat architectural planes,12–16-sided near curves,four shared low-resolution graphs and selective broad details. No thin balustrades/flags,shutter slats,masonry joints,weathering gradients,microbevels,complete statuary/lettering or interiors. Appearance approval does not certify geographic fit."
+    "notes": "Approximate current exterior and map fit from one inspected picture and standard viewer PMTiles. Heights, reconstructed court/terrace floor, dormers and gallery proportions remain estimates; no exact survey, thresholds, interiors, forest or terrain cutouts. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Identity comes from mapped twin courts,dominant conical keep and square-topped corner rooms/stepped dormers. Preserved source has17,454 triangles. Flat architectural planes,12–16-sided near curves,four shared low-resolution graphs and selective broad details. No thin balustrades/flags,shutter slats,masonry joints,weathering gradients,microbevels,complete statuary/lettering or interiors. Appearance approval does not certify geographic fit.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -127,259 +98,196 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u2/u2f/n0288_konopiste_castle/models/source.glb",
-        "hash": "sha256:f50d844dfd4d4b97c5e379b65a0168348c507bae7dfcdb254c737e860cd1f446",
-        "bytes": 2098088,
+        "hash": "sha256:66f4ddc7692e3d7fc79cb7b76d70fec6074d000ff37be372bd88dad840f19471",
+        "bytes": 2098280,
         "triangles": 17454,
-        "vertices": 52362,
         "materials": 6,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -42.650001525878906,
-          0,
+          -14.39799690246582,
           -25.395999908447266
         ],
         "max": [
           42.900001525878906,
-          49.5,
+          50.099998474121094,
           31.799999237060547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.glb",
-        "hash": "sha256:144c310561468ea1272d770f0c3e4fdc9633465daac5d1a638100b4a29206527",
-        "bytes": 2097520,
+        "hash": "sha256:7d8975d6ca71b752ef385bff292b67d4d71f69237d2e818f1b2960ec035a9b1e",
+        "bytes": 2097716,
         "triangles": 17454,
-        "vertices": 52362,
         "materials": 6,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -42.650001525878906,
-          0,
+          -14.39799690246582,
           -25.395999908447266
         ],
         "max": [
           42.900001525878906,
-          49.5,
+          50.099998474121094,
           31.799999237060547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
         "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.skyline.glb",
-        "hash": "sha256:ea66b5dab309acef2acdee7aa28d3892eb9eae667db59e752427dfd1c4837d51",
-        "bytes": 57420,
+        "hash": "sha256:e374a65151a9eb47e25a0688d1438ca11180a20d04cc0af6ae9790af4ad96d85",
+        "bytes": 68536,
         "triangles": 677,
-        "vertices": 1443,
         "materials": 1,
-        "sharedGraphs": 0,
         "images": 0,
         "min": [
           -42.650001525878906,
-          0,
+          -13.821395874023438,
           -25.06599998474121
         ],
         "max": [
           42.900001525878906,
-          49.5,
+          50.099998474121094,
           27.799999237060547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
-        "file": "model.district.glb",
         "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.district.glb",
-        "hash": "sha256:56fbd1562b9addd857adb31381b6a3c219d9136208d35299dca7b06132e04419",
-        "bytes": 120384,
+        "hash": "sha256:e452037a97c736adaca3129f6d587b5a190bd7c6805f1828e9f320669a839dc0",
+        "bytes": 126208,
         "triangles": 1396,
-        "vertices": 2913,
         "materials": 6,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -42.650001525878906,
-          0,
+          -14.364690780639648,
           -25.145999908447266
         ],
         "max": [
           42.900001525878906,
-          49.5,
+          50.099998474121094,
           27.799999237060547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "street",
-        "file": "model.street.glb",
         "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.street.glb",
-        "hash": "sha256:751f6ee88da749ed154d81b104d58da980a0be516bded1ea2eece5f9e0372219",
-        "bytes": 920324,
+        "hash": "sha256:b95762048ccdf8c63d8b20f4146d5cb0526c31fad7a23cfaefbf834e122c4c48",
+        "bytes": 915724,
         "triangles": 10536,
-        "vertices": 23608,
         "materials": 6,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -42.650001525878906,
-          0,
+          -14.39799690246582,
           -25.395999908447266
         ],
         "max": [
           42.900001525878906,
-          49.5,
+          50.099998474121094,
           31.799999237060547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
         "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.closeup.glb",
-        "hash": "sha256:e0c43c6862fc6d06278a008e76b8ed9af8dd11600de8a37cfd9c92e94d8cb422",
-        "bytes": 1547996,
+        "hash": "sha256:57fc714dce5c93f30f357d91f691e64e586c4759a81a04475b0e99136022a782",
+        "bytes": 1527004,
         "triangles": 17454,
-        "vertices": 39890,
         "materials": 6,
-        "sharedGraphs": 4,
         "images": 0,
         "min": [
           -42.650001525878906,
-          0,
+          -14.39799690246582,
           -25.395999908447266
         ],
         "max": [
           42.900001525878906,
-          49.5,
+          50.099998474121094,
           31.799999237060547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       }
     ],
-    "notes": "All six current GLBs:zero errors/warnings,no images,Y0/Y49.5 bounds,current source/runtime/LOD hashes. Expected unused UV informational notices only. Three targeted deterministic,budget,GPU-layout and open-courtyard tests,strict medium-fi audit,recipe lint and byte-identical source regeneration pass."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Four tiers contain 677/1396/10536/17454 triangles and initial skyline+district downloads total 194744 bytes. Separate POSITION/NORMAL streams retained."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:0b135aad9e1a5c0ee2123532dfdef1ca6190c655e1bb198bba407e3698151db4",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.skyline.glb",
-        "hash": "sha256:ea66b5dab309acef2acdee7aa28d3892eb9eae667db59e752427dfd1c4837d51",
-        "bytes": 57420,
+        "hash": "sha256:e374a65151a9eb47e25a0688d1438ca11180a20d04cc0af6ae9790af4ad96d85",
+        "bytes": 68536,
+        "gzipBytes": 11102,
         "triangles": 677,
-        "vertices": 1443,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -42.650001525878906,
-          0,
-          -25.06599998474121
-        ],
-        "max": [
-          42.900001525878906,
-          49.5,
-          27.799999237060547
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "cpuBytes": 67100,
+        "gpuBytes": 67100,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.district.glb",
-        "hash": "sha256:56fbd1562b9addd857adb31381b6a3c219d9136208d35299dca7b06132e04419",
-        "bytes": 120384,
+        "hash": "sha256:e452037a97c736adaca3129f6d587b5a190bd7c6805f1828e9f320669a839dc0",
+        "bytes": 126208,
+        "gzipBytes": 30339,
         "triangles": 1396,
-        "vertices": 2913,
-        "materials": 6,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -42.650001525878906,
-          0,
-          -25.145999908447266
-        ],
-        "max": [
-          42.900001525878906,
-          49.5,
-          27.799999237060547
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 118864,
+        "gpuBytes": 118864,
+        "errorMeters": 0.7,
+        "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.street.glb",
-        "hash": "sha256:751f6ee88da749ed154d81b104d58da980a0be516bded1ea2eece5f9e0372219",
-        "bytes": 920324,
+        "hash": "sha256:b95762048ccdf8c63d8b20f4146d5cb0526c31fad7a23cfaefbf834e122c4c48",
+        "bytes": 915724,
+        "gzipBytes": 165900,
         "triangles": 10536,
-        "vertices": 23608,
-        "materials": 6,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -42.650001525878906,
-          0,
-          -25.395999908447266
-        ],
-        "max": [
-          42.900001525878906,
-          49.5,
-          31.799999237060547
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 908360,
+        "gpuBytes": 908360,
+        "errorMeters": 0.3,
+        "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u2/u2f/n0288_konopiste_castle/model.closeup.glb",
-        "hash": "sha256:e0c43c6862fc6d06278a008e76b8ed9af8dd11600de8a37cfd9c92e94d8cb422",
-        "bytes": 1547996,
+        "hash": "sha256:57fc714dce5c93f30f357d91f691e64e586c4759a81a04475b0e99136022a782",
+        "bytes": 1527004,
+        "gzipBytes": 265042,
         "triangles": 17454,
-        "vertices": 39890,
-        "materials": 6,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -42.650001525878906,
-          0,
-          -25.395999908447266
-        ],
-        "max": [
-          42.900001525878906,
-          49.5,
-          31.799999237060547
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 1519604,
+        "gpuBytes": 1519604,
+        "errorMeters": 0.1,
+        "drawCalls": 6
       }
     ],
-    "initialDownloadBytes": 177804,
-    "notes": "Skyline677,district1,396,street10,536,closeup17,454 triangles;all below1,000/4,000/16,000/64,000 caps. Initial skyline plus district177,804 bytes,excluding shared graph transfers. Six near draws/one skyline. Homogeneous attribute bufferView component types avoid mixed-type upload duplication. Resident sweep reviewed;adaptive streaming and physical-device timing pending."
-  }
+    "initialBytes": 194744,
+    "notes": "skyline: 677 triangles, 68536 bytes, 1 draws; district: 1396 triangles, 126208 bytes, 6 draws; street: 10536 triangles, 915724 bytes, 6 draws; closeup: 17454 triangles, 1527004 bytes, 6 draws. Initial skyline+district 194744 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior from one inspected picture and standard viewer PMTiles, without survey accuracy or exact thresholds.",
+    "Original detailed architectural master/hash/recipe preserved. Court, terrace, roof and tower dimensions remain reconstructed.",
+    "Five common graphs plus explicit dark recess slot, zero embedded images. Hill/forest supplied by host; no embedded hill, terrain cutouts or interiors.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

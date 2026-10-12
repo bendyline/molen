@@ -41,7 +41,21 @@
     "publishedFloors": 56,
     "architecturalHeightMeters": 309,
     "materials": "Silver aluminium panels with silver/copper reflective glass; granite base",
-    "dimensionalSource": "Architect-contributed plans, sections and commentary in The Architecture of the United Arab Emirates, printed64–78; contractor Multiplex whole-metre height309 for hotel and354 for office; book355 office."
+    "dimensionalSource": "Architect-contributed plans/commentary printed64–78:55.5m triangle, hotel3.6m floor pitch,305m height; contractor Multiplex309m/56floors selected.",
+    "originalMasterHash": "sha256:99f4a5e5c4a47ec97bf3a568eaae81a4771c3ca2d9b75442a4489f339aa81059",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-emirates-models.mjs#buildEmirates(true)",
+    "surfaceMeans": {
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
   },
   "reconstruction": {
     "base": "Three full-depth triangular piers flank an independently enclosed eight-floor circular drum. Tower-specific canopy, revolving-door volumes and a small arrival apron are modeled; the shared shopping/parking podium is excluded to avoid overlapping assets.",
@@ -59,7 +73,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi hotel identity and signed triangular placement",
     "anchor": [
       55.2823759,
       25.217581566666667
@@ -74,10 +88,13 @@
     ],
     "wikidataId": "Q1049027",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:91ea1abf6b10dd67d5ab524a463de1c9657434eee49702585798ea79b323521a",
+    "mapGeometryHash": "sha256:8ce98fc8b3579ea6a37fe8fbb6ba11c935e99f0e1f2dcb440cee8be982ac1c0b",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Operator coordinates and labeled primary plan override swapped OSM QIDs: this western hotel way393391114 is anchored at its independent triangle centroid. Native+X follows the inward apex, corroborated by primary plan and roof photographs. The55.5m published triangle governs model size; raw map tags are preserved. GroundY0 is the tower entrance datum; shared podium and changing landscape are excluded."
+    "orientationConfidence": "fresh operator coordinates, labelled primary owner/site/lobby plans and completed roof photos",
+    "notes": "Fresh2026-10-10 Jumeirah operator structured coordinates[55.281903,25.217773] identify the western hotel entrance independently of swapped map tags. The labelled2018 owner terrace plan page7 distinguishes hotel/west and office/east; architect-contributed site plan printed67 and hotel lobby plan printed74 corroborate the outer west-northwest arrival side. Raw way393391114 retains conflicting office Q845182/commercial/54floor/355m tags under explicit Q1049027 hotel override. Fresh2026-10-10 map geometry matches the original independent source-local ring exactly. Three triangle corners retain centroid[55.2823759,25.217581566666667] and directed heading-0.5679485566001423. Native+X follows the inward east-southeast high roof/apex/mast, -X the outer west-northwest glass lobby, +Z south-southwest. The published55.5m triangle governs the authored model over approximate54m map sides: accept1m principal triangle/1degree bearing allowance. Reconstructed bow projects5.5m beyond rear chord; canopy/apron project farther, and are attached unsurveyed exterior elements. GroundY0 is an unsurveyed reconstructed entrance datum. Shared retail/parking podium, office tower, changing landscape and neighboring Museum of the Future are excluded. No footprint replacement.",
+    "evidence": "Fresh2026-10-10 Jumeirah operator structured coordinates[55.281903,25.217773] identify the western hotel entrance independently of swapped map tags. The labelled2018 owner terrace plan page7 distinguishes hotel/west and office/east; architect-contributed site plan printed67 and hotel lobby plan printed74 corroborate the outer west-northwest arrival side. Raw way393391114 retains conflicting office Q845182/commercial/54floor/355m tags under explicit Q1049027 hotel override. Fresh2026-10-10 map geometry matches the original independent source-local ring exactly. Three triangle corners retain centroid[55.2823759,25.217581566666667] and directed heading-0.5679485566001423. Native+X follows the inward east-southeast high roof/apex/mast, -X the outer west-northwest glass lobby, +Z south-southwest. The published55.5m triangle governs the authored model over approximate54m map sides: accept1m principal triangle/1degree bearing allowance. Reconstructed bow projects5.5m beyond rear chord; canopy/apron project farther, and are attached unsurveyed exterior elements. GroundY0 is an unsurveyed reconstructed entrance datum. Shared retail/parking podium, office tower, changing landscape and neighboring Museum of the Future are excluded. No footprint replacement.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -85,21 +102,12 @@
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
     {
-      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
       "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
+        1,
+        1
       ]
     },
     {
@@ -110,23 +118,13 @@
         2,
         2
       ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.metal_stainless",
-      "slot": "trim",
-      "uv": "repeats",
-      "repeatMeters": [
-        1,
-        1
-      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Roof-stage and upper mechanical datums, fine curtain-wall pitch, facade panel joints, cylindrical bow, mast section and small entry hardware are reconstructed from primary sections and completed photographs. Contractor and architect sources round heights differently; selected overall heights are355m office and309m hotel. Interior fit-out, full common retail/parking complex, changing signs and neighboring Museum of the Future are excluded."
+    "Unchanged original buildEmirates(true) source reproduces337608triangles/31153696bytes exactly. Reviewed hotel retains55.5m equilateral shaft, three open triangular piers and an eight-floor circular drum,41 reconstructed3.6m ribbon courses, bowed outer curtain wall, recessed glazing/projected sills, five upper slits on each side, copper cylindrical beacon, sloping glass roof between two metal gables and rectangular mast to309m. Attached arrival canopy/three revolving-door casings/small apron and reconstructed side steps remain. Continuous shared stainless panels replace painted/stainless duplicate groups and repeated2cm panel-joint beams; tiny mast joints are omitted. Opaque reflective glazing approximates real clear drum; tinted stainless approximates aluminium. Skyline preserves principal tower/base/crown/roof/mast with five-floor ribbons/six-sided bow/coarse drum, omitting canopy/apron/steps/doors, framing and maintenance arms. District restores entry/steps, four drum belts, three-floor ribbons and sparse roof grid. Street restores every ribbon/eight drum belts and continuous curved mullion strips, sills/louvres/maintenance arms. Close-up adds dense glazing/beacon frames/roof lattice. Book printed64 gives305m hotel, contractor Multiplex309m/56floors; current architect360m is a complex/office rounded statement. Original309m follows contractor, not agreement among sources. Intermediate31.8/176/215/263.3m datums, bowed radius, pitches and entrance dimensions remain photographic reconstructions. The triangular canopy and door casings are a stylized approximation, not the literal curved skylit hotel lobby/terraced podium in the plans. Interiors/full shared shopping/parking complex/landscaping are excluded. Physical-device/dense-city timings, curb/terrain fit and global geometry error bounds are unmeasured."
   ],
   "qaCameras": [
     {
@@ -271,6 +269,239 @@
         148,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-hotel",
+      "position": [
+        520,
+        230,
+        490
+      ],
+      "lookAt": [
+        0,
+        154,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/emirates-hotel-runtime-model.mjs",
+    "export": "buildEmiratesHotelReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/emirates-hotel-runtime-model.mjs",
+    "export": "buildEmiratesHotelSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEmiratesHotelDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildEmiratesHotelStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEmiratesHotelCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hotel-skyline",
+      "position": [
+        520,
+        230,
+        490
+      ],
+      "lookAt": [
+        0,
+        154,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hotel-district",
+      "position": [
+        520,
+        230,
+        490
+      ],
+      "lookAt": [
+        0,
+        154,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hotel-street",
+      "position": [
+        520,
+        230,
+        490
+      ],
+      "lookAt": [
+        0,
+        154,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hotel-closeup",
+      "position": [
+        520,
+        230,
+        490
+      ],
+      "lookAt": [
+        0,
+        154,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-open-piers-drum",
+      "position": [
+        75,
+        24,
+        69
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-bowed-curtain",
+      "position": [
+        -100,
+        115,
+        34
+      ],
+      "lookAt": [
+        -17,
+        100,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-sloped-hotel-roof",
+      "position": [
+        -80,
+        288,
+        58
+      ],
+      "lookAt": [
+        0,
+        240,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -278,10 +509,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 337608,
-    "vertices": 752752,
-    "materials": 5,
-    "bytes": 31153696,
-    "sha256": "sha256:99f4a5e5c4a47ec97bf3a568eaae81a4771c3ca2d9b75442a4489f339aa81059"
+    "triangles": 63176,
+    "vertices": 158820,
+    "materials": 3,
+    "bytes": 6478000,
+    "sha256": "sha256:f5ef79e5827e30f09d566c2cfe834647fe42e1fc575053b423458e58a39ff528"
   }
 }

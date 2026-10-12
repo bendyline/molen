@@ -32,7 +32,11 @@
     "elevationMode": "terrain-contact",
     "status": "preview-proposal",
     "source": "https://nma.transpordiamet.ee/aton/2632/",
-    "notes": "Authority coordinate identifies tower center. Authored entrance faces -Z; mapped access path1199536561 ends at[22.0553305,57.9098546], 3.64m northwest of the center, resolving entrance heading0.505986351887rad. Circular lantern remains rotationally symmetric."
+    "notes": "Authority coordinate identifies tower center. Authored entrance faces -Z; mapped access path1199536561 ends at[22.0553305,57.9098546], 3.64m northwest of the center, resolving entrance heading0.505986351887rad. Circular lantern remains rotationally symmetric.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:13d23396a7b6eb4a1924c92e5eba8dc09f296937e1d34f22c8a83e66c5cd94c8",
+    "mapGeometryLicense": "ODbL 1.0",
+    "attribution": "© OpenStreetMap contributors"
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -91,17 +95,155 @@
         26,
         0
       ]
+    },
+    {
+      "name": "entrance-ground",
+      "position": [
+        7,
+        4,
+        -11
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -3.8
+      ]
     }
   ],
   "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
   "nativeAxes": {
     "up": "+Y",
-    "front": "+Z",
-    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+    "front": "-Z",
+    "origin": "Tower center at local ground contact Y=0. Entrance faces-Z toward the mapped northwest access endpoint; the sparse window rank faces+Z."
   },
   "assetId": "molen.worldgen.structure.n0648_sorve_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "53m black-over-white tapered concrete lighthouse with sparse recessed openings, flared gallery and double black lantern cage.",
+    "epoch": "Current national aid935 exterior and reference photograph; no interior reconstruction.",
+    "master": "Preserve original51662-triangle master, casting joints, recessed windows, gallery rails and ladder.",
+    "browser": "Hand-authored skyline/district/street retain tower profiles, real window openings and double cages; the detailed source is the closeup. Shared concrete/painted metal and local lantern panes; no reference textures embedded.",
+    "exclusions": "Detached station buildings, exact casting dimensions, navigation optics, local surveyed terrain and interior stair."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sorve-skyline-model.mjs",
+    "export": "buildSorveSkyline",
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSorveDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildSorveStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "lantern-district",
+      "position": [
+        9,
+        51,
+        13
+      ],
+      "lookAt": [
+        0,
+        49.2,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-street",
+      "position": [
+        9,
+        51,
+        13
+      ],
+      "lookAt": [
+        0,
+        49.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "entrance-street",
+      "position": [
+        7,
+        4,
+        -11
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -3.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "skyline-identity",
+      "position": [
+        48,
+        35,
+        66
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ],
   "actualBounds": {
     "min": [
       -4.119999885559082,
@@ -113,6 +255,13 @@
       53,
       4.119999885559082
     ]
+  },
+  "mesh": {
+    "triangles": 51662,
+    "vertices": 100012,
+    "materials": 3,
+    "bytes": 4222728,
+    "sha256": "sha256:39b43354e60b3b8915cf8aa2bc99355b57d1b74bc6f6831d41aa426f2d905b5c"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

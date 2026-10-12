@@ -1,15 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0303_arundel_castle",
-  "inputHash": "sha256:aab9db54da0d6f8610da75d3feca1eee5ed11aa7b347b5b777ca29e8ef19e42d",
-  "sourceHash": "sha256:432c23cd81b9906115543bd1f4d7b941e42204ed848d5b93d732821d39c7818c",
-  "runtimeHash": "sha256:36ffbf914defe637e716933bc1df1ea65642c12bfd22f794b6553bf9275dbb4e",
-  "reviewGroundY": null,
-  "fixtureHash": "sha256:fc107268992f4c52d9da99286589aac5acce6543c1946871fcbd8dd931e4a5ea",
-  "footprintEvidenceHash": "sha256:7e48204cb99923d328d2cdcfdbe8d7fca77e92061d590f3be1d140ae77582115",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "inputHash": "sha256:725a957800ec226cddac36197a4d5ef1cdc931bc997baf0b26a605b1fa51d58b",
+  "sourceHash": "sha256:359b5177ad7e3ad38ac7ed1bfd96d1c9ec41e1cb3710b8d48b75832ef67cf1c4",
+  "runtimeHash": "sha256:9562500d29128a53ffc65f9e8fb54414780313de65c81e2c882551138fb6c90c",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:5cab11c8c7f16b829ed371935929ea188fa37fae11bfbc968a0ef15f40c20445",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:ebd2c9aa9ccbe91a7667e4fccde77ccafb4138e0e189fb16bd778dea62b44ee8",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_drywall": {
       "path": "materials/stone_drywall.matgraph.json",
@@ -23,10 +23,6 @@
       "path": "materials/slate.matgraph.json",
       "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
     },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
-    },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
@@ -39,15 +35,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:faff036f108da388559b1919a6b0f8a25fdee0616b37dee9f98f5a24ca55824c",
+      "hash": "sha256:f29ee07ac1ca59973c5792682423af3d7d9237aa1bf1e10b291b80b930c2377a",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -59,36 +55,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -98,15 +109,15 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:eb51538e2049c8a39fa8aa9204961ae662d791d2d1f2f6dedb834accc53570c7",
+      "hash": "sha256:83a4ee075f3ee8d0e042fc98aee2ea0613bbb0b7c5532fef607026093f3e36c7",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -118,36 +129,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -157,15 +183,15 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:f98ecab27cfd6d708cf4306d7daec9048ff031104e08039cd74499b53ae1b1f2",
+      "hash": "sha256:cf36aaa3687361cccfd57d0b331342ca7c63fc128f70ad61d3234d13a709f249",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -177,36 +203,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -216,15 +257,15 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:457957f22e690a64b928e175a12f4157b5a7bac9bdd5d30d19ff7c16526bf5be",
+      "hash": "sha256:ffc2e67403b9142d0eb9e770da1d5f59f4be7249e6c585b3174c16ad9b934197",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -236,36 +277,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -275,24 +331,24 @@
     },
     {
       "path": "shots/shared/keep-and-motte.png",
-      "hash": "sha256:d645dd577abf60df991a25074494075622eabe00da5348070bb7eeff5e6a09b5",
+      "hash": "sha256:58f140c20497f2177d3185ba43722db1edcb251c75bfe5771de55219ad080d49",
       "camera": {
         "name": "keep-and-motte",
         "position": [
           -94.30803612111492,
-          53,
+          59,
           -30.182682501369598
         ],
         "lookAt": [
           -10.652953578256437,
-          21,
+          27,
           -12.10432071863239
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -304,36 +360,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -343,24 +414,24 @@
     },
     {
       "path": "shots/shared/residential-quadrangle.png",
-      "hash": "sha256:cf75faeefe73e3d9c415887f44835f90beb8b0624d57da41f8c2d50090bcc8ea",
+      "hash": "sha256:6f32651b383a2e563a7d0a13d8288a556813b98cb32e968d04c2f35ec1e67f05",
       "camera": {
         "name": "residential-quadrangle",
         "position": [
           24.15190273039535,
-          67,
+          73,
           31.94817044059834
         ],
         "lookAt": [
           57.072448538994045,
-          13,
+          19,
           82.12025096018567
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -372,36 +443,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -411,24 +497,24 @@
     },
     {
       "path": "shots/shared/south-towers-and-roof.png",
-      "hash": "sha256:7baf9e65c6969968a8c002c900558e76d348117d4394fa128c0bec1e3f6cc125",
+      "hash": "sha256:4c76339c7f6a2ac96034c5a8ba2199b1fce98a06d3072d40aec5c3f912f44945",
       "camera": {
         "name": "south-towers-and-roof",
         "position": [
           -39.998118713706496,
-          46,
+          52,
           142.1061240741026
         ],
         "lookAt": [
           38.78110945896465,
-          17,
+          23,
           83.67810674920771
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -440,36 +526,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -479,24 +580,24 @@
     },
     {
       "path": "shots/shared/inner-gate-passage.png",
-      "hash": "sha256:a63921e44ade5def99b3f19e44fb18312f3ac377d07b3470628d5ac4a02402e0",
+      "hash": "sha256:6e1d1f918af11ccd99dc7d01305d85fdd4360d4564c7397bb189ea5752243379",
       "camera": {
         "name": "inner-gate-passage",
         "position": [
           -54.27250137781004,
-          4.4,
+          10.4,
           39.33822052655162
         ],
         "lookAt": [
           -3.4989049959445637,
-          3,
+          9,
           41.08232787743842
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -508,36 +609,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -547,24 +663,24 @@
     },
     {
       "path": "shots/shared/roof-plan.png",
-      "hash": "sha256:84802a2c9f24751f5c9a27384721a231f4919fe7c23da71a52326cd0aaa79bd8",
+      "hash": "sha256:e2473b5343a0dcdc9a92199de37cb3a476cbbf2a33306ab22263396758bfab36",
       "camera": {
         "name": "roof-plan",
         "position": [
           -2.7111375718016695,
-          312,
+          318,
           6.682045575029053
         ],
         "lookAt": [
           -2.7111375718016695,
-          0,
+          6,
           6.682045575029053
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -576,36 +692,51 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
@@ -615,24 +746,24 @@
     },
     {
       "path": "shots/shared/northern-bailey.png",
-      "hash": "sha256:47e34235f0543b12fb22ae9586074e19161d4a82b23bf19c0be75d52ac35bec4",
+      "hash": "sha256:5f02b91c41697e8c02e055d03d3451bdb795b332c982de2b62c65f6530c20a08",
       "camera": {
         "name": "northern-bailey",
         "position": [
           -106.54022607673535,
-          61,
+          67,
           -181.50807207261644
         ],
         "lookAt": [
           -38.449309600848125,
-          9,
+          15,
           -77.85660274644745
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0303_arundel_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
         "position": [
           0,
           0,
@@ -644,40 +775,129 @@
         "bounds": {
           "min": [
             -84.4287338256836,
-            0,
+            -25.303056716918945,
             -144.2043914794922
           ],
           "max": [
             123.61100006103516,
-            34.04999923706055,
+            40.04999923706055,
             129.52403259277344
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "d96e24f0-5ef8-45dc-ab2a-713ea8e252b2",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "71e237e9-cebd-4f11-ad81-5be18a6d63f7",
-          "worldgen:matgraph:molen.worldgen.material.slate": "92557bc7-959e-4ecf-b05d-c53dc7e1eea7",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "6f5fe7fa-ac92-428d-ac6a-5dbae7194953",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "85ae151d-2dba-45bb-9064-b1d2e03c6d4e",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "5d49c796-0318-41f1-abb6-f10807201a1a"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
         },
         "loads": [
           "molen.worldgen.structure.n0303_arundel_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
           "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
+        "renderedTriangles": 15381
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:50348c4a187efb110f643111380752f90d940c25b1ef615633befe6e003ad483",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0303_arundel_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0303",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 15379,
+        "bounds": {
+          "min": [
+            -84.4287338256836,
+            -25.303056716918945,
+            -144.2043914794922
+          ],
+          "max": [
+            123.61100006103516,
+            40.04999923706055,
+            129.52403259277344
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "714bea48-9a65-4310-a81a-a4113808ba55",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "64fd6bb0-19bb-4b69-9283-ec6e7c225a92",
+          "worldgen:matgraph:molen.worldgen.material.slate": "5a500b8d-035a-4f48-acc9-3aee5307c8a6",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "0d1122b1-dfc3-4d97-b4e6-5a6f19f3fa07",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "269ae7da-21ae-439d-9b0c-0e766edf08c6"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0303_arundel_castle"
+        ],
+        "selectionBounds": [
+          -0.5563354356626956,
+          50.855556274260834,
+          -0.5526924363373041,
+          50.85785596138828
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0303",
+            "coordinate": [
+              -0.554513936,
+              50.856706132
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0303"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 10,
         "renderedTriangles": 15381
       }
     }

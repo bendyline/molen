@@ -55,8 +55,26 @@
     "Fassbau has a flat terrace, Glockenturm an open octagonal crown, and Krautturm a detached fallen wall wedge."
   ],
   "limitations": [
-    "Original simplified exterior reconstruction only; no distributed reference images or unique textures.",
-    "Garden terrain, full palace interiors and distant gardens excluded.",
-    "Geographic fit, actual hillside contact, continuous-motion shimmer and physical-device performance remain pending."
-  ]
+    "Visual fit against the standard viewer PMTiles pipeline; no surveyed ground or threshold accuracy.",
+    "Terrain data is coarse under buildings and bridges. Exact court and retaining-wall levels are reconstructed from pictures.",
+    "Working court is reconstructed flat above the highest standard PMTiles sample within the open court; no exact historic floor level is claimed.",
+    "Bespoke DGM1 hillside verification is deferred at the owner request.",
+    "Original detailed master is preserved from unchanged heidelberg-castle-model.mjs#buildHeidelbergRuntime at sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180.",
+    "Runtime derivative corrects wing positions and courtyard size, adds distinct library/Ruprecht/Ludwig volumes and the Hall of Glass arched protective roof. The dated owner aerial supplies overall proportions; scaffolding and restoration details are omitted.",
+    "Mapped component rectangles approximate irregular footprints; roofs, floors, windows, bridge supports, western retaining walls and detached tower fragment remain reconstructions. No terrain cutout, whole-site slab, interiors, distant gardens or vegetation.",
+    "Four shared sandstone, plaster, slate and tile graphs; local opaque glass. No copied private textures. Physical-device timing and continuous-motion shimmer are pending."
+  ],
+  "currentRoundInspection": {
+    "method": "Reference pictures plus PMTiles visual fit as requested by owner; bespoke terrain research stopped.",
+    "pictures": [
+      "Owner aerial of gate, white/rose wings, open court and broken powder tower",
+      "Owner numbered isometric site picture"
+    ],
+    "map": "Picture-based current exterior registered to named mapped wings and the standard Protomaps/Mapzen PMTiles viewer data. +X south toward gate, +Z west toward English wing; signed orientation retains heading-1.430862687712. Working datum187.413498859529m and reconstructed court8.3m. Bounded lower walls follow coarse PMTiles ground; bridge and outer gate use separate levels. No surveyed threshold accuracy. Bespoke DGM1 verification remains deferred at the owner request.",
+    "pmtiles": {
+      "vector": "https://build.protomaps.com/20261008.pmtiles",
+      "vectorHash": "sha256:8eeb4e60adeaf1dc8ecf9ad78f3547c1f280ef0590cd18066e7101b10c4d6a2b",
+      "elevationHash": "sha256:6ca7878b7ed0cb2460a80edbd2a336b205ef1b2f17b012476d6f89b286ae7cd5"
+    }
+  }
 }

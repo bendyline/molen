@@ -21,11 +21,11 @@ Mapped castle/court rings reproduce attributed OSM data underODbL. Other geometr
 
 ## Model and axes
 
-7,839 triangles; 23,517 vertices; 7 material groups; 944,716 bytes. Native bounds: -79.000, 0.000, -55.000 to 49.650, 60.000, 69.000. Source hash: `sha256:450e52235e1bb5e3b91f8576aa0afaefc32aa99c67f9257fc439df355244ca0e`.
+7,839 triangles; 23,517 vertices; 7 material groups; 944,752 bytes. Native bounds: -79.000, -16.166, -55.000 to 93.078, 52.000, 69.000. Source hash: `sha256:1a72f7525190785b18f4e481506f4eac6fd4ff2c5a5a471fb320314e49d0c07a`.
 
-{"up":"+Y","lateral":"+X approximately east-north-east;Baroque entrance faces +X","longitudinal":"+Z approximately south-south-east","origin":"Cached castle envelope center;Y0 lowest estimated garden footing,Y13 inferred courtyard. Signed orientation and terrain datum pending."}
+{"up":"+Y","lateral":"+X approximately east-north-east;Baroque entrance faces +X","longitudinal":"+Z approximately south-south-east","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Castle/terrace core only;inactive until full site coverage and geographic review.
+Inspected aerial picture confirms coral-pink Baroque entrance wing, tall domed central tower, paired western roof towers, buff stone ranges and stepped garden terraces. Retained mapped castle/court rings and standard viewer PMTiles set approximate location, scale and entrance-facing orientation. The derivative reconstructs a working court at Y5, keeps terrace tops above coarse ground and moves the separate Powder Tower to its retained mapped position at native [88.89756493084487,47.64031319972397] with a coarse-ground footing. This review covers the castle/terrace model; separately modeled park buildings retain their own QA status. Anchor 16.291558848,50.842218729; heading 0.487948990682; standard PMTiles datum 392.7276846126304m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -33,12 +33,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0291` (
 
 ## Pending work
 
-- Current asset is the castle and an approximate terraced-garden core. Full named park complex is explicitly incomplete;site-parts.json preserves every heritage component group. No whole-complex fidelity approval.
-- Mapped castle/courtyard rings retained near;upper geometry and all terrace shapes,levels,roof pitches,facade rhythms and tower positions are original estimates. No common surveyed height datum;operator47m tower runs from inferred courtY13 toY60.
-- Three identity features:central domed lantern tower,paired western steep roof towers,and pink Baroque eastwing over stone garden terraces. Street adds half-timber gallery,tall hall windows,selected arcades and terrace pavilions. Interiors,statue likenesses,microjoints,balusters and lettering omitted.
-- Five existing shared256²sandstone,lime plaster,ceramic tile,bronze and timber graphs. Metric UVs and linear tints;actual graph means applied to skyline colors. No photographs,unique textures,AO or baked shadows.
-- Garden/rock footing and Central-European procedural neighbors are review context,not a surveyed landscape. Garden12levels and27fountain facts inform a simplified preview rather than a precise topographic reconstruction.
-- Inactive geographic proposal,replaceFootprint=false. Real-site facing,common datum,full scope and terrain/attachment fit remain pending;resident LOD review does not certify adaptive streaming,network upgrades or physical device timing.
+- Approximate current castle/terrace exterior from one inspected picture and standard viewer PMTiles, without bespoke survey or exact thresholds.
+- Original detailed master/hash/recipe preserved. Court, terraces, roof and tower dimensions remain reconstructed; separate Powder Tower control follows retained map location with approximate body/roof dimensions.
+- Five common graphs plus explicit garden-color and dark recess slots, zero embedded images. Forest, exact terrace planting/water, interiors and terrain cutouts excluded.
+- Castle/terrace model review does not approve the complete designated heritage ensemble, remote Palm House or separately modeled park buildings. Their individual reviews remain independent.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

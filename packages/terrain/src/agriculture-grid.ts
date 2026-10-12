@@ -85,9 +85,11 @@ export function decodeAgricultureGrid(grid: TerrainAgricultureGrid): Uint8Array 
   const cells = new Uint8Array(grid.resolution * grid.resolution);
   let offset = 0;
   for (let i = 0; i < grid.runs.length; i += 2) {
-    const count = grid.runs[i]!,
-      code = grid.runs[i + 1]!;
+    const count = grid.runs[i],
+      code = grid.runs[i + 1];
     if (
+      count === undefined ||
+      code === undefined ||
       !Number.isInteger(count) ||
       count < 1 ||
       !Number.isInteger(code) ||

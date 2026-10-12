@@ -28,11 +28,11 @@ No downloaded meshes or photo textures. Own attributed map traces are interprete
 
 ## Model and axes
 
-8,494 triangles; 25,482 vertices; 5 material groups; 1,022,556 bytes. Native bounds: -257.288, 0.000, -189.998 to 176.211, 79.800, 186.841. Source hash: `sha256:4e1f74ac95f8b7b8862f5dde97188f631eee334b895805f0e11aceecfac65689`.
+6,460 triangles; 19,380 vertices; 4 material groups; 778,148 bytes. Native bounds: -249.176, -35.037, -189.998 to 176.211, 44.763, 186.841. Source hash: `sha256:cc07b36ef68818e1c8ee943ffc2672d9ad6c2a6a5733d0fefa95f799b4eaa055`.
 
-{"up":"+Y","longitudinal":"+X east","lateral":"+Z south","origin":"Mapped site frame anchor, Y0 terrain study minimum134.99m; not anchor ground height"}
+{"up":"+Y","longitudinal":"+X east","lateral":"+Z south","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Site boundary is not a building replacement. Terrain/cliff interpretation requires real-site placement and vertical datum review;inactive draft.
+Inspected aerial picture confirms roofless upper ruins on the pale cliff, lower irregular curtains, ruined palaces, middle court and small separate Maiden Tower on a spur. Retained east/south mapped wall traces and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the broad grass terrain patch, uses current PMTiles for architectural footings and shifts the old134.99m study datum into the170.02671087466376m PMTiles anchor datum. The bounded pale upper cliff and Maiden Tower spur remain explicit architectural landscape proxies; host PMTiles supplies surrounding ground. Anchor 16.979973665,48.17314752; heading 0; standard PMTiles datum 170.02671087466376m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -40,12 +40,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0292` (
 
 ## Pending work
 
-- Ground traces reproduce attributed OSM masonry geometry, not a licensed museum-map tracing. Heights, break profiles, surviving facade associations and stairs are interpretations of museum photographs.
-- Coarse DEM smooths away the main cliff. Explicit rock platform and Maiden spur are original approximate forms; absolute datum and host terrain blend need verification.
-- Schematic museum map is a navigation diagram and is not used as metric geometry. Research images stay private and are never textures.
-- Roofless current ruins are modeled; lost towers, historic roofs, interiors, vegetation, paths outside the core and modern visitor infrastructure are excluded.
-- Each level must retain upper cliff/castle, lower enclosure and independent slender Maiden Tower. Real-site terrain, collision, physical-device timing and moving LOD assessment remain pending.
-- Five entrance-node associations and six major photo-informed wall openings are authored as real clipped geometry with masonry reveals. Exact aperture dimensions, gate naming association, surviving bay correspondence and modern door states still need review. Ground study is clipped to the attributed site boundary rather than a rectangular patch. Mapped approach routes replace the earlier straight stair guess.
+- Approximate current ruins/cliff exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. The bounded upper cliff/spur, ruin heights and terrace levels remain reconstructed; broad duplicated terrain is omitted.
+- Four common graphs plus local color slot, zero embedded images. Waterlines, river simulation, vegetation, caverns, interiors and terrain cutouts excluded.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

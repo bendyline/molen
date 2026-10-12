@@ -21,11 +21,11 @@ Six existing shared256-square graphs,linear tints and central metric UV repeats.
 
 ## Model and axes
 
-15,116 triangles; 45,348 vertices; 7 material groups; 1,818,116 bytes. Native bounds: -62.840, 0.000, -22.635 to 43.778, 33.200, 35.210. Source hash: `sha256:bf3387f77e0e719b436a4455a8e96a126c6ebaced229ae156f812cd9d232ca24`.
+15,115 triangles; 45,345 vertices; 7 material groups; 1,818,008 bytes. Native bounds: -62.840, -0.400, -22.635 to 43.778, 34.200, 35.210. Source hash: `sha256:a09619d2fe2fd345978838c671278e9dcebc295e7cfcf3a6f0e60884217552c4`.
 
-{"up":"+Y","front":"West stair tower and portal; native +X east/+Z south with plan rotation baked","longitudinal":"+Z approximately south along twin longhouses","origin":"Exact-QID mapped footprint reference anchor; provisional visible water attachment Y0.3,foundation Y0. Actual lake vertical datum unverified."}
+{"up":"+Y","front":"West stair tower and portal; native +X east/+Z south with plan rotation baked","longitudinal":"+Z approximately south along twin longhouses","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South geometry bakes heading0. Exact-QID footprint reference anchor. Provisional visible water attachmentY0.3 and bottomY0 are not surveyed lake elevation. Separate current gatehouse and bridge traces remain attributed.
+The inspected aerial picture supports twin steep tiled roofs, elaborate stepped brick gables, copper-capped circular corner towers, separate gatehouse and bridges. Retained east/south mapped coordinates set approximate footprint and orientation. Standard viewer PMTiles supply coarse placement ground; reconstructed foundation and access paths are raised1m with toes extending below it, and the east bridge slopes toward its sampled shore endpoint. Actual lake waterline is supplied by host water data and is not surveyed here. Anchor 10.49020274,55.176204696; heading 0; standard PMTiles datum 63.09605669230223m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -33,13 +33,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0298` (
 
 ## Pending work
 
-- Exact-QID way supplies current main outline; adjacent gatehouse/annex/entrance/bridge/moat traces retain separate attribution. OSM geometry is mapping evidence,not a surveyed architectural plan.
-- Primary operator confirms twin longhouses,separating thick wall,water-surrounded foundations and current copper spires/restoration. No verified primary numeric height found. All heights,roof partitions,window/arcade rhythm and bridge sections are photographic estimates.
-- Current gatehouse tower removed in1920s is excluded. Gatehouse annex and turret forms are original estimates from separately mapped footprints and primary photos. Exact sculpture,heraldry,inscriptions and fine clock dial are simplified.
-- Native provisional water attachmentY0.3 and foundationY0 are not surveyed lake elevation. Real lake/shore/terrain,entrance approach and bridge vertical fit remain pending. Moat water is map data and is not embedded in model geometry.
-- Selected exterior only; twin-house interior stairs/well,rooms,museum exhibits,underwater timber piles and walkable circulation/collision are not modeled. Physical main/gate passages remain open.
-- Six existing shared256-square brick,raw limestone,lime plaster,copper,ceramic tile and gravel graphs use linear tints and central metric UVs. No new/embedded texture,photo texture or downloaded mesh.
-- Synthetic Earth/portable captures do not prove actual geographic fit,continuous upgrades or physical laptop/phone timing.
+- Approximate exterior and fit from inspected aerial picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Apertures, ornament and restoration details are interpreted; interiors and collision excluded.
+- Six common graphs plus explicit glass color slot; zero embedded images. No duplicate lake/landscape geometry or water simulation; approximate shore/bridge fit only.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

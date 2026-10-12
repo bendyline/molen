@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-452,069 triangles; 1,317,979 vertices; 7 material groups; 52,876,084 bytes. Native bounds: -29.821, 0.000, -28.665 to 29.822, 392.400, 28.665. Source hash: `sha256:e3f15845733481af8b28936424e574a2bb120627cb6e5f50dca7e8feba786649`.
+59,039 triangles; 167,001 vertices; 4 material groups; 6,723,204 bytes. Native bounds: -29.821, 0.000, -28.665 to 29.822, 392.400, 28.665. Source hash: `sha256:c8636650140cd56ba016d9a6e200de0a7a7e3d28cf1cba74c89566cde6e69a08`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X southeast","front":"-Z northeast reconstructed podium entry","origin":"Mapped asymmetric podium street frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Fresh OSM API on 2026-10-10 confirms exact Q216264 podium 186351097, independent octagonal shaft 907717855 and mast 186351102; all geometry matches map-parts. Signed heading -0.72546838218 puts +X southeast and +Z southwest. The independently offset shaft/mast and asymmetric fifth podium edge fix the registration phase; an unsigned long axis alone would not. Architect completed photos show diagonal broad blue facets alternating with native cardinal balcony faces and open four-canopy crown. Door bay on native -Z (northeast) podium front remains photograph-based reconstruction, not a surveyed entrance point; no doorway-bearing claim. Source Y=0 is reconstructed street datum and tip 392.4 m follows CVU record rather than inconsistent 39/393/395 m map tags. Accept 2 m footprint / 1 degree reconstruction allowance; automatic footprint replacement disabled.
 
 ## Reproduce
 
@@ -30,7 +30,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0182` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Intermediate belts, crown heights, balcony depth, individual pane schedule, podium rosette/fan spacing and mast collars are reconstructed from the architect’s completed exterior photographs. The tiny plunge pools are static shallow exterior basins; no pool simulation, interiors, lettering or landscape is included. Street-door position is a photograph reconstruction. The architect’s introductory380m wording is an early figure; its final factbox says393m and current CVU records392.4m.
+- Original 452069-triangle, 52876084-byte master remains exactly reproducible from unchanged recipe. Reviewed source/four browser levels retain independently mapped asymmetric podium, offset octagonal shaft/mast, white/blue facade zones and belts, 48 triangular terrace slabs, open four-canopy crown, braced slots and 392.4 m capped mast. Whole backing planes, continuous seam strips and two-faced flat strips for narrow near trim and crossed skyline strips replace separately framed cells. Close-up/street reconstruct the podium lattice with aggregated coarse six-petal motifs with hexagonal close-up and four-sided street petal loops rather than every tiny original petal; district keeps two solid outer fan ribs per bay, sparse beams and averaged lattice colour but omits pool basins and terrace top rails; skyline keeps white vertical corner frames, averages podium/trim colour and omits small screens, rails, pool basins, collars, canopy louvers and thin X bracing. Near terrace guards and static plunge basins remain explicit. Two canonical shared graphs approximate gray stone and white coated metal; four near draw groups, zero images. Exact floor/panel schedule, canopy datum, ornamental spacing, pool dimensions and door bay are reconstructions from architect photos. Architect introductory 380 m wording differs from final 393 m factbox and current CVU 392.4 m; completed dimension controls tip. Lobby interiors, landscaping, lettering and swimming simulation excluded. Finite along-ray 1.5/.75/.3/.1 m allowances exclude omitted/aggregated thin screens, mullions, rails and collars; no global surface-distance, physical-device or surveyed-grade claim.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

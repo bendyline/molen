@@ -114,8 +114,8 @@ export function prepareAgricultureTile(
     const anchor = feature.agriculture?.anchor;
     if (feature.agriculture?.fieldId !== undefined || feature.id !== undefined) {
       const first = feature.polygons[0]?.outer ?? [[0.5, 0.5]];
-      const center = first.reduce(
-        (p, q) => [p[0]! + q[0] / first.length, p[1]! + q[1] / first.length],
+      const center = first.reduce<[number, number]>(
+        (p, q) => [p[0] + q[0] / first.length, p[1] + q[1] / first.length],
         [0, 0],
       );
       const projected = anchor
@@ -124,8 +124,8 @@ export function prepareAgricultureTile(
       fields.push({
         feature,
         id: feature.agriculture?.fieldId ?? `map:${feature.id}`,
-        x: projected?.[0] ?? geom.originX + center[0]! * geom.size,
-        z: projected?.[1] ?? geom.originZ + center[1]! * geom.size,
+        x: projected?.[0] ?? geom.originX + center[0] * geom.size,
+        z: projected?.[1] ?? geom.originZ + center[1] * geom.size,
       });
     } else {
       // A globally anchored fallback, clipped to actual farmland including holes. Coarse tiles

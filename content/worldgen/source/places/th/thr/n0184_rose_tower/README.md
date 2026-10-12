@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-623,480 triangles; 1,256,448 vertices; 5 material groups; 52,717,200 bytes. Native bounds: -16.850, 0.000, -12.071 to 13.363, 333.000, 13.500. Source hash: `sha256:92bd2855ca55789898064916bbc330b6aa266eaee9af9a4e2e64ddf2c4f7c836`.
+61,560 triangles; 174,400 vertices; 3 material groups; 7,019,452 bytes. Native bounds: -16.850, 0.000, -12.062 to 13.351, 333.000, 13.500. Source hash: `sha256:d0e0109e26ce749bfe49417a7ffbc79233ef8364aedccd37a0d844251684417e`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X northeast","front":"-X southwest road/entry","origin":"Mapped rectangular envelope at reconstructed street datum"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Fresh OSM API on 2026-10-10 confirms exact Q648338 whole 64890199 and sub-millimeter agreement with the stored prior georeferencing outline. Signed heading 1.011171401094 puts +X northeast, -X southwest toward Sheikh Zayed Road and +Z southeast. Operator aerial 0 looks southeast along the road toward the independently identified Burj Khalifa, fixing the northeast offset mast behind its petal. Mast [5.7,0], doorway/canopy and lobed radii remain photo reconstructions, not separately surveyed mapped features. Source Y=0 is reconstructed street entry and tip 333 m follows current operator/CVU; mapped 315 m is a roof-era envelope. Accept 2 m main-envelope / 1 degree reconstruction allowance, excluding projecting canopy; automatic footprint replacement disabled.
 
 ## Reproduce
 
@@ -30,7 +30,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0184` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- The map provides a rectangular envelope rather than a surveyed lobed plan. Curve radii, petal shapes, intermediate roof heights, fine glazing schedule, gold rings and entry canopy are reconstructed from operator/contractor exterior references. Moving facade access equipment, animated lighting, hotel branding and interiors are excluded. CVU counts71 floors while the operator describes72; the model follows their shared333m architectural height.
+- Original 623480-triangle, 52717200-byte master remains exactly reproducible from unchanged recipe. Reviewed source/four browser levels retain four intersecting convex blue-glass lobes, silver vertical recesses, gold eyes/cornices, four curved silver crown petals and pale boundary ribs, alternating dark/light neighboring bands, crossing tip ribbons, sphere, offset northeast mast and southwest entry canopy. The original 245–246 m gap is closed with a shoulder panel. Whole facade backing panels and continuous strips replace per-pane beams; thin eye rings use planar ribbons rather than tubular segments. Skyline averages trim colour and omits small eyes/collars/door frames, district/street aggregate eyes and panel cadence and omit/aggregate fine crown seams; skyline/district use shallow curved petal boundary strips while street/close-up retain solid ribs; close-up retains all 248 eye rings at reduced arc sampling, 128 angular samples and closed boundary ribs. Two canonical shared graphs approximate stone and silver/gold coated metal; three draw groups and zero embedded images. Lobed radii, intermediate crown heights, leaf phase, entry/canopy and 5.7 m mast offset are photo reconstructions; only rectangular site envelope is mapped. Operator 72 / CVU 71 storeys remain distinct; their shared 333 m architectural height sets tip. Moving access equipment, signage, interiors and animated lighting excluded. Finite along-ray 1.5/.75/.3/.1 m allowances exclude omitted narrow eyes, mullions and collars; no global surface-distance, surveyed grade or physical-device claim.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

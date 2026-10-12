@@ -10,7 +10,7 @@
     "latitude": 25.06883,
     "longitude": 55.14113
   },
-  "visualBrief": "Dubai’s paired clipped-ellipse tower, with two different-height curved glazed shafts, broad silver end blades, sloping crowns, a measured81 m elliptical spire and eight individually framed projecting diamond-shaped podium wings.",
+  "visualBrief": "Paired clipped-ellipse glazed shafts, different sloping crowns and elliptical mast over eight projecting diamond podium wings.",
   "size": [
     149.21271514892578,
     360,
@@ -30,9 +30,9 @@
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X is image-right in Atkins figures2 and9",
-    "front": "+Z is image-down in those plans",
-    "origin": "Ground-level tower center derived by a signed eight-petal primary-plan/map registration"
+    "longitudinal": "+X southeast, image-right in Atkins plans",
+    "front": "+Z southwest, image-down in Atkins plans",
+    "origin": "Signed engineer-plan tower center at the podium entry datum"
   },
   "sourceFacts": {
     "heightMeters": 360,
@@ -63,7 +63,26 @@
     "diamondExchangeRoofFeatureMeters": 20.85,
     "diamondExchangeFourthFloorMeters": 18.6,
     "architectAndEngineer": "Atkins",
-    "contractor": "Arabian Construction Company"
+    "contractor": "Arabian Construction Company",
+    "originalMasterHash": "sha256:43a32462343db6b559d949be5e88684508529b0e5982f962a566ecc1bdb053b5",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[N0175].build",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
   },
   "reconstruction": {
     "tower": "Published64×42 m plan reconstructed as two offset parallel clipped ellipses. The poorly traced map shaft does not override the engineer’s actual plan.",
@@ -79,7 +98,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed placement",
     "anchor": [
       55.14106480490985,
       25.069033868310058
@@ -95,10 +114,13 @@
     ],
     "wikidataId": "Q838780",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:3de187d9746b3617ccde7fb61c3fa7d536513f3303ef4d5236fa11424226923a",
+    "mapGeometryHash": "sha256:5d849f5c6bb80fc57051903e8a7ef119ae064cb77a2ef498532f6d1b46aec316",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Source-local map frame binds the primary plan to eight mapped podium tips. The largest diamond-exchange petal points northeast, the lower ellipse lies north, and the tall southern ellipse carries the mast at its clipped right end. Published64×42 m shaft dimensions override the malformed map shaft outline. GroundY0 is the tower/podium entry datum; below-grade cascading landscape is outside this model."
+    "orientationConfidence": "signed eight-tip primary-plan registration",
+    "notes": "Fresh OSM API on 2026-10-10 confirms unchanged name-confirmed Almas podium 1137607706 and malformed shaft 1491743595. Retain the existing signed eight-tip engineer-plan fit without reflection, heading -0.669655293352136. Native +X points southeast, +Z southwest; largest diamond-exchange petal on -Z points northeast. Lower ellipse is north of the taller southern ellipse and its mast lies at the clipped +X end. Published 64 by 42 m shaft geometry overrides the inconsistent mapped shaft. Podium projection residual is under 0.002 m, while primary drawing/map registration has 2.092 m per-coordinate RMS and about 5% scale disagreement. Accept 3 m drawing registration / 1 degree reconstruction allowance; no surveyed doorway, grade or survey-quality control claim. Entry Y=0 and automatic footprint replacement disabled. Below-entry terraced landscape is excluded.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms unchanged name-confirmed Almas podium 1137607706 and malformed shaft 1491743595. Retain the existing signed eight-tip engineer-plan fit without reflection, heading -0.669655293352136. Native +X points southeast, +Z southwest; largest diamond-exchange petal on -Z points northeast. Lower ellipse is north of the taller southern ellipse and its mast lies at the clipped +X end. Published 64 by 42 m shaft geometry overrides the inconsistent mapped shaft. Podium projection residual is under 0.002 m, while primary drawing/map registration has 2.092 m per-coordinate RMS and about 5% scale disagreement. Accept 3 m drawing registration / 1 degree reconstruction allowance; no surveyed doorway, grade or survey-quality control claim. Entry Y=0 and automatic footprint replacement disabled. Below-entry terraced landscape is excluded.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -131,23 +153,13 @@
         2,
         2
       ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "wall",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Ellipse radii, individual glazing bay widths, sloping crown planes and secondary petal elevations are reconstructed from engineer drawings and exterior photographs. The signed podium fit has2.09 m per-coordinate RMS and approximately5% drawing/map scale disagreement. Below-entry landscape terraces, basement parking and fine signage are excluded."
+    "Original 245998-triangle, 21729692-byte master remains exactly reproducible from the unchanged global recipe. Reviewed source and four browser levels preserve two offset clipped ellipse shafts, different sloping crowns, silver end blades, complete 81 m elliptical two-section mast reaching 360 m, all eight mapped podium wings with closed roofs/soffits and raking supports. Replace individual framed glass cells with continuous opaque glazing, long facade strips and selected near wing trusses. Skyline/district omit fine frames and aggregate facade bands; native shaft/mast facet allowances 1.5 / 0.75 / 0.3 / 0.1 m exclude intentionally omitted decorative frames. Rooflights are repaired from flat discs to faceted glass domes; approximate 3.2 m base radius and 15.4 m apex are photographic reconstructions, not engineering dimensions. Published 64 by 42 m typical plan, 279 m plant datum, 18.6 / 20.85 m exchange datums and 81 m mast follow Atkins. Contractor secondary 240 m / 54-floor and 65-floor main description differs from current CVU 68 above-ground floors; external shaft massing follows the engineer. Signed map/drawing registration retains 2.092 m RMS and about 5% scale disagreement. Individual glazing pitch, minor louvres, secondary wing slopes, dome curvature and exact entrance thresholds are reconstructed. Three canonical shared 256 px graphs; no embedded images or copied photographic textures. Folded ground slab down to basement levels, terraced water feature below entry, parking, interiors, fine signage and night LEDs are excluded. No terrain-grade or physical phone/laptop performance claim."
   ],
   "qaCameras": [
     {
@@ -214,6 +226,297 @@
         155,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        370,
+        287,
+        650
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ]
+    },
+    {
+      "name": "paired-crown-return",
+      "position": [
+        -112,
+        309,
+        -136
+      ],
+      "lookAt": [
+        -5,
+        257,
+        0
+      ]
+    },
+    {
+      "name": "podium-rooflights",
+      "position": [
+        -92,
+        52,
+        93
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/almas-runtime-model.mjs",
+    "export": "buildAlmasReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/almas-runtime-model.mjs",
+    "export": "buildAlmasSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAlmasDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildAlmasStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAlmasCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        370,
+        287,
+        650
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        370,
+        287,
+        650
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        370,
+        287,
+        650
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        370,
+        287,
+        650
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-paired-shafts",
+      "position": [
+        145,
+        181,
+        205
+      ],
+      "lookAt": [
+        0,
+        139,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-diamond-exchange",
+      "position": [
+        84,
+        40,
+        -156
+      ],
+      "lookAt": [
+        0,
+        13,
+        -60
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-podium-rooflights",
+      "position": [
+        -77,
+        39,
+        63
+      ],
+      "lookAt": [
+        -20,
+        13,
+        8
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-seated-elliptical-mast",
+      "position": [
+        97,
+        341,
+        94
+      ],
+      "lookAt": [
+        25,
+        314,
+        8
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -221,10 +524,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 245998,
-    "vertices": 521502,
-    "materials": 6,
-    "bytes": 21729692,
-    "sha256": "sha256:43a32462343db6b559d949be5e88684508529b0e5982f962a566ecc1bdb053b5"
+    "triangles": 16066,
+    "vertices": 43982,
+    "materials": 4,
+    "bytes": 1778964,
+    "sha256": "sha256:367f12b99de48d407b466b1f9de703e57916f7ae627b069e7128f0b72cba268c"
   }
 }

@@ -29,11 +29,11 @@ Six existing shared material graphs, linear palette and metric UVs; no new or em
 
 ## Model and axes
 
-18,094 triangles; 54,282 vertices; 8 material groups; 2,175,792 bytes. Native bounds: -68.140, -4.500, -63.909 to 86.112, 26.000, 69.842. Source hash: `sha256:81270adc954535bfe938f16e1edecbf39cc0e674ebbf12f5ca5ba4a05d4f41be`.
+18,078 triangles; 54,234 vertices; 8 material groups; 2,173,884 bytes. Native bounds: -59.241, -2.964, -52.645 to 86.112, 31.500, 69.842. Source hash: `sha256:d7aebaf752d170ac60b0f14e239f8c64d569fe0b0e84b919845b24e075d3cde3`.
 
-{"up":"+Y","front":"+X east, mapped main entrance","longitudinal":"+Z south","origin":"Exact-QID map anchor; palace platformY0 is attachment plane. Moat extends below it and needs host terrain cutout."}
+{"up":"+Y","front":"+X east, mapped main entrance","longitudinal":"+Z south","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South coordinates determine orientation including the mapped east entry. Internal plan rotation never becomes placement heading. Estimated moat descends below attachmentY0; current dimensions and real site fit require review before activation.
+The inspected exterior picture supports six round crenellated east towers, warm pale masonry and a raised scarp. Retained east/south map coordinates set approximate footprint, scale and entrance orientation. Standard viewer PMTiles supply the ground; the derivative retains palace geometry and bounded scarp, omits duplicated moat grass/outer terrain walls and slopes the access bridges toward coarse approach ground. Courtyard floors stay above sampled terrain. The original detailed source master remains reproducible. Anchor -0.897048689,41.656484624; heading 0; standard PMTiles datum 206.4844743505745m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -41,13 +41,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0294` (
 
 ## Pending work
 
-- The mapped Trovador edge is18.317m while the published width is16.5m. Model uses current map span, published12m depth and26m height; exact exterior measure and reconstruction state remain pending.
-- Only source plan coordinates are measured here. Other heights, round-tower radii fits, apertures, columns, roof partitioning, moat/scarp and bridge widths are original estimates.
-- Selected external and courtyard identity features are authored; full interior rooms, ornate inscriptions, ceilings, exhibits, contemporary fixtures and walkable collision are not complete.
-- Moat extends below nativeY0. Real terrain cutout, ground datum, bridges/approaches and site fit are unverified; do not activate or replace procedural footprint yet.
-- Private research photos/plans/sections are not distributed or used as textures. Six existing shared graphs supply surfaces with linear tints and metric UVs.
-- Synthetic portable/shared/Earth captures, four LODs and source determinism do not establish geographic fidelity, physical laptop/phone timing or continuous streaming acceptance.
-- Selected north/south portico backing doors and modern hall facade are original photographic interpretations. Door count, recess depths and interior room layout are approximate; detailed historic ornament and exact restoration fixture geometry remain pending.
+- Approximate exterior and fit from a reference picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Trovador dimensions, restoration details and ornate Taifa decoration remain interpreted; interiors and collision excluded.
+- Six common graphs plus two explicit color slots, zero embedded images. The raised scarp is bounded; an excavated dry moat cannot be resolved by coarse terrain and no terrain cutout is added.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

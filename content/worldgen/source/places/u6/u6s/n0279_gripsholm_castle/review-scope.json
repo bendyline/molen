@@ -1,0 +1,335 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "brick": "#c58d72",
+      "red": "#bf7965",
+      "stone": "#b9b2a2",
+      "trim": "#e4ddc9",
+      "copper": "#71877c",
+      "tile": "#ae8667",
+      "glass": "#4d6178",
+      "clock": "#3b3e42",
+      "paving": "#b5afa1"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "materialBudgetReason": "Compound shares brick, granite, limestone, oxidized copper and roof-tile graphs, plus untextured blue-grey glass. Parts merge by material.",
+    "identityFeatures": [
+      "Four brick towers with different copper caps and an open tall lantern",
+      "Small polygonal inner court and long open outer court",
+      "Stepped brick dormers and lower tiled wings around the northwest entrance"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X southeast from outer forecourt toward the four-tower core",
+    "front": "Outer entrance at-X northwest;lake-facing facades around the core;two courts remain open",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/2848711 exact Q714783 building multipolygon",
+    "mappedPlanMeters": [
+      137.835,
+      63.929
+    ],
+    "mappedCourtyardHoles": 2,
+    "verifiedTowerHeightsMeters": null,
+    "originalMasterHash": "sha256:e483025ba991dcefc9228e9dd2340f4c4413f1e4ab8842877dca873f63e83717",
+    "originalMasterRecipe": "packages/worldgen/scripts/gripsholm-castle-model.mjs#buildGripsholmRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke surveys or exact thresholds.",
+    "Original detailed architectural master/recipe preserved; registered derivative fits working courts and bounded foundation bottoms.",
+    "Four different copper roof silhouettes, open lantern, two open courts, stepped dormers and real northwest passage retain identity. Tower heights/cap dimensions reconstructed; no independent named-tower identification.",
+    "Castle building compound only; island/lake terrain, drawbridge, remote estate buildings, boats, trees and interiors excluded.",
+    "Five common material graphs and local opaque glass; six merged groups reflect the mixed compound. Zero embedded images. Physical-device timing pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      17.219554949,
+      59.256010491
+    ],
+    "heading": -0.787257418369,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the brick castle, four different copper roof caps, open tall lantern, stepped dormers and lower tiled outer wings. Standard viewer PMTiles and the retained mapped building/courtyard outlines set approximate location, scale and northwest entrance/southeast core sign. A reconstructed2m working court clears coarse island ground; bounded foundations extend beneath sampled slopes. Exact shore and tower elevations remain approximate. Anchor 17.219554949,59.256010491; heading -0.787257418369; standard PMTiles datum 12.530517079873508m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture confirms the brick castle, four different copper roof caps, open tall lantern, stepped dormers and lower tiled outer wings. Standard viewer PMTiles and the retained mapped building/courtyard outlines set approximate location, scale and northwest entrance/southeast core sign. A reconstructed2m working court clears coarse island ground; bounded foundations extend beneath sampled slopes. Exact shore and tower elevations remain approximate. Anchor 17.219554949,59.256010491; heading -0.787257418369; standard PMTiles datum 12.530517079873508m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        17.219554949,
+        59.256010491
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture confirms the brick castle, four different copper roof caps, open tall lantern, stepped dormers and lower tiled outer wings. Standard viewer PMTiles and the retained mapped building/courtyard outlines set approximate location, scale and northwest entrance/southeast core sign. A reconstructed2m working court clears coarse island ground; bounded foundations extend beneath sampled slopes. Exact shore and tower elevations remain approximate. Anchor 17.219554949,59.256010491; heading -0.787257418369; standard PMTiles datum 12.530517079873508m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/gripsholm-runtime-model.mjs",
+    "export": "buildGripsholmReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "patina": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.62,
+      "metallic": 0.5
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gripsholm-runtime-model.mjs",
+    "export": "buildGripsholmReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGripsholmReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildGripsholmReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGripsholmReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-gripsholm-skyline",
+      "position": [
+        155,
+        92,
+        130
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-gripsholm-district",
+      "position": [
+        155,
+        92,
+        130
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-gripsholm-street",
+      "position": [
+        155,
+        92,
+        130
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-gripsholm-closeup",
+      "position": [
+        155,
+        92,
+        130
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -3,
+    "scale": 0.7,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  }
+}

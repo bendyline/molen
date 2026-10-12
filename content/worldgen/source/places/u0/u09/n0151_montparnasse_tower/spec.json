@@ -11,6 +11,10 @@
     "longitude": 2.32198
   },
   "visualBrief": "The pre-renovation dark Montparnasse silhouette follows its mapped bowed long facades and recessed ends, with 59-storey facade bands, closely spaced dark mullions, observation glazing, rooftop parapets, railings and service enclosure.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.paris_mansard",
+    "scale": 3
+  },
   "size": [
     61.94792175292969,
     210.02749633789062,
@@ -40,6 +44,12 @@
     "windowsPublished": 7200,
     "observationLevelMeters": 196
   },
+  "appearance": {
+    "identity": "Established dark bowed tower with recessed ends, fine facade bands and rooftop observation terrace.",
+    "epoch": "Pre-renovation exterior. Operator announces observatory closure31March2026. No current construction or future facade claim.",
+    "master": "Original9424-triangle recipe preserved exactly.",
+    "exclusions": "Current work staging, future facade, terrace furniture, individual pane count, interiors and plaza survey."
+  },
   "reconstruction": {
     "plan": "Exact-QID cached perimeter; individual notches retained",
     "state": "Established exterior before the renovation announced for2026; future facade not anticipated",
@@ -65,8 +75,8 @@
       "way/16406633"
     ],
     "wikidataId": "Q323767",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:df2cc35a296dbcbed837cf02ec3e501a6749ebc3b04c20e8d9f3469cf9cf9dfa",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "notes": "The authored facade follows the cached exact-QID perimeter including bowed sides and recessed ends, retaining its signed frame. This is the existing dark facade before planned renovation; actual construction staging is not modeled."
@@ -96,7 +106,7 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
     "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
@@ -167,6 +177,54 @@
         105,
         0
       ]
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/montparnasse-runtime-model.mjs",
+    "export": "buildMontparnasseSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMontparnasseDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "terrace-district",
+      "position": [
+        68,
+        233,
+        69
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ],
+      "reviewLod": "district"
     }
   ],
   "importOptions": {

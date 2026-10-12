@@ -394,6 +394,30 @@ export function buildMillenniumSkyline(o) {
   for (const x of [-3.1, 3.1]) tube(o, 'metal', [x, 172, 16.1], [x, 202, 16.1], 0.25, silver, 5);
 }
 
+/** Tower pavement only, shared by the reviewed far variants. */
+export function buildMillenniumGroundDeck(out) {
+  deck(out, 0, [0.55, 0.57, 0.57], arcs, 4);
+}
+
+/** Coarse external lamella screen; the hood roof remains at 150.4 m. */
+export function buildMillenniumHoodScreens(out) {
+  for (const arc of hoodArcs)
+    for (let i = 0; i < 16; i++) {
+      const a = arc.start + ((arc.end - arc.start) * i) / 16;
+      const b = arc.start + ((arc.end - arc.start) * (i + 1)) / 16;
+      for (const y of [150.6, 151.4, 152.2]) {
+        const p = [
+          point(arc, b, y + 0.08, 0.16),
+          point(arc, a, y + 0.08, 0.16),
+          point(arc, a, y, -0.14),
+          point(arc, b, y, -0.14),
+        ];
+        face(out, 'metal', p, silver);
+        face(out, 'metal', [...p].reverse(), silver);
+      }
+    }
+}
+
 export const millenniumTowerStudy = {
   id: 'N0235',
   key: 'millennium_tower',

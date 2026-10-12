@@ -118,12 +118,12 @@ const source = '../../../content/worldgen/source/places/u3/u35/';
 const frames = new Map(
   ksiazPalmServiceModels.map((m) => [
     m.key,
-    JSON.parse(readFileSync(new URL(source + m.key + '/map-frame.json', import.meta.url))),
+    JSON.parse(readFileSync(new URL(`${source}${m.key}/map-frame.json`, import.meta.url))),
   ]),
 );
 const means = JSON.parse(
   readFileSync(
-    new URL(source + ksiazPalmServiceModels[0].key + '/surface-means.json', import.meta.url),
+    new URL(`${source}${ksiazPalmServiceModels[0].key}/surface-means.json`, import.meta.url),
   ),
 );
 function face(o, p, col, slot, target) {
@@ -830,8 +830,8 @@ function boiler(o, f, d) {
 export function buildKsiazPalmService(o, key, level = 'closeup') {
   const f = frames.get(key),
     d = { skyline: 0, district: 1, street: 2, closeup: 3 }[level];
-  if (!f) throw Error('Unknown Palm House service building ' + key);
-  if (d === undefined) throw Error('Unknown level ' + level);
+  if (!f) throw Error(`Unknown Palm House service building ${key}`);
+  if (d === undefined) throw Error(`Unknown level ${level}`);
   ({ administration, utility, residence, boiler })[f.controls.kind](o, f, d);
 }
 export function buildKsiazPalmServiceSkyline(o, key) {

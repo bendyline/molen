@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0289_castel_nuovo",
-  "sourceHash": "sha256:b139e307657f796d5df2dd8efb0cdfd81d7591de8c7da3bfc8a7c1115f402f06",
-  "runtimeHash": "sha256:515c899240d4f2f6976916f954d672df3696aacb29053fcc67e7af2e419574cd",
-  "fixtureHash": "sha256:4bd02cf3d45bf8190334b21c7149e3bc6ff9e195e047d08614adfc48b37b9560",
+  "sourceHash": "sha256:ddc907beb6d25929c6d0b664f65919ce33ef6a5e9ae28ba3633385e634281cce",
+  "runtimeHash": "sha256:a342dfa1a8e46bdd910921298733f51ed49d7c3860212eff861a7d62466c280d",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,74 +28,89 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:041573dc6b05511015a20d9c41c1a08a3750b21012f38b6d15ee9a8a3fb36d46",
-      "bytes": 67444,
-      "gzipBytes": 13994,
+      "hash": "sha256:daadf18912a7e9aca2e4645a166846df0d09e1c91a1fad4ac35e7b1a9d468b9d",
+      "bytes": 82580,
+      "gzipBytes": 12551,
       "triangles": 821,
-      "cpuBytes": 66056,
-      "gpuBytes": 66056,
+      "cpuBytes": 81176,
+      "gpuBytes": 81176,
       "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:dc3769cc36343430840c953f2eecaa87725c0b88c3b9354317c87ed5e87984d7",
-      "bytes": 115844,
-      "gzipBytes": 27293,
+      "hash": "sha256:4463ff777720532cb6650ea20afeba15c3fb5e0e0023723dc27e6eea29960fd0",
+      "bytes": 119800,
+      "gzipBytes": 28201,
       "triangles": 1374,
-      "cpuBytes": 108940,
-      "gpuBytes": 108940,
-      "errorMeters": 1.5,
+      "cpuBytes": 112756,
+      "gpuBytes": 112756,
+      "errorMeters": 0.7,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:1a8d0c20748fabcfbf27d28afda2afccab855fb012957bad81058a3170d69eca",
-      "bytes": 451092,
-      "gzipBytes": 96877,
+      "hash": "sha256:17f9982f6f57bb3b2d50a9d7b3a7c8f3724da6263e0bd1514845567cfa83539d",
+      "bytes": 464156,
+      "gzipBytes": 98493,
       "triangles": 5946,
-      "cpuBytes": 444104,
-      "gpuBytes": 444104,
-      "errorMeters": 0.5,
+      "cpuBytes": 457028,
+      "gpuBytes": 457028,
+      "errorMeters": 0.3,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:92b9d5225e756e9e911e519938106cc1aa185267ea363a90ec56f9be6f63a25a",
-      "bytes": 595048,
-      "gzipBytes": 122252,
+      "hash": "sha256:2190acbbb706b35e9f542fc49cff663f017c3ef8a61871f4d5e5f0fe5f20305a",
+      "bytes": 605800,
+      "gzipBytes": 123941,
       "triangles": 7590,
-      "cpuBytes": 588032,
-      "gpuBytes": 588032,
-      "errorMeters": 0.15,
+      "cpuBytes": 598652,
+      "gpuBytes": 598652,
+      "errorMeters": 0.1,
       "drawCalls": 6
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:6aaa874f36ddf94c3096e7a9b6e562827e35863d2bea7867024e7fa5c5358f15"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:96c990f69a07355b319674ec6dd642be6f69e616c75fcd6e10674817dbfc7580"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:ff602aa1e8bc6beb18d7de9bc7ab3087707d09b8768c4f5940d98cc435a9596f",
+      "hash": "sha256:60137040848ebed9a59adf45af6dddfa36b84942e9e056adbef3d22374306d76",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
+          89.45,
+          69.4273,
           166
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -103,33 +118,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:1d9f18f3bffbefe92759c6f1551c7182d2973060d8883c6ad1bc3a11383dfb3e",
+      "hash": "sha256:b2c06eb630d1ee95d214de05d7916e039a1ace91fc2d50589e146052abd2482e",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
+          89.45,
+          69.4273,
           166
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -137,33 +158,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:6cbabff3919f184349c6fce8c08cf22bc890512ea237ab634db08b3d98830c2d",
+      "hash": "sha256:d012b27c3111dfe686770282b289d651822ee6ee00b78ea4aad2cc8b5fa7d493",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
+          89.45,
+          69.4273,
           166
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -171,33 +198,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:2853e889d6778375648b08364b37fc0cfce52ec04cceff27a2afa24077b77908",
+      "hash": "sha256:eb90d687b750ef01ce9323f49877be6a86649ed70f9ce1a1cf52ce711743c515",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          96,
-          52,
+          89.45,
+          69.4273,
           166
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -205,33 +238,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:d002f5f831b52e04daf6a0ab5ee5b6be9b2bb605dcc3ad9568b94e2c486bfb54",
+      "hash": "sha256:99a8f7cb697e4080f0ab6befb6089c59aa47e9e4a658dba15a2b016e5fa8a64a",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 11246,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 63726,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -239,33 +278,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:0bc83cce019c1c6cd9e080792a669bf3632b22e1b6ecd294c66b745801c69e5e",
+      "hash": "sha256:680f8c0827ed9df4ebbc956256abc1aec89f02ef9f8f34a248d0f18277100570",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 11246,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 63726,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -273,33 +318,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:6ac7615ba8abf64cfff4fac49a1170c25208961aa84a231f250a0cd7148dea5e",
+      "hash": "sha256:95254998ee4750db507039e674634b672e3fcef46c022881d2470ce1a56211e2",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 11246,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 63726,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -307,33 +358,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:fca50dbd27cc137069af6b24d2939692170d426f9b09eb0e0204d625314312d7",
+      "hash": "sha256:34ec30297cee636c77d3954815bf47e1575ea0eddc611f6e1c53701172b16b1e",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 11246,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 63726,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -341,33 +398,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:109efac7a29dcffbb49abfbdbd8df94af85dd968d9ec3b2951f129903c74ee15",
+      "hash": "sha256:cd1069879ba4496353dbde23513beb063355019daf87fd643394cf3b94732977",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 10693,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63173,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
+          381.45,
+          217.4273,
           672
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -375,33 +438,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:8bc2e347073b7c7772e3eadbb2158ddf35a67ac29c9da2f4572558426abd29ed",
+      "hash": "sha256:d12be6a58b828860c89cd1e558400332288dea9ddca0c6da2e4b12d25af29514",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 10693,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63173,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
+          381.45,
+          217.4273,
           672
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -409,33 +478,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:0fc2c0b43b38bf14c9277f9403ff35e49687831833a8f248b9e59fc80773bb2e",
+      "hash": "sha256:0c310f5da9cc0c8887d73728ff64b8170d7c8da0bafbf6bff3ab360aad0a0b62",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 10693,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63173,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
+          381.45,
+          217.4273,
           672
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -443,33 +518,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:91c8742d2d5da4ba6a002e989a33d9a87d1e3799b633573418bba543f9fcf6a9",
+      "hash": "sha256:44d6b15919eeb4a93fff3458555b845a56966640e7ad15c1bb65e10f372aa554",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 10693,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63173,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
+          381.45,
+          217.4273,
           672
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -477,33 +558,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:ced3619b90910f5b8ea555e7031da6b0f1cb43dda758e361a8e5c3aefe556d59",
+      "hash": "sha256:f2e603abd2433ae1e602720801a9a009f8b6a673e02ce5c97501a0764fd3f82a",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 823,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53303,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          388,
-          200,
+          381.45,
+          217.4273,
           672
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -511,134 +598,38 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/western-gate-and-five-towers.png",
-      "hash": "sha256:61b20a4e985d7ad9a3f72ea3549299138bc4400de8143ff3987da69a39f91b82",
+      "hash": "sha256:be04678a64f35c474a5c671c826039793b00346e79517116c82514c09f814fd0",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
           -155,
-          60,
+          61,
           -85
         ],
         "lookAt": [
           0,
-          18,
-          0
-        ],
-        "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.wood_plain": 1
-        },
-        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
-      }
-    },
-    {
-      "path": "medium-fi/two-stacked-marble-gate-openings.png",
-      "hash": "sha256:ed6ca768235406e5e280d78bf656666ecfc10d1de8bbf636caff8e7ae5377669",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
-        "position": [
-          -94,
-          25,
-          6.5
-        ],
-        "lookAt": [
-          -48,
-          21,
-          6.5
-        ],
-        "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.wood_plain": 1
-        },
-        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
-      }
-    },
-    {
-      "path": "medium-fi/open-court-hall-and-flat-tower-crowns.png",
-      "hash": "sha256:55daca99d714964cda0eda37ffaa4cd26fa517cb818ccb3ab9221278abb1db90",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
-        "position": [
-          80,
-          145,
-          100
-        ],
-        "lookAt": [
-          0,
-          18,
-          0
-        ],
-        "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.stone_sandstone": 1,
-          "molen.worldgen.material.wood_plain": 1
-        },
-        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
-      }
-    },
-    {
-      "path": "medium-fi/court-chapel-rose-and-portal.png",
-      "hash": "sha256:0d27f97c35c85e4a42f77f92f0fac2bd20c095ce83122d5b0eff339b20af82bd",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17452,
-        "groundY": 0,
-        "position": [
-          -9,
-          17,
-          0
-        ],
-        "lookAt": [
-          21,
           19,
           0
         ],
@@ -647,33 +638,159 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/nine-court-arcades.png",
-      "hash": "sha256:7f056a63a5fff868d5300de9538d693d766e6f47c8f62f81faf418bbbe67ec2a",
+      "path": "medium-fi/two-stacked-marble-gate-openings.png",
+      "hash": "sha256:9e3144d44b1462dc3e04232af3028029a864607061e283e039f5d88767918b9b",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 17452,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          -94,
+          26,
+          6.5
+        ],
+        "lookAt": [
+          -48,
+          22,
+          6.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-court-hall-and-flat-tower-crowns.png",
+      "hash": "sha256:a2c073fdd3e8757e2b312fa4393b007edd80ebe49175e17aeb7c25d2da729e04",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          80,
+          146,
+          100
+        ],
+        "lookAt": [
+          0,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/court-chapel-rose-and-portal.png",
+      "hash": "sha256:59d3a74e8c8ae36c69ae744437562f2fabd2138e6f1a369611c8169ade0f3069",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 69932,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          -9,
+          18,
+          0
+        ],
+        "lookAt": [
+          21,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/nine-court-arcades.png",
+      "hash": "sha256:ee08f2f7bdf0e62ba598e39e930a6ab0cbd9df5e9052a47d9f16a98595db7676",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 69932,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
           -4,
-          16,
+          17,
           -15
         ],
         "lookAt": [
           -3,
-          10,
+          11,
           19
         ],
         "graphReads": {
@@ -681,33 +798,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/marine-elevation-and-glazed-loggias.png",
-      "hash": "sha256:c39931eddec67e60f2972efb33fe7a9efe82f29437fa8d13181bfc4cfef24db2",
+      "hash": "sha256:a06091f546182fb1437570d72c1e0fd9faee0a89458aaf62b9dc18d7a59cc64d",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
           96,
-          26,
+          27,
           25
         ],
         "lookAt": [
           53,
-          19,
+          20,
           17
         ],
         "graphReads": {
@@ -715,33 +838,199 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-castelnuovo-skyline.png",
+      "hash": "sha256:d113520c49b0012cfc5e581dffebecb07d53f93fd95554b19ec06227474a5625",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 63173,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          115,
+          160
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-castelnuovo-district.png",
+      "hash": "sha256:b2c15035bb8a2def1e6a63da41a907efad683d9beff342e3cbe97a44cd0a469f",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 63726,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          115,
+          160
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-castelnuovo-street.png",
+      "hash": "sha256:0553808924869daff87b8aa243b93c8fc86093057eee96fe26202a63436f414d",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 68298,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          115,
+          160
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-castelnuovo-closeup.png",
+      "hash": "sha256:32812af8ffad76cc6eccbdcdbfe9df4cf31c3be33a8b41cde57b881947f90da5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          115,
+          160
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:6e48d7da540489870fbb12bb96dce4201ac0453dd546763311cb220643f989f2",
+      "hash": "sha256:2eeee146dad330d4e8ad13e26b7899f469a7b9da2a916b22750f52d534bd0f4b",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 10693,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63173,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -749,33 +1038,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:0bc83cce019c1c6cd9e080792a669bf3632b22e1b6ecd294c66b745801c69e5e",
+      "hash": "sha256:680f8c0827ed9df4ebbc956256abc1aec89f02ef9f8f34a248d0f18277100570",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 11246,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 63726,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -783,33 +1078,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:56a24ec0c08996094130fce7f830636911a90ace1cccb05661f3bc1afbe3d3dc",
+      "hash": "sha256:30bff70efe4327818753b93e27d801ea448b5a5337913640fad0d2ee2baa965c",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 15818,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 68298,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -817,33 +1118,39 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:0a9569250f6c899e7137e891ea35aaf4540c5ef72755826e011fdcbbb6e1291f",
+      "hash": "sha256:9063c8168182a742df0dbec698ce18097c91e6b081c412b123eb0abb41e740c1",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 17462,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 69942,
+        "groundY": -17,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sr/sr6/n0289_castel_nuovo/terrain-review.height.png"
+        },
         "position": [
-          194,
-          124,
+          187.45,
+          141.4273,
           336
         ],
         "lookAt": [
-          0,
-          22,
+          -6.55,
+          39.4273,
           0
         ],
         "graphReads": {
@@ -851,12 +1158,14 @@
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
-        "contextScale": 2
+        "contextScale": 2,
+        "reflections": "sky-pmrem"
       }
     }
   ],

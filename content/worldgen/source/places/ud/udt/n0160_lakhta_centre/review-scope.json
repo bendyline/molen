@@ -1,0 +1,50 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 6
+  },
+  "appearance": {
+    "identity": "Completed five-petal glass tower with broadened lower body, continuous helical sweep and separate metal tip.",
+    "epoch": "Completed main tower exterior, designer2011-2018 project and attributed map snapshot2026-09-27.",
+    "master": "Original15202-triangle source recipe preserved exactly.",
+    "exclusions": "Adjacent low wings/arch, pane sag, exact floor envelopes, interiors and surveyed plaza."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lakhta-skyline-model.mjs",
+    "export": "buildLakhtaSkyline",
+    "errorMeters": 1
+  },
+  "qaLodCameras": [
+    {
+      "name": "five-petal-crown-district",
+      "position": [
+        89,
+        432,
+        115
+      ],
+      "lookAt": [
+        0,
+        393,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "spire-district",
+      "position": [
+        40,
+        470,
+        61
+      ],
+      "lookAt": [
+        0,
+        442,
+        4
+      ],
+      "reviewLod": "district"
+    }
+  ]
+}

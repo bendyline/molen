@@ -1,0 +1,62 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.paris_mansard",
+    "scale": 3
+  },
+  "appearance": {
+    "identity": "Established dark bowed tower with recessed ends, fine facade bands and rooftop observation terrace.",
+    "epoch": "Pre-renovation exterior. Operator announces observatory closure31March2026. No current construction or future facade claim.",
+    "master": "Original9424-triangle recipe preserved exactly.",
+    "exclusions": "Current work staging, future facade, terrace furniture, individual pane count, interiors and plaza survey."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/montparnasse-runtime-model.mjs",
+    "export": "buildMontparnasseSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMontparnasseDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "terrace-district",
+      "position": [
+        68,
+        233,
+        69
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ],
+      "reviewLod": "district"
+    }
+  ]
+}

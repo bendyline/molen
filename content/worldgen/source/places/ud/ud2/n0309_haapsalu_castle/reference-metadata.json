@@ -109,10 +109,27 @@
   "limitations": [
     "Q866154 is an exact mapped castle identity node687056785. Named cathedral106803938/Q16412871, museum112303709 and surrounding named curtain walls are separately matched physical controls; no exact-QID castle area is invented.",
     "Mapped museum height38 is a whole-envelope value containing the clock tower. Individual wing/wall sections remain lower and partly roofless. Cathedral25m mapper height is separate. Tower38m is an archival museum reference, not a new survey.",
-    "Architect drawings publish local section levels+18.50/+19.96 and a+0.00 tied to8.30m. The authored mesh uses original estimated relative sections andY0 ground attachment, not a certified elevation survey or a literal copy of the technical plan.",
+    "Architect drawings publish section levels+18.50/+19.96 and interior+0.00=8.30m. Original estimated architectural sections use exterior modelY0=7.2m EH2000, based on the official DTM; this is not a certified floor/door elevation survey or a literal plan copy.",
     "Nave, south circular baptismal chapel, lower lateral vestries, open upper museum rooms and black modern pavilion/stair zigzags are independent geometry. Lost medieval roofs, reconstructed cloister, full interiors, exhibits, event infrastructure, playground/trees and adjacent city buildings are not invented.",
-    "Outer wall/tower surviving section heights, precise church window count, glass/frame details, pavilion footprint and walkway attachments still require current-site fidelity review. Keep placement draft and footprint replacement off.",
+    "Surviving wall/tower section heights, church window rhythms, pavilion proportions and folded walkway attachments are original medium-fi estimates reviewed against current architect/museum references. Fine masonry loss, exact window counts and museum interiors are outside the declared exterior scope. Footprint replacement remains off.",
     "Five existing shared256-square weathered limestone, painted metal, lime plaster, timber and gravel graphs use metric repeats and linear tints. No new unique image, embedded photograph or borrowed mesh.",
-    "Architect/photographer drawings and photographs stay in the private research cache; only attributed original numeric controls and metadata ship. Physical laptop/phone performance and continuous LOD movement remain pending."
-  ]
+    "Reference photographs/drawings stay private. The attributed numeric terrain grid and its 16-bit review heightfield ship as ground evidence, not a unique model texture. Automated DTM classification can retain raised built terraces; doors/interiors are not terrain survey controls. Host terrain must agree with the recorded EH2000 mean-sea-level datum and adequate local resolution. Physical laptop/phone performance remains unmeasured; captures and software budgets do not certify device frame rates."
+  ],
+  "terrain": {
+    "document": "terrain-grid.json",
+    "source": {
+      "url": "https://teenus.maaamet.ee/ows/wcs-dtm?SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=dtm-1&FORMAT=image%2Ftiff&SUBSET=y%286534100%2C6534570%29&SUBSET=x%28473200%2C473700%29",
+      "sha256": "sha256:9b9112ab01215ec3d28c5cee76037fb46ee8def769f355d54f7b4f435179af5f",
+      "bytes": 941132,
+      "retrievedOn": "2026-10-09",
+      "source": "Estonian Land and Spatial Development Board DTM 1 m",
+      "horizontalCRS": "EPSG:3301",
+      "verticalDatum": "EH2000",
+      "documentation": "https://geoportaal.maaamet.ee/eng/Spatial-Data/Elevation-data-p308.html"
+    },
+    "modelDatumElevationMeters": 7.2,
+    "verticalDatum": "EH2000",
+    "attribution": "Elevation data: Republic of Estonia Land and Spatial Development Board, extracted 2026-10-09.",
+    "limitations": "Bilinear samples of official 1 m DTM stored on a 2.5 m grid. Automated classification can retain elevated terraces or incorrectly classify built surfaces; this is ground-contact evidence, not a survey of doors, stairs or buried foundations. Model Y0=7.2 m EH2000 is the rounded exterior ground attachment near the cathedral, not the architect interior +0.00=8.30 m."
+  }
 }

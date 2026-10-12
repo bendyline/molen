@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-9,918 triangles; 25,590 vertices; 3 material groups; 1,042,572 bytes. Native bounds: -31.515, 0.000, -17.657 to 31.106, 29.000, 17.657. Source hash: `sha256:293f7a85a18c1adfebe199f966807d004023cfac4b6a5074768d47d0c0f0532d`.
+9,918 triangles; 29,754 vertices; 3 material groups; 1,192,508 bytes. Native bounds: -31.515, -5.236, -17.657 to 31.106, 36.200, 17.657. Source hash: `sha256:e1cdf8fce5b324f87672329372771c9c76588ad5243d771a9050c43b4bfe470a`.
 
-{"up":"+Y","longitudinal":"+X almost east,0.478 degrees north of east","front":"-Z landward parterre; +Z sea terrace; square clock tower at southwest(-X,+Z)","origin":"Exact mapped building footprint center, provisional terrace attachment Y=0; not sea level"}
+{"up":"+Y","longitudinal":"+X almost east,0.478 degrees north of east","front":"-Z landward parterre; +Z sea terrace; square clock tower at southwest(-X,+Z)","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Exact footprint and exterior views establish orientation; terrain and terrace contact require geographic review before activation. Synthetic captures establish appearance only.
+The inspected aerial picture confirms the ivory angled crenellated wings, recessed entrance, sea-side bay and southwest square clock tower with four corner turrets. Standard viewer PMTiles and the retained building outline set approximate coastal location and signed orientation. Coarse inland ground rises above the anchor sample; a reconstructed7.2m working rise clears it, with bounded castle foundations extending below the sampled slope. This is approximate fit, not a surveyed sea/terrace datum. Anchor 13.712453245,45.702528846; heading 0.008338727695; standard PMTiles datum 3.7358245453613077m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -31,13 +31,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0276` (
 
 ## Pending work
 
-- Original medium-fi exterior interpretation, not a conservation or cadastral survey.
-- The museum publishes35m above sea for the tower. SourceY0 is the local terrace plane;29m tower top is inferred from photographs with an approximate6m sea-to-terrace offset, not a surveyed conversion.
-- All other elevations, facade subdivisions, turrets and openings are inferred from primary museum photographs.
-- Exact OSM building footprint fixes plan extent/anchor; wall height transitions and roof subdivision are interpreted.
-- Fine masonry joints, arcature carving, coats of arms, balustrades, glazing bars, interior rooms and flag/guy wires omitted.
-- Park, Castelletto, sea terrace retaining cliff and neighboring buildings excluded from the building footprint asset.
-- Actual sloping terrain contact, approaches, geographic activation, continuous-motion shimmer and physical-device performance remain pending.
+- Approximate current exterior based on inspected picture and standard viewer PMTiles; no bespoke survey or precise terrace/sea elevation conversion.
+- Original detailed architectural master/recipe preserved; independent derivative fits working datum and bounded foundation bottoms.
+- Angled ivory wings, southwest four-turret clock tower, paired/triple arched windows, recessed hall and bay preserve identity. Fine stone carving and openings are reconstructed.
+- Castle building footprint only. Park, Castelletto, terrace retaining walls, jetty, full coastal cliff and interiors excluded. No artificial terrain cutout.
+- Two shared material graphs and local opaque glass; zero embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

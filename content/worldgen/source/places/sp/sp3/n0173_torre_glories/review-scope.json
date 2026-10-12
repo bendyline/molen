@@ -1,0 +1,343 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Barcelona oval geyser silhouette with irregular red-to-blue pixels, daylight glass veil, fine near louvres and a pale framed dome.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east/slightly north",
+    "front": "+Z south/slightly west; no surveyed entrance phase",
+    "origin": "Exact-QID ground-contact ellipse frame"
+  },
+  "sourceFacts": {
+    "heightMeters": 144.4,
+    "windowOpenings": 4500,
+    "claddingModuleApproxMeters": [
+      0.9,
+      0.9
+    ],
+    "claddingColors": 25,
+    "architect": "Ateliers Jean Nouvel with b720",
+    "facadeFinish": "Polyester-coated aluminum and stainless steel",
+    "upperStructure": "Steel meridians and parallels carrying a glazed dome",
+    "originalMasterHash": "sha256:73e27f0eb39b8aba789897e6c66cb7dfc1a1d8e4682805f15e8270bad2cb0165",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[N0173].build",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    },
+    "sharedColorScope": "Combined daylight metal/glass skin; no per-building texture",
+    "claddingColorCountDiscrepancy": "Supplier25/operator 26; original 25-family palette retained"
+  },
+  "reconstruction": {
+    "plan": "Exact-QID elliptical footprint fixes center, major/minor diameter and signed plan heading",
+    "facade": "Original 25-family pixel field with window coverage averaging, opaque daylight veil and representative near window cells/louvres",
+    "profile": "Vertical lower cylinder transitions continuously into an elliptical crown; upper concrete shell ends at 115 m"
+  },
+  "limitations": [
+    "Original 142044-triangle/16046604-byte master remains exactly reproducible from the unchanged global recipe, including 4,500 original reconstructed window cells and alpha louvres. Reviewed source/browser levels preserve the oval lower shaft, continuous rounded crown, irregular warm-red to cool-blue pixel composition and pale glazed dome with meridian/parallel framing. Opaque combined skin averages the visual contribution of the layered glass instead of submitting a second full transparent facade. Near levels retain tilted pale louvre strips and representative window pixels; distant levels average window coverage and remove small slats. Source dimensions and ellipse use map evidence. Crown profile with vertical-to-curved transition at 76.4 m, colored shell ending115 m, 25 tint families, pixel/windows/slat phase, oculus size and member pitches remain reconstruction, not surveyed fabrication dimensions. Supplier gives 25 colors versus current operator 26; supplier gives 144.4 m while rounded summaries give 144 m and original architect program 142 m. Pedelta webpage dome 32 m radius 35 m is inconsistent with mapped tower width; its radius is not used. Two shared 256px concrete/painted-metal graphs, opaque palette glazing, no embedded images or copied facade photo. The source master preserves 4,500 cells; reduced browser derivatives deliberately aggregate them and do not claim an exact opening count or schedule. Night LED show, observation interiors, external pavilion, underground auditorium, exact doorway and terrain slope excluded. Physical phone/laptop and dense-city timing remain unmeasured."
+  ],
+  "surfaceOverrides": {
+    "foundation": {
+      "graph": "concrete_plain",
+      "slot": "foundation",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "pink": {
+      "graph": "metal_painted",
+      "slot": "wall",
+      "roughness": 0.5,
+      "metallic": 0.12
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": -0.350589088703,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q336246 ellipse 44213122. Native +X east/slightly north, +Z south/slightly west; signed long axis and center retained, ground Y=0. The symmetric tower has no claimed surveyed front; reconstructed pixel and louvre phase is not an as-built panel schedule. Exterior height 144.4 m follows the coating supplier; owner/supplier summaries round to 144 m and original architect program says 142 m. Approximate entry, external pavilion, underground auditorium and terrain grade are excluded. Accepted plan 2 m/1 degree; replacement disabled.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q336246 ellipse 44213122. Native +X east/slightly north, +Z south/slightly west; signed long axis and center retained, ground Y=0. The symmetric tower has no claimed surveyed front; reconstructed pixel and louvre phase is not an as-built panel schedule. Exterior height 144.4 m follows the coating supplier; owner/supplier summaries round to 144 m and original architect program says 142 m. Approximate entry, external pavilion, underground auditorium and terrain grade are excluded. Accepted plan 2 m/1 degree; replacement disabled.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/glories-runtime-model.mjs",
+    "export": "buildGloriesReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/glories-runtime-model.mjs",
+    "export": "buildGloriesSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGloriesDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildGloriesStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGloriesCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        121,
+        107,
+        189
+      ],
+      "lookAt": [
+        0,
+        69,
+        0
+      ]
+    },
+    {
+      "name": "closed-crown-oculus",
+      "position": [
+        30,
+        154,
+        44
+      ],
+      "lookAt": [
+        0,
+        137,
+        0
+      ]
+    },
+    {
+      "name": "lower-pixel-window-veil",
+      "position": [
+        27,
+        18,
+        33
+      ],
+      "lookAt": [
+        10,
+        15,
+        13
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        121,
+        107,
+        189
+      ],
+      "lookAt": [
+        0,
+        69,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        121,
+        107,
+        189
+      ],
+      "lookAt": [
+        0,
+        69,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        121,
+        107,
+        189
+      ],
+      "lookAt": [
+        0,
+        69,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        121,
+        107,
+        189
+      ],
+      "lookAt": [
+        0,
+        69,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-pixel-composition",
+      "position": [
+        65,
+        88,
+        99
+      ],
+      "lookAt": [
+        0,
+        64,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-louvres-and-windows",
+      "position": [
+        37,
+        31,
+        53
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-pixel-window-skin",
+      "position": [
+        27,
+        20,
+        33
+      ],
+      "lookAt": [
+        10,
+        16,
+        13
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-framed-dome",
+      "position": [
+        32,
+        151,
+        47
+      ],
+      "lookAt": [
+        0,
+        134,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

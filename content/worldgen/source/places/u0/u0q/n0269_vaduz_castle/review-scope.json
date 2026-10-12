@@ -1,0 +1,313 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e7e1d3",
+      "trim": "#f0e8d7",
+      "stone": "#b7b1a5",
+      "paving": "#b2ad9f",
+      "tile": "#80664f",
+      "wood": "#947355",
+      "red": "#a24547",
+      "white": "#eee6d9",
+      "glass": "#4d6178",
+      "door": "#765d49"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Square rough-stone keep with wide pyramidal roof",
+      "Covered south roundel and contrasting open annular-roof north roundel",
+      "Cream crossed-gable residence, red/white shutters and low west curtain"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X north, about1.23degrees east of true north",
+    "front": "-Z west toward Vaduz and Rhine valley",
+    "origin": "Site anchor; Y0 PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/1252853 exact Q694782",
+    "mappedHeightMeters": 30,
+    "mappedPlanMeters": [
+      75.448,
+      52.756
+    ],
+    "northwestResidentialTowerDendroDate": 1287,
+    "southRoundelDate": 1523,
+    "northRoundelDate": "1528/29",
+    "originalMasterHash": "sha256:14db85eb73fc00da51eab3962f57efe761e7a26c9e60796cd3eb1eae7feaae42",
+    "originalMasterRecipe": "packages/worldgen/scripts/vaduz-castle-model.mjs#buildVaduzRuntime"
+  },
+  "reconstruction": {
+    "basis": "Two inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded exterior with approximate vertical fit."
+  },
+  "limitations": [
+    "Reference pictures plus standard viewer PMTiles define an approximate current exterior fit. No bespoke sources or survey accuracy.",
+    "Detailed original Vaduz geometry is preserved; only its courtyard capture camera is raised to clear the revised court. Reviewed derivative keeps its architecture, changes working vertical datum and extends bounded foundations.",
+    "Roundels, stone keep, tiled roofs, timber hoarding and cream residence provide identity. Window/shutter rhythm, individual roof pitches and outer curtain remain approximate.",
+    "Coarse PMTiles terrain does not resolve thresholds, narrow passages or exact cliff contact. No terrain cutout, interiors, forest or artificial hill is claimed.",
+    "Four reusable material graphs plus local opaque glass; no embedded textures. Physical laptop/phone timing and continuous-motion shimmer remain pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      9.52434566,
+      47.139574837
+    ],
+    "heading": 1.549323723192,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Appearance checked against two aerial pictures; signed north-south orientation distinguishes covered south roundel from open north roundel. Standard viewer Protomaps/Mapzen PMTiles set location and hillside fit at anchor 9.52434566,47.139574837 and heading 1.549323723192. Y0 is the working terrain sample 563.3922911400916m; reconstructed court10m above it clears the coarse hillside and bounded foundations extend below sampled ground. Exterior walls and floors are approximate, not surveyed.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Appearance checked against two aerial pictures; signed north-south orientation distinguishes covered south roundel from open north roundel. Standard viewer Protomaps/Mapzen PMTiles set location and hillside fit at anchor 9.52434566,47.139574837 and heading 1.549323723192. Y0 is the working terrain sample 563.3922911400916m; reconstructed court10m above it clears the coarse hillside and bounded foundations extend below sampled ground. Exterior walls and floors are approximate, not surveyed.",
+    "terrainReference": {
+      "anchor": [
+        9.52434566,
+        47.139574837
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles ground; reconstructed raised court."
+    }
+  },
+  "geographicNote": "Appearance checked against two aerial pictures; signed north-south orientation distinguishes covered south roundel from open north roundel. Standard viewer Protomaps/Mapzen PMTiles set location and hillside fit at anchor 9.52434566,47.139574837 and heading 1.549323723192. Y0 is the working terrain sample 563.3922911400916m; reconstructed court10m above it clears the coarse hillside and bounded foundations extend below sampled ground. Exterior walls and floors are approximate, not surveyed.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/vaduz-runtime-model.mjs",
+    "export": "buildVaduzReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/vaduz-runtime-model.mjs",
+    "export": "buildVaduzReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVaduzReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildVaduzReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildVaduzReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-vaduz-skyline",
+      "position": [
+        -85,
+        60,
+        -80
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-vaduz-district",
+      "position": [
+        -85,
+        60,
+        -80
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-vaduz-street",
+      "position": [
+        -85,
+        60,
+        -80
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-vaduz-closeup",
+      "position": [
+        -85,
+        60,
+        -80
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -20,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  }
+}

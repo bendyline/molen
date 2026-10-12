@@ -20,11 +20,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-5,406 triangles; 11,814 vertices; 5 material groups; 493,300 bytes. Native bounds: -105.293, 0.000, -89.442 to 105.042, 51.000, 88.539. Source hash: `sha256:d8d6baa55ca67f9494f2005f513202daba332ae5987a8ca50353b92be61677b8`.
+5,348 triangles; 16,044 vertices; 4 material groups; 644,572 bytes. Native bounds: -105.293, -13.738, -89.442 to 99.970, 51.800, 85.100. Source hash: `sha256:be6e372fe15743400d6ba928067a91185ca3db853f4ff72cffc98798a56dc5fd`.
 
-{"up":"+Y","longitudinal":"+X east-northeast,11.35 degrees north of east","front":"-X Western Yard; river on +X; North Yard toward -Z","origin":"Mapped entire site center, provisional court and ground attachment Y=0"}
+{"up":"+Y","longitudinal":"+X east-northeast,11.35 degrees north of east","front":"-X Western Yard; river on +X; North Yard toward -Z","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Site plan aligned to exact mapped perimeter. Geographic activation requires cliff-side seating and northern/western entry review; synthetic captures establish appearance only.
+The inspected aerial picture confirms the white tower, timber hoarding, steep red gable, inward red roof ring and small turret. Standard viewer PMTiles and the retained site outline set approximate location and river-facing orientation. Convent working floor rises0.8m; foundations extend into the coarse riverbank. Broad lawn geometry is omitted from the derivative so actual viewer terrain supplies the yards; low exterior paving follows coarse ground. Anchor 28.200695255,59.375639522; heading 0.198046850682; standard PMTiles datum 25.698401887691865m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -32,12 +32,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0274` (
 
 ## Pending work
 
-- Original medium-fi reconstruction, not a conservation survey.
-- Published51m tower datum unspecified; all other heights and plan components interpreted.
-- Current restored hoarding modeled as seen; museum questions its historical authenticity.
-- Fine joints, narrow loops, full interiors, tiny flags/fixtures and elaborate workshop equipment omitted.
-- Ceramic roof graph supplies low-frequency seams for both red tiles and grey small turret roof, tinted separately.
-- Actual terrain contact/approaches, continuous-motion shimmer and physical-device performance pending.
+- Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact doorway thresholds.
+- Original architectural master and recipe preserved; independent derivative fits the working floor, foundations and exterior paving.
+- White Tall Hermann, timber gallery, steep red gable, inward roof ring, southwest turret, stone hall and yard curtains retained. Openings and component heights are reconstructed.
+- Viewer terrain supplies lawns. Natural river cliff, moat/river, Ivangorod and navigable interiors outside model scope. No artificial ground cutout.
+- Three shared material graphs and local opaque glass, no embedded images. Physical-device timing remains pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

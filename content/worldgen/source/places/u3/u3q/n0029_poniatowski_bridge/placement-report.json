@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0029_poniatowski_bridge",
-  "inputHash": "sha256:ea76af6d67c80f5cae4225f4e845e739303a49374d3a86eea43b3bf5942a1bca",
-  "placementHash": "sha256:ba090227b2a4de41d2adb17456804efebda81763d61a56d3c1543f11778f4075",
+  "inputHash": "sha256:3b33a0b585d0020520ab417cecb16a9c7bfd7f65579bbb959f902fc73b44999e",
+  "placementHash": "sha256:e00d5c31256ba2a5557e521b7037b91b6ee9984d76619eb5fa78842c36c698ad",
   "entry": {
     "id": "next1000.n0029",
     "title": "Poniatowski Bridge",
@@ -13,18 +13,39 @@
     ],
     "heading": 0.32341305173509954,
     "datum": "sea-level",
-    "elevation": 77,
+    "elevation": 74.00625851005316,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q2340139",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -251.87,
+          -12.4
+        ],
+        [
+          251.87,
+          -12.4
+        ],
+        [
+          251.87,
+          12.4
+        ],
+        [
+          -251.87,
+          12.4
+        ]
+      ],
+      "basis": "Bounded covered bridge strip removes DEM imprint below the complete mixed-span deck; approximate visual fit."
+    },
     "bounds": [
-      21.03480237428841,
-      52.23344331863606,
-      21.047698715434045,
-      52.238509903999955
+      21.037193134028843,
+      52.2348792052499,
+      21.045307955693612,
+      52.237074161973055
     ],
     "replaceRoads": {
       "length": 503.74,
@@ -48,14 +69,15 @@
         ]
       ],
       "deckHeights": [
-        18.549999999999997,
-        17.480000000000004
-      ]
+        18.55,
+        17.48
+      ],
+      "includeConnectedApproaches": true
     },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/368095449",
-    "note": "Directed current road axis and seven mapped pier footprints. The asymmetric road grade and bank bases follow independently preserved GUGiK NMPT/NMT in PL-EVRF2007-NH. Model origin 77.0 m is a declared river-adjacent reconstruction, about 0.17 m below sampled modeled water, not a measured underwater foundation. Host terrain must use this datum or convert elevations explicitly. The exact native deck polygon replaces only successfully loaded, covered bridge-road fragments; native endpoint heights join surrounding approaches while lower riverbank roads remain independent. The separate western approach viaduct is not included in this asset. Current terrain and road-context image review is required. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+    "note": "Inspected current upstream bridge picture: four rebuilt central arches, outer N-trusses, red fascia, tall stone pylons and lower central caps. Retained directed OSM controls place the503.74m river deck, seven piers, four bank towers and curved stairs at their existing positions; published506.13m is a separate nominal definition. Standard viewer PMTiles confirms the Vistula crossing and bank context. Use coarse river-center74.0063m as approximate runtime origin; original77m engineering reconstruction and its native road profile remain preserved without a asserted datum conversion. Bounded river opening and source-local water/bank contacts remove coarse DEM imprint. Road deck levels and stair contacts are approximate; separate701m western approach, exact heraldry/casting, bathymetry and survey joins are excluded. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

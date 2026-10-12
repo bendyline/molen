@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0243_malbork_castle",
-  "inputHash": "sha256:9572b14180fd3d74e40fb41075718a19fcdf7a581b24f46e98c42f7e942de4fd",
-  "placementHash": "sha256:3ecfebdef09db8f939958e3d56113616ab256285886d74d0b1e3b3579ebfdafe",
+  "inputHash": "sha256:9420b6e0d61bc01a8a4075db8d5eb2a01b1d451099d422b0bb70f74ba0b8a199",
+  "placementHash": "sha256:e7f2d2b80a2fa1b03761c61a5548b0da1b21be8338f7b1e588c59ca8e1e7c745",
   "entry": {
     "id": "next1000.n0243",
     "title": "Malbork Castle",
@@ -20,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        19.027756473562913,
+        54.03952928310594
+      ],
+      "modelHeight": -0.7849166666666669,
+      "basis": "Retained6m bare-earth interpolant at[-28,33] below reconstructed19m High-court floor; runtime remains relative."
+    },
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/relation/6436433",
-    "note": "The source frame includes named Lower Castle components beyond the OSM main-precinct relation. Open courts, moat gaps and tower intervals must stay open. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Fresh exact-Q71279 relation6436433 and103 individual cached features agree within0.7mm. Native+X40.89deg follows High-to-Lower Castle toward the north-east;+Z130.89deg faces eastern defenses. Precinct replacement is disabled. Retained GUGiK public2m bare-earth Float32 crop resampled into6660-value6m native grid establishes relative contact. ModelY0 is a reconstructed19m High-court working floor in advertisedPL-EVRF2007-NH; actual viewer placement subtracts the matching bare-earth grid height at[-28,33],not a nominal floor. Separate working levels:Middle15.2m,entry14.3m,Dansker8.6m,Palace9.6m and Lower ranges roughly8–12m. Public0.5m surface crop informs approximate keep crown68.5m and pole77.5m absolute; owner nearly70m description has no datum. No survey precision or exact acquisition vintage is asserted. Model supplies grounded masonry and a narrow moat bridge without a second castle hill; host must supply fine terrain. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

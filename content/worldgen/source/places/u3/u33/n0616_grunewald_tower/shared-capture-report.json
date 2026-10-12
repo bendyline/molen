@@ -1,11 +1,16 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0616_grunewald_tower",
-  "inputHash": "sha256:008744b351701a392d251fb0d1094c8b8f2d9eef98fff571e728871a49d2530d",
-  "fixtureHash": "sha256:3ba443c97b22b2dabe622d790b27f37a66b57d841e80d2d30b8e370657d18042",
-  "reflectionMode": "none",
+  "inputHash": "sha256:3d9122b99710cb18d28282a910d70f988c89be7ac2040ed25837544a872fc01f",
+  "sourceHash": "sha256:f66ee5d9fe590d5112549852d8052a484af20126d657980bc0deace677c052cf",
+  "runtimeHash": "sha256:2880d6505d8814e6c2ab6ff0a1635236b0585db3bb78bd1bbf32a0185a031b15",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:a9a57f9dcdd4874be179755972a73c9bb53386a37c1373164a9af7b137b87ac0",
+  "footprintLabel": "Actual mapped terrace perimeter; exterior stairs are reconstructed separately.",
+  "reflectionMode": "sky-pmrem",
   "clippingMode": "legacy",
-  "placementHash": null,
+  "placementHash": "sha256:9e659cabd6c7b0a074d2421f65515842f8982d3fe407faced3ba33c2da83b4a3",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -15,13 +20,17 @@
       "path": "materials/plaster_lime.matgraph.json",
       "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
     },
-    "matgraph:molen.worldgen.material.stone_limestone": {
-      "path": "materials/stone_limestone.matgraph.json",
-      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    "matgraph:molen.worldgen.material.stone_marble": {
+      "path": "materials/stone_marble.matgraph.json",
+      "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
     },
     "matgraph:molen.worldgen.material.stone_sandstone_raw": {
       "path": "materials/stone_sandstone_raw.matgraph.json",
       "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+    },
+    "matgraph:molen.worldgen.material.tile_mosaic": {
+      "path": "materials/tile_mosaic.matgraph.json",
+      "hash": "sha256:4588b0d86337ef684fcff456751cf630a16907d5bcacb798aea7b516e3fd7ad0"
     },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
@@ -31,227 +40,275 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:b9496df3b6a57c1212d0e39f94025ac0477dd60be91374ffb99eb664544ffe27",
+      "hash": "sha256:c367077dbb82d460591df0558a0090666c05f54f2268f25b9e41f92ed8f688d7",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:d75740080e5321fe1240f2d4cf7e5effa13b8fe10f275f0ec06d533f11e4730a",
+      "hash": "sha256:319748d45839d20ff4366f7ee23e6c6b53d71fcf23cd5fc7e96e14872812f282",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:3d2b1cb22e9c9fd30adfa3942be53047a1fa22a9577f9505e7ea1271b6646811",
+      "hash": "sha256:6687fc4c90c3fb6c9d1ab88c38473c84df26200b835fa11bd3a28c2cf45100fb",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:4f186ece861ba263a99bb2658d50a45318311c2f739d06f42cb5ff1181da5b07",
+      "hash": "sha256:923dee104778e03acbd2c99e8fb2d53f53c609fa3998c4cf94bcdff8e6283fc3",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/memorial-portal.png",
-      "hash": "sha256:00fb2fe0196e1ada1b1ac68641449909ada477f6b9b8a1050bd3911a71cbfe3d",
+      "hash": "sha256:b3e911db572c4b7139f1a4904045fb9caa2f2903b67d0d240c19fca24b5a1936",
       "camera": {
         "name": "memorial-portal",
         "position": [
@@ -267,55 +324,67 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/corner-turrets.png",
-      "hash": "sha256:6a912497470c224f12c1229a458ef4dbba1b177ed23c3148bb0dacbcc84cc405",
+      "hash": "sha256:24771bfa6a186be8d389a360ec744c042c8efdfa11ab75d5941fc6c0fce2c2da",
       "camera": {
         "name": "corner-turrets",
         "position": [
@@ -331,55 +400,67 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/upper-gallery.png",
-      "hash": "sha256:85c3350e8bd8c88b98102445e10be85708759b0f2fd0cd29132f63cd9a5e1df9",
+      "hash": "sha256:53b61539263f656d79b9fec8f381dea9a9ba2af25a87ba7e5be38f2bf9159e5b",
       "camera": {
         "name": "upper-gallery",
         "position": [
@@ -395,55 +476,67 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/brick-roof.png",
-      "hash": "sha256:d309a8dc2edbea3989a8c82717251639f5e18a88598d1e1ce8c82d0aadbc2e8e",
+      "hash": "sha256:667f4bd66ea1d17952c97d5ef7e5e8babc914cf5e93a042544dc7918f8ab9797",
       "camera": {
         "name": "brick-roof",
         "position": [
@@ -459,55 +552,67 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/terrace-stairs.png",
-      "hash": "sha256:bb9109c5989ac702ee987ff1bb61e7b1d7afa7a94ff10847b51019152c5c9cbf",
+      "hash": "sha256:d6db47e219686505cc76efce451749534c9ce3205ff8b447ad09401318e61ad5",
       "camera": {
         "name": "terrace-stairs",
         "position": [
@@ -523,55 +628,67 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
       }
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:a843cdf9c1a42505cd7a39512df449bedee9177c2533d99f15930da376e99f18",
+      "hash": "sha256:2d7e5747b3238d172ac713a466f66164a288e0d04b765642c76803a433bfc64e",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -587,50 +704,585 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0616_grunewald_tower",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 7,
-        "triangles": 296070,
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
         "bounds": {
           "min": [
-            -13,
+            -18.11868644062426,
             0,
-            -19.700000762939453
+            -21.9846089034792
           ],
           "max": [
-            13,
+            23.590857283588033,
             55,
-            19.700000762939453
+            18.11868644062426
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "1aa73bb5-3636-4624-906f-f52c0023641f",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "adc44346-5e02-43d3-b700-c4e2a7181c1f",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "af76740d-30c5-48d6-bb62-121e3d56929e",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "1048a6e4-55be-4f53-a1da-347dfe079ff6",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "e96cf28f-0085-42c3-99a0-72b7493f2a74"
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
         },
         "loads": [
           "molen.worldgen.structure.n0616_grunewald_tower"
         ],
-        "visibleStructures": [],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 8,
-        "renderedTriangles": 296072
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/memorial-statue.png",
+      "hash": "sha256:4401f558ebedb79712406e41504f3a474adea41ccf4844465795169badc80297",
+      "camera": {
+        "name": "memorial-statue",
+        "position": [
+          1.3,
+          6.8,
+          8.2
+        ],
+        "lookAt": [
+          0,
+          6.8,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/memorial-vault.png",
+      "hash": "sha256:9da293c7414336ac99861aa90473a1040e39dce7f26256aee13d7190a0086d4f",
+      "camera": {
+        "name": "memorial-vault",
+        "position": [
+          0,
+          4.55,
+          2.6
+        ],
+        "lookAt": [
+          0,
+          10.5,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/iron-relief.png",
+      "hash": "sha256:216d7c69e52e239dbe8a2ebf46775181c1e663bc09b95c1bc99cda06bececfe5",
+      "camera": {
+        "name": "iron-relief",
+        "position": [
+          -1.7,
+          6.55,
+          2.8
+        ],
+        "lookAt": [
+          3.65,
+          6.55,
+          3.65
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/black-eagle.png",
+      "hash": "sha256:5f7a992a3e9042b75a5da94d75bdd4deaaddf6e34a35319b0068b830b31e5643",
+      "camera": {
+        "name": "black-eagle",
+        "position": [
+          3.5,
+          33,
+          8
+        ],
+        "lookAt": [
+          0,
+          32.8,
+          3.4
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/red-eagle.png",
+      "hash": "sha256:2be0fa904a53fedce81fdabd00c5dace4a368051c44d49e769474fc937e85ebc",
+      "camera": {
+        "name": "red-eagle",
+        "position": [
+          -3.5,
+          33,
+          -8
+        ],
+        "lookAt": [
+          0,
+          32.8,
+          -3.4
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/side-stairs.png",
+      "hash": "sha256:8e1795624d3a40a59dddf3ffaeb550eac8051db01a2802ca7c7c357f9d99aebe",
+      "camera": {
+        "name": "side-stairs",
+        "position": [
+          22,
+          7,
+          20
+        ],
+        "lookAt": [
+          5,
+          3,
+          13
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 9,
+        "renderedTriangles": 335990
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:9d40763e7b14dc4fd301e3c5f47cd3537c4288f5f66aba73fd9a79c1a9a14f58",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0616_grunewald_tower",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0616",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 2.185851134577897,
+        "meshes": 8,
+        "triangles": 335988,
+        "bounds": {
+          "min": [
+            -18.11868644062426,
+            0,
+            -21.9846089034792
+          ],
+          "max": [
+            23.590857283588033,
+            55,
+            18.11868644062426
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "98f8e87e-1edc-46d5-a13d-270b04445445",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "ba5dd8e9-29bf-48a1-ab0a-41162c3d6beb",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "529afe8b-6d48-4cc1-a528-3a0b88fdb200",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "cb5201a7-baf6-4f97-b262-d3caba7f65a0",
+          "worldgen:matgraph:molen.worldgen.material.tile_mosaic": "7325bf19-2afc-4efb-8763-002053466d0e",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "df6e2ece-9418-4f22-9025-0223dcc05eb0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0616_grunewald_tower"
+        ],
+        "selectionBounds": [
+          13.194842738637156,
+          52.47704409741172,
+          13.198618515362842,
+          52.47934378453917
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0616"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.tile_mosaic": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 10,
+        "renderedTriangles": 335990
       }
     }
   ],

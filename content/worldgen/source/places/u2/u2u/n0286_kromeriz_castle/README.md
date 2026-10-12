@@ -22,11 +22,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-12,897 triangles; 38,691 vertices; 6 material groups; 1,551,244 bytes. Native bounds: -51.791, 0.000, -46.939 to 52.057, 84.000, 46.940. Source hash: `sha256:0213e6c9f0272d90b1e65ef8ae278cf52a049835ceff7b2883ce4c03c0d34dd8`.
+12,897 triangles; 38,691 vertices; 6 material groups; 1,551,428 bytes. Native bounds: -51.791, -5.106, -46.939 to 52.057, 88.400, 46.940. Source hash: `sha256:67581665352993521bdd7fbf02b2d6c60782bc13bd206ba6e9ccd4692c576cb3`.
 
-{"up":"+Y","lateral":"+X along cached mapped axis; direction remains undirected","longitudinal":"+Z toward garden-facing wing in this original reconstruction","origin":"Cached envelope center; Y0 estimated local palace ground datum."}
+{"up":"+Y","lateral":"+X along cached mapped axis; direction remains undirected","longitudinal":"+Z toward garden-facing wing in this original reconstruction","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Current original approximate exterior on cached mapped rings;inactive until real-site review.
+Two inspected pictures confirm pale pilastered palace, red roof pitches/green upper panels, garden portico, projecting corner masses and stacked copper tower. Standard viewer PMTiles and retained mapped outer/court rings set approximate location, scale and orientation. The mapped courtyard notch supports the original tower control; the tourist POI is approximate and does not override this geometry. Original portico and corner roofs fit the mapped recessed facade and projecting corners. A reconstructed4.4m working rise clears coarse ground; bounded wall bottoms extend below terrain. Anchor 17.393266452,49.300303249; heading -0.813010109964; standard PMTiles datum 202.37749866501176m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -34,11 +34,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0286` (
 
 ## Pending work
 
-- Original current-exterior approximation. Exact mapped outer/inner rings retained; roof plateau/pitches,palace heights,window rhythm,portico controls and separate tower footprint are estimates.
-- Tower84m total and40m viewing-gallery datum documented. Other break heights/widths estimated. Finial rendered as broad symbolic cap;thin rails,clock hands,sculptures,ornament,chimney fittings,full interiors and neighboring cathedral/Mill Gate not authored.
-- Shared256²lime plaster,limestone,tile and copper graphs. Linear vertex palettes/metricUVs;no embedded research imagery,unique textures,baked light orAO.
-- Synthetic Central-European neighboring style/flat review ground is a style comparison,not Kroměříž site evidence. Inactive geographic draft,replaceFootprint=false; signed orientation,host terrain/base plane and real-site fit pending.
-- Resident forced-LOD camera samples do not certify real adaptive selection,network upgrades,subframe shimmer or physical-device frame timing.
+- Approximate current exterior from two inspected pictures and standard viewer PMTiles, without bespoke survey or exact thresholds.
+- Original master/hash/recipe preserved. Tower and portico controls retain the mapped courtyard notch and recessed facade; tourist POI is not a measured footprint.
+- Roof, portico, court floor and facade proportions reconstructed; orientation is approximate visual map fit.
+- Five common graphs plus an explicit recess slot; zero embedded images. Gardens, town neighbors, interiors and terrain cutouts excluded. Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

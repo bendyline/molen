@@ -98,6 +98,7 @@ const zeroReviewDatumFixtureHash =
   'sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36';
 const clippingMode = process.argv.includes('--adaptive-clipping') ? 'bounds' : 'legacy';
 const reflectionMode = process.argv.includes('--reflections') ? 'sky-pmrem' : 'none';
+const reviewBoundedPlacement = process.argv.includes('--bounded-placement');
 const selected = await authoredModels();
 const server = await createServer({
   configFile: false,
@@ -165,6 +166,7 @@ try {
       'Invalid review ground datum',
     );
     let current =
+      (prior?.reviewBoundedPlacement ?? false) === reviewBoundedPlacement &&
       (prior?.footprintLabel ?? null) === (localFootprint?.label ?? null) &&
       (!localFootprint || matchesEvidenceText(sourceFrameBytes, prior?.footprintEvidenceHash)) &&
       prior?.inputHash === inputHash &&
@@ -246,10 +248,13 @@ try {
       asset: spec.assetId,
       title: spec.title,
       reviewGroundY,
+      ...(spec.geographicProposal?.reviewSurface === 'water' ? { reviewSurface: 'water' } : {}),
       placement,
+      reviewBoundedPlacement,
       footprint,
       footprintLabel: localFootprint?.label,
       footprintLines: localFootprint?.lines,
+      footprintPoint: localFootprint?.point,
       viewingDate,
     });
     const runtimeGltf = JSON.parse(
@@ -264,7 +269,28 @@ try {
     assert.equal(new Set(mounted.loads).size, mounted.loads.length, 'Each model loads only once');
     if (mounted.mode === 'geographic-flat-terrain') {
       const [west, south, east, north] = mounted.selectionBounds;
-      assert(west < east && south < north && east - west < 0.02 && north - south < 0.02);
+      assert(west < east && south < north);
+      if (reviewBoundedPlacement && placement?.bounds) {
+        const [boundWest, boundSouth, boundEast, boundNorth] = placement.bounds;
+        const longitudeScale = Math.cos((placement.anchor[1] * Math.PI) / 180);
+        const declaredDiagonal = Math.hypot(
+          (boundEast - boundWest) * longitudeScale,
+          boundNorth - boundSouth,
+        );
+        const queryDiagonal = Math.hypot((east - west) * longitudeScale, north - south);
+        // A square review tile can surround a long narrow bridge. Keep its query
+        // local to the declared extent while retaining the ordinary point limit.
+        assert(
+          queryDiagonal <= 2 * declaredDiagonal + 0.002,
+          'Bounded review query must remain local to the structure extent',
+        );
+        assert(
+          west <= boundWest + 1e-9 &&
+            east >= boundEast - 1e-9 &&
+            south <= boundSouth + 1e-9 &&
+            north >= boundNorth - 1e-9,
+        );
+      } else assert(east - west < 0.02 && north - south < 0.02);
       const localAssets = new Set(
         structureIndex
           .query([west, south, east, north], queryOptions)
@@ -299,12 +325,27 @@ try {
     }
     if (placement && mounted.mode === 'geographic-flat-terrain') {
       assert.equal(mounted.placementId, placement.id);
-      assert(Math.abs(mounted.heading - (placement.heading ?? 0)) < 1e-7);
-      assert(
-        Math.abs(mounted.position[0]) < 1e-6 && Math.abs(mounted.position[2]) < 1e-6,
-        'Geographic anchor must be the model origin',
-      );
-      assert(Math.abs(mounted.position[1] - (placement.elevation ?? 0)) < 1e-6);
+      if (placement.bounds) {
+        assert(
+          mounted.expectedBoundedPlacementBounds,
+          'Bounded placement needs independently transformed native bounds',
+        );
+        for (const edge of ['min', 'max'])
+          for (let axis = 0; axis < 3; axis++)
+            assert(
+              Math.abs(
+                mounted.bounds[edge][axis] - mounted.expectedBoundedPlacementBounds[edge][axis],
+              ) < 0.001,
+              'Clipped geometry must retain the complete model, signed heading, scale and geographic elevation',
+            );
+      } else {
+        assert(Math.abs(mounted.heading - (placement.heading ?? 0)) < 1e-7);
+        assert(
+          Math.abs(mounted.position[0]) < 1e-6 && Math.abs(mounted.position[2]) < 1e-6,
+          'Geographic anchor must be the model origin',
+        );
+        assert(Math.abs(mounted.position[1] - (placement.elevation ?? 0)) < 1e-6);
+      }
       if (placement.terrainReference) {
         const samples = mounted.terrainSamples.filter(
           (sample) => sample.placementId === placement.id,
@@ -412,6 +453,7 @@ try {
       ...(localFootprint?.label ? { footprintLabel: localFootprint.label } : {}),
       reflectionMode,
       clippingMode,
+      ...(reviewBoundedPlacement ? { reviewBoundedPlacement } : {}),
       placementHash,
       materialGraphs,
       frames,

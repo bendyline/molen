@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0292_devin_castle",
-  "sourceHash": "sha256:4e1f74ac95f8b7b8862f5dde97188f631eee334b895805f0e11aceecfac65689",
-  "runtimeHash": "sha256:d2a52ed01f3580ed40ca596b6527c83c196390af8941e43cfc9d4857abd28631",
-  "fixtureHash": "sha256:4bd02cf3d45bf8190334b21c7149e3bc6ff9e195e047d08614adfc48b37b9560",
+  "sourceHash": "sha256:cc07b36ef68818e1c8ee943ffc2672d9ad6c2a6a5733d0fefa95f799b4eaa055",
+  "runtimeHash": "sha256:52c5aeee11bd3caf7d5101abdb908c288f7cbb24fa0dac8eb1e94cf2572e03c1",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,75 +28,90 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:c42552d14dc7650c31cfc4b3bca35db00a790b8a250b6bbd7f1f4abc607acfd7",
-      "bytes": 82676,
-      "gzipBytes": 25683,
-      "triangles": 811,
-      "cpuBytes": 81260,
-      "gpuBytes": 81260,
-      "errorMeters": 2,
+      "hash": "sha256:4e66a321da91db40b5d264bd98a462fb2d4ccc0715fa2780726f1e8d064fa9a4",
+      "bytes": 67744,
+      "gzipBytes": 15084,
+      "triangles": 630,
+      "cpuBytes": 66312,
+      "gpuBytes": 66312,
+      "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:67023bf3fbfd2af5f0211f1d17063c8228ad324e8ec0c1202e14def1c51fd44d",
-      "bytes": 340296,
-      "gzipBytes": 117953,
-      "triangles": 3435,
-      "cpuBytes": 334140,
-      "gpuBytes": 334140,
-      "errorMeters": 1.5,
-      "drawCalls": 5
+      "hash": "sha256:be2f26558ca71dc5b167f6febbdad7e2908857fe0db7ca5290cc5736e07c796a",
+      "bytes": 281176,
+      "gzipBytes": 96686,
+      "triangles": 2928,
+      "cpuBytes": 276088,
+      "gpuBytes": 276088,
+      "errorMeters": 0.7,
+      "drawCalls": 4
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:4a82871176f23fda0a343fe6bbc294f337e7846934f5ff129292a9cfc405a11e",
-      "bytes": 853316,
-      "gzipBytes": 288657,
-      "triangles": 8494,
-      "cpuBytes": 847144,
-      "gpuBytes": 847144,
-      "errorMeters": 0.5,
-      "drawCalls": 5
+      "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6",
+      "bytes": 620160,
+      "gzipBytes": 206713,
+      "triangles": 6460,
+      "cpuBytes": 615052,
+      "gpuBytes": 615052,
+      "errorMeters": 0.3,
+      "drawCalls": 4
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:4a82871176f23fda0a343fe6bbc294f337e7846934f5ff129292a9cfc405a11e",
-      "bytes": 853316,
-      "gzipBytes": 288657,
-      "triangles": 8494,
-      "cpuBytes": 847144,
-      "gpuBytes": 847144,
-      "errorMeters": 0.15,
-      "drawCalls": 5
+      "hash": "sha256:aff7bd15ab86b92c7d832eef34ab5982305a824db9ac101ecbbb2b6b349072d6",
+      "bytes": 620160,
+      "gzipBytes": 206713,
+      "triangles": 6460,
+      "cpuBytes": 615052,
+      "gpuBytes": 615052,
+      "errorMeters": 0.1,
+      "drawCalls": 4
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:a88c38612b8729155b8d3b01c4b4a9e8f4580f212ac027055ded6324b6dccff3"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3d667d1e9132012a4942dfc7fde48d47ff4dbf0736fadadc699dc2462cc998e6"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:b2688f021729cc1e83652a622732900b5b9c502e21fb227b01c5c48e1e7bdb07",
+      "hash": "sha256:13c4570791a8dc6561691bb5fdbad2997fdd21080b280d7c3336226f625bcd8b",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          288,
-          156,
-          498
+          251.51749999999998,
+          160.8633,
+          496.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -108,29 +123,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:6a6795ab4fc06eac9fdbc264432a48e14af6001e46ee76ff21fbab898565f635",
+      "hash": "sha256:4cd84dbf160703967cc8bfe42e9cacaf0c06ac28d2246ca0f943cafea49ec710",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          288,
-          156,
-          498
+          251.51749999999998,
+          160.8633,
+          496.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -142,29 +162,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:d68d5613ce10a404a19b6eba695e2ea4a0ed4cfa87656887312e4fd06c8f83ff",
+      "hash": "sha256:4781f762a4e7346e49bada768519e83778ad401ce83fd4de904b2353f0e5ad2b",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          288,
-          156,
-          498
+          251.51749999999998,
+          160.8633,
+          496.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -176,29 +201,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:6dd97e1e406d4aca6ad3df42a14d28066c5ec498b7ec5a242a24c34de34671d9",
+      "hash": "sha256:d3744119379ad977a76150dda522328519f59f7e5207f26819961615a3a20d64",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          288,
-          156,
-          498
+          251.51749999999998,
+          160.8633,
+          496.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -210,29 +240,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:aafe3998cf4370368bdef8530864b57258b83af057a9c8c802744a7c6e586343",
+      "hash": "sha256:df31b17ef791e987b6d9f0b855d9b6e9284ef3ef1dba1561ff4f47b00d7a7c97",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 11709,
-        "groundY": 0,
+        "triangles": 170242,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -244,29 +279,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:bf009d26284d7cb86c45f96cbf134722294f2e071b1be474e5cc9e265a862a8e",
+      "hash": "sha256:05e30102935be75a9d56f87f80e7f82f6960b0d2835cf1147076a890675abf44",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 11709,
-        "groundY": 0,
+        "triangles": 170242,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -278,29 +318,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:82c3ddbb43c433b3100f2a1751f8e3ac73f22574b11899d3168fde489a167f2e",
+      "hash": "sha256:313221b31d0e276ef9e39aa3048d7d29193e739a6df028dcc94a30c1d230a12c",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 11709,
-        "groundY": 0,
+        "triangles": 170242,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -312,29 +357,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:63ea688b25c65cffdfab1f3e1ec9c40d1640ecf62168acea8b187ce46ebdb841",
+      "hash": "sha256:1ec9d4eec58a7615969d6a97ab42bac0595e6e5f2070f6446fcdb98f5ae64a4b",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 11709,
-        "groundY": 0,
+        "triangles": 170242,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -346,29 +396,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:d8e27110a19221c1658be3a4c226e3fb83249c1f5ab9a464f389dd630db8e0c0",
+      "hash": "sha256:404de88a80b6625b03e1f026c77d43d362922ba0c4ffa30f649fffbfe932ef35",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 9085,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 167944,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          1164,
-          600,
-          2016
+          1127.5175,
+          604.8633,
+          2014.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -380,29 +435,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:e5f06023ba03f68cf0c6df854033a729c7d628063554f8db85021d7db3b1e940",
+      "hash": "sha256:4d69500ccdde33da644d5b54cd0feb552f4bf8ab06ea5acfefdb9f5d63fa013b",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 9085,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 167944,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          1164,
-          600,
-          2016
+          1127.5175,
+          604.8633,
+          2014.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -414,29 +474,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:ea7ec4c1eb89f028228b04e25679fb1f481d856780d79909415f1cd15628793e",
+      "hash": "sha256:f0318d32f7a6cb02b8aca2af642185d8fff0e85f63611e197f39ded6d0758050",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 9085,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 167944,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          1164,
-          600,
-          2016
+          1127.5175,
+          604.8633,
+          2014.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -448,29 +513,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:0fd77940b3f4192182b54f2f6d9862ffef4d004abf1216160498588668a2ff51",
+      "hash": "sha256:608b1dd3573941a7e18f8f3bf983e7574130d79746c1430ad19df1ba7e935ba2",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 9085,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 167944,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          1164,
-          600,
-          2016
+          1127.5175,
+          604.8633,
+          2014.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -482,29 +552,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:e5857b710565af775b13f92176b41c93ca8999e8137bca51e9beff2833d0cbef",
+      "hash": "sha256:c3e9482cacaa99af3234dbcf79cda47a93b838690143c5b0ed0a71155f560a21",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 813,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 159672,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          1164,
-          600,
-          2016
+          1127.5175,
+          604.8633,
+          2014.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -516,28 +591,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/upper-cliff-and-maiden.png",
-      "hash": "sha256:0e3bc698104c5192ad4e3b32fb30a19dc233c01866e25ec1ac75a71653933936",
+      "hash": "sha256:344ab43b9f9a7563b1047ec5dfc30223a2e4252ea97d49e11241e7c2df2cebdf",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -410,
-          145,
+          109.96328912533599,
           -270
         ],
         "lookAt": [
           -198,
-          52,
+          16.963289125335997,
           -115
         ],
         "graphReads": {
@@ -550,28 +630,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/garay-and-bathory-courts.png",
-      "hash": "sha256:22108d0bd134518ce2485aa65f0c8169017a8eeb502803f5b4164e8257597f2a",
+      "hash": "sha256:1357990f157392688629f6c651f8b2b4aa7a0af32735e47b96b88b42b106b86f",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -30,
-          100,
+          64.96328912533599,
           60
         ],
         "lookAt": [
           -135,
-          44,
+          8.963289125335997,
           -65
         ],
         "graphReads": {
@@ -584,28 +669,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/own-wall-plan.png",
-      "hash": "sha256:cc0e399bb32a16811048d629df083ae306779559b40a44dc4c74f2ca5414b567",
+      "hash": "sha256:6a5e79d21c7a1949ab44e54a20f2de2ff703f578397743cf5a1a69917f34e614",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -55,
-          780,
+          744.963289125336,
           1
         ],
         "lookAt": [
           -55,
-          20,
+          -15.036710874664003,
           0
         ],
         "graphReads": {
@@ -618,28 +708,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/maiden-open-crenellation.png",
-      "hash": "sha256:82fc3c9e97af279b05c7ab2fa52e1eac2a635d6b2c6c980f453de3849c0da347",
+      "hash": "sha256:3efa6a321bc082086f65871d689814426609af08990684890f84ae5c6cab857a",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -267,
-          36,
+          0.9632891253359972,
           -67
         ],
         "lookAt": [
           -245,
-          27.4,
+          -7.636710874664004,
           -87
         ],
         "graphReads": {
@@ -652,28 +747,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/upper-roofless-courtyard.png",
-      "hash": "sha256:19682488c7affcf240f5ebbd26ae7b9d068959c3b6eee5fa4e698ef2d3a76523",
+      "hash": "sha256:be6d561f1394d7af493da6e6a0d179feee7b44344325ab7819d04aee749253cc",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -150,
-          125,
+          89.96328912533599,
           -180
         ],
         "lookAt": [
           -195,
-          72,
+          36.963289125336,
           -130
         ],
         "graphReads": {
@@ -686,28 +786,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/moravian-gate-passage.png",
-      "hash": "sha256:b8cae9c714d7e2b7c7154889ff354ebe8723b4d22cc758251bd8be4480b70a66",
+      "hash": "sha256:b16223d8c0910c06cdd69f24d616ea990e29461691b80154a5bc6ee7dc60e2ed",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 7,
-        "triangles": 15501,
-        "groundY": 0,
+        "triangles": 172507,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -68,
-          25,
+          -10.036710874664003,
           -161
         ],
         "lookAt": [
           -50.1,
-          20.2,
+          -14.836710874664004,
           -143.8
         ],
         "graphReads": {
@@ -720,28 +825,33 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/bathory-west-openings.png",
-      "hash": "sha256:127ec93aa7cdd91ebdd0499d4d223b725ef0f1522ec899db063c1d803c527b95",
+      "hash": "sha256:f89d9844c3c46af5dc3352081644858ca5f321e6ff144950907465e371e18295",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 9,
-        "triangles": 16640,
-        "groundY": 0,
+        "triangles": 173646,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
           -153,
-          64,
+          28.963289125335997,
           -91
         ],
         "lookAt": [
           -111,
-          49,
+          13.963289125335997,
           -63
         ],
         "graphReads": {
@@ -754,29 +864,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:ea39f3389adbe79ff7df7fff11868ddbac30fea19c64bd81e10afdc650f247a8",
+      "path": "medium-fi/whole-devin-skyline.png",
+      "hash": "sha256:947433a94b82d165e4d6c22fc4c8fc133180aacb323d2c9768928b0a2c1b006e",
       "state": {
         "level": "skyline",
-        "distance": "block",
+        "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 9085,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 167944,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          510,
+          255,
+          550
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -55,
+          14,
+          -20
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -788,29 +903,190 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-devin-district.png",
+      "hash": "sha256:4fe3cbc816ce5c1a05b2225b198e4b2aeb05c807d192af0c94a04c70354f937d",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 170242,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
+        "position": [
+          510,
+          255,
+          550
+        ],
+        "lookAt": [
+          -55,
+          14,
+          -20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-devin-street.png",
+      "hash": "sha256:f0a2af16ef2d12160a0fd60d60b5da7772afc1dcf0b8ceea43f321dc4f95c1d2",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
+        "position": [
+          510,
+          255,
+          550
+        ],
+        "lookAt": [
+          -55,
+          14,
+          -20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-devin-closeup.png",
+      "hash": "sha256:842ad381523c1b4b5c3d8db944ff72a0871bb1c45d9077808a1f854e3a228e62",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
+        "position": [
+          510,
+          255,
+          550
+        ],
+        "lookAt": [
+          -55,
+          14,
+          -20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:bf43d118c6d0eef9a4bc7918301ab4a67c829b11227d05343d544c1b7921a4ce",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 167944,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
+        "position": [
+          545.5175,
+          376.8633,
+          1006.4215
+        ],
+        "lookAt": [
+          -36.4825,
+          70.8633,
+          -1.5785
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.gravel": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:bf009d26284d7cb86c45f96cbf134722294f2e071b1be474e5cc9e265a862a8e",
+      "hash": "sha256:05e30102935be75a9d56f87f80e7f82f6960b0d2835cf1147076a890675abf44",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 11709,
-        "groundY": 0,
+        "triangles": 170242,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -822,29 +1098,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:5c189d000f09d05545076d9eef1d204a7869c7586ce86a854ce8af08724afc04",
+      "hash": "sha256:0932662cccc7cd667f140c1b810857800d11f12f0786590d50d41d2b1cdd7dc3",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -856,29 +1137,34 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:f7e12adb51e801142035d312c8ba2995d4618c7b17a9f2dd41c0d483b34952de",
+      "hash": "sha256:f3df6200c2343db4becd1a26ca74c70d28eebdd0b1d8a3917b0255b7c28b8562",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 16768,
-        "groundY": 0,
+        "triangles": 173774,
+        "groundY": -38,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u2s/n0292_devin_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          372,
-          1008
+          545.5175,
+          376.8633,
+          1006.4215
         ],
         "lookAt": [
-          0,
-          66,
-          0
+          -36.4825,
+          70.8633,
+          -1.5785
         ],
         "graphReads": {
           "molen.worldgen.material.plaster_lime": 1,
@@ -890,7 +1176,8 @@
           "molen.worldgen.material.stone_limestone_weathered": 1
         },
         "neighborStyle": "molen.worldgen.catalog.german_fachwerk",
-        "contextScale": 6
+        "contextScale": 6,
+        "reflections": "sky-pmrem"
       }
     }
   ],

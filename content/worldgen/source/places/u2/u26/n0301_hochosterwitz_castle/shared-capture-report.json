@@ -1,22 +1,23 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-  "inputHash": "sha256:305808770a6ed8b5c12bc120809e8f0d339ffdd25c0257276b33c692299fdb09",
-  "sourceHash": "sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5",
-  "runtimeHash": "sha256:ed404d86a6790570cf7f1c978fd00ccd39f27bad45592b9396eed1d9363a227e",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:82c2b158a25663f369e2a08661ac0e78d5401253657dfa70c7ddf329e5eaa74f",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "inputHash": "sha256:b03e12fc99881429d9b89602b2dd5af2722184bbec7a2d4ea8bcbc9b81bfa132",
+  "sourceHash": "sha256:a077e82001ec7afeba6b09d3ac363da713b0ffab1b150831f71fa585a13200f0",
+  "runtimeHash": "sha256:411cb8d68c5341c764329c01fac3be64f5123180d6d462903767e359b0656be0",
+  "reviewGroundY": -92,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:43aff5d420e47c1093ccc287966cc76b08199b1b6edc1d5a618300ae3a8c0b2e",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:e96b6e5b386de90edf8757822d51e21d07ac9bdebb77f4786a3bdbce7f1e6ab4",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
       "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
     },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    "matgraph:molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
     },
     "matgraph:molen.worldgen.material.slate": {
       "path": "materials/slate.matgraph.json",
@@ -34,15 +35,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:aebce37d58f16c18fa071b56cd069a942f9509fd7029109d5eafcf0b8a301388",
+      "hash": "sha256:23f0568dc5b9a926d1df00d217a066dbe22232f3413c233b2192054543230b11",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -50,55 +51,73 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:ccef5b6fa56f5e055d1e5ed8f435acd3f474da3d01dccf424158c3aafa690f08",
+      "hash": "sha256:2eb17a57cb30b18050f698a6b23099fb4e090d384ecd73d7e05b04fd95f1b52b",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -106,55 +125,73 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:5a17796318fb72d215aadb19c47747d643b5004d35673fd99928360f83e09d00",
+      "hash": "sha256:a81052318f9e71caea731977084acb036ab210e5003769661f46967490db0a46",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -162,55 +199,73 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:3cbc5ddbbfc58293741daef0e1c9750bed51b28c37118ab802035f7a9a5ddac7",
+      "hash": "sha256:ad84ef4f2bf295994b8f55f05f1f0d89905a219479ea0c6e9ed80cdc090374e1",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -218,64 +273,82 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/summit-west-front.png",
-      "hash": "sha256:a30fd98a8ea0217a80f7d5ab661aef38caab7317030408ae7ba1f9c9508c1a66",
+      "hash": "sha256:0b4bd92c8a3923cbc6db2c6eccd60da55d1e914f4c61e512a5705bfc48f053fa",
       "camera": {
         "name": "summit-west-front",
         "position": [
           -112.657904245793,
-          115,
+          23.009811789076366,
           -54.1589938140078
         ],
         "lookAt": [
           -9.01263233966344,
-          103,
+          11.009811789076366,
           -4.332719505120624
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -283,64 +356,82 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/open-summit-court.png",
-      "hash": "sha256:91e4d6b937689b23f3b52d57343b0a072420a8b86376b3c823cdf8a1723f07f6",
+      "hash": "sha256:760ee0cc79708b15282e28077533abe4cdf397950b6eea63d9c08b74c2dd5f5a",
       "camera": {
         "name": "open-summit-court",
         "position": [
           16.083860879625316,
-          100,
+          8.009811789076366,
           -1.1442985645618782
         ],
         "lookAt": [
           -0.6068686152231586,
-          103,
+          11.009811789076366,
           -10.277728858257408
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -348,64 +439,82 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/south-gallery.png",
-      "hash": "sha256:a3deb9a80304994eeff79996ba517e397c7810980580a99227410e242361d576",
+      "hash": "sha256:2155f17275d47669576c684519411cf65831dcfc8cc2239f865cce86484ccf4c",
       "camera": {
         "name": "south-gallery",
         "position": [
           -39.86101944710974,
-          123,
+          31.009811789076366,
           82.91621752490364
         ],
         "lookAt": [
           -11.230351380371404,
-          104,
+          12.009811789076366,
           25.668642501569693
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -413,64 +522,82 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/gate-approach.png",
-      "hash": "sha256:26b6039b1ecfa4950aee155ba1a0be9f935eae5efdd9775b398b3389285250e3",
+      "hash": "sha256:fac340857dfc59fb55425e263e9b3c5ef50b9421340db7175c900fac5ddee4da",
       "camera": {
         "name": "gate-approach",
         "position": [
           220,
-          160,
+          68.00981178907637,
           -200
         ],
         "lookAt": [
           0,
-          47,
+          -44.990188210923634,
           -68
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -478,64 +605,82 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/church-and-upper-gates.png",
-      "hash": "sha256:4ec622b486b2de27a4f04cdf7895331e9e12feab347b0444ab67430f5bf630f8",
+      "hash": "sha256:c1103705429211ee696c8fd7f929cd015b6414f387ba932a0911d2709372b939",
       "camera": {
         "name": "church-and-upper-gates",
         "position": [
           -180,
-          138,
+          46.009811789076366,
           50
         ],
         "lookAt": [
           -70,
-          86,
+          -5.990188210923634,
           -8
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -543,64 +688,82 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
       }
     },
     {
       "path": "shots/shared/mapped-plan.png",
-      "hash": "sha256:712755a36ae55a8bb999cde5c5eebe60c0b80834ce8a423e707b437b68d4e9ec",
+      "hash": "sha256:6853cccb6c34939e7bb088bd7bd863ee6d144b7b1d6f7ef7171e00419f3ecab1",
       "camera": {
         "name": "mapped-plan",
         "position": [
           -20,
-          320,
+          228.00981178907637,
           -30
         ],
         "lookAt": [
           -20,
-          40,
+          -51.990188210923634,
           -30
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
         "position": [
           0,
           0,
@@ -608,42 +771,134 @@
         ],
         "heading": 0,
         "meshes": 6,
-        "triangles": 16490,
+        "triangles": 16286,
         "bounds": {
           "min": [
             -124.96099853515625,
-            -7.0696001052856445,
+            -100.53038024902344,
             -135.14698791503906
           ],
           "max": [
             78.34054565429688,
-            115.78269958496094,
+            25.5540771484375,
             59.58934020996094
           ]
         },
+        "reviewGroundY": -92,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "b09797c3-07c8-4313-9afa-9d26668c9d0e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "562faee5-2dcb-4e9e-be28-3dc502899bfe",
-          "worldgen:matgraph:molen.worldgen.material.slate": "43d79ba7-b1eb-4084-91c8-f33959a607dd",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "8d98b2cd-7cff-4c91-8b70-a78a5929e138",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "a6fa67ef-f275-4352-b2fc-86c7538fff79"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
         },
         "loads": [
           "molen.worldgen.structure.n0301_hochosterwitz_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 7,
-        "renderedTriangles": 16492
+        "renderedTriangles": 16288
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:7111889d66e345b10ff7649fd6db0445bd7c4a5b78c2b779ebf6d201ab7d6945",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0301_hochosterwitz_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0301",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 6,
+        "triangles": 16286,
+        "bounds": {
+          "min": [
+            -124.96099853515625,
+            -100.53038024902344,
+            -135.14698791503906
+          ],
+          "max": [
+            78.34054565429688,
+            25.5540771484375,
+            59.58934020996094
+          ]
+        },
+        "reviewGroundY": -92,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "955f42ff-107f-4471-b1b4-dbabe759d1c1",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "a80a89cd-2a8e-4d76-a713-207c31ba4d00",
+          "worldgen:matgraph:molen.worldgen.material.slate": "93c9e221-925b-4b30-904e-dc63ed5489ea",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "5bcd7cd3-e10c-4b17-8803-33a6506a0e1d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d7081502-9cb2-4c40-b2c9-09d3bd69c621"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0301_hochosterwitz_castle"
+        ],
+        "selectionBounds": [
+          14.450672556554268,
+          46.754759000168654,
+          14.454029235445732,
+          46.75705868729602
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0301",
+            "coordinate": [
+              14.452350896,
+              46.755908856
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0301"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 16288
       }
     }
   ],

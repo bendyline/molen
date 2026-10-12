@@ -1,0 +1,283 @@
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { expect, it } from 'vitest';
+import '../../worldgen/scripts/install-deterministic-math.mjs';
+import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
+import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
+import { encodeAuthoredAssembly } from '../../worldgen/scripts/authored-glb-assembly.mjs';
+import { chinaWorldTowerStudy } from '../../worldgen/scripts/china-world-tower-model.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+
+const source = resolve(
+    '../../content/worldgen/source/places/wx/wx4/n0233_china_world_trade_center_tower_iii',
+  ),
+  runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
+const read = async (p) => JSON.parse(await readFile(p)),
+  hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
+function decode(b) {
+  const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
+    bin = 28 + b.readUInt32LE(12);
+  const values = (i) => {
+    const a = g.accessors[i],
+      v = g.bufferViews[a.bufferView],
+      n = { SCALAR: 1, VEC2: 2, VEC3: 3, VEC4: 4 }[a.type],
+      w = { 5126: 4, 5125: 4, 5123: 2, 5121: 1 }[a.componentType],
+      start = bin + (v.byteOffset ?? 0) + (a.byteOffset ?? 0);
+    return Array.from({ length: a.count }, (_, i) =>
+      Array.from({ length: n }, (_, k) => {
+        const at = start + i * (v.byteStride ?? n * w) + k * w;
+        return a.componentType === 5126
+          ? b.readFloatLE(at)
+          : a.componentType === 5125
+            ? b.readUInt32LE(at)
+            : a.componentType === 5123
+              ? b.readUInt16LE(at)
+              : b.readUInt8(at);
+      }),
+    );
+  };
+  const transparentTriangles = [],
+    opaqueTriangles = [];
+  const triangles = g.meshes.flatMap((m) =>
+    m.primitives.flatMap((p) => {
+      const ps = values(p.attributes.POSITION),
+        ids = values(p.indices).flat();
+      const decoded = Array.from({ length: ids.length / 3 }, (_, i) =>
+        ids.slice(i * 3, i * 3 + 3).map((j) => ps[j]),
+      );
+      if (g.materials[p.material].alphaMode === 'BLEND') transparentTriangles.push(...decoded);
+      else opaqueTriangles.push(...decoded);
+      return decoded;
+    }),
+  );
+  return { g, values, triangles, transparentTriangles, opaqueTriangles };
+}
+const sub = (a, b) => a.map((v, i) => v - b[i]),
+  dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0),
+  cross = (a, b) => [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0],
+  ];
+function nearest(ts, o, d) {
+  return ts.reduce((best, p) => {
+    const a = sub(p[1], p[0]),
+      b = sub(p[2], p[0]),
+      h = cross(d, b),
+      det = dot(a, h);
+    if (Math.abs(det) < 1e-8) return best;
+    const q = sub(o, p[0]),
+      u = dot(q, h) / det,
+      v = dot(d, cross(q, a)) / det,
+      t = dot(b, cross(q, a)) / det;
+    return u < -1e-7 || v < -1e-7 || u + v > 1 + 1e-7 || t <= 1e-5 ? best : Math.min(best, t);
+  }, Infinity);
+}
+
+function nearestWithNormal(ts, o, d) {
+  let best = { distance: Infinity, normal: [0, 0, 0] };
+  for (const p of ts) {
+    const t = nearest([p], o, d);
+    if (t >= best.distance) continue;
+    const n = cross(sub(p[1], p[0]), sub(p[2], p[0])),
+      len = Math.hypot(...n);
+    best = { distance: t, normal: n.map((v) => v / len) };
+  }
+  return best;
+}
+
+const originals = {
+  metal: { graph: 'metal_painted', slot: 'trim', roughness: 0.48, metallic: 0.24 },
+  stainless: { graph: 'metal_stainless', slot: 'trim', roughness: 0.3, metallic: 1 },
+  concrete: { graph: 'concrete_plain', slot: 'wall', roughness: 0.9, metallic: 0 },
+  stone: { graph: 'stone_granite', slot: 'foundation', roughness: 0.85, metallic: 0 },
+  glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
+  clear_glass: {
+    slot: 'window',
+    localRef: 'palette:#feffff',
+    roughness: 0.12,
+    metallic: 0.05,
+    alphaMode: 'BLEND',
+    baseColorFactor: [1, 1, 1, 0.52],
+    doubleSided: true,
+  },
+  recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
+};
+it('reconstitutes the original large instanced master and independently reprojects the signed individual tower', async () => {
+  const bytes = chinaWorldTowerStudy.encodeAssembly((build, name) => {
+    const b = new MeshBufferBuilder(),
+      a = createArchitecturalSurfaceAuthoring(originals, { legacyAlphaFields: true });
+    build(a.wrap(b));
+    const m = b.finalize();
+    return encodeGlb(
+      m,
+      a.materials(m.groups).map((s, i) => ({
+        ...s,
+        name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+      })),
+      name,
+    );
+  }, encodeAuthoredAssembly);
+  expect(bytes.byteLength).toBe(40771324);
+  expect(hash(bytes)).toBe(
+    'sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3',
+  );
+  execFileSync(
+    process.execPath,
+    ['packages/worldgen/scripts/generate-signature-towers.mjs', '--ids=N0233', '--check'],
+    { cwd: resolve('../..'), stdio: 'pipe' },
+  );
+  const spec = await read(`${source}/spec.json`),
+    asset = await read(`${runtime}/asset.json`);
+  expect(spec.assembly).toBeUndefined();
+  expect(asset.sourceHash).toBe(spec.mesh.sha256);
+  expect(hash(await readFile(`${source}/models/source.glb`))).toBe(spec.mesh.sha256);
+  const f = await read(`${source}/map-frame.json`),
+    prior = await read(`${source}/georeferencing-baseline.json`);
+  expect(f.anchor).toEqual(prior.anchor);
+  expect(f.heading).toBeCloseTo(-1.568897708342, 10);
+  expect(f.elements[0].tags.wikidata).toBe('Q2006129');
+  expect(f.elements[0].tags.height).toBe('330');
+  const r = 6378137,
+    c = Math.cos((f.anchor[1] * Math.PI) / 180),
+    project = (q) => {
+      const e = (((q.lon - f.anchor[0]) * Math.PI) / 180) * r * c,
+        s =
+          (-r * Math.asinh(Math.tan((q.lat * Math.PI) / 180)) +
+            r * Math.asinh(Math.tan((f.anchor[1] * Math.PI) / 180))) *
+          c;
+      return [
+        Math.cos(f.heading) * e - Math.sin(f.heading) * s,
+        Math.sin(f.heading) * e + Math.cos(f.heading) * s,
+      ];
+    };
+  f.elements[0].geometry.map(project).forEach((p, i) => {
+    expect(
+      Math.hypot(p[0] - f.geometry.outline[i][0], p[1] - f.geometry.outline[i][1]),
+    ).toBeLessThan(0.00001);
+    expect(
+      Math.hypot(p[0] - prior.geometry.outline[i][0], p[1] - prior.geometry.outline[i][1]),
+    ).toBeLessThan(0.002);
+  });
+  // Apply runtime yaw independently: local -Z becomes east and +Z becomes west.
+  expect(-Math.sin(f.heading)).toBeGreaterThan(0.999);
+  expect(Math.abs(Math.cos(f.heading))).toBeLessThan(0.002);
+  expect(f.orientationControl.notes).toContain(
+    'SOM explicitly documents office entrance west and hotel entrance east',
+  );
+}, 120000);
+it('retains outward walls, alternating 600 mm fins, open crown, upward roof/slabs and east/west canopies', async () => {
+  const reference = decode(await readFile(`${source}/models/source.glb`)),
+    asset = await read(`${runtime}/asset.json`);
+  for (const l of asset.runtimeLods.levels) {
+    const d = decode(await readFile(`${runtime}/${l.file}`));
+    for (const y of [50.73, 178.73, 273.73])
+      for (const [x, z, dx, dz] of [
+        [0.731, -50, 0, 1],
+        [0.731, 50, 0, -1],
+        [-50, 2.37, 1, 0],
+        [50, 2.37, -1, 0],
+      ]) {
+        const o = [x, y, z],
+          v = [dx, 0, dz],
+          a = nearestWithNormal(reference.triangles, o, v),
+          b = nearestWithNormal(d.triangles, o, v);
+        expect(Number.isFinite(b.distance)).toBe(true);
+        expect(Math.abs(a.distance - b.distance), `${l.name} tower wall`).toBeLessThanOrEqual(
+          l.errorMeters + 0.12,
+        );
+        expect(dot(b.normal, v)).toBeLessThan(-0.95);
+      }
+    const top = nearestWithNormal(d.triangles, [18, 350, 15], [0, -1, 0]);
+    expect(top.distance, `${l.name} open crown beside roof equipment`).toBeCloseTo(55.85, 2);
+    expect(top.normal[1]).toBeGreaterThan(0.99);
+    const ground = nearestWithNormal(d.triangles, [24.13, 1.13, 19.73], [0, -1, 0]);
+    expect(ground.distance).toBeCloseTo(0.98, 3);
+    expect(ground.normal[1]).toBeGreaterThan(0.99);
+    const roof = nearestWithNormal(d.triangles, [6.13, 350, 4.73], [0, -1, 0]);
+    expect(roof.distance).toBeCloseTo(22.78, 2);
+    expect(roof.normal[1]).toBeGreaterThan(0.99);
+    const support = nearestWithNormal(d.opaqueTriangles, [10, 326.7, 8], [0, 0, 1]);
+    expect(support.distance, `${l.name} roof platform support`).toBeCloseTo(0.7, 3);
+    expect(support.normal[2]).toBeLessThan(-0.99);
+    const max = Math.max(
+      ...d.g.meshes
+        .flatMap((m) => m.primitives)
+        .map((p) => d.g.accessors[p.attributes.POSITION].max[1]),
+    );
+    expect(Math.abs(max - 330)).toBeLessThan(0.25);
+    for (const z of [-34.13, 30.13]) {
+      const canopy = nearestWithNormal(d.triangles, [1.17, 15, z], [0, -1, 0]);
+      expect(canopy.distance).toBeCloseTo(['skyline', 'district'].includes(l.name) ? 5.6 : 5.8, 2);
+      expect(canopy.normal[1]).toBeGreaterThan(0.99);
+    }
+    if (['street', 'closeup'].includes(l.name)) {
+      expect(d.g.materials.filter((m) => m.alphaMode === 'BLEND')).toHaveLength(1);
+      expect(
+        d.g.materials.find((m) => m.alphaMode === 'BLEND').pbrMetallicRoughness.baseColorFactor[3],
+      ).toBe(0.52);
+      // Fins are quads perpendicular to the facade, with the published 0.6 m projection.
+      const fins = d.transparentTriangles.filter(
+        (p) =>
+          p.every((v) => v[1] > 27 && v[1] < 50 && v[2] < -24) &&
+          Math.max(...p.map((v) => v[0])) - Math.min(...p.map((v) => v[0])) < 0.1,
+      );
+      expect(fins.length).toBeGreaterThan(12);
+      expect(
+        fins.some((p) =>
+          p.some((a) =>
+            p.some(
+              (b) =>
+                Math.abs(a[1] - b[1]) < 0.00001 && Math.abs(Math.abs(a[2] - b[2]) - 0.6) < 0.00002,
+            ),
+          ),
+        ),
+      ).toBe(true);
+      // Fixed drum glazing leaves genuine front/back sectors, rather than an opaque cylinder.
+      const drum = d.transparentTriangles.filter((p) =>
+        p.every(
+          (v) =>
+            v[1] >= 0.09 && v[1] <= 5.21 && v[0] > 6.7 && v[0] < 11.3 && v[2] > -30 && v[2] < -24.9,
+        ),
+      );
+      expect(drum.length).toBeGreaterThan(12);
+      expect(
+        nearest(d.opaqueTriangles, [9.37, 1.6, -40], [0, 0, 1]),
+        `${l.name} no opaque drum door pane`,
+      ).toBeGreaterThan(25);
+    }
+  }
+}, 120000);
+it('rebuilds all browser levels deterministically within triangle/download/draw budgets without repeated vertex uploads', async () => {
+  const p = `${runtime}/asset.json`,
+    asset = await read(p),
+    before = await Promise.all(
+      asset.runtimeLods.levels.map((l) => readFile(`${runtime}/${l.file}`)),
+    );
+  await buildModelLandmarkLods(p, { force: true });
+  const next = await read(p);
+  expect(next.runtimeLods.recipeHash).toBe(asset.runtimeLods.recipeHash);
+  expect(next.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThanOrEqual(
+    3000000,
+  );
+  for (const [i, l] of next.runtimeLods.levels.entries()) {
+    const bytes = await readFile(`${runtime}/${l.file}`),
+      { g } = decode(bytes);
+    expect(bytes.equals(before[i])).toBe(true);
+    expect(hash(bytes)).toBe(l.hash);
+    expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
+    expect(l.drawCalls).toBeLessThanOrEqual(8);
+    expect(g.images ?? []).toHaveLength(0);
+    expect(g.materials.filter((m) => m.alphaMode === 'BLEND').length).toBeLessThanOrEqual(1);
+    for (const m of g.meshes)
+      for (const p of m.primitives) {
+        const a = g.accessors[p.attributes.POSITION],
+          n = g.accessors[p.attributes.NORMAL];
+        expect(a.bufferView).not.toBe(n.bufferView);
+        expect(g.bufferViews[a.bufferView].byteStride ?? 12).toBe(12);
+        expect(g.bufferViews[n.bufferView].byteStride ?? 12).toBe(12);
+      }
+  }
+}, 120000);

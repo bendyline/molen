@@ -12,23 +12,24 @@
   },
   "visualBrief": "Roofless upper ruins raised on a faceted pale cliff, lower terrain-following curtains, Garay palace remnants, Bathory scalloped attic, open middle courtyard and the separate tiny octagonal Maiden Tower on a slender rock spur.",
   "mediumFiContext": {
-    "scale": "6",
+    "groundY": -38,
+    "scale": 6,
     "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
   },
   "size": [
-    433.4989929199219,
+    425.3870391845703,
     79.80000305175781,
     376.83900451660156
   ],
   "actualBounds": {
     "min": [
-      -257.2879943847656,
-      0,
+      -249.17604064941406,
+      -35.036712646484375,
       -189.9980010986328
     ],
     "max": [
       176.21099853515625,
-      79.80000305175781,
+      44.76329040527344,
       186.84100341796875
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "longitudinal": "+X east",
     "lateral": "+Z south",
-    "origin": "Mapped site frame anchor, Y0 terrain study minimum134.99m; not anchor ground height"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "way/722938329 exact Q830976 site, not building footprint",
@@ -53,7 +54,9 @@
     "maidenTowerHeightMeters": 4.88,
     "castleRockHeightMuseum": "more than70m",
     "terrainGridSpacingMeters": 20,
-    "terrainSourceResolutionApproxMeters": 30
+    "terrainSourceResolutionApproxMeters": 30,
+    "originalMasterHash": "sha256:4e1f74ac95f8b7b8862f5dde97188f631eee334b895805f0e11aceecfac65689",
+    "originalMasterRecipe": "packages/worldgen/scripts/devin-castle-model.mjs#buildDevinRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -92,13 +95,13 @@
       "Tall pale cliff with roofless upper fortress",
       "Lower irregular fortified enclosure and ruined palaces",
       "Tiny isolated octagonal Maiden Tower on a narrow rock spur"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Own current OSM masonry areas/centerlines and official Bratislava City Museum 2023 aerial, site photo, 2025 schematic map and guide descriptions.",
-    "scope": "Roofless upper and middle ruins, southern defenses, octagonal Maiden Tower, lower curtains and named archaeological foundations. No lost historic roofs. Current visitor fixtures, vegetation, interior caverns, new rockfall barrier and individual tiny remains excluded.",
-    "heightDatum": "Relative coarse DEM134.99m minimum. Explicit upper rock platform72m and upper surviving masonry above it; museum >70m cliff guides the total profile. Terrace/facade coordinates and spur levels are estimates, not a detailed survey. Architectural walls seat on the same explicit cliff triangles as rendering; interpreted elevations are not used as floating overrides.",
-    "registration": "Independent East/South axes reconstruct mapped traces without cached-axis ambiguity. Absolute datum, real terrain blend, current condition and geographic activation remain pending."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://hraddevin.mmb.sk/wp-content/uploads/2025/02/Areal-Hradu-Devin-mapa.png",
@@ -118,8 +121,8 @@
     "https://bucket-mmb-production.up.railway.app/strapi-uploads/hrad_Devin_7bd760ef08.JPG"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive draft;real geographic fit pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       16.979973665,
       48.17314752
@@ -128,7 +131,7 @@
     "ground": "terrain",
     "elevationMode": "terrain-contact",
     "source": "https://www.openstreetmap.org/way/722938329",
-    "groundModelY": 35.03999999999999,
+    "groundModelY": 0,
     "featureIds": [
       "way/60846883",
       "way/60846884",
@@ -185,7 +188,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Own East/South signed frame and relative134.99m terrain minimum. Subtract source DEM anchor35.04m relative height for terrain attachment. Main cliff,terraces and footings still need host-terrain blending and vertical datum/current-state review before activation."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected aerial picture confirms roofless upper ruins on the pale cliff, lower irregular curtains, ruined palaces, middle court and small separate Maiden Tower on a spur. Retained east/south mapped wall traces and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the broad grass terrain patch, uses current PMTiles for architectural footings and shifts the old134.99m study datum into the170.02671087466376m PMTiles anchor datum. The bounded pale upper cliff and Maiden Tower spur remain explicit architectural landscape proxies; host PMTiles supplies surrounding ground. Anchor 16.979973665,48.17314752; heading 0; standard PMTiles datum 170.02671087466376m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "Inspected aerial picture confirms roofless upper ruins on the pale cliff, lower irregular curtains, ruined palaces, middle court and small separate Maiden Tower on a spur. Retained east/south mapped wall traces and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the broad grass terrain patch, uses current PMTiles for architectural footings and shifts the old134.99m study datum into the170.02671087466376m PMTiles anchor datum. The bounded pale upper cliff and Maiden Tower spur remain explicit architectural landscape proxies; host PMTiles supplies surrounding ground. Anchor 16.979973665,48.17314752; heading 0; standard PMTiles datum 170.02671087466376m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        16.979973665,
+        48.17314752
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Own mapped masonry areas and centerlines; primary museum tower dimensions and photograph-informed ruin heights. Relative coarse DEM plus explicit approximate cliff/terraces.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -234,24 +247,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Ground traces reproduce attributed OSM masonry geometry, not a licensed museum-map tracing. Heights, break profiles, surviving facade associations and stairs are interpretations of museum photographs.",
-    "Coarse DEM smooths away the main cliff. Explicit rock platform and Maiden spur are original approximate forms; absolute datum and host terrain blend need verification.",
-    "Schematic museum map is a navigation diagram and is not used as metric geometry. Research images stay private and are never textures.",
-    "Roofless current ruins are modeled; lost towers, historic roofs, interiors, vegetation, paths outside the core and modern visitor infrastructure are excluded.",
-    "Each level must retain upper cliff/castle, lower enclosure and independent slender Maiden Tower. Real-site terrain, collision, physical-device timing and moving LOD assessment remain pending.",
-    "Five entrance-node associations and six major photo-informed wall openings are authored as real clipped geometry with masonry reveals. Exact aperture dimensions, gate naming association, surviving bay correspondence and modern door states still need review. Ground study is clipped to the attributed site boundary rather than a rectangular patch. Mapped approach routes replace the earlier straight stair guess."
+    "Approximate current ruins/cliff exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. The bounded upper cliff/spur, ruin heights and terrace levels remain reconstructed; broad duplicated terrain is omitted.",
+    "Four common graphs plus local color slot, zero embedded images. Waterlines, river simulation, vegetation, caverns, interiors and terrain cutouts excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "upper-cliff-and-maiden",
       "position": [
         -410,
-        145,
+        109.96328912533599,
         -270
       ],
       "lookAt": [
         -198,
-        52,
+        16.963289125335997,
         -115
       ]
     },
@@ -259,12 +270,12 @@
       "name": "garay-and-bathory-courts",
       "position": [
         -30,
-        100,
+        64.96328912533599,
         60
       ],
       "lookAt": [
         -135,
-        44,
+        8.963289125335997,
         -65
       ]
     },
@@ -272,12 +283,12 @@
       "name": "own-wall-plan",
       "position": [
         -55,
-        780,
+        744.963289125336,
         1
       ],
       "lookAt": [
         -55,
-        20,
+        -15.036710874664003,
         0
       ]
     },
@@ -285,12 +296,12 @@
       "name": "maiden-open-crenellation",
       "position": [
         -267,
-        36,
+        0.9632891253359972,
         -67
       ],
       "lookAt": [
         -245,
-        27.4,
+        -7.636710874664004,
         -87
       ]
     },
@@ -298,12 +309,12 @@
       "name": "upper-roofless-courtyard",
       "position": [
         -150,
-        125,
+        89.96328912533599,
         -180
       ],
       "lookAt": [
         -195,
-        72,
+        36.963289125336,
         -130
       ]
     },
@@ -311,12 +322,12 @@
       "name": "moravian-gate-passage",
       "position": [
         -68,
-        25,
+        -10.036710874664003,
         -161
       ],
       "lookAt": [
         -50.1,
-        20.2,
+        -14.836710874664004,
         -143.8
       ]
     },
@@ -324,14 +335,195 @@
       "name": "bathory-west-openings",
       "position": [
         -153,
-        64,
+        28.963289125335997,
         -91
       ],
       "lookAt": [
         -111,
-        49,
+        13.963289125335997,
         -63
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/devin-runtime-model.mjs",
+    "export": "buildDevinReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/devin-runtime-model.mjs",
+    "export": "buildDevinReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDevinReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDevinReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDevinReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-devin-skyline",
+      "position": [
+        510,
+        255,
+        550
+      ],
+      "lookAt": [
+        -55,
+        14,
+        -20
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-devin-district",
+      "position": [
+        510,
+        255,
+        550
+      ],
+      "lookAt": [
+        -55,
+        14,
+        -20
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-devin-street",
+      "position": [
+        510,
+        255,
+        550
+      ],
+      "lookAt": [
+        -55,
+        14,
+        -20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-devin-closeup",
+      "position": [
+        510,
+        255,
+        550
+      ],
+      "lookAt": [
+        -55,
+        14,
+        -20
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -339,10 +531,10 @@
   },
   "importReason": "Preserve individual surviving masonry and Devín identity with shared surfaces and four separate source-derived detail levels.",
   "mesh": {
-    "triangles": 8494,
-    "vertices": 25482,
-    "materials": 5,
-    "bytes": 1022556,
-    "sha256": "sha256:4e1f74ac95f8b7b8862f5dde97188f631eee334b895805f0e11aceecfac65689"
+    "triangles": 6460,
+    "vertices": 19380,
+    "materials": 4,
+    "bytes": 778148,
+    "sha256": "sha256:cc07b36ef68818e1c8ee943ffc2672d9ad6c2a6a5733d0fefa95f799b4eaa055"
   }
 }

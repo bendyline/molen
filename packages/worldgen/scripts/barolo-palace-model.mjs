@@ -16,6 +16,7 @@ function transformed(out, { translation = [0, 0, 0], angle = 0 } = {}) {
   const point = (p) => vector(p).map((v, i) => v + translation[i]);
   return {
     detail: out.detail,
+    runtimeOptions: out.runtimeOptions,
     ...Object.fromEntries(
       ['addQuad', 'addTriangle', 'addConvexPolygon'].map((name) => [
         name,
@@ -69,6 +70,8 @@ function archPoints(x, y, z, radius, rise = radius, pointed = false, count = 32)
   });
 }
 function arch(o, x, y, z, width, rise, pointed = false, thickness = 0.14) {
+  // Far levels retain the arched glazing silhouette; thin concentric relief is subpixel.
+  if (o.runtimeOptions?.omitArchRelief) return;
   const rings =
     o.detail === 'district' || o.detail === 'street'
       ? [0.23]
@@ -247,7 +250,7 @@ function balcony(o, x, y, z, r = 1.2) {
         [y, r],
       ],
       trim,
-      o.detail === 'district' ? 4 : 8,
+      o.detail === 'district' ? (o.runtimeOptions?.districtBalconySides ?? 4) : 8,
     );
     return;
   }
@@ -787,14 +790,15 @@ parts.push({
 });
 
 /** Hand-authored levels omit subpixel relief while retaining the palace's actual composition. */
-export function buildBaroloRuntime(out, detail) {
+export function buildBaroloRuntime(out, detail, runtimeOptions) {
   for (const p of parts) {
     if (detail === 'district' && p.build === bowBay) {
       for (const instance of p.instances.filter(({ translation }) => translation[1] === 13.5))
-        bowBay(transformed({ ...out, detail }, instance), 7);
+        bowBay(transformed({ ...out, detail, runtimeOptions }, instance), 7);
       continue;
     }
-    for (const instance of p.instances) p.build(transformed({ ...out, detail }, instance));
+    for (const instance of p.instances)
+      p.build(transformed({ ...out, detail, runtimeOptions }, instance));
   }
 }
 export function buildBaroloSkyline(o) {

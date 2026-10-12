@@ -19,9 +19,12 @@ export function sourceLocalFootprint(spec, bytes) {
   assert(frame.anchor.every(Number.isFinite));
   const polygon = frame.geometry?.outline;
   const centerlines = frame.geometry?.centerlines;
+  const point = frame.geometry?.point;
   assert(
-    polygon?.length >= 3 || (centerlines?.length && centerlines.every((line) => line.length >= 2)),
-    'Source-local evidence needs an outline or open centerlines',
+    polygon?.length >= 3 ||
+      (centerlines?.length && centerlines.every((line) => line.length >= 2)) ||
+      point?.length === 2,
+    'Source-local evidence needs an outline, open centerlines or an explicit mapped point',
   );
   const [longitude, latitude] = frame.anchor;
   const meters = 111319.49079327358;
@@ -36,7 +39,8 @@ export function sourceLocalFootprint(spec, bytes) {
       latitude - (-x * s + z * c) / meters,
     ];
   };
-  if (!polygon) return { lines: centerlines.map((line) => line.map(project)), hash, label };
+  if (point) return { point: project(point), hash, label };
+  if (!polygon?.length) return { lines: centerlines.map((line) => line.map(project)), hash, label };
   const footprint = polygon.map(project);
   if (footprint[0].some((value, i) => value !== footprint.at(-1)[i])) footprint.push(footprint[0]);
   return { footprint, hash, label };

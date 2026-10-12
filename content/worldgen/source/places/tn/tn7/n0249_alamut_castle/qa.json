@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0249_alamut_castle",
-  "inputHash": "sha256:ecb78a06a25de545e8d636afbc40e63a4ad24a98a1818a66eede57a4da14b513",
-  "captureReportHash": "sha256:bacd0b3360dd0eb075b443fb96b690097fdd041a3a6088e910d3f30de28e2e7d",
+  "reviewedOn": "2026-10-11",
+  "inputHash": "sha256:68b1756f1d2fa44cb27e51d2601ed11b5e4a0645585e7584466f1f4a3417ad7b",
+  "sourceHash": "sha256:95d3e22eb0f33e1af63b25a59bfd35a5f8ddfc2eccceff412b6554c6521cdbc5",
+  "runtimeHash": "sha256:fab20b0cbcbee4eb585f520604a7d6e87d9606196756ee8ec8391204313322e1",
+  "captureReportHash": "sha256:0217dfde18927cda90d01c0476d420b18475174db62a1f41a90723ab0fdfe8b4",
   "visualReview": {
     "status": "passed",
-    "scope": "Exterior render integrity. Maximum fidelity and geographic fit remain pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -20,13 +22,22 @@
       "shots/three-central-cisterns.png",
       "shots/eastern-gate-remains.png",
       "shots/cliff-and-approach.png",
-      "shots/southern-retaining-wall.png"
+      "shots/southern-retaining-wall.png",
+      "shots/reviewed-upper-castle-plan.png",
+      "shots/reviewed-northwest-cells-and-cisterns.png",
+      "shots/reviewed-rock-cut-reservoir.png",
+      "shots/reviewed-central-excavation.png",
+      "shots/reviewed-brick-arches-and-plaster.png",
+      "shots/reviewed-three-central-cisterns.png",
+      "shots/reviewed-eastern-gate-remains.png",
+      "shots/reviewed-cliff-and-approach.png",
+      "shots/reviewed-southern-retaining-wall.png"
     ],
-    "notes": "Inspected all 14 final portable renders. Ten mapped upper-castle ruin groups remain roofless; five interpreted cisterns have open cut walls, recessed floors and a ladder. Brick arch remnants, broken walls and northwest cells remain distinct. Fixed the floating approach with a local rock ledge and tied cliff ribs to physical arc length across LODs. Exposed stones have chipped faces. Heights, cistern positions and terrain contact are provisional; this review does not establish archaeological accuracy."
+    "notes": "Actually inspected 110 final images: 23 portable, 23 shared, 39 medium-fi and 25 normal-terrain views. Compared the mapped upper castle with actual UNESCO 2024 aerial and ground-photo pixels and Burgenwelt 2014 site photographs and Willey plan. Retains narrow northwest cistern/cell ridge, broader southeast excavation, roofless broken wall groups, brick arches and tall pier, retaining curtain, cut reservoirs and interpreted last approach. Corrected lowered review cameras make reservoir floors, central arches and route visible. Removed regularly spaced stone chips and masonry joints on bedrock; repaired local cliff foot contact against retained numeric terrain. Original unshifted cameras are retained as historical viewpoints; their high close views do not independently establish lower features."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:517a68d4b77ee7983b88ae4668cfd50e1e1ec78e46a20772442493e63289039f",
+    "captureReportHash": "sha256:15afa74148b354aaa4d4836c67e12a86020299fa9773e3304f40adcc65e809ad",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -40,144 +51,320 @@
       "shots/shared/three-central-cisterns.png",
       "shots/shared/eastern-gate-remains.png",
       "shots/shared/cliff-and-approach.png",
-      "shots/shared/southern-retaining-wall.png"
+      "shots/shared/southern-retaining-wall.png",
+      "shots/shared/reviewed-upper-castle-plan.png",
+      "shots/shared/reviewed-northwest-cells-and-cisterns.png",
+      "shots/shared/reviewed-rock-cut-reservoir.png",
+      "shots/shared/reviewed-central-excavation.png",
+      "shots/shared/reviewed-brick-arches-and-plaster.png",
+      "shots/shared/reviewed-three-central-cisterns.png",
+      "shots/shared/reviewed-eastern-gate-remains.png",
+      "shots/shared/reviewed-cliff-and-approach.png",
+      "shots/shared/reviewed-southern-retaining-wall.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 13 final shared-material views. Six reusable graphs load once each: sandstone, weathered limestone, brick, lime plaster, timber and painted metal. Cistern water uses local PBR color. Reservoirs remain visibly recessed; arch openings and cut stair contact remain visible. Unloading leaves zero live model geometries. Procedural stone still has regular coursing and the flat plateau/cliff geology need measured refinement. Skyline uses a compact vertex-color material and appears lighter than the textured tiers."
+    "notes": "Six canonical shared graphs: rubble masonry, weathered limestone, brick, lime plaster, plain timber and painted metal. Bedrock uses weathered stone and ruined walls use rubble masonry. Recesses and interpreted green-tinted reservoir floors share weathered stone. Skyline bakes canonical linear material means into one draw. All six GLBs contain zero images. Actual shared renders show consistent walls, brick, stone and timber; each graph is read once and model geometry is disposed on unload. No reference-photo pixels were copied into textures. The flat shared stage alone does not prove hillside placement."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:28917259f59f43100715818afcf240dd78486c4a1bb9e61920801a78fbf3e8d6",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/upper-castle-plan.png",
+      "medium-fi/northwest-cells-and-cisterns.png",
+      "medium-fi/rock-cut-reservoir.png",
+      "medium-fi/central-excavation.png",
+      "medium-fi/brick-arches-and-plaster.png",
+      "medium-fi/three-central-cisterns.png",
+      "medium-fi/eastern-gate-remains.png",
+      "medium-fi/cliff-and-approach.png",
+      "medium-fi/southern-retaining-wall.png",
+      "medium-fi/reviewed-upper-castle-plan.png",
+      "medium-fi/reviewed-northwest-cells-and-cisterns.png",
+      "medium-fi/reviewed-rock-cut-reservoir.png",
+      "medium-fi/reviewed-central-excavation.png",
+      "medium-fi/reviewed-brick-arches-and-plaster.png",
+      "medium-fi/reviewed-three-central-cisterns.png",
+      "medium-fi/reviewed-eastern-gate-remains.png",
+      "medium-fi/reviewed-cliff-and-approach.png",
+      "medium-fi/reviewed-southern-retaining-wall.png",
+      "medium-fi/whole-alamut-skyline.png",
+      "medium-fi/whole-alamut-district.png",
+      "medium-fi/whole-alamut-street.png",
+      "medium-fi/whole-alamut-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 39 current medium-fi frames actually inspected, covering two light settings, economy/high quality, original and corrected architecture cameras, four whole-castle LODs and transitions. Skyline keeps mapped outline, roofless rooms and five open reservoirs plus the highest brick pier at 801 triangles. District adds major arches and approach ramp at 1543 triangles. Street adds stair treads and smaller ruin groups at 3697 triangles. Close-up retains ladder, rail, plaster fragments, brick relief on the tall pier and irregular low walls at 8275 triangles. Small close details fade at far levels; no roof or temporary shelter fills the excavated rooms."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:44d6e65156418f3b54628b11780c81a457903e5f785921cc990255a3c38818a8",
-    "notes": "Exact Q4706020 match on OSM way/590499418, with upper-castle envelope and ten ruin footprints. Draft anchor [50.586098381,36.44473323], heading -0.796374558514. replaceFootprint=false. Local rock contact, wall heights, stair elevations and reservoir depths require terrain and archaeological-plan checks. Lower/onion castle and passing zone are outside this modeled upper-castle extent."
+    "status": "passed",
+    "placementHash": "sha256:e237f02dc9a122f1757bc99e1a7b6e68e07ed493caa7b440528df9241c0af668",
+    "mapFrameHash": "sha256:0491b28b0503b63cdb3272b3df7496aff006e6381de288705904abdcb93325d6",
+    "notes": "Fresh OSM way 590499418 v3 identifies exact Q4706020. All retained components agree with fresh coordinates within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern ridge, southeast excavation/gate, approach and Willey north arrow sign heading -0.796374558514 rad at [50.586098381,36.44473323]. No mirror or rescaling. Retained public Terrarium inputs generate 16641 native heights at 4 m spacing over 512 m. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional or ellipsoidal datum. One rigid -25.47 m architectural shift gives 12.53 m sloping-plateau intercept, constrained by ruin bases, reservoir floors and approach samples plus 0.25 m. Local cliff and occupied ledge feet extend 4 m below sampled terrain. The host supplies the remaining mountain; no whole-precinct terrain replacement/cutout."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi reconstruction of the mapped upper castle only. Detailed original 271061-triangle, 26756940-byte master is independently reproducible at sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588 from unchanged alamut-castle-model.mjs#alamutStudy.build. The lower/onion castle, passing zone and complete mountain are outside this source scope. Temporary 2014 excavation canopies/scaffolding are omitted in the 2024 interpretation. Coarse numeric terrain does not establish source DEM resolution, vintage or vertical accuracy. Geological ribs, wall/arch heights, cistern positions/depths, floor tint and last approach are plan/photo interpretations. Interior caves/tunnels are not supplied. No universal host-terrain compatibility or physical-device timing claim."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Maximum fidelity pending: mapped ruin footprints are preserved, but heights, individual chamber divisions, arch positions, masonry profiles and cistern positions/depths need measured archaeological plans. Includes the mapped upper castle only. The lower/onion castle, passing zone and complete 220 m mountain require additional source coverage and terrain integration. Rock geometry is a provisional local contact. Geological strata, excavated floor levels and the approach stair vertical alignment are not surveyed. The roofless state follows 2024 UNESCO views. Protective scaffolding visible in 2014 field photos is not treated as permanent historic architecture. Shared procedural sandstone, weathered stone, brick, plaster, timber and metal contain no embedded photos. Exact rock and mortar appearance remain to refine."
+    "notes": "Maximum fidelity pending: mapped ruin footprints are preserved, but heights, individual chamber divisions, arch positions, masonry profiles and cistern positions/depths need measured archaeological plans. Includes the mapped upper castle only. The lower/onion castle, passing zone and complete 220 m mountain require additional source coverage and terrain integration. Rock geometry is a provisional local contact. Geological strata, excavated floor levels and the approach stair vertical alignment are not surveyed. The roofless state follows 2024 UNESCO views. Protective scaffolding visible in 2014 field photos is not treated as permanent historic architecture. Shared procedural sandstone, weathered stone, brick, plaster, timber and metal contain no embedded photos. Exact rock and mortar appearance remain to refine.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 7
-    },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 7
-    },
-    "validatorLimitations": "Unused UV notices reflect shared procedural surfaces. Geometry validity does not establish architectural accuracy.",
-    "triangles": 271061,
-    "vertices": 652777,
-    "materials": 7,
-    "sharedGraphs": 6,
-    "embeddedImages": 0
-  },
-  "runtimeLodReview": {
-    "status": "passed",
-    "scope": "Common-camera render comparison, deterministic generation, triangle/download budgets and homogeneous vertex buffers. Physical phone/laptop performance not measured.",
-    "notes": "801 / 1467 / 3621 / 39879 triangles. Skyline plus district 191764 bytes. Street 288548 bytes; closeup 2915412 bytes. Detailed source master 26756940 bytes. All tiers retain the mapped ruin groups and open cisterns; arches, stair treads, railings and masonry relief appear progressively. Cliff detail remains approximate and the skyline color is lighter than textured tiers.",
-    "levels": [
+    "results": [
       {
-        "name": "skyline",
-        "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.skyline.glb",
-        "hash": "sha256:535c926e6eb1917f96a67bedcf904ce15caae017c3518a08ca8d96fe426dbab3",
-        "bytes": 68396,
-        "triangles": 801,
-        "vertices": 1727,
-        "materials": 1,
-        "sharedGraphs": 0,
+        "name": "source",
+        "path": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/models/source.glb",
+        "hash": "sha256:95d3e22eb0f33e1af63b25a59bfd35a5f8ddfc2eccceff412b6554c6521cdbc5",
+        "bytes": 816568,
+        "triangles": 8275,
+        "materials": 7,
         "images": 0,
         "min": [
           -94.81831359863281,
-          0,
+          -46.71962356567383,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          21.5585994720459,
+          33.91617202758789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.glb",
+        "hash": "sha256:fab20b0cbcbee4eb585f520604a7d6e87d9606196756ee8ec8391204313322e1",
+        "bytes": 815940,
+        "triangles": 8275,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          -46.71962356567383,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          21.5585994720459,
+          33.91617202758789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.skyline.glb",
+        "hash": "sha256:8197c738723091c8959adfe0301c57c3da2462520c8032f70175e045303a186c",
+        "bytes": 68412,
+        "triangles": 801,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          -46.71962356567383,
           -31.85854148864746
         ],
         "max": [
           95.87474822998047,
-          47.02859878540039,
+          21.5585994720459,
           31.852489471435547
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.district.glb",
+        "hash": "sha256:d424b212bdd2cbadf19414f3050e788d43f0bfca2e28dd66e4a5e712f23963fc",
+        "bytes": 126988,
+        "triangles": 1543,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          -46.71962356567383,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          21.5585994720459,
+          32.703094482421875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.street.glb",
+        "hash": "sha256:42f55c7df2e9effeda387e210fff61b7970d7df0b431408ffb68516e2f287d08",
+        "bytes": 292168,
+        "triangles": 3697,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          -46.71962356567383,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          21.5585994720459,
+          33.131134033203125
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.closeup.glb",
+        "hash": "sha256:8b2f0092d8a7aaf1d0f2931c84da86fb0e3e8ab48d2fc358e361678f452e0c74",
+        "bytes": 676056,
+        "triangles": 8275,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -94.81831359863281,
+          -46.71962356567383,
+          -33.28897476196289
+        ],
+        "max": [
+          95.87474822998047,
+          21.5585994720459,
+          33.91617202758789
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/alamut-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: independently reproduce original master bytes; current source/runtime/map/terrain hashes agree and exact signed map frame is accepted; all five reservoirs remain genuine open cuts and cliff faces point outward at all four levels. Child-process LOD builds reproduce exact bytes, stay within 1000/4000/16000/64000 triangles, eight draws and 3 MB initial download. POSITION/NORMAL have separate 12-byte streams. All six GLBs pass Khronos with zero errors, warnings and images; strict medium-fi has no findings. Normal terrain placement confirms zero model-origin offset, outward cliff contact, five reservoir floors above host terrain at every level and five unloads with zero remaining model geometries. Ground-ray probes match the rendered triangular heightfield within 0.0151 m; one steep cell differs from raw bilinear sampling by 0.127 m, explicitly recorded. These sampled checks are not an architectural survey or exhaustive manifold certification."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d82e3179f165ceda7fb87dd9c27d2c077632f53293636eaa02d8f94ed1f483c8",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:8197c738723091c8959adfe0301c57c3da2462520c8032f70175e045303a186c",
+        "bytes": 68412,
+        "gzipBytes": 14545,
+        "triangles": 801,
+        "cpuBytes": 66980,
+        "gpuBytes": 66980,
+        "errorMeters": 1.8,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.district.glb",
-        "hash": "sha256:8a7c77da8bb46e157799475d57284ee77d2c15f805780cf496007371993fc559",
-        "bytes": 123368,
-        "triangles": 1467,
-        "vertices": 3045,
-        "materials": 4,
-        "sharedGraphs": 3,
-        "images": 0,
-        "min": [
-          -94.81831359863281,
-          0,
-          -33.28897476196289
-        ],
-        "max": [
-          95.87474822998047,
-          47.02859878540039,
-          32.703094482421875
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 4
+        "hash": "sha256:d424b212bdd2cbadf19414f3050e788d43f0bfca2e28dd66e4a5e712f23963fc",
+        "bytes": 126988,
+        "gzipBytes": 43943,
+        "triangles": 1543,
+        "cpuBytes": 121904,
+        "gpuBytes": 121904,
+        "errorMeters": 0.8,
+        "drawCalls": 4
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.street.glb",
-        "hash": "sha256:4e252d64d9ed3661f4c8dc78cecc5dc2e96bbae791f679913b9323c09df73d08",
-        "bytes": 288548,
-        "triangles": 3621,
-        "vertices": 7241,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -94.81831359863281,
-          0,
-          -33.28897476196289
-        ],
-        "max": [
-          95.87474822998047,
-          47.02859878540039,
-          33.131134033203125
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "hash": "sha256:42f55c7df2e9effeda387e210fff61b7970d7df0b431408ffb68516e2f287d08",
+        "bytes": 292168,
+        "gzipBytes": 96481,
+        "triangles": 3697,
+        "cpuBytes": 285884,
+        "gpuBytes": 285884,
+        "errorMeters": 0.4,
+        "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/tn/tn7/n0249_alamut_castle/model.closeup.glb",
-        "hash": "sha256:08b164567f48c6501649db7c2bee9b1a3184898f2e707c1a247ae5e4bb0c8963",
-        "bytes": 2915412,
-        "triangles": 39879,
-        "vertices": 74099,
-        "materials": 7,
-        "sharedGraphs": 6,
-        "images": 0,
-        "min": [
-          -94.81831359863281,
-          0,
-          -33.28897476196289
-        ],
-        "max": [
-          95.87474822998047,
-          47.02859878540039,
-          33.91617202758789
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "hash": "sha256:8b2f0092d8a7aaf1d0f2931c84da86fb0e3e8ab48d2fc358e361678f452e0c74",
+        "bytes": 676056,
+        "gzipBytes": 222769,
+        "triangles": 8275,
+        "cpuBytes": 667376,
+        "gpuBytes": 667376,
+        "errorMeters": 0.18,
+        "drawCalls": 7
       }
-    ]
+    ],
+    "initialBytes": 195400,
+    "notes": "skyline: 801 triangles / 68412 bytes / 1 draws; district: 1543 triangles / 126988 bytes / 4 draws; street: 3697 triangles / 292168 bytes / 5 draws; closeup: 8275 triangles / 676056 bytes / 7 draws. Initial skyline plus district: 195400 bytes. Physical laptop/phone measurements remain pending."
+  },
+  "limitations": [
+    "Original 271061-triangle / 26756940-byte source remains preserved and exactly reproducible at sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588 from alamut-castle-model.mjs#alamutStudy.build.",
+    "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain.",
+    "Numeric Terrarium tile spacing and 4 m review grid do not establish native DEM resolution or vertical accuracy. Small rocky crest, caves and archaeological cuts are smoothed.",
+    "A rigid architectural translation is chosen to clear retained terrain at mapped ruin bases, cut-reservoir floors and the interpreted approach route. This is not a measured archaeological floor datum.",
+    "The retained sloping plateau and local cliff shell belong to this exterior reconstruction. Cliff bottoms extend below sampled host terrain, without including the full mountain.",
+    "All five cut-reservoir floors remain above retained host heights, avoiding a whole-precinct terrain cutout. Compatibility with other terrain vintages/products remains unverified.",
+    "Exact geological flutes, broken-wall profiles, reservoir depths and positions, cave passages and modern route elevations require a surveyed archaeological model.",
+    "Accepted exterior scope is mapped upper castle only. Lower/onion castle, passing zone and complete mountain are host terrain or outside this source coverage. Temporary excavation shelters/scaffolding are omitted from the 2024 interpretation. Interior caves and tunnel network are not supplied.",
+    "Six shared rubble masonry, weathered stone, brick, plaster, timber and painted-metal graphs. Bedrock and dark reservoir floors share tinted weathered stone; no embedded photographs or per-model bitmap copies. Regular sandstone masonry joints and floating relief chips are removed from bedrock and ruined walls. Exact geological ribs and archaeological floor details are simplified.",
+    "Broken walls, arch positions, subdivisions, reservoir depths and approach elevations are plan/photo interpretations, not measured archaeology. Physical phone/laptop timings remain unmeasured."
+  ],
+  "terrainReview": {
+    "status": "passed",
+    "report": "shots/grade/report.json",
+    "captureReportHash": "sha256:d9bc3a62917f06e8bd65ba8a7c9ad155be4e11f7f92124ff6e0099d2afd6ecca",
+    "fixtureHash": "sha256:78735093902644ad00ad16af615745d9bed26557bc57d060fa7f97939a6564b2",
+    "gradeHash": "sha256:d2c87ae73c3aebf41724cfa6a7a47e1fba987e29cec54a1ea95ce063142b3790",
+    "inspectedFrames": [
+      "shots/grade/master-whole-upper-castle-on-grade.png",
+      "shots/grade/master-northwest-cistern-ridge-contact.png",
+      "shots/grade/master-open-rock-cut-reservoir.png",
+      "shots/grade/master-central-excavation-and-arches.png",
+      "shots/grade/master-southeast-cliff-and-approach.png",
+      "shots/grade/skyline-whole-upper-castle-on-grade.png",
+      "shots/grade/skyline-northwest-cistern-ridge-contact.png",
+      "shots/grade/skyline-open-rock-cut-reservoir.png",
+      "shots/grade/skyline-central-excavation-and-arches.png",
+      "shots/grade/skyline-southeast-cliff-and-approach.png",
+      "shots/grade/district-whole-upper-castle-on-grade.png",
+      "shots/grade/district-northwest-cistern-ridge-contact.png",
+      "shots/grade/district-open-rock-cut-reservoir.png",
+      "shots/grade/district-central-excavation-and-arches.png",
+      "shots/grade/district-southeast-cliff-and-approach.png",
+      "shots/grade/street-whole-upper-castle-on-grade.png",
+      "shots/grade/street-northwest-cistern-ridge-contact.png",
+      "shots/grade/street-open-rock-cut-reservoir.png",
+      "shots/grade/street-central-excavation-and-arches.png",
+      "shots/grade/street-southeast-cliff-and-approach.png",
+      "shots/grade/closeup-whole-upper-castle-on-grade.png",
+      "shots/grade/closeup-northwest-cistern-ridge-contact.png",
+      "shots/grade/closeup-open-rock-cut-reservoir.png",
+      "shots/grade/closeup-central-excavation-and-arches.png",
+      "shots/grade/closeup-southeast-cliff-and-approach.png"
+    ],
+    "notes": "Actually inspected all 25 final normal-placement images: five cameras for source plus four browser levels. Signed heading and retained terrain reference give zero model-origin offset within 0.1 mm. Open-ground probes match independently reconstructed triangular ground with approximately 0.015 m fixture offset; the separate raw bilinear difference reaches 0.127 m in one steep cell. All five open reservoir floor rays and front-facing local cliff probes pass at all levels. Five unloads restore ground and release model geometry. Numeric Terrarium images are height inputs, not model textures; OSM and terrain-provider attribution are retained."
   }
 }

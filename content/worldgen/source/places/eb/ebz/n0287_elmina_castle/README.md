@@ -20,11 +20,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-17,627 triangles; 52,881 vertices; 7 material groups; 2,119,224 bytes. Native bounds: -66.000, 0.000, -47.000 to 68.000, 31.000, 66.000. Source hash: `sha256:247cb4df4e4732b85a31ae3861a8ac2e8a3e69e8bf5e68b2ca21a970b512d5e5`.
+17,627 triangles; 52,881 vertices; 7 material groups; 2,119,456 bytes. Native bounds: -59.400, -7.165, -42.300 to 61.200, 31.800, 59.400. Source hash: `sha256:e6554950b7ee1dfa080bf627c165675d88f37b88bf33f81f64b8cd3ae4ae0dc9`.
 
-{"up":"+Y","lateral":"+X toward sea-end battery in the reconstructed plan","longitudinal":"+Z toward reconstructed entrance side","origin":"Original control-plan center;Y0 lower external fort footing,Y4 estimated inner court. No surveyed registration."}
+{"up":"+Y","lateral":"+X toward sea-end battery in the reconstructed plan","longitudinal":"+Z toward reconstructed entrance side","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Reference coordinate only;original approximate plan with unresolved direction and scale. No mapped geometry used. Inactive pending site review.
+Inspected aerial picture confirms battered white bastions, terraced sea battery, open courts and stepped white governor blocks. Standard viewer PMTiles shows the coastal fort buildings and western castle parking. An approximate-.95rad heading and0.9horizontal plan scale fit the entrance toward that parking and sea-end batteries toward the coast. A reconstructed0.8m working rise keeps the court above coarse ground; wall/pier bottoms extend below sampled terrain and bridge deck approaches coarse ground at its outer end. Anchor -1.348211,5.08274; heading -0.95; standard PMTiles datum 10.98536388100999m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -32,12 +32,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0287` (
 
 ## Pending work
 
-- Original approximate current exterior:all metric controls,fort/bastion outlines,wing locations,church size,governor/small-court arrangement,bridge length and height datums are estimates. No verified footprint or survey resolved.
-- Reference anchor identifies the fort;heading0 is a placeholder,not a resolved direction. Both OpenStreetMap read endpoints returned429 during authoring;no map geometry used or claimed. Exact signed orientation,scale,terrain/base plane and complete site fit pending.
-- Four-storey identity documented by operator. Modeled31m maximum and all other heights are estimates. Selected white fort walls,bastions,open court,stepped inner blocks,church brick pilasters,arched gallery and gate are represented.
-- Thin balusters,individual masonry joints,weathering/dirt gradients,complete statuary/lettering,interiors/dungeon routes,working guns and nearby Fort St.Jago/harbour/cathedral excluded. Selected cannon forms are static merged details near.
-- Five existing shared256²graphs:lime plaster,limestone,tile,brick and timber. Linear vertex colors,metricUVs,no photos or unique textures,baked light orAO.
-- Synthetic West-African-compound context and flat review ground are style comparisons only. Inactive placement,replaceFootprint=false. Resident forcedLODs do not test real adaptive/network upgrades,subframe shimmer or device timing.
+- Approximate current exterior and placement from one inspected picture and standard viewer PMTiles, without metric survey or exact thresholds.
+- Original detailed architectural master/hash/recipe preserved. Derived0.9 plan scale and-.95rad heading are visual-fit estimates; original internal building/bastion plan remains interpreted.
+- Working court, bridge gradient and bounded foundation levels reconstructed. Terrain cutouts, accurate waterlines, dungeon/interior, town/harbor buildings and Fort St.Jago excluded.
+- Six common graphs and explicit dark recess slot, zero embedded images. Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

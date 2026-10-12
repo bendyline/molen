@@ -32,6 +32,12 @@ require every independently located member, and reusable models never count as n
 
 ## Edit, rebuild and review
 
+The current owner-authorized work is the fixed213 authored/incomplete candidates in
+[QA-BACKLOG.json](next-1000/QA-BACKLOG.json). New candidate generation is outside this round.
+Haapsalu N0309 is the first completed repair; its48 inspected frames, source/terrain/placement
+evidence and four browser LODs are recorded in its source-local QA bundle. The backlog tracker
+counts only current, verified completions and retains each candidate's original blockers.
+
 1. Find the model's recipe in the index or bundle README. Edit the recipe and its evidence
    together. For generated fields, edit the recipe rather than only its emitted `spec.json`.
 2. Run the bundle's targeted generator. For example:

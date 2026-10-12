@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0264_riga_castle",
-  "sourceHash": "sha256:9e20d1fb890f4351f7c932cd0e3f86ddd27c5c8936ad7bc1a6404ee5151a1096",
-  "runtimeHash": "sha256:9f8e6539fadcfabe276a16d8d8ef67577c96592dc672ab556055033cd888b224",
-  "fixtureHash": "sha256:ae4e3b886fee436426cf854ccdab3685d7305de05cdfe017dc17b341d8f323b6",
+  "sourceHash": "sha256:2fdb02d01f856543f3bcc29381d9fa05dd0b619083a9336e3bbb5ca0f6f3013a",
+  "runtimeHash": "sha256:1b13ce2dd3fbccbc21a1e3a8a298b96e094f2a1c7d8b5d4638a5d6face1c2fed",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,487 +23,593 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 2720,
+  "neighborTriangles": 6240,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:1c23a0ba61d87a9a4589d28aa6e6c6a15994ba50a458572ae79345928e3f3276",
-      "bytes": 55464,
-      "gzipBytes": 10348,
-      "triangles": 659,
-      "cpuBytes": 54068,
-      "gpuBytes": 54068,
-      "errorMeters": 1.5,
+      "hash": "sha256:e57b891b943b7c532e19cc84f0cf0eda656e3981704e4b7becffd08914fa62a5",
+      "bytes": 80668,
+      "gzipBytes": 15003,
+      "triangles": 919,
+      "cpuBytes": 79244,
+      "gpuBytes": 79244,
+      "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:55259b2c2c1ca937ec6585fd861a4172eca6dba8544784b39d77b98760c5ba2b",
-      "bytes": 205232,
-      "gzipBytes": 52630,
-      "triangles": 2762,
-      "cpuBytes": 198124,
-      "gpuBytes": 198124,
-      "errorMeters": 1.5,
+      "hash": "sha256:cb833775e24fb820ccadd048862d74f407b9223a5c0d5e8f4a283d46749730d7",
+      "bytes": 218024,
+      "gzipBytes": 53772,
+      "triangles": 2868,
+      "cpuBytes": 210820,
+      "gpuBytes": 210820,
+      "errorMeters": 0.5,
       "drawCalls": 6
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:88e3024fa8946174541d09cc3b3e484121a254fdf33e79594f15087c2f3ee294",
-      "bytes": 364116,
-      "gzipBytes": 87694,
-      "triangles": 4979,
-      "cpuBytes": 356976,
-      "gpuBytes": 356976,
-      "errorMeters": 0.5,
+      "hash": "sha256:0b22abbb333572df456db15444cf9740ecc0a5e298fd1a1ae49e39f9fe6d6e8e",
+      "bytes": 374664,
+      "gzipBytes": 89881,
+      "triangles": 5107,
+      "cpuBytes": 367428,
+      "gpuBytes": 367428,
+      "errorMeters": 0.25,
       "drawCalls": 6
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:69315721af83ec325e08199cf2816d563b564967f25ee949b4e2a626797a86be",
-      "bytes": 513260,
-      "gzipBytes": 126500,
-      "triangles": 6891,
-      "cpuBytes": 506112,
-      "gpuBytes": 506112,
-      "errorMeters": 0.15,
+      "hash": "sha256:b2660b43370b2279117620b5674b5f4397e77f8417cf585cd5f7f78d01694727",
+      "bytes": 523800,
+      "gzipBytes": 132016,
+      "triangles": 7019,
+      "cpuBytes": 516564,
+      "gpuBytes": 516564,
+      "errorMeters": 0.12,
       "drawCalls": 6
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:ea0fcc88f9f613ba9c06e94ae6a58a95b6320aa30c790563d305614c851e9e91"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:801004c33c23b09673dd173cd9d8579145ac3c78c87478817e71791f9ccf5651"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:ba09c3d74c4e6660c3e11956eae400eece0ff979526427d1b30bf869915d633b",
+      "hash": "sha256:60c38879328d71d0477dc4bbb9a841a7d7525f7d4bc788a44b68854add2876b6",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          86.4,
-          46.800000000000004,
-          149.4
+          86.4886,
+          74.6006,
+          149.2775
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:f2cb98c5652a9bf1d015bc1804ecd11a9d0da9da3cfc5c82c9565242809beabd",
+      "hash": "sha256:4691352c03131f3d6c6303216a19b402530a6009781f18a1b8c4cee843c975a5",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          86.4,
-          46.800000000000004,
-          149.4
+          86.4886,
+          74.6006,
+          149.2775
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:adde8e5ec64ac35df54825f84e4fc17d755b6fce9951d6076c007d8aa57f1af4",
+      "hash": "sha256:4ad2929e499fd26956f9a223f25684bddf2cb9330ac840ca882d7131c4f5a3f7",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          86.4,
-          46.800000000000004,
-          149.4
+          86.4886,
+          74.6006,
+          149.2775
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:4973a50807464fab32994851ccc5acd36abb276dd355b95aabd03222fde47250",
+      "hash": "sha256:308b70108eeba830381dfc219f93ca87855b03caaaad998bbceaf00f24e4d0d7",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          86.4,
-          46.800000000000004,
-          149.4
+          86.4886,
+          74.6006,
+          149.2775
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:612b08ec84efd6eeffd6dc0cdbe1d65c51229f3b7214075ed9b3bf9a17545020",
+      "hash": "sha256:e48f1a134225bea834f466937422ef89bacef5c89a64e9bdbe6dcd5a67475569",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 5484,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 23894,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:a31319911823269d99e9b54a6e4ff3522ebdbad5b75eae0b64d960fd2f4bd023",
+      "hash": "sha256:21f84b6633a5c2b9b19962cf53b566f3913356bee3f6ec3bc41bdd79890dfa47",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 5484,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 23894,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:2d0b6fb4e985b54bfaa09494c572023a9c423c2b2380b385a3f8e8c5952176ed",
+      "hash": "sha256:247c4c332c3ebfa00c819e80a86ea078f8721b71310a7c7093456f94dfb20d0b",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 11,
-        "triangles": 5484,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 23894,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:01c7229283d5330f90ab37c3f16e003e9839d64cd72c9c5bd78cf7466c4f0051",
+      "hash": "sha256:6943e1a5af379230d0933fd32751904be52764661efe81d9051af788e299bc53",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 5484,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 23894,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:8e8abf1ae5c1b11026f9667a6c8145abfc028d60ec2cdc243cfc43a6353a01aa",
+      "hash": "sha256:68b1d51eb1440d41e621ada475a98b7a22ba9e9e0e1f45bbb2028dc803c1e3b9",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 3381,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 21945,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          349.2,
-          180,
-          604.8000000000001
+          349.2886,
+          207.8006,
+          604.6775000000001
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:efe4d815dc7fa4e13490f77cbe6b641d8c8f722200b86ffe91312b343dfc6c42",
+      "hash": "sha256:a03b8c626aa6984ca922a306767e849a0fd77c2d052b4655c2e78b3a571f21bf",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 3381,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 21945,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          349.2,
-          180,
-          604.8000000000001
+          349.2886,
+          207.8006,
+          604.6775000000001
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:e1d63cd312918c34c58e1194be8a932264fb7a1c02057e8409859452c087382b",
+      "hash": "sha256:bfaebc2028aabf8363bf35ad2de1aabffdc000baf9796faf627587c4bca1ecef",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 3381,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 21945,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          349.2,
-          180,
-          604.8000000000001
+          349.2886,
+          207.8006,
+          604.6775000000001
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:da30274b71d82ad5ecedf6c5597dfdfba83dd85ea76011a40ac5115bb036decc",
+      "hash": "sha256:94067770a4435a81c7e066d32d08fdf373e7e4ef859f1c321721d5d3c778ab70",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 3381,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 21945,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          349.2,
-          180,
-          604.8000000000001
+          349.2886,
+          207.8006,
+          604.6775000000001
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:848587a156b8348519af05bb59d4fd0ae3505bdbd4548775ba9917e30c60749e",
+      "hash": "sha256:f1fcc9a663999c0e1528754dd2507e83e99c60c6270d3d05afa01b4cf23ed36f",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 661,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 15705,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          349.2,
-          180,
-          604.8000000000001
+          349.2886,
+          207.8006,
+          604.6775000000001
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/river-front-and-flag.png",
-      "hash": "sha256:499852d5ebcbe81112a60ae2c4d0e7a0506cfc2a1a56986b5b9f52c8f6b8c3f5",
+      "hash": "sha256:bef68d583cc02c76670430d46370adefccfc33786ba218a3188df714c3cfcde1",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
           29,
           21,
@@ -515,27 +621,34 @@
           21
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/south-chapel-and-lead.png",
-      "hash": "sha256:549141f837ac88bf21c8a78c2ad480ba4a1f2c2ec5657e77a4f6446b8915fa76",
+      "hash": "sha256:7898368ebdac44b7f481a4231effc9d760ba17c917b0211a62d52368ec04ae44",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
           117,
           20,
@@ -547,27 +660,34 @@
           -8
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/medieval-courtyard.png",
-      "hash": "sha256:7067148701babb4eb2365b95c78058863c925aa47dc4984b37845f6e112336d8",
+      "hash": "sha256:b1a2ac3429ec803a58803365c26895714279e57531929db05fa0495668057b20",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 10,
-        "triangles": 9265,
-        "groundY": 0,
+        "drawCalls": 11,
+        "triangles": 27697,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
           30,
           22,
@@ -579,27 +699,34 @@
           -13
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/mapped-two-court-plan.png",
-      "hash": "sha256:1f182f0a9a267eb3ed992780569443a8532c70f06d2607bea1dfdc43420323b7",
+      "hash": "sha256:324b668620c6ceda6eea762e65f1845ccf5da5027844070933f1a7019edd69dd",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
           0,
           225,
@@ -611,27 +738,34 @@
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/three-stars-and-forecourt.png",
-      "hash": "sha256:11a86fdde800d5c15d1747deb133f31170c70693db07e72b1283f1d6fce910b6",
+      "hash": "sha256:74b400326e8b5ec91346403f2ecf2318aed5f32f512f6bee3e2d9f35f0502d18",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
           -112,
           43,
@@ -643,27 +777,34 @@
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/holy-spirit-crown.png",
-      "hash": "sha256:fba161063870da6df5f540c73ac06dba8c76fc44dc83bd8623b7dac67a2820b6",
+      "hash": "sha256:7b3ea9e479d12b4fd10eb6439db274abcfd86107b70f594829a2b60f7e1d02be",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
           18,
           40,
@@ -675,142 +816,329 @@
           27
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-riga-skyline.png",
+      "hash": "sha256:bc5812505a74e21014ac80f06de5e3d9e72ae60edafbf254f8b4d49c5454aa4a",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 21945,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
+        "position": [
+          130,
+          85,
+          165
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-riga-district.png",
+      "hash": "sha256:cc6fc27bba82fd2312764bf13cb321ff3adb62066f9889998dc792110b6b15e0",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 23894,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
+        "position": [
+          130,
+          85,
+          165
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-riga-street.png",
+      "hash": "sha256:ab51a9762078c24a4a67dc957c74eb50c0f99bea898f8a863cc4e8ccf561b3d1",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 26133,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
+        "position": [
+          130,
+          85,
+          165
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-riga-closeup.png",
+      "hash": "sha256:38d159732c672cf301a022f921d76cbf8019ee6bfa4dc5b6fd71458c8821daec",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
+        "position": [
+          130,
+          85,
+          165
+        ],
+        "lookAt": [
+          0,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:d5380f3628f2b9689c2a9036850a9d5ed1a3599e9b80d217b6774fda908b909d",
+      "hash": "sha256:9659b22e2cffce1398fe354f6d1bc59f601268b732880ca9cf6c83c6ce6a5230",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 3381,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 21945,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:a31319911823269d99e9b54a6e4ff3522ebdbad5b75eae0b64d960fd2f4bd023",
+      "hash": "sha256:21f84b6633a5c2b9b19962cf53b566f3913356bee3f6ec3bc41bdd79890dfa47",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 5484,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 23894,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:a7c21ecf12edeb231f6971c9f066f00dfb50dcf08d48edd4f852158ac40b8d15",
+      "hash": "sha256:b17a9c3c947812074befe79c450a650663570c05b69dfe4d9afed4b02dc5586f",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 7701,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 26133,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:d119c94d25a0cb8689120635ca6209755ac427f490846ea5ddfbeaadab5472d6",
+      "hash": "sha256:e401914feeed518684d379201622336965e9d1044671332001ae20d9a820bfb2",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 11,
-        "triangles": 9613,
-        "groundY": 0,
+        "drawCalls": 12,
+        "triangles": 28045,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/ud/ud1/n0264_riga_castle/terrain-review.height.png"
+        },
         "position": [
-          174.6,
-          111.60000000000001,
-          302.40000000000003
+          174.6886,
+          139.4006,
+          302.27750000000003
         ],
         "lookAt": [
-          0,
-          19.8,
-          0
+          0.0886,
+          47.6006,
+          -0.1225
         ],
         "graphReads": {
-          "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
           "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.metal_copper": 1
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.tile_ceramic": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
-        "contextScale": 1.8
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.8,
+        "reflections": "sky-pmrem"
       }
     }
   ],

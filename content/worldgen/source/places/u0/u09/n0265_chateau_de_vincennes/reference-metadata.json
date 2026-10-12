@@ -44,8 +44,49 @@
     "Present-day parapets, coarse rose/tracery and truncated watchturret; historical missing battlements are not restored"
   ],
   "limitations": [
-    "Exterior reconstruction, no navigable interiors",
-    "No photos, reference plans or unique textures redistributed",
-    "Actual moat/terrain contact, entrance height and directional review remain pending"
-  ]
+    "Original12218-triangle/1225900-byte source reproduces at sha256:592f1d5e9c9b8943b3abe4f766ad797cff9cb5a18a0edc4d259167bd114b894f from unchanged vincennes-castle-model.mjs#buildVincennesRuntime and unchanged indexed IGN plan geometry.",
+    "Fresh way23032971 v26/Q663673 and14 stable IGN CLEABS plans agree within0.000687m rounding. Anchor[2.435779375,48.842783541], heading1.438616485431: +X NNE7.573347 degrees toward Tour du Village, +Z ESE97.573347 degrees across court toward Sainte-Chapelle. Keep west and Bois gate south sign frame. Retained actual Float32 RGE ALTI1m crop, working datum53.6499m, main/inner keep court0.8777m, chapel1.5419m and bounded foundations-12.5086m. Open courtyard controls set working floors; the crop interpolates moat heights across the raised keep court, so under-building cells are not floor observations. Published50m keep relative height retained; older BD TOPO absolute base/roof elevations disagree with this DTM and are not placement controls. Three bounded bridges meet sampled outside ground with reconstructed slopes. Two-meter diagnostic grid, uncertain current bridge/floor levels and acquisition date are recorded; no survey-accuracy claim, full-site slab, terrain cutout or navigable interior.",
+    "The DTM interpolates moat-height ground across the keep court and lower heights into some building footprints. The raised keep court and bounded foundations are reconstructed using open main-court controls, not a claim of surveyed floor levels.",
+    "Older BD TOPO base/roof altitude fields disagree with this working DTM by up to several meters. Published relative keep height is retained; incompatible absolute roof fields do not control placement. Acquisition date and exact current entrance/bridge grades remain unverified.",
+    "One-meter source and two-meter diagnostic sampling are not survey accuracy. Bounded foundations fill only architecture and the reconstructed inner court. No full-site slab or terrain cutout.",
+    "Bridge slopes and masonry batters are bounded exterior reconstructions; no walkable interiors or exact present-day structural survey.",
+    "Accepted reconstructed present-day exterior: tall four-round-turret keep and separate covered chemise, chapel single level with west rose and buttresses, Tour du Village, reduced perimeter towers, paired royal pavilions and ancillary ranges. Historical nine40m towers are not restored. Three gate arches and bridge under-spans are exterior voids; interiors and access permissions are not modeled.",
+    "Original low tiers blocked public gate centers and truncated the keep approach bridge. Reviewed tiers retain keep chatelet, royal portico and Village/Bois gate voids. Keep approach extends to main court and all three bridges have bounded grade transitions. Detailed source bridge supports are preserved only in original master.",
+    "Skyline omits minor service hut and chapel annex and uses coarse turret/canopy silhouettes. District restores building volumes and sparse openings; street and close-up restore rose, buttress, frame and roof detail. Door elevations, historical stair/bridge dimensions, masonry batters, flags, windows and roofs remain approximate.",
+    "Three common graphs supply limestone, slate and ceramic tile. Local opaque PBR supplies glass and static flag/trim colors. Skyline bakes actual common linear means into one draw. No embedded or per-model copied bitmap textures. Physical laptop/phone timings and continuous-motion shimmer remain pending."
+  ],
+  "retrieved": "2026-10-11",
+  "currentRoundInspection": {
+    "pixels": [
+      "CMN visitor guide actual pages4 compound axonometric,7 chatelet/open bridge and20 chapel plan",
+      "Official keep/covered chemise photograph",
+      "Official Village gate and dry moat photograph",
+      "Official Sainte-Chapelle north/west façades photograph"
+    ],
+    "primaryPages": [
+      "https://www.chateau-de-vincennes.fr/en/discover/a-royal-fortress",
+      "https://www.chateau-de-vincennes.fr/en/discover/the-dungeon-symbol-of-royal-power",
+      "https://www.chateau-de-vincennes.fr/en/discover/the-sainte-chapelle-a-gothic-jewel",
+      "https://www.chateau-de-vincennes.fr/enseignants/mediatheque-espace-enseignant/fiche-de-visite"
+    ],
+    "map": "Fresh way23032971 v26/Q663673 and14 stable IGN CLEABS plans agree within0.000687m rounding. Anchor[2.435779375,48.842783541], heading1.438616485431: +X NNE7.573347 degrees toward Tour du Village, +Z ESE97.573347 degrees across court toward Sainte-Chapelle. Keep west and Bois gate south sign frame. Retained actual Float32 RGE ALTI1m crop, working datum53.6499m, main/inner keep court0.8777m, chapel1.5419m and bounded foundations-12.5086m. Open courtyard controls set working floors; the crop interpolates moat heights across the raised keep court, so under-building cells are not floor observations. Published50m keep relative height retained; older BD TOPO absolute base/roof elevations disagree with this DTM and are not placement controls. Three bounded bridges meet sampled outside ground with reconstructed slopes. Two-meter diagnostic grid, uncertain current bridge/floor levels and acquisition date are recorded; no survey-accuracy claim, full-site slab, terrain cutout or navigable interior.",
+    "terrain": {
+      "file": "grade-ground.tif",
+      "hash": "sha256:4665a7c9cb9ee33514846f3d40a541cfd4465fceeb278552cf3d4867f20c731b",
+      "bytes": 2560514,
+      "url": "https://data.geopf.fr/wms-r?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ELEVATION.ELEVATIONGRIDCOVERAGE.HIGHRES&STYLES=normal&CRS=EPSG%3A2154&BBOX=658200%2C6860060%2C659000%2C6860860&WIDTH=800&HEIGHT=800&FORMAT=image%2Fgeotiff",
+      "sourceResolutionMeters": 1,
+      "projectedBounds": [
+        658200,
+        6860060,
+        659000,
+        6860860
+      ],
+      "encoding": "Float32 GeoTIFF, actual elevations; not a colorized height image.",
+      "license": "Licence Ouverte / Open Licence2.0",
+      "attribution": "©IGN RGE ALTI and BD TOPO, Licence Ouverte2.0; ©OpenStreetMap contributors, ODbL1.0.",
+      "licenseSource": "https://www.data.gouv.fr/datasets/rge-alti"
+    }
+  },
+  "mapBasis": "Fresh way23032971 v26/Q663673 and14 stable IGN CLEABS plans agree within0.000687m rounding. Anchor[2.435779375,48.842783541], heading1.438616485431: +X NNE7.573347 degrees toward Tour du Village, +Z ESE97.573347 degrees across court toward Sainte-Chapelle. Keep west and Bois gate south sign frame. Retained actual Float32 RGE ALTI1m crop, working datum53.6499m, main/inner keep court0.8777m, chapel1.5419m and bounded foundations-12.5086m. Open courtyard controls set working floors; the crop interpolates moat heights across the raised keep court, so under-building cells are not floor observations. Published50m keep relative height retained; older BD TOPO absolute base/roof elevations disagree with this DTM and are not placement controls. Three bounded bridges meet sampled outside ground with reconstructed slopes. Two-meter diagnostic grid, uncertain current bridge/floor levels and acquisition date are recorded; no survey-accuracy claim, full-site slab, terrain cutout or navigable interior."
 }

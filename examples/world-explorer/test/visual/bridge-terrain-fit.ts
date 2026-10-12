@@ -42,6 +42,9 @@ interface Evidence {
 const content = `/@fs/${__LANDMARK_CONTENT_ROOT__}/`;
 const terrainSet = new URLSearchParams(location.search).get('terrainSet') ?? '';
 const reviewRoads = new URLSearchParams(location.search).get('roads') === '1';
+const reviewLod = new URLSearchParams(location.search).get('lod');
+if (reviewLod && !['skyline', 'district', 'street', 'closeup'].includes(reviewLod))
+  throw new Error('Unknown terrain review model level');
 if (terrainSet && !['copernicus', 'ign', 'gsi', 'gugik', 'wales'].includes(terrainSet))
   throw new Error('Unknown terrain evidence set');
 const terrainFolder = `earth/structures/evidence/bridge-terrain/${terrainSet ? `${terrainSet}/` : ''}`;
@@ -73,9 +76,13 @@ const models = new StructureModelLibrary(
   async (asset) => {
     const sidecarPath = pack.assets[asset];
     if (!sidecarPath) throw new Error(`Unknown model asset: ${asset}`);
-    const sidecar = await json<{ files: { main: string } }>(`worldgen/${sidecarPath}`);
+    const sidecar = await json<{ files: { main: string; variants?: Record<string, string> } }>(
+      `worldgen/${sidecarPath}`,
+    );
+    const modelFile = reviewLod ? sidecar.files.variants?.[reviewLod] : sidecar.files.main;
+    if (!modelFile) throw new Error(`${asset}: missing review model level ${reviewLod}`);
     const response = await fetch(
-      new URL(sidecar.files.main, new URL(`${content}worldgen/${sidecarPath}`, location.href)),
+      new URL(modelFile, new URL(`${content}worldgen/${sidecarPath}`, location.href)),
     );
     if (!response.ok) throw new Error(`${asset}: HTTP ${response.status}`);
     const model = (await gltf.parseAsync(await response.arrayBuffer(), '')).scene;

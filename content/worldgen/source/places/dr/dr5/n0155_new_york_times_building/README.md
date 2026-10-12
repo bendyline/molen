@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The Renzo Piano tower with the mapped cruciform glazed shaft, a round ceramic-baguette second skin fading above the roof, exposed corner steel bracing, slender319 m mast and low courtyard-preserving eastern podium.
+Whole New York Times parcel: cruciform glass shaft, white ceramic veil fading above the roof, exposed bracing,319m mast and open planted courtyard.
 
 ## Evidence and reconstruction
 
@@ -17,7 +17,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-125,459 triangles; 234,443 vertices; 5 material groups; 9,948,748 bytes. Native bounds: -62.067, 0.000, -30.137 to 61.963, 319.000, 30.378. Source hash: `sha256:de47ded118b02c75daf65a00bc6b7dc60b6193aa8964edd66b7c9de15e4af3df`.
+126,843 triangles; 237,935 vertices; 8 material groups; 10,092,224 bytes. Native bounds: -62.067, 0.000, -30.137 to 61.963, 319.000, 30.378. Source hash: `sha256:27f1515a5aac779df976e836c16bcb1a3f8cf401538c1689636f5ad0fdd161a1`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0155` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Rod rows, supports, round sections and fading roof screen are modeled. Tiny ceramic butt joints are consolidated; individual bracket engineering and tenant signage are simplified. The primary designer260 m facade datum differs from older mapped244 m screen tags.
+- Complete medium-fi parcel exterior retains the cruciform228m shaft, mapped western glass strip, eastern courtyard-preserving podium,260m fading ceramic screen and319m mast. Original125459-triangle recipe is preserved unchanged in Git. Reviewed source adds omitted western glass part260282089 and the courtyard grove of paper birches, sedge hillocks and timber path described and photographed by HMWhite. Nine reconstructed trees are an illustrative grove, not a counted vegetation survey; birch height15.24m follows published50ft. Original facade rods, brackets and structural beams remain in the detailed source. Ceramic rods use the existing shared tile_ceramic coating instead of granite; tile pattern is a generic shared coating, not a photographed rod. Screen bases follow mapped6m north/south and12m east/west min_height values; historic2007 photos are distinguished from current mapped state. Source facade pitch, rod count, specific support connections, door hardware and grove layout are reconstructed. Browser closeup replaces rod cylinders with double-sided strips of identical diameter and row schedule; street uses coarser strips and merged curtain-wall bars; district merges screen rods into wider low-frequency strips. Skyline keeps courtyard void, full shaft, fading crown supports and mast. No embedded textures. Interiors, tenant signage and temporary barriers omitted. Ground grade, night and physical-device performance unmeasured. Skyline uses5.2m-pitch screen strips with fading coverage and a2.6m geometric allowance; district/street bracket and brace plates replace small beam thicknesses. Generic shared ceramic coating tints are raised to pale white; glass remains a muted palette material.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

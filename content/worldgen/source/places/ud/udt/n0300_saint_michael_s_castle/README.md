@@ -21,11 +21,11 @@ Six existing shared256-square graphs, linear tints and central metric repeats. F
 
 ## Model and axes
 
-17,128 triangles; 51,384 vertices; 7 material groups; 2,059,596 bytes. Native bounds: -60.979, 0.000, -69.966 to 73.439, 56.400, 66.903. Source hash: `sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952`.
+17,138 triangles; 51,414 vertices; 7 material groups; 2,060,744 bytes. Native bounds: -85.000, -24.299, -86.000 to 88.000, 35.400, 88.000. Source hash: `sha256:ca6dcc23f4a5d5e80f59de2bb600ef71c45d1996b8494e412a6becacc471b24c`.
 
-{"up":"+Y","front":"Main entrance faces roughly south-southeast; native +X east and +Z south","longitudinal":"All horizontal map angles baked into East/South geometry; heading0","origin":"Exact-QID mapped research anchor; provisional attachment Y0. Current local ground, north stair and south passage datum require real-site review."}
+{"up":"+Y","front":"Main entrance faces roughly south-southeast; native +X east and +Z south","longitudinal":"All horizontal map angles baked into East/South geometry; heading0","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South geometry preserves original mapped horizontal controls with heading0. Provisional attachmentY0 and all authored vertical sections require actual-site review.
+Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum.
 
 ## Reproduce
 
@@ -33,14 +33,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0300` (
 
 ## Pending work
 
-- Exact-QID castle relation, all three courtyard rings and separately mapped south passage retain attribution. Native East/South geometry bakes heading0; the map plan axis alone is not geographic/facade approval.
-- All vertical sections, roof profiles, church/river dome and lantern forms, spire position/height, column/window counts, obelisks, stairs and floor contacts are original photographic estimates. No primary surveyed vertical height verified.
-- Current exterior captures guide rounded corners, open main and service courts, salmon plaster, green roofs, west church gold spire, east dome/lantern and separate south/north entrance compositions. Fine sculpture, heraldry, inscriptions, niches, balusters and interior rooms are simplified or excluded.
-- Provisional attachment Y0, north stair and south passage floor have no real-site terrain or vertical-datum approval. No walkable collision claim.
-- Detached guard pavilions, monuments to Peter I/Paul I, bridges, current water/embankments/gardens and historic moat fortifications are not merged into this castle GLB.
-- Six existing shared 256-square graphs plus flat glass use linear tints and metric UV repeats. No new/embedded image, photo texture, downloaded mesh or printed drawing trace.
-- Museum and primary photographers references are private research only, not redistributed. An aerial photograph dated2016 and courtyard photograph dated2013 supplement current museum photos; current roof/site alterations require further review.
-- Synthetic Molen/Earth renders do not prove actual terrain fit, continuous streaming transitions or physical ordinary-laptop/phone performance.
+- Approximate current exterior and fit from inspected entrance picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Spire/dome profiles, columns, inscriptions and restoration details are interpreted; interiors and collision excluded.
+- Six common graphs plus explicit glass color slot; zero embedded images. A reversible bounded ground opening and authored paved apron suppress the PMTiles mound under the palace; adjacent raw PMTiles terrain is retained. Actual urban ground datum is not surveyed.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

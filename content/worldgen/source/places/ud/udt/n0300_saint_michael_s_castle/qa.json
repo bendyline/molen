@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0300_saint_michael_s_castle",
-  "inputHash": "sha256:5c28867b815c3491be5a22ac2727bbb26a34cfdec77737449fe2a7d120859b88",
-  "sourceHash": "sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952",
-  "runtimeHash": "sha256:62470e53143deae4a070e9164b6e51a8febe9e4d8a6fdfd1f97928da1b5d3b00",
-  "captureReportHash": "sha256:20ab4549b1db479c4350ba1128ea50cf5a490ada2fdea37e9e71e12ab7bc1437",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:c3def60b80522823cd560698a99227894ddf960e08282831068dfe2bfadc3802",
+  "sourceHash": "sha256:ca6dcc23f4a5d5e80f59de2bb600ef71c45d1996b8494e412a6becacc471b24c",
+  "runtimeHash": "sha256:45d0d6d2c71f982bd53ea40a494dce4c151050069c43e688ee39c4636b1e1d78",
+  "captureReportHash": "sha256:96ec1b1d1e0680ecc2589635df210edcec66ca7ba9a9decd75954fc5706dd7c2",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +21,11 @@
       "shots/court-plan.png",
       "shots/open-courtyard.png"
     ],
-    "notes": "Inspected all11 final portable views and all44 portable/shared/Earth frames. Rounded near-square castle and three courtyard voids, church gold spire, separate river dome/lantern, pediment/obelisks, north pavilion/columns/stair and open mapped entrance remain distinct. Refined roof tessellation, added curved church-projection windows, court-facing upper pavilion windows, pediment moldings and contrasting inset. Skyline retains obelisks and coarse stair mass. Fine sculpture/heraldry/inscriptions/interior rooms are outside this exterior draft; synthetic visual review does not approve real-site fidelity."
+    "notes": "Inspected all11 final portable views after rejecting the stretched foundation and raised apron attempts. Warm plaster wings, pale south pediment/columns, true main passage, north stairs/colonnade, church spire, river dome and open octagonal court remain readable at normal facade proportions. The inspected entrance picture supports the primary facade treatment."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:bd06e4bdb0e23aad2d0b51eb640285be5d44488813c3156058f35fd6803828f6",
+    "captureReportHash": "sha256:3015f564e42862851da671bef5259ac7581833d5a3414beed9983f6defc74482",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,13 +36,14 @@
       "shots/shared/church-and-west-facade.png",
       "shots/shared/river-dome.png",
       "shots/shared/court-plan.png",
-      "shots/shared/open-courtyard.png"
+      "shots/shared/open-courtyard.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all10 shared-loader frames, plus full-size south pediment, open court and roof plan. Six existing256-square lime plaster,raw limestone,granite,copper,painted metal and gravel graphs; flat glass; linear tints and metric UVs. Seven near material groups,one far. Graphs read once; eviction leaves zero live model geometry. No embedded/new image,photo texture or downloaded mesh. Skyline uses measured graph means; darker green pitched roofs follow the medium-fi palette."
+    "notes": "Inspected all11 final shared-material views at the explicit native review datum-21.15. Six common plaster/limestone/granite/copper/painted-metal/aggregate graphs plus explicit glass color are reused. The bounded ground opening is active while visible and restores on unload; model/material cache reuse and disposal pass. Retained east/south outline supports approximate heading0 placement. This flat fixture tests placement/materials, not actual urban ground accuracy."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:416c44bd0397ee0e14a1d4ee74e667e61fd10609a8194866e0b9e7ee01d72e9d",
+    "captureReportHash": "sha256:90ecfa1e1f4d38c8fc45b0427303a418e8b0b57ab0a26cda0cbd325b97bd8073",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -62,25 +64,33 @@
       "medium-fi/river-dome.png",
       "medium-fi/court-plan.png",
       "medium-fi/open-courtyard.png",
+      "medium-fi/whole-saintmichael-skyline.png",
+      "medium-fi/whole-saintmichael-district.png",
+      "medium-fi/whole-saintmichael-street.png",
+      "medium-fi/whole-saintmichael-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all23 final Earth-rig frames:12 distance/time/mode combinations,silhouette,six architectural views and four forced detail levels. Rounded envelope/open court,church gold spire and river dome,raised pavilions/pediment and obelisks survive far views. Window frames,columns,chimneys and moldings appear closer; skyline omits subpixel decoration and closes the passage. Economy/High,neutral mapping/exposure1 and synthetic neighbors. Forced levels do not verify live streaming transitions,real terrain fit or physical laptop/phone performance."
+    "notes": "Inspected all27 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. The retained raw PMTiles samples expose a false mound beneath the palace. The existing reversible169x170m terrain opening is filled by an authored paved apron atY-21.15, with a2m perimeter taper to adjacent PMTiles ground. The palace is translated-21m; normal-height basement, stairs and court stay visible. The preview heightmap suppresses exactly this opening and retains the raw fixture separately."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:6e1e6c25a824df95f467d9ed36e4c560a170d4a468c56aae1b20fa6fe03dae16",
-    "mapGeometryHash": "sha256:149cc3ea1c62e8be8b4be853bf84140f3d8fac2e2a11d1681f6372b4f4a45fd1",
-    "coordinateRoundTripErrorMeters": 0.0006399422312598008,
-    "mapCoordinateSamples": 139,
-    "notes": "139 original attributed map coordinate samples reconstruct within0.640mm. Exact-QID relation and three courtyard holes preserve identity. Source retains raw lon/lat samples and separate south passage attribution; native East/South geometry bakes heading0. Union bounds cover all four levels,obelisks and north stair. Provisional attachmentY0 and real-site floor/stair/passage contacts require review. The map plan axis is an authoring basis,not geographic approval. Placement inactive,footprint replacement off."
+    "status": "passed",
+    "placementHash": "sha256:0de5469f541719b0fb3b81797f469cca44e3ecbad5c0de540d5d8478ce0b207a",
+    "mapFrameHash": "sha256:5191f9565926cfa2a07310a88bae16bb15e76e5bc77e34646ce6f493bd841689",
+    "notes": "Inspected entrance picture and retained map geometry set approximate facade, scale and orientation. Standard viewer PMTiles contain a spurious mound under this urban palace. The existing reversible ground-opening mechanism suppresses only the bounded169x170m palace/plaza patch; the model fills it with a reconstructed paved apron atY-21.15, a-21m architecture shift and a2m perimeter taper to the original PMTiles samples. CourtyardY-20.92 and normal-height foundations remain visible. Surrounding terrain is retained and restores on unload. This is approximate visual ground fit, not a surveyed urban datum."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and ground fit from inspected entrance picture and standard viewer PMTiles. An outside reference point100m south, with native height-21.521278084702762, preserves the retained PMTiles working datum. Urban ground artifacts are corrected only within the bounded opening; the apron and floor levels are reconstruction choices. Spire/dome profiles, ornaments, interiors, collision and exact ground thresholds are excluded. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Museum architecture descriptions/current facade photos and original photographers’2013courtyard/2014west/2016aerial views guide this exterior. All vertical dimensions,roof sections,dome/lantern/spire profiles/positions,column/window counts,obelisks,stairs and floor sections are original estimates. OSM maps three levels with no numeric height; no primary surveyed vertical dimensions verified. Fine figurative reliefs,heraldry,inscriptions,niches and interiors simplified/excluded. Detached pavilions,PeterI/PaulI monuments,bridges,embankments,water/gardens and historical moat fortifications are separate objects. Current-site alterations and full exterior fidelity still need review."
+    "notes": "Museum architecture descriptions/current facade photos and original photographers’2013courtyard/2014west/2016aerial views guide this exterior. All vertical dimensions,roof sections,dome/lantern/spire profiles/positions,column/window counts,obelisks,stairs and floor sections are original estimates. OSM maps three levels with no numeric height; no primary surveyed vertical dimensions verified. Fine figurative reliefs,heraldry,inscriptions,niches and interiors simplified/excluded. Detached pavilions,PeterI/PaulI monuments,bridges,embankments,water/gardens and historical moat fortifications are separate objects. Current-site alterations and full exterior fidelity still need review.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -88,231 +98,196 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/models/source.glb",
-        "hash": "sha256:57cce95a313efd73d9b1a19447bd941639d9321fed137ba997563b3c72766952",
-        "bytes": 2059596,
-        "triangles": 17128,
+        "hash": "sha256:ca6dcc23f4a5d5e80f59de2bb600ef71c45d1996b8494e412a6becacc471b24c",
+        "bytes": 2060744,
+        "triangles": 17138,
         "materials": 7,
         "images": 0,
         "min": [
-          -60.97860336303711,
-          0,
-          -69.96644592285156
+          -85,
+          -24.2990779876709,
+          -86
         ],
         "max": [
-          73.43899536132812,
-          56.400001525878906,
-          66.9026107788086
+          88,
+          35.400001525878906,
+          88
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.glb",
-        "hash": "sha256:62470e53143deae4a070e9164b6e51a8febe9e4d8a6fdfd1f97928da1b5d3b00",
-        "bytes": 2058956,
-        "triangles": 17128,
+        "hash": "sha256:45d0d6d2c71f982bd53ea40a494dce4c151050069c43e688ee39c4636b1e1d78",
+        "bytes": 2060104,
+        "triangles": 17138,
         "materials": 7,
         "images": 0,
         "min": [
-          -60.97860336303711,
-          0,
-          -69.96644592285156
+          -85,
+          -24.2990779876709,
+          -86
         ],
         "max": [
-          73.43899536132812,
-          56.400001525878906,
-          66.9026107788086
+          88,
+          35.400001525878906,
+          88
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.skyline.glb",
-        "hash": "sha256:18cf29494f5c44d7085f6261ef7e32d376e9fb6b27df5a13297678f64b25b534",
-        "bytes": 63984,
-        "triangles": 605,
+        "hash": "sha256:87f8a74042f095ab30b071d68a0d2f4772da6ab38f9274bf194bc11237e7fd2a",
+        "bytes": 68280,
+        "triangles": 615,
         "materials": 1,
         "images": 0,
         "min": [
-          -59.255001068115234,
-          0,
-          -69.96644592285156
+          -85,
+          -24.2990779876709,
+          -86
         ],
         "max": [
-          71.74199676513672,
-          56.400001525878906,
-          64.27999877929688
+          88,
+          35.400001525878906,
+          88
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.district.glb",
-        "hash": "sha256:515db821e4b2d5b3ac878356732df43e1353f2d8899ed54315c43e37456c1fa1",
-        "bytes": 179736,
-        "triangles": 1825,
+        "hash": "sha256:95c22beb61e8a61b0e33b1010390ede94ff5af92aa66aaf77bcfa023b864b89a",
+        "bytes": 180816,
+        "triangles": 1835,
         "materials": 7,
         "images": 0,
         "min": [
-          -60.65399932861328,
-          0,
-          -69.96644592285156
+          -85,
+          -24.2990779876709,
+          -86
         ],
         "max": [
-          73.11399841308594,
-          56.400001525878906,
-          65.00399780273438
+          88,
+          35.400001525878906,
+          88
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.street.glb",
-        "hash": "sha256:e03edebd02c520356f05d17d732997ff3161ce2c925641cc0a1a3bb1ba697e52",
-        "bytes": 1153604,
-        "triangles": 12653,
+        "hash": "sha256:1f196ab975b458cac2f53d956d6551c3a84c04e2115e79138733e0eac4998254",
+        "bytes": 1154724,
+        "triangles": 12663,
         "materials": 7,
         "images": 0,
         "min": [
-          -60.97860336303711,
-          0,
-          -69.96644592285156
+          -85,
+          -24.2990779876709,
+          -86
         ],
         "max": [
-          73.43899536132812,
-          56.400001525878906,
-          66.9026107788086
+          88,
+          35.400001525878906,
+          88
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.closeup.glb",
-        "hash": "sha256:6e6e0af9491459ebc54c0b789e6696cc9075674331abe2e72c4d84bed648c959",
-        "bytes": 1555704,
-        "triangles": 17128,
+        "hash": "sha256:5b810213139fd771415e133fab52da48ae81ad760f15c09eb5092091af6f8d29",
+        "bytes": 1556748,
+        "triangles": 17138,
         "materials": 7,
         "images": 0,
         "min": [
-          -60.97860336303711,
-          0,
-          -69.96644592285156
+          -85,
+          -24.2990779876709,
+          -86
         ],
         "max": [
-          73.43899536132812,
-          56.400001525878906,
-          66.9026107788086
+          88,
+          35.400001525878906,
+          88
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       }
     ],
-    "notes": "All six GLBs have zero errors/warnings and no embedded images. Six focused checks pass:byte determinism,four triangle budgets,six shared graphs,homogeneous GPU attributes,three open courts,six roof-wing coverage samples/upward normals,mapped passage clearance at floor/head height,outward wall faces,estimated spire/dome identity and attachmentY0. Scoped source/import/LOD/strict-medium-fi checks and scene validation/30-tick simulation pass; simulation hash sha256:f9cf54b312dc1f4498854fd1c9f014b8e2a8487d649ef5569572aac3be0bacfb. The imported hull does not approve walkable collision."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain615/1835/12663/17138 triangles; initial skyline+district download totals249096 bytes. Separate POSITION/NORMAL streams retained. The apron adds10 triangles at every level."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:86afeb263efa0809cebe8521d40e76bb6ae1051a94ae981af46b1f47009257d0",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.skyline.glb",
-        "hash": "sha256:18cf29494f5c44d7085f6261ef7e32d376e9fb6b27df5a13297678f64b25b534",
-        "bytes": 63984,
-        "triangles": 605,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -59.255001068115234,
-          0,
-          -69.96644592285156
-        ],
-        "max": [
-          71.74199676513672,
-          56.400001525878906,
-          64.27999877929688
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "file": "model.skyline.glb",
+        "hash": "sha256:87f8a74042f095ab30b071d68a0d2f4772da6ab38f9274bf194bc11237e7fd2a",
+        "bytes": 68280,
+        "gzipBytes": 15141,
+        "triangles": 615,
+        "cpuBytes": 66908,
+        "gpuBytes": 66908,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.district.glb",
-        "hash": "sha256:515db821e4b2d5b3ac878356732df43e1353f2d8899ed54315c43e37456c1fa1",
-        "bytes": 179736,
-        "triangles": 1825,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -60.65399932861328,
-          0,
-          -69.96644592285156
-        ],
-        "max": [
-          73.11399841308594,
-          56.400001525878906,
-          65.00399780273438
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "file": "model.district.glb",
+        "hash": "sha256:95c22beb61e8a61b0e33b1010390ede94ff5af92aa66aaf77bcfa023b864b89a",
+        "bytes": 180816,
+        "gzipBytes": 56324,
+        "triangles": 1835,
+        "cpuBytes": 172368,
+        "gpuBytes": 172368,
+        "errorMeters": 0.7,
+        "drawCalls": 7
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.street.glb",
-        "hash": "sha256:e03edebd02c520356f05d17d732997ff3161ce2c925641cc0a1a3bb1ba697e52",
-        "bytes": 1153604,
-        "triangles": 12653,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -60.97860336303711,
-          0,
-          -69.96644592285156
-        ],
-        "max": [
-          73.43899536132812,
-          56.400001525878906,
-          66.9026107788086
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "file": "model.street.glb",
+        "hash": "sha256:1f196ab975b458cac2f53d956d6551c3a84c04e2115e79138733e0eac4998254",
+        "bytes": 1154724,
+        "gzipBytes": 338549,
+        "triangles": 12663,
+        "cpuBytes": 1146224,
+        "gpuBytes": 1146224,
+        "errorMeters": 0.3,
+        "drawCalls": 7
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.closeup.glb",
-        "hash": "sha256:6e6e0af9491459ebc54c0b789e6696cc9075674331abe2e72c4d84bed648c959",
-        "bytes": 1555704,
-        "triangles": 17128,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -60.97860336303711,
-          0,
-          -69.96644592285156
-        ],
-        "max": [
-          73.43899536132812,
-          56.400001525878906,
-          66.9026107788086
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "file": "model.closeup.glb",
+        "hash": "sha256:5b810213139fd771415e133fab52da48ae81ad760f15c09eb5092091af6f8d29",
+        "bytes": 1556748,
+        "gzipBytes": 461208,
+        "triangles": 17138,
+        "cpuBytes": 1548232,
+        "gpuBytes": 1548232,
+        "errorMeters": 0.1,
+        "drawCalls": 7
       }
     ],
-    "initialDownloadBytes": 243720,
-    "notes": "605/1825/12653/17128 triangles meet skyline/district/street/closeup budgets. Initial skyline plus district 243720 bytes before shared textures;closeup 1555704 bytes. Groups1/7/7/7. Source-authored skyline keeps prominent obelisks and coarse stair mass;6m skyline error is a conservative authoring estimate,not a measured Hausdorff bound. Physical devices and continuous upgrades remain pending."
-  }
+    "initialBytes": 249096,
+    "notes": "skyline: 615 triangles, 68280 bytes, 1 draws; district: 1835 triangles, 180816 bytes, 7 draws; street: 12663 triangles, 1154724 bytes, 7 draws; closeup: 17138 triangles, 1556748 bytes, 7 draws. Initial skyline+district 249096 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from inspected entrance picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Spire/dome profiles, columns, inscriptions and restoration details are interpreted; interiors and collision excluded.",
+    "Six common graphs plus explicit glass color slot; zero embedded images. A reversible bounded ground opening and authored paved apron suppress the PMTiles mound under the palace; adjacent raw PMTiles terrain is retained. Actual urban ground datum is not surveyed.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

@@ -12,23 +12,24 @@
   },
   "visualBrief": "Present-day Caernarfon: nine polygonal towers, three Eagle turrets, grey/warm banded river walls, two open wards, raised Queen's Gate and restored timber King's Gate decks.",
   "mediumFiContext": {
-    "scale": "1.15",
+    "groundY": -3,
+    "scale": 1.15,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     174.90860748291016,
-    35,
+    43.72149419784546,
     65.98348236083984
   ],
   "actualBounds": {
     "min": [
       -87.54071807861328,
-      0,
+      -7.921494960784912,
       -32.94542694091797
     ],
     "max": [
       87.36788940429688,
-      35,
+      35.79999923706055,
       33.038055419921875
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "longitudinal": "+X east-northeast,10.88 degrees north of east",
     "front": "-Z town-facing King's Gate; +Z Seiont river curtain",
-    "origin": "Mapped perimeter center; architectural foundations Y=0, provisional courtyard Y=2"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "way/70264991 exact Q275128",
@@ -45,7 +46,9 @@
       65.474
     ],
     "publishedEagleWallThicknessMeters": 5.4864,
-    "publishedEagleTurrets": 3
+    "publishedEagleTurrets": 3,
+    "originalMasterHash": "sha256:de64bc71d2a140862b42bfc76fd24f7581d81da9333069a84a0bfbd3a7b481a1",
+    "originalMasterRecipe": "packages/worldgen/scripts/caernarfon-castle-model.mjs#buildCaernarfonRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -65,11 +68,13 @@
       "Eagle Tower at the west end with three tall polygonal turrets",
       "Long figure-eight plan, polygonal towers and banded south/east limestone walls",
       "Town-facing King's Gate and elevated Queen's Gate; open wards and contemporary timber decks"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Mapped lobes, Cadw ground plan/inventory and current operator/architect photos",
-    "scope": "Castle exterior, open wards, low ruined ranges and2023 gatehouse surfaces; town walls, quay and bedrock excluded"
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://cadw.gov.wales/visit/places-to-visit/castell-caernarfon",
@@ -82,8 +87,8 @@
     "https://www.openstreetmap.org/way/70264991"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Research frame only; geographic contact pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       -4.277013785,
       53.139327542
@@ -92,7 +97,7 @@
     "ground": "terrain",
     "elevationMode": "terrain-contact",
     "source": "https://www.openstreetmap.org/way/70264991",
-    "groundModelY": 2,
+    "groundModelY": 0,
     "featureIds": [
       "way/70264991"
     ],
@@ -102,7 +107,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Western Eagle Tower, north King's Gate and east Queen's Gate resolve the signed map axis. Relative elevations are inferred; actual terrain and approach fit remain pending."
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms polygonal towers, three Eagle turrets, banded river curtain and two open wards. Standard viewer PMTiles and the retained castle outline set location, scale and orientation. A reconstructed0.8m working rise clears the coarse eastern ground; bounded foundations continue below the sampled riverside slope. Anchor -4.277013785,53.139327542; heading 0.189928481827; standard PMTiles datum 12.786984754537153m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms polygonal towers, three Eagle turrets, banded river curtain and two open wards. Standard viewer PMTiles and the retained castle outline set location, scale and orientation. A reconstructed0.8m working rise clears the coarse eastern ground; bounded foundations continue below the sampled riverside slope. Anchor -4.277013785,53.139327542; heading 0.189928481827; standard PMTiles datum 12.786984754537153m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -4.277013785,
+        53.139327542
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Mapped174.55×65.474m outline fixes plan. Overall35m maximum, tower/curtain elevations, court2m and gate deck19.1m are inferred from primary photos and architectural ratios; no surveyed height is claimed.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -142,10 +157,11 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Original medium-fi current exterior; tower interiors, fine carvings, galleries and stair systems abbreviated.",
-    "All elevations and rear tower edges are approximate, not surveyed.",
-    "Town walls, external bridge/quay and natural rock omitted.",
-    "Actual terrain/gate approach fit, continuous-motion shimmer and physical-device performance pending."
+    "Picture and standard viewer PMTiles establish approximate exterior fit; no bespoke survey or exact threshold measurements.",
+    "The original detailed architectural recipe and master hash remain preserved. An independent runtime derivative adjusts working height and bounded foundations.",
+    "Polygonal towers, Eagle turrets, banded walls, open wards, raised eastern gate and restored timber gate decks define identity. Fine carving and openings remain reconstructed.",
+    "The model covers the castle exterior and visible gate decks. Town, harbor, retaining landscape and navigable interiors are outside its scope; no artificial terrain cutout.",
+    "Three shared material graphs, local opaque glass and grass color; no embedded images. Physical-device timing remains pending."
   ],
   "qaCameras": [
     {
@@ -227,15 +243,199 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/caernarfon-runtime-model.mjs",
+    "export": "buildCaernarfonReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/caernarfon-runtime-model.mjs",
+    "export": "buildCaernarfonReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCaernarfonReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCaernarfonReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCaernarfonReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-caernarfon-skyline",
+      "position": [
+        135,
+        85,
+        130
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-caernarfon-district",
+      "position": [
+        135,
+        85,
+        130
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-caernarfon-street",
+      "position": [
+        135,
+        85,
+        130
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-caernarfon-closeup",
+      "position": [
+        135,
+        85,
+        130
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve polygonal tower rhythm, Eagle's three raised turrets and open figure-eight wards across all levels; shared materials carry broad masonry bands without unique textures.",
   "mesh": {
     "triangles": 16236,
-    "vertices": 44172,
+    "vertices": 48708,
     "materials": 5,
-    "bytes": 1788164,
-    "sha256": "sha256:de64bc71d2a140862b42bfc76fd24f7581d81da9333069a84a0bfbd3a7b481a1"
+    "bytes": 1951492,
+    "sha256": "sha256:1bd0a76124e8e0a63620cbbb71652c21734416cb836880400efc0d57e224f317"
   }
 }

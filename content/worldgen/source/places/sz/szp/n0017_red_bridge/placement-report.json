@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0017_red_bridge",
-  "inputHash": "sha256:45a150eebaae3162592a970c45009dc326a666e195a69fcc5a62fe5e7c071ae7",
-  "placementHash": "sha256:49d6dc003d2e6694f2604106ce640516634d92ea5e579d7c16a8ca149088f3d1",
+  "inputHash": "sha256:7b0edef5a9c0a923cda09bb17a660474a0883d497d9b86cfdb436cbccd47139e",
+  "placementHash": "sha256:25edf3e7d2d182fc553db7520610679434d0f0836d02a8dabe0a2db165fc6277",
   "entry": {
     "id": "next1000.n0017",
     "title": "Red Bridge, Yerevan — restored crossing",
@@ -19,11 +19,40 @@
       "wikidata": "Q3107472",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -40,
+          -5.25
+        ],
+        [
+          40,
+          -5.25
+        ],
+        [
+          40,
+          4
+        ],
+        [
+          -40,
+          4
+        ]
+      ],
+      "basis": "Bounded bridge-only ground opening below reconstructed vaults; coarse terrain is not riverbed survey."
+    },
+    "terrainReference": {
+      "anchor": [
+        44.4999145022456,
+        40.17151331608985
+      ],
+      "modelHeight": 9.9,
+      "basis": "Standard PMTiles southern approach road contact; approximate visualization datum."
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/1166072142",
-    "note": "OSM historic=ruins is superseded by primary city/ministry restoration evidence and2026 photos. Mapped extended approaches are92.429m while published bridge is80m; current bent south approach retained. Riverbed and bank terrain fit unapproved. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "The inspected restored-bridge picture confirms unequal pointed vaults, red/charcoal masonry, dark retained bank repairs, small brick passages, rounded stepped cutwaters and rebuilt low parapets. The retained mapped92.429m outline/bent southern approach and current PMTiles named Red Bridge establish the centre and north/northeast-facing native+X. Original80m body is not stretched. Approximatebase933.8116m anchors deckmodelY9.9 to the southern PMTiles approach943.7116m; opposite sample differs4.2m. Coarse central terrain includes the crossing and cannot resolve the riverbed. Preview uses bounded gorge-contact grading while raw PMTiles remain retained; viewer ground opening stays within the bridge. Exact river/bank contacts remain approximate, without bespoke research. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

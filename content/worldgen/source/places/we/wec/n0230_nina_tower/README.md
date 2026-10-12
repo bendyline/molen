@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Connected tall Teddy tower and lower Nina hotel tower, rounded glazed corners, silver horizontal transoms, refuge-floor louvres, asymmetric curved sail roofs, enclosed curved skybridge with separate triangular truss geometry, shared retail/convention podium, entrance glazing and terrace rails. Equivalent facade bays are reusable instances.
+Tall northwest glazed tower, crescent-shaped southeast hotel tower, open asymmetric sail crowns, silver refuge bands, curved enclosed skybridge and curved main podium with separate low western bus-terminal wing.
 
 ## Evidence and reconstruction
 
@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-128,948 triangles; 258,596 vertices; 7 material groups; 3,554,848 bytes. Native bounds: -70.147, 0.000, -31.149 to 22.950, 320.430, 67.425. Source hash: `sha256:36eb2cc4d9919a88a6e80eed001f27f46022351f87e0a2947892075b3c88a656`.
+44,980 triangles; 133,068 vertices; 6 material groups; 5,333,716 bytes. Native bounds: -126.524, 0.000, -20.639 to 69.041, 320.395, 95.758. Source hash: `sha256:600b682dd9294c9f3de721e4e95fcabc963b6fab0741d745bacd56b9f56bef38`.
 
-{"up":"+Y","longitudinal":"+X along the tall tower frontage","front":"-Z toward Yeung Uk Road","origin":"Working tall tower center at local pavement datum; geographic registration remains unapproved"}
+{"up":"+Y","longitudinal":"+X ENE along tall north facade","front":"-Z NNW with independent tall northwest / hotel southeast layout","origin":"Mapped tall footprint area centroid at approximate pavement"}
 
-The planning diagram supplies a working local frame. The catalog coordinate is only a reference point; no exact-QID OSM footprint or surveyed registration is claimed. Keep this model unplaced until its anchor, signed orientation and site envelope are reviewed.
+The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
 ## Reproduce
 
@@ -30,9 +30,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0230` (
 
 ## Pending work
 
-- Geographic registration is pending. The OSM lookup was unavailable, and the catalog coordinate must not be treated as the tower-center anchor; the source frame and heading are provisional.
-- This is an exterior reconstruction, not maximum-fidelity completion. Measured floor polygons, curvature radii, crown rib dimensions, roof plant, facade subdivisions and true bridge curvature need further evidence.
-- The public podium and entrances are schematic reconstructions. Full mall frontage, signage, footbridge connections, loading/transport bays and real pavement levels remain to be authored.
-- Registry and planning floor counts use different scopes; hotel marketing floor labels omit numbers. Facade rows are allocated geometrically and do not certify every named storey datum.
+- Preserved original ninaTowerStudy.encodeAssembly reconstitutes 3554848 bytes /128948 expanded triangles (16 parts/11956 placements), including its prior provisional southwest hotel placement. Reviewed source and four browser levels correct the actual mapped tall northwest, curved crescent hotel southeast, connected curved bridge and separately lower western podium. Polygon caps use concave triangulation rather than a center fan; the hotel inner curve and courtyard cut-ins are retained. Tall occupied/top 301.1/320.4 m and shorter occupied/top 153/170 m are working geometric datums; mapped 318 m, registry heights, planning 72/36 tower plus 8 podium storeys, 80 registry above-ground floors and hotel 87F/41F labels are separate records. Eight podium rows extend to mapped 42 m, replacing provisional 32.8 m; row heights/refuge allocations, entrance four leaves, canopy, generic enclosed interiors, sail curves/high sides/columns/equipment and bridge 151.7 m deck/3 m trusses are reconstructed, not measured. Facades keep flat glass panels, silver horizontal transoms, vertical fins and multi-row refuge bands. Close subdivides long edges at about 3 m; street retains floor rows with coarser bays; district groups four tower floors and two podium groups; skyline uses only silhouette/refuge bands. Far levels omit transparent doors and bridge glazing while retaining the curved bridge volume and both open sail crowns. Three shared graphs (stainless, concrete, granite) plus opaque/52-percent clear glass and recess tint form six near groups with one BLEND group and zero embedded images. Full mall fitout/signage, exact roof equipment, underground floors, road footbridges and Nina Mall 2 are excluded. Source photographs and plans are linked references only. Physical laptop/phone and dense-city timings remain pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

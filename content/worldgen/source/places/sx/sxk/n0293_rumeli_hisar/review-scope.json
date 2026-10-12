@@ -1,0 +1,432 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#d8c8a8",
+      "brick": "#b78268",
+      "paving": "#b4afa3",
+      "grass": "#8aa065",
+      "tile": "#a5644b",
+      "timber": "#987b60"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "rubble": [
+        0.647739,
+        0.630329,
+        0.558214
+      ],
+      "brick": [
+        0.620345,
+        0.549823,
+        0.504963
+      ],
+      "aggregate": [
+        0.689355,
+        0.675093,
+        0.630521
+      ],
+      "tile": [
+        0.559267,
+        0.552465,
+        0.529503
+      ]
+    },
+    "materialBudget": 5,
+    "identityFeatures": [
+      "Three stepped hollow roofless towers",
+      "Twelve-sided seaward Halil lower tower and narrower circular crown",
+      "Long terrain-following crenellated curtains, smaller bastions and open hillside court"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z south",
+    "front": "+X east toward Bosphorus",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "sarucaHeightMeters": 28,
+    "zaganosHeightMeters": 21,
+    "halilHeightMeters": 22,
+    "publishedTowerHeightsSource": "https://turkishmuseums.kprod.kultur.gov.tr/museum/detail/2077-istanbul-rumeli-hisari/2077/1",
+    "halilLowerFacets": 12,
+    "mappedCircularBastions": 10,
+    "estimatedSquareBastions": 3,
+    "siteExtentPublishedMeters": [
+      120,
+      250
+    ],
+    "terrainGridSpacingMeters": 20,
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:1d0258086ab366cac08fea36dc2ab34c408cb794cf6c5d645da9f5384c73090c",
+    "originalMasterRecipe": "packages/worldgen/scripts/rumeli-fortress-model.mjs#buildRumeliRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from inspected pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Roofless towers, forecourt and mosque are an exterior interpretation; ongoing restoration and visitor fixtures are not exhaustively reconstructed.",
+    "Four common graphs plus explicit color slot, zero embedded images. Terrain comes from the host; interiors, waterline/simulation, vegetation and terrain cutouts excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      29.056189597,
+      41.084874691
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected exterior tower picture confirms stepped roofless masonry crowns by the Bosphorus; the second picture informs stone/brick appearance only, with its interior excluded. Retained east/south wall, tower and courtyard geometry and standard viewer PMTiles set approximate location, scale and seaward orientation. The derivative omits the duplicated terrain patch, uses the same PMTiles sampler for all wall/tower-footing LODs and translates the old study datum to the21.351156683452786m PMTiles anchor datum. Tower floor pads retain a level rim above sampled coarse ground with bounded footings reaching it. Anchor 29.056189597,41.084874691; heading 0; standard PMTiles datum 21.351156683452786m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Inspected exterior tower picture confirms stepped roofless masonry crowns by the Bosphorus; the second picture informs stone/brick appearance only, with its interior excluded. Retained east/south wall, tower and courtyard geometry and standard viewer PMTiles set approximate location, scale and seaward orientation. The derivative omits the duplicated terrain patch, uses the same PMTiles sampler for all wall/tower-footing LODs and translates the old study datum to the21.351156683452786m PMTiles anchor datum. Tower floor pads retain a level rim above sampled coarse ground with bounded footings reaching it. Anchor 29.056189597,41.084874691; heading 0; standard PMTiles datum 21.351156683452786m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        29.056189597,
+        41.084874691
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "Inspected exterior tower picture confirms stepped roofless masonry crowns by the Bosphorus; the second picture informs stone/brick appearance only, with its interior excluded. Retained east/south wall, tower and courtyard geometry and standard viewer PMTiles set approximate location, scale and seaward orientation. The derivative omits the duplicated terrain patch, uses the same PMTiles sampler for all wall/tower-footing LODs and translates the old study datum to the21.351156683452786m PMTiles anchor datum. Tower floor pads retain a level rim above sampled coarse ground with bounded footings reaching it. Anchor 29.056189597,41.084874691; heading 0; standard PMTiles datum 21.351156683452786m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/rumeli-runtime-model.mjs",
+    "export": "buildRumeliReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "rubble": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "aggregate": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "foliage": {
+      "slot": "foundation",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/rumeli-runtime-model.mjs",
+    "export": "buildRumeliReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRumeliReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildRumeliReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRumeliReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-rumeli-skyline",
+      "position": [
+        270,
+        180,
+        285
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-rumeli-district",
+      "position": [
+        270,
+        180,
+        285
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-rumeli-street",
+      "position": [
+        270,
+        180,
+        285
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-rumeli-closeup",
+      "position": [
+        270,
+        180,
+        285
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -23,
+    "scale": 3.8,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "camera": {
+    "position": [
+      270,
+      180,
+      285
+    ],
+    "lookAt": [
+      0,
+      13,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "bosphorus-halil-profile": {
+      "position": [
+        135,
+        31.358843316547,
+        55
+      ],
+      "lookAt": [
+        28,
+        2.3588433165469986,
+        2
+      ]
+    },
+    "saruca-north-crown": {
+      "position": [
+        -110,
+        76.358843316547,
+        -175
+      ],
+      "lookAt": [
+        -36,
+        41.358843316546995,
+        -115
+      ]
+    },
+    "zaganos-south-gate": {
+      "position": [
+        -120,
+        61.358843316546995,
+        165
+      ],
+      "lookAt": [
+        -52,
+        25.358843316547,
+        105
+      ]
+    },
+    "hillside-open-court": {
+      "position": [
+        -150,
+        116.358843316547,
+        5
+      ],
+      "lookAt": [
+        0,
+        8.358843316546999,
+        0
+      ]
+    },
+    "own-wall-plan": {
+      "position": [
+        0,
+        446.358843316547,
+        1
+      ],
+      "lookAt": [
+        0,
+        1.3588433165469986,
+        0
+      ]
+    },
+    "sea-gate-passage": {
+      "position": [
+        56,
+        -5.6711566834530025,
+        33
+      ],
+      "lookAt": [
+        38.4,
+        -5.6711566834530025,
+        30.5
+      ]
+    },
+    "mosque-and-courtyard": {
+      "position": [
+        38,
+        46.358843316546995,
+        53
+      ],
+      "lookAt": [
+        -8,
+        3.3588433165469986,
+        -1
+      ]
+    }
+  }
+}

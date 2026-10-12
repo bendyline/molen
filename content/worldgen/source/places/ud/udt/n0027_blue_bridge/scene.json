@@ -31,37 +31,6 @@
       }
     },
     {
-      "id": "ground",
-      "components": {
-        "transform": {
-          "pos": [
-            0,
-            -0.15,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "scale": [
-            36.224999999999994,
-            0.2,
-            171.7412223815918
-          ]
-        },
-        "renderable": {
-          "kind": "primitive",
-          "ref": "box",
-          "materialRef": "palette:#53777c",
-          "shadows": {
-            "receive": true
-          }
-        }
-      }
-    },
-    {
       "id": "environment",
       "components": {
         "environment": {
@@ -86,6 +55,37 @@
           "shadows": "high"
         }
       }
+    },
+    {
+      "id": "review-canal",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            15.7,
+            0.06,
+            200
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#607f86",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
     }
   ],
   "camera": {
@@ -104,5 +104,9 @@
   },
   "physics": {
     "engine": "none"
+  },
+  "terrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
   }
 }

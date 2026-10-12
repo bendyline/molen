@@ -1257,3 +1257,5 @@ export const neuschwansteinStudy = {
     { name: 'two-courtyards-and-roofs', position: [-5, 165, 55], lookAt: [0, 5, 0] },
   ],
 };
+
+export const neuschwansteinMeshHelpers={transformed,face,triangle,disk,lathe,cone,archBand,opening,wall,mass,ledge,arcadeFrieze,roof,crenels,circularCrown,turret,dormer,balcony,gableDetails,group,near,fine,limestone,trim,roofColor,glass,sandstone,brick};

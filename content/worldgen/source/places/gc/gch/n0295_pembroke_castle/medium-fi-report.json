@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0295_pembroke_castle",
-  "sourceHash": "sha256:10961af60023dbb13174f3007af7ea6ec0d9d5a6e7944d285ed06ae386d66910",
-  "runtimeHash": "sha256:243d93c5197f09df2524aa0c17c36547773ce1a41467076ac73750abf72dfe14",
-  "fixtureHash": "sha256:4bd02cf3d45bf8190334b21c7149e3bc6ff9e195e047d08614adfc48b37b9560",
+  "sourceHash": "sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c",
+  "runtimeHash": "sha256:88536f5d03757154a865440de16bf77b26bab1fe05004d88358b09616350861d",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,898 +23,1161 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 3934,
+  "neighborTriangles": 4556,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:e9d0de9072daaa4d4a7e3c5807aaddff2a5ca8f20dcf29a0a2e7a27602f708d3",
-      "bytes": 67416,
-      "gzipBytes": 15809,
+      "hash": "sha256:356c38196f24bb3e2f2c77d546bb58dd99472d9af9133c3ba13ee842f7f5a401",
+      "bytes": 78864,
+      "gzipBytes": 13366,
       "triangles": 770,
-      "cpuBytes": 66000,
-      "gpuBytes": 66000,
+      "cpuBytes": 77448,
+      "gpuBytes": 77448,
       "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:c5cd7733589f8d772973a7a7aada60cdfa6ad9851fbdb52ad2b6095c6ec49138",
-      "bytes": 362440,
-      "gzipBytes": 101597,
+      "hash": "sha256:df579cae83faacd5fd4ef307a12f69079f942fcc34b671a95e00bec3d9e1aaaa",
+      "bytes": 362552,
+      "gzipBytes": 102080,
       "triangles": 3947,
-      "cpuBytes": 354272,
-      "gpuBytes": 354272,
-      "errorMeters": 1.5,
+      "cpuBytes": 354416,
+      "gpuBytes": 354416,
+      "errorMeters": 0.7,
       "drawCalls": 7
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:c394b0829c41029e530229dd41eed7294e3c864618b92dd74c85ff2fc16ccf93",
-      "bytes": 1209808,
-      "gzipBytes": 321402,
+      "hash": "sha256:97c65e6344c54bf700cca75de87758fdd1fad8b6683c3c4447963dc1013d9e88",
+      "bytes": 1209920,
+      "gzipBytes": 322756,
       "triangles": 13485,
-      "cpuBytes": 1201592,
-      "gpuBytes": 1201592,
-      "errorMeters": 0.5,
+      "cpuBytes": 1201736,
+      "gpuBytes": 1201736,
+      "errorMeters": 0.3,
       "drawCalls": 7
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:5577fda90709ca2eef7ffda101b7580256c7622393c0b03d10ca33c0c68e47ed",
-      "bytes": 1306280,
-      "gzipBytes": 346522,
+      "hash": "sha256:1c70f1daab8d2a72c3635f078b13839660f0b82f2b07f18444b9d3828f79c595",
+      "bytes": 1306392,
+      "gzipBytes": 347941,
       "triangles": 14971,
-      "cpuBytes": 1298060,
-      "gpuBytes": 1298060,
-      "errorMeters": 0.15,
+      "cpuBytes": 1298204,
+      "gpuBytes": 1298204,
+      "errorMeters": 0.1,
       "drawCalls": 7
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d86b285779846d3406c51f034b99e4cb4605b3371043fd150eaf1404f812d074"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:1d8c1af8f6b1ba48b82daeb792cd1998667caa1577c06b37ab6ab5051094055b"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:ad1d3f84df4bd487ffa442a68f0ddcf71ef2d8c71b1713c1ce755e3a883b3446",
+      "hash": "sha256:c8c3aedfd4bf7a3be9da1feb72473de5cee0d41ed633f00b7cf5a974b98dd46e",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          165.8125,
+          100.66489999999999,
+          281.6775
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:ba8ba59059d77784aa00007dca9956024249939a411cc199d54d3ee6014cd70b",
+      "hash": "sha256:e3152b165b3c6da87947d229dba000c333b8ba113b969494ba851c54aff8871e",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          165.8125,
+          100.66489999999999,
+          281.6775
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:530f750b6e362a06ceeede7882657976ba24a1b3cbc78cb7cbe2f96bf8cb56ea",
+      "hash": "sha256:f07c3de248134dc78e111b8eac8909495c6f2b94319d02320a23f569ccc58419",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          165.8125,
+          100.66489999999999,
+          281.6775
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:5efb2f8429d7e478202bdb776d00dce8531d246107fb60eb2e087bcba29e3078",
+      "hash": "sha256:24783b389970ae81d7b10115beb5a6a963f7ab5cf5dadb3b4dcb24ecdb6d238f",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          144,
-          78,
-          249
+          165.8125,
+          100.66489999999999,
+          281.6775
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:e067f6d15a97b77ee673c3765085ea2095fee6a06ee2067b66bec93d4fd49fcf",
+      "hash": "sha256:ea11dca1ccfd38390951d4a7caf2cbb480810cef16d9273e45c1d1ba7227ed89",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 7883,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60985,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:10531266afc04dba40980d646e2d5a92941e23c9122342f82179d769f98f7773",
+      "hash": "sha256:582db52eac3843a7d91753cd75fcadb69f1f64677d7a15fbb72c3020593a989d",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 7883,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60985,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:4c4b84b9be8fbcd5c0d2a3d3599c2be19ae41c5e6247fd671fe7d2ce23c02312",
+      "hash": "sha256:83b9babb99cd0918b18d50c53a444ad591dbebe6f46535ee3df269a7269b5e58",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 12,
-        "triangles": 7883,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60985,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:6951d62eef2bf145bbe503dab793ec9a053444f29cc0284f0b22e9695b561d9a",
+      "hash": "sha256:c8a3d57057d9f036332b4348c0bd15dd4da818b051875b2d3cda5750c17d3ab5",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 7883,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60985,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:24f724d42f9c05cbd86fd4d840cf129097287819ae698689440ab29acffd4019",
+      "hash": "sha256:1f84a49ca48f290d4bd682735cb4439a47a6757a0bc2c6fb9e9fac9ccc0ad6ee",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 4706,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57808,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          662.2125,
+          352.2649,
+          1141.8774999999998
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:09e30e9a90d1ad0d9aefc703e35629ae4a117ae8eb6b8a0897085e1f6cb3285d",
+      "hash": "sha256:37bc3e9e06b335d3cd23c6e686243d54406d5c36be5a10c386f3f60b8b88ccd2",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 4706,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57808,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          662.2125,
+          352.2649,
+          1141.8774999999998
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:f619d414b6a2c6632f418f427661228a073bdc892acf1be058fd58cbb3ae762d",
+      "hash": "sha256:4858d5dc04d31070dab7fe5db101cddd37a3644d5ba55178fadfc20617329cbd",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 4706,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57808,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          662.2125,
+          352.2649,
+          1141.8774999999998
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:b46f17676bff45cfa1d023770d42d436ebe9407541ceebd76455cab2027f621c",
+      "hash": "sha256:78241eb6d882887a21be48dadba672cef760b60f9e3c45fa2425c184ecd6fff9",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 4706,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57808,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          662.2125,
+          352.2649,
+          1141.8774999999998
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:27a46c1075ca8f947b64b0469bfeab31fd2f9c72708456e7c2e9e1c538b3f4cf",
+      "hash": "sha256:3b575556ceeffcb70a142f6983e6c67cd0de6ad90333a13fd93316282fa556d0",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 772,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53252,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          582,
-          300,
-          1008
+          662.2125,
+          352.2649,
+          1141.8774999999998
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/domed-great-keep.png",
-      "hash": "sha256:ef55a0f928af241075e763795858b9b4220e3f6290751de3ca31caa8bef4f43f",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 9,
-        "triangles": 18879,
-        "groundY": 0,
-        "position": [
-          -8,
-          53,
-          0
-        ],
-        "lookAt": [
-          -26,
-          32,
-          -28
-        ],
-        "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.gravel": 1
-        },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
-      }
-    },
-    {
-      "path": "medium-fi/oblique-great-gate.png",
-      "hash": "sha256:e1a28a22b89d40670f8feaa7454e8088a936371713ed0524abcef08ce36ed963",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
-        "position": [
-          62,
-          20.5,
-          89
-        ],
-        "lookAt": [
-          44,
-          20,
-          46
-        ],
-        "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.gravel": 1
-        },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
-      }
-    },
-    {
-      "path": "medium-fi/open-wards-plan.png",
-      "hash": "sha256:389be744d9f0842eb3596ebeaa46d150ab2ba6a2d4650d33cb62dd8a6b6bbee2",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
-        "position": [
-          0,
-          220,
-          1
-        ],
-        "lookAt": [
-          0,
-          15,
-          0
-        ],
-        "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.gravel": 1
-        },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
-      }
-    },
-    {
-      "path": "medium-fi/northern-roofless-halls.png",
-      "hash": "sha256:872371c9ad61cb90f6930a650fba766b09b5e9f9581460d26935456674bbc92e",
-      "state": {
-        "level": "closeup",
-        "distance": "street",
-        "time": "noon",
-        "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
-        "position": [
-          12,
-          49,
-          -100
-        ],
-        "lookAt": [
-          6,
-          26,
-          -44
-        ],
-        "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
-          "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.gravel": 1
-        },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
-      }
-    },
-    {
-      "path": "medium-fi/wogan-north-mouth.png",
-      "hash": "sha256:1cbd2bb179b6b20e414885628360ababbded72b4568f6b5ca0eb808a330136b7",
+      "hash": "sha256:9f2c1f3dd8366ec6fd7a2f56d3d14985840f7e8ee068c8915db8e66b71608209",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 18891,
-        "groundY": 0,
+        "triangles": 71981,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          23,
-          12,
-          -82
+          -8,
+          46,
+          0
         ],
         "lookAt": [
-          7,
-          10,
-          -52.5
+          -26,
+          25,
+          -28
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/south-wall-towers.png",
-      "hash": "sha256:c5b27f01023805f7d086dfa71bb9dd6f93d92b3b7c4d35385ade049a8721361d",
+      "path": "medium-fi/oblique-great-gate.png",
+      "hash": "sha256:4408cf6d32ae22182e2cb95bca8878a9b3d1ce3f919059a531db33af8163e1fd",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          -24,
-          42,
-          125
+          62,
+          13.5,
+          89
         ],
         "lookAt": [
-          4,
-          25,
-          51
+          44,
+          13,
+          46
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
-      "path": "medium-fi/western-hall-and-footings.png",
-      "hash": "sha256:36548618d015fa44a72f63a591fa56a5432e684756dd136180ed3b1ae45f8205",
+      "path": "medium-fi/open-wards-plan.png",
+      "hash": "sha256:be9cc727621c3fef5616004830557662dc60585f1e5f2373ce92c3f051afcad4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          213,
+          1
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-roofless-halls.png",
+      "hash": "sha256:5f7b702c95dee67d42d5071e632379ff2e447b3a8f9e47e7b012c9dfd2bd83ef",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          12,
+          42,
+          -100
+        ],
+        "lookAt": [
+          6,
+          19,
+          -44
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/wogan-north-mouth.png",
+      "hash": "sha256:4621ff43ca979dca003ef409e2d71cb65f015adc49a84a66a6bcc7d668f4115a",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 11,
-        "triangles": 18897,
-        "groundY": 0,
+        "triangles": 71993,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          23,
+          5,
+          -82
+        ],
+        "lookAt": [
+          7,
+          3,
+          -52.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-wall-towers.png",
+      "hash": "sha256:b3d8a49463fe2578333705aa98e01a2c700eb71fa488911307ba1069fabaf62a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          -24,
+          35,
+          125
+        ],
+        "lookAt": [
+          4,
+          18,
+          51
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/western-hall-and-footings.png",
+      "hash": "sha256:d3739192941086f3af179796c3f9fa0ba807d4d02e9f32e07971497a83a5b557",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 71999,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
           -99,
-          42,
+          35,
           -25
         ],
         "lookAt": [
           -43,
-          23,
+          16,
           -38
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-pembroke-skyline.png",
+      "hash": "sha256:ca867708ed42c6a18734112a843f582f5b4366973daf398d097de7e20837708e",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 57808,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          150,
+          210
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-pembroke-district.png",
+      "hash": "sha256:45d92fc5f71230cfbd68c0445214f00ae1f56bd428ed9bea52ce3bed9036b427",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 60985,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          150,
+          210
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-pembroke-street.png",
+      "hash": "sha256:1526553ed735e00c82d0d11247f8332305e308d1562366c7e3a795ae9e47d964",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 70523,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          150,
+          210
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-pembroke-closeup.png",
+      "hash": "sha256:afd99f82403d20f88860f7237fbbb3e7d1d00e77f8dd1d353487f16954471f70",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
+        "position": [
+          220,
+          150,
+          210
+        ],
+        "lookAt": [
+          0,
+          17,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:27471329896ef96954f4cb2f2f6e6d6c4a6cc75ea1c57a5c95592de5520549ce",
+      "hash": "sha256:5dfe47655c54ebd30ec0f9c0d60837a6f84277fb108541a0e0a08de3425cfec7",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 4706,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 57808,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:10531266afc04dba40980d646e2d5a92941e23c9122342f82179d769f98f7773",
+      "hash": "sha256:582db52eac3843a7d91753cd75fcadb69f1f64677d7a15fbb72c3020593a989d",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 7883,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 60985,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:8c3a93cdeb1bfb04b6186c1201939d8bf497306dcb05af103ae170304a5c1492",
+      "hash": "sha256:6851a849e972997a3d82bcbd25924c93d3929628c10e0c4d6ce65f6258391d54",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 17421,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 70523,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:4c02de536ab0e367c4bd7c456d2710cc2f99ca86f46efc2c5f79849f5b776c7c",
+      "hash": "sha256:723a902657db71019014ee43c7e2c1b486cfe1925d15862a59af0e1d923e2da9",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 12,
-        "triangles": 18907,
-        "groundY": 0,
+        "drawCalls": 13,
+        "triangles": 72009,
+        "groundY": -10,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/terrain-review.height.png"
+        },
         "position": [
-          291,
-          186,
-          504
+          332.4125,
+          223.0649,
+          570.6774999999999
         ],
         "lookAt": [
-          0,
-          33,
-          0
+          2.6125,
+          49.6649,
+          -0.5225
         ],
         "graphReads": {
-          "molen.worldgen.material.brick": 1,
-          "molen.worldgen.material.shingle_asphalt": 1,
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.window_punched": 1,
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
-        "neighborStyle": "molen.worldgen.regional.atlantic.detached",
-        "contextScale": 3
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 3.4,
+        "reflections": "sky-pmrem"
       }
     }
   ],

@@ -34,6 +34,7 @@ export const MATERIAL_PREVIEW_TINTS = {
   metal_perforated_round: '#e5e8e9',
   metal_perforated_round_open: '#e5e8e9',
   metal_expanded_diamond: '#e5e8e9',
+  metal_asanoha: '#c6cbca',
   metal_stainless: '#e4e7e8',
   metal_stainless_polished: '#e4e7e8',
   metal_stainless_beadblasted: '#e4e7e8',
@@ -48,6 +49,7 @@ export const MATERIAL_PREVIEW_TINTS = {
   stone_basalt: '#818b86',
   stone_drywall: '#aaa997',
   stone_granite: '#aaa9a1',
+  stone_checker_fine: '#ffffff',
   stone_travertine: '#d4ccb4',
   clay_fired: '#b47554',
   stone_marble: '#e5e2d8',
@@ -88,6 +90,7 @@ const families = [
       'stone_basalt',
       'stone_drywall',
       'stone_granite',
+      'stone_checker_fine',
       'stone_travertine',
       'clay_fired',
       'stone_marble',
@@ -134,6 +137,7 @@ const families = [
       'metal_perforated_round',
       'metal_perforated_round_open',
       'metal_expanded_diamond',
+      'metal_asanoha',
       'metal_bronze_cast',
     ],
   ],
@@ -231,6 +235,8 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
               : ['facade', 'wall'];
       if (['wood_painted_shingle', 'siding_shingle'].includes(key)) use.push('roof');
       if (key === 'wood_plain') use.splice(0, use.length, 'timber', 'beam', 'deck', 'trim');
+      if (key === 'metal_asanoha') use.splice(0, use.length, 'railing', 'screen', 'bridge');
+      if (key === 'stone_checker_fine') use.splice(0, use.length, 'paving', 'sidewalk');
       if (key === 'fabric_canvas') use.splice(0, use.length, 'sail', 'awning', 'cloth');
       if (key === 'etfe_film') use.splice(0, use.length, 'inflated-cushion', 'facade', 'roof');
       if (key === 'stone_marble')
@@ -265,6 +271,12 @@ export function architecturalMaterialCatalog(materialDocuments, descriptions) {
       if (key === 'wood_plain')
         uvOrientation =
           'U along the timber grain/long axis; V across it. No board seams in this surface.';
+      if (key === 'metal_asanoha')
+        uvOrientation =
+          'Metric surface U/V divided by0.48m/0.277128129m. Analytic hemp-leaf6mm strips with filtered alpha coverage; railing posts and surrounding frame remain geometry. Working pitch is photograph reconstructed.';
+      if (key === 'stone_checker_fine')
+        uvOrientation =
+          'Metric U/V divided by0.2m; each repeat contains four100mm squares. Larger paving joints remain outside this reusable surface.';
       if (key === 'glass_frit_triangular')
         uvOrientation =
           'Metric U/V divided by 0.05m and 0.08660254m. Equilateral ceramic-frit triangles on opaque backed glass, with no baked lighting or relief normal. Pattern pitch is a photograph reconstruction; panel joints and retaining trims remain geometry.';

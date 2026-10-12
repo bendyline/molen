@@ -16,26 +16,26 @@
     "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
   },
   "size": [
-    251.38512420654297,
-    38,
-    191.2743911743164
+    251.67798614501953,
+    40.570035219192505,
+    191.41893768310547
   ],
   "actualBounds": {
     "min": [
-      -114.26848602294922,
-      0,
-      -78.50113677978516
+      -114.38684844970703,
+      -2.570035219192505,
+      -78.64463806152344
     ],
     "max": [
-      137.11663818359375,
+      137.2911376953125,
       38,
-      112.77325439453125
+      112.77429962158203
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "longitudinal": "Native+X east,+Z south; heading0 preserves all attributed footprints.",
-    "origin": "Wikidata horizontal reference inside cathedral; Y0 provisional outside-ground attachment plane. Actual common city/terrace datum unapproved."
+    "origin": "Wikidata horizontal reference inside cathedral; Y0=7.2m EH2000 exterior contact plane. Numeric source ground controls, not a surveyed floor datum."
   },
   "sourceFacts": {
     "exactIdentityNode": 687056785,
@@ -110,7 +110,7 @@
   "reconstruction": {
     "scope": "Current cathedral, baptismal chapel and side roofs, clock tower, open main-castle upper ruin walls, modern pavilion/stairs, mapped outer curtain and defensive tower remains",
     "basis": "Original deterministic exterior geometry informed by primary current references and independently attributed OSM numeric controls; no copied mesh or redistributed technical drawing",
-    "referenceState": "Current monument/museum exterior; final facade counts, ruin profiles and terrain fit pending."
+    "referenceState": "Current monument/museum exterior reconstructed to medium-fi from attributed museum/architect references. Estimated opening rhythms, ruin profiles and section heights; official DTM controls exterior ground, not interiors."
   },
   "referencePages": [
     "https://strapi.lumia.ee/uploads/03_01_Vendo_Jugapuu_a3ece4c6ec.webp",
@@ -128,15 +128,15 @@
     "https://linnus.salm.ee/en/the-castle/"
   ],
   "geographicProposal": {
-    "status": "draft",
-    "reviewStatus": "Inactive current-exterior proposal; matching map footprints retained. Actual city ground/terrace contacts, ruin profiles and complete facade fit pending.",
+    "status": "preview-proposal",
+    "reviewStatus": "Current medium-fi exterior with attributed map controls and official local DTM. Placement preview preserves map footprints; final hash-bound QA is recorded separately.",
     "anchor": [
       23.538611111,
       58.947222222
     ],
     "heading": 0,
     "ground": "terrain",
-    "elevationMode": "terrain-contact",
+    "elevationMode": "sea-level",
     "source": "https://www.openstreetmap.org/node/687056785",
     "groundModelY": 0,
     "featureIds": [
@@ -151,12 +151,22 @@
     ],
     "wikidataId": "Q866154",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:19998a72c47972e5b5c4e81f0eb6b709600bed03b13d803d00898f10937c0a8b",
+    "mapGeometryHash": "sha256:5e0adcf060588c86ae755bed08fbedc639470ac651b0e1136f19f3c9e8621e0a",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "replaceFootprint": false
+    "replaceFootprint": false,
+    "elevationMeters": 7.2,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Y0 is 7.2 m EH2000 exterior ground near the cathedral. Attributed official 1 m DTM sampled on a 2.5 m source grid; foundations extend below local ground, curtain walls and open-court paving follow it. Architect interior +0.00=8.30 m is a separate datum. Reviewed source-terrain captures and focused contact tests; host terrain/datum agreement remains resolution-dependent.",
+    "bounds": [
+      23.53645984964903,
+      58.946126068471585,
+      23.54116045035097,
+      58.94801063152841
+    ],
+    "notes": "Exact castle identity node687056785 and independently mapped cathedral, museum, entrance connector and open ring-wall controls. Native +X east/+Z south and heading0 preserve their signed map coordinates. Exterior contact datum7.2m EH2000, official terrain grid and local terrain renders are in the source bundle. Absolute placement expects compatible mean-sea-level host terrain; no survey precision or footprint replacement is claimed."
   },
-  "scaleBasis": "Original current exterior: cathedral and baptistry roofs,38m clock tower, roofless upper U-castle, modern entrance and folded stairways, separately mapped ring walls/tower remains. Shared ground planeY0 is a draft attachment plane; actual city terrain and terrace contacts require review.",
+  "scaleBasis": "Original current exterior: cathedral/baptistry roofs,38m clock tower, roofless upper U-castle, entrance/folded stairways and separately mapped ring walls/tower remains. ModelY0=7.2m EH2000 outside-ground attachment from the official terrain grid; foundations extend down and curtain walls/court follow terrain. The published interior zero8.30m is separate.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
   "sourceLicense": "Original exterior geometry under repository license; map-derived numeric controls © OpenStreetMap contributors, ODbL-1.0. Primary publications and private photo/drawing references attributed, not redistributed.",
   "dataAttribution": "© OpenStreetMap contributors; Foundation of Haapsalu and Läänemaa Museums; LUMIA/KAOS and credited photographers Tõnu Tunnel and Vendo Jugapuu.",
@@ -223,11 +233,11 @@
   "limitations": [
     "Q866154 is an exact mapped castle identity node687056785. Named cathedral106803938/Q16412871, museum112303709 and surrounding named curtain walls are separately matched physical controls; no exact-QID castle area is invented.",
     "Mapped museum height38 is a whole-envelope value containing the clock tower. Individual wing/wall sections remain lower and partly roofless. Cathedral25m mapper height is separate. Tower38m is an archival museum reference, not a new survey.",
-    "Architect drawings publish local section levels+18.50/+19.96 and a+0.00 tied to8.30m. The authored mesh uses original estimated relative sections andY0 ground attachment, not a certified elevation survey or a literal copy of the technical plan.",
+    "Architect drawings publish section levels+18.50/+19.96 and interior+0.00=8.30m. Original estimated architectural sections use exterior modelY0=7.2m EH2000, based on the official DTM; this is not a certified floor/door elevation survey or a literal plan copy.",
     "Nave, south circular baptismal chapel, lower lateral vestries, open upper museum rooms and black modern pavilion/stair zigzags are independent geometry. Lost medieval roofs, reconstructed cloister, full interiors, exhibits, event infrastructure, playground/trees and adjacent city buildings are not invented.",
-    "Outer wall/tower surviving section heights, precise church window count, glass/frame details, pavilion footprint and walkway attachments still require current-site fidelity review. Keep placement draft and footprint replacement off.",
+    "Surviving wall/tower section heights, church window rhythms, pavilion proportions and folded walkway attachments are original medium-fi estimates reviewed against current architect/museum references. Fine masonry loss, exact window counts and museum interiors are outside the declared exterior scope. Footprint replacement remains off.",
     "Five existing shared256-square weathered limestone, painted metal, lime plaster, timber and gravel graphs use metric repeats and linear tints. No new unique image, embedded photograph or borrowed mesh.",
-    "Architect/photographer drawings and photographs stay in the private research cache; only attributed original numeric controls and metadata ship. Physical laptop/phone performance and continuous LOD movement remain pending."
+    "Reference photographs/drawings stay private. The attributed numeric terrain grid and its 16-bit review heightfield ship as ground evidence, not a unique model texture. Automated DTM classification can retain raised built terraces; doors/interiors are not terrain survey controls. Host terrain must agree with the recorded EH2000 mean-sea-level datum and adequate local resolution. Physical laptop/phone performance remains unmeasured; captures and software budgets do not certify device frame rates."
   ],
   "qaCameras": [
     {
@@ -327,10 +337,10 @@
   },
   "importReason": "Preserve current cathedral/tower/open upper ruin and modern stair identity through four authored browser levels without extruding the38m mapper envelope.",
   "mesh": {
-    "triangles": 4905,
-    "vertices": 14715,
+    "triangles": 5973,
+    "vertices": 17919,
     "materials": 7,
-    "bytes": 592800,
-    "sha256": "sha256:9b2a71df21b1d1dc6034808c35f4ec8c5ef91b00833b40daba5c5dfc2b5c4036"
+    "bytes": 720976,
+    "sha256": "sha256:1e544640a9d57c44488e69abfd0eb2a82427660371a4d70736b9498d3d992f2b"
   }
 }

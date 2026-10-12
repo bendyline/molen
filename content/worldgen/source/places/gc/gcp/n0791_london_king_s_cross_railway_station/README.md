@@ -22,11 +22,9 @@ Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N07
 
 ## Remaining detail and review
 
-- Detailed source study, not maximum-fidelity certification. The scene must be compared with current station photographs and surveyed member footprints.
-- Western Range contains historically distinct ranges, the bomb gap, parcels atrium and booking hall. Current repeated facade modules require replacement with their precise individual elevations and openings.
-- Clock tick marks stand in for Roman numerals; station name lettering, entrance fanlights, precise stone cornices, doors, drainage, roof lantern details, signage and shopfronts need individual authoring.
-- The concourse uses a faithful construction method with estimated meridian radii and support positions. Exact diagrid topology, glazed roof zones, mezzanine boundaries and escalators are unfinished.
-- Platforms and rails are schematic; no trains, underground station, adjacent hotel or square furnishings are embedded. Transparent glass and final lighting require further material review.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Approximate picture/standard PMTiles placement and exterior fit. Bespoke surveys and prior precise member-elevation research holds are superseded by the approved medium-fi scope.
+- Detailed original source assembly/hash/recipe preserved; skyline is separately authored and closer levels use bounded reductions.
+- The twin roof/clock facade, western concourse/funnel and distinct range/shed volumes carry identity. Clock ticks stand for numerals; facade modules, diagrid pattern, glazing and platforms are interpretations rather than exact restoration inventories.
+- Shared procedural textures; no duplicated embedded images. Underground spaces, adjacent hotel/trains and exact station furniture/sign lettering are excluded. Reversible inset floor cutout leaves raw surrounding terrain; footprint replacement off; physical-device timing unmeasured.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

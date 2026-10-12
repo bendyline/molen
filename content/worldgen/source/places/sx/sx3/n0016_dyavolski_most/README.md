@@ -26,7 +26,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 ## Reconstruction limits
 
-- Tourism documents state56m length; engineering publications state65.7m, and the mapped path is59.092m. The engineering extent is retained and the disagreement remains explicit.
-- The original stone-by-stone model is reconstructed from photos and a published elevation, not a scan or measured current survey.
-- The original low stone edge is retained. Surrounding bedrock, trees and modern visitor shelters are terrain/scenery, not embedded into the bridge model.
-- Actual riverbed and both approach terrain elevations need review before geographic approval.
+- Owner picture/PMTiles approximate placement scope; no bespoke survey or source research.
+- Original stone-by-stone master remains unchanged and byte-reproduced; one shared granite graph retains metric texture/roughness and vertex tint variations, with zero embedded images.
+- All four browser levels use stable independent seven-opening arch bodies; metric shared weathered-stone texture replaces individually modeled stones. Source retains the original granite graph and masonry master. Published56/65.7m vs59.092m map length disagreement stays explicit.
+- Coarse PMTiles gorge/approach terrain differs about20m across the crossing. Bounded contact fixture and ground opening prevent obvious burial; exact riverbed, bank fit and modern scenery are unverified approximations. Footprint replacement off; physical-device timing remains pending.

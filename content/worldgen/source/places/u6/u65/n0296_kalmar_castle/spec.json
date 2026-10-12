@@ -12,23 +12,24 @@
   },
   "visualBrief": "Open irregular Renaissance courtyard and four gabled wings,three round and one dodecagonal tower with distinct copper helmets,square Kuretornet with open lantern/old entrance,white Renaissance gables,original well canopy,mapped outer defenses and four cannon towers with western timber bridge.",
   "mediumFiContext": {
-    "scale": "3.0",
-    "neighborStyle": "molen.worldgen.regional.atlantic.detached"
+    "groundY": 0,
+    "scale": 4.4,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     214.95629119873047,
-    49.19999998807907,
+    54.82504177093506,
     228.24862670898438
   ],
   "actualBounds": {
     "min": [
       -111.14054870605469,
-      0.30000001192092896,
+      -4.825041770935059,
       -120.78579711914062
     ],
     "max": [
       103.81574249267578,
-      49.5,
+      50,
       107.46282958984375
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "front": "Mapped western bridge and old Kuretornet entrance, baked into East/South coordinates",
     "longitudinal": "+Z south",
-    "origin": "Exact-QID footprint map anchor; model ground attachment Y4.2 is an original provisional castle-platform estimate. Outer defenses descend toY0.3."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "exactCastleRelation": 1331955,
@@ -44,7 +45,9 @@
     "cornerTowers": 4,
     "outerCannonTowers": 4,
     "publishedVerticalDimensions": false,
-    "surveyedVerticalDatum": false
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c",
+    "originalMasterRecipe": "packages/worldgen/scripts/kalmar-castle-model.mjs#buildKalmarRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -97,12 +100,13 @@
       "Four differentiated green copper helmets and tall square western lantern tower",
       "Irregular courtyard void surrounded by four dark gabled palace wings",
       "White Renaissance gables and grass outer defenses with four cannon towers"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "scope": "Present-day exterior: hollow courtyard ring with four gabled wings,four differentiated copper tower caps,square Kuretornet and physical old-gate passage,selected white Renaissance gables,original well canopy,outer grass defenses and four separately mapped cannon towers,timber approach bridge and access route.",
-    "basis": "Own mapped coordinates plus original interpretation of operator/SFV primary history and aerial/moat photographs. No traced printed drawing,downloaded mesh or photo texture.",
-    "referenceState": "Current-state approximation; vertical heights,roof profiles,apertures,outer banks and modern fixtures remain estimates."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://api.openstreetmap.org/api/0.6/map?bbox=16.352,56.6564,16.3583,56.6596",
@@ -114,8 +118,8 @@
     "https://cms.sfv.se/media/mq2ddbi1/20170827_152248.jpg?width=800&height=1200&mode=crop&format=webp&autoorient=true&rxy=0.5213032581453634"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive draft; all vertical values are estimated. Real terrain/coast/moat/approach and current-state kitchen extension need review.",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       16.355425549,
       56.657997261
@@ -124,7 +128,7 @@
     "ground": "terrain",
     "elevationMode": "terrain-contact",
     "source": "https://www.openstreetmap.org/relation/1331955",
-    "groundModelY": 4.2,
+    "groundModelY": 0,
     "featureIds": [
       "relation/1331955",
       "way/90613970",
@@ -159,10 +163,21 @@
     ],
     "wikidataId": "Q648226",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:ec57e7ccf4be43f8d19a9d3e9151b457854aab9a7244490979df0dcff5aa06fb",
+    "mapGeometryHash": "sha256:37af01a7064c6a4c5041c327a75c3b7e8ed528005f4ca070c408e8d89ca3b506",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "replaceFootprint": false
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture supports the open court, copper helmets, steep dark roofs, stepped gables and bounded island defenses. Retained east/south map coordinates with heading0 set approximate footprint and western approach. Standard viewer PMTiles supply surrounding terrain; reconstructed court floorY4.7 is above coarse ground and the island/pier toes reach the same sampler at every level. Broad water simulation and terrain cutouts are excluded. Anchor 16.355425549,56.657997261; heading 0; standard PMTiles datum 6.099512477948403m. Floors are reconstructed and foundations extend below the coarse sampled ground. The western bridge deck and railings slope toward the sampled outer approach; its inner end retains the reconstructed court level.",
+    "notes": "The inspected aerial picture supports the open court, copper helmets, steep dark roofs, stepped gables and bounded island defenses. Retained east/south map coordinates with heading0 set approximate footprint and western approach. Standard viewer PMTiles supply surrounding terrain; reconstructed court floorY4.7 is above coarse ground and the island/pier toes reach the same sampler at every level. Broad water simulation and terrain cutouts are excluded. Anchor 16.355425549,56.657997261; heading 0; standard PMTiles datum 6.099512477948403m. Floors are reconstructed and foundations extend below the coarse sampled ground. The western bridge deck and railings slope toward the sampled outer approach; its inner end retains the reconstructed court level.",
+    "terrainReference": {
+      "anchor": [
+        16.355425549,
+        56.657997261
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Exact-QID physical outline and courtyard plus mapped castle parts,coast,defense walls and western approach. Horizontal dimensions derive from attributed coordinates; all heights,roof profiles,apertures and ground section are original estimates.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -198,12 +213,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        1.2,
-        1.2
+        2.4,
+        1.6
       ]
     },
     {
@@ -229,25 +244,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exact-QID relation preserves castle footprint/courtyard. Nearby defense traces,coast,towers and bridge remain separately associated; the current map is not a survey.",
-    "No published numeric height verified. All vertical values,helmets/lanterns,roof partitioning,apertures,white gables,well and bank section are original photographic estimates.",
-    "No complete interiors,painted royal rooms,sculpture/inscriptions,church interior,exhibits or walkable circulation/collision are authored. Detached offsite cottage and temporary outdoor objects are omitted.",
-    "The SFV2013–14 kitchen extension is acknowledged but its complete surveyed current footprint/roof is unresolved; no invented specific kitchen volume is counted as verified.",
-    "No copied reference photo/drawing,downloaded model or unique texture. Six existing256-square shared graphs; flat glass/grass.",
-    "Original platformY4.2 is a provisional attachment plane. Coast/defenses extend below it; exact vertical registration,host terrain cutout,moat/water and real access fit need geographic review before activation.",
-    "Synthetic Earth context and fixed LOD captures do not approve physical-device timings or continuous streaming/upgrades."
+    "Approximate current exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Tower profiles, aperture/restoration detail and low island levels are interpreted; interiors and collision excluded.",
+    "Six common graphs plus explicit glass/foliage color slots, zero embedded images. Bounded island/defenses retained; surrounding coast and water come from host data.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "western-kuretornet",
       "position": [
         -65.51823667536213,
-        29,
+        29.5,
         -62.09960276001153
       ],
       "lookAt": [
         -18.017153993225016,
-        28,
+        28.5,
         -15.886540277367375
       ]
     },
@@ -255,12 +267,12 @@
       "name": "old-gate-passage",
       "position": [
         -29.818734522120497,
-        6.3,
+        6.8,
         -26.73654935662602
       ],
       "lookAt": [
         -2.398129799094802,
-        6.3,
+        6.8,
         -16.101210310616203
       ]
     },
@@ -268,12 +280,12 @@
       "name": "open-courtyard-plan",
       "position": [
         3.88473341520596,
-        165,
+        165.5,
         3.1478319988179546
       ],
       "lookAt": [
         3.88473341520596,
-        5,
+        5.5,
         3.1478319988179546
       ]
     },
@@ -281,12 +293,12 @@
       "name": "court-well-and-portals",
       "position": [
         -9.001355146621062,
-        10,
+        10.5,
         15.873739494032229
       ],
       "lookAt": [
         12.511237461965445,
-        9,
+        9.5,
         -2.7329356323031924
       ]
     },
@@ -294,12 +306,12 @@
       "name": "sea-renaissance-gables",
       "position": [
         80.02550835324277,
-        28,
+        28.5,
         64.84533917564987
       ],
       "lookAt": [
         26.71094778995573,
-        18,
+        18.5,
         24.21828375757166
       ]
     },
@@ -307,12 +319,12 @@
       "name": "four-copper-helmets",
       "position": [
         -10.78107641263967,
-        64,
+        64.5,
         100.66662004549883
       ],
       "lookAt": [
         0,
-        25,
+        25.5,
         0
       ]
     },
@@ -320,14 +332,252 @@
       "name": "western-timber-approach",
       "position": [
         -110.71408087504598,
-        12,
+        12.5,
         -52.38694776367275
       ],
       "lookAt": [
         -53.16718028000944,
-        6,
+        6.5,
         -39.22054233527343
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kalmar-runtime-model.mjs",
+    "export": "buildKalmarReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kalmar-runtime-model.mjs",
+    "export": "buildKalmarReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKalmarReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.15
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildKalmarReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.15
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKalmarReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "rubble": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "carved": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.15
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kalmar-skyline",
+      "position": [
+        270,
+        190,
+        250
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kalmar-district",
+      "position": [
+        270,
+        190,
+        250
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kalmar-street",
+      "position": [
+        270,
+        190,
+        250
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kalmar-closeup",
+      "position": [
+        270,
+        190,
+        250
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -338,7 +588,7 @@
     "triangles": 9633,
     "vertices": 28899,
     "materials": 8,
-    "bytes": 1160536,
-    "sha256": "sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c"
+    "bytes": 1160524,
+    "sha256": "sha256:a7d9df6d5d7142e1dd2fe4ddd91e5abece7591f899f71585833b50aa01ee5960"
   }
 }

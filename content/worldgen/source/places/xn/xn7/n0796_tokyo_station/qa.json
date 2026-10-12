@@ -1,23 +1,293 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0796_tokyo_station",
-  "inputHash": "sha256:aa3bc16b5cb804f702078d2c0928012d678df0686c85579e900d1050a9bf3d49",
-  "captureReportHash": "sha256:70d62c622158fb9f9daa86635a0297c86b57a33f4093de722c5a0552b3bd67b6",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:6ab0b9ea1f67c5e1e4cb09fd1f7e9e284fc9f4a0b5d6d8c45e0c5dc632fed247",
+  "sourceHash": "sha256:6201210010cb118eb9e0f676b401dd27c4ab4f777fbf79555306aa48fddcaf07",
+  "runtimeHash": "sha256:f28a30b846840cff261a43f981a8b6580c3ff67731430bb933a8104ab7c44725",
+  "captureReportHash": "sha256:81128124f3a9a22112973d95bb9cb483b380cf8af64f8a25f4a6164d582f655b",
   "visualReview": {
-    "status": "pending",
-    "scope": "Initial lit preview inspected; detailed reconstruction required before full visual acceptance.",
+    "status": "passed",
     "inspectedFrames": [
-      "preview.png"
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/frontage.png",
+      "shots/north-dome.png",
+      "shots/south-dome.png",
+      "shots/central-entrance.png",
+      "shots/three-storeys.png",
+      "shots/roof-and-turrets.png"
     ],
-    "notes": "The lit image remains a long facade blockout with simplified domes and missing distinctive roof, gable and stone-trim geometry. It needs a detailed Marunouchi reconstruction before acceptance."
+    "notes": "Inspected11 final portable views after correcting inverted mansard rings and fitting footing corners. Three-storey brick frontage, cream window bands/frames, two curved octagonal dome roofs, dome clocks/ribs, central gabled clock entrance, subsidiary pavilion/turret masses and dormers are complete. The original3182-triangle draft is independently reproduced byte-for-byte; the new9673-triangle source is a separate recipe."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e0d24215514332441e920a0dca0a5875f300cb1479ac08d91e68107cfc8de681",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/frontage.png",
+      "shots/shared/north-dome.png",
+      "shots/shared/south-dome.png",
+      "shots/shared/central-entrance.png",
+      "shots/shared/three-storeys.png",
+      "shots/shared/roof-and-turrets.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected11 shared-material and placement views. Four common brick, limestone, slate and standing-seam graphs bind without embedded pictures; red/cream/dark-roof ranks hold. The north-up PMTiles overlay locates the asset on the western historic frontage, distinct from the deeper station/track complex. Bounded covered-floor opening, shared cache and unload restoration pass."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:534f413f5a928c5934361cddefbeece8aa056dbfdba93d85e828473026b943eb",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/frontage.png",
+      "medium-fi/north-dome.png",
+      "medium-fi/south-dome.png",
+      "medium-fi/central-entrance.png",
+      "medium-fi/three-storeys.png",
+      "medium-fi/roof-and-turrets.png",
+      "medium-fi/whole-tokyo-skyline.png",
+      "medium-fi/whole-tokyo-district.png",
+      "medium-fi/whole-tokyo-street.png",
+      "medium-fi/whole-tokyo-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected27 final browser views across noon/late, Economy/High, silhouette, near identity and four matched levels. Mansard roofing is outward facing; dome/clock/window masses and all three facade storeys remain visible. Floors use the standard PMTiles centre working datum and footing corners descend to sampled grade. Surrounding coarse urban elevation mounds remain visible; these are not a surveyed or accurate flat-plaza reconstruction."
   },
   "geographicReview": {
-    "status": "pending",
-    "notes": "No active placement or verified geographic fit."
+    "status": "passed",
+    "placementHash": "sha256:0363afb0393540b2fa949726504dabfc9796f3d159291b740b25b98d0bfc5776",
+    "mapFrameHash": "sha256:c6767e5a56a777c46d7e2189c9c534ee0c06e90f059f6ee0f84dee1e9449af8f",
+    "notes": "Inspected frontage picture supports red brick, three storeys, cream bands, mansard wings and curved octagonal dome assemblies. Standard PMTiles separates the western low-rise combined station building from long platform-roof polygons. Its319m long axis and71.7m combined depth locate an approximate32m-wide western historic-frontage strip; the asset covers this Marunouchi frontage, not all Tokyo Station. Native+X follows the southward frontage axis; native+Z faces the west-northwest plaza. Native source335m length is scaled to the mapped319m frontage reference. Standard PMTiles centre contact plane establishes the approximate working floor; sampled footing corners descend to surrounding grade, and high urban samples beneath the roof are suppressed only under bounded covered architecture. Coarse PMTiles city mounds are retained outside the model and are not claimed as accurate plaza grade. No precise frontage/member survey is claimed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted picture/PMTiles medium-fi historic Marunouchi frontage asset. Mapped long axis sets approximate scale and signed pose; the wider mapped station building, Yaesu/platform roof complex and underground spaces are excluded. Roof/window/clock/dormer inventories, rear elevations, entrance canopy and trim are interpreted. Footing and floor datum adapt to coarse PMTiles urban elevations; precise plaza/street grades are not claimed. Original draft recipe and hash remain available. Shared textures contain no unique model image duplication; footprint replacement off; physical-device timings unmeasured."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "The lit image remains a long facade blockout with simplified domes and missing distinctive roof, gable and stone-trim geometry. It needs a detailed Marunouchi reconstruction before acceptance."
-  }
+    "notes": "The lit image remains a long facade blockout with simplified domes and missing distinctive roof, gable and stone-trim geometry. It needs a detailed Marunouchi reconstruction before acceptance.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/xn/xn7/n0796_tokyo_station/models/source.glb",
+        "hash": "sha256:6201210010cb118eb9e0f676b401dd27c4ab4f777fbf79555306aa48fddcaf07",
+        "bytes": 1163972,
+        "triangles": 9673,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -161.9706573486328,
+          -6.380686283111572,
+          -18.5
+        ],
+        "max": [
+          161.9706573486328,
+          36,
+          23
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/xn/xn7/n0796_tokyo_station/model.glb",
+        "hash": "sha256:f28a30b846840cff261a43f981a8b6580c3ff67731430bb933a8104ab7c44725",
+        "bytes": 1163496,
+        "triangles": 9673,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -161.9706573486328,
+          -6.380686283111572,
+          -18.5
+        ],
+        "max": [
+          161.9706573486328,
+          36,
+          23
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/xn/xn7/n0796_tokyo_station/model.skyline.glb",
+        "hash": "sha256:38f6d7cbd1dc7cffd6a63bc18d16d26f83f4891c462077ce5de49ecc0930ec39",
+        "bytes": 81128,
+        "triangles": 941,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -161.9706573486328,
+          -6.380686283111572,
+          -18.5
+        ],
+        "max": [
+          161.9706573486328,
+          36,
+          18.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/xn/xn7/n0796_tokyo_station/model.district.glb",
+        "hash": "sha256:a9e3b081076d5134ec342fd59ee9156a68346d223f5610b0288aea3b403e3098",
+        "bytes": 238440,
+        "triangles": 3169,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -161.9706573486328,
+          -6.380686283111572,
+          -18.5
+        ],
+        "max": [
+          161.9706573486328,
+          36,
+          18.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/xn/xn7/n0796_tokyo_station/model.street.glb",
+        "hash": "sha256:0e5781c6b530415383918c7122c24cdedee279ee2f4e5d0d84dc14f86af3f9c1",
+        "bytes": 721836,
+        "triangles": 8769,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -161.9706573486328,
+          -6.380686283111572,
+          -18.5
+        ],
+        "max": [
+          161.9706573486328,
+          36,
+          23
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/xn/xn7/n0796_tokyo_station/model.closeup.glb",
+        "hash": "sha256:7c3a4cebe9ada28955b0589dff6603806364ce1f075ac1a7c287e34458515664",
+        "bytes": 801996,
+        "triangles": 9673,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -161.9706573486328,
+          -6.380686283111572,
+          -18.5
+        ],
+        "max": [
+          161.9706573486328,
+          36,
+          23
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected generator reproduced identical GLB, spec, preview scene and README; source document set unchanged (canonical list order refreshed). Six validation/LOD hashes, placement, shared graphs and all49 previously reviewed image hashes verified unchanged.",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors/warnings/images. Source/master9673triangles; browser941/3169/8769/9673 all satisfy strict ceilings. Initial skyline+district319568bytes. Selected current-source --check reproduces exact bytes/spec/scene. Original draft268340bytes/3182triangles reproduces its recorded sha256:1d3586e191a10661688514b87791f6a6c3ce8b4c63b568a6cd419002e6c5eb31. Separate GPU position/normal streams verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:e791062040c2bf00241fcbba48d9ea1c0d64f3088a9cec979b2fa0dc69de9b56",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:38f6d7cbd1dc7cffd6a63bc18d16d26f83f4891c462077ce5de49ecc0930ec39",
+        "bytes": 81128,
+        "gzipBytes": 14747,
+        "triangles": 941,
+        "cpuBytes": 79736,
+        "gpuBytes": 79736,
+        "errorMeters": 3,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:a9e3b081076d5134ec342fd59ee9156a68346d223f5610b0288aea3b403e3098",
+        "bytes": 238440,
+        "gzipBytes": 50238,
+        "triangles": 3169,
+        "cpuBytes": 232352,
+        "gpuBytes": 232352,
+        "errorMeters": 1.7,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:0e5781c6b530415383918c7122c24cdedee279ee2f4e5d0d84dc14f86af3f9c1",
+        "bytes": 721836,
+        "gzipBytes": 136778,
+        "triangles": 8769,
+        "cpuBytes": 715736,
+        "gpuBytes": 715736,
+        "errorMeters": 0.9,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:7c3a4cebe9ada28955b0589dff6603806364ce1f075ac1a7c287e34458515664",
+        "bytes": 801996,
+        "gzipBytes": 155182,
+        "triangles": 9673,
+        "cpuBytes": 795896,
+        "gpuBytes": 795896,
+        "errorMeters": 0.4,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 319568,
+    "notes": "skyline: 941 triangles, 81128 bytes, 1 draws; district: 3169 triangles, 238440 bytes, 5 draws; street: 8769 triangles, 721836 bytes, 5 draws; closeup: 9673 triangles, 801996 bytes, 5 draws. Initial skyline+district 319568 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate historic Marunouchi frontage only, located using inspected picture and standard viewer PMTiles; exact member footprints, thresholds and dome/pavilion dimensions are reconstructed.",
+    "Separate reviewed exterior recipe improves the previous draft. Its original builder and draft hash remain available; source and every browser level build deterministically from Git recipes.",
+    "Shared brick, limestone, slate and standing-seam textures; no unique image duplication. Clock/trim/dormer inventories and rear elevations are simplified; closed interiors, platform complex, Yaesu side and train traffic are excluded.",
+    "Bounded covered-floor opening avoids coarse urban terrain through the model and preserves raw surroundings. Footprint replacement stays off. No bespoke survey, engineering fidelity or physical-device timing is claimed."
+  ]
 }

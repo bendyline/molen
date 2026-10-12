@@ -89,6 +89,8 @@ open lattice or a silhouette that needs visible holes.
 | metal_perforated_round | Actual 4 mm round alpha apertures on 12 mm centers | 0.012 × 0.012 m | 0.50 |
 | metal_perforated_round_open | Actual 9 mm round alpha apertures on 12 mm centers | 0.012 × 0.012 m | 0.50 |
 | metal_expanded_diamond | Staggered elongated diamond alpha apertures, 56% open | 0.12 × 0.04 m | 0.50 |
+| metal_asanoha | Reusable 6 mm Japanese hemp-leaf lattice; analytic alpha coverage | 0.48 × 0.27713 m | 0.50 |
+| stone_checker_fine | Fine 100 mm cool grey checker paving for plazas and sidewalks | 0.20 × 0.20 m | 0.88 |
 | membrane | Low-contrast flat roofing | 4 × 4 m | 0.88 |
 | etfe_film | Smooth neutral opaque ETFE film; cushion shape remains geometry | 2 × 2 m | 0.22–0.28 |
 | gravel | Roof ballast and surface aggregate | 2 × 2 m | 0.88 |

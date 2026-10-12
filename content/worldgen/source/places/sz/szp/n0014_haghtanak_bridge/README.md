@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Original detailed Victory Bridge exterior: three major basalt-faced reinforced-concrete arches, triple transverse structural units, six open spandrel windows per main span, four approach passages, individually coursed basalt faces, dressed piers, cast-iron four-petal circle lattice and perforated borders, three-globe lamps and the full mapped deck.
+Medium-fi Victory Bridge exterior: three basalt arches, three transverse vault units, six open spandrels per span, four approach passages, simplified intersecting-circle iron lattice, three-globe lamps and six-lane road markings. Detailed original master remains independently reproducible.
 
 ## Evidence
 
@@ -17,14 +17,14 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-3448236 triangles; 324374144 bytes; 6 material groups. SHA256: sha256:109c6fda8bcd1c3b88dfae06c79c4efb4832695beb39c4576507601c8d08b820.
+52248 triangles; 6273348 bytes; 6 material groups. SHA256: sha256:ed9986a8558a2f7f2c75eb6a75c7c8ec86709fcbab3a579ed08290f68a3948d8.
 
-Shared surfaces (stone_basalt_raw, concrete_plain, metal_painted, stone_granite) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
+Shared surfaces (stone_basalt_raw, concrete_plain, stone_granite, metal_painted) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
 Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=N0014; append --check to verify. Import and capture through the standard next-1000 scripts. Geometry validation does not substitute for current-frame visual review.
 
 ## Reconstruction limits
 
-- Arch spans, spandrel dimensions, transverse division and pier elevations are photo-scaled reconstructions, not engineering plans.
-- Street furnishings and decorative cast iron follow the original 2013/2019 photographs; latest whole-bridge 2026 photograph verifies continued overall appearance. Transient adverts, vehicles and wires are omitted.
-- Bank retaining ends extend below expected terrain; real gorge and bank elevations must be inspected before geographic approval.
+- Approximate picture/PMTiles exterior and orientation fit; no bespoke survey or local-data research.
+- Original detailed324MB master is preserved by its unchanged recipe/map inputs and exact reproduced hash. Independent medium-fi source replaces modeled masonry courses with shared basalt texture, simplifies the intersecting-circle cast iron and retains main/spandrel/approach openings, transverse units and lamps. Browser levels reduce these further.
+- PMTiles western approach anchors the road at modelY34; coarse under-bridge terrain does not resolve the canyon. Bounded ground opening is a visualization approximation. Precise river, bank walls and endpoint joins are not certified. Footprint replacement off; physical-device timing remains pending.

@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0002_pont_de_normandie",
-  "inputHash": "sha256:e1c4317d7f332f760ba49919633e8fc378a440af53f3c3891fc5389bfb605a06",
-  "captureReportHash": "sha256:3203ed383b03201e184246d12d56c5bae9da9c05825b09352e7496bb3f7e2786",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:b6627967124c5a066d2e3aed9f43bdc7dd16e850c87f53903c04bb3f67aad62f",
+  "sourceHash": "sha256:4004e569be3552b51896288c310cfeccb4ea502951ff04747232dcc9dea3766b",
+  "runtimeHash": "sha256:231b0331f88150425982ed947411ae4aeae78fde9cf35d5752231dd477f33b8e",
+  "captureReportHash": "sha256:cfb1f3297c4295e27eaf4cef1e984e51b809aec7d2f8d69aa5b9eb40301cccba",
   "visualReview": {
     "status": "passed",
-    "scope": "Static exterior rendering and geometry integrity at the captured views.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -14,17 +16,281 @@
       "shots/turntable/angle_3.png",
       "shots/near-pylon.png",
       "shots/near-deck.png",
+      "shots/cable-fan.png",
+      "shots/approach-piers.png",
+      "shots/north-end.png",
+      "shots/south-end.png",
       "shots/far-crossing.png"
     ],
-    "notes": "Inspected pylon, cable fans, deck margins/railings and four whole-model turntables. Subpixel cables alias in distant captures; near views retain cable geometry. Default neutral framing is too wide for detailed whole-crossing review; dedicated near-deck and near-pylon views were inspected."
+    "notes": "Inspected12 final portable views: full asymmetric crossing, inverted-Y pylons, paired stay fans, blue cornices, road margins/markings, cable/anchor hardware and26approach piers remain present. Standard PMTiles terrain/water preview has clean depth separation; the bounded water-contact bases reach below the working sea plane."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7b32dd1144165f5139c723d69fa3c18855e87ac4520bdcab3027971fd4e8771a",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-pylon.png",
+      "shots/shared/near-deck.png",
+      "shots/shared/cable-fan.png",
+      "shots/shared/approach-piers.png",
+      "shots/shared/north-end.png",
+      "shots/shared/south-end.png",
+      "shots/shared/far-crossing.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected12 final shared/geographic views using the explicit bounded-placement fixture. Runtime index places the original crossing at the mapped main-span midpoint and signed southward+X heading. Independently transformed full bounds, north-up outline, local-only selection, shared texture reads and unload pass. Shared fixture is a flat-stage placement test, not proof of tidal heights or connected road joins."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:a08a550696f4c62b13d89f1d040bb62d0f8ef5f0fde759ef2e916f2bc8a146ba",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-pylon.png",
+      "medium-fi/near-deck.png",
+      "medium-fi/cable-fan.png",
+      "medium-fi/approach-piers.png",
+      "medium-fi/north-end.png",
+      "medium-fi/south-end.png",
+      "medium-fi/far-crossing.png",
+      "medium-fi/whole-normandie-skyline.png",
+      "medium-fi/whole-normandie-district.png",
+      "medium-fi/whole-normandie-street.png",
+      "medium-fi/whole-normandie-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all28 final browser views across lighting/quality, silhouette, near detail and four matched tiers after removing preview water depth fighting. Authored944-triangle skyline retains two pylons, representative fans and approach piers. Authored3392-triangle district retains184paired stays; street and closeup retain source shape through bounded reductions. Fine rails/hardware/markings simplify on lower tiers; full architecture and blue/cream identity remain."
   },
   "geographicReview": {
-    "status": "pending",
-    "notes": "Measured horizontal anchor/heading is draft. CMH-to-IGN69 conversion is documented; viewer DEM datum and road/approach fit are unresolved."
+    "status": "passed",
+    "placementHash": "sha256:71bfc2826218431c51f43cbe51ac74af16a64eae729bd7227ca8ff3d52f5553b",
+    "mapFrameHash": "sha256:dbb49de7a58420f691374c6bcddbef65f13595957b77719ecbac434282200e59",
+    "notes": "The inspected aerial picture supports pale inverted-Y pylons, stay fans, thin blue-edged roadway and approach piers. Retained mapped outline and current standard PMTiles Pont de Normandie bridge roads confirm the main-span midpoint, southward native+X, longer northern approach, width and full crossing length. Mapped main spacing860m is close to source856m and total2141m. A deliberately approximate-4.4m translation adapts the legacy CMH-authored height to a global sea-plane visualization; this is not a certified IGN69/EGM/tidal conversion. Bounded pylon/pier bases extend below the working water plane; mapped PMTiles water masks form the preview shoreline and raw surrounding terrain is retained. Approach road heights remain source reconstructions, with connected host road fitting requested."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted picture/standard PMTiles approximate crossing fit. Horizontal map and PMTiles bridge roads establish identity, dimensions, midpoint and signed heading. The-4.4m legacy-CMH/global-sea adaptation is deliberately approximate; no certified vertical/tidal conversion. Pylon/pier base blocks are bounded contact proxies. Host road replacement requests connected approach fitting, while exact endpoint joins, surrounding shore grade and tides remain unverified. Recessed mapped-water bed is preview-only; raw PMTiles are retained. Original inactive placement is preserved in placement-history.json. Toll/traffic/hidden foundations excluded; footprint replacement off and physical-device timings unmeasured."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "The operator technical sheet has dated/rounded dimensions. Main dimensions and cable count are sourced; approach endpoint allocation, exact vertical road curvature, pier stationing and local fittings are reconstructed. CMH is the Carte Marine Havraise tidal datum. Geographic placement requires a checked vertical conversion; interpreting Y=0 as a generic terrain elevation would be incorrect. No toll plaza, embankments, submerged piles, maintenance interiors, traffic or navigation lights are included. Original vertex-color PBR geometry is detailed, but texture weathering, site-fit verification and collision refinement are pending. This is not a survey reconstruction or a maximum-fidelity completion claim."
-  }
+    "notes": "The operator technical sheet has dated/rounded dimensions. Main dimensions and cable count are sourced; approach endpoint allocation, exact vertical road curvature, pier stationing and local fittings are reconstructed. CMH is the Carte Marine Havraise tidal datum. Geographic placement requires a checked vertical conversion; interpreting Y=0 as a generic terrain elevation would be incorrect. No toll plaza, embankments, submerged piles, maintenance interiors, traffic or navigation lights are included. Original vertex-color PBR geometry is detailed, but texture weathering, site-fit verification and collision refinement are pending. This is not a survey reconstruction or a maximum-fidelity completion claim.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u0b/n0002_pont_de_normandie/models/source.glb",
+        "hash": "sha256:4004e569be3552b51896288c310cfeccb4ea502951ff04747232dcc9dea3766b",
+        "bytes": 21449800,
+        "triangles": 178724,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1165.63037109375,
+          -0.5,
+          -23.5
+        ],
+        "max": [
+          975.63037109375,
+          209.60000610351562,
+          23.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u0b/n0002_pont_de_normandie/model.glb",
+        "hash": "sha256:231b0331f88150425982ed947411ae4aeae78fde9cf35d5752231dd477f33b8e",
+        "bytes": 21449384,
+        "triangles": 178724,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1165.63037109375,
+          -0.5,
+          -23.5
+        ],
+        "max": [
+          975.63037109375,
+          209.60000610351562,
+          23.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u0b/n0002_pont_de_normandie/model.skyline.glb",
+        "hash": "sha256:c15a61f2a9c847b8bc7db00ff5eef1992cf37df92fe2f107af575c8506933ba2",
+        "bytes": 81052,
+        "triangles": 944,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -1165.625,
+          -0.5,
+          -23.5
+        ],
+        "max": [
+          975.625,
+          209.60000610351562,
+          23.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u0b/n0002_pont_de_normandie/model.district.glb",
+        "hash": "sha256:8bdad2db4de5b8626c42362a08d42cc96a8eb5dca1fa31896a6205e88acf8fcb",
+        "bytes": 331804,
+        "triangles": 3392,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1165.625,
+          -0.5,
+          -23.5
+        ],
+        "max": [
+          975.625,
+          209.60000610351562,
+          23.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u0b/n0002_pont_de_normandie/model.street.glb",
+        "hash": "sha256:0c81ea8d8ff983ffe5cb2cdbfeb2b1b61904d013ca0b3b87421588b45ee02f18",
+        "bytes": 1436688,
+        "triangles": 14945,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1165.625,
+          -0.5,
+          -23.5
+        ],
+        "max": [
+          975.625,
+          209.60000610351562,
+          23.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u0b/n0002_pont_de_normandie/model.closeup.glb",
+        "hash": "sha256:db7adfa68b27bd4fe8161e5fc0bf27a06ab2ecfd9598f8598f855e4b3b088643",
+        "bytes": 6598808,
+        "triangles": 63049,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1165.63037109375,
+          -0.5,
+          -23.5
+        ],
+        "max": [
+          975.6295166015625,
+          209.60000610351562,
+          23.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors/warnings/images. Browser944/3392/14945/63049triangles satisfy strict ceilings; initial download412856bytes. Reviewed shared source178724triangles adds336bounded base triangles to the original geometry and applies the explicit-4.4m shift. Original178388-triangle master reproduces13591668bytes and sha256:7393ab5b3d1dd8e832bc549b2f7af9fd3bd4aabf2f04330b7353b94dd7009a0e from its unchanged builder. Current selected source --check and separate GPU streams verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:fad9364b6c51528cbdb609b0dde998b029197821b6184c46172f868b8732029f",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:c15a61f2a9c847b8bc7db00ff5eef1992cf37df92fe2f107af575c8506933ba2",
+        "bytes": 81052,
+        "gzipBytes": 15520,
+        "triangles": 944,
+        "cpuBytes": 79680,
+        "gpuBytes": 79680,
+        "errorMeters": 6,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8bdad2db4de5b8626c42362a08d42cc96a8eb5dca1fa31896a6205e88acf8fcb",
+        "bytes": 331804,
+        "gzipBytes": 83057,
+        "triangles": 3392,
+        "cpuBytes": 326784,
+        "gpuBytes": 326784,
+        "errorMeters": 4,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:0c81ea8d8ff983ffe5cb2cdbfeb2b1b61904d013ca0b3b87421588b45ee02f18",
+        "bytes": 1436688,
+        "gzipBytes": 297326,
+        "triangles": 14945,
+        "cpuBytes": 1431608,
+        "gpuBytes": 1431608,
+        "errorMeters": 3.4097338760074916,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:db7adfa68b27bd4fe8161e5fc0bf27a06ab2ecfd9598f8598f855e4b3b088643",
+        "bytes": 6598808,
+        "gzipBytes": 1405410,
+        "triangles": 63049,
+        "cpuBytes": 6593684,
+        "gpuBytes": 6593684,
+        "errorMeters": 1.1438284871070057,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 412856,
+    "notes": "skyline: 944 triangles, 81052 bytes, 1 draws; district: 3392 triangles, 331804 bytes, 4 draws; street: 14945 triangles, 1436688 bytes, 4 draws; closeup: 63049 triangles, 6598808 bytes, 4 draws. Initial skyline+district 412856 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Picture and standard viewer PMTiles approximate crossing fit; no bespoke survey or certified vertical/tidal datum transformation.",
+    "Original detailed source geometry and recorded hash remain reproducible; shared-texture wrapper applies-4.4m approximate shift plus bounded water-contact footings. Main-span/crossing dimensions and cable/approach geometry are retained.",
+    "Skyline merges paired fine stays into a few representative fans; closer reductions simplify cable hardware, rails and road markings. Shared concrete, stone and painted metal graphs; zero embedded images.",
+    "Mapped water flattening is a review fixture and host shore/tides remain data dependent. Road replacement requests connected approach fitting but exact vertical endpoint joins and real traffic are not surveyed. Footprint replacement off; physical-device timings unmeasured."
+  ]
 }

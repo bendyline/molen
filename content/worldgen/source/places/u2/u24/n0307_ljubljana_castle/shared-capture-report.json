@@ -1,23 +1,23 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0307_ljubljana_castle",
-  "inputHash": "sha256:9eeaaadaf8db04722ed2aaaf17506cf93194f5f512cf0229b98ba500abd838dd",
-  "sourceHash": "sha256:0698f5f9812c27937dc561ada53b47f1b812391d90b8f99369643b87d7a81346",
-  "runtimeHash": "sha256:589c3f1f97bd65a45b2bef38440d32547ee9d66839504c959f1afd8eaf65c7ea",
-  "reviewGroundY": null,
-  "fixtureHash": "sha256:fc107268992f4c52d9da99286589aac5acce6543c1946871fcbd8dd931e4a5ea",
-  "footprintEvidenceHash": "sha256:8fb233edd95d92dd38fb2ed2a0f79edff196c5c5f97057cb3abdbf9d50468192",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "inputHash": "sha256:1ac302aff0e6198080a409db8b290e1248da37fab06d6ef254a0018188690abf",
+  "sourceHash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
+  "runtimeHash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:e5642ca97d359215b84b6ec9aee43126b261061c0eb70e440f99483d9b9625ef",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:e4e63f6581d53317d792b031ec88182c50a1c08d7611564132fa26edc2e67197",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.plaster_lime": {
       "path": "materials/plaster_lime.matgraph.json",
       "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
     },
-    "matgraph:molen.worldgen.material.stone": {
-      "path": "materials/stone.matgraph.json",
-      "hash": "sha256:12f7f585fa19aba3337114e043f93d51f88e27728ef1f0743733fcb75df5340c"
+    "matgraph:molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
     },
     "matgraph:molen.worldgen.material.tile_ceramic": {
       "path": "materials/tile_ceramic.matgraph.json",
@@ -39,15 +39,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:a65860938d450e9eefe253dae1f7508b7a4a77d3cace469e1fe48e2e1b5a1ec0",
+      "hash": "sha256:ce967f7b3689b8a30028adb07578fecb551f4de41d82056e178f6952b8e8838e",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -59,34 +59,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -98,15 +115,15 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:2ed5b3c47f843384cdb6ced1b5b31e5022b9679dff6a234ff5b648b63b274b22",
+      "hash": "sha256:63dd9d30d8a6f464305094c596db5c6bc26a8f03afe98bdf49ae10f592dac6a5",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -118,34 +135,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -157,15 +191,15 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:82ff31d57e4014b89b23387a780132d2e6b82871929d1cc8415ce68f36fb8c48",
+      "hash": "sha256:d9fd8ad984b7e7676df6bb6d9c5358a8c48d48488ec9a562ef5502bbac177936",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -177,34 +211,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -216,15 +267,15 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:eab2fddd3f1ae47fdcb422a9bceec4c6c0af791c725672b554438623e72fe01b",
+      "hash": "sha256:f7f6302df64dd8203f5c90d5a1230f2b3406a3a657cef7d7ecbda38d88853917",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -236,34 +287,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -275,24 +343,24 @@
     },
     {
       "path": "shots/shared/southwest-clock-and-bays.png",
-      "hash": "sha256:44b782e2d165a160fe7887562706044fa8b05d9d1c92bb1a0bdc87958d5d85cd",
+      "hash": "sha256:c0ab2de989a388a3086a8671b4a2fe96a7de7b430fa95e5fb3b551d470c9ddce",
       "camera": {
         "name": "southwest-clock-and-bays",
         "position": [
           -101,
-          49,
+          51,
           97
         ],
         "lookAt": [
           -25,
-          19,
+          21,
           14
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -304,34 +372,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -343,24 +428,24 @@
     },
     {
       "path": "shots/shared/northwest-roofed-wings.png",
-      "hash": "sha256:ec81c49e32ae193c43b43b5ac7f39e27e28159396863bf38a0ed3d46cb2ebe6c",
+      "hash": "sha256:e743c2782014ec9af048475ac343344026c212062d8d2eaa1fee028073e4db2e",
       "camera": {
         "name": "northwest-roofed-wings",
         "position": [
           -83,
-          40,
+          42,
           -109
         ],
         "lookAt": [
           -12,
-          16,
+          18,
           -20
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -372,34 +457,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -411,24 +513,24 @@
     },
     {
       "path": "shots/shared/eastern-bridge-and-passage.png",
-      "hash": "sha256:616f358ef4f8f50acc1ffa3fac2079f12ebef5ee8bf63c710c06ea3d95cb0317",
+      "hash": "sha256:d3f0cc61b11cf77d1abd17d6d1168b8184828231e9673f886603d87ec6f5c07e",
       "camera": {
         "name": "eastern-bridge-and-passage",
         "position": [
           104,
-          22,
+          24,
           -11
         ],
         "lookAt": [
           49,
-          9,
+          11,
           -13
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -440,34 +542,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -479,24 +598,24 @@
     },
     {
       "path": "shots/shared/courtyard-arcade-and-glazing.png",
-      "hash": "sha256:56933aa9872928eeabe77eaa966eaefb906c3937b9d18ca93a3e7ab2d8f72a45",
+      "hash": "sha256:ab6d1c04947c2c4560787a0647d9af27ec294570927b4b0159b83684360a8e03",
       "camera": {
         "name": "courtyard-arcade-and-glazing",
         "position": [
           9,
-          12,
+          14,
           4
         ],
         "lookAt": [
           -4,
-          11,
+          13,
           -27
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -508,34 +627,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -547,24 +683,24 @@
     },
     {
       "path": "shots/shared/open-clock-terrace.png",
-      "hash": "sha256:962ba7a8ec5d02450f6cc682eed36190d9ac9231ea5ae4985d253adb8b969c51",
+      "hash": "sha256:15741e512e01f3579091e33b4267220fb824149fa2b9f2a1e7c54ae55b79ea7e",
       "camera": {
         "name": "open-clock-terrace",
         "position": [
           -61,
-          51,
+          53,
           42
         ],
         "lookAt": [
           -42,
-          31,
+          33,
           29
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -576,34 +712,51 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
@@ -615,24 +768,24 @@
     },
     {
       "path": "shots/shared/mapped-courtyard-overhead.png",
-      "hash": "sha256:ceec64b7244057b08ffd8098385c5ff658b6abe7bd71d558955d9f58131bee33",
+      "hash": "sha256:3f4fe955d474e2469b8bc3a87367eebcb2ca5740cb0eadf4adbbbcedf5877e3a",
       "camera": {
         "name": "mapped-courtyard-overhead",
         "position": [
           4,
-          169,
+          171,
           -4
         ],
         "lookAt": [
           4,
-          0,
+          2,
           -4.01
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
         "position": [
           0,
           0,
@@ -644,40 +797,133 @@
         "bounds": {
           "min": [
             -47.17300033569336,
-            0,
+            -13.470287322998047,
             -57.41999816894531
           ],
           "max": [
             70.51000213623047,
-            43,
+            45,
             44.180999755859375
           ]
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "994fd89b-0bbf-4bd8-bd73-33298309dae6",
-          "worldgen:matgraph:molen.worldgen.material.stone": "2fb74324-c5bd-470e-9b64-2b42e8c844d5",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "6da55f94-4479-4aa8-9a47-fc4cbc129447",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "15ef8a1b-2c97-4b07-9de2-bc81e19b6ce3",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "93ad6949-24ff-45af-b1fe-39efb30b7b92",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "14254527-043d-4659-b851-9fabb5cf95d0"
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
         },
         "loads": [
           "molen.worldgen.structure.n0307_ljubljana_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
+        "renderedTriangles": 5693
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:800c5def43ad535f8ccc27effecdb7797c1c2ee1b8aa1f44f6e34fff1b7a80ad",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0307_ljubljana_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0307",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 5691,
+        "bounds": {
+          "min": [
+            -47.17300033569336,
+            -13.470287322998047,
+            -57.41999816894531
+          ],
+          "max": [
+            70.51000213623047,
+            45,
+            44.180999755859375
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "e2fa3bd7-eccc-4d0d-b654-d6a74572b914",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "bf5c57a6-9c8e-4457-9602-90d190576fc6",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "e8c2232d-1fb4-4d11-a9f7-fb6895c38a87",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "cd5ce5ac-4f66-4d7b-9ff8-0e76370cce12",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "2b7d44f2-7155-433c-be19-61ab494b41d8",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "aa729e0e-03fb-4286-afcd-124d42160e3c"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0307_ljubljana_castle"
+        ],
+        "selectionBounds": [
+          14.506817947071061,
+          46.04766023146812,
+          14.510131400928943,
+          46.04995991859549
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0307",
+            "coordinate": [
+              14.508474674,
+              46.048810087
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0307"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 10,
         "renderedTriangles": 5693
       }
     }

@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0295_pembroke_castle",
-  "inputHash": "sha256:2c0f0658c39538b56c74b41e5a4c9255e17cfc66395bb41db2811c0e7ba1585c",
-  "sourceHash": "sha256:10961af60023dbb13174f3007af7ea6ec0d9d5a6e7944d285ed06ae386d66910",
-  "runtimeHash": "sha256:243d93c5197f09df2524aa0c17c36547773ce1a41467076ac73750abf72dfe14",
-  "captureReportHash": "sha256:978ed65007fbff6c6faa4a717ac99b3160ec125084aacf7af74edc6b9f83114c",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:f580da2222ebda8e3ca89ce4c517e09eaf62601ddeb909a502e1cff63bcbcae1",
+  "sourceHash": "sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c",
+  "runtimeHash": "sha256:88536f5d03757154a865440de16bf77b26bab1fe05004d88358b09616350861d",
+  "captureReportHash": "sha256:c501b936030dd980f4fc642c71540f0f9bc818dbf38cf6e47629703083b62df7",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,11 +22,11 @@
       "shots/south-wall-towers.png",
       "shots/western-hall-and-footings.png"
     ],
-    "notes": "Inspected all12 final portable frames, including full-size keep, gate, northern halls and Wogan mouth. Tall circular keep with recessed dome and crenellated crown, offset gatehouse/oblique aperture, curved low forework, open irregular ward, hollow towers, roofless Great/Norman/western halls, low inner-gate/ruin footings, original schematic visitor map and steep simplified promontory remain distinct. Corrected unsupported gaps around the cave front and removed the composite mapped wall mass filling the western hall. Acceptance covers an original exterior draft. Synthetic ground does not establish current-site fit or complete reconstruction."
+    "notes": "Inspected all12 final portable views. Domed round keep with crenellated crown, oblique paired gatehouse, open wards, ruined northern halls, wall towers and bounded Wogan cliff remain readable. The exterior picture supports the riverside high keep and roofless hall silhouettes."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d5a07e029728c615873bb313c0016a2f048a8b27e79cc1c1a9bd00376fa99d86",
+    "captureReportHash": "sha256:d590be13ee10c582f2e6003087ccc026abafec39f0747ceb134e194dac08503e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -37,13 +38,14 @@
       "shots/shared/northern-roofless-halls.png",
       "shots/shared/wogan-north-mouth.png",
       "shots/shared/south-wall-towers.png",
-      "shots/shared/western-hall-and-footings.png"
+      "shots/shared/western-hall-and-footings.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected11 final shared-loader frames. Five existing256-square rubble,raw limestone,gravel,plain wood andslate graphs with linear palette tints and central metric UV repeats; glass/water and foliage are untextured. Seven merged near/district groups,one far. All graph reads exactly once; unloading leaves zero live model geometries. No embedded/new images, photo textures, copied printed map or downloaded model. Skyline colors use measured graph means."
+    "notes": "Inspected all12 final shared-material views. Rubble, limestone, gravel, wood and slate graphs are reused with explicit glass/foliage color slots. Keep crown and true gate/hall openings read correctly. Retained outline fits approximately at heading0; cache reuse and unload passed. The shared fixture is flat ground and does not independently verify cliff fit."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5580e2facbcaf44a649586ec5a8629cc5b0fef20944f64d52b034e3b86857819",
+    "captureReportHash": "sha256:8b28a46e6acbdf9e2d3ee11e7f7d1a9d296eb31e320c2aecbb7dd9a1763cecc0",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -65,25 +67,33 @@
       "medium-fi/wogan-north-mouth.png",
       "medium-fi/south-wall-towers.png",
       "medium-fi/western-hall-and-footings.png",
+      "medium-fi/whole-pembroke-skyline.png",
+      "medium-fi/whole-pembroke-district.png",
+      "medium-fi/whole-pembroke-street.png",
+      "medium-fi/whole-pembroke-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected24 final Earth-rig frames: twelve time/distance/mode combinations, silhouette, seven architecture cameras and four forced levels. Circular keep, offset gatehouse and open irregular ward/northern ruin cluster survive at distance; selected arches, halls, low barbican and cave masonry appear closer. Real Earth neutral mapping/exposure1 and synthetic Atlantic neighbors. These fixed captures do not approve physical-device timing, continuous streaming/visible upgrades or geographic terrain correspondence."
+    "notes": "Inspected all28 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. Reconstructed floorY8 keeps open wards above the coarse PMTiles terrain; the bounded cliff foot reaches the same sampler at all levels. Keep/gatehouse/hall masses remain consistent."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:161dc4de43a364ff78b32ad9a4370952628515bd4d46abf5dc04b7cb3f9c9507",
-    "mapGeometryHash": "sha256:d149c6df295b2e666832ea335340dbff44aa40c3de489edef3a2f1a339021955",
-    "coordinateRoundTripErrorMeters": 0.0006672425952326028,
-    "mapCoordinateSamples": 429,
-    "notes": "429 original mapped samples reconstruct within0.67mm in native East/South coordinates. Exact-QID identity is a node; nearby physical tower/wall traces remain a separate association. Main oblique passage follows mapped route. Some east/StAnne trace accuracy warnings are retained. Provisional plateau/cave section differs from raw coarse DEM; real vertical registration, terrain cutout/blend, approaches and present site fit remain pending. Inactive draft with footprint replacement off."
+    "status": "passed",
+    "placementHash": "sha256:5e2f3a0d86cc7352deff36458d790d2633bfa017c7e1b41f7f0d3aaec86084a3",
+    "mapFrameHash": "sha256:6745e1d1defd77d7ee13befb59ddc7fe90625dbb0442feff24dfde7d0c261089",
+    "notes": "Reference picture shows the high round keep, roofless hall and gatehouse silhouettes above a bounded riverside cliff. Retained east/south mapped controls and standard viewer PMTiles set approximate location, scale, orientation and coarse ground. Reconstructed court floor atY8 stays above coarse terrain; the cliff base reaches the same PMTiles sampler at all levels. The Wogan mouth is an approximate exterior feature; the original detailed section and master remain preserved. Anchor -4.920555555,51.676944444; heading 0; standard PMTiles datum 10.602262091697735m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate exterior and fit from inspected picture and standard viewer PMTiles. Original provisional vertical section is preserved; browser derivative translates it by-7m and fits the cliff toe to coarse ground. Wogan mouth, ruins and floors are interpreted; full interiors, cave circulation, exact terrain thresholds, collision and water simulation excluded. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Cadw,operator photographs/RCAHMW aerial and original nearby map traces guide this restored/ruined exterior interpretation. Published25m×16m keep and primary Wogan23mNS×18mEW×5m chamber/floor9–10mOD are recorded. Dome, wall/room heights, apertures, gates, projected turret masses, barbican and cliff form are estimates. Roofless crowns/halls and lost inner-gate footings are represented. Full rooms,vaults,archaeological traces,ornament/exhibits,exact current restoration details and walkable circulation remain incomplete. Simplified cave form and schematic visitor prop do not reproduce the actual survey or artwork. No completed site-fidelity approval."
+    "notes": "Cadw,operator photographs/RCAHMW aerial and original nearby map traces guide this restored/ruined exterior interpretation. Published25m×16m keep and primary Wogan23mNS×18mEW×5m chamber/floor9–10mOD are recorded. Dome, wall/room heights, apertures, gates, projected turret masses, barbican and cliff form are estimates. Roofless crowns/halls and lost inner-gate footings are represented. Full rooms,vaults,archaeological traces,ornament/exhibits,exact current restoration details and walkable circulation remain incomplete. Simplified cave form and schematic visitor prop do not reproduce the actual survey or artwork. No completed site-fidelity approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -91,231 +101,196 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/models/source.glb",
-        "hash": "sha256:10961af60023dbb13174f3007af7ea6ec0d9d5a6e7944d285ed06ae386d66910",
-        "bytes": 1800592,
+        "hash": "sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c",
+        "bytes": 1800580,
         "triangles": 14971,
         "materials": 7,
         "images": 0,
         "min": [
           -71.05999755859375,
-          0.4000000059604645,
+          -8.470196723937988,
           -73.1500015258789
         ],
         "max": [
           76.28500366210938,
-          40,
+          33,
           72.1050033569336
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.glb",
-        "hash": "sha256:243d93c5197f09df2524aa0c17c36547773ce1a41467076ac73750abf72dfe14",
-        "bytes": 1799956,
+        "hash": "sha256:88536f5d03757154a865440de16bf77b26bab1fe05004d88358b09616350861d",
+        "bytes": 1799948,
         "triangles": 14971,
         "materials": 7,
         "images": 0,
         "min": [
           -71.05999755859375,
-          0.4000000059604645,
+          -8.470196723937988,
           -73.1500015258789
         ],
         "max": [
           76.28500366210938,
-          40,
+          33,
           72.1050033569336
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.skyline.glb",
-        "hash": "sha256:e9d0de9072daaa4d4a7e3c5807aaddff2a5ca8f20dcf29a0a2e7a27602f708d3",
-        "bytes": 67416,
+        "hash": "sha256:356c38196f24bb3e2f2c77d546bb58dd99472d9af9133c3ba13ee842f7f5a401",
+        "bytes": 78864,
         "triangles": 770,
         "materials": 1,
         "images": 0,
         "min": [
           -71.05999755859375,
-          0.4000000059604645,
+          -8.470196723937988,
           -73.1500015258789
         ],
         "max": [
           76.28500366210938,
-          40,
+          33,
           72.1050033569336
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
         "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.district.glb",
-        "hash": "sha256:c5cd7733589f8d772973a7a7aada60cdfa6ad9851fbdb52ad2b6095c6ec49138",
-        "bytes": 362440,
+        "hash": "sha256:df579cae83faacd5fd4ef307a12f69079f942fcc34b671a95e00bec3d9e1aaaa",
+        "bytes": 362552,
         "triangles": 3947,
         "materials": 7,
         "images": 0,
         "min": [
           -71.05999755859375,
-          0.4000000059604645,
+          -8.470196723937988,
           -73.1500015258789
         ],
         "max": [
           76.28500366210938,
-          40,
+          33,
           72.1050033569336
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "street",
         "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.street.glb",
-        "hash": "sha256:c394b0829c41029e530229dd41eed7294e3c864618b92dd74c85ff2fc16ccf93",
-        "bytes": 1209808,
+        "hash": "sha256:97c65e6344c54bf700cca75de87758fdd1fad8b6683c3c4447963dc1013d9e88",
+        "bytes": 1209920,
         "triangles": 13485,
         "materials": 7,
         "images": 0,
         "min": [
           -71.05999755859375,
-          0.4000000059604645,
+          -8.470196723937988,
           -73.1500015258789
         ],
         "max": [
           76.28500366210938,
-          40,
+          33,
           72.1050033569336
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.closeup.glb",
-        "hash": "sha256:5577fda90709ca2eef7ffda101b7580256c7622393c0b03d10ca33c0c68e47ed",
-        "bytes": 1306280,
+        "hash": "sha256:1c70f1daab8d2a72c3635f078b13839660f0b82f2b07f18444b9d3828f79c595",
+        "bytes": 1306392,
         "triangles": 14971,
         "materials": 7,
         "images": 0,
         "min": [
           -71.05999755859375,
-          0.4000000059604645,
+          -8.470196723937988,
           -73.1500015258789
         ],
         "max": [
           76.28500366210938,
-          40,
+          33,
           72.1050033569336
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       }
     ],
-    "notes": "Six GLBs have zero errors/warnings and no embedded images. Six focused regressions pass deterministic bytes,LOD caps,shared surfaces and homogeneous GPU views; published keep body/dome/crown silhouette; open wards and all three halls; complete oblique gate passage; Wogan opening and supported side/lintel regions; hollow offset gatehouse crowns. Corrected unnecessary unrelated aperture tessellation and duplicate western-hall fill. Strict medium-fi audit,scoped LOD check and source generator --check pass. Scene validates and simulates30ticks with hash sha256:55a6e9a47e09c4890a0f0efd6a959c5844193646eae220b13afe7d02a084c556. Imported coarse hull is not walkable collision approval."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain770/3947/13485/14971 triangles; initial skyline+district download totals441416 bytes. Separate POSITION/NORMAL streams retained."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:87d4ddbb65cc9c2bab3083935b5ec1baf224d46087f80bcd6d43cd21af96a752",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.skyline.glb",
-        "hash": "sha256:e9d0de9072daaa4d4a7e3c5807aaddff2a5ca8f20dcf29a0a2e7a27602f708d3",
-        "bytes": 67416,
+        "file": "model.skyline.glb",
+        "hash": "sha256:356c38196f24bb3e2f2c77d546bb58dd99472d9af9133c3ba13ee842f7f5a401",
+        "bytes": 78864,
+        "gzipBytes": 13366,
         "triangles": 770,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -71.05999755859375,
-          0.4000000059604645,
-          -73.1500015258789
-        ],
-        "max": [
-          76.28500366210938,
-          40,
-          72.1050033569336
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "cpuBytes": 77448,
+        "gpuBytes": 77448,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.district.glb",
-        "hash": "sha256:c5cd7733589f8d772973a7a7aada60cdfa6ad9851fbdb52ad2b6095c6ec49138",
-        "bytes": 362440,
+        "file": "model.district.glb",
+        "hash": "sha256:df579cae83faacd5fd4ef307a12f69079f942fcc34b671a95e00bec3d9e1aaaa",
+        "bytes": 362552,
+        "gzipBytes": 102080,
         "triangles": 3947,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -71.05999755859375,
-          0.4000000059604645,
-          -73.1500015258789
-        ],
-        "max": [
-          76.28500366210938,
-          40,
-          72.1050033569336
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "cpuBytes": 354416,
+        "gpuBytes": 354416,
+        "errorMeters": 0.7,
+        "drawCalls": 7
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.street.glb",
-        "hash": "sha256:c394b0829c41029e530229dd41eed7294e3c864618b92dd74c85ff2fc16ccf93",
-        "bytes": 1209808,
+        "file": "model.street.glb",
+        "hash": "sha256:97c65e6344c54bf700cca75de87758fdd1fad8b6683c3c4447963dc1013d9e88",
+        "bytes": 1209920,
+        "gzipBytes": 322756,
         "triangles": 13485,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -71.05999755859375,
-          0.4000000059604645,
-          -73.1500015258789
-        ],
-        "max": [
-          76.28500366210938,
-          40,
-          72.1050033569336
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "cpuBytes": 1201736,
+        "gpuBytes": 1201736,
+        "errorMeters": 0.3,
+        "drawCalls": 7
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.closeup.glb",
-        "hash": "sha256:5577fda90709ca2eef7ffda101b7580256c7622393c0b03d10ca33c0c68e47ed",
-        "bytes": 1306280,
+        "file": "model.closeup.glb",
+        "hash": "sha256:1c70f1daab8d2a72c3635f078b13839660f0b82f2b07f18444b9d3828f79c595",
+        "bytes": 1306392,
+        "gzipBytes": 347941,
         "triangles": 14971,
-        "materials": 7,
-        "images": 0,
-        "min": [
-          -71.05999755859375,
-          0.4000000059604645,
-          -73.1500015258789
-        ],
-        "max": [
-          76.28500366210938,
-          40,
-          72.1050033569336
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "cpuBytes": 1298204,
+        "gpuBytes": 1298204,
+        "errorMeters": 0.1,
+        "drawCalls": 7
       }
     ],
-    "initialDownloadBytes": 429856,
-    "notes": "770/3947/13485/14971 triangles meet skyline/district/street/closeup targets. Initial two-level download429856bytes before shared materials; closeup1306280bytes. Merged groups1/7/7/7. Ordinary laptop/phone physical timing,streaming and continuous upgrade tests remain pending."
-  }
+    "initialBytes": 441416,
+    "notes": "skyline: 770 triangles, 78864 bytes, 1 draws; district: 3947 triangles, 362552 bytes, 7 draws; street: 13485 triangles, 1209920 bytes, 7 draws; closeup: 14971 triangles, 1306392 bytes, 7 draws. Initial skyline+district 441416 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Ruins, cliff shape, Wogan aperture and reconstructed floors are approximate; full interiors, complete cave circulation, collision and water simulation excluded.",
+    "Five common graphs plus explicit glass/foliage color slots; zero embedded images. Host terrain supplies the surrounding hillside; bounded castle cliff retained.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

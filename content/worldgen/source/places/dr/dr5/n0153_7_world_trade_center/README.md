@@ -17,7 +17,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-4,832 triangles; 13,624 vertices; 5 material groups; 551,604 bytes. Native bounds: -40.858, 0.000, -24.834 to 40.858, 226.030, 24.834. Source hash: `sha256:fab49ffd00a437bfb22dfb0f211b344da819264e62c4960ef2ad5065250a8d21`.
+4,852 triangles; 13,672 vertices; 5 material groups; 553,576 bytes. Native bounds: -40.858, 0.000, -24.834 to 40.858, 226.030, 24.834. Source hash: `sha256:5c0b77ec0b6773166e023dfdfce7d1e141097c51b27588dea8792468c0ca867e`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
@@ -32,4 +32,4 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0153` (
 - Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
 - Static daylight facade. The scrim uses continuous modeled triangular strips with panel seams; the individual micro-prism orientation field and nighttime LED art are not reconstructed. Roof services are simplified within mapped extents.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

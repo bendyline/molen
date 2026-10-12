@@ -25,11 +25,11 @@ Mapped footings and court reproduce separately attributed OpenStreetMap data und
 
 ## Model and axes
 
-7,590 triangles; 22,770 vertices; 6 material groups; 914,372 bytes. Native bounds: -73.500, 0.000, -56.326 to 60.400, 40.000, 56.326. Source hash: `sha256:b139e307657f796d5df2dd8efb0cdfd81d7591de8c7da3bfc8a7c1115f402f06`.
+7,590 triangles; 22,770 vertices; 6 material groups; 914,540 bytes. Native bounds: -73.500, -6.145, -56.326 to 60.400, 41.000, 56.326. Source hash: `sha256:ddc907beb6d25929c6d0b664f65919ce33ef6a5e9ae28ba3633385e634281cce`.
 
-{"up":"+Y","lateral":"+X approximately east along cached map axis; signed registration pending","longitudinal":"+Z approximately south; entrance faces native -X","origin":"Cached map envelope center. Y0 lower estimated footing;Y5 estimated court/entrance deck."}
+{"up":"+Y","lateral":"+X approximately east along cached map axis; signed registration pending","longitudinal":"+Z approximately south; entrance faces native -X","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Original approximate exterior on mapped footing/court rings;inactive until real-site review.
+Inspected picture confirms flat crenellated dark towers, corbelled crowns, warm curtain walls and pale stacked entrance arch. Retained mapped tower-footing/court geometry and standard viewer PMTiles set approximate location, scale and western-entry orientation. A reconstructed1m working rise keeps court and entry above coarse sampled ground; bounded tower-footing bottoms extend beneath terrain. Anchor 14.253249701,40.838300344; heading -0.308685078188; standard PMTiles datum 15.497152127096433m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -37,12 +37,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0289` (
 
 ## Pending work
 
-- Original approximate current exterior: full mapped footings/court,estimated upper curtain outline,shaft radii,heights,gate,chapel,Barons Hall and bridge. No measured exterior-height evidence;maximum40m is an authoring estimate.
-- Five flat crenellated towers,real stacked gate openings and one open courtyard survive skyline. Street adds9 court arcades,31 southern upper arches,glazed east loggia,rose window and stair. Reliefs/statuary are symbolic broad forms;fine sculpture,masonry fluting/scales,flags,lettering,microbevels and full interiors omitted.
-- Four existing256²shared graphs:basalt,sandstone,marble and timber. Linear palette tints,metric UVs and per-graph linear means for far colors. No unique images,photographs,baked shadows or AO in GLBs.
-- Exterior gallery and chapel/hall controls are photograph-based estimates;interior26m/28m documentation does not certify their exterior bounds. Research inspected7 architecture photos;one additional chapel photo failed retrieval and supplies no evidence.
-- Synthetic Italian-palazzo neighbors and flat review ground are style comparisons,not geographic proof. Inactive draft,replaceFootprint=false. Signed orientation,map fit,ground datum and terrain remain pending.
-- Preloaded forced-LOD motion samples do not certify automatic selection,network upgrades,subframe shimmer or physical-device frame timing.
+- Approximate current exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Original detailed master/hash/recipe preserved. Tower, chapel, hall, gate and court-floor dimensions remain reconstructed; pale gate reliefs are simplified geometric masses.
+- Five common graphs plus explicit dark recess slot, zero embedded images. No interiors, terrain cutouts, surrounding plaza/city or exact ground levels.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

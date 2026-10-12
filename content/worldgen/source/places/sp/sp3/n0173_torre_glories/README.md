@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Barcelona’s elliptical glazed tower with a curved crown, individually colored metal pixels,4,500 recessed window cells, separate tilted glass sunshades and a framed pale-glass dome.
+Barcelona oval geyser silhouette with irregular red-to-blue pixels, daylight glass veil, fine near louvres and a pale framed dome.
 
 ## Evidence and reconstruction
 
@@ -17,9 +17,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-142,044 triangles; 398,302 vertices; 5 material groups; 16,046,604 bytes. Native bounds: -20.005, 0.000, -18.555 to 20.093, 144.400, 18.555. Source hash: `sha256:73e27f0eb39b8aba789897e6c66cb7dfc1a1d8e4682805f15e8270bad2cb0165`.
+49,662 triangles; 148,876 vertices; 4 material groups; 5,958,320 bytes. Native bounds: -20.045, 0.000, -18.529 to 20.045, 144.400, 18.529. Source hash: `sha256:5de47f5859d6d792c9e421a6e14f0ef145d251a0be60e82800562802b4d2d786`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east/slightly north","front":"+Z south/slightly west; no surveyed entrance phase","origin":"Exact-QID ground-contact ellipse frame"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0173` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Individual color/window placement, intermediate dome curvature, glass angles and support schedules are reconstructed from architect and supplier references. The4,500 modeled window cells preserve the published quantity but are not a surveyed opening map. Night lighting, below-grade auditorium and external entrance pavilion are excluded.
+- Original 142044-triangle/16046604-byte master remains exactly reproducible from the unchanged global recipe, including 4,500 original reconstructed window cells and alpha louvres. Reviewed source/browser levels preserve the oval lower shaft, continuous rounded crown, irregular warm-red to cool-blue pixel composition and pale glazed dome with meridian/parallel framing. Opaque combined skin averages the visual contribution of the layered glass instead of submitting a second full transparent facade. Near levels retain tilted pale louvre strips and representative window pixels; distant levels average window coverage and remove small slats. Source dimensions and ellipse use map evidence. Crown profile with vertical-to-curved transition at 76.4 m, colored shell ending115 m, 25 tint families, pixel/windows/slat phase, oculus size and member pitches remain reconstruction, not surveyed fabrication dimensions. Supplier gives 25 colors versus current operator 26; supplier gives 144.4 m while rounded summaries give 144 m and original architect program 142 m. Pedelta webpage dome 32 m radius 35 m is inconsistent with mapped tower width; its radius is not used. Two shared 256px concrete/painted-metal graphs, opaque palette glazing, no embedded images or copied facade photo. The source master preserves 4,500 cells; reduced browser derivatives deliberately aggregate them and do not claim an exact opening count or schedule. Night LED show, observation interiors, external pavilion, underground auditorium, exact doorway and terrain slope excluded. Physical phone/laptop and dense-city timing remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

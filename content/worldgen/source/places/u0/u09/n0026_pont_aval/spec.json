@@ -55,7 +55,14 @@
       8
     ],
     "bottomBoxWidthMeters": 3.5,
-    "completedYear": 1968
+    "completedYear": 1968,
+    "spanControlWestToEastMeters": [
+      67.47,
+      92,
+      81.48,
+      71.55
+    ],
+    "basis": "AFGC/Prade 1982 longitudinal and cross sections constrain the skew crossing, unequal spans, box depths and girder spacing. Motorway surface markings follow archival photograph geometry, not a verified 2026 traffic regime."
   },
   "reconstruction": {
     "skewShear": 0.56,
@@ -630,7 +637,8 @@
         16.41
       ]
     },
-    "notes": "The archival normal-water origin26.34m matches current IGN RGE ALTI at the crossing. Road39.2–42.75m follows the primary longitudinal section; official BD TOPO3D motorway axes independently confirm elevated approaches, with2.5m stated altitude accuracy. Host terrain must use the same NGF-IGN69 vertical frame or convert heights. The exact authored skew/curve polygon suppresses only loaded bridge road segments; two endpoint heights join the remaining motorway approaches. PositiveX is east from the67.5m end span toward the71.5m end span. Preserved terrain/road evidence is under content/earth/structures/evidence/bridge-terrain/ign/."
+    "notes": "The archival normal-water origin26.34m matches current IGN RGE ALTI at the crossing. Road39.2–42.75m follows the primary longitudinal section; official BD TOPO3D motorway axes independently confirm elevated approaches, with2.5m stated altitude accuracy. Host terrain must use the same NGF-IGN69 vertical frame or convert heights. The exact authored skew/curve polygon suppresses only loaded bridge road segments; two endpoint heights join the remaining motorway approaches. PositiveX is east from the67.5m end span toward the71.5m end span. Preserved terrain/road evidence is under content/earth/structures/evidence/bridge-terrain/ign/.",
+    "reviewSurface": "water"
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -674,12 +682,217 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Four unequal skew spans with four independent variable-depth concrete boxes, separate ribbed piers, twin curved and flared carriageways, pale cornices and nine paired median lamps.",
+    "epoch": "Archival Prade 1982 section and 2012 exterior photographs; current Paris 2026 account confirms the crossing identity and 312.5 m length but does not establish current lane use.",
+    "master": "Original 248848-triangle master is preserved byte-for-byte. Browser derivatives are separate models.",
+    "browser": "Skyline retains four boxes, all five support stations, twin road slabs, fascia and median lamps. District retains barriers and bearings. Street adds sparse rail pickets, road markings and granite kerbs. Closeup retains fluted piers, reduced precast seams, service pipes, elliptical lamps and drains.",
+    "exclusions": "Fine interlocking expansion fingers, conduit hangers and dense railing subdivisions remain in the master. Adjacent ramps, unverified protective fencing, current traffic restrictions and surveyed minor fitting dimensions are excluded."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "groundY": 0
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/pont-aval-browser-model.mjs",
+    "export": "buildPontAvalSkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPontAvalDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "iron": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "steel": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "road": {
+            "localRef": "palette:#fffefe",
+            "slot": "wall",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "localRef": "palette:#fffeff",
+            "slot": "trim",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildPontAvalStreet",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "iron": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "steel": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "road": {
+            "localRef": "palette:#fffefe",
+            "slot": "wall",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "localRef": "palette:#fffeff",
+            "slot": "trim",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPontAvalCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "iron": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "steel": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "road": {
+            "localRef": "palette:#fffefe",
+            "slot": "wall",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "localRef": "palette:#fffeff",
+            "slot": "trim",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "four-boxes-district",
+      "position": [
+        -54,
+        5,
+        22
+      ],
+      "lookAt": [
+        -78,
+        9,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "road-street",
+      "position": [
+        48,
+        19,
+        9
+      ],
+      "lookAt": [
+        -55,
+        13,
+        7
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "pier-ribs-closeup",
+      "position": [
+        -71,
+        4,
+        29
+      ],
+      "lookAt": [
+        -89,
+        4,
+        1
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "curved-east-street",
+      "position": [
+        170,
+        45,
+        60
+      ],
+      "lookAt": [
+        111,
+        14,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
     "The absolute placement is consistent with current IGN NGF-IGN69 terrain/water and BD TOPO3D road evidence. Hosts using a different height reference need a datum conversion; official road coordinates have2.5m stated altitude accuracy.",
     "The exterior reflects photographs and available aerial; changes to traffic markings or lamps since those images require current reference verification.",
-    "The crossing ends at its abutments; adjacent elevated motorway ramps remain separate map-driven structures."
+    "The crossing ends at its abutments; adjacent elevated motorway ramps remain separate map-driven structures.",
+    "The source is archival geometry, not a verified depiction of current motorway traffic allocation. Closeup draws selected precast seams and pier ribs at reduced frequency; no change to surveyed span stations or box dimensions is implied.",
+    "Skyline/district/street/closeup are independently authored 1000/4000/16000/64000-triangle derivatives. Error allowances describe simplified components, not a measured whole-mesh Hausdorff distance."
   ],
   "qaCameras": [
     {

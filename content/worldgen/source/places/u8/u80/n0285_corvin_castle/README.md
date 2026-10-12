@@ -20,11 +20,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-5,936 triangles; 17,808 vertices; 6 material groups; 715,876 bytes. Native bounds: -62.600, 0.000, -94.000 to 65.205, 45.000, 35.190. Source hash: `sha256:4a40af1bb4f94a1349e8c0ccb4c02633956382953d69733285d014fb60b676d3`.
+5,936 triangles; 17,808 vertices; 6 material groups; 716,060 bytes. Native bounds: -62.600, -11.237, -94.000 to 65.205, 45.800, 35.190. Source hash: `sha256:27175a017af5e99ded045e07fe522210cf1587612c4d5560a707ac3c02cf5eb6`.
 
-{"up":"+Y","lateral":"+X along cached long axis, toward main northern end","longitudinal":"+Z across courtyard; bridge projects toward -Z","origin":"Cached mapped envelope center; Y0 at estimated valley attachment plane, castle court Y9."}
+{"up":"+Y","lateral":"+X along cached long axis, toward main northern end","longitudinal":"+Z across courtyard; bridge projects toward -Z","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Original approximate exterior study with cached mapped boundary;inactive pending real-site/terrain review.
+Inspected aerial picture confirms steep red gate roof, patterned round tower, projecting palace oriels, long entrance bridge and detached Neboisa tower/gallery. Retained mapped envelope and standard viewer PMTiles set approximate location, scale and bridge-facing orientation. The working court remains above coarse ground on a bounded reconstructed plinth; bridge deck descends toward the PMTiles approach and pier bottoms extend below terrain. Anchor 22.888262641,45.749130243; heading 0.984834753738; standard PMTiles datum 255.94852799688616m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -32,12 +32,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0285` (
 
 ## Pending work
 
-- Current exterior study; roof arrangement and broad Gothic gallery/oriel identity are original approximate interpretations of operator photographs. Exact internal footprints and four named small tower positions need review.
-- Cached exterior outline retained as evidence,not filled as a solid castle. Separate main rock plinth and detached Neboisa footing are estimated; low gallery arches remain open. Main entrance bridge71m estimated,not mapped or surveyed.
-- Reported gate22m height definition uncertain:study uses22m body plus14m estimated roof aboveY9 courtyard. Painted tower30m interpreted as body plus roof;all remaining heights estimates.
-- Four oriels and selected broad Gothic openings/court loggia modeled,not complete tracery,individual joints,thin rails,finials,flags,statues,interiors or modern fixtures.
-- Shared256²limestone,terracotta tile,slate and wood graphs;vertex palettes,metricUVs,no research imagery,unique textures or baked shading.
-- Synthetic Balkan-konak context supplies style comparison only. Inactive geographic draft,replaceFootprint=false. Exact signed direction,bridge gradient,terrain and base datum require in-world review. Physical devices and actual adaptive-streaming path unmeasured.
+- Approximate current exterior from one inspected picture and standard viewer PMTiles, without survey accuracy or exact doorway/threshold fit.
+- Detailed original architectural master and recipe preserved; derivative reconstructs bounded foundations, a level court and bridge approach.
+- Roof pattern, openings, stone plinth and bridge gradient approximate. No interiors, trees, terrain cutouts or exact stream bank/water levels.
+- Five shared graphs plus an explicit dark glass slot; zero embedded images. Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

@@ -27,11 +27,11 @@ Six existing shared 256-square graphs, linear tints and central metric UV repeat
 
 ## Model and axes
 
-23,061 triangles; 69,183 vertices; 7 material groups; 2,771,512 bytes. Native bounds: -69.008, 0.000, -67.400 to 63.862, 43.550, 64.550. Source hash: `sha256:585826749e3d3b2f6b5f6510528977aba9aab011b88b6d4c6b26459b7988ff15`.
+23,061 triangles; 69,183 vertices; 7 material groups; 2,771,520 bytes. Native bounds: -69.008, -9.277, -67.400 to 63.862, 37.550, 64.550. Source hash: `sha256:d64a83cf5b14811c835793ad8808a37da26f2bf1eb7bab825c69d038262c075f`.
 
-{"up":"+Y","front":"West Berrecci entry; native +X east and +Z south","longitudinal":"+Z along eastern palace wing; coordinates bake all footprint angles","origin":"Palace research reference anchor. Provisional courtyard attachment Y8.2; Senator tower toe Y0. Actual sloped hill and floor datum unverified."}
+{"up":"+Y","front":"West Berrecci entry; native +X east and +Z south","longitudinal":"+Z along eastern palace wing; coordinates bake all footprint angles","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South geometry bakes heading 0 from own attributed map traces. Provisional courtyard attachment Y8.2 and Senator toe Y0 require real terrain and vertical-datum review.
+The inspected courtyard pictures support two arcaded gallery levels, a taller upper colonnade, pale masonry and steep tiled roof groups. Retained east/south palace and tower map controls set approximate location, scale and orientation. Standard viewer PMTiles supply the surrounding hill; the derivative translates the old study-6m, retains the reconstructed courtyard floorY2.35 and extends palace/tower wall toes to coarse sampled ground. This is the palace asset, not every independent landmark on Wawel hill. Anchor 19.9366,50.0544; heading 0; standard PMTiles datum 230.8644554645171m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -39,13 +39,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0299` (
 
 ## Pending work
 
-- Exact-QID palace relation and courtyard preserve building identity. Separate roof/tower/passages retain their own attribution; the whole-hill castle polygon is excluded as a building footprint.
-- All vertical sections, copper helm profiles, courtyard bay counts, roof ridge placement and floor offsets are original estimates from primary current exterior views. No verified primary surveyed palace height.
-- Open courtyard, two arcaded tiers and tall upper columns are modeled. Fine heraldry, courtyard frescoes, sculpture, interior rooms and roof construction details are simplified or excluded.
-- Provisional courtyard attachment Y8.2 and Senator toe Y0 account for a lower defensive tower base. Real hill terrain, gate slope, stairs and all floor/deck contacts remain unverified. No embedded hill ground or walkable collision claim.
-- Cathedral and its domes/bell towers, detached Sandomierska/Thieves towers, other Wawel Hill buildings and gardens require separate assets; no independent landmark is absorbed into this palace GLB.
-- Six existing shared 256-square material graphs plus flat glass use linear tints and central metric UV repeats. No new or embedded image, photo texture or downloaded mesh.
-- Synthetic Molen/Earth captures do not verify actual site fit, continuous streaming transitions or performance on physical ordinary laptops and phones.
+- Approximate palace exterior and fit from inspected courtyard pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Gallery/roof details and reconstructed floors are interpreted; cathedral, other hill buildings, full interiors and collision excluded.
+- Six common graphs plus explicit glass color slot, zero embedded images. Host terrain supplies the surrounding hill; no terrain cutout or river simulation.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

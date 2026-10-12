@@ -48,7 +48,21 @@ try {
     const page = await browser.newPage({ viewport: { width: 1200, height: 760 } });
     page.on('pageerror', (e) => errors.push(e.message));
     const context = new URLSearchParams(spec.mediumFiContext ?? {});
+    if (process.argv.includes('--reflections')) context.set('reflections', '1');
     const sourceScene = JSON.parse(await readFile(resolve(dir, 'scene.json')));
+    const reviewScope = await readFile(resolve(dir, 'review-scope.json'), 'utf8')
+      .then(JSON.parse)
+      .catch((error) => {
+        if (error.code === 'ENOENT') return {};
+        throw error;
+      });
+    const fixtureEntities = (reviewScope.previewEntities ?? []).map((entity) => {
+      const rendered = sourceScene.entities.find((candidate) => candidate.id === entity.id);
+      if (!rendered || JSON.stringify(rendered) !== JSON.stringify(entity))
+        throw new Error(`Stale source-local review surface ${entity.id}`);
+      return rendered;
+    });
+    if (fixtureEntities.length) context.set('fixtureEntities', JSON.stringify(fixtureEntities));
     const terrainFixture = {};
     if (sourceScene.terrain) {
       for (const key of ['descriptor', 'heightmap']) {
@@ -89,8 +103,12 @@ try {
         for (const mode of ['economy', 'high'])
           await shot(`${distance}-${time}-${mode}`, { distance, time, mode });
     await shot('silhouette', { distance: 'skyline', mode: 'economy', silhouette: true });
-    for (const camera of spec.qaCameras)
-      await shot(camera.name, { position: camera.position, lookAt: camera.lookAt });
+    for (const camera of [...spec.qaCameras, ...(spec.qaLodCameras ?? [])])
+      await shot(camera.name, {
+        position: camera.position,
+        lookAt: camera.lookAt,
+        level: camera.reviewLod,
+      });
     for (const level of ['skyline', 'district', 'street', 'closeup'])
       await shot(`transition-${level}`, { distance: 'block', level });
     const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'))),
@@ -107,6 +125,7 @@ try {
       neighborTriangles: await page.evaluate(() => window.mediumFi.neighborTriangles),
       runtimeLods: sidecar.runtimeLods.levels,
       terrainFixture,
+      fixtureEntities,
       context: sourceScene.terrain
         ? 'Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.'
         : `Synthetic procedural neighbors at review Y=${spec.mediumFiContext?.groundY ?? 0}; not evidence of geographic fit.`,

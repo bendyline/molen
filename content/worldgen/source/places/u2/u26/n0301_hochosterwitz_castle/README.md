@@ -28,11 +28,11 @@ Five shared256-square graphs and linear tints,flat glass,metric repeats. No embe
 
 ## Model and axes
 
-16,490 triangles; 49,470 vertices; 6 material groups; 1,982,548 bytes. Native bounds: -124.961, -7.070, -135.147 to 78.341, 115.783, 59.589. Source hash: `sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5`.
+16,286 triangles; 48,858 vertices; 6 material groups; 1,958,060 bytes. Native bounds: -124.961, -100.530, -135.147 to 78.341, 25.554, 59.589. Source hash: `sha256:a077e82001ec7afeba6b09d3ac363da713b0ffab1b150831f71fa585a13200f0`.
 
-{"up":"+Y","front":"West-facing main front; all map bearings baked into native +X east/+Z south","longitudinal":"Summit long wing runs approximately NNE/SSW; authoring plan axis is not facade approval","origin":"Horizontal exact-QID castle research anchor; modelY0 at first-gate coarse terrain datum, summit research contactY 92.0827"}
+{"up":"+Y","front":"West-facing main front; all map bearings baked into native +X east/+Z south","longitudinal":"Summit long wing runs approximately NNE/SSW; authoring plan axis is not facade approval","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South geometry preserves all original map controls with heading0. One coarse terrain datum yields provisional multi-level architecture;source retains gate and passage attribution. No geographic or certified vertical-datum approval.
+The inspected aerial picture supports pale summit wings, dark slate roofs, round turrets, entry tower and descending walls/gates. Retained east/south map geometry sets approximate location, scale and orientation. Standard viewer PMTiles supply the hill; the derivative translates the old611.9699m first-gate study datum to the703.9600882109237m anchor datum, uses one retained PMTiles sampler for walls/routes at every level and raises reconstructed gate/summit floors only enough to clear coarse ground. No terrain mesh is embedded in the architecture. Anchor 14.452350896,46.755908856; heading 0; standard PMTiles datum 703.9600882109237m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -40,14 +40,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0301` (
 
 ## Pending work
 
-- Castle way122050909 retains exactQ679248. All14 named gates,church,chapel,watchtowers,walls and separate passage routes retain individual map attribution. Native East/South geometry bakes heading0; an undirected map axis is not orientation approval.
-- All architectural heights,roof pitches,turret and spire sections,bay counts,gate apertures,courtyard shapes and grade contacts are original photographic estimates. No primary surveyed architectural dimensions verified.
-- Relative ground levels come from coarse bilinear zoom15 Terrarium elevation research. This is not a building survey or a certified vertical datum; it can miss narrow terraces and stairs. Terrain contacts and path gradients require actual-site review.
-- Runtime GLB contains architecture only. The hill,rocks,vegetation,gardens and ground are supplied by host terrain; the numerical hill fixture is capture evidence and does not approve geographic fit.
-- Court remains open to sky; all14 mapped access gates retain separate passage alignment. Fine heraldry,portrait reliefs,frescos,inscriptions,individual balusters,interior rooms,museum collections and inclined railway machinery are simplified,excluded or separate.
-- Five existing shared256-square graphs,linear palette tints,metric UVs; flat glazing. No embedded/new photographic texture,downloaded mesh or copied printed plan.
-- Operator images remain private research only; not redistributed. Historical aerial/exterior photographs may differ from current roofs/restoration and need review.
-- Synthetic and terrain-research captures do not prove current terrain fit,continuous loading/upgrades,walkable collision or physical laptop/phone performance. Geographic/fidelity status remains pending.
+- Approximate exterior and hillside fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Fourteen mapped gate masses/openings, church, summit and walls are interpreted; individual ornamental/archaeological detail, interiors and collision excluded.
+- Five common graphs plus explicit glass color slot, zero embedded images. Host terrain supplies the hill; vegetation, water simulation and terrain cutouts excluded.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

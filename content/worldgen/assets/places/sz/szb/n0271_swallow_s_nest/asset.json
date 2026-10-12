@@ -11,57 +11,49 @@
       "closeup": "model.closeup.glb"
     }
   },
-  "hash": "sha256:491ef652f9f626fbf1645a01525d4e4811d1574aafaf1a68318759c441b958a4",
-  "sourceHash": "sha256:0c7db20070ec6f948ab365fd15450270ecd96aeee3489309b305ac9b1a7a17e1",
+  "hash": "sha256:770b4727a45c7c459d68950b1b394545f85151c54498b17b4ea5d7e42d6ac4e6",
+  "sourceHash": "sha256:4165df4bac8bc31cfc353823c17aca24e0d23ce69746449c513efa3a424d1e66",
   "bounds": {
     "aabb": {
       "min": [
-        -11.57,
-        0,
-        -4.47
+        -11.909,
+        -5.5373,
+        -4.6731
       ],
       "max": [
-        11.92,
-        12,
-        5.435
+        12.2336,
+        18,
+        5.5515
       ]
     },
     "sphere": {
       "center": [
-        0.175,
-        6,
-        0.4825
+        0.1623,
+        6.2313,
+        0.4392
       ],
-      "radius": 13.5988
+      "radius": 16.4841
     }
   },
   "stats": {
-    "triangles": 9123,
-    "vertices": 23793,
+    "triangles": 9435,
+    "vertices": 28305,
     "meshes": 1,
     "primitives": 5,
     "materials": 5,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 968784
+    "sizeBytes": 1135016
   },
   "nodes": [
     {
       "name": "worldgen",
-      "triangles": 9123
+      "triangles": 9435
     }
   ],
   "nodesTruncated": false,
   "animations": [],
   "materials": [
-    {
-      "name": "concrete_plain-wall",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
     {
       "name": "stone_limestone-wall",
       "slots": [
@@ -87,6 +79,14 @@
       "alphaMode": "OPAQUE"
     },
     {
+      "name": "stone_limestone_weathered-foundation",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
       "name": "window-window",
       "slots": [
         "baseColor"
@@ -100,30 +100,30 @@
       {
         "node": "worldgen",
         "points": [
-          -11.57,
-          0,
-          -4.47,
-          -11.57,
-          0,
-          5.435,
-          -11.57,
-          12,
-          -4.47,
-          -11.57,
-          12,
-          5.435,
-          11.92,
-          0,
-          -4.47,
-          11.92,
-          0,
-          5.435,
-          11.92,
-          12,
-          -4.47,
-          11.92,
-          12,
-          5.435
+          -11.909,
+          -5.5373,
+          -4.6731,
+          -11.909,
+          -5.5373,
+          5.5515,
+          -11.909,
+          18,
+          -4.6731,
+          -11.909,
+          18,
+          5.5515,
+          12.2336,
+          -5.5373,
+          -4.6731,
+          12.2336,
+          -5.5373,
+          5.5515,
+          12.2336,
+          18,
+          -4.6731,
+          12.2336,
+          18,
+          5.5515
         ]
       }
     ]
@@ -131,57 +131,57 @@
   "extensionsUsed": [],
   "runtimeLods": {
     "recipe": 1,
-    "masterHash": "sha256:491ef652f9f626fbf1645a01525d4e4811d1574aafaf1a68318759c441b958a4",
+    "masterHash": "sha256:770b4727a45c7c459d68950b1b394545f85151c54498b17b4ea5d7e42d6ac4e6",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:414e5823ede6c65aba951df369271ec647d87bc426b45ac21c99d2f28e7d0a45",
-        "bytes": 57432,
-        "gzipBytes": 10137,
-        "triangles": 688,
-        "cpuBytes": 56040,
-        "gpuBytes": 56040,
-        "errorMeters": 0.2,
+        "hash": "sha256:f5c23427dc0122f62cfdd1d70720084ff0a37e8479dd1aba95b388675e7dd6af",
+        "bytes": 74608,
+        "gzipBytes": 11152,
+        "triangles": 720,
+        "cpuBytes": 73188,
+        "gpuBytes": 73188,
+        "errorMeters": 1,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:713cd7bc00424a48aa424c05c59b35d24cb81fc282fd823d6051c37f03372f0c",
-        "bytes": 216776,
-        "gzipBytes": 42514,
-        "triangles": 2663,
-        "cpuBytes": 210632,
-        "gpuBytes": 210632,
-        "errorMeters": 1.5,
+        "hash": "sha256:cb482a3e909b53b5d6837a8410b359bb29af72563c90873917dd023a6f6fa3ef",
+        "bytes": 263812,
+        "gzipBytes": 56441,
+        "triangles": 2911,
+        "cpuBytes": 257624,
+        "gpuBytes": 257624,
+        "errorMeters": 0.7,
         "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:844f3f629b97a0eccef29cb41b12de8718d71958da644ed93a987c4694a8f7ac",
-        "bytes": 672296,
-        "gzipBytes": 147555,
-        "triangles": 8555,
-        "cpuBytes": 666104,
-        "gpuBytes": 666104,
-        "errorMeters": 0.5,
+        "hash": "sha256:f915c1de903e7f772bc5655be12ffd75ec0155366c866b1ff994bd33f84bf245",
+        "bytes": 752028,
+        "gzipBytes": 164596,
+        "triangles": 8835,
+        "cpuBytes": 745796,
+        "gpuBytes": 745796,
+        "errorMeters": 0.3,
         "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:f235ff233326579a788d76a9495354ae0cd26e2c9d1630c306fac6e89f23e5e9",
-        "bytes": 714804,
-        "gzipBytes": 157375,
-        "triangles": 9123,
-        "cpuBytes": 708608,
-        "gpuBytes": 708608,
-        "errorMeters": 0.15,
+        "hash": "sha256:d66bb80f35b582aea6c2c25b33ded1a59bdadf14cf3280257a699c84b42677c3",
+        "bytes": 803792,
+        "gzipBytes": 175750,
+        "triangles": 9435,
+        "cpuBytes": 797564,
+        "gpuBytes": 797564,
+        "errorMeters": 0.1,
         "drawCalls": 5
       }
     ],
-    "recipeHash": "sha256:05dfb663622a6c9d61745abe0e4f6443d0ce45a76d3c821f55338d262b9bd43f"
+    "recipeHash": "sha256:ca4bcb31ba84779dc14fc5578332e4e4ef1ef94754af896a9047123c2b08c2d4"
   }
 }

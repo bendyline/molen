@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The 1933 RCA slab and west/NBC wings, with separately mapped elevator setbacks, recessed paired sash, ribbed aluminum spandrels, open Gothic leaf parapets, polychrome entrance reliefs and three-tier Top of the Rock crown.
+Complete medium-fi Rockefeller slab, NBC studios and western wing, with six east revolving doors, western triple portal, limestone piers and three observation tiers.
 
 ## Evidence and reconstruction
 
@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-201,315 triangles; 571,591 vertices; 10 material groups; 22,998,516 bytes. Native bounds: -81.565, 0.000, -28.799 to 82.048, 259.074, 28.799. Source hash: `sha256:829901c17931169f48c325c3d63cb7ea8a6057251eb0e0e054967b4a900e6810`.
+202,765 triangles; 574,351 vertices; 10 material groups; 23,115,276 bytes. Native bounds: -82.600, 0.000, -28.799 to 82.042, 259.074, 28.799. Source hash: `sha256:ee752f03a4c05e5e722b89d09f33a429c39eca38f4db9ea2dbfa4c673a53c7c3`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
@@ -33,7 +33,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0190` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Intermediate map-part heights, facade bay pitch, ornamental leaf proportions, three figurative reliefs and fine rooftop equipment are reconstructed from primary photographs and documentation. Rooftop tier dimensions and equipment offsets are approximate; lowered attractions are static and unoccupied. Current tenant lettering, precise relief inscriptions, the separate rink/Prometheus complex, flagpoles and interiors are excluded.
+- Complete medium-fi exterior includes all fourteen mapped parts, slender eastern slab, elevator setbacks, low NBC studios, western wing, three observation levels, lowered Skylift and Beam. Original201315-triangle source recipe remains in Git; reviewed source corrects the main six revolving-door casings and western triple-portal treatment. Door locations and western facade relief are reconstructed, not current surveyed hardware. LPC1985 photos/descriptions inform historic architecture; present owner pages corroborate buff limestone, aluminum spandrels and current rooftop attractions. Individual equipment offsets, intermediate heights, facade bay pitch and tier extents remain reconstructed. District uses canonical window_punched as a generic bay graphic; exact pane ratios/colors differ from street geometry. Small facade ribbing, eyelet perforations and inscriptions are below selected browser error bounds; pointed leaf silhouettes remain. Original master similarly omits tiny eyelets despite legacy camera names. Separate rink/Prometheus, Channel Gardens, neighboring Center buildings, tenant lettering and interiors excluded. Absolute grade and physical-device timings unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

@@ -12,31 +12,32 @@
   },
   "visualBrief": "Dublin Castle current exterior campus: open Georgian Upper and Lower Courts, Bedford clock pavilion and flanking gates, round Record and Bermingham towers, pinnacled Gothic Chapel Royal, circular Dubh Linn garden, Coach House and Chester Beatty clock range.",
   "mediumFiContext": {
-    "scale": "1.2",
+    "groundY": -3,
+    "scale": 1.2,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
-    262.43299865722656,
-    34,
-    245.97999572753906
+    246.29766845703125,
+    40.30258131027222,
+    224.62276458740234
   ],
   "actualBounds": {
     "min": [
-      -131.2169952392578,
-      0,
-      -122.98999786376953
+      -128.60684204101562,
+      -1.8025813102722168,
+      -118.21648406982422
     ],
     "max": [
-      131.21600341796875,
-      34,
-      122.98999786376953
+      117.69082641601562,
+      38.5,
+      106.40628051757812
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "longitudinal": "+X east-northeast,12.49 degrees north of east",
     "front": "+Z gardens; -Z Dame/Castle Street; Lower Court toward +X",
-    "origin": "Mapped entire campus center; provisional ground attachment Y=0"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "way/350242806 exact Q742767",
@@ -46,7 +47,9 @@
     ],
     "publishedRecordWallThicknessUpToMeters": 4.8,
     "bedfordFacadeBays": 5,
-    "bedfordFacadeStoreys": 2
+    "bedfordFacadeStoreys": 2,
+    "originalMasterHash": "sha256:2c0581c7d1f82f7fc14473f121f65eee2157d6cf38b4826ce35b2bb53641efab",
+    "originalMasterRecipe": "packages/worldgen/scripts/dublin-castle-model.mjs#buildDublinRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -72,11 +75,13 @@
       "Round medieval Record Tower beside pinnacled Gothic Chapel Royal",
       "Bedford octagonal clock tower and green ogee dome above an open court with flanking gates",
       "Circular serpent-pattern garden south of painted State Apartments and blue Bermingham Tower"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Exact mapped campus perimeter, OPW current illustrated site map, north-up strategic-plan base map and current exterior/aerial photographs",
-    "scope": "Existing exterior ranges and courts; future proposals, neighboring buildings, full interiors and temporary events excluded"
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://dublincastle.ie/wp-content/uploads/2017/01/DublinCastle_Maps_website.pdf",
@@ -90,8 +95,8 @@
     "https://www.openstreetmap.org/way/350242806"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Research frame only; terrain/approaches pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       -6.266610512,
       53.342658821
@@ -110,7 +115,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Signed campus axis from OPW base plan and mapped site; individual heights/dimensions inferred. Actual terrain and entry contact pending."
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the Georgian brick quadrangle, green Bedford clock dome, medieval Record tower/chapel pairing and southern round garden. Standard viewer PMTiles and the retained campus outline determine approximate scale, location and signed orientation. Structures use a reconstructed4.5m working rise to clear the coarse northern ground; foundations extend below terrain and low court/garden surfaces follow the sampled ground. Anchor -6.266610512,53.342658821; heading 0.217908808734; standard PMTiles datum 13.959391147912555m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms the Georgian brick quadrangle, green Bedford clock dome, medieval Record tower/chapel pairing and southern round garden. Standard viewer PMTiles and the retained campus outline determine approximate scale, location and signed orientation. Structures use a reconstructed4.5m working rise to clear the coarse northern ground; foundations extend below terrain and low court/garden surfaces follow the sampled ground. Anchor -6.266610512,53.342658821; heading 0.217908808734; standard PMTiles datum 13.959391147912555m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -6.266610512,
+        53.342658821
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Mapped262.431×245.981m entire campus fixes registration. All component dimensions and elevations interpreted, including Bedford34m finial and Record24.8m crown. No published overall height or surveyed component footprint is claimed.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -168,13 +183,12 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Original medium-fi exterior interpretation, not a conservation or cadastral survey.",
-    "All heights, radii, component widths and openings inferred from primary photographs and plans; no surveyed elevation is claimed.",
-    "South-facing painted ranges use interpreted clear red/ochre/blue tints seen in OPW aerial evidence; paint exactness remains subject to site review.",
-    "Upper/Lower Courtyards remain open. Existing buildings are abbreviated; future strategic-plan proposals and neighboring offices are excluded.",
-    "Garden serpent paths are a broad stylized interpretation, not an exact reproduction of the paving pattern.",
-    "Fine Gothic carving, stone joints, glazing bars, statuette attributes, full interiors and tiny fixtures omitted.",
-    "Actual terrain contact, approaches, geographic activation, continuous-motion shimmer and physical-device performance remain pending."
+    "Approximate current exterior from picture and standard viewer PMTiles; no bespoke research, survey or exact thresholds.",
+    "Original detailed architectural recipe and master remain preserved. Independent derivative fits foundations and coarse court/garden ground surfaces.",
+    "Open courts, Georgian ranges, Bedford dome/gates, round medieval towers, Gothic chapel and circular garden define identity; fine carving and openings reconstructed.",
+    "Existing exterior campus only; neighboring offices, future proposals, temporary events and navigable interiors excluded. Garden serpent paths are stylized; exact paint colors and paving remain approximate.",
+    "Five shared material graphs and two local slots; seven merged groups justified by the mixed campus. No embedded images. Physical-device timing pending.",
+    "The broad campus paving sheet is omitted from the runtime derivative to avoid hiding the garden; discrete courts, lawn, ring and stylized paths follow coarse PMTiles ground."
   ],
   "qaCameras": [
     {
@@ -256,15 +270,235 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/dublin-castle-runtime-model.mjs",
+    "export": "buildDublinReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dublin-castle-runtime-model.mjs",
+    "export": "buildDublinReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDublinReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDublinReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDublinReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-dublin-skyline",
+      "position": [
+        185,
+        130,
+        170
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-dublin-district",
+      "position": [
+        185,
+        130,
+        170
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-dublin-street",
+      "position": [
+        185,
+        130,
+        170
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-dublin-closeup",
+      "position": [
+        185,
+        130,
+        170
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve open quadrangle, Record/chapel pairing, Bedford green clock dome, round southern garden and mixed brick/painted/stone ranges in all levels.",
   "mesh": {
-    "triangles": 10334,
-    "vertices": 25890,
+    "triangles": 10239,
+    "vertices": 30717,
     "materials": 7,
-    "bytes": 1060080,
-    "sha256": "sha256:2c0581c7d1f82f7fc14473f121f65eee2157d6cf38b4826ce35b2bb53641efab"
+    "bytes": 1232732,
+    "sha256": "sha256:8ede701f4a7ed4a1c541d3a5566585c1fccb521c7c56fed4c85bb18eff042682"
   }
 }

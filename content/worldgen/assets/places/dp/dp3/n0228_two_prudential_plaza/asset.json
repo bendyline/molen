@@ -11,14 +11,14 @@
       "closeup": "model.closeup.glb"
     }
   },
-  "hash": "sha256:a8692b28bbf574979671241e6ee049a73baec21413776d363c07e02747769133",
-  "sourceHash": "sha256:2392b9a0cdad878ccdcf94ac39f5bd8038362ff174f609676905a679d13ca953",
+  "hash": "sha256:8523827d5329938b8bd8f422301e422a7a19366115e9a650951c1dc17745770b",
+  "sourceHash": "sha256:c85bd1ad1556ec7647d576b6a077f35b509105ca9687ecc8c9f7ee40a61e9bfe",
   "bounds": {
     "aabb": {
       "min": [
         -28.2345,
         0,
-        -20.5755
+        -21.4455
       ],
       "max": [
         28.2345,
@@ -30,77 +30,25 @@
       "center": [
         0,
         151.65,
-        0
+        -0.435
       ],
-      "radius": 155.6024
+      "radius": 155.6601
     }
   },
   "stats": {
-    "triangles": 9600,
-    "vertices": 28388,
-    "meshes": 14,
-    "primitives": 45,
-    "materials": 8,
+    "triangles": 52004,
+    "vertices": 111704,
+    "meshes": 1,
+    "primitives": 6,
+    "materials": 6,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 1265456
+    "sizeBytes": 4648524
   },
   "nodes": [
     {
-      "name": "floor-plates-lobby-and-setback-caps-0",
-      "triangles": 5636
-    },
-    {
-      "name": "diamond-crown-and-spire-0",
-      "triangles": 2856
-    },
-    {
-      "name": "facade-roof-intersections-0",
-      "triangles": 1004
-    },
-    {
-      "name": "stone-2.917929-3.875000",
-      "triangles": 12
-    },
-    {
-      "name": "glazed-2.917929-3.875000",
-      "triangles": 8
-    },
-    {
-      "name": "stone-2.956263-3.875000",
-      "triangles": 12
-    },
-    {
-      "name": "glazed-2.467250-3.875000",
-      "triangles": 8
-    },
-    {
-      "name": "stone-2.893750-3.875000",
-      "triangles": 12
-    },
-    {
-      "name": "glazed-4.350000-3.875000",
-      "triangles": 8
-    },
-    {
-      "name": "stone-2.892308-3.875000",
-      "triangles": 12
-    },
-    {
-      "name": "lobby-2.917929-4.500000",
-      "triangles": 8
-    },
-    {
-      "name": "lobby-2.917929-4.600000",
-      "triangles": 8
-    },
-    {
-      "name": "lobby-2.956263-4.500000",
-      "triangles": 8
-    },
-    {
-      "name": "lobby-2.956263-4.600000",
-      "triangles": 8
+      "name": "worldgen",
+      "triangles": 52004
     }
   ],
   "nodesTruncated": false,
@@ -123,7 +71,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "metal_stainless-trim",
+      "name": "metal_painted-trim",
       "slots": [
         "baseColor"
       ],
@@ -131,7 +79,7 @@
       "alphaMode": "OPAQUE"
     },
     {
-      "name": "stone_granite-foundation",
+      "name": "metal_stainless-trim",
       "slots": [
         "baseColor"
       ],
@@ -153,489 +101,94 @@
       ],
       "doubleSided": false,
       "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "wall-wall",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "metal_painted-trim",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
     "hulls": [
       {
-        "node": "floor-plates-lobby-and-setback-caps-0",
+        "node": "worldgen",
         "points": [
           -28.2345,
           0,
-          -20.5755,
+          -21.4455,
           -28.2345,
           0,
           20.5755,
           -28.2345,
-          253.725,
-          -20.5755,
+          303.3,
+          -21.4455,
           -28.2345,
-          253.725,
+          303.3,
           20.5755,
           28.2345,
           0,
-          -20.5755,
+          -21.4455,
           28.2345,
           0,
           20.5755,
           28.2345,
-          253.725,
-          -20.5755,
+          303.3,
+          -21.4455,
           28.2345,
-          253.725,
+          303.3,
           20.5755
-        ]
-      },
-      {
-        "node": "diamond-crown-and-spire-0",
-        "points": [
-          -18.8,
-          224.0003,
-          -20.4255,
-          -18.8,
-          224.0003,
-          20.4255,
-          -18.8,
-          303.3,
-          -20.4255,
-          -18.8,
-          303.3,
-          20.4255,
-          18.8,
-          224.0003,
-          -20.4255,
-          18.8,
-          224.0003,
-          20.4255,
-          18.8,
-          303.3,
-          -20.4255,
-          18.8,
-          303.3,
-          20.4255
-        ]
-      },
-      {
-        "node": "facade-roof-intersections-0",
-        "points": [
-          -18.8,
-          222.875,
-          -20.4255,
-          -18.8,
-          222.875,
-          20.4255,
-          -18.8,
-          252.778,
-          -20.4255,
-          -18.8,
-          252.778,
-          20.4255,
-          18.8,
-          222.875,
-          -20.4255,
-          18.8,
-          222.875,
-          20.4255,
-          18.8,
-          252.778,
-          -20.4255,
-          18.8,
-          252.778,
-          20.4255
-        ]
-      },
-      {
-        "node": "stone-2.917929-3.875000",
-        "points": [
-          0,
-          0,
-          -0.15,
-          0,
-          0,
-          0,
-          0,
-          3.875,
-          -0.15,
-          0,
-          3.875,
-          0,
-          2.9179,
-          0,
-          -0.15,
-          2.9179,
-          0,
-          0,
-          2.9179,
-          3.875,
-          -0.15,
-          2.9179,
-          3.875,
-          0
-        ]
-      },
-      {
-        "node": "glazed-2.917929-3.875000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          3.875,
-          -0.13,
-          0,
-          3.875,
-          -0.06,
-          2.9179,
-          0,
-          -0.13,
-          2.9179,
-          0,
-          -0.06,
-          2.9179,
-          3.875,
-          -0.13,
-          2.9179,
-          3.875,
-          -0.06
-        ]
-      },
-      {
-        "node": "stone-2.956263-3.875000",
-        "points": [
-          0,
-          0,
-          -0.15,
-          0,
-          0,
-          0,
-          0,
-          3.875,
-          -0.15,
-          0,
-          3.875,
-          0,
-          2.9563,
-          0,
-          -0.15,
-          2.9563,
-          0,
-          0,
-          2.9563,
-          3.875,
-          -0.15,
-          2.9563,
-          3.875,
-          0
-        ]
-      },
-      {
-        "node": "glazed-2.467250-3.875000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          3.875,
-          -0.13,
-          0,
-          3.875,
-          -0.06,
-          2.4673,
-          0,
-          -0.13,
-          2.4673,
-          0,
-          -0.06,
-          2.4673,
-          3.875,
-          -0.13,
-          2.4673,
-          3.875,
-          -0.06
-        ]
-      },
-      {
-        "node": "stone-2.893750-3.875000",
-        "points": [
-          0,
-          0,
-          -0.15,
-          0,
-          0,
-          0,
-          0,
-          3.875,
-          -0.15,
-          0,
-          3.875,
-          0,
-          2.8937,
-          0,
-          -0.15,
-          2.8937,
-          0,
-          0,
-          2.8937,
-          3.875,
-          -0.15,
-          2.8937,
-          3.875,
-          0
-        ]
-      },
-      {
-        "node": "glazed-4.350000-3.875000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          3.875,
-          -0.13,
-          0,
-          3.875,
-          -0.06,
-          4.35,
-          0,
-          -0.13,
-          4.35,
-          0,
-          -0.06,
-          4.35,
-          3.875,
-          -0.13,
-          4.35,
-          3.875,
-          -0.06
-        ]
-      },
-      {
-        "node": "stone-2.892308-3.875000",
-        "points": [
-          0,
-          0,
-          -0.15,
-          0,
-          0,
-          0,
-          0,
-          3.875,
-          -0.15,
-          0,
-          3.875,
-          0,
-          2.8923,
-          0,
-          -0.15,
-          2.8923,
-          0,
-          0,
-          2.8923,
-          3.875,
-          -0.15,
-          2.8923,
-          3.875,
-          0
-        ]
-      },
-      {
-        "node": "lobby-2.917929-4.500000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          4.5,
-          -0.13,
-          0,
-          4.5,
-          -0.06,
-          2.9179,
-          0,
-          -0.13,
-          2.9179,
-          0,
-          -0.06,
-          2.9179,
-          4.5,
-          -0.13,
-          2.9179,
-          4.5,
-          -0.06
-        ]
-      },
-      {
-        "node": "lobby-2.917929-4.600000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          4.6,
-          -0.13,
-          0,
-          4.6,
-          -0.06,
-          2.9179,
-          0,
-          -0.13,
-          2.9179,
-          0,
-          -0.06,
-          2.9179,
-          4.6,
-          -0.13,
-          2.9179,
-          4.6,
-          -0.06
-        ]
-      },
-      {
-        "node": "lobby-2.956263-4.500000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          4.5,
-          -0.13,
-          0,
-          4.5,
-          -0.06,
-          2.9563,
-          0,
-          -0.13,
-          2.9563,
-          0,
-          -0.06,
-          2.9563,
-          4.5,
-          -0.13,
-          2.9563,
-          4.5,
-          -0.06
-        ]
-      },
-      {
-        "node": "lobby-2.956263-4.600000",
-        "points": [
-          0,
-          0,
-          -0.13,
-          0,
-          0,
-          -0.06,
-          0,
-          4.6,
-          -0.13,
-          0,
-          4.6,
-          -0.06,
-          2.9563,
-          0,
-          -0.13,
-          2.9563,
-          0,
-          -0.06,
-          2.9563,
-          4.6,
-          -0.13,
-          2.9563,
-          4.6,
-          -0.06
         ]
       }
     ]
   },
-  "extensionsUsed": [
-    "EXT_mesh_gpu_instancing"
-  ],
+  "extensionsUsed": [],
   "runtimeLods": {
     "recipe": 1,
-    "recipeHash": "sha256:d5c56356c2749e13e43bbaa0241bc543f8c336d579f9717b8b5de51b7e3b562e",
-    "masterHash": "sha256:a8692b28bbf574979671241e6ee049a73baec21413776d363c07e02747769133",
+    "recipeHash": "sha256:00ee18833570527ee9de293199d54aeae2ca6618fe818cae5b5c53d3153922a2",
+    "masterHash": "sha256:8523827d5329938b8bd8f422301e422a7a19366115e9a650951c1dc17745770b",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:dc869f7f170a8ca71874b20bbc89f043439a17c5f00ac02d498c947f6e6e5ab4",
-        "bytes": 15340,
-        "gzipBytes": 7369,
-        "triangles": 998,
-        "cpuBytes": 14292,
-        "gpuBytes": 14292,
-        "errorMeters": 93.97406791237677,
+        "hash": "sha256:b01741bbaee18c7b6afc15afc5a5ac1ff4d63dcd3e6a65b4655f279fd195bd57",
+        "bytes": 53376,
+        "gzipBytes": 6950,
+        "triangles": 584,
+        "cpuBytes": 51960,
+        "gpuBytes": 51960,
+        "errorMeters": 1,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:55da8f1709835fa10125d6ead3f4b8ee64f31de57e91521c7590e21a6b9f5fc7",
-        "bytes": 412648,
-        "gzipBytes": 63817,
-        "triangles": 4065,
-        "cpuBytes": 403156,
-        "gpuBytes": 403156,
-        "errorMeters": 2.6694975405496115,
-        "drawCalls": 8
+        "hash": "sha256:f86845b750aeea7eb5725a97818b6a66748b92b63934155cde6943208e645b98",
+        "bytes": 257628,
+        "gzipBytes": 39270,
+        "triangles": 3486,
+        "cpuBytes": 252648,
+        "gpuBytes": 252648,
+        "errorMeters": 0.75,
+        "drawCalls": 4
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:ae74b77dde68168df0d99d6ea17935b7e6d90a5cc40f4cd3e153a518e1c77015",
-        "bytes": 1344216,
-        "gzipBytes": 184576,
-        "triangles": 15889,
-        "cpuBytes": 1334644,
-        "gpuBytes": 1334644,
-        "errorMeters": 1.8198,
-        "drawCalls": 8
+        "hash": "sha256:e00fb70d634b598843ab8478322770928fb20c946fa1ef919e2ee4245cc48bd1",
+        "bytes": 844928,
+        "gzipBytes": 141928,
+        "triangles": 13018,
+        "cpuBytes": 837600,
+        "gpuBytes": 837600,
+        "errorMeters": 0.3,
+        "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:eb9268ad0bdb551dec81b0f7f99f627bc4a149f4f817a68e9cf945b7d4ba4314",
-        "bytes": 3244164,
-        "gzipBytes": 501791,
-        "triangles": 51384,
-        "cpuBytes": 3234528,
-        "gpuBytes": 3234528,
-        "errorMeters": 0.07493115736945856,
-        "drawCalls": 8
+        "hash": "sha256:eae25eb45352fe5877ab41e12368dcfec45b62fa266d1271c1a183770577b63b",
+        "bytes": 2650600,
+        "gzipBytes": 519854,
+        "triangles": 52004,
+        "cpuBytes": 2643240,
+        "gpuBytes": 2643240,
+        "errorMeters": 0.15,
+        "drawCalls": 6
       }
     ]
   }

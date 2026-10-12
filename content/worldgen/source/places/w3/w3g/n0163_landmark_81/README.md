@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The bamboo-cluster skyscraper with a six-by-six nine-metre grid of individually stepped glazed tubes, vertical silver edges, planted rooftop terraces, four high observation volumes and the mapped offset rectangular spire above its retail podium.
+Complete stepped blue/silver bamboo-cluster tower and mapped podium, selected terrace gardens, glazed atrium and independent offset rectangular461.2m spire.
 
 ## Evidence and reconstruction
 
@@ -16,9 +16,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-72,981 triangles; 200,473 vertices; 5 material groups; 8,095,976 bytes. Native bounds: -61.701, 0.000, -59.663 to 61.704, 461.200, 59.670. Source hash: `sha256:fa15f06beec25a5e48dbdf17f0078a8cdd2dbfbaec5e77c5819a9bfc2647334a`.
+12,691 triangles; 30,439 vertices; 5 material groups; 1,251,252 bytes. Native bounds: -61.617, 0.000, -59.581 to 61.619, 461.200, 59.585. Source hash: `sha256:5df7fb08209641eee2750d3b32d4d003f4f19e1aaa7b083717e786d84c1fc069`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east/southeast in podium frame;9m grid aligned to mapped mast rectangle","front":"+Z south/southwest; exact entrance unverified","origin":"Ground-contact mapped podium center, separate tower center retained"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -28,7 +28,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0163` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Primary case study records the design-development scheme; detailed exterior construction is reconstructed with that published9 m grid. Individual as-built setback heights, terrace planting and spire skin need additional close reference refinement.
+- Complete medium-fi bundle comprises36 stepped9m-grid tower modules, silver vertical edges, blue glazing/floor rhythm, independently mapped461.2m rectangular spire, planted selected terraces and retail podium with reconstructed glazed atrium. Original72981-triangle detailed recipe remains unchanged/reproducible. Architect56-page study explicitly describes Scheme Design and supplies6x6 nine-metre concept and461.2m/389.2m design elevations;389.2m is historical design, not asserted as current observation datum. As-built engineer/equipment supplier photographs confirm stepped bamboo massing and rectilinear spire; owner2019 opening describes79–81 observation near400m. Fabricator supplies roughly61m steel spire; reviewed400.2m nominal support/61m assembly is reconstructed from total, not a surveyed roof elevation. Individual36 setback heights, module gaps, roof gardens, mast cladding/grid and podium atrium are approximate, guided by design drawings/completed photographs. Retail terrace pools, exact entry locations, rooms, hotel interiors, basement and surrounding park omitted; this is a tower/podium bundle. Projected courtyard/atrium roof position follows earlier scheme and may differ as-built. Shared metal/concrete/stone textures plus component tint; glass PBR, no copied photographs embedded. Selected planting is stylized geometry; night dynamic lighting, true grade and physical-device performance unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

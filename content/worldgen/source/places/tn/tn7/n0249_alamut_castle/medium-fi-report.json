@@ -1,0 +1,1692 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0249_alamut_castle",
+  "sourceHash": "sha256:95d3e22eb0f33e1af63b25a59bfd35a5f8ddfc2eccceff412b6554c6521cdbc5",
+  "runtimeHash": "sha256:fab20b0cbcbee4eb585f520604a7d6e87d9606196756ee8ec8391204313322e1",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:8197c738723091c8959adfe0301c57c3da2462520c8032f70175e045303a186c",
+      "bytes": 68412,
+      "gzipBytes": 14545,
+      "triangles": 801,
+      "cpuBytes": 66980,
+      "gpuBytes": 66980,
+      "errorMeters": 1.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:d424b212bdd2cbadf19414f3050e788d43f0bfca2e28dd66e4a5e712f23963fc",
+      "bytes": 126988,
+      "gzipBytes": 43943,
+      "triangles": 1543,
+      "cpuBytes": 121904,
+      "gpuBytes": 121904,
+      "errorMeters": 0.8,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:42f55c7df2e9effeda387e210fff61b7970d7df0b431408ffb68516e2f287d08",
+      "bytes": 292168,
+      "gzipBytes": 96481,
+      "triangles": 3697,
+      "cpuBytes": 285884,
+      "gpuBytes": 285884,
+      "errorMeters": 0.4,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:8b2f0092d8a7aaf1d0f2931c84da86fb0e3e8ab48d2fc358e361678f452e0c74",
+      "bytes": 676056,
+      "gzipBytes": 222769,
+      "triangles": 8275,
+      "cpuBytes": 667376,
+      "gpuBytes": 667376,
+      "errorMeters": 0.18,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:5d1f66126af75b2660787e344e17cfa658bea5c56dd8a352d1839397b833072a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:8eb973a1775fdd2fc77c5b04ffec19ed1309a6e2fdd1567de8946e5f0aa72c9e"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:65e55fafb19e5dd2bc57f44a03da811d2d5e28507c3175c9622abd13408b3fad",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.5282,
+          65.4195,
+          249.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:cd47b875142e8cdb846ce8d3b89a7c0c73ef6d5c7ed26d59a3d5faca4e9b812e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.5282,
+          65.4195,
+          249.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:7e8d3f0214e863ca382fa44b38e1593c25da570aba7472fb87c97313c2cf487d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.5282,
+          65.4195,
+          249.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:65904868ccb490e839ee9123d4db8c8c19826799940502b53e9f56998c2a3744",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          144.5282,
+          65.4195,
+          249.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:390d8910c01c1ecdc1ffff83c61cfb2738527fbc1308d699e7216dd5c35d33b4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 41577,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:52fae4c953401501a2ac3afa7ba600c6ecbe0f4859297a260a261e7cd1b66f10",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41577,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:d19683c411cf61ae2373199a701f74d37753fdeca5cf8732a8ba7396ab1fc2ee",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 41577,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:37506c7f14ba583eff66019a8ac0f33e9407d7a5d055b00f36c11665864f02a4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41577,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:c1abc8373d27086096c01cbdcef1df16b2640cd17b64efca7391d8986d39769b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40835,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.5282,
+          287.41949999999997,
+          1008.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:2342a3911b03253b28f7ef1386ffaeda5bb960d4a72814310ea1f0c8b6482726",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40835,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.5282,
+          287.41949999999997,
+          1008.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:4d7fd3a4506591183be970e2bb82be9606909b07914a0c591622efb683aa0cb0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 40835,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.5282,
+          287.41949999999997,
+          1008.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:c390d96f9f5abe3ee3d6bdfa90b17ed8fd3f3f07ebea6da08bb50729009bf8be",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40835,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.5282,
+          287.41949999999997,
+          1008.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:af3fe4a74e899b457d34f59398f0c427b89fa57ddfa37feb40c0a6c57a03b2f3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 34595,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          582.5282,
+          287.41949999999997,
+          1008.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/upper-castle-plan.png",
+      "hash": "sha256:f5c430c98a12ae319feac878e23827cc0231733b473329ab0cc2b46d87822392",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          230,
+          0.2
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northwest-cells-and-cisterns.png",
+      "hash": "sha256:579a944dbc244800a78f73699ecac79d68a411004acd147fd48f7b0190e1a148",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -99,
+          67,
+          1
+        ],
+        "lookAt": [
+          -58,
+          39,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/rock-cut-reservoir.png",
+      "hash": "sha256:c5adf529b0b6bb589aa8fb25ff549a9c06b165f6f92a501ae352155d46af3940",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 47125,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -82,
+          49,
+          -12
+        ],
+        "lookAt": [
+          -74,
+          38,
+          -19
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/central-excavation.png",
+      "hash": "sha256:d517ea4ed923cd818acc58d568778bd8f5c5598a895625ba2663b23e87cc12ca",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -39,
+          71,
+          37
+        ],
+        "lookAt": [
+          -4,
+          39,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/brick-arches-and-plaster.png",
+      "hash": "sha256:c62aa669cce9c230c80eb7bf949ed2a740419d3e0a9c40b1e477679ea4488863",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 47125,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -20,
+          47,
+          11
+        ],
+        "lookAt": [
+          -10,
+          41,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-central-cisterns.png",
+      "hash": "sha256:39a071ac1bff47c98c74ec0999cb0bcf4a498f90a42fc6565a03d5166163239b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          42,
+          66,
+          25
+        ],
+        "lookAt": [
+          12,
+          38,
+          7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-gate-remains.png",
+      "hash": "sha256:cc2514edfc80a0a6a4386f4d5ee60e7ec0a24629cf71afd38aafe1b03b3a4f9d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          110,
+          55,
+          19
+        ],
+        "lookAt": [
+          74,
+          37,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cliff-and-approach.png",
+      "hash": "sha256:cb54d2d3bd0906cf8da5aa29928f73ed25b43d684598fb126aeb9c8c59c207bb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          65,
+          41,
+          -93
+        ],
+        "lookAt": [
+          48,
+          24,
+          -24
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-retaining-wall.png",
+      "hash": "sha256:2cef26bf5e959dbfb59f749543be141a135785a8b787a9816e886d437c628c51",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48121,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          21,
+          49,
+          72
+        ],
+        "lookAt": [
+          42,
+          37,
+          16
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-upper-castle-plan.png",
+      "hash": "sha256:6484ee2f6eb2b730e33192e52f231242ee2e391338b3526ccae4fc78b791ae77",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          204.53,
+          0.2
+        ],
+        "lookAt": [
+          0,
+          -25.47,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-northwest-cells-and-cisterns.png",
+      "hash": "sha256:35357da70860ef89b11976256483e4b24694a3e4c5b9d592ced307503c35ebca",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -99,
+          41.53,
+          1
+        ],
+        "lookAt": [
+          -58,
+          13.530000000000001,
+          -12
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-rock-cut-reservoir.png",
+      "hash": "sha256:5eeef297194bd5c9a8dc0d1cb25da48870790876e2fbbb5d767753fda70ed6a0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 47281,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -82,
+          23.53,
+          -12
+        ],
+        "lookAt": [
+          -74,
+          12.530000000000001,
+          -19
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-central-excavation.png",
+      "hash": "sha256:48511109454d32247a5434532794d5cbf580445467d946f249269609049ebc83",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -39,
+          45.53,
+          37
+        ],
+        "lookAt": [
+          -4,
+          13.530000000000001,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-brick-arches-and-plaster.png",
+      "hash": "sha256:d13e24a64712271b6ce1ced03d2deb615ded822e1ff7133ba3e5f11ed7d93759",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -20,
+          21.53,
+          11
+        ],
+        "lookAt": [
+          -10,
+          15.530000000000001,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-three-central-cisterns.png",
+      "hash": "sha256:71b202dcdbc680b8f056bbc9eedc95b4914d69f23e4aa3c7cdca820a28724781",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          42,
+          40.53,
+          25
+        ],
+        "lookAt": [
+          12,
+          12.530000000000001,
+          7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-eastern-gate-remains.png",
+      "hash": "sha256:c7691dc577a6b6f417ccfa33e7b1b7484eeca893f8396f1bfc14ed7278e154fa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          110,
+          29.53,
+          19
+        ],
+        "lookAt": [
+          74,
+          11.530000000000001,
+          -1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-cliff-and-approach.png",
+      "hash": "sha256:71840497fd3f5094d292b4bede1c8fc95f94fb691ff981f72af13b272e716430",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 48153,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          65,
+          15.530000000000001,
+          -93
+        ],
+        "lookAt": [
+          48,
+          -1.4699999999999989,
+          -24
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/reviewed-southern-retaining-wall.png",
+      "hash": "sha256:953e45f4dbc8e822aded215fee9939589f4759b7ac092220cde45c39d0e9b192",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 47125,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          21,
+          23.53,
+          72
+        ],
+        "lookAt": [
+          42,
+          11.530000000000001,
+          16
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-alamut-skyline.png",
+      "hash": "sha256:ac7a560b30eb07e2fd5feffbd1e901b03a670dcb3f2476bbaa42919a868b2fd8",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40835,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -180,
+          90,
+          140
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-alamut-district.png",
+      "hash": "sha256:c57cbd05190c950a4bf0f2d920e07c33b03c26ccc3f2d13aede7d35f2d181511",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41577,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -180,
+          90,
+          140
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-alamut-street.png",
+      "hash": "sha256:b53b15a996f6974ea43e5f3bf008e51881cf58e7e8db4980caf370427de8273a",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43731,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -180,
+          90,
+          140
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-alamut-closeup.png",
+      "hash": "sha256:c623373c13eddcfc6acf1a3cfee391f59c90c2c5c837a4db2ac01f467e631d7c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          -180,
+          90,
+          140
+        ],
+        "lookAt": [
+          0,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:fb03d0d3601f6c7ed40760444174fcd63e5515ac5c25b57168c6dfc028d20c91",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 40835,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:52fae4c953401501a2ac3afa7ba600c6ecbe0f4859297a260a261e7cd1b66f10",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 41577,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:53967af7b0469619a2c22a1a7d1caa8f3c447952345c660a68789ee99c403724",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 43731,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:75d533e4605bc828d83fdf622b2016189b132af759c0c723362ad3b62783cb51",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 48309,
+        "groundY": -213,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/tn/tn7/n0249_alamut_castle/terrain-review.height.png"
+        },
+        "position": [
+          291.5282,
+          173.4195,
+          504.3136
+        ],
+        "lookAt": [
+          0.5282,
+          20.4195,
+          0.3136
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

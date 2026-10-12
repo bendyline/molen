@@ -22,11 +22,11 @@ Six existing shared 256-square stone, slate, timber and gravel graphs; flat glas
 
 ## Model and axes
 
-15,379 triangles; 46,137 vertices; 8 material groups; 1,850,024 bytes. Native bounds: -84.429, 0.000, -144.204 to 123.611, 34.050, 129.524. Source hash: `sha256:432c23cd81b9906115543bd1f4d7b941e42204ed848d5b93d732821d39c7818c`.
+15,379 triangles; 46,137 vertices; 8 material groups; 1,850,032 bytes. Native bounds: -84.429, -25.303, -144.204 to 123.611, 40.050, 129.524. Source hash: `sha256:359b5177ad7e3ad38ac7ed1bfd96d1c9ec41e1cb3710b8d48b75832ef67cf1c4`.
 
-{"up":"+Y","longitudinal":"Long castle axis is NW/SE. Native +X east, +Z south; authoring major-axis rotation is baked into vertices, runtime heading 0.","origin":"Horizontal exact-QID map anchor; Y0 at provisional bailey/motte base, keep wall attachment Y20. Artificial motte is included as landmark earthwork."}
+{"up":"+Y","longitudinal":"Long castle axis is NW/SE. Native +X east, +Z south; authoring major-axis rotation is baked into vertices, runtime heading 0.","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Exact-QID map rings and separately mapped keep/tunnel remain attributed in native East/South heading 0. Published motte/keep dimensions guide a provisional base; actual site elevation and facade fit remain pending.
+The inspected aerial picture supports the open oval shell keep on a steep bounded motte, crenellated gatehouse/curtains and later residential castle. Retained east/south map controls set approximate scale, footprint and orientation. Standard viewer PMTiles supply surrounding ground; architecture is raised6m to keep reconstructed courts above its coarse crest and bounded wall/motte toes reach it. The distinctive artificial motte is retained as landmark earthwork; broad surrounding hill/landscape is supplied by host terrain. Anchor -0.554513936,50.856706132; heading 0; standard PMTiles datum 40.68276429976586m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -34,14 +34,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0303` (
 
 ## Pending work
 
-- Native East/South geometry preserves the exact-QID castle multipolygon, its two voids, mapped keep part and service tunnel. Heading 0 is a map-axis convention; actual-site facade/placement review is still required.
-- Published approximate motte and keep dimensions guide the earthwork and wall height. Residential/gatehouse/turret heights, roofs, windows, crenels, stair/well annex and vertical attachment are photographic estimates.
-- The artificial motte is included as a faceted landmark earthwork. The natural escarpment and site grade belong to host terrain; Y0 is a provisional bailey datum, not a measured sea-level elevation.
-- Fitzalan Chapel, Arundel Cathedral, High Street Lodge and other detached estate buildings are separate assets and excluded. No composite centroid placement is used for them.
-- Shared low-frequency material graphs use metric repeats and linear palette tints. No embedded image, unique photo texture, downloaded mesh or copied printed plan.
-- Interiors, sculpted heraldry, detailed tracery, fine railings, gardens and collision certification are excluded. Window panes are stylized blue-grey; the keep and court are real open geometry.
-- Operator and VisitEngland photographs remain private reference files; only attribution and original controls ship.
-- Continuous viewer upgrades and physical ordinary-laptop/phone performance remain pending.
+- Approximate current exterior and fit from inspected aerial picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Keep, motte, Gothic residential details and restored fixtures remain interpreted; interiors and collision excluded.
+- Five common limestone/rubble/slate/wood/aggregate graphs plus explicit glass/lawn color slots, zero embedded images. Bounded artificial motte retained; surrounding landscape and vegetation excluded.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

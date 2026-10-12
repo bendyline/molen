@@ -1,0 +1,418 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Slightly tapered double-shell tower with recessed three-storey garden cavities and wood balcony edges, opaque south end blade, longer east curved/upturned retail canopy, two observation floors and slender rooftop mast.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped tower axis, approximately south",
+    "front": "-Z east, signed by independent exact-QID mall ring",
+    "origin": "Cached tower part center at provisional pavement contact"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 261,
+    "tipMeters": 261,
+    "observatoryMeters": 234.9,
+    "aboveGroundFloors": 55,
+    "belowGroundFloors": 10,
+    "apartments": 187,
+    "residentialZones": 4,
+    "originalMasterHash": "sha256:506abc7a5d43de50edd7d0ef1d4612782a8051f90d4c66633c9cc6b57feffad9",
+    "originalMasterRecipe": "packages/worldgen/scripts/istanbul-sapphire-model.mjs#istanbulSapphireStudy.encodeAssembly"
+  },
+  "reconstruction": {
+    "towerEnvelopeMeters": [
+      48.832,
+      26.58
+    ],
+    "residentialBaseMeters": 24.3,
+    "workingFloorIntervalMeters": 4.3,
+    "threeStoreyGardenGroups": 16,
+    "workingRoofMeters": 239.35,
+    "tipMeters": 261,
+    "canopyExtentsZ": [
+      -93.5,
+      51.3
+    ],
+    "canopyWidthMeters": 62,
+    "planBasis": "Tower envelope is cached exact-QID building:part geometry. The architect section and photographs guide the separate skins, gallery cavities and asymmetric canopy. Canopy extents, roof datums, garden distribution, taper, frames and panel subdivisions are working reconstructions, not surveyed dimensions.",
+    "materialBasis": "Canonical painted/stainless metal, plain concrete, granite and wood graphs. Reusable PBR glazing and vertex-colored foliage; no embedded images or photographic textures.",
+    "assembly": {
+      "uniqueParts": 21,
+      "instances": 35
+    },
+    "retailFloorExtentsZ": [
+      -87.5,
+      47.3
+    ],
+    "retailFloorWidthMeters": 48.8
+  },
+  "limitations": [
+    "Original 21-part/35-placement istanbulSapphireStudy.encodeAssembly remains unchanged and reconstitutes the 79531556-byte source master (1547192 expanded /947096 stored triangles). Reviewed source and browser closeup reconstruct the same double-shell tower at medium-fi with all sixteen three-storey garden groups, two balcony slabs, transparent weather shell, recessed inner glazing, wood gallery edges, faceted planted beds, three social louvre groups, opaque south blade, two observation floors and 261 m mast. Galleries and plants now taper together with the outer skin, preventing protrusion from the old untapered repeated interiors. Continuous shared grids replace independent per-pane seal/frame boxes; wood grain replaces dense edge battens; faceted crowns replace tens of thousands of individual leaves. Explicit glass skins and interior volumes remain in close/street; district/skyline use opaque surfaces and omit interior garden geometry. Street reduces 30 long-face bays to six, 12 end bays to three, uses a broad inner pane, omits rail posts and plant trunks, and reduces beds/canopy ribs. Close retains the long-face two-light rhythm, single-light end glazing, seven-bay inner glazing, coarse handrail posts and faceted foliage. Detailed source master remains available from its original recipe, not installed by the viewer. Retail footprint corrected to fresh exact-QID mall ring, independent from preserved tower rectangle; glass roof overhang and curve endpoints/width are approximate. Eight east entrance leaves are an illustrative existing reconstruction, not a verified count; interiors have generic slabs/cores/galleries, no claimed apartment or retail fitout. 55 registry floors, 64 mapped levels and 48 residential plus lower/observation facade rows are separate; working 24.3/230.7/239.35/242.2 m levels, .8/.65 m taper, 4.3 m intervals, plant distribution and 62 m roof width are photographic/section reconstructions, not dimensioned surveys. Three canonical graphs provide concrete, stainless and wood; opaque/42 percent clear glass and foliage yield six near groups with one BLEND group and no embedded images. Underground car parks, neighboring towers, metro and wider site excluded. Physical phone/laptop and dense-city timings remain pending."
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#fffefd",
+      "localRef": "palette:#fffefd",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "localRef": "palette:#feffff",
+      "opacity": 0.42,
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.42
+      ],
+      "doubleSided": true
+    },
+    "foliage": {
+      "slot": "wall",
+      "ref": "palette:#fffffe",
+      "localRef": "palette:#fffffe",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/sapphire-runtime-model.mjs",
+    "export": "buildSapphireCloseup"
+  },
+  "geographic": {
+    "heading": -1.54183461736,
+    "reviewStatus": "signed medium-fi asymmetric mall ring and architect completed context",
+    "orientationConfidence": "fresh exact-QID asymmetric mall with primary photo/map inference for blade",
+    "notes": "Fresh Q166882 tower-part way 673790538 agrees with the independent preserved ring within 0.002 m projection rounding. Anchor [29.0058122,41.0849531] and heading -1.54183461736 remain unchanged: native +X approximately south at 178.34 degrees; -Z east at 88.34 degrees. Separately identified Q166882 Sapphire mall way 156828034 signs the long skirt east: its ground outline extends to native Z -87.60 and +47.70 m, rather than the old model -59/+36 m floor. Reviewed floor extends -87.5/+47.3; overhanging upturned glass roof reaches -93.5/+51.3. Mall ring is near 48.4 m wide; original broadening glass roof width 62 m remains an approximate overhang from architect section/photos, with sloping side walls returning to 48.8 m ground width. Published architect completed east-front exterior shows the opaque blade at the left/south end, independently corroborated by published Levent aerial main-road context; assigning it to +X is a photographic/map inference, not a surveyed end-wall drawing. Long skirt direction is independently resolved by exact-QID asymmetric mall ring, not by the ambiguous tower rectangle. Entrances remain approximate on east mall front; eight leaf count and offsets are not independently measured. Wider commercial parcel 905823757, neighboring towers, metro and underground floors are excluded. Y0 is approximate local mall pavement; grade unsurveyed. Tower footprint is not replaced with retail outline.",
+    "evidence": "Fresh Q166882 tower-part way 673790538 agrees with the independent preserved ring within 0.002 m projection rounding. Anchor [29.0058122,41.0849531] and heading -1.54183461736 remain unchanged: native +X approximately south at 178.34 degrees; -Z east at 88.34 degrees. Separately identified Q166882 Sapphire mall way 156828034 signs the long skirt east: its ground outline extends to native Z -87.60 and +47.70 m, rather than the old model -59/+36 m floor. Reviewed floor extends -87.5/+47.3; overhanging upturned glass roof reaches -93.5/+51.3. Mall ring is near 48.4 m wide; original broadening glass roof width 62 m remains an approximate overhang from architect section/photos, with sloping side walls returning to 48.8 m ground width. Published architect completed east-front exterior shows the opaque blade at the left/south end, independently corroborated by published Levent aerial main-road context; assigning it to +X is a photographic/map inference, not a surveyed end-wall drawing. Long skirt direction is independently resolved by exact-QID asymmetric mall ring, not by the ambiguous tower rectangle. Entrances remain approximate on east mall front; eight leaf count and offsets are not independently measured. Wider commercial parcel 905823757, neighboring towers, metro and underground floors are excluded. Y0 is approximate local mall pavement; grade unsurveyed. Tower footprint is not replaced with retail outline.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "reference-metadata.json",
+    "map-frame.json",
+    "review-scope.json",
+    "georeferencing-baseline.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sapphire-runtime-model.mjs",
+    "export": "buildSapphireSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSapphireDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.42,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.42
+            ],
+            "doubleSided": true
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSapphireStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.42,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.42
+            ],
+            "doubleSided": true
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSapphireCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.42,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.42
+            ],
+            "doubleSided": true
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-sapphire",
+      "position": [
+        385,
+        220,
+        -455
+      ],
+      "lookAt": [
+        0,
+        126,
+        -18
+      ]
+    },
+    {
+      "name": "east-retail-entrance-reviewed",
+      "position": [
+        1,
+        5,
+        -101
+      ],
+      "lookAt": [
+        1,
+        2,
+        -87.5
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-sapphire-skyline",
+      "position": [
+        385,
+        220,
+        -455
+      ],
+      "lookAt": [
+        0,
+        126,
+        -18
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sapphire-district",
+      "position": [
+        385,
+        220,
+        -455
+      ],
+      "lookAt": [
+        0,
+        126,
+        -18
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sapphire-street",
+      "position": [
+        385,
+        220,
+        -455
+      ],
+      "lookAt": [
+        0,
+        126,
+        -18
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sapphire-closeup",
+      "position": [
+        385,
+        220,
+        -455
+      ],
+      "lookAt": [
+        0,
+        126,
+        -18
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-garden-depth",
+      "position": [
+        -8,
+        79,
+        -17
+      ],
+      "lookAt": [
+        -8,
+        78,
+        -9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-garden-depth",
+      "position": [
+        -8,
+        79,
+        -17
+      ],
+      "lookAt": [
+        -8,
+        78,
+        -9
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-east-canopy",
+      "position": [
+        -70,
+        55,
+        -100
+      ],
+      "lookAt": [
+        0,
+        14,
+        -50
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

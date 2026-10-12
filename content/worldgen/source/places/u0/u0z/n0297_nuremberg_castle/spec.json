@@ -12,23 +12,24 @@
   },
   "visualBrief": "Three adjoining castle precincts: cylindrical Sinwell with flared observation floor and pointed Renaissance helm,Palas/Kemenate/double chapel/Heidenturm around open court,half-timbered forecourt ranges and well,Hasenburg and three physical passages,Walburgis/Pentagonal Tower,eastern Kaiserstallung with tiered dormers and Luginsland corner oriels,mapped bastions and original schematic gardens.",
   "mediumFiContext": {
-    "scale": "3.0",
-    "neighborStyle": "molen.worldgen.regional.atlantic.detached"
+    "groundY": -4,
+    "scale": 6.3,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
   },
   "size": [
     357.24400329589844,
-    60.299998462200165,
+    60.09921646118164,
     162.47100067138672
   ],
   "actualBounds": {
     "min": [
       -144.4199981689453,
-      0.30000001192092896,
+      -14.147411346435547,
       -84.78099822998047
     ],
     "max": [
       212.82400512695312,
-      60.599998474121094,
+      45.951805114746094,
       77.69000244140625
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "front": "South-facing city prospect with Palas/double chapel and Sinwell in native East/South coordinates",
     "longitudinal": "+X east along castle complex",
-    "origin": "Exact-QID map point; native Y0 is provisional terrain-grid minimum320.29m,castle attachment planeY17.2. Native geometry remains East/South; heading0."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "exactIdentityNode": 31013768,
@@ -45,7 +46,9 @@
     "mappedSignatureTowers": 4,
     "historicPrecincts": 3,
     "physicalPassages": 3,
-    "surveyedVerticalDatum": false
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:5ad45217b302e304fd1b7347d0a17d31431279146c7640c842d53b8d1a762ed0",
+    "originalMasterRecipe": "packages/worldgen/scripts/nuremberg-castle-model.mjs#buildNurembergRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -101,12 +104,13 @@
       "Round Sinwell with flared observation floor,red roof and small green lantern",
       "Three precincts with red-roofed Palas and half-timbered ranges around open courts",
       "Steep multi-row dormer roof of Kaiserstallung between Pentagonal Tower and corner-oriel Luginsland"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "scope": "Original current exterior of three adjoining castle precincts: Palas/Kemenate/double chapel/Heidenturm,open inner court and forecourt with well/half-timbered ranges,Sinwell,Hasenburg and approach; Walburgis/Burgamtmann/Pentagonal Tower; Kaiserstallung and Luginsland with tiered dormers/corner oriels; northern/western bastions and gardens.",
-    "basis": "Attributed original map coordinates; primary operator plan/photos and city guide read for forms and dimensions. No traced printed plan,photogrammetry,downloaded mesh or photo texture.",
-    "referenceState": "Present exterior interpretation with reconstructed roofs and estimated apertures/vertical sections. Primary Sinwell height41m retained; other numeric heights,terrain plateau/stairs and current detailed site fit require review."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://api.openstreetmap.org/api/0.6/map?bbox=11.0712,49.4567,11.0801,49.4601",
@@ -124,8 +128,8 @@
     "https://www.kaiserburg-nuernberg.de/bilder/burg/modell_nuernberg575a.jpg"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive draft: coarse terrain/terrace and current site fit remain unverified.",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       11.0753908,
       49.4580789
@@ -134,7 +138,7 @@
     "ground": "terrain",
     "elevationMode": "terrain-contact",
     "source": "https://www.openstreetmap.org/node/31013768",
-    "groundModelY": 17.2,
+    "groundModelY": 0,
     "featureIds": [
       "node/31013768",
       "way/32113829",
@@ -182,10 +186,21 @@
     ],
     "wikidataId": "Q707396",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:ace29f7f1e2c18659a2705cddf518bd444a00369908be1dc102aef290a73323b",
+    "mapGeometryHash": "sha256:79f88ab0a926d40676cd8d5126d0c633e70a0247d9ac071d2b763be0b6a2b9dc",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "replaceFootprint": false
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        11.0753908,
+        49.4580789
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Own attributed map footprints/entrance traces. Primary city guide Sinwell41m from plinth to weather vane. Other heights,roof partitions and terraces estimated; raw map height tags retain their provenance.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -209,15 +224,6 @@
       "repeatMeters": [
         2.4,
         2.4
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
-      "slot": "wall",
-      "uv": "repeats",
-      "repeatMeters": [
-        1.2,
-        1.2
       ]
     },
     {
@@ -252,26 +258,22 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exact-QID identity is a node; nearby physical parts remain separately attributed. Some mapped outlines are explicitly extrapolated rather than surveyed.",
-    "Primary city guide gives Sinwell41m from plinth to weather vane. Other tower heights,body/roof partitions,apertures and restored details are estimates. OSM Heidenturm35m/Fünfeckturm44m are raw map values,not verified surveyed vertical dimensions.",
-    "Three historic precincts belong to the overall castle complex; Kaiserstallung note that it is not part of the imperial castle is preserved. No composite placement for a distant site.",
-    "Native provisional datum320.29m and attachmentY17.2 are original terrain/reference estimates. Coarse Terrarium DEM does not resolve the castle rock,wall bases,terraced courts or correct survey datum. Real terrain/approach/current-site fit remains pending.",
-    "Full double-chapel interior,well shaft beyond50m,roof structures,museum interiors,exact heraldry/sculpture/current exhibits and walkable circulation/collision are not complete. Selected exterior rhythm and simplified reconstructed roofs are represented.",
-    "Northern/western bastion volumes and simplified lawns follow mapped fortification ribbons; garden beds and circulation are original schematic geometry,not a copied historic garden plan.",
-    "Six existing256-square shared graphs with linear tints and metric repeats; no unique/embedded textures,downloaded model or copied reference photograph/drawing.",
-    "Synthetic Earth captures do not verify actual geographic fit,continuous streaming or physical laptop/phone performance."
+    "Approximate exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Building floors, terrace/ruin detail, roof partitioning and restoration fixtures are interpreted; interiors and collision excluded.",
+    "Five common graphs plus explicit glass/foliage color slots; zero embedded images. Bounded courts/gardens/terraces retained, surrounding hill supplied by host.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "sinwell-renaissance-helm",
       "position": [
         139,
-        47,
+        32,
         101
       ],
       "lookAt": [
         85,
-        43,
+        28,
         33
       ]
     },
@@ -279,12 +281,12 @@
       "name": "imperial-inner-court",
       "position": [
         1,
-        63,
+        48,
         17
       ],
       "lookAt": [
         1,
-        21,
+        6,
         8
       ]
     },
@@ -292,12 +294,12 @@
       "name": "timber-well-and-bailey",
       "position": [
         64,
-        34,
+        19,
         45
       ],
       "lookAt": [
         53,
-        25,
+        10,
         25
       ]
     },
@@ -305,12 +307,12 @@
       "name": "hasenburg-passage",
       "position": [
         99,
-        19.1,
+        4.100000000000001,
         56
       ],
       "lookAt": [
         74,
-        19.1,
+        4.100000000000001,
         52
       ]
     },
@@ -318,12 +320,12 @@
       "name": "palas-chapel-city-front",
       "position": [
         -7,
-        29,
+        14,
         99
       ],
       "lookAt": [
         4,
-        31,
+        16,
         27
       ]
     },
@@ -331,12 +333,12 @@
       "name": "stables-and-eastern-towers",
       "position": [
         190,
-        47,
+        32,
         75
       ],
       "lookAt": [
         172,
-        35,
+        20,
         -17
       ]
     },
@@ -344,14 +346,252 @@
       "name": "mapped-bastions",
       "position": [
         -115,
-        119,
+        104,
         -114
       ],
       "lookAt": [
         -27,
-        16,
+        1,
         -34
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/nuremberg-runtime-model.mjs",
+    "export": "buildNurembergReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/nuremberg-runtime-model.mjs",
+    "export": "buildNurembergReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNurembergReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "rawstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildNurembergReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "rawstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNurembergReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "rawstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nuremberg-skyline",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nuremberg-district",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nuremberg-street",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nuremberg-closeup",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -359,10 +599,10 @@
   },
   "importReason": "Preserve three open precincts,physical gates,round/square/pentagonal tower forms,tiered stables roof and half-timbered ranges through four source-authored levels.",
   "mesh": {
-    "triangles": 8152,
-    "vertices": 24456,
-    "materials": 8,
-    "bytes": 982804,
-    "sha256": "sha256:5ad45217b302e304fd1b7347d0a17d31431279146c7640c842d53b8d1a762ed0"
+    "triangles": 8168,
+    "vertices": 24504,
+    "materials": 7,
+    "bytes": 984248,
+    "sha256": "sha256:984ff94c7f3a2738254c5f4fbd58cd7f392a1548ab362b33c9c233580e4ec6fe"
   }
 }

@@ -12,23 +12,24 @@
   },
   "visualBrief": "Akershus inner-fortress study:open mapped castle court,two faceted clock spires,stepped-gable wings,stone lower towers,terraced bastion silhouette and selected low museums,magazines and barracks. Wider site/elevations explicitly approximate.",
   "mediumFiContext": {
-    "scale": "2.4",
-    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+    "groundY": -32,
+    "scale": 2.4,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     226.34912872314453,
-    54,
+    68.75394248962402,
     404.32203674316406
   ],
   "actualBounds": {
     "min": [
       -92.69988250732422,
-      0,
+      -22.753942489624023,
       -304.6953430175781
     ],
     "max": [
       133.6492462158203,
-      54,
+      46,
       99.62669372558594
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "longitudinal": "+Z south toward Munk Tower and Prince Carl bastion",
     "lateral": "+X east toward Kongens gate",
-    "origin": "Cached castle-frame center,with unverified outer-site terrace datumY0;castle court attachmentY12m"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "relation/13931023 exactQ644464 castle only",
@@ -46,7 +47,9 @@
     ],
     "mappedCourtyardHoles": 1,
     "measuredTowerHeight": null,
-    "wholeFortressMetricSurvey": false
+    "wholeFortressMetricSurvey": false,
+    "originalMasterHash": "sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130",
+    "originalMasterRecipe": "packages/worldgen/scripts/akershus-fortress-model.mjs#buildAkershusRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -74,13 +77,13 @@
       "Two broad-capped clock spires above a long open-court castle",
       "Mixed stone/brick wings with stepped gables and dark roofs",
       "Low polygonal ramparts,bastions and tiered supporting buildings"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Exact cached castle multipolygon,official museum exterior photographs,agency seaward photo and primary Fortress Trail isometric diagram.",
-    "heightDatum": "Y0 is an authoring datum near the lower northern/eastern enclosure. Castle courtY12,terraces and every elevation are estimated;OSM ele27 is not used as a verified terrain or rooftop datum. Highest spire54m is above this provisional datum,not a surveyed tower height.",
-    "scope": "Castle wings and open court,two clock spires,stepped gables,lower Munk/Knut towers,stables,selected inner ramparts/Royal bastion,northern magazine,Resistance Museum,Corps de Garde,prison/barrracks massing and two pond depressions. Southern/eastern modern Armed Forces offices,Armed Forces Museum complex,removed outer defenses,trees,interiors,artillery,memorial sculpture,terrain outside the enclosure and fine fixtures excluded.",
-    "registration": "Native frame is east/south;heading0 replaces cached undirected rectangle heading. Only castle plan is map-derived. Whole-site layout/elevations and temporal state require current mapping and in-world review. Research draft,inactive,replaceFootprint=false."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://www.forsvarsbygg.no/en/festningene/akershus-fortress",
@@ -90,8 +93,8 @@
     "https://www.openstreetmap.org/relation/13931023"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive geographic draft;review pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       10.736251164,
       59.906686713
@@ -110,7 +113,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Castle-derived east/south frame;outer layout,heights,terraces,terrain blend and replacement fit unverified."
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms two clock spires, open castle court, stepped gables and mixed stone/brick wings. Standard viewer PMTiles and the retained castle footprint establish approximate coastal location and east/south orientation. A reconstructed8m datum reduction places the original12m court at4m above the PMTiles anchor sample; bounded stone terrace/foundation bottoms extend to coarse ground. Broad invented lower lawn terrain and study pond surfaces are omitted so host terrain supplies the lower precinct. Wider building/bastion layout remains approximate. Anchor 10.736251164,59.906686713; heading 0; standard PMTiles datum 21.632957278541383m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms two clock spires, open castle court, stepped gables and mixed stone/brick wings. Standard viewer PMTiles and the retained castle footprint establish approximate coastal location and east/south orientation. A reconstructed8m datum reduction places the original12m court at4m above the PMTiles anchor sample; bounded stone terrace/foundation bottoms extend to coarse ground. Broad invented lower lawn terrain and study pond surfaces are omitted so host terrain supplies the lower precinct. Wider building/bastion layout remains approximate. Anchor 10.736251164,59.906686713; heading 0; standard PMTiles datum 21.632957278541383m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        10.736251164,
+        59.906686713
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Exact mapped castle outline/court rotated into east/south axes. Wider enclosure and buildings are approximately inferred from official isometric trail plan. All elevations and54m highest spire over provisional lower-ground datum are estimates.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -177,27 +190,24 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Only the castle ring and courtyard are map-derived. Wider inner-fortress outline,bastions,building centers,pond shapes and depths are approximately interpreted from a primary isometric diagram with no scale. No current wider-site map retrieved;not a fully verified whole-fortress reconstruction.",
-    "All elevations and tower widths,cap profiles,gable steps,window rhythm,gate clearances,terrace slopes and opening positions are estimates. Spire54m and castle court12m are provisional values relative to a made-up lower-groundY0,not actual elevations or tower height claims. Castle footprint has small simplifications around roofs and attachments.",
-    "Two visually distinctive clock stair towers are rendered;their exact attachment positions and name-to-tower correspondence need a measured castle plan. Named northern/southern in controls to avoid false identification.",
-    "Gate passages are open geometry. Main entrance position is interpreted;no interiors or claimed accessible/collision-certified route. Historical demolished Vågehals and removed outer defenses are not rebuilt.",
-    "Modern southern/eastern Armed Forces offices and Armed Forces Museum complex,trees,artillery,memorial sculpture,interiors,harbor/quay and terrain outside the enclosure are excluded. Study covers the recognizable inner fortress,not every administrative parcel.",
-    "Stepped terraced ground is sparse authoring geometry,not sampled real terrain;outer contours need corrected registration and terrain blending. Ponds are opaque study surfaces using shared blue color,not engine water simulation.",
-    "Shared256² brick,granite,slate,ceramic-tile,copper and lime-plaster graphs;blue-grey glazing and terraced ground untextured. No research photos redistributed,no baked lighting/AO,no individual bricks or subpixel rails.",
-    "Native+X east/+Z south,heading0. Signed orientation,vertical datum,whole-site fit,temporal state and footprint replacement require in-world review. Inactive draft,replaceFootprint=false. Synthetic review context is not the real Oslo shore.",
-    "Physical laptop/phone timing and continuous-motion LOD shimmer remain unmeasured."
+    "Approximate current inner-fortress exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed architectural/terrace study master and recipe preserved; derivative fits working datum and bounded stone foundations while omitting broad lower terrain/pond surfaces.",
+    "Two clock spires, stepped gables, open castle court, lower towers, stone bastions and selected low museums/magazines/barracks retain identity. Fine openings, names-to-tower assignment and elevations reconstructed.",
+    "Only the castle/court are map-derived; broader inner-fortress layout is approximate and footprint replacement remains off.",
+    "Host supplies lower terrain. Study pond depressions, modern military administrative parcels, full harbor/quay, trees, artillery, memorials, demolished defenses and interiors excluded.",
+    "Six common material graphs and local glass/upper terrace color slots; eight merged groups justified by the mixed precinct. Zero embedded images. Physical-device timing pending."
   ],
   "qaCameras": [
     {
       "name": "castle-two-clock-spires",
       "position": [
         -165,
-        69,
+        61,
         105
       ],
       "lookAt": [
         -3,
-        30,
+        22,
         0
       ]
     },
@@ -205,12 +215,12 @@
       "name": "open-court-and-roof-hierarchy",
       "position": [
         0,
-        180,
+        172,
         0
       ],
       "lookAt": [
         0,
-        12,
+        4,
         0
       ]
     },
@@ -218,12 +228,12 @@
       "name": "northern-entry-vault",
       "position": [
         -3.5,
-        17,
+        9,
         -69
       ],
       "lookAt": [
         -3.5,
-        16,
+        8,
         -30
       ]
     },
@@ -231,12 +241,12 @@
       "name": "stepped-gables-and-clock-lantern",
       "position": [
         -45,
-        45,
+        37,
         -70
       ],
       "lookAt": [
         -13,
-        33,
+        25,
         -28
       ]
     },
@@ -244,12 +254,12 @@
       "name": "resistance-museum-guardhouse",
       "position": [
         -140,
-        47,
+        39,
         -172
       ],
       "lookAt": [
         -38,
-        15,
+        7,
         -115
       ]
     },
@@ -257,14 +267,252 @@
       "name": "northern-magazine-bastions",
       "position": [
         50,
-        85,
+        77,
         -389
       ],
       "lookAt": [
         14,
-        10,
+        2,
         -245
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/akershus-runtime-model.mjs",
+    "export": "buildAkershusReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/akershus-runtime-model.mjs",
+    "export": "buildAkershusReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAkershusReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAkershusReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAkershusReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-akershus-skyline",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-akershus-district",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-akershus-street",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-akershus-closeup",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -272,10 +520,10 @@
   },
   "importReason": "Preserve Akershus open court,two spires,stepped gables and differentiated bastion/castle hierarchy in compact shared-material levels.",
   "mesh": {
-    "triangles": 3883,
-    "vertices": 11649,
+    "triangles": 3765,
+    "vertices": 11295,
     "materials": 8,
-    "bytes": 470460,
-    "sha256": "sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130"
+    "bytes": 456320,
+    "sha256": "sha256:e98101005da11a113bf5b3a6382024eae71d55a5f019b8adcf2a7c6939308d7d"
   }
 }

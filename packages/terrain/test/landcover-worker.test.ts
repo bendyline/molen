@@ -180,7 +180,9 @@ describe('land-cover worker', () => {
   });
   it('preserves nonzero agricultural attributes through worker transfer', async () => {
     const { tile, context } = fixture();
-    tile.landcover[0]!.cultivation = {
+    const feature = tile.landcover[0];
+    if (!feature) throw new Error('Missing landcover fixture');
+    feature.cultivation = {
       fieldId: 'field',
       crop: 'maize',
       evidence: 'inferred',

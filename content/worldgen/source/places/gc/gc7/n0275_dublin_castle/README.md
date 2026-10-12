@@ -22,11 +22,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-10,334 triangles; 25,890 vertices; 7 material groups; 1,060,080 bytes. Native bounds: -131.217, 0.000, -122.990 to 131.216, 34.000, 122.990. Source hash: `sha256:2c0581c7d1f82f7fc14473f121f65eee2157d6cf38b4826ce35b2bb53641efab`.
+10,239 triangles; 30,717 vertices; 7 material groups; 1,232,732 bytes. Native bounds: -128.607, -1.803, -118.216 to 117.691, 38.500, 106.406. Source hash: `sha256:8ede701f4a7ed4a1c541d3a5566585c1fccb521c7c56fed4c85bb18eff042682`.
 
-{"up":"+Y","longitudinal":"+X east-northeast,12.49 degrees north of east","front":"+Z gardens; -Z Dame/Castle Street; Lower Court toward +X","origin":"Mapped entire campus center; provisional ground attachment Y=0"}
+{"up":"+Y","longitudinal":"+X east-northeast,12.49 degrees north of east","front":"+Z gardens; -Z Dame/Castle Street; Lower Court toward +X","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Exact campus perimeter and interpreted OPW components establish orientation; geographic activation requires terrain/approach and footprint interaction review. Synthetic captures establish appearance only.
+The inspected aerial picture confirms the Georgian brick quadrangle, green Bedford clock dome, medieval Record tower/chapel pairing and southern round garden. Standard viewer PMTiles and the retained campus outline determine approximate scale, location and signed orientation. Structures use a reconstructed4.5m working rise to clear the coarse northern ground; foundations extend below terrain and low court/garden surfaces follow the sampled ground. Anchor -6.266610512,53.342658821; heading 0.217908808734; standard PMTiles datum 13.959391147912555m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -34,13 +34,12 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0275` (
 
 ## Pending work
 
-- Original medium-fi exterior interpretation, not a conservation or cadastral survey.
-- All heights, radii, component widths and openings inferred from primary photographs and plans; no surveyed elevation is claimed.
-- South-facing painted ranges use interpreted clear red/ochre/blue tints seen in OPW aerial evidence; paint exactness remains subject to site review.
-- Upper/Lower Courtyards remain open. Existing buildings are abbreviated; future strategic-plan proposals and neighboring offices are excluded.
-- Garden serpent paths are a broad stylized interpretation, not an exact reproduction of the paving pattern.
-- Fine Gothic carving, stone joints, glazing bars, statuette attributes, full interiors and tiny fixtures omitted.
-- Actual terrain contact, approaches, geographic activation, continuous-motion shimmer and physical-device performance remain pending.
+- Approximate current exterior from picture and standard viewer PMTiles; no bespoke research, survey or exact thresholds.
+- Original detailed architectural recipe and master remain preserved. Independent derivative fits foundations and coarse court/garden ground surfaces.
+- Open courts, Georgian ranges, Bedford dome/gates, round medieval towers, Gothic chapel and circular garden define identity; fine carving and openings reconstructed.
+- Existing exterior campus only; neighboring offices, future proposals, temporary events and navigable interiors excluded. Garden serpent paths are stylized; exact paint colors and paving remain approximate.
+- Five shared material graphs and two local slots; seven merged groups justified by the mixed campus. No embedded images. Physical-device timing pending.
+- The broad campus paving sheet is omitted from the runtime derivative to avoid hiding the garden; discrete courts, lawn, ring and stylized paths follow coarse PMTiles ground.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

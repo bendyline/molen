@@ -31,37 +31,6 @@
       }
     },
     {
-      "id": "ground",
-      "components": {
-        "transform": {
-          "pos": [
-            0,
-            -0.15,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "scale": [
-            610.8007339477539,
-            0.2,
-            100
-          ]
-        },
-        "renderable": {
-          "kind": "primitive",
-          "ref": "box",
-          "materialRef": "palette:#53777c",
-          "shadows": {
-            "receive": true
-          }
-        }
-      }
-    },
-    {
       "id": "environment",
       "components": {
         "environment": {
@@ -86,23 +55,58 @@
           "shadows": "high"
         }
       }
+    },
+    {
+      "id": "review-vistula",
+      "components": {
+        "transform": {
+          "pos": [
+            -67.5,
+            0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            245,
+            0.06,
+            800
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#607f86",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
     }
   ],
   "camera": {
     "mode": "fixed",
     "position": [
-      330,
-      180,
-      360
+      370,
+      145,
+      310
     ],
     "lookAt": [
       0,
-      14,
+      16,
       0
     ],
     "fov": 45
   },
   "physics": {
     "engine": "none"
+  },
+  "terrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
   }
 }

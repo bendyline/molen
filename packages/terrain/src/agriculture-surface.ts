@@ -21,7 +21,8 @@ export function appendAgricultureAttributes(
     (polygon) =>
       [polygon.outer, ...(polygon.holes ?? [])].flatMap((ring) =>
         ring.flatMap((a, i) => {
-          const b = ring[(i + 1) % ring.length]!;
+          const b = ring[(i + 1) % ring.length];
+          if (!b) return [];
           if (
             (Math.abs(a[0] - b[0]) < 1e-6 &&
               (Math.abs(a[0]) < 1e-6 || Math.abs(a[0] - 1) < 1e-6)) ||

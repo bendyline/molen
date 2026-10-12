@@ -12,31 +12,32 @@
   },
   "visualBrief": "Original approximate exterior with battered white bastioned curtain walls,terraced batteries,open main and smaller courts,stepped governor blocks with a real upper loggia,brick-pilastered former church,and arched gateway approached over timber bridge.",
   "mediumFiContext": {
-    "scale": "2",
-    "neighborStyle": "molen.worldgen.catalog.west_african_compound"
+    "groundY": -12,
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
-    134,
-    31,
-    113
+    120.60000228881836,
+    38.96521520614624,
+    101.70000076293945
   ],
   "actualBounds": {
     "min": [
-      -66,
-      0,
-      -47
+      -59.400001525878906,
+      -7.165215969085693,
+      -42.29999923706055
     ],
     "max": [
-      68,
-      31,
-      66
+      61.20000076293945,
+      31.799999237060547,
+      59.400001525878906
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "lateral": "+X toward sea-end battery in the reconstructed plan",
     "longitudinal": "+Z toward reconstructed entrance side",
-    "origin": "Original control-plan center;Y0 lower external fort footing,Y4 estimated inner court. No surveyed registration."
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "identity": "Q55264655 reference coordinate;GMMB St.George’s Castle description",
@@ -46,7 +47,10 @@
     "reconstructedEnvelopeMeters": [
       134,
       113
-    ]
+    ],
+    "originalMasterHash": "sha256:247cb4df4e4732b85a31ae3861a8ac2e8a3e69e8bf5e68b2ca21a970b512d5e5",
+    "originalMasterRecipe": "packages/worldgen/scripts/elmina-castle-model.mjs#buildElminaRuntime",
+    "runtimePlanScale": 0.9
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -94,12 +98,13 @@
       "White battered fort walls and angular projecting battery bastions",
       "Stepped white inner buildings and red-roof governor block with open gallery",
       "Open courtyard with brick-pilastered former church and smaller secondary court"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Original approximate exterior interpretation of operator and primary photographer images. No verified mapped footprint or metric survey resolved. Cached Wikidata reference anchor supplies location only.",
-    "heightDatum": "All meter dimensions estimated. Operator identifies four storeys. CourtY4,batterydeckY10,governorbody23m plus4m roof abovecourt yield31m modeled maximum. No measured height claim.",
-    "registration": "Reference anchor[-1.348211,5.08274]. Native heading0 is a placeholder only; signed orientation,scale,complete layout,ground/base datum and terrain fit require independent evidence and in-world review. Inactive draft."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://gmmb.gov.gh/st-georges-castle-elmina-castle-elmina-1482/",
@@ -111,25 +116,35 @@
     "https://commons.wikimedia.org/wiki/File:Elmina_Castle_Smaller_Courtyard_30_Aug_2012.jpg"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Inactive reference-only draft;heading placeholder",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       -1.348211,
       5.08274
     ],
-    "heading": 0,
+    "heading": -0.95,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "source": "https://gmmb.gov.gh/st-georges-castle-elmina-castle-elmina-1482/",
+    "source": "https://build.protomaps.com/20261008.pmtiles",
     "groundModelY": 0,
     "featureIds": [],
     "wikidataId": "Q55264655",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:c521214333d6b1c7db7e65d0962d3c387d0fa37da94c8064939ec927938c34d3",
-    "mapGeometryLicense": "Original reconstruction;no mapped geometry",
-    "attribution": "Molen original reconstruction",
+    "mapGeometryHash": "sha256:10b138fc3535ed4f42f8f018747e1f4f856966aac519a13b917cdc52dcf330e0",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Reference coordinate only. All dimensions,outline,internal plan,heading and attachment datums estimated;independent scale/direction/terrain/site review pending."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected aerial picture confirms battered white bastions, terraced sea battery, open courts and stepped white governor blocks. Standard viewer PMTiles shows the coastal fort buildings and western castle parking. An approximate-.95rad heading and0.9horizontal plan scale fit the entrance toward that parking and sea-end batteries toward the coast. A reconstructed0.8m working rise keeps the court above coarse ground; wall/pier bottoms extend below sampled terrain and bridge deck approaches coarse ground at its outer end. Anchor -1.348211,5.08274; heading -0.95; standard PMTiles datum 10.98536388100999m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "Inspected aerial picture confirms battered white bastions, terraced sea battery, open courts and stepped white governor blocks. Standard viewer PMTiles shows the coastal fort buildings and western castle parking. An approximate-.95rad heading and0.9horizontal plan scale fit the entrance toward that parking and sea-end batteries toward the coast. A reconstructed0.8m working rise keeps the court above coarse ground; wall/pier bottoms extend below sampled terrain and bridge deck approaches coarse ground at its outer end. Anchor -1.348211,5.08274; heading -0.95; standard PMTiles datum 10.98536388100999m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -1.348211,
+        5.08274
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Original meter estimates from inspected operator and primary photographer images;no surveyed or verified mapped dimensions.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -139,7 +154,7 @@
   "sharedSurfaces": [
     {
       "ref": "matgraph:molen.worldgen.material.stone_limestone",
-      "slot": "wall",
+      "slot": "foundation",
       "uv": "repeats",
       "repeatMeters": [
         2.4,
@@ -166,7 +181,7 @@
     },
     {
       "ref": "matgraph:molen.worldgen.material.brick",
-      "slot": "wall",
+      "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
         1.92,
@@ -181,97 +196,321 @@
         2,
         0.25
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Original approximate current exterior:all metric controls,fort/bastion outlines,wing locations,church size,governor/small-court arrangement,bridge length and height datums are estimates. No verified footprint or survey resolved.",
-    "Reference anchor identifies the fort;heading0 is a placeholder,not a resolved direction. Both OpenStreetMap read endpoints returned429 during authoring;no map geometry used or claimed. Exact signed orientation,scale,terrain/base plane and complete site fit pending.",
-    "Four-storey identity documented by operator. Modeled31m maximum and all other heights are estimates. Selected white fort walls,bastions,open court,stepped inner blocks,church brick pilasters,arched gallery and gate are represented.",
-    "Thin balusters,individual masonry joints,weathering/dirt gradients,complete statuary/lettering,interiors/dungeon routes,working guns and nearby Fort St.Jago/harbour/cathedral excluded. Selected cannon forms are static merged details near.",
-    "Five existing shared256²graphs:lime plaster,limestone,tile,brick and timber. Linear vertex colors,metricUVs,no photos or unique textures,baked light orAO.",
-    "Synthetic West-African-compound context and flat review ground are style comparisons only. Inactive placement,replaceFootprint=false. Resident forcedLODs do not test real adaptive/network upgrades,subframe shimmer or device timing."
+    "Approximate current exterior and placement from one inspected picture and standard viewer PMTiles, without metric survey or exact thresholds.",
+    "Original detailed architectural master/hash/recipe preserved. Derived0.9 plan scale and-.95rad heading are visual-fit estimates; original internal building/bastion plan remains interpreted.",
+    "Working court, bridge gradient and bounded foundation levels reconstructed. Terrain cutouts, accurate waterlines, dungeon/interior, town/harbor buildings and Fort St.Jago excluded.",
+    "Six common graphs and explicit dark recess slot, zero embedded images. Footprint replacement remains off; physical-device timing unmeasured."
   ],
   "qaCameras": [
     {
       "name": "entrance-bridge-and-battered-walls",
       "position": [
-        -108,
-        34,
-        116
+        -97.2,
+        34.8,
+        104.4
       ],
       "lookAt": [
-        -28,
-        11,
-        30
+        -25.2,
+        11.8,
+        27
       ]
     },
     {
       "name": "sea-battery-and-watch-towers",
       "position": [
-        119,
-        44,
-        78
+        107.10000000000001,
+        44.8,
+        70.2
       ],
       "lookAt": [
-        34,
-        11,
-        1
+        30.6,
+        11.8,
+        0.9
       ]
     },
     {
       "name": "open-courts-and-governor-roofs",
       "position": [
-        72,
-        117,
-        64
+        64.8,
+        117.8,
+        57.6
       ],
       "lookAt": [
-        -7,
-        10,
+        -6.3,
+        10.8,
         0
       ]
     },
     {
       "name": "former-church-brick-pilasters",
       "position": [
-        8,
-        13,
-        20
+        7.2,
+        13.8,
+        18
       ],
       "lookAt": [
-        -7,
-        11,
-        8
+        -6.3,
+        11.8,
+        7.2
       ]
     },
     {
       "name": "upper-governor-loggia",
       "position": [
-        -72,
-        37,
-        -87
+        -64.8,
+        37.8,
+        -78.3
       ],
       "lookAt": [
-        -35,
-        24,
-        -26
+        -31.5,
+        24.8,
+        -23.400000000000002
       ]
     },
     {
       "name": "small-courtyard-openings",
       "position": [
-        -32,
-        8,
-        14
+        -28.8,
+        8.8,
+        12.6
       ],
       "lookAt": [
-        -21,
-        7,
-        14
+        -18.900000000000002,
+        7.8,
+        12.6
       ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/elmina-runtime-model.mjs",
+    "export": "buildElminaReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/elmina-runtime-model.mjs",
+    "export": "buildElminaReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildElminaReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildElminaReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildElminaReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "foundation",
+            "graph": "stone_limestone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-elmina-skyline",
+      "position": [
+        135,
+        90,
+        165
+      ],
+      "lookAt": [
+        0,
+        12,
+        4
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-elmina-district",
+      "position": [
+        135,
+        90,
+        165
+      ],
+      "lookAt": [
+        0,
+        12,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-elmina-street",
+      "position": [
+        135,
+        90,
+        165
+      ],
+      "lookAt": [
+        0,
+        12,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-elmina-closeup",
+      "position": [
+        135,
+        90,
+        165
+      ],
+      "lookAt": [
+        0,
+        12,
+        4
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -282,7 +521,7 @@
     "triangles": 17627,
     "vertices": 52881,
     "materials": 7,
-    "bytes": 2119224,
-    "sha256": "sha256:247cb4df4e4732b85a31ae3861a8ac2e8a3e69e8bf5e68b2ca21a970b512d5e5"
+    "bytes": 2119456,
+    "sha256": "sha256:e6554950b7ee1dfa080bf627c165675d88f37b88bf33f81f64b8cd3ae4ae0dc9"
   }
 }

@@ -10,29 +10,33 @@
     "latitude": 23.144444444,
     "longitude": 113.319444444
   },
-  "visualBrief": "Guangzhou’s square pale-glass office tower with a teal central slot, independently mapped split crown, round inner roof drum, original geometric 中信 sign and paired390.2 m white masts.",
+  "visualBrief": "Complete main office tower with pale split side slabs, teal center, round crown/lobby, dark base, geometric 中信 sign and twin390.2m white masts.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "scale": 2
+  },
   "size": [
-    47.83137512207031,
+    47.7507209777832,
     390.20001220703125,
-    50.91999816894531
+    47.745887756347656
   ],
   "actualBounds": {
     "min": [
-      -23.915687561035156,
+      -23.8753604888916,
       0,
-      -25.459999084472656
+      -23.872943878173828
     ],
     "max": [
-      23.915687561035156,
+      23.8753604888916,
       390.20001220703125,
-      25.459999084472656
+      23.872943878173828
     ]
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along the mapped building long axis",
-    "front": "+Z",
-    "origin": "Ground-level center of exact-QID mapped footprint frame"
+    "longitudinal": "+X east along paired mast/sign baseline",
+    "front": "+Z south toward Sports Centre; exact entrance unverified",
+    "origin": "Ground-contact center of mapped main office tower"
   },
   "sourceFacts": {
     "heightMeters": 390.2,
@@ -40,12 +44,43 @@
     "floors": 80,
     "architect": "Dennis Lau & Ng Chun Man",
     "structure": "Reinforced concrete",
-    "primaryPhoto": "Project quantity surveyor Davis Langdon & Seah, company profile page63"
+    "primaryPhoto": "Project quantity surveyor Davis Langdon & Seah, company profile page63",
+    "originalMasterHash": "sha256:b153fed1974da91e257d1987bd8a429d450aa34e9a6a7637ef2fb72676a73992",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[N0164].build",
+    "mappedInnerOfficeRoofMeters": 297,
+    "mappedRoundCrownMeters": 310.8,
+    "mappedSideTipMeters": 321.9,
+    "mappedSignTopMeters": 344,
+    "mappedEastMastMeters": 391.1,
+    "mappedHeightStatus": "Approximate map subdivisions; overall390.2m/occupied296.9m authoritative CVU data",
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ]
+    }
+  },
+  "appearance": {
+    "identity": "Pale side slabs, teal center/split crown, twin thin white spires.",
+    "scope": "Main office tower only, preserving original74676-triangle detailed recipe. Reviewed exterior includes pale-glass split side slabs, teal central shaft and round inner crown, dark lower band, reconstructed round glazed lobby with four mapped dark corner piers, original geometric 中信 sign and paired390.2m white spires. One mapped mast says391.1m; CVU390.2m architectural/tip datum is used for both. CVU occupied296.9m is distinguished from approximate mapped297m office roof,310.8m crown,321.9m side tips and344m sign/support. Facade band spacing, lobby radius, trim widths and sign stroke/brace shapes are approximations from map and actual reference photos. Exact entrances/doors not surveyed. Generic previous4.3m entry canopies are replaced by photo-supported recessed cylindrical lobby. Two separate38-storey apartment towers, shopping arcade/retail podium, basement, plazas, landscaping and interiors remain outside main-tower asset. Quantity surveyor arcade3-storey,2010 developer mall5-storey and current mapretail4-storey descriptions differ and do not establish current arcade model heights. Shared256px concrete/granite/painted-metal surfaces plus component tint; opaque palette glass, zero embedded photographs. True grade, night/sign lighting and physical-device performance unmeasured."
   },
   "reconstruction": {
     "plan": "Source-local signed47.65 m tower outline and fourteen independent mapped facade/crown components",
     "roof": "Mapped297 m inner office roof,310.8 m round crown,321.9 m split facade tips,344 m sign and mast supports",
-    "scope": "Main office tower; separate apartment towers and retail arcade remain outside this asset"
+    "scope": "Main office tower; separate apartment towers and retail arcade remain outside this asset",
+    "lobby": "Recessed round glazed lower volume and four dark piers based on actually inspected CVU base photograph; radius reconstructed",
+    "facade": "One glass face per exposed plan facet with full-length strips; horizontal floor rhythm retained near, aggregated distant"
   },
   "referencePages": [
     "https://www.skyscrapercentre.com/building/citic-plaza/242",
@@ -55,7 +90,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed placement",
     "anchor": [
       113.31938410000001,
       23.14436345
@@ -84,10 +119,13 @@
     ],
     "wikidataId": "Q245246",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:cbde23760b6785e9dce368fa72bf6d1b5810a1e42adfb1cdbc7259db4668a817",
+    "mapGeometryHash": "sha256:ea55c1d9b85955c24deb6b61316afafe6efb7e794cac9f8d85d4479363d7be84",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Source-local tower frame uses the office outline and independent split facade, sign and east/west masts. The south-facing Sports Centre photo corroborates the central teal opening between pale sides. OSM has no exact-QID tag; identity is reviewed by unique component geometry and the mapped 中信 inscription. BaseY0."
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms office outline926228208 and fourteen independent crown/facade components3152–3165 unchanged. No exact-QID on tower; attribution toQ245246 is a reviewed identity using unique paired390m masts, 中信 inscription, side facade/split-crown geometry, address and independently named38-storey CITIC apartments behind tower. Retain anchor[113.31938410000001,23.14436345],heading-.0007008769705450331rad. Native+X east,+Z south toward Sports Centre. Mapped east/west masts and sign baseline fix orientation modulo tower symmetry; actual quantity surveyor whole facade and south Sports Centre panorama corroborate south-facing teal center and twin side slabs. Crown part heights are map approximations. No mapped entrance nodes; lobby/canopy details not surveyed. Y0contact, true grade unmeasured. Accept plan2m/1degree; footprint replacement disabled.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms office outline926228208 and fourteen independent crown/facade components3152–3165 unchanged. No exact-QID on tower; attribution toQ245246 is a reviewed identity using unique paired390m masts, 中信 inscription, side facade/split-crown geometry, address and independently named38-storey CITIC apartments behind tower. Retain anchor[113.31938410000001,23.14436345],heading-.0007008769705450331rad. Native+X east,+Z south toward Sports Centre. Mapped east/west masts and sign baseline fix orientation modulo tower symmetry; actual quantity surveyor whole facade and south Sports Centre panorama corroborate south-facing teal center and twin side slabs. Crown part heights are map approximations. No mapped entrance nodes; lobby/canopy details not surveyed. Y0contact, true grade unmeasured. Accept plan2m/1degree; footprint replacement disabled.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -122,7 +160,7 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
@@ -132,11 +170,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Curtain-wall subdivisions, small canopy dimensions and sign stroke outlines are reconstructed. One OSM mast says391.1 m; both follow the published390.2 m architectural top. Two apartment towers and retail podium are excluded."
+    "Main office tower only, preserving original74676-triangle detailed recipe. Reviewed exterior includes pale-glass split side slabs, teal central shaft and round inner crown, dark lower band, reconstructed round glazed lobby with four mapped dark corner piers, original geometric 中信 sign and paired390.2m white spires. One mapped mast says391.1m; CVU390.2m architectural/tip datum is used for both. CVU occupied296.9m is distinguished from approximate mapped297m office roof,310.8m crown,321.9m side tips and344m sign/support. Facade band spacing, lobby radius, trim widths and sign stroke/brace shapes are approximations from map and actual reference photos. Exact entrances/doors not surveyed. Generic previous4.3m entry canopies are replaced by photo-supported recessed cylindrical lobby. Two separate38-storey apartment towers, shopping arcade/retail podium, basement, plazas, landscaping and interiors remain outside main-tower asset. Quantity surveyor arcade3-storey,2010 developer mall5-storey and current mapretail4-storey descriptions differ and do not establish current arcade model heights. Shared256px concrete/granite/painted-metal surfaces plus component tint; opaque palette glass, zero embedded photographs. True grade, night/sign lighting and physical-device performance unmeasured."
   ],
   "qaCameras": [
     {
@@ -203,6 +240,238 @@
         181,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        330,
+        280,
+        530
+      ],
+      "lookAt": [
+        0,
+        195,
+        0
+      ]
+    },
+    {
+      "name": "recessed-round-lobby",
+      "position": [
+        43,
+        10,
+        64
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/citic-runtime-model.mjs",
+    "export": "buildCiticReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/citic-runtime-model.mjs",
+    "export": "buildCiticSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCiticDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildCiticStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCiticCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "metal_painted",
+            "slot": "wall",
+            "roughness": 0.5,
+            "metallic": 0.12
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        330,
+        280,
+        530
+      ],
+      "lookAt": [
+        0,
+        195,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        330,
+        280,
+        530
+      ],
+      "lookAt": [
+        0,
+        195,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        330,
+        280,
+        530
+      ],
+      "lookAt": [
+        0,
+        195,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        330,
+        280,
+        530
+      ],
+      "lookAt": [
+        0,
+        195,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-split-crown",
+      "position": [
+        71,
+        344,
+        99
+      ],
+      "lookAt": [
+        0,
+        330,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-round-lobby",
+      "position": [
+        43,
+        10,
+        64
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -210,10 +479,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 74676,
-    "vertices": 157380,
+    "triangles": 9422,
+    "vertices": 26758,
     "materials": 5,
-    "bytes": 6565104,
-    "sha256": "sha256:b153fed1974da91e257d1987bd8a429d450aa34e9a6a7637ef2fb72676a73992"
+    "bytes": 1079648,
+    "sha256": "sha256:576e16aa72548ce42a228dfceb7285a89f2df876174b9b2835ecd2916f86bccd"
   }
 }

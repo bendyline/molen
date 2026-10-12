@@ -35,8 +35,8 @@
   },
   "nativeAxes": {
     "up": "+Y",
-    "front": "+Z is the provisional southern approach; axial form is rotationally symmetric but the base pattern is not",
-    "origin": "Spire centre at street pavement datum"
+    "front": "+Z south-facing review axis",
+    "origin": "Native +X east,+Z south,+Y vertical; heading0 preserves cardinal axes around the mapped circular exact-Q1134365 monument. The cone and grating are axial; reconstructed stencil marks and eight regularized bollards have no certified compass phase. No entrance bearing is asserted."
   },
   "scaleBasis": "Dublin City Council and fabricator dimensions fix the 120 m cone, 3 m base and 150 mm tip. IMOA fixes 11,884 holes of 15 mm diameter over the upper 12 m. Surround/grating/bollards are scaled from the inspected architect photograph, not a site survey.",
   "geographicProposal": {
@@ -46,12 +46,17 @@
     ],
     "heading": 0,
     "source": "https://www.openstreetmap.org/way/96578181",
-    "orientationConfidence": "axis-only",
+    "orientationConfidence": "reviewed-axial",
     "evidence": "Exact-QID mapped spire polygon provides the centre. Published dimensions supersede the smaller mapped footprint and mapped 121.2 m height.",
-    "limitations": "A 2.2 m mapped footprint does not match the 3 m published base. Base-pattern azimuth, pavement contact, bollard locations and current streetscape require site review.",
+    "limitations": "Medium-fi static daylight exterior:120m,3m base and0.15m tip follow fabricator/tourism engineering facts. Exact11884physical15mm holes remain in the original instanced master; budgeted close-up substitutes11884opaque daylight diffuser marks, street/district average subpixel perforations. Base artwork is original geological-strata reconstruction with reduced marks at distance, not a traced full architect stencil or a certified azimuth. Surround8.1m and eight regularized bollards follow inspected early architect photograph, not a current street survey; current grating/bollard phase, maintenance hatches, night beacon and wind animation are outside this daylight scope. Map2.2m ring/121.2m height are not sizing controls. Host terrain sets street datum; no footprint replacement or surrounding streets/rails baked in.",
     "status": "preview-proposal",
     "elevationMode": "terrain-contact",
-    "notes": "Exact-QID mapped spire polygon provides the centre. Published dimensions supersede the smaller mapped footprint and mapped 121.2 m height. A 2.2 m mapped footprint does not match the 3 m published base. Base-pattern azimuth, pavement contact, bollard locations and current streetscape require site review."
+    "notes": "Native +X east,+Z south,+Y vertical; heading0 preserves cardinal axes around the mapped circular exact-Q1134365 monument. The cone and grating are axial; reconstructed stencil marks and eight regularized bollards have no certified compass phase. No entrance bearing is asserted. Medium-fi static daylight exterior:120m,3m base and0.15m tip follow fabricator/tourism engineering facts. Exact11884physical15mm holes remain in the original instanced master; budgeted close-up substitutes11884opaque daylight diffuser marks, street/district average subpixel perforations. Base artwork is original geological-strata reconstruction with reduced marks at distance, not a traced full architect stencil or a certified azimuth. Surround8.1m and eight regularized bollards follow inspected early architect photograph, not a current street survey; current grating/bollard phase, maintenance hatches, night beacon and wind animation are outside this daylight scope. Map2.2m ring/121.2m height are not sizing controls. Host terrain sets street datum; no footprint replacement or surrounding streets/rails baked in.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:37241443962095f927063661b3e8d9b5bcf2ff777102ae4ee3cb7bfde6361c98",
+    "mapGeometryLicense": "OSM ODbL1.0; reference images not redistributed.",
+    "attribution": "© OpenStreetMap contributors; Fáilte Ireland; AQUA Design; IMOA/Ian Ritchie Architects."
   },
   "sourceFacts": {
     "heightMeters": 120,
@@ -67,7 +72,10 @@
       0.01
     ],
     "steel": "Type 316",
-    "fabricatedFrusta": 8
+    "fabricatedFrusta": 8,
+    "originalMasterHash": "sha256:48e30d716fe4469c297f1baa44eaabf1baa2ee8b2bae2f461b4ae6046724c6aa",
+    "browserPerforations": "All11884daylight marks in closeup; original master has physical holes",
+    "basis": "Medium-fi static daylight exterior:120m,3m base and0.15m tip follow fabricator/tourism engineering facts. Exact11884physical15mm holes remain in the original instanced master; budgeted close-up substitutes11884opaque daylight diffuser marks, street/district average subpixel perforations. Base artwork is original geological-strata reconstruction with reduced marks at distance, not a traced full architect stencil or a certified azimuth. Surround8.1m and eight regularized bollards follow inspected early architect photograph, not a current street survey; current grating/bollard phase, maintenance hatches, night beacon and wind animation are outside this daylight scope. Map2.2m ring/121.2m height are not sizing controls. Host terrain sets street datum; no footprint replacement or surrounding streets/rails baked in."
   },
   "referencePages": [
     "https://www.visitdublin.com/the-spire",
@@ -119,13 +127,9 @@
     }
   ],
   "limitations": [
-    "The unique base stencil is an original stratified reconstruction. Its complete individual island shapes and azimuth require a measured or photographic unwrap before maximum-fidelity approval.",
-    "Exact frustum joints, hole row layout and stagger are unresolved. Hole count and diameter are faithful; the present explicit layout is reconstructed.",
-    "Current night lighting, basal lighting, maintenance door and service hardware remain unfinished. The static pale diffuser represents daylight rather than an active beacon.",
-    "Ground surround and bollards follow early architect photographs and require comparison with the present streetscape. No surrounding tram tracks or buildings are baked into the model.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Medium-fi static daylight exterior:120m,3m base and0.15m tip follow fabricator/tourism engineering facts. Exact11884physical15mm holes remain in the original instanced master; budgeted close-up substitutes11884opaque daylight diffuser marks, street/district average subpixel perforations. Base artwork is original geological-strata reconstruction with reduced marks at distance, not a traced full architect stencil or a certified azimuth. Surround8.1m and eight regularized bollards follow inspected early architect photograph, not a current street survey; current grating/bollard phase, maintenance hatches, night beacon and wind animation are outside this daylight scope. Map2.2m ring/121.2m height are not sizing controls. Host terrain sets street datum; no footprint replacement or surrounding streets/rails baked in."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -220,6 +224,246 @@
         60,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Tapered 120 m stainless steel monument, separate reflective geological pattern islands, 11,884 actual tip perforations with plate reveals and internal diffuser, concentric base grating, dark stone surround and eight removable bollards. Reusable polished and bead-blasted material graphs supply the metal finishes.",
+    "master": "Preserved original component assembly with212reusable perforation rows and11884hole instances.",
+    "browser": "All levels retain the complete 120 m taper, ground surround and eight bollards. District, street and close-up retain reconstructed polished base islands; skyline averages the subpixel pattern. Close-up retains 11,884 daylight perforation marks; the detailed source master retains physical holes.",
+    "exclusions": "Medium-fi static daylight exterior:120m,3m base and0.15m tip follow fabricator/tourism engineering facts. Exact11884physical15mm holes remain in the original instanced master; budgeted close-up substitutes11884opaque daylight diffuser marks, street/district average subpixel perforations. Base artwork is original geological-strata reconstruction with reduced marks at distance, not a traced full architect stencil or a certified azimuth. Surround8.1m and eight regularized bollards follow inspected early architect photograph, not a current street survey; current grating/bollard phase, maintenance hatches, night beacon and wind animation are outside this daylight scope. Map2.2m ring/121.2m height are not sizing controls. Host terrain sets street datum; no footprint replacement or surrounding streets/rails baked in."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "mesh": {
+    "triangles": 1313806,
+    "vertices": 2538454,
+    "groups": 5,
+    "bytes": 14914312,
+    "sha256": "sha256:48e30d716fe4469c297f1baa44eaabf1baa2ee8b2bae2f461b4ae6046724c6aa",
+    "min": [
+      -4.050000190734863,
+      0,
+      -4.050000190734863
+    ],
+    "max": [
+      4.050000190734863,
+      120,
+      4.050000190734863
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/spire-of-dublin-browser-model.mjs",
+    "export": "buildSpireSkyline",
+    "errorMeters": 0.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSpireDistrict",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "foundation",
+            "roughness": 0.6
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "beadblasted_stainless": {
+            "graph": "metal_stainless_beadblasted",
+            "slot": "trim",
+            "roughness": 0.46,
+            "metallic": 1
+          },
+          "polished_stainless": {
+            "graph": "metal_stainless_polished",
+            "slot": "trim",
+            "roughness": 0.09,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSpireStreet",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "foundation",
+            "roughness": 0.6
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "beadblasted_stainless": {
+            "graph": "metal_stainless_beadblasted",
+            "slot": "trim",
+            "roughness": 0.46,
+            "metallic": 1
+          },
+          "polished_stainless": {
+            "graph": "metal_stainless_polished",
+            "slot": "trim",
+            "roughness": 0.09,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSpireCloseup",
+        "errorMeters": 0.005,
+        "surfaces": {
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "foundation",
+            "roughness": 0.6
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "beadblasted_stainless": {
+            "graph": "metal_stainless_beadblasted",
+            "slot": "trim",
+            "roughness": 0.46,
+            "metallic": 1
+          },
+          "polished_stainless": {
+            "graph": "metal_stainless_polished",
+            "slot": "trim",
+            "roughness": 0.09,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-skyline",
+      "position": [
+        0,
+        62,
+        184
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-district",
+      "position": [
+        0,
+        62,
+        184
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-street",
+      "position": [
+        0,
+        62,
+        184
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-closeup",
+      "position": [
+        0,
+        62,
+        184
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "base-street",
+      "position": [
+        6,
+        5,
+        11
+      ],
+      "lookAt": [
+        0,
+        4.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "base-district",
+      "position": [
+        6,
+        5,
+        11
+      ],
+      "lookAt": [
+        0,
+        4.7,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "tip-closeup",
+      "position": [
+        0.8,
+        117.2,
+        1.5
+      ],
+      "lookAt": [
+        0,
+        117.2,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ]
 }

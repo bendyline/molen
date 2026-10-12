@@ -1,0 +1,445 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#bfb09c",
+      "trim": "#eee6d6",
+      "wall": "#eadfc6",
+      "roof": "#b9b3a1",
+      "wood": "#ba9875",
+      "recess": "#4d6178",
+      "paving": "#aaa59a"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "basalt": [
+        0.540547,
+        0.565118,
+        0.537968
+      ],
+      "sandstone": [
+        0.684938,
+        0.602377,
+        0.467682
+      ],
+      "marble": [
+        0.916083,
+        0.916083,
+        0.916083
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ]
+    },
+    "materialBudget": 6,
+    "identityFeatures": [
+      "Five round crenellated towers and battered footings",
+      "Pale marble gate with two stacked actual openings",
+      "Open trapezoid courtyard within tufo curtain wings"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X approximately east along cached map axis; signed registration pending",
+    "longitudinal": "+Z approximately south; entrance faces native -X",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/15009683 exactQ781219",
+    "mappedEnvelopeMeters": [
+      120.337,
+      112.652
+    ],
+    "measuredExteriorHeightAvailable": false,
+    "mappedElevationNotHeight": 40,
+    "maximumHeightEstimateMeters": 40,
+    "documentedInteriorHallMeters": [
+      26,
+      26,
+      28
+    ],
+    "originalMasterHash": "sha256:b139e307657f796d5df2dd8efb0cdfd81d7591de8c7da3bfc8a7c1115f402f06",
+    "originalMasterRecipe": "packages/worldgen/scripts/castel-nuovo-model.mjs#buildCastelNuovoRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior from one inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed master/hash/recipe preserved. Tower, chapel, hall, gate and court-floor dimensions remain reconstructed; pale gate reliefs are simplified geometric masses.",
+    "Five common graphs plus explicit dark recess slot, zero embedded images. No interiors, terrain cutouts, surrounding plaza/city or exact ground levels.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.253249701,
+      40.838300344
+    ],
+    "heading": -0.308685078188,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected picture confirms flat crenellated dark towers, corbelled crowns, warm curtain walls and pale stacked entrance arch. Retained mapped tower-footing/court geometry and standard viewer PMTiles set approximate location, scale and western-entry orientation. A reconstructed1m working rise keeps court and entry above coarse sampled ground; bounded tower-footing bottoms extend beneath terrain. Anchor 14.253249701,40.838300344; heading -0.308685078188; standard PMTiles datum 15.497152127096433m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Inspected picture confirms flat crenellated dark towers, corbelled crowns, warm curtain walls and pale stacked entrance arch. Retained mapped tower-footing/court geometry and standard viewer PMTiles set approximate location, scale and western-entry orientation. A reconstructed1m working rise keeps court and entry above coarse sampled ground; bounded tower-footing bottoms extend beneath terrain. Anchor 14.253249701,40.838300344; heading -0.308685078188; standard PMTiles datum 15.497152127096433m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        14.253249701,
+        40.838300344
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "Inspected picture confirms flat crenellated dark towers, corbelled crowns, warm curtain walls and pale stacked entrance arch. Retained mapped tower-footing/court geometry and standard viewer PMTiles set approximate location, scale and western-entry orientation. A reconstructed1m working rise keeps court and entry above coarse sampled ground; bounded tower-footing bottoms extend beneath terrain. Anchor 14.253249701,40.838300344; heading -0.308685078188; standard PMTiles datum 15.497152127096433m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/castel-nuovo-runtime-model.mjs",
+    "export": "buildCastelNuovoReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "basalt": {
+      "slot": "wall",
+      "graph": "stone_basalt",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "sandstone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "marble": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "foliage": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/castel-nuovo-runtime-model.mjs",
+    "export": "buildCastelNuovoReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCastelNuovoReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCastelNuovoReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCastelNuovoReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-castelnuovo-skyline",
+      "position": [
+        -165,
+        115,
+        160
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-castelnuovo-district",
+      "position": [
+        -165,
+        115,
+        160
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-castelnuovo-street",
+      "position": [
+        -165,
+        115,
+        160
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-castelnuovo-closeup",
+      "position": [
+        -165,
+        115,
+        160
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -17,
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
+  },
+  "camera": {
+    "position": [
+      -165,
+      115,
+      160
+    ],
+    "lookAt": [
+      0,
+      18,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "western-gate-and-five-towers": {
+      "position": [
+        -155,
+        61,
+        -85
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    "two-stacked-marble-gate-openings": {
+      "position": [
+        -94,
+        26,
+        6.5
+      ],
+      "lookAt": [
+        -48,
+        22,
+        6.5
+      ]
+    },
+    "open-court-hall-and-flat-tower-crowns": {
+      "position": [
+        80,
+        146,
+        100
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ]
+    },
+    "court-chapel-rose-and-portal": {
+      "position": [
+        -9,
+        18,
+        0
+      ],
+      "lookAt": [
+        21,
+        20,
+        0
+      ]
+    },
+    "nine-court-arcades": {
+      "position": [
+        -4,
+        17,
+        -15
+      ],
+      "lookAt": [
+        -3,
+        11,
+        19
+      ]
+    },
+    "marine-elevation-and-glazed-loggias": {
+      "position": [
+        96,
+        27,
+        25
+      ],
+      "lookAt": [
+        53,
+        20,
+        17
+      ]
+    }
+  }
+}

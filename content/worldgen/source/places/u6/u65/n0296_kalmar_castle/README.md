@@ -20,11 +20,11 @@ Six existing256-square shared graphs with linear tints and central metric UV rep
 
 ## Model and axes
 
-9,633 triangles; 28,899 vertices; 8 material groups; 1,160,536 bytes. Native bounds: -111.141, 0.300, -120.786 to 103.816, 49.500, 107.463. Source hash: `sha256:7dfdbda6cafeaf7acec7895e75f2127a7d788021ac04c63214532cc1284f6d8c`.
+9,633 triangles; 28,899 vertices; 8 material groups; 1,160,524 bytes. Native bounds: -111.141, -4.825, -120.786 to 103.816, 50.000, 107.463. Source hash: `sha256:a7d9df6d5d7142e1dd2fe4ddd91e5abece7591f899f71585833b50aa01ee5960`.
 
-{"up":"+Y","front":"Mapped western bridge and old Kuretornet entrance, baked into East/South coordinates","longitudinal":"+Z south","origin":"Exact-QID footprint map anchor; model ground attachment Y4.2 is an original provisional castle-platform estimate. Outer defenses descend toY0.3."}
+{"up":"+Y","front":"Mapped western bridge and old Kuretornet entrance, baked into East/South coordinates","longitudinal":"+Z south","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Geometry is baked in native East/South coordinates with heading0. Internal plan angle is an authoring convenience and never placement orientation. Original platformY4.2 is a provisional attachment plane; outer coast/defenses extend below it. Physical vertical/site fit remains unverified.
+The inspected aerial picture supports the open court, copper helmets, steep dark roofs, stepped gables and bounded island defenses. Retained east/south map coordinates with heading0 set approximate footprint and western approach. Standard viewer PMTiles supply surrounding terrain; reconstructed court floorY4.7 is above coarse ground and the island/pier toes reach the same sampler at every level. Broad water simulation and terrain cutouts are excluded. Anchor 16.355425549,56.657997261; heading 0; standard PMTiles datum 6.099512477948403m. Floors are reconstructed and foundations extend below the coarse sampled ground. The western bridge deck and railings slope toward the sampled outer approach; its inner end retains the reconstructed court level.
 
 ## Reproduce
 
@@ -32,13 +32,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0296` (
 
 ## Pending work
 
-- Exact-QID relation preserves castle footprint/courtyard. Nearby defense traces,coast,towers and bridge remain separately associated; the current map is not a survey.
-- No published numeric height verified. All vertical values,helmets/lanterns,roof partitioning,apertures,white gables,well and bank section are original photographic estimates.
-- No complete interiors,painted royal rooms,sculpture/inscriptions,church interior,exhibits or walkable circulation/collision are authored. Detached offsite cottage and temporary outdoor objects are omitted.
-- The SFV2013–14 kitchen extension is acknowledged but its complete surveyed current footprint/roof is unresolved; no invented specific kitchen volume is counted as verified.
-- No copied reference photo/drawing,downloaded model or unique texture. Six existing256-square shared graphs; flat glass/grass.
-- Original platformY4.2 is a provisional attachment plane. Coast/defenses extend below it; exact vertical registration,host terrain cutout,moat/water and real access fit need geographic review before activation.
-- Synthetic Earth context and fixed LOD captures do not approve physical-device timings or continuous streaming/upgrades.
+- Approximate current exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Tower profiles, aperture/restoration detail and low island levels are interpreted; interiors and collision excluded.
+- Six common graphs plus explicit glass/foliage color slots, zero embedded images. Bounded island/defenses retained; surrounding coast and water come from host data.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

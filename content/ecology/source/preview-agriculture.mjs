@@ -66,7 +66,7 @@ try {
     }
   }
   if (errors.length) throw new Error(errors.join('\n'));
-  await writeFile(resolve(out, 'evidence.json'), JSON.stringify(evidence, null, 2) + '\n');
+  await writeFile(resolve(out, 'evidence.json'), `${JSON.stringify(evidence, null, 2)}\n`);
   await import('./build-agriculture-review.mjs');
   console.log(JSON.stringify({ frames: evidence.length, errors }));
 } finally {

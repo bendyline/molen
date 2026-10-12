@@ -122,6 +122,7 @@ if (new URLSearchParams(location.search).get('reflections') === '1') {
 }
 const perspectiveCamera = new THREE.PerspectiveCamera(38, 1440 / 1080, 0.1, 20000);
 const placementCamera = new THREE.OrthographicCamera(-20, 20, 15, -15, 0.1, 20000);
+let expectedBoundedPlacementBounds: THREE.Box3 | undefined;
 let camera: THREE.PerspectiveCamera | THREE.OrthographicCamera = perspectiveCamera;
 const ground = new THREE.Mesh(
   new THREE.PlaneGeometry(30000, 30000).rotateX(-Math.PI / 2),
@@ -135,18 +136,23 @@ scene.add(ground);
 
 type Triplet = [number, number, number];
 interface ReviewInput {
+  reviewSurface?: 'water';
   viewingDate?: string;
   asset: string;
   title: string;
   /** Explicit isolated-stage datum; never changes a geographic terrain placement. */
   reviewGroundY?: number;
   placement?: StructurePlacement;
+  /** Review a complete bounded landmark in a tile large enough to contain its bounds. */
+  reviewBoundedPlacement?: boolean;
   /** Actual mapped perimeter, not a generated footprint. Coordinates are WGS84. */
   footprint?: [number, number][];
   /** Optional source credit for non-OSM reference geometry. */
   footprintLabel?: string;
   /** Open mapped road alignments, kept separate without artificial closing segments. */
   footprintLines?: [number, number][][];
+  /** Exact mapped point; a small cross is a review marker, never a building perimeter. */
+  footprintPoint?: [number, number];
 }
 let active: ReviewInput | undefined;
 let object: THREE.Object3D | undefined;
@@ -185,6 +191,7 @@ function unload() {
   geographicRenderers = undefined;
   selectionBounds = undefined;
   ground.position.y = -0.04;
+  (ground.material as THREE.MeshStandardMaterial).color.set('#93a185');
   groundCutouts.update(scene);
   renderer.render(scene, camera);
   return {
@@ -196,20 +203,38 @@ function unload() {
 
 async function mount(input: ReviewInput) {
   unload();
+  if (input.reviewGroundY !== undefined) {
+    if (!Number.isFinite(input.reviewGroundY)) throw new Error('Invalid review datum');
+    ground.position.y = input.reviewGroundY - 0.04;
+  }
+  if (input.reviewSurface === 'water') {
+    (ground.material as THREE.MeshStandardMaterial).color.set('#4c6e77');
+    ground.position.y = input.reviewGroundY ?? 0;
+  }
   terrainSamples.length = 0;
   active = input;
   resourceStart = resources.length;
   loadStart = loads.length;
+  expectedBoundedPlacementBounds = undefined;
   if (
     input.placement &&
     (input.placement.status === 'preview' ||
       (input.placement.status === 'historical' && input.viewingDate !== undefined)) &&
-    !input.placement.bounds
+    (!input.placement.bounds || input.reviewBoundedPlacement)
   ) {
     const entry = input.placement;
     const factor = Math.cos((entry.anchor[1] * Math.PI) / 180);
     const center = wgs84ToWorld(factor, ...entry.anchor);
-    const tileSize = 256;
+    const boundCorners = entry.bounds
+      ? [
+          wgs84ToWorld(factor, entry.bounds[0], entry.bounds[1]),
+          wgs84ToWorld(factor, entry.bounds[2], entry.bounds[3]),
+        ]
+      : [];
+    const tileSize = Math.max(
+      256,
+      ...boundCorners.flatMap((point) => point.map((v, i) => 2 * Math.abs(v - center[i]) + 16)),
+    );
     const origin: [number, number] = [center[0] - tileSize / 2, center[1] - tileSize / 2];
     const [west, north] = worldToWgs84(factor, ...origin);
     const [east, south] = worldToWgs84(factor, origin[0] + tileSize, origin[1] + tileSize);
@@ -279,18 +304,57 @@ async function mount(input: ReviewInput) {
     // Translate the geographic tile to the review origin, retaining model heading/scale.
     tileRoot.position.set(-tileSize / 2, 0, -tileSize / 2);
     scene.add(tileRoot);
+    if (entry.bounds) {
+      // Bounded placement bakes the transform into clipped vertex buffers; its
+      // root transform is deliberately different from an unbounded landmark.
+      const prepared = await models.acquire(entry.asset);
+      const placementMatrix = new THREE.Matrix4().compose(
+        new THREE.Vector3(0, entry.elevation ?? 0, 0),
+        new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), entry.heading ?? 0),
+        new THREE.Vector3(...(entry.scale ?? [1, 1, 1])),
+      );
+      // Transform actual source vertices: rotating an axis-aligned box can
+      // overestimate the envelope of tapered roofs, railings and piers.
+      expectedBoundedPlacementBounds = new THREE.Box3();
+      const point = new THREE.Vector3();
+      prepared.scene.updateMatrixWorld(true);
+      prepared.scene.traverse((child) => {
+        const mesh = child as THREE.Mesh;
+        if (!mesh.isMesh) return;
+        const positions = mesh.geometry.getAttribute('position');
+        for (let i = 0; i < positions.count; i++) {
+          point
+            .fromBufferAttribute(positions, i)
+            .applyMatrix4(mesh.matrixWorld)
+            .applyMatrix4(placementMatrix);
+          expectedBoundedPlacementBounds?.expandByPoint(point);
+        }
+      });
+      models.release(entry.asset);
+    }
     const evidenceLines = input.footprintLines ?? (input.footprint ? [input.footprint] : []);
-    if (evidenceLines.length) {
+    if (evidenceLines.length || input.footprintPoint) {
       const project = (point: [number, number]) => {
         const [x, z] = wgs84ToWorld(factor, ...point);
-        return new THREE.Vector3(x - center[0], 0.08, z - center[1]);
+        return new THREE.Vector3(x - center[0], ground.position.y + 0.12, z - center[1]);
       };
       const material = new THREE.LineBasicMaterial({
         color: '#e241b0',
         depthTest: false,
         depthWrite: false,
       });
-      if (input.footprintLines) {
+      if (input.footprintPoint) {
+        const point = project(input.footprintPoint);
+        outline = new THREE.LineSegments(
+          new THREE.BufferGeometry().setFromPoints([
+            point.clone().add(new THREE.Vector3(-0.4, 0, 0)),
+            point.clone().add(new THREE.Vector3(0.4, 0, 0)),
+            point.clone().add(new THREE.Vector3(0, 0, -0.4)),
+            point.clone().add(new THREE.Vector3(0, 0, 0.4)),
+          ]),
+          material,
+        );
+      } else if (input.footprintLines) {
         const points: THREE.Vector3[] = [];
         for (const line of evidenceLines) {
           for (let i = 1; i < line.length; i++) {
@@ -320,10 +384,6 @@ async function mount(input: ReviewInput) {
   }
   scene.updateMatrixWorld(true);
   bounds.setFromObject(object);
-  if (!geographicRenderers && input.reviewGroundY !== undefined) {
-    if (!Number.isFinite(input.reviewGroundY)) throw new Error('Invalid isolated review datum');
-    ground.position.y = input.reviewGroundY - 0.04;
-  }
   caption('#title', input.title);
   return telemetry();
 }
@@ -361,6 +421,18 @@ function cutoutProbe(): THREE.Vector3 | undefined {
     const p = points[i] as THREE.Vector2;
     center.x += p.x / 3;
     center.z += p.y / 3;
+  }
+  const entry = expectedBoundedPlacementBounds ? active?.placement : undefined;
+  if (entry) {
+    // Bounded placement bakes the native transform into the vertices and opening.
+    // Probe the same native frame used by the review cameras, not the clipped root.
+    return center.applyMatrix4(
+      new THREE.Matrix4().compose(
+        new THREE.Vector3(0, entry.elevation ?? 0, 0),
+        new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), entry.heading ?? 0),
+        new THREE.Vector3(...(entry.scale ?? [1, 1, 1])),
+      ),
+    );
   }
   object.updateWorldMatrix(true, false);
   return object.localToWorld(center);
@@ -404,7 +476,15 @@ function telemetry() {
     meshes,
     triangles,
     bounds: { min: bounds.min.toArray(), max: bounds.max.toArray() },
-    reviewGroundY: geographicRenderers ? null : (active?.reviewGroundY ?? 0),
+    ...(expectedBoundedPlacementBounds
+      ? {
+          expectedBoundedPlacementBounds: {
+            min: expectedBoundedPlacementBounds.min.toArray(),
+            max: expectedBoundedPlacementBounds.max.toArray(),
+          },
+        }
+      : {}),
+    reviewGroundY: active?.reviewGroundY ?? 0,
     surfaces: Object.fromEntries(
       [...materials]
         .filter((material) => material.name.startsWith('worldgen:matgraph:'))
@@ -444,19 +524,37 @@ async function view(input: {
   camera.up.set(0, 1, 0);
   if (input.position && input.lookAt) {
     object.updateMatrixWorld(true);
-    camera.position.copy(object.localToWorld(new THREE.Vector3(...input.position)));
-    camera.lookAt(object.localToWorld(new THREE.Vector3(...input.lookAt)));
+    const entry = expectedBoundedPlacementBounds ? active?.placement : undefined;
+    const nativeFrame = entry
+      ? new THREE.Matrix4().compose(
+          new THREE.Vector3(0, entry.elevation ?? 0, 0),
+          new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), entry.heading ?? 0),
+          new THREE.Vector3(...(entry.scale ?? [1, 1, 1])),
+        )
+      : object.matrixWorld;
+    camera.position.copy(new THREE.Vector3(...input.position).applyMatrix4(nativeFrame));
+    camera.lookAt(new THREE.Vector3(...input.lookAt).applyMatrix4(nativeFrame));
   } else if (input.placement) {
     // A perspective plan enlarges high roofs relative to the ground footprint. Use one
     // orthographic scale for all heights so the map overlay can expose actual fit errors.
-    const halfHeight = Math.max(size.x / (1440 / 1080), size.z, 24) * 0.7;
+    // Nearby mapped roads can lie outside a narrow tower's envelope. Include the actual
+    // evidence lines so a placement review cannot silently crop out its map evidence.
+    const planBounds = bounds.clone();
+    if (outline) planBounds.union(new THREE.Box3().setFromObject(outline));
+    const planSize = planBounds.getSize(new THREE.Vector3());
+    const planCenter = planBounds.getCenter(new THREE.Vector3());
+    const halfHeight = Math.max(planSize.x / (1440 / 1080), planSize.z, 24) * 0.7;
     placementCamera.left = -halfHeight * (1440 / 1080);
     placementCamera.right = halfHeight * (1440 / 1080);
     placementCamera.top = halfHeight;
     placementCamera.bottom = -halfHeight;
-    camera.position.set(target.x, bounds.max.y + Math.max(size.x, size.z, 30) * 2, target.z);
+    camera.position.set(
+      planCenter.x,
+      bounds.max.y + Math.max(planSize.x, planSize.z, 30) * 2,
+      planCenter.z,
+    );
     camera.up.set(0, 0, -1);
-    camera.lookAt(target);
+    camera.lookAt(new THREE.Vector3(planCenter.x, target.y, planCenter.z));
   } else {
     const angle = input.angle ?? 0.6;
     camera.up.set(0, 1, 0);

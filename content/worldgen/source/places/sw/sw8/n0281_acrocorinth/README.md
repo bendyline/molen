@@ -18,11 +18,11 @@ Model geometry adapts licensed archaeological wall data,under CC-BY-SA-4.0;see L
 
 ## Model and axes
 
-6,430 triangles; 19,290 vertices; 4 material groups; 774,372 bytes. Native bounds: -480.000, 0.000, -320.000 to 480.000, 312.850, 320.000. Source hash: `sha256:49eeb61fed8d0796fb0d4aebf8f8a0c21f644a923795e184bf09df32215adafb`.
+5,422 triangles; 16,266 vertices; 4 material groups; 653,328 bytes. Native bounds: -428.849, -151.079, -260.021 to 404.490, 64.520, 266.434. Source hash: `sha256:3cac2e543c7a1151aa6e1a70030536982b5fa2c3929f5d628b1e8d246410f0d9`.
 
-{"up":"+Y","longitudinal":"+X approximately east along the ridge","lateral":"+Z approximately south toward the Ottoman keep","origin":"Cached OSM site-boundary frame anchor;relative terrain datum258.37m,not local anchor ground height"}
+{"up":"+Y","longitudinal":"+X approximately east along the ridge","lateral":"+Z approximately south toward the Ottoman keep","origin":"Site anchor; Y0 standard viewer PMTiles anchor datum. Original terrain patch omitted from runtime."}
 
-Do not use the OSM site polygon as a building replacement. Relative terrain patch is not a surveyed host-terrain replacement. Signed orientation,component heights,current-state alignment and patch edges await review.
+The inspected aerial picture confirms the twin rocky ridge, terrain-following curtains, three successive western gates and small southwest keep. Standard viewer PMTiles set approximate ridge fit in the retained site frame. The runtime derivative omits the embedded research terrain mesh and samples its architectural footing functions directly from standard viewer PMTiles, using a0.7m working clearance. The old relative258.37m datum remains only in the preserved source master. The broad site ring is contextual; footprint replacement stays off. Anchor 22.873283683,37.891346465; heading -0.026117351143; standard PMTiles datum 510.43219632278726m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -30,13 +30,12 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0281` (
 
 ## Pending work
 
-- Primary GIS plan gives2D surviving archaeological wall lines,not a present-day3D survey. Some courses have gaps;roofless remains are not reconstructed as complete historical buildings. Small interior ruin identities remain unconfirmed.
-- Terrarium terrain samples mix30m-resolution source data. A960×640m patch and estimated gate thresholds cannot establish centimeter-level footings,cliff shape or terrace elevations. Terrain is a relative study patch;patch edges require host-terrain blending and local corrections.
-- The cached OSM archaeological-site boundary is not the curtain footprint. GIS and OSM outlines differ;absolute registration,signed direction,temporal state and vertical datum require in-world review. Inactive draft;replaceFootprint=false.
-- Three gate widths/heights,blind arches,bastions,keep elevations,merlons,cistern terrace and ruin wall heights are approximate photo interpretations. Extent-based closeup detail omits joints,arrow slits,fine battlements,carvings and railings.
-- Modern approach road,vegetation,visitor fixtures,interiors,buried archaeology,lost roofs and all minor individual remains are excluded. The living AgiosDimitrios church is not guessed onto an unidentified outline.
-- ASCSA adapted wall data and this asset geometry areCC-BY-SA-4.0;generator code remains under repository license. OSM identity/frame areODbL-1.0. Copernicus/EU-DEM terrain attribution retained. Research photographs are linked only,never redistributed or used as textures.
-- Shared256² limestone,weathered limestone and gravel graphs plus untextured terrain/recess colors. No embedded images,baked lighting or AO. Physical-device timings and continuous-motion LOD behavior remain unmeasured.
+- Approximate current surviving exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Original detailed master and adapted ASCSA wall data preserved with their CC-BY-SA attribution. Independent derivative uses viewer terrain for footing and omits embedded hill mesh.
+- Twin ridge curtains, successive gates, inner towers, Ottoman keep/citadel, cistern terrace and selected roofless remains retain identity. Architectural heights and thresholds reconstructed.
+- Site boundary is context, not a wall footprint; replacement remains off. Selected surviving walls and remains do not imply archaeological completeness.
+- Host provides ridge terrain. Modern roads, vegetation, fixtures, interiors, buried remains and lost roofs excluded.
+- Two common material graphs and local recess color; no embedded images. Physical-device timing pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

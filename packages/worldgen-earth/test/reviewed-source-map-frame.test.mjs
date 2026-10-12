@@ -35,6 +35,125 @@ const fixture = (evidence = frame) => {
   };
 };
 describe('reviewed source-local geographic frame', () => {
+  it('accepts explicitly approximate visualization facing only with current placement review', () => {
+    const evidence = {
+      ...frame,
+      sourceUrl: 'https://www.openstreetmap.org/node/8127284556',
+      coordinateSpace: 'model-local-xz',
+      mappedIdentity: { wikidataId: 'Q3378140', featureIds: ['node/8127284556'] },
+      geometry: { point: [0, 0] },
+      orientationControl: {
+        status: 'reviewed-approximation',
+        reviewedOn: '2026-10-12',
+        headingRadians: frame.heading,
+        uncertaintyDegrees: 180,
+        basis:
+          'Picture and PMTiles fit; chosen doorway facing is approximate, not a measured bearing.',
+        referencePages: ['https://www.argentina.gob.ar/sites/default/files/ushuaia_108.jpg'],
+      },
+    };
+    const data = fixture(evidence);
+    data.spec.wikidataId = 'Q3378140';
+    data.spec.geographicProposal.orientationPolicy = 'approximate-visualization';
+    expect(reviewedSourceMapFrame(data)).toEqual(evidence);
+    expect(reviewedSourceMapFrame({ ...data, geographicReviewed: false })).toBeUndefined();
+    delete data.spec.geographicProposal.orientationPolicy;
+    expect(reviewedSourceMapFrame(data)).toBeUndefined();
+  });
+  it('accepts an exact mapped node only with a separately reviewed referenced bearing', () => {
+    const evidence = {
+      ...frame,
+      sourceUrl: 'https://www.openstreetmap.org/node/5316362054',
+      coordinateSpace: 'model-local-xz',
+      mappedIdentity: { wikidataId: 'Q3378451', featureIds: ['node/5316362054'] },
+      geometry: { point: [0, 0] },
+      orientationControl: {
+        status: 'reviewed-reconstruction',
+        reviewedOn: '2026-10-09',
+        headingRadians: frame.heading,
+        uncertaintyDegrees: 20,
+        basis:
+          'North-northeast projecting canopy and parallel steps inspected in satellite and operator photographs; image parallax limits precision.',
+        referencePages: ['https://apmf.mg/review-reference', 'https://www.google.com/maps'],
+      },
+    };
+    const check = (e) => {
+      const data = fixture(e);
+      data.spec.wikidataId = 'Q3378451';
+      return reviewedSourceMapFrame(data);
+    };
+    expect(check(evidence)).toEqual(evidence);
+    for (const patch of [
+      { status: 'draft' },
+      { reviewedOn: undefined },
+      { basis: '' },
+      { headingRadians: frame.heading + Math.PI },
+      { uncertaintyDegrees: -1 },
+      { uncertaintyDegrees: NaN },
+      { uncertaintyDegrees: 90 },
+      { referencePages: [] },
+      { referencePages: ['./unattributed'] },
+    ])
+      expect(
+        check({ ...evidence, orientationControl: { ...evidence.orientationControl, ...patch } }),
+      ).toBeUndefined();
+    for (const patch of [
+      { coordinateSpace: undefined },
+      { geometry: { point: [1, 0] } },
+      { sourceUrl: 'https://www.openstreetmap.org/node/123' },
+      { mappedIdentity: { wikidataId: 'Q123', featureIds: ['node/5316362054'] } },
+      { mappedIdentity: { wikidataId: 'Q3378451', featureIds: [] } },
+      { orientationControl: undefined },
+    ])
+      expect(check({ ...evidence, ...patch })).toBeUndefined();
+    const data = fixture(evidence);
+    data.spec.wikidataId = 'Q3378451';
+    data.geographicReviewed = false;
+    expect(reviewedSourceMapFrame(data)).toBeUndefined();
+  });
+  it('accepts a signed reviewed access line without inventing a building footprint', () => {
+    const access = {
+      ...frame,
+      geometry: {
+        centerlines: [
+          [
+            [0, -40],
+            [0, -3.64],
+          ],
+        ],
+      },
+    };
+    expect(reviewedSourceMapFrame(fixture(access))).toEqual(access);
+    for (const centerlines of [
+      [],
+      [[]],
+      [[[0, 0]]],
+      [
+        [
+          [0, 0],
+          [0, 0],
+        ],
+      ],
+      [
+        [
+          [0, 0],
+          [1, NaN],
+        ],
+      ],
+    ])
+      expect(
+        reviewedSourceMapFrame(fixture({ ...access, geometry: { centerlines } })),
+      ).toBeUndefined();
+    expect(
+      reviewedSourceMapFrame({ ...fixture(access), geographicReviewed: false }),
+    ).toBeUndefined();
+    expect(
+      reviewedSourceMapFrame({
+        ...fixture(access),
+        placement: { anchor: frame.anchor, heading: frame.heading + Math.PI },
+      }),
+    ).toBeUndefined();
+  });
   it('accepts durable attributed evidence bound to the reviewed placement', () => {
     expect(reviewedSourceMapFrame(fixture())).toEqual(frame);
     const data = fixture();

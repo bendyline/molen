@@ -1,12 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0294_aljaferia",
-  "inputHash": "sha256:c7b09caba0a65e4edfcc1883c5ea93295d8c2e6d7c03449034678eed2ee3f273",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
+  "inputHash": "sha256:59a4b59fc5fff6879a28d76966f3be857659546795dc9fe1068299cc13028786",
+  "sourceHash": "sha256:d7aebaf752d170ac60b0f14e239f8c64d569fe0b0e84b919845b24e075d3cde3",
+  "runtimeHash": "sha256:0304423d9c5c7a2198f880e8f60bd1cdcc75b935517242b197bca16fd3ee03f3",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
   "footprintEvidenceHash": "sha256:41b3d845da147583d5c2ec7d3109c0f48fa3c905c89f1a119f0bdf322c35427c",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:a5cd7e7f218f1f7c33cad5d5f0ccfe008570b31805bb14357f26b81ec3d65a0a",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -16,9 +19,9 @@
       "path": "materials/plaster_lime.matgraph.json",
       "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
     },
-    "matgraph:molen.worldgen.material.stone_limestone": {
-      "path": "materials/stone_limestone.matgraph.json",
-      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+    "matgraph:molen.worldgen.material.stone_sandstone": {
+      "path": "materials/stone_sandstone.matgraph.json",
+      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
     },
     "matgraph:molen.worldgen.material.tile_ceramic": {
       "path": "materials/tile_ceramic.matgraph.json",
@@ -36,15 +39,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:bc475c021889e61785db02b8cdbd7fe18cbc668c8725929779774974d304cc84",
+      "hash": "sha256:7ab38d9de04053474391c22c96d1cdc9433dc519ca3950517e2440117bc4135d",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -52,57 +55,75 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:62baf30c980aa271c5b144cb8266780e3ff188df2685ca54d27a3fdae0c6f1ae",
+      "hash": "sha256:4f6697ba1a1402a1c3c7c9fee67ab917a79925caae85c1b5b077875f93315d33",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -110,57 +131,75 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:43c433a0e0f325af23264508ef6325a3728475939e95e7ea25696977cf787f3c",
+      "hash": "sha256:7451a742d06b9c8288bb4f3caa7435f6ce68853ee57fb89e1762b83ab722cf8f",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -168,57 +207,75 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:046ad916355eaf7dfce95db62f043645eea243063496fd5432642446c030f8c7",
+      "hash": "sha256:fdfce90849e487abbf35dd032981eaec1532f926ace8a99b4592682fa20ffff1",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -226,66 +283,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/six-tower-east-front.png",
-      "hash": "sha256:c9d92611acaec146020f79d595e06688adf3c0d011ed6d3301b322153955cf32",
+      "hash": "sha256:cf03b0ea77b5d558ebb99ef812db1db5085b4789acad00c93ffb9d00470bff94",
       "camera": {
         "name": "six-tower-east-front",
         "position": [
           117.9513843145258,
-          29,
+          34.5,
           -6.039117343373826
         ],
         "lookAt": [
           44.24322981570925,
-          7,
+          12.5,
           -10.175294367945112
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -293,66 +368,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/trovador-north.png",
-      "hash": "sha256:dded8d4552b5464a635442d53523df6054f9d5084b539edc28f572f474a61488",
+      "hash": "sha256:15490e64f02bf142b0a1de9da39bb57defe0e1931edde17f71512879a5520a06",
       "camera": {
         "name": "trovador-north",
         "position": [
           12.038426413486292,
-          45,
+          50.5,
           -96.54572123862908
         ],
         "lookAt": [
           9.675377018279972,
-          17,
+          22.5,
           -36.0608801827429
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -360,66 +453,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/open-three-court-plan.png",
-      "hash": "sha256:27c5a64d771333a870ffbe9aa346a456e70c7abd94bb6e66b085467e04032cdb",
+      "hash": "sha256:d1d4c8d0149341d862494d7eee7d569cea6cf64b7abb0156aa6780395327806f",
       "camera": {
         "name": "open-three-court-plan",
         "position": [
           0.09336674801711524,
-          205,
+          210.5,
           0.9956317845291544
         ],
         "lookAt": [
           0,
-          0,
+          5.5,
           0
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -427,66 +538,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/taifa-north-portico.png",
-      "hash": "sha256:29c4f8c4d8e5c643b79ab053361ef75a61b8e5e9e97bd2ffa428ba0838416286",
+      "hash": "sha256:0406321f017e917626edb352816f360846684cc8d79a3769887a9502dec5e7e7",
       "camera": {
         "name": "taifa-north-portico",
         "position": [
           7.996456719892349,
-          3.4,
+          8.9,
           10.29838239370089
         ],
         "lookAt": [
           6.315855255584274,
-          3.4,
+          8.9,
           -7.622989727823888
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -494,66 +623,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/taifa-south-portico.png",
-      "hash": "sha256:db997a5d09483172b3289b1dbb42d59be29b05ad321b14415f0645e6cdff67f3",
+      "hash": "sha256:e0d81921db1f788867f21941efda0b9ea501fd0da0654504fea6d4c9b8d58034",
       "camera": {
         "name": "taifa-south-portico",
         "position": [
           6.876055743686965,
-          3.4,
+          8.9,
           -1.649199020648961
         ],
         "lookAt": [
           8.836757452046385,
-          3.4,
+          8.9,
           19.259068454463282
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -561,66 +708,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/modern-hemiciclo.png",
-      "hash": "sha256:3e4773629dad08dd7029cf23a78e3ae05f3ac8c95334a8bd4e673cbc6fd1a1bf",
+      "hash": "sha256:e35c0081b03d2be418d1da0485e3a055a53d02c756e2942957b68cf6768f540c",
       "camera": {
         "name": "modern-hemiciclo",
         "position": [
           32.979777498178095,
-          5.5,
+          11,
           -23.18047187118212
         ],
         "lookAt": [
           33.66474717795702,
-          4.7,
+          10.2,
           -5.165733001640227
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -628,66 +793,84 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
       }
     },
     {
       "path": "shots/shared/mapped-east-portal.png",
-      "hash": "sha256:25b7f91730bb953e541dd66f7e18326f334136a33e751bfa7c19daa02d7d4527",
+      "hash": "sha256:102ff885e4b53c00a861302df565c1970cad8ebfe7c05aa22842ab54e660e5b0",
       "camera": {
         "name": "mapped-east-portal",
         "position": [
           66.5825603717771,
-          3.2,
+          8.7,
           -18.296520279513686
         ],
         "lookAt": [
           44.858946002846075,
-          3.2,
+          8.7,
           -22.888314999443267
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0294_aljaferia",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
         "position": [
           0,
           0,
@@ -695,44 +878,138 @@
         ],
         "heading": 0,
         "meshes": 8,
-        "triangles": 18094,
+        "triangles": 18078,
         "bounds": {
           "min": [
-            -68.14007568359375,
-            -4.5,
-            -63.90884780883789
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
           ],
           "max": [
             86.11245727539062,
-            26,
+            31.5,
             69.84210968017578
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "5c7c61c5-de00-469b-9601-86849a9aad7a",
-          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "6329ab06-27b6-4f98-be0c-65bf7e94bc12",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "e2aad096-75d8-4813-9069-5eeb5d5fe695",
-          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "69182362-82cd-44e1-b6b0-add2ba81e2ae",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "19e21e7a-8e02-452f-a29e-5fcadade57e0",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "7aff90e3-e8f1-4ce1-b2a9-61bbac009ed2"
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
         },
         "loads": [
           "molen.worldgen.structure.n0294_aljaferia"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.plaster_lime": 1,
-          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
           "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 9,
-        "renderedTriangles": 18096
+        "renderedTriangles": 18080
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:d4acacef56b665a9be1840b5a5f4223ac3a68aaae536b622a43b29fd7322fdcf",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0294_aljaferia",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0294",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 8,
+        "triangles": 18078,
+        "bounds": {
+          "min": [
+            -59.24135208129883,
+            -2.9636166095733643,
+            -52.6453971862793
+          ],
+          "max": [
+            86.11245727539062,
+            31.5,
+            69.84210968017578
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "4d1056a6-1adf-47f4-8603-46e7423b1a89",
+          "worldgen:matgraph:molen.worldgen.material.plaster_lime": "a81516e4-1804-4b3c-83b8-280dc11a10dd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "896ee5f3-f226-4ad4-bd98-f74201ec75e7",
+          "worldgen:matgraph:molen.worldgen.material.tile_ceramic": "ae995294-8c3f-4f6b-a289-3b1fbacb6feb",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "e9244f43-5277-4448-aa03-2d90a588fe7d",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "d9e63d33-d2ea-48f4-9e42-0e4f895905c4"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0294_aljaferia"
+        ],
+        "selectionBounds": [
+          -0.8985876758542078,
+          41.65533477017218,
+          -0.895509702145792,
+          41.6576344572995
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0294",
+            "coordinate": [
+              -0.897048689,
+              41.656484624
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0294"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 10,
+        "renderedTriangles": 18080
       }
     }
   ],

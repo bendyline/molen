@@ -12,9 +12,9 @@
   },
   "visualBrief": "Tuffeau Loire castle with river-facing square terrace towers, asymmetric return wings, four northern and three courtyard Gothic dormers, slate roofs, machicolations, western pointed stair roof and eastern Renaissance stair with slate-disc balustrade.",
   "size": [
-    53.14999961853027,
+    64.08999824523926,
     38.400001525878906,
-    45.19999885559082
+    54.35479927062988
   ],
   "actualBounds": {
     "min": [
@@ -23,9 +23,9 @@
       -27.149999618530273
     ],
     "max": [
-      21.549999237060547,
+      32.48999786376953,
       38.400001525878906,
-      18.049999237060547
+      27.20479965209961
     ]
   },
   "nativeAxes": {
@@ -46,7 +46,9 @@
     "courtyardDormersObserved": 3,
     "greatHallLengthMeters": 17,
     "ownerReportedTerraceHeightMeters": 35,
-    "ownerTerraceHeightDatum": "Unspecified; not adopted as a measured building elevation."
+    "ownerTerraceHeightDatum": "Unspecified; not adopted as a measured building elevation.",
+    "originalMasterHash": "sha256:240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f",
+    "originalMasterRecipe": "packages/worldgen/scripts/montsoreau-castle-model.mjs#montsoreauStudy.build"
   },
   "reconstruction": {
     "basis": "Individual reconstruction from the regional Inventaire Général exterior survey photographs and descriptions, owner publication and signed OSM castle precinct. The precinct polygon is not a building outline. Plan subdivisions, elevations, roof pitches, window sizes and ornament are photographic estimates.",
@@ -56,7 +58,7 @@
     "courtY": 4.5,
     "westernStairFinialY": 38.4,
     "datum": "Provisional road/base level; no surveyed vertical datum.",
-    "occupiedPlanBasis": "Distinct wall masses fitted inside the northern OSM precinct edge; open court retained to the south."
+    "occupiedPlanBasis": "Fresh northern occupied building 135334005 independently projected inside exact castle precinct; corrected near-rectilinear ranges and mapped court boundary"
   },
   "referencePages": [
     "https://gertrude.paysdelaloire.fr/dossier/IA49009670",
@@ -66,7 +68,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "precinct-registered preview; surveyed heights, terrain and occupied footprint fit pending",
+    "reviewStatus": "signed river/courtyard and occupied-plan review",
     "anchor": [
       0.062337562,
       47.21556495
@@ -74,18 +76,21 @@
     "heading": -0.502994439024,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "source": "https://www.openstreetmap.org/way/175416989",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=0.0606,47.2149,0.0638,47.2162",
     "groundModelY": 0,
     "featureIds": [
-      "way/175416989"
+      "way/175416989",
+      "way/135334005"
     ],
     "wikidataId": "Q1143049",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:bfbb7f09f018e3c3ccbeffbd1190702904e80bcb9ce2938b2acbdb45b5f09ff1",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "replaceFootprint": false,
-    "notes": "The exact-QID way/175416989 is the castle precinct, not an occupied building footprint. Its signed frame anchors the distinct northern ranges and open southern court. Do not stretch a single building mass to this boundary. Base datum, retaining walls and eastern/western extensions need terrain-context review."
+    "orientationConfidence": "Exact north tower notches, contained occupied map ring, regional descriptions and photographs",
+    "notes": "Fresh exact Q1143049 OSM castle way 175416989 matches the cached precinct ring within 0.002 m. Its northern occupied building is independently traced as cadastral-derived way 135334005, sharing the distinctive river-edge tower notches and stair projections with the precinct. Retain anchor [0.062337562,47.21556495] and heading -0.502994439024: native +X ENE bearing 61.18 degrees, -Z NNW river bearing 331.18 degrees, +Z SSE courtyard bearing 151.18 degrees. Regional inventory explicitly places the main range and two square towers on the north platform edge, west pointed stair and east Renaissance stair on the courtyard face; north/court photographs verify the asymmetric arrangement. Reviewed occupied ranges use the actual northern mapped dimensions, shift the courtyard wall about 2.8 m north, move both stair towers to the mapped recesses, shorten the west return and shift/shorten the east return to its mapped footprint. Court floor and retaining boundary follow the southern precinct with an open top, not a building extrusion. Adjacent southern structures and eastern platform projection are not castle roof masses. No guessed rectangle facing or occupied-footprint stretch. Actual road/terrain grade and lower moat profiles are unmeasured; footprint replacement remains disabled.",
+    "evidence": "Fresh exact Q1143049 OSM castle way 175416989 matches the cached precinct ring within 0.002 m. Its northern occupied building is independently traced as cadastral-derived way 135334005, sharing the distinctive river-edge tower notches and stair projections with the precinct. Retain anchor [0.062337562,47.21556495] and heading -0.502994439024: native +X ENE bearing 61.18 degrees, -Z NNW river bearing 331.18 degrees, +Z SSE courtyard bearing 151.18 degrees. Regional inventory explicitly places the main range and two square towers on the north platform edge, west pointed stair and east Renaissance stair on the courtyard face; north/court photographs verify the asymmetric arrangement. Reviewed occupied ranges use the actual northern mapped dimensions, shift the courtyard wall about 2.8 m north, move both stair towers to the mapped recesses, shorten the west return and shift/shorten the east return to its mapped footprint. Court floor and retaining boundary follow the southern precinct with an open top, not a building extrusion. Adjacent southern structures and eastern platform projection are not castle roof masses. No guessed rectangle facing or occupied-footprint stretch. Actual road/terrain grade and lower moat profiles are unmeasured; footprint replacement remains disabled.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Cached exact-QID OSM precinct bounds provide horizontal scale. Vertical dimensions are photographic estimates; the published 35 m terrace statement has an unresolved datum.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -139,14 +144,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Maximum fidelity is pending: the Renaissance stair figurative panels, medallions, deer and putti are not sculpted; candelabra and Gothic crockets are reconstructed relief.",
-    "No measured plan or section was inspected. The historical Salleron reference is an exterior view. Owner terrace height has an unresolved datum, so all vertical dimensions remain provisional.",
-    "Roof junctions, occupied plan subdivisions, window positions and retaining-wall limits are estimates from exterior views inside an OSM precinct boundary. Physical terrain, moat, road and surrounding village are not part of this asset.",
-    "Current square towers have flat terraces; historical pavilion roofs are deliberately not reconstructed. No interior rooms, movable shutters or engineering certification.",
-    "Original geometry and shared limestone, raw limestone, slate, wood and painted-metal surfaces. Reference photographs are linked only; no copied images or per-model texture bitmaps."
+    "Original detailed 3397240-byte /40797-triangle master remains preserved through packages/worldgen/scripts/montsoreau-castle-model.mjs#montsoreauStudy.build and exact hash sha256:240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f. A separate reviewed source and four browser levels correct the occupied plan against fresh OSM building way 135334005 inside exact-QID castle precinct 175416989. Main river range, two open terrace towers, four river/three courtyard dormers, west pointed stair, east Renaissance stair with two slate-disc rows, asymmetric lower returns, narrow chimneys and open raised court remain. Five canonical shared limestone, raw limestone, slate, wood and painted-metal graphs plus opaque glass/recess supply seven near groups and no embedded images. Skyline uses graph mean colours in one draw, skyline omits sub-6 m retaining parapet segments; district omits reveals and fine carving, street uses framed planar trims, close uses stone cross/reveal and wood sash detail with simplified crockets. Published 35 m terrace height has an unresolved datum; provisional 21 m eave/30.8 m ridge/28.48 m terrace parapet/38.4 m stair finial and 4.5 m court are photographic working elevations, not surveys. Renaissance figures, heraldic panels, exact moldings and carved cross finials remain schematic; no interiors, movable shutters or replicated third-party textures. Window/roof proportions, terrace-floor sections, irregular external footprint edges and actual terrain/road/moat junctions remain approximate. Physical laptop/phone and dense-city timings remain unmeasured. Actual render inspection caught inward retaining faces; all are corrected to face outward and a triangulated downward base closes the raised court at ground. The Renaissance stair upper cap is replaced by an annular trim around the exposed terrace floor at district, street and close levels; skyline keeps a solid coarse cap within its stated error budget."
   ],
   "qaCameras": [
     {
@@ -252,6 +253,246 @@
         5,
         -4
       ]
+    },
+    {
+      "name": "whole-reviewed-montsoreau",
+      "position": [
+        -80,
+        60,
+        90
+      ],
+      "lookAt": [
+        -4,
+        15,
+        -9
+      ]
+    },
+    {
+      "name": "signed-occupied-plan",
+      "position": [
+        0,
+        130,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0,
+        -5
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/montsoreau-runtime-model.mjs",
+    "export": "buildMontsoreauReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/montsoreau-runtime-model.mjs",
+    "export": "buildMontsoreauReviewedSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMontsoreauReviewedDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28,
+            "localRef": "palette:#ffffff"
+          },
+          "recess": {
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "buildMontsoreauReviewedStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28,
+            "localRef": "palette:#ffffff"
+          },
+          "recess": {
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMontsoreauReviewedCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone_raw",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28,
+            "localRef": "palette:#ffffff"
+          },
+          "recess": {
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-montsoreau-skyline",
+      "position": [
+        -80,
+        60,
+        90
+      ],
+      "lookAt": [
+        -4,
+        15,
+        -9
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-montsoreau-district",
+      "position": [
+        -80,
+        60,
+        90
+      ],
+      "lookAt": [
+        -4,
+        15,
+        -9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-montsoreau-street",
+      "position": [
+        -80,
+        60,
+        90
+      ],
+      "lookAt": [
+        -4,
+        15,
+        -9
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-montsoreau-closeup",
+      "position": [
+        -80,
+        60,
+        90
+      ],
+      "lookAt": [
+        -4,
+        15,
+        -9
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -259,10 +500,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 40797,
-    "vertices": 80655,
+    "triangles": 39291,
+    "vertices": 77685,
     "materials": 7,
-    "bytes": 3397240,
-    "sha256": "sha256:240687e26cd3d6e3a759349ef19141ddba00b69ab800da659c8723431dc23a5f"
+    "bytes": 3272248,
+    "sha256": "sha256:545b3950f0000b764e16c017048f9e40e96d1164d98cc15b38c5078ab5049c2f"
   }
 }

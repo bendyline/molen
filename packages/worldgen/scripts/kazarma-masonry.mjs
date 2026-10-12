@@ -415,6 +415,10 @@ const outlines = [
   ],
 ];
 
+/** Photo-scaled major silhouettes for independently authored browser levels. */
+export const kazarmaPhotographedOutlines = () =>
+  outlines.map((polygon) => polygon.map(([px, py]) => [(px - 382) * 0.0185, (394 - py) * 0.0145]));
+
 /** Angular chipped polyhedron with a shallow faceted broad face and deep bedding. */
 export function polygonStone(out, polygon, side, seed, depth = 0.82, faceOffset = 0) {
   let boundary = polygon.map((p) => [...p]);

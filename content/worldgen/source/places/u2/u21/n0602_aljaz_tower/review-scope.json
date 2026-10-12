@@ -1,0 +1,239 @@
+{
+  "fidelityTarget": "medium-fi",
+  "nativeAxes": {
+    "front": "+Z doorway and plaque, approximately south at heading0; exact compass phase is not claimed."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 0.13,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "Restored pale cylindrical summit shelter, eight viewing windows, dark conical cap, raised closed doorway, readable plaque, cut 1895 flag and three Y anchors.",
+    "epoch": "2025 heritage-authority conservation photographs; 2018 restoration retained original location and rotation.",
+    "master": "Original 23236-triangle detailed source master retained byte-for-byte.",
+    "browser": "Skyline keeps the small shelter silhouette and anchor cables; district retains real recessed windows and simplified plaque/flag; street retains the readable plaque, cut stencil flag, all rivets and fittings with fewer regular shell/roof subdivisions; closeup is the complete original.",
+    "exclusions": "Visitor interior, copied historical panorama, exact summit rock, fabrication dimensions and exact doorway compass bearing."
+  },
+  "limitations": [
+    "Approximate facing and summit fit from the inspected picture and standard viewer PMTiles; no bespoke bearing or exact rock survey. The circular mapped outline fixes location and diameter but cannot establish entrance bearing.",
+    "Original detailed master/hash/recipe preserved; small fittings and closed-door presentation are photographic reconstruction.",
+    "Shared painted-metal graph plus local pane/shadow colors; no embedded image. Natural rock and surrounding mountain are host terrain.",
+    "Four budgeted browser levels retained; interiors/collision and physical-device timings excluded. Footprint replacement remains off."
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/aljaz-browser-model.mjs",
+    "export": "buildAljazSkyline",
+    "errorMeters": 0.08,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAljazDistrict",
+        "errorMeters": 0.018,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22,
+            "metallic": 0
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAljazStreet",
+        "errorMeters": 0.002,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.22,
+            "metallic": 0
+          },
+          "shadow": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-pane-and-flag",
+      "position": [
+        1.8,
+        2.7,
+        3
+      ],
+      "lookAt": [
+        0,
+        1.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-plaque-and-cut-date",
+      "position": [
+        1.3,
+        2.7,
+        2.9
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "street-anchor-contact",
+      "position": [
+        2.8,
+        0.6,
+        2.6
+      ],
+      "lookAt": [
+        0,
+        0.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-aljaz-skyline",
+      "position": [
+        4.5,
+        3.6,
+        5.5
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-aljaz-district",
+      "position": [
+        4.5,
+        3.6,
+        5.5
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-aljaz-street",
+      "position": [
+        4.5,
+        3.6,
+        5.5
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-aljaz-closeup",
+      "position": [
+        4.5,
+        3.6,
+        5.5
+      ],
+      "lookAt": [
+        0,
+        1.35,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "sourceFacts": {
+    "originalMasterHash": "sha256:2b9cf37d0cbfe226d43fd2f80e9e0560ed36e6209147c3bbd4dc807766502c39",
+    "originalMasterRecipe": "packages/worldgen/scripts/aljaz-tower-model.mjs#buildAljaz"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      13.836673765,
+      46.37830418
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "groundModelY": 0,
+    "elevationMode": "terrain-contact",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected exterior picture supports the pale cylindrical shelter, dark conical roof, raised doorway, plaque, cut1895 flag and metal anchors/guy ropes. The retained mapped circle supplies location and diameter. Heading0 places the model doorway approximately south; this is an explicit approximate facing choice, not a measured doorway bearing. Standard viewer PMTiles provide the summit working datum 2777.579296317931m. The small original shell/anchor contact plane uses modelY0; coarse summit slope and actual rock details are approximate.",
+    "evidence": "The inspected exterior picture supports the pale cylindrical shelter, dark conical roof, raised doorway, plaque, cut1895 flag and metal anchors/guy ropes. The retained mapped circle supplies location and diameter. Heading0 places the model doorway approximately south; this is an explicit approximate facing choice, not a measured doorway bearing. Standard viewer PMTiles provide the summit working datum 2777.579296317931m. The small original shell/anchor contact plane uses modelY0; coarse summit slope and actual rock details are approximate.",
+    "orientationConfidence": "approximate-facing; circular map outline does not determine exact entrance phase",
+    "limitations": "Approximate doorway phase and coarse summit ground accepted for this exterior visualization.",
+    "reviewStatus": "Picture and PMTiles approximate fit",
+    "notes": "The inspected exterior picture supports the pale cylindrical shelter, dark conical roof, raised doorway, plaque, cut1895 flag and metal anchors/guy ropes. The retained mapped circle supplies location and diameter. Heading0 places the model doorway approximately south; this is an explicit approximate facing choice, not a measured doorway bearing. Standard viewer PMTiles provide the summit working datum 2777.579296317931m. The small original shell/anchor contact plane uses modelY0; coarse summit slope and actual rock details are approximate.",
+    "terrainReference": {
+      "anchor": [
+        13.836673765,
+        46.37830418
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample, not the published summit elevation."
+    }
+  },
+  "geographicNote": "The inspected exterior picture supports the pale cylindrical shelter, dark conical roof, raised doorway, plaque, cut1895 flag and metal anchors/guy ropes. The retained mapped circle supplies location and diameter. Heading0 places the model doorway approximately south; this is an explicit approximate facing choice, not a measured doorway bearing. Standard viewer PMTiles provide the summit working datum 2777.579296317931m. The small original shell/anchor contact plane uses modelY0; coarse summit slope and actual rock details are approximate.",
+  "mapFrame": "map-frame.json",
+  "sourceDocuments": [
+    "map-frame.json",
+    "map-evidence.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      4.5,
+      3.6,
+      5.5
+    ],
+    "lookAt": [
+      0,
+      1.35,
+      0
+    ]
+  }
+}

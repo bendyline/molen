@@ -17,11 +17,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-9,123 triangles; 23,793 vertices; 5 material groups; 969,276 bytes. Native bounds: -11.570, 0.000, -4.470 to 11.920, 12.000, 5.435. Source hash: `sha256:0c7db20070ec6f948ab365fd15450270ecd96aeee3489309b305ac9b1a7a17e1`.
+9,435 triangles; 28,305 vertices; 5 material groups; 1,135,508 bytes. Native bounds: -11.909, -5.537, -4.673 to 12.234, 18.000, 5.551. Source hash: `sha256:4165df4bac8bc31cfc353823c17aca24e0d23ce69746449c513efa3a424d1e66`.
 
-{"up":"+Y","longitudinal":"+X east-northeast, about19.92degrees north of east","front":"+X tower above sea; -X entrance toward approach","origin":"Mapped main-building center; architectural terrace baseY=0"}
+{"up":"+Y","longitudinal":"+X east-northeast, about19.92degrees north of east","front":"+X tower above sea; -X entrance toward approach","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Mapped anchor and signed19.92degree axis retained. Immediate terrace is approximate; geographic activation awaits cliff and approach review.
+Two inspected aerial pictures show the stepped limestone hall, eastern round tower, balcony and four crown spires. Cached exact building outline and standard viewer PMTiles set orientation/location. Reconstructed terrace6.4m above the working anchor sample clears the coarse hillside; bounded foundations seat it against the sampled ground. Exact cliff edge and balcony clearances remain approximate. Anchor 34.128585443,44.430632946; heading 0.347692146382; standard PMTiles datum 21.217927594329787m. Floors are reconstructed and foundations extend below the coarse sampled ground. The former smooth support is replaced by a faceted weathered-limestone apron beneath the immediate terrace. Rock apron dimensions are approximate.
 
 ## Reproduce
 
@@ -29,11 +29,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0271` (
 
 ## Pending work
 
-- An original medium-fi reconstruction, not a measured conservation survey.
-- Fine tracery, iron scrollwork, pipework and interiors omitted; masonry uses shared surfaces.
-- Museum photographs can be older than2020; post-restoration photographs establish main masses, not every current fixture.
-- Natural cliff, remote approach and neighboring buildings omitted.
-- Actual terrain seating, continuous-motion shimmer and physical-device performance pending.
+- Two reference pictures and standard PMTiles define approximate current exterior fit; no bespoke survey sources.
+- Detailed original source geometry remains unchanged. An independent derivative adjusts vertical datum and bounded foundation skirts.
+- Stepped hall, round eastern tower, four tall crown spires, four low pinnacles, balcony and perimeter terrace provide identity. Openings, flags, balusters and floor heights remain simplified.
+- Coarse terrain cannot reconstruct the sheer rock face or exact balcony contact. A bounded immediate rock apron bridges the coarse PMTiles surface to the terrace; the sheer cliff face, long approach, vegetation and interiors are outside scope. No terrain cutout.
+- Four shared material graphs plus local opaque glass; no embedded texture images. Physical-device timing and continuous-motion shimmer remain pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

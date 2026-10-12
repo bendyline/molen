@@ -1,0 +1,478 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#eae1cc",
+      "trim": "#e9ddc7",
+      "brick": "#ce997a",
+      "roof": "#ca785c",
+      "darkRoof": "#7b684f",
+      "copper": "#b0cec5",
+      "stone": "#d8c7a6",
+      "glass": "#4d6178",
+      "paving": "#b6ada0",
+      "dark": "#756957",
+      "gold": "#cab874",
+      "fresco": "#d5ad89"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "brick": [
+        0.620345,
+        0.549823,
+        0.504963
+      ],
+      "stone": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "patina": [
+        0.635757,
+        0.680369,
+        0.617469
+      ],
+      "tile": [
+        0.559267,
+        0.552465,
+        0.529503
+      ],
+      "aggregate": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 7,
+    "identityFeatures": [
+      "Open Renaissance courtyard within steep red palace roofs",
+      "Two northern copper Baroque corner helms",
+      "Tall brick Senator tower and southern curtain wall"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "West Berrecci entry; native +X east and +Z south",
+    "longitudinal": "+Z along eastern palace wing; coordinates bake all footprint angles",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactPalaceRelation": 2270819,
+    "courtyardHoleWay": 117749419,
+    "residentialWings": 3,
+    "lowerArcadedGalleryTiers": 2,
+    "upperTallColumnTier": 1,
+    "baroqueCornerTowers": 2,
+    "numericPrimaryVerticalHeightVerified": false,
+    "originalMasterHash": "sha256:585826749e3d3b2f6b5f6510528977aba9aab011b88b6d4c6b26459b7988ff15",
+    "originalMasterRecipe": "packages/worldgen/scripts/wawel-castle-model.mjs#buildWawelRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate palace exterior and fit from inspected courtyard pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Gallery/roof details and reconstructed floors are interpreted; cathedral, other hill buildings, full interiors and collision excluded.",
+    "Six common graphs plus explicit glass color slot, zero embedded images. Host terrain supplies the surrounding hill; no terrain cutout or river simulation.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      19.9366,
+      50.0544
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected courtyard pictures support two arcaded gallery levels, a taller upper colonnade, pale masonry and steep tiled roof groups. Retained east/south palace and tower map controls set approximate location, scale and orientation. Standard viewer PMTiles supply the surrounding hill; the derivative translates the old study-6m, retains the reconstructed courtyard floorY2.35 and extends palace/tower wall toes to coarse sampled ground. This is the palace asset, not every independent landmark on Wawel hill. Anchor 19.9366,50.0544; heading 0; standard PMTiles datum 230.8644554645171m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected courtyard pictures support two arcaded gallery levels, a taller upper colonnade, pale masonry and steep tiled roof groups. Retained east/south palace and tower map controls set approximate location, scale and orientation. Standard viewer PMTiles supply the surrounding hill; the derivative translates the old study-6m, retains the reconstructed courtyard floorY2.35 and extends palace/tower wall toes to coarse sampled ground. This is the palace asset, not every independent landmark on Wawel hill. Anchor 19.9366,50.0544; heading 0; standard PMTiles datum 230.8644554645171m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        19.9366,
+        50.0544
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected courtyard pictures support two arcaded gallery levels, a taller upper colonnade, pale masonry and steep tiled roof groups. Retained east/south palace and tower map controls set approximate location, scale and orientation. Standard viewer PMTiles supply the surrounding hill; the derivative translates the old study-6m, retains the reconstructed courtyard floorY2.35 and extends palace/tower wall toes to coarse sampled ground. This is the palace asset, not every independent landmark on Wawel hill. Anchor 19.9366,50.0544; heading 0; standard PMTiles datum 230.8644554645171m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/wawel-runtime-model.mjs",
+    "export": "buildWawelReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "patina": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.8,
+      "metallic": 0.05
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "aggregate": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/wawel-runtime-model.mjs",
+    "export": "buildWawelReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWawelReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildWawelReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWawelReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-wawel-skyline",
+      "position": [
+        195,
+        140,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-wawel-district",
+      "position": [
+        195,
+        140,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-wawel-street",
+      "position": [
+        195,
+        140,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-wawel-closeup",
+      "position": [
+        195,
+        140,
+        190
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -4,
+    "scale": 3.3,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "camera": {
+    "position": [
+      195,
+      140,
+      190
+    ],
+    "lookAt": [
+      0,
+      15,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "courtyard-galleries": {
+      "position": [
+        -3,
+        20,
+        17
+      ],
+      "lookAt": [
+        6,
+        14,
+        -31
+      ]
+    },
+    "court-plan": {
+      "position": [
+        0,
+        164,
+        -5
+      ],
+      "lookAt": [
+        0,
+        14,
+        -5
+      ]
+    },
+    "northern-copper-helms": {
+      "position": [
+        8,
+        59,
+        -160
+      ],
+      "lookAt": [
+        3,
+        25,
+        -50
+      ]
+    },
+    "senator-and-south-wall": {
+      "position": [
+        52,
+        46,
+        110
+      ],
+      "lookAt": [
+        10,
+        18,
+        35
+      ]
+    },
+    "berrecci-entry": {
+      "position": [
+        -92,
+        18,
+        1
+      ],
+      "lookAt": [
+        -40,
+        7,
+        -16
+      ]
+    },
+    "eastern-pavilion": {
+      "position": [
+        118,
+        44,
+        -20
+      ],
+      "lookAt": [
+        45,
+        21,
+        -23
+      ]
+    }
+  }
+}

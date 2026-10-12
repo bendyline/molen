@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The170 m narrow modernist slab follows the mapped clipped end, with dense metal window grid, projecting floor bands, exterior air-conditioning boxes with louvers and Sampa Sky glass observation boxes at150 m.
+Mirante do Vale compact exterior: mapped thin slab, metal/glass window grid, floor bands, scattered AC and observation box impressions, with pictured exposed roof structure. Original source master independently preserved.
 
 ## Evidence and reconstruction
 
@@ -15,11 +15,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-23,200 triangles; 47,910 vertices; 4 material groups; 2,005,972 bytes. Native bounds: -36.275, 0.000, -11.475 to 35.275, 170.000, 11.475. Source hash: `sha256:9fa87eae77102ff0a966019c354fe4caf4f7cfc24c9163f6ffb2476a8c5fba75`.
+21,172 triangles; 63,516 vertices; 4 material groups; 2,543,448 bytes. Native bounds: -36.275, 0.000, -11.475 to 35.275, 170.000, 11.475. Source hash: `sha256:cb89fa38dd8a1f48e1a7f589183f2108048db3fa93d0fc8a44fb071c1d651a3e`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+One inspected facade picture establishes the narrow gray slab, dense window/AC grid and exposed upper roof frame. Preserve original170m source height, existing69.938�18.472m mapped perimeter and clipped southeast end. Standard viewer PMTiles confirms the exact-QID slab and surrounding downtown roads. Native long axis retained; observation boxes at150m are existing authored approximations, not certified by this older picture. PMTiles off-footprint point[-60,0]755.7122m sets approximate ground contact; center788.1688m contains urban building imprint. Bounded preview contacts preserve raw samples. Roof frame is a picture-led reconstruction; exact current roof occupancy, AC/window states, box bay offsets and thresholds remain unverified.
 
 ## Reproduce
 
@@ -27,7 +27,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0138` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Individual AC positions and window tint/opening state are synthesized from the characteristic existing facade pattern. Observation box projections and roof fittings are reconstructed.
+- One inspected facade picture establishes the narrow gray slab, dense window/AC grid and exposed upper roof frame. Preserve original170m source height, existing69.938�18.472m mapped perimeter and clipped southeast end. Standard viewer PMTiles confirms the exact-QID slab and surrounding downtown roads. Native long axis retained; observation boxes at150m are existing authored approximations, not certified by this older picture. PMTiles off-footprint point[-60,0]755.7122m sets approximate ground contact; center788.1688m contains urban building imprint. Bounded preview contacts preserve raw samples. Roof frame is a picture-led reconstruction; exact current roof occupancy, AC/window states, box bay offsets and thresholds remain unverified.
+- Three shared stone/concrete/painted-metal graphs reused; glass uses opaque PBR parameters without photographic textures. Low tiers merge window and floor grids and omit AC/louvers; closeup restores representative AC louvers. Roof frame, current observation boxes and local ground contacts remain approximations. Physical-device timings unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

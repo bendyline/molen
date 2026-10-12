@@ -6,7 +6,7 @@
 
 ## Identity and evidence
 
-Exact catalog identity **Q546122**. Source facts: `{"heightMeters":49,"year":1882,"automation":"Above-lantern helipad added for the 1982 automation; operator current photograph shows solar apron.","basis":"Trinity House live lighthouse page and operator photograph."}`. The source specification keeps published dimensions separate from reconstructed details.
+Exact catalog identity **Q546122**. Source facts: `{"heightMeters":49,"year":1882,"lightHeightAboveMeanHighWaterMeters":41,"basis":"Trinity House current exterior and height; 41 m focal datum is distinct from 49 m structure height. Exact-QID map point and credited photographer views guide viewer placement; operator table coordinate discrepancy remains explicit."}`. The source specification keeps published dimensions separate from reconstructed details.
 
 - https://www.trinityhouse.co.uk/lighthouses-and-lightvessels/eddystone-lighthouse
 - https://www.trinityhouse.co.uk/asset/952/view/1200
@@ -22,7 +22,7 @@ Shared canonical material graphs with metric UV repeats in extras.molenSurface; 
 
 ## Placement proposal
 
-Trinity House2025-30 Aids to Navigation Review p73 gives WGS84 50deg10.843min N,004deg15.936min W, superseding coarse catalog reference. Round tower and circular helideck have no principal plan axis. Sparse opening azimuth remains photo-reconstructed; ground is local reef contact, not a claimed mean-sea-level datum. Proposed anchor -4.2656, 50.180716666667 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
+Mapped viewer anchor is preferred for map alignment; operator table discrepancy remains unresolved and is not silently labelled survey truth. Door/hoist azimuth is a photo-quadrant reconstruction +/-25 degrees. Old Smeaton stump and reef are not part of this single-tower asset. No surveyed footprint, exact landing orientation, present tide or submerged foundation is claimed. +Y up; +Z entrance/hoist faces reconstructed south-southwest quadrant, approximately 202 degrees true, +/-25 degrees. The circular tower has no main plan axis. Visible modeled base meets the host sea-level review plane. This is a visual datum convention, not surveyed reef elevation, mean-high-water conversion, tide or bathymetry. Proposed anchor -4.2680422, 50.1837523 (longitude, latitude), heading -0.3839724354387525 radians. Elevation policy: **sea-level**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 

@@ -17,11 +17,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-6,948 triangles; 18,500 vertices; 5 material groups; 752,596 bytes. Native bounds: -78.750, 0.000, -102.815 to 92.555, 52.000, 101.150. Source hash: `sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180`.
+7,655 triangles; 20,423 vertices; 5 material groups; 830,356 bytes. Native bounds: -75.590, -23.238, -75.861 to 92.799, 47.984, 105.799. Source hash: `sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab`.
 
-{"up":"+Y","longitudinal":"+X approximately south","front":"+Z approximately west","origin":"Mapped site center; lowest moat foundations Y=0, court Y=12m"}
+{"up":"+Y","longitudinal":"+X approximately south","front":"+Z approximately west","origin":"Mapped site anchor; Y0 standard PMTiles working terrain datum."}
 
-Site envelope includes gardens and is not a building footprint. Component coordinates and elevations are reconstructed and require real-site fit review before activation.
+Picture-based current exterior registered to named mapped wings and the standard Protomaps/Mapzen PMTiles viewer data. +X south toward gate, +Z west toward English wing; signed orientation retains heading-1.430862687712. Working datum187.413498859529m and reconstructed court8.3m. Bounded lower walls follow coarse PMTiles ground; bridge and outer gate use separate levels. No surveyed threshold accuracy. Bespoke DGM1 verification remains deferred at the owner request.
 
 ## Reproduce
 
@@ -29,9 +29,14 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0267` (
 
 ## Pending work
 
-- Simplified current exterior, not a historical reconstruction or measured survey.
-- No unique textures, sculptures in full detail, palace interiors, terrain or distant gardens.
-- Hillside contact, continuous-motion shimmer and physical-device performance pending.
+- Visual fit against the standard viewer PMTiles pipeline; no surveyed ground or threshold accuracy.
+- Terrain data is coarse under buildings and bridges. Exact court and retaining-wall levels are reconstructed from pictures.
+- Working court is reconstructed flat above the highest standard PMTiles sample within the open court; no exact historic floor level is claimed.
+- Bespoke DGM1 hillside verification is deferred at the owner request.
+- Original detailed master is preserved from unchanged heidelberg-castle-model.mjs#buildHeidelbergRuntime at sha256:77bfb5237eecc8345fb236d8b46393444ec611bbdf372bb565245b35b65ea180.
+- Runtime derivative corrects wing positions and courtyard size, adds distinct library/Ruprecht/Ludwig volumes and the Hall of Glass arched protective roof. The dated owner aerial supplies overall proportions; scaffolding and restoration details are omitted.
+- Mapped component rectangles approximate irregular footprints; roofs, floors, windows, bridge supports, western retaining walls and detached tower fragment remain reconstructions. No terrain cutout, whole-site slab, interiors, distant gardens or vegetation.
+- Four shared sandstone, plaster, slate and tile graphs; local opaque glass. No copied private textures. Physical-device timing and continuous-motion shimmer are pending.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

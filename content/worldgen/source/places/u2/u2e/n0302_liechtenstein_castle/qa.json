@@ -1,10 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0302_liechtenstein_castle",
-  "inputHash": "sha256:2a0e2039a6f3c105822fd97f2cc09cb977831efcb5f6124a1a200fabeac41f08",
-  "sourceHash": "sha256:4ba0f40b52b388cf74f02c6f243a2e4b70d7db25a7081043696efd79f596e641",
-  "runtimeHash": "sha256:bb343d8cf4aedecd745b4e8a535b3a803f5e986d4f7e4e013aa0ba71a131040a",
-  "captureReportHash": "sha256:5d497fd47d17cff30d9c960dbabe2aa77691654f401fbcc8a0c212bc5aad71ba",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:9413b4b5dcf290f77c7ddcbd6350472e7cc4afe6cc86d71ab06bb71d530d83d2",
+  "sourceHash": "sha256:40373d3cba18b61a02241020786c81a9a125bfa97051c2aa9193b1fdf9143a20",
+  "runtimeHash": "sha256:498a2acfc576daebc21c199f547dc52225aa65b8328e447a6b917b64433c0c39",
+  "captureReportHash": "sha256:bb4df00e823d641c1d7bc232da38bb1418dd543af52d9d5c4cbc1de2f16d5c41",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +21,11 @@
       "shots/roof-plan.png",
       "shots/north-palas.png"
     ],
-    "notes": "Inspected all11 final portable views:west keep/corbel gallery/round oriel,continuous palas ridge,south cross-gable/five open arches,grey-roofed separately mapped east tower,south turret,open lower gatehouse and mapped curtain wall/services remain distinct. Corrected the grey roof using its separately mapped tower footprint,restored continuous main roof behind the cross-gable,and sealed all roof-overhang undersides. Current exterior draft;estimated sections and no actual-site fidelity approval."
+    "notes": "Inspected all11 final portable views. Tall west keep with projecting oriel/corbelled crown, tiled palace wings, physically open south arcade, slender east tower, gate arch and lower forecourt remain readable. The inspected exterior picture supports the primary tower/roof and pale masonry identity."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d7bec5384aa7271fc7f593f6c80a5a8e3ffc4d6ea4b2170f686ebae1b10721fd",
+    "captureReportHash": "sha256:a84d8576484b78e2d54d991d79d356779dcd4d82c4294098f94f50aa6e268b24",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,13 +36,14 @@
       "shots/shared/east-tower-and-gate.png",
       "shots/shared/gatehouse-arch.png",
       "shots/shared/roof-plan.png",
-      "shots/shared/north-palas.png"
+      "shots/shared/north-palas.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all10 final viewer-library images,including full-size lower gatehouse and south arcade. Five existing256-square coursed/raw limestone,flat clay tile,slate and gravel graphs with linear tints and metric repeats;flat blue-grey glass. Six merged groups near,one far;no embedded/new image,photo texture or downloaded mesh. Each graph reads once;eviction leaves no live model geometry and restores ground. Explicit isolated review planeY-8.3 exposes the lower architecture formerly hidden by the defaultY0 plane;it is a preview datum,not terrain evidence."
+    "notes": "Inspected all11 final shared-material views. Four common limestone/flat-tile/slate/aggregate graphs plus explicit glass color are reused. Crown, paired windows, real arcade/gate openings and roof groups read correctly. Retained map controls support approximate heading0 placement; cache reuse and unload passed."
   },
   "mediumFiReview": {
-    "status": "pending",
-    "captureReportHash": "sha256:605eaf538d536558faf10cbcfbae9ae86bc3d68b158d9851e8af5dbb4d42047d",
+    "status": "passed",
+    "captureReportHash": "sha256:da659a7220a5f4b2136529a9ff3822b4defd246cf6c538237bb1ea65fa674e01",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -62,25 +64,33 @@
       "medium-fi/gatehouse-arch.png",
       "medium-fi/roof-plan.png",
       "medium-fi/north-palas.png",
+      "medium-fi/whole-liechtenstein-skyline.png",
+      "medium-fi/whole-liechtenstein-district.png",
+      "medium-fi/whole-liechtenstein-street.png",
+      "medium-fi/whole-liechtenstein-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected23 final Earth-rig frames:12 distance/time/mode combinations,untextured silhouette,six architectural cameras and four forced levels. Identity/roof rhythm/shared palette and budgets remain coherent. Declared synthetic review planeY-8.3 exposes every lower architectural component;the higher castle still needs the actual natural ridge underneath it. Ground-contact and terrace/step grades require actual-site review;no medium-fi appearance/terrain completion claim."
+    "notes": "Inspected all27 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. Main architecture is raised3m above the coarse ridge crest; sampled bounded footings, lower gate/auxiliary floors, court routes and walls meet the retained PMTiles terrain. Primary masses remain consistent."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:d15905dc7641aca5431f172b15b3f1fa4d35366512f39367de9c5b8d35c477ff",
-    "mapGeometryHash": "sha256:7c91c1000c2b51242da15b1b869121e3fdbf1088129f6a98d69e9be21b54774f",
-    "coordinateRoundTripErrorMeters": 0.0006414458682978113,
-    "mapCoordinateSamples": 117,
-    "notes": "117 attributed map points reconstruct within0.642mm;exact-QID castle and independent mapped gate/tower/curtain wall/services/access traces preserve native East/South heading0. All-level bounds include complete architecture. Map arithmetic and authoring axis do not approve facade heading/vertical attachment. Actual rocky ridge,terrace grades and current-site fit pending;placement inactive,replacement off."
+    "status": "passed",
+    "placementHash": "sha256:a957b389cc9ea05cb5e77d46c679bff0804e672858029637744f8e467530db9b",
+    "mapFrameHash": "sha256:7105f43ef2f8356b0d411f7bc85c01fb6c2b2c344dde2a7caf9d1c4c6965ef4e",
+    "notes": "The inspected exterior picture supports the tall west keep, pale masonry, tiled palace wings, south arcade and slimmer east tower. Retained east/south map geometry sets approximate footprint, scale and orientation. Standard viewer PMTiles supply the ridge; main architecture is raised3m above its coarse crest, bounded toes reach sampled ground, lower gate/auxiliary floors clear it and court routes/walls share the sampler across levels. The natural ridge is supplied by host terrain. Anchor 16.270299868,48.092690906; heading 0; standard PMTiles datum 302.080059918783m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior and ridge fit from inspected picture and standard viewer PMTiles. Crown/arcade ornaments, restoration fixtures and floor levels are interpreted. Natural rocky ridge is host terrain; no broad duplicate terrain, forest, interiors, collision or cutout. No bespoke survey or exact thresholds. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
     "status": "pending",
     "target": "medium-fi",
-    "notes": "Operator current photos and Oliver Bolch exterior views guide original keep/corbel/oriel,long palas,roof/cross-gable/arcade,east tower and separate forecourt. No primary numeric surveyed height verified. Apertures/vertical sections/window rhythm and lower terrace/stair contacts remain estimates. Natural rock ridge,woodland,interiors,cistern,sculpted heraldry and nearby separate palace are excluded. Current architectural and terrain fit remain pending."
+    "notes": "Operator current photos and Oliver Bolch exterior views guide original keep/corbel/oriel,long palas,roof/cross-gable/arcade,east tower and separate forecourt. No primary numeric surveyed height verified. Apertures/vertical sections/window rhythm and lower terrace/stair contacts remain estimates. Natural rock ridge,woodland,interiors,cistern,sculpted heraldry and nearby separate palace are excluded. Current architectural and terrain fit remain pending.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -88,19 +98,19 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/u2/u2e/n0302_liechtenstein_castle/models/source.glb",
-        "hash": "sha256:4ba0f40b52b388cf74f02c6f243a2e4b70d7db25a7081043696efd79f596e641",
-        "bytes": 648248,
-        "triangles": 5371,
-        "materials": 6,
+        "hash": "sha256:40373d3cba18b61a02241020786c81a9a125bfa97051c2aa9193b1fdf9143a20",
+        "bytes": 630252,
+        "triangles": 5225,
+        "materials": 5,
         "images": 0,
         "min": [
           -25.041141510009766,
-          -8.300000190734863,
+          -10.006131172180176,
           -19.94481658935547
         ],
         "max": [
           49.94341278076172,
-          39,
+          42,
           47.877254486083984
         ],
         "errors": 0,
@@ -109,19 +119,19 @@
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.glb",
-        "hash": "sha256:bb343d8cf4aedecd745b4e8a535b3a803f5e986d4f7e4e013aa0ba71a131040a",
-        "bytes": 647680,
-        "triangles": 5371,
-        "materials": 6,
+        "hash": "sha256:498a2acfc576daebc21c199f547dc52225aa65b8328e447a6b917b64433c0c39",
+        "bytes": 629752,
+        "triangles": 5225,
+        "materials": 5,
         "images": 0,
         "min": [
           -25.041141510009766,
-          -8.300000190734863,
+          -10.006131172180176,
           -19.94481658935547
         ],
         "max": [
           49.94341278076172,
-          39,
+          42,
           47.877254486083984
         ],
         "errors": 0,
@@ -130,19 +140,19 @@
       {
         "name": "skyline",
         "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.skyline.glb",
-        "hash": "sha256:c34f8af724bb9579697dc3b4d9d202996efa2af31d8b65df81a9106c67e1e0c4",
-        "bytes": 64180,
-        "triangles": 667,
+        "hash": "sha256:5a0fdd7e083e814a2bc6547e07a60e2f88b62304f5097a63ad972578cfadab4d",
+        "bytes": 68052,
+        "triangles": 635,
         "materials": 1,
         "images": 0,
         "min": [
           -25.041141510009766,
-          -8.300000190734863,
+          -9.125993728637695,
           -18.556015014648438
         ],
         "max": [
           49.550323486328125,
-          39,
+          42,
           31.333297729492188
         ],
         "errors": 0,
@@ -151,19 +161,19 @@
       {
         "name": "district",
         "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.district.glb",
-        "hash": "sha256:c46b4a7e0b5f8570713815bc7b133a29173cb3f9d883430041b2df6ce52eed98",
-        "bytes": 213844,
-        "triangles": 2124,
-        "materials": 6,
+        "hash": "sha256:b3f5f017c2d7529eb5e39ceb8a15dbaa4e3a3666135eef34720a514776f46696",
+        "bytes": 200432,
+        "triangles": 1965,
+        "materials": 5,
         "images": 0,
         "min": [
           -25.041141510009766,
-          -8.300000190734863,
+          -10.006131172180176,
           -19.94481658935547
         ],
         "max": [
           49.94341278076172,
-          39,
+          42,
           47.877254486083984
         ],
         "errors": 0,
@@ -172,19 +182,19 @@
       {
         "name": "street",
         "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.street.glb",
-        "hash": "sha256:94c830e8a5f3aa2688d5383daa06a688d384575c1df32c722b512bf4b051a656",
-        "bytes": 552116,
-        "triangles": 5357,
-        "materials": 6,
+        "hash": "sha256:bec336b86aeda141fa5c51daddafc587fb0adb4c0a92320d6758b6ea776d7429",
+        "bytes": 540432,
+        "triangles": 5211,
+        "materials": 5,
         "images": 0,
         "min": [
           -25.041141510009766,
-          -8.300000190734863,
+          -10.006131172180176,
           -19.94481658935547
         ],
         "max": [
           49.94341278076172,
-          39,
+          42,
           47.877254486083984
         ],
         "errors": 0,
@@ -193,116 +203,91 @@
       {
         "name": "closeup",
         "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.closeup.glb",
-        "hash": "sha256:a82d7197357d47f93f75c2e17b94dd0bdf11ed36856a9dd92738f58a83279138",
-        "bytes": 553316,
-        "triangles": 5371,
-        "materials": 6,
+        "hash": "sha256:759cbbbcf300f86ae667544cc25dd376210859769fc55cd19d4d150a5ac06a8d",
+        "bytes": 541632,
+        "triangles": 5225,
+        "materials": 5,
         "images": 0,
         "min": [
           -25.041141510009766,
-          -8.300000190734863,
+          -10.006131172180176,
           -19.94481658935547
         ],
         "max": [
           49.94341278076172,
-          39,
+          42,
           47.877254486083984
         ],
         "errors": 0,
         "warnings": 0
       }
     ],
-    "notes": "All six GLBs have zero errors/warnings and no embedded images. Nine focused checks pass:byte-deterministic four-level budgets,five shared graphs,homogeneous GPU upload layouts,correct Austrian castle identity,complete upward roof coverage,gate route clear at source floor+0.1/1.7/2.4m,five open upper arches with retained surrounding wall,skyline identity,mapped east-tower roof,continuous palas ridge and sealed roof-overhang undersides. The eave-gap regression failed before the soffit fix. Scoped source/import/LOD/strict medium-fi checks and scene validation/30-tick simulation pass;simulation hash sha256:8f7035524bd5a902647cb2388ab14451209cc62fceb1271771e35c57aa6765d7. No walkable collision certification."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain635/1965/5211/5225 triangles; initial skyline+district download totals268484 bytes. Separate POSITION/NORMAL streams retained."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:ff36c5a579f4749fb1242fa4ba457bf1f5713dbed44a81e5f66d996a2e283519",
     "levels": [
       {
         "name": "skyline",
-        "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.skyline.glb",
-        "hash": "sha256:c34f8af724bb9579697dc3b4d9d202996efa2af31d8b65df81a9106c67e1e0c4",
-        "bytes": 64180,
-        "triangles": 667,
-        "materials": 1,
-        "images": 0,
-        "min": [
-          -25.041141510009766,
-          -8.300000190734863,
-          -18.556015014648438
-        ],
-        "max": [
-          49.550323486328125,
-          39,
-          31.333297729492188
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.skyline.glb",
+        "hash": "sha256:5a0fdd7e083e814a2bc6547e07a60e2f88b62304f5097a63ad972578cfadab4d",
+        "bytes": 68052,
+        "gzipBytes": 14881,
+        "triangles": 635,
+        "cpuBytes": 66632,
+        "gpuBytes": 66632,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
-        "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.district.glb",
-        "hash": "sha256:c46b4a7e0b5f8570713815bc7b133a29173cb3f9d883430041b2df6ce52eed98",
-        "bytes": 213844,
-        "triangles": 2124,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -25.041141510009766,
-          -8.300000190734863,
-          -19.94481658935547
-        ],
-        "max": [
-          49.94341278076172,
-          39,
-          47.877254486083984
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.district.glb",
+        "hash": "sha256:b3f5f017c2d7529eb5e39ceb8a15dbaa4e3a3666135eef34720a514776f46696",
+        "bytes": 200432,
+        "gzipBytes": 68357,
+        "triangles": 1965,
+        "cpuBytes": 194312,
+        "gpuBytes": 194312,
+        "errorMeters": 0.7,
+        "drawCalls": 5
       },
       {
         "name": "street",
-        "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.street.glb",
-        "hash": "sha256:94c830e8a5f3aa2688d5383daa06a688d384575c1df32c722b512bf4b051a656",
-        "bytes": 552116,
-        "triangles": 5357,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -25.041141510009766,
-          -8.300000190734863,
-          -19.94481658935547
-        ],
-        "max": [
-          49.94341278076172,
-          39,
-          47.877254486083984
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.street.glb",
+        "hash": "sha256:bec336b86aeda141fa5c51daddafc587fb0adb4c0a92320d6758b6ea776d7429",
+        "bytes": 540432,
+        "gzipBytes": 161659,
+        "triangles": 5211,
+        "cpuBytes": 534296,
+        "gpuBytes": 534296,
+        "errorMeters": 0.3,
+        "drawCalls": 5
       },
       {
         "name": "closeup",
-        "path": "content/worldgen/assets/places/u2/u2e/n0302_liechtenstein_castle/model.closeup.glb",
-        "hash": "sha256:a82d7197357d47f93f75c2e17b94dd0bdf11ed36856a9dd92738f58a83279138",
-        "bytes": 553316,
-        "triangles": 5371,
-        "materials": 6,
-        "images": 0,
-        "min": [
-          -25.041141510009766,
-          -8.300000190734863,
-          -19.94481658935547
-        ],
-        "max": [
-          49.94341278076172,
-          39,
-          47.877254486083984
-        ],
-        "errors": 0,
-        "warnings": 0
+        "file": "model.closeup.glb",
+        "hash": "sha256:759cbbbcf300f86ae667544cc25dd376210859769fc55cd19d4d150a5ac06a8d",
+        "bytes": 541632,
+        "gzipBytes": 161946,
+        "triangles": 5225,
+        "cpuBytes": 535496,
+        "gpuBytes": 535496,
+        "errorMeters": 0.1,
+        "drawCalls": 5
       }
     ],
-    "initialDownloadBytes": 278024,
-    "notes": "667/2124/5357/5371 triangles meet the four medium-fi caps;initial skyline+district 278024 bytes,closeup 553316 bytes before shared textures. Groups1/6/6/6. Skyline retains keep/oriel,long roof/east tower and separate gate/wall massing;physical apertures/steps/crenels and small service buildings appear nearer.2.5m skyline error is an authoring estimate,not a measured Hausdorff bound. Continuous upgrades and physical devices remain pending."
-  }
+    "initialBytes": 268484,
+    "notes": "skyline: 635 triangles, 68052 bytes, 1 draws; district: 1965 triangles, 200432 bytes, 5 draws; street: 5211 triangles, 540432 bytes, 5 draws; closeup: 5225 triangles, 541632 bytes, 5 draws. Initial skyline+district 268484 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Tower profiles, facade/arcade ornaments, restoration fixtures and reconstructed floor levels are interpreted; interiors and collision excluded.",
+    "Four common limestone/tile/slate/aggregate graphs plus explicit glass color slot, zero embedded images. No broad duplicated terrain, forest geometry or ground cutout.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

@@ -20,7 +20,10 @@ const ids = (
 ).split(',');
 const terrainSet = process.argv.find((arg) => arg.startsWith('--terrain-set='))?.slice(14) ?? '';
 const reviewRoads = process.argv.includes('--with-roads');
-const suffix = reviewRoads ? '-roads' : '';
+const reviewLod = process.argv.find((arg) => arg.startsWith('--lod='))?.slice(6);
+if (reviewLod && !['skyline', 'district', 'street', 'closeup'].includes(reviewLod))
+  throw new Error('Unknown terrain review model level');
+const suffix = `${reviewRoads ? '-roads' : ''}${reviewLod ? `-${reviewLod}` : ''}`;
 if (terrainSet && !['copernicus', 'ign', 'gsi', 'gugik', 'wales'].includes(terrainSet))
   throw new Error('Unknown terrain evidence set');
 const output = resolve(root, 'content/earth/structures/evidence/bridge-terrain', terrainSet);
@@ -56,7 +59,7 @@ try {
   });
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(
-    `http://127.0.0.1:${server.httpServer.address().port}/bridge-terrain-fit.html?terrainSet=${terrainSet}&roads=${reviewRoads ? 1 : 0}`,
+    `http://127.0.0.1:${server.httpServer.address().port}/bridge-terrain-fit.html?terrainSet=${terrainSet}&roads=${reviewRoads ? 1 : 0}${reviewLod ? `&lod=${reviewLod}` : ''}`,
     {
       waitUntil: 'networkidle',
     },
@@ -165,6 +168,11 @@ try {
       candidateId: id,
       status: 'awaiting-human-image-review',
       inputHash,
+      sourceHash,
+      runtimeHash: reviewLod
+        ? sidecar.runtimeLods.levels.find((level) => level.name === reviewLod).hash
+        : runtimeHash,
+      ...(reviewLod ? { reviewLod } : {}),
       terrainEvidenceHash: hash(evidenceBytes),
       fixtureHash,
       ...(reviewRoads

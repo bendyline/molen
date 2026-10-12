@@ -1,26 +1,31 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0289_castel_nuovo",
-  "sourceHash": "sha256:b139e307657f796d5df2dd8efb0cdfd81d7591de8c7da3bfc8a7c1115f402f06",
-  "runtimeHash": "sha256:515c899240d4f2f6976916f954d672df3696aacb29053fcc67e7af2e419574cd",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
+  "inputHash": "sha256:005f272dcf0efd3e3508315435ea433906ea097cf3339bb9c5dd0b7ab361f443",
+  "sourceHash": "sha256:ddc907beb6d25929c6d0b664f65919ce33ef6a5e9ae28ba3633385e634281cce",
+  "runtimeHash": "sha256:a342dfa1a8e46bdd910921298733f51ed49d7c3860212eff861a7d62466c280d",
+  "reviewGroundY": -17,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
   "footprintEvidenceHash": "sha256:44d4259f8ce756abc97a0cbafca9e7aeab9a0a9a88acdf771636a71761460ee2",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "specHash": "sha256:af815222330489bbb9c5045d76765dcb8b23ed9d8661c2e3ffefb94af3324feb",
-  "placementHash": null,
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:f534e0c6eff97dc7cf4f7d3b7fd3040fce46e0eda247fd04dadf4a193a17c941",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_basalt": {
       "path": "materials/stone_basalt.matgraph.json",
       "hash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c"
     },
+    "matgraph:molen.worldgen.material.stone_sandstone": {
+      "path": "materials/stone_sandstone.matgraph.json",
+      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+    },
     "matgraph:molen.worldgen.material.stone_marble": {
       "path": "materials/stone_marble.matgraph.json",
       "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
     },
-    "matgraph:molen.worldgen.material.stone_sandstone": {
-      "path": "materials/stone_sandstone.matgraph.json",
-      "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+    "matgraph:molen.worldgen.material.stone_limestone_weathered": {
+      "path": "materials/stone_limestone_weathered.matgraph.json",
+      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
     },
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
@@ -30,52 +35,72 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:8519925f55d1d9d33c402bda1c213c4777ad7bcbb39c3757e12f39e3f55877ac",
+      "hash": "sha256:e8f4ff7e3d2c0605efe3cee193472e73d953ebc7dbb5c04f4bb1cc59a4e3e239",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -84,52 +109,72 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:4871d5ca88663b9dc5d621ae3eaf7d1d84d0dbde2d6a1614dc40d13747c7b235",
+      "hash": "sha256:0ef67b82bcec3457998248884b39d3c2186220a50c1db8d3883fd4ec3800e225",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -138,52 +183,72 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:e8b49d47b879f0f48546ce3c0f26690c5f71a6cb36ffa5bc444108590e0ff942",
+      "hash": "sha256:04defa11cef44f0ceffec89947234e60982a1515ae560e02a24587424f87a114",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -192,52 +257,72 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:a6caaaf28f30c5c601e856992bafb920995c8913c3d211ccaca2f4cf05bb0b64",
+      "hash": "sha256:06d3c2938aebfc7cc3e95560d33e0468c2e713491f932ed7dde020d2d5fc8190",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -246,61 +331,81 @@
     },
     {
       "path": "shots/shared/western-gate-and-five-towers.png",
-      "hash": "sha256:9c660cb254298859506be172c3277d001c2991c668e53667a7b878bd79c7ebc1",
+      "hash": "sha256:9beb485cd734dab16af3e5a3b508f23007074092dd58cece8cfae9bb74dbc947",
       "camera": {
         "name": "western-gate-and-five-towers",
         "position": [
           -155,
-          60,
+          61,
           -85
         ],
         "lookAt": [
           0,
-          18,
+          19,
           0
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -309,61 +414,81 @@
     },
     {
       "path": "shots/shared/two-stacked-marble-gate-openings.png",
-      "hash": "sha256:591c3abc0f467542586633e8042c593ce399cf4a0a4f4e90648ae46925a6aa2a",
+      "hash": "sha256:e766ac66ee9ed386c63a2c66c60b6999058baaede983ba0096bafa7a33e8f6d6",
       "camera": {
         "name": "two-stacked-marble-gate-openings",
         "position": [
           -94,
-          25,
+          26,
           6.5
         ],
         "lookAt": [
           -48,
-          21,
+          22,
           6.5
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -372,61 +497,81 @@
     },
     {
       "path": "shots/shared/open-court-hall-and-flat-tower-crowns.png",
-      "hash": "sha256:be2ca2e16a279d082fe36fd8286810498557bf67f3ea06168ff5a4e411e84574",
+      "hash": "sha256:3a5fd50d47c14f55e2fe1374f63d6a4aab248d9ad17213815d0b1a4e05e650a0",
       "camera": {
         "name": "open-court-hall-and-flat-tower-crowns",
         "position": [
           80,
-          145,
+          146,
           100
         ],
         "lookAt": [
           0,
-          18,
+          19,
           0
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -435,61 +580,81 @@
     },
     {
       "path": "shots/shared/court-chapel-rose-and-portal.png",
-      "hash": "sha256:ce1b4678b856f7b6af7b235cf680f7c2212eddadb4a121bdafb52cc692fa4a59",
+      "hash": "sha256:bf59e3860b6e84a67ac06ffd6d06bee63ad232102ecb653d7ab6e92aff889eff",
       "camera": {
         "name": "court-chapel-rose-and-portal",
         "position": [
           -9,
-          17,
+          18,
           0
         ],
         "lookAt": [
           21,
-          19,
+          20,
           0
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -498,61 +663,81 @@
     },
     {
       "path": "shots/shared/nine-court-arcades.png",
-      "hash": "sha256:a4ca9b408106b3a414413bb8ac836116304d89587e5105fb3f8836edf5401553",
+      "hash": "sha256:be040e2a54fda9d91ba315179399e02dc18fcd3de691b4ab573a63e21bbe524d",
       "camera": {
         "name": "nine-court-arcades",
         "position": [
           -4,
-          16,
+          17,
           -15
         ],
         "lookAt": [
           -3,
-          10,
+          11,
           19
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
@@ -561,64 +746,158 @@
     },
     {
       "path": "shots/shared/marine-elevation-and-glazed-loggias.png",
-      "hash": "sha256:b05513fcb56b61cc110aa58974d6a0bd0f90bb562f24053e069ececdd4cf2235",
+      "hash": "sha256:0ae9d86e6025509a3a043f76e3aca5a2004afa7633ebd0de1b2995c5aba6d7fb",
       "camera": {
         "name": "marine-elevation-and-glazed-loggias",
         "position": [
           96,
-          26,
+          27,
           25
         ],
         "lookAt": [
           53,
-          19,
+          20,
           17
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0289_castel_nuovo",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
+        "heading": -0.308685078188,
         "meshes": 6,
         "triangles": 7590,
         "bounds": {
           "min": [
-            -73.5,
-            0,
-            -56.32600021362305
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
           ],
           "max": [
-            60.400001525878906,
-            40,
-            56.32600021362305
+            74.65731156809593,
+            41,
+            72.01357908003021
           ]
         },
+        "reviewGroundY": -17,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "50125717-e9dd-4f27-8c80-c4f73ac582db",
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a05303d9-22af-413e-a71a-2593f2f1feb9",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "5818194a-54e2-413c-a858-445d9d897f4c",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "22904531-58f5-4543-bdc8-a128c41e7e8a"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
         },
         "loads": [
           "molen.worldgen.structure.n0289_castel_nuovo"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt": 1,
-          "molen.worldgen.material.stone_marble": 1,
           "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
           "molen.worldgen.material.wood_plain": 1
         },
         "draws": 7,
+        "renderedTriangles": 7592
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:e1e13cc441356afc33a9b8a5af4c605080ec54235481909dba871c662dbacbc6",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0289_castel_nuovo",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0289",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": -0.308685078188,
+        "meshes": 6,
+        "triangles": 7590,
+        "bounds": {
+          "min": [
+            -87.13812387321913,
+            -6.145440101623535,
+            -75.9934389049814
+          ],
+          "max": [
+            74.65731156809593,
+            41,
+            72.01357908003021
+          ]
+        },
+        "reviewGroundY": -17,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt": "da3ea39c-98fc-4d7a-9b74-0e6c3fa0a3bd",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone": "f64ac298-da6f-4e2a-96d0-d81c2ed376c7",
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "a55e6a60-98e7-4ef9-8b0e-e533766a4ac5",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "88286d78-8d5a-4866-a4f6-5d21a4a0137a",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1776e497-d87f-486b-bd70-44df9b4d8386"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0289_castel_nuovo"
+        ],
+        "selectionBounds": [
+          14.251729865882,
+          40.83715049046368,
+          14.254769536117998,
+          40.83945017759097
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0289",
+            "coordinate": [
+              14.253249701,
+              40.838300344
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0289"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 8,
         "renderedTriangles": 7592
       }
     }

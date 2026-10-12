@@ -12,31 +12,32 @@
   },
   "visualBrief": "Restored Narva castle: off-white Tall Hermann with projecting timber hoarding and red gable, inward red-roofed stone convent around an open court, southwest octagonal turret and broad western/northern yards.",
   "mediumFiContext": {
-    "scale": "1.2",
+    "groundY": -3,
+    "scale": 1.2,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
-    210.33499908447266,
-    51,
-    177.9810028076172
+    205.26304626464844,
+    65.53832626342773,
+    174.54199981689453
   ],
   "actualBounds": {
     "min": [
       -105.29299926757812,
-      0,
+      -13.738327026367188,
       -89.44200134277344
     ],
     "max": [
-      105.04199981689453,
-      51,
-      88.53900146484375
+      99.97004699707031,
+      51.79999923706055,
+      85.0999984741211
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "longitudinal": "+X east-northeast,11.35 degrees north of east",
     "front": "-X Western Yard; river on +X; North Yard toward -Z",
-    "origin": "Mapped entire site center, provisional court and ground attachment Y=0"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "relation/5434279 exact Q660001",
@@ -45,7 +46,9 @@
       177.077
     ],
     "publishedTallHermannHeightMeters": 51,
-    "publishedHistoricalCastellSideMeters": 40
+    "publishedHistoricalCastellSideMeters": 40,
+    "originalMasterHash": "sha256:d8d6baa55ca67f9494f2005f513202daba332ae5987a8ca50353b92be61677b8",
+    "originalMasterRecipe": "packages/worldgen/scripts/hermann-castle-model.mjs#buildHermannRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -66,11 +69,13 @@
       "Off-white square Tall Hermann with dark projecting timber gallery and steep red gable",
       "Warm stone convent, inward red roof fields, open inner court and small southwest octagonal turret",
       "Large open Western Yard, separate North Yard, restored Stone Hall and perimeter walls"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "OSM site perimeter, operator Western Yard plan and current restored museum photographs",
-    "scope": "Convent exterior and open courts, abbreviated workshops, Stone Hall and curtain walls. Natural cliffs, moat/river and Ivangorod excluded."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://narvamuuseum.ee/en/muuseum/narva-castle/",
@@ -82,8 +87,8 @@
     "https://www.openstreetmap.org/relation/5434279"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Research frame only; terrain and approaches pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       28.200695255,
       59.375639522
@@ -102,7 +107,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Western Yard, eastern convent and northwest main tower resolve the signed site axis. Actual terrain/cliff and approach seating pending."
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the white tower, timber hoarding, steep red gable, inward red roof ring and small turret. Standard viewer PMTiles and the retained site outline set approximate location and river-facing orientation. Convent working floor rises0.8m; foundations extend into the coarse riverbank. Broad lawn geometry is omitted from the derivative so actual viewer terrain supplies the yards; low exterior paving follows coarse ground. Anchor 28.200695255,59.375639522; heading 0.198046850682; standard PMTiles datum 25.698401887691865m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms the white tower, timber hoarding, steep red gable, inward red roof ring and small turret. Standard viewer PMTiles and the retained site outline set approximate location and river-facing orientation. Convent working floor rises0.8m; foundations extend into the coarse riverbank. Broad lawn geometry is omitted from the derivative so actual viewer terrain supplies the yards; low exterior paving follows coarse ground. Anchor 28.200695255,59.375639522; heading 0.198046850682; standard PMTiles datum 25.698401887691865m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        28.200695255,
+        59.375639522
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Mapped210.085×177.077m site fixes plan registration. Interpreted modern convent about45×43m; published40m refers to historical castell. Tall Hermann reaches published51m, datum unspecified. All lower elevations, gallery/eaves and component dimensions inferred, not surveyed.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -142,12 +157,11 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Original medium-fi reconstruction, not a conservation survey.",
-    "Published51m tower datum unspecified; all other heights and plan components interpreted.",
-    "Current restored hoarding modeled as seen; museum questions its historical authenticity.",
-    "Fine joints, narrow loops, full interiors, tiny flags/fixtures and elaborate workshop equipment omitted.",
-    "Ceramic roof graph supplies low-frequency seams for both red tiles and grey small turret roof, tinted separately.",
-    "Actual terrain contact/approaches, continuous-motion shimmer and physical-device performance pending."
+    "Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact doorway thresholds.",
+    "Original architectural master and recipe preserved; independent derivative fits the working floor, foundations and exterior paving.",
+    "White Tall Hermann, timber gallery, steep red gable, inward roof ring, southwest turret, stone hall and yard curtains retained. Openings and component heights are reconstructed.",
+    "Viewer terrain supplies lawns. Natural river cliff, moat/river, Ivangorod and navigable interiors outside model scope. No artificial ground cutout.",
+    "Three shared material graphs and local opaque glass, no embedded images. Physical-device timing remains pending."
   ],
   "qaCameras": [
     {
@@ -229,15 +243,178 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hermann-runtime-model.mjs",
+    "export": "buildHermannReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hermann-runtime-model.mjs",
+    "export": "buildHermannReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHermannReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildHermannReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHermannReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hermann-skyline",
+      "position": [
+        -155,
+        100,
+        165
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hermann-district",
+      "position": [
+        -155,
+        100,
+        165
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hermann-street",
+      "position": [
+        -155,
+        100,
+        165
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hermann-closeup",
+      "position": [
+        -155,
+        100,
+        165
+      ],
+      "lookAt": [
+        15,
+        18,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve white tower/red gable, timber gallery, open roof-ring court and broad forecourts in all levels; near levels add sparse openings, workshops and selected benches.",
   "mesh": {
-    "triangles": 5406,
-    "vertices": 11814,
-    "materials": 5,
-    "bytes": 493300,
-    "sha256": "sha256:d8d6baa55ca67f9494f2005f513202daba332ae5987a8ca50353b92be61677b8"
+    "triangles": 5348,
+    "vertices": 16044,
+    "materials": 4,
+    "bytes": 644572,
+    "sha256": "sha256:be6e372fe15743400d6ba928067a91185ca3db853f4ff72cffc98798a56dc5fd"
   }
 }

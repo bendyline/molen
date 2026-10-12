@@ -1,9 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0268_hohensalzburg_fortress",
-  "sourceHash": "sha256:2dde22d38e1c18b8aea38829262e0d600f59fe1b4cdca52222c9b3ce80743260",
-  "runtimeHash": "sha256:a16ecdccd2e99533a7606f6061a12a71567f67f9967b563f82c6a7f41762a5f0",
-  "placementHash": "sha256:d4afe8e57b6054d659cff2a4fb84302f394f2a85ec12e68600625cf6e8d1c3c3",
+  "inputHash": "sha256:a8211f911370e814d0ae77a238a8942cae092c6858f4c56480a0d1a1ca4da3af",
+  "placementHash": "sha256:bf1112091bb0f92eab8bbd30eaa203594374e7ba20a3eb8e88e3aa4b0d310cc4",
   "entry": {
     "id": "next1000.n0268",
     "title": "Hohensalzburg Fortress",
@@ -21,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        13.04787405,
+        47.7952134
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample, reconstructed court and terrace floors."
+    },
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/58379993",
-    "note": "Full-site frame corrects chapel-only map match; reconstructed wing positions and terraced elevations require real hillside fit review. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

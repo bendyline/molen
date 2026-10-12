@@ -1,0 +1,292 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "state": "Architectural facade reconstruction without temporary restoration netting",
+    "basis": "Primary conservation study and contractor photographs; not a claim that restoration has finished or that all tenant alterations have been surveyed."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Principal brise face follows the signed native map outline indices 0–64; +Y is up",
+    "origin": "Centre of mapped exact-QID ground envelope; ground contact is provisional"
+  },
+  "sourceFacts": {
+    "residentialFloors": 32,
+    "heightMetersIBGE": 115,
+    "apartments": 1160,
+    "commercialUnits": 72,
+    "blocks": 6,
+    "helipadStatus": "Decommissioned according to IBGE 2022 field report",
+    "mappedHeightMeters": 118.44,
+    "mappedLevels": 37,
+    "planEnvelopeMeters": [
+      133.295,
+      43.44
+    ],
+    "reconstructedFloorBaseMeters": 16.5,
+    "reconstructedFloorIntervalMeters": 2.95,
+    "roofDatumMeters": 110.9,
+    "briseProjectionMeters": 0.98,
+    "glassSetbackMeters": 1.28,
+    "screenModuleMeters": [
+      0.19166666666666665,
+      0.182
+    ],
+    "sourceDimensionsCaution": "Floor datums, brise section, screen module and roof positions are explicit working reconstructions; the published plan scale conflict is unresolved.",
+    "originalMasterHash": "sha256:e5eef1e89db408cf31505f6b711250f47d04b88879c3e4fe13f2fd3d4295be0a",
+    "originalMasterRecipe": "packages/worldgen/scripts/copan-model.mjs#copan.encodeAssembly",
+    "surfaceMeans": {
+      "tile_mosaic": [
+        0.7330662304631436,
+        0.7639927022681822,
+        0.7148465816066711
+      ],
+      "concrete_plain": [
+        0.7108161524542215,
+        0.7108161524542215,
+        0.6819278525713045
+      ],
+      "metal_painted": [
+        0.9088893864967214,
+        0.9088893864967214,
+        0.9088893864967214
+      ]
+    }
+  },
+  "limitations": [
+    "The original eleven-part GPU-instanced source assembly is preserved byte-for-byte and remains reconstructable from copan-model.mjs. Browser levels use four groups: shared ceramic mosaic, concrete and painted metal plus opaque glass. The principal S-curve, separate southern glass/screen blocks, lift capsule, three stair positions, 32-floor stack and roof platform remain. Near brise blades keep their outer 0.115 m lips with double-sided midplanes rather than hidden inner faces. Close-up retains all three blades per ordinary floor, original open transfer bands and 6 by 4 geometric perforations per panel; street retains blades with a coarser curve and 2 by 1 perforations every other floor; district has coarse eight-floor bands and 1 by 1 screens; skyline replaces dense fins with a closed midpoint facade proxy. Far podiums are closed shells. Near rear gallery glazing closes previously exposed gaps inside the mapped residential envelope; it is an approximate architectural closure, without a surveyed shop inventory. Close-up stairs retain twenty individual flat treads per reconstructed turn with continuous narrow handrail strips and alternate open pickets; the preserved source retains closed individual tread slabs, and precise stair risers, handedness and rail inventory remain unsurveyed. Street uses eight segments and district four; skyline uses small capped stair proxies whose external half-width remains within the one metre envelope allowance. All curves are deterministic adaptive polylines. Source white/gray ceramic finishes are the intended architecture, without temporary protection netting or a claim that restoration is complete. The modeled gallery follows the mapped residential envelope; the wider executed cinema/commercial site, neighboring bank and curved corner terraces require a separate site model and are excluded from this residential-block asset. Floor levels, transfer bands, screen dimensions, roof equipment and doors are reconstructions, not measured as-built details. Published height/level and plan-scale differences remain explicit. Flat grade is approximate. Physical phone/laptop and dense-city timings remain pending."
+  ],
+  "geographic": {
+    "anchor": [
+      -46.644483918,
+      -23.546584452
+    ],
+    "heading": 0.390775195386,
+    "reviewStatus": "signed medium-fi municipal south facade and independent raw outline",
+    "orientationConfidence": "municipal south-screen statement and raw exact-QID projections",
+    "notes": "Fresh raw Q632566 way 8100248 independently matches the preserved 200-point ground ring within 0.002 m rounding. Anchor [-46.644483918,-23.546584452] and heading 0.390775195386 remain fixed; native +X points ENE at 67.61 degrees and +Z SSE at 157.61 degrees. The municipal restoration record independently calls the perforated cobogo facade the south facade. Raw coordinates place rear lift and stair projections on that side, opposite the principal northern brise curve (outline indices 0–64). The conservation plan and contractor photographs confirm the separate glazed rear block, screened rear blocks, one capsule lift tower and three open stair projections. Named southwest/northwest ends in the redrawn conservation plan are not used as compass controls: their reproduced page compass has not been reconciled with the raw site. Base Y0 is approximate local grade; actual street slope remains unsurveyed. Retain 115 m and 32 residential floors from the published IBGE record as the reconstruction basis; mapped 118.44 m and 37 total levels remain separately reported, without a surveyed datum reconciliation. No footprint replacement.",
+    "evidence": "Fresh raw Q632566 way 8100248 independently matches the preserved 200-point ground ring within 0.002 m rounding. Anchor [-46.644483918,-23.546584452] and heading 0.390775195386 remain fixed; native +X points ENE at 67.61 degrees and +Z SSE at 157.61 degrees. The municipal restoration record independently calls the perforated cobogo facade the south facade. Raw coordinates place rear lift and stair projections on that side, opposite the principal northern brise curve (outline indices 0–64). The conservation plan and contractor photographs confirm the separate glazed rear block, screened rear blocks, one capsule lift tower and three open stair projections. Named southwest/northwest ends in the redrawn conservation plan are not used as compass controls: their reproduced page compass has not been reconciled with the raw site. Base Y0 is approximate local grade; actual street slope remains unsurveyed. Retain 115 m and 32 residential floors from the published IBGE record as the reconstruction basis; mapped 118.44 m and 37 total levels remain separately reported, without a surveyed datum reconciliation. No footprint replacement.",
+    "replaceFootprint": false
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/copan-runtime-model.mjs",
+    "export": "buildCopanSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCopanDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "mosaic": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.38,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCopanStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "mosaic": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.38,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCopanCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "mosaic": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.38,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-copan",
+      "position": [
+        -240,
+        148,
+        -310
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-copan-skyline",
+      "position": [
+        -240,
+        148,
+        -310
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-copan-district",
+      "position": [
+        -240,
+        148,
+        -310
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-copan-street",
+      "position": [
+        -240,
+        148,
+        -310
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-copan-closeup",
+      "position": [
+        -240,
+        148,
+        -310
+      ],
+      "lookAt": [
+        0,
+        56,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-south-stairs",
+      "position": [
+        -85,
+        100,
+        120
+      ],
+      "lookAt": [
+        -32,
+        59,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-brise-depth",
+      "position": [
+        -21,
+        43,
+        -33
+      ],
+      "lookAt": [
+        -21,
+        42,
+        -20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-cobogo-stair",
+      "position": [
+        -40,
+        49,
+        26
+      ],
+      "lookAt": [
+        -30,
+        44,
+        2
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

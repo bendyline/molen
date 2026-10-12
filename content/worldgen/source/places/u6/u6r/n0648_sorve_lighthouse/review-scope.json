@@ -1,0 +1,147 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "53m black-over-white tapered concrete lighthouse with sparse recessed openings, flared gallery and double black lantern cage.",
+    "epoch": "Current national aid935 exterior and reference photograph; no interior reconstruction.",
+    "master": "Preserve original51662-triangle master, casting joints, recessed windows, gallery rails and ladder.",
+    "browser": "Hand-authored skyline/district/street retain tower profiles, real window openings and double cages; the detailed source is the closeup. Shared concrete/painted metal and local lantern panes; no reference textures embedded.",
+    "exclusions": "Detached station buildings, exact casting dimensions, navigation optics, local surveyed terrain and interior stair."
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "-Z",
+    "origin": "Tower center at local ground contact Y=0. Entrance faces-Z toward the mapped northwest access endpoint; the sparse window rank faces+Z."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sorve-skyline-model.mjs",
+    "export": "buildSorveSkyline",
+    "errorMeters": 0.35,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSorveDistrict",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildSorveStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "entrance-ground",
+      "position": [
+        7,
+        4,
+        -11
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -3.8
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "lantern-district",
+      "position": [
+        9,
+        51,
+        13
+      ],
+      "lookAt": [
+        0,
+        49.2,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-street",
+      "position": [
+        9,
+        51,
+        13
+      ],
+      "lookAt": [
+        0,
+        49.2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "entrance-street",
+      "position": [
+        7,
+        4,
+        -11
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -3.8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "skyline-identity",
+      "position": [
+        48,
+        35,
+        66
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ]
+}

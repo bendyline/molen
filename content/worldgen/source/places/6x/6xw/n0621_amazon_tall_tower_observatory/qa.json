@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0621_amazon_tall_tower_observatory",
-  "inputHash": "sha256:b4346b9e8fcd70225ec59ba81dd67777ce2ca486d640c35eba45dde87a4ec66c",
-  "captureReportHash": "sha256:8a1c223a7a0b22a6cad676c471ddbb785eff2537026eff6f809d13fbee4781be",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:6b7141431e4eb41fdb5d4eb5244729a3bead31674049a2ad337bb1f27de8d85e",
+  "sourceHash": "sha256:adb9523540d2773eb0d2b48be67b8d3cea0d24d7e0f0b283d9d5e0de6e91e134",
+  "runtimeHash": "sha256:ebd168645be6c5a12b8344e27291ec452a8b9f6180d1569b5fc3b9d88ccc0f88",
+  "captureReportHash": "sha256:65dae11409c7622a6b67b520088d0eed6c660fd7a8850b0a0704216d1f7950d2",
   "visualReview": {
     "status": "passed",
-    "scope": "Render integrity of the current main-tower reconstruction; observatory completion remains pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -22,11 +24,11 @@
       "shots/guy-attachment.png",
       "shots/whole-guy-envelope.png"
     ],
-    "notes": "All 14 current portable frames inspected. Bolted closed angle sections, open bar-grating stairs/landings, banded lattice, service rails, stationary RoLi carriage and top equipment are visibly coherent. The full tower and lightning-tip framing were corrected and recaptured. Real-scale thin guys undersample in distant views; no artificial thickening was applied."
+    "notes": "Inspected all14 portable detailed-master views against two tower pictures. Square red/white lattice, closed angle joints, grated stairs, platform, lightning rod, external lift/instrument carriage and paired six-level guy system remain intact. The existing instanced master remains archival detailed source; terrain-fitted browser display uses the separately authored tiers."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cd3e3b601c277283ea9c163971c5cf750e042f15b370e97d97bc519d764697d7",
+    "captureReportHash": "sha256:3903cc94f63e0eb9487ac7c43ef1384f2c02ad98d1e60c27cb411ff2fa7c572f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -43,16 +45,259 @@
       "shots/shared/whole-guy-envelope.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All 14 current shared frames inspected, with full-resolution full-height, angle-joint, instrument-carriage and lightning-tip checks. Three canonical material graphs each load once. Reflective stainless equipment is darker in the shared scene than the portable fallback. Current placement transform and unloaded geometry checks pass; the flat fixture and provisional anchor blocks do not establish real terrain fit. Stored mesh triangles are 184412; instance-expanded model triangles are 737916."
+    "notes": "Inspected all14 shared-material master views. Common painted-metal/stainless/concrete graphs are reused; cache reuse and unload passed. Retained mapped node and23-degree heading preserve approximate shaft/lift-corner alignment. Flat shared fixture verifies materials/orientation, not actual forest terrain. Detailed master/import, placement, graphs and source cameras are unchanged after the final derivative-only frame/housing corrections."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7810d00db46d7544b19621d1fe8a8e67c411c566d9775c366de44815ddb9cf2b",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/full-main-tower.png",
+      "medium-fi/lattice-and-stairs.png",
+      "medium-fi/angle-joints.png",
+      "medium-fi/roli-instrument-carriage.png",
+      "medium-fi/top-platform.png",
+      "medium-fi/inlets-and-lightning.png",
+      "medium-fi/base-and-safety-rail.png",
+      "medium-fi/guy-attachment.png",
+      "medium-fi/whole-guy-envelope.png",
+      "medium-fi/whole-atto-skyline.png",
+      "medium-fi/whole-atto-district.png",
+      "medium-fi/whole-atto-street.png",
+      "medium-fi/whole-atto-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all30 final medium-fi browser views across light, quality, identity, silhouette and four matched levels. Top platform's upper frame is present after correction; near instrument housing has a contrasting vent face. Brace spacing, landings/flights,1500 closeup tread impressions, safety rails, lift rail and guy detail progress by distance. The main slab and each approximate guy block/cable endpoint use one retained PMTiles field."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:8522be7fcdca92d7bfddf6433d7a29eb9ba13fe8dd43dd27a6136da63d46be24",
-    "notes": "The exact-QID OSM point and published coordinate identify the main tower but differ by about 6 m. The published 202-degree lift corner determines the signed 23-degree heading. Foundation position, study guy-anchor radii/topology and real ground contacts are not independently surveyed or verified; no footprint approval is claimed."
+    "status": "passed",
+    "placementHash": "sha256:48b3cbf989fd041f36340b064bb468c4b1f0a209c97676539a9721252b9e510e",
+    "mapFrameHash": "sha256:0ee860dd8be4aa7ea6da396d6148eda88fcec3bab7f539054f4b378775fae602",
+    "notes": "Two inspected pictures support the slender red/white square lattice shaft, top platform/outriggers and paired guy cables. Retained tower node and heading23 degrees provide approximate location/facing. Standard viewer PMTiles working datum 134.05314223787755m supplies ground. Browser derivatives place the main slab at modelY.35 and each approximate guy block/cable endpoint on the same sampled grid. The preserved detailed master remains an archival instanced geometry source; the four browser derivatives supply terrain-fitted display. This round covers the main tall tower, not separate companion towers or the laboratory compound."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate main tall-tower exterior and ground fit from inspected pictures and standard viewer PMTiles. Guy radii, topology/sag, exact floor levels and equipment are reconstructed. Separate80/81m companion towers and laboratory compound are outside this main-tower asset. Forest/natural terrain are host content. No surveyed coordinates, full compound, interiors/collision or physical-device timing claim; footprint replacement remains off."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "The 325 m main tower is individually authored with published dimensions and component vocabulary. Exact flange/bolt/landing schedules, paint boundaries, cable-anchor topology/sag and present instrument/rescue equipment need further evidence. The independent 80/81 m companion towers and laboratory compound remain unauthored. The observatory candidate is incomplete."
-  }
+    "notes": "The 325 m main tower is individually authored with published dimensions and component vocabulary. Exact flange/bolt/landing schedules, paint boundaries, cable-anchor topology/sag and present instrument/rescue equipment need further evidence. The independent 80/81 m companion towers and laboratory compound remain unauthored. The observatory candidate is incomplete.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/6x/6xw/n0621_amazon_tall_tower_observatory/models/source.glb",
+        "hash": "sha256:adb9523540d2773eb0d2b48be67b8d3cea0d24d7e0f0b283d9d5e0de6e91e134",
+        "bytes": 13746540,
+        "triangles": 184412,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -159.7990264892578,
+          0,
+          -159.7990264892578
+        ],
+        "max": [
+          159.7990264892578,
+          331,
+          159.7990264892578
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/6x/6xw/n0621_amazon_tall_tower_observatory/model.glb",
+        "hash": "sha256:ebd168645be6c5a12b8344e27291ec452a8b9f6180d1569b5fc3b9d88ccc0f88",
+        "bytes": 13745332,
+        "triangles": 184412,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -159.7990264892578,
+          0,
+          -159.7990264892578
+        ],
+        "max": [
+          159.7990264892578,
+          331,
+          159.7990264892578
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/6x/6xw/n0621_amazon_tall_tower_observatory/model.skyline.glb",
+        "hash": "sha256:f401ecb718807061a809c31d25578e236ec1ce7e8ad8890edb455ad052d1f136",
+        "bytes": 88336,
+        "triangles": 996,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -159.7990264892578,
+          -4.988173484802246,
+          -159.7990264892578
+        ],
+        "max": [
+          159.7990264892578,
+          331.3500061035156,
+          159.7990264892578
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/6x/6xw/n0621_amazon_tall_tower_observatory/model.district.glb",
+        "hash": "sha256:7ad7cb9a6490e8fca8c0ad254da8594ad069fbf1ebc2145676794de09ad739f3",
+        "bytes": 365148,
+        "triangles": 3984,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -159.7990264892578,
+          -4.988173484802246,
+          -159.7990264892578
+        ],
+        "max": [
+          159.7990264892578,
+          331.3500061035156,
+          159.7990264892578
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/6x/6xw/n0621_amazon_tall_tower_observatory/model.street.glb",
+        "hash": "sha256:aa6f8fd8609a3b78d742bfbdbd0845082fd66902b22d90dd21aec2cde90b4886",
+        "bytes": 1446608,
+        "triangles": 15852,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -159.7990264892578,
+          -4.988173484802246,
+          -159.7990264892578
+        ],
+        "max": [
+          159.7990264892578,
+          331.3500061035156,
+          159.7990264892578
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/6x/6xw/n0621_amazon_tall_tower_observatory/model.closeup.glb",
+        "hash": "sha256:52290ef776867ea3816f1a657810228db515a643554ad990c717df175840d9ab",
+        "bytes": 4004636,
+        "triangles": 43728,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -159.7990264892578,
+          -4.988173484802246,
+          -159.7990264892578
+        ],
+        "max": [
+          159.7990264892578,
+          331.3500061035156,
+          159.7990264892578
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed source hash matches the preexisting Git source manifest byte-for-byte: four unique meshes and215 repeated instances,184412 stored/737916 rendered triangles. Browser levels contain996/3984/15852/43728 triangles; initial skyline+district totals453484 bytes. Separate POSITION/NORMAL streams retained; far colors use actual shared graph means."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:3aaf98d14f6ffca4ed00a4c9bcfd9693e11527b3f7c92ad82f28aabbb0e7ea10",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:f401ecb718807061a809c31d25578e236ec1ce7e8ad8890edb455ad052d1f136",
+        "bytes": 88336,
+        "gzipBytes": 11892,
+        "triangles": 996,
+        "cpuBytes": 86904,
+        "gpuBytes": 86904,
+        "errorMeters": 0.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:7ad7cb9a6490e8fca8c0ad254da8594ad069fbf1ebc2145676794de09ad739f3",
+        "bytes": 365148,
+        "gzipBytes": 62795,
+        "triangles": 3984,
+        "cpuBytes": 361224,
+        "gpuBytes": 361224,
+        "errorMeters": 0.3,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:aa6f8fd8609a3b78d742bfbdbd0845082fd66902b22d90dd21aec2cde90b4886",
+        "bytes": 1446608,
+        "gzipBytes": 231182,
+        "triangles": 15852,
+        "cpuBytes": 1442664,
+        "gpuBytes": 1442664,
+        "errorMeters": 0.12,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:52290ef776867ea3816f1a657810228db515a643554ad990c717df175840d9ab",
+        "bytes": 4004636,
+        "gzipBytes": 678969,
+        "triangles": 43728,
+        "cpuBytes": 4000680,
+        "gpuBytes": 4000680,
+        "errorMeters": 0.05,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 453484,
+    "notes": "skyline: 996 triangles, 88336 bytes, 1 draws; district: 3984 triangles, 365148 bytes, 3 draws; street: 15852 triangles, 1446608 bytes, 3 draws; closeup: 43728 triangles, 4004636 bytes, 3 draws. Initial skyline+district 453484 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate main tall-tower exterior and PMTiles fit from two inspected pictures; no bespoke survey or full compound claim.",
+    "Original detailed master and repeated mesh instances preserved. Independent browser tiers reduce brace/stair/instrument detail by view distance.",
+    "Guy radii75/150/225m and paired topology are interpreted retained controls; new browser blocks and cable endpoints meet one coarse PMTiles field. Exact anchors, sag, restoration details and equipment inventory are approximate.",
+    "Three shared painted-metal/stainless/concrete graphs; zero embedded images. Forest and natural ground remain host content.",
+    "Separate80/81m companion towers and laboratory are outside this main-tower asset; interiors, collision and physical-device timing excluded. Footprint replacement remains off."
+  ]
 }

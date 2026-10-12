@@ -11,20 +11,24 @@
     "longitude": 25.3671
   },
   "visualBrief": "Asymmetric Transylvanian castle with mapped open courtyard, round western tower, steep single-slope keep roof, scalloped rear parapet and timber belfry, projecting eastern tower chamber, south stair turret, arched galleries, well and entrance stairs.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 3
+  },
   "size": [
-    49.59968185424805,
-    40.400001525878906,
-    32.27602577209473
+    48.22745895385742,
+    47.422295570373535,
+    32.059306144714355
   ],
   "actualBounds": {
     "min": [
-      -24.799840927124023,
-      0,
-      -14.266719818115234
+      -23.84600067138672,
+      -7.173295021057129,
+      -14.050000190734863
     ],
     "max": [
-      24.799840927124023,
-      40.400001525878906,
+      24.381458282470703,
+      40.249000549316406,
       18.009305953979492
     ]
   },
@@ -32,7 +36,7 @@
     "up": "+Y",
     "longitudinal": "+X 39.51 degrees south of east",
     "front": "+Z southwest",
-    "origin": "OSM castle anchor, provisional local rock contact"
+    "origin": "Retained signed castle anchor; Y0 decoded 764.9841 m numeric working datum."
   },
   "sourceFacts": {
     "identity": "Exact Q390275 match on OSM relation/3300200",
@@ -43,11 +47,13 @@
     ],
     "mappedBuildingParts": 5,
     "courtyardHole": true,
-    "surveyedVerticalDatum": false
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:1d40b097ab6f1765fa729f7b06db09811704bac68fee1c3ed384422ff4987bff",
+    "originalMasterRecipe": "packages/worldgen/scripts/bran-castle-model.mjs#branStudy.build"
   },
   "reconstruction": {
     "basis": "OSM outer/inner rings and five tower/roof parts; official historical chronology and visitor map; exterior and courtyard photographs.",
-    "verticalDatum": "Court 4 m above local rock contact. Main keep roof 32.5 m; belfry roof 39.1 m and finial 40.4 m. These are photograph-derived local heights, not surveyed elevations.",
+    "verticalDatum": "Fresh exact-Q390275 relation 3300200 v30 and seven outer, court and roof/tower ways match retained coordinates within 0.672 mm. Native +X southeast at 129.515 degrees, +Z southwest at 219.515 degrees. Round western tower, northeast keep/belfry, eastern tower and southwest stair/entrance sign the frame. Retained Terrarium public numeric terrain and a 4225-value 4 m native grid establish contact against one viewer terrain product. Y0 is the decoded 764.9841 m anchor working datum; no regional survey or ellipsoid conversion is asserted. Reconstructed courtyard floor 3.849 m above that datum uses highest mapped outer-boundary sample plus 0.25 m. Architecture receives one rigid -0.151 m translation from the original court basis; footprints and vertical proportions remain intact. Occupied perimeter feet extend 4 m below sampled terrain, court paving stays a thin architectural slab, and host terrain supplies the geological knoll. Whole-precinct replacement/cutout remains disabled. Coarse terrain cannot establish precise cliff or architectural elevations; local Romanian public terrain service was unreachable.",
     "roofscape": "Hand-authored red-tile facets; exact roof valleys and heights remain provisional."
   },
   "referencePages": [
@@ -60,8 +66,8 @@
     "https://commons.wikimedia.org/wiki/File:Bran_castle_courtyard_round_tower.jpg"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Mapped anchor, outer ring, courtyard and tower parts; terrain contact and height fit pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Signed component frame and retained terrain with reconstructed exterior floors",
     "anchor": [
       25.367082771,
       45.515080804
@@ -76,11 +82,22 @@
     ],
     "wikidataId": "Q390275",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:200f3c85c8c05ab7b3a63a29ece063f839cc41ac32e31c7fa3e686c6824a7488",
+    "mapGeometryHash": "sha256:2f0b14c338b26c36f7a06193673a39cfa28ed61742503f453e27f4da2a6454d8",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Courtyard must remain open; do not replace the complete enclosing polygon with solid building volume."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fresh exact-Q390275 relation 3300200 v30 and seven outer, court and roof/tower ways match retained coordinates within 0.672 mm. Native +X southeast at 129.515 degrees, +Z southwest at 219.515 degrees. Round western tower, northeast keep/belfry, eastern tower and southwest stair/entrance sign the frame. Retained Terrarium public numeric terrain and a 4225-value 4 m native grid establish contact against one viewer terrain product. Y0 is the decoded 764.9841 m anchor working datum; no regional survey or ellipsoid conversion is asserted. Reconstructed courtyard floor 3.849 m above that datum uses highest mapped outer-boundary sample plus 0.25 m. Architecture receives one rigid -0.151 m translation from the original court basis; footprints and vertical proportions remain intact. Occupied perimeter feet extend 4 m below sampled terrain, court paving stays a thin architectural slab, and host terrain supplies the geological knoll. Whole-precinct replacement/cutout remains disabled. Coarse terrain cannot establish precise cliff or architectural elevations; local Romanian public terrain service was unreachable.",
+    "notes": "Fresh exact-Q390275 relation 3300200 v30 and seven outer, court and roof/tower ways match retained coordinates within 0.672 mm. Native +X southeast at 129.515 degrees, +Z southwest at 219.515 degrees. Round western tower, northeast keep/belfry, eastern tower and southwest stair/entrance sign the frame. Retained Terrarium public numeric terrain and a 4225-value 4 m native grid establish contact against one viewer terrain product. Y0 is the decoded 764.9841 m anchor working datum; no regional survey or ellipsoid conversion is asserted. Reconstructed courtyard floor 3.849 m above that datum uses highest mapped outer-boundary sample plus 0.25 m. Architecture receives one rigid -0.151 m translation from the original court basis; footprints and vertical proportions remain intact. Occupied perimeter feet extend 4 m below sampled terrain, court paving stays a thin architectural slab, and host terrain supplies the geological knoll. Whole-precinct replacement/cutout remains disabled. Coarse terrain cannot establish precise cliff or architectural elevations; local Romanian public terrain service was unreachable.",
+    "evidence": "Fresh exact-Q390275 relation 3300200 v30 and seven outer, court and roof/tower ways match retained coordinates within 0.672 mm. Native +X southeast at 129.515 degrees, +Z southwest at 219.515 degrees. Round western tower, northeast keep/belfry, eastern tower and southwest stair/entrance sign the frame. Retained Terrarium public numeric terrain and a 4225-value 4 m native grid establish contact against one viewer terrain product. Y0 is the decoded 764.9841 m anchor working datum; no regional survey or ellipsoid conversion is asserted. Reconstructed courtyard floor 3.849 m above that datum uses highest mapped outer-boundary sample plus 0.25 m. Architecture receives one rigid -0.151 m translation from the original court basis; footprints and vertical proportions remain intact. Occupied perimeter feet extend 4 m below sampled terrain, court paving stays a thin architectural slab, and host terrain supplies the geological knoll. Whole-precinct replacement/cutout remains disabled. Coarse terrain cannot establish precise cliff or architectural elevations; local Romanian public terrain service was unreachable.",
+    "terrainReference": {
+      "anchor": [
+        25.367082771,
+        45.515080804
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Terrarium grid center relative to decoded anchor working datum; no architectural survey claim."
+    }
   },
   "scaleBasis": "Mapped outlines in meters, native +X about 39.51 degrees south of east. Heights estimated from photographic proportions; conflicting OSM 50–73 m tags are not adopted as facade heights.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -98,26 +115,17 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        1.2,
-        1.2
+        2.4,
+        1.6
       ]
     },
     {
       "ref": "matgraph:molen.worldgen.material.plaster_lime",
       "slot": "wall",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.metal_painted",
-      "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -141,17 +149,27 @@
         2,
         0.25
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Maximum fidelity remains pending: mapped horizontal layout is retained but measured elevations, roof valleys and obscured window positions require refinement.",
-    "OSM height tags from 50 to 73 m have an unresolved common datum. The authored local heights are photographic estimates, not a survey.",
-    "The courtyard gallery, well ironwork, scalloped keep parapet, entrance portal, chimneys and window rhythms use photographic proportions. Interior rooms, artworks and furniture are outside this exterior asset.",
-    "The four-meter rock contact is not the full hill. Park, forest, approach paths and terrain fitting remain separate.",
-    "Shared procedural plaster, stone, timber, ceramic tile and metal avoid embedded images. Plaster weathering and the distinctive rounded tile pattern need further material-specific refinement."
+    "Original 145600-triangle / 13770396-byte master remains preserved and reproducible at sha256:1d40b097ab6f1765fa729f7b06db09811704bac68fee1c3ed384422ff4987bff from bran-castle-model.mjs#branStudy.build. Independent medium-fi derivative retains the exterior while replacing the provisional four-meter rock contact with mapped feet and an explicit relative terrain reference.",
+    "Fresh exact-Q390275 relation 3300200 v30 and seven outer, court and roof/tower ways match retained coordinates within 0.672 mm. Native +X southeast at 129.515 degrees, +Z southwest at 219.515 degrees. Round western tower, northeast keep/belfry, eastern tower and southwest stair/entrance sign the frame. Retained Terrarium public numeric terrain and a 4225-value 4 m native grid establish contact against one viewer terrain product. Y0 is the decoded 764.9841 m anchor working datum; no regional survey or ellipsoid conversion is asserted. Reconstructed courtyard floor 3.849 m above that datum uses highest mapped outer-boundary sample plus 0.25 m. Architecture receives one rigid -0.151 m translation from the original court basis; footprints and vertical proportions remain intact. Occupied perimeter feet extend 4 m below sampled terrain, court paving stays a thin architectural slab, and host terrain supplies the geological knoll. Whole-precinct replacement/cutout remains disabled. Coarse terrain cannot establish precise cliff or architectural elevations; local Romanian public terrain service was unreachable.",
+    "OSM height tags 50–73 m have unresolved datum and are not facade survey heights. Keep roof, belfry, tower eaves, scallops and roof valley heights retain photograph-derived relative proportions.",
+    "Terrarium tile pixels and 4 m native review samples are not source DEM resolution or vertical accuracy. Small cliff, steps and under-building ground can be smoothed or contaminated; no local LiDAR accuracy, current terrain vintage or universal host compatibility claim.",
+    "Shared granite, limestone, plaster, timber, ceramic and painted-metal graphs; recesses share tinted plaster. Local opaque PBR glass and baked common skyline means avoid embedded images. Fine weathering and distinctive rounded tile ends are simplified.",
+    "Current exterior/courtyard reconstruction excludes interior rooms, artwork, furniture, underground Time Tunnel, temporary visitor equipment, surrounding park/forest and village. Courtyard masonry, gallery, well ironwork and window locations remain photograph-guided approximations. Physical phone/laptop timings remain unmeasured."
   ],
   "qaCameras": [
     {
@@ -272,15 +290,250 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/bran-runtime-model.mjs",
+    "export": "buildBranReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bran-runtime-model.mjs",
+    "export": "buildBranReviewedSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBranReviewedDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "recess": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "street": {
+        "export": "buildBranReviewedStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "recess": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBranReviewedCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "recess": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bran-skyline",
+      "position": [
+        -65,
+        48,
+        73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bran-district",
+      "position": [
+        -65,
+        48,
+        73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bran-street",
+      "position": [
+        -65,
+        48,
+        73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bran-closeup",
+      "position": [
+        -65,
+        48,
+        73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 145600,
-    "vertices": 333850,
-    "materials": 8,
-    "bytes": 13770396,
-    "sha256": "sha256:1d40b097ab6f1765fa729f7b06db09811704bac68fee1c3ed384422ff4987bff"
+    "triangles": 33258,
+    "vertices": 68284,
+    "materials": 7,
+    "bytes": 2861556,
+    "sha256": "sha256:b25949c6ee650d1837c75839acf40e8acf4768811d0555b38d3d471b0de1ea11"
   }
 }

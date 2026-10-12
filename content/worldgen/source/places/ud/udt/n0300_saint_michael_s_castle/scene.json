@@ -31,37 +31,6 @@
       }
     },
     {
-      "id": "ground",
-      "components": {
-        "transform": {
-          "pos": [
-            0,
-            -0.15,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "scale": [
-            218.99049072265626,
-            0.2,
-            218.99049072265626
-          ]
-        },
-        "renderable": {
-          "kind": "primitive",
-          "ref": "box",
-          "materialRef": "palette:#777b72",
-          "shadows": {
-            "receive": true
-          }
-        }
-      }
-    },
-    {
       "id": "environment",
       "components": {
         "environment": {
@@ -91,18 +60,21 @@
   "camera": {
     "mode": "fixed",
     "position": [
-      196.85566571597158,
-      110,
-      112.46264657886033
+      210,
+      132,
+      210
     ],
     "lookAt": [
-      5.377959751921834,
-      23,
-      0.27847604333022113
-    ],
-    "fov": 42
+      0,
+      -7.5,
+      0
+    ]
   },
   "physics": {
     "engine": "none"
+  },
+  "terrain": {
+    "descriptor": "terrain-cutout.terrain.json",
+    "heightmap": "terrain-cutout.height.png"
   }
 }

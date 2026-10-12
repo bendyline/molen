@@ -12,23 +12,24 @@
   },
   "visualBrief": "Lutsk Upper Castle: irregular triangular brick enclosure, west entry tower with buttresses and open round portal, north pyramid-roofed Bishop tower and southeast open-crowned Styr tower; covered timber wall walk, cream noble house, ochre columned book museum and contemporary blue-grey church excavation cover in an open court.",
   "mediumFiContext": {
-    "scale": "0.8",
+    "groundY": -3,
+    "scale": 0.8,
     "neighborStyle": "molen.worldgen.catalog.english_terrace"
   },
   "size": [
     118.9705581665039,
-    28,
+    39.68295192718506,
     106.08271789550781
   ],
   "actualBounds": {
     "min": [
       -58.00126266479492,
-      0,
+      -8.482951164245605,
       -52.969295501708984
     ],
     "max": [
       60.969295501708984,
-      28,
+      31.200000762939453,
       53.11342239379883
     ]
   },
@@ -36,7 +37,7 @@
     "up": "+Y",
     "longitudinal": "+X northeast,44.4915 degrees north of east",
     "front": "West entry(-X,-Z),north Bishop(+X,-Z),southeast Styr(-X,+Z)",
-    "origin": "Mapped castle compound center,provisional flat courtyard attachmentY=0"
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
   },
   "sourceFacts": {
     "mapIdentity": "way/633707797 compound exact Q1866166; way/564453419 is only church ruins",
@@ -62,7 +63,9 @@
       10,
       12
     ],
-    "mappedChurchRuinHeightMeters": 1.52
+    "mappedChurchRuinHeightMeters": 1.52,
+    "originalMasterHash": "sha256:a1fc1184c189cc0c9f0cf66c8292ad3cb8dc0fe5f7f01eee00845f9c6a8fbc8e",
+    "originalMasterRecipe": "packages/worldgen/scripts/lubart-castle-model.mjs#buildLubartRuntime"
   },
   "appearance": {
     "standard": "docs-src/guide/medium-fi.md",
@@ -86,12 +89,13 @@
       "Three differently capped square brick towers in an open triangular compound",
       "Buttressed west entry with a real round portal and open Renaissance crown",
       "Long dark covered timber wall walk and lower cream noble-house range"
-    ]
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
   },
   "reconstruction": {
-    "basis": "Castle compound outline and church ruin outline from cached OSM; current museum aerial/front/wall-walk photographs supply tower positions and exterior appearance.",
-    "heightDatum": "Entry28m and Styr27m chosen within conflicting27–28m primary descriptions. Bishop published13.5m has ambiguous roof/datum extent; interpreted brick body13.5m plus7m roof,not a surveyed20.5m total. Relative terrain rises are not surveyed.",
-    "scope": "Upper castle perimeter,three towers,existing noble-house/book-museum massing and church dig shelter; no destroyed full medieval palace or restored church,lower castle,neighbors or temporary event structures."
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
   },
   "referencePages": [
     "https://lutskreserve.com/places/verkhniy-lutskyy-zamok",
@@ -102,8 +106,8 @@
     "https://www.openstreetmap.org/way/564453419"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Corrected research compound frame only; geographic activation pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
     "anchor": [
       25.323548196,
       50.738747737
@@ -122,7 +126,17 @@
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Correct castle compound supersedes misleading church-ruin identity match. West entry,north Bishop and southeast Styr interpreted from current aerial; terrain and individual building fits pending."
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the irregular brick enclosure, open west/Styr crowns, pyramid-capped Bishop tower, covered wall walk and lower museum ranges. Standard viewer PMTiles and the retained compound outline establish location, scale and signed orientation. A reconstructed3.2m level court clears the coarse mound; bounded tower/wall foundations extend beneath sampled ground. Anchor 25.323548196,50.738747737; heading 0.776523631346; standard PMTiles datum 186.99930980801582m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "notes": "The inspected aerial picture confirms the irregular brick enclosure, open west/Styr crowns, pyramid-capped Bishop tower, covered wall walk and lower museum ranges. Standard viewer PMTiles and the retained compound outline establish location, scale and signed orientation. A reconstructed3.2m level court clears the coarse mound; bounded tower/wall foundations extend beneath sampled ground. Anchor 25.323548196,50.738747737; heading 0.776523631346; standard PMTiles datum 186.99930980801582m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        25.323548196,
+        50.738747737
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
   },
   "scaleBasis": "Mapped115.949×100.204m compound outline fixes overall plan. Entry28m/Styr27m chosen within conflicting primary heights; Bishop13.5m is interpreted as body plus7m roof,extent/datum uncertain. Tower/annex dimensions,roof elevations and facades are inferred from operator exterior photos. FlatY0 is provisional,not surveyed terrain.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -177,7 +191,7 @@
     },
     {
       "ref": "matgraph:molen.worldgen.material.metal_painted",
-      "slot": "trim",
+      "slot": "roof",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -189,13 +203,11 @@
   "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Mapped compound fixes plan but individual tower/body outlines,annex dimensions,heights,window positions,roof profiles and crown ornament are visual interpretations,not surveys.",
-    "Entry and Styr heights vary27–28m in primary sources; model selects28m and27m respectively.",
-    "Bishop13.5m reference has ambiguous extent/datum. Using it for brick body plus an inferred7m roof is an explicit interpretation,not a verified20.5m total. The hill and relative footing heights remain unmeasured.",
-    "Contemporary church excavation cover is modeled;1.52m map height belongs to ruins,not shelter. No full medieval church or destroyed palace is recreated.",
-    "Compound includes open courtyard and sparse lawns/paving. Neither flat review ground nor demonstration neighbors prove real Lutsk placement.",
-    "Geographic activation,terrain seating and footprint replacement pending. Physical laptop/phone performance and continuous-motion LOD shimmer remain unmeasured.",
-    "No copied photos or unique textures ship. Fine mortar,stone joints,sculpture,thin rails/wires,temporary structures and interiors omitted under medium-fi."
+    "Approximate current exterior using inspected picture and standard viewer PMTiles; no bespoke survey or exact threshold research.",
+    "Original detailed architectural master and recipe preserved; independent derivative fits a level working court and bounded foundations.",
+    "Three differently capped towers, buttressed open entry, covered timber walk, open court and contemporary excavation shelter define identity. Heights/openings and crown details reconstructed.",
+    "Upper castle exterior only; lower castle, neighborhood, full natural mound, destroyed palace/church, temporary events and interiors excluded.",
+    "Six shared material graphs and local glass/lawn slots; eight merged groups justified by the mixed campus. Zero embedded images. Physical-device timing pending."
   ],
   "qaCameras": [
     {
@@ -277,15 +289,253 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/lubart-runtime-model.mjs",
+    "export": "buildLubartReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lubart-runtime-model.mjs",
+    "export": "buildLubartReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLubartReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildLubartReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLubartReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-lubart-skyline",
+      "position": [
+        120,
+        83,
+        105
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lubart-district",
+      "position": [
+        120,
+        83,
+        105
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lubart-street",
+      "position": [
+        120,
+        83,
+        105
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lubart-closeup",
+      "position": [
+        120,
+        83,
+        105
+      ],
+      "lookAt": [
+        0,
+        13,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve open triangular court,three distinctive towers,entry arch/buttresses and dark covered wall walk across all levels.",
   "mesh": {
     "triangles": 4497,
-    "vertices": 12459,
+    "vertices": 13491,
     "materials": 8,
-    "bytes": 506992,
-    "sha256": "sha256:a1fc1184c189cc0c9f0cf66c8292ad3cb8dc0fe5f7f01eee00845f9c6a8fbc8e"
+    "bytes": 544180,
+    "sha256": "sha256:d84571ccf618f14c63fef54b3ba29ed83cf876ce1c47b515d1f8f82bfacc70f3"
   }
 }

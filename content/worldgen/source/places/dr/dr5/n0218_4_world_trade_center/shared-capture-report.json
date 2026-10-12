@@ -1,37 +1,29 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0218_4_world_trade_center",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:3da99d482b08a2cfdbfcb76b89402e4eabdab44260f691c8c572bf473814cea0",
+  "inputHash": "sha256:5ee0a64519c7cd3e4d11a15d121f02871aecf92de65ffb4e663e6c17c28eed8b",
+  "sourceHash": "sha256:1126e873ebf1d308696367b4a875cbc4f737d9565de7d95ba82d7748a921a671",
+  "runtimeHash": "sha256:bfe66a28e571fcb37ef521b9f14391f223a1dd955ebe64c12d9c24e94e6847fd",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:ae51ec04125c03f36bacdc8fb862c2d49f8b7e7f644ce462de93eb37c0a1cb85",
   "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
-  "placementHash": "sha256:2bb1bc7ab7483d2ae1d7936762fc6ba4e42e1ce4513d7e182b8e885bc8d9ae98",
+  "clippingMode": "legacy",
+  "placementHash": "sha256:164fbe90696ab126a2f5208493ef5ac056e0144675e34f758596514a049e8b9e",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_marble": {
       "path": "materials/stone_marble.matgraph.json",
       "hash": "sha256:e6034ab9ef8375ec8f3a57c697aa21e059e2953742b15ce3b3e486c2f71af7cf"
     },
-    "matgraph:molen.worldgen.material.metal_painted": {
-      "path": "materials/metal_painted.matgraph.json",
-      "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-    },
     "matgraph:molen.worldgen.material.metal_stainless": {
       "path": "materials/metal_stainless.matgraph.json",
       "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
-    },
-    "matgraph:molen.worldgen.material.wood_plain": {
-      "path": "materials/wood_plain.matgraph.json",
-      "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
-    },
-    "matgraph:molen.worldgen.material.stone_granite": {
-      "path": "materials/stone_granite.matgraph.json",
-      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:1a890229de6e1c774cced0de57f45c3819c67885a20c0b0f707ec04fc1e9297b",
+      "hash": "sha256:45c29f9fdb64f694513cac320f890dbb59113624959e544bbadaa6f2d2c6cb60",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -46,8 +38,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -55,17 +47,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -84,20 +74,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:d3d7e376a8959f30d19bb467a1e0b39a1fcbfb5f538764456fea980c9c614be3",
+      "hash": "sha256:d27c18d065c347855135ada2e3936768ad4c54334cec0e6c93d0112fb3eaf881",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -112,8 +99,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -121,17 +108,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -150,20 +135,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:675b557fb35c003e79e0dcc555c8a730fa17c48712b556100e017f3b14139d5e",
+      "hash": "sha256:6ab40025cbeeec2d205b9200fdcf2883d7701fa08ae94c010eda59a1f4d0063a",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -178,8 +160,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -187,17 +169,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -216,20 +196,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:12d554c7bcdf6e1cf5dc23dd2848c0077ec55ce9aa61ee6dcce94cf246bd1034",
+      "hash": "sha256:3dc34614e9b8ed4cf4bd18e56104879b8ef55497384c9af7f3cceb35919d358e",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -244,8 +221,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -253,17 +230,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -282,20 +257,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/upper-trapezoid.png",
-      "hash": "sha256:fa1d6dc0fbde1cebaacf0543f6f39fcdb9e0232a937749549f24378df4329081",
+      "hash": "sha256:5c471f1be8754b28d180ef23e8a424910590f32a1529586b4931f3709005b139",
       "camera": {
         "name": "upper-trapezoid",
         "position": [
@@ -319,8 +291,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -328,17 +300,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -357,20 +327,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/northwest-terrace.png",
-      "hash": "sha256:f149fbcfda7bf8ec7e1b274855c9b7be71f9faded639aab7d4b61c26dd6cd6cb",
+      "hash": "sha256:e900f82dacb2562f733f224149562d91cf762966b1b6cf584f30c3bd1980b4bb",
       "camera": {
         "name": "northwest-terrace",
         "position": [
@@ -394,8 +361,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -403,17 +370,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -432,20 +397,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/terrace-junction.png",
-      "hash": "sha256:a0c3ed352b71fad5cd2bc42ca7bc599beeee0ce03b3874db8e83336e3d4a0b96",
+      "hash": "sha256:9db1dc53300597b313c390dcceee0ee643ea02c281a4a57afb1a2ab84e6ae125",
       "camera": {
         "name": "terrace-junction",
         "position": [
@@ -469,8 +431,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -478,17 +440,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -507,20 +467,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/flush-glass-detail.png",
-      "hash": "sha256:634131a5ccc55df7566595161624335504353b26091f4bc988c2fb834c86f4a4",
+      "hash": "sha256:e0579f0c3e0e38a8e5c0d6683b3e2c754b2f9cd3a0c0f8fa3c173530574967d1",
       "camera": {
         "name": "flush-glass-detail",
         "position": [
@@ -544,8 +501,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -553,17 +510,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -582,20 +537,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/northeast-recess.png",
-      "hash": "sha256:2b2b9edf93855b135caf00271f22468739021c64de567e404e23c6682d894e08",
+      "hash": "sha256:94ebceb74b6239d9c1cc9163700529d09ff4595521a0b7feabf1609c27d89157",
       "camera": {
         "name": "northeast-recess",
         "position": [
@@ -619,8 +571,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -628,17 +580,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -657,20 +607,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/southwest-recess.png",
-      "hash": "sha256:8d19d3c7a4e09a99eab4d630203f951df57b392d6e7b6096a2a1a357b08246f4",
+      "hash": "sha256:d8b9eb697f9e1f540b6d0d55da61598d711e4508145a7596c89c2a0107120a1c",
       "camera": {
         "name": "southwest-recess",
         "position": [
@@ -694,8 +641,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -703,17 +650,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -732,20 +677,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/mechanical-louvres.png",
-      "hash": "sha256:c1f19811eb85492993c03c9d52dc8b7a6c2281a82e0ef29832714723d7e8db26",
+      "hash": "sha256:011b94e9b6f50c163f6aaa2647aef29268e4ceefebadea149e56b70ef0d303bb",
       "camera": {
         "name": "mechanical-louvres",
         "position": [
@@ -769,8 +711,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -778,17 +720,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -807,20 +747,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/memorial-lobby.png",
-      "hash": "sha256:f73207004e1be710518a71bad7a0935bb0ab14a82a810245a44b85dc8fe9fb9c",
+      "hash": "sha256:443047e5266b3921404c6cc0e65082b4602d1a8fd4677b8f43eba39185ab7964",
       "camera": {
         "name": "memorial-lobby",
         "position": [
@@ -844,8 +781,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -853,17 +790,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -882,20 +817,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/south-entrances.png",
-      "hash": "sha256:01be75ea1a3edaf6ac539d3af0378029a9700655cfecf9e82524eb57751be1f3",
+      "hash": "sha256:f95ad8ec29d0679744231aa6cb181a3cbc866b995b13757b7bfc417f7a125ba7",
       "camera": {
         "name": "south-entrances",
         "position": [
@@ -919,8 +851,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -928,17 +860,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -957,20 +887,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/revolving-doors.png",
-      "hash": "sha256:e55d86bc644a1826c11c5a6d0c60f49bb4d68247808045faae8ba4426edf4830",
+      "hash": "sha256:7487291ec8b990ead57d8ab2d681ff7dbc22caa0a7c6edea47bb1d49d6c76c1c",
       "camera": {
         "name": "revolving-doors",
         "position": [
@@ -994,8 +921,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -1003,17 +930,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -1032,20 +957,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/roof-plan.png",
-      "hash": "sha256:8e815d56f83b028413223ef01e87d6f8aadae32d1a361a082861d54267e2e0ce",
+      "hash": "sha256:eff1fbb2d065ef1195004725752596757b6f7058ac16ec7f7a5e92fda8fc71b3",
       "camera": {
         "name": "roof-plan",
         "position": [
@@ -1069,8 +991,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -1078,17 +1000,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -1107,20 +1027,17 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/far-silhouette.png",
-      "hash": "sha256:49c14b8c88586003b25660708c4706e09635bb21d8cb7b74f40435c72aa9b05e",
+      "hash": "sha256:9646d745b30361b83159a5a047fb512acf5a57d3449f8fef463025230871e645",
       "camera": {
         "name": "far-silhouette",
         "position": [
@@ -1144,8 +1061,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -1153,17 +1070,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -1182,20 +1097,87 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 10,
-        "renderedTriangles": 245056
+        "draws": 6,
+        "renderedTriangles": 62484
+      }
+    },
+    {
+      "path": "shots/shared/whole-reviewed-four-wtc.png",
+      "hash": "sha256:57bda721a672daf1c36f203c33fa1c3759c12a1039d5d9c24e922f8136073bbb",
+      "camera": {
+        "name": "whole-reviewed-four-wtc",
+        "position": [
+          -590,
+          255,
+          650
+        ],
+        "lookAt": [
+          0,
+          149,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0218_4_world_trade_center",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0218",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": -0.513459789133,
+        "meshes": 4,
+        "triangles": 60464,
+        "bounds": {
+          "min": [
+            -52.75977062288471,
+            0,
+            -48.86898487016761
+          ],
+          "max": [
+            52.753076542837896,
+            297.70001220703125,
+            48.883752487422
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0195_3_world_trade_center",
+          "molen.worldgen.structure.n0218_4_world_trade_center"
+        ],
+        "selectionBounds": [
+          -74.01353399438149,
+          40.709175627508614,
+          -74.0105001736185,
+          40.711475314635905
+        ],
+        "terrainSamples": [],
+        "visibleStructures": [
+          "next1000.n0218"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_marble": 1
+        },
+        "draws": 6,
+        "renderedTriangles": 62484
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:1cec92a65df60520305426f616fc2eebe422eba93157a17ee84ddff5e0641331",
+      "hash": "sha256:e141fdc0876a6c2273f029bbb09789175c74387a997c6c1fedc5bf2b08dae4cd",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1210,8 +1192,8 @@
           0
         ],
         "heading": -0.513459789133,
-        "meshes": 8,
-        "triangles": 242702,
+        "meshes": 4,
+        "triangles": 60464,
         "bounds": {
           "min": [
             -52.75977062288471,
@@ -1219,17 +1201,15 @@
             -48.86898487016761
           ],
           "max": [
-            52.81908050670723,
+            52.753076542837896,
             297.70001220703125,
-            48.92097277192204
+            48.883752487422
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_marble": "bff2be02-8659-4897-9deb-d4f2aa8c228e",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "08990ce7-7e83-4d61-9584-e2f6cb7745d6",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "5890186a-e20a-4a53-a09a-965c94d230ba",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "a0621259-fdd2-4cb4-94d5-f42b5d0932f8",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "24e7df2f-ff3f-4bec-97aa-990e32e5ee21"
+          "worldgen:matgraph:molen.worldgen.material.stone_marble": "4b88458c-2af5-41ea-8654-4804219b7eb4",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "bc61700f-c491-466a-b476-c738a96430f0"
         },
         "loads": [
           "molen.worldgen.structure.n0195_3_world_trade_center",
@@ -1248,15 +1228,12 @@
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
-          "molen.worldgen.material.metal_painted": 1,
           "molen.worldgen.material.metal_stainless": 1,
-          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_granite": 1,
-          "molen.worldgen.material.stone_marble": 1,
-          "molen.worldgen.material.wood_plain": 1
+          "molen.worldgen.material.stone_marble": 1
         },
-        "draws": 11,
-        "renderedTriangles": 245056
+        "draws": 7,
+        "renderedTriangles": 62484
       }
     }
   ],

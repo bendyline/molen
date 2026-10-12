@@ -1,0 +1,240 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Current restored red-tuff and dark repaired bridge with unequal pointed vaults, small passages, cutwaters and bent landing.",
+    "exclusions": "Exact restoration stone inventory, riverbed survey, neighboring buildings and landscaping."
+  },
+  "sourceFacts": {
+    "reopened": "2025-11-17",
+    "publishedLengthMeters": 80,
+    "publishedWidthMeters": 6.5,
+    "publishedHeightMeters": 11,
+    "mappedFullApproachExtentMeters": 92.429,
+    "materials": "Red tuff with preserved later basalt repairs and brick levelling bands",
+    "originalMasterHash": "sha256:680b961d019685af24bbf9cb69d1bb3dd49b299d4270f0a6ecc1a69f95326512",
+    "originalMasterRecipe": "packages/worldgen/scripts/red-yerevan-bridge-model.mjs#buildRedYerevan",
+    "reviewScope": "Detailed original source preserved; one-picture and standard PMTiles approximate review."
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q3107472",
+    "featureIds": [
+      "way/1166072142",
+      "way/825354382"
+    ],
+    "source": "https://www.openstreetmap.org/way/1166072142",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0ce37d3d599f7658c8871fff9c3753b987fa1a215eaadff19a472ee9ffad2c82",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      44.500052172,
+      40.171856899
+    ],
+    "heading": 1.273687396859,
+    "elevationMode": "terrain-contact",
+    "notes": "The inspected restored-bridge picture confirms unequal pointed vaults, red/charcoal masonry, dark retained bank repairs, small brick passages, rounded stepped cutwaters and rebuilt low parapets. The retained mapped92.429m outline/bent southern approach and current PMTiles named Red Bridge establish the centre and north/northeast-facing native+X. Original80m body is not stretched. Approximatebase933.8116m anchors deckmodelY9.9 to the southern PMTiles approach943.7116m; opposite sample differs4.2m. Coarse central terrain includes the crossing and cannot resolve the riverbed. Preview uses bounded gorge-contact grading while raw PMTiles remain retained; viewer ground opening stays within the bridge. Exact river/bank contacts remain approximate, without bespoke research.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected restored-bridge picture confirms unequal pointed vaults, red/charcoal masonry, dark retained bank repairs, small brick passages, rounded stepped cutwaters and rebuilt low parapets. The retained mapped92.429m outline/bent southern approach and current PMTiles named Red Bridge establish the centre and north/northeast-facing native+X. Original80m body is not stretched. Approximatebase933.8116m anchors deckmodelY9.9 to the southern PMTiles approach943.7116m; opposite sample differs4.2m. Coarse central terrain includes the crossing and cannot resolve the riverbed. Preview uses bounded gorge-contact grading while raw PMTiles remain retained; viewer ground opening stays within the bridge. Exact river/bank contacts remain approximate, without bespoke research.",
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        44.4999145022456,
+        40.17151331608985
+      ],
+      "modelHeight": 9.9,
+      "basis": "Standard PMTiles southern approach road contact; approximate visualization datum."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -40,
+          -5.25
+        ],
+        [
+          40,
+          -5.25
+        ],
+        [
+          40,
+          4
+        ],
+        [
+          -40,
+          4
+        ]
+      ],
+      "basis": "Bounded bridge-only ground opening below reconstructed vaults; coarse terrain is not riverbed survey."
+    }
+  },
+  "geographicNote": "The inspected restored-bridge picture confirms unequal pointed vaults, red/charcoal masonry, dark retained bank repairs, small brick passages, rounded stepped cutwaters and rebuilt low parapets. The retained mapped92.429m outline/bent southern approach and current PMTiles named Red Bridge establish the centre and north/northeast-facing native+X. Original80m body is not stretched. Approximatebase933.8116m anchors deckmodelY9.9 to the southern PMTiles approach943.7116m; opposite sample differs4.2m. Coarse central terrain includes the crossing and cannot resolve the riverbed. Preview uses bounded gorge-contact grading while raw PMTiles remain retained; viewer ground opening stays within the bridge. Exact river/bank contacts remain approximate, without bespoke research.",
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.8,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/red-bridge-browser-model.mjs",
+    "export": "buildRedBridgeSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRedBridgeDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "clay_fired",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildRedBridgeStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "clay_fired",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRedBridgeCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt_raw",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "clay_fired",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-red-bridge-skyline",
+      "position": [
+        44,
+        23,
+        44
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1.92
+      ],
+      "fov": 46,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-red-bridge-district",
+      "position": [
+        44,
+        23,
+        44
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1.92
+      ],
+      "fov": 46,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-red-bridge-street",
+      "position": [
+        44,
+        23,
+        44
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1.92
+      ],
+      "fov": 46,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-red-bridge-closeup",
+      "position": [
+        44,
+        23,
+        44
+      ],
+      "lookAt": [
+        0,
+        5,
+        -1.92
+      ],
+      "fov": 46,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Owner picture/PMTiles approximate exterior scope; no bespoke survey or per-artifact source research.",
+    "Detailed stone-by-stone source remains unchanged and hash-reproduced. Independent browser shells preserve all five openings, pointed profiles, rounded cutwaters, low parapets and mapped bent landings; canonical sandstone, basalt and fired-clay graphs are shared.",
+    "Browser models simplify exact masonry, restored color patches, brick bands, drains and mouldings; source retains all detailed geometry. Original80m body and92.429m approach extent remain distinct.",
+    "PMTiles approach samples differ4.2m; reconstructed corridor and bounded ground opening are approximate visualization. Riverbed/bank contacts, neighboring scenery and physical-device performance remain unmeasured. Footprint replacement off."
+  ],
+  "sourceDocuments": [
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

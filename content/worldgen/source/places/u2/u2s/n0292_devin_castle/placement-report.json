@@ -1,11 +1,10 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0292_devin_castle",
-  "sourceHash": "sha256:4e1f74ac95f8b7b8862f5dde97188f631eee334b895805f0e11aceecfac65689",
-  "runtimeHash": "sha256:d2a52ed01f3580ed40ca596b6527c83c196390af8941e43cfc9d4857abd28631",
-  "placementHash": "sha256:4bbdc90df40ac9446efa639f060373f961a1ed3d8fe7b858f033a4a695b8b8f1",
+  "inputHash": "sha256:b81ddbf0df91428518716b34f12d44357563aae3c6035c546cac2f626d71c7ea",
+  "placementHash": "sha256:d0d3d673e67044195399c2fc6ea8f7e109f0ade436359bd0d2cf20e77f7ee692",
   "entry": {
-    "id": "n0292.devin-castle",
+    "id": "next1000.n0292",
     "title": "Devín Castle",
     "asset": "molen.worldgen.structure.n0292_devin_castle",
     "anchor": [
@@ -15,26 +14,24 @@
     "heading": 0,
     "datum": "terrain",
     "elevation": 0,
+    "orientation": "fixed",
+    "mapIdentity": {
+      "wikidata": "Q830976",
+      "maxDistance": 80
+    },
+    "replaceFootprint": false,
     "terrainReference": {
       "anchor": [
         16.979973665,
         48.17314752
       ],
-      "modelHeight": 35.04,
-      "basis": "Own Terrarium DEM grid: model Y0 is the source grid minimum134.99m; the same-grid anchor is170.03m. Host sampler must use its own consistent terrain vertical reference. Cliff reconstruction remains approximate."
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
     },
-    "bounds": [
-      16.97650762779869,
-      48.171460487334194,
-      16.982347564024813,
-      48.17485448074645
-    ],
-    "orientation": "fixed",
-    "replaceFootprint": false,
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/722938329",
-    "note": "Exact Q830976 site identity, independent mapped surviving masonry and Maiden Tower. Native +X east/+Z south; site terrain crop and extent cover the union of all LODs. Five mapped entrances, six photo-informed openings and mapped approach routes are authored. Upper cliff boundary now matches its cap, correcting the dropped upper entrance. Remote reference sampling is required for multi-tile clipping. Actual terrain/cliff/terrace levels, facade associations, aperture dimensions and current-state details remain unverified. Inactive draft; footprint replacement disabled."
+    "note": "Inspected aerial picture confirms roofless upper ruins on the pale cliff, lower irregular curtains, ruined palaces, middle court and small separate Maiden Tower on a spur. Retained east/south mapped wall traces and standard viewer PMTiles set approximate location, scale and orientation. The derivative omits the broad grass terrain patch, uses current PMTiles for architectural footings and shifts the old134.99m study datum into the170.02671087466376m PMTiles anchor datum. The bounded pale upper cliff and Maiden Tower spur remain explicit architectural landscape proxies; host PMTiles supplies surrounding ground. Anchor 16.979973665,48.17314752; heading 0; standard PMTiles datum 170.02671087466376m. Floors are reconstructed and foundations extend below the coarse sampled ground. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
-  "review": "Inactive exact-site draft. Updated extent covers every LOD; source-cliff cap and boundary contact are fixed. Geographic/fidelity approval still requires actual terrain, measured elevation/datum and facade/current-state correspondence."
+  "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

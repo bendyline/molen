@@ -10,10 +10,10 @@
     "latitude": 25.62194444,
     "longitude": 85.20713889
   },
-  "visualBrief": "Current twin steel through-truss decks, individually modeled I-section Warren diagonals with staggered chord nodes and inclined end posts, roof cross-bracing, gusset plates and bolt heads, retained concrete shafts and short modified heads, bearings, floor beams, outer walkways, railings, lights and shorter half-through end spans.",
+  "visualBrief": "Compact Gandhi Setu: twin through-truss decks,16representative Warren bays in each main closeup span, crossed roof bracing, concrete pier heads, outer walks, sparse lights/markings and shorter pony spans. Original detailed I-sections and hardware remain independently reproducible.",
   "size": [
     5582.78515625,
-    35.27052688598633,
+    33.479488372802734,
     24.5
   ],
   "actualBounds": {
@@ -24,7 +24,7 @@
     ],
     "max": [
       2791.392578125,
-      35.27052688598633,
+      33.479488372802734,
       12.25
     ]
   },
@@ -90,7 +90,10 @@
     "carriageways": 2,
     "roadwayWidthEachMeters": 7.5,
     "steelTonnes": 66360,
-    "supplierRecord": "Dextra India engineering case study credited to its application engineer; original span schedule and retained piers."
+    "supplierRecord": "Dextra India engineering case study credited to its application engineer; original span schedule and retained piers.",
+    "originalMasterHash": "sha256:e5ba65ad47b961e2fc7168ee1ae4ba880f2622cb05fb922377937566a8a12b0e",
+    "originalMasterRecipe": "packages/worldgen/scripts/gandhi-setu-model.mjs#buildGandhiSetu",
+    "reviewScope": "Original999896-triangle/81075924-byte master reproduced exactly; independent medium-fi shells use shared painted metal/concrete."
   },
   "reconstruction": {
     "trussHeightMeters": 9.3,
@@ -122,7 +125,7 @@
     ],
     "source": "https://www.openstreetmap.org/way/28736579",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:e065729b652fe57676864d29e068b53caabcefe52d8f99dfc3cb06cc09901f1f",
+    "mapGeometryHash": "sha256:f0de5bb3a09f9139786a8650f9a0e31ffd931163238bd9547b63e054c5ab01e7",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "anchor": [
@@ -131,7 +134,51 @@
     ],
     "heading": 1.1253048314408904,
     "elevationMode": "terrain-contact",
-    "notes": "Steel superstructure extent is separated from the longer mapped southern concrete approach. Northern junction and published retained span schedule define directed axis. Real riverbed, floodplain contact and approach fit remain pending; no surveyed vertical datum is implied."
+    "notes": "The inspected aerial image shows pale through-truss steel, roof crosses, roadway and the paired crossing layout during replacement, with the opposite concrete flank still present in that picture. Current twin-steel state is retained from the existing2022 authored facts; the picture does not newly certify completion. Standard viewer PMTiles NH22/NH31 bridge roads and retained steel-span controls confirm the north/northeast axis, midpoint and5578.985m straight steel extent; longer curved southern concrete approach is excluded. Northern PMTiles road reference57.2162m at modeldeckY23.280217570340803 gives approximatebase33.9359824296592m. The mapped river preview uses an explicit approximate44.0223m surface, while raw terrain/water samples remain retained. Exact flood stage, foundation depths and endpoint joins are not surveyed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial image shows pale through-truss steel, roof crosses, roadway and the paired crossing layout during replacement, with the opposite concrete flank still present in that picture. Current twin-steel state is retained from the existing2022 authored facts; the picture does not newly certify completion. Standard viewer PMTiles NH22/NH31 bridge roads and retained steel-span controls confirm the north/northeast axis, midpoint and5578.985m straight steel extent; longer curved southern concrete approach is excluded. Northern PMTiles road reference57.2162m at modeldeckY23.280217570340803 gives approximatebase33.9359824296592m. The mapped river preview uses an explicit approximate44.0223m surface, while raw terrain/water samples remain retained. Exact flood stage, foundation depths and endpoint joins are not surveyed.",
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        85.22643287002589,
+        25.658237108470548
+      ],
+      "modelHeight": 23.280217570340803,
+      "basis": "Approximate northern road contact from standard viewer PMTiles."
+    },
+    "bounds": [
+      85.20216261465673,
+      25.61287209734397,
+      85.2270888735925,
+      25.659016985399244
+    ],
+    "replaceRoads": {
+      "length": 5578.985000000001,
+      "width": 20.8,
+      "outline": [
+        [
+          -2789.4925000000003,
+          -10.4
+        ],
+        [
+          2789.4925000000003,
+          -10.4
+        ],
+        [
+          2789.4925000000003,
+          10.4
+        ],
+        [
+          -2789.4925000000003,
+          10.4
+        ]
+      ],
+      "deckHeights": [
+        23.28,
+        23.28
+      ],
+      "includeConnectedApproaches": true
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -157,12 +204,186 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Twin pale-steel through-truss crossings on retained concrete piers; shorter pony end spans.",
+    "exclusions": "Separate curved concrete approach, later neighboring bridge, engineering river datum and full hardware inventory."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 20,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/gandhi-setu-browser-model.mjs",
+    "export": "buildGandhiSetuCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gandhi-setu-browser-model.mjs",
+    "export": "buildGandhiSetuSkyline",
+    "errorMeters": 10,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGandhiSetuDistrict",
+        "errorMeters": 5,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildGandhiSetuStreet",
+        "errorMeters": 2,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGandhiSetuCloseup",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-gandhi-skyline",
+      "position": [
+        3200,
+        1700,
+        4200
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-gandhi-district",
+      "position": [
+        3200,
+        1700,
+        4200
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-gandhi-street",
+      "position": [
+        3200,
+        1700,
+        4200
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-gandhi-closeup",
+      "position": [
+        3200,
+        1700,
+        4200
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ],
+      "fov": 50,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
-    "This source models the2022 replacement steel crossing; the separate southern curved concrete approach and later parallel extradosed bridge are outside this asset.",
-    "Riverbed and floodplain foundation levels, detailed panel count and member sizes require further review.",
-    "Moving traffic, temporary construction rigs and maintenance scaffolds are excluded."
+    "Picture and standard viewer PMTiles approximate fit; no bespoke bridge survey, engineering drawing or datum research.",
+    "Original detailed master remains reproduced by its unchanged recipe and geometric map controls; compact source simplifies I-section profiles, bolts/gussets, bearings, floor/roof bracing and fittings into readable beams and shared metal/concrete materials.",
+    "Skyline merges paired piers/decks and representative outer trusses; district/street omit many truss panels and inner fine members, while closeup retains16main Warren bays. Road/paint markings are local flat materials; shared graphs are reused.",
+    "Reference aerial picture is an intermediate replacement state; existing twin-steel source facts are retained separately. River surface and northern-road contact use coarse PMTiles; exact flood stage, submerged foundations, approach joins and physical-device timing remain unmeasured. Footprint replacement off."
   ],
   "qaCameras": [
     {
@@ -297,10 +518,10 @@
   },
   "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
   "mesh": {
-    "triangles": 999896,
-    "vertices": 1918736,
+    "triangles": 63836,
+    "vertices": 191508,
     "materials": 4,
-    "bytes": 81075924,
-    "sha256": "sha256:e5ba65ad47b961e2fc7168ee1ae4ba880f2622cb05fb922377937566a8a12b0e"
+    "bytes": 7662976,
+    "sha256": "sha256:4fcf0afa95418b2a752ee25f518b0a4d44b72fc963748e68bfa2fb6d20a95540"
   }
 }

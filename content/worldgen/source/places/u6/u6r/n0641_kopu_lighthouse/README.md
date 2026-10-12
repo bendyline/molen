@@ -16,13 +16,13 @@ Operator and IALA-submitted photographs are visual research only, not redistribu
 
 ## Authored geometry and materials
 
-9,798 triangles, 19,508 vertices, 5 surface groups; 823,116 source bytes. SHA-256: `sha256:62817c12f759a18d5f0c0da44602d9ae9caa8ca51c630249296a8da18a42b54f`. Actual bounds: -10.600, 0.000, -11.500 to 11.600, 37.700, 13.550 m.
+9,889 triangles, 19,903 vertices, 5 surface groups; 838,440 source bytes. SHA-256: `sha256:7c2fbc0351009e8e22a5a758ee29b7331851dff57f9d6c8d38d268a10f7b0f9c`. Actual bounds: -10.229, 0.000, -9.860 to 11.815, 37.700, 14.797 m.
 
 Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z (south entrance)","origin":"Central shaft at local terrain contact. Buttress arms follow +X/-X and +Z/-Z."}.
 
 ## Placement proposal
 
-Official coordinate preferred to OSM envelope center. Cached footprint rectangle heading0.69837257rad is diagonal to buttress edges; subtractπ/4 to align authored arms with those edges. Operator identifies southern entrance; residual asymmetry and exact porch fit need review. Proposed anchor 22.1996445, 58.9159645 (longitude, latitude), heading -0.087025590763 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
+Authority aid668 fixes the tower center. Exact-QID mapped cross edges resolve heading-.087025590763rad; main entrance node11157582818 selects the south-facing arm. Current leaf follows all21 ground-outline vertices and moves the porch/entry to the marked point. Higher buttress/core profiles and porch dimensions are photo-proportioned. Y=0 contacts host terrain; OSMele67 and published69m hill description are not adopted as surveyed foundation elevations. Proposed anchor 22.1996445, 58.9159645 (longitude, latitude), heading -0.087025590763 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 

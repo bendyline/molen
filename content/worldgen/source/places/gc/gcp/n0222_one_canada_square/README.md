@@ -21,11 +21,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-964,326 triangles; 1,916,364 vertices; 7 material groups; 80,565,028 bytes. Native bounds: -32.570, 0.000, -30.630 to 32.570, 235.000, 30.630. Source hash: `sha256:14c413cae5e3836d384e695f2591c202663ad918600403622ad13f8b62147f0f`.
+78,882 triangles; 155,936 vertices; 4 material groups; 6,562,968 bytes. Native bounds: -32.570, 0.000, -30.630 to 32.570, 235.000, 30.630. Source hash: `sha256:dcfe23812cbfefb417ac9d6a400cf551cf7fa16c703e56161524a3830700ca21`.
 
 {"up":"+Y","longitudinal":"+X east-southeast along local street grid","front":"+Z south-southwest","origin":"Mapped lower-envelope center; upper tower center is X=-2.65 m; Y0 is terrain contact."}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+The fresh raw OSM way 5986754, tagged Q503477, matches the independently preserved ground outline within 0.002 m rounding. Anchor [-0.019514156, 51.50493389] and heading -0.172600059102 remain fixed. Native +X points ESE at bearing 99.889 degrees toward the asymmetric east entrance projection; +Z points SSW at 189.889 degrees. The shaft centre X=-2.65 m aligns its 57.912 m width with the mapped west and east wall lines, distinct from the 63.145 by 59.259 m base. Owner north-annotated level 35 and 47 plans were actually inspected: two equal inward corner steps, a 154 square metre west terrace and square upper plate independently establish the signed direction. Model Y0 approximates the local apron. Architect 235 m versus registry 236 m is explicitly unresolved, not a surveyed adjustment. The primary supplier confirms nine drums and seven bullnose panels; exact N2/E3/S2/W2 distribution is reconstructed. No footprint replacement.
 
 ## Reproduce
 
@@ -33,9 +33,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0222` (
 
 ## Pending work
 
-- Maximum-fidelity review remains pending: external plan dimensions, lower office datum, cladding subpanels and louvre profile are reconstructed. The exact distribution of nine revolving doors is unverified; N2/E3/S2/W2 is an explicit working allocation.
-- The model uses the architect’s 235 m tip. The Council on Vertical Urbanism lists 236 m from the lowest significant entrance; their one-metre datum difference is unresolved. Marketing 244/245 m claims are not used.
-- Ground-floor glazing/canopies, lower plant floors, roof track and beacon are photo-informed approximations. Interiors, station links, retail pavilions and nearby buildings are outside the exterior model.
-- Geographic approval requires real pavement/terrain contact and signed current facade fit. A flat-ground map overlay alone does not establish those conditions.
+- The unchanged original oneCanadaSquareStudy.build recipe reproduces its 964,326 triangles and 80,565,028 bytes. The separate reviewed master and four browser levels preserve the asymmetric base, nine open revolving entrances, seven curved bullnose panels, four rotor leaves per drum, two inward steps at each corner, 57.912 m shaft, 41 physical office intervals from 20.5 to 189.01 m, four narrower upper floors, west terrace, closed pyramid, and 235 m beacon. The reviewed master has closed rectangular 0.205 m window reveals. Browser close-up uses connected sloped surrounds and a 0.14 m glass recess; street uses a 0.12 m recess and every fourth office row with solid infill; district has sparse windows on closed steel; skyline omits punched window rhythm. The original recipe preserves paired glazing, transoms, fine joint returns, and hardware. Near drums use 16 sides, 12 curved sector samples, six bullnose samples and 16 by four foot rims. Far levels preserve entrances and leaves while reducing hardware. Street preserves the original seventeen upper mullion positions using folded strips with at most 0.25 m local projection change, and one metre plant louvre pitch. Stainless and marble graphs plus opaque and 52 percent clear palette glass produce four near groups; tinted marble approximates granite. Dimensions, office datum, pyramid proportions and exact entrance allocation remain reconstructions from plans and photographs rather than an as-built survey. The architect 235 m and registry 236 m height discrepancy remains an unresolved datum convention. Hidden interiors, station connection, adjacent retail pavilions, branding and marketing terrace furniture are excluded. Physical device and dense city timings remain pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

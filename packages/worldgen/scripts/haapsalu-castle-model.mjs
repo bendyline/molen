@@ -12,8 +12,27 @@ const root = new URL(
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
 const frame = read('map-frame.json'),
   refs = read('reference-metadata.json'),
-  means = read('surface-means.json');
+  means = read('surface-means.json'),
+  relief = read('terrain-grid.json');
 const k = frame.controls;
+export function haapsaluGroundY([x, z]) {
+  const u = (x - relief.origin[0]) / relief.stepMeters,
+    v = (z - relief.origin[1]) / relief.stepMeters;
+  if (u < 0 || v < 0 || u >= relief.size[0] - 1 || v >= relief.size[1] - 1)
+    throw new Error('Haapsalu ground control outside the attributed terrain grid');
+  const col = Math.floor(u),
+    row = Math.floor(v),
+    a = u - col,
+    b = v - row;
+  const h = relief.heightsMeters;
+  return (
+    (1 - a) * (1 - b) * h[row][col] +
+    a * (1 - b) * h[row][col + 1] +
+    (1 - a) * b * h[row + 1][col] +
+    a * b * h[row + 1][col + 1] -
+    relief.modelDatumElevationMeters
+  );
+}
 export const haapsaluPalette = {
   stone: '#e4d9c0',
   roof: '#575c62',
@@ -66,7 +85,12 @@ const rectangle = (u0, u1, v0, v1) =>
 function safe(out) {
   return {
     addTriangle(slot, ref, p, _n, uv, color) {
-      p = p.map((v) => v.map(Math.fround));
+      p = p.map((v) => {
+        const point = [...v];
+        // Extend foundation edges below measured exterior ground; upper architecture stays rigid.
+        if (point[1] === 0) point[1] = Math.min(0, haapsaluGroundY([point[0], point[2]]) - 0.15);
+        return point.map(Math.fround);
+      });
       const n = cross(
         p[1].map((v, i) => v - p[0][i]),
         p[2].map((v, i) => v - p[0][i]),
@@ -88,12 +112,18 @@ function face(out, polygon, slot, d, target, tint = colors[slot]) {
     const t = [p[0], p[i], p[i + 1]],
       n = normalFor(...t);
     if (Math.hypot(...n) < 0.5) continue;
+    const horizontal = Math.hypot(n[0], n[2]);
+    const u = horizontal > 0.001 ? [-n[2] / horizontal, 0, n[0] / horizontal] : [1, 0, 0];
+    const v = cross(n, u);
     out.addTriangle(
       slot,
       'palette:#ffffff',
       t,
       n,
-      t.map((q) => [q[0], q[2]]),
+      t.map((q) => [
+        q.reduce((s, x, j) => s + x * u[j], 0),
+        q.reduce((s, x, j) => s + x * v[j], 0),
+      ]),
       color,
     );
   }
@@ -108,6 +138,57 @@ function cap(out, ring, y, slot, d) {
       d,
       [0, 1, 0],
     );
+}
+function courtyard(out, d) {
+  if (d === 0) return;
+  // Clip the *same* triangles as the review heightfield. Sampling a coarser,
+  // unrelated triangulation made the paving intersect the underlying ground.
+  const ring = ccw(k.courtRing),
+    step = relief.stepMeters;
+  const column = (x) => Math.floor((x - relief.origin[0]) / step);
+  const row = (z) => Math.floor((z - relief.origin[1]) / step);
+  const point = (c, r) => {
+    const x = relief.origin[0] + c * step,
+      z = relief.origin[1] + r * step;
+    return [x, haapsaluGroundY([x, z]) + 0.04, z];
+  };
+  const clip = (triangle) => {
+    let polygon = triangle;
+    for (let i = 0; i < ring.length; i++) {
+      const a = ring[i],
+        b = ring[(i + 1) % ring.length];
+      const distance = (p) => (b[0] - a[0]) * (p[2] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]);
+      const next = [];
+      for (let j = 0; j < polygon.length; j++) {
+        const p = polygon[j],
+          q = polygon[(j + 1) % polygon.length];
+        const dp = distance(p),
+          dq = distance(q);
+        if (dp >= 0) next.push(p);
+        if (dp >= 0 !== dq >= 0) next.push(p.map((v, k) => v + ((q[k] - v) * dp) / (dp - dq)));
+      }
+      polygon = next;
+    }
+    if (polygon.length >= 3) face(out, polygon, 'paving', d, [0, 1, 0]);
+  };
+  for (
+    let r = row(Math.min(...ring.map((p) => p[1])));
+    r <= row(Math.max(...ring.map((p) => p[1])));
+    r++
+  ) {
+    for (
+      let c = column(Math.min(...ring.map((p) => p[0])));
+      c <= column(Math.max(...ring.map((p) => p[0])));
+      c++
+    ) {
+      const a = point(c, r),
+        b = point(c + 1, r),
+        d = point(c, r + 1),
+        e = point(c + 1, r + 1);
+      clip([a, d, b]);
+      clip([b, d, e]);
+    }
+  }
 }
 function prism(out, ring, lo, hi, slot, d, top = true) {
   ring = ccw(ring);
@@ -389,7 +470,26 @@ export function haapsaluMuseumOpenings(d = 3) {
   );
   return holes;
 }
+function wallEdges(path, width) {
+  const normals = path.slice(1).map((b, i) => {
+    const a = path[i],
+      length = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    return [-(b[1] - a[1]) / length, (b[0] - a[0]) / length];
+  });
+  return path.map((p, i) => {
+    const a = normals[Math.max(0, i - 1)],
+      b = normals[Math.min(i, normals.length - 1)];
+    const sum = a.map((v, j) => v + b[j]),
+      length = Math.hypot(...sum);
+    const normal = sum.map((v) => v / length);
+    const scale = width / (2 * Math.max(0.5, normal[0] * b[0] + normal[1] * b[1]));
+    return [1, -1].map((sign) => p.map((v, j) => v + sign * scale * normal[j]));
+  });
+}
 function wallPath(out, path, heights, width, lo, d, holes = []) {
+  const edges = wallEdges(path, width),
+    clipped = cut(out, holes);
+  const vertex = (p, y) => [p[0], value(y, p), p[1]];
   for (let i = 1; i < path.length; i++) {
     const a = path[i - 1],
       b = path[i],
@@ -399,7 +499,60 @@ function wallPath(out, path, heights, width, lo, d, holes = []) {
       ((heights[i] - heights[i - 1]) *
         ((p[0] - a[0]) * (b[0] - a[0]) + (p[1] - a[1]) * (b[1] - a[1]))) /
         lengthSquared;
-    blocked(out, strip(a, b, width), lo, height, d, holes, true);
+    const [leftA, rightA] = edges[i - 1],
+      [leftB, rightB] = edges[i];
+    face(
+      clipped,
+      [
+        vertex(leftA, lo),
+        vertex(leftB, lo),
+        vertex(leftB, heights[i]),
+        vertex(leftA, heights[i - 1]),
+      ],
+      'stone',
+      d,
+    );
+    face(
+      clipped,
+      [
+        vertex(rightB, lo),
+        vertex(rightA, lo),
+        vertex(rightA, heights[i - 1]),
+        vertex(rightB, heights[i]),
+      ],
+      'stone',
+      d,
+    );
+    face(
+      clipped,
+      [
+        vertex(leftA, heights[i - 1]),
+        vertex(leftB, heights[i]),
+        vertex(rightB, heights[i]),
+        vertex(rightA, heights[i - 1]),
+      ],
+      'stone',
+      d,
+      [0, 1, 0],
+    );
+    if (holes.length && d > 0)
+      openingReveals(
+        {
+          addTriangle(_slot, ref, p, n, uv, color) {
+            out.addTriangle('stone', ref, p, n, uv, color);
+          },
+        },
+        [leftA, leftB, rightB, rightA],
+        (p) => value(lo, p),
+        height,
+        holes,
+        colors.stone,
+      );
+  }
+  for (const i of [0, path.length - 1]) {
+    const [a, b] = edges[i];
+    const polygon = [vertex(a, lo), vertex(b, lo), vertex(b, heights[i]), vertex(a, heights[i])];
+    face(clipped, i === 0 ? polygon.reverse() : polygon, 'stone', d);
   }
 }
 function museum(out, d) {
@@ -429,7 +582,7 @@ function museum(out, d) {
     }
   // Original slender surviving chimney behind the clock tower.
   prism(out, rectangle(11, 12.4, -39.5, -37.9), 0, 26.4, 'stone', d);
-  cap(out, k.courtRing, k.courtY, 'paving', d);
+  courtyard(out, d);
   if (d >= 2) {
     const p = [29, -41],
       q = [26.9, -31.5];
@@ -582,13 +735,26 @@ function hollow(out, ring, lo, hi, d) {
     );
   }
 }
-function curtain(out, d) {
+export function haapsaluCurtainWalls(out, d) {
   for (const id of k.curtain.ways) {
     const raw = frame.geometry.rawFeatures.find((w) => w.id === id).points,
-      path = d === 0 ? simplify(raw, 1.4) : raw;
-    const heights = path.map((p) => (p[1] < -40 ? 8.4 : p[0] < -90 ? 7.3 : 6.8));
-    wallPath(out, path, heights, k.curtain.width, 0, d);
+      path =
+        d === 0
+          ? simplify(raw, 1.4)
+          : raw.flatMap((a, i) => {
+              if (i === raw.length - 1) return [a];
+              const b = raw[i + 1],
+                n = Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1]) / 4);
+              return Array.from({ length: n }, (_, j) => a.map((v, k) => v + ((b[k] - v) * j) / n));
+            });
+    const heights = path.map(
+      (p) => haapsaluGroundY(p) + (p[1] < -40 ? 8.4 : p[0] < -90 ? 7.3 : 6.8),
+    );
+    wallPath(out, path, heights, k.curtain.width, (p) => haapsaluGroundY(p) - 0.15, d);
   }
+}
+function curtain(out, d) {
+  haapsaluCurtainWalls(out, d);
   const t = k.defensiveTowers;
   let round = haapsaluRing(t.roundWay);
   if (d === 0) round = round.filter((_, i) => i % 3 === 0);
@@ -717,7 +883,19 @@ export const haapsaluStudy = {
   reconstruction: frame.reconstruction,
   scaleBasis: k.basis,
   refs: refs.references.map((r) => r.url),
-  sourceDocuments: ['map-frame.json', 'reference-metadata.json', 'surface-means.json'],
+  sourceDocuments: [
+    'map-frame.json',
+    'reference-metadata.json',
+    'surface-means.json',
+    'terrain-grid.json',
+    'terrain-review.terrain.json',
+    'terrain-review.height.png',
+  ],
+  previewGround: false,
+  previewTerrain: {
+    descriptor: 'terrain-review.terrain.json',
+    heightmap: 'terrain-review.height.png',
+  },
   nativeAxes: frame.nativeAxes,
   sourceLicense:
     'Original exterior geometry under repository license; map-derived numeric controls © OpenStreetMap contributors, ODbL-1.0. Primary publications and private photo/drawing references attributed, not redistributed.',
@@ -726,14 +904,32 @@ export const haapsaluStudy = {
   dataAttribution:
     '© OpenStreetMap contributors; Foundation of Haapsalu and Läänemaa Museums; LUMIA/KAOS and credited photographers Tõnu Tunnel and Vendo Jugapuu.',
   geographic: () => ({
-    status: 'draft',
+    status: 'preview-proposal',
     replaceFootprint: false,
+    elevationMode: 'sea-level',
+    elevationMeters: relief.modelDatumElevationMeters,
     groundModelY: 0,
+    groundContactReviewed: true,
+    groundContactBasis:
+      'Y0 is 7.2 m EH2000 exterior ground near the cathedral. Attributed official 1 m DTM sampled on a 2.5 m source grid; foundations extend below local ground, curtain walls and open-court paving follow it. Architect interior +0.00=8.30 m is a separate datum. Reviewed source-terrain captures and focused contact tests; host terrain/datum agreement remains resolution-dependent.',
+    bounds: (() => {
+      const points = frame.geometry.rawFeatures.flatMap((f) => f.coordinates);
+      const northMargin = 10 / 111319.49079327358;
+      const eastMargin = northMargin / Math.cos((frame.anchor[1] * Math.PI) / 180);
+      return [
+        Math.min(...points.map((p) => p[0])) - eastMargin,
+        Math.min(...points.map((p) => p[1])) - northMargin,
+        Math.max(...points.map((p) => p[0])) + eastMargin,
+        Math.max(...points.map((p) => p[1])) + northMargin,
+      ];
+    })(),
+    notes:
+      'Exact castle identity node687056785 and independently mapped cathedral, museum, entrance connector and open ring-wall controls. Native +X east/+Z south and heading0 preserve their signed map coordinates. Exterior contact datum7.2m EH2000, official terrain grid and local terrain renders are in the source bundle. Absolute placement expects compatible mean-sea-level host terrain; no survey precision or footprint replacement is claimed.',
     reviewStatus:
-      'Inactive current-exterior proposal; matching map footprints retained. Actual city ground/terrace contacts, ruin profiles and complete facade fit pending.',
+      'Current medium-fi exterior with attributed map controls and official local DTM. Placement preview preserves map footprints; final hash-bound QA is recorded separately.',
   }),
   geographicNote:
-    'Native+X east,+Z south, heading0. Exact castle identity node and separate named physical footprints; no exact-QID area or certified ground datum claimed.',
+    'Native+X east,+Z south, heading0. Exact castle identity node and separate named physical footprints; no exact-QID area invented. ModelY0=7.2m EH2000 exterior attachment, based on the attributed official terrain grid. The architect interior datum8.30m is separate. Actual-terrain review uses the source-local heightfield; generic shared-viewer stage establishes transforms/materials only.',
   limitations: refs.limitations,
   importReason:
     'Preserve current cathedral/tower/open upper ruin and modern stair identity through four authored browser levels without extruding the38m mapper envelope.',

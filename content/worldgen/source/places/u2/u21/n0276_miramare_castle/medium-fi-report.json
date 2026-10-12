@@ -1,9 +1,9 @@
 {
   "format": "molen/medium-fi-review@1",
   "assetId": "molen.worldgen.structure.n0276_miramare_castle",
-  "sourceHash": "sha256:293f7a85a18c1adfebe199f966807d004023cfac4b6a5074768d47d0c0f0532d",
-  "runtimeHash": "sha256:4f864463e47bb92277cc8f854fbf65a610eb3ba45b5d2b602e6a103998fbd132",
-  "fixtureHash": "sha256:ae4e3b886fee436426cf854ccdab3685d7305de05cdfe017dc17b341d8f323b6",
+  "sourceHash": "sha256:e1cdf8fce5b324f87672329372771c9c76588ad5243d771a9050c43b4bfe470a",
+  "runtimeHash": "sha256:6d1c78cda9fb1f27dc53cdf2b56c8a778003bf9a28d7a567b5db23d3e0f5a1d5",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -23,771 +23,1068 @@
     "toneMapping": "neutral",
     "exposure": 1
   },
-  "neighborTriangles": 4556,
+  "neighborTriangles": 9870,
   "runtimeLods": [
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:881e642ab66874d672ecb37a18f07f4b06f9f2b299207ffdac9c22f912b16f40",
-      "bytes": 69792,
-      "gzipBytes": 16683,
-      "triangles": 862,
-      "cpuBytes": 68388,
-      "gpuBytes": 68388,
-      "errorMeters": 0.3,
+      "hash": "sha256:a437cbaba9aef54fd22492cd57cf10075aeb6dd47e8502ecb02827a50eaadbbe",
+      "bytes": 85712,
+      "gzipBytes": 14814,
+      "triangles": 858,
+      "cpuBytes": 84276,
+      "gpuBytes": 84276,
+      "errorMeters": 1,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:ec7ccd2753e4daff66f73e871d62119f2448d24f2eef152b647dc049fc7119c7",
-      "bytes": 254072,
-      "gzipBytes": 64864,
+      "hash": "sha256:c8b8ab4a15005b523b30be144c17a989ff980216d28e14cc1087e46942bf492d",
+      "bytes": 309664,
+      "gzipBytes": 71218,
       "triangles": 3424,
-      "cpuBytes": 250296,
-      "gpuBytes": 250296,
-      "errorMeters": 1.5,
+      "cpuBytes": 305844,
+      "gpuBytes": 305844,
+      "errorMeters": 0.7,
       "drawCalls": 3
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:d9fbe58b569e4eea5f555c86301eb6871668bcd2ee2e180dc60ba41456e00c57",
-      "bytes": 539192,
-      "gzipBytes": 137885,
+      "hash": "sha256:55ac248bcbcfc3be90339eef6fb672e3018c4d662a1199d5a5994ca7dcb3e895",
+      "bytes": 681472,
+      "gzipBytes": 156348,
       "triangles": 7418,
-      "cpuBytes": 535404,
-      "gpuBytes": 535404,
-      "errorMeters": 0.5,
+      "cpuBytes": 677640,
+      "gpuBytes": 677640,
+      "errorMeters": 0.3,
       "drawCalls": 3
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:5a6fcfb199406fe549fc295b806716bdca8d4ab9a75952d0721d8642e63c934a",
-      "bytes": 698192,
-      "gzipBytes": 183904,
+      "hash": "sha256:56055947c83668e26dfda3bd532018bf89a2bc0508ab50620cc0fc3318444e3a",
+      "bytes": 945412,
+      "gzipBytes": 216714,
       "triangles": 9918,
-      "cpuBytes": 694404,
-      "gpuBytes": 694404,
-      "errorMeters": 0.15,
+      "cpuBytes": 941580,
+      "gpuBytes": 941580,
+      "errorMeters": 0.1,
       "drawCalls": 3
     }
   ],
-  "context": "Synthetic procedural neighbors at Y=0; not evidence of geographic fit.",
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:a21ced155b125489c5517d2e39da8354f307e8a9cc0132c4d533f78a80e7828d"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:bb5e8e5dfadc08a47db393213da4f1321c606de34992fc9e440907aa3ab32abd"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
   "status": "captures-pending-inspection",
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:1ff65820bd81671de7f6d9d02d1c01e234fcf0336329e6c7bf673651b6849206",
+      "hash": "sha256:59f96576b81c7f886a83f0febecee88ea4d78efce5b6794646d221dbad7758c4",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
+          33.39529999999999,
+          33.6821,
           58.099999999999994
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:75af61abec77bd2d9da9bef6177e3ceb12559be186adf7b2b6238178de7a8bba",
+      "hash": "sha256:3af479859ca54dc2a9ce97b6e2333403c22dc9429a56c03560927c823743e3a2",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
+          33.39529999999999,
+          33.6821,
           58.099999999999994
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:59c39ed622d2195934e992445e4d14886da49c65c2097c953629b35b8cf8c4ca",
+      "hash": "sha256:09a243fd34fe0123f11baa7f303f98214a962ab5c2b47b834e803e6f13ebd350",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
+          33.39529999999999,
+          33.6821,
           58.099999999999994
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:10796e9565b0be65a7990aa1974d4f945a3964f51f51a51a2a187f083c2e4384",
+      "hash": "sha256:dd55efc7a039603003e95f8658fa68724fe97a7d17691cf04d1ae3adbcece8a6",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          33.599999999999994,
-          18.2,
+          33.39529999999999,
+          33.6821,
           58.099999999999994
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:d68c3cd812ad22c31cf7e1705947370a1e36749be5298a73f5f49f1be0eecab1",
+      "hash": "sha256:5ddb0d7d825f2c6d622bd51ffcceb40aafde87c8184e8079807c53e3ecac00b2",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 7982,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 65776,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:59f08f8cb869576fd248559fab4e7289bcbae4c240370ff3bf4cd2268105dd5b",
+      "hash": "sha256:01d8539e7a4ba5b9cd279c62a0fde65556099049182b9328e64ca68ae82a22b3",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 7982,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 65776,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:61a2aa30fd3c7dcd967a218d19dbabe236020d93aabe283e7b1cd38614606c44",
+      "hash": "sha256:7cbb78caf0d415bda2d1bd1994e550848be6a1475ecf096b91109a7ae3686861",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 8,
-        "triangles": 7982,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 65776,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:b5143f980c3056ef5aa1d9d07da02197d2c1528aafdb8df794b8073513620df5",
+      "hash": "sha256:2577a4c78b4e9b15cbb8a86ceba04f38d3cf8ea429269b23be174cee3da80feb",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 7982,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 65776,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:ef571747a65c1e200dddfc1a5c8fa2e8f10557e2c6c758f10ca7ea310a619caf",
+      "hash": "sha256:f87120a07154cb2591f3263270b286b306231d2e699385d9cb5180774b6b7fc3",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 5420,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63210,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
+          135.59529999999998,
+          85.4821,
           235.2
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:b0c2fc37fdc5d1775d39fc074243c3d37ec4fc9122481b42daeb814a2b7bdbcb",
+      "hash": "sha256:9ceeee1f5bfb73cbc4dbe9900f39ee8bb6f9037e7c33ea035d313608db6feeea",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5420,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63210,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
+          135.59529999999998,
+          85.4821,
           235.2
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:ebc0f1c47fa14d02878f75a85511aaa98a17c30225cb843f656f190bda9f65d5",
+      "hash": "sha256:f75623527a98e6423aac66525f8e3e4c7fa60b7427114b60a666bfde042c6c7e",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "economy",
-        "drawCalls": 6,
-        "triangles": 5420,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63210,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
+          135.59529999999998,
+          85.4821,
           235.2
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:55989c387ac0201a5986d256d7b44bdfd47cae6805aadd1c658b6897664f5208",
+      "hash": "sha256:8c8382b8c01e87b303b6cfca098ce5963c2aa30ffe0ff84754de263c0e754dab",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5420,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63210,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
+          135.59529999999998,
+          85.4821,
           235.2
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:73568f5d33dc608ef9cc1857a96324b30a47d2509aee4a5629ea4e7ec4dda450",
+      "hash": "sha256:ecca3854d8b414d2cdc09adab21143ba26e190479a47582f6bde28659b3b7c5d",
       "state": {
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
         "mode": "economy",
-        "drawCalls": 2,
-        "triangles": 864,
-        "groundY": 0,
+        "drawCalls": 3,
+        "triangles": 53340,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          135.79999999999998,
-          70,
+          135.59529999999998,
+          85.4821,
           235.2
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/southwest-clock-tower.png",
-      "hash": "sha256:eeda0b43455e62fddfd293f1f5e58369dab5b2e5eb52d1acdcfab247a94f5d39",
+      "hash": "sha256:adbbd8d31253758769c61a5be4880c05ae1df9f78ee68e1ffd22741b534831d2",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
           -53,
-          30,
+          37.2,
           47
         ],
         "lookAt": [
           -22,
-          17,
+          24.2,
           8
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/landward-two-wings.png",
-      "hash": "sha256:922c90c1ef0672914b23eda4d499847126da56c16da4493b0c49fc354cd01ce0",
+      "hash": "sha256:df0990de1fe5bee34125c5d5e80f583e1138175bc865d61561c036786fa9c13c",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
           34,
-          29,
+          36.2,
           -65
         ],
         "lookAt": [
           0,
-          10,
+          17.2,
           -3
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/recessed-stair-entrance.png",
-      "hash": "sha256:cb8e745c5a63a82c07874ac333b128453a12d83680d7902cd02b03eddaa216e2",
+      "hash": "sha256:c6364b9a0e396df423fc5bd5239e41bfc8436a0db5ea4434465c1ce10c7028f1",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
           13,
-          20,
+          27.2,
           -34
         ],
         "lookAt": [
           3,
-          9,
+          16.2,
           -7
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/sea-side-window-bay.png",
-      "hash": "sha256:76a690e72ee22f9dfa30938226133ac7a77a749086bb51c2cff8c1c3fe94e1df",
+      "hash": "sha256:3849b28eeb367d732ac2a87de6714801d8663f05bf925ea8f97ca809d59beb31",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
           -12,
-          18,
+          25.2,
           46
         ],
         "lookAt": [
           -11,
-          10,
+          17.2,
           12
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/angled-east-wing.png",
-      "hash": "sha256:8b5571544cc2fc0e97c4349facb3cb3ef17f90b16aa8773b1b2486d46bbe0ab7",
+      "hash": "sha256:7f26bf6523eae96005e1bc9451a0a69454a020e1f72a7ee09aadb355a996a298",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
           53,
-          28,
+          35.2,
           23
         ],
         "lookAt": [
           17,
-          10,
+          17.2,
           -1
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/mapped-building-plan.png",
-      "hash": "sha256:25fec45d602536f1db6ad7486ea2611724347f3f1f1f4d4187bea803b8477eff",
+      "hash": "sha256:a7e6e788d6208e506fb5a05516a871f8ac7bec3062d05c1e4e1867ab6d23e10f",
       "state": {
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
           0,
-          107,
+          114.2,
           1
         ],
         "lookAt": [
           0,
-          0,
+          7.2,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-miramare-skyline.png",
+      "hash": "sha256:3ffca86393a1c5b255f394c3f24d1168501134a5f89fd2f9db7abbd339154da1",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 63210,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
+        "position": [
+          80,
+          58,
+          68
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-miramare-district.png",
+      "hash": "sha256:a6c91928efbf9115e885e07763a846ee2d329cf3fa934fd26b30e3a645ca1335",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 65776,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
+        "position": [
+          80,
+          58,
+          68
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-miramare-street.png",
+      "hash": "sha256:719d60c6918bc37b1aa0bf83ae4eab824cd98e353467b7244cadf04dde9bbc19",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 69770,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
+        "position": [
+          80,
+          58,
+          68
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-miramare-closeup.png",
+      "hash": "sha256:fda36e00a4d85718fbba9b7b0a21c20fae27e9012541b719935026ef08ab697e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
+        "position": [
+          80,
+          58,
+          68
+        ],
+        "lookAt": [
+          0,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:6dcfd8bb1215e98d72d064e50b982c09ce02a77525d3b43c7aa9f6e06ae2330f",
+      "hash": "sha256:f4751e19d50ce64fb4054e3cf82331739f45820672ba11e7e2c47f7e8df487c4",
       "state": {
         "level": "skyline",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 6,
-        "triangles": 5420,
-        "groundY": 0,
+        "drawCalls": 7,
+        "triangles": 63210,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:59f08f8cb869576fd248559fab4e7289bcbae4c240370ff3bf4cd2268105dd5b",
+      "hash": "sha256:01d8539e7a4ba5b9cd279c62a0fde65556099049182b9328e64ca68ae82a22b3",
       "state": {
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 7982,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 65776,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:7ce7118cd997b8c13e0f6e83420e2fe58e0e245a125caacc888f2424a52ad276",
+      "hash": "sha256:2b8ed0191e6c563b00fd86d737316b888f205de8657ec8b0ae10cb996b810959",
       "state": {
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 11976,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 69770,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:e75e84ca73c6ae42a3ab3cee0e77655d9af2a93ad78ff299f9330ae5422c8b68",
+      "hash": "sha256:e9550f88534e92818cb261c1c0d13fbae698f5c79063b8bf323438d2cc9f8116",
       "state": {
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
-        "drawCalls": 8,
-        "triangles": 14476,
-        "groundY": 0,
+        "drawCalls": 9,
+        "triangles": 72270,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u21/n0276_miramare_castle/terrain-review.height.png"
+        },
         "position": [
-          67.89999999999999,
-          43.4,
+          67.69529999999999,
+          58.8821,
           117.6
         ],
         "lookAt": [
-          0,
-          7.699999999999999,
+          -0.2047,
+          23.1821,
           0
         ],
         "graphReads": {
-          "molen.worldgen.material.brick_flemish": 1,
-          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
           "molen.worldgen.material.window_punched": 1,
-          "molen.worldgen.material.stone_limestone": 1
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1
         },
-        "neighborStyle": "molen.worldgen.catalog.english_terrace",
-        "contextScale": 0.7
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 0.7,
+        "reflections": "sky-pmrem"
       }
     }
   ],

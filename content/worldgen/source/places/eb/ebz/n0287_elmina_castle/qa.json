@@ -1,9 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0287_elmina_castle",
-  "sourceHash": "sha256:247cb4df4e4732b85a31ae3861a8ac2e8a3e69e8bf5e68b2ca21a970b512d5e5",
-  "runtimeHash": "sha256:3e4a12daee10a77a7a3489de2f13b93e6de9c2caa3f5fe22d65126957e9f466e",
-  "captureReportHash": "sha256:9ffdc050f64fd0c6feecf5e7fc13d5637c64d6a8acf4b9269769d4218ce2af39",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:377794b59e63f90573fc0f46484665b8f00bbdd1e9db528c45fec9976720772b",
+  "sourceHash": "sha256:e6554950b7ee1dfa080bf627c165675d88f37b88bf33f81f64b8cd3ae4ae0dc9",
+  "runtimeHash": "sha256:6aadd840990ac75eae52911e3ea8164e6cb5f41c82823e904ee9486239311ef0",
+  "captureReportHash": "sha256:798a0b678c7d21fdf5fcc4ca391214f775d0ec716a231825711e0e21d9189be2",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -19,11 +21,11 @@
       "shots/upper-governor-loggia.png",
       "shots/small-courtyard-openings.png"
     ],
-    "notes": "Inspected 11 final portable frames. Original approximate Elmina exterior retains battered white fort walls and angular bastions, stepped governor buildings and red roof with an open upper loggia, open main court and brick-pilastered former church, a genuine smaller court with two open arches, and timber approach bridge. Camera review corrected the small-court framing. All metric proportions and plan controls are estimates, not a measured site reconstruction."
+    "notes": "Inspected all 11 final portable views. White battered bastions, sea battery, stepped governor blocks, open courts, former church and upper loggia retain the inspected picture's fort identity. Bounded footing walls and the entrance bridge fit coarse PMTiles ground."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e3308d073d5bf4d4a2356a866318b532ef69c0a1716b5320d9fb1700fab55b85",
+    "captureReportHash": "sha256:5d052f4bc13f6a3eaf0685e42e681a74705789cc990ddb7199f460205231ddf6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -34,13 +36,14 @@
       "shots/shared/open-courts-and-governor-roofs.png",
       "shots/shared/former-church-brick-pilasters.png",
       "shots/shared/upper-governor-loggia.png",
-      "shots/shared/small-courtyard-openings.png"
+      "shots/shared/small-courtyard-openings.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected 10 final shared-loader views. Five existing shared 256² graphs: lime plaster, limestone, ceramic tile, brick and plain timber. Seven merged near material groups, one skyline group. Metric UVs and linear vertex colors; no embedded images, unique textures, baked lighting or AO. Every graph read once per view; unload leaves zero live model geometries. Gallery and court doorways are geometry openings."
+    "notes": "Inspected all 11 final shared-material views. Six common graphs provide plaster, limestone, tile, brick, timber and matte cannon metal; dark recesses remain explicit. Material-cache reuse and unload checks passed. The map view confirms the declared approximate rotated plan; its outline is an interpreted control plan, not an exact mapped fort boundary."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:25d802be98e01918f6a5e326b9096fdb998499c2bb9aa4cefb1d639ebf85b173",
+    "captureReportHash": "sha256:ed950e0b1cf99b1aada6216c2008676c53e75722818aa74451d12b2a813f0f56",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -61,65 +64,33 @@
       "medium-fi/former-church-brick-pilasters.png",
       "medium-fi/upper-governor-loggia.png",
       "medium-fi/small-courtyard-openings.png",
+      "medium-fi/whole-elmina-skyline.png",
+      "medium-fi/whole-elmina-district.png",
+      "medium-fi/whole-elmina-street.png",
+      "medium-fi/whole-elmina-closeup.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected 23 final Earth-rig frames at street, block and skyline distances, noon and late afternoon, Economy and High, plus untextured silhouette, six architectural views and four matched-camera levels. Scale-2 synthetic West African compound neighbors provide palette/style context, not real geography. Off-white fort and terracotta roof read without shadows. Far retains bastions, stepped inner masses, open courts and church. Original faceted exterior omits masonry joints, weathering gradients and thin balusters. Flat skyline colors now multiply measured linear averages of its actual shared graphs rather than a generic mean."
-  },
-  "motionReview": {
-    "status": "passed",
-    "captureReportHash": "sha256:7b7fbe79e0f241a4bfb2ff0d63a55b9402df06ee373858d8368a6b2a92901884",
-    "inspectedFrames": [
-      "motion/sweep-00.png",
-      "motion/sweep-01.png",
-      "motion/sweep-02.png",
-      "motion/sweep-03.png",
-      "motion/sweep-04.png",
-      "motion/sweep-05.png",
-      "motion/sweep-06.png",
-      "motion/sweep-07.png",
-      "motion/sweep-08.png",
-      "motion/sweep-09.png",
-      "motion/sweep-10.png",
-      "motion/sweep-11.png",
-      "motion/sweep-12.png",
-      "motion/sweep-13.png",
-      "motion/sweep-14.png",
-      "motion/sweep-15.png",
-      "motion/sweep-16.png",
-      "motion/sweep-17.png",
-      "motion/sweep-18.png",
-      "motion/sweep-19.png",
-      "motion/sweep-20.png",
-      "motion/sweep-21.png",
-      "motion/sweep-22.png",
-      "motion/sweep-23.png",
-      "motion/sweep-24.png",
-      "motion/sweep-25.png",
-      "motion/sweep-26.png",
-      "motion/sweep-27.png",
-      "motion/sweep-28.png",
-      "motion/sweep-29.png",
-      "motion/sweep-30.png",
-      "motion/sweep-31.png",
-      "motion/sweep-32.png",
-      "motion/sweep-33.png",
-      "motion/sweep-34.png",
-      "motion/sweep-35.png"
-    ],
-    "notes": "Inspected 36 ordered approach/retreat samples through forced resident skyline, district, street and closeup. Y0 footing, Y4 court, Y10 battery and Y31 roof maximum remain fixed. Fort, bastions, main courtyard and roof masses do not disappear or shift. Window rows appear at district, full facade rhythm and battery openings at street, sills, roof parapet openings and six merged static cannon forms near. Skyline shared-graph mean correction reduces color mismatch; texture/shadow response and added details still make switches visible. Closest samples crop outer bastion edges intentionally. This preloaded fixture does not certify automatic selection, network upgrades, subframe shimmer or physical-device timing."
+    "notes": "Inspected all 27 final medium-fi views on retained PMTiles ground: noon/late lighting, high/economy quality, silhouette, six identity views and all four matched tiers. Open courts, loggia, white bastions and bridge remain readable; closer tiers add church pilasters and static cannon forms."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Q55264655 reference coordinate [-1.348211, 5.08274] identifies Elmina. No exact footprint resolved; both attempted map read endpoints returned rate limits. No mapped geometry used or attributed. Original outer fort outline, bastions, wing arrangement, church, gallery, smaller court, bridge, 134×113 m envelope and 31 m maximum are estimates. Four-storey identity is documented by the operator. Heading 0 is an unresolved placeholder; signed orientation, scale, host terrain/base plane and site completeness require geographic review. Inactive draft with replaceFootprint=false. Nearby Fort St. Jago, harbour and cathedral excluded. Research photographs are external references, not shipped geometry or textures."
+    "status": "passed",
+    "placementHash": "sha256:2c9d7955e5b8cde9a5e9f9f4ae4eb141ae4f313058685647ed687547189be039",
+    "mapFrameHash": "sha256:10b138fc3535ed4f42f8f018747e1f4f856966aac519a13b917cdc52dcf330e0",
+    "notes": "Inspected aerial picture confirms battered white bastions, terraced sea battery, open courts and stepped white governor blocks. Standard viewer PMTiles shows the coastal fort buildings and western castle parking. An approximate-.95rad heading and0.9horizontal plan scale fit the entrance toward that parking and sea-end batteries toward the coast. A reconstructed0.8m working rise keeps the court above coarse ground; wall/pier bottoms extend below sampled terrain and bridge deck approaches coarse ground at its outer end. Anchor -1.348211,5.08274; heading -0.95; standard PMTiles datum 10.98536388100999m. Floors are reconstructed and foundations extend below the coarse sampled ground."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Reviewed against docs-src/guide/medium-fi.md. Three identity features drive silhouette and selective details. Detailed 17,627-triangle source preserved. No microbevels, thin rails, individual masonry, complete statuary or lettering, full interiors/dungeon routes, working guns or nearby structures. Six cannon forms are static near details. Appearance approval does not certify geographic fit."
+    "notes": "Approximate current exterior and placement from one inspected picture and standard viewer PMTiles. Heading -.95rad and horizontal scale .9 are visual-fit estimates toward coastal fort buildings and western parking. Internal plan, bastions, court, bridge gradient and footing levels remain reconstructed. No exact survey, thresholds, waterlines, interiors, dungeon, terrain cutouts or neighboring fort/harbor reconstruction. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. Three identity features drive silhouette and selective details. Detailed 17,627-triangle source preserved. No microbevels, thin rails, individual masonry, complete statuary or lettering, full interiors/dungeon routes, working guns or nearby structures. Six cannon forms are static near details. Appearance approval does not certify geographic fit.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
@@ -127,259 +98,196 @@
       {
         "name": "source",
         "path": "content/worldgen/source/places/eb/ebz/n0287_elmina_castle/models/source.glb",
-        "hash": "sha256:247cb4df4e4732b85a31ae3861a8ac2e8a3e69e8bf5e68b2ca21a970b512d5e5",
-        "bytes": 2119224,
+        "hash": "sha256:e6554950b7ee1dfa080bf627c165675d88f37b88bf33f81f64b8cd3ae4ae0dc9",
+        "bytes": 2119456,
         "triangles": 17627,
-        "vertices": 52881,
         "materials": 7,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
-          -66,
-          0,
-          -47
+          -59.400001525878906,
+          -7.165215969085693,
+          -42.29999923706055
         ],
         "max": [
-          68,
-          31,
-          66
+          61.20000076293945,
+          31.799999237060547,
+          59.400001525878906
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "runtime",
         "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.glb",
-        "hash": "sha256:3e4a12daee10a77a7a3489de2f13b93e6de9c2caa3f5fe22d65126957e9f466e",
-        "bytes": 2118592,
+        "hash": "sha256:6aadd840990ac75eae52911e3ea8164e6cb5f41c82823e904ee9486239311ef0",
+        "bytes": 2118824,
         "triangles": 17627,
-        "vertices": 52881,
         "materials": 7,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
-          -66,
-          0,
-          -47
+          -59.400001525878906,
+          -7.165215969085693,
+          -42.29999923706055
         ],
         "max": [
-          68,
-          31,
-          66
+          61.20000076293945,
+          31.799999237060547,
+          59.400001525878906
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       },
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
         "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.skyline.glb",
-        "hash": "sha256:53e8dce6744b06cc93efc0d247e3c0e989c1bf8b366e85a18bd9e72de312a656",
-        "bytes": 79924,
-        "triangles": 995,
-        "vertices": 2017,
+        "hash": "sha256:9dda5a7541fcf09fcbd788916dfc0697886b07f7f3103876dbf014619a1f4868",
+        "bytes": 99244,
+        "triangles": 977,
         "materials": 1,
-        "sharedGraphs": 0,
         "images": 0,
         "min": [
-          -66,
-          0,
-          -47
+          -59.400001525878906,
+          -7.165215969085693,
+          -42.29999923706055
         ],
         "max": [
-          68,
-          31,
-          66
+          61.20000076293945,
+          31.799999237060547,
+          59.400001525878906
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "warnings": 0
       },
       {
         "name": "district",
-        "file": "model.district.glb",
         "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.district.glb",
-        "hash": "sha256:1a9fdc9253398e1b3545c9ae77e41349609802f4bc3b43048bb14b04de42bceb",
-        "bytes": 120596,
+        "hash": "sha256:4ab876d72be3996b451224ebc5e636010bdc79ff88554c4d92ae50d7e38bcea3",
+        "bytes": 131428,
         "triangles": 1435,
-        "vertices": 2915,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
-          -66,
-          0,
-          -47
+          -59.400001525878906,
+          -7.165215969085693,
+          -42.29999923706055
         ],
         "max": [
-          68,
-          31,
-          66
+          61.20000076293945,
+          31.799999237060547,
+          59.400001525878906
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "street",
-        "file": "model.street.glb",
         "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.street.glb",
-        "hash": "sha256:be30a12069568441ebba167998a701adde5ee2bafdd0c90e5b844e29a605f391",
-        "bytes": 299248,
+        "hash": "sha256:06cd50ac89edc5b49cad46c31b4d1121c3a43106208011ee807daf579ed2c293",
+        "bytes": 331000,
         "triangles": 4229,
-        "vertices": 7411,
         "materials": 6,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
-          -66,
-          0,
-          -47
+          -59.400001525878906,
+          -7.165215969085693,
+          -42.29999923706055
         ],
         "max": [
-          68,
-          31,
-          66
+          61.20000076293945,
+          31.799999237060547,
+          59.400001525878906
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "warnings": 0
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
         "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.closeup.glb",
-        "hash": "sha256:6418a116d67cd49adc9cb957ed1f67b9eae2f7aae0fe29e8d0067fdc4a297a34",
-        "bytes": 1201360,
+        "hash": "sha256:e4005ac65f6cccda0707fa59276e38df8db8ecf6e85c49b342d8be63bcfa3af7",
+        "bytes": 1353632,
         "triangles": 17627,
-        "vertices": 30205,
         "materials": 7,
-        "sharedGraphs": 5,
         "images": 0,
         "min": [
-          -66,
-          0,
-          -47
+          -59.400001525878906,
+          -7.165215969085693,
+          -42.29999923706055
         ],
         "max": [
-          68,
-          31,
-          66
+          61.20000076293945,
+          31.799999237060547,
+          59.400001525878906
         ],
         "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "warnings": 0
       }
     ],
-    "notes": "All six current GLBs pass with zero errors/warnings, no images, and Y0/Y31 bounds. Hashes and bytes bind source, import and LOD sidecar. Unused UV informational notices are expected for external graphs. Targeted deterministic LOD, cap and homogeneous GPU attribute-layout tests, strict medium-fi audit, recipe lint and byte-identical source regeneration passed."
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Four tiers contain 977/1435/4229/17627 triangles and initial skyline+district downloads total 230672 bytes. Separate POSITION/NORMAL streams are retained."
   },
   "runtimeLodReview": {
     "status": "passed",
+    "recipeHash": "sha256:3af928d051131553183d32a69dadf37988ad5f6933432315e5d29b32e4e05490",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.skyline.glb",
-        "hash": "sha256:53e8dce6744b06cc93efc0d247e3c0e989c1bf8b366e85a18bd9e72de312a656",
-        "bytes": 79924,
-        "triangles": 995,
-        "vertices": 2017,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -66,
-          0,
-          -47
-        ],
-        "max": [
-          68,
-          31,
-          66
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "hash": "sha256:9dda5a7541fcf09fcbd788916dfc0697886b07f7f3103876dbf014619a1f4868",
+        "bytes": 99244,
+        "gzipBytes": 14261,
+        "triangles": 977,
+        "cpuBytes": 97808,
+        "gpuBytes": 97808,
+        "errorMeters": 1,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.district.glb",
-        "hash": "sha256:1a9fdc9253398e1b3545c9ae77e41349609802f4bc3b43048bb14b04de42bceb",
-        "bytes": 120596,
+        "hash": "sha256:4ab876d72be3996b451224ebc5e636010bdc79ff88554c4d92ae50d7e38bcea3",
+        "bytes": 131428,
+        "gzipBytes": 25972,
         "triangles": 1435,
-        "vertices": 2915,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -66,
-          0,
-          -47
-        ],
-        "max": [
-          68,
-          31,
-          66
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 124136,
+        "gpuBytes": 124136,
+        "errorMeters": 0.7,
+        "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.street.glb",
-        "hash": "sha256:be30a12069568441ebba167998a701adde5ee2bafdd0c90e5b844e29a605f391",
-        "bytes": 299248,
+        "hash": "sha256:06cd50ac89edc5b49cad46c31b4d1121c3a43106208011ee807daf579ed2c293",
+        "bytes": 331000,
+        "gzipBytes": 69243,
         "triangles": 4229,
-        "vertices": 7411,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -66,
-          0,
-          -47
-        ],
-        "max": [
-          68,
-          31,
-          66
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "cpuBytes": 323672,
+        "gpuBytes": 323672,
+        "errorMeters": 0.3,
+        "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/eb/ebz/n0287_elmina_castle/model.closeup.glb",
-        "hash": "sha256:6418a116d67cd49adc9cb957ed1f67b9eae2f7aae0fe29e8d0067fdc4a297a34",
-        "bytes": 1201360,
+        "hash": "sha256:e4005ac65f6cccda0707fa59276e38df8db8ecf6e85c49b342d8be63bcfa3af7",
+        "bytes": 1353632,
+        "gzipBytes": 236414,
         "triangles": 17627,
-        "vertices": 30205,
-        "materials": 7,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -66,
-          0,
-          -47
-        ],
-        "max": [
-          68,
-          31,
-          66
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "cpuBytes": 1345064,
+        "gpuBytes": 1345064,
+        "errorMeters": 0.1,
+        "drawCalls": 7
       }
     ],
-    "initialDownloadBytes": 200520,
-    "notes": "Skyline 995, district 1,435, street 4,229 and closeup 17,627 triangles, below all 1,000/4,000/16,000/64,000 caps. Initial skyline plus district geometry is 200,520 bytes, excluding shared graph transfers. Seven material draws near and one far. Attribute bufferViews have homogeneous component types, avoiding mixed-type upload duplication. Resident sweep reviewed; real streaming and physical-device timing remain pending."
-  }
+    "initialBytes": 230672,
+    "notes": "skyline: 977 triangles, 99244 bytes, 1 draws; district: 1435 triangles, 131428 bytes, 6 draws; street: 4229 triangles, 331000 bytes, 6 draws; closeup: 17627 triangles, 1353632 bytes, 7 draws. Initial skyline+district 230672 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate current exterior and placement from one inspected picture and standard viewer PMTiles, without metric survey or exact thresholds.",
+    "Original detailed architectural master/hash/recipe preserved. Derived0.9 plan scale and-.95rad heading are visual-fit estimates; original internal building/bastion plan remains interpreted.",
+    "Working court, bridge gradient and bounded foundation levels reconstructed. Terrain cutouts, accurate waterlines, dungeon/interior, town/harbor buildings and Fort St.Jago excluded.",
+    "Six common graphs and explicit dark recess slot, zero embedded images. Footprint replacement remains off; physical-device timing unmeasured."
+  ]
 }

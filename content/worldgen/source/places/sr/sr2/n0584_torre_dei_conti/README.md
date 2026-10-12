@@ -16,15 +16,12 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/torre-dei-conti-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-22,086 triangles; 44,172 vertices; 8 material groups; 1,859,864 source bytes. Source hash: `sha256:1c80b8d39820c047ab65a02419b03beeff9275216a75a1ecb71b96fd6b1e9ebc`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+22,696 triangles; 45,392 vertices; 8 material groups; 1,911,104 source bytes. Source hash: `sha256:58ddac7792c1a1b9b884f31edd0c280f335468b8b5218d360101df60cb991172`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0584`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
 ## Remaining detail and review
 
-- This is the pre-collapse exterior documented in the 2012 study and 2013/2024 photographs, not the damaged and stabilized 2026 state. Its explicit historical appearance policy must be honored.
-- Measured plans determine wall and buttress arrangement; unmeasured vertical offsets, fine plaster-loss boundaries and putlog positions are photographic reconstructions. Unbuilt 1930s restoration proposals and lost medieval upper stories are excluded.
-- Adjacent houses, trees and the wider archaeological excavation are separate features. No interior is included.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Complete static medium-fi exterior of the intact Torre dei Conti documented on18September2024, before the3November2025 collapse. The four browser levels preserve the29m surviving tower, asymmetrical three-sided buttresses, lower northwest annex, southwest plastered face, bichrome scarpa, irregular window indications, parapet merlons and southeast access bridge/stair. The preserved original detailed recipe remains byte-reproducible. Published floor plans establish the wall and rib arrangement; the attributed mapped envelope constrains approximate overall dimensions, while vertical offsets, aperture sizes, plaster loss, putlog positions and access ironwork are proportional photographic reconstructions. Putlog sockets are closed dark geometric indications, not physical openings. No lost60m medieval upper stories, restoration proposals, interior, adjacent houses or excavated archaeological terrain are included. Ground0 is the bottom of the exposed foundation, not street level; the approximately3.2m difference requires host terrain appropriate to the excavation. Default current-world placement remains excluded: the documented southern buttress/base/stair and roof damage, and2026 stabilization, are not reconstructed. Dated placement is conservatively supported only for the observed2024-09-18 photograph date, with exclusive end2024-09-19. No downloaded geometry or photograph is embedded. Canonical shared graphs are stylized common materials rather than site-specific photographic textures. Physical laptop/phone timings and real host excavation contact remain unmeasured.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

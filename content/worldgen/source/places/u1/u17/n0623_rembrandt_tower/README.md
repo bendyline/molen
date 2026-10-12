@@ -20,9 +20,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-641,134 triangles; 1,280,028 vertices; 8 material groups; 53,779,084 bytes. Native bounds: -23.660, 0.000, -23.920 to 24.380, 150.000, 29.500. Source hash: `sha256:e338bb2296879f88c91fd591cd616757b9859e17bc0d69790f4218a530f165a7`.
+642,002 triangles; 1,281,444 vertices; 8 material groups; 53,840,488 bytes. Native bounds: -23.660, 0.000, -23.920 to 24.380, 150.000, 29.600. Source hash: `sha256:dc971bb1d2723fa9a09a2dd3e017bd1d187184069bc9f903971af407a957500f`.
 
-{"up":"+Y","longitudinal":"+X east-northeast along the BAG rear wall","front":"+Z south-southeast toward the entrance square","origin":"Center of the BAG ground-envelope rectangle; Y0 uses terrain contact. The upper shaft is offset0.36m east and0.10m south in this frame."}
+{"up":"+Y","longitudinal":"+X east-northeast along the BAG rear wall","front":"+Z south-southeast toward the entrance square","origin":"Center of the BAG ground-envelope rectangle; Y0 uses terrain contact. The upper shaft is offset0.36m east and0.10m south in this frame. Native+X east-northeast follows the retained BAG rear edge; native+Z south-southeast faces Amstelplein entrance. Arcam explicitly describes the southern canopy/entrance. Inspected north-up satellite shows canopy at that side; November2020 panorama from52.3447836,4.9175248 looking337.11degrees shows the projecting glazed canopy and five columns. Retained RD-to-WGS84 operation accuracy1m; heading0.3589785079857852rad is a mapped/photo reconstruction with approximately3degree uncertainty, not surveyed azimuth."}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -32,12 +32,9 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0623` (
 
 ## Pending work
 
-- Facade dimensions, storey elevations, podium returns, roof parapets, canopy and maintenance equipment require measured drawings and current site comparison before maximum-fidelity approval. The35/36storey source discrepancy is retained.
-- 3DBAG roof mesh reports1.10mRMSE and validation flags104/203. Its reconstructed maximum differs from its roof attribute; the published150mtip is modeled independently of the noisy survey extrema.
-- Glazing uses reflective opaque PBR except the transparent entrance cylinders. Interior fit-out, basement, neighboring towers and mobile street furniture are outside this exterior asset.
-- The southern orientation is supported by Arcam and the retained footprint. Precise sidewalk contact, canopy projection and scene-level attribution display remain to be verified in the actual geographic viewer.
+- Static medium-fi exterior preserves the original641134-triangle detailed draft and supplies a separately reviewed canopy/column source correction plus four complete browser levels. Published135m roof and150m tip are retained. 3DBAG2023 horizontal roof datums are approximate (1.10mRMSE and104/203 flags), not fabrication drawings. Thirty-five/36floor conventions and3.4mtypical versus3.49minterpolated shaft pitch remain unresolved. Granite joints, window returns, canopy dimensions, beacon and parked crane are reconstructed. Four corner crown towers use three proportional intervals rather than treating Arcam four-storey description as a measured floor plan. Hidden interiors, basement, neighboring towers, landscape, lighting animations and street furniture are excluded. Local host pavement fitting is required; terrain-contact preview is not a sidewalk survey and footprint replacement is disabled. Entrance landing0.45m and three steps are photographic proportions; actual pavement fitting remains required.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

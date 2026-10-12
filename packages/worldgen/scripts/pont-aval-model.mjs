@@ -1,6 +1,6 @@
 /** Pont Aval: four unequal skew spans, four variable-depth boxes and ribbed separate piers. */
 import { beam, chamferedRectangle, loft, sphere } from './authored-structure-mesh.mjs';
-import { tube } from './structure-mesh.mjs';
+import { box, tube } from './structure-mesh.mjs';
 
 const concrete = [0.61, 0.595, 0.54],
   lighter = [0.73, 0.71, 0.65],
@@ -9,19 +9,22 @@ const half = 156.25,
   stations = [-half, -88.78, 3.22, 84.7, half];
 const centers = [-12.5, -4.5, 4.5, 12.5];
 // The surveyed road turns toward the city at the east end. Retain the mapped flare.
-function plan(u, z) {
+export function pontAvalPlan(u, z) {
   const t = Math.max(0, (u - 70) / (half - 70));
   const c = -3.938 + (u + half) * 0.0315 - 6.426 * t * t;
   const width = 17.15 + 3.42 * t * t;
   const dz = (z * width) / 17.3;
   return [u - 1.182 - 0.56 * dz, c + dz];
 }
+const plan = pontAvalPlan;
 const point = (u, y, z) => {
   const [x, zz] = plan(u, z);
   return [x, y, zz];
 };
-const roadY = (u, z = 0) => 12.86 + (3.55 * (u + half)) / (2 * half) - 0.02 * Math.abs(z);
-function depth(u) {
+export const pontAvalRoadY = (u, z = 0) =>
+  12.86 + (3.55 * (u + half)) / (2 * half) - 0.02 * Math.abs(z);
+const roadY = pontAvalRoadY;
+export function pontAvalDepth(u) {
   let d = 3.4;
   for (const support of stations.slice(1, -1)) {
     const t = Math.max(0, 1 - Math.abs(u - support) / 24);
@@ -29,7 +32,20 @@ function depth(u) {
   }
   return d;
 }
+const depth = pontAvalDepth;
 function strip(out, slot, start, end, ring, color, pitch = 1.25) {
+  if (out.browserDetail?.stripPitch) {
+    const n = Math.ceil((end - start) / Math.max(pitch, out.browserDetail.stripPitch));
+    const controls = [70, ...stations, ...stations.slice(1, -1).flatMap((u) => [u - 24, u + 24])];
+    const samples = [
+      ...new Set([
+        ...Array.from({ length: n + 1 }, (_, i) => start + ((end - start) * i) / n),
+        ...controls.filter((u) => u > start && u < end),
+      ]),
+    ].sort((a, b) => a - b);
+    loft(out, slot, samples.map(ring), color);
+    return;
+  }
   const n = Math.ceil((end - start) / pitch);
   loft(
     out,
@@ -46,24 +62,32 @@ function slabRing(u, z0, z1, top, bottom) {
     point(u, bottom(u, z0), z0),
   ];
 }
-function boxSection(u, zc, inflate = 0) {
+function boxSection(u, zc, inflate = 0, simple = false) {
   const y = roadY(u, zc) - 0.33,
     d = depth(u) - 0.33;
-  const yz = [
-    [0, -2.78 - inflate],
-    [0, 2.78 + inflate],
-    [-0.2, 2.56 + inflate],
-    [-0.49, 2.3 + inflate],
-    [-d + 0.22, 1.83 + inflate],
-    [-d, 1.75 + inflate],
-    [-d, -1.75 - inflate],
-    [-d + 0.22, -1.83 - inflate],
-    [-0.49, -2.3 - inflate],
-    [-0.2, -2.56 - inflate],
-  ];
+  const yz = simple
+    ? [
+        [0, -2.78],
+        [0, 2.78],
+        [-d, 1.75],
+        [-d, -1.75],
+      ]
+    : [
+        [0, -2.78 - inflate],
+        [0, 2.78 + inflate],
+        [-0.2, 2.56 + inflate],
+        [-0.49, 2.3 + inflate],
+        [-d + 0.22, 1.83 + inflate],
+        [-d, 1.75 + inflate],
+        [-d, -1.75 - inflate],
+        [-d + 0.22, -1.83 - inflate],
+        [-0.49, -2.3 - inflate],
+        [-0.2, -2.56 - inflate],
+      ];
   return yz.map(([dy, dz]) => point(u, y + dy, zc + dz));
 }
 function deck(out) {
+  const detail = out.browserDetail ?? {};
   for (const side of [-1, 1]) {
     const z0 = side < 0 ? -17.3 : 0.04,
       z1 = side < 0 ? -0.04 : 17.3;
@@ -111,51 +135,54 @@ function deck(out) {
           ),
         lighter,
       );
-    for (const z of [a, b])
-      strip(
-        out,
-        'paving',
-        -half,
-        half,
-        (u) => slabRing(u, z - 0.13, z + 0.13, (u, zz) => roadY(u, zz) + 0.2, roadY),
-        [0.55, 0.545, 0.5],
-      );
-    for (const offset of [3.5, 7, 10.5]) {
-      const z = side * (1.5 + offset);
-      for (let u = -half + 1; u < half - 1; u += 9)
+    if (detail.paving !== false)
+      for (const z of [a, b])
+        strip(
+          out,
+          'paving',
+          -half,
+          half,
+          (u) => slabRing(u, z - 0.13, z + 0.13, (u, zz) => roadY(u, zz) + 0.2, roadY),
+          [0.55, 0.545, 0.5],
+        );
+    if (detail.markings !== false)
+      for (const offset of [3.5, 7, 10.5]) {
+        const z = side * (1.5 + offset);
+        for (let u = -half + 1; u < half - 1; u += 9)
+          strip(
+            out,
+            'marking',
+            u,
+            Math.min(half, u + 3),
+            (v) =>
+              slabRing(
+                v,
+                z - 0.065,
+                z + 0.065,
+                (u, z) => roadY(u, z) + 0.018,
+                (u, z) => roadY(u, z) + 0.014,
+              ),
+            [0.87, 0.87, 0.79],
+            1,
+          );
+      }
+    if (detail.markings !== false)
+      for (const z of [side * 1.7, side * 15.28])
         strip(
           out,
           'marking',
-          u,
-          Math.min(half, u + 3),
-          (v) =>
+          -half,
+          half,
+          (u) =>
             slabRing(
-              v,
+              u,
               z - 0.065,
               z + 0.065,
               (u, z) => roadY(u, z) + 0.018,
               (u, z) => roadY(u, z) + 0.014,
             ),
-          [0.87, 0.87, 0.79],
-          1,
+          [0.85, 0.85, 0.77],
         );
-    }
-    for (const z of [side * 1.7, side * 15.28])
-      strip(
-        out,
-        'marking',
-        -half,
-        half,
-        (u) =>
-          slabRing(
-            u,
-            z - 0.065,
-            z + 0.065,
-            (u, z) => roadY(u, z) + 0.018,
-            (u, z) => roadY(u, z) + 0.014,
-          ),
-        [0.85, 0.85, 0.77],
-      );
     // The outer prefabricated cornice and solid parapet are continuous over the box haunches.
     strip(
       out,
@@ -172,43 +199,47 @@ function deck(out) {
         ),
       lighter,
     );
-    for (let u = -half; u < half; u += 3.2) {
-      const z = side * 17.05;
-      beam(
-        out,
-        'concrete',
-        point(u, roadY(u, z) - 0.62, z + side * 0.125),
-        point(u, roadY(u, z) + 0.82, z + side * 0.125),
-        0.014,
-        0.012,
-        [0.47, 0.46, 0.42],
-      );
-    }
-    for (let u = -half + 0.1; u < half; u += 0.24) {
-      const z = side * 17.06;
-      beam(
-        out,
-        'iron',
-        point(u, roadY(u, z) + 0.84, z),
-        point(u, roadY(u, z) + 1.39, z),
-        0.028,
-        0.041,
-        steel,
-      );
-    }
-    for (const h of [0.85, 1.4]) {
-      const z = side * 17.06;
-      for (let u = -half; u < half; u += 2)
+    if (detail.precast !== false)
+      for (let u = -half; u < half; u += detail.precastPitch ?? 3.2) {
+        const z = side * 17.05;
+        beam(
+          out,
+          'concrete',
+          point(u, roadY(u, z) - 0.62, z + side * 0.125),
+          point(u, roadY(u, z) + 0.82, z + side * 0.125),
+          0.014,
+          0.012,
+          [0.47, 0.46, 0.42],
+        );
+      }
+    if (detail.railings !== false)
+      for (let u = -half + 0.1; u < half; u += detail.railPitch ?? 0.24) {
+        const z = side * 17.06;
         beam(
           out,
           'iron',
-          point(u, roadY(u, z) + h, z),
-          point(Math.min(half, u + 2), roadY(Math.min(half, u + 2), z) + h, z),
-          0.048,
-          0.065,
+          point(u, roadY(u, z) + 0.84, z),
+          point(u, roadY(u, z) + 1.39, z),
+          0.028,
+          0.041,
           steel,
         );
-    }
+      }
+    if (detail.railings !== false)
+      for (const h of [0.85, 1.4]) {
+        const z = side * 17.06;
+        const pitch = detail.railRunPitch ?? 2;
+        for (let u = -half; u < half; u += pitch)
+          beam(
+            out,
+            'iron',
+            point(u, roadY(u, z) + h, z),
+            point(Math.min(half, u + pitch), roadY(Math.min(half, u + pitch), z) + h, z),
+            0.048,
+            0.065,
+            steel,
+          );
+      }
     // A reinforced median barrier, with the original narrow maintenance strip behind it.
     strip(
       out,
@@ -228,43 +259,55 @@ function deck(out) {
     );
   }
   for (const zc of centers) {
-    strip(out, 'concrete', -half, half, (u) => boxSection(u, zc), concrete, 0.7);
+    strip(
+      out,
+      'concrete',
+      -half,
+      half,
+      (u) => boxSection(u, zc, 0, detail.simpleBoxes ?? false),
+      concrete,
+      0.7,
+    );
     // Narrow surface joints follow each precast segment around its actual variable section.
-    for (let u = -half + 1.6; u < half - 0.1; u += 3.2)
-      loft(
-        out,
-        'concrete',
-        [boxSection(u, zc, 0.007), boxSection(u + 0.017, zc, 0.007)],
-        [0.48, 0.47, 0.43],
-      );
+    if (detail.precast !== false)
+      for (let u = -half + 1.6; u < half - 0.1; u += detail.precastPitch ?? 3.2)
+        loft(
+          out,
+          'concrete',
+          [boxSection(u, zc, 0.007), boxSection(u + 0.017, zc, 0.007)],
+          [0.48, 0.47, 0.43],
+        );
     // Slim longitudinal service conduits and separate hanger straps.
-    for (let u = -half; u < half; u += 2.5) {
-      const v = Math.min(half, u + 2.5),
-        z = zc + 1.49;
-      tube(
-        out,
-        'iron',
-        point(u, roadY(u, z) - depth(u) - 0.1, z),
-        point(v, roadY(v, z) - depth(v) - 0.1, z),
-        0.033,
-        [0.35, 0.37, 0.34],
-        10,
-      );
-    }
-    for (let u = -half + 2; u < half; u += 6.4) {
-      const z = zc + 1.49,
-        y = roadY(u, z) - depth(u);
-      beam(out, 'iron', point(u, y, z - 0.1), point(u, y - 0.17, z - 0.1), 0.024, 0.025, steel);
-      beam(
-        out,
-        'iron',
-        point(u, y - 0.17, z - 0.1),
-        point(u, y - 0.17, z + 0.1),
-        0.024,
-        0.025,
-        steel,
-      );
-    }
+    const pipePitch = detail.pipePitch ?? 2.5;
+    if (detail.services !== false)
+      for (let u = -half; u < half; u += pipePitch) {
+        const v = Math.min(half, u + pipePitch),
+          z = zc + 1.49;
+        tube(
+          out,
+          'iron',
+          point(u, roadY(u, z) - depth(u) - 0.1, z),
+          point(v, roadY(v, z) - depth(v) - 0.1, z),
+          0.033,
+          [0.35, 0.37, 0.34],
+          detail.pipeSegments ?? 10,
+        );
+      }
+    if (detail.services !== false && detail.hangers !== false)
+      for (let u = -half + 2; u < half; u += 6.4) {
+        const z = zc + 1.49,
+          y = roadY(u, z) - depth(u);
+        beam(out, 'iron', point(u, y, z - 0.1), point(u, y - 0.17, z - 0.1), 0.024, 0.025, steel);
+        beam(
+          out,
+          'iron',
+          point(u, y - 0.17, z - 0.1),
+          point(u, y - 0.17, z + 0.1),
+          0.024,
+          0.025,
+          steel,
+        );
+      }
   }
   // Asphalt expansion joints remain distinct from the much finer precast seams below.
   for (const u of [-half + 0.18, -55, 45, 125, half - 0.18]) {
@@ -283,22 +326,32 @@ function deck(out) {
         ),
       [0.15, 0.17, 0.16],
     );
-    for (let z = -15.4; z < 15.5; z += 0.09)
-      beam(
-        out,
-        'steel',
-        point(u - 0.044, roadY(u, z) + 0.024, z),
-        point(u + 0.044, roadY(u, z) + 0.024, z + 0.04),
-        0.008,
-        0.014,
-        [0.48, 0.49, 0.46],
-      );
+    if (detail.expansionFingers !== false)
+      for (let z = -15.4; z < 15.5; z += 0.09)
+        beam(
+          out,
+          'steel',
+          point(u - 0.044, roadY(u, z) + 0.024, z),
+          point(u + 0.044, roadY(u, z) + 0.024, z + 0.04),
+          0.008,
+          0.014,
+          [0.48, 0.49, 0.46],
+        );
   }
 }
 function pier(out, u, zc) {
+  const detail = out.browserDetail ?? {};
   const h = roadY(u, zc) - depth(u) - 0.28;
   const ring = (y, w, d) =>
-    chamferedRectangle(0, y, 0, w, d, 0.23).map(([x, yy, z]) => point(u + x, yy, zc + z));
+    (detail.simplePiers
+      ? [
+          [-w / 2, y, -d / 2],
+          [w / 2, y, -d / 2],
+          [w / 2, y, d / 2],
+          [-w / 2, y, d / 2],
+        ].reverse()
+      : chamferedRectangle(0, y, 0, w, d, 0.23)
+    ).map(([x, yy, z]) => point(u + x, yy, zc + z));
   loft(
     out,
     'concrete',
@@ -306,18 +359,19 @@ function pier(out, u, zc) {
     lighter,
   );
   // Fine vertical architectural ribs seen on each independent river and bank pier.
-  for (const side of [-1, 1]) {
-    for (let dz = -2.15; dz <= 2.15; dz += 0.22) {
-      const a = point(u + side * 2.23, 0.35, zc + dz),
-        b = point(u + side * 1.455, h - 0.23, zc + dz * 0.69);
-      beam(out, 'concrete', a, b, 0.036, 0.034, [0.56, 0.55, 0.5]);
+  if (detail.ribs !== false)
+    for (const side of [-1, 1]) {
+      for (let dz = -2.15; dz <= 2.15; dz += detail.ribPitch ?? 0.22) {
+        const a = point(u + side * 2.23, 0.35, zc + dz),
+          b = point(u + side * 1.455, h - 0.23, zc + dz * 0.69);
+        beam(out, 'concrete', a, b, 0.036, 0.034, [0.56, 0.55, 0.5]);
+      }
+      for (let dx = -1.72; dx <= 1.72; dx += detail.ribPitch ?? 0.22) {
+        const a = point(u + dx, 0.35, zc + side * 2.705),
+          b = point(u + dx * 0.65, h - 0.23, zc + side * 1.875);
+        beam(out, 'concrete', a, b, 0.036, 0.034, [0.56, 0.55, 0.5]);
+      }
     }
-    for (let dx = -1.72; dx <= 1.72; dx += 0.22) {
-      const a = point(u + dx, 0.35, zc + side * 2.705),
-        b = point(u + dx * 0.65, h - 0.23, zc + side * 1.875);
-      beam(out, 'concrete', a, b, 0.036, 0.034, [0.56, 0.55, 0.5]);
-    }
-  }
   loft(out, 'concrete', [ring(h - 0.16, 3.14, 4.05), ring(h + 0.09, 3.14, 4.05)], concrete);
   for (const dz of [-0.85, 0.85]) {
     const a = point(u - 0.62, h + 0.1, zc + dz - 0.37),
@@ -369,27 +423,68 @@ function abutment(out, u) {
   }
 }
 function lights(out) {
+  const detail = out.browserDetail ?? {};
   for (let u = -141; u <= 141; u += 35.25) {
     const y = roadY(u) + 0.45,
       z = 0;
-    tube(out, 'steel', point(u, y, z), point(u, y + 12.5, z), 0.075, steel, 20);
+    if (detail.simpleLamps) {
+      beam(out, 'steel', point(u, y, 0), point(u, y + 12.5, 0), 0.15, 0.15, steel);
+      for (const side of [-1, 1]) {
+        beam(
+          out,
+          'steel',
+          point(u, y + 12, 0),
+          point(u, y + 13.05, side * 2.36),
+          0.09,
+          0.09,
+          steel,
+        );
+        const p = point(u, y + 13.05, side * 2.36);
+        box(
+          out,
+          'iron',
+          [p[0] - 0.17, p[1] - 0.1, p[2] - 0.47],
+          [p[0] + 0.17, p[1] + 0.1, p[2] + 0.47],
+          steel,
+        );
+      }
+      continue;
+    }
+    tube(
+      out,
+      'steel',
+      point(u, y, z),
+      point(u, y + 12.5, z),
+      0.075,
+      steel,
+      detail.lampSegments ?? 20,
+    );
     for (const side of [-1, 1]) {
       let a = point(u, y + 12.0, 0);
-      for (let i = 1; i <= 22; i++) {
-        const t = i / 22,
+      const steps = detail.lampSteps ?? 22;
+      for (let i = 1; i <= steps; i++) {
+        const t = i / steps,
           b = point(u, y + 12 + 1.08 * Math.sin((t * Math.PI) / 2), side * 2.24 * t);
-        tube(out, 'steel', a, b, 0.045, steel, 12);
+        tube(out, 'steel', a, b, 0.045, steel, detail.lampSegments ?? 12);
         a = b;
       }
-      sphere(out, 'iron', point(u, y + 13.05, side * 2.36), [0.17, 0.1, 0.47], steel, 24, 12);
+      sphere(
+        out,
+        'iron',
+        point(u, y + 13.05, side * 2.36),
+        [0.17, 0.1, 0.47],
+        steel,
+        detail.fixtureSegments ?? 24,
+        detail.fixtureRings ?? 12,
+      );
       sphere(
         out,
         'marking',
         point(u, y + 12.99, side * 2.36),
         [0.135, 0.025, 0.39],
         [0.77, 0.79, 0.71],
-        20,
-        10,
+        detail.fixtureSegments ?? 20,
+        detail.fixtureRings ?? 10,
       );
     }
     for (const dx of [-0.15, 0.15])
@@ -406,16 +501,19 @@ function lights(out) {
   }
 }
 function drains(out) {
+  const detail = out.browserDetail ?? {};
+  if (detail.drains === false) return;
   for (const side of [-1, 1])
-    for (let u = -150; u < 150; u += 12.8) {
+    for (let u = -150; u < 150; u += detail.drainPitch ?? 12.8) {
       const z = side * 16.12,
         y = roadY(u, z);
-      for (let j = 0; j < 9; j++)
+      const bars = detail.drainBars ?? 9;
+      for (let j = 0; j < bars; j++)
         beam(
           out,
           'iron',
-          point(u - 0.25 + j * 0.06, y + 0.025, z - 0.17),
-          point(u - 0.25 + j * 0.06, y + 0.025, z + 0.17),
+          point(u - 0.25 + j * (bars === 9 ? 0.06 : 0.48 / (bars - 1)), y + 0.025, z - 0.17),
+          point(u - 0.25 + j * (bars === 9 ? 0.06 : 0.48 / (bars - 1)), y + 0.025, z + 0.17),
           0.025,
           0.028,
           [0.28, 0.29, 0.27],
@@ -428,7 +526,7 @@ function drains(out) {
         point(u, y - 1.8, zpipe),
         0.085,
         [0.44, 0.45, 0.41],
-        20,
+        detail.pipeSegments ?? 20,
       );
       tube(
         out,
@@ -437,7 +535,7 @@ function drains(out) {
         point(u + 0.55, y - 2.2, zpipe),
         0.085,
         [0.44, 0.45, 0.41],
-        20,
+        detail.pipeSegments ?? 20,
       );
       for (const h of [0.65, 1.3])
         beam(
@@ -452,7 +550,19 @@ function drains(out) {
     }
 }
 
-export function buildPontAval(out) {
+export function buildPontAval(out, options) {
+  if (options) {
+    const original = out;
+    out = {
+      browserDetail: options,
+      ...Object.fromEntries(
+        ['addQuad', 'addTriangle', 'addConvexPolygon'].map((method) => [
+          method,
+          (...args) => original[method](...args),
+        ]),
+      ),
+    };
+  }
   deck(out);
   for (const u of stations.slice(1, -1)) for (const z of centers) pier(out, u, z);
   abutment(out, -half);

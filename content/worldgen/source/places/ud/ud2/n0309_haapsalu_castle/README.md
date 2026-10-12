@@ -1,12 +1,5 @@
 # Haapsalu Castle
 
-**Paused, unfinished draft — 2026-10-09.** The entrance-side wall is present in editable
-source but has not been rebuilt into the existing GLB. The twelve portable captures refer
-to earlier inputs; four registered runtime LODs, shared/medium-fi review reports and
-geographic approval are missing. The source and imported master hashes below describe
-the existing build, not completion of the current recipe. See the
-[selected round and completion checklist](../../../../next-1000/CURRENT-ROUND.md).
-
 ![Molen preview](preview.png)
 
 Current Haapsalu: roofed cathedral, circular baptismal chapel and lower side roofs, tall round clock tower with curved cone, roofless U-shaped main-castle upper rooms, black modern pavilion/folded stairs and mapped curtain/tower remains.
@@ -33,11 +26,11 @@ Five existing shared256-square weathered limestone, painted metal, lime plaster,
 
 ## Model and axes
 
-4,905 triangles; 14,715 vertices; 7 material groups; 592,800 bytes. Native bounds: -114.268, 0.000, -78.501 to 137.117, 38.000, 112.773. Source hash: `sha256:9b2a71df21b1d1dc6034808c35f4ec8c5ef91b00833b40daba5c5dfc2b5c4036`.
+5,973 triangles; 17,919 vertices; 7 material groups; 720,976 bytes. Native bounds: -114.387, -2.570, -78.645 to 137.291, 38.000, 112.774. Source hash: `sha256:1e544640a9d57c44488e69abfd0eb2a82427660371a4d70736b9498d3d992f2b`.
 
-{"up":"+Y","longitudinal":"Native+X east,+Z south; heading0 preserves all attributed footprints.","origin":"Wikidata horizontal reference inside cathedral; Y0 provisional outside-ground attachment plane. Actual common city/terrace datum unapproved."}
+{"up":"+Y","longitudinal":"Native+X east,+Z south; heading0 preserves all attributed footprints.","origin":"Wikidata horizontal reference inside cathedral; Y0=7.2m EH2000 exterior contact plane. Numeric source ground controls, not a surveyed floor datum."}
 
-Native+X east,+Z south, heading0. Exact castle identity node and separate named physical footprints; no exact-QID area or certified ground datum claimed.
+Native+X east,+Z south, heading0. Exact castle identity node and separate named physical footprints; no exact-QID area invented. ModelY0=7.2m EH2000 exterior attachment, based on the attributed official terrain grid. The architect interior datum8.30m is separate. Actual-terrain review uses the source-local heightfield; generic shared-viewer stage establishes transforms/materials only.
 
 ## Reproduce
 
@@ -47,11 +40,11 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0309` (
 
 - Q866154 is an exact mapped castle identity node687056785. Named cathedral106803938/Q16412871, museum112303709 and surrounding named curtain walls are separately matched physical controls; no exact-QID castle area is invented.
 - Mapped museum height38 is a whole-envelope value containing the clock tower. Individual wing/wall sections remain lower and partly roofless. Cathedral25m mapper height is separate. Tower38m is an archival museum reference, not a new survey.
-- Architect drawings publish local section levels+18.50/+19.96 and a+0.00 tied to8.30m. The authored mesh uses original estimated relative sections andY0 ground attachment, not a certified elevation survey or a literal copy of the technical plan.
+- Architect drawings publish section levels+18.50/+19.96 and interior+0.00=8.30m. Original estimated architectural sections use exterior modelY0=7.2m EH2000, based on the official DTM; this is not a certified floor/door elevation survey or a literal plan copy.
 - Nave, south circular baptismal chapel, lower lateral vestries, open upper museum rooms and black modern pavilion/stair zigzags are independent geometry. Lost medieval roofs, reconstructed cloister, full interiors, exhibits, event infrastructure, playground/trees and adjacent city buildings are not invented.
-- Outer wall/tower surviving section heights, precise church window count, glass/frame details, pavilion footprint and walkway attachments still require current-site fidelity review. Keep placement draft and footprint replacement off.
+- Surviving wall/tower section heights, church window rhythms, pavilion proportions and folded walkway attachments are original medium-fi estimates reviewed against current architect/museum references. Fine masonry loss, exact window counts and museum interiors are outside the declared exterior scope. Footprint replacement remains off.
 - Five existing shared256-square weathered limestone, painted metal, lime plaster, timber and gravel graphs use metric repeats and linear tints. No new unique image, embedded photograph or borrowed mesh.
-- Architect/photographer drawings and photographs stay in the private research cache; only attributed original numeric controls and metadata ship. Physical laptop/phone performance and continuous LOD movement remain pending.
+- Reference photographs/drawings stay private. The attributed numeric terrain grid and its 16-bit review heightfield ship as ground evidence, not a unique model texture. Automated DTM classification can retain raised built terraces; doors/interiors are not terrain survey controls. Host terrain must agree with the recorded EH2000 mean-sea-level datum and adequate local resolution. Physical laptop/phone performance remains unmeasured; captures and software budgets do not certify device frame rates.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

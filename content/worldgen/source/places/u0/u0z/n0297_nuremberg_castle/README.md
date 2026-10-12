@@ -26,11 +26,11 @@ Six existing256-square shared graphs with linear tints and central metric UV rep
 
 ## Model and axes
 
-8,152 triangles; 24,456 vertices; 8 material groups; 982,804 bytes. Native bounds: -144.420, 0.300, -84.781 to 212.824, 60.600, 77.690. Source hash: `sha256:5ad45217b302e304fd1b7347d0a17d31431279146c7640c842d53b8d1a762ed0`.
+8,168 triangles; 24,504 vertices; 7 material groups; 984,248 bytes. Native bounds: -144.420, -14.147, -84.781 to 212.824, 45.952, 77.690. Source hash: `sha256:984ff94c7f3a2738254c5f4fbd58cd7f392a1548ab362b33c9c233580e4ec6fe`.
 
-{"up":"+Y","front":"South-facing city prospect with Palas/double chapel and Sinwell in native East/South coordinates","longitudinal":"+X east along castle complex","origin":"Exact-QID map point; native Y0 is provisional terrain-grid minimum320.29m,castle attachment planeY17.2. Native geometry remains East/South; heading0."}
+{"up":"+Y","front":"South-facing city prospect with Palas/double chapel and Sinwell in native East/South coordinates","longitudinal":"+X east along castle complex","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Geometry is native +X east/+Z south with heading0. Exact-QID map point anchors separately attributed physical components. Native Y0 is provisional terrain-grid minimum320.29m,attachment planeY17.2; real rock/terraced ground and vertical datum need review.
+The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -38,14 +38,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0297` (
 
 ## Pending work
 
-- Exact-QID identity is a node; nearby physical parts remain separately attributed. Some mapped outlines are explicitly extrapolated rather than surveyed.
-- Primary city guide gives Sinwell41m from plinth to weather vane. Other tower heights,body/roof partitions,apertures and restored details are estimates. OSM Heidenturm35m/Fünfeckturm44m are raw map values,not verified surveyed vertical dimensions.
-- Three historic precincts belong to the overall castle complex; Kaiserstallung note that it is not part of the imperial castle is preserved. No composite placement for a distant site.
-- Native provisional datum320.29m and attachmentY17.2 are original terrain/reference estimates. Coarse Terrarium DEM does not resolve the castle rock,wall bases,terraced courts or correct survey datum. Real terrain/approach/current-site fit remains pending.
-- Full double-chapel interior,well shaft beyond50m,roof structures,museum interiors,exact heraldry/sculpture/current exhibits and walkable circulation/collision are not complete. Selected exterior rhythm and simplified reconstructed roofs are represented.
-- Northern/western bastion volumes and simplified lawns follow mapped fortification ribbons; garden beds and circulation are original schematic geometry,not a copied historic garden plan.
-- Six existing256-square shared graphs with linear tints and metric repeats; no unique/embedded textures,downloaded model or copied reference photograph/drawing.
-- Synthetic Earth captures do not verify actual geographic fit,continuous streaming or physical laptop/phone performance.
+- Approximate exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.
+- Detailed original master/hash/recipe preserved. Building floors, terrace/ruin detail, roof partitioning and restoration fixtures are interpreted; interiors and collision excluded.
+- Five common graphs plus explicit glass/foliage color slots; zero embedded images. Bounded courts/gardens/terraces retained, surrounding hill supplied by host.
+- Footprint replacement remains off; physical-device timing unmeasured.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 

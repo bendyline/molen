@@ -1,20 +1,23 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0295_pembroke_castle",
-  "inputHash": "sha256:2c0f0658c39538b56c74b41e5a4c9255e17cfc66395bb41db2811c0e7ba1585c",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
-  "footprintEvidenceHash": "sha256:d149c6df295b2e666832ea335340dbff44aa40c3de489edef3a2f1a339021955",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": null,
+  "inputHash": "sha256:f580da2222ebda8e3ca89ce4c517e09eaf62601ddeb909a502e1cff63bcbcae1",
+  "sourceHash": "sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c",
+  "runtimeHash": "sha256:88536f5d03757154a865440de16bf77b26bab1fe05004d88358b09616350861d",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:6745e1d1defd77d7ee13befb59ddc7fe90625dbb0442feff24dfde7d0c261089",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "placementHash": "sha256:5e2f3a0d86cc7352deff36458d790d2633bfa017c7e1b41f7f0d3aaec86084a3",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_drywall": {
       "path": "materials/stone_drywall.matgraph.json",
       "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
     },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+    "matgraph:molen.worldgen.material.stone_limestone": {
+      "path": "materials/stone_limestone.matgraph.json",
+      "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
     },
     "matgraph:molen.worldgen.material.slate": {
       "path": "materials/slate.matgraph.json",
@@ -32,15 +35,15 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:549f99fb71ed9844a7d01619848cd69f9699d18f53056165aeb8480c1086beb1",
+      "hash": "sha256:7a2fd719cc6b8c22dc025c5621efb50813063965780482511ad3f527c7b03c84",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -52,32 +55,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -88,15 +109,15 @@
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:68a2d6f167a21e9146bba5fd4734fcd2d6a5fd0b92d46f77758b7867aaae286b",
+      "hash": "sha256:f9d308937566a729d20cdfd353091874e4fbb180b52a711dd5e5e960f11eef2a",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -108,32 +129,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -144,15 +183,15 @@
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:ff552ce5f9a133e9e796f01b54e4a13057c5f3681f9b274cdbbfe510734eca91",
+      "hash": "sha256:a3f3a6bf6dc10579536e8fedd955ce1aeb05134f17af6bbea2003603aef18c41",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -164,32 +203,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -200,15 +257,15 @@
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:b495a22f1180321c4ceaf548512fc93c3a6131d751ae7e980ebd82eff53b903f",
+      "hash": "sha256:05a8175769e91ceb6cb12538120be3892cf9261e84d317993a3af1ac09539675",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -220,32 +277,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -256,24 +331,24 @@
     },
     {
       "path": "shots/shared/domed-great-keep.png",
-      "hash": "sha256:df8a35e96a4f13d90aeabd7bf207faff9e71376e884c5c2d611f4ed65671cf45",
+      "hash": "sha256:b7d8d2c7399e15aed208171a750edfb2ee47f02606ac2724ae52f67f63ee9f3e",
       "camera": {
         "name": "domed-great-keep",
         "position": [
           -8,
-          53,
+          46,
           0
         ],
         "lookAt": [
           -26,
-          32,
+          25,
           -28
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -285,32 +360,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -321,24 +414,24 @@
     },
     {
       "path": "shots/shared/oblique-great-gate.png",
-      "hash": "sha256:0ac57c6664b709f5734d7de851a8e6dc12814ea6eea2d357cd383ed0ca676c68",
+      "hash": "sha256:3169b7cccb1f2a2d92753bcedf9e2e533d1d6608ee0e0f19437f37e5b3db3960",
       "camera": {
         "name": "oblique-great-gate",
         "position": [
           62,
-          20.5,
+          13.5,
           89
         ],
         "lookAt": [
           44,
-          20,
+          13,
           46
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -350,32 +443,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -386,24 +497,24 @@
     },
     {
       "path": "shots/shared/open-wards-plan.png",
-      "hash": "sha256:abd5536b6da1e0bf9e3c1bcb837c383b33112433798b64dc4068ee3fa7a45259",
+      "hash": "sha256:daf46966c4dcefa35d09deb15a1da45dda83391d078a986d6d3917159e39a76a",
       "camera": {
         "name": "open-wards-plan",
         "position": [
           0,
-          220,
+          213,
           1
         ],
         "lookAt": [
           0,
-          15,
+          8,
           0
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -415,32 +526,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -451,24 +580,24 @@
     },
     {
       "path": "shots/shared/northern-roofless-halls.png",
-      "hash": "sha256:9de980ea1085dab584df3a908a5eb0404be0c5e9b166f80922185b148476d413",
+      "hash": "sha256:d4e46602a94758f62a9b6ac94ce45d4ed1c14629dbbf8975bcd127387e256f3f",
       "camera": {
         "name": "northern-roofless-halls",
         "position": [
           12,
-          49,
+          42,
           -100
         ],
         "lookAt": [
           6,
-          26,
+          19,
           -44
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -480,32 +609,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -516,24 +663,24 @@
     },
     {
       "path": "shots/shared/wogan-north-mouth.png",
-      "hash": "sha256:a48dfb4fc88f892bc4f17ddf16443eb3a0c2c58a6a491fdfda36b2c3bb82011f",
+      "hash": "sha256:6d5d68a3278ce5417edc0069d53951c2691c6ea1bb21dd107ccf490b8458c1d9",
       "camera": {
         "name": "wogan-north-mouth",
         "position": [
           23,
-          12,
+          5,
           -82
         ],
         "lookAt": [
           7,
-          10,
+          3,
           -52.5
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -545,32 +692,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -581,24 +746,24 @@
     },
     {
       "path": "shots/shared/south-wall-towers.png",
-      "hash": "sha256:1c05b765148bc6ae9b1c751aa84a9c0bd90e5af241321c618142592ee3e7c350",
+      "hash": "sha256:738abc6c349d03d5b122dc86901121558f10c09b2ef9c51389a4e6c373749223",
       "camera": {
         "name": "south-wall-towers",
         "position": [
           -24,
-          42,
+          35,
           125
         ],
         "lookAt": [
           4,
-          25,
+          18,
           51
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -610,32 +775,50 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
@@ -646,24 +829,24 @@
     },
     {
       "path": "shots/shared/western-hall-and-footings.png",
-      "hash": "sha256:d316502e21106ea96d24b12ef82f6e9418ef344a60a794a3621e9e0586260844",
+      "hash": "sha256:008dbe4de8af5930184fe11e677d55701fc299d7e08c0d931d728759d060e480",
       "camera": {
         "name": "western-hall-and-footings",
         "position": [
           -99,
-          42,
+          35,
           -25
         ],
         "lookAt": [
           -43,
-          23,
+          16,
           -38
         ]
       },
       "state": {
         "asset": "molen.worldgen.structure.n0295_pembroke_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
         "position": [
           0,
           0,
@@ -675,37 +858,129 @@
         "bounds": {
           "min": [
             -71.05999755859375,
-            0.4000000059604645,
+            -8.470196723937988,
             -73.1500015258789
           ],
           "max": [
             76.28500366210938,
-            40,
+            33,
             72.1050033569336
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "0880e739-10f9-48a3-88dd-e16d6c153742",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "e484118b-4027-4b9d-b2b9-ca68eff8e92c",
-          "worldgen:matgraph:molen.worldgen.material.slate": "599db0ae-35d7-4653-9ea7-0e957c1440ab",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "1b9985ef-4e59-4a91-b4de-1b348f39395b",
-          "worldgen:matgraph:molen.worldgen.material.gravel": "33452e9c-c8b2-448e-80e9-5c4ca42e6172"
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
         },
         "loads": [
           "molen.worldgen.structure.n0295_pembroke_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.stone_drywall": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_limestone": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.wood_plain": 1,
           "molen.worldgen.material.gravel": 1
         },
         "draws": 8,
+        "renderedTriangles": 14973
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:2c8b5144fe81f3535f31a6ebc5d48dd2c8cf852c47e94ea8b9fc7b847dc91c2b",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0295_pembroke_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0295",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0,
+        "meshes": 7,
+        "triangles": 14971,
+        "bounds": {
+          "min": [
+            -71.05999755859375,
+            -8.470196723937988,
+            -73.1500015258789
+          ],
+          "max": [
+            76.28500366210938,
+            33,
+            72.1050033569336
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_drywall": "b11e0a3b-0edd-4ce1-a302-7807c600ec8d",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "53b12987-5b99-4c3a-911b-b91919725e93",
+          "worldgen:matgraph:molen.worldgen.material.slate": "1be1f3c9-5799-463a-9fb0-8ddd01def52b",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "fabca5b4-54e3-44cb-a4dc-cd901e21b2ff",
+          "worldgen:matgraph:molen.worldgen.material.gravel": "28fd4806-0604-47d1-9ad5-8e9e51dd6cc9"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0295_pembroke_castle"
+        ],
+        "selectionBounds": [
+          -4.922409857947916,
+          51.675794585838915,
+          -4.918701252052082,
+          51.67809427296636
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0295",
+            "coordinate": [
+              -4.920555555,
+              51.676944444
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0295"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "draws": 9,
         "renderedTriangles": 14973
       }
     }

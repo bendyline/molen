@@ -21,11 +21,11 @@ Six existing shared 256-square stone/lime-plaster/roof-tile/painted-metal/timber
 
 ## Model and axes
 
-5,691 triangles; 17,073 vertices; 8 material groups; 687,424 bytes. Native bounds: -47.173, 0.000, -57.420 to 70.510, 43.000, 44.181. Source hash: `sha256:0698f5f9812c27937dc561ada53b47f1b812391d90b8f99369643b87d7a81346`.
+5,691 triangles; 17,073 vertices; 8 material groups; 687,480 bytes. Native bounds: -47.173, -13.470, -57.420 to 70.510, 45.000, 44.181. Source hash: `sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474`.
 
-{"up":"+Y","longitudinal":"Native+X east,+Z south; mapped components and passage, heading0.","origin":"Mapped castle horizontal anchor; exterior foundationY0 and provisional inner courtY6. Intended terrain attachment samples the inner court plane, not the tower roof."}
+{"up":"+Y","longitudinal":"Native+X east,+Z south; mapped components and passage, heading0.","origin":"Site anchor; Y0 standard PMTiles working datum."}
 
-Native East/South component traces use heading0. Provisional inner court attachment modelY6; primary 400m platform altitude is not a relative tower-height measurement. Geographic/section approval remains pending.
+The inspected exterior picture supports the irregular roofed castle ring, open court, white clock/viewing tower, brown pitched roofs, rounded towers and modern glazed court additions. Retained mapped components and east passage set approximate scale and heading0. Standard viewer PMTiles supply the surrounding hill. Architecture rises2m so its reconstructed courtyard remains above the coarse crest; bounded foundation toes meet the sampled ground. Anchor 14.508474674,46.048810087; heading 0; standard PMTiles datum 356.4304543632578m. Floors are reconstructed and foundations extend below the coarse sampled ground.
 
 ## Reproduce
 
@@ -33,14 +33,10 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0307` (
 
 ## Pending work
 
-- Exact-QID castle way5821190 and building relation2326426 use the actual courtyard hole174281987. Fifteen building-part footprints and entrance passage retain native East/South heading0.
-- The operator gives the viewing platform altitude as400m above sea level, not a32m relative tower height. Component32/29/25/24/23/21/20/17m totals are mapper tags. The6m court/exterior-base offset is a provisional inference; actual hill grades and common vertical datum are not surveyed.
-- Current exterior includes viewing/pipers, round archers/erasmus and pentagonal/Frederick towers, four roofed wings, chapel, modern glazed halls, north flat terrace, east entrance bridge, upper station shell and ticket office. Historic drawbridges and removed floors are not reconstructed.
-- Roof axes, pitches, clock positions/hands, arches, openings, projecting bays, parapet and flags are original photo-derived estimates; no engineering plan, copied mesh or bitmap is shipped.
-- Six existing256-square graphs: stone, lime plaster, ceramic roof tile, painted metal, timber and gravel. Glass and flags are flat materials. Linear tints and metric repeats; no unique embedded/new texture.
-- Current operator images and diagram are research references only. Images, diagrams and the operator PDF are not redistributed or used as textures.
-- Interiors, exhibits, heraldic paintings, spiral stairs, event furniture, vegetation, surrounding city, natural hill, funicular rail/vehicle and surveyed bridge piers remain excluded or separate.
-- Geographic/section, medium-fi and fidelity acceptance require inspected current renders. Placement stays inactive until real-site ground/height attachment is resolved; physical laptop/phone measurements remain pending.
+- Approximate exterior and hill fit from an inspected picture and standard viewer PMTiles; no bespoke survey or exact height claims.
+- Original detailed master/hash/recipe retained. Fifteen castle parts, tower terrace, flags, real entrance passage and arcade are retained; ornament and restored fixtures are interpreted.
+- Six common limestone/lime-plaster/tile/painted-metal/wood/aggregate graphs plus explicit glass and flag colors; no embedded images or broad duplicate hill.
+- Interiors, collision and physical-device timing excluded; footprint replacement remains off.
 
 This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
