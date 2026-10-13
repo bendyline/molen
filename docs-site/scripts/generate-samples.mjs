@@ -470,7 +470,7 @@ export async function generateSamples() {
   const covered = new Set(SAMPLES.map((s) => s.dir));
   const onDisk = await readdir(join(repoRoot, 'examples'), { withFileTypes: true });
   const missing = onDisk
-    .filter((d) => d.isDirectory() && !covered.has(d.name) && d.name !== 'home')
+    .filter((d) => d.isDirectory() && !covered.has(d.name) && !['home', 'shared'].includes(d.name))
     .map((d) => d.name);
   if (missing.length > 0) {
     console.warn(`samples: no page for ${missing.join(', ')} — add an entry to SAMPLES`);

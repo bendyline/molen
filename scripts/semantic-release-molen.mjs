@@ -157,7 +157,12 @@ export async function shippedSources(name, root = ROOT) {
   if (name !== TOOLING) return [];
   const script = pathToFileURL(join(root, 'packages/tooling/scripts/build-templates.mjs'));
   const { TEMPLATES } = await import(script.href);
-  return ['docs-src', 'examples/game-shell.css', ...TEMPLATES.map((id) => `examples/${id}`)];
+  return [
+    'docs-src',
+    'examples/game-shell.css',
+    'examples/shared',
+    ...TEMPLATES.map((id) => `examples/${id}`),
+  ];
 }
 
 /** Commits after `since` (or in all history) touching any of `paths`, as semantic-release has them. */

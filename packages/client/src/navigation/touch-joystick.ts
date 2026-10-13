@@ -68,6 +68,8 @@ export class TouchStick {
 }
 
 export interface TouchJoystickOptions extends TouchStickOptions {
+  /** Refocus the keyboard surface before moving (e.g. after using a HUD button). */
+  focusTarget?: Pick<HTMLElement, 'focus'>;
   /** Software-device name in the InputMap (default `'touch-joystick'`). */
   source?: string;
   /** Extra class names for styling the root element. */
@@ -129,6 +131,15 @@ export function createTouchJoystick(
   container.append(root);
 
   let pointer: number | undefined;
+  const reset = (): void => {
+    const captured = pointer;
+    pointer = undefined;
+    if (captured !== undefined && root.hasPointerCapture(captured))
+      root.releasePointerCapture(captured);
+    stick.release();
+    input.clearVirtual(source);
+    knob.style.transform = '';
+  };
   const publish = (): void => {
     const { forward, right } = stick.axes();
     input.setVirtual(source, ACTIONS.forward, Math.max(0, forward));
@@ -146,6 +157,7 @@ export function createTouchJoystick(
     if (pointer !== undefined) return;
     event.preventDefault();
     event.stopPropagation();
+    options.focusTarget?.focus({ preventScroll: true });
     pointer = event.pointerId;
     root.setPointerCapture(event.pointerId);
     const { x, y } = center();
@@ -162,15 +174,14 @@ export function createTouchJoystick(
   const onUp = (event: PointerEvent): void => {
     if (event.pointerId !== pointer) return;
     event.stopPropagation();
-    pointer = undefined;
-    stick.release();
-    input.clearVirtual(source);
-    knob.style.transform = '';
+    reset();
   };
   root.addEventListener('pointerdown', onDown);
   root.addEventListener('pointermove', onMove);
   root.addEventListener('pointerup', onUp);
   root.addEventListener('pointercancel', onUp);
+  root.addEventListener('lostpointercapture', onUp);
+  document.defaultView?.addEventListener('blur', reset);
 
   return {
     element: root,
@@ -178,9 +189,7 @@ export function createTouchJoystick(
     setVisible(visible: boolean): void {
       root.style.display = visible ? '' : 'none';
       if (!visible) {
-        pointer = undefined;
-        stick.release();
-        input.clearVirtual(source);
+        reset();
       }
     },
     dispose(): void {
@@ -188,7 +197,9 @@ export function createTouchJoystick(
       root.removeEventListener('pointermove', onMove);
       root.removeEventListener('pointerup', onUp);
       root.removeEventListener('pointercancel', onUp);
-      input.clearVirtual(source);
+      root.removeEventListener('lostpointercapture', onUp);
+      document.defaultView?.removeEventListener('blur', reset);
+      reset();
       root.remove();
     },
   };

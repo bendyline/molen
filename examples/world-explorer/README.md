@@ -190,3 +190,8 @@ The reusable store identity library and mapped street furniture can be reviewed 
 `?synthetic=1&stores=1&style=default`.
 See the [recognizable places guide](../../docs-src/guide/recognizable-places.md) and
 [3D art guidelines](../../docs-src/guide/3d-art-guidelines.md) for catalog and material conventions.
+
+The structure library enables search and detail browsing as soon as the catalog is loaded. Preview
+images render only near the viewport, yield between structures, and pause while a detail dialog is
+open. Details use a separate renderer. Download model sheet explicitly generates the remaining
+previews; a failed preview leaves its named card and detail controls available.

@@ -46,7 +46,7 @@ header {
   padding: 46px 0 36px;
 }
 .eyebrow {
-  color: #54776b;
+  color: #45695b;
   margin: 0 0 14px;
 }
 h1 {
@@ -57,7 +57,7 @@ h1 {
   margin: 0;
 }
 .lede {
-  color: #67736a;
+  color: #58665b;
   line-height: 1.65;
   font-size: 15px;
   margin-bottom: 0;
@@ -87,6 +87,8 @@ nav {
 input,
 select,
 button {
+  min-width: 0;
+  max-width: 100%;
   font: inherit;
 }
 input[type="search"],
@@ -113,7 +115,7 @@ button:disabled {
 }
 #status {
   margin-left: auto;
-  color: #778376;
+  color: #596b55;
   font-size: 12px;
 }
 main {
@@ -160,7 +162,7 @@ main {
   gap: 8px;
   font-size: 9px;
   letter-spacing: 1px;
-  color: #71816e;
+  color: #596b55;
   text-transform: uppercase;
 }
 .card-meta span:last-child {
@@ -175,19 +177,19 @@ main {
 }
 .card p {
   font-size: 11px;
-  color: #69786a;
+  color: #596b55;
   margin: 0;
 }
 .card-id {
   font-size: 9px;
-  color: #8a9484;
+  color: #5e6e58;
   margin-top: 9px;
   word-break: break-all;
 }
 footer {
   border-top: 1px solid #ccd3c8;
   font-size: 11px;
-  color: #758170;
+  color: #596b55;
   line-height: 1.8;
   text-align: center;
 }
@@ -242,11 +244,11 @@ dialog::backdrop {
 .detail-copy p {
   font-size: 13px;
   line-height: 1.6;
-  color: #6a7869;
+  color: #596b55;
 }
 .detail-copy code {
   font-size: 10px;
-  color: #6b806f;
+  color: #596b55;
   overflow-wrap: anywhere;
 }
 .controls {
@@ -347,5 +349,39 @@ dialog::backdrop {
   }
   .card-copy {
     padding: 10px;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid #245b43;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+.card img[hidden],
+.preview-placeholder[hidden] {
+  display: none;
+}
+.preview-placeholder {
+  width: 100%;
+  aspect-ratio: 1.45;
+  display: grid;
+  place-items: center;
+  background: #e8ece3;
+  color: #456050;
+  font-size: 12px;
+  text-align: center;
+  padding: 12px;
+}
+#detail-view canvas {
+  touch-action: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card:hover {
+    transform: none;
   }
 }

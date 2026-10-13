@@ -712,7 +712,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       options.touchJoystickContainer !== undefined &&
       (options.touchJoystick === 'always' || touchDevice)
     ) {
-      joystick = createTouchJoystick(options.touchJoystickContainer, input.map);
+      joystick = createTouchJoystick(options.touchJoystickContainer, input.map, {
+        focusTarget: canvas,
+      });
       joystick.setVisible(false);
       disposers.push(() => joystick?.dispose());
     }

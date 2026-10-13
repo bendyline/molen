@@ -1,4 +1,6 @@
 import { mountExperience } from '@bendyline/molen-client';
+import { createGameControls } from '../../shared/game-controls';
+import { readyToPlay } from '../../shared/playback';
 import { startAudio } from './audio';
 import { scene } from './scene';
 import '../../game-shell.css';
@@ -9,7 +11,13 @@ element('interface').innerHTML =
   `<header class="topbar"><div><div class="eyebrow">MOLEN / 01 / ARCADE DRIVING</div><h1>City Courier</h1><div class="subtitle">A SMALL CITY. FIVE DELIVERIES.</div></div><div class="stats"><div class="stat"><label>DELIVERIES</label><strong id="stat0">0 / 5</strong></div><div class="stat"><label>TIME LEFT</label><strong id="stat1">120 s</strong></div><div class="stat"><label>CONDITION</label><strong id="stat2">100%</strong></div></div></header><div class="bottom"><div class="brief"><div class="label">WASD / arrows steer & accelerate.</div><p id="message">Loading the experience...</p><div class="controls"><kbd>W S</kbd> accelerate / reverse &nbsp; <kbd>A D</kbd> steer<br/><kbd>Space</kbd> handbrake &nbsp; <kbd>R</kbd> new route</div></div><div><div class="map-caption">DELIVERY GRID</div><div class="map"><svg viewBox="-38 -38 76 76" aria-label="City route map"><path d="M-24 -35V35 M0 -35V35 M24 -35V35 M-35 -24H35 M-35 0H35 M-35 24H35" stroke="#526775" stroke-width="5"/><circle id="destination" r="3" fill="#7cffd9"/><path id="map-player" d="M0 -2.7L1.7 2L0 1L-1.7 2Z" fill="#ffc46b"/></svg></div></div></div><div id="outcome" hidden><h2 id="outcome-title"></h2><p id="outcome-detail"></p><button id="restart" type="button">Play again &rarr;</button></div><div id="diagnostic" role="alert"></div>`;
 const canvas = document.getElementById('view') as HTMLCanvasElement;
 const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
-const mounted = await mountExperience({ link: worker, scene: scene(), canvas, antialias: true });
+const mounted = await mountExperience({
+  link: worker,
+  scene: scene(),
+  canvas,
+  frameLoop: 'manual',
+  antialias: true,
+});
 const { client } = mounted;
 const stopAudio = startAudio(client, scene().tickRate ?? 30);
 function element(id: string): HTMLElement {
@@ -25,8 +33,17 @@ client.onDiag((d) => {
   if (d.code !== 'tick-overrun') diagnostic(`${d.code}: ${JSON.stringify(d.detail)}`);
 });
 client.onEvent('script-error', (e) => diagnostic(JSON.stringify(e.payload)));
+let controls: ReturnType<typeof createGameControls> | undefined;
+let disposed = false;
+void readyToPlay(client)
+  .catch((error: unknown) => diagnostic(String(error)))
+  .then(() => {
+    if (disposed) return;
+    canvas.dataset.assetsReady = 'true';
+    controls = createGameControls({ kind: 'courier', client, input: mounted.input, canvas });
+  });
 element('restart').addEventListener('click', () => {
-  client.command('restart');
+  controls?.restart();
   canvas.focus();
 });
 const timer = setInterval(() => {
@@ -75,10 +92,15 @@ const timer = setInterval(() => {
   }
 }, 80);
 function dispose(): void {
+  disposed = true;
+  controls?.dispose();
   clearInterval(timer);
   void stopAudio.then((stop) => stop());
   mounted.dispose();
   worker.terminate();
 }
-window.addEventListener('pagehide', dispose, { once: true });
+window.addEventListener('pagehide', (event) => {
+  // A cached page resumes the same workers and renderer on Back/Forward.
+  if (!event.persisted) dispose();
+});
 if (import.meta.hot) import.meta.hot.dispose(dispose);

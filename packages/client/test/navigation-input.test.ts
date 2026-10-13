@@ -62,6 +62,29 @@ const pointer = (pointerId: number, clientX: number, clientY: number, extra = {}
 });
 
 describe('navigation pointer gestures', () => {
+  it('does not select markers with a secondary click or a two-finger gesture', () => {
+    const surface = new FakeSurface();
+    const gestures = new NavigationPointer(surface, { now: () => 0 });
+    surface.emit('pointerdown', pointer(1, 100, 100, { button: 2 }));
+    surface.emit('pointerup', pointer(1, 100, 100, { button: 2 }));
+    surface.emit('pointerdown', pointer(1, 100, 100, { pointerType: 'touch' }));
+    surface.emit('pointerdown', pointer(2, 150, 100, { pointerType: 'touch' }));
+    surface.emit('pointerup', pointer(1, 100, 100));
+    surface.emit('pointerup', pointer(2, 150, 100));
+    expect(gestures.consume().taps).toEqual([]);
+  });
+
+  it('stops dragging after capture loss and releases capture when reset', () => {
+    const surface = new FakeSurface();
+    const gestures = new NavigationPointer(surface);
+    surface.emit('pointerdown', pointer(1, 100, 100));
+    surface.emit('lostpointercapture', pointer(1, 100, 100));
+    surface.emit('pointermove', pointer(1, 150, 100));
+    expect(gestures.consume().look).toEqual([0, 0]);
+    surface.emit('pointerdown', pointer(2, 100, 100));
+    gestures.reset();
+    expect(surface.captured.size).toBe(0);
+  });
   it('turns one-button drags into look and secondary drags into pan', () => {
     const surface = new FakeSurface();
     const gestures = new NavigationPointer(surface);
@@ -124,6 +147,53 @@ describe('navigation pointer gestures', () => {
 });
 
 describe('navigation input source', () => {
+  it('clears held input when the window blurs or pointer lock exits, and removes listeners', () => {
+    const windowTarget = new FakeSurface();
+    const documentTarget = new FakeSurface();
+    const surface = Object.assign(new FakeSurface(), {
+      ownerDocument: {
+        defaultView: windowTarget,
+        addEventListener: documentTarget.addEventListener.bind(documentTarget),
+        removeEventListener: documentTarget.removeEventListener.bind(documentTarget),
+      },
+    });
+    const source = new NavigationInputSource({ element: surface, profile: 'walk' });
+    surface.emit('keydown', { code: 'KeyW' });
+    expect(source.read(0).move.forward).toBe(1);
+    windowTarget.emit('blur', {});
+    expect(source.read(0).move.forward).toBe(0);
+    surface.emit('keyup', { code: 'KeyW' });
+    surface.emit('keydown', { code: 'KeyW' });
+    documentTarget.emit('pointerlockchange', {});
+    expect(source.read(0).move.forward).toBe(0);
+    source.dispose();
+    expect(windowTarget.count() + documentTarget.count()).toBe(0);
+  });
+  it('starts mouse look when constructed in walk mode', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'walk' });
+    surface.emit('pointerdown', pointer(1, 0, 0));
+    expect(surface.lockRequests).toBe(1);
+    source.dispose();
+  });
+
+  it('discards queued actions on blur, suspension and profile changes', () => {
+    const surface = new FakeSurface();
+    const source = new NavigationInputSource({ element: surface, profile: 'walk' });
+    surface.emit('keydown', { code: 'KeyE' });
+    source.setProfile('drive');
+    expect(source.read(0).interact).toBe(0);
+    surface.emit('keydown', { code: 'KeyV' });
+    surface.emit('blur', {});
+    expect(source.read(0).view).toBe(0);
+    surface.emit('focus', {});
+    source.setProfile('pilot');
+    surface.emit('keydown', { code: 'KeyG' });
+    const resume = source.map.suspend();
+    resume();
+    expect(source.read(0).pilot?.gear).toBe(0);
+    source.dispose();
+  });
   it('combines keys, gamepad sticks and gestures, and counts interact presses', () => {
     const surface = new FakeSurface();
     const pad = {

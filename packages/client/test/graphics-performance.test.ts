@@ -4,6 +4,7 @@ import { AssetCache } from '../src/assets';
 import { type AdmissionSample, FrameAdmissionQueue } from '../src/frame-admission';
 import { InterpolationBuffer, type InterpTransform } from '../src/interpolation';
 import { ThreeSceneBackend } from '../src/three/backend';
+import type { Renderer } from '../src/three/renderer';
 import { StaticMeshBatches } from '../src/three/static-batches';
 
 const transform = (x: number): InterpTransform => ({ pos: [x, 0, 0], rot: [0, 0, 0, 1] });
@@ -137,6 +138,78 @@ describe('sparse graphics work', () => {
 });
 
 describe('staged graphics lifecycle', () => {
+  it('keeps WebGPU point-light shader identities stable while selecting, culling and deleting lights', () => {
+    const scene = new THREE.Scene();
+    scene.position.x = -100;
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+    const renderer = {
+      backend: 'webgpu',
+      camera,
+      setEnvironmentTime: () => {},
+    } as unknown as Renderer;
+    const backend = new ThreeSceneBackend(scene, undefined, renderer, undefined, {
+      maxLocalLights: 1,
+    });
+    backend.createLight('front', { type: 'point', color: '#ff0000', intensity: 2, range: 3 });
+    backend.setTransform('front', { pos: [100, 0, -5], rot: [0, 0, 0, 1] });
+    backend.createLight('back', { type: 'point', color: '#00ff00', intensity: 4, range: 2 });
+    backend.setTransform('back', { pos: [100, 0, 5], rot: [0, 0, 0, 1] });
+    const visibleLights = (): THREE.PointLight[] =>
+      scene.children.filter(
+        (object): object is THREE.PointLight =>
+          object instanceof THREE.PointLight && object.visible,
+      );
+    // Snapshot viewers use exact animation ticks, and must populate the same slots.
+    backend.setAnimationTick(1, 30);
+    const slot = visibleLights()[0] as THREE.PointLight;
+    expect(visibleLights()).toHaveLength(1);
+    expect(slot.intensity).toBe(2);
+    expect(slot.color.getHex()).toBe(0xff0000);
+    expect(slot.getWorldPosition(new THREE.Vector3()).toArray()).toEqual([0, 0, -5]);
+    camera.lookAt(0, 0, 5);
+    backend.updateLiveAnimations(2, 30, camera);
+    expect(visibleLights()).toEqual([slot]);
+    expect(slot.intensity).toBe(4);
+    expect(slot.distance).toBe(2);
+    expect(slot.color.getHex()).toBe(0x00ff00);
+    expect(slot.getWorldPosition(new THREE.Vector3()).toArray()).toEqual([0, 0, 5]);
+    backend.destroyLight('back');
+    backend.updateLiveAnimations(3, 30, camera);
+    expect(visibleLights()).toEqual([slot]);
+    expect(slot.intensity).toBe(0);
+    camera.lookAt(0, 0, -5);
+    backend.updateLiveAnimations(4, 30, camera);
+    expect(slot.intensity).toBe(2);
+    backend.dispose();
+    expect(scene.children).toHaveLength(0);
+  });
+
+  it('keeps shadow-casting lights on their own objects and shares the cap with point slots', () => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+    const renderer = {
+      backend: 'webgpu',
+      camera,
+      setEnvironmentTime: () => {},
+    } as unknown as Renderer;
+    const backend = new ThreeSceneBackend(scene, undefined, renderer, undefined, {
+      maxLocalLights: 1,
+    });
+    backend.createLight('fill', { type: 'point', intensity: 2, range: 10 });
+    backend.setTransform('fill', { pos: [0, 0, -5], rot: [0, 0, 0, 1] });
+    backend.createLight('shadow', { type: 'point', intensity: 10, range: 10, castShadow: true });
+    backend.setTransform('shadow', { pos: [0, 0, -5], rot: [0, 0, 0, 1] });
+    backend.updateLiveAnimations(1, 30, camera);
+    const shadow = scene.getObjectByName('shadow$light') as THREE.PointLight;
+    const slot = scene.getObjectByName('molen-point-slot-0') as THREE.PointLight;
+    expect(shadow.visible && shadow.castShadow).toBe(true);
+    expect(slot.intensity).toBe(0);
+    backend.destroyLight('shadow');
+    backend.updateLiveAnimations(2, 30, camera);
+    expect(slot.intensity).toBe(2);
+    backend.dispose();
+  });
+
   it('keeps originals visible until preparation and discards stale prepared batches', async () => {
     const root = new THREE.Group();
     const geometry = new THREE.BoxGeometry(),

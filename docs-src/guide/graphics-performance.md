@@ -41,6 +41,14 @@ sample at 15 Hz and hidden meshes at 5 Hz by default; returning nearby updates i
 Use `animation: false` for full-rate sampling everywhere. Snapshot/capture poses remain exact.
 Finite local lights whose entire influence sphere lies outside the camera frustum are omitted.
 An explicit light-count cap ranks remaining lights by intensity/distance and can change images.
+On WebGPU, capped point lights without shadows use persistent shader slots: moving or turning
+changes each slot's position, color and intensity instead of compiling a new lighting shader
+for every selected combination. Unused slots have zero intensity. Shadow-casting lights and
+spotlights retain their own objects.
+
+Resuming a paused simulation re-anchors the interpolation clock while keeping its pose history.
+Loading screens and paused manual turns therefore do not leave live motion snapping between
+simulation ticks while the clock slowly catches up.
 
 ## Staged preparation and admission
 

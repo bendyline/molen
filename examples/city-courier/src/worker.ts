@@ -4,4 +4,8 @@ import { startKernelWorker } from '@bendyline/molen-kernel';
 import { scene } from './scene';
 
 // The scene's `ambient` block (traffic on the street grid) needs the ambient capability.
-startKernelWorker({ scene: scene(), capabilities: [ambientCapability()] });
+startKernelWorker({
+  scene: scene(),
+  host: { startPaused: true },
+  capabilities: [ambientCapability()],
+});

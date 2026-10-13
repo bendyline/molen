@@ -13,5 +13,6 @@ const world = buildWorld(scene.value, undefined, {
   capabilities: [(w) => ({ figures: figuresScriptApi(installFigures(w)) })],
 });
 new KernelHost(world, self as unknown as MessageLink, {
+  startPaused: true,
   keyframeInterval: scene.value.keyframeInterval,
 });

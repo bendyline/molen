@@ -276,8 +276,28 @@ export class NavigationInputSource {
       this.map.onPress(A.view, () => {
         this.viewPresses++;
       }),
-      this.map.onReset(() => this.pointer.reset()),
+      this.map.onReset(() => {
+        this.pointer.reset();
+        this.interactPresses = 0;
+        this.viewPresses = 0;
+        this.pilotPresses.engine = 0;
+        this.pilotPresses.gear = 0;
+        this.pilotPresses.flaps = 0;
+        this.pilotPresses.recover = 0;
+      }),
     ];
+    this.pointer.setPointerLock(this.profile === 'walk');
+    // A focused canvas does not receive the window's blur when the user changes apps.
+    const document = options.element.ownerDocument;
+    const reset = (): void => this.map.reset();
+    document?.defaultView?.addEventListener('blur', reset);
+    document?.addEventListener?.('visibilitychange', reset);
+    document?.addEventListener?.('pointerlockchange', reset);
+    this.unsubscribe.push(() => {
+      document?.defaultView?.removeEventListener('blur', reset);
+      document?.removeEventListener?.('visibilitychange', reset);
+      document?.removeEventListener?.('pointerlockchange', reset);
+    });
   }
 
   setProfile(profile: NavigationProfileName): void {

@@ -9,6 +9,7 @@ const host = process.env.HOST ?? 'localhost';
 const port = Number(process.env.PORT ?? 5225);
 const exampleNames = [
   'world-explorer',
+  'earth-view',
   'lantern-dungeon',
   'city-courier',
   'skybound',
@@ -44,6 +45,8 @@ const httpServer = createHttpServer((request, response) => {
     response.end('Example not found.');
   });
 });
+// Each Vite application owns an HMR upgrade listener on the shared HTTP server.
+httpServer.setMaxListeners(exampleNames.length + 5);
 
 async function addViteServer(name, root, base, configFile = false) {
   const vite = await createViteServer({
@@ -76,7 +79,9 @@ httpServer.on('error', (error) => {
 });
 
 httpServer.listen(port, host, () => {
-  console.log(`\n  Molen examples  http://${host}:${port}/\n`);
+  const address = httpServer.address();
+  const listeningPort = typeof address === 'object' && address !== null ? address.port : port;
+  console.log(`\n  Molen examples  http://${host}:${listeningPort}/\n`);
 });
 
 async function close() {

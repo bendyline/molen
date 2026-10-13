@@ -8,17 +8,21 @@
       :root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
       html, body { margin: 0; height: 100%; overflow: hidden; background: #9fc4df; }
       #stage { position: relative; width: 100vw; height: 100vh; }
-      #view { display: block; width: 100%; height: 100%; touch-action: none; outline: none; }
+      #view { display: block; width: 100%; height: 100%; touch-action: none; }
+      :focus-visible { outline: 3px solid #1d4f63; outline-offset: 3px; }
+      #view:focus-visible { outline-offset: -4px; }
       #modes {
-        position: absolute; top: 16px; left: 16px; display: flex; gap: 6px;
+        position: absolute; top: 16px; left: 16px; right: 16px; display: flex; flex-wrap: wrap; gap: 6px;
+        margin: 0; padding: 0; border: 0;
       }
-      #modes button {
-        padding: 7px 12px; border: 1px solid rgb(0 0 0 / 20%); border-radius: 6px;
-        background: rgb(255 255 255 / 90%); font: 600 13px/1 inherit; cursor: pointer;
+      button {
+        min-height: 44px; padding: 7px 12px; border: 1px solid rgb(0 0 0 / 20%); border-radius: 6px;
+        background: rgb(255 255 255 / 95%); color: #173141; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
       }
+      button:disabled { cursor: wait; opacity: .6; }
       #modes button[aria-pressed='true'] { background: #1d4f63; color: white; }
       #message {
-        position: absolute; top: 16px; left: 50%; transform: translateX(-50%); margin: 0;
+        position: absolute; bottom: 100px; left: 16px; right: 16px; margin: 0;
         padding: 6px 12px; border-radius: 6px; background: rgb(12 24 35 / 85%); color: white;
         font-size: 13px;
       }
@@ -27,12 +31,21 @@
         background: rgb(255 255 255 / 80%); color: #222; font-size: 11px;
       }
       #credit a { color: inherit; }
+      #help { position: absolute; bottom: 26px; left: 16px; right: 16px; margin: 0; padding: 8px; border-radius: 6px; font-size: 12px; color: white; background: rgb(12 24 35 / 85%); }
+      #retry { position: absolute; top: 130px; left: 16px; }
+      .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+      @media (max-width: 600px) {
+        #credit { font-size: 10px; }
+        #help { bottom: 54px; }
+        #message { bottom: 150px; }
+      }
     </style>
   </head>
   <body>
-    <div id="stage">
-      <canvas id="view" tabindex="0" aria-label="3D view of Sammamish, Washington"></canvas>
-      <div id="modes">
+    <main id="stage">
+      <h1 class="visually-hidden">Earth view</h1>
+      <canvas id="view" tabindex="0" aria-label="3D Earth view" aria-describedby="help"></canvas>
+      <fieldset id="modes" aria-label="Earth view controls" disabled>
         <button type="button" data-mode="orbit" aria-pressed="true">Orbit</button>
         <button type="button" data-mode="walk" aria-pressed="false">Walk</button>
         <button type="button" data-mode="drive" aria-pressed="false">Drive</button>
@@ -40,10 +53,12 @@
         <button type="button" id="seattle">Space Needle</button>
         <button type="button" id="sound" aria-pressed="true" title="Sound (from the molen.sounds pack)">Sound</button>
         <button type="button" id="ambient" aria-pressed="true" title="Traffic, people, trains and aircraft">Traffic</button>
-      </div>
-      <p id="message" hidden></p>
+      </fieldset>
+      <p id="message" role="status">Loading Earth view…</p>
+      <button type="button" id="retry" hidden>Retry loading</button>
+      <p id="help">Drag to look · scroll to zoom · WASD or arrows to move · Q/E altitude in Orbit · Tab to controls</p>
       <p id="credit"></p>
-    </div>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

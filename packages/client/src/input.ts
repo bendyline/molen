@@ -262,7 +262,7 @@ export class InputMap {
     const editable = (ev: unknown): boolean => {
       const element = (ev as { target?: { closest?: (selector: string) => unknown } }).target;
       return !!element?.closest?.(
-        'input, textarea, select, button, [contenteditable]:not([contenteditable="false"]), [data-molen-input-editor]',
+        'input, textarea, select, button, a, summary, [contenteditable]:not([contenteditable="false"]), [data-molen-input-editor]',
       );
     };
     const add = (type: string, fn: (ev: unknown) => void): void => {
@@ -270,7 +270,32 @@ export class InputMap {
       this.listeners.push([type, fn]);
     };
     add('keydown', (ev) => {
-      if (!editable(ev)) this.press((ev as { code: string }).code);
+      const event = ev as {
+        code: string;
+        defaultPrevented?: boolean;
+        isComposing?: boolean;
+        metaKey?: boolean;
+        ctrlKey?: boolean;
+        altKey?: boolean;
+        preventDefault?(): void;
+      };
+      if (editable(ev) || event.defaultPrevented || event.isComposing) return;
+      // Preserve browser/assistive shortcuts while allowing a modifier itself to be bound.
+      if (
+        event.metaKey ||
+        (event.ctrlKey &&
+          !event.code.startsWith('Control') &&
+          resolveAction(this.profile.bindings, 'ControlLeft') === undefined &&
+          resolveAction(this.profile.bindings, 'ControlRight') === undefined) ||
+        (event.altKey &&
+          !event.code.startsWith('Alt') &&
+          resolveAction(this.profile.bindings, 'AltLeft') === undefined &&
+          resolveAction(this.profile.bindings, 'AltRight') === undefined)
+      )
+        return;
+      if (this.accepting && resolveAction(this.profile.bindings, event.code) !== undefined)
+        event.preventDefault?.();
+      this.press(event.code);
     });
     add('keyup', (ev) => this.release((ev as { code: string }).code));
     add('mousedown', (ev) => {

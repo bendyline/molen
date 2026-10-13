@@ -96,6 +96,7 @@ export function createClientCore(opts: ClientCoreOptions): ClientCore {
   let buffer: InterpolationBuffer | undefined;
   let bufferTickRate: number | undefined;
   let awaitingKeyframe = false;
+  let playbackPaused: boolean | undefined;
   const delayTicks = opts.interpolationDelayTicks;
   const nowMs =
     opts.now ??
@@ -252,7 +253,15 @@ export function createClientCore(opts: ClientCoreOptions): ClientCore {
     },
     sendCommand,
     command: (type, payload = {}) => sendCommand(localCommand(seq++, type, payload)),
-    control: (action) => link.postMessage({ type: 'control', control: action }),
+    control: (action) => {
+      // Loading and manual turns can leave the simulation clock seconds behind wall time.
+      // Treat resume as a new clock anchor, not packet jitter for the slow drift filter.
+      if (action.action === 'resume') {
+        if (playbackPaused !== false) buffer?.resumeClock(nowMs());
+        playbackPaused = false;
+      } else if (action.action === 'pause') playbackPaused = true;
+      link.postMessage({ type: 'control', control: action });
+    },
     dispose: () => {
       if (listeningWithEventTarget) {
         link.removeEventListener?.('message', handler);

@@ -12,9 +12,10 @@
         position: fixed; inset: 16px auto auto 16px; width: min(430px, calc(100vw - 32px)); box-sizing: border-box;
         padding: 14px 16px; border: 1px solid rgb(255 255 255 / 25%); border-radius: 12px;
         background: rgb(12 24 35 / 82%); box-shadow: 0 14px 45px rgb(0 0 0 / 25%);
-        backdrop-filter: blur(12px); pointer-events: none;
+        backdrop-filter: blur(12px); pointer-events: auto; overscroll-behavior: contain;
       }
       #hud h1 { margin: 0 0 3px; font: 650 17px/1.2 inherit; letter-spacing: .01em; }
+      #mobile-title { display: none; }
       #source { margin: 0; color: #b9d6e8; font-size: 12px; }
       #source[data-kind="synthetic"] { color: #ffd79d; }
       #location {
@@ -42,6 +43,12 @@
       #weather-controls { margin: 10px 0; padding: 0 0 10px; border: 0; border-bottom: 1px solid rgb(255 255 255 / 12%); pointer-events: auto; }
       #weather-status { margin: 7px 0; color: #9fb8c7; font-size: 11px; }
       #sound-controls { pointer-events: auto; }
+      #sound-controls { margin: 10px 0; padding: 10px 0; border: 0; border-bottom: 1px solid rgb(255 255 255 / 12%); }
+      #sound-status { font-size: 11px; color: #b9d6e8; overflow-wrap: anywhere; }
+      #sound-volume { width: 100%; }
+      #hud-toggle { display: none; }
+      :focus-visible { outline: 3px solid #bde5c8; outline-offset: 3px; }
+      #view:focus-visible { outline-offset: -4px; }
       #hud { max-height: calc(100vh - 60px); overflow-y: auto; }
       #navigation { display: flex; gap: 7px; margin: 10px 0 0; padding: 0; border: 0; pointer-events: auto; }
       #navigation-status { margin: 7px 0 0; color: #bde5c8; font-size: 12px; }
@@ -77,20 +84,31 @@
         pointer-events: auto; user-select: text;
       }
       #credit a { color: #bde5c8; }
+      #help { position: fixed; right: 14px; bottom: 11px; color: #173141; font-size: 12px; }
+      body[data-navigation="walk"] #help { max-width: calc(100vw - 40px); padding: 8px 10px; border-radius: 6px; color: #e6eef2; background: rgba(15, 29, 39, 0.88); }
       /* Below ~700px #hud spans the full width from the top, so the credit moves to the other
          corner rather than sitting on the panel header. It is last among the fixed overlays in
          document order, so wherever a narrow viewport still makes things collide it paints on
          top and stays readable — which is the whole point of it. */
       @media (max-width: 700px) {
-        #credit { top: auto; bottom: 34px; max-width: calc(100vw - 28px); }
+        #mobile-title { display: block; position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+        #hud-toggle { display: block; position: fixed; top: 12px; left: 12px; z-index: 4; min-height: 44px; background: #243746; }
+        #hud { top: 64px; max-height: calc(100dvh - 200px); z-index: 3; background: rgb(12 24 35 / 96%); }
+        #hud:not([data-open]) { display: none; }
+        #hud button, #hud select, #hud summary { min-height: 44px; box-sizing: border-box; }
+        #hud summary { display: flex; align-items: center; }
+        #location { bottom: 142px; max-height: 64px; overflow: auto; font-size: 10px; }
+        #credit { top: auto; bottom: 68px; max-width: calc(100vw - 28px); font-size: 10px; }
+        #help { box-sizing: border-box; left: 14px; max-width: calc(100vw - 28px); margin: 0; padding: 6px 8px; border-radius: 6px; background: rgb(12 24 35 / 90%); color: #deedf6; font-size: 11px; }
       }
-      #help { position: fixed; right: 14px; bottom: 11px; color: #173141; font-size: 12px; }
-      body[data-navigation="walk"] #help { max-width: calc(100vw - 40px); padding: 8px 10px; border-radius: 6px; color: #e6eef2; background: rgba(15, 29, 39, 0.88); }
       #error { color: #ffd1c7; }
     </style>
   </head>
   <body>
-    <canvas id="view" tabindex="0" aria-label="World view"></canvas>
+    <main>
+    <h1 id="mobile-title">World explorer</h1>
+    <canvas id="view" tabindex="0" aria-label="World view" aria-describedby="help"></canvas>
+    <button id="hud-toggle" type="button" aria-controls="hud" aria-expanded="false">Show controls</button>
     <aside id="hud">
       <h1>World explorer</h1>
       <a href="sky.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Sky observatory ↗</a>
@@ -196,6 +214,7 @@
          never leaves a stale credit on a map that has no third-party data in it. Keep it last:
          document order is what keeps it on top of the other overlays on a narrow viewport. -->
     <p id="credit" hidden></p>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

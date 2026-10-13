@@ -879,10 +879,14 @@ async function main(): Promise<void> {
     // exactly the embed/capture path where a hidden credit would be a licence breach. It stays out
     // of the render tests' captures because those all run `?synthetic=1`, and the branch below
     // only shows the credit for real packages.
-    for (const id of ['hud', 'location', 'help']) {
+    for (const id of ['hud', 'hud-toggle', 'location', 'help']) {
       // Null-safe: losing an overlay to a refactor should not take the whole page down with it.
       const overlay = document.getElementById(id);
-      if (overlay !== null) overlay.style.opacity = '0';
+      if (overlay !== null) {
+        overlay.style.opacity = '0';
+        overlay.inert = true;
+        overlay.setAttribute('aria-hidden', 'true');
+      }
     }
   }
   qualitySelect.value = automaticQuality ? 'auto' : quality;
@@ -1277,7 +1281,8 @@ async function main(): Promise<void> {
   window.addEventListener('keydown', (event) => {
     if (
       event.target instanceof HTMLElement &&
-      (event.target.matches('input, select, textarea, button') || event.target.isContentEditable)
+      (event.target.closest('input, select, textarea, button, a, summary') ||
+        event.target.isContentEditable)
     )
       return;
     if (
@@ -1334,8 +1339,7 @@ async function main(): Promise<void> {
     dragPointer = undefined;
   };
   window.addEventListener('blur', clearInput);
-  document.getElementById('sky-controls')?.addEventListener('focusin', clearInput);
-  document.getElementById('weather-controls')?.addEventListener('focusin', clearInput);
+  document.getElementById('hud')?.addEventListener('focusin', clearInput);
   document.addEventListener('visibilitychange', clearInput);
   document.addEventListener('pointerlockchange', clearInput);
   canvas.addEventListener('pointerdown', (event) => {
@@ -1706,7 +1710,7 @@ async function main(): Promise<void> {
         navigation === 'walk' && walker.ready ? vehicles.nearest(camera.pos) : undefined;
       const nearAircraft =
         navigation === 'walk' && walker.ready ? flight.nearest(camera.pos) : undefined;
-      navigationStatus.textContent = flight.mountedKind
+      const navigationText = flight.mountedKind
         ? flight.status()
         : nearAircraft
           ? `E · Board ${content.types.component<AircraftData>(aircraftEntityId(nearAircraft), 'aircraft').spec.label} · I starts the engine`
@@ -1723,6 +1727,8 @@ async function main(): Promise<void> {
                         ? 'Waiting for terrain…'
                         : `Walk mode · ${WALK_EYE_HEIGHT.toFixed(1)}m eye height · ${walker.grounded ? 'On ground' : 'In air'}`
                     : 'Fly mode · Explore from above'));
+      if (navigationStatus.textContent !== navigationText)
+        navigationStatus.textContent = navigationText;
       navigationStatus.dataset.vehicle = vehicles.mountedId ?? '';
       navigationStatus.dataset.speed = (flight.state?.airspeed ?? vehicles.speed).toFixed(3);
       navigationStatus.dataset.aircraft = flight.mountedKind ?? '';
@@ -1856,7 +1862,23 @@ async function main(): Promise<void> {
   requestAnimationFrame(frame);
 }
 
+const hud = document.getElementById('hud') as HTMLElement;
+const hudToggle = document.getElementById('hud-toggle') as HTMLButtonElement;
+const setControlsOpen = (open: boolean): void => {
+  hud.toggleAttribute('data-open', open);
+  hudToggle.setAttribute('aria-expanded', String(open));
+  hudToggle.textContent = open ? 'Hide controls' : 'Show controls';
+};
+hudToggle.addEventListener('click', () => setControlsOpen(!hud.hasAttribute('data-open')));
+hud.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && hud.hasAttribute('data-open')) {
+    setControlsOpen(false);
+    hudToggle.focus();
+  }
+});
+
 void main().catch((error: unknown) => {
+  setControlsOpen(true);
   const source = document.getElementById('source') as HTMLParagraphElement;
   source.id = 'error';
   source.textContent = (error as Error).message;
