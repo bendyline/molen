@@ -1,12 +1,18 @@
 import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
-import type { ModelSignals } from './model-signals';
+import {
+  createModelSignalVisual,
+  type ModelSignals,
+  type ModelSignalVisual,
+} from './model-signals';
 import type { VehicleCameraOptions, VehicleCameraPose } from './vehicle-camera';
 import { createVehicleInteriorVisual, type VehicleInteriorVisual } from './vehicle-interior';
 
 export interface AircraftVisual {
   object: THREE.Object3D;
   interior?: VehicleInteriorVisual;
+  /** The spec's exterior `animation` bindings (gear legs and doors, control surfaces). */
+  animation?: ModelSignalVisual;
   update(
     state: AircraftStateData,
     input: AircraftInputData,
@@ -15,12 +21,21 @@ export interface AircraftVisual {
   ): void;
   dispose(): void;
 }
-/** Takes ownership of a loaded library GLB. The named nodes remain editable in a DCC. */
+/**
+ * Takes ownership of a loaded library GLB. The named nodes remain editable in a DCC.
+ *
+ * The gear and flaps follow `state.gearPosition` and `state.flapPosition` as they travel, or the
+ * selection in `input` when the state has no positions (helicopters, hosts that animate only).
+ */
 export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec): AircraftVisual {
   const interior =
     spec.visual.interior === undefined
       ? undefined
       : createVehicleInteriorVisual(model, spec.visual.interior);
+  const animation =
+    spec.visual.animation === undefined
+      ? undefined
+      : createModelSignalVisual(model, spec.visual.animation);
   const moving = new Map<string, THREE.Object3D[]>();
   model.traverse((o) => {
     o.userData.vehicleGeometry = true;
@@ -38,7 +53,10 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
   return {
     object: model,
     interior,
+    animation,
     update(state, input, altitude, signals) {
+      const gear = state.gearPosition ?? Number(input.gear);
+      const flaps = state.flapPosition ?? Number(input.flaps);
       for (const binding of spec.visual.rotors) {
         const engine = binding.engine === undefined ? undefined : state.engines?.[binding.engine];
         turn(
@@ -48,10 +66,10 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
         );
       }
       for (const name of spec.visual.gearNodes) {
-        for (const node of moving.get(name) ?? []) node.visible = input.gear;
+        for (const node of moving.get(name) ?? []) node.visible = gear > 0;
       }
       for (const binding of spec.visual.flaps) {
-        turn(binding.node, binding.axis, input.flaps ? binding.multiplier : 0);
+        turn(binding.node, binding.axis, flaps * binding.multiplier);
       }
       for (const binding of spec.visual.ailerons) {
         turn(binding.node, binding.axis, input.roll * binding.multiplier);
@@ -67,7 +85,7 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
           input.power * spec.visual.collective.multiplier,
         );
       }
-      interior?.update({
+      const telemetry: ModelSignals = {
         airspeed: state.airspeed,
         altitude,
         altitudeAGL: state.altitudeAGL,
@@ -80,11 +98,16 @@ export function createAircraftVisual(model: THREE.Object3D, spec: AircraftSpec):
         pitchInput: input.pitch,
         rollInput: input.roll,
         yawInput: input.yaw,
-        gear: Number(input.gear),
-        flaps: Number(input.flaps),
+        elevator: state.elevator ?? input.pitch,
+        gear,
+        flaps,
         engine: Number(input.engine),
+        brake: Number(input.brake),
+        grounded: Number(state.grounded),
         ...signals,
-      });
+      };
+      interior?.update(telemetry);
+      animation?.update(telemetry);
     },
     dispose() {
       const geometries = new Set<THREE.BufferGeometry>(),
@@ -129,7 +152,10 @@ export function aircraftCameraPose(
       const offset = position.clone().sub(target).normalize();
       position.copy(target).addScaledVector(offset, Math.max(0.3, hit - 0.3));
     }
-    up = new THREE.Vector3(0, 1, 0);
+    // World up keeps the horizon level in ordinary flight; toward the vertical of a loop it
+    // stops defining a view, so the camera takes the airframe's own up instead.
+    const vertical = THREE.MathUtils.smoothstep(Math.abs(direction.y), 0.7, 0.95);
+    up = new THREE.Vector3(0, 1, 0).lerp(up, vertical).normalize();
   }
   const forward = target.clone().sub(position).normalize();
   const rotation = new THREE.Quaternion().setFromRotationMatrix(

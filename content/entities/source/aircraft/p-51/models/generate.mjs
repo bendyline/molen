@@ -14,11 +14,14 @@
  * the skin so nothing z-fights. Surfaces are lofted from analytic sections with smooth normals and
  * modest segment counts: crisp polygonal silhouettes, clean shading.
  *
- * Bound nodes (entity.types.json `visual`): `propeller` spins about Z; `gear--1`, `gear-1` and
- * `tail-gear` hide when the gear is up; `flap±1` and `aileron±1` rotate about their local X, which a
- * parent `*-hinge` frame aligns with the hinge line; the cockpit nodes come from interior.mjs.
- * `elevator±1` (local X) and `rudder` (local Y) are hinged for future bindings. Generators must stay
- * byte-deterministic: use Math.pow for every exponent other than 2 or 0.5.
+ * Bound nodes (entity.types.json `visual`): `propeller` spins about Z; `flap±1` and `aileron±1`
+ * rotate about their local X, which a parent `*-hinge` frame aligns with the hinge line. The landing
+ * gear is articulated the same way and rests down: each main leg `gear±1` swings about its canted
+ * trunnion, the inner well doors `wheel-door±1` about their inboard edges, `tail-gear` about X, and
+ * the tail wheel doors `tail-door±1` (standing open round the strut) and `tail-bay-door±1` about the
+ * slot's edges. `gear±1-leg` and `tail-gear` hide while the gear is up. `elevator±1` (local X) and
+ * `rudder` (local Y) follow the controls; the cockpit nodes come from interior.mjs. Generators must
+ * stay byte-deterministic: use Math.pow for every exponent other than 2 or 0.5.
  */
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -1127,6 +1130,12 @@ function buildNose(g) {
 }
 
 // ------------------------------------------------------------------------------ landing gear
+// The gear retracts as the real one does: each main leg swings inboard on a canted trunnion and
+// lays its wheel flat in a well in the wing root ahead of the spar; the inner well doors open for
+// the swing and close again behind it, and the strut fairing door rides on the leg to close the
+// strut channel. The tail wheel swings forward into the rear fuselage. The axes and angles were
+// solved against this file's own wing and fuselage so every part ends up inside the skin with a
+// few centimetres to spare; entity.types.json sequences them over the gear position.
 const TYRE = [
   [0.2, -0.07],
   [0.27, -0.094],
@@ -1138,99 +1147,313 @@ const TYRE = [
   [0.27, 0.094],
   [0.2, 0.07],
 ];
-function buildGear(g) {
-  for (const side of [-1, 1]) {
-    const top = [side * 1.93, 1.22, 1.06],
-      axle = [side * 1.93, 0.345, 1.3];
-    const gear = group(g, `gear-${side}`, top);
-    const put = (name, material, geo) => add(gear, name, material, into(gear, geo));
-    const knee = [axle[0], 0.66, lerpY(top[2], axle[2], (1.22 - 0.66) / (1.22 - 0.345))];
-    put('oleo-strut', silver, tubeBetween(top, knee, 0.058, 12));
-    put('oleo-strut', panel, tubeBetween(knee, [axle[0], axle[1] + 0.02, axle[2]], 0.042, 12));
-    put(
-      'oleo-strut',
-      dark,
-      tubeBetween(
-        [knee[0], knee[1] - 0.06, knee[2] + 0.06],
-        [axle[0], 0.44, axle[2] + 0.08],
-        0.016,
-        6,
-      ),
-    );
-    const hubX = side * 1.79;
-    put(
-      'oleo-strut',
-      silver,
-      tubeBetween([axle[0], axle[1], axle[2]], [hubX, axle[1], axle[2]], 0.034, 10),
-    );
-    put(
-      'main-wheel',
-      rubber,
-      wheelGeometry(
-        TYRE.map(([r, w]) => [r, w]),
-        [hubX, axle[1], axle[2]],
-      ),
-    );
-    for (const face of [-1, 1])
-      put(
-        'wheel-hub',
-        panel,
-        wheelGeometry(
-          [
-            [0.2, face * 0.07],
-            [0.13, face * 0.082],
-            [0.05, face * 0.09],
-            [0.001, face * 0.092],
-          ],
-          [hubX, axle[1], axle[2]],
-          20,
-        ),
-      );
-    // Strut door outboard of the leg, covering the oleo.
-    const outline = new T.Shape();
-    const pts = [
-      [0.95, 1.17],
-      [1.2, 1.17],
-      [1.38, 0.66],
-      [1.46, 0.46],
-      [1.4, 0.39],
-      [1.2, 0.4],
-      [1.1, 0.5],
-    ];
-    outline.moveTo(...pts[0]);
-    for (const point of pts.slice(1)) outline.lineTo(...point);
-    outline.closePath();
-    const door = new T.ExtrudeGeometry(outline, {
-      depth: 0.02,
-      bevelEnabled: false,
-      curveSegments: 1,
-    });
-    door.applyMatrix4(new T.Matrix4().makeBasis(vec([0, 0, 1]), vec([0, 1, 0]), vec([-1, 0, 0])));
-    door.translate(side > 0 ? side * 2.02 : side * 2.0, 0, 0);
-    put('gear-door', panel, door);
+// Left-side main gear (mirrored for the right): trunnion pivot, strut end at the axle when down,
+// wheel hub inboard of the strut, trunnion axis (tilted 25° inboard and 20° down from aft) and
+// the swing about it.
+const MAIN_GEAR = {
+  trunnion: [1.93, 1.23, 1.1],
+  axle: [1.93, 0.345, 1.3],
+  hub: 1.83,
+  axis: [Math.tan(25 * DEG), -Math.tan(20 * DEG), -1],
+  swing: Math.PI / 2,
+};
+// The wheel well in plan (x, z) and the strut channel's half width.
+const WELL = { center: [1.122, 0.716], radius: 0.39, channel: 0.12 };
+const TAIL_GEAR = { pivot: [0, 1.54, -4.4], axle: [0, 0.155, -4.63] };
+// Tail wheel slot in the belly: half width and its aft, door-split and forward stations.
+const TAIL_SLOT = { half: 0.085, aft: -4.5, split: -4.2, fore: -2.84 };
+const TAIL_DOOR_OPEN = 1.4;
+
+/** Height of the wing's lower skin at plan point (x, z), from its analytic section. */
+function lowerSkin(x, z) {
+  const st = wingStation(Math.abs(x));
+  const point = wingPoint(1);
+  let lo = 0,
+    hi = 1;
+  for (let i = 0; i < 40; i++) {
+    const mid = (lo + hi) / 2;
+    if (point(st, mid, 0)[2] > z) lo = mid;
+    else hi = mid;
   }
-  // Tail wheel: strut, fork, tyre and its open doors.
-  const pivot = [0, 1.4, -4.42];
+  return point(st, (lo + hi) / 2, -1)[1];
+}
+/** Height of the fuselage's bottom skin at plan point (x, z). */
+function bottomSkin(x, z) {
+  const s = station(z);
+  const f = Math.pow(clamp01(Math.abs(x) / s.hw), s.nB);
+  return s.wy - (s.wy - s.bot) * Math.pow(1 - f, 1 / s.nB);
+}
+/** Plan-view triangles [[x, z] × 3] wound counter-clockwise. */
+function planCCW(tris) {
+  return tris.map(([p, q, r]) =>
+    (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]) >= 0 ? [p, q, r] : [p, r, q],
+  );
+}
+/** One surface over plan triangles, each point placed by `place(x, z)`. */
+function planSurface(tris, place) {
+  const keyed = new Map(),
+    positions = [],
+    indices = [];
+  const at = ([x, z]) => {
+    const key = `${x.toFixed(5)},${z.toFixed(5)}`;
+    if (!keyed.has(key)) {
+      positions.push(...place(x, z));
+      keyed.set(key, positions.length / 3 - 1);
+    }
+    return keyed.get(key);
+  };
+  for (const [p, q, r] of tris) pushTriangle(positions, indices, at(p), at(q), at(r));
+  return geometryOf(positions, indices);
+}
+/**
+ * A door panel under a skin: plan triangles placed by `skin(x, z)`, its outer face `outer`
+ * metres below the skin and its inner face `inner` above it, closed by walls round the edge.
+ */
+function skinPanel(tris, skin, outer = 0.009, inner = 0.003) {
+  const ccw = planCCW(tris);
+  const down = (m) => m.clone().add(new T.Vector3(0, 1, 0));
+  const up = (m) => m.clone().add(new T.Vector3(0, -1, 0));
+  const parts = [
+    orient(
+      planSurface(ccw, (x, z) => [x, skin(x, z) - outer, z]),
+      down,
+    ),
+    orient(
+      planSurface(ccw, (x, z) => [x, skin(x, z) + inner, z]),
+      up,
+    ),
+  ];
+  // Boundary edges belong to one triangle; the plan centroid tells the walls which way is out.
+  const key = (p) => `${p[0].toFixed(5)},${p[1].toFixed(5)}`;
+  const edges = new Map();
+  for (const tri of ccw)
+    for (let i = 0; i < 3; i++) {
+      const a = tri[i],
+        b = tri[(i + 1) % 3];
+      const id = [key(a), key(b)].sort().join('|');
+      edges.set(id, edges.has(id) ? null : [a, b]);
+    }
+  const rim = [...edges.values()].filter(Boolean);
+  const cx = rim.reduce((sum, [a]) => sum + a[0], 0) / rim.length;
+  const cz = rim.reduce((sum, [a]) => sum + a[1], 0) / rim.length;
+  const positions = [],
+    indices = [];
+  for (const [a, b] of rim) {
+    const base = positions.length / 3;
+    for (const [x, z] of [a, b]) positions.push(x, skin(x, z) - outer, z);
+    for (const [x, z] of [b, a]) positions.push(x, skin(x, z) + inner, z);
+    pushTriangle(positions, indices, base, base + 1, base + 2);
+    pushTriangle(positions, indices, base, base + 2, base + 3);
+  }
+  parts.push(orient(geometryOf(positions, indices), (m) => new T.Vector3(cx, m.y, cz)));
+  return parts;
+}
+/** Plan triangles of a polar fan between angles a0..a1 (radians) round `center`. */
+function fan(center, radius, a0, a1, rings = 4, sectors = 20) {
+  const p = (i, k) => {
+    const r = (radius * i) / rings,
+      a = a0 + ((a1 - a0) * k) / sectors;
+    return [center[0] + r * Math.cos(a), center[1] + r * Math.sin(a)];
+  };
+  const tris = [];
+  for (let i = 0; i < rings; i++)
+    for (let k = 0; k < sectors; k++)
+      if (i === 0) tris.push([p(0, 0), p(1, k), p(1, k + 1)]);
+      else
+        tris.push([p(i, k), p(i + 1, k), p(i + 1, k + 1)], [p(i, k), p(i + 1, k + 1), p(i, k + 1)]);
+  return tris;
+}
+/** Plan triangles of a grid over a parallelogram: origin plus i/nu of `u` and k/nv of `v`. */
+function grid(origin, u, v, nu, nv) {
+  const p = (i, k) => [
+    origin[0] + (u[0] * i) / nu + (v[0] * k) / nv,
+    origin[1] + (u[1] * i) / nu + (v[1] * k) / nv,
+  ];
+  const tris = [];
+  for (let i = 0; i < nu; i++)
+    for (let k = 0; k < nv; k++)
+      tris.push([p(i, k), p(i + 1, k), p(i + 1, k + 1)], [p(i, k), p(i + 1, k + 1), p(i, k + 1)]);
+  return tris;
+}
+/** Rotation by `angle` about the unit `axis` through `pivot`. */
+function turnAbout(pivot, axis, angle) {
+  const to = new T.Matrix4().makeTranslation(...pivot);
+  const back = new T.Matrix4().makeTranslation(-pivot[0], -pivot[1], -pivot[2]);
+  return to.multiply(new T.Matrix4().makeRotationAxis(vec(axis), angle)).multiply(back);
+}
+function buildMainGear(g, side) {
+  const m = (p) => [side * p[0], p[1], p[2]];
+  const top = m(MAIN_GEAR.trunnion),
+    axle = m(MAIN_GEAR.axle);
+  // Mirroring flips an axis of rotation's handedness: negate it in the mirror, then reflect.
+  const base = vec(MAIN_GEAR.axis).normalize();
+  const axis = side > 0 ? base : new T.Vector3(base.x, -base.y, -base.z);
+  const frame = hinge(g, `gear-${side}-hinge`, top, vec(top).add(axis).toArray());
+  const gear = group(frame, `gear-${side}`);
+  const leg = group(gear, `gear-${side}-leg`);
+  const put = (parent, name, material, geo) => add(parent, name, material, into(frame, geo));
+
+  const knee = [axle[0], 0.66, lerpY(top[2], axle[2], (top[1] - 0.66) / (top[1] - axle[1]))];
+  put(leg, 'oleo-strut', silver, tubeBetween(top, knee, 0.058, 12));
+  put(leg, 'oleo-strut', panel, tubeBetween(knee, [axle[0], axle[1] + 0.02, axle[2]], 0.042, 12));
+  put(
+    leg,
+    'oleo-strut',
+    dark,
+    tubeBetween(
+      [knee[0], knee[1] - 0.06, knee[2] + 0.06],
+      [axle[0], 0.44, axle[2] + 0.08],
+      0.016,
+      6,
+    ),
+  );
+  const hubX = side * MAIN_GEAR.hub;
+  put(leg, 'oleo-strut', silver, tubeBetween(axle, [hubX, axle[1], axle[2]], 0.034, 10));
+  put(leg, 'main-wheel', rubber, wheelGeometry(TYRE, [hubX, axle[1], axle[2]]));
+  for (const face of [-1, 1])
+    put(
+      leg,
+      'wheel-hub',
+      panel,
+      wheelGeometry(
+        [
+          [0.2, face * 0.07],
+          [0.13, face * 0.082],
+          [0.05, face * 0.09],
+          [0.001, face * 0.092],
+        ],
+        [hubX, axle[1], axle[2]],
+        20,
+      ),
+    );
+
+  // The strut channel runs in plan from the trunnion toward where the retracted strut ends.
+  const retract = turnAbout(top, axis.toArray(), MAIN_GEAR.swing);
+  const end = vec(axle).applyMatrix4(retract);
+  const dir = [end.x - top[0], end.z - top[2]];
+  const length = Math.hypot(...dir);
+  dir[0] /= length;
+  dir[1] /= length;
+  const across = [-dir[1], dir[0]];
+  const well = [side * WELL.center[0], WELL.center[1]];
+  // Distance along the channel at which it enters the wheel well.
+  const ox = top[0] - well[0],
+    oz = top[2] - well[1];
+  const b = ox * dir[0] + oz * dir[1];
+  const entry = -b - Math.sqrt(b * b - (ox * ox + oz * oz - WELL.radius * WELL.radius));
+  const channel = (from, to, half) =>
+    grid(
+      [top[0] + dir[0] * from - across[0] * half, top[2] + dir[1] * from - across[1] * half],
+      [dir[0] * (to - from), dir[1] * (to - from)],
+      [across[0] * 2 * half, across[1] * 2 * half],
+      8,
+      2,
+    );
+  // Fairing door: shaped flush with the lower skin over the channel when retracted, then turned
+  // back down with the leg (the master's rest pose is gear down).
+  const lower = retract.clone().invert();
+  for (const geo of skinPanel(channel(-0.13, entry - 0.01, WELL.channel), lowerSkin))
+    put(gear, 'gear-door', lacquer, geo.applyMatrix4(lower));
+
+  // The well and channel openings, as a dark lining just under the skin.
+  const opening = [
+    ...fan(well, WELL.radius - 0.005, 0, Math.PI * 2, 4, 36),
+    ...channel(-0.12, entry + 0.01, WELL.channel - 0.005),
+  ];
+  add(
+    g,
+    'wheel-well',
+    dark,
+    orient(
+      planSurface(planCCW(opening), (x, z) => [x, lowerSkin(x, z) - 0.002, z]),
+      (p) => p.clone().add(new T.Vector3(0, 1, 0)),
+    ),
+  );
+
+  // Inner well door: D-shaped, hinged along its inboard edge, swinging down to hang vertical.
+  const r = WELL.radius,
+    hingeX = side * (WELL.center[0] - r),
+    front = well[1] + r,
+    back = well[1] - r;
+  const doorPlan = [
+    ...grid([hingeX, back], [well[0] - hingeX, 0], [0, 2 * r], 3, 8),
+    ...fan(
+      well,
+      r,
+      side > 0 ? -Math.PI / 2 : Math.PI / 2,
+      side > 0 ? Math.PI / 2 : 1.5 * Math.PI,
+      4,
+      20,
+    ),
+  ];
+  const ends = side > 0 ? [front, back] : [back, front];
+  const doorFrame = hinge(
+    g,
+    `wheel-door-${side}-hinge`,
+    [hingeX, lowerSkin(hingeX, ends[0]) - 0.003, ends[0]],
+    [hingeX, lowerSkin(hingeX, ends[1]) - 0.003, ends[1]],
+  );
+  const door = group(doorFrame, `wheel-door-${side}`);
+  for (const geo of skinPanel(doorPlan, lowerSkin))
+    add(door, 'wheel-door', lacquer, into(doorFrame, geo));
+}
+function buildTailGear(g) {
+  const { pivot, axle } = TAIL_GEAR;
   const tail = group(g, 'tail-gear', pivot);
   const put = (name, material, geo) => add(tail, name, material, into(tail, geo));
-  put('tail-strut', silver, tubeBetween([0, 1.46, -4.4], [0, 0.37, -4.48], 0.034, 10));
+  put('tail-strut', silver, tubeBetween(pivot, [0, 0.37, -4.48], 0.034, 10));
   for (const x of [-0.06, 0.06])
-    put('tail-strut', silver, tubeBetween([x, 0.4, -4.49], [x, 0.155, -4.63], 0.016, 6));
+    put('tail-strut', silver, tubeBetween([x, 0.4, -4.49], [x, axle[1], axle[2]], 0.016, 6));
   put('tail-strut', silver, tubeBetween([-0.07, 0.4, -4.49], [0.07, 0.4, -4.49], 0.02, 6));
   put(
     'tail-wheel',
     rubber,
     wheelGeometry(
       TYRE.map(([r, w]) => [r * 0.45, w * 0.5]),
-      [0, 0.155, -4.63],
+      axle,
       20,
     ),
   );
-  for (const x of [-0.085, 0.085]) {
-    const door = new T.BoxGeometry(0.008, 0.22, 0.3);
-    door.rotateZ(x > 0 ? -0.18 : 0.18);
-    put('tail-gear-door', panel, door.translate(x, 1.3, -4.44));
-  }
+  // Slot lining, and two pairs of doors hinged on its edges: the aft pair stands open round the
+  // strut while the gear is down; the forward pair opens only while the wheel swings through.
+  const { half, aft, split, fore } = TAIL_SLOT;
+  add(
+    g,
+    'tail-wheel-well',
+    dark,
+    orient(
+      planSurface(
+        planCCW(
+          grid([-half + 0.005, aft + 0.01], [2 * half - 0.01, 0], [0, fore - aft - 0.02], 4, 16),
+        ),
+        (x, z) => [x, bottomSkin(x, z) - 0.002, z],
+      ),
+      (p) => p.clone().add(new T.Vector3(0, 1, 0)),
+    ),
+  );
+  for (const side of [-1, 1])
+    for (const [name, z0, z1, open] of [
+      [`tail-door-${side}`, aft, split, TAIL_DOOR_OPEN],
+      [`tail-bay-door-${side}`, split, fore, 0],
+    ]) {
+      const x = side * half;
+      const ends = side > 0 ? [z0, z1] : [z1, z0];
+      const frame = hinge(
+        g,
+        `${name}-hinge`,
+        [x, bottomSkin(x, ends[0]) - 0.003, ends[0]],
+        [x, bottomSkin(x, ends[1]) - 0.003, ends[1]],
+      );
+      const door = group(frame, name);
+      const plan = grid([0, z0], [x, 0], [0, z1 - z0], 2, Math.max(2, Math.round((z1 - z0) / 0.1)));
+      for (const geo of skinPanel(plan, bottomSkin))
+        add(door, 'tail-wheel-door', panel, into(frame, geo));
+      door.rotation.x = open;
+    }
+}
+function buildGear(g) {
+  for (const side of [-1, 1]) buildMainGear(g, side);
+  buildTailGear(g);
 }
 
 // ------------------------------------------------------------------------------ markings

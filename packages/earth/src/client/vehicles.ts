@@ -526,6 +526,8 @@ export class EarthVehicles {
         roll: state.roll,
         throttle: input?.throttle,
         brake: Number(input?.brake ?? false),
+        bodyRoll: state.bodyRoll,
+        bodyPitch: state.bodyPitch,
         ...readModelSignals(this.world.get(id, Vehicle)?.visual.interior?.sources, (name) =>
           this.world.get(id, { name }),
         ),

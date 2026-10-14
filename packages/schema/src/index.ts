@@ -90,7 +90,7 @@ export { blockingIssues, formatIssues, noticeIssues } from './issues';
 export type { JsonObject, JsonPrimitive, JsonValue } from './json';
 export { deepMergeJson } from './merge';
 export type { ModelSignalBinding, ModelSignalSource, ModelSignalSpec } from './model-signals';
-export { modelSignalsSchema } from './model-signals';
+export { modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
 export type {
   PackBlock,
   PackEntry,

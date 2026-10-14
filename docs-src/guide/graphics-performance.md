@@ -134,9 +134,14 @@ and cell-preparation timings are reported separately. Compatible opaque groups a
 by the resolved Three material, including groups with different authored references that resolve
 to the same material. Transparent group order is preserved.
 
-World prop cells start at 512 metres and grow with coarser terrain levels, capped at 8192 metres.
-This retains fine nearby culling without creating thousands of tiny distant batches. Every prop
-placement remains intact; larger cells trade some culling precision for fewer submissions.
+World props (trees, ground cover, rocks, rooftop and street props) keep one batch per model per
+terrain tile: the tile is already the culling unit. On WebGPU, three.js builds a separate shader
+for every `InstancedMesh`, about 6 ms on the main thread even when the material and geometry are
+shared, so splitting each tile into culling cells multiplied that cost by cells times LOD levels
+and starved terrain publication during fast flight. Every prop placement remains intact; whole-tile
+batches trade some culling precision (more instanced triangles drawn) for far fewer shader builds
+and draw submissions. `createInstancedPlacementLod` still accepts a finite `cellSize` for callers
+that want spatial cells.
 
 Terrain palettes compile once per mesh. Terrain index topology is immutable and shared in a
 bounded CPU cache; use a copy before editing or transferring it. Grids and building cells use

@@ -20,6 +20,7 @@ import {
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
   installAircraft,
+  levelFlightAngleOfAttack,
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
@@ -31,7 +32,13 @@ import {
   vehicleLocalPoint,
   vehicleRotation,
 } from '@bendyline/molen-kernel/vehicles';
-import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
+import {
+  sampleAtmosphere,
+  Transform,
+  type TransformData,
+  type World,
+  weatherOf,
+} from '@bendyline/molen-kernel/world';
 import type {
   AircraftData,
   AircraftInputData,
@@ -93,13 +100,23 @@ export interface EarthFlightStatus {
   heading: number;
   pitch: number;
   roll: number;
+  /** Load along the airframe's up axis in g: 1 in level flight, more in a pull. */
+  loadFactor: number;
+  /** Sideslip in radians, positive with the relative wind from the left (the slip ball). */
+  sideslip: number;
   /** Throttle (airplane) or collective (helicopter), 0..1. */
   power: number;
   engine: boolean;
   /** Maximum engine RPM, 0..1. */
   rpm: number;
+  /** The gear selection; `gearPosition` is where the gear actually is. */
   gearDown: boolean;
+  /** The flap selection; `flapPosition` is where the flaps actually are. */
   flaps: boolean;
+  /** Landing gear 0 up and locked … 1 down and locked; between them it is in transit. */
+  gearPosition: number;
+  /** Flap travel, 0 up … 1 fully down. */
+  flapPosition: number;
   stalled: boolean;
   grounded: boolean;
   crashed: boolean;
@@ -417,11 +434,15 @@ export class EarthAircraft {
       heading: (((Math.PI - state.yaw) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI),
       pitch: state.pitch,
       roll: state.roll,
+      loadFactor: state.loadFactor ?? (state.grounded ? 0 : 1),
+      sideslip: state.sideslip ?? 0,
       power: this.controls.power,
       engine: this.controls.engine,
       rpm: state.rpm,
       gearDown: this.controls.gear,
       flaps: this.controls.flaps,
+      gearPosition: state.gearPosition ?? Number(this.controls.gear),
+      flapPosition: state.flapPosition ?? Number(this.controls.flaps),
       stalled: state.stalled,
       grounded: state.grounded,
       crashed: state.crashed,
@@ -441,12 +462,20 @@ export class EarthAircraft {
     const speed = airborne.speed ?? (airplane ? 70 : 12);
     const t = this.world.get(id, Transform);
     const ground = t ? this.sampleHeight(t.pos[0], t.pos[2]) : undefined;
+    const altitude = t?.pos[1] ?? 0;
+    const weather = weatherOf(this.world);
+    const density = weather
+      ? sampleAtmosphere(weather, altitude).densityKgM3
+      : 1.225 * Math.exp(-Math.max(0, altitude) / 8500);
+    // Trimmed at the angle of attack that carries the weight, so it holds level flight hands-off;
+    // helicopters hover level.
+    const trim = airplane ? levelFlightAngleOfAttack(spec, speed, density) : 0;
     const state: AircraftStateData = {
       ...initialAircraftState(yaw),
       velocity: [Math.sin(yaw) * speed, 0, Math.cos(yaw) * speed],
       airspeed: speed,
-      // A few degrees of nose-up trim holds level flight at cruise; helicopters hover level.
-      pitch: airplane ? 0.04 : 0,
+      pitch: trim,
+      ...(airplane ? { pitchTrim: trim } : {}),
       rpm: 1,
       grounded: false,
       altitudeAGL: t !== undefined && ground !== undefined ? t.pos[1] - ground : 0,

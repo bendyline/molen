@@ -27,6 +27,7 @@ import {
   type EarthAudio,
   EarthVehicles,
   type EarthWorldgen,
+  earthMemoryBudget,
   earthPerformanceTier,
   earthPixelRatio,
   earthQualityLevel,
@@ -659,6 +660,7 @@ async function main(): Promise<void> {
     !params.has('level') && (!params.has('quality') || params.get('quality') === 'auto');
   let performanceLevel = automaticQuality ? 3 : earthQualityLevel(quality);
   const qualityController = new AdaptiveQualityController({ initialLevel: performanceLevel });
+  const memoryBudget = earthMemoryBudget();
   const lodPolicy: ScreenSpaceLodPolicy = {
     viewportHeight: window.innerHeight,
     maxPixelError: automaticQuality ? earthPerformanceTier(performanceLevel).objectPixelError : 2,
@@ -1320,7 +1322,7 @@ async function main(): Promise<void> {
           vehicles.lookPitch = -0.18;
           help.textContent = flight.mountedKind
             ? AIRCRAFT_HELP
-            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · E exit · V change view · drag to look';
+            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
         }
       }
       if (event.code === 'KeyL' && !event.repeat && ambient !== undefined) {
@@ -1429,7 +1431,9 @@ async function main(): Promise<void> {
         cpuFrameMs: previousCpuMs,
         ...(completedGpuMs === undefined ? {} : { gpuFrameMs: completedGpuMs }),
         // Warm, hidden cache entries can be reclaimed; they must not prevent quality recovery.
-        memoryPressure: pressure?.displayedByteRatio ?? 0,
+        // Measured against the fixed device budget, as EarthView does: each level's own byte
+        // cap is smaller, so a dense city's buildings cascaded every step down to Low.
+        memoryPressure: (pressure?.displayedBytes ?? 0) / memoryBudget,
       });
       if (change) {
         performanceLevel = change.level;
@@ -1483,6 +1487,7 @@ async function main(): Promise<void> {
       throttle: Number(keys.has('KeyW')) - Number(keys.has('KeyS')),
       steering: Number(keys.has('KeyD')) - Number(keys.has('KeyA')),
       brake: keys.has('Space') || document.hidden || !document.hasFocus(),
+      handbrake: keys.has('ShiftLeft') || keys.has('ShiftRight'),
     });
     flight.render();
     surfaceRenderer.updateSignals(

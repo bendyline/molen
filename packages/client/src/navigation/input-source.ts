@@ -90,8 +90,8 @@ const STICKS: NonNullable<InputProfile['axes']> = [
 
 /**
  * Default key/gamepad bindings per navigation mode. Orbit and fly use Q/E for down/up; walk and
- * drive use E to interact (board or leave a vehicle), Space to jump or brake, and V to switch
- * the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
+ * drive use E to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
+ * or pull the handbrake, and V to switch the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
  * bank, Q/Z work the rudder or pedals, Shift/Ctrl (or +/−, Page Up/Down) set throttle or
  * collective, I toggles the engine, G the gear, F the flaps, R recovers after an impact, Space
  * brakes, V switches the view and E leaves. Hosts may replace any profile through

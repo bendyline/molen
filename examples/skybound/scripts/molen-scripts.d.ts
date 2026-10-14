@@ -26,6 +26,8 @@ type MolenAircraftData = {
       propellerEfficiency?: number;
       maxThrust?: number;
       minPropellerSpeed?: number;
+      propellerRotation?: 'clockwise' | 'counterclockwise';
+      propellerInertia?: number;
     };
     engines?: {
       position: [number, number, number];
@@ -37,6 +39,8 @@ type MolenAircraftData = {
       propellerEfficiency?: number;
       maxThrust?: number;
       minPropellerSpeed?: number;
+      propellerRotation?: 'clockwise' | 'counterclockwise';
+      propellerInertia?: number;
       id: string;
     }[];
     airplane?: {
@@ -51,19 +55,25 @@ type MolenAircraftData = {
       rollResponse: number;
       rudderAuthority: number;
       groundSteerSpeed: number;
-      coordinatedTurnMinSpeed: number;
       groundLevelRate: number;
-      maxPitch: number;
       maxGroundPitch: number;
-      maxRoll: number;
       camberAngle: number;
       flapLift: number;
       postStallFlapEffect: number;
       stallAngle: number;
       stallTransitionAngle?: number;
-      yawStability?: number;
+      pitchFrequency?: number;
+      pitchDamping?: number;
+      maxLoadFactor?: number;
+      minLoadFactor?: number;
+      autoTrim?: number;
+      directionalStability?: number;
+      yawDamping?: number;
+      dihedralEffect?: number;
+      rollInertia?: number;
+      pitchInertia?: number;
       yawInertia?: number;
-      thrustYawDamping?: number;
+      propellerEffects?: number;
       stallSpeed: number;
       liftSlope: number;
       postStallLift: number;
@@ -72,6 +82,8 @@ type MolenAircraftData = {
       inducedDrag: number;
       gearDrag: number;
       flapDrag: number;
+      gearTransitTime?: number;
+      flapTransitTime?: number;
       stallDrag: number;
       propellerEfficiency: number;
       maxThrust: number;
@@ -144,8 +156,28 @@ type MolenAircraftData = {
           source: string;
           property: 'rotation' | 'position';
           axis: 'x' | 'y' | 'z';
-          scale: number;
+          scale?: number;
           offset?: number;
+          keys?: [number, number][];
+          ease?: 'linear' | 'smooth';
+          min?: number;
+          max?: number;
+        }[];
+      };
+      animation?: {
+        sources?: Record<string, {
+            component: string;
+            path: (string | number)[];
+          }>;
+        bindings: {
+          node: string;
+          source: string;
+          property: 'rotation' | 'position';
+          axis: 'x' | 'y' | 'z';
+          scale?: number;
+          offset?: number;
+          keys?: [number, number][];
+          ease?: 'linear' | 'smooth';
           min?: number;
           max?: number;
         }[];
@@ -176,7 +208,13 @@ type MolenAircraftStateData = {
   roll: number;
   pitchRate: number;
   rollRate: number;
-  thrustYawRate?: number;
+  yawRate?: number;
+  elevator?: number;
+  gearPosition?: number;
+  flapPosition?: number;
+  pitchTrim?: number;
+  sideslip?: number;
+  loadFactor?: number;
   engines?: Record<string, {
       rpm: number;
       rotorAngle: number;
@@ -726,8 +764,10 @@ type MolenModel_signalsData = {
     source: string;
     property: 'rotation' | 'position';
     axis: 'x' | 'y' | 'z';
-    scale: number;
+    scale?: number;
     offset?: number;
+    keys?: [number, number][];
+    ease?: 'linear' | 'smooth';
     min?: number;
     max?: number;
   }[];
@@ -906,6 +946,14 @@ type MolenVehicleData = {
     supportTolerance: number;
     maxStepHeight: number;
     maxSlope: number;
+    drive?: 'front' | 'rear' | 'all';
+    corneringStiffness?: number;
+    brakeBias?: number;
+    yawInertia?: number;
+    rollStiffness?: number;
+    pitchStiffness?: number;
+    suspensionFrequency?: number;
+    suspensionDamping?: number;
   };
   visual: {
     wheelNodes: string[];
@@ -923,19 +971,40 @@ type MolenVehicleData = {
         source: string;
         property: 'rotation' | 'position';
         axis: 'x' | 'y' | 'z';
-        scale: number;
+        scale?: number;
         offset?: number;
+        keys?: [number, number][];
+        ease?: 'linear' | 'smooth';
+        min?: number;
+        max?: number;
+      }[];
+    };
+    animation?: {
+      sources?: Record<string, {
+          component: string;
+          path: (string | number)[];
+        }>;
+      bindings: {
+        node: string;
+        source: string;
+        property: 'rotation' | 'position';
+        axis: 'x' | 'y' | 'z';
+        scale?: number;
+        offset?: number;
+        keys?: [number, number][];
+        ease?: 'linear' | 'smooth';
         min?: number;
         max?: number;
       }[];
     };
   };
 };
-/** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), brake/handbrake. */
+/** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. */
 type MolenVehicleInputData = {
   throttle: number;
   steering: number;
   brake: boolean;
+  handbrake?: boolean;
 };
 /** Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. */
 type MolenVehicleStateData = {
@@ -948,6 +1017,13 @@ type MolenVehicleStateData = {
   grounded: boolean;
   waitingForTerrain: boolean;
   wheelAngle: number;
+  lateralSpeed?: number;
+  yawRate?: number;
+  bodyPitch?: number;
+  bodyPitchRate?: number;
+  bodyRoll?: number;
+  bodyRollRate?: number;
+  skid?: number;
 };
 /** Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). */
 type MolenVelocityData = {
@@ -975,6 +1051,13 @@ type MolenWeatherData = {
   precipitation?: {
     kind?: 'none' | 'rain' | 'snow';
     intensity?: number;
+  };
+  wind?: {
+    referenceHeight?: number;
+    shear?: number;
+    turbulence?: number;
+    gusts?: number;
+    terrain?: number;
   };
   seed?: number;
 };
@@ -1097,7 +1180,7 @@ interface MolenComponentData {
   'tween': MolenTweenData;
   /** External wheeled-vehicle instance: stable id, paint, complete physics tuning, and GLB bindings. */
   'vehicle': MolenVehicleData;
-  /** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), brake/handbrake. */
+  /** Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. */
   'vehicleInput': MolenVehicleInputData;
   /** Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. */
   'vehicleState': MolenVehicleStateData;

@@ -125,6 +125,66 @@ describe('building generation', () => {
     expect(recipeA.parts.wall.color).not.toEqual(recipeB.parts.wall.color);
   });
 
+  it('tints a material choice with its own palette', () => {
+    const style = structuredClone(house);
+    style.materials.wall = {
+      ...style.materials.wall,
+      choices: [{ ref: 'palette:#ffffff', weight: 1, palette: 'brick' }],
+    };
+    style.palettes.brick = {
+      entries: [{ color: '#a04030', weight: 1 }],
+      jitter: { hue: 0, saturation: 0, lightness: 0 },
+    };
+    const outline = SHAPES.box as Vec2[];
+    const recipe = resolveBuildingRecipe(
+      style,
+      identity,
+      { identity: 'x', labels: ['house'], outline },
+      analyzeFootprint(outline),
+      0,
+    );
+    const [r, g, b] = recipe.parts.wall.color;
+    expect(r).toBeCloseTo(0xa0 / 255, 5);
+    expect(g).toBeCloseTo(0x40 / 255, 5);
+    expect(b).toBeCloseTo(0x30 / 255, 5);
+  });
+
+  it('uses the flat-roof material only where the style resolves a flat roof', () => {
+    const style = structuredClone(house);
+    style.roof.choices = style.roof.choices.filter((choice) => choice.type !== 'flat');
+    style.materials.flatRoof = {
+      ...style.materials.roof,
+      choices: [{ ref: 'palette:#ffffff', weight: 1 }],
+      palette: 'flatRoof',
+    };
+    style.palettes.flatRoof = {
+      entries: [{ color: '#c8c5bd', weight: 1 }],
+      jitter: { hue: 0, saturation: 0, lightness: 0 },
+    };
+    const recipeFor = (outline: Vec2[]) =>
+      resolveBuildingRecipe(
+        style,
+        identity,
+        { identity: 'x', labels: ['house'], outline },
+        analyzeFootprint(outline),
+        0,
+      );
+    // Wider than the style's 14 m wing span, so the roof falls back to flat.
+    const wide = recipeFor(
+      ring([
+        [0, 0],
+        [30, 0],
+        [30, 24],
+        [0, 24],
+      ]),
+    );
+    expect(wide.roof.type).toBe('flat');
+    expect(wide.parts.roof.color[0]).toBeCloseTo(0xc8 / 255, 5);
+    const pitched = recipeFor(SHAPES.box as Vec2[]);
+    expect(pitched.roof.type).not.toBe('flat');
+    expect(pitched.parts.roof.color[0]).toBeLessThan(0.5);
+  });
+
   it('uses source height and levels before the fallback', () => {
     const analysis = analyzeFootprint(SHAPES.box as Vec2[]);
     const withHeight = resolveBuildingRecipe(

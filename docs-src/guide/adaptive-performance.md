@@ -48,8 +48,11 @@ look: the palette, light rig and styles are the same in every tier (see the
 Resident byte estimates count retained height arrays, geometry attributes/indices and instance
 buffers, deduplicating shared backing storage within each object. They exclude textures, archive
 caches and GPU copies, so they are not total device memory measurements. The resident cap is soft:
-visible ground remains until a replacement is loaded. The controller uses `displayedByteRatio`
-for feedback so a full, reclaimable warm cache does not prevent recovery. Total resident bytes
+visible ground remains until a replacement is loaded. The explorer feeds the controller displayed
+bytes over the fixed device budget (`earthMemoryBudget()`, as Earth view does), so a full,
+reclaimable warm cache does not prevent recovery. It does not measure them against the tier's own
+resident cap: each step down shrinks that cap, so a dense city's buildings would cascade every
+step to the lowest tier while the view stayed the same. Total resident bytes
 still control eviction. After asynchronous surface replacements settle, `refreshMemoryUsage()`
 updates the cached estimates. Existing surface grids keep their resolution
 to preserve drape alignment; newly admitted terrain uses the current cap.

@@ -1686,6 +1686,8 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         throttle: frameInput.move.forward,
         steering: frameInput.move.right,
         brake: frameInput.jump || holding,
+        // Sprint (Shift) doubles as the handbrake while driving.
+        handbrake: frameInput.sprint,
       });
       if (frameInput.interact > 0 && setMode('walk')) return walkFrame(0, frameInput, current);
       const view = vehicles.cameraPose();

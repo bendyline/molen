@@ -1,4 +1,5 @@
 import type { JsonObject } from './json';
+import type { ModelSignalSpec } from './model-signals';
 import type { VehicleInteriorSpec } from './vehicle-interior';
 
 /** Stable external entity/type id for an aircraft. */
@@ -16,6 +17,10 @@ export interface AircraftEngineSpec extends JsonObject {
   propellerEfficiency?: number;
   maxThrust?: number;
   minPropellerSpeed?: number;
+  /** Turning direction seen from the cockpit; default clockwise (the nose swings left). */
+  propellerRotation?: 'clockwise' | 'counterclockwise';
+  /** Propeller polar moment of inertia in kg m², for gyroscopic precession; default 0. */
+  propellerInertia?: number;
 }
 
 /** A named installation in an airplane's engine bank. Positions use aircraft-local meters. */
@@ -42,32 +47,55 @@ export interface AircraftEngineStateData extends JsonObject {
 export interface AirplanePhysicsSpec extends JsonObject {
   wingPosition: [number, number, number];
   wingArea: number;
+  /** Reference equivalent airspeed in m/s for the control and stability rates below. */
   controlAuthoritySpeed: number;
+  /** Cap on control-surface power relative to the reference speed. */
   maxControlAuthority: number;
+  /** Angle of attack in radians that full elevator adds to the trim angle. */
   pitchAuthority: number;
+  /** Elevator travel per second, in full deflections. */
   pitchResponse: number;
+  /** Nose-down pitch rate in rad/s at full flow separation (the stall break). */
   stallPitchRate: number;
+  /** Roll rate in rad/s at full aileron and reference speed; grows with speed to the cap. */
   rollAuthority: number;
+  /** Roll damping in 1/s at reference speed; grows with speed. */
   rollResponse: number;
+  /** Yaw acceleration in rad/s² at full rudder and reference speed; propwash keeps some at rest. */
   rudderAuthority: number;
   groundSteerSpeed: number;
-  coordinatedTurnMinSpeed: number;
   groundLevelRate: number;
-  maxPitch: number;
   maxGroundPitch: number;
-  maxRoll: number;
   camberAngle: number;
   flapLift: number;
   postStallFlapEffect: number;
   stallAngle: number;
   /** Radians beyond stallAngle over which flow separates smoothly; default 0.12. */
   stallTransitionAngle?: number;
-  /** Sideslip restoring yaw rate per radian at reference airspeed (1/s); default 1. */
-  yawStability?: number;
+  /** Short-period natural frequency in rad/s at reference speed; default 3.5. */
+  pitchFrequency?: number;
+  /** Short-period damping ratio; default 0.7. */
+  pitchDamping?: number;
+  /** Positive load-factor limit in g that full back stick will pull; default 6. */
+  maxLoadFactor?: number;
+  /** Negative load-factor limit in g that full forward stick will push; default -3. */
+  minLoadFactor?: number;
+  /** Rate in 1/s at which trim follows the angle of attack that holds the flight path; default 1. */
+  autoTrim?: number;
+  /** Weathercock stiffness: yaw acceleration in rad/s² per radian of sideslip at reference speed; default 4. */
+  directionalStability?: number;
+  /** Yaw damping in 1/s at reference speed; default 1.2. */
+  yawDamping?: number;
+  /** Roll acceleration in rad/s² per radian of sideslip at reference speed; default 3. */
+  dihedralEffect?: number;
+  /** Roll moment of inertia in kg m²; defaults to mass * (0.14 span)². */
+  rollInertia?: number;
+  /** Pitch moment of inertia in kg m²; defaults to mass * (0.18 length)². */
+  pitchInertia?: number;
   /** Yaw moment of inertia in kg m²; defaults to mass * (span² + length²) / 12. */
   yawInertia?: number;
-  /** Damping of thrust-induced yaw rate in 1/s at reference airspeed; default 1.2. */
-  thrustYawDamping?: number;
+  /** Scale 0–1 of propeller torque, P-factor, slipstream and gyroscopic effects; default 0. */
+  propellerEffects?: number;
   /** Legacy tuning reference in m/s; stall detection uses angle of attack. */
   stallSpeed: number;
   liftSlope: number;
@@ -75,8 +103,17 @@ export interface AirplanePhysicsSpec extends JsonObject {
   postStallDecay: number;
   profileDrag: number;
   inducedDrag: number;
+  /** Drag coefficient of the landing gear fully down; scales with the gear position. */
   gearDrag: number;
+  /** Drag coefficient of the flaps fully down; scales with the flap position. */
   flapDrag: number;
+  /**
+   * Seconds for a full landing-gear cycle, doors included, either way; default 0 (instant). The
+   * gear holds still while the wheels carry weight, and only a locked-down gear can land.
+   */
+  gearTransitTime?: number;
+  /** Seconds for the flaps to travel fully up to fully down; default 0 (instant). */
+  flapTransitTime?: number;
   /** Broadside separated-flow drag coefficient, blended by separation and sin(alpha)^2. */
   stallDrag: number;
   propellerEfficiency: number;
@@ -85,6 +122,7 @@ export interface AirplanePhysicsSpec extends JsonObject {
   lateralDamping: number;
   brakeDeceleration: number;
   rollingDeceleration: number;
+  /** Tire side grip: lateral deceleration in m/s² and yaw grip in 1/s with full weight on the wheels. */
   groundTrackRate: number;
 }
 
@@ -120,7 +158,9 @@ export interface AircraftRotorBinding extends AircraftVisualBinding {
 
 export interface AircraftVisualSpec extends JsonObject {
   rotors: AircraftRotorBinding[];
+  /** Nodes hidden while the gear is fully up. */
   gearNodes: string[];
+  /** Turn by `multiplier` radians at full flap travel, in proportion to the flap position. */
   flaps: AircraftVisualBinding[];
   ailerons: AircraftVisualBinding[];
   /** Legacy explicit control binding. Prefer interior.bindings for new models. */
@@ -129,6 +169,11 @@ export interface AircraftVisualSpec extends JsonObject {
   /** Legacy metadata; gauge calibration is owned by interior.bindings. */
   airspeedGaugeMax?: number;
   interior?: VehicleInteriorSpec;
+  /**
+   * Exterior moving parts posed from the same signals as the interior: landing-gear legs and
+   * doors sequenced by keyframes over the gear position, flaps, control surfaces.
+   */
+  animation?: ModelSignalSpec;
 }
 
 /** Complete data-driven tuning consumed by the generic aircraft solver and client. */
@@ -178,10 +223,27 @@ export interface AircraftStateData extends JsonObject {
   yaw: number;
   pitch: number;
   roll: number;
+  /** Body pitch rate, nose up, rad/s. */
   pitchRate: number;
+  /** Body roll rate, right wing down, rad/s. */
   rollRate: number;
-  /** Additional yaw rate caused by engine thrust moments, rad/s about local +Y. */
-  thrustYawRate?: number;
+  /** Body yaw rate about local +Y (nose left), rad/s. Airplanes only. */
+  yawRate?: number;
+  /** Elevator position -1..1 after its travel limit. Airplanes only. */
+  elevator?: number;
+  /**
+   * Landing-gear position: 0 up and locked, 1 down and locked, between them in transit.
+   * Airplanes only; the solver starts it at the commanded position.
+   */
+  gearPosition?: number;
+  /** Flap position as a fraction of full travel, 0..1. Airplanes only; starts as commanded. */
+  flapPosition?: number;
+  /** Trimmed angle of attack in radians that the airframe flies with the stick centered. */
+  pitchTrim?: number;
+  /** Sideslip angle in radians, positive with the relative wind from the left. */
+  sideslip?: number;
+  /** Aerodynamic and thrust load along the airframe's up axis, in g. */
+  loadFactor?: number;
   /** Per-engine state, initialized by the solver and authoritative once present. */
   engines?: Record<string, AircraftEngineStateData>;
   /** Maximum engine RPM, retained for HUDs and safe boarding/exit checks. */

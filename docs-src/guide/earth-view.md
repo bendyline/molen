@@ -118,8 +118,9 @@ mode menu passes `{ force: true }` to step out at once, which also removes a veh
 added.
 
 `view.vehicleStatus()` describes the car or aircraft the viewer is in for a HUD: speed and
-heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, power,
-engine, gear, flaps and stall/impact flags for an aircraft (SI units, compass radians).
+heading for a car; airspeed, altitude and height above ground, vertical speed, attitude, load
+factor (g), sideslip, power, engine, gear, flaps and stall/impact flags for an aircraft (SI units,
+compass radians). An airplane started in flight is trimmed for level flight at its launch speed.
 `view.setThrottle(power)` sets an aircraft's throttle or collective from an on-screen lever.
 
 Listen for `modechange`. The input profile, clip planes and touch stick follow the mode

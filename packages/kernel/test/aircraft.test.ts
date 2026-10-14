@@ -1,4 +1,4 @@
-import type { AircraftInputData, AircraftSpec } from '@bendyline/molen-schema';
+import type { AircraftInputData, AircraftSpec, AircraftStateData } from '@bendyline/molen-schema';
 import { describe, expect, it } from 'vitest';
 import {
   AircraftInput,
@@ -107,8 +107,10 @@ describe('aircraft flight and mounting', () => {
       pitch: 0.5,
       velocity: [0, 0, 38] as [number, number, number],
     };
-    const result = stepAircraft(t, s, IDLE_AIRCRAFT_INPUT, specFor('p51d'), 1, flat);
-    expect(result.state.stalled).toBe(true);
+    const spec = specFor('p51d');
+    expect(stepAircraft(t, s, IDLE_AIRCRAFT_INPUT, spec, 1 / 60, flat).state.stalled).toBe(true);
+    // With the stick released the nose drops and the wing unstalls, still sinking.
+    const result = stepAircraft(t, s, IDLE_AIRCRAFT_INPUT, spec, 1, flat);
     expect(result.state.velocity[1]).toBeLessThan(0);
     expect(s.velocity).toEqual([0, 0, 38]);
     expect(t.pos[1]).toBe(200);
@@ -226,5 +228,116 @@ describe('aircraft flight and mounting', () => {
     expect(result.state.crashed).toBe(false);
     expect(result.state.velocity).toEqual([0, 0, 0]);
     expect(result.transform.pos[1]).toBe(0);
+  });
+});
+describe('landing gear and flap travel', () => {
+  const p51 = specFor('p51d');
+  const level: TransformData = { pos: [0, 800, 0], rot: [0, 0, 0, 1] };
+  const cruising = (fields: Partial<AircraftStateData> = {}): AircraftStateData => ({
+    ...initialAircraftState(),
+    grounded: false,
+    velocity: [0, 0, 70],
+    airspeed: 70,
+    rpm: 1,
+    ...fields,
+  });
+  function fly(
+    seconds: number,
+    input: AircraftInputData,
+    transform: TransformData,
+    state: AircraftStateData,
+  ) {
+    let result = { transform, state };
+    for (let i = 0; i < seconds * 60; i++)
+      result = stepAircraft(result.transform, result.state, input, p51, 1 / 60, flat);
+    return result;
+  }
+
+  it('moves the gear over gearTransitTime and the flaps over flapTransitTime', () => {
+    const gearTime = p51.airplane?.gearTransitTime ?? 0;
+    const flapTime = p51.airplane?.flapTransitTime ?? 0;
+    expect(gearTime).toBeGreaterThan(0);
+    const input = { ...running, power: 0.7, gear: false, flaps: true };
+    const start = cruising({ gearPosition: 1, flapPosition: 0 });
+    const second = fly(1, input, level, start);
+    expect(second.state.gearPosition).toBeCloseTo(1 - 1 / gearTime, 9);
+    expect(second.state.flapPosition).toBeCloseTo(1 / flapTime, 9);
+    const done = fly(Math.max(gearTime, flapTime), input, second.transform, second.state);
+    expect(done.state.gearPosition).toBe(0);
+    expect(done.state.flapPosition).toBe(1);
+  });
+
+  it('starts a state without positions at the selection, as the instant gear did', () => {
+    const result = stepAircraft(
+      level,
+      cruising(),
+      { ...running, gear: false, flaps: true },
+      p51,
+      1 / 60,
+      flat,
+    );
+    expect(result.state.gearPosition).toBe(0);
+    expect(result.state.flapPosition).toBe(1);
+  });
+
+  it('scales gear drag with the gear position', () => {
+    const speedWith = (gearPosition: number) =>
+      stepAircraft(level, cruising({ gearPosition }), { ...running, power: 0 }, p51, 1 / 60, flat)
+        .state.velocity[2];
+    const up = speedWith(0),
+      half = speedWith(0.5),
+      down = speedWith(1);
+    expect(up).toBeGreaterThan(half);
+    expect(half).toBeGreaterThan(down);
+    expect(half - down).toBeCloseTo(up - half, 3);
+  });
+
+  it('holds the gear down while the wheels carry weight, then raises it after liftoff', () => {
+    const parked = { ...initialAircraftState(), gearPosition: 1 };
+    const onGround = fly(
+      1,
+      { ...running, brake: true, gear: false },
+      { pos: [0, 0, 0], rot: [0, 0, 0, 1] },
+      parked,
+    );
+    expect(onGround.state.grounded).toBe(true);
+    expect(onGround.state.crashed).toBe(false);
+    expect(onGround.state.gearPosition).toBe(1);
+    const airborne = fly(
+      1,
+      { ...running, power: 0.7, gear: false },
+      level,
+      cruising({ gearPosition: 1 }),
+    );
+    expect(airborne.state.gearPosition).toBeLessThan(1);
+  });
+
+  it('belly-lands when the wheels touch before the gear locks down', () => {
+    const touchdown = (gearPosition: number) =>
+      fly(
+        0.5,
+        { ...running, power: 0.3, gear: true },
+        { pos: [0, 0.2, 0], rot: [0, 0, 0, 1] },
+        cruising({ gearPosition, velocity: [0, -1, 40], airspeed: 40 }),
+      ).state;
+    expect(touchdown(1).crashed).toBe(false);
+    expect(touchdown(0.5).crashed).toBe(true);
+  });
+
+  it('keeps stepping a parked airplane until its flaps reach the selection', () => {
+    const w = setup('p51d');
+    w.stepN(2);
+    expect(w.get('craft', AircraftState)?.gearPosition).toBe(1);
+    expect(w.get('craft', AircraftState)?.flapPosition).toBe(0);
+    w.patch('craft', AircraftInput, { flaps: true });
+    w.stepN(60);
+    const flapTime = p51.airplane?.flapTransitTime ?? 0;
+    expect(w.get('craft', AircraftState)?.flapPosition).toBeCloseTo(1 / flapTime, 9);
+    w.stepN(60 * flapTime);
+    const settled = w.get('craft', AircraftState);
+    expect(settled?.flapPosition).toBe(1);
+    w.stepN(10);
+    // Engine off, stopped and settled: the solver no longer touches the state.
+    expect(w.get('craft', AircraftState)).toBe(settled);
   });
 });

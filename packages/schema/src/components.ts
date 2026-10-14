@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './audio';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
-import { modelSignalsSchema } from './model-signals';
+import { type ModelSignalSpec, modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
 import { unsafePatterns } from './regex-safety';
 import { skySchema } from './sky';
 import { vehicleInteriorSchema } from './vehicle-interior';
@@ -1340,7 +1340,11 @@ const vehicleSpecSchema = z.strictObject(
     reverseSpeed: num.positive(),
     brakeDeceleration: num.positive(),
     maxSteer: num.positive(),
-    grip: num.positive(),
+    grip: num
+      .positive()
+      .describe(
+        'Peak tire friction on dry pavement as an acceleration in m/s²; grip / 9.81 is the friction coefficient. Rain and snow lower it.',
+      ),
     driverEye: vec3,
     steeringRate: num.positive(),
     steeringFadeSpeed: num.positive(),
@@ -1350,17 +1354,72 @@ const vehicleSpecSchema = z.strictObject(
     supportTolerance: num.nonnegative(),
     maxStepHeight: num.nonnegative(),
     maxSlope: num.positive(),
+    drive: z.enum(['front', 'rear', 'all']).optional().describe('Driven wheels. Default front.'),
+    corneringStiffness: num
+      .positive()
+      .optional()
+      .describe(
+        'Tire side force per unit load per radian of slip angle before it saturates at the grip limit. Default 18.',
+      ),
+    brakeBias: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('Share of braking force on the front wheels. Default 0.65.'),
+    yawInertia: num
+      .positive()
+      .optional()
+      .describe('Yaw moment of inertia in kg m². Default mass * (length² + width²) / 12.'),
+    rollStiffness: num
+      .nonnegative()
+      .optional()
+      .describe('Body roll in radians per g of cornering. Default 0.05.'),
+    pitchStiffness: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Body pitch in radians per g of braking or acceleration. Default 0.03. Weight shifts between the axles through this pitch; 0 keeps the axle loads fixed.',
+      ),
+    suspensionFrequency: num
+      .positive()
+      .optional()
+      .describe('Suspension natural frequency in Hz for body roll and pitch. Default 1.5.'),
+    suspensionDamping: num.positive().optional().describe('Suspension damping ratio. Default 0.5.'),
   }),
 );
-const vehicleVisualSchema = z.strictObject(
-  describedFields({
-    wheelNodes: z.array(z.string().min(1)).min(1),
-    frontWheelNodes: z.array(z.string().min(1)).min(1),
-    steeringWheelNode: z.string().min(1).optional(),
-    paintMaterial: z.string().min(1),
-    interior: vehicleInteriorSchema.optional(),
-  }),
+const animationSchema = modelSignalSpecSchema.describe(
+  'Exterior moving parts (gear legs and doors, flaps, control surfaces, doors) posed from the interior signals; bindings may use keyframed curves.',
 );
+/** The interior and the exterior animation pose a model together; neither may take the other's channel. */
+function exclusiveAnimationChannels(
+  visual: { interior?: ModelSignalSpec; animation?: ModelSignalSpec },
+  ctx: z.RefinementCtx,
+  path: (string | number)[],
+): void {
+  const interior = new Set(
+    (visual.interior?.bindings ?? []).map((b) => JSON.stringify([b.node, b.property, b.axis])),
+  );
+  visual.animation?.bindings.forEach((b, index) => {
+    if (interior.has(JSON.stringify([b.node, b.property, b.axis])))
+      ctx.addIssue({
+        code: 'custom',
+        path: [...path, 'animation', 'bindings', index],
+        message: 'Node transform channel is already bound by interior',
+      });
+  });
+}
+const vehicleVisualSchema = z
+  .strictObject(
+    describedFields({
+      wheelNodes: z.array(z.string().min(1)).min(1),
+      frontWheelNodes: z.array(z.string().min(1)).min(1),
+      steeringWheelNode: z.string().min(1).optional(),
+      paintMaterial: z.string().min(1),
+      interior: vehicleInteriorSchema.optional(),
+      animation: animationSchema.optional(),
+    }),
+  )
+  .superRefine((value, ctx) => exclusiveAnimationChannels(value, ctx, []));
 
 registerComponent(
   'vehicle',
@@ -1426,11 +1485,21 @@ registerComponent(
       .max(1)
       .describe('Signed accelerator; opposite input brakes to zero before reversing.'),
     steering: num.min(-1).max(1).describe('Steering intent -1..1; positive turns right.'),
-    brake: z.boolean().describe('Apply the service/parking brake while true.'),
+    brake: z
+      .boolean()
+      .describe(
+        'Apply the service brakes (all wheels, anti-lock) while true; holds the car at rest.',
+      ),
+    handbrake: z
+      .boolean()
+      .optional()
+      .describe(
+        'Lock the rear wheels while true: they slide instead of rolling, for handbrake turns.',
+      ),
   }),
   {
     description:
-      'Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), brake/handbrake.',
+      'Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake.',
     owner: 'kernel/vehicles',
     examples: [{ throttle: 1, steering: 0, brake: false }],
     docsRef: 'guide/vehicles.md',
@@ -1442,14 +1511,35 @@ registerComponent(
     speed: num.describe('Signed forward speed in meters per second.'),
     steer: num.describe('Current front wheel steering angle in radians. Positive turns right.'),
     yaw: num.describe('Chassis rotation about Y in radians; zero faces +Z.'),
-    pitch: num.describe('Chassis rotation about local X in radians, from terrain support.'),
-    roll: num.describe('Chassis rotation about local Z in radians, from terrain support.'),
+    pitch: num.describe(
+      'Chassis rotation about local X in radians from terrain support, nose down positive.',
+    ),
+    roll: num.describe(
+      'Chassis rotation about local Z in radians from terrain support, right side down positive.',
+    ),
     vy: num.describe('Vertical velocity in meters per second.'),
     grounded: z.boolean().describe('Whether wheel support currently carries the chassis.'),
     waitingForTerrain: z
       .boolean()
       .describe('Motion is paused because one or more wheel samples have no terrain.'),
     wheelAngle: num.describe('Accumulated wheel spin angle in radians, wrapped each revolution.'),
+    lateralSpeed: num
+      .optional()
+      .describe('Sideways speed in meters per second, positive to the left: the slide.'),
+    yawRate: num.optional().describe('Yaw rate in radians per second, positive turning left.'),
+    bodyPitch: num
+      .optional()
+      .describe('Suspension pitch in radians on top of the terrain, nose down positive.'),
+    bodyPitchRate: num.optional().describe('Suspension pitch rate in radians per second.'),
+    bodyRoll: num
+      .optional()
+      .describe('Suspension roll in radians on top of the terrain, right side down positive.'),
+    bodyRollRate: num.optional().describe('Suspension roll rate in radians per second.'),
+    skid: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('0–1: how far the tires are past their grip (sliding, wheelspin, locked wheels).'),
   }),
   {
     description:
@@ -1535,20 +1625,39 @@ const airplanePhysicsSchema = z.strictObject(
   describedFields({
     wingPosition: vec3,
     wingArea: num.positive(),
-    controlAuthoritySpeed: num.positive(),
-    maxControlAuthority: num.positive(),
-    pitchAuthority: num.positive(),
-    pitchResponse: num.positive(),
-    stallPitchRate: num.nonnegative(),
-    rollAuthority: num.positive(),
-    rollResponse: num.positive(),
-    rudderAuthority: num.positive(),
-    groundSteerSpeed: num.positive(),
-    coordinatedTurnMinSpeed: num.positive(),
+    controlAuthoritySpeed: num
+      .positive()
+      .describe(
+        'Reference equivalent airspeed in m/s for the control, stability and damping rates.',
+      ),
+    maxControlAuthority: num
+      .positive()
+      .describe('Cap on aileron, elevator and rudder power relative to the reference speed.'),
+    pitchAuthority: num
+      .positive()
+      .describe('Angle of attack in radians that full elevator adds to the trim angle.'),
+    pitchResponse: num.positive().describe('Elevator travel per second, in full deflections.'),
+    stallPitchRate: num
+      .nonnegative()
+      .describe('Nose-down pitch rate in rad/s at full flow separation (the stall break).'),
+    rollAuthority: num
+      .positive()
+      .describe(
+        'Roll rate in rad/s at full aileron and reference speed; grows with speed up to maxControlAuthority.',
+      ),
+    rollResponse: num
+      .positive()
+      .describe('Roll damping in 1/s at reference speed; grows with airspeed.'),
+    rudderAuthority: num
+      .positive()
+      .describe(
+        'Yaw acceleration in rad/s² at full rudder and reference speed; propwash keeps some at low speed.',
+      ),
+    groundSteerSpeed: num
+      .positive()
+      .describe('Ground speed in m/s at which tailwheel steering reaches full turn rate.'),
     groundLevelRate: num.positive(),
-    maxPitch: num.positive(),
     maxGroundPitch: num.positive(),
-    maxRoll: num.positive(),
     camberAngle: num,
     flapLift: num.nonnegative(),
     postStallFlapEffect: num.nonnegative(),
@@ -1557,19 +1666,58 @@ const airplanePhysicsSchema = z.strictObject(
       .positive()
       .optional()
       .describe('Radians beyond stallAngle over which flow separates smoothly. Default 0.12.'),
-    yawStability: num
+    pitchFrequency: num
+      .positive()
+      .optional()
+      .describe('Short-period natural frequency in rad/s at reference speed. Default 3.5.'),
+    pitchDamping: num.positive().optional().describe('Short-period damping ratio. Default 0.7.'),
+    maxLoadFactor: num
+      .positive()
+      .optional()
+      .describe('Load factor in g that full back stick pulls at high speed. Default 6.'),
+    minLoadFactor: num
+      .negative()
+      .optional()
+      .describe('Load factor in g that full forward stick pushes at high speed. Default -3.'),
+    autoTrim: num
       .nonnegative()
       .optional()
-      .describe('Sideslip restoring yaw rate per radian at reference airspeed, in 1/s. Default 1.'),
+      .describe(
+        'Rate in 1/s at which trim follows the angle of attack that holds the flight path; 0 leaves trim fixed. Default 1.',
+      ),
+    directionalStability: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Weathercock stiffness: yaw acceleration in rad/s² per radian of sideslip at reference speed. Default 4.',
+      ),
+    yawDamping: num
+      .nonnegative()
+      .optional()
+      .describe('Yaw damping in 1/s at reference speed. Default 1.2.'),
+    dihedralEffect: num
+      .optional()
+      .describe(
+        'Roll acceleration in rad/s² per radian of sideslip at reference speed, away from the slip. Default 3.',
+      ),
+    rollInertia: num
+      .positive()
+      .optional()
+      .describe('Roll inertia in kg m². Default mass * (0.14 * span)².'),
+    pitchInertia: num
+      .positive()
+      .optional()
+      .describe('Pitch inertia in kg m². Default mass * (0.18 * length)².'),
     yawInertia: num
       .positive()
       .optional()
       .describe('Yaw inertia in kg m². Default mass * (span² + length²) / 12.'),
-    thrustYawDamping: num
-      .nonnegative()
+    propellerEffects: num
+      .min(0)
+      .max(1)
       .optional()
       .describe(
-        'Thrust-induced yaw-rate damping in 1/s at reference airspeed. Default 1.2; scales with airspeed with a 20% floor.',
+        'Scale of propeller torque, P-factor and slipstream yaw, and gyroscopic precession; 0 disables them. Default 0.',
       ),
     stallSpeed: num
       .positive()
@@ -1581,8 +1729,22 @@ const airplanePhysicsSchema = z.strictObject(
     postStallDecay: num.nonnegative(),
     profileDrag: num.nonnegative(),
     inducedDrag: num.nonnegative(),
-    gearDrag: num.nonnegative(),
-    flapDrag: num.nonnegative(),
+    gearDrag: num
+      .nonnegative()
+      .describe('Drag coefficient of the landing gear fully down; scales with the gear position.'),
+    flapDrag: num
+      .nonnegative()
+      .describe('Drag coefficient of the flaps fully down; scales with the flap position.'),
+    gearTransitTime: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Seconds for a full landing-gear cycle, doors included, either way. The gear holds still with weight on the wheels, and only a locked-down gear can land. Default 0 (instant).',
+      ),
+    flapTransitTime: num
+      .nonnegative()
+      .optional()
+      .describe('Seconds for the flaps to travel fully up to fully down. Default 0 (instant).'),
     stallDrag: num
       .nonnegative()
       .describe(
@@ -1594,7 +1756,11 @@ const airplanePhysicsSchema = z.strictObject(
     lateralDamping: num.nonnegative(),
     brakeDeceleration: num.positive(),
     rollingDeceleration: num.nonnegative(),
-    groundTrackRate: num.positive(),
+    groundTrackRate: num
+      .positive()
+      .describe(
+        'Tire side grip with full weight on the wheels: lateral deceleration in m/s² and yaw grip in 1/s.',
+      ),
   }),
 );
 const helicopterPhysicsSchema = z.strictObject(
@@ -1644,6 +1810,18 @@ const aircraftEngineSchema = z.strictObject(
       .describe(
         'Minimum propeller advance speed in m/s for the power/thrust calculation; defaults to airplane.minPropellerSpeed.',
       ),
+    propellerRotation: z
+      .enum(['clockwise', 'counterclockwise'])
+      .optional()
+      .describe(
+        'Turning direction seen from the cockpit. Clockwise (default) swings the nose left; scaled by airplane.propellerEffects.',
+      ),
+    propellerInertia: num
+      .nonnegative()
+      .optional()
+      .describe(
+        'Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.',
+      ),
   }),
 );
 const aircraftEngineId = z
@@ -1688,8 +1866,14 @@ const aircraftSpecSchema = z
                 .describe('Engine id driving this propeller; omitted follows the first engine.'),
             }),
           ),
-          gearNodes: z.array(z.string().min(1)),
-          flaps: z.array(visualBindingSchema),
+          gearNodes: z
+            .array(z.string().min(1))
+            .describe('Nodes hidden while the landing gear is fully up.'),
+          flaps: z
+            .array(visualBindingSchema)
+            .describe(
+              'Flap nodes turned by multiplier radians at full travel, in proportion to the flap position.',
+            ),
           ailerons: z.array(visualBindingSchema),
           controlStick: z
             .strictObject(
@@ -1703,6 +1887,7 @@ const aircraftSpecSchema = z
           collective: visualBindingSchema.optional(),
           airspeedGaugeMax: num.positive().optional(),
           interior: vehicleInteriorSchema.optional(),
+          animation: animationSchema.optional(),
         }),
       ),
     }),
@@ -1732,6 +1917,7 @@ const aircraftSpecSchema = z
         });
       ids.add(engine.id);
     }
+    exclusiveAnimationChannels(value.visual, ctx, ['visual']);
     for (const [index, rotor] of value.visual.rotors.entries())
       if (rotor.engine !== undefined && !ids.has(rotor.engine))
         ctx.addIssue({
@@ -1784,17 +1970,14 @@ registerComponent(
             controlAuthoritySpeed: 45,
             maxControlAuthority: 1.3,
             pitchAuthority: 0.4,
-            pitchResponse: 0.75,
+            pitchResponse: 3,
             stallPitchRate: 0.18,
             rollAuthority: 1,
             rollResponse: 2,
-            rudderAuthority: 0.2,
+            rudderAuthority: 1,
             groundSteerSpeed: 8,
-            coordinatedTurnMinSpeed: 25,
             groundLevelRate: 2,
-            maxPitch: 1.2,
             maxGroundPitch: 0.2,
-            maxRoll: 1.3,
             camberAngle: 0.04,
             flapLift: 0.3,
             postStallFlapEffect: 0.4,
@@ -1881,14 +2064,44 @@ registerComponent(
   'aircraftState',
   z.strictObject({
     velocity: vec3.describe('World velocity in meters per second.'),
-    yaw: num.describe('Heading in radians, zero +Z.'),
-    pitch: num.describe('Nose-up angle in radians.'),
-    roll: num.describe('Right bank angle in radians.'),
-    pitchRate: num.describe('Pitch angular speed in radians per second.'),
-    rollRate: num.describe('Roll angular speed in radians per second.'),
-    thrustYawRate: num
+    yaw: num.describe(
+      'Heading in radians, zero +Z. Airplanes report it from transform.rot, which is authoritative.',
+    ),
+    pitch: num.describe('Nose-up angle in radians (±π/2 at the vertical).'),
+    roll: num.describe('Right bank angle in radians; ±π inverted.'),
+    pitchRate: num.describe('Body pitch rate, nose up, in radians per second.'),
+    rollRate: num.describe('Body roll rate, right wing down, in radians per second.'),
+    yawRate: num
       .optional()
-      .describe('Additional thrust-induced yaw angular speed about local +Y, in rad/s.'),
+      .describe('Airplane body yaw rate about local +Y (nose left), in rad/s.'),
+    elevator: num
+      .min(-1)
+      .max(1)
+      .optional()
+      .describe('Airplane elevator position after its travel limit, -1..1.'),
+    gearPosition: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Airplane landing gear: 0 up and locked, 1 down and locked, between them in transit. Starts at the commanded position.',
+      ),
+    flapPosition: num
+      .min(0)
+      .max(1)
+      .optional()
+      .describe(
+        'Airplane flaps as a fraction of full travel, 0..1. Starts at the commanded position.',
+      ),
+    pitchTrim: num
+      .optional()
+      .describe('Airplane trimmed angle of attack in radians, flown with the stick centered.'),
+    sideslip: num
+      .optional()
+      .describe('Airplane sideslip in radians, positive with the relative wind from the left.'),
+    loadFactor: num
+      .optional()
+      .describe('Airplane aerodynamic and thrust load along its up axis, in g.'),
     engines: z
       .record(
         aircraftEngineId,

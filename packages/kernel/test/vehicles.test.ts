@@ -142,7 +142,9 @@ describe('mountable vehicle foundation', () => {
       canOccupy: (p) => p[2] < 0.6,
     });
     expect(wall.transform.pos[2]).toBeLessThan(0.6);
-    expect(wall.state.speed).toBe(0);
+    // A hard hit bounces back rather than stopping dead.
+    expect(wall.state.speed).toBeLessThan(0);
+    expect(wall.impact).toBeGreaterThan(30);
   });
   it('follows slopes, handles falling, and rejects steep slopes', () => {
     const input = { throttle: 1, steering: 0, brake: false },

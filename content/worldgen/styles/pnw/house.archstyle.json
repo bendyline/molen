@@ -124,6 +124,18 @@
       "uvOffset": "meters",
       "uvMirror": false
     },
+    "flatRoof": {
+      "choices": [
+        { "ref": "matgraph:molen.worldgen.material.membrane", "weight": 2 },
+        { "ref": "matgraph:molen.worldgen.material.gravel", "weight": 1 }
+      ],
+      "palette": "flatRoof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
     "trim": {
       "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
       "palette": "trim",
@@ -161,19 +173,28 @@
         { "color": "#a6c2d6", "weight": 1, "name": "sky blue" },
         { "color": "#a85a4a", "weight": 1, "name": "barn red" },
         { "color": "#e6cf86", "weight": 1, "name": "butter" },
-        { "color": "#6f9370", "weight": 1, "name": "forest green" }
+        { "color": "#6f9370", "weight": 1, "name": "forest green" },
+        { "color": "#c6c8c6", "weight": 2, "name": "light grey" },
+        { "color": "#a3a9ad", "weight": 1, "name": "pewter" }
       ],
       "jitter": { "hue": 0.012, "saturation": 0.05, "lightness": 0.05 }
     },
     "roof": {
       "entries": [
         { "color": "#575c62", "weight": 4, "name": "charcoal shingle" },
-        { "color": "#725c49", "weight": 2, "name": "brown shingle" },
+        { "color": "#725c49", "weight": 1, "name": "brown shingle" },
         { "color": "#5a6d55", "weight": 1, "name": "moss green" },
-        { "color": "#66717c", "weight": 2, "name": "slate grey" },
-        { "color": "#80513f", "weight": 1, "name": "rust brown" }
+        { "color": "#66717c", "weight": 3, "name": "slate grey" },
+        { "color": "#6b665f", "weight": 1, "name": "weathered grey" }
       ],
       "jitter": { "hue": 0.01, "saturation": 0.04, "lightness": 0.05 }
+    },
+    "flatRoof": {
+      "entries": [
+        { "color": "#b3afa6", "weight": 3, "name": "gravel" },
+        { "color": "#c8c5bd", "weight": 2, "name": "membrane" }
+      ],
+      "jitter": { "hue": 0, "saturation": 0.02, "lightness": 0.04 }
     },
     "trim": {
       "entries": [{ "color": "#f4f1ea", "weight": 4 }, { "color": "#d9d4c7", "weight": 1 }],

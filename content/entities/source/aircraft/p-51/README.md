@@ -17,9 +17,27 @@ a 3.4 m four-blade propeller. It is finished in natural metal with lacquered win
 anti-glare panel, a red nose, spinner and tail, yellow wing bands and star-and-bar insignia, all as
 geometry with no textures. It rests level on its wheels, matching the airplane solver on the
 ground; the nose faces +Z and the pilot eye, thrust line and wing reference match the entity
-definition. `propeller` spins about Z; `gear--1`, `gear-1` and `tail-gear` hide with the gear up;
-`flap±1`, `aileron±1` and `elevator±1` rotate about local X (each flap and aileron under a
-`*-hinge` frame on its hinge line) and `rudder` about Y.
+definition. `propeller` spins about Z; `flap±1`, `aileron±1` and `elevator±1` rotate about local X
+(each flap and aileron under a `*-hinge` frame on its hinge line) and `rudder` about Y.
+
+The landing gear retracts as the real one does, sequenced by `visual.animation` over the
+simulated gear position. The large inner well doors (`wheel-door±1`) open; each main leg
+(`gear±1`) swings inboard on a trunnion canted 25° inboard and 20° down from aft, laying its wheel
+flat in a well in the wing root ahead of the spar; then the doors close behind it. The strut
+fairing door rides on the leg and closes the strut channel flush with the lower wing. The tail
+wheel (`tail-gear`) folds forward into the rear fuselage between two pairs of doors: the aft pair
+(`tail-door±1`) stands open round the strut while the gear is down, the forward pair
+(`tail-bay-door±1`) opens only while the wheel swings through. Lowering runs the same sequence
+backwards, and the inner doors close again once the gear is down. The axes and angles were solved
+against the generator's own wing and fuselage, so every retracted part sits inside the skin with
+a few centimetres to spare. The wells and slot are dark linings just under the skin. `gear±1-leg`
+and `tail-gear` hide while the gear is fully up.
+
+A full gear cycle takes 12 seconds and the flaps run to 50° in 13 (`gearTransitTime`,
+`flapTransitTime`); secondary sources quote 10–15 and 11–15 seconds from the period pilot's
+manuals, which were not checked directly. The gear will not move with weight on the wheels, so
+selecting it up early raises it after liftoff; touching down before it locks is a belly landing.
+The elevator travels 30° up and 20° down and the rudder 25° each way; those are approximations.
 
 The cockpit is part of the main GLB and appears in exterior and seated views. Its layout and
 builder can change independently of any other aircraft. Generate an edited preview with

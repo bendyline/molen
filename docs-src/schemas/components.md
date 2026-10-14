@@ -77,7 +77,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `transform` | kernel | World position + orientation. pos is required; rot defaults to identity. |
 | `tween` | kernel/gameplay | Data-driven value animation over ticks: component + select-style path, lerp with easing. |
 | `vehicle` | kernel/vehicles | External wheeled-vehicle instance: stable id, paint, complete physics tuning, and GLB bindings. |
-| `vehicleInput` | kernel/vehicles | Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), brake/handbrake. |
+| `vehicleInput` | kernel/vehicles | Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. |
 | `vehicleState` | kernel/vehicles | Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. |
 | `velocity` | physics-rapier | Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). |
 | `weather` |  | Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. |
@@ -2479,12 +2479,39 @@ Required: `sources`, `bindings`
             "description": "Local transform axis."
           },
           "scale": {
-            "type": "number",
-            "description": "Multiply the signal by this value."
+            "description": "Multiply the signal by this value. Supply this or keys.",
+            "type": "number"
           },
           "offset": {
             "description": "Offset after scaling; default zero.",
             "type": "number"
+          },
+          "keys": {
+            "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+            "minItems": 2,
+            "type": "array",
+            "items": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "ease": {
+            "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+            "type": "string",
+            "enum": [
+              "linear",
+              "smooth"
+            ]
           },
           "min": {
             "description": "Minimum displacement from authored pose.",
@@ -2499,8 +2526,7 @@ Required: `sources`, `bindings`
           "node",
           "source",
           "property",
-          "axis",
-          "scale"
+          "axis"
         ],
         "additionalProperties": false
       },
@@ -3719,17 +3745,14 @@ Required: `kind`, `spec`
       "controlAuthoritySpeed": 45,
       "maxControlAuthority": 1.3,
       "pitchAuthority": 0.4,
-      "pitchResponse": 0.75,
+      "pitchResponse": 3,
       "stallPitchRate": 0.18,
       "rollAuthority": 1,
       "rollResponse": 2,
-      "rudderAuthority": 0.2,
+      "rudderAuthority": 1,
       "groundSteerSpeed": 8,
-      "coordinatedTurnMinSpeed": 25,
       "groundLevelRate": 2,
-      "maxPitch": 1.2,
       "maxGroundPitch": 0.2,
-      "maxRoll": 1.3,
       "camberAngle": 0.04,
       "flapLift": 0.3,
       "postStallFlapEffect": 0.4,
@@ -3923,6 +3946,19 @@ Required: `kind`, `spec`
               "description": "Minimum propeller advance speed in m/s for the power/thrust calculation; defaults to airplane.minPropellerSpeed.",
               "type": "number",
               "exclusiveMinimum": 0
+            },
+            "propellerRotation": {
+              "description": "Turning direction seen from the cockpit. Clockwise (default) swings the nose left; scaled by airplane.propellerEffects.",
+              "type": "string",
+              "enum": [
+                "clockwise",
+                "counterclockwise"
+              ]
+            },
+            "propellerInertia": {
+              "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
+              "type": "number",
+              "minimum": 0
             }
           },
           "required": [
@@ -3997,6 +4033,19 @@ Required: `kind`, `spec`
                 "type": "number",
                 "exclusiveMinimum": 0
               },
+              "propellerRotation": {
+                "description": "Turning direction seen from the cockpit. Clockwise (default) swings the nose left; scaled by airplane.propellerEffects.",
+                "type": "string",
+                "enum": [
+                  "clockwise",
+                  "counterclockwise"
+                ]
+              },
+              "propellerInertia": {
+                "description": "Propeller polar moment of inertia in kg m², for gyroscopic precession. Default 0.",
+                "type": "number",
+                "minimum": 0
+              },
               "id": {
                 "type": "string",
                 "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
@@ -4036,72 +4085,57 @@ Required: `kind`, `spec`
             "controlAuthoritySpeed": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External controlAuthoritySpeed setting."
+              "description": "Reference equivalent airspeed in m/s for the control, stability and damping rates."
             },
             "maxControlAuthority": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External maxControlAuthority setting."
+              "description": "Cap on aileron, elevator and rudder power relative to the reference speed."
             },
             "pitchAuthority": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External pitchAuthority setting."
+              "description": "Angle of attack in radians that full elevator adds to the trim angle."
             },
             "pitchResponse": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External pitchResponse setting."
+              "description": "Elevator travel per second, in full deflections."
             },
             "stallPitchRate": {
               "type": "number",
               "minimum": 0,
-              "description": "External stallPitchRate setting."
+              "description": "Nose-down pitch rate in rad/s at full flow separation (the stall break)."
             },
             "rollAuthority": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External rollAuthority setting."
+              "description": "Roll rate in rad/s at full aileron and reference speed; grows with speed up to maxControlAuthority."
             },
             "rollResponse": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External rollResponse setting."
+              "description": "Roll damping in 1/s at reference speed; grows with airspeed."
             },
             "rudderAuthority": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External rudderAuthority setting."
+              "description": "Yaw acceleration in rad/s² at full rudder and reference speed; propwash keeps some at low speed."
             },
             "groundSteerSpeed": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External groundSteerSpeed setting."
-            },
-            "coordinatedTurnMinSpeed": {
-              "type": "number",
-              "exclusiveMinimum": 0,
-              "description": "External coordinatedTurnMinSpeed setting."
+              "description": "Ground speed in m/s at which tailwheel steering reaches full turn rate."
             },
             "groundLevelRate": {
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "External groundLevelRate setting."
             },
-            "maxPitch": {
-              "type": "number",
-              "exclusiveMinimum": 0,
-              "description": "External maxPitch setting."
-            },
             "maxGroundPitch": {
               "type": "number",
               "exclusiveMinimum": 0,
               "description": "External maxGroundPitch setting."
-            },
-            "maxRoll": {
-              "type": "number",
-              "exclusiveMinimum": 0,
-              "description": "External maxRoll setting."
             },
             "camberAngle": {
               "type": "number",
@@ -4127,20 +4161,65 @@ Required: `kind`, `spec`
               "type": "number",
               "exclusiveMinimum": 0
             },
-            "yawStability": {
-              "description": "Sideslip restoring yaw rate per radian at reference airspeed, in 1/s. Default 1.",
+            "pitchFrequency": {
+              "description": "Short-period natural frequency in rad/s at reference speed. Default 3.5.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "pitchDamping": {
+              "description": "Short-period damping ratio. Default 0.7.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "maxLoadFactor": {
+              "description": "Load factor in g that full back stick pulls at high speed. Default 6.",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "minLoadFactor": {
+              "description": "Load factor in g that full forward stick pushes at high speed. Default -3.",
+              "type": "number",
+              "exclusiveMaximum": 0
+            },
+            "autoTrim": {
+              "description": "Rate in 1/s at which trim follows the angle of attack that holds the flight path; 0 leaves trim fixed. Default 1.",
               "type": "number",
               "minimum": 0
+            },
+            "directionalStability": {
+              "description": "Weathercock stiffness: yaw acceleration in rad/s² per radian of sideslip at reference speed. Default 4.",
+              "type": "number",
+              "minimum": 0
+            },
+            "yawDamping": {
+              "description": "Yaw damping in 1/s at reference speed. Default 1.2.",
+              "type": "number",
+              "minimum": 0
+            },
+            "dihedralEffect": {
+              "description": "Roll acceleration in rad/s² per radian of sideslip at reference speed, away from the slip. Default 3.",
+              "type": "number"
+            },
+            "rollInertia": {
+              "description": "Roll inertia in kg m². Default mass * (0.14 * span)².",
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "pitchInertia": {
+              "description": "Pitch inertia in kg m². Default mass * (0.18 * length)².",
+              "type": "number",
+              "exclusiveMinimum": 0
             },
             "yawInertia": {
               "description": "Yaw inertia in kg m². Default mass * (span² + length²) / 12.",
               "type": "number",
               "exclusiveMinimum": 0
             },
-            "thrustYawDamping": {
-              "description": "Thrust-induced yaw-rate damping in 1/s at reference airspeed. Default 1.2; scales with airspeed with a 20% floor.",
+            "propellerEffects": {
+              "description": "Scale of propeller torque, P-factor and slipstream yaw, and gyroscopic precession; 0 disables them. Default 0.",
               "type": "number",
-              "minimum": 0
+              "minimum": 0,
+              "maximum": 1
             },
             "stallSpeed": {
               "type": "number",
@@ -4175,12 +4254,22 @@ Required: `kind`, `spec`
             "gearDrag": {
               "type": "number",
               "minimum": 0,
-              "description": "External gearDrag setting."
+              "description": "Drag coefficient of the landing gear fully down; scales with the gear position."
             },
             "flapDrag": {
               "type": "number",
               "minimum": 0,
-              "description": "External flapDrag setting."
+              "description": "Drag coefficient of the flaps fully down; scales with the flap position."
+            },
+            "gearTransitTime": {
+              "description": "Seconds for a full landing-gear cycle, doors included, either way. The gear holds still with weight on the wheels, and only a locked-down gear can land. Default 0 (instant).",
+              "type": "number",
+              "minimum": 0
+            },
+            "flapTransitTime": {
+              "description": "Seconds for the flaps to travel fully up to fully down. Default 0 (instant).",
+              "type": "number",
+              "minimum": 0
             },
             "stallDrag": {
               "type": "number",
@@ -4220,7 +4309,7 @@ Required: `kind`, `spec`
             "groundTrackRate": {
               "type": "number",
               "exclusiveMinimum": 0,
-              "description": "External groundTrackRate setting."
+              "description": "Tire side grip with full weight on the wheels: lateral deceleration in m/s² and yaw grip in 1/s."
             }
           },
           "required": [
@@ -4235,11 +4324,8 @@ Required: `kind`, `spec`
             "rollResponse",
             "rudderAuthority",
             "groundSteerSpeed",
-            "coordinatedTurnMinSpeed",
             "groundLevelRate",
-            "maxPitch",
             "maxGroundPitch",
-            "maxRoll",
             "camberAngle",
             "flapLift",
             "postStallFlapEffect",
@@ -4452,7 +4538,7 @@ Required: `kind`, `spec`
                 "type": "string",
                 "minLength": 1
               },
-              "description": "External gearNodes setting."
+              "description": "Nodes hidden while the landing gear is fully up."
             },
             "flaps": {
               "type": "array",
@@ -4485,7 +4571,7 @@ Required: `kind`, `spec`
                 ],
                 "additionalProperties": false
               },
-              "description": "External flaps setting."
+              "description": "Flap nodes turned by multiplier radians at full travel, in proportion to the flap position."
             },
             "ailerons": {
               "type": "array",
@@ -4677,12 +4763,39 @@ Required: `kind`, `spec`
                         "description": "Local transform axis."
                       },
                       "scale": {
-                        "type": "number",
-                        "description": "Multiply the signal by this value."
+                        "description": "Multiply the signal by this value. Supply this or keys.",
+                        "type": "number"
                       },
                       "offset": {
                         "description": "Offset after scaling; default zero.",
                         "type": "number"
+                      },
+                      "keys": {
+                        "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+                        "minItems": 2,
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        }
+                      },
+                      "ease": {
+                        "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+                        "type": "string",
+                        "enum": [
+                          "linear",
+                          "smooth"
+                        ]
                       },
                       "min": {
                         "description": "Minimum displacement from authored pose.",
@@ -4697,8 +4810,7 @@ Required: `kind`, `spec`
                       "node",
                       "source",
                       "property",
-                      "axis",
-                      "scale"
+                      "axis"
                     ],
                     "additionalProperties": false
                   },
@@ -4707,6 +4819,143 @@ Required: `kind`, `spec`
               },
               "required": [
                 "nodes",
+                "bindings"
+              ],
+              "additionalProperties": false
+            },
+            "animation": {
+              "description": "External animation setting.",
+              "type": "object",
+              "properties": {
+                "sources": {
+                  "description": "Optional component fields overriding or extending host telemetry.",
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "component": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Component on this same entity."
+                      },
+                      "path": {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            }
+                          ]
+                        },
+                        "description": "Explicit property names or array indices leading to a number or boolean."
+                      }
+                    },
+                    "required": [
+                      "component",
+                      "path"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "bindings": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Exact loaded GLB node name."
+                      },
+                      "source": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Named simulation signal."
+                      },
+                      "property": {
+                        "type": "string",
+                        "enum": [
+                          "rotation",
+                          "position"
+                        ],
+                        "description": "Local transform channel."
+                      },
+                      "axis": {
+                        "type": "string",
+                        "enum": [
+                          "x",
+                          "y",
+                          "z"
+                        ],
+                        "description": "Local transform axis."
+                      },
+                      "scale": {
+                        "description": "Multiply the signal by this value. Supply this or keys.",
+                        "type": "number"
+                      },
+                      "offset": {
+                        "description": "Offset after scaling; default zero.",
+                        "type": "number"
+                      },
+                      "keys": {
+                        "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+                        "minItems": 2,
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "type": "number"
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        }
+                      },
+                      "ease": {
+                        "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+                        "type": "string",
+                        "enum": [
+                          "linear",
+                          "smooth"
+                        ]
+                      },
+                      "min": {
+                        "description": "Minimum displacement from authored pose.",
+                        "type": "number"
+                      },
+                      "max": {
+                        "description": "Maximum displacement from authored pose.",
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "node",
+                      "source",
+                      "property",
+                      "axis"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Per-model node channels and their signal calibration."
+                }
+              },
+              "required": [
                 "bindings"
               ],
               "additionalProperties": false
@@ -4911,26 +5160,56 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
     },
     "yaw": {
       "type": "number",
-      "description": "Heading in radians, zero +Z."
+      "description": "Heading in radians, zero +Z. Airplanes report it from transform.rot, which is authoritative."
     },
     "pitch": {
       "type": "number",
-      "description": "Nose-up angle in radians."
+      "description": "Nose-up angle in radians (±π/2 at the vertical)."
     },
     "roll": {
       "type": "number",
-      "description": "Right bank angle in radians."
+      "description": "Right bank angle in radians; ±π inverted."
     },
     "pitchRate": {
       "type": "number",
-      "description": "Pitch angular speed in radians per second."
+      "description": "Body pitch rate, nose up, in radians per second."
     },
     "rollRate": {
       "type": "number",
-      "description": "Roll angular speed in radians per second."
+      "description": "Body roll rate, right wing down, in radians per second."
     },
-    "thrustYawRate": {
-      "description": "Additional thrust-induced yaw angular speed about local +Y, in rad/s.",
+    "yawRate": {
+      "description": "Airplane body yaw rate about local +Y (nose left), in rad/s.",
+      "type": "number"
+    },
+    "elevator": {
+      "description": "Airplane elevator position after its travel limit, -1..1.",
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1
+    },
+    "gearPosition": {
+      "description": "Airplane landing gear: 0 up and locked, 1 down and locked, between them in transit. Starts at the commanded position.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "flapPosition": {
+      "description": "Airplane flaps as a fraction of full travel, 0..1. Starts at the commanded position.",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "pitchTrim": {
+      "description": "Airplane trimmed angle of attack in radians, flown with the stick centered.",
+      "type": "number"
+    },
+    "sideslip": {
+      "description": "Airplane sideslip in radians, positive with the relative wind from the left.",
+      "type": "number"
+    },
+    "loadFactor": {
+      "description": "Airplane aerodynamic and thrust load along its up axis, in g.",
       "type": "number"
     },
     "engines": {
@@ -6049,7 +6328,7 @@ Required: `kind`, `color`, `spec`, `visual`
         "grip": {
           "type": "number",
           "exclusiveMinimum": 0,
-          "description": "External grip setting."
+          "description": "Peak tire friction on dry pavement as an acceleration in m/s²; grip / 9.81 is the friction coefficient. Rain and snow lower it."
         },
         "driverEye": {
           "minItems": 3,
@@ -6099,6 +6378,51 @@ Required: `kind`, `color`, `spec`, `visual`
           "type": "number",
           "exclusiveMinimum": 0,
           "description": "External maxSlope setting."
+        },
+        "drive": {
+          "description": "Driven wheels. Default front.",
+          "type": "string",
+          "enum": [
+            "front",
+            "rear",
+            "all"
+          ]
+        },
+        "corneringStiffness": {
+          "description": "Tire side force per unit load per radian of slip angle before it saturates at the grip limit. Default 18.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "brakeBias": {
+          "description": "Share of braking force on the front wheels. Default 0.65.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "yawInertia": {
+          "description": "Yaw moment of inertia in kg m². Default mass * (length² + width²) / 12.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "rollStiffness": {
+          "description": "Body roll in radians per g of cornering. Default 0.05.",
+          "type": "number",
+          "minimum": 0
+        },
+        "pitchStiffness": {
+          "description": "Body pitch in radians per g of braking or acceleration. Default 0.03. Weight shifts between the axles through this pitch; 0 keeps the axle loads fixed.",
+          "type": "number",
+          "minimum": 0
+        },
+        "suspensionFrequency": {
+          "description": "Suspension natural frequency in Hz for body roll and pitch. Default 1.5.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "suspensionDamping": {
+          "description": "Suspension damping ratio. Default 0.5.",
+          "type": "number",
+          "exclusiveMinimum": 0
         }
       },
       "required": [
@@ -6248,12 +6572,39 @@ Required: `kind`, `color`, `spec`, `visual`
                     "description": "Local transform axis."
                   },
                   "scale": {
-                    "type": "number",
-                    "description": "Multiply the signal by this value."
+                    "description": "Multiply the signal by this value. Supply this or keys.",
+                    "type": "number"
                   },
                   "offset": {
                     "description": "Offset after scaling; default zero.",
                     "type": "number"
+                  },
+                  "keys": {
+                    "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+                    "minItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "ease": {
+                    "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "smooth"
+                    ]
                   },
                   "min": {
                     "description": "Minimum displacement from authored pose.",
@@ -6268,8 +6619,7 @@ Required: `kind`, `color`, `spec`, `visual`
                   "node",
                   "source",
                   "property",
-                  "axis",
-                  "scale"
+                  "axis"
                 ],
                 "additionalProperties": false
               },
@@ -6278,6 +6628,143 @@ Required: `kind`, `color`, `spec`, `visual`
           },
           "required": [
             "nodes",
+            "bindings"
+          ],
+          "additionalProperties": false
+        },
+        "animation": {
+          "description": "External animation setting.",
+          "type": "object",
+          "properties": {
+            "sources": {
+              "description": "Optional component fields overriding or extending host telemetry.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "component": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Component on this same entity."
+                  },
+                  "path": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      ]
+                    },
+                    "description": "Explicit property names or array indices leading to a number or boolean."
+                  }
+                },
+                "required": [
+                  "component",
+                  "path"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "bindings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Exact loaded GLB node name."
+                  },
+                  "source": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Named simulation signal."
+                  },
+                  "property": {
+                    "type": "string",
+                    "enum": [
+                      "rotation",
+                      "position"
+                    ],
+                    "description": "Local transform channel."
+                  },
+                  "axis": {
+                    "type": "string",
+                    "enum": [
+                      "x",
+                      "y",
+                      "z"
+                    ],
+                    "description": "Local transform axis."
+                  },
+                  "scale": {
+                    "description": "Multiply the signal by this value. Supply this or keys.",
+                    "type": "number"
+                  },
+                  "offset": {
+                    "description": "Offset after scaling; default zero.",
+                    "type": "number"
+                  },
+                  "keys": {
+                    "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+                    "minItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "ease": {
+                    "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "smooth"
+                    ]
+                  },
+                  "min": {
+                    "description": "Minimum displacement from authored pose.",
+                    "type": "number"
+                  },
+                  "max": {
+                    "description": "Maximum displacement from authored pose.",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "node",
+                  "source",
+                  "property",
+                  "axis"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Per-model node channels and their signal calibration."
+            }
+          },
+          "required": [
             "bindings"
           ],
           "additionalProperties": false
@@ -6306,7 +6793,7 @@ Required: `kind`, `color`, `spec`, `visual`
 
 ### `vehicleInput`
 
-Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), brake/handbrake.
+Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake.
 
 Required: `throttle`, `steering`, `brake`
 
@@ -6340,7 +6827,11 @@ Required: `throttle`, `steering`, `brake`
     },
     "brake": {
       "type": "boolean",
-      "description": "Apply the service/parking brake while true."
+      "description": "Apply the service brakes (all wheels, anti-lock) while true; holds the car at rest."
+    },
+    "handbrake": {
+      "description": "Lock the rear wheels while true: they slide instead of rolling, for handbrake turns.",
+      "type": "boolean"
     }
   },
   "required": [
@@ -6396,11 +6887,11 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
     },
     "pitch": {
       "type": "number",
-      "description": "Chassis rotation about local X in radians, from terrain support."
+      "description": "Chassis rotation about local X in radians from terrain support, nose down positive."
     },
     "roll": {
       "type": "number",
-      "description": "Chassis rotation about local Z in radians, from terrain support."
+      "description": "Chassis rotation about local Z in radians from terrain support, right side down positive."
     },
     "vy": {
       "type": "number",
@@ -6417,6 +6908,36 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
     "wheelAngle": {
       "type": "number",
       "description": "Accumulated wheel spin angle in radians, wrapped each revolution."
+    },
+    "lateralSpeed": {
+      "description": "Sideways speed in meters per second, positive to the left: the slide.",
+      "type": "number"
+    },
+    "yawRate": {
+      "description": "Yaw rate in radians per second, positive turning left.",
+      "type": "number"
+    },
+    "bodyPitch": {
+      "description": "Suspension pitch in radians on top of the terrain, nose down positive.",
+      "type": "number"
+    },
+    "bodyPitchRate": {
+      "description": "Suspension pitch rate in radians per second.",
+      "type": "number"
+    },
+    "bodyRoll": {
+      "description": "Suspension roll in radians on top of the terrain, right side down positive.",
+      "type": "number"
+    },
+    "bodyRollRate": {
+      "description": "Suspension roll rate in radians per second.",
+      "type": "number"
+    },
+    "skid": {
+      "description": "0–1: how far the tires are past their grip (sliding, wheelspin, locked wheels).",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
     }
   },
   "required": [
@@ -6568,6 +7089,42 @@ Required: none
         },
         "intensity": {
           "description": "Visual precipitation intensity 0–1, default 0. Not a calibrated rainfall rate.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "wind": {
+      "description": "Spatial and temporal structure of the wind around the mean atmosphere.windVelocity. Deterministic from seed and simulation time; consumes no simulation RNG.",
+      "type": "object",
+      "properties": {
+        "referenceHeight": {
+          "description": "Height above ground in meters where atmosphere.windVelocity is measured; default 10.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "shear": {
+          "description": "Power-law exponent of mean wind speed with height above ground, up to 600 m; default 0 (uniform). About 0.14 over open country, 0.3 over cities.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "turbulence": {
+          "description": "Turbulence intensity 0–1, default 0: about 0.15 light chop, 0.4 moderate, 0.8 severe. Grows with wind speed and fades above the 1 km boundary layer.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "gusts": {
+          "description": "Gust factor 0–1, default 0: along-wind speed swings as a fraction of the mean wind, advected with it.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "terrain": {
+          "description": "Strength 0–1 of wind deflected by terrain slopes: ridge lift upwind, sink in the lee. Default 0.",
           "type": "number",
           "minimum": 0,
           "maximum": 1
