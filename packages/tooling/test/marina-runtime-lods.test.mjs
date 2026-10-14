@@ -173,9 +173,9 @@ it('retains offset octagonal facade, all 48 terraces, open canopy slots and capp
   for (const level of asset.runtimeLods.levels) {
     const { triangles, g } = decode(await readFile(`${runtime}/${level.file}`)),
       allowance = { skyline: 1.5, district: 0.75, street: 0.3, closeup: 0.1 }[level.name];
+    // Avoid omitted far terrace rails at 310 m; slab probes below check every terrace.
     for (const { a, b, n } of edges)
       for (const u of [0.22, 0.43, 0.72])
-        // Avoid omitted far terrace rails at 310 m; slab probes below check every terrace.
         for (const y of [30, 100, 123, 170, 220, 260, 312]) {
           const o = [a[0] + (b[0] - a[0]) * u + n[0] * 20, y, a[1] + (b[1] - a[1]) * u + n[2] * 20],
             d = n.map((v) => -v);

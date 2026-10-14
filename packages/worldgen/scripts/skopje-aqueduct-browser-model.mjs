@@ -3,6 +3,7 @@ import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
+
 const frame = JSON.parse(
     readFileSync(structureSourcePath('n0018_skopje_aqueduct', 'map-frame.json')),
   ),

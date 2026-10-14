@@ -550,8 +550,6 @@ export async function buildAssetsFromSource({
   root = resolve(root);
   const started = Date.now();
   const plan = validatePlan(await readJson(join(root, PLAN)));
-  const { fetchReviews } = await import('./review-packs.mjs');
-  await fetchReviews({ root, log });
   // V8's Math.pow changes between Node majors (three.js's sRGB conversion uses it), so committed
   // metadata only matches builds on one; switching would rewrite it.
   if (process.versions.node.split('.')[0] !== plan.node)

@@ -2,6 +2,7 @@
 import './install-deterministic-math.mjs';
 import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const MEANS = {
     wall: [0.9088893864967214, 0.9088893864967214, 0.9088893864967214],
     metal: [0.9088893864967214, 0.9088893864967214, 0.9088893864967214],

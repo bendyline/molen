@@ -1,8 +1,9 @@
 /** Picture-based Trakai Island Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildTrakaiRuntime } from './trakai-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildTrakaiRuntime } from './trakai-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

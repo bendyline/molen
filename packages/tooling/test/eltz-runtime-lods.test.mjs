@@ -8,8 +8,8 @@ import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { eltzStudy } from '../../worldgen/scripts/eltz-castle-model.mjs';
 import { eltzGround } from '../../worldgen/scripts/eltz-runtime-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u0/u0v/n0266_eltz_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
@@ -104,12 +104,10 @@ it('reproduces original master and verifies signed map and retained ground', asy
     bytes = Buffer.from(
       encodeGlb(
         m,
-        a
-          .materials(m.groups)
-          .map((s, i) => ({
-            ...s,
-            name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-          })),
+        a.materials(m.groups).map((s, i) => ({
+          ...s,
+          name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+        })),
         'Molen original Eltz Castle',
       ),
     );

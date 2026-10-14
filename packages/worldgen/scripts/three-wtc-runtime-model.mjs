@@ -1,4 +1,6 @@
 /** Reviewed browser levels; the original 3 WTC recipe remains unchanged. */
+
+import { readFileSync } from 'node:fs';
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   commonLimit,
@@ -11,8 +13,8 @@ import {
   partsEvidence,
 } from './signature-tower-expansion-models.mjs';
 import { box, tube } from './structure-mesh.mjs';
-import { readFileSync } from 'node:fs';
 import { structureSourcePath } from './structure-source-paths.mjs';
+
 const frame = JSON.parse(
   readFileSync(structureSourcePath('n0195_3_world_trade_center', 'map-frame.json')),
 );

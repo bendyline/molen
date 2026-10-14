@@ -1,8 +1,9 @@
 /** Picture-based Castel Nuovo exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildCastelNuovoRuntime } from './castel-nuovo-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildCastelNuovoRuntime } from './castel-nuovo-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

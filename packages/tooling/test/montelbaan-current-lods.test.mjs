@@ -94,8 +94,7 @@ it('reproduces the untouched historical draft and binds the signed land entrance
   montelbaanstoren.build(wrap(b, used, montelbaanstoren.componentMap));
   const m = b.finalize();
   montelbaanstoren.decorateMesh(m);
-  const
-    materials = m.groups.map((group) => {
+  const materials = m.groups.map((group) => {
       const s = used.get(group.slot + ':' + group.materialRef);
       return {
         name: (s.graph ?? 'recess') + '-' + s.slot,
@@ -119,11 +118,11 @@ it('reproduces the untouched historical draft and binds the signed land entrance
   expect(s.sourceGeometry.export).toBe('buildMontelbaanReviewed');
   expect(s.mesh.sha256).not.toBe(scope.sourceFacts.originalMasterHash);
   expect(live.heading).toBeCloseTo(1.407879250402, 12);
-  expect(live.anchor).toEqual([4.905663475,52.372039158]);
+  expect(live.anchor).toEqual([4.905663475, 52.372039158]);
   expect(live.datum).toBe('terrain');
   expect(live.replaceFootprint).toBe(false);
   expect(frame.mappedIdentity.featureIds).toEqual(['way/57864086']);
-  const captured = sourceLocalFootprint(s, await readFile(source+'/map-frame.json'));
+  const captured = sourceLocalFootprint(s, await readFile(source + '/map-frame.json'));
   expect(frame.geometry.outline).toHaveLength(42);
   expect(captured.footprint).toHaveLength(43);
   expect(captured.footprint[42]).toEqual(captured.footprint[0]);
@@ -131,19 +130,23 @@ it('reproduces the untouched historical draft and binds the signed land entrance
   expect(frame.orientationControl.uncertaintyDegrees).toBe(20);
   expect(s.sourceFacts.sectionGroundToTipMeters).toBe(42.05);
   expect(s.sourceFacts.historicalReportedHeightMeters).toBe(48);
-  expect(s.mesh.sha256).toBe(hash(await readFile(source+'/models/source.glb')));
+  expect(s.mesh.sha256).toBe(hash(await readFile(source + '/models/source.glb')));
 });
 it('retains ground-level land entry, filled niches, complete crown and physically open lanterns', async () => {
-  for (const name of ['skyline','district','street','closeup']) {
-    const b=await readFile(runtime+'/model.'+name+'.glb'),g=JSON.parse(b.toString('utf8',20,20+b.readUInt32LE(12))),ts=geometry(b),ps=g.meshes.flatMap(m=>m.primitives).map(p=>g.accessors[p.attributes.POSITION]);
-    expect(Math.max(...ps.map(p=>p.max[1])),name+' whole crown').toBeCloseTo(42.05,4);
-    expect(Math.min(...ps.map(p=>p.min[1])),name+' pavement datum').toBe(0);
-    expect(nearest(ts,[-2.036,1,-13],[0,0,1]),name+' land doorway').toBeGreaterThan(7.3);
-    expect(nearest(ts,[-2.036,1,-13],[0,0,1]),name+' land doorway').toBeLessThan(7.6);
-    for (const y of [27.5,33.8]) expect(nearest(ts,[0,y,8],[0,0,-1]),name+' open lantern at '+y).toBe(Infinity);
+  for (const name of ['skyline', 'district', 'street', 'closeup']) {
+    const b = await readFile(runtime + '/model.' + name + '.glb'),
+      g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
+      ts = geometry(b),
+      ps = g.meshes.flatMap((m) => m.primitives).map((p) => g.accessors[p.attributes.POSITION]);
+    expect(Math.max(...ps.map((p) => p.max[1])), name + ' whole crown').toBeCloseTo(42.05, 4);
+    expect(Math.min(...ps.map((p) => p.min[1])), name + ' pavement datum').toBe(0);
+    expect(nearest(ts, [-2.036, 1, -13], [0, 0, 1]), name + ' land doorway').toBeGreaterThan(7.3);
+    expect(nearest(ts, [-2.036, 1, -13], [0, 0, 1]), name + ' land doorway').toBeLessThan(7.6);
+    for (const y of [27.5, 33.8])
+      expect(nearest(ts, [0, y, 8], [0, 0, -1]), name + ' open lantern at ' + y).toBe(Infinity);
     if (name !== 'skyline') {
-      expect(nearest(ts,[0,17,8],[0,0,-1]),name+' brick niche back').toBeGreaterThan(4);
-      expect(nearest(ts,[0,17,8],[0,0,-1]),name+' brick niche back').toBeLessThan(4.2);
+      expect(nearest(ts, [0, 17, 8], [0, 0, -1]), name + ' brick niche back').toBeGreaterThan(4);
+      expect(nearest(ts, [0, 17, 8], [0, 0, -1]), name + ' brick niche back').toBeLessThan(4.2);
     }
   }
 });

@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { cross, normalize } from '../../worldgen/scripts/authored-structure-mesh.mjs';
+import { normalize } from '../../worldgen/scripts/authored-structure-mesh.mjs';
 import { emleyMoor } from '../../worldgen/scripts/emley-moor-model.mjs';
 import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-materials.mjs';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
@@ -76,10 +76,10 @@ it('keeps all four north platforms, twenty turret bays and the full modern anten
     expect(values.reduce((a, b) => Math.max(a, b), -Infinity)).toBeCloseTo(319, 4);
     expect(values.reduce((a, b) => Math.min(a, b), Infinity)).toBe(0);
     for (const y of [27.4, 33.5, 39.6, 45.7])
-      expect(nearest(ts, [1.7, y + 2, -12.5], [0, -1, 0]), name + ' north platform ' + y).toBeCloseTo(
-        2,
-        3,
-      );
+      expect(
+        nearest(ts, [1.7, y + 2, -12.5], [0, -1, 0]),
+        name + ' north platform ' + y,
+      ).toBeCloseTo(2, 3);
     for (let i = 0; i < 20; i++) {
       const a = ((i + 0.5) * 2 * Math.PI) / 20,
         hit = nearest(

@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Three narrow radial wings with continuously sloping glazed sides and a small intermediate setback converge into a ringed conical crown. Individual glass panels, edge ribs and a concave mapped podium retain the recognizable Y-plan pyramid.
+Compact Ryugyong exterior preserves all mapped radial wings, their sloping roofs and setbacks, separate central shaft, conical crown and podium. Low tiers coarsen facade grids and crown rings; original master remains reproducible.
 
 ## Evidence and reconstruction
 
@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-36,147 triangles; 100,327 vertices; 4 material groups; 4,048,352 bytes. Native bounds: -190.148, 0.000, -128.053 to 190.148, 330.000, 128.053. Source hash: `sha256:cf7500a4a5cc66fec4822687cf2d2d2b7e5870637cb70ea71d92e9a581bb2883`.
+36,147 triangles; 108,441 vertices; 4 material groups; 4,340,456 bytes. Native bounds: -190.148, 0.000, -128.053 to 190.148, 330.000, 128.053. Source hash: `sha256:eae3317b4c37caad3f004dd61b3b80a6e7f2fda24c607bc944ccbf89495a74d8`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Mapped podium frame; tower center from separate mapped central shaft"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+One inspected daylight exterior photograph confirms the blue-gray three-wing pyramid, narrow ribs, intermediate outer-wing shoulders and conical ringed crown. Preserve original330m height, concave mapped podium, separate central shaft and mapped wing roof directions77/197/317degrees. Standard viewer PMTiles confirms the tower/plaza and surrounding roads. Off-podium PMTiles point[0,150]26.1845m sets approximate ground contact; center36.7994m remains coarse. Bounded rectangular preview correction covers the large podium while retaining raw heights separately. Facade panel schedule, precise shoulder heights, crown ring sections, podium entrances and thresholds remain approximations. The2012 picture does not certify current LED/display installations or occupancy.
 
 ## Reproduce
 
@@ -30,7 +30,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0143` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Mapped parts resolve wing positions and roof slopes; upper conical crown curvature and pane schedules are reconstructed. LED media facade is represented as static daylight glazing.
+- One inspected daylight exterior photograph confirms the blue-gray three-wing pyramid, narrow ribs, intermediate outer-wing shoulders and conical ringed crown. Preserve original330m height, concave mapped podium, separate central shaft and mapped wing roof directions77/197/317degrees. Standard viewer PMTiles confirms the tower/plaza and surrounding roads. Off-podium PMTiles point[0,150]26.1845m sets approximate ground contact; center36.7994m remains coarse. Bounded rectangular preview correction covers the large podium while retaining raw heights separately. Facade panel schedule, precise shoulder heights, crown ring sections, podium entrances and thresholds remain approximations. The2012 picture does not certify current LED/display installations or occupancy.
+- Three shared granite/concrete/painted-metal graphs reused; glazing uses opaque PBR with no copied imagery. Low tiers keep the whole three-wing silhouette while merging panel grids and replacing crown tubes with narrow surface bands. Physical-device timings pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

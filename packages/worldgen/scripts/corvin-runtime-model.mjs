@@ -1,8 +1,9 @@
 /** Picture-based Corvin Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildCorvinRuntime } from './corvin-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildCorvinRuntime } from './corvin-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

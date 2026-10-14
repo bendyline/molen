@@ -51,4 +51,4 @@ it('reconstructs identical four-level bytes from source without changing the det
   expect(before.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3000000,
   );
-}, 10000);
+});

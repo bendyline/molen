@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0300_saint_michael_s_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:c3def60b80522823cd560698a99227894ddf960e08282831068dfe2bfadc3802",
+  "inputHash": "sha256:9739ed35976ad0cddad5996916699d530ef2159d64a2d6acbab5508c398d1865",
   "sourceHash": "sha256:ca6dcc23f4a5d5e80f59de2bb600ef71c45d1996b8494e412a6becacc471b24c",
   "runtimeHash": "sha256:45d0d6d2c71f982bd53ea40a494dce4c151050069c43e688ee39c4636b1e1d78",
-  "captureReportHash": "sha256:96ec1b1d1e0680ecc2589635df210edcec66ca7ba9a9decd75954fc5706dd7c2",
+  "captureReportHash": "sha256:11c2efbfa60a77bb943a30f1fb943780f673485e6c0598390298a86de90eb353",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3015f564e42862851da671bef5259ac7581833d5a3414beed9983f6defc74482",
+    "captureReportHash": "sha256:29db15266033db6875fa1e9f2316d0df1e91442d00b6c4cd837d1ae9705ab5ef",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -289,5 +289,54 @@
     "Detailed original master/hash/recipe preserved. Spire/dome profiles, columns, inscriptions and restoration details are interpreted; interiors and collision excluded.",
     "Six common graphs plus explicit glass color slot; zero embedded images. A reversible bounded ground opening and authored paved apron suppress the PMTiles mound under the palace; adjacent raw PMTiles terrain is retained. Actual urban ground datum is not surveyed.",
     "Footprint replacement remains off; physical-device timing unmeasured."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:c3def60b80522823cd560698a99227894ddf960e08282831068dfe2bfadc3802",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:96ec1b1d1e0680ecc2589635df210edcec66ca7ba9a9decd75954fc5706dd7c2",
+    "previousSharedCaptureReportHash": "sha256:3015f564e42862851da671bef5259ac7581833d5a3414beed9983f6defc74482",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/saint-michaels-runtime-model.mjs",
+        "beforeHash": "sha256:2403bc84abcf8765a091e014f416b4b237613d2b52c73942633f1f661e84c8d3",
+        "afterHash": "sha256:e28b0793196ac1bdf8f5e15c844da8da243cd3316f7698def563e9bba2616cb3",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/ud/udt/n0300_saint_michael_s_castle/models/source.glb",
+        "hash": "sha256:ca6dcc23f4a5d5e80f59de2bb600ef71c45d1996b8494e412a6becacc471b24c",
+        "bytes": 2060744
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.glb",
+        "hash": "sha256:45d0d6d2c71f982bd53ea40a494dce4c151050069c43e688ee39c4636b1e1d78",
+        "bytes": 2060104
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.skyline.glb",
+        "hash": "sha256:87f8a74042f095ab30b071d68a0d2f4772da6ab38f9274bf194bc11237e7fd2a",
+        "bytes": 68280
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.district.glb",
+        "hash": "sha256:95c22beb61e8a61b0e33b1010390ede94ff5af92aa66aaf77bcfa023b864b89a",
+        "bytes": 180816
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.street.glb",
+        "hash": "sha256:1f196ab975b458cac2f53d956d6551c3a84c04e2115e79138733e0eac4998254",
+        "bytes": 1154724
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0300_saint_michael_s_castle/model.closeup.glb",
+        "hash": "sha256:5b810213139fd771415e133fab52da48ae81ad760f15c09eb5092091af6f8d29",
+        "bytes": 1556748
+      }
+    ],
+    "retainedInspectedImageCount": 49
+  }
 }

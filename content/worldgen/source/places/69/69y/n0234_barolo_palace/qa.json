@@ -1,11 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0234_barolo_palace",
-  "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:5fa13e9857ee1586cd0894ed7df1179683095fa7e8b5e7ef1de2fd03f9a6c2e8",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:5a616739a4bdec04fb6a79013f2e83f38e02c454c84b548adcfc409c206bcad3",
   "sourceHash": "sha256:fcb0a63abd36b33013ce8513ccd3d73b0e751e39956523368f0e595ce0f3881d",
   "runtimeHash": "sha256:85f0ab073f1542a48b304c8c2615fde62cfba4bb42b82fe77e09454d30b40300",
-  "captureReportHash": "sha256:ebb04ba3488e6982d9c526721379c52a0039295ca45287b9d5c599c030b3446b",
+  "captureReportHash": "sha256:0ce17b4398f8f2f7515065915ed954c1af12a32d4ea879bd52b0ba537a9c6662",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -29,11 +29,11 @@
       "shots/open-passage-street.png",
       "shots/open-h-plan-courts.png"
     ],
-    "notes": "Actually inspected all 19 final portable images and 18 shared images: four complete turntables, street facade, projecting bow bays, portal, repeated vaulted passage, green curved mansards, pointed tower arch, circular balconies, layered crown, clear lantern with schematic searchlight, rear and H-plan courts. The open through passage and open light courts survive. Details are deliberately faceted; rear/court walls remain schematic and fine balusters alias. Owner front/tower/mansard/lantern photographs were actually viewed; original detail is reduced rather than treated as surveyed masonry."
+    "notes": "Inspected all19 final source views. Bow-window/balcony body, green mansards, pointed tower arch, layered cornices and glazed lantern/searchlight remain complete. Both H-plan courts and7.5x13.5m through passage stay open. Rear elevation and decorative relief remain reconstructions."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e08ab0f4ced438b07a00adbe9e443abbe4063e4a1ce8eb6e6cc5cc392f8a9d36",
+    "captureReportHash": "sha256:881e5e3df4e2ac01a2a281d9b52f899a94847081082deb7e41ead163e8a87244",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -52,13 +52,14 @@
       "shots/shared/courtyards.png",
       "shots/shared/whole-reviewed-palacio.png",
       "shots/shared/open-passage-street.png",
-      "shots/shared/open-h-plan-courts.png"
+      "shots/shared/open-h-plan-courts.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Three reusable canonical concrete_plain, stone_marble and metal_painted graphs serve stone-like exterior, lower passage/base veneer and green-painted mansard/trim. Opaque glazing and 52-percent clear lantern glazing yield five groups; all six GLBs have zero embedded images. Metric texture grain appears on nearby masonry and bound surfaces. Each graph is read once; viewer eviction leaves zero live model geometry. Skyline combines measured graph means into one opaque palette draw. Reference photographs are not runtime textures."
+    "notes": "Inspected all19 final shared-viewer views including north-up placement. The31m authored frontage remains narrower than the contradictory60m mapped ring; this mismatch is visible and accepted for approximate named-place/street placement without footprint suppression. Three common concrete/marble/painted-metal graphs plus opaque windows/translucent lantern use no embedded images. Shared graph cache and unloading pass."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:61cc31c11a27d9625cb11f93e93d75b80ab4b0f6a834eb49f7aee44894f1029a",
+    "captureReportHash": "sha256:419ad8cbee999943cea4fc79b6edb8c858519b56f8c1063577b6996faf650467",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -98,17 +99,18 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Actually inspected all 37 final medium-fi images: noon/late economy/high, feature views, four dedicated whole-level views and transitions. Skyline now keeps the 7.5 by 13.5 m through passage and H-plan courts, offset tower, green roof masses and crown silhouette. District groups bow-bay floor rows, removes concentric arch-relief tubes and coarsens balconies to triangular facets. Street restores seven bow-bay rows, curved mansards and finer crown while omitting the arch-relief tubes. Close preserves detailed window/frame/balcony/arch/crown relief within 64000 triangles. The tall tower is cropped in automatic context cameras but complete in the dedicated whole views. Synthetic cottages and flat ground do not verify Buenos Aires placement or terrain; no geographic image is claimed."
+    "notes": "Inspected all37 final lighting, detail and transition frames. Whole-building views contain base/lantern in all tiers. Skyline retains H-plan/open passage; district restores broad facade and mansard rhythm; street/closeup retain polygonal windows, balconies, cornices and lantern. Synthetic neighbors and local PMTiles contacts are approximate."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Pending: fresh exact-QID OSM way 1386044833 still has a roughly 60 m frontage, conflicting with the owner/municipal 30.88 by 44.21 m plot. The 2026 municipal annex freshly confirms SMP 012-039-004 and both street address sets but supplies no coordinates. Official parcel-data download and subsequent origin access were denied by automatic approval review; user permission is pending. No alternative parcel polygon or half-outline has been invented. Automatic placement remains inactive, with no footprint replacement."
+    "status": "passed",
+    "placementHash": "sha256:f8f59fe4708357c762e228b24ab818f8b7f30103c2f7377a3a4a6ec726e93cad",
+    "mapFrameHash": "sha256:ca9217fb5f6b96651906e691e5c92071f413da8191a2833ea66f47bfc800de06",
+    "notes": "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "notes": "Original 49608172-byte instanced master is preserved and reproducible from the original baroloPalaceStudy.encodeAssembly (new optional runtime arch-relief switch does not change original master bytes), hash sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8, 870924 expanded /646738 stored triangles, four parts/116 placements and five material groups with three shared graphs and zero images. The new browser source uses the existing authored close-up reconstruction, reducing moulding/arch sampling and relief while retaining H-plan light courts, 7.5 m wide/13.5 m high through passage, repeated projecting bow bays, three-level green mansards, curved balconies, pointed arches, offset tower, ribbed crown and clear lighthouse. Skyline now retains passage and H-plan; district/street omit subpixel concentric arch-relief tubes while retaining arched glazing silhouettes to meet triangle budgets, close retains authored 62940-triangle facade. Owner 100 m overall height is retained; national 103 m overall and municipal 86 m/owner 90 m dome figures remain separate. Plot dimensions 30.88 by 44.21 m and passage dimensions follow the municipal book and owner. Intermediate elevations, bay profiles, mansard shape, tower center -14 m, court widths, ornament and lighthouse mechanism are photographic reconstructions, not measured drawings. Rear and light courts remain schematic; interiors, exact inscriptions/sculpture, shop signage and modern rooftop equipment are not modeled. Three canonical shared concrete, painted-metal and marble graphs plus opaque glazing and 52-percent clear lantern glazing give five groups with zero embedded images. Geographic registration remains unresolved: exact-QID OSM way 1386044833 spans about 60 m rather than the documented 30.88 m frontage; no stretch or footprint replacement is allowed. Official cadastral download was denied by automatic approval review; permission is pending. Physical-device performance measurements and terrain grade remain unmeasured."
+    "notes": "Accepted owner-directed medium-fi picture/PMTiles approximation. Current inspected aerial front picture supports tower and green mansard/bow-window vocabulary; prior source-local reference review supplies other detail. PMTiles named Palacio Barolo point agrees with retained center within about0.5m; front faces Avenida de Mayo north, rear Hipólito Yrigoyen south. Exact parcel sides and tower-to-parcel offsets remain uncertain because mapped60m envelope conflicts with30.88m source width. Source is not stretched and neighboring map buildings are not suppressed. PMTiles[-70,0]43.1881m contact approximate; raw heights preserved separately. Physical-device timing pending."
   },
   "legacyFidelityScope": {
     "target": "maximum",
@@ -246,10 +248,10 @@
       }
     ],
     "tests": {
-      "command": "node node_modules/vitest/vitest.mjs run test/barolo-runtime-lods.test.mjs --maxWorkers=1",
-      "passed": 3
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
     },
-    "notes": "Three focused tests pass: the original 49608172-byte instanced master reproduces its exact prior hash despite optional far-only runtime switches, changed-ID generator/source/import hashes agree, rays verify an open passage at three heights, unroofed H-plan courts, upward passage-floor winding, outward body/bay faces, offset crown and 100 m maximum. Glazed lantern retains one 52-percent BLEND group. Every browser level rebuilds identically within triangle/download/draw budgets with separate 12-byte POSITION/NORMAL streams. All six Khronos validations have zero errors and warnings; strict medium-fi findings are empty. Sampled ray and hash tests do not certify exhaustive topology or geographic registration."
+    "notes": "Six GLBs validate with zero errors, warnings and images. Earlier exact original master reproduction at sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8 remains recorded; original source recipe unchanged. Compact source reproduced unchanged at sha256:fcb0a63abd36b33013ce8513ccd3d73b0e751e39956523368f0e595ce0f3881d with62940triangles. Browser550/3788/15004/62940meet1k/4k/16k/64k budgets; initial334364bytes. Current source/runtime/LOD/map bindings checked."
   },
   "runtimeLodReview": {
     "status": "passed",
@@ -305,9 +307,9 @@
       }
     ],
     "initialBytes": 334364,
-    "notes": "skyline: 550 triangles /42140 bytes /1 groups; district: 3788 triangles /292224 bytes /5 groups; street: 15004 triangles /1072604 bytes /5 groups; closeup: 62940 triangles /5285628 bytes /5 groups. Initial skyline/district 334364 bytes. Current source 5365120 bytes; import undefined bytes. Original detailed master remains reproducible from its preserved geometry. Physical laptop/phone timings remain unmeasured."
+    "notes": "skyline: 550 triangles, 42140 bytes, 1 draws; district: 3788 triangles, 292224 bytes, 5 draws; street: 15004 triangles, 1072604 bytes, 5 draws; closeup: 62940 triangles, 5285628 bytes, 5 draws. Initial skyline+district 334364 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
   },
   "limitations": [
-    "Original 49608172-byte instanced master is preserved and reproducible from the original baroloPalaceStudy.encodeAssembly (new optional runtime arch-relief switch does not change original master bytes), hash sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8, 870924 expanded /646738 stored triangles, four parts/116 placements and five material groups with three shared graphs and zero images. The new browser source uses the existing authored close-up reconstruction, reducing moulding/arch sampling and relief while retaining H-plan light courts, 7.5 m wide/13.5 m high through passage, repeated projecting bow bays, three-level green mansards, curved balconies, pointed arches, offset tower, ribbed crown and clear lighthouse. Skyline now retains passage and H-plan; district/street omit subpixel concentric arch-relief tubes while retaining arched glazing silhouettes to meet triangle budgets, close retains authored 62940-triangle facade. Owner 100 m overall height is retained; national 103 m overall and municipal 86 m/owner 90 m dome figures remain separate. Plot dimensions 30.88 by 44.21 m and passage dimensions follow the municipal book and owner. Intermediate elevations, bay profiles, mansard shape, tower center -14 m, court widths, ornament and lighthouse mechanism are photographic reconstructions, not measured drawings. Rear and light courts remain schematic; interiors, exact inscriptions/sculpture, shop signage and modern rooftop equipment are not modeled. Three canonical shared concrete, painted-metal and marble graphs plus opaque glazing and 52-percent clear lantern glazing give five groups with zero embedded images. Geographic registration remains unresolved: exact-QID OSM way 1386044833 spans about 60 m rather than the documented 30.88 m frontage; no stretch or footprint replacement is allowed. Official cadastral download was denied by automatic approval review; permission is pending. Physical-device performance measurements and terrain grade remain unmeasured."
+    "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations."
   ]
 }

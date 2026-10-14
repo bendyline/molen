@@ -60,42 +60,54 @@ function hit(o, d, p) {
   return u < -0.00001 || v < -0.00001 || u + v > 1.00001 ? null : dot(b, cross(q, a)) / det;
 }
 
-
 it('retains all eight real viewing recesses in district, street and closeup', async () => {
-  for(const name of ['district','street','closeup']) {
-    const ts=geometry(await readFile(runtime+'/model.'+name+'.glb'));
-    for(let i=0;i<8;i++) {
-      const a=i*Math.PI/4,y=i%2?1.01:1.595,
+  for (const name of ['district', 'street', 'closeup']) {
+    const ts = geometry(await readFile(runtime + '/model.' + name + '.glb'));
+    for (let i = 0; i < 8; i++) {
+      const a = (i * Math.PI) / 4,
+        y = i % 2 ? 1.01 : 1.595,
         // Start inside the guy wires so they cannot obscure the rear viewing pane.
-        o=[0.675*Math.sin(a),y,0.675*Math.cos(a)],d=[-Math.sin(a),0,-Math.cos(a)],
-        ds=ts.map(p=>hit(o,d,p)).filter(t=>t!==null&&t>0&&t<2);
-      expect(Math.min(...ds),name+' viewing window '+i).toBeGreaterThan(0.06);
+        o = [0.675 * Math.sin(a), y, 0.675 * Math.cos(a)],
+        d = [-Math.sin(a), 0, -Math.cos(a)],
+        ds = ts.map((p) => hit(o, d, p)).filter((t) => t !== null && t > 0 && t < 2);
+      expect(Math.min(...ds), name + ' viewing window ' + i).toBeGreaterThan(0.06);
       expect(Math.min(...ds)).toBeLessThan(0.09);
     }
   }
 });
-it('preserves the original source master and keeps unresolved doorway bearing inactive', async()=>{
-  expect(hash(await readFile(source+'/models/source.glb'))).toBe('sha256:2b9cf37d0cbfe226d43fd2f80e9e0560ed36e6209147c3bbd4dc807766502c39');
-  const s=await read(source+'/spec.json'),p=(await read('../../content/earth/structures/placements.json')).entries.find(p=>p.asset===s.assetId);
+it('preserves the original source master and labels the preview doorway bearing as approximate', async () => {
+  expect(hash(await readFile(source + '/models/source.glb'))).toBe(
+    'sha256:2b9cf37d0cbfe226d43fd2f80e9e0560ed36e6209147c3bbd4dc807766502c39',
+  );
+  const s = await read(source + '/spec.json'),
+    p = (await read('../../content/earth/structures/placements.json')).entries.find(
+      (p) => p.asset === s.assetId,
+    );
   expect(s.sourceFacts.viewingWindowCount).toBe(8);
-  expect(s.geographicProposal.anchor).toEqual([13.836673765,46.37830418]);
-  expect(s.geographicProposal.status).toBe('orientation-review');
-  expect(p?.status).not.toBe('preview');
-  expect(s.geographicProposal.heading).toBeUndefined();
+  expect(s.geographicProposal.anchor).toEqual([13.836673765, 46.37830418]);
+  expect(s.geographicProposal.status).toBe('preview-proposal');
+  expect(s.geographicProposal.orientationConfidence).toContain('approximate-facing');
+  expect(s.geographicProposal.heading).toBe(0);
+  expect(p.status).toBe('preview');
+  expect(p.heading).toBe(0);
+  expect(p.replaceFootprint).toBe(false);
 });
-it('rebuilds four byte-identical budgeted levels with one shared graph and no embedded images', async()=>{
-  const a=await read(runtime+'/asset.json'),before=await Promise.all(a.runtimeLods.levels.map(l=>readFile(runtime+'/'+l.file)));
-  await buildModelLandmarkLods(runtime+'/asset.json',{force:true});
-  expect((await read(runtime+'/asset.json')).runtimeLods).toEqual(a.runtimeLods);
-  expect(a.runtimeLods.levels.slice(0,2).reduce((n,l)=>n+l.bytes,0)).toBeLessThan(3000000);
-  const refs=new Set();
-  for(const [i,l]of a.runtimeLods.levels.entries()) {
-    const b=await readFile(runtime+'/'+l.file),g=JSON.parse(b.toString('utf8',20,20+b.readUInt32LE(12)));
+it('rebuilds four byte-identical budgeted levels with one shared graph and no embedded images', async () => {
+  const a = await read(runtime + '/asset.json'),
+    before = await Promise.all(a.runtimeLods.levels.map((l) => readFile(runtime + '/' + l.file)));
+  await buildModelLandmarkLods(runtime + '/asset.json', { force: true });
+  expect((await read(runtime + '/asset.json')).runtimeLods).toEqual(a.runtimeLods);
+  expect(a.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
+  const refs = new Set();
+  for (const [i, l] of a.runtimeLods.levels.entries()) {
+    const b = await readFile(runtime + '/' + l.file),
+      g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12)));
     expect(b.equals(before[i])).toBe(true);
-    expect(l.triangles).toBeLessThanOrEqual([1000,4000,16000,64000][i]);
+    expect(l.triangles).toBeLessThanOrEqual([1000, 4000, 16000, 64000][i]);
     expect(l.drawCalls).toBeLessThanOrEqual(8);
-    expect(g.images??[]).toHaveLength(0);
-    for(const m of g.materials)if(m.extras?.molenSurface?.ref)refs.add(m.extras.molenSurface.ref);
+    expect(g.images ?? []).toHaveLength(0);
+    for (const m of g.materials)
+      if (m.extras?.molenSurface?.ref) refs.add(m.extras.molenSurface.ref);
   }
   expect([...refs]).toEqual(['matgraph:molen.worldgen.material.metal_painted']);
 });

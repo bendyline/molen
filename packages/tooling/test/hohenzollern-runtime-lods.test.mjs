@@ -7,8 +7,8 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { hohenzollernStudy } from '../../worldgen/scripts/hohenzollern-castle-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u0/u0w/n0252_hohenzollern_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
@@ -107,12 +107,10 @@ it('preserves the original detailed source and registers fresh signed evidence',
   const bytes = Buffer.from(
     encodeGlb(
       m,
-      a
-        .materials(m.groups)
-        .map((s, i) => ({
-          ...s,
-          name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-        })),
+      a.materials(m.groups).map((s, i) => ({
+        ...s,
+        name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+      })),
       'Molen original Hohenzollern Castle',
     ),
   );
@@ -164,17 +162,37 @@ it('keeps both mapped gate passages open and exterior platform feet below terrai
     const { triangles } = decode(await readFile(runtime + '/' + l.file));
     // Test the curved lower route, including the excavation liner before the
     // gate. Rays only inside the gate would miss a blocked approach.
-    for (const [id, lo, hi] of [[42139345, 0, 0.3], [275154217, 0.3, 1.3], [275154210, 1.3, 6], [275154214, 6, 7]]) {
-      const p = parts.features.find(f => f.id === 'way/' + id).points,
+    for (const [id, lo, hi] of [
+      [42139345, 0, 0.3],
+      [275154217, 0.3, 1.3],
+      [275154210, 1.3, 6],
+      [275154214, 6, 7],
+    ]) {
+      const p = parts.features.find((f) => f.id === 'way/' + id).points,
         lengths = p.slice(1).map((b, i) => Math.hypot(b[0] - p[i][0], b[1] - p[i][1])),
         total = lengths.reduce((n, x) => n + x, 0);
       let walked = 0;
       for (let i = 1; i < p.length; i++) {
-        const a = p[i - 1], b = p[i], length = lengths[i - 1],
-          ya = lo + (hi - lo) * walked / total + grade.architectureShift,
-          yb = lo + (hi - lo) * (walked + length) / total + grade.architectureShift,
-          delta = [b[0] - a[0], yb - ya, b[1] - a[1]], distance = Math.hypot(...delta), direction = delta.map(x => x / distance);
-        expect(nearest(triangles, [a[0] + direction[0] * .05, ya + 1.8 + direction[1] * .05, a[1] + direction[2] * .05], direction), l.name + ' lower route segment ' + id + ':' + i).toBeGreaterThan(distance - .1);
+        const a = p[i - 1],
+          b = p[i],
+          length = lengths[i - 1],
+          ya = lo + ((hi - lo) * walked) / total + grade.architectureShift,
+          yb = lo + ((hi - lo) * (walked + length)) / total + grade.architectureShift,
+          delta = [b[0] - a[0], yb - ya, b[1] - a[1]],
+          distance = Math.hypot(...delta),
+          direction = delta.map((x) => x / distance);
+        expect(
+          nearest(
+            triangles,
+            [
+              a[0] + direction[0] * 0.05,
+              ya + 1.8 + direction[1] * 0.05,
+              a[1] + direction[2] * 0.05,
+            ],
+            direction,
+          ),
+          l.name + ' lower route segment ' + id + ':' + i,
+        ).toBeGreaterThan(distance - 0.1);
         walked += length;
       }
     }

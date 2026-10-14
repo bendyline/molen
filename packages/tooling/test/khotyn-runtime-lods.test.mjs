@@ -8,8 +8,8 @@ import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { khotynStudy } from '../../worldgen/scripts/khotyn-fortress-model.mjs';
 import { khotynGround } from '../../worldgen/scripts/khotyn-runtime-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u8/u8d/n0260_khotyn_fortress'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');

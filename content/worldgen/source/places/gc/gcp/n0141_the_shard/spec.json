@@ -10,7 +10,12 @@
     "latitude": 51.504444444,
     "longitude": -0.086666666
   },
-  "visualBrief": "Eight independently mapped sloped glass facades, open corner gaps, differentiated 235–309.6 m tips, exposed steel crown, detailed panel grids and the separate 70/74 m eastern podium wings.",
+  "visualBrief": "Compact Shard exterior preserves all eight independently mapped facade planes, their unequal tips, recessed enclosure, exposed crown steel and eastern podium. Coarser tiers merge panel grids; original detailed master remains reproducible.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
     86.95037460327148,
     309.6523132324219,
@@ -41,7 +46,14 @@
     "facadeAreaSquareMeters": 55700,
     "highestHabitableFloor": 72,
     "viewingPlatformMeters": 244,
-    "steelSpireHeightApproxMeters": 66
+    "steelSpireHeightApproxMeters": 66,
+    "originalMasterHash": "sha256:80e65f53174a440d80c1fd18300e6685d3cb820c97dd69d5e8208438851c60d9",
+    "originalMasterRecipe": "packages/worldgen/scripts/shard-tower-model.mjs#buildMappedShard",
+    "reviewScope": "Original269299-triangle24077148-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "appearance": {
+    "identity": "Eight sloping blue-gray glass shards with uneven tips, open steel crown and eastern podium wings.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
   },
   "reconstruction": {
     "mappedFacadeParts": [
@@ -83,7 +95,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "mapped-independent-facade-planes; visual site fit review",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       -0.086344388,
       51.504402487
@@ -97,12 +109,22 @@
       "way/31110737"
     ],
     "wikidataId": "Q18536",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2a522fca5d6cf400f84d29fe1dd2b18fa47e0b0e9d6d063d4c5cc48c5ff631c8",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Way31110737 fixes the anchor and signed frame; ways666124825–666124832 provide the eight individual facade polygons, declining directions and roof heights. Ways665171689/665171690 provide the eastern podium wings. Mapped 310 m top planes are calibrated to the operator 309.6 m height. Native base Y0 uses host terrain contact.",
-    "mapPartsDocument": "map-evidence.json"
+    "notes": "One inspected operator aerial exterior photograph confirms the pointed glass pyramid, separated facade edges and visibly open steel crown. Preserve original309.6m top control, eight independently mapped sloping planes with unequal tips, shifted occupied center and70/74m eastern podium wings. Existing exact-QID outer frame and facade parts establish the signed orientation; standard viewer PMTiles confirms the London Bridge road/building context. Off-footprint PMTiles point[-60,0]4.2538m sets approximate terrain contact; center3.0748m remains coarse. Raw heights are separate from a bounded preview contact correction. Exact glass bay schedule, tip fabrication, steel sections and entrances remain approximations. Separate station blocks and interiors excluded.",
+    "mapPartsDocument": "map-evidence.json",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One inspected operator aerial exterior photograph confirms the pointed glass pyramid, separated facade edges and visibly open steel crown. Preserve original309.6m top control, eight independently mapped sloping planes with unequal tips, shifted occupied center and70/74m eastern podium wings. Existing exact-QID outer frame and facade parts establish the signed orientation; standard viewer PMTiles confirms the London Bridge road/building context. Off-footprint PMTiles point[-60,0]4.2538m sets approximate terrain contact; center3.0748m remains coarse. Raw heights are separate from a bounded preview contact correction. Exact glass bay schedule, tip fabrication, steel sections and entrances remain approximations. Separate station blocks and interiors excluded.",
+    "terrainReference": {
+      "anchor": [
+        -0.08703312639873045,
+        51.50472916498444
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -120,12 +142,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Facade lean directions, eight tips and podium dimensions follow attributed detailed map parts; panel sizes, steel member sections and seals are reconstructed within those envelopes.",
-    "Occupied-floor glass uses opaque PBR glazing; the open crown uses double-sided alpha glazing so its internal frame remains visible. Offices, winter gardens, hotel interiors, signage and building services are outside this exterior asset.",
-    "The mapped building outline includes the eastern podium. The native origin retains its map frame; the occupied center and individual shard peaks are independently offset."
+    "One inspected operator aerial exterior photograph confirms the pointed glass pyramid, separated facade edges and visibly open steel crown. Preserve original309.6m top control, eight independently mapped sloping planes with unequal tips, shifted occupied center and70/74m eastern podium wings. Existing exact-QID outer frame and facade parts establish the signed orientation; standard viewer PMTiles confirms the London Bridge road/building context. Off-footprint PMTiles point[-60,0]4.2538m sets approximate terrain contact; center3.0748m remains coarse. Raw heights are separate from a bounded preview contact correction. Exact glass bay schedule, tip fabrication, steel sections and entrances remain approximations. Separate station blocks and interiors excluded.",
+    "Shared painted-metal graph and reusable opaque/translucent glass PBR; no photographic images. Far tiers keep separated tips and podium while coarsening glass bays and exposed bracing. Physical-device timings pending."
   ],
   "qaCameras": [
     {
@@ -194,15 +215,185 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/shard-browser-model.mjs",
+    "export": "buildShardCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/shard-browser-model.mjs",
+    "export": "buildShardSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildShardDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.18,
+            "metallic": 0.1,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildShardStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.18,
+            "metallic": 0.1,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildShardCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.18,
+            "metallic": 0.1,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.24
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0141-skyline",
+      "position": [
+        330,
+        205,
+        450
+      ],
+      "lookAt": [
+        -7,
+        150,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0141-district",
+      "position": [
+        330,
+        205,
+        450
+      ],
+      "lookAt": [
+        -7,
+        150,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0141-street",
+      "position": [
+        330,
+        205,
+        450
+      ],
+      "lookAt": [
+        -7,
+        150,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0141-closeup",
+      "position": [
+        330,
+        205,
+        450
+      ],
+      "lookAt": [
+        -7,
+        150,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 269299,
-    "vertices": 578981,
+    "triangles": 63187,
+    "vertices": 189561,
     "materials": 3,
-    "bytes": 24077148,
-    "sha256": "sha256:80e65f53174a440d80c1fd18300e6685d3cb820c97dd69d5e8208438851c60d9"
+    "bytes": 7584676,
+    "sha256": "sha256:317d512e8713443ea728ac58c94e329424504c928f1b7f0c1a14b3272b769cef"
   }
 }

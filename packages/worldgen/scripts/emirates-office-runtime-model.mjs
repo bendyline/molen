@@ -2,9 +2,9 @@
 import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
 import {
   face,
-  grid as originalGrid,
   mappedCap,
   mappedSolid,
+  grid as originalGrid,
   tri,
 } from './signature-tower-expansion-models.mjs';
 import { box, tube } from './structure-mesh.mjs';

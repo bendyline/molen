@@ -8,8 +8,8 @@ import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { warsawStudy } from '../../worldgen/scripts/warsaw-royal-castle-model.mjs';
 import { warsawGround } from '../../worldgen/scripts/warsaw-runtime-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');

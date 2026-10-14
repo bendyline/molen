@@ -1,11 +1,12 @@
 /** Les Eclaireurs browser placement: retained tower detail plus a bounded approximate rock footing. */
 import './install-deterministic-math.mjs';
+import { normalFor } from './authored-structure-mesh.mjs';
 import {
-  buildEclaireursMaster,
   buildEclaireursDistrict,
+  buildEclaireursMaster,
   buildEclaireursSkyline,
 } from './eclaireurs-browser-model.mjs';
-import { normalFor } from './authored-structure-mesh.mjs';
+
 const ROCK_MEAN = [0.44849861649919487, 0.44906994842942866, 0.37575318374011624];
 function fitted(out, level) {
   const far = level === 'skyline';

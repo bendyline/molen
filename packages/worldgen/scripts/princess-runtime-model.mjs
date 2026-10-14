@@ -3,9 +3,9 @@ import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   commonLimit,
   face,
-  grid as originalGrid,
   mappedCap,
   mappedSolid,
+  grid as originalGrid,
   tri,
 } from './signature-tower-expansion-models.mjs';
 import { tube } from './structure-mesh.mjs';
@@ -73,30 +73,32 @@ function balcony(out, f, y0, y1, width) {
     point(f, width / 2, y0, -2.35),
   ].map(([x, _y, z]) => [x, z]);
   mappedSolid(out, 'concrete', plan, y0, y0 + 0.25, cream);
-  if (!out.detail.continuousShaft) grid(
-    out,
-    [
-      point(f, -width / 2, y0 + 0.25, -2.3),
-      point(f, width / 2, y0 + 0.25, -2.3),
-      point(f, width / 2, y1, -2.3),
-      point(f, -width / 2, y1, -2.3),
-    ],
-    blue,
-    2.15,
-    y1 - y0,
-    0.05,
-    trim,
-    'metal',
-  );
-  if (!out.detail.continuousShaft) for (const sign of [-1, 1]) {
-    const returnFace = [
-      point(f, (sign * width) / 2, y0, -2.35),
-      point(f, (sign * width) / 2, y0, 0),
-      point(f, (sign * width) / 2, y1, 0),
-      point(f, (sign * width) / 2, y1, -2.35),
-    ];
-    face(out, 'concrete', sign < 0 ? returnFace.toReversed() : returnFace, cream);
-  }
+  if (!out.detail.continuousShaft)
+    grid(
+      out,
+      [
+        point(f, -width / 2, y0 + 0.25, -2.3),
+        point(f, width / 2, y0 + 0.25, -2.3),
+        point(f, width / 2, y1, -2.3),
+        point(f, -width / 2, y1, -2.3),
+      ],
+      blue,
+      2.15,
+      y1 - y0,
+      0.05,
+      trim,
+      'metal',
+    );
+  if (!out.detail.continuousShaft)
+    for (const sign of [-1, 1]) {
+      const returnFace = [
+        point(f, (sign * width) / 2, y0, -2.35),
+        point(f, (sign * width) / 2, y0, 0),
+        point(f, (sign * width) / 2, y1, 0),
+        point(f, (sign * width) / 2, y1, -2.35),
+      ];
+      face(out, 'concrete', sign < 0 ? returnFace.toReversed() : returnFace, cream);
+    }
   for (let i = 0; i < steps; i++) {
     const a = i / steps,
       b = (i + 1) / steps;
@@ -619,15 +621,31 @@ function buildNative(out) {
         // The midpoint of front guards and inset windows bounds their depth
         // approximation; preserve the bowed envelope rather than tall empty bays.
         for (let i = 0; i < 4; i++) {
-          const a = i / 4, b = (i + 1) / 4,
-            depth = t => -2.035 + 0.82 * (1 - (2 * t - 1) ** 2);
-          face(out, 'glass', [point(f, -8.2 + 16.4 * a, 27.75, depth(a)), point(f, -8.2 + 16.4 * b, 27.75, depth(b)), point(f, -8.2 + 16.4 * b, 290, depth(b)), point(f, -8.2 + 16.4 * a, 290, depth(a))], blue);
+          const a = i / 4,
+            b = (i + 1) / 4,
+            depth = (t) => -2.035 + 0.82 * (1 - (2 * t - 1) ** 2);
+          face(
+            out,
+            'glass',
+            [
+              point(f, -8.2 + 16.4 * a, 27.75, depth(a)),
+              point(f, -8.2 + 16.4 * b, 27.75, depth(b)),
+              point(f, -8.2 + 16.4 * b, 290, depth(b)),
+              point(f, -8.2 + 16.4 * a, 290, depth(a)),
+            ],
+            blue,
+          );
         }
       } else {
         patch(out, f, -8.2, 8.2, 27.75, 290, 'glass', blue, -2.3);
       }
       for (const sign of [-1, 1]) {
-        const p = [point(f, sign * 8.2, 27.75, -2.35), point(f, sign * 8.2, 27.75, 0), point(f, sign * 8.2, 290, 0), point(f, sign * 8.2, 290, -2.35)];
+        const p = [
+          point(f, sign * 8.2, 27.75, -2.35),
+          point(f, sign * 8.2, 27.75, 0),
+          point(f, sign * 8.2, 290, 0),
+          point(f, sign * 8.2, 290, -2.35),
+        ];
         face(out, 'concrete', sign < 0 ? p.toReversed() : p, cream);
       }
     }
@@ -636,20 +654,21 @@ function buildNative(out) {
         y1 = 27.75 + Math.min(74, j + out.detail.floorStep) * pitch;
       if (out.detail.districtSkin) patch(out, f, -8.2, 8.2, y0, y0 + 0.3, 'concrete', cream, -1.15);
       else balcony(out, f, y0, y1, width);
-      if (!out.detail.continuousShaft) for (const sign of [-1, 1]) {
-        const start = sign < 0 ? -f.width / 2 : width / 2,
-          end = sign < 0 ? -width / 2 : f.width / 2;
-        const count = out.detail.groupedWindows ? 1 : 3;
-        for (let i = 0; i < count; i++)
-          window(
-            out,
-            f,
-            start + ((end - start) * i) / count,
-            start + ((end - start) * (i + 1)) / count,
-            y0,
-            y1,
-          );
-      }
+      if (!out.detail.continuousShaft)
+        for (const sign of [-1, 1]) {
+          const start = sign < 0 ? -f.width / 2 : width / 2,
+            end = sign < 0 ? -width / 2 : f.width / 2;
+          const count = out.detail.groupedWindows ? 1 : 3;
+          for (let i = 0; i < count; i++)
+            window(
+              out,
+              f,
+              start + ((end - start) * i) / count,
+              start + ((end - start) * (i + 1)) / count,
+              y0,
+              y1,
+            );
+        }
     }
     for (let j = 0; j < 16; j += out.detail.upperStep) {
       const y0 = 290 + j * 3.75,

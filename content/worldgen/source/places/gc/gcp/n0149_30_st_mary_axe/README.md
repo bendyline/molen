@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The curved Gherkin envelope with six dark helical light-well bands, triangular glass subdivisions, external diagonal lattice, narrowed ground colonnade, circular revolving entrance pavilions and rounded glazed crown.
+Budgeted curved skin retains the full silhouette, spiral tint bands and lower entrance pods; detail tiers restore facade lines and structural diagonals.
 
 ## Evidence and reconstruction
 
@@ -16,11 +16,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-94,364 triangles; 219,816 vertices; 3 material groups; 9,048,116 bytes. Native bounds: -28.416, 0.000, -28.412 to 28.416, 180.032, 28.412. Source hash: `sha256:d66c621ed711c1ad27ccd810b2ef9fc4e80819c53376ef1c734a962466c75a0b`.
+50,732 triangles; 152,196 vertices; 3 material groups; 6,090,228 bytes. Native bounds: -28.523, -0.105, -28.519 to 28.523, 180.029, 28.519. Source hash: `sha256:5e124fd1e7d1ce6554f91a4eb20fb5035fc8fa0788bd5aa2b6984971fda0b16f`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z through one of six repeated entrances","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.
 
 ## Reproduce
 
@@ -28,7 +28,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0149` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Exact longitudinal curvature, facade twist phase and revolving entrance dimensions are reconstructed; the source 180 m envelope has precedence over erroneous aggregated height metadata.
+- Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.
+- Shared granite/painted-metal graphs and opaque glass PBR; no copied picture textures. Curved facade and spiral phase approximate. Far tiers merge facade grids; closer tiers retain diagrid. Physical-device timing pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

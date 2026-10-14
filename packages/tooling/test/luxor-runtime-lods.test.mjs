@@ -4,8 +4,8 @@ import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { smoothMeshNormals } from '../../worldgen/scripts/authored-structure-mesh.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
+import { smoothMeshNormals } from '../../worldgen/scripts/authored-structure-mesh.mjs';
 import { buildLuxor } from '../../worldgen/scripts/signature-tower-luxor-model.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 

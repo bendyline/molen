@@ -1,8 +1,9 @@
 /** Picture-based Pembroke Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildPembrokeRuntime } from './pembroke-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildPembrokeRuntime } from './pembroke-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

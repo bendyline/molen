@@ -7,8 +7,8 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { nesvizhStudy } from '../../worldgen/scripts/nesvizh-castle-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u9/u96/n0254_nesvizh_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');

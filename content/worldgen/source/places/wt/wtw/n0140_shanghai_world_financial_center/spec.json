@@ -10,22 +10,27 @@
     "latitude": 31.236666666,
     "longitude": 121.502777777
   },
-  "visualBrief": "The 492 m SWFC with its six-sided curved cutbacks, real trapezoidal crown opening, glazed observation bridge, split side piers, curtain-wall panels, transoms, edge ribs and lobby canopies.",
+  "visualBrief": "Compact SWFC exterior preserves the original curved six-sided envelope, real crown aperture, split piers, upper bridge, curtain-wall bands and representative lobby canopies. Detailed original source remains reproducible.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
     82.26438903808594,
     492,
-    82.08753967285156
+    82.10167694091797
   ],
   "actualBounds": {
     "min": [
       -41.13219451904297,
       0,
-      -41.04376983642578
+      -41.050838470458984
     ],
     "max": [
       41.13219451904297,
       492,
-      41.04376983642578
+      41.050838470458984
     ]
   },
   "nativeAxes": {
@@ -43,7 +48,14 @@
       97,
       100
     ],
-    "highestObservationFloorMeters": 474
+    "highestObservationFloorMeters": 474,
+    "originalMasterHash": "sha256:7a026395f00bf0f68c68afdbacb6694fcc9701aa39199a2bacfeb72432c366ea",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-models.mjs#signatureTowers[N0140].build",
+    "reviewScope": "Original227144-triangle19082184-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "appearance": {
+    "identity": "Blue-gray curved square tower with a genuinely open trapezoidal crown and narrow top bridge.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
   },
   "reconstruction": {
     "diagonalMeters": 82.02438661763952,
@@ -65,7 +77,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "mapped-roof-axis; visual site fit review",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       121.503040546,
       31.23657684
@@ -79,12 +91,22 @@
       "way/10691100"
     ],
     "wikidataId": "Q80852",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:375d0947d4077d056a087adee137f1b45783baf9f9f82e11eb67b64d51b1b34e",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact-QID tower outline supplies the ground center. Detailed upper part way279942892 and side piers way279942900/279942901 establish the crown ridge along native X, resolving the former square-footprint diagonal ambiguity. The 58 m published structural side is retained within the roughly 60 m mapped envelope.",
-    "mapPartsDocument": "map-evidence.json"
+    "notes": "Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.",
+    "mapPartsDocument": "map-evidence.json",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.",
+    "terrainReference": {
+      "anchor": [
+        121.50263584812305,
+        31.23616359379043
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -111,12 +133,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior only. No as-built curtain-wall schedule, survey-calibrated arc radii, interiors, retail block, underground works or animated observation roof.",
-    "The 58 m structural square differs from the roughly 60 m mapped envelope. Detailed upper map parts resolve the crown ridge orientation; no 90-degree ambiguity remains.",
-    "Glass uses opaque metallic-roughness glazing with local vertex tints; it does not transmit interior rooms or a copied photographic environment."
+    "Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.",
+    "Two canonical concrete/painted-metal graphs reused; glazing retains opaque PBR without copied images. Low tiers merge facade levels and panels, retaining the crown opening. Physical-device timings remain unmeasured."
   ],
   "qaCameras": [
     {
@@ -185,15 +206,161 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/swfc-browser-model.mjs",
+    "export": "buildSwfcCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/swfc-browser-model.mjs",
+    "export": "buildSwfcSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSwfcDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildSwfcStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSwfcCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0140-skyline",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0140-district",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0140-street",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0140-closeup",
+      "position": [
+        530,
+        360,
+        820
+      ],
+      "lookAt": [
+        0,
+        246,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 227144,
-    "vertices": 454280,
+    "triangles": 27408,
+    "vertices": 82224,
     "materials": 3,
-    "bytes": 19082184,
-    "sha256": "sha256:7a026395f00bf0f68c68afdbacb6694fcc9701aa39199a2bacfeb72432c366ea"
+    "bytes": 3291320,
+    "sha256": "sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab"
   }
 }

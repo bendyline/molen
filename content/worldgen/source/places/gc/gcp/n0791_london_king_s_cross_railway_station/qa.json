@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0791_london_king_s_cross_railway_station",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:724c8f6552f2fdc8833f4a33899a9d05e3a225c6e5a762e238a664ea8fbc3b80",
+  "inputHash": "sha256:a2023aacfbcc573aa42009820ffe32a62f71714af255dbef9ff6c24e2b2a541c",
   "sourceHash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
   "runtimeHash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
-  "captureReportHash": "sha256:09b2d8af9a9d7e46f16c8f0d0db9a7b992ba1b0adc42b921b9f43819867cce81",
+  "captureReportHash": "sha256:18d69a98963362c8d8840b5400d56d6ba989e6939b85fcf1d527f85ff3bd2667",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -28,7 +28,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:858058fafcbbd718ff2ea578ae23062f1fd76c95268bb1a28b1b0aa8e5452255",
+    "captureReportHash": "sha256:4cc13ca01c83615f3ff95ff8b72bc72731259c3df81c0f1cc442b7e0bc4dcace",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -298,5 +298,54 @@
     "Detailed original source assembly/hash/recipe preserved; skyline is separately authored and closer levels use bounded reductions.",
     "The twin roof/clock facade, western concourse/funnel and distinct range/shed volumes carry identity. Clock ticks stand for numerals; facade modules, diagrid pattern, glazing and platforms are interpretations rather than exact restoration inventories.",
     "Shared procedural textures; no duplicated embedded images. Underground spaces, adjacent hotel/trains and exact station furniture/sign lettering are excluded. Reversible inset floor cutout leaves raw surrounding terrain; footprint replacement off; physical-device timing unmeasured."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:724c8f6552f2fdc8833f4a33899a9d05e3a225c6e5a762e238a664ea8fbc3b80",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:09b2d8af9a9d7e46f16c8f0d0db9a7b992ba1b0adc42b921b9f43819867cce81",
+    "previousSharedCaptureReportHash": "sha256:858058fafcbbd718ff2ea578ae23062f1fd76c95268bb1a28b1b0aa8e5452255",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/kings-cross-browser-model.mjs",
+        "beforeHash": "sha256:3958e88901c0d71250b5313a5e1b6543ddbb12aacc5214e6afc5750a5259b845",
+        "afterHash": "sha256:acf7b80e96ac8c20e250720705e69ee2a816e627d0b9bad8834475a8254663a6",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/gc/gcp/n0791_london_king_s_cross_railway_station/models/source.glb",
+        "hash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
+        "bytes": 10838624
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.glb",
+        "hash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
+        "bytes": 10835044
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.skyline.glb",
+        "hash": "sha256:3120f687112ac3f919934d81a5a36adccdb2f3de34c4fef472689317605db1b1",
+        "bytes": 67100
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.district.glb",
+        "hash": "sha256:a9ca9d24dc87ebb118bd9f70dc43d03f5b54fa5430d27dc08f58224418cf9f02",
+        "bytes": 406504
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.street.glb",
+        "hash": "sha256:959e07313cdd14025006bdb4974300b7db4c95347c8bc27f5a159695acd4ac85",
+        "bytes": 1712828
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.closeup.glb",
+        "hash": "sha256:057bf0f0011137ed271ef5901e1af7f4dc2eb1cb8e676348647a7b13db32a843",
+        "bytes": 6335552
+      }
+    ],
+    "retainedInspectedImageCount": 58
+  }
 }

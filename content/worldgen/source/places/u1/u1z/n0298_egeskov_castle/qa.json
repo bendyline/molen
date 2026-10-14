@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0298_egeskov_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:3ddd7491a87e6ec5bcdc785f375ce4795bcdedb560187cdaf27b37dfbbc9b476",
+  "inputHash": "sha256:34cafe90015a87d06c3954bbbf28b2bab9e7322fcb28131442734fbbe0954c50",
   "sourceHash": "sha256:a09619d2fe2fd345978838c671278e9dcebc295e7cfcf3a6f0e60884217552c4",
   "runtimeHash": "sha256:a1f7c1e7c7c49dbc46fea2b70856f2740740b3efa2491b14b1d8a84ca3aaca7b",
-  "captureReportHash": "sha256:5870cbceea40fda7daa854c2a69aa3150d9fbb70af96d08cee516f556db0e7ec",
+  "captureReportHash": "sha256:1ede4cb58050660f33cabb6de3495c6a4ce5449bbc7b8a2f12bd7457fa07caae",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +26,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:b8cc57c4be732b1ac140b0a4b2c9046e81338fbf7c13ac21b8a16fbf4d9f4fd7",
+    "captureReportHash": "sha256:b49a5441921e8f1fd0b4ffa532b7788d52c7842318dcffcfd62ac71ec07cdae4",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -292,5 +292,54 @@
     "Detailed original master/hash/recipe preserved. Apertures, ornament and restoration details are interpreted; interiors and collision excluded.",
     "Six common graphs plus explicit glass color slot; zero embedded images. No duplicate lake/landscape geometry or water simulation; approximate shore/bridge fit only.",
     "Footprint replacement remains off; physical-device timing unmeasured."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:3ddd7491a87e6ec5bcdc785f375ce4795bcdedb560187cdaf27b37dfbbc9b476",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:5870cbceea40fda7daa854c2a69aa3150d9fbb70af96d08cee516f556db0e7ec",
+    "previousSharedCaptureReportHash": "sha256:b8cc57c4be732b1ac140b0a4b2c9046e81338fbf7c13ac21b8a16fbf4d9f4fd7",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/egeskov-runtime-model.mjs",
+        "beforeHash": "sha256:0386b158fedf9663533c5c6a4fc0972aba3d5d15b4ef5a494f1880c9b67917da",
+        "afterHash": "sha256:0a097ea637db1f963c78ddae06410bd45b961cd1411292d39c707a94cc110863",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u1/u1z/n0298_egeskov_castle/models/source.glb",
+        "hash": "sha256:a09619d2fe2fd345978838c671278e9dcebc295e7cfcf3a6f0e60884217552c4",
+        "bytes": 1818008
+      },
+      {
+        "path": "content/worldgen/assets/places/u1/u1z/n0298_egeskov_castle/model.glb",
+        "hash": "sha256:a1f7c1e7c7c49dbc46fea2b70856f2740740b3efa2491b14b1d8a84ca3aaca7b",
+        "bytes": 1817376
+      },
+      {
+        "path": "content/worldgen/assets/places/u1/u1z/n0298_egeskov_castle/model.skyline.glb",
+        "hash": "sha256:1a77c45b4c8daf85030451ac742fda081de0fc7a3b3221e12c2a6106f314605f",
+        "bytes": 104320
+      },
+      {
+        "path": "content/worldgen/assets/places/u1/u1z/n0298_egeskov_castle/model.district.glb",
+        "hash": "sha256:44adfbdb7dcd15d424bb927b8000ce21269cdefe5a22e801df19fe33638f1168",
+        "bytes": 300096
+      },
+      {
+        "path": "content/worldgen/assets/places/u1/u1z/n0298_egeskov_castle/model.street.glb",
+        "hash": "sha256:e5be10d1541bab40fce31336df0381f20b3ccddbe283fe7428f3d5bf86f9cd1d",
+        "bytes": 1481500
+      },
+      {
+        "path": "content/worldgen/assets/places/u1/u1z/n0298_egeskov_castle/model.closeup.glb",
+        "hash": "sha256:b8e851dd076747ba053eee76abe7629ce0c37b952a170d0e01f1facb32f8703f",
+        "bytes": 1523520
+      }
+    ],
+    "retainedInspectedImageCount": 52
+  }
 }

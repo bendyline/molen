@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 319 authored assets, 319 imported assets and 312 active geographic asset previews.
+There are 339 authored assets, 339 imported assets and 335 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +10,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 319 |
-| Runtime GLBs imported | 319 |
-| Portable visual reviews passed | 310 |
-| Shared-material reviews passed | 310 |
-| Active geographic previews | 312 |
-| Declared fidelity reviews passed | 307 |
-| Complete | 305 |
-| Source models still to author | 681 |
+| Source GLBs authored | 339 |
+| Runtime GLBs imported | 339 |
+| Portable visual reviews passed | 339 |
+| Shared-material reviews passed | 339 |
+| Active geographic previews | 335 |
+| Declared fidelity reviews passed | 339 |
+| Complete | 339 |
+| Source models still to author | 661 |
 
 ## Authored models
 
@@ -61,22 +61,22 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0136 | [Willis Tower](../places/dp/dp3/n0136_willis_tower/README.md) | 726110 | Passed | Passed | Passed | Passed | Yes |
 | N0137 | [Mode Gakuen Cocoon Tower](../places/xn/xn7/n0137_mode_gakuen_cocoon_tower/README.md) | 59070 | Passed | Passed | Passed | Passed | Yes |
 | N0138 | [Mirante do Vale](../places/6g/6gy/n0138_mirante_do_vale/README.md) | 21172 | Passed | Passed | Passed | Passed | Yes |
-| N0139 | [Abeno Harukas](../places/xn/xn0/n0139_abeno_harukas/README.md) | 22049 | Pending | Pending | Pending | Pending | Pending |
-| N0140 | [Shanghai World Financial Center](../places/wt/wtw/n0140_shanghai_world_financial_center/README.md) | 227144 | Pending | Pending | Pending | Pending | Pending |
-| N0141 | [The Shard](../places/gc/gcp/n0141_the_shard/README.md) | 269299 | Pending | Pending | Pending | Pending | Pending |
-| N0142 | [Abraj Al Bait](../places/sg/sgu/n0142_abraj_al_bait/README.md) | 260178 | Pending | Pending | Pending | Pending | Pending |
-| N0143 | [Ryugyong Hotel](../places/wy/wyc/n0143_ryugyong_hotel/README.md) | 36147 | Pending | Pending | Pending | Pending | Pending |
-| N0144 | [Oriental Pearl Tower](../places/wt/wtw/n0144_oriental_pearl_tower/README.md) | 288124 | Pending | Pending | Pending | Pending | Pending |
-| N0145 | [Jin Mao Tower](../places/wt/wtw/n0145_jin_mao_tower/README.md) | 79841 | Pending | Pending | Pending | Pending | Pending |
-| N0146 | [Palace of Culture and Science](../places/u3/u3q/n0146_palace_of_culture_and_science/README.md) | 183246 | Passed | Passed | Passed | Pending | Pending |
+| N0139 | [Abeno Harukas](../places/xn/xn0/n0139_abeno_harukas/README.md) | 22049 | Passed | Passed | Passed | Passed | Yes |
+| N0140 | [Shanghai World Financial Center](../places/wt/wtw/n0140_shanghai_world_financial_center/README.md) | 27408 | Passed | Passed | Passed | Passed | Yes |
+| N0141 | [The Shard](../places/gc/gcp/n0141_the_shard/README.md) | 63187 | Passed | Passed | Passed | Passed | Yes |
+| N0142 | [Abraj Al Bait](../places/sg/sgu/n0142_abraj_al_bait/README.md) | 63274 | Passed | Passed | Passed | Passed | Yes |
+| N0143 | [Ryugyong Hotel](../places/wy/wyc/n0143_ryugyong_hotel/README.md) | 36147 | Passed | Passed | Passed | Passed | Yes |
+| N0144 | [Oriental Pearl Tower](../places/wt/wtw/n0144_oriental_pearl_tower/README.md) | 60876 | Passed | Passed | Passed | Passed | Yes |
+| N0145 | [Jin Mao Tower](../places/wt/wtw/n0145_jin_mao_tower/README.md) | 29601 | Passed | Passed | Passed | Passed | Yes |
+| N0146 | [Palace of Culture and Science](../places/u3/u3q/n0146_palace_of_culture_and_science/README.md) | 63782 | Passed | Passed | Passed | Passed | Yes |
 | N0147 | [Grande Arche](../places/u0/u09/n0147_grande_arche/README.md) | 23716 | Passed | Passed | Passed | Passed | Yes |
 | N0148 | [Edifício Altino Arantes](../places/6g/6gy/n0148_edificio_altino_arantes/README.md) | 26760 | Passed | Passed | Passed | Passed | Yes |
-| N0149 | [30 St Mary Axe](../places/gc/gcp/n0149_30_st_mary_axe/README.md) | 94364 | Passed | Passed | Pending | Pending | Pending |
-| N0150 | [Edifício Itália](../places/6g/6gy/n0150_edificio_italia/README.md) | 473498 | Pending | Pending | Pending | Pending | Pending |
+| N0149 | [30 St Mary Axe](../places/gc/gcp/n0149_30_st_mary_axe/README.md) | 50732 | Passed | Passed | Passed | Passed | Yes |
+| N0150 | [Edifício Itália](../places/6g/6gy/n0150_edificio_italia/README.md) | 27418 | Passed | Passed | Passed | Passed | Yes |
 | N0151 | [Montparnasse Tower](../places/u0/u09/n0151_montparnasse_tower/README.md) | 9424 | Passed | Passed | Passed | Passed | Yes |
 | N0152 | [Trump Tower](../places/dr/dr5/n0152_trump_tower/README.md) | 19198 | Passed | Passed | Passed | Passed | Yes |
 | N0153 | [7 World Trade Center](../places/dr/dr5/n0153_7_world_trade_center/README.md) | 4852 | Passed | Passed | Passed | Passed | Yes |
-| N0154 | [International Commerce Centre](../places/we/wec/n0154_international_commerce_centre/README.md) | 121424 | Pending | Pending | Pending | Pending | Pending |
+| N0154 | [International Commerce Centre](../places/we/wec/n0154_international_commerce_centre/README.md) | 52196 | Passed | Passed | Passed | Passed | Yes |
 | N0155 | [New York Times Building](../places/dr/dr5/n0155_new_york_times_building/README.md) | 126843 | Passed | Passed | Passed | Passed | Yes |
 | N0156 | [Bank of China Tower](../places/we/wec/n0156_bank_of_china_tower/README.md) | 156097 | Passed | Passed | Passed | Passed | Yes |
 | N0157 | [Woolworth Building](../places/dr/dr5/n0157_woolworth_building/README.md) | 122851 | Passed | Passed | Passed | Passed | Yes |
@@ -118,7 +118,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0193 | [Metropolitan Life Insurance Company Tower](../places/dr/dr5/n0193_metropolitan_life_insurance_company_tower/README.md) | 61202 | Passed | Passed | Passed | Passed | Yes |
 | N0194 | [Emirates Office Tower](../places/th/thr/n0194_emirates_office_tower/README.md) | 61098 | Passed | Passed | Passed | Passed | Yes |
 | N0195 | [3 World Trade Center](../places/dr/dr5/n0195_3_world_trade_center/README.md) | 32902 | Passed | Passed | Passed | Passed | Yes |
-| N0196 | [Princess Tower](../places/th/thr/n0196_princess_tower/README.md) | 63384 | Passed | Passed | Pending | Passed | Pending |
+| N0196 | [Princess Tower](../places/th/thr/n0196_princess_tower/README.md) | 63384 | Passed | Passed | Passed | Passed | Yes |
 | N0197 | [432 Park Avenue](../places/dr/dr5/n0197_432_park_avenue/README.md) | 292272 | Passed | Passed | Passed | Passed | Yes |
 | N0198 | [Citigroup Center](../places/dr/dr5/n0198_citigroup_center/README.md) | 39331 | Passed | Passed | Passed | Passed | Yes |
 | N0199 | [Jumeirah Emirates Towers Hotel](../places/th/thr/n0199_jumeirah_emirates_towers_hotel/README.md) | 63176 | Passed | Passed | Passed | Passed | Yes |
@@ -140,7 +140,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0230 | [Nina Tower](../places/we/wec/n0230_nina_tower/README.md) | 44980 | Passed | Passed | Passed | Passed | Yes |
 | N0232 | [Gran Torre Costanera](../places/66/66j/n0232_gran_torre_costanera/README.md) | 14106 | Passed | Passed | Passed | Passed | Yes |
 | N0233 | [China World Trade Center Tower III](../places/wx/wx4/n0233_china_world_trade_center_tower_iii/README.md) | 56000 | Passed | Passed | Passed | Passed | Yes |
-| N0234 | [Barolo Palace](../places/69/69y/n0234_barolo_palace/README.md) | 62940 | Passed | Passed | Pending | Passed | Pending |
+| N0234 | [Barolo Palace](../places/69/69y/n0234_barolo_palace/README.md) | 62940 | Passed | Passed | Passed | Passed | Yes |
 | N0235 | [Millennium Tower](../places/u2/u2e/n0235_millennium_tower/README.md) | 30296 | Passed | Passed | Passed | Passed | Yes |
 | N0236 | [Château de Montsoreau](../places/u0/u02/n0236_chateau_de_montsoreau/README.md) | 39291 | Passed | Passed | Passed | Passed | Yes |
 | N0237 | [Neuschwanstein Castle](../places/u0/u0r/n0237_neuschwanstein_castle/README.md) | 58313 | Passed | Passed | Passed | Passed | Yes |
@@ -156,7 +156,7 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0248 | [Bran Castle](../places/u8/u84/n0248_bran_castle/README.md) | 33258 | Passed | Passed | Passed | Passed | Yes |
 | N0249 | [Alamut Castle](../places/tn/tn7/n0249_alamut_castle/README.md) | 8275 | Passed | Passed | Passed | Passed | Yes |
 | N0250 | [Mir Castle Complex](../places/u9/u9d/n0250_mir_castle_complex/README.md) | 41975 | Passed | Passed | Passed | Passed | Yes |
-| N0251 | [Kernavė](../places/u9/u9c/n0251_kernave/README.md) | 140410 | Passed | Passed | Pending | Pending | Pending |
+| N0251 | [Kernavė](../places/u9/u9c/n0251_kernave/README.md) | 44368 | Passed | Passed | Passed | Passed | Yes |
 | N0252 | [Hohenzollern Castle](../places/u0/u0w/n0252_hohenzollern_castle/README.md) | 43413 | Passed | Passed | Passed | Passed | Yes |
 | N0253 | [Bratislava Castle](../places/u2/u2s/n0253_bratislava_castle/README.md) | 57728 | Passed | Passed | Passed | Passed | Yes |
 | N0254 | [Nesvizh Castle](../places/u9/u96/n0254_nesvizh_castle/README.md) | 34364 | Passed | Passed | Passed | Passed | Yes |
@@ -215,6 +215,26 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0307 | [Ljubljana Castle](../places/u2/u24/n0307_ljubljana_castle/README.md) | 5691 | Passed | Passed | Passed | Passed | Yes |
 | N0308 | [Castle of Saint George](../places/ey/eyc/n0308_castle_of_saint_george/README.md) | 6923 | Passed | Passed | Passed | Passed | Yes |
 | N0309 | [Haapsalu Castle](../places/ud/ud2/n0309_haapsalu_castle/README.md) | 5973 | Passed | Passed | Passed | Passed | Yes |
+| N0310 | [Margat](../places/sy/sy1/n0310_margat/README.md) | 7669 | Passed | Passed | Passed | Passed | Yes |
+| N0311 | [Tintagel Castle](../places/gc/gch/n0311_tintagel_castle/README.md) | 19176 | Passed | Passed | Passed | Passed | Yes |
+| N0312 | [Hever Castle](../places/u1/u10/n0312_hever_castle/README.md) | 8898 | Passed | Passed | Passed | Passed | Yes |
+| N0313 | [Rock of Cashel](../places/gc/gc6/n0313_rock_of_cashel/README.md) | 17460 | Passed | Passed | Passed | Passed | Yes |
+| N0314 | [Citadel of Aleppo](../places/sy/sy6/n0314_citadel_of_aleppo/README.md) | 32704 | Passed | Passed | Passed | Passed | Yes |
+| N0315 | [Olavinlinna Castle](../places/ud/udu/n0315_olavinlinna_castle/README.md) | 56764 | Passed | Passed | Passed | Passed | Yes |
+| N0316 | [Harlech Castle](../places/gc/gcm/n0316_harlech_castle/README.md) | 15484 | Passed | Passed | Passed | Passed | Yes |
+| N0317 | [Chinon Castle](../places/u0/u02/n0317_chinon_castle/README.md) | 10852 | Passed | Passed | Passed | Passed | Yes |
+| N0318 | [Loarre Castle](../places/ez/ezx/n0318_loarre_castle/README.md) | 6723 | Passed | Passed | Passed | Passed | Yes |
+| N0319 | [Moritzburg Castle](../places/u3/u31/n0319_moritzburg_castle/README.md) | 15424 | Passed | Passed | Passed | Passed | Yes |
+| N0320 | [Bamburgh Castle](../places/gc/gcy/n0320_bamburgh_castle/README.md) | 9959 | Passed | Passed | Passed | Passed | Yes |
+| N0321 | [Český Krumlov Castle](../places/u2/u2d/n0321_cesky_krumlov_castle/README.md) | 13792 | Passed | Passed | Passed | Passed | Yes |
+| N0322 | [Linlithgow Palace](../places/gc/gcv/n0322_linlithgow_palace/README.md) | 17957 | Passed | Passed | Passed | Passed | Yes |
+| N0323 | [Dunnottar Castle](../places/gf/gfn/n0323_dunnottar_castle/README.md) | 14200 | Passed | Passed | Passed | Passed | Yes |
+| N0324 | [Pidhirtsi Castle](../places/u8/u8c/n0324_pidhirtsi_castle/README.md) | 16626 | Passed | Passed | Passed | Passed | Yes |
+| N0325 | [Cardiff Castle](../places/gc/gcj/n0325_cardiff_castle/README.md) | 22875 | Passed | Passed | Passed | Passed | Yes |
+| N0326 | [Church of the Holy Sepulchre](../places/sv/sv9/n0326_church_of_the_holy_sepulchre/README.md) | 6194 | Passed | Passed | Passed | Passed | Yes |
+| N0327 | [Florence Cathedral](../places/sr/srb/n0327_florence_cathedral/README.md) | 9500 | Passed | Passed | Passed | Passed | Yes |
+| N0328 | [St Mark's Basilica](../places/u2/u20/n0328_st_mark_s_basilica/README.md) | 16817 | Passed | Passed | Passed | Passed | Yes |
+| N0329 | [Alexander Nevsky Cathedral](../places/sx/sx8/n0329_alexander_nevsky_cathedral/README.md) | 18216 | Passed | Passed | Passed | Passed | Yes |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209206 | Passed | Passed | Passed | Passed | Yes |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 85366 | Passed | Passed | Passed | Passed | Yes |

@@ -1,8 +1,9 @@
 /** Picture-based Lubart's Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildLubartRuntime, buildLubartSkyline } from './lubart-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildLubartRuntime, buildLubartSkyline } from './lubart-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

@@ -1,7 +1,8 @@
 /** King's Cross far silhouette; closer tiers retain the detailed master through bounded reduction. */
 import './install-deterministic-math.mjs';
-import { normalFor, loft } from './authored-structure-mesh.mjs';
+import { loft, normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const TAU = 2 * Math.PI,
   MEANS = {
     brick: [0.6203447773399442, 0.5498229265059562, 0.5049628982589958],

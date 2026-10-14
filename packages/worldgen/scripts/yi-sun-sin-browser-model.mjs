@@ -9,6 +9,7 @@ import {
   radialRing,
 } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
+
 const MEANS = {
   concrete: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],
   steel: [0.818960257808076, 0.8228885700850488, 0.8228885700850488],

@@ -2,8 +2,8 @@
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { beam, normalFor } from './authored-structure-mesh.mjs';
-import { box } from './structure-mesh.mjs';
 import { fnbPlan } from './fnb-stadium-plan.mjs';
+import { box } from './structure-mesh.mjs';
 
 const TAU = 2 * Math.PI,
   palette = [

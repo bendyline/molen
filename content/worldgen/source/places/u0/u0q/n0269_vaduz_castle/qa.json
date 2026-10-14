@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0269_vaduz_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:caa7897bc1b1c3779ab486f59281309a81a7fcf5c9e32ff51e3c8d648397d6ca",
+  "inputHash": "sha256:7073c94e36eeff9de1d19d8cf84f87ffaa63bc57c0cd3fc3d84297a68b90e0fd",
   "sourceHash": "sha256:0a45fd31a960cefa9b3632510fb72eb73b50c70559a13d91dead39298eeb0b82",
   "runtimeHash": "sha256:cecf9c403dfccbac34a1b1af07842fa58205578aae2db545ebe990bc929cebb1",
-  "captureReportHash": "sha256:f9ded8b98b651d4252b00e0bf635f1de4ba56be281c8de2bb9d270bb23c67455",
+  "captureReportHash": "sha256:9b66573eed98b68b9ae146efda1633a0960eebb5a713eab68b9ccb983b03c014",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:63f2f3e4a5e2f5f3e5ab0271d0096bc3fb2ec2568b42de04e2026e4a74db6b03",
+    "captureReportHash": "sha256:8d5739fc52a226ee130b8b25e2dff371ae72f788b1b802a4a81ee1e389b9c1af",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -290,5 +290,54 @@
     "Roundels, stone keep, tiled roofs, timber hoarding and cream residence provide identity. Window/shutter rhythm, individual roof pitches and outer curtain remain approximate.",
     "Coarse PMTiles terrain does not resolve thresholds, narrow passages or exact cliff contact. No terrain cutout, interiors, forest or artificial hill is claimed.",
     "Four reusable material graphs plus local opaque glass; no embedded textures. Physical laptop/phone timing and continuous-motion shimmer remain pending."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:caa7897bc1b1c3779ab486f59281309a81a7fcf5c9e32ff51e3c8d648397d6ca",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:f9ded8b98b651d4252b00e0bf635f1de4ba56be281c8de2bb9d270bb23c67455",
+    "previousSharedCaptureReportHash": "sha256:63f2f3e4a5e2f5f3e5ab0271d0096bc3fb2ec2568b42de04e2026e4a74db6b03",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/vaduz-runtime-model.mjs",
+        "beforeHash": "sha256:eff3080a0a42ff511411376d294353170c4698fc71990accc06fe0b168ebd01d",
+        "afterHash": "sha256:e8ffd3157468dda66fb155c3996040b360c8a9a1a187b8d7513acefdbc0dbb9c",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u0/u0q/n0269_vaduz_castle/models/source.glb",
+        "hash": "sha256:0a45fd31a960cefa9b3632510fb72eb73b50c70559a13d91dead39298eeb0b82",
+        "bytes": 797996
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.glb",
+        "hash": "sha256:cecf9c403dfccbac34a1b1af07842fa58205578aae2db545ebe990bc929cebb1",
+        "bytes": 797504
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.skyline.glb",
+        "hash": "sha256:9c5b2eee7d97a90e771c668aa8231f2571d78cbdbf1dbb997d7ee7ff93fbd673",
+        "bytes": 75804
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.district.glb",
+        "hash": "sha256:db247ee9d044aab8b29cc06c834e20d957f0fbefed4adb2769550fd7a81bb798",
+        "bytes": 228568
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.street.glb",
+        "hash": "sha256:7e1b8d055afda1f1eea67cdefd693a159c7e551d6bb059ea5e73013de0dec347",
+        "bytes": 506232
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0q/n0269_vaduz_castle/model.closeup.glb",
+        "hash": "sha256:10375efdaa373aba6d2fffd23f0443dd01af4ea01def276aeb584fc1433b913d",
+        "bytes": 603532
+      }
+    ],
+    "retainedInspectedImageCount": 49
+  }
 }

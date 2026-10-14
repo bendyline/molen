@@ -3,6 +3,7 @@ import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { buildAkershusRuntime } from './akershus-fortress-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

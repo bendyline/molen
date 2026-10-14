@@ -1,8 +1,9 @@
 /** Picture-based Saint Michael's Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildSaintMichaelRuntime } from './saint-michaels-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildSaintMichaelRuntime } from './saint-michaels-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

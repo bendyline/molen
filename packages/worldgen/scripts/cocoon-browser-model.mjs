@@ -1,7 +1,8 @@
 /** Cocoon Tower's rounded threefold envelope and white web, with budgeted browser levels. */
 import './install-deterministic-math.mjs';
 import { beam, cross, normalFor, radialRing } from './authored-structure-mesh.mjs';
-import { face, panel, cap, solidPlan } from './signature-tower-expansion-models.mjs';
+import { cap, face, panel, solidPlan } from './signature-tower-expansion-models.mjs';
+
 const MEANS = {
   foundation: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],
   metal: [0.9088893864967214, 0.9088893864967214, 0.9088893864967214],

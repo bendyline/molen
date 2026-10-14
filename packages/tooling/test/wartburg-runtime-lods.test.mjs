@@ -111,12 +111,10 @@ it('reproduces the preserved Wartburg master and independently verifies signed m
     bytes = Buffer.from(
       encodeGlb(
         m,
-        a
-          .materials(m.groups)
-          .map((s, i) => ({
-            ...s,
-            name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-          })),
+        a.materials(m.groups).map((s, i) => ({
+          ...s,
+          name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+        })),
         'Molen original Wartburg',
       ),
     );

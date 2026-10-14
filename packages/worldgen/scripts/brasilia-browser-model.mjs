@@ -1,8 +1,9 @@
 /** Brasília browser tiers: open triple colonnade, compression ring and recessed red bowl. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { normalFor, beam, loft, radialRing } from './authored-structure-mesh.mjs';
+import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const fit = JSON.parse(
   readFileSync(
     new URL(

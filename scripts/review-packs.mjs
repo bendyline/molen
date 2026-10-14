@@ -1,4 +1,4 @@
-// Exact review evidence lives in release attachments; reports and this lock stay in Git.
+// Optional historical capture archives. Normal model builds and CI never fetch these.
 import { execFileSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { createWriteStream } from 'node:fs';

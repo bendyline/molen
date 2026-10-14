@@ -75,45 +75,91 @@ function nearest(ts, o, d) {
 }
 
 const surfaces = {
- concrete:{graph:'concrete_plain',slot:'wall',roughness:.9,metallic:0},
- foundation:{graph:'concrete_plain',slot:'foundation',roughness:.9,metallic:0},
- metal:{graph:'metal_painted',slot:'trim',roughness:.48,metallic:.24},
- glass:{slot:'window',localRef:'palette:#ffffff',roughness:.2,metallic:.28},
- clear_glass:{slot:'window',localRef:'palette:#feffff',roughness:.12,metallic:.05,alphaMode:'BLEND',baseColorFactor:[1,1,1,.52],doubleSided:true}
+  concrete: { graph: 'concrete_plain', slot: 'wall', roughness: 0.9, metallic: 0 },
+  foundation: { graph: 'concrete_plain', slot: 'foundation', roughness: 0.9, metallic: 0 },
+  metal: { graph: 'metal_painted', slot: 'trim', roughness: 0.48, metallic: 0.24 },
+  glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
+  clear_glass: {
+    slot: 'window',
+    localRef: 'palette:#feffff',
+    roughness: 0.12,
+    metallic: 0.05,
+    alphaMode: 'BLEND',
+    baseColorFactor: [1, 1, 1, 0.52],
+    doubleSided: true,
+  },
 };
-it('reproduces the original master and preserves four independent map rings and current source bindings', async()=>{
- const m=await read(source+'/map-frame.json'),prior=await read(source+'/georeferencing-baseline.json'),b=new MeshBufferBuilder(),a=createArchitecturalSurfaceAuthoring(surfaces);
- buildPrincess(a.wrap(b),prior);
- const mesh=b.finalize(),materials=a.materials(mesh.groups).map((mat,i)=>({...mat,name:mat.sharedSurface?mat.sharedSurface.ref.split('.').at(-1)+'-'+mesh.groups[i].slot:mesh.groups[i].slot+'-'+mesh.groups[i].slot}));
- expect(mesh.triangleCount).toBe(699554);
- expect(hash(Buffer.from(encodeGlb(mesh,materials,'Molen original Princess Tower')))).toBe('sha256:83b8e50ee2e2f7110242fabd8837a8589666ff9a8efc3124533426cc43d59676');
- const spec=await read(source+'/spec.json'),asset=await read(runtime+'/asset.json');
- expect(hash(await readFile(source+'/models/source.glb'))).toBe(spec.mesh.sha256); expect(asset.sourceHash).toBe(spec.mesh.sha256);
- expect(spec.fidelityTarget).toBe('medium-fi');expect(spec.geographicProposal.replaceFootprint).toBe(false);
- expect(m.anchor).toEqual(prior.anchor);expect(m.heading).toBeCloseTo(.775615371979,12);expect(m.geometry.outline).toEqual(prior.geometry.outline);
- expect(m.elements.map(x=>x.id)).toEqual([186351092,288039567,295954576,295954577]);
- for(const p of m.elements)expect(p.geometry).toEqual(prior.elements.find(x=>x.id===p.id).geometry);
- expect(m.elements[0].tags.wikidata).toBe('Q19492');expect(m.orientationControl.projectionResidualMeters).toBeLessThan(.001);
- expect(decode(await readFile(source+'/models/source.glb')).g.materials).toHaveLength(4);
-},60000);
-it('retains complete facade envelopes, all street balconies, keyholes, crown tiers, striped dome and414m tip',async()=>{
- const master=decode(await readFile(source+'/models/source.glb')).triangles,asset=await read(runtime+'/asset.json');
- for(const l of asset.runtimeLods.levels){
-  const d=decode(await readFile(runtime+'/'+l.file)),ts=d.triangles,allowance={skyline:2,district:1.2,street:.6,closeup:.1}[l.name];
-  for(const y of[31.95,73.05,132.85,232.25,287.45,310.15,341.55,354.25,368.35,384.5])for(let k=0;k<24;k++){
-   const t=(k+.17)*Math.PI*2/24,o=[70*Math.cos(t),y,70*Math.sin(t)],v=[-Math.cos(t),0,-Math.sin(t)],target=nearest(master,o,v),actual=nearest(ts,o,v);
-   expect(Number.isFinite(target)).toBe(true);expect(Number.isFinite(actual),l.name+' coverage '+y+'/'+k).toBe(true);
-   expect(Math.abs(actual-target),l.name+' envelope '+y+'/'+k).toBeLessThan(allowance);
+it('reproduces the original master and preserves four independent map rings and current source bindings', async () => {
+  const m = await read(source + '/map-frame.json'),
+    prior = await read(source + '/georeferencing-baseline.json'),
+    b = new MeshBufferBuilder(),
+    a = createArchitecturalSurfaceAuthoring(surfaces);
+  buildPrincess(a.wrap(b), prior);
+  const mesh = b.finalize(),
+    materials = a.materials(mesh.groups).map((mat, i) => ({
+      ...mat,
+      name: mat.sharedSurface
+        ? mat.sharedSurface.ref.split('.').at(-1) + '-' + mesh.groups[i].slot
+        : mesh.groups[i].slot + '-' + mesh.groups[i].slot,
+    }));
+  expect(mesh.triangleCount).toBe(699554);
+  expect(hash(Buffer.from(encodeGlb(mesh, materials, 'Molen original Princess Tower')))).toBe(
+    'sha256:83b8e50ee2e2f7110242fabd8837a8589666ff9a8efc3124533426cc43d59676',
+  );
+  const spec = await read(source + '/spec.json'),
+    asset = await read(runtime + '/asset.json');
+  expect(hash(await readFile(source + '/models/source.glb'))).toBe(spec.mesh.sha256);
+  expect(asset.sourceHash).toBe(spec.mesh.sha256);
+  expect(spec.fidelityTarget).toBe('medium-fi');
+  expect(spec.geographicProposal.replaceFootprint).toBe(false);
+  expect(m.anchor).toEqual(prior.anchor);
+  expect(m.heading).toBeCloseTo(0.775615371979, 12);
+  expect(m.geometry.outline).toEqual(prior.geometry.outline);
+  expect(m.elements.map((x) => x.id)).toEqual([186351092, 288039567, 295954576, 295954577]);
+  for (const p of m.elements)
+    expect(p.geometry).toEqual(prior.elements.find((x) => x.id === p.id).geometry);
+  expect(m.elements[0].tags.wikidata).toBe('Q19492');
+  expect(m.orientationControl.projectionResidualMeters).toBeLessThan(0.001);
+  expect(decode(await readFile(source + '/models/source.glb')).g.materials).toHaveLength(4);
+}, 60000);
+it('retains complete facade envelopes, all street balconies, keyholes, crown tiers, striped dome and414m tip', async () => {
+  const master = decode(await readFile(source + '/models/source.glb')).triangles,
+    asset = await read(runtime + '/asset.json');
+  for (const l of asset.runtimeLods.levels) {
+    const d = decode(await readFile(runtime + '/' + l.file)),
+      ts = d.triangles,
+      allowance = { skyline: 2, district: 1.2, street: 0.6, closeup: 0.1 }[l.name];
+    for (const y of [31.95, 73.05, 132.85, 232.25, 287.45, 310.15, 341.55, 354.25, 368.35, 384.5])
+      for (let k = 0; k < 24; k++) {
+        const t = ((k + 0.17) * Math.PI * 2) / 24,
+          o = [70 * Math.cos(t), y, 70 * Math.sin(t)],
+          v = [-Math.cos(t), 0, -Math.sin(t)],
+          target = nearest(master, o, v),
+          actual = nearest(ts, o, v);
+        expect(Number.isFinite(target)).toBe(true);
+        expect(Number.isFinite(actual), l.name + ' coverage ' + y + '/' + k).toBe(true);
+        expect(Math.abs(actual - target), l.name + ' envelope ' + y + '/' + k).toBeLessThan(
+          allowance,
+        );
+      }
+    expect(ts.flat().reduce((hi, p) => Math.max(hi, p[1]), 0)).toBeCloseTo(414, 3);
+    if (l.name === 'street' || l.name === 'closeup') {
+      const pitch = (290 - 27.75) / 74;
+      for (let j = 0; j < 74; j++)
+        for (const [o, v, dist] of [
+          [[60, 27.75 + j * pitch + 0.15, 0], [-1, 0, 0], 40.129],
+          [[0, 27.75 + j * pitch + 0.15, 60], [0, 0, -1], 41.258],
+        ])
+          expect(nearest(ts, o, v), l.name + ' balcony ' + j).toBeCloseTo(dist, 2);
+      expect(d.g.materials.some((m) => m.alphaMode === 'BLEND')).toBe(true);
+    }
+    for (const y of [352.9, 363.4, 369.3])
+      expect(
+        Number.isFinite(nearest(ts, [0, y, 50], [0, 0, -1])),
+        l.name + ' glazed tier ' + y,
+      ).toBe(true);
   }
-  expect(ts.flat().reduce((hi,p)=>Math.max(hi,p[1]),0)).toBeCloseTo(414,3);
-  if(l.name==='street'||l.name==='closeup'){
-   const pitch=(290-27.75)/74;
-   for(let j=0;j<74;j++)for(const [o,v,dist]of[[[60,27.75+j*pitch+.15,0],[-1,0,0],40.129],[[0,27.75+j*pitch+.15,60],[0,0,-1],41.258]])expect(nearest(ts,o,v),l.name+' balcony '+j).toBeCloseTo(dist,2);
-   expect(d.g.materials.some(m=>m.alphaMode==='BLEND')).toBe(true);
-  }
-  for(const y of[352.9,363.4,369.3]) expect(Number.isFinite(nearest(ts,[0,y,50],[0,0,-1])),l.name+' glazed tier '+y).toBe(true);
- }
-},60000);
+}, 60000);
 it('rebuilds four pinned browser levels within transfer/triangle/draw caps with separate GPU streams', async () => {
   const before = (await read(runtime + '/asset.json')).runtimeLods,
     after = await buildModelLandmarkLods(runtime + '/asset.json', { force: true });

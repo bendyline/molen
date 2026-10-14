@@ -52,9 +52,11 @@ it('round trips the independently mapped base and retains its signed south wing'
     frame = JSON.parse(bytes);
   const result = sourceLocalFootprint(spec, bytes);
   expect(result.footprint).toHaveLength(frame.elements[0].coordinates.length);
-  result.footprint.forEach((p, i) =>
-    p.forEach((v, j) => expect(v).toBeCloseTo(frame.elements[0].coordinates[i][j], 9)),
-  );
+  result.footprint.forEach((p, i) => {
+    p.forEach((v, j) => {
+      expect(v).toBeCloseTo(frame.elements[0].coordinates[i][j], 9);
+    });
+  });
   expect(frame.measurements.maximumEnvelopeDifferenceMeters).toBeLessThan(1.1);
   const south = 180 - (frame.heading * 180) / Math.PI;
   expect(south).toBeCloseTo(Number(frame.elements[2].tags['roof:direction']), 3);

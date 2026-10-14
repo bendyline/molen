@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0307_ljubljana_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:1ac302aff0e6198080a409db8b290e1248da37fab06d6ef254a0018188690abf",
+  "inputHash": "sha256:ab91613966ad42b1706dd3f274378605eb2ed787485f48e61ba869c08db63b14",
   "sourceHash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
   "runtimeHash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
-  "captureReportHash": "sha256:e63ffd52f5c0bead3ff54a3881604d36fb3c3441ce0db59c6bed53e937df8e59",
+  "captureReportHash": "sha256:971e7001922a7941719a2dce9cd506cdf0ca863b44d1761455f3229226604cbc",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fdf8490e128bb5bc0eb91ae4c7fd3b657b1d68e4b12f7d2304449850e47c0d34",
+    "captureReportHash": "sha256:46498c90b27ea27f62384a6453cca27e9c214695d3f738b54aa02af321beeeb8",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -289,5 +289,54 @@
     "Original detailed master/hash/recipe retained. Fifteen castle parts, tower terrace, flags, real entrance passage and arcade are retained; ornament and restored fixtures are interpreted.",
     "Six common limestone/lime-plaster/tile/painted-metal/wood/aggregate graphs plus explicit glass and flag colors; no embedded images or broad duplicate hill.",
     "Interiors, collision and physical-device timing excluded; footprint replacement remains off."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:1ac302aff0e6198080a409db8b290e1248da37fab06d6ef254a0018188690abf",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:e63ffd52f5c0bead3ff54a3881604d36fb3c3441ce0db59c6bed53e937df8e59",
+    "previousSharedCaptureReportHash": "sha256:fdf8490e128bb5bc0eb91ae4c7fd3b657b1d68e4b12f7d2304449850e47c0d34",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/ljubljana-runtime-model.mjs",
+        "beforeHash": "sha256:1333f10e37d504257384df6f0011724a0ad3471302449edc190f1be03a12476d",
+        "afterHash": "sha256:2d35caf3cdc7ec60594b2b0212920fdd6f8a8f44ebce4d0aa56a46158ac021e7",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u2/u24/n0307_ljubljana_castle/models/source.glb",
+        "hash": "sha256:7c682e98659078dbd19ccdbbf63445db4885efb41be546a90bf12ab931092474",
+        "bytes": 687480
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/n0307_ljubljana_castle/model.glb",
+        "hash": "sha256:e1667c6223dece1eab5a56ede792444cc315e3191ab5fae2d15e4fdee2f3e064",
+        "bytes": 686780
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/n0307_ljubljana_castle/model.skyline.glb",
+        "hash": "sha256:a7f2ea29f8124351457c19dc09c0d3ae80f32715ad6a7f1d4c5261c965745bf4",
+        "bytes": 94708
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/n0307_ljubljana_castle/model.district.glb",
+        "hash": "sha256:37543369726610b28602e9e20f326f2fe4f3f4a6a9e164893a048f5db5535c9a",
+        "bytes": 206852
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/n0307_ljubljana_castle/model.street.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u24/n0307_ljubljana_castle/model.closeup.glb",
+        "hash": "sha256:87fdaf6e6e75827afd6fc2904b8fdc605e83d1ac429583469062e9e12b713c2a",
+        "bytes": 539428
+      }
+    ],
+    "retainedInspectedImageCount": 49
+  }
 }

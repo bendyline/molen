@@ -10,22 +10,27 @@
     "latitude": 21.418888888,
     "longitude": 39.826388888
   },
-  "visualBrief": "The seven-tower complex includes a mapped stepped podium, warm stone hotel facades, six lower towers with tensioned roof tents and glass lanterns, plus the cardinal clock tower with four differently proportioned dials, V supports, a faceted glass jewel, gold spire and closed solid crescent.",
+  "visualBrief": "Compact Abraj complex retains the mapped podium and six surrounding towers, cardinally aligned offset clock tower, four dials, V supports, glass jewel, gold spire and solid crescent. Original detailed master remains reproducible; browser levels simplify repeated facades and ornaments.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
-    347.74354553222656,
+    348.35308837890625,
     601,
-    228.11795043945312
+    228.62630462646484
   ],
   "actualBounds": {
     "min": [
-      -173.86827087402344,
+      -174.16954040527344,
       0,
-      -114.01145935058594
+      -114.19532775878906
     ],
     "max": [
-      173.87527465820312,
+      174.1835479736328,
       601,
-      114.10649108886719
+      114.43097686767578
     ]
   },
   "nativeAxes": {
@@ -50,7 +55,14 @@
     "crescentHeightMeters": 23,
     "spireMeters": 45,
     "towers": 7,
-    "mainShaftPart": "OSM way958867174, min_height80,height356"
+    "mainShaftPart": "OSM way958867174, min_height80,height356",
+    "originalMasterHash": "sha256:59969e64e806e43740f8944f12b72ad0ca2bac7108d1120aed8afc6ecd161a2c",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[N0142].build",
+    "reviewScope": "Original260178-triangle25398552-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "appearance": {
+    "identity": "Seven warm stone/glass towers, pale roof tents and a taller offset clock tower with four dials, green crown and gold crescent.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
   },
   "reconstruction": {
     "heightDatum": "601 m complex height per SL Rasch Tower Tents; their separate steel-structure page reports607 m, so datum difference is recorded",
@@ -76,7 +88,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       39.825709399,
       21.41875799
@@ -90,11 +102,21 @@
       "relation/12896421"
     ],
     "wikidataId": "Q189476",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:47cd41c3bed62199df5f64da832c6db006cbd10b34d10772f65d71774c6a0787",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Whole-complex mapped frame retained. Main clock shaft is separately located at[39.82553895,21.41812445] from exact-QID way958867174 and rotated internally so the wider43 m faces point north/south. Six named surrounding tower parts retain their actual mapped plans, signed orientation and heights; source map-parts.json preserves that evidence."
+    "notes": "Inspected a contractor clock-construction photograph and a completed lower-tower/tent photograph. They establish the large gold-edged dial, warm ribbed hotel facades and pale tensioned roof tents; they do not certify the completed crescent or exact whole-complex crown. Preserve original601m source height,23m crescent and existing mapped seven-tower/podium layout. Main clock shaft remains separately offset at[39.82553895,21.41812445] and internally aligned cardinally; six named lower parts retain their plans and authored heights. Standard viewer PMTiles confirms the Great Mosque/complex context. Off-podium PMTiles point[0,140]328.125m sets approximate ground contact; center333.3364m and nearby hills are coarse. Rectangular preview contact correction covers the complex, with raw terrain kept separately. Exact tent sag, clock typography, calligraphy, mosaic ornament, entrances and thresholds remain approximate or omitted. Existing601/607m datum disagreement remains documented; no new survey is claimed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected a contractor clock-construction photograph and a completed lower-tower/tent photograph. They establish the large gold-edged dial, warm ribbed hotel facades and pale tensioned roof tents; they do not certify the completed crescent or exact whole-complex crown. Preserve original601m source height,23m crescent and existing mapped seven-tower/podium layout. Main clock shaft remains separately offset at[39.82553895,21.41812445] and internally aligned cardinally; six named lower parts retain their plans and authored heights. Standard viewer PMTiles confirms the Great Mosque/complex context. Off-podium PMTiles point[0,140]328.125m sets approximate ground contact; center333.3364m and nearby hills are coarse. Rectangular preview contact correction covers the complex, with raw terrain kept separately. Exact tent sag, clock typography, calligraphy, mosaic ornament, entrances and thresholds remain approximate or omitted. Existing601/607m datum disagreement remains documented; no new survey is claimed.",
+    "terrainReference": {
+      "anchor": [
+        39.82524782066878,
+        21.417576034090853
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -139,11 +161,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Clock numerals use original geometric strokes at the manufacturer-described approximate7 m height; exact typographic outlines remain reconstructed. Arabic calligraphy and fine Islamic mosaic motifs are omitted. Roof tents are reconstructed within mapped tower plans. OSM records279 m for the two taller side towers while an older architect roof description says up to250 m; mapped heights are retained. Conflicting601/607 m main-tower datums are documented;601 m is used."
+    "Inspected a contractor clock-construction photograph and a completed lower-tower/tent photograph. They establish the large gold-edged dial, warm ribbed hotel facades and pale tensioned roof tents; they do not certify the completed crescent or exact whole-complex crown. Preserve original601m source height,23m crescent and existing mapped seven-tower/podium layout. Main clock shaft remains separately offset at[39.82553895,21.41812445] and internally aligned cardinally; six named lower parts retain their plans and authored heights. Standard viewer PMTiles confirms the Great Mosque/complex context. Off-podium PMTiles point[0,140]328.125m sets approximate ground contact; center333.3364m and nearby hills are coarse. Rectangular preview contact correction covers the complex, with raw terrain kept separately. Exact tent sag, clock typography, calligraphy, mosaic ornament, entrances and thresholds remain approximate or omitted. Existing601/607m datum disagreement remains documented; no new survey is claimed.",
+    "Three common granite/painted-metal/canvas graphs reused across semantic slots, with opaque glass/dial PBR and no copied photographs. Low tiers merge small perimeter edges and facade grids, omit railings and minute ticks, and retain all towers and major crown forms. Closeup includes representative original geometric numeral strokes. Physical-device timings pending."
   ],
   "qaCameras": [
     {
@@ -212,15 +234,215 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/abraj-browser-model.mjs",
+    "export": "buildAbrajCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/abraj-browser-model.mjs",
+    "export": "buildAbrajSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAbrajDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAbrajStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAbrajCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0142-skyline",
+      "position": [
+        770,
+        470,
+        940
+      ],
+      "lookAt": [
+        0,
+        260,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0142-district",
+      "position": [
+        770,
+        470,
+        940
+      ],
+      "lookAt": [
+        0,
+        260,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0142-street",
+      "position": [
+        770,
+        470,
+        940
+      ],
+      "lookAt": [
+        0,
+        260,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0142-closeup",
+      "position": [
+        770,
+        470,
+        940
+      ],
+      "lookAt": [
+        0,
+        260,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 260178,
-    "vertices": 618688,
+    "triangles": 63274,
+    "vertices": 189822,
     "materials": 6,
-    "bytes": 25398552,
-    "sha256": "sha256:59969e64e806e43740f8944f12b72ad0ca2bac7108d1120aed8afc6ecd161a2c"
+    "bytes": 7596512,
+    "sha256": "sha256:ac5a34e3d1894ecb3f0e75342de0e1af0deff72c9c66336b13905c0e271eb00b"
   }
 }

@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0251_kernave",
-  "inputHash": "sha256:825ad3706f060ade86836c27a049bf57905130ba8d9225c37b4c54b4a7897135",
-  "placementHash": "sha256:1fab51b950421e99895e9afcd8cd57d84179e4943ddfec0548c68fde7dbd714d",
+  "inputHash": "sha256:c3038271c44ff7a769f2026336795c3db278d82ed94cb7d6a17a64135b1585f7",
+  "placementHash": "sha256:e5bf0fa7844d7c5d7358ec325019563df7211eede50bbe3eb90510f37591f5c1",
   "entry": {
     "id": "next1000.n0251",
     "title": "Kernavė",
@@ -20,10 +20,45 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -380,
+          -280
+        ],
+        [
+          500,
+          -280
+        ],
+        [
+          500,
+          560
+        ],
+        [
+          -380,
+          560
+        ]
+      ],
+      "basis": "Continuous PMTiles-fitted authored landscape replaces local viewer ground visually within its native880x840m rectangle; no map building replacement."
+    },
+    "terrainReference": {
+      "anchor": [
+        24.8517,
+        54.8824
+      ],
+      "modelHeight": 0,
+      "basis": "Relative PMTiles landscape datum at the retained working anchor; sampled87.4426m, approximate standard viewer fit."
+    },
+    "bounds": [
+      24.845765955225737,
+      54.87736943440891,
+      24.85950795365035,
+      54.88491528279554
+    ],
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/node/1690273888",
-    "note": "Do not flatten or replace map buildings. Five hillforts and a separate modern museum reconstruction occupy distinct positions. Source landscape patches are not a surveyed terrain replacement. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Owner-directed picture/standard viewer PMTiles approximate fit. Five separate surviving hillforts retain original horizontal map positions and interpreted crown shapes; native+X east,+Z south, anchor[24.8517,54.8824], heading0. PMTiles supplies low-frequency numeric terrain at this anchor (87.4426m), while authored hillforms add residual relief above the broad PMTiles field, fading to its boundaries. Exact crown elevations remain approximate. The museum now uses sloping PMTiles ground instead of an assumed30m flat terrace; cabins retain level floors and shallow foundations, fences/trails follow approximate ground. A continuous880x840m source surface joins previously separate patches; native ground-cutout metadata prevents underlying viewer terrain covering the reconstruction. Two inspected pictures support surviving knolls and three sloping timber craft yards. No surveyed elevation, precise erosion, certified stair rise or exact terrace level is claimed. No ancient standing fortress or neighboring town buildings are invented. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

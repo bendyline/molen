@@ -96,8 +96,13 @@ it('preserves the exact operator-photo source and signed sea-level pier placemen
   expect(p.replaceFootprint).toBe(false);
   expect(f.geometry.centerlines).toHaveLength(2);
   expect(f.geometry.centerlines.map((l) => l.length)).toEqual([8, 12]);
-  const [x, z] = f.geometry.centerlines[0][0], c = Math.cos(p.heading), sn = Math.sin(p.heading), meters = 111319.49079327358;
-  expect(p.anchor[0] + (x * c + z * sn) / (meters * Math.cos(p.anchor[1] * Math.PI / 180))).toBeCloseTo(30.7603345, 9);
+  const [x, z] = f.geometry.centerlines[0][0],
+    c = Math.cos(p.heading),
+    sn = Math.sin(p.heading),
+    meters = 111319.49079327358;
+  expect(
+    p.anchor[0] + (x * c + z * sn) / (meters * Math.cos((p.anchor[1] * Math.PI) / 180)),
+  ).toBeCloseTo(30.7603345, 9);
   expect(p.anchor[1] - (-x * sn + z * c) / meters).toBeCloseTo(46.4962604, 9);
   expect(f.mappedIdentity.featureIds).toContain('node/703128124');
   expect(s.sourceFacts.towerHeightMeters).toBe(26);

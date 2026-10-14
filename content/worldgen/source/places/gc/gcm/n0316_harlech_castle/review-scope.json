@@ -1,0 +1,356 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "rock": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.8,
+      "metallic": 0.05
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.75,
+      "metallic": 0.12
+    },
+    "lawn": {
+      "slot": "wall",
+      "roughness": 1,
+      "metallic": 0,
+      "localRef": "palette:#ffffff",
+      "name": "courtyard-grass"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/harlech-castle-model.mjs",
+    "export": "buildHarlechSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHarlechDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.12
+          },
+          "lawn": {
+            "slot": "wall",
+            "roughness": 1,
+            "metallic": 0,
+            "localRef": "palette:#ffffff",
+            "name": "courtyard-grass"
+          }
+        }
+      },
+      "street": {
+        "export": "buildHarlechStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.12
+          },
+          "lawn": {
+            "slot": "wall",
+            "roughness": 1,
+            "metallic": 0,
+            "localRef": "palette:#ffffff",
+            "name": "courtyard-grass"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHarlechCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.12
+          },
+          "lawn": {
+            "slot": "wall",
+            "roughness": 1,
+            "metallic": 0,
+            "localRef": "palette:#ffffff",
+            "name": "courtyard-grass"
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "fov": 43,
+    "position": [
+      97.24959969717952,
+      102.8,
+      -130.64270113074951
+    ],
+    "lookAt": [
+      8.555381564340733,
+      24.8,
+      -2.7938228806670438
+    ]
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-harlech-skyline",
+      "fov": 43,
+      "position": [
+        97.24959969717952,
+        102.8,
+        -130.64270113074951
+      ],
+      "lookAt": [
+        8.555381564340733,
+        24.8,
+        -2.7938228806670438
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-harlech-district",
+      "fov": 43,
+      "position": [
+        97.24959969717952,
+        102.8,
+        -130.64270113074951
+      ],
+      "lookAt": [
+        8.555381564340733,
+        24.8,
+        -2.7938228806670438
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-harlech-street",
+      "fov": 43,
+      "position": [
+        97.24959969717952,
+        102.8,
+        -130.64270113074951
+      ],
+      "lookAt": [
+        8.555381564340733,
+        24.8,
+        -2.7938228806670438
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-harlech-closeup",
+      "fov": 43,
+      "position": [
+        97.24959969717952,
+        102.8,
+        -130.64270113074951
+      ],
+      "lookAt": [
+        8.555381564340733,
+        24.8,
+        -2.7938228806670438
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.35,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Source plan, signed bridge axis and declared terrain datum reviewed; current render acceptance pending",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "replaceRoads": {
+      "length": 46.3730001726318,
+      "width": 8.365449393764539,
+      "outline": [
+        [
+          28.786616599111447,
+          -11.116757347984588
+        ],
+        [
+          44.09182702699487,
+          -15.966262157621166
+        ],
+        [
+          44.540078503745846,
+          -16.035566355634973
+        ],
+        [
+          47.107580456649124,
+          -16.045821328348396
+        ],
+        [
+          47.54378224291305,
+          -15.980574179656363
+        ],
+        [
+          75.15961677174325,
+          -11.316704768882598
+        ],
+        [
+          74.95766779977517,
+          -7.7223735914977105
+        ],
+        [
+          29.859582251202266,
+          -7.680371934583857
+        ]
+      ]
+    },
+    "terrainReference": {
+      "anchor": [
+        -4.109151127,
+        52.859959433
+      ],
+      "modelHeight": 0,
+      "basis": "Native datum is the standard viewer DEM anchor sample36.8763m; footings follow the retained unmodified terrain. Castle plateau and bridge deck are approximate architectural estimates."
+    },
+    "bounds": [
+      -4.1101,
+      52.8595,
+      -4.108,
+      52.8606
+    ],
+    "notes": "Actual castle rings and mapped footbridge chord control orientation and horizontal fit. Gatehouse, outer curtain, plateau, ruined rooms and deck heights are picture-led estimates; coarse DEM does not certify exact ground contact.",
+    "groundContactBasis": "NativeY0 corresponds to the retained unmodified standard viewer DEM36.8763m anchor sample. Rock-skirt footings follow that grid minus.25m; architectural walls attach to the authored plateau. The picture-led courtyard plateau isY19m, chosen against the visitor-side approach sample to preserve a near-level bridge. Coarse DEM crag blending, exposed rock height and exact bridge joins remain approximate and await current render review."
+  },
+  "geographicNote": "Standard viewer castle polygon with courtyard and tower-well holes, exact-QID retained way117407449 and actual bridge LineString control approximate scale and signed facing.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ],
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#c2c0af",
+      "rock": "#a7a89b",
+      "wood": "#a7987c",
+      "metal": "#b0bab9",
+      "roof": "#ced6d2",
+      "lawn": "#8aa065"
+    },
+    "colorEncoding": "sRGB converted to linear COLOR_0",
+    "identityFeatures": [
+      "Four hollow corner drums and roofless twin-tower gatehouse",
+      "Open grassy court and lower concentric curtain",
+      "Rocky plateau and actual curved approach bridge"
+    ]
+  }
+}

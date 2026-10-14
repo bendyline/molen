@@ -1,8 +1,9 @@
 /** Picture-based Kamianets-Podilskyi Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildKamianetsRuntime } from './kamianets-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildKamianetsRuntime } from './kamianets-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

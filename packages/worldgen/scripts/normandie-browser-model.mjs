@@ -1,8 +1,9 @@
 /** Budgeted crossing silhouette and a shared-texture derivative of the unchanged detailed master. */
 import './install-deterministic-math.mjs';
+import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
 import { buildNormandie } from './pont-de-normandie-model.mjs';
-import { normalFor, loft, beam } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const MEANS = {
     wall: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],
     foundation: [0.44849861649919487, 0.44906994842942866, 0.37575318374011624],

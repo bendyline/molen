@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-A mapped, courtyard-preserving palace complex with low ceremonial wings, four corner blocks, Renaissance-style crenellated crowns, a stepped central shaft,114 m terrace, four clock faces, green metal spire and the semicircular Congress Hall.
+Budgeted Palace of Culture complex preserves both courtyard openings, ceremonial eastern portico, low wings, central terrace/clock shaft and rounded Congress Hall. Far tiers merge windows, crenellations and unseen bottoms; original detailed source remains reproducible.
 
 ## Evidence and reconstruction
 
@@ -16,11 +16,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-183,246 triangles; 439,312 vertices; 4 material groups; 18,016,896 bytes. Native bounds: -133.670, 0.000, -108.096 to 133.679, 237.000, 108.031. Source hash: `sha256:464474e166074775c4b2f78c708f55073d22bed0d6dff69eb9f9b48c10988063`.
+63,782 triangles; 191,346 vertices; 4 material groups; 7,656,544 bytes. Native bounds: -133.670, 0.000, -108.096 to 133.679, 237.000, 108.031. Source hash: `sha256:6b9c2cce91eb767927b66630f040edae5c7ea559b26797079beea1b9984119b0`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"Native-Z ceremonial entrance; Congress Hall at native+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+One inspected operator exterior detail photograph establishes the warm stone upper shaft, pale clock faces and ornamental terrace/crowns. The original237m height,114m terrace, stepped tower, low complex wings, eastern portico, two courtyard holes and rounded Congress Hall remain authored/mapped controls. Retain the exact-QID concave relation and signed frame; native-Z points toward the eastern entrance and Congress Hall remains at native+Z. Standard viewer PMTiles confirms the complex and road context. Off-footprint PMTiles[-150,0]115.0133m sets approximate terrain contact; center124.8438m contains coarse urban imprint. Rectangular preview correction covers the full complex with raw heights kept separately. Exact sculpture, ceramic ornament, mermaid emblems, window schedule, interior halls and threshold elevations remain approximations or excluded. The cropped picture does not certify the whole low-wing layout; existing mapped controls are retained.
 
 ## Reproduce
 
@@ -28,7 +28,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0146` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Main tier dimensions and window schedules are reconstructed. Sculpture figures in the niches, precise ceramic ornament and clock mermaid emblems are not fabricated; these small facade ornaments remain a fidelity gap. Native ground follows the operator zero datum, while published street-level height datums differ.
+- One inspected operator exterior detail photograph establishes the warm stone upper shaft, pale clock faces and ornamental terrace/crowns. The original237m height,114m terrace, stepped tower, low complex wings, eastern portico, two courtyard holes and rounded Congress Hall remain authored/mapped controls. Retain the exact-QID concave relation and signed frame; native-Z points toward the eastern entrance and Congress Hall remains at native+Z. Standard viewer PMTiles confirms the complex and road context. Off-footprint PMTiles[-150,0]115.0133m sets approximate terrain contact; center124.8438m contains coarse urban imprint. Rectangular preview correction covers the full complex with raw heights kept separately. Exact sculpture, ceramic ornament, mermaid emblems, window schedule, interior halls and threshold elevations remain approximations or excluded. The cropped picture does not certify the whole low-wing layout; existing mapped controls are retained.
+- Two common granite/painted-metal graphs with opaque glass/dial PBR and no copied imagery. Far perimeter simplification is bounded to3m and courtyard contours remain separate; low tiers merge decorative crowns and omit clock hands/unseen bottom faces. Closer tiers restore window/sill impressions, individual merlons, clock hands and portico columns. Physical-device timings pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

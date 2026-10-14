@@ -2,6 +2,7 @@
 import './install-deterministic-math.mjs';
 import { beam, cross, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
+
 const MEANS = {
   iron: [0.9088893864967214, 0.9088893864967214, 0.9088893864967214],
   stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],

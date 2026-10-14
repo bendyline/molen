@@ -1,0 +1,392 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "white": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "pink": {
+      "slot": "wall",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.7,
+      "metallic": 0.55
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.08
+    },
+    "door": {
+      "slot": "door",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.65,
+      "metallic": 0.5
+    },
+    "bronze": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.65,
+      "metallic": 0.5
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/st-marks-basilica-model.mjs",
+    "export": "buildStMarksSkyline",
+    "errorMeters": 1.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStMarksDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.55
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.5
+          }
+        }
+      },
+      "street": {
+        "export": "buildStMarksStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.55
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.5
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildStMarksCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "white": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.55
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.5
+          },
+          "bronze": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.5
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -127,
+      98,
+      113
+    ],
+    "lookAt": [
+      0,
+      19,
+      1
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-st-marks-skyline",
+      "position": [
+        -127,
+        98,
+        113
+      ],
+      "lookAt": [
+        0,
+        19,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-st-marks-district",
+      "position": [
+        -127,
+        98,
+        113
+      ],
+      "lookAt": [
+        0,
+        19,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-st-marks-street",
+      "position": [
+        -127,
+        98,
+        113
+      ],
+      "lookAt": [
+        0,
+        19,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-st-marks-closeup",
+      "position": [
+        -127,
+        98,
+        113
+      ],
+      "lookAt": [
+        0,
+        19,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate basilica exterior and source-terrain fit reviewed against two inspected aerial/front pictures and standard viewerPMTiles/DEM. Piazza datum, doorstep thresholds and navigable collision remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        12.339881987,
+        45.434573477
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 follows coarse standardDEM12.2467m at anchor. Estimated0.7m common floor clears typical eastern/southern perimeter; west edge samples−.7 to−2.3m leave approximate skirt/step joins. No surveyed piazza/church datum."
+    },
+    "bounds": [
+      12.3391,
+      45.4341,
+      12.3407,
+      45.435
+    ],
+    "notes": "Mapped parent/component controls preserve five-dome cross, west facade and annex spacing. Detached tower and palace excluded. Component heights retained as nominal groups; profiles/artwork/ground joins approximate.",
+    "groundContactBasis": "Current whole/front/detail source-terrain views inspected. NativeY0 follows retainedDEM12.2467m. Estimated0.7m common floor clears typical east/south samples near0.5m; west perimeter−0.7 to−2.3m exposes approximate foundation skirts. Main/annex footprints and signed west facade match. Balcony/pinnacles and roof/wall joints are connected; exact piazza/doorstep levels are not surveyed or certified walking surfaces."
+  },
+  "geographicNote": "Two inspected aerial/front pictures and standard viewer PMTiles/DEM guide this individual basilica exterior. Exact thresholds/ground joins and ornament remain approximate. Detached campanile/palace, interiors and exact mosaic/sculpture excluded. ©OpenStreetMap contributors,ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

@@ -1,7 +1,8 @@
 /** Budgeted silhouettes of the retained Victory Bridge master; merged transverse vaults. */
 import './install-deterministic-math.mjs';
-import { box } from './structure-mesh.mjs';
 import { normalFor, sphere } from './authored-structure-mesh.mjs';
+import { box } from './structure-mesh.mjs';
+
 const MEANS = {
   stone: [0.9129740140085889, 0.9129740140085889, 0.9129740140085889],
   concrete: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],

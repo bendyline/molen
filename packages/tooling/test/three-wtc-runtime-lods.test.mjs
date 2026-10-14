@@ -99,14 +99,12 @@ it('reproduces the unchanged detailed master and preserves independently mapped 
     a = createArchitecturalSurfaceAuthoring(surfaces);
   build3Wtc(a.wrap(b), prior);
   const mesh = b.finalize(),
-    materials = a
-      .materials(mesh.groups)
-      .map((mat, i) => ({
-        ...mat,
-        name: mat.sharedSurface
-          ? mat.sharedSurface.ref.split('.').at(-1) + '-' + mesh.groups[i].slot
-          : mesh.groups[i].slot + '-' + mesh.groups[i].slot,
-      }));
+    materials = a.materials(mesh.groups).map((mat, i) => ({
+      ...mat,
+      name: mat.sharedSurface
+        ? mat.sharedSurface.ref.split('.').at(-1) + '-' + mesh.groups[i].slot
+        : mesh.groups[i].slot + '-' + mesh.groups[i].slot,
+    }));
   expect(mesh.triangleCount).toBe(295672);
   expect(hash(Buffer.from(encodeGlb(mesh, materials, 'Molen original 3 World Trade Center')))).toBe(
     'sha256:c852966c1bade563c67510b302788dd4fedaf1e892a35a08d8b7c1db12411e5e',

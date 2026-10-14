@@ -1,0 +1,375 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "rubble": {
+      "slot": "foundation",
+      "graph": "stone_drywall",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.08
+    },
+    "lawn": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.3,
+      "metallic": 0.1
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/chinon-castle-model.mjs",
+    "export": "buildChinonSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildChinonDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildChinonStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildChinonCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rubble": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -214,
+      145,
+      208
+    ],
+    "lookAt": [
+      4,
+      8,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-chinon-skyline",
+      "position": [
+        -214,
+        145,
+        208
+      ],
+      "lookAt": [
+        4,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-chinon-district",
+      "position": [
+        -214,
+        145,
+        208
+      ],
+      "lookAt": [
+        4,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-chinon-street",
+      "position": [
+        -214,
+        145,
+        208
+      ],
+      "lookAt": [
+        4,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-chinon-closeup",
+      "position": [
+        -214,
+        145,
+        208
+      ],
+      "lookAt": [
+        4,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.25,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "draft; current renders pending",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "replaceRoads": {
+      "length": 234.01779639726428,
+      "width": 27.296856209200207,
+      "outline": [
+        [
+          -70.97698751457722,
+          17.413100187774607
+        ],
+        [
+          -49.305907731265805,
+          17.485201005959755
+        ],
+        [
+          -49.305907731265805,
+          19.635201005959754
+        ],
+        [
+          129.13385852414856,
+          0.24354654641774226
+        ],
+        [
+          129.13385852414856,
+          -1.906453453582258
+        ],
+        [
+          163.04080888268706,
+          -5.411655203240451
+        ],
+        [
+          163.04080888268706,
+          -1.0116552032404504
+        ],
+        [
+          129.13385852414856,
+          2.4935465464177424
+        ],
+        [
+          129.13385852414856,
+          0.34354654641774224
+        ],
+        [
+          -49.305907731265805,
+          19.735201005959755
+        ],
+        [
+          -49.305907731265805,
+          21.885201005959754
+        ],
+        [
+          -70.97698751457722,
+          21.813100187774605
+        ]
+      ]
+    },
+    "terrainReference": {
+      "anchor": [
+        0.235974057,
+        47.168140769
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 is standard viewer DEM anchor76.6857m. Authored plateau, retaining skirt, tower heights and bridge decks are approximate exterior-picture reconstruction."
+    },
+    "bounds": [
+      0.2341,
+      47.16745,
+      0.2382,
+      47.16875
+    ],
+    "notes": "Exact-QID enclosure fixes the signed ridge frame. Current tower/lodging polygons and two bridge paths control component locations. Coarse DEM contact, heights and entrance joins remain approximate.",
+    "groundContactBasis": "NativeY0 is standard viewer DEM76.6857m at the retained anchor. Footings follow the retained unmodified DEM minus0.15m; architecture attaches to a shallow authored plateauY7m, chosen to clear the blended north ridge. Exact contact, terrain blending and bridge joins remain approximate and require current render review."
+  },
+  "geographicNote": "Main fortress envelope, distinct component plans and actual bridged footways establish approximate placement; western round/polygonal towers, lodging ridge and eastern gate confirm signed facing.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ]
+}

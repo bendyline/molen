@@ -7,8 +7,8 @@ import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { bratislavaStudy } from '../../worldgen/scripts/bratislava-castle-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u2/u2s/n0253_bratislava_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
@@ -109,12 +109,10 @@ it('reproduces original bytes and verifies signed fresh map and retained terrain
   const bytes = Buffer.from(
     encodeGlb(
       m,
-      a
-        .materials(m.groups)
-        .map((s, i) => ({
-          ...s,
-          name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-        })),
+      a.materials(m.groups).map((s, i) => ({
+        ...s,
+        name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+      })),
       'Molen original Bratislava Castle',
     ),
   );

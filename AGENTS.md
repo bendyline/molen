@@ -148,6 +148,13 @@ merging, releases) are managed by the owner. Read-only inspection (`git status`,
 - **Content lives in `content/`, not in packages.** Each `content/<pack>/` directory builds into
   one content pack (`molen pack build content/<pack>`). CLI ops find packs through the project's
   `packs`, `MOLEN_PACKS`, or a worldgen op's `--pack`; see [content/README.md](content/README.md).
+- **Render evidence stays local.** Inspect current renders during model authoring, but keep bulk
+  turntables, detail shots and medium-fi images in ignored `shots/`, `medium-fi/` or `.artifacts/`.
+  Git keeps source inputs, concise hash/command/review reports and one or two small summary
+  previews per model. Source textures and heightmaps remain required inputs. Builds and CI do
+  not fetch review archives; `pnpm source:check` rejects tracked bulk captures. Normal model
+  batches do not update `review-lock.json` or publish screenshots. See the model review image
+  policy in [content/ASSET-PACKS.md](content/ASSET-PACKS.md).
 - **GLBs are build outputs, not Git content.** Generators in Git (listed in `asset-build.json`)
   write every GLB; `asset-lock.json` pins the exact bytes they build to. `pnpm assets:fetch`
   downloads the matching release (or builds from source when it is not published yet);

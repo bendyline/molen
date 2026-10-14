@@ -23,9 +23,18 @@ function buildLindesnesDetail(out, mode = 'master') {
     });
   const lathe = (o, s, p, c, count, center) => originalLathe(o, s, p, c, n(count, 32, 8), center);
   const ring = (o, s, y, a, b, h, c, count) => originalRing(o, s, y, a, b, h, c, n(count, 24, 8));
-  const tube = (o, s, a, b, r, c, count = 8) => originalTube(o, s, a, b, r, c, count===64&&r>.5?n(count,16,8):n(count,4,3));
+  const tube = (o, s, a, b, r, c, count = 8) =>
+    originalTube(o, s, a, b, r, c, count === 64 && r > 0.5 ? n(count, 16, 8) : n(count, 4, 3));
   const sphere = (o, s, p, r, c, count, rows) =>
-    originalSphere(o, s, p, r, c, n(count, 12, r[0]===.37?8:6), n(rows, 6, r[0]===.37?4:3));
+    originalSphere(
+      o,
+      s,
+      p,
+      r,
+      c,
+      n(count, 12, r[0] === 0.37 ? 8 : 6),
+      n(rows, 6, r[0] === 0.37 ? 4 : 3),
+    );
   const shell = (o, opt) =>
     originalShell(o, {
       ...opt,

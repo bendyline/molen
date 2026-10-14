@@ -1,8 +1,9 @@
 /** Picture-based Gripsholm Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildGripsholmRuntime } from './gripsholm-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildGripsholmRuntime } from './gripsholm-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

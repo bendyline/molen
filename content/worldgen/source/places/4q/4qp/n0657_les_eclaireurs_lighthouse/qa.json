@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0657_les_eclaireurs_lighthouse",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:13011cf04bb400e78807e0d4ef14d6f505e2304dec607e8087673d133b67cb96",
+  "inputHash": "sha256:701daad8fca308fa1fc97ac10855814a19913b80aa0d48521f22df2d581023a2",
   "sourceHash": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074",
   "runtimeHash": "sha256:4fc45a0865df2a1e7e18d31071d3a374cd971da2f55d80ab56e19e1571578d04",
-  "captureReportHash": "sha256:75912938d85751c5b7a4b077014339c07e4802a0c8e01bf3320fbf357d93e327",
+  "captureReportHash": "sha256:b3f686587603e4d707bed832e8b4633ace690d06e5f6d038538d380dfda97813",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:721f7b4763cb2edd128007b40c18d85e4a67dc2d234dc5facec10d32a92608bc",
+    "captureReportHash": "sha256:73a6886b66617089fe659c11223131f466dacbbe356aaf7de9e8b163eaf73a04",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -289,5 +289,54 @@
     "Original8320-triangle detailed tower master preserved. Browser derivatives retain tower details and add a bounded roughly10m rock footing because coarse PMTiles do not resolve this small islet.",
     "Four common lime-plaster/painted-metal/wood/weathered-limestone graphs across tiers, plus local glass color. Zero embedded images. Rock extent/base height are interpreted, not complete island reconstruction.",
     "No tide/focal-height datum, bespoke survey, interiors/collision or physical-device timing claim. Footprint replacement remains off."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:13011cf04bb400e78807e0d4ef14d6f505e2304dec607e8087673d133b67cb96",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:75912938d85751c5b7a4b077014339c07e4802a0c8e01bf3320fbf357d93e327",
+    "previousSharedCaptureReportHash": "sha256:721f7b4763cb2edd128007b40c18d85e4a67dc2d234dc5facec10d32a92608bc",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/eclaireurs-fit-model.mjs",
+        "beforeHash": "sha256:9ea3ad3685eca142891f34092d23972c1574620a59525e95671f3542ecd2dc75",
+        "afterHash": "sha256:bf5fe51b3a302ce9b32aa8e4e590ad0e66b11c9f39734aeac02fe2b4235dcee0",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/4q/4qp/n0657_les_eclaireurs_lighthouse/models/source.glb",
+        "hash": "sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074",
+        "bytes": 668840
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/n0657_les_eclaireurs_lighthouse/model.glb",
+        "hash": "sha256:4fc45a0865df2a1e7e18d31071d3a374cd971da2f55d80ab56e19e1571578d04",
+        "bytes": 668404
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/n0657_les_eclaireurs_lighthouse/model.skyline.glb",
+        "hash": "sha256:ae7dba31edb6c6dff90336e32949340a59336ba816efeb6c6dd75aba5a0455ff",
+        "bytes": 93848
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/n0657_les_eclaireurs_lighthouse/model.district.glb",
+        "hash": "sha256:552179bd58a8180dcc12b8387a219bc443da8175bb5a66eca7c2b3ce273b8eee",
+        "bytes": 190100
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/n0657_les_eclaireurs_lighthouse/model.street.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436
+      },
+      {
+        "path": "content/worldgen/assets/places/4q/4qp/n0657_les_eclaireurs_lighthouse/model.closeup.glb",
+        "hash": "sha256:9b5d13948d2ff4e84643da7b90d178cb2462489c396982c420b056c6cfde3fb0",
+        "bytes": 776436
+      }
+    ],
+    "retainedInspectedImageCount": 48
+  }
 }

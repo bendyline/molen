@@ -31,6 +31,7 @@ import {
   validatePlan,
 } from '../build-assets.mjs';
 import { checkSourceBundles } from '../check-source-bundles.mjs';
+import { checkTrackedReviewCaptures } from '../review-captures.mjs';
 
 const roots = [];
 const quiet = () => {};
@@ -410,7 +411,10 @@ test('check explains changed inputs, reports missing files and notes local work'
   await assert.rejects(checkAssets({ root, log: quiet }), /Missing assets\/test\/model.glb/);
 });
 
-async function sourceBundleFixture(root, { models = [{ path: 'models/source.glb' }] } = {}) {
+async function sourceBundleFixture(
+  root,
+  { models = [{ path: 'models/source.glb' }], documents = ['reference.json'], textures = [] } = {},
+) {
   const path = 'content/entities/source/test';
   const bundle = {
     format: 'molen/source-bundle@1',
@@ -421,9 +425,9 @@ async function sourceBundleFixture(root, { models = [{ path: 'models/source.glb'
       definitions: [],
       models,
       scripts: [],
-      textures: [],
+      textures,
       sounds: [],
-      documents: ['reference.json'],
+      documents,
     },
   };
   await mkdir(join(root, path), { recursive: true });
@@ -447,6 +451,71 @@ test('source checks require every bundle to be complete', async () => {
   const dataRoot = await fixture();
   await sourceBundleFixture(dataRoot, { models: [] });
   await assert.rejects(checkSourceBundles({ root: dataRoot, log: quiet }), /reference.json/);
+});
+
+test('a source checkout needs reports and previews but no bulk review images', async () => {
+  const root = await fixture();
+  const path = await sourceBundleFixture(root, {
+    models: [],
+    documents: [
+      'reference.json',
+      'preview.png',
+      'shots/turntable/front.png',
+      'medium-fi/street.png',
+    ],
+  });
+  await asset(root, `${path}/reference.json`, Buffer.from('{}'));
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), /preview.png/);
+  await asset(root, `${path}/preview.png`);
+  assert.deepEqual(await checkSourceBundles({ root, log: quiet }), { verified: 1 });
+  // Local iteration can produce extra captures without turning them into source dependencies.
+  await asset(root, `${path}/medium-fi/another-angle.png`);
+  assert.deepEqual(await checkSourceBundles({ root, log: quiet }), { verified: 1 });
+  await rm(join(root, path, 'reference.json'));
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), /reference.json/);
+});
+
+test('a capture-looking path declared as a source texture is still required', async () => {
+  const root = await fixture();
+  const path = await sourceBundleFixture(root, {
+    models: [],
+    documents: [],
+    textures: [{ id: 'source-texture', path: 'shots/source-texture.png' }],
+  });
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), /source-texture.png/);
+  await asset(root, `${path}/shots/source-texture.png`);
+  assert.deepEqual(await checkSourceBundles({ root, log: quiet }), { verified: 1 });
+});
+
+test('CI rejects staged bulk captures while allowing small summary previews', async () => {
+  const root = await fixture();
+  await writeFile(
+    join(root, '.gitignore'),
+    await readFile(new URL('../../.gitignore', import.meta.url)),
+  );
+  const preview = 'content/worldgen/source/places/test/preview.png';
+  const capture = 'content/worldgen/source/places/test/medium-fi/nested/street.png';
+  await asset(root, preview);
+  await asset(root, capture);
+  execFileSync('git', ['add', '--', preview], { cwd: root });
+  checkTrackedReviewCaptures({ root, log: quiet });
+  execFileSync('git', ['check-ignore', '--quiet', '--', capture], { cwd: root });
+  execFileSync('git', ['add', '--force', '--', capture], { cwd: root });
+  assert.throws(
+    () => checkTrackedReviewCaptures({ root, log: quiet }),
+    /Generated review captures must stay local.*\n.*medium-fi\/nested\/street.png/s,
+  );
+});
+
+test('asset restore never reads or downloads optional legacy review archives', async () => {
+  const published = await publishedFixture([['assets/test/model.glb', Buffer.from('model')]]);
+  const root = await fixture();
+  await writeFile(join(root, 'review-lock.json'), 'unavailable legacy review metadata');
+  const requests = [];
+  await fetchAssets({ root, fetchImpl: releaseServer(published.source, requests), log: quiet });
+  assert.equal(await readFile(join(root, 'assets/test/model.glb'), 'utf8'), 'model');
+  assert.ok(requests.length > 0);
+  assert.ok(requests.every((file) => file === 'asset-manifest.json' || file.endsWith('.tar.gz')));
 });
 
 function fakeGitHub(release, { existing } = {}) {
@@ -755,6 +824,8 @@ test('does not accept an environment whose dependency installation left pins mis
 
 test('a build stamps the inputs it started from, drops stale outputs and keeps local work', async () => {
   const root = await fixture();
+  // Source builds are independent of old review archives, even if their lock is unavailable.
+  await writeFile(join(root, 'review-lock.json'), 'unavailable legacy review metadata');
   // No jobs load packages in this fixture; satisfy the build preflight without compiling.
   for (const path of [
     'packages/schema/dist/index.mjs',

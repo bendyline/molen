@@ -8,9 +8,9 @@ import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { salahStudy } from '../../worldgen/scripts/salah-citadel-model.mjs';
 import { salahGround } from '../../worldgen/scripts/salah-runtime-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { createStructureIndex } from '../../worldgen-earth/dist/kernel.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/sy/sy3/n0257_citadel_of_salah_ed_din'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');

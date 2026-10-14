@@ -16,14 +16,9 @@ const ledger = JSON.parse(
   await readFile(resolve(root, 'content/earth/structures/readiness.json'), 'utf8'),
 );
 const readiness = new Map(ledger.candidates.map((entry) => [entry.candidateId, entry]));
-const previewPath = (asset, shared) =>
-  relative(
-    dir,
-    structureSourcePath(
-      asset.split('.').at(-1),
-      shared ? 'shots/shared/angle-0.png' : 'preview.png',
-    ),
-  ).replaceAll('\\', '/');
+// The catalog travels with source; bulk shared-material captures stay local.
+const previewPath = (asset) =>
+  relative(dir, structureSourcePath(asset.split('.').at(-1), 'preview.png')).replaceAll('\\', '/');
 const reusable = (
   await Promise.all(
     (
@@ -71,13 +66,11 @@ const data = JSON.stringify(
                 id: member.candidateId,
                 title: member.title,
                 quality: member.model.quality,
-                preview: previewPath(member.asset, member.sharedSurfaceQa.hashBoundReviewPassed),
+                preview: previewPath(member.asset),
               })),
           }
         : null,
-      preview: modelRef
-        ? previewPath(modelRef, readiness.get(id)?.sharedSurfaceQa?.hashBoundReviewPassed)
-        : null,
+      preview: modelRef ? previewPath(modelRef) : null,
     }),
   ),
 ).replaceAll('<', '\\u003c');

@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { MeshBufferBuilder } from '../dist/kernel.mjs';
 import { beam, cross, loft, normalFor } from './authored-structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
+
 const frame = JSON.parse(readFileSync(structureSourcePath('n0017_red_bridge', 'map-frame.json')));
 const MEANS = {
     sandstone: [0.7908977710930336, 0.7908977710930336, 0.7908977710930336],

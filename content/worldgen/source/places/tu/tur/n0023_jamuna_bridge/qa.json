@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0023_jamuna_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:705bbf9483e050ea8d1e265be8dc5f0259b3bc1f8dcbd01e1a529196ff367c90",
+  "inputHash": "sha256:70dd681ad1a2a38f94d824cae98c92374118184ff196e8a04b6e12f1bb1cc70e",
   "sourceHash": "sha256:a3e86afbb0da5e4bfae5b35f6e554be03c4b6b03f428b62ecfdeeadda91f1879",
   "runtimeHash": "sha256:a3c896dffb22fb2821062adfb4cace0f354e9a7abc73dd4e86f59f71f485d5b8",
-  "captureReportHash": "sha256:bd8544d5aac1d8c038a3f88438b24c5c5c34c470a269ab3c73f1d126e83fd646",
+  "captureReportHash": "sha256:f6ddc71fc045a6c378e580c7c62fb6fd88ea48c6ea81d97d1ce4503a9a4246ea",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -30,7 +30,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:90c65b5a754af1115c2ab099e3a7144355595d78512e6ee02490423d709112ec",
+    "captureReportHash": "sha256:63157cefa8ae55dca6da1a22a91db8460a57d56b6beb7072f4aa60f836918f71",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -304,5 +304,54 @@
     "Compact derivatives retain the whole curve and recognizable concrete/service arrangement. Skyline merges pier bases and utility shafts; district omits suspended services; street/closeup restore representative cables, pipe, rails and sparse lights. Individual4m joints, pile-cap bands, insulator discs, fasteners and exact pole arms are simplified.",
     "Pictures and standard PMTiles determine approximate visualization fit; no bespoke survey or current conversion-document research. Source facts from existing records remain preserved. Physical-device timings remain unmeasured.",
     "Narrow curved ground opening removes coarse bridge/approach terrain imprint in live placement. The50m-grid preview uses a wider35m contact corridor blended back to raw surroundings by120m; original raw samples remain retained. This is a visualization correction, not river bathymetry or an excavated terrain claim."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:705bbf9483e050ea8d1e265be8dc5f0259b3bc1f8dcbd01e1a529196ff367c90",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:bd8544d5aac1d8c038a3f88438b24c5c5c34c470a269ab3c73f1d126e83fd646",
+    "previousSharedCaptureReportHash": "sha256:90c65b5a754af1115c2ab099e3a7144355595d78512e6ee02490423d709112ec",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/jamuna-browser-model.mjs",
+        "beforeHash": "sha256:fa58f68e7cf04eea7ecfddece7757b93f00cb88355fdde63b833a2e3c123287b",
+        "afterHash": "sha256:b590ddaa8d8e1a2d2ec20db51413004cbcdc5807c319ba3b250f6c6bc43e7484",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/models/source.glb",
+        "hash": "sha256:a3e86afbb0da5e4bfae5b35f6e554be03c4b6b03f428b62ecfdeeadda91f1879",
+        "bytes": 7225708
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tur/n0023_jamuna_bridge/model.glb",
+        "hash": "sha256:a3c896dffb22fb2821062adfb4cace0f354e9a7abc73dd4e86f59f71f485d5b8",
+        "bytes": 7225192
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tur/n0023_jamuna_bridge/model.skyline.glb",
+        "hash": "sha256:5b32540488e450d7d3a81e1bf854c83c499e5413156398680f09c66d3012bda3",
+        "bytes": 93876
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tur/n0023_jamuna_bridge/model.district.glb",
+        "hash": "sha256:fdaa4e1db6eda3e4898aecd78b0c72d1fe87345d1b0bf0ee01587731c883a6d5",
+        "bytes": 357700
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tur/n0023_jamuna_bridge/model.street.glb",
+        "hash": "sha256:b8e819081a95b7aa343ba43933da6dfd2e65507165186f74004448f55d37d514",
+        "bytes": 1485868
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tur/n0023_jamuna_bridge/model.closeup.glb",
+        "hash": "sha256:9e0dc1a2e6bbccc999afbf77511b78f8b69bae8c8084e5c6abac5f9086eb755f",
+        "bytes": 6195268
+      }
+    ],
+    "retainedInspectedImageCount": 64
+  }
 }

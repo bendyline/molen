@@ -2,7 +2,7 @@
 
 Every GLB in this repository is a build output of checked-in source, except five small authored
 masters. Git holds the generators, their specs, shared materials and textures, sidecars and
-review reports. Full-size review captures are stored separately (see below). `asset-lock.json` pins the exact bytes the source builds to, on any machine. The
+review reports. Full-size review captures stay local (see below). Asset inputs name the reproducible model bundle. The
 Assets workflow builds them from a clean checkout, requires those bytes, and publishes them as a
 GitHub release that `pnpm assets:fetch` downloads as a cache. Building and fetching produce
 identical files.
@@ -35,49 +35,44 @@ committed before its release exists.
 
 ### Model review images
 
-Full-size PNG/JPEG/WebP images below the structure bundles' `shots/` and `medium-fi/`
-directories are generated evidence, not Git content. `review-lock.json` records their exact
-paths, sizes and SHA-256 hashes, plus the hashes of the release archives that contain them.
-Source manifests, capture reports, QA decisions, source textures and heightmaps stay in Git,
-as do the small `preview.png` gallery thumbnails. Do not ignore all PNGs.
+Render and inspect the changed model in Molen before recording visual acceptance. Keep the
+turntables, detail shots, lighting variants and medium-fi contact sheets in ignored `shots/`,
+`medium-fi/` or `.artifacts/` directories. These are disposable local review outputs: a clean
+checkout, model build and ordinary CI must work without them or a review-image download.
 
-`pnpm assets:fetch` restores these images before the GLBs; CI does the same. Restore just the
-reviews with `pnpm reviews:fetch`, or use `--offline` with archives already cached under
-`.artifacts/review-packs/<release>/`. A manually downloaded bundle can be selected with
-`--archive-dir <cache-root>`. `--prefix content/worldgen/source/places/gc/` restores a subset.
-Every downloaded archive and extracted image is checked against the committed lock.
-Existing images that differ from the lock are preserved by default, including newer local
-captures; `--force` explicitly replaces them. Missing files are restored. `pnpm reviews:check`
-requires all pinned images to match exactly. Source and visual-review validation still read
-the actual images and check the original evidence hashes; an absent image is not an approval.
+Keep these durable artifacts in Git:
 
-After a completed review batch, the owner can run:
+- Model recipes, specs, source textures, heightmaps and other required authored inputs.
+- Concise review reports with the source/model hashes, render commands and camera settings,
+  what was actually inspected, the decision and remaining limitations.
+- One or two curated small summary previews per model, normally `preview.png` beside its
+  source bundle. Prefer a web-sized image, roughly 1024 pixels on the long edge; do not promote
+  an entire capture set. Source textures are separate assets, not review screenshots.
 
-```sh
-pnpm reviews:pack
-pnpm reviews:check
-pnpm reviews:publish --target <existing-40-character-GitHub-commit-SHA>
-```
+Reports and older `source.json` inventories may retain local capture paths and hashes. Their
+absence does not invalidate the source bundle or trigger a download. Required source files,
+reports and summary previews are still checked. Missing images also do not establish a new
+visual approval: re-render and inspect the affected model when performing a new visual review.
 
-Packing writes ignored archives and updates `review-lock.json`; it never stages files or
-changes Git history. It refuses an incomplete restore of the previous bundle. The lock's
-`reviews-<hash>` release identifies the file contents, independent of the tag's target commit.
-Publishing verifies each upload's SHA-256 before making the release visible, and does not mark
-it as the latest software release. Publish before committing/pushing a lock so clean checkouts
-can restore its evidence. Keep the reports, QA changes and lock together in the same commit.
-Retain old releases: historical commits require their original review images, not re-renders.
-The local cache and its archives are ignored, so keeping them does not increase push size.
+`.gitignore` excludes bulk captures and `pnpm source:check` fails if capture images have been
+staged or tracked in Git, even when force-added. It runs in both CI and `pnpm verify`. Model
+tests should validate geometry, source/runtime hashes, materials and budgets; render tests
+should generate the views they exercise. A small explicit golden fixture is a deliberate test
+asset, not an archive of every model review.
 
-Direct `pnpm assets:build` also restores missing review evidence before running generators.
-Removing an already committed image requires removing it from the Git index as well; ignore
-rules alone do not untrack files. Removing it in a later commit also leaves its bytes in any
-earlier unpushed commit, so an oversized unpushed commit must be replaced before retrying.
+The previously published archive and `review-lock.json` remain an **optional historical
+recovery** facility. `pnpm reviews:fetch --prefix content/worldgen/source/places/gc/` retrieves
+only the relevant archived captures. Neither `assets:fetch` nor `assets:build` fetches reviews.
+Normal model work does not update this lock, pack captures or publish a review release. New
+captures remain local; any separate archive publication requires the owner's explicit request.
+
+### Restore model assets
 
 In the engine repository, with Node 22.13 or newer:
 
 ```sh
 pnpm install --frozen-lockfile
-pnpm assets:fetch     # download the release the lock names, or build from source if it is not published
+pnpm assets:fetch     # download the bundle named by asset inputs, or build from source
 pnpm build
 ```
 

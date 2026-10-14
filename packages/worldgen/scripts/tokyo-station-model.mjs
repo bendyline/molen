@@ -1,8 +1,9 @@
 /** Picture/PMTiles medium-fi Marunouchi frontage; original draft remains in its generator. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { normalFor, loft, beam } from './authored-structure-mesh.mjs';
+import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const TAU = 2 * Math.PI,
   X_SCALE = 319.17746935450333 / 335,
   MEANS = {

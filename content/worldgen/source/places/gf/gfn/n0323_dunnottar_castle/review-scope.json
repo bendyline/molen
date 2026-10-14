@@ -1,0 +1,296 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.99,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "grass": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "water": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.22,
+      "metallic": 0.1
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dunnottar-castle-model.mjs",
+    "export": "buildDunnottarSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDunnottarDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildDunnottarStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDunnottarCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.99,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      205,
+      156,
+      206
+    ],
+    "lookAt": [
+      -4,
+      21,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-dunnottar-skyline",
+      "position": [
+        205,
+        156,
+        206
+      ],
+      "lookAt": [
+        -4,
+        21,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-dunnottar-district",
+      "position": [
+        205,
+        156,
+        206
+      ],
+      "lookAt": [
+        -4,
+        21,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-dunnottar-street",
+      "position": [
+        205,
+        156,
+        206
+      ],
+      "lookAt": [
+        -4,
+        21,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-dunnottar-closeup",
+      "position": [
+        205,
+        156,
+        206
+      ],
+      "lookAt": [
+        -4,
+        21,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate exterior and source-terrain fit reviewed against two inspected aerial pictures and retained standard viewer PMTiles/DEM; surveyed cliff levels and navigable collision are excluded.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -2.197038916,
+        56.945923243
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 equals retained standard viewer DEM12.3751m at anchor. Approximate plateauY20m and entrance10–20m compensate for the severely smoothed headland. Cliff profiles, footing and terrain joins are picture-led estimates, not bare-earth survey."
+    },
+    "bounds": [
+      -2.199,
+      56.9451,
+      -2.1953,
+      56.9469
+    ],
+    "notes": "Exact-QID site enclosure, fourteen PMTiles ruin plans, basin and western mapped steps/tunnels establish approximate fit and signed facing. Heights, damaged details, room roles and cliff levels remain estimates.",
+    "groundContactBasis": "Source-terrain views inspected. NativeY0 follows retained standard viewer DEM12.3751m at anchor; approximate plateauY20m fills the smoothed headland while faceted foundations descend to retained edge samples. Interior entry flights rise10–20m; outer mapped flights attach to coarseDEM near nativeY2.33m and reach the lower portal. Cliff, footing, stair levels and joins remain exterior estimates, not bare-earth survey or walking surface certification."
+  },
+  "geographicNote": "Two inspected aerial pictures and standard viewer PMTiles/DEM guide the individual ruined compound. Coarse DEM smooths the cliff, so rock platform and approach levels are explicit approximations. Town, ocean, separate offshore rocks and complete interiors remain host content. © OpenStreetMap contributors, ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

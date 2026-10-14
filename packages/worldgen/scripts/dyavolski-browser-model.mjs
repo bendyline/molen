@@ -1,6 +1,7 @@
 /** Seven-opened humped stone bridge silhouette, independent of the detailed masonry master. */
 import './install-deterministic-math.mjs';
 import { cross, normalFor } from './authored-structure-mesh.mjs';
+
 const arches = [
   { c: -26.45, rx: 1.34, sy: 3.57, ry: 1.26, floor: 3.57 },
   { c: -16.9, rx: 4.5, sy: 2.1, ry: 4.55, floor: 0 },

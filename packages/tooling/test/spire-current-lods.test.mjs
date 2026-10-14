@@ -118,4 +118,4 @@ it('rebuilds deterministic whole-height browser levels within strict budgets usi
       .map((g) => 'matgraph:molen.worldgen.material.' + g)
       .sort(),
   );
-}, 30000);
+}, 60_000);

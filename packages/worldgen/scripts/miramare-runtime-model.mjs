@@ -1,8 +1,9 @@
 /** Picture-based Miramare Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildMiramareRuntime, buildMiramareSkyline } from './miramare-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildMiramareRuntime, buildMiramareSkyline } from './miramare-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

@@ -5,10 +5,10 @@ import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
-import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { alamutStudy } from '../../worldgen/scripts/alamut-castle-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
+import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/tn/tn7/n0249_alamut_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
@@ -110,12 +110,10 @@ it('reproduces original bytes and verifies fresh signed map and public terrain i
   const bytes = Buffer.from(
     encodeGlb(
       m,
-      a
-        .materials(m.groups)
-        .map((s, i) => ({
-          ...s,
-          name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-        })),
+      a.materials(m.groups).map((s, i) => ({
+        ...s,
+        name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+      })),
       'Molen original Alamut Castle',
     ),
   );

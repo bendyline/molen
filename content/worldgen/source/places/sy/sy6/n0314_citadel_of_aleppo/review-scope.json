@@ -1,0 +1,258 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "dark": {
+      "slot": "trim",
+      "graph": "stone_basalt",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/aleppo-citadel-model.mjs",
+    "export": "buildAleppoSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAleppoDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAleppoStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAleppoCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "dark": {
+            "slot": "trim",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-aleppo-skyline",
+      "position": [
+        446.9147102397367,
+        185,
+        140.9512035114713
+      ],
+      "lookAt": [
+        9.25203354916879,
+        -8,
+        -3.7947167489886766
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-aleppo-district",
+      "position": [
+        446.9147102397367,
+        185,
+        140.9512035114713
+      ],
+      "lookAt": [
+        9.25203354916879,
+        -8,
+        -3.7947167489886766
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-aleppo-street",
+      "position": [
+        446.9147102397367,
+        185,
+        140.9512035114713
+      ],
+      "lookAt": [
+        9.25203354916879,
+        -8,
+        -3.7947167489886766
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-aleppo-closeup",
+      "position": [
+        446.9147102397367,
+        185,
+        140.9512035114713
+      ],
+      "lookAt": [
+        9.25203354916879,
+        -8,
+        -3.7947167489886766
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.moroccan_riad",
+    "groundY": -41
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "current source arrangement and coarse terrain contact visually reviewed; shared/material/LOD review pending",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        37.16293972,
+        36.199384527
+      ],
+      "modelHeight": 0,
+      "basis": "Native datum is434.1433m at the retained terrain center. Foundations and masonry slope skin follow the standard viewer surface."
+    },
+    "bounds": [
+      37.1605,
+      36.1976,
+      37.1654,
+      36.2008
+    ],
+    "notes": "The native X axis follows the actual mapped entrance steps; placement heading-1.9600215196180855 restores the geographic southwest bearing. The hill foot is not a surveyed upper curtain. Coarse terrain smooths the moat and terraces. A native5m replacement outline suppresses only the mapped bridge; approach height hints are unset because the bridge is offset from the model anchor.",
+    "groundContactBasis": "Current portable overview, six details and mapped plan were inspected against the retained standard viewer terrain after fixing the clipped slope skin. NativeY0 is434.1433m at the hill center. Foundations follow terrain-.30m; slope overlay follows the same coarse terrain with a0.6m closeup clearance, needed to prevent coplanar triangle clipping. Skyline/district/street use3/1.5/.9m coarse clearance. Actual moat depth, terraces, bridge arch visibility and approach joins remain approximate; the runtime does not carve terrain. The complete mesh, QA cameras and fitting terrain are rotated into the bridge-aligned frame; geographic placement restores the original bearings.",
+    "replaceRoads": {
+      "length": 67.46983096327983,
+      "width": 5,
+      "outline": [
+        [
+          139.64632392864917,
+          46.144668866831026
+        ],
+        [
+          207.116154891929,
+          46.144668866831026
+        ],
+        [
+          207.116154891929,
+          41.14466886683104
+        ],
+        [
+          139.64632392864917,
+          41.14466886683103
+        ]
+      ]
+    }
+  },
+  "geographicNote": "Native X follows the mapped southwest steps. The placement heading restores geographic east/south; original PMTiles controls are preserved in reconstruction.eastSouthParts/eastSouthBridge and pmtiles-fit.json. Heights, curtain inset, bastion cadence and room groups remain picture-led approximations.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ]
+}

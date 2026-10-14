@@ -1,0 +1,273 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "rock": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_sandstone",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_drywall",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.08
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/loarre-castle-model.mjs",
+    "export": "buildLoarreSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLoarreDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "buildLoarreStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLoarreCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      135,
+      111,
+      173
+    ],
+    "lookAt": [
+      -2,
+      3,
+      19
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-loarre-skyline",
+      "position": [
+        135,
+        111,
+        173
+      ],
+      "lookAt": [
+        -2,
+        3,
+        19
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-loarre-district",
+      "position": [
+        135,
+        111,
+        173
+      ],
+      "lookAt": [
+        -2,
+        3,
+        19
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-loarre-street",
+      "position": [
+        135,
+        111,
+        173
+      ],
+      "lookAt": [
+        -2,
+        3,
+        19
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-loarre-closeup",
+      "position": [
+        135,
+        111,
+        173
+      ],
+      "lookAt": [
+        -2,
+        3,
+        19
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.35,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate picture/PMTiles fit and source-terrain renders reviewed 2026-10-13",
+    "orientationPolicy": "approximate-visualization",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -0.6126127150641428,
+        42.32548368977727
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 equals standard viewer DEM 1061.4069m at shifted upper-compound origin. Curtain/rock contacts, lower enclosure plan and architectural heights are approximate."
+    },
+    "bounds": [
+      -0.61325,
+      42.32445,
+      -0.61135,
+      42.326
+    ],
+    "notes": "Anchor moved55m west/8m south of catalog reference to upper compound. Signed mapped chapel axis, seven component polygons and two named POIs fix approximate facing/fit. PMTiles provides no lower curtain plan; photo-led estimate is explicit.",
+    "groundContactBasis": "NativeY0 is retained standard viewer DEM1061.4069m at the upper-compound anchor. Coarse hillside footings descend to sampled DEM minus0.2m; upper court attaches to an authored Y4m rock cap. Current source-terrain views show the upper compound, detached tower, descending curtain and southern stairs together. Exact contact and terrain blending remain approximate."
+  },
+  "geographicNote": "Named PMTiles castle/chapel POIs and seven current component plans support approximate correspondence and signed chapel facing. Neither exact-QID outer walls nor surveyed dimensions are claimed. Pictures supply the lower curtain and rock treatment; heights and terrain joins remain estimates. © OpenStreetMap contributors, ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

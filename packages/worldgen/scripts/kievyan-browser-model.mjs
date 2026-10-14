@@ -2,6 +2,7 @@
 import './install-deterministic-math.mjs';
 import { beam, cross, loft, normalFor, sphere } from './authored-structure-mesh.mjs';
 import { box, quad } from './structure-mesh.mjs';
+
 const MEANS = {
   basalt: [0.9129740140085889, 0.9129740140085889, 0.9129740140085889],
   concrete: [0.7108161524542215, 0.7108161524542215, 0.6819278525713045],

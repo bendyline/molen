@@ -22,7 +22,7 @@ export function buildLindesnesSkyline(destination) {
           s,
           r,
           p,
-          n.map(v=>v/Math.hypot(...n)),
+          n.map((v) => v / Math.hypot(...n)),
           u,
           c.map((v, i) => v * (means[s]?.[i] ?? 1)),
         ),

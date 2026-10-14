@@ -1,0 +1,361 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "rock": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.83,
+      "metallic": 0.05
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "canvas": {
+      "slot": "roof",
+      "graph": "fabric_canvas",
+      "roughness": 0.96,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/olavinlinna-castle-model.mjs",
+    "export": "buildOlavinlinnaSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildOlavinlinnaDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.05
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "canvas": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildOlavinlinnaStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.05
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "canvas": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildOlavinlinnaCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "rock": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.05
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "canvas": {
+            "slot": "roof",
+            "graph": "fabric_canvas",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "fov": 43,
+    "position": [
+      231.00170447907064,
+      128,
+      144.44103477808548
+    ],
+    "lookAt": [
+      0.2542866512587987,
+      8,
+      12.366702806285579
+    ]
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-olavinlinna-skyline",
+      "fov": 43,
+      "position": [
+        231.00170447907064,
+        128,
+        144.44103477808548
+      ],
+      "lookAt": [
+        0.2542866512587987,
+        8,
+        12.366702806285579
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-olavinlinna-district",
+      "fov": 43,
+      "position": [
+        231.00170447907064,
+        128,
+        144.44103477808548
+      ],
+      "lookAt": [
+        0.2542866512587987,
+        8,
+        12.366702806285579
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-olavinlinna-street",
+      "fov": 43,
+      "position": [
+        231.00170447907064,
+        128,
+        144.44103477808548
+      ],
+      "lookAt": [
+        0.2542866512587987,
+        8,
+        12.366702806285579
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-olavinlinna-closeup",
+      "fov": 43,
+      "position": [
+        231.00170447907064,
+        128,
+        144.44103477808548
+      ],
+      "lookAt": [
+        0.2542866512587987,
+        8,
+        12.366702806285579
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "previewEntities": [
+    {
+      "id": "review-lake",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -6.85,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            490,
+            0.02,
+            490
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#286d83",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "mediumFiContext": {
+    "scale": 1.7,
+    "neighborStyle": "molen.worldgen.catalog.finnish_log_cabin",
+    "groundY": -10
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "current exterior and coarse terrain contact reviewed; final shared-material and LOD inspection pending",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        28.901095051,
+        61.863834833
+      ],
+      "modelHeight": 0,
+      "basis": "Native datum is the standard viewer DEM sample100.6225m at the anchor; unmodified terrain controls the model foundations. Water level is approximate."
+    },
+    "bounds": [
+      28.8982,
+      61.86335,
+      28.9027,
+      61.86425
+    ],
+    "notes": "Retained compound envelope and native bridge-aligned frame control scale/orientation. Picture-led towers, terraces, roofs and canopy are approximate. Native preview water/shore mask is not proof of precise runtime shoreline fit. NativeX bisects the two undirected pontoon segment axes. This keeps both actual mapped segments inside the road guard while every model control retains its world bearing. No connected-approach height hints are claimed.",
+    "replaceRoads": {
+      "length": 59.16790936662776,
+      "width": 66.28967304771103,
+      "outline": [
+        [
+          -52.16807954712646,
+          136.90929728864117
+        ],
+        [
+          -4.667171732175206,
+          77.15730776052382
+        ],
+        [
+          -1.4307116985260597,
+          73.88846600072696
+        ],
+        [
+          6.9998298195013025,
+          82.2354930794593
+        ],
+        [
+          6.9998298195013025,
+          84.80075657107156
+        ],
+        [
+          -48.93161951347731,
+          140.178139048438
+        ]
+      ]
+    },
+    "groundContactBasis": "Current portable overview, mapped plan and six detail frames were inspected against the retained standard viewer DEM. NativeY0 is100.6225m at the anchor; individual footings follow the unmodified terrain minus0.30m. The source-only PMTiles water mask and -6.85m approximate review lake surface expose the island and floating approach. This does not verify real water elevation or carve runtime terrain; shoreline edges, underwater footing depth and pontoon/entrance joins remain approximate."
+  },
+  "geographicNote": "Current named castle and pontoon bridge plus retained identity-matched OSM relation11335890 control approximate geographic placement, topology and scale. Height, facade openings, canopy and rock profiles remain picture-led.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ]
+}

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0687_fnb_stadium",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:1f79876b579557d30551b26e243c9a11a68fe5ac677d31640911a2b2ede1d91c",
+  "inputHash": "sha256:ea7141c30208e6421d3f2e1c6e26855e4b084c51f2a10f4ab43313235fac7b42",
   "sourceHash": "sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01",
   "runtimeHash": "sha256:0ca42a36babb08f158dc745f4abad158a152975d4cf2aec42e0497375daffcdf",
-  "captureReportHash": "sha256:8245de272b8821c75ff22a8eb6c589abbb85c23b443e2e6bf21096ee622ce958",
+  "captureReportHash": "sha256:b087ac746d28227418fd36b3fdfeeb28dc6b7ac8fb996647356387cc82955117",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +26,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a56353c3c79e79096b8e6d642f436166450b0e7718134ee131850f1e44e9d05d",
+    "captureReportHash": "sha256:ca86a26763e2c056f7cd3b4dd869c4e599d220ae31909daae78825f17f4db3e2",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -293,5 +293,54 @@
     "Original detailed master/hash/recipe preserved. Browser derivatives retain calabash, roof/opening, three-tier bowl, supports and western hospitality asymmetry; mosaic colors, panel windows, row impressions and joints are interpreted.",
     "The existing reversible ground opening suppresses coarse terrain only within the stadium/podium footprint. Raw surrounding PMTiles are retained and restore on unload. Bounded pitch/apron and podium are model architecture, not broad duplicated landscape.",
     "Three shared concrete/painted-metal/membrane graphs plus explicit seat/glass/turf colors; zero embedded images. Full fixture/seat inventory, interiors, collision and physical-device timing excluded. Footprint replacement remains off."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:1f79876b579557d30551b26e243c9a11a68fe5ac677d31640911a2b2ede1d91c",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:8245de272b8821c75ff22a8eb6c589abbb85c23b443e2e6bf21096ee622ce958",
+    "previousSharedCaptureReportHash": "sha256:a56353c3c79e79096b8e6d642f436166450b0e7718134ee131850f1e44e9d05d",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/fnb-browser-model.mjs",
+        "beforeHash": "sha256:fc8eaf4bfc8e0319b00dced64588f27be66c9d5bf1097e2a09bbcfcddd35b1cf",
+        "afterHash": "sha256:9fe86937874f9a04d75f2f2d751bbd6b8b7111a7237f40fc4a9b8c148b2aa073",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/ke/ke7/n0687_fnb_stadium/models/source.glb",
+        "hash": "sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01",
+        "bytes": 22988388
+      },
+      {
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.glb",
+        "hash": "sha256:0ca42a36babb08f158dc745f4abad158a152975d4cf2aec42e0497375daffcdf",
+        "bytes": 22987800
+      },
+      {
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.skyline.glb",
+        "hash": "sha256:51b145d8ccc47f5bb0791e1f5b66631e2f2e48876304edea002d25ce88fa9713",
+        "bytes": 84760
+      },
+      {
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.district.glb",
+        "hash": "sha256:d8167ee6b530af7aacf4a2debd592dde971634ce5b511cd29ea2004a1ca1bb30",
+        "bytes": 349220
+      },
+      {
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.street.glb",
+        "hash": "sha256:d6302950bd7f9ca6b30ca3a9f3574ed12a26a4dcd663199a2b6d77823abfeee7",
+        "bytes": 1481536
+      },
+      {
+        "path": "content/worldgen/assets/places/ke/ke7/n0687_fnb_stadium/model.closeup.glb",
+        "hash": "sha256:ba8bb62fa2c3d000874cd27bb6594471bb1e39604c9babb99cac7a3d99e6ef2a",
+        "bytes": 6205012
+      }
+    ],
+    "retainedInspectedImageCount": 52
+  }
 }

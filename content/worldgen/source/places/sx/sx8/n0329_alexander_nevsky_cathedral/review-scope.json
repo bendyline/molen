@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "green": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.78,
+      "metallic": 0.12
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.08
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.55,
+      "metallic": 0.75
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/nevsky-cathedral-model.mjs",
+    "export": "buildNevskySkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNevskyDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78,
+            "metallic": 0.12
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.75
+          }
+        }
+      },
+      "street": {
+        "export": "buildNevskyStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78,
+            "metallic": 0.12
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.75
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNevskyCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "green": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.78,
+            "metallic": 0.12
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.75
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -118,
+      85,
+      102
+    ],
+    "lookAt": [
+      0,
+      22,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nevsky-skyline",
+      "position": [
+        -118,
+        85,
+        102
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nevsky-district",
+      "position": [
+        -118,
+        85,
+        102
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nevsky-street",
+      "position": [
+        -118,
+        85,
+        102
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nevsky-closeup",
+      "position": [
+        -118,
+        85,
+        102
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate cathedral exterior and source-terrain fit reviewed against two inspected aerial/front pictures and standard viewer PMTiles/DEM. Exact doorstep/plaza levels and navigable collision remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        23.332803907,
+        42.695816357
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 follows standardDEM559.522m. Estimated0.65m common floor clears eastern perimeter near0.27m; western/south samples−0.5 to−0.95m leave approximate foundations/steps. No surveyed plaza/church datum."
+    },
+    "bounds": [
+      23.3321,
+      42.69525,
+      23.33355,
+      42.6964
+    ],
+    "notes": "Mapped parent/tagged parts preserve main eastern dome, western bell/entry, subsidiary roofs/apses and signed facing. Nominal intervals retained; intermediate profiles, detail and ground joins approximate.",
+    "groundContactBasis": "Current source-terrain whole/front/belfry views inspected. NativeY0 follows retainedDEM559.522m; estimated0.65m common floor clears eastern samples near0.27m. West/south samples−0.5 to−0.95m leave modest foundation/step joins. Tagged dome/roof/tower intervals and signed west entry/east dome match; exact thresholds are exterior estimates."
+  },
+  "geographicNote": "Two inspected aerial/front pictures and standard viewer PMTiles/DEM guide this individual cathedral exterior. Exact plaza/doorstep levels, icons/sculpture and full interiors remain outside scope. ©OpenStreetMap contributors,ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

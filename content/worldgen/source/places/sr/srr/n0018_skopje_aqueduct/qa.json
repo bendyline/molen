@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0018_skopje_aqueduct",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:141c75d50fa57413d42d98bab3134f153c42094d3a96ce6c5bb820392731c774",
+  "inputHash": "sha256:5bf1dbd66c7f71894b506e512e564216d3c0abbb3631164d0fc808b34075dbda",
   "sourceHash": "sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b",
   "runtimeHash": "sha256:f4fa4ae3710aaa4adf8fd0ad351216470a35100f99f57b4c1a06bfe309b16381",
-  "captureReportHash": "sha256:60e63f61293cea984503310e3b0524f9b3f8052f92563585bfae9a378be6bd22",
+  "captureReportHash": "sha256:3a9fd0d38184a54b965185380511e710e6729aa0355d500079d0bad29c002283",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -27,7 +27,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:b72dc818aef9e4e5a02d2ef5a861b439130c565ab9c8aa0c89fc9a78dbfaa7e1",
+    "captureReportHash": "sha256:432db1c90a85545922687d01d3604e0476dc965b246c46b351ac8390a4a63ed6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -295,5 +295,54 @@
     "Detailed original master is preserved by its unchanged recipe/map inputs and exact reproduced hash. Compact medium-fi source replaces individual rubble/brick geometry with the shared raw limestone and fired-clay graphs.",
     "Skyline retains all54 main openings with angular vaults, merges reliefs and channel rims; closer models restore42 upper openings, rounded vaults, arch ribbons and open trough. Exact broken cap courses, stone/brick patchwork, graffiti and repairs are simplified.",
     "Mapped350.7703m channel and385.8m overall reconstruction remain distinct; ramp lengths and relief stations are retained assumptions. PMTiles field/contact blending and narrow ground opening are approximate, not per-pier survey. Footprint replacement off; physical-device timing remains pending."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:141c75d50fa57413d42d98bab3134f153c42094d3a96ce6c5bb820392731c774",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:60e63f61293cea984503310e3b0524f9b3f8052f92563585bfae9a378be6bd22",
+    "previousSharedCaptureReportHash": "sha256:b72dc818aef9e4e5a02d2ef5a861b439130c565ab9c8aa0c89fc9a78dbfaa7e1",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/skopje-aqueduct-browser-model.mjs",
+        "beforeHash": "sha256:9e3440f15d1b3a6a27979180f7691f38ee0a8cc1a8a876891788f5a1186fe82e",
+        "afterHash": "sha256:b7366469838adea62732d19f68af3569ca482f0b264221ba9fe3a1eeef5ee492",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/sr/srr/n0018_skopje_aqueduct/models/source.glb",
+        "hash": "sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b",
+        "bytes": 2046808
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.glb",
+        "hash": "sha256:f4fa4ae3710aaa4adf8fd0ad351216470a35100f99f57b4c1a06bfe309b16381",
+        "bytes": 2046520
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.skyline.glb",
+        "hash": "sha256:31f6c068f70247d552d0a3a26114dddce3366a2c1b4b4473db945f6c8e285600",
+        "bytes": 94892
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.district.glb",
+        "hash": "sha256:91ab9708d4410753f56ae543172b6a7320037596b35ebb84e2ec7fe11cb115c3",
+        "bytes": 354996
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.street.glb",
+        "hash": "sha256:2914d3446ae4b24446bcd67111726ad321d906cff20516b421dd86cb392f7caa",
+        "bytes": 991756
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.closeup.glb",
+        "hash": "sha256:8988511c58338e2a7bcfbed2c64cdaad0a27052dc49f0fa044cdb386a045f6e9",
+        "bytes": 1822068
+      }
+    ],
+    "retainedInspectedImageCount": 55
+  }
 }

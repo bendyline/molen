@@ -2,7 +2,6 @@
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { beam, cross, normalFor } from './authored-structure-mesh.mjs';
-import { box } from './structure-mesh.mjs';
 import {
   bandPlan,
   face,
@@ -10,7 +9,9 @@ import {
   localOutline,
   solidPlan,
 } from './signature-tower-expansion-models.mjs';
+import { box } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
+
 const map = JSON.parse(
     readFileSync(structureSourcePath('n0138_mirante_do_vale', 'map-frame.json')),
   ),

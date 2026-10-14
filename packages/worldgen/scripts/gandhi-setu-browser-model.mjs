@@ -2,6 +2,7 @@
 import './install-deterministic-math.mjs';
 import { beam, cross, normalFor } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const spans = [65.53, ...Array(45).fill(121.065), 65.53],
   length = spans.reduce((a, b) => a + b, 0),
   half = length / 2,

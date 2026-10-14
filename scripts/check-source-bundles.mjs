@@ -5,6 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { validate } from '../packages/schema/dist/index.mjs';
+import { checkTrackedReviewCaptures, isReviewCapture } from './review-captures.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const ignoredDirectories = new Set([
@@ -53,7 +54,12 @@ async function ownedFiles(directory, relativeDirectory = '') {
     const path = relativeDirectory === '' ? entry.name : `${relativeDirectory}/${entry.name}`;
     if (entry.isDirectory()) {
       if (!generatedDirectories.has(entry.name)) files.push(...(await ownedFiles(directory, path)));
-    } else if (entry.isFile() && path !== 'source.json' && entry.name !== '.DS_Store') {
+    } else if (
+      entry.isFile() &&
+      path !== 'source.json' &&
+      entry.name !== '.DS_Store' &&
+      !isReviewCapture(path)
+    ) {
       files.push(path);
     }
   }
@@ -83,6 +89,7 @@ async function projectRoot(root, directory) {
 }
 
 export async function checkSourceBundles({ root = ROOT, log = console.log } = {}) {
+  checkTrackedReviewCaptures({ root, log });
   const sourceManifests = [];
   for (const base of ['assets', 'content', 'examples', 'packages'])
     await discover(resolve(root, base), sourceManifests);
@@ -95,7 +102,13 @@ export async function checkSourceBundles({ root = ROOT, log = console.log } = {}
     const checked = validate('source-bundle', manifest);
     if (!checked.ok) throw new Error(`${manifestPath}\n${checked.formatted}`);
     const listed = new Set(listedPaths(manifest));
-    for (const owned of listed) await access(resolve(directory, owned));
+    // Reports may retain historical capture paths. Their optional images are local QA output,
+    // while definitions, source models/textures, reports and summary previews remain required.
+    const optionalCaptures = new Set(manifest.files.documents.filter(isReviewCapture));
+    for (const owned of listed) {
+      if (optionalCaptures.has(owned)) continue;
+      await access(resolve(directory, owned));
+    }
     const omitted = (await ownedFiles(directory)).filter((path) => !listed.has(path));
     if (omitted.length > 0) {
       throw new Error(`${manifestPath}: source files missing from manifest: ${omitted.join(', ')}`);

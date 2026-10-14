@@ -13,8 +13,8 @@ import { biomeJson } from './format-json.mjs';
 import { buildSevern, severnStudy as study } from './severn-bridge-model.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
-import { structureSourceDirectory } from './structure-source-paths.mjs';
 import { readOptionalJson } from './structure-model-files.mjs';
+import { structureSourceDirectory } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
 const check = process.argv.includes('--check');

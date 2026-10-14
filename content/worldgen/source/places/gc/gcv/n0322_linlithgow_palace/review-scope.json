@@ -1,0 +1,272 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "water": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.22,
+      "metallic": 0.1
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/linlithgow-palace-model.mjs",
+    "export": "buildLinlithgowSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLinlithgowDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "buildLinlithgowStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0.1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLinlithgowCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "water": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      82,
+      62,
+      85
+    ],
+    "lookAt": [
+      0,
+      9,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-linlithgow-skyline",
+      "position": [
+        82,
+        62,
+        85
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-linlithgow-district",
+      "position": [
+        82,
+        62,
+        85
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-linlithgow-street",
+      "position": [
+        82,
+        62,
+        85
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-linlithgow-closeup",
+      "position": [
+        82,
+        62,
+        85
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate exterior and source-terrain fit reviewed against two inspected pictures and standard viewer PMTiles/DEM; survey precision and navigable collision are excluded.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -3.600854813,
+        55.978700948
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 equals retained standard viewer DEM51.3701m at the mapped anchor. Approximate courtyardY3.9m clears the coarse3.6m south approach; northern foundations extend down the slope. These are exterior attachment estimates, not a bare-earth survey."
+    },
+    "bounds": [
+      -3.6018,
+      55.9781,
+      -3.6,
+      55.9793
+    ],
+    "notes": "Exact-QID palace/courtyard plan, current room-part controls, mapped fountain and south tunnel guide approximate scale and signed facing. Heights, damaged profiles, window/room layout and terrain joins remain estimates.",
+    "groundContactBasis": "Source-terrain views inspected. NativeY0 follows the retained standard viewer DEM51.3701m at the anchor. CourtyardY3.9m clears the coarse southern approach; lower north foundations extend into the slope and the short entry ramp meets retained DEM approximately. Terrain, ruin attachment, wall walks and joins remain exterior estimates, not bare-earth survey or certified walking surfaces."
+  },
+  "geographicNote": "Two inspected courtyard/exterior photographs and standard PMTiles/DEM guide the roofless palace. Main envelope and courtyard retain the exact-QID relation; all heights and damaged details are exterior estimates. Church, town, park and separate eastern building remain host content. © OpenStreetMap contributors, ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

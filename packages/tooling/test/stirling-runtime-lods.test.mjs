@@ -8,11 +8,11 @@ import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { stirlingStudy } from '../../worldgen/scripts/stirling-castle-model.mjs';
 import {
-  stirlingGround,
   stirlingGateControls,
+  stirlingGround,
 } from '../../worldgen/scripts/stirling-runtime-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/gc/gcv/n0262_stirling_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');

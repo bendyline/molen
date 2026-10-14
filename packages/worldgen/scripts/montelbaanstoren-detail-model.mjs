@@ -79,9 +79,29 @@ function detail(out, mode) {
         );
       // The paired canal windows retain their identifying stone crosses at district distance.
       if (h.y === 4) {
-        face(t, 'limestone', [[-0.06,h.y,z+0.02],[0.06,h.y,z+0.02],[0.06,h.y+h.h,z+0.02],[-0.06,h.y+h.h,z+0.02]], pale);
+        face(
+          t,
+          'limestone',
+          [
+            [-0.06, h.y, z + 0.02],
+            [0.06, h.y, z + 0.02],
+            [0.06, h.y + h.h, z + 0.02],
+            [-0.06, h.y + h.h, z + 0.02],
+          ],
+          pale,
+        );
         const y = h.y + h.h * 0.64;
-        face(t, 'limestone', [[-h.w/2,y-0.06,z+0.025],[h.w/2,y-0.06,z+0.025],[h.w/2,y+0.06,z+0.025],[-h.w/2,y+0.06,z+0.025]], pale);
+        face(
+          t,
+          'limestone',
+          [
+            [-h.w / 2, y - 0.06, z + 0.025],
+            [h.w / 2, y - 0.06, z + 0.025],
+            [h.w / 2, y + 0.06, z + 0.025],
+            [-h.w / 2, y + 0.06, z + 0.025],
+          ],
+          pale,
+        );
       }
     }
   };

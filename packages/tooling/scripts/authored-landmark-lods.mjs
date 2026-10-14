@@ -147,7 +147,7 @@ import {
 /** Source-authored silhouettes for landmarks whose open crowns defeat automatic reduction. */
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { NodeIO, VertexLayout } from '@gltf-transform/core';
@@ -288,6 +288,7 @@ import {
 } from '../../worldgen/scripts/prague-castle-model.mjs';
 import { buildRigaRuntime, buildRigaSkyline } from '../../worldgen/scripts/riga-castle-model.mjs';
 import { MATERIAL_REPEAT_METERS } from '../../worldgen/scripts/standard-materials.mjs';
+import { writeIndex as writeFile } from '../../worldgen/scripts/structure-model-files.mjs';
 import {
   buildSwallowsNestRuntime,
   buildSwallowsNestSkyline,

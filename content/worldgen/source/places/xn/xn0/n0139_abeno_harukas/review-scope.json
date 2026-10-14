@@ -1,0 +1,252 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "identity": "Thin clipped-end gray slab with dense window/AC grid and exposed upper frame.",
+    "exclusions": "Station interiors, neighboring city blocks and exact service/planting inventory."
+  },
+  "brief": "Abeno Harukas compact exterior preserves the western Tower-Kan perimeter, three stepped glass stages, the full mapped station/mall podium and an open sky court inside the observation gallery. Detailed original master independently preserved.",
+  "sourceFacts": {
+    "heightMeters": 300,
+    "floorsAboveGround": 60,
+    "completion": 2014,
+    "setbacks": "Approximately100 m vertical sections",
+    "towerLocation": "Western former department-store portion per operator construction history",
+    "originalMasterHash": "sha256:e2d883fc14586ea8ef47235bd3608836a01e7eaeeefd55a256231191a2265384",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[N0139].build",
+    "reviewScope": "Original22049-triangle1991040-byte source reproduced exactly. Independent browser source preserves tower/podium controls and rooftop court; coarser tiers merge facade grids and omit service equipment."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/abeno-browser-model.mjs",
+    "export": "buildAbenoCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      135.514466712,
+      34.645750596
+    ],
+    "heading": -0.281124683885,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/187296989",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/187296989"
+    ],
+    "wikidataId": "Q16318627",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate.",
+    "terrainReference": {
+      "anchor": [
+        135.51422435822263,
+        34.64506015517174
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate PMTiles off-footprint ground contact; urban DEM has building imprint."
+    }
+  },
+  "geographicNote": "Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate.",
+  "camera": {
+    "position": [
+      420,
+      225,
+      480
+    ],
+    "lookAt": [
+      -45,
+      135,
+      0
+    ],
+    "fov": 44
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/abeno-browser-model.mjs",
+    "export": "buildAbenoSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAbenoDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAbenoStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAbenoCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-abeno-skyline",
+      "position": [
+        420,
+        225,
+        480
+      ],
+      "lookAt": [
+        -45,
+        135,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-abeno-district",
+      "position": [
+        420,
+        225,
+        480
+      ],
+      "lookAt": [
+        -45,
+        135,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-abeno-street",
+      "position": [
+        420,
+        225,
+        480
+      ],
+      "lookAt": [
+        -45,
+        135,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-abeno-closeup",
+      "position": [
+        420,
+        225,
+        480
+      ],
+      "lookAt": [
+        -45,
+        135,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate.",
+    "Three canonical granite/concrete/painted-metal graphs reused; glass uses opaque PBR parameters without copied textures. Low tiers merge facade bays and omit fins, railings and service equipment. Street preserves the gallery bracing and fins; closeup adds terrace planting and podium equipment. Physical-device timings unmeasured."
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

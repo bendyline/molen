@@ -100,8 +100,13 @@ it('preserves the exact historical source master and uses real fort controls wit
   expect(p.heading).toBe(1.721295251);
   expect(p.replaceFootprint).toBe(false);
   expect(f.geometry.outline).toHaveLength(5);
-  const [x, z] = f.geometry.outline[0], c = Math.cos(p.heading), sn = Math.sin(p.heading), meters = 111319.49079327358;
-  expect(p.anchor[0] + (x * c + z * sn) / (meters * Math.cos(p.anchor[1] * Math.PI / 180))).toBeCloseTo(29.0040466, 9);
+  const [x, z] = f.geometry.outline[0],
+    c = Math.cos(p.heading),
+    sn = Math.sin(p.heading),
+    meters = 111319.49079327358;
+  expect(
+    p.anchor[0] + (x * c + z * sn) / (meters * Math.cos((p.anchor[1] * Math.PI) / 180)),
+  ).toBeCloseTo(29.0040466, 9);
   expect(p.anchor[1] - (-x * sn + z * c) / meters).toBeCloseTo(41.0210819, 9);
   expect(f.geometry.outlines).toHaveLength(4);
   expect(f.mappedIdentity.siteFeature).toBe('way/103821246');

@@ -1,8 +1,9 @@
 /** Budgeted Lusail vessel and roof tiers; detailed source master stays separate. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { beam, loft, radialRing, normalFor, normalize, cross } from './authored-structure-mesh.mjs';
+import { beam, cross, loft, normalFor, normalize, radialRing } from './authored-structure-mesh.mjs';
 import { box } from './structure-mesh.mjs';
+
 const TAU = 2 * Math.PI,
   gold = [1, 0.69, 0.26],
   pale = [0.79, 0.78, 0.71],

@@ -1,0 +1,533 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0322_linlithgow_palace",
+  "reviewedOn": "2026-10-13",
+  "inputHash": "sha256:1a958662b94a8cdd425e29a1a4c8ea84f2048ed33e8422f954843579edb911d0",
+  "sourceHash": "sha256:e692a94706f1b049b7b13ffdd9415d8c4f8163dc503abaf96cbce44c675546a8",
+  "runtimeHash": "sha256:322d69ece8c381bba4a9e6a1f82f3a94adddc6f57867444a6846345086add3cb",
+  "captureReportHash": "sha256:b092847f5e9a069f7542b032db0fdd1cea54cc42f8fa994838870943d5f05b4a",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/north-loch-facade-and-gables.png",
+      "shots/open-courtyard-and-stair-wells.png",
+      "shots/mapped-south-entrance.png",
+      "shots/east-tunnel-and-gothic-windows.png",
+      "shots/courtyard-fountain-and-doorway.png",
+      "shots/northwest-gables-and-stair.png"
+    ],
+    "notes": "All 11 current portable/source-terrain views inspected, including the small 1024x640 summary. Open courtyard, five unequal hollow stairs, four corner gable pairs, selected roofless room partitions, south/east gates and mapped fountain are individually authored. Floating gable coping, doorway supports and overlapping stair-bay walls were corrected. Courtyard and approach clear the coarse source DEM."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:24dc46b31fdd3ea0733306f9bbcdac6504d120bbdfb6656ae5bba048bf364c2e",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/north-loch-facade-and-gables.png",
+      "shots/shared/open-courtyard-and-stair-wells.png",
+      "shots/shared/mapped-south-entrance.png",
+      "shots/shared/east-tunnel-and-gothic-windows.png",
+      "shots/shared/courtyard-fountain-and-doorway.png",
+      "shots/shared/northwest-gables-and-stair.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All 11 current shared/geographic views inspected. Two existing 256-square graphs supply sandstone and weathered limestone with linear tints and metric UVs. Fountain water uses a small vertex-colored palette. Each graph loads once; unloading leaves zero live model geometries. Flat geographic fixture is complemented by source-terrain views."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6573ab4c7f2b7f7f84496155b456b478539ec2b6a69f5e2a412fa63de25a6fd9",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/north-loch-facade-and-gables.png",
+      "medium-fi/open-courtyard-and-stair-wells.png",
+      "medium-fi/mapped-south-entrance.png",
+      "medium-fi/east-tunnel-and-gothic-windows.png",
+      "medium-fi/courtyard-fountain-and-doorway.png",
+      "medium-fi/northwest-gables-and-stair.png",
+      "medium-fi/whole-linlithgow-skyline.png",
+      "medium-fi/whole-linlithgow-district.png",
+      "medium-fi/whole-linlithgow-street.png",
+      "medium-fi/whole-linlithgow-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 27 current Earth-lighting frames inspected: Economy/High, noon/late, three distances, untextured skyline, six details, four matched LOD views and four transitions. Open palace silhouette persists. Skyline retains upper hollow stair crowns, gables and a simple fountain; district restores full stair depth and sparse real windows. Street/closeup restore window rhythms, slits, coping, room remnants and symbolic fountain/door decoration. Synthetic English terrace neighbors and pale terrain bands are review context."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:16bcf3db15e3ec1ebec64614be48dd4db79a27c252398f066555a5ace22597ff",
+    "mapFrameHash": "sha256:53aec201a5b93160db860c35c6e762812bb57b311fe898a977ccf8c1b7459caa",
+    "notes": "Exact-QID palace envelope/courtyard and nine current palace/part polygon transforms establish approximate scale; mapped fountain and tunnel establish signed facing. Native X points south toward the main entry, Z west, with north/loch facade at negativeX. NativeY0 follows retained standard DEM51.3701m, courtyardY3.9m clears the coarse south approach. No road suppression is registered, so mapped tunnel and host paths remain. Heights and joins remain estimates."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual exterior from two inspected photographs and standard viewer PMTiles/DEM, deterministic master and four independently authored browser levels. Shared masonry and geometric openings carry the identity. Roofless room/stair layout, untagged heights, damaged profiles, window rhythm, fountain sculpture, heraldry and terrain joins are approximate. Adjacent church and separate eastern building remain host content. Complete interiors and certified walking surfaces are excluded."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcv/n0322_linlithgow_palace/models/source.glb\",\"hash\":\"sha256:e692a94706f1b049b7b13ffdd9415d8c4f8163dc503abaf96cbce44c675546a8\",\"bytes\":2157212,\"triangles\":17957,\"materials\":3,\"images\":0,\"min\":[-28.299999237060547,-3.4382381439208984,-28],\"max\":[35,29.149999618530273,26.17099952697754],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gc/gcv/n0322_linlithgow_palace/model.glb\",\"hash\":\"sha256:322d69ece8c381bba4a9e6a1f82f3a94adddc6f57867444a6846345086add3cb\",\"bytes\":2156852,\"triangles\":17957,\"materials\":3,\"images\":0,\"min\":[-28.299999237060547,-3.4382381439208984,-28],\"max\":[35,29.149999618530273,26.17099952697754],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcv/n0322_linlithgow_palace/model.skyline.glb\",\"hash\":\"sha256:b1501644f8d3ecc0b93425c6f3250d0b841b9cd2e5e814c59ac6c48652aeee1c\",\"bytes\":95700,\"triangles\":974,\"materials\":1,\"images\":0,\"min\":[-28.299999237060547,-3.4382381439208984,-28],\"max\":[29,28.799999237060547,26.17099952697754],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcv/n0322_linlithgow_palace/model.district.glb\",\"hash\":\"sha256:fff49524fc09cd90cc6f8ae01de943c5a25a83d90f60bb82e931934fd3560983\",\"bytes\":348760,\"triangles\":3976,\"materials\":3,\"images\":0,\"min\":[-28.299999237060547,-3.4382381439208984,-28],\"max\":[35,28.920000076293945,26.17099952697754],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcv/n0322_linlithgow_palace/model.street.glb\",\"hash\":\"sha256:0b799c5a6b0fc05135536bcce8343855db8da069d499f3edb1554ee5d1d15090\",\"bytes\":1045080,\"triangles\":12170,\"materials\":3,\"images\":0,\"min\":[-28.299999237060547,-3.4382381439208984,-28],\"max\":[35,29.149999618530273,26.17099952697754],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcv/n0322_linlithgow_palace/model.closeup.glb\",\"hash\":\"sha256:46eb0fb61a7e620c1def43e4f4348029aaa5db235afc9925afc67585412318a5\",\"bytes\":1526568,\"triangles\":17957,\"materials\":3,\"images\":0,\"min\":[-28.299999237060547,-3.4382381439208984,-28],\"max\":[35,29.149999618530273,26.17099952697754],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "nine-component-transforms-courtyard-fountain-and-retained-tunnel",
+        "passed": true
+      },
+      {
+        "check": "retained-standard-DEM-and-datum",
+        "passed": true
+      },
+      {
+        "check": "four-LOD-budgets-and-split-GPU-streams",
+        "passed": true
+      },
+      {
+        "check": "current-source-recipe-index-and-deterministic-exact-byte-check",
+        "passed": true
+      },
+      {
+        "check": "mapped-south-entrance-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[29.799999999999997,5,8],\"end\":[8.999999999999998,5,8],\"hits\":0}"
+      },
+      {
+        "check": "mapped-south-entrance-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[29.799999999999997,5,10.35],\"end\":[8.999999999999998,5,10.35],\"hits\":6}"
+      },
+      {
+        "check": "mapped-south-entrance-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[29.799999999999997,10.2,8],\"end\":[8.999999999999998,10.2,8],\"hits\":4}"
+      },
+      {
+        "check": "mapped-east-passage-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[0.26,5,-27.950000000000003],\"end\":[0.26,5,-9.15],\"hits\":0}"
+      },
+      {
+        "check": "mapped-east-passage-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[2.21,5,-27.950000000000003],\"end\":[2.21,5,-9.15],\"hits\":5}"
+      },
+      {
+        "check": "mapped-east-passage-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[0.26,8.6,-27.950000000000003],\"end\":[0.26,8.6,-9.15],\"hits\":4}"
+      },
+      {
+        "check": "north-exterior-2-1-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-26.45,11.6,-12.1],\"end\":[-29.349999999999998,11.6,-12.1],\"hits\":0}"
+      },
+      {
+        "check": "north-exterior-2-1-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-26.45,11.6,-10.95],\"end\":[-29.349999999999998,11.6,-10.95],\"hits\":2}"
+      },
+      {
+        "check": "north-exterior-2-1-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-26.45,13.3,-12.1],\"end\":[-29.349999999999998,13.3,-12.1],\"hits\":2}"
+      },
+      {
+        "check": "south-exterior-2-1-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[27.5,11.6,-12.1],\"end\":[24.6,11.6,-12.1],\"hits\":0}"
+      },
+      {
+        "check": "south-exterior-2-1-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[27.5,11.6,-10.95],\"end\":[24.6,11.6,-10.95],\"hits\":2}"
+      },
+      {
+        "check": "south-exterior-2-1-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[27.5,13.3,-12.1],\"end\":[24.6,13.3,-12.1],\"hits\":2}"
+      },
+      {
+        "check": "east-exterior-3-2-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-3.25,17,-27],\"end\":[-3.25,17,-24.1],\"hits\":0}"
+      },
+      {
+        "check": "east-exterior-3-2-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-1.8,17,-27],\"end\":[-1.8,17,-24.1],\"hits\":2}"
+      },
+      {
+        "check": "east-exterior-3-2-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-3.25,21,-27],\"end\":[-3.25,21,-24.1],\"hits\":2}"
+      },
+      {
+        "check": "west-exterior-3-2-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-3.25,17,24.6],\"end\":[-3.25,17,27.5],\"hits\":0}"
+      },
+      {
+        "check": "west-exterior-3-2-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-1.8,17,24.6],\"end\":[-1.8,17,27.5],\"hits\":2}"
+      },
+      {
+        "check": "west-exterior-3-2-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-3.25,21,24.6],\"end\":[-3.25,21,27.5],\"hits\":2}"
+      },
+      {
+        "check": "east-court-1-2-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-5.5,16.2,-13],\"end\":[-5.5,16.2,-10.100000000000001],\"hits\":0}"
+      },
+      {
+        "check": "east-court-1-2-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-4.575,16.2,-13],\"end\":[-4.575,16.2,-10.100000000000001],\"hits\":2}"
+      },
+      {
+        "check": "east-court-1-2-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-5.5,18,-13],\"end\":[-5.5,18,-10.100000000000001],\"hits\":2}"
+      },
+      {
+        "check": "west-court-2-2-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-2,16.2,14.650000000000002],\"end\":[-2,16.2,17.55],\"hits\":0}"
+      },
+      {
+        "check": "west-court-2-2-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-1.075,16.2,14.650000000000002],\"end\":[-1.075,16.2,17.55],\"hits\":2}"
+      },
+      {
+        "check": "west-court-2-2-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-2,18,14.650000000000002],\"end\":[-2,18,17.55],\"hits\":2}"
+      },
+      {
+        "check": "northwest-stair-slit-0-11-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-11.399999999999999,16,14.4],\"end\":[-13.5,16,14.4],\"hits\":0}"
+      },
+      {
+        "check": "northwest-stair-slit-0-11-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-11.399999999999999,16,15.225],\"end\":[-13.5,16,15.225],\"hits\":4}"
+      },
+      {
+        "check": "northwest-stair-slit-0-11-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-11.399999999999999,17.3,14.4],\"end\":[-13.5,17.3,14.4],\"hits\":2}"
+      },
+      {
+        "check": "north-middle-stair-slit-0-11-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-12.3,16,2.2],\"end\":[-14.399999999999999,16,2.2],\"hits\":0}"
+      },
+      {
+        "check": "north-middle-stair-slit-0-11-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-12.3,16,3.0250000000000004],\"end\":[-14.399999999999999,16,3.0250000000000004],\"hits\":4}"
+      },
+      {
+        "check": "north-middle-stair-slit-0-11-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-12.3,17.3,2.2],\"end\":[-14.399999999999999,17.3,2.2],\"hits\":2}"
+      },
+      {
+        "check": "northeast-stair-slit-0-11-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-10.899999999999999,16,-11.2],\"end\":[-13,16,-11.2],\"hits\":0}"
+      },
+      {
+        "check": "northeast-stair-slit-0-11-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-10.899999999999999,16,-10.375],\"end\":[-13,16,-10.375],\"hits\":4}"
+      },
+      {
+        "check": "northeast-stair-slit-0-11-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-10.899999999999999,17.3,-11.2],\"end\":[-13,17.3,-11.2],\"hits\":2}"
+      },
+      {
+        "check": "southwest-stair-slit-2-11-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[7.3,16,15.9],\"end\":[9.399999999999999,16,15.9],\"hits\":0}"
+      },
+      {
+        "check": "southwest-stair-slit-2-11-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[7.3,16,15.075000000000001],\"end\":[9.399999999999999,16,15.075000000000001],\"hits\":4}"
+      },
+      {
+        "check": "southwest-stair-slit-2-11-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[7.3,17.3,15.9],\"end\":[9.399999999999999,17.3,15.9],\"hits\":2}"
+      },
+      {
+        "check": "southeast-stair-slit-2-11-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[7.7,16,-12],\"end\":[9.8,16,-12],\"hits\":0}"
+      },
+      {
+        "check": "southeast-stair-slit-2-11-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[7.7,16,-12.825],\"end\":[9.8,16,-12.825],\"hits\":4}"
+      },
+      {
+        "check": "southeast-stair-slit-2-11-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[7.7,17.3,-12],\"end\":[9.8,17.3,-12],\"hits\":4}"
+      },
+      {
+        "check": "northwest-stair-0,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.7,40,14.4],\"end\":[-14.7,3.96,14.4],\"hits\":0}"
+      },
+      {
+        "check": "northwest-stair-0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-13.85,40,14.4],\"end\":[-13.85,3.96,14.4],\"hits\":0}"
+      },
+      {
+        "check": "northwest-stair--0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-15.549999999999999,40,14.4],\"end\":[-15.549999999999999,3.96,14.4],\"hits\":0}"
+      },
+      {
+        "check": "northwest-stair-0,0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.7,40,15.25],\"end\":[-14.7,3.96,15.25],\"hits\":0}"
+      },
+      {
+        "check": "northwest-stair-0,-0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.7,40,13.55],\"end\":[-14.7,3.96,13.55],\"hits\":0}"
+      },
+      {
+        "check": "north-middle-stair-0,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-15.7,40,2.2],\"end\":[-15.7,3.96,2.2],\"hits\":0}"
+      },
+      {
+        "check": "north-middle-stair-0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.85,40,2.2],\"end\":[-14.85,3.96,2.2],\"hits\":0}"
+      },
+      {
+        "check": "north-middle-stair--0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-16.55,40,2.2],\"end\":[-16.55,3.96,2.2],\"hits\":0}"
+      },
+      {
+        "check": "north-middle-stair-0,0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-15.7,40,3.0500000000000003],\"end\":[-15.7,3.96,3.0500000000000003],\"hits\":0}"
+      },
+      {
+        "check": "north-middle-stair-0,-0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-15.7,40,1.35],\"end\":[-15.7,3.96,1.35],\"hits\":0}"
+      },
+      {
+        "check": "northeast-stair-0,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.5,40,-11.2],\"end\":[-14.5,3.96,-11.2],\"hits\":0}"
+      },
+      {
+        "check": "northeast-stair-0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-13.65,40,-11.2],\"end\":[-13.65,3.96,-11.2],\"hits\":0}"
+      },
+      {
+        "check": "northeast-stair--0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-15.35,40,-11.2],\"end\":[-15.35,3.96,-11.2],\"hits\":0}"
+      },
+      {
+        "check": "northeast-stair-0,0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.5,40,-10.35],\"end\":[-14.5,3.96,-10.35],\"hits\":0}"
+      },
+      {
+        "check": "northeast-stair-0,-0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[-14.5,40,-12.049999999999999],\"end\":[-14.5,3.96,-12.049999999999999],\"hits\":0}"
+      },
+      {
+        "check": "southwest-stair-0,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11,40,15.9],\"end\":[11,3.96,15.9],\"hits\":0}"
+      },
+      {
+        "check": "southwest-stair-0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11.85,40,15.9],\"end\":[11.85,3.96,15.9],\"hits\":0}"
+      },
+      {
+        "check": "southwest-stair--0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[10.15,40,15.9],\"end\":[10.15,3.96,15.9],\"hits\":0}"
+      },
+      {
+        "check": "southwest-stair-0,0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11,40,16.75],\"end\":[11,3.96,16.75],\"hits\":0}"
+      },
+      {
+        "check": "southwest-stair-0,-0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11,40,15.05],\"end\":[11,3.96,15.05],\"hits\":0}"
+      },
+      {
+        "check": "southeast-stair-0,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11.2,40,-12],\"end\":[11.2,3.96,-12],\"hits\":0}"
+      },
+      {
+        "check": "southeast-stair-0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[12.049999999999999,40,-12],\"end\":[12.049999999999999,3.96,-12],\"hits\":0}"
+      },
+      {
+        "check": "southeast-stair--0.85,0-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[10.35,40,-12],\"end\":[10.35,3.96,-12],\"hits\":0}"
+      },
+      {
+        "check": "southeast-stair-0,0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11.2,40,-11.15],\"end\":[11.2,3.96,-11.15],\"hits\":0}"
+      },
+      {
+        "check": "southeast-stair-0,-0.85-open-stair-well",
+        "passed": true,
+        "notes": "{\"start\":[11.2,40,-12.85],\"end\":[11.2,3.96,-12.85],\"hits\":0}"
+      },
+      {
+        "check": "courtyard-0,8-open-courtyard",
+        "passed": true,
+        "notes": "{\"start\":[0,40,8],\"end\":[0,3.98,8],\"hits\":0}"
+      },
+      {
+        "check": "courtyard-0,8-courtyard-floor",
+        "passed": true,
+        "notes": "{\"start\":[0,3.98,8],\"end\":[0,3.82,8],\"hits\":1}"
+      },
+      {
+        "check": "courtyard-5,-4-open-courtyard",
+        "passed": true,
+        "notes": "{\"start\":[5,40,-4],\"end\":[5,3.98,-4],\"hits\":0}"
+      },
+      {
+        "check": "courtyard-5,-4-courtyard-floor",
+        "passed": true,
+        "notes": "{\"start\":[5,3.98,-4],\"end\":[5,3.82,-4],\"hits\":1}"
+      },
+      {
+        "check": "courtyard--8,-4-open-courtyard",
+        "passed": true,
+        "notes": "{\"start\":[-8,40,-4],\"end\":[-8,3.98,-4],\"hits\":0}"
+      },
+      {
+        "check": "courtyard--8,-4-courtyard-floor",
+        "passed": true,
+        "notes": "{\"start\":[-8,3.98,-4],\"end\":[-8,3.82,-4],\"hits\":1}"
+      },
+      {
+        "check": "room--23,-20-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[-23,40,-20],\"end\":[-23,4.6,-20],\"hits\":0}"
+      },
+      {
+        "check": "room--23,21-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[-23,40,21],\"end\":[-23,4.6,21],\"hits\":0}"
+      },
+      {
+        "check": "room-21,-20-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[21,40,-20],\"end\":[21,4.6,-20],\"hits\":0}"
+      },
+      {
+        "check": "room-21,21-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[21,40,21],\"end\":[21,4.6,21],\"hits\":0}"
+      },
+      {
+        "check": "room--21,4-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[-21,40,4],\"end\":[-21,4.6,4],\"hits\":0}"
+      },
+      {
+        "check": "room-0,21-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[0,40,21],\"end\":[0,4.6,21],\"hits\":0}"
+      },
+      {
+        "check": "room-4,-18-roofless-room",
+        "passed": true,
+        "notes": "{\"start\":[4,40,-18],\"end\":[4,4.6,-18],\"hits\":0}"
+      }
+    ]
+  },
+  "limitations": [
+    "Main registered palace and courtyard retain the exact mapped identity; nine current palace/part polygons, fountain and tunnel provide approximate fit. Component heights are untagged, so all elevations, damage and opening profiles are picture-led estimates.",
+    "Coarse standard DEM supplies a working51.3701m anchor datum. Raised courtyard3.9m, foundations, approach ramp, wall walks and terrain joins are approximate; no bare-earth survey, terrain carving or certified walking collision.",
+    "Roofless ranges and hollow stair wells remain open; selected partitions and gables do not claim complete historical room/stair plans. Fountain tiers and door decorations are simplified geometric interpretations, not exact heraldry or sculpture.",
+    "Adjacent church, separate eastern mapped building, park, town, crowds, visitor fixtures and complete interiors are outside the palace asset and remain host content.",
+    "Physical laptop and phone frame-rate measurements remain pending."
+  ]
+}

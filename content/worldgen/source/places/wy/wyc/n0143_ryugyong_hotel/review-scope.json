@@ -1,0 +1,251 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "identity": "Three inclined blue-gray glass wings meeting a ringed conical crown over a concave podium.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
+  },
+  "brief": "Compact Ryugyong exterior preserves all mapped radial wings, their sloping roofs and setbacks, separate central shaft, conical crown and podium. Low tiers coarsen facade grids and crown rings; original master remains reproducible.",
+  "sourceFacts": {
+    "heightMeters": 330,
+    "floors": 105,
+    "form": "Three inclined wings meeting a conical crown",
+    "exterior": "Completed blue-gray glass cladding represented in daylight",
+    "originalMasterHash": "sha256:cf7500a4a5cc66fec4822687cf2d2d2b7e5870637cb70ea71d92e9a581bb2883",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[N0143].build",
+    "reviewScope": "Original36147-triangle4048352-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/ryugyong-browser-model.mjs",
+    "export": "buildRyugyongCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      125.730896399,
+      39.03651085
+    ],
+    "heading": 0.743545021457,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/407995274",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/407995274"
+    ],
+    "wikidataId": "Q29272",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "One inspected daylight exterior photograph confirms the blue-gray three-wing pyramid, narrow ribs, intermediate outer-wing shoulders and conical ringed crown. Preserve original330m height, concave mapped podium, separate central shaft and mapped wing roof directions77/197/317degrees. Standard viewer PMTiles confirms the tower/plaza and surrounding roads. Off-podium PMTiles point[0,150]26.1845m sets approximate ground contact; center36.7994m remains coarse. Bounded rectangular preview correction covers the large podium while retaining raw heights separately. Facade panel schedule, precise shoulder heights, crown ring sections, podium entrances and thresholds remain approximations. The2012 picture does not certify current LED/display installations or occupancy.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One inspected daylight exterior photograph confirms the blue-gray three-wing pyramid, narrow ribs, intermediate outer-wing shoulders and conical ringed crown. Preserve original330m height, concave mapped podium, separate central shaft and mapped wing roof directions77/197/317degrees. Standard viewer PMTiles confirms the tower/plaza and surrounding roads. Off-podium PMTiles point[0,150]26.1845m sets approximate ground contact; center36.7994m remains coarse. Bounded rectangular preview correction covers the large podium while retaining raw heights separately. Facade panel schedule, precise shoulder heights, crown ring sections, podium entrances and thresholds remain approximations. The2012 picture does not certify current LED/display installations or occupancy.",
+    "terrainReference": {
+      "anchor": [
+        125.73207066697731,
+        39.035519010808386
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
+  },
+  "geographicNote": "One inspected daylight exterior photograph confirms the blue-gray three-wing pyramid, narrow ribs, intermediate outer-wing shoulders and conical ringed crown. Preserve original330m height, concave mapped podium, separate central shaft and mapped wing roof directions77/197/317degrees. Standard viewer PMTiles confirms the tower/plaza and surrounding roads. Off-podium PMTiles point[0,150]26.1845m sets approximate ground contact; center36.7994m remains coarse. Bounded rectangular preview correction covers the large podium while retaining raw heights separately. Facade panel schedule, precise shoulder heights, crown ring sections, podium entrances and thresholds remain approximations. The2012 picture does not certify current LED/display installations or occupancy.",
+  "camera": {
+    "position": [
+      490,
+      230,
+      610
+    ],
+    "lookAt": [
+      0,
+      155,
+      0
+    ],
+    "fov": 44
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ryugyong-browser-model.mjs",
+    "export": "buildRyugyongSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRyugyongDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildRyugyongStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRyugyongCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0143-skyline",
+      "position": [
+        490,
+        230,
+        610
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0143-district",
+      "position": [
+        490,
+        230,
+        610
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0143-street",
+      "position": [
+        490,
+        230,
+        610
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0143-closeup",
+      "position": [
+        490,
+        230,
+        610
+      ],
+      "lookAt": [
+        0,
+        155,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "One inspected daylight exterior photograph confirms the blue-gray three-wing pyramid, narrow ribs, intermediate outer-wing shoulders and conical ringed crown. Preserve original330m height, concave mapped podium, separate central shaft and mapped wing roof directions77/197/317degrees. Standard viewer PMTiles confirms the tower/plaza and surrounding roads. Off-podium PMTiles point[0,150]26.1845m sets approximate ground contact; center36.7994m remains coarse. Bounded rectangular preview correction covers the large podium while retaining raw heights separately. Facade panel schedule, precise shoulder heights, crown ring sections, podium entrances and thresholds remain approximations. The2012 picture does not certify current LED/display installations or occupancy.",
+    "Three shared granite/concrete/painted-metal graphs reused; glazing uses opaque PBR with no copied imagery. Low tiers keep the whole three-wing silhouette while merging panel grids and replacing crown tubes with narrow surface bands. Physical-device timings pending."
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

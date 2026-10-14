@@ -1,8 +1,9 @@
 /** Picture-based Conwy Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildConwyRuntime } from './conwy-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildConwyRuntime } from './conwy-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

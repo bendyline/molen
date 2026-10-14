@@ -105,12 +105,10 @@ it('reproduces the original master and binds fresh signed component evidence to 
     bytes = Buffer.from(
       encodeGlb(
         m,
-        a
-          .materials(m.groups)
-          .map((s, i) => ({
-            ...s,
-            name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-          })),
+        a.materials(m.groups).map((s, i) => ({
+          ...s,
+          name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
+        })),
         'Molen original Kronborg Castle',
       ),
     );

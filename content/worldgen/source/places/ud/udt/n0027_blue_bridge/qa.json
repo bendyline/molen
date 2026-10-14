@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0027_blue_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:f54b08084b2901123a4baaf09ed49f4eba4d9fb7252389411f9c9ed88c7bb8d1",
+  "inputHash": "sha256:66c2feecc89a84eef6eec360dc357892261d25aa33fe034d88bc0c793fe7fdef",
   "sourceHash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
   "runtimeHash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
-  "captureReportHash": "sha256:7bfdedba05b6aab5f47d685c98579dec77f9cc4dbcee27c762241fdb511571bf",
+  "captureReportHash": "sha256:34f86724c154b0be35a189d32a6ce9687042ec6562cee6f02ddd36e076322781",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -30,7 +30,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:c5e23113f9cf1bc58d73ef9ba163407caa9ec09774cb3fea75c851c499d3c631",
+    "captureReportHash": "sha256:5985ebbfc10c01a1e839bd12a036abf860fb22627b75ca6c99c669e895c68442",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -303,5 +303,54 @@
     "Two inspected street pictures establish blue quatrefoil/circle cast railing, plain inner rail, lantern context and plaza pavement. Existing vault dimensions are retained from the source. Standard viewer PMTiles Moika crossing and square confirm the short southeast crossing axis and broad downstream width. Retain29.4m crossing,95.4m cornice width and113.85m splayed-quay extent; nominal97.3m width is a separate definition. West/east road samples18.9794/19.0298m differ0.05m; source endpoint3.25m gives approximatebase15.7294m. Urban terrain includes bridge/roof imprint, so the source normal-water reference remains approximate. Narrow canal opening and bounded preview contacts remove that imprint; exact water stage/quay levels and parking layout are unverified.",
     "Shared granite/concrete/painted metal are reused. Low tiers merge casting patterns and omit ribs; closer levels add quatrefoil/circle impressions and representative cast ribs. Exact curls, rib pitch, bolts, individual masonry, parking stripes and Cyrillic sign lettering are simplified; the sign is an unlettered plaque. Original master preserves detailed reconstruction.",
     "No bespoke datum or parking-registration research. Physical-device timings remain unmeasured."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:f54b08084b2901123a4baaf09ed49f4eba4d9fb7252389411f9c9ed88c7bb8d1",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:7bfdedba05b6aab5f47d685c98579dec77f9cc4dbcee27c762241fdb511571bf",
+    "previousSharedCaptureReportHash": "sha256:c5e23113f9cf1bc58d73ef9ba163407caa9ec09774cb3fea75c851c499d3c631",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/blue-bridge-browser-model.mjs",
+        "beforeHash": "sha256:b6cda068f89f9ba1f5c52ad2161b469a36b929293e97f87fbf5eabc017954d17",
+        "afterHash": "sha256:cd5908678a6b01a5a841400904d0cabf831b3c2ee4a15522e95080984775eb77",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/ud/udt/n0027_blue_bridge/models/source.glb",
+        "hash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
+        "bytes": 2911068
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0027_blue_bridge/model.glb",
+        "hash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
+        "bytes": 2910576
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0027_blue_bridge/model.skyline.glb",
+        "hash": "sha256:c4580e47d8e9420ec105d176259e4b22fa3fe2207f6cbeb827feaee107158fc8",
+        "bytes": 67272
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0027_blue_bridge/model.district.glb",
+        "hash": "sha256:e2647f6355ad5b0c05b3752b7850fd4809cfc80a76c51390093e94be7b381f3c",
+        "bytes": 205940
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0027_blue_bridge/model.street.glb",
+        "hash": "sha256:5529b0637fe85cd6ab7e62cd5a31c6fe9f3e2f6bee31aa2016554f26b76122b0",
+        "bytes": 949448
+      },
+      {
+        "path": "content/worldgen/assets/places/ud/udt/n0027_blue_bridge/model.closeup.glb",
+        "hash": "sha256:7fac11cc9a9b4b88bea6710eaac027ab972176c7bc9fae2d4f02b878abc21e0c",
+        "bytes": 1884040
+      }
+    ],
+    "retainedInspectedImageCount": 64
+  }
 }

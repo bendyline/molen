@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0237_neuschwanstein_castle",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:790002bb11b38819e4a8b6ede92df23020e8b0bf42cda9bd6322da5ee82778da",
+  "inputHash": "sha256:0971b9fde350dcf4003ee409b20d8ab9d48664523d3fa9c09efbbe449661573f",
   "sourceHash": "sha256:d70ed386c9739982a3e43b68f16cb31edb67039a96c13edea006dd705cac7080",
   "runtimeHash": "sha256:9dc9104998d24f000cb3cf4061dcf5df298f96e9f68d16c03dcbade5a2f97d43",
-  "captureReportHash": "sha256:b54226a792efa2af50bb0078d82a375d88730a1ebfe8694b71b35f9c052bb908",
+  "captureReportHash": "sha256:4628797e917f0eeeef42e8ac369827a204073f26277f381e2268b32448a1899c",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -35,7 +35,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9c31f5aaa99269100a1fc030bffb4ade17342e999e1f0228ccf2c822b1053d53",
+    "captureReportHash": "sha256:d685832af9e970cca6392c7d849f12466bef91aa69b43b83b35cc1a1c1cad968",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -350,5 +350,54 @@
       "shots/grade/closeup-upper-court-contact.png"
     ],
     "notes": "Actually inspected all 25 final grade images, five cameras across master and all four levels. Public Bavarian DGM1 bare-earth samples support a 7.2 m upper/lower court difference, represented as native Y8.2/Y1. The corrected gateway and connecting wing are lower, embedded foundations extend to Y-7, and both 40-tread flights remain visible at their corrected cameras. Three contact probes have approximately 0.015 m fixture clearance and less than 0.03 m floor error in every level. Terrain is masked only beneath the closed court union; no green interpolation patches protrude through its paving. Every level unload leaves zero live geometry and restores terrain. The fixture uses 3 m samples of a 1 m product, heights rounded to 0.1 m, and a 960.7 m DHHN2016 local datum solely for verification. Samples under buildings are interpolated ground, not floor surveys. Architectural roof heights and edge foundations remain photo-fitted. Coarse Mapzen terrain was rejected as insufficient local ridge evidence. Production uses an explicit lower-court terrain reference and imposes no absolute elevation."
+  },
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:790002bb11b38819e4a8b6ede92df23020e8b0bf42cda9bd6322da5ee82778da",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:b54226a792efa2af50bb0078d82a375d88730a1ebfe8694b71b35f9c052bb908",
+    "previousSharedCaptureReportHash": "sha256:9c31f5aaa99269100a1fc030bffb4ade17342e999e1f0228ccf2c822b1053d53",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/neuschwanstein-castle-model.mjs",
+        "beforeHash": "sha256:637a7b038081330f94cb807ceabd5fafbdf657776e016df585ed1f52adf1c9ee",
+        "afterHash": "sha256:95fbf2212a7d89ecc3c84d2f0dbe805f4cb6b588c478ad5668d9d08b67de7838",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u0/u0r/n0237_neuschwanstein_castle/models/source.glb",
+        "hash": "sha256:d70ed386c9739982a3e43b68f16cb31edb67039a96c13edea006dd705cac7080",
+        "bytes": 5005812
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0r/n0237_neuschwanstein_castle/model.glb",
+        "hash": "sha256:9dc9104998d24f000cb3cf4061dcf5df298f96e9f68d16c03dcbade5a2f97d43",
+        "bytes": 5005100
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0r/n0237_neuschwanstein_castle/model.skyline.glb",
+        "hash": "sha256:80c810a91c19ef6beefe1c91caeb5c042e081d43afe82535c7f04cd05288bcef",
+        "bytes": 79260
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0r/n0237_neuschwanstein_castle/model.district.glb",
+        "hash": "sha256:739cddf2e2a49bbbdeaa76e1ef132384ddb1c9b6d379ffd99432374e33172a67",
+        "bytes": 168852
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0r/n0237_neuschwanstein_castle/model.street.glb",
+        "hash": "sha256:b0ab76d5566c9f5ee12ce3a31e0846e621ada8885a0578f4110a9e95de21fbd8",
+        "bytes": 1172276
+      },
+      {
+        "path": "content/worldgen/assets/places/u0/u0r/n0237_neuschwanstein_castle/model.closeup.glb",
+        "hash": "sha256:b4e93c42c9dce647d77fb473ab89a2900295c908d494837f4a67382e9dc2e1a9",
+        "bytes": 4219876
+      }
+    ],
+    "retainedInspectedImageCount": 79
   }
 }

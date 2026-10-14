@@ -32,9 +32,11 @@ it('round trips the OSM national-map wing with the authority tower anchor', asyn
     bytes = await readFile(source + '/map-frame.json'),
     frame = JSON.parse(bytes);
   const footprint = sourceLocalFootprint(spec, bytes).footprint;
-  footprint.forEach((p, i) =>
-    p.forEach((n, j) => expect(n).toBeCloseTo(frame.elements[0].coordinates[i][j], 9)),
-  );
+  footprint.forEach((p, i) => {
+    p.forEach((n, j) => {
+      expect(n).toBeCloseTo(frame.elements[0].coordinates[i][j], 9);
+    });
+  });
   expect(frame.measurements.wingLengthMeters).toBeCloseTo(16.58, 1);
   expect(frame.measurements.wingWidthMeters).toBeCloseTo(10.1, 1);
   expect(frame.measurements.wingLocalCenter[1]).toBeCloseTo(0.46, 1);

@@ -1,0 +1,257 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "floor": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "red": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.56,
+      "metallic": 0.12
+    },
+    "silver": {
+      "slot": "trim",
+      "graph": "metal_stainless",
+      "roughness": 0.36,
+      "metallic": 0.8
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tintagel-castle-model.mjs",
+    "export": "buildTintagelSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTintagelDistrict",
+        "errorMeters": 2.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.56,
+            "metallic": 0.12
+          },
+          "silver": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.36,
+            "metallic": 0.8
+          }
+        }
+      },
+      "street": {
+        "export": "buildTintagelStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.56,
+            "metallic": 0.12
+          },
+          "silver": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.36,
+            "metallic": 0.8
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTintagelCloseup",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "floor": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.56,
+            "metallic": 0.12
+          },
+          "silver": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.36,
+            "metallic": 0.8
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tintagel-skyline",
+      "position": [
+        110,
+        185,
+        225
+      ],
+      "lookAt": [
+        -45,
+        35,
+        -65
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tintagel-district",
+      "position": [
+        110,
+        185,
+        225
+      ],
+      "lookAt": [
+        -45,
+        35,
+        -65
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tintagel-street",
+      "position": [
+        110,
+        185,
+        225
+      ],
+      "lookAt": [
+        -45,
+        35,
+        -65
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tintagel-closeup",
+      "position": [
+        110,
+        185,
+        225
+      ],
+      "lookAt": [
+        -45,
+        35,
+        -65
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -4.759233891963959,
+        50.66781754516231
+      ],
+      "modelHeight": 0,
+      "basis": "Native Y=0 is the retained standard PMTiles terrain at the mapped bridge midpoint. Roofless ruins follow the coarse hillside; bridge deck and short terraces are picture-led estimates."
+    },
+    "notes": "PMTiles bridge centerline controls scale and orientation; information points identify rooms but do not survey their plans. Surviving walls and courtyard levels are explicitly approximate. The road suppression outline extends 0.1 m beyond each mapped bridge end to cover projection rounding; approach height hints are intentionally unset because native east/south axes differ from the skew bridge axis. Exact grade-path joins remain unverified.",
+    "groundContactBasis": "Inspected current portable PMTiles terrain views of all compounds, hall, mainland gateway, bridge and northern remains on 2026-10-12. Native Y=0 is the retained bridge-midpoint terrain datum 26.609459217022664 m. Wall footings descend 0.4 m into the coarse ground; the bridge stands 1 m above the higher coarse endpoint. Exact terraces, wall plans and thresholds remain approximate.",
+    "replaceRoads": {
+      "length": 68.54326085244666,
+      "width": 2.5,
+      "outline": [
+        [
+          -28.98598444504336,
+          -18.32811659236544
+        ],
+        [
+          27.57376847975409,
+          20.391038323159435
+        ],
+        [
+          28.98598444504336,
+          18.32811659236544
+        ],
+        [
+          -27.57376847975409,
+          -20.391038323159435
+        ]
+      ]
+    },
+    "bounds": [
+      -4.762564579124546,
+      50.666829398349776,
+      -4.7577457125943345,
+      50.66995553553852
+    ]
+  },
+  "geographicNote": "North-up bridge and named-site controls; current source terrain views inspected, with explicit approximate ground and architectural levels.",
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "surface-means.json",
+    "review-scope.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ]
+}

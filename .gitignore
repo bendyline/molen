@@ -5,23 +5,17 @@ dist-types/
 coverage/
 .tmp/
 shots/
-# Full-size review images are restored from review-lock.json (pnpm reviews:fetch).
+# Bulk review captures stay local; builds and CI do not need a screenshot archive.
 # Keep reports, source textures/heightmaps and small preview.png thumbnails in Git.
-/content/worldgen/source/places/**/medium-fi/*.png
-/content/worldgen/source/places/**/medium-fi/*.jpg
-/content/worldgen/source/places/**/medium-fi/*.jpeg
-/content/worldgen/source/places/**/medium-fi/*.webp
-/content/worldgen/source/reusable/**/medium-fi/*.png
-/content/worldgen/source/reusable/**/medium-fi/*.jpg
-/content/worldgen/source/reusable/**/medium-fi/*.jpeg
-/content/worldgen/source/reusable/**/medium-fi/*.webp
-/content/worldgen/source/map-structures/**/medium-fi/*.png
-/content/worldgen/source/map-structures/**/medium-fi/*.jpg
-/content/worldgen/source/map-structures/**/medium-fi/*.jpeg
-/content/worldgen/source/map-structures/**/medium-fi/*.webp
+**/medium-fi/**/*.png
+**/medium-fi/**/*.jpg
+**/medium-fi/**/*.jpeg
+**/medium-fi/**/*.webp
 test-results/
 .turbo/
 .artifacts/
+# Per-model round notes are transient; retain model QA and batch completion reports.
+/content/worldgen/source/next-1000/rounds/*-n[0-9][0-9][0-9][0-9].md
 .pnpm-store/
 debug.log
 .DS_Store

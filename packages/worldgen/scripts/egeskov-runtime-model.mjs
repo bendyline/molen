@@ -1,8 +1,9 @@
 /** Picture-based Egeskov Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { egeskovParts, egeskovPlanPoint } from './egeskov-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { egeskovParts, egeskovPlanPoint } from './egeskov-castle-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

@@ -42,7 +42,11 @@ function decode(b) {
       const decoded = Array.from({ length: ids.length / 3 }, (_, i) =>
         ids.slice(i * 3, i * 3 + 3).map((j) => ps[j]),
       );
-      if (g.materials[p.material].pbrMetallicRoughness.roughnessFactor===.2&&g.materials[p.material].pbrMetallicRoughness.metallicFactor===.28) windowTriangles.push(...decoded);
+      if (
+        g.materials[p.material].pbrMetallicRoughness.roughnessFactor === 0.2 &&
+        g.materials[p.material].pbrMetallicRoughness.metallicFactor === 0.28
+      )
+        windowTriangles.push(...decoded);
       return decoded;
     }),
   );

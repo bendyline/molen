@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0194_emirates_office_tower",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:753bff64221ed95b6c2ed90c83d5c8e5fa5c2b42f50c3d2a5509ec98e88b3366",
+  "inputHash": "sha256:c9d53247531a9d48983be8b45dbbfffb1e2d1e590e37df8ac2e0c6fe3f8423a3",
   "sourceHash": "sha256:b617a9862d77c6e5de2fc604eede6efa1680aef0d99f9831b2676edd81b58582",
   "runtimeHash": "sha256:c0d7c9dd5bdb5a626dc0fd69d227ba96c3acc842bd2d8a36f8d2380297cf50cd",
-  "captureReportHash": "sha256:c2385824bd6be5fc1436f2fce37d9afec8c74e9501c441bb7ca3c338e4e7f7c6",
+  "captureReportHash": "sha256:fd55c3e15b52c72416c852bafbe93ec7fe89e9a506988a8ca532bcfbed302a23",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e00fd39ba7fbb36fe45084f01d4fc159f68b5ee34781134ecc163a62b762f3fb",
+    "captureReportHash": "sha256:93d888c29ef0d0d6774d59167a29dd8fccdc9e9b4784169abafe25a110b8e050",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -308,5 +308,54 @@
   },
   "limitations": [
     "The unchanged original buildEmirates office recipe reproduces343268triangles/31623800bytes exactly. Reviewed source retains the55.5m equilateral shaft, three open triangular piers around an eight-floor circular drum,40ribbon floor datums, physically bowed outer curtain wall, recessed ribbons and projecting sills, five tall crown slits per side, copper-tinted cylindrical beacon, sloping glass roof between two metal gables, two-stage rectangular mast to355m and attached arrival canopy/apron with three reconstructed revolving-door casings. Repeated2cm panel-joint beams, tiny mast joints and per-panel face subdivisions are omitted; continuous shared stainless panels replace painted-metal/stainless duplicate surface groups. Shared stainless tinted silver approximates aluminium, and opaque glass approximates reflective vision glass and the real clear drum. Skyline has sparse five-floor ribbons, six-segment bow, one-floor coarse drum, five crown slits and triangular roof/mast; canopy/apron, door casings, fine curtain mullions, beacon frame bands and maintenance arms are omitted. District restores canopy/apron/doors, four drum belts, three-floor ribbons, twelve-segment bow and sparse diagonal roof grid. Street restores every floor datum, eight drum belts, facade mullions, denser bow/roof sampling, slits, sill projections and maintenance arms. Close-up adds dense drum glazing, beacon bands and fine roof grid. Original intermediate base/crown datums, bow/radius, panel/mullion pitches and canopy/door dimensions remain photo reconstructions; only overall published height, side, floor-to-floor pitch and major forms/counts are primary. Current architect NORR rounds total height360m and counts52office floors; contractor gives354m/54floor office, while architect-contributed book uses355m/54. Selected original355m is retained; no forced agreement is claimed. Common retail complex, interiors, landscaping and neighboring Museum of the Future are excluded. Actual physical-device/dense-city timings and surveyed entrance/curb fit remain unmeasured."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:753bff64221ed95b6c2ed90c83d5c8e5fa5c2b42f50c3d2a5509ec98e88b3366",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:c2385824bd6be5fc1436f2fce37d9afec8c74e9501c441bb7ca3c338e4e7f7c6",
+    "previousSharedCaptureReportHash": "sha256:e00fd39ba7fbb36fe45084f01d4fc159f68b5ee34781134ecc163a62b762f3fb",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/emirates-office-runtime-model.mjs",
+        "beforeHash": "sha256:d185ccf81894c1ff2b914f05f8cd77ee538167cff1b2b7ee0b68e37e719ba414",
+        "afterHash": "sha256:b5d2ba3ba372ee5778566f77a15c26d3749a110931b6b9c5cccaf26f04d811e7",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/th/thr/n0194_emirates_office_tower/models/source.glb",
+        "hash": "sha256:b617a9862d77c6e5de2fc604eede6efa1680aef0d99f9831b2676edd81b58582",
+        "bytes": 6317336
+      },
+      {
+        "path": "content/worldgen/assets/places/th/thr/n0194_emirates_office_tower/model.glb",
+        "hash": "sha256:c0d7c9dd5bdb5a626dc0fd69d227ba96c3acc842bd2d8a36f8d2380297cf50cd",
+        "bytes": 6316952
+      },
+      {
+        "path": "content/worldgen/assets/places/th/thr/n0194_emirates_office_tower/model.skyline.glb",
+        "hash": "sha256:b72c17ca5a0286ac16ef312bcefaea23bf9f2da9d73c9762c439285498a49846",
+        "bytes": 53508
+      },
+      {
+        "path": "content/worldgen/assets/places/th/thr/n0194_emirates_office_tower/model.district.glb",
+        "hash": "sha256:ec2c403b69715206a5ef5597c08ef407ff3c2807cca5ee53fb7e3088103741a9",
+        "bytes": 149988
+      },
+      {
+        "path": "content/worldgen/assets/places/th/thr/n0194_emirates_office_tower/model.street.glb",
+        "hash": "sha256:4eece1a8925098fb6e9095c8861c521bcf4b03e651406b6d3285ea22234f925a",
+        "bytes": 1037220
+      },
+      {
+        "path": "content/worldgen/assets/places/th/thr/n0194_emirates_office_tower/model.closeup.glb",
+        "hash": "sha256:f4cb0b974a23e55b26bf75bf9651a02a11603aeeb0afe4ea588cb95020e43e93",
+        "bytes": 4405232
+      }
+    ],
+    "retainedInspectedImageCount": 70
+  }
 }

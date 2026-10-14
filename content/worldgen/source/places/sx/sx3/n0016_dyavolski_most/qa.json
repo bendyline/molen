@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0016_dyavolski_most",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:1943d6b927da039e730fea2a395c02b56d04930f8149b2b1893624f4a23bd1e3",
+  "inputHash": "sha256:663804fafe48744e84960f458c47d8d6b12fad8dee55e9c6595d071c71ff5e8a",
   "sourceHash": "sha256:680c05c0da168a676a954b82224d077cdfa36ecb309e265781efd17f345059a7",
   "runtimeHash": "sha256:8c36969a24f57761de6a8778a91b1b2016c1b4fef9159e64799d345d1aed77c7",
-  "captureReportHash": "sha256:a0d83171c88c0fbe485c6bc7d3be05476293dbb01a36182d5dccafb57fe7448b",
+  "captureReportHash": "sha256:27d7354f40116607d5bf56dba8fee0497e502c4171609cce708bab68441d7cf2",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +26,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:1c867ece24f1fc9f74a8bcb2fc0fb7cbedf2c4cb7742e2cdcb95200a8915d824",
+    "captureReportHash": "sha256:fd97f89022d6d57a7872c4d82c36a4fa8094dfd93191fe29ac8d1231e39233d3",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -292,5 +292,54 @@
     "Original stone-by-stone master remains unchanged and byte-reproduced; one shared granite graph retains metric texture/roughness and vertex tint variations, with zero embedded images.",
     "All four browser levels use stable independent seven-opening arch bodies; metric shared weathered-stone texture replaces individually modeled stones. Source retains the original granite graph and masonry master. Published56/65.7m vs59.092m map length disagreement stays explicit.",
     "Coarse PMTiles gorge/approach terrain differs about20m across the crossing. Bounded contact fixture and ground opening prevent obvious burial; exact riverbed, bank fit and modern scenery are unverified approximations. Footprint replacement off; physical-device timing remains pending."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:1943d6b927da039e730fea2a395c02b56d04930f8149b2b1893624f4a23bd1e3",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:a0d83171c88c0fbe485c6bc7d3be05476293dbb01a36182d5dccafb57fe7448b",
+    "previousSharedCaptureReportHash": "sha256:1c867ece24f1fc9f74a8bcb2fc0fb7cbedf2c4cb7742e2cdcb95200a8915d824",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/dyavolski-browser-model.mjs",
+        "beforeHash": "sha256:f1e2c9197e6c8cd124351e3286b1cdd76267af663ff90c95419b51ce13259610",
+        "afterHash": "sha256:faf9dfa1db4a5386c005572db5c23bdc6ca966dec6f18a7cf881d72643aeaec2",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/sx/sx3/n0016_dyavolski_most/models/source.glb",
+        "hash": "sha256:680c05c0da168a676a954b82224d077cdfa36ecb309e265781efd17f345059a7",
+        "bytes": 41927756
+      },
+      {
+        "path": "content/worldgen/assets/places/sx/sx3/n0016_dyavolski_most/model.glb",
+        "hash": "sha256:8c36969a24f57761de6a8778a91b1b2016c1b4fef9159e64799d345d1aed77c7",
+        "bytes": 41927508
+      },
+      {
+        "path": "content/worldgen/assets/places/sx/sx3/n0016_dyavolski_most/model.skyline.glb",
+        "hash": "sha256:8e24627359acce3d8948df8dc19adda1b4a7ea5bdd138808be48afbe3f9bb4f4",
+        "bytes": 60400
+      },
+      {
+        "path": "content/worldgen/assets/places/sx/sx3/n0016_dyavolski_most/model.district.glb",
+        "hash": "sha256:e51fecd79b30a713d02b5646c33e5e12c62d455989345e801e104f7c46eff7b4",
+        "bytes": 107552
+      },
+      {
+        "path": "content/worldgen/assets/places/sx/sx3/n0016_dyavolski_most/model.street.glb",
+        "hash": "sha256:b7a77a298ea2031a6b5129bdcd2d403f66a22bea2f501f21401b6453117c9390",
+        "bytes": 201372
+      },
+      {
+        "path": "content/worldgen/assets/places/sx/sx3/n0016_dyavolski_most/model.closeup.glb",
+        "hash": "sha256:b19ea9e9748472e2016f66f1cc52576ceaa48a6e24027f30a2d62d7b1a12c036",
+        "bytes": 388792
+      }
+    ],
+    "retainedInspectedImageCount": 52
+  }
 }

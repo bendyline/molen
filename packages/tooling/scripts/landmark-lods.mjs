@@ -1,13 +1,14 @@
 // Deterministic runtime derivatives. Canonical imports and source masters are read-only.
 import '../../worldgen/scripts/install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { gzipSync } from 'node:zlib';
 import { Document, NodeIO, VertexLayout } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { copyToDocument, prune, uninstance, weld } from '@gltf-transform/functions';
 import { MeshoptSimplifier } from 'meshoptimizer';
+import { writeIndex as writeFile } from '../../worldgen/scripts/structure-model-files.mjs';
 import { convexDerivative } from './landmark-hulls.mjs';
 
 export const LANDMARK_LOD_RECIPE = 1;

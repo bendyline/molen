@@ -1,8 +1,9 @@
 /** Picture-based Swallow's Nest exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildSwallowsNestRuntime } from './swallows-nest-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildSwallowsNestRuntime } from './swallows-nest-model.mjs';
+
 const grade = JSON.parse(
     readFileSync(
       new URL(

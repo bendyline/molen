@@ -8,8 +8,8 @@ import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { sforzaStudy } from '../../worldgen/scripts/sforza-castle-model.mjs';
 import { sforzaGround } from '../../worldgen/scripts/sforza-runtime-model.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
+import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u0/u0n/n0258_sforza_castle'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');

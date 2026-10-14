@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0295_pembroke_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:f580da2222ebda8e3ca89ce4c517e09eaf62601ddeb909a502e1cff63bcbcae1",
+  "inputHash": "sha256:c6888d02566d5fca4bf8e23560946bd664149dff4736c29e4b1795b8ba777097",
   "sourceHash": "sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c",
   "runtimeHash": "sha256:88536f5d03757154a865440de16bf77b26bab1fe05004d88358b09616350861d",
-  "captureReportHash": "sha256:c501b936030dd980f4fc642c71540f0f9bc818dbf38cf6e47629703083b62df7",
+  "captureReportHash": "sha256:54538513db8e46dcefb836d3ac441760883ef2c2f4716bbbff7dec0b5a630485",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +26,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:d590be13ee10c582f2e6003087ccc026abafec39f0747ceb134e194dac08503e",
+    "captureReportHash": "sha256:767e5d1ea966aa75d821cecebebda444b41be35c6173b265889d154280b2b0fa",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -292,5 +292,54 @@
     "Detailed original master/hash/recipe preserved. Ruins, cliff shape, Wogan aperture and reconstructed floors are approximate; full interiors, complete cave circulation, collision and water simulation excluded.",
     "Five common graphs plus explicit glass/foliage color slots; zero embedded images. Host terrain supplies the surrounding hillside; bounded castle cliff retained.",
     "Footprint replacement remains off; physical-device timing unmeasured."
-  ]
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:f580da2222ebda8e3ca89ce4c517e09eaf62601ddeb909a502e1cff63bcbcae1",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:c501b936030dd980f4fc642c71540f0f9bc818dbf38cf6e47629703083b62df7",
+    "previousSharedCaptureReportHash": "sha256:d590be13ee10c582f2e6003087ccc026abafec39f0747ceb134e194dac08503e",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/pembroke-runtime-model.mjs",
+        "beforeHash": "sha256:8a9b53141c7752eefb1dcf6f4988563680b8ee054a94edb27b525e57d07e97be",
+        "afterHash": "sha256:e4c4ca6cbd2e1845f068f6f358dc6783e9e2a6c55430bf7be6d9a441d8f02fad",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/gc/gch/n0295_pembroke_castle/models/source.glb",
+        "hash": "sha256:49d674e48c19598734af1c517d4f5e3fc843094c1c826756f468c51cc563a68c",
+        "bytes": 1800580
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.glb",
+        "hash": "sha256:88536f5d03757154a865440de16bf77b26bab1fe05004d88358b09616350861d",
+        "bytes": 1799948
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.skyline.glb",
+        "hash": "sha256:356c38196f24bb3e2f2c77d546bb58dd99472d9af9133c3ba13ee842f7f5a401",
+        "bytes": 78864
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.district.glb",
+        "hash": "sha256:df579cae83faacd5fd4ef307a12f69079f942fcc34b671a95e00bec3d9e1aaaa",
+        "bytes": 362552
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.street.glb",
+        "hash": "sha256:97c65e6344c54bf700cca75de87758fdd1fad8b6683c3c4447963dc1013d9e88",
+        "bytes": 1209920
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gch/n0295_pembroke_castle/model.closeup.glb",
+        "hash": "sha256:1c70f1daab8d2a72c3635f078b13839660f0b82f2b07f18444b9d3828f79c595",
+        "bytes": 1306392
+      }
+    ],
+    "retainedInspectedImageCount": 52
+  }
 }

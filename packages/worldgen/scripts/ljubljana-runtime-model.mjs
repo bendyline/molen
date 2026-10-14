@@ -1,8 +1,9 @@
 /** Picture-based Ljubljana Castle exterior fit to standard viewer PMTiles. */
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
-import { buildLjubljanaRuntime } from './ljubljana-castle-model.mjs';
 import { normalFor } from './authored-structure-mesh.mjs';
+import { buildLjubljanaRuntime } from './ljubljana-castle-model.mjs';
+
 const OLD_MEANS = JSON.parse(
   readFileSync(
     new URL(

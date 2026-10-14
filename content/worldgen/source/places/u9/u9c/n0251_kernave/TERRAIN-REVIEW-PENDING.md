@@ -1,3 +1,9 @@
+# Kernavė — approximate terrain review completed
+
+Updated2026-10-12. The owner directed picture and standard viewer PMTiles fitting instead of bespoke terrain research. The current source uses PMTiles broad terrain plus residual authored hill relief, sloping museum ground, tier-specific path/fence draping and a continuous landscape surface with explicit viewer ground cutout. Exact surveyed contours, erosion and certified stair rises remain outside the accepted medium-fi scope. Current hash-bound visual approval is recorded in QA-REVIEW.md and qa.json.
+
+## Historical pending record (2026-10-11)
+
 # N0251 — Kernavė: terrain review pending
 
 Rechecked 2026-10-11. This candidate remains in the fixed 213-model backlog; it is not counted as complete.
