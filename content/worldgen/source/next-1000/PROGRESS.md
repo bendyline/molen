@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 339 authored assets, 339 imported assets and 335 active geographic asset previews.
+There are 343 authored assets, 343 imported assets and 339 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +10,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 339 |
-| Runtime GLBs imported | 339 |
-| Portable visual reviews passed | 339 |
-| Shared-material reviews passed | 339 |
-| Active geographic previews | 335 |
-| Declared fidelity reviews passed | 339 |
-| Complete | 339 |
-| Source models still to author | 661 |
+| Source GLBs authored | 343 |
+| Runtime GLBs imported | 343 |
+| Portable visual reviews passed | 343 |
+| Shared-material reviews passed | 343 |
+| Active geographic previews | 339 |
+| Declared fidelity reviews passed | 343 |
+| Complete | 343 |
+| Source models still to author | 657 |
 
 ## Authored models
 
@@ -235,6 +235,10 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0327 | [Florence Cathedral](../places/sr/srb/n0327_florence_cathedral/README.md) | 9500 | Passed | Passed | Passed | Passed | Yes |
 | N0328 | [St Mark's Basilica](../places/u2/u20/n0328_st_mark_s_basilica/README.md) | 16817 | Passed | Passed | Passed | Passed | Yes |
 | N0329 | [Alexander Nevsky Cathedral](../places/sx/sx8/n0329_alexander_nevsky_cathedral/README.md) | 18216 | Passed | Passed | Passed | Passed | Yes |
+| N0330 | [Tournai Cathedral](../places/u0/u0f/n0330_tournai_cathedral/README.md) | 26570 | Passed | Passed | Passed | Passed | Yes |
+| N0331 | [Etchmiadzin Cathedral](../places/sz/szp/n0331_etchmiadzin_cathedral/README.md) | 18613 | Passed | Passed | Passed | Passed | Yes |
+| N0332 | [Wawel Cathedral](../places/u2/u2y/n0332_wawel_cathedral/README.md) | 17476 | Passed | Passed | Passed | Passed | Yes |
+| N0333 | [Lala Mustafa Pasha Mosque](../places/sy/sy0/n0333_lala_mustafa_pasha_mosque/README.md) | 5446 | Passed | Passed | Passed | Passed | Yes |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209206 | Passed | Passed | Passed | Passed | Yes |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 85366 | Passed | Passed | Passed | Passed | Yes |

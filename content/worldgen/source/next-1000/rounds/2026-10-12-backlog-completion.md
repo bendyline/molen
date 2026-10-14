@@ -470,3 +470,122 @@ bindings and selected review/source metadata remained unchanged. The verifying b
 49 pre-existing generator metadata differences, retained the reviewed working-tree files and
 added none. Local exact-hash proof: `.artifacts/nevsky-review/batch-build-proof.json`;
 global build diagnostics: `.artifacts/asset-build/report.json`.
+
+## N0330 — Tournai Cathedral
+
+Completed 2026-10-14 from two inspected elevated photographs, the rigidly reframed retained
+exact-QID outline,56 unioned main/part controls and standard viewer PMTiles/DEM. Individually
+authored four taller open-belfry towers, a lower central lantern, pointed slate roofs, stepped
+rounded transepts, lower western nave, taller Gothic choir/apse, lower chapels/annexes,
+masonry flying arches and an estimated closed west portal/rose.
+
+The source master has **26,570 triangles / 3,192,620 bytes**. Browser levels contain
+**989 / 3,997 / 13,688 / 26,570 triangles**, at **1 / 7 / 7 / 7 draws**. Initial geometry totals
+**472,080 bytes**. Five existing shared256² limestone/slate/tile/raw-stone/wood graphs load
+once; unloading leaves zero live model geometries. All six GLBs validate without errors,
+warnings or embedded images. The56 polygon controls, signed facing, standard DEM,
+indexed four83m tower/70m lantern crowns and161 imported geometry probes pass.
+Targeted source generation reproduces the master; asset hash verification, scene validation
+and a30-tick headless simulation pass. All **49 final frames** were inspected across portable
+terrain, geographic/shared surfaces, Earth lighting, matched LODs and transitions.
+
+Corrected floating apse-buttress connections, intersecting belfry reveals, a nave volume blocking
+the entrance recess and a rose panel hidden inside the west wall. Skyline simplifies secondary
+roofs; district preserves eight selected belfry cuts; street restores all48 with coarser curved
+heads, while close-up refines masonry and trim. All levels meet their budgets.
+
+NativeY0 follows standardDEM27.636844092521216m. Estimated1.5m floor against coarse perimeter
+−2.22..3.25m yields approximate skirts/embedding and ground joins. Intermediate heights,
+round roofs, window rhythm, flying arches and ornament are estimates. Both pictures show side
+views; exact west-façade design, sculpture/tracery/lettering, interiors, structural plans,
+separate city belfry and certified walking/collision surfaces are excluded. Physical laptop/phone
+measurements remain pending. One small summary is retained; bulk renders stay local and ignored.
+
+[Current QA and limits](../places/u0/u0f/n0330_tournai_cathedral/QA-REVIEW.md) describe the
+accepted scope. The ledger confirms **340 ready candidates**, **336 active geographic previews**
+and **660 remaining**. Next: **N0331 — Etchmiadzin Cathedral**. Tournai's six outputs passed the
+targeted loop; the latest full source checkpoint remains N0325–N0329. The next full milestone
+is N0330–N0334.
+
+## N0331 — Etchmiadzin Cathedral
+
+Completed 2026-10-14 from two inspected aerial/front photographs, a retained exact-QID
+outline, one unioned current PMTiles parent and standard viewer DEM. Individual exterior
+includes a faceted main drum and stone cone, gray crossing roofs, open western entry/gallery/
+belfry, three smaller roof belfries, side apses, eastern range, bells, cornices, windows and steps.
+
+Source master: **18,613 triangles / 2,238,316 bytes**. Four browser levels:
+**754 / 3,472 / 11,497 / 18,613 triangles**, **1 / 8 / 8 / 8 draws**.
+Initial geometry: **357,356 bytes**. Five shared 256² graphs are reused across eight roles;
+each reads once, and unloading leaves zero live model geometries. Six GLBs validate with
+zero errors, warnings or embedded images. Separate position/normal streams, budgets,
+source/runtime hashes and 116 imported aperture/support probes pass. Final source bytes
+reproduce exactly; asset inspection, scene validation and a 30-tick simulation pass.
+All **49 final portable, geographic/shared and medium-fi frames** were inspected.
+
+Removed a leftover wall strip around the portico, completed small roof-belfry pedestals and
+bell hangers, and reduced distant opening complexity. The whole mapped 55m envelope is
+preserved; retained 27m overall height controls the crown, while 29×23m core dimensions
+do not shrink the whole site. Native Y0 follows standard DEM 874.764015m. Untagged heights,
+roof roles, eastern belfry placement, ornament and the estimated 0.65m floor/contact remain
+approximate. Exact reliefs, lettering, structural plans, interiors, surrounding compound and
+certified walking surfaces are excluded; physical laptop/phone measurements remain pending.
+
+[Current QA and limits](../places/sz/szp/n0331_etchmiadzin_cathedral/QA-REVIEW.md).
+Ledger: **341 ready**, **337 active previews**, **659 remaining**. Next: **N0332 — Wawel Cathedral**.
+N0330–N0331 passed the targeted loop; next full source checkpoint remains N0330–N0334.
+
+## N0332 — Wawel Cathedral
+
+Completed 2026-10-14 from useful west/aerial/south pictures and the existing standard viewer
+PMTiles/DEM extract. Individual pale west gable/rose/portico, green clock and northern Sigismund
+towers, shorter Silver Bells tower, steep nave/transept/choir roofs, dark Vasa/gold Sigismund
+domes and northern treasury/chapterhouse. Separate N0299 palace footprint remains clear.
+
+Master: **17,476 triangles / 2,101,792 bytes**. Browser levels:
+**987 / 3,841 / 11,662 / 17,316 triangles**, **1 / 8 / 8 / 8 draws**.
+Initial geometry: **434,120 bytes**. Six shared 256² graphs, no embedded images, separate GPU
+streams. Source reproduces exactly; six GLBs, source/runtime hashes, scene validation and
+30-tick simulation pass. All **49 final frames** inspected. **126 geometry probes** include
+54 coverage checks for concave northern roofs; **28 map controls** match current fragments.
+Shared graphs read once and unload leaves zero live model geometries.
+
+Corrected gable/window z-fighting, blocked entry, roof intrusion, northern footings,
+over-budget distant levels and missing treasury roof triangulation. Nominal main 35m/north45m
+heights retained; disputed southern55m cap remains in source while the pictured shorter
+Silver Bells tower uses36m lower component. Northern Sigismund41m and intermediate profiles
+are estimates. Native DEM225.461986m, estimated3.2m floor and exact neighboring thresholds
+remain coarse. Sculpture, tracery, lettering, interiors, certified walking surfaces and full
+royal/monastic compound excluded; physical-device timing pending. Green/gold roofs share
+one material compromise. One small preview retained; bulk evidence stays local/ignored.
+
+[Current QA and limits](../places/u2/u2y/n0332_wawel_cathedral/QA-REVIEW.md).
+Ledger: **342 ready /338 active previews /658 remaining**. Next **N0333 — Lala Mustafa Pasha Mosque**.
+Targeted checks pass; next full source milestone remains N0330–N0334.
+
+## N0333 — Lala Mustafa Pasha Mosque
+
+Completed 2026-10-14 from two useful elevated front/side photographs and standard viewer
+PMTiles/DEM. Individual three-portal Gothic front/rose, open upper tower shells, northern
+minaret/balcony, low vaulted nave/aisles/rounded apse, ten flying arches and terrace/side steps.
+
+Master: **5,446 triangles /658,232 bytes**. Browser levels:
+**998 /2,549 /4,242 /4,966 triangles**, **1 /8 /8 /8 draws**. Initial geometry:
+**290,036 bytes**. Five existing shared256² graphs, no embedded images and separate GPU
+streams. Six GLBs,57 imported geometry probes, source/runtime hashes and source inventory
+pass. Exact targeted reproduction, scene validation and30-tick simulation pass. All
+**49 final portable, geographic/shared and Earth-lighting/LOD frames** inspected. Each
+graph reads once; unloading leaves zero live model geometry.
+
+Corrected bronze binding, tower-gable aperture intrusion, windows floating across portals,
+overlapping side-stair caps, skyline budget and minaret support. One unioned current parent
+and retained exact-QID outline preserve the61×30m envelope and signed west-front/north-minaret/
+east-apse frame. All heights, damage profiles and ornament are picture-led estimates.
+NativeDEM10.911700m with estimated2.8m floor/terrace/steps remains coarse; retained old ele21m
+is not a surveyed floor. Exact sculpture/tracery/lettering, full interiors, surroundings,
+temporary scaffolding and certified walking surfaces excluded; physical-device timing pending.
+One small summary retained; bulk images stay local and ignored.
+
+[Current QA and limits](../places/sy/sy0/n0333_lala_mustafa_pasha_mosque/QA-REVIEW.md).
+Ledger: **343 ready /339 active previews /657 remaining**. Next: **N0334 — Riga Cathedral**.
+Targeted checks pass; the full N0330–N0334 source checkpoint follows Riga.

@@ -1,0 +1,1173 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0331_etchmiadzin_cathedral",
+  "sourceHash": "sha256:138865a977a4f5a0ac59e6aaaec6b3975d2a7c2a34da0971bcc61c76e45fb48c",
+  "runtimeHash": "sha256:99f1aee2f42277b32b11ed9e18637304589feded227ff693834dd689a7365baf",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 11646,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:a629cf706d49ea9f2c91e26c2d73df1d12c36bfdf9ec231205de64812d960eb5",
+      "bytes": 77132,
+      "gzipBytes": 13168,
+      "triangles": 754,
+      "cpuBytes": 75696,
+      "gpuBytes": 75696,
+      "errorMeters": 1.2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:5210bccce04f51fe6e5572e45e5764119b5d627813856d884977d56cbefeee25",
+      "bytes": 280224,
+      "gzipBytes": 75691,
+      "triangles": 3472,
+      "cpuBytes": 270464,
+      "gpuBytes": 270464,
+      "errorMeters": 0.5,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:f19ae1703de74fa5100a2c2c3c3a3227eb68a2c3571c73a0af51db9abfe5435e",
+      "bytes": 929716,
+      "gzipBytes": 272456,
+      "triangles": 11497,
+      "cpuBytes": 919924,
+      "gpuBytes": 919924,
+      "errorMeters": 0.14,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:17cf2ea2a8743164b4a8f75909516fdfc7ba7cd403f97def8cbee5ff8e143b7a",
+      "bytes": 1568524,
+      "gzipBytes": 481415,
+      "triangles": 18613,
+      "cpuBytes": 1558708,
+      "gpuBytes": 1558708,
+      "errorMeters": 0.06,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:423f8db11110f107e124bd5c8462bf18b4de60bdcdfcd544f4cd7de2ff91510f"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3082079e6d6073227ded1148c3f59e2b575dec14a2590dada4080b72200f94b6"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:25392af4e127b8a1dc1078fb52cf6a3371dac1eec7877214d80a90780bb745a8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.196200000000005,
+          41.8865,
+          91.94610000000002
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:a9187b2785fb5148b1225ef421248dd442645f41608556464255027481fd0232",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.196200000000005,
+          41.8865,
+          91.94610000000002
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:19aeef76de0af346634d32a79be591f26bb54e96fe2380576c501d54e67d69d6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.196200000000005,
+          41.8865,
+          91.94610000000002
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:b638ad549639163b00e9ad743804e2f3b7473ee984d2d44197f704abc338afb0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          52.196200000000005,
+          41.8865,
+          91.94610000000002
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:77e07c1ebab739e2bde19ee64760c83e29505000c8d77d3ae0324f306103ea0e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 35920,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:8f8c6d151237deef0876d6f12e8fe63dda644aa2088142acfe9e422ea341d377",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 35920,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:859465dacce4e6cca036078b199a4487b7525f6c53e08f39ac9ee9f9234aab24",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 35920,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:8c0be36834532e952a1711473523287032d138767b69c29be002bfba6de36e4b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 35920,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:adc83acaf2622764fa8f448dc7a9fc597c99ca68b080f31fe9cfe39e233f8e42",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 33202,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          212.7962,
+          123.28650000000002,
+          370.2461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:2b9b638bea24e43f77ed635ac1978484cf5a0410bd2d80b75511146be53a417c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 33202,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          212.7962,
+          123.28650000000002,
+          370.2461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:75f319b947957c10f221debbadcbb295e4b6909ad059d8767be95ec0df7b055e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 33202,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          212.7962,
+          123.28650000000002,
+          370.2461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:874cd90883c8d17526a5f55f5c8e229cf6182b7599ab436a2955ffd22edc02f3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 33202,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          212.7962,
+          123.28650000000002,
+          370.2461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3f8b7a4c248f2e4cfb7a80cecad98084ca87c647fc68cbd38dff064d88848fd3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21556,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          212.7962,
+          123.28650000000002,
+          370.2461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-entry-and-two-open-bell-stages.png",
+      "hash": "sha256:f6d7bcd4e3d92611e60be1a8e492585b34db817bc5bea36bd5075c3bb138e54c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -62,
+          16,
+          3
+        ],
+        "lookAt": [
+          -23,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/main-faceted-drum-and-stone-cone.png",
+      "hash": "sha256:8ae4c1633c1a9b63a29f3f7323bf381241c0ef59ef629b449cafc58d761359e9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          12,
+          31,
+          37
+        ],
+        "lookAt": [
+          -3.5,
+          19,
+          0.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-apse-and-roof-belfry.png",
+      "hash": "sha256:0280e8c27d00fae10b2c3e85feb87937070a626ede87134f2b5bd91baadcc9e1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -5,
+          22,
+          47
+        ],
+        "lookAt": [
+          -2,
+          11,
+          14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-crossing-roofs-and-belfry.png",
+      "hash": "sha256:8cba57922c8ad7d02c5c6a85d6ffe75ea0e442bbb209b6ae5a3f776e77e7d779",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          29,
+          -49
+        ],
+        "lookAt": [
+          -3.5,
+          13,
+          -8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-range-and-roof-belfry.png",
+      "hash": "sha256:3317a6b8970c71d231a630433c0e355fc7f9945466ce8ffce18602ff6cd4c3de",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          57,
+          25,
+          26
+        ],
+        "lookAt": [
+          16,
+          10,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/western-open-belfry-and-bells.png",
+      "hash": "sha256:25c3329f0dbd44bb2e08daa23c84ac032d9152a0a1d896b010e64bf464400ebb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -39,
+          24,
+          16
+        ],
+        "lookAt": [
+          -23.7,
+          18,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-etchmiadzin-skyline.png",
+      "hash": "sha256:051eafe9d86f51fd7f720b3e78b74f00e443c64abc277c00d3d917cf2ee470b9",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 33202,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -69,
+          47,
+          69
+        ],
+        "lookAt": [
+          -2,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-etchmiadzin-district.png",
+      "hash": "sha256:ed0411d4c70e2bff1ae6ec83e82c86b40aecbfcc8aa1667255beb80be09b726c",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 35920,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -69,
+          47,
+          69
+        ],
+        "lookAt": [
+          -2,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-etchmiadzin-street.png",
+      "hash": "sha256:50bb859c9fcc648aea53a8fcfdd0b64890bbdfa4dc4206c741607f18234f4720",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 43945,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -69,
+          47,
+          69
+        ],
+        "lookAt": [
+          -2,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-etchmiadzin-closeup.png",
+      "hash": "sha256:49e24d8dfcef795d7b6f06310be2bb65fd543d3a8ccb986b56191aa923c3199b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -69,
+          47,
+          69
+        ],
+        "lookAt": [
+          -2,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:09fbefffa1982f5ad1c0b04b9fe2c9faf3025c6b04812d8bab282ffef0fed6ab",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 33202,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:8f8c6d151237deef0876d6f12e8fe63dda644aa2088142acfe9e422ea341d377",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 35920,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2346aa117e69600b82f640cc9549d082020a1ad7160712861a0449506ea265b5",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 43945,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4075c1c2a61ef40a993900549a1aaba1ad17d4bbca70e438ac0c2caf5a1a4254",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 51061,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          106.0962,
+          81.4865,
+          185.4461
+        ],
+        "lookAt": [
+          -0.6038,
+          25.3865,
+          0.6461
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.balkan_konak",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

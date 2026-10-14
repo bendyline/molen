@@ -257,6 +257,7 @@
         "packages/worldgen/scripts/egeskov-castle-model.mjs",
         "packages/worldgen/scripts/elmina-castle-model.mjs",
         "packages/worldgen/scripts/eltz-castle-model.mjs",
+        "packages/worldgen/scripts/etchmiadzin-cathedral-model.mjs",
         "packages/worldgen/scripts/evidence-text-hash.mjs",
         "packages/worldgen/scripts/first-canadian-place-model.mjs",
         "packages/worldgen/scripts/florence-cathedral-model.mjs",
@@ -288,6 +289,7 @@
         "packages/worldgen/scripts/krumlov-castle-model.mjs",
         "packages/worldgen/scripts/ksiaz-castle-model.mjs",
         "packages/worldgen/scripts/kuressaare-castle-model.mjs",
+        "packages/worldgen/scripts/lala-mustafa-mosque-model.mjs",
         "packages/worldgen/scripts/leeds-castle-model.mjs",
         "packages/worldgen/scripts/liechtenstein-castle-model.mjs",
         "packages/worldgen/scripts/linlithgow-palace-model.mjs",
@@ -368,6 +370,7 @@
         "packages/worldgen/scripts/wartburg-castle-model.mjs",
         "packages/worldgen/scripts/warwick-castle-model.mjs",
         "packages/worldgen/scripts/wawel-castle-model.mjs",
+        "packages/worldgen/scripts/wawel-cathedral-model.mjs",
         "packages/worldgen/scripts/windsor-castle-model.mjs"
       ]
     },
@@ -8287,7 +8290,7 @@
           "assetId": "molen.worldgen.structure.n0330_tournai_cathedral",
           "output": "assets/places/u0/u0f/n0330_tournai_cathedral/asset.json",
           "pipeline": "import",
-          "sha256": "sha256:36dd85e54ef1375f11b32be4378021ed5f62119f44abc156b8ce32790714005e"
+          "sha256": "sha256:fc5ecc6116c84f443865087b9f093dd5e248e1d18b9c867d1221d65d1e314d9f"
         }
       ],
       "generatorCandidates": [
@@ -8296,6 +8299,72 @@
       ],
       "recipes": [
         "packages/worldgen/scripts/tournai-cathedral-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0331_etchmiadzin_cathedral",
+      "candidateId": "N0331",
+      "title": "Etchmiadzin Cathedral",
+      "sourceBundle": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0331_etchmiadzin_cathedral",
+          "output": "assets/places/sz/szp/n0331_etchmiadzin_cathedral/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:138865a977a4f5a0ac59e6aaaec6b3975d2a7c2a34da0971bcc61c76e45fb48c"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-additional-landmarks",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/etchmiadzin-cathedral-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0332_wawel_cathedral",
+      "candidateId": "N0332",
+      "title": "Wawel Cathedral",
+      "sourceBundle": "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0332_wawel_cathedral",
+          "output": "assets/places/u2/u2y/n0332_wawel_cathedral/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:816765b11c4bb87a2e62048100e205957a72193561ba5464ad035bbb1add5a79"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-additional-landmarks",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/wawel-cathedral-model.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.n0333_lala_mustafa_pasha_mosque",
+      "candidateId": "N0333",
+      "title": "Lala Mustafa Pasha Mosque",
+      "sourceBundle": "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.n0333_lala_mustafa_pasha_mosque",
+          "output": "assets/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:2384cf7f9d68f192eabe6983804b07cadf898e254c4419085537c70fca2f6fcd"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-additional-landmarks",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/lala-mustafa-mosque-model.mjs"
       ]
     },
     {

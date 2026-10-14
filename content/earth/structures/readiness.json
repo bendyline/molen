@@ -5,18 +5,18 @@
   "counts": {
     "candidates": 1000,
     "sourceFacts": 1000,
-    "sourceModels": 339,
-    "runtimeModels": 339,
-    "mapAxes": 683,
+    "sourceModels": 343,
+    "runtimeModels": 343,
+    "mapAxes": 679,
     "identityReview": 20,
-    "visualReviews": 339,
-    "sharedSurfaceReviews": 339,
-    "previewPlacements": 335,
-    "authoredAssets": 339,
-    "importedAssets": 339,
-    "placedAssets": 335,
-    "fidelityReviews": 339,
-    "ready": 339
+    "visualReviews": 343,
+    "sharedSurfaceReviews": 343,
+    "previewPlacements": 339,
+    "authoredAssets": 343,
+    "importedAssets": 343,
+    "placedAssets": 339,
+    "fidelityReviews": 343,
+    "ready": 343
   },
   "candidates": [
     {
@@ -32564,15 +32564,8 @@
       "wikidataId": "Q391229",
       "title": "Tournai Cathedral",
       "asset": "molen.worldgen.structure.n0330_tournai_cathedral",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -32581,45 +32574,148 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:b7e1b79830c60ad108f981bb54dabe0ca4b87a6869ea75b39f52127fe953b29d",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u0/u0f/n0330_tournai_cathedral/model.glb",
+          "triangles": 26570
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [3.388899716, 50.606503655],
-        "heading": -1.156427022165,
-        "mappedFeatureIds": ["way/684774685"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "heading": -0.8143736352727272,
+        "mappedFeatureIds": [
+          "way/684774685",
+          "pmtiles-buildings/35185056863517",
+          "pmtiles-buildings/35185314457246",
+          "pmtiles-buildings/35185314457248",
+          "pmtiles-buildings/35185314457249",
+          "pmtiles-buildings/35185314457250",
+          "pmtiles-buildings/35185314457251",
+          "pmtiles-buildings/35185314457252",
+          "pmtiles-buildings/35185314457253",
+          "pmtiles-buildings/35185314457255",
+          "pmtiles-buildings/35185314457256",
+          "pmtiles-buildings/35185314457257",
+          "pmtiles-buildings/35185314457258",
+          "pmtiles-buildings/35185314457259",
+          "pmtiles-buildings/35185314457260",
+          "pmtiles-buildings/35185314457261",
+          "pmtiles-buildings/35185314457262",
+          "pmtiles-buildings/35185314457263",
+          "pmtiles-buildings/35185314457264",
+          "pmtiles-buildings/35185314457265",
+          "pmtiles-buildings/35185314694517",
+          "pmtiles-buildings/35185314694518",
+          "pmtiles-buildings/35185314694519",
+          "pmtiles-buildings/35185314694520",
+          "pmtiles-buildings/35185314694521",
+          "pmtiles-buildings/35185314694522",
+          "pmtiles-buildings/35185314694523",
+          "pmtiles-buildings/35185314694524",
+          "pmtiles-buildings/35185314694525",
+          "pmtiles-buildings/35185314694526",
+          "pmtiles-buildings/35185314694527",
+          "pmtiles-buildings/35185314694528",
+          "pmtiles-buildings/35185314694529",
+          "pmtiles-buildings/35185314694530",
+          "pmtiles-buildings/35185314694531",
+          "pmtiles-buildings/35185314694532",
+          "pmtiles-buildings/35185314694533",
+          "pmtiles-buildings/35185314694534",
+          "pmtiles-buildings/35185314694535",
+          "pmtiles-buildings/35185314694536",
+          "pmtiles-buildings/35185314694537",
+          "pmtiles-buildings/35185314694538",
+          "pmtiles-buildings/35185314694539",
+          "pmtiles-buildings/35185314694540",
+          "pmtiles-buildings/35185314766975",
+          "pmtiles-buildings/35185314766976",
+          "pmtiles-buildings/35185314766977",
+          "pmtiles-buildings/35185314766978",
+          "pmtiles-buildings/35185314766979",
+          "pmtiles-buildings/35185314766980",
+          "pmtiles-buildings/35185314766981",
+          "pmtiles-buildings/35185314766982",
+          "pmtiles-buildings/35185314766983",
+          "pmtiles-buildings/35185314766984",
+          "pmtiles-buildings/35185314766985",
+          "pmtiles-buildings/35185314766986",
+          "pmtiles-buildings/35185314766987"
+        ],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/map-frame.json",
+          "hash": "sha256:52d6a02d8eef8501bc4c3170fe13cf3104092477ac9aed8dd945bd7540149529",
+          "sourceUrl": "https://build.protomaps.com/20261008.pmtiles"
+        },
+        "verified": true,
+        "activePlacement": "next1000.n0330",
+        "catalogPlacement": "next1000.n0330",
+        "placementStatus": "preview",
+        "placementHash": "sha256:596c84c05434d670c780b2f6eeaa56e5cac4b643923ba6fd068cf02fb82db036"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/preview.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/eastern-apse-and-chapels.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/five-towers-and-open-belfries.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/gothic-choir-and-flying-buttresses.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/north-nave-and-transept.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-0.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-1.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-2.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-3.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/eastern-apse-and-chapels.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/five-towers-and-open-belfries.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/gothic-choir-and-flying-buttresses.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/north-nave-and-transept.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/placement.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/south-rounded-transept.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/west-nave-and-closed-portal.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/south-rounded-transept.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/west-nave-and-closed-portal.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Individual cathedral exterior from two inspected elevated photographs and standard viewer PMTiles/DEM. Deterministic master, four authored browser levels and five shared graphs. Intermediate eave/spire splits, untagged heights, round roofs, window rhythm, flying arches, west portal/rose and ornament are estimates. Exact sculpture, tracery, inscriptions, west-facade design, interior plans and separate city belfry are excluded. Physical laptop/phone measurements remain pending."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-0.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-1.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-2.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/angle-3.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/west-nave-and-closed-portal.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/five-towers-and-open-belfries.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/south-rounded-transept.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/gothic-choir-and-flying-buttresses.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/eastern-apse-and-chapels.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/north-nave-and-transept.png",
+          "content/worldgen/source/places/u0/u0f/n0330_tournai_cathedral/shots/shared/placement.png"
+        ]
       }
     },
     {
@@ -32627,15 +32723,8 @@
       "wikidataId": "Q1294648",
       "title": "Etchmiadzin Cathedral",
       "asset": "molen.worldgen.structure.n0331_etchmiadzin_cathedral",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -32644,45 +32733,90 @@
         "lengths": 1
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:d71c1d4d420428ecf0848f53021b45108808ed25f4a851db95ed73f07e80e1ac",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sz/szp/n0331_etchmiadzin_cathedral/model.glb",
+          "triangles": 18613
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [44.291096851, 40.161843232],
-        "heading": 0.063173952741,
-        "mappedFeatureIds": ["way/133909119"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "heading": -0.14541397631726866,
+        "mappedFeatureIds": ["way/133909119", "pmtiles-buildings/35184505997951"],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/map-frame.json",
+          "hash": "sha256:59a4e677943d91b8dcfbf740fcb2916def4934c3e02d3d762516d48971f18f93",
+          "sourceUrl": "https://build.protomaps.com/20261008.pmtiles"
+        },
+        "verified": true,
+        "activePlacement": "next1000.n0331",
+        "catalogPlacement": "next1000.n0331",
+        "placementStatus": "preview",
+        "placementHash": "sha256:c3a22fd47695dbe14bece40c6aa321f067e0afcb03b3fc3a527dbf669b5fcc35"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/preview.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/eastern-range-and-roof-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/main-faceted-drum-and-stone-cone.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/north-crossing-roofs-and-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/eastern-range-and-roof-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/main-faceted-drum-and-stone-cone.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/north-crossing-roofs-and-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/placement.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/south-apse-and-roof-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/west-entry-and-two-open-bell-stages.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/western-open-belfry-and-bells.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/south-apse-and-roof-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/west-entry-and-two-open-bell-stages.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/western-open-belfry-and-bells.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Individual cathedral exterior from two inspected close aerial/front pictures and standard viewer PMTiles/DEM. Deterministic master, four authored browser levels and five shared graphs. Parent has no tagged height or component footprints; dome/drum/portico/belfry/roof roles, windows and ornament are estimates. Eastern roof-belfry position and lower-range interpretation are picture-led. Exact reliefs, sculpture, lettering, structural plans, interiors and surrounding monastic compound are excluded. Physical laptop/phone measurements remain pending."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/west-entry-and-two-open-bell-stages.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/main-faceted-drum-and-stone-cone.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/south-apse-and-roof-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/north-crossing-roofs-and-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/eastern-range-and-roof-belfry.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/western-open-belfry-and-bells.png",
+          "content/worldgen/source/places/sz/szp/n0331_etchmiadzin_cathedral/shots/shared/placement.png"
+        ]
       }
     },
     {
@@ -32690,15 +32824,8 @@
       "wikidataId": "Q638519",
       "title": "Wawel Cathedral",
       "asset": "molen.worldgen.structure.n0332_wawel_cathedral",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -32707,45 +32834,120 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:d9b34f9f714e7a4044e4732a29e458f63d95b4d6e35b461917f3d3db972dc0ac",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/u2/u2y/n0332_wawel_cathedral/model.glb",
+          "triangles": 17476
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [19.935495472, 50.054663564],
         "heading": 0.264798508996,
-        "mappedFeatureIds": ["way/85151350"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": [
+          "way/85151350",
+          "pmtiles-buildings/35184621058898",
+          "pmtiles-buildings/35184621058899",
+          "pmtiles-buildings/35184621058901",
+          "pmtiles-buildings/35184621058902",
+          "pmtiles-buildings/35184621058903",
+          "pmtiles-buildings/35184621058904",
+          "pmtiles-buildings/35184621058905",
+          "pmtiles-buildings/35184692637716",
+          "pmtiles-buildings/35184770613315",
+          "pmtiles-buildings/35184770813136",
+          "pmtiles-buildings/35184770813137",
+          "pmtiles-buildings/35184770813138",
+          "pmtiles-buildings/35184770813139",
+          "pmtiles-buildings/35184770813140",
+          "pmtiles-buildings/35184770813141",
+          "pmtiles-buildings/35184771018804",
+          "pmtiles-buildings/35184771453966",
+          "pmtiles-buildings/35184771453967",
+          "pmtiles-buildings/35184771453968",
+          "pmtiles-buildings/35184771453969",
+          "pmtiles-buildings/35184771601633",
+          "pmtiles-buildings/35184771672414",
+          "pmtiles-buildings/35184771760694",
+          "pmtiles-buildings/35184768089200",
+          "pmtiles-buildings/35184768089201",
+          "pmtiles-buildings/35184768089202",
+          "pmtiles-buildings/35184771599827",
+          "pmtiles-buildings/35184457240182"
+        ],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/map-frame.json",
+          "hash": "sha256:706689915059d852e3556902668d969d790e7ac327343c13c54a1f5de9207475",
+          "sourceUrl": "https://build.protomaps.com/20261008.pmtiles"
+        },
+        "verified": true,
+        "activePlacement": "next1000.n0332",
+        "catalogPlacement": "next1000.n0332",
+        "placementStatus": "preview",
+        "placementHash": "sha256:50b64e82358512fb42d68d8fa28e8d56857bf1a1c7b1b186cda876a9d6bb471b"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/preview.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/choir-and-transept-roofs.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/clock-open-copper-stages.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-0.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-1.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-2.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-3.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/choir-and-transept-roofs.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/clock-open-copper-stages.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/placement.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/sigismund-north-tower-and-treasury.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/silver-bells-and-southern-domes.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/west-entry-and-plaza-contact.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/west-gable-portico-and-clock.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/sigismund-north-tower-and-treasury.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/silver-bells-and-southern-domes.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/west-entry-and-plaza-contact.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/west-gable-portico-and-clock.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Individual exterior from useful elevated west/front/south pictures and existing standard viewer PMTiles/DEM. Main35m and north45m nominal tags retained. Southern55m cap conflicts with pictures/named Silver Bells crypt; retain disputed input and use36m lower component as approximate crown. Northern Sigismund41m and intermediate roof/helm/drum/gable sections are estimates. Exact sculpture, tracery, lettering, interiors and surrounding royal/monastic compound excluded. Gold/green share a material compromise. Physical laptop/phone timing pending."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-0.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-1.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-2.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/angle-3.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/west-gable-portico-and-clock.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/clock-open-copper-stages.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/silver-bells-and-southern-domes.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/sigismund-north-tower-and-treasury.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/choir-and-transept-roofs.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/west-entry-and-plaza-contact.png",
+          "content/worldgen/source/places/u2/u2y/n0332_wawel_cathedral/shots/shared/placement.png"
+        ]
       }
     },
     {
@@ -32753,15 +32955,8 @@
       "wikidataId": "Q2047700",
       "title": "Lala Mustafa Pasha Mosque",
       "asset": "molen.worldgen.structure.n0333_lala_mustafa_pasha_mosque",
-      "readiness": "incomplete",
-      "blockers": [
-        "source-model-missing",
-        "runtime-import-missing",
-        "visual-review-missing-or-unbound",
-        "maximum-fidelity-review-missing-or-unbound",
-        "geographic-review-missing-or-unbound",
-        "runtime-placement-inactive"
-      ],
+      "readiness": "ready",
+      "blockers": [],
       "sourceFacts": {
         "available": true,
         "path": "evidence/wikidata-details.json",
@@ -32770,45 +32965,90 @@
         "lengths": 0
       },
       "model": {
-        "quality": null,
-        "inputHash": null,
+        "quality": "detailed",
+        "inputHash": "sha256:e1d8a2eaa79df3a0aafd6d44e80d1293b5c7b0d8722c6829571d26c21c6a30cb",
         "source": {
-          "present": false,
+          "present": true,
           "path": "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/models/source.glb"
         },
-        "runtime": { "present": false, "path": null, "triangles": null },
-        "assetRegistered": false
+        "runtime": {
+          "present": true,
+          "path": "content/worldgen/assets/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/model.glb",
+          "triangles": 5446
+        },
+        "assetRegistered": true
       },
       "geographic": {
         "disposition": "map-axis",
-        "orientationEvidence": "axis-only",
+        "orientationEvidence": "reviewed-source-frame",
         "anchor": [33.942700973, 35.124903745],
         "heading": 0.394358076621,
-        "mappedFeatureIds": ["way/31746104"],
-        "verified": false,
-        "activePlacement": null,
-        "catalogPlacement": null,
-        "placementStatus": null,
-        "placementHash": null
+        "mappedFeatureIds": ["way/31746104", "pmtiles-buildings/35184403834936"],
+        "sourceFrame": {
+          "path": "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/map-frame.json",
+          "hash": "sha256:6c2c48fd97e7c1bb2651fb5b617d9c256bccbece98d2acf0459d17228ff5dc5d",
+          "sourceUrl": "https://build.protomaps.com/20261008.pmtiles"
+        },
+        "verified": true,
+        "activePlacement": "next1000.n0333",
+        "catalogPlacement": "next1000.n0333",
+        "placementStatus": "preview",
+        "placementHash": "sha256:f800b8f2254a6f077cc09cbdc8ca0893f8a941815a4bee088c1d81a66549de99"
       },
       "visualQa": {
-        "captureFiles": [],
-        "captureFilesExist": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
+        "captureFiles": [
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/preview.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/low-vault-and-rounded-eastern-apse.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/northern-minaret-and-balcony.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/open-west-tower-shells.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/low-vault-and-rounded-eastern-apse.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/northern-minaret-and-balcony.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/open-west-tower-shells.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/placement.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/south-aisle-and-flying-arches.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/three-west-portals-and-central-rose.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/west-terrace-and-south-steps.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/south-aisle-and-flying-arches.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/three-west-portals-and-central-rose.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/turntable/angle_0.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/turntable/angle_1.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/turntable/angle_2.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/turntable/angle_3.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/west-terrace-and-south-steps.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/terrain-review.height.png"
+        ],
+        "captureFilesExist": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
         "note": "Existing images are inspectable evidence, but their presence alone does not establish review against the current model inputs."
       },
       "fidelityQa": {
-        "target": "maximum",
-        "hashBoundReviewPassed": false,
-        "declaredQuality": null,
-        "notes": null
+        "target": "medium-fi",
+        "hashBoundReviewPassed": true,
+        "declaredQuality": "detailed",
+        "notes": "Individual current exterior from two inspected useful elevated front/side photographs and standard viewer PMTiles/DEM. No height-tagged roof/tower components:44.6m minaret,36.1m facade peaks, low vault, buttress and tower sections are photographic estimates. Exact stone tracery, sculpture, lettering, damage profiles, interiors, surrounding precinct and temporary restoration scaffolding excluded. Physical laptop/phone timing pending."
       },
       "sharedSurfaceQa": {
-        "required": false,
-        "reviewedCaptureHashesMatch": false,
-        "hashBoundReviewPassed": false,
-        "captureFiles": []
+        "required": true,
+        "reviewedCaptureHashesMatch": true,
+        "hashBoundReviewPassed": true,
+        "captureFiles": [
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-0.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-1.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-2.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/angle-3.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/three-west-portals-and-central-rose.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/open-west-tower-shells.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/northern-minaret-and-balcony.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/south-aisle-and-flying-arches.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/low-vault-and-rounded-eastern-apse.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/west-terrace-and-south-steps.png",
+          "content/worldgen/source/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/shots/shared/placement.png"
+        ]
       }
     },
     {

@@ -1,6 +1,6 @@
-# Current structure round — N0330 Tournai Cathedral
+# Current structure round — N0334 Riga Cathedral
 
-Updated 2026-10-13. New-model generation is active. **N0329 — Alexander Nevsky Cathedral, Sofia is complete**, bringing the catalog to **339 authored and ready candidates**, **335 active geographic previews** and **661 remaining**. The fixed QA backlog is complete: **213 of 213** cleared, **0 remaining**. The next explicit model is **N0330 — Tournai Cathedral**; two useful exterior pictures and standard viewer PMTiles/DEM are prepared, while authoring and visual approval remain pending. The N0325–N0329 full source-build milestone passed: **32 generators, 505 imports, 460 structure LOD sets and 2,848 GLBs in 938 seconds**. All thirty reviewed source/runtime/LOD outputs reproduced byte for byte, with unchanged input bindings and review metadata. Forty-nine existing generator metadata differences were reported and the reviewed files retained. Earlier N0320–N0324 outputs also passed their full source checkpoint. This proves source reproduction; each individual approval retains its stated fidelity and placement limits. Sixty-eight older input bindings were reconciled only after proving unchanged model bytes, inspected images, shared materials and placement; their original review dates and fidelity scopes are retained.
+Updated 2026-10-14. New-model generation is active. **N0333 — Lala Mustafa Pasha Mosque is complete**, bringing the catalog to **343 authored and ready candidates**, **339 active geographic previews** and **657 remaining**. The fixed QA backlog is complete: **213 of 213** cleared, **0 remaining**. The next explicit model is **N0334 — Riga Cathedral**. The latest full source checkpoint is N0325–N0329: **32 generators, 505 imports, 460 structure LOD sets and 2,848 GLBs in 938 seconds**. All thirty reviewed outputs reproduced byte for byte; 49 existing generator metadata differences were reported and reviewed files retained. N0330–N0333 passed targeted source reproduction, geometry/hash checks and current visual QA. The next full source milestone is N0330–N0334, after Riga Cathedral. Each approval retains its stated fidelity and placement limits. Earlier input-binding reconciliations preserved original review dates and scopes.
 
 ## N0310 completion checklist
 
@@ -204,15 +204,55 @@ Source: [Alexander Nevsky Cathedral bundle](../places/sx/sx8/n0329_alexander_nev
 
 ## N0330 completion checklist
 
-Next explicit candidate: Tournai Cathedral. Two inspected exterior pictures show the five towers, stepped rounded transepts, lower western nave and taller Gothic choir. Standard viewer PMTiles/DEM are prepared, with a signed nave-to-choir frame proposal. Author the individual exterior from those controls and pictures, retaining a deterministic master, shared surfaces and four independent browser levels. Portal design, ornament, untagged levels and precise terrain joins remain estimates until reviewed. No source model or completion is claimed yet.
+Source: [Tournai Cathedral bundle](../places/u0/u0f/n0330_tournai_cathedral/README.md). [Current QA and limits](../places/u0/u0f/n0330_tournai_cathedral/QA-REVIEW.md) records 49 inspected frames, 56 unioned map controls, 161 imported-geometry probes, four browser levels and five existing shared graphs. Initial geometry is 472,080 bytes. The five towers, pointed roofs, rounded transepts, lower western nave, taller Gothic choir/apse, chapels, masonry flying arches and estimated west entry/rose are individually authored. Corrected floating apse-buttress connections, intersecting belfry reveals, the blocked entrance recess and hidden rose panel. Nominal heights and signed facing are preserved; façade design, ornament and ground/doorstep joins remain approximate.
 
-- [x] Compare reference pictures and standard viewer PMTiles; record preliminary controls.
-- [ ] Author the individual cathedral towers, nave, transepts, choir and facade; retain a deterministic master and four browser levels.
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual cathedral towers, nave, transepts, choir and façade; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0331 completion checklist
+
+Source: [Etchmiadzin Cathedral bundle](../places/sz/szp/n0331_etchmiadzin_cathedral/README.md). [Current QA and limits](../places/sz/szp/n0331_etchmiadzin_cathedral/QA-REVIEW.md) records 49 inspected frames, 116 imported geometry probes, four browser levels and five existing shared graphs. Initial geometry is 357,356 bytes. The main stone cone, gray crossing roofs, western open bell portico/gallery, three supported roof belfries, side apses and connected eastern range are individually authored. The complete mapped envelope, signed facing and retained 27m overall height are preserved. Untagged component heights, ornament and exact ground joins remain estimates.
+
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0332 completion checklist
+
+Source: [Wawel Cathedral bundle](../places/u2/u2y/n0332_wawel_cathedral/README.md). [Current QA and limits](../places/u2/u2y/n0332_wawel_cathedral/QA-REVIEW.md) records 49 inspected frames, 28 map controls, 126 imported geometry probes, four browser levels and six existing shared graphs. Initial geometry is 434,120 bytes. Individual towers, west façade, domed chapels and northern connected ranges are complete. Corrected a missing concave treasury roof, gable/window overlap, blocked entry recess, roof intrusion and foundations. The disputed 55m southern tag is retained with an explicit picture-led interpretation. Mapped cathedral/palace support footprints have zero intersection area; exact shared thresholds remain approximate.
+
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0333 completion checklist
+
+Source: [Lala Mustafa Pasha Mosque bundle](../places/sy/sy0/n0333_lala_mustafa_pasha_mosque/README.md). [Current QA and limits](../places/sy/sy0/n0333_lala_mustafa_pasha_mosque/QA-REVIEW.md) records 49 inspected frames, 57 imported geometry probes, four browser levels and five existing shared graphs. Initial geometry totals 290,036 bytes. Three Gothic portals/rose panel, open upper tower shells, northern minaret, low vault/rounded apse, flying buttresses and terrace/stairs are individually authored. Full mapped envelope and signed facing retained; every height, damage profile and precise ground join remains estimated.
+
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual mosque exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0334 completion checklist
+
+Next explicit candidate: Riga Cathedral. Use useful pictures and standard viewer PMTiles/DEM for its individual exterior, shared textures and four budgeted browser levels. Retain source facts, mark untagged profile estimates and inspect actual renders. Authoring and visual approval remain pending. After this model, run the full N0330–N0334 source-build milestone once.
+
+- [ ] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [ ] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
 - [ ] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
 - [ ] Verify source/runtime hashes, shared textures, source inventory and placement.
 - [ ] Record current QA and limitations, then confirm readiness before counting completion.
 
-[Batch completion and verification](rounds/2026-10-12-backlog-completion.md) records the completed 213-model backlog and later source milestones. The largest initial geometry download in that reviewed backlog was 557,912 bytes.
+[Batch completion and verification](rounds/2026-10-12-backlog-completion.md) records the completed backlog and source milestones.
 
 ## Completion checklist
 
