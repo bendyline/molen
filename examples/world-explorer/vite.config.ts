@@ -1,6 +1,8 @@
+import { molenScripts } from '@bendyline/molen-client/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  plugins: [molenScripts()],
   // Relative asset URLs, so one production build plays from any directory (molen.dev/play hosts
   // the samples beneath subdirectories).
   base: './',

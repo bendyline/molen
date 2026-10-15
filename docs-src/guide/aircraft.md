@@ -185,7 +185,8 @@ altitude, vertical speed, attitude, power and engine/gear/flap state for a HUD, 
 Hosts composing their own view use `EarthAircraft` from `@bendyline/molen-earth/client`: it
 spawns any aircraft type into the vehicles' ECS world, on the ground or with
 `airborne: { speed, power }`, boards and releases the pilot, applies `EarthPilotControls` and
-draws the models.
+draws the models. To start from a real runway, ask `view.airfields` for one and spawn at its
+`threshold` placement; see [Airfields](earth-view.md#airfields).
 
 ## Engine sound
 

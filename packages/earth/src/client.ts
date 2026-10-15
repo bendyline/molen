@@ -3,6 +3,15 @@
 // cars, flyable aircraft, sky and haze, performance tiers, credits) are exported for hosts that
 // compose their own.
 
+export type {
+  EarthActorBehaviour,
+  EarthActorChange,
+  EarthActorLookTarget,
+  EarthActorPose,
+  EarthActorSettings,
+  EarthActorSpec,
+  EarthActors,
+} from './client/actors';
 export {
   EarthAircraft,
   type EarthAircraftOptions,
@@ -10,6 +19,17 @@ export {
   type EarthFlightStatus,
   type EarthPilotControls,
 } from './client/aircraft';
+export {
+  type EarthAerodrome,
+  type EarthAerodromePoi,
+  EarthAirfields,
+  type EarthAirfieldsSource,
+  type EarthPlace,
+  type EarthRunway,
+  type EarthRunwayPlacement,
+  type EarthRunwayPlacementOptions,
+  type EarthWhenNearOptions,
+} from './client/airfields';
 export {
   ambientContentFromTypes,
   EarthAmbient,
@@ -49,12 +69,25 @@ export {
 } from './client/content';
 export { afterPreparation } from './client/deferred';
 export {
+  EarthDioramaDirector,
+  type EarthDioramaOptions,
+  type EarthDioramaSpec,
+  type EarthDioramas,
+} from './client/dioramas';
+export {
   type EarthCacheStats,
   type EarthCameraState,
   type EarthCameraTarget,
+  type EarthFrame,
+  type EarthInteractable,
+  type EarthInteraction,
+  type EarthInteractionSettings,
   type EarthMarker,
   type EarthModeOptions,
+  type EarthOwnedVehicles,
   type EarthTerrainSource,
+  type EarthVehiclePose,
+  type EarthVehicleSpec,
   type EarthVehicleStatus,
   type EarthView,
   type EarthViewEvents,
@@ -62,6 +95,8 @@ export {
   type EarthViewOptions,
   type EarthViewStats,
   type EarthViewStyle,
+  type EarthWalker,
+  type EarthWalkerPose,
   earthOrbitMaxRange,
   mountEarthView,
 } from './client/earth-view';
@@ -105,7 +140,12 @@ export {
   earthPrefetchTargets,
   extrapolateTrack,
 } from './client/prefetch';
-export { EarthVehicles, type EarthVehiclesOptions } from './client/vehicles';
+export {
+  type EarthSpawnOptions,
+  EarthVehicles,
+  type EarthVehiclesOptions,
+} from './client/vehicles';
+export { EARTH_WATER_CONDITIONS, EarthWater } from './client/water';
 export {
   type CreateEarthWorldgenOptions,
   createEarthWorldgen,

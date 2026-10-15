@@ -114,6 +114,14 @@
       <a href="sky.html" style="display:inline-block;margin:6px 12px 6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Sky observatory ↗</a>
       <a href="structures.html" style="display:inline-block;margin:6px 0;color:#bde5c8;font-size:12px;pointer-events:auto">Explore 120 structures ↗</a>
       <p id="source">Starting terrain…</p>
+      <fieldset id="diorama-controls" style="border:0;padding:8px 0;margin:0" aria-label="Living places">
+        <div class="sky-heading">
+          <label><input id="dioramas-enabled" type="checkbox" checked /> Living places</label>
+          <button id="visit-diorama" type="button">Visit</button>
+        </div>
+        <select id="diorama-select" aria-label="Place to visit" style="width:100%;margin-top:6px"></select>
+        <p id="diorama-status" style="color:#b9d6e8;font-size:11px;margin:6px 0" role="status">Living places appear as you approach.</p>
+      </fieldset>
       <fieldset id="sky-controls" aria-label="Sky time" disabled>
         <div class="sky-heading">
           <label for="sky-time">Time of day</label>

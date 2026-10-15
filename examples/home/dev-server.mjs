@@ -2,6 +2,7 @@ import { createServer as createHttpServer } from 'node:http';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer as createViteServer } from 'vite';
+import { proxyQualla, QUALLA_PREFIX } from './qualla-proxy.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const examplesRoot = resolve(here, '..');
@@ -18,11 +19,17 @@ const exampleNames = [
   'data-viz',
   'cubes',
   'figures-gallery',
+  'dioramas',
 ];
 
 const viteServers = new Map();
 const httpServer = createHttpServer((request, response) => {
   const url = new URL(request.url ?? '/', `http://${request.headers.host ?? 'localhost'}`);
+  // Qualla's published terrain releases, for `?package=qualla` (see qualla-proxy.mjs).
+  if (url.pathname.startsWith(QUALLA_PREFIX)) {
+    void proxyQualla(request, response, url);
+    return;
+  }
   const exampleName = exampleNames.find(
     (name) => url.pathname === `/${name}` || url.pathname.startsWith(`/${name}/`),
   );

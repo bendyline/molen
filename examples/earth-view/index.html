@@ -15,7 +15,7 @@
         position: absolute; top: 16px; left: 16px; right: 16px; display: flex; flex-wrap: wrap; gap: 6px;
         margin: 0; padding: 0; border: 0;
       }
-      button {
+      button, select {
         min-height: 44px; padding: 7px 12px; border: 1px solid rgb(0 0 0 / 20%); border-radius: 6px;
         background: rgb(255 255 255 / 95%); color: #173141; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
       }
@@ -49,6 +49,16 @@
         <button type="button" data-mode="orbit" aria-pressed="true">Orbit</button>
         <button type="button" data-mode="walk" aria-pressed="false">Walk</button>
         <button type="button" data-mode="drive" aria-pressed="false">Drive</button>
+        <button type="button" id="boat">Boat</button>
+        <select id="ride" aria-label="Vehicle to ride">
+          <option value="molen.entities.vehicle.sedan">Sedan</option>
+          <option value="molen.entities.cycle.standard_motorcycle">Motorcycle</option>
+          <option value="molen.entities.cycle.cruiser_motorcycle">Cruiser motorcycle</option>
+          <option value="molen.entities.cycle.motor_scooter">Motor scooter</option>
+          <option value="molen.entities.cycle.city_bicycle">City bicycle</option>
+          <option value="molen.entities.cycle.road_bicycle">Road bicycle</option>
+          <option value="molen.entities.cycle.cargo_bicycle">Cargo bicycle</option>
+        </select>
         <button type="button" data-mode="fly" aria-pressed="false">Fly</button>
         <button type="button" id="seattle">Space Needle</button>
         <button type="button" id="sound" aria-pressed="true" title="Sound (from the molen.sounds pack)">Sound</button>

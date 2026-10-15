@@ -5,16 +5,9 @@
  * state: everything here is derived from components.
  */
 
-import {
-  type ComponentType,
-  componentHandle,
-  type JsonObject,
-  Parent,
-  Transform,
-  type World,
-} from '@bendyline/molen-kernel';
+import { Parent, Transform, type World } from '@bendyline/molen-kernel';
 import { dmath, type TransformLike, type Vec3 } from '@bendyline/molen-kernel/determinism';
-import { Mounted } from '@bendyline/molen-kernel/vehicles';
+import { Mountable, Mounted, Vehicle, VehicleState } from '@bendyline/molen-kernel/vehicles';
 import type { EntityId } from '@bendyline/molen-schema';
 import {
   Figure,
@@ -32,6 +25,7 @@ import {
   socketTransform,
   worldToFigure,
 } from './pose';
+import { cycleRiderPose } from './riding';
 import { deriveRig, type FigureRig } from './rig';
 import { figureSeed } from './seed';
 import type { ResolvedFigureDescriptor } from './types';
@@ -56,8 +50,6 @@ export interface FigureRuntime {
   /** Emit `figures-error` once per (entity, code). */
   warnOnce(id: EntityId, code: string): void;
 }
-
-const Vehicle: ComponentType<JsonObject> = componentHandle('vehicle');
 
 export function createFigureRuntime(world: World): FigureRuntime {
   const rigsByKey = new Map<string, FigureRig>();
@@ -101,6 +93,7 @@ export function createFigureRuntime(world: World): FigureRuntime {
     const mounted = world.get(id, Mounted);
     if (mounted === undefined) return undefined;
     if (world.has(mounted.vehicle, Figure)) return 'pelvis';
+    if (world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined) return 'pelvis';
     return world.has(mounted.vehicle, Vehicle) ? 'eye' : 'pelvis';
   };
 
@@ -127,6 +120,15 @@ export function createFigureRuntime(world: World): FigureRuntime {
     }
     const lookWeight =
       state?.lookAtTick !== undefined ? dmath.smoothstep((tick - state.lookAtTick) / 12) : 1;
+    const mounted = world.get(id, Mounted);
+    const riding =
+      mounted === undefined
+        ? undefined
+        : cycleRiderPose(
+            world.get(mounted.vehicle, Vehicle),
+            world.get(mounted.vehicle, VehicleState),
+            world.get(mounted.vehicle, Mountable)?.seats.find((seat) => seat.id === mounted.seat),
+          );
     const pose = evaluatePose(entry.rig, state, tick, {
       tickRate: world.tickRate,
       seed: entry.seed,
@@ -136,6 +138,7 @@ export function createFigureRuntime(world: World): FigureRuntime {
       overrides: intent?.overrides,
       ik: intent?.ik,
       anchor: anchorFor(id),
+      riding,
     });
     poseCache.set(id, { tick, pose });
     return pose;

@@ -203,7 +203,10 @@ These are approximate interiors, not surveyed tunnel geometry. Semantic provider
 Fragments are clipped out of their tile buffers and joined across neighboring tiles before
 grading, so tile boundaries do not create portals or conflicting floor heights. Searches are
 bounded to 16 tiles. Unresolved long routes and branches are omitted rather than assigning a
-terrain height to an underground tile boundary. Tunnel inference runs at the finest source
+terrain height to an underground tile boundary. A route end counts as a portal only where an
+ordinary (non-tunnel) line continues from it: a gap between fragments of a longer buried line,
+such as a city subway split into thousands of pieces, would otherwise grade the bore to the
+street there and open the ground along its whole length. Tunnel inference runs at the finest source
 feature level and above. Hiding the Human layer also removes its portal cuts and navigation
 support; the original elevation heightfield always remains available for surface anchoring.
 

@@ -46,7 +46,13 @@ const travel = new THREE.Vector3();
  * each moves along the body's up axis to keep its centre at its resting height, so the outside
  * wheels stay on the road in a turn rather than sinking into it.
  */
-export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData): VehicleVisual {
+export function createVehicleVisual(
+  model: THREE.Object3D,
+  vehicle: Pick<VehicleData, 'visual'> & {
+    color?: string;
+    spec?: { length: number; cycle?: unknown };
+  },
+): VehicleVisual {
   const interior =
     vehicle.visual.interior === undefined
       ? undefined
@@ -122,7 +128,9 @@ export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData)
         const spinner = wheel.node.children[0] ?? wheel.node;
         spinner.rotation.x = angle;
         wheel.node.position.copy(wheel.rest);
-        if (!lean) continue;
+        // A cycle leans its entire fork and wheel about the tire contact line. Car suspension
+        // compensation would detach its wheels from the fork.
+        if (!lean || vehicle.spec?.cycle !== undefined) continue;
         // The model leans about its ground origin; move the wheel along the body's up axis by the
         // height the lean added or took away.
         const up = travel.set(0, 1, 0).applyQuaternion(bodyLean).y;

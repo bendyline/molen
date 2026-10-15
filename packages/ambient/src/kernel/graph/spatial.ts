@@ -25,7 +25,7 @@ interface Cell {
   meters: Record<TransportClass, number>;
 }
 
-const CLASSES: readonly TransportClass[] = ['road', 'rail', 'walk', 'air'];
+const CLASSES: readonly TransportClass[] = ['road', 'rail', 'walk', 'air', 'water'];
 
 export class LaneGrid {
   private readonly cells = new Map<string, Cell>();
@@ -57,11 +57,11 @@ export class LaneGrid {
       const key = `${dmath.floor(x / GRID_CELL)}/${dmath.floor(z / GRID_CELL)}`;
       let cell = this.cells.get(key);
       if (cell === undefined) {
-        cell = { spans: [], meters: { road: 0, rail: 0, walk: 0, air: 0 } };
+        cell = { spans: [], meters: { road: 0, rail: 0, walk: 0, air: 0, water: 0 } };
         this.cells.set(key, cell);
       }
       cell.spans.push({ edge: edge.id, d0, d1, x, z });
-      const meters = { road: 0, rail: 0, walk: 0, air: 0 };
+      const meters = { road: 0, rail: 0, walk: 0, air: 0, water: 0 };
       for (const cls of CLASSES) {
         const m = (d1 - d0) * laneCounts[cls];
         cell.meters[cls] += m;

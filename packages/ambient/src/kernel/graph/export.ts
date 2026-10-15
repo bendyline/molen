@@ -8,6 +8,7 @@ import {
   type TransportNetworkWay,
 } from './doc';
 import type { TransportNetwork } from './network';
+import { laneCoordinate } from './sample';
 import type { TransportEdge } from './types';
 
 const round = (v: number): number => dmath.round(v * 100) / 100;
@@ -47,6 +48,7 @@ export function networkToDocument(
           : ([round(p[0]), round(p[1])] as [number, number]),
       ),
       ...(edge.class === 'road' ? { lanes: roadLanes, oneway: edge.oneway } : {}),
+      ...(edge.class === 'water' ? { oneway: edge.oneway, speed: edge.speed } : {}),
       width: round(edge.width),
       ...(edge.layer !== 0 ? { layer: edge.layer } : {}),
       ...(edge.bridge ? { bridge: true } : {}),
@@ -56,11 +58,20 @@ export function networkToDocument(
     for (const id of edge.lanes) {
       const lane = network.lane(id);
       for (const stop of lane?.stops ?? []) {
-        if (stop.kind !== 'station' || seenStations.has(stop.id)) continue;
+        if ((stop.kind !== 'station' && stop.kind !== 'ferry') || seenStations.has(stop.id))
+          continue;
         seenStations.add(stop.id);
-        const sample = network.sampleLane(id, lane === undefined ? 0 : stop.d - lane.trimStart);
+        const sample = network.sampleLane(
+          id,
+          lane === undefined ? 0 : laneCoordinate(lane, edge, stop.d),
+        );
         if (sample !== undefined)
-          stations.push({ id: stop.id, at: [round(sample.x), round(sample.z)], kind: 'rail' });
+          stations.push({
+            id: stop.id,
+            at: [round(sample.x), round(sample.z)],
+            kind: stop.kind === 'ferry' ? 'ferry' : 'rail',
+            ...(stop.dwell !== undefined ? { dwell: stop.dwell } : {}),
+          });
       }
     }
   }

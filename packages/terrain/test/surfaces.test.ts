@@ -327,14 +327,13 @@ describe('surface styles', () => {
   });
 
   it('pins parked-car placements, which the vehicle type specs drive', () => {
-    // The vehicle types moved out of @bendyline/molen-entities into a content pack with the
-    // same kinds, order and wheel-sampled poses.
+    // The expanded eleven-vehicle content pool drives both kind selection and wheel-sampled poses.
     const object = createTerrainSurfaceObject(fixture(), context(), {
       details: { maxFixturesPerTile: 30, parkedVehicles: PARKED_VEHICLES },
     });
     const cars = object.userData.vehicles as unknown[];
     const digest = createHash('sha256').update(JSON.stringify(cars)).digest('hex').slice(0, 16);
-    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: 'eee02c865ff42d78' });
+    expect({ count: cars.length, digest }).toEqual({ count: 26, digest: '3f63e0f4f0076a51' });
   });
 
   it('draws parked cars from an injected vehicle list', () => {
@@ -347,8 +346,10 @@ describe('surface styles', () => {
     };
     const same = place(fromLibrary).cars;
     const digest = createHash('sha256').update(JSON.stringify(same)).digest('hex').slice(0, 16);
-    expect(digest).toBe('eee02c865ff42d78');
-    const vans = place([fromLibrary.at(-1) as TerrainParkedVehicle]).cars;
+    expect(digest).toBe('3f63e0f4f0076a51');
+    const van = fromLibrary.find((vehicle) => vehicle.id === 'molen.entities.vehicle.van');
+    expect(van).toBeDefined();
+    const vans = place([van as TerrainParkedVehicle]).cars;
     expect(new Set(vans.map((car) => car.kind))).toEqual(new Set(['molen.entities.vehicle.van']));
     const none = place([]);
     expect(none.cars).toEqual([]);

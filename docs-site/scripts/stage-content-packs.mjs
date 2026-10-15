@@ -3,6 +3,11 @@
 // With `modelArchives: false` only the core packs are staged: the archives are
 // gigabytes, and a style pack whose archives an index does not list falls back to
 // procedural buildings.
+//
+// A content directory with a build.mjs generates part of its pack into a gitignored directory
+// (content/dioramas erases script types into dist/), so it runs before that pack is built.
+import { execFileSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import { access, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { buildPack } from '@bendyline/molen-pack/node';
@@ -65,6 +70,10 @@ export async function stageContentPacks(
           : `${core.id}@${core.version} (${await dropModelArchives(outDir)} model archives left out)`,
       );
     } else {
+      const build = join(source, 'build.mjs');
+      if (existsSync(build)) {
+        execFileSync(process.execPath, [build], { cwd: source, stdio: 'inherit' });
+      }
       const built = await buildPack(source, { outDir });
       packs.push(`${built.manifest.id}@${built.manifest.version}`);
     }

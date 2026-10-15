@@ -10,6 +10,7 @@ import {
 } from '@bendyline/molen-terrain/kernel';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EarthContent } from '../src/client/content';
+import type { EarthFrame } from '../src/client/earth-view';
 import { ENTITY_TYPES } from './entity-types';
 
 const viewerState = vi.hoisted(() => ({
@@ -582,5 +583,289 @@ describe('mountEarthView', () => {
     await pump(3);
     expect(viewerState.frames).toBe(afterDispose);
     expect(canvas.listenerCount()).toBe(0);
+  });
+});
+
+// The hooks a game host builds on: the frame event, geographic helpers, walker placement, owned
+// vehicles and the interact key.
+describe('mountEarthView game hooks', () => {
+  const SEDAN = 'molen.entities.vehicle.sedan';
+  const MUSTANG = 'molen.entities.aircraft.p51d';
+
+  async function mountWithContent() {
+    const canvas = fakeCanvas();
+    const errors: unknown[] = [];
+    const content = {
+      packs: {
+        readBytes: async () => {
+          throw new Error('no models in unit tests');
+        },
+      },
+      types: ENTITY_TYPES,
+      parkedVehicles: [],
+      assets: { load: async () => new Uint8Array(), loadText: async () => '' },
+      stars: async () => [],
+    } as unknown as EarthContent;
+    const view = await mountEarthView({
+      canvas: canvas as unknown as HTMLCanvasElement,
+      terrain: earth,
+      archives: { elevation: archive },
+      content,
+      audio: false,
+      ambient: false,
+      camera: { latitude: 47.6, longitude: -122.33, range: 2_000, heading: 0 },
+      style: { sky: false },
+      onError: (error) => errors.push(error),
+    });
+    return { view, canvas, errors };
+  }
+
+  it('reports every frame to the host and converts between places and world meters', async () => {
+    const { view } = await mount();
+    await pump(2);
+    const frames: EarthFrame[] = [];
+    const off = view.on('frame', (frame) => frames.push(frame));
+    await pump(5);
+    expect(frames.length).toBe(5);
+    const latest = frames.at(-1) as EarthFrame;
+    expect(latest.dt).toBeCloseTo(0.016, 2);
+    expect(latest.mode).toBe('orbit');
+    expect(latest.viewer.latitude).toBeCloseTo(47.6, 4);
+    expect(latest.viewer.longitude).toBeCloseTo(-122.33, 4);
+    expect(latest.viewer.speed).toBe(0);
+    off();
+    await pump(2);
+    expect(frames.length).toBe(5);
+    const [x, z] = view.toWorld(47.61, -122.34);
+    const back = view.toGeo(x, z);
+    expect(back.latitude).toBeCloseTo(47.61, 9);
+    expect(back.longitude).toBeCloseTo(-122.34, 9);
+    await settle(view);
+    expect(view.groundHeight(47.6, -122.33)).toBeCloseTo(100, 0);
+    view.dispose();
+  });
+
+  it('starts walking at a given place, reports the walker, and teleports it', async () => {
+    const { view } = await mount();
+    await pump(10);
+    expect(view.walker.pose()).toBeUndefined();
+    expect(
+      view.setMode('walk', {
+        at: { latitude: 47.605, longitude: -122.335, heading: Math.PI / 2 },
+      }),
+    ).toBe(true);
+    await pump(30);
+    const pose = view.walker.pose();
+    expect(pose?.latitude).toBeCloseTo(47.605, 5);
+    expect(pose?.longitude).toBeCloseTo(-122.335, 5);
+    expect(pose?.heading).toBeCloseTo(Math.PI / 2, 3);
+    expect(pose?.altitude).toBeCloseTo(100, 0);
+    expect(pose?.speed).toBe(0);
+    expect(view.walker.ready).toBe(true);
+    // Nearby: an instant move. The camera follows the feet.
+    view.walker.place({ latitude: 47.61, longitude: -122.33 });
+    await pump(30);
+    expect(view.walker.pose()?.latitude).toBeCloseTo(47.61, 5);
+    expect(view.getCamera().latitude).toBeCloseTo(47.61, 4);
+    expect(view.mode).toBe('walk');
+    // Far away: the frame re-anchors first, then the walker lands there.
+    view.walker.place({ latitude: 40.7, longitude: -74, heading: Math.PI });
+    expect(view.mode).toBe('walk');
+    await pump(20);
+    await settle(view);
+    await pump(40);
+    expect(view.stats().frameLatitude).toBeCloseTo(40.7, 6);
+    const far = view.walker.pose();
+    expect(far?.latitude).toBeCloseTo(40.7, 5);
+    expect(far?.longitude).toBeCloseTo(-74, 5);
+    expect(far?.heading).toBeCloseTo(Math.PI, 3);
+    expect(view.walker.ready).toBe(true);
+    view.dispose();
+  });
+
+  it('keeps owned vehicles where the host parks them, through drives and a long hop', async () => {
+    const { view } = await mountWithContent();
+    await pump(10);
+    const changes: string[] = [];
+    view.on('vehiclechange', ({ id, change }) => changes.push(`${id}:${change}`));
+    expect(() =>
+      view.vehicles.spawn({
+        type: 'molen.entities.tree.conifer.pine',
+        latitude: 0,
+        longitude: 0,
+        heading: 0,
+      }),
+    ).toThrow(/is not a .*type in the content packs/);
+    const car = view.vehicles.spawn({
+      id: 'car-1',
+      type: SEDAN,
+      latitude: 47.601,
+      longitude: -122.33,
+      heading: Math.PI,
+      color: '#b8362d',
+    });
+    const plane = view.vehicles.spawn({
+      id: 'plane-1',
+      type: MUSTANG,
+      latitude: 47.602,
+      longitude: -122.33,
+      heading: 0,
+    });
+    expect([car, plane]).toEqual(['car-1', 'plane-1']);
+    expect(view.vehicles.list()).toEqual(['car-1', 'plane-1']);
+    const placed = Promise.all([view.vehicles.whenPlaced(car), view.vehicles.whenPlaced(plane)]);
+    await pump(60);
+    await placed;
+    expect(changes).toContain('car-1:placed');
+    expect(changes).toContain('plane-1:placed');
+    const parked = view.vehicles.pose('car-1');
+    expect(parked?.placed).toBe(true);
+    expect(parked?.kind).toBe('car');
+    expect(parked?.latitude).toBeCloseTo(47.601, 4);
+    expect(parked?.longitude).toBeCloseTo(-122.33, 4);
+    expect(parked?.heading).toBeCloseTo(Math.PI, 2);
+    expect(parked?.altitude).toBeCloseTo(100, 0);
+    expect(parked?.occupied).toBe(false);
+    expect(view.vehicles.pose('plane-1')?.kind).toBe('aircraft');
+    // From the orbit camera the car is out of reach; force boards it anyway.
+    const messages: string[] = [];
+    view.on('message', ({ text }) => messages.push(text));
+    expect(view.vehicles.board('car-1')).toBe(false);
+    expect(messages.at(-1)).toMatch(/closer/);
+    expect(view.vehicles.board('car-1', { force: true })).toBe(true);
+    expect(view.mode).toBe('drive');
+    expect(view.vehicleStatus()?.kind).toBe('car');
+    expect(view.vehicles.pose('car-1')?.occupied).toBe(true);
+    await pump(5);
+    // Stepping out leaves an owned car where it is (a car setMode added would go).
+    view.vehicles.release();
+    expect(view.mode).toBe('walk');
+    expect(changes).toContain('car-1:boarded');
+    expect(changes).toContain('car-1:left');
+    expect(view.vehicles.pose('car-1')?.placed).toBe(true);
+    expect(view.vehicles.pose('car-1')?.occupied).toBe(false);
+    // The aircraft boards the same way.
+    expect(view.vehicles.board('plane-1', { force: true })).toBe(true);
+    expect(view.mode).toBe('fly');
+    expect(view.vehicleStatus()?.kind).toBe('aircraft');
+    view.vehicles.release();
+    expect(view.mode).toBe('walk');
+    expect(view.vehicles.list()).toEqual(['car-1', 'plane-1']);
+    // Paint and removal.
+    view.vehicles.setColor('car-1', '#123456');
+    expect(changes).toContain('car-1:painted');
+    view.vehicles.remove('plane-1');
+    expect(changes).toContain('plane-1:removed');
+    expect(view.vehicles.list()).toEqual(['car-1']);
+    // A long hop rebuilds the metric frame; the car keeps its place and comes back on return.
+    view.flyTo({ latitude: 40.7, longitude: -74.0, range: 3_000 }, { durationMs: 300 });
+    await pump(40);
+    await settle(view);
+    await pump(5);
+    expect(view.stats().frameLatitude).toBeCloseTo(40.7, 6);
+    expect(view.vehicles.pose('car-1')?.latitude).toBeCloseTo(47.601, 4);
+    view.flyTo({ latitude: 47.6, longitude: -122.33, range: 2_000 }, { durationMs: 300 });
+    await pump(40);
+    await settle(view);
+    await pump(30);
+    const returned = view.vehicles.pose('car-1');
+    expect(returned?.placed).toBe(true);
+    expect(returned?.latitude).toBeCloseTo(47.601, 4);
+    expect(returned?.heading).toBeCloseTo(Math.PI, 2);
+    view.dispose();
+  });
+
+  it('applies a mode switch that arrives while a long jump rebuilds the frame', async () => {
+    const { view } = await mount();
+    await pump(10);
+    // A host jumps across the world and asks to walk there at once, the way a map that opens in
+    // walk mode does. The frame is being rebuilt, so the switch waits instead of being dropped.
+    view.jumpTo({ latitude: 40.7, longitude: -74.0, range: 2_000 });
+    expect(view.setMode('walk')).toBe(true);
+    await pump(20);
+    await settle(view);
+    await pump(40);
+    expect(view.stats().frameLatitude).toBeCloseTo(40.7, 6);
+    expect(view.mode).toBe('walk');
+    expect(view.walker.pose()?.latitude).toBeCloseTo(40.7, 4);
+    // The newest request wins: a walk start somewhere else, asked for during the next rebuild.
+    view.jumpTo({ latitude: 47.6, longitude: -122.33, range: 2_000 });
+    expect(view.setMode('walk', { at: { latitude: 51.5, longitude: -0.12, heading: 0 } })).toBe(
+      true,
+    );
+    // Until the walker lands, the view reports the destination, never feet from the old frame.
+    const seen: number[] = [];
+    const off = view.on('frame', ({ viewer }) => seen.push(viewer.latitude));
+    for (let i = 0; i < 6; i++) {
+      await pump(20);
+      await settle(view);
+    }
+    await pump(40);
+    off();
+    expect(view.stats().frameLatitude).toBeCloseTo(51.5, 6);
+    expect(view.walker.pose()?.latitude).toBeCloseTo(51.5, 4);
+    expect(view.walker.pose()?.longitude).toBeCloseTo(-0.12, 4);
+    for (const latitude of seen) expect(Math.abs(latitude)).toBeLessThan(90);
+    expect(
+      seen.every((latitude) => Math.abs(latitude - 47.6) < 0.5 || Math.abs(latitude - 51.5) < 0.5),
+    ).toBe(true);
+    // A jump cancels a switch that is still waiting.
+    view.jumpTo({ latitude: 40.7, longitude: -74.0, range: 2_000 });
+    view.setMode('orbit', { force: true });
+    expect(view.setMode('walk')).toBe(true);
+    view.jumpTo({ latitude: 40.71, longitude: -74.0, range: 2_000 });
+    await pump(20);
+    await settle(view);
+    await pump(20);
+    expect(view.mode).toBe('orbit');
+    view.dispose();
+  });
+
+  it('tells the host what the interact key would do and lets it claim the press', async () => {
+    const { view } = await mountWithContent();
+    await pump(10);
+    view.setMode('walk', { at: { latitude: 47.6, longitude: -122.33, heading: 0 } });
+    await pump(30);
+    expect(view.interactable()).toEqual({ kind: 'none' });
+    const here = view.walker.pose();
+    if (here === undefined) throw new Error('not walking');
+    // A car 1.8 m ahead (north), nose north: within reach of its door.
+    view.vehicles.spawn({
+      id: 'car-2',
+      type: SEDAN,
+      latitude: here.latitude + 1.8 / 111_320,
+      longitude: here.longitude,
+      heading: 0,
+    });
+    await pump(5);
+    const found = view.interactable();
+    expect(found.kind).toBe('vehicle');
+    expect(found.id).toBe('car-2');
+    expect(found.distance ?? Infinity).toBeLessThan(3);
+    // A claimed press is the host's: the view does not board.
+    const seen: string[] = [];
+    const off = view.on('interact', (interaction) => {
+      seen.push(`${interaction.kind}:${interaction.id ?? ''}`);
+      interaction.claim();
+    });
+    view.input.map.press('KeyE');
+    view.input.map.release('KeyE');
+    await pump(1);
+    expect(seen).toEqual(['vehicle:car-2']);
+    expect(view.mode).toBe('walk');
+    off();
+    // Unclaimed, the view boards the car; aboard, the key refers to the car and leaves it.
+    view.input.map.press('KeyE');
+    view.input.map.release('KeyE');
+    await pump(1);
+    expect(view.mode).toBe('drive');
+    expect(view.vehicleStatus()?.kind).toBe('car');
+    expect(view.interactable()).toEqual({ kind: 'vehicle', id: 'car-2', distance: 0 });
+    await pump(5);
+    view.input.map.press('KeyE');
+    view.input.map.release('KeyE');
+    await pump(1);
+    expect(view.mode).toBe('walk');
+    view.dispose();
   });
 });

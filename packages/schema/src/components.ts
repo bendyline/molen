@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { audioEnvironmentSchema, audioSourceSchema, audioZoneSchema } from './audio';
+import { boatInputSchema, boatSpecSchema, boatStateSchema, waterSettingsSchema } from './boats';
 import type { ValidationIssue } from './issues';
 import type { JsonObject, JsonValue } from './json';
 import { type ModelSignalSpec, modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
@@ -1324,69 +1325,110 @@ function describedFields<T extends Record<string, z.ZodType>>(shape: T): T {
   ) as T;
 }
 
-const vehicleSpecSchema = z.strictObject(
-  describedFields({
-    label: z.string().min(1),
-    width: num.positive(),
-    length: num.positive(),
-    height: num.positive(),
-    centerOfMass: vec3,
-    wheelbase: num.positive(),
-    wheelTrack: num.positive(),
-    wheelRadius: num.positive(),
-    mass: num.positive(),
-    engineForce: num.positive(),
-    maxSpeed: num.positive(),
-    reverseSpeed: num.positive(),
-    brakeDeceleration: num.positive(),
-    maxSteer: num.positive(),
-    grip: num
-      .positive()
-      .describe(
-        'Peak tire friction on dry pavement as an acceleration in m/s²; grip / 9.81 is the friction coefficient. Rain and snow lower it.',
-      ),
-    driverEye: vec3,
-    steeringRate: num.positive(),
-    steeringFadeSpeed: num.positive(),
-    rollingResistance: num.nonnegative(),
-    aerodynamicResistance: num.nonnegative(),
-    terrainAlignRate: num.positive(),
-    supportTolerance: num.nonnegative(),
-    maxStepHeight: num.nonnegative(),
-    maxSlope: num.positive(),
-    drive: z.enum(['front', 'rear', 'all']).optional().describe('Driven wheels. Default front.'),
-    corneringStiffness: num
-      .positive()
-      .optional()
-      .describe(
-        'Tire side force per unit load per radian of slip angle before it saturates at the grip limit. Default 18.',
-      ),
-    brakeBias: num
-      .min(0)
-      .max(1)
-      .optional()
-      .describe('Share of braking force on the front wheels. Default 0.65.'),
-    yawInertia: num
-      .positive()
-      .optional()
-      .describe('Yaw moment of inertia in kg m². Default mass * (length² + width²) / 12.'),
-    rollStiffness: num
-      .nonnegative()
-      .optional()
-      .describe('Body roll in radians per g of cornering. Default 0.05.'),
-    pitchStiffness: num
-      .nonnegative()
-      .optional()
-      .describe(
-        'Body pitch in radians per g of braking or acceleration. Default 0.03. Weight shifts between the axles through this pitch; 0 keeps the axle loads fixed.',
-      ),
-    suspensionFrequency: num
-      .positive()
-      .optional()
-      .describe('Suspension natural frequency in Hz for body roll and pitch. Default 1.5.'),
-    suspensionDamping: num.positive().optional().describe('Suspension damping ratio. Default 0.5.'),
-  }),
-);
+const vehicleSpecSchema = z
+  .strictObject(
+    describedFields({
+      label: z.string().min(1),
+      width: num.positive(),
+      length: num.positive(),
+      height: num.positive(),
+      centerOfMass: vec3,
+      wheelbase: num.positive(),
+      wheelTrack: num.nonnegative().describe('Lateral wheel spacing in meters; zero for cycles.'),
+      wheelRadius: num.positive(),
+      mass: num.positive(),
+      engineForce: num.positive(),
+      maxSpeed: num.positive(),
+      reverseSpeed: num
+        .nonnegative()
+        .describe('Maximum reverse speed; zero disables powered reverse.'),
+      brakeDeceleration: num.positive(),
+      maxSteer: num.positive(),
+      grip: num
+        .positive()
+        .describe(
+          'Peak tire friction on dry pavement as an acceleration in m/s²; grip / 9.81 is the friction coefficient. Rain and snow lower it.',
+        ),
+      driverEye: vec3,
+      steeringRate: num.positive(),
+      steeringFadeSpeed: num.positive(),
+      rollingResistance: num.nonnegative(),
+      aerodynamicResistance: num.nonnegative(),
+      terrainAlignRate: num.positive(),
+      supportTolerance: num.nonnegative(),
+      maxStepHeight: num.nonnegative(),
+      maxSlope: num.positive(),
+      drive: z.enum(['front', 'rear', 'all']).optional().describe('Driven wheels. Default front.'),
+      corneringStiffness: num
+        .positive()
+        .optional()
+        .describe(
+          'Tire side force per unit load per radian of slip angle before it saturates at the grip limit. Default 18.',
+        ),
+      brakeBias: num
+        .min(0)
+        .max(1)
+        .optional()
+        .describe('Share of braking force on the front wheels. Default 0.65.'),
+      yawInertia: num
+        .positive()
+        .optional()
+        .describe('Yaw moment of inertia in kg m². Default mass * (length² + width²) / 12.'),
+      rollStiffness: num
+        .nonnegative()
+        .optional()
+        .describe('Body roll in radians per g of cornering. Default 0.05.'),
+      pitchStiffness: num
+        .nonnegative()
+        .optional()
+        .describe(
+          'Body pitch in radians per g of braking or acceleration. Default 0.03. Weight shifts between the axles through this pitch; 0 keeps the axle loads fixed.',
+        ),
+      suspensionFrequency: num
+        .positive()
+        .optional()
+        .describe('Suspension natural frequency in Hz for body roll and pitch. Default 1.5.'),
+      suspensionDamping: num
+        .positive()
+        .optional()
+        .describe('Suspension damping ratio. Default 0.5.'),
+      cycle: z
+        .strictObject({
+          maxLean: num.positive().max(1.2).describe('Maximum balanced inward lean in radians.'),
+          riderLean: num.min(0).max(1).describe('Forward torso lean in radians.'),
+          handlebarPivot: vec3.describe('Steering pivot in model-local meters.'),
+          grips: z
+            .tuple([vec3, vec3])
+            .describe('Left and right hand targets in model-local meters.'),
+          footrests: z
+            .tuple([vec3, vec3])
+            .describe('Left and right ankle targets in model-local meters.'),
+          pedals: z
+            .strictObject({
+              center: vec3.describe('Crank centre in model-local meters.'),
+              radius: num.positive().describe('Crank arm length in meters.'),
+              halfWidth: num
+                .positive()
+                .describe('Distance from centreline to each pedal in meters.'),
+              ratio: num.positive().describe('Wheel revolutions per crank revolution.'),
+            })
+            .optional()
+            .describe('Bicycle crank geometry and gearing; omitted on motor vehicles.'),
+        })
+        .optional()
+        .describe(
+          'Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.',
+        ),
+    }),
+  )
+  .superRefine((spec, ctx) => {
+    if (spec.cycle === undefined && spec.wheelTrack === 0)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['wheelTrack'],
+        message: 'Vehicles without cycle tuning need a positive wheel track.',
+      });
+  });
 const animationSchema = modelSignalSpecSchema.describe(
   'Exterior moving parts (gear legs and doors, flaps, control surfaces, doors) posed from the interior signals; bindings may use keyframed curves.',
 );
@@ -1421,6 +1463,84 @@ const vehicleVisualSchema = z
   )
   .superRefine((value, ctx) => exclusiveAnimationChannels(value, ctx, []));
 
+registerComponent('water', waterSettingsSchema, {
+  description:
+    'Deterministic swells and current for boats; heights and coverage come from the host water field.',
+  owner: 'kernel/boats',
+  docsRef: 'guide/boats.md',
+  examples: [{ waves: [], current: [0, 0] }],
+});
+registerComponent(
+  'boat',
+  z.strictObject({
+    kind: z.string().min(1).describe('Stable external vessel entity/type id.'),
+    spec: boatSpecSchema.describe('Complete hull dimensions and handling configuration.'),
+    visual: vehicleVisualSchema
+      .safeExtend({
+        wheelNodes: z.array(z.string().min(1)).describe('Wheel nodes; empty for ordinary hulls.'),
+        frontWheelNodes: z
+          .array(z.string().min(1))
+          .describe('Steering wheel nodes; usually empty.'),
+      })
+      .describe('Named GLB nodes, material and animation bindings.'),
+    color: z.string().optional().describe('Optional hull paint override.'),
+  }),
+  {
+    description: 'Waterline-aligned powered hull with data-driven handling and shared seats.',
+    owner: 'kernel/boats',
+    docsRef: 'guide/boats.md',
+    examples: [
+      {
+        kind: 'demo.boat',
+        spec: {
+          label: 'Launch',
+          length: 6,
+          width: 2.4,
+          height: 2,
+          draft: 0.5,
+          mass: 1200,
+          thrust: 3600,
+          maxSpeed: 14,
+          reverseSpeed: 3,
+          turnRate: 0.5,
+          turnResponse: 1,
+          lateralDrag: 2,
+          buoyancyFrequency: 1,
+          driverEye: [0.5, 1.2, 0],
+        },
+        visual: { wheelNodes: [], frontWheelNodes: [], paintMaterial: 'hull' },
+      },
+    ],
+  },
+);
+registerComponent('boatInput', boatInputSchema, {
+  description:
+    'Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it.',
+  owner: 'kernel/boats',
+  docsRef: 'guide/boats.md',
+  examples: [{ throttle: 0, steering: 0, anchor: true }],
+});
+registerComponent('boatState', boatStateSchema, {
+  description: 'Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats.',
+  owner: 'kernel/boats',
+  docsRef: 'guide/boats.md',
+  examples: [
+    {
+      speed: 0,
+      lateralSpeed: 0,
+      velocity: [0, 0],
+      yaw: 0,
+      yawRate: 0,
+      steer: 0,
+      pitch: 0,
+      roll: 0,
+      vy: 0,
+      anchored: true,
+      grounded: false,
+      waitingForWater: false,
+    },
+  ],
+});
 registerComponent(
   'vehicle',
   z.strictObject({
@@ -1523,6 +1643,11 @@ registerComponent(
       .boolean()
       .describe('Motion is paused because one or more wheel samples have no terrain.'),
     wheelAngle: num.describe('Accumulated wheel spin angle in radians, wrapped each revolution.'),
+    pedalAngle: num
+      .optional()
+      .describe(
+        'Cycle crank angle in radians; advances under forward power and holds while coasting or braking.',
+      ),
     lateralSpeed: num
       .optional()
       .describe('Sideways speed in meters per second, positive to the left: the slide.'),
@@ -1578,6 +1703,13 @@ registerComponent(
       )
       .min(1)
       .describe('Available seat definitions. Each seat can hold one actor.'),
+    entries: z
+      .array(vec3)
+      .min(1)
+      .optional()
+      .describe(
+        'Optional boarding points in local meters, e.g. a boat gangway; seat anchors remain valid entry points.',
+      ),
     exits: z.array(vec3).min(1).describe('Ordered local foot positions to check when dismounting.'),
     reach: num
       .positive()

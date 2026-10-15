@@ -94,7 +94,8 @@ appears only on touch devices; pass `touchJoystick: 'always'` to show it everywh
   adaptive quality.
 - **walk**: `setMode('walk')` drops a walker at the view center. It has capsule collision against
   terrain, buildings and props, WASD or the touch stick to move, mouse-look with pointer lock, and
-  Space to jump.
+  Space to jump. The camera is first person until the host gives the walker a body; then V
+  switches to a camera behind it (see [Walking](#walking-place-pose-avatar-and-third-person)).
 - **drive**: while walking, press E (or `setMode('drive')`) next to a parked car to get in. W/S
   drive, A/D steer, Space brakes, V switches between cockpit and chase views, and E gets out. A car
   at rest with no throttle holds itself, even on a slope. Cars come from the entities content
@@ -126,6 +127,183 @@ compass radians). An airplane started in flight is trimmed for level flight at i
 Listen for `modechange`. The input profile, clip planes and touch stick follow the mode
 automatically.
 
+## Hooks for game hosts
+
+A game built on the view needs to know where the viewer is every frame, put the walker somewhere,
+give it a body, keep a few vehicles and characters of its own, and hear the interact key. These are
+the generic pieces; what they mean (missions, scores, dialogue) stays in the host.
+
+### Per-frame hook and coordinates
+
+```ts
+view.on('frame', ({ dt, now, mode, viewer }) => {
+  // viewer: { latitude, longitude, altitude, heading, speed } — the walker's feet, the car, the
+  // aircraft, or the orbit target; altitude in meters above sea level, heading a compass bearing in
+  // radians, speed in m/s (0 in orbit).
+  needle.pointAt(bearing(viewer, destination));
+});
+const [x, z] = view.toWorld(47.6205, -122.3493); // world meters in the current frame
+view.toGeo(x, z);                                 // { latitude, longitude }
+view.groundHeight(47.6205, -122.3493);           // m ASL, or undefined until that ground has streamed
+```
+
+`frame` fires once per rendered frame, after the world has stepped and before the camera is set,
+so markers and objects placed from it appear in the frame being drawn. World meters are relative to
+the metric frame: they stay valid until the next `terrainchange` (a re-anchor), while everything
+geographic (`viewer`, poses, places) is stable across re-anchors.
+
+### Walking: place, pose, avatar and third person
+
+```ts
+view.setMode('walk', { at: { latitude, longitude, heading } }); // start here, facing heading
+view.walker.place({ latitude, longitude });                       // teleport (enters walk mode if needed)
+view.walker.pose();   // { latitude, longitude, altitude, heading, speed, grounded } | undefined
+view.walker.ready;    // standing on streamed ground
+```
+
+A place inside the current frame drops the walker at once (it lands when the ground there has
+streamed, as a walk start always does). A place more than about a degree of latitude away, or in
+another terrain region with `terrainSource`, re-anchors first: the mode is `walk` immediately, the
+orbit camera holds over the destination while the frame rebuilds, and the walker lands when it is
+done.
+
+```ts
+view.walker.setAvatar({ figure: { preset: 'human.adult', height: 1.7, palette: { top: '#2f5a3b' } } });
+view.walker.setAvatar({ type: 'my.app.character.guide' }); // an entity type with a `figure`
+view.walker.setView('third');   // or 'first'; V toggles while walking with an avatar
+view.walker.view;               // 'first' | 'third'
+view.walker.setAvatar(undefined); // no body (the default)
+```
+
+The walker has no body by default, and the view is first person. `setAvatar` gives it one: a
+[figure](figures.md) descriptor, or `{ type }` naming an entity type from the content packs with a
+`figure` component. In the third-person view a chase camera sits 4.5 m behind the feet, pulled in
+front of any wall between it and the walker. Mouse-look turns the walker's heading and the camera
+with it; vertical look tilts the camera and eases back. Movement stays relative to the camera, and
+the body faces the way it walks (the camera's heading while standing). The avatar is drawn on foot
+in the third-person view and seated at the wheel in a car's or aircraft's chase view; never in first
+person or a cockpit.
+
+### Owned vehicles
+
+```ts
+const car = view.vehicles.spawn({
+  id: 'car-1',
+  type: 'molen.entities.vehicle.sedan',
+  latitude, longitude, heading, color: '#b8362d',
+});
+await view.vehicles.whenPlaced(car);     // the ground under it has streamed and the entity exists
+view.vehicles.pose(car);                 // { kind, type, latitude, longitude, altitude, heading, speed, occupied, placed }
+view.vehicles.board(car);                // within reach of the door; { force: true } from anywhere
+view.vehicles.release();                 // step out at once; the car stays
+view.vehicles.setColor(car, '#123456');  // cars only: the type's paintMaterial
+view.vehicles.remove(car);
+view.on('vehiclechange', ({ id, change }) => save(id, view.vehicles.pose(id)));
+```
+
+Owned vehicles differ from the car `setMode('drive', { vehicle: true })` adds: they survive
+stepping out, forced exits and re-anchors, and they are never removed by the view. The registry
+is geographic: a vehicle whose ground has not streamed (parked out of view) is placed when the
+viewer gets there, and after a long trip rebuilds the frame every owned vehicle is placed again
+from its last known place. An aircraft spawned `airborne` flies once; after a re-anchor it is parked
+where it was. `vehiclechange` reports `placed`, `boarded`, `left` (read `pose()` then to persist
+where it was parked), `painted`, `removed` and `blocked` (no room within 30 m of the spot; the
+view retries every few seconds). `type` must be a car (`vehicle`) or aircraft type from the content
+packs; `spawn` throws otherwise, and when the id is already taken. `setMode('drive' | 'fly', {
+board: id })` is the same boarding through the mode API. The entities pack's cars and the OH-6
+carry a `passenger` seat and the P-51D a rear seat, so a companion can ride along (see
+[Actors](#actors-companions-and-npcs)).
+
+### Actors: companions and NPCs
+
+```ts
+const guide = view.actors.add({
+  id: 'guide',
+  figure: { preset: 'human.adult', height: 1.66, palette: { top: '#b0553a' } }, // or { type }
+  latitude, longitude, heading,
+  behaviour: { kind: 'follow', target: 'viewer' },
+  interactable: true,
+});
+view.actors.setBehaviour(guide, { kind: 'goTo', to: { latitude, longitude, heading } });
+view.actors.lookAt(guide, 'viewer');      // a place, 'viewer', { actor: id }, or null
+view.actors.pose(guide);                  // { latitude, longitude, altitude, heading, speed, mode, behaviour, mounted?, placed }
+view.on('actorchange', ({ id, change, reason }) => {
+  // added | arrived | boarded | alighted | stuck | teleported | removed
+});
+```
+
+Actors are characters the host keeps: a companion who follows the viewer, a guide waiting at a
+door, a passenger. Each is a [figure](figures.md), placed by latitude and longitude once the ground
+there has streamed (`pose().placed`), and kept, like owned vehicles, through drives and re-anchors
+until `remove(id)`. A behaviour decides what it does:
+
+| Behaviour | What the actor does |
+|---|---|
+| `{ kind: 'idle' }` | Stands, turning toward its `lookAt` target when that is behind it. The default. |
+| `{ kind: 'wander', around, radius? }` | Strolls the mapped footways within `radius` (default 20 m) of a place, pausing between walks. It stands when ambient life is off or no footway is near. |
+| `{ kind: 'follow', target, distance?, jogBeyond?, teleportBeyond? }` | Keeps `distance` (2.5 m) behind the viewer on foot or another actor (`{ actor: id }`), jogs past `jogBeyond` (8 m), and teleports behind the target past `teleportBeyond` (60 m; `Infinity` never). |
+| `{ kind: 'goTo', to, arriveWithin? }` | Walks to a place, emits `arrived` within `arriveWithin` (1 m), then idles facing `to.heading`. |
+| `{ kind: 'board', vehicle, seat?, force? }` | Walks to the door nearest the seat and sits: `seat` names one, otherwise the first free `passenger` seat. `force` seats it at once, from anywhere and whatever the vehicle is doing. |
+| `{ kind: 'alight' }` | Steps out by the vehicle's exits once it has stopped, then idles. |
+
+`stuck` carries a reason: `blocked` (a goal and no progress for three seconds), `target-mounted`,
+`no-vehicle`, `no-seat`, `moving` (the vehicle has not stopped) or `unreachable`. Each is reported
+once when it starts; the actor keeps trying. A follower whose target climbs into a vehicle stands
+still and reports `target-mounted`, which is the host's cue:
+
+```ts
+view.on('actorchange', ({ id, change, reason }) => {
+  if (change === 'stuck' && reason === 'target-mounted') {
+    const vehicle = view.interactable().id;   // aboard, the vehicle the viewer is in
+    if (vehicle) view.actors.setBehaviour(id, { kind: 'board', vehicle });
+  }
+  if (change === 'alighted') view.actors.setBehaviour(id, { kind: 'follow', target: 'viewer' });
+});
+view.on('modechange', ({ mode }) => {
+  if (mode === 'walk' && view.actors.pose('guide')?.mounted)
+    view.actors.setBehaviour('guide', { kind: 'alight' });
+});
+```
+
+A seated actor rides along in the vehicle's seat (`mode: 'sit'`, `mounted: { vehicle, seat }`) and
+is drawn sitting there. It waits in its seat whatever its behaviour until `alight`; boarding another
+vehicle needs an `alight` first. When the vehicle is removed it stands where the vehicle was
+(`alighted` with reason `vehicle-gone`). An actor seated in an owned vehicle is seated again when a
+re-anchor places that vehicle again. A passenger never drives and does not start an engine sound.
+
+Actors walk straight at their goal; there is no pathfinding, so a building between an actor and
+its goal leaves it `stuck`. The few nearest the viewer walk with the walker's capsule collision
+against buildings and props; the rest move over the bare terrain, through walls, until they come
+close. `mountEarthView({ actors: { activeRadius, maxActive } })` sets how many and how near (60 m,
+4). Actors do not collide with each other or the walker, and ambient cars stop for them like for the
+walker. `actors.adopt(pedestrianId)` turns an ambient pedestrian into an actor (see
+[Promoting a pedestrian](ambient-life.md#promoting-a-pedestrian)).
+
+### Interaction
+
+```ts
+const view = await mountEarthView({ /* … */ interaction: { reach: 2.5, pedestrians: true } });
+view.setInteraction({ pedestrians: false }); // change it later, e.g. only while a game runs
+view.interactable();   // { kind: 'actor' | 'vehicle' | 'pedestrian' | 'none', id?, distance? }
+view.on('interact', (interaction) => {
+  if (interaction.kind === 'actor') {
+    interaction.claim();   // the view does nothing else with this press
+    talkTo(interaction.id);
+  } else if (interaction.kind === 'pedestrian') {
+    const id = view.actors.adopt(interaction.id);   // stop them and talk
+    if (id) talkTo(id);
+  }
+});
+```
+
+The interact key (E, or F, or the right mouse button) emits `interact` first with what it found. On
+foot that is the nearest of: a car or aircraft within reach of its door (aircraft can be boarded on
+foot too), an interactable actor within `interaction.reach` (2.5 m) of the walker's eyes and in
+sight, and, with `interaction.pedestrians`, an ambient pedestrian. Aboard, it is the vehicle the
+viewer is in; otherwise `none`. A handler that calls `claim()` synchronously takes the press, and
+nothing else happens. Unclaimed, the view boards or leaves a vehicle as it always did (or explains
+why there is nothing to board), and does nothing for an actor or a pedestrian.
+
 ## Frames and long trips
 
 Heights stay in meters. Horizontal distances are exact at the frame latitude and drift away from it
@@ -145,6 +323,11 @@ add styled architecture, recognizable businesses, street furniture, trees and dr
 - `openPacksFromIndex(indexUrl)` opens `molen.entities`, `molen.worldgen.default`, `molen.earth`,
   `molen.sky` and `molen.sounds` from a pack index you host.
 - `loadEarthContent(packs)` reads them. A missing pack turns its feature off instead of failing.
+
+Entity types come from every opened pack that provides `types` documents, merged into one
+library with the entities pack first: pass your own pack's id in `ids` (for example
+`[...Object.values(EARTH_PACK_IDS), 'my.app']`) and its figure or prop types sit beside the stock
+cars and aircraft in `content.types`. A type id declared by two packs is an error that names both.
 
 `openPacksFromIndex(indexUrl, ids, fetchImpl)` accepts a host fetch implementation for the index,
 archive opening and subsequent asset requests. Landmark model bytes are loaded as nearby
@@ -281,6 +464,45 @@ how many cars get full models. With the entities pack in `content`, vehicles use
 light-rail and airliner models near the camera. The car you drive stops against ambient traffic,
 and traffic waits for it. See [Ambient life](ambient-life.md) for the tier table and how the
 simulation works.
+
+## Airfields
+
+`view.airfields` lists the runways the ambient layer's transport network holds and places things
+on them. Everything it returns is latitude, longitude and a compass heading in radians, so a
+result stays valid while the view re-anchors its metric frame as the camera travels; world
+coordinates do not. A runway's id (`runway:<hash>` of its endpoints rounded to 1e-5°) is the same
+each time its tile streams in.
+
+```ts
+const [runway] = await view.airfields.whenNear(47.53, -122.3, { radiusM: 3_000 });
+if (runway !== undefined) {
+  const start = view.airfields.placement(runway.id, 'threshold', { end: 'a' });
+  // start: { latitude, longitude, heading, elevation }, 60 m in from end a, facing down the runway
+  const parked = view.airfields.placement(runway.id, 'beside'); // 40 m to the right of the threshold
+}
+```
+
+- `near(latitude, longitude, radiusM)` returns the runways whose midpoint lies within the radius,
+  nearest first. Each has its `ends` (`a` then `b`), the `heading` from `a` to `b`, its geodesic
+  `length` in metres, its `elevation` above sea level, and the nearest `aerodrome` point of
+  interest within 3 km when one is mapped.
+- `whenNear(latitude, longitude, { radiusM, timeoutMs, signal })` resolves as soon as `near` is
+  non-empty, with `[]` after the timeout (20 s by default), and rejects only when the signal
+  aborts.
+- `placement(id, where, options)` gives a place with an `elevation`: `threshold` is 60 m in from
+  end `a` (or `options.end: 'b'`) facing down the runway toward the other end, `midpoint` is the
+  centre facing from `a` to `b`, and `beside` is the threshold moved `options.offsetM` (default
+  40) metres to the right of the runway, facing parallel to it. It returns `undefined` once no
+  registered tile carries that runway.
+
+Runways exist only for the tiles the ambient layer has registered: those within its activity
+radius plus 250 m of the viewer. Move the camera to the airport first (`flyTo` or `jumpTo`) and
+keep the layer on: `ambient: { cars: false, pedestrians: false, rail: false, aircraft: false }`
+still registers runways, while `ambient: false` removes the network. The map data carries no
+aprons or taxiways, so `beside` is a parking approximation. Hosts composing their own view use
+the same `EarthAirfields` class from `@bendyline/molen-earth/client`, built on an
+`EarthAirfieldsSource` of callbacks (the network's runways, aerodromes and version, and the
+world/geographic conversion) and ticked on their sync.
 
 ## Geographic structures and regional styles
 
@@ -674,3 +896,18 @@ The composing pieces are exported too, for hosts that build their own view: `cre
 `EarthVehicles`, `EarthAmbient` with `observeSemanticTiles`, `createEarthSky`/`createEarthFog`,
 `createEarthAudio`, `earthPerformanceTier` and `earthCredits`.
 The [World Explorer](https://molen.dev/play/world-explorer/) sample is built from them.
+
+## Boats and water conditions
+
+Use `setMode('drive', { vehicle: 'molen.entities.watercraft.speedboat', force: true })` near
+mapped water, or spawn an owned boat through `view.vehicles`. Actors can ride its passenger
+seats. `water` configures deterministic swells and currents; `waterAt` can provide measured depths.
+See [Boats and water](boats.md) for controls, mounting, limitations and the reusable kernel API.
+
+## Dioramas
+
+Use `dioramas: { maxActive, placements }` or `view.dioramas.add(...)` for bounded scripted set
+pieces such as a football game, apron traffic or a market. Each geographic placement supplies
+a lazy scene loader, optional calendar policy, and entry/exit distances. It waits for terrain,
+plays nearby, and releases its local world when out of range. See [Dioramas](dioramas.md) for
+the full contract and current prototype limits.

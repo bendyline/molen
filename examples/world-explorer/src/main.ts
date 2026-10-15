@@ -23,6 +23,7 @@ import {
   createEarthSky,
   createEarthWorldgen,
   EARTH_WATER_COLOR,
+  EARTH_WATER_CONDITIONS,
   EarthAmbient,
   type EarthAudio,
   EarthVehicles,
@@ -77,6 +78,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { startExplorerAudio } from './audio.js';
 import { selectedAntialias, selectedRendererBackend } from './backend-options.js';
 import { type ExplorerWorldgenContent, loadExplorerContent } from './content.js';
+import { createExplorerDioramas, DIORAMA_SITES, selectedDiorama } from './dioramas.js';
 import { formatCameraLocation } from './location-readout.js';
 import { createSkyControls } from './sky-controls.js';
 import { createSurfaceControls } from './surface-controls.js';
@@ -536,7 +538,8 @@ async function loadPackage(): Promise<{
   }
   const manifestParam =
     params.get('package') ?? 'terrain/seattle-bellevue-sammamish/terrain-package.json';
-  const manifestUrl = new URL(manifestParam, location.href);
+  const manifestUrl =
+    manifestParam === 'qualla' ? await quallaRelease() : new URL(manifestParam, location.href);
   const response = await fetch(manifestUrl);
   if (!response.ok) throw new Error(`terrain package failed: HTTP ${response.status}`);
   const parsed = validateByKind('terrain-package', await response.json());
@@ -547,6 +550,20 @@ async function loadPackage(): Promise<{
     label: `${(parsed.value as TerrainPackageDescriptor).name} · PMTiles elevation`,
     synthetic: false,
   };
+}
+
+/**
+ * qualla.com's current terrain release, through the examples dev server's `/qualla/` proxy
+ * (examples/home/qualla-proxy.mjs): `current.json` names the release, relative to itself.
+ */
+async function quallaRelease(): Promise<URL> {
+  const pointerUrl = new URL('/qualla/_data/terrain/current.json', location.href);
+  const response = await fetch(pointerUrl);
+  if (!response.ok)
+    throw new Error(`Qualla terrain needs the examples dev server: HTTP ${response.status}`);
+  const pointer = (await response.json()) as { package?: string };
+  if (pointer.package === undefined) throw new Error('Qualla terrain pointer names no package');
+  return new URL(pointer.package, pointerUrl);
 }
 
 function selectedLevel(pkg: TerrainPackageDescriptor): number {
@@ -570,8 +587,18 @@ function isPyramidStats(
 
 function selectedStart(): { longitude: number; latitude: number; label: string } {
   const params = new URLSearchParams(location.search);
-  const longitude = Number(params.get('lon') ?? START.longitude);
-  const latitude = Number(params.get('lat') ?? START.latitude);
+  const place = selectedDiorama(params.get('diorama'));
+  const framing = Math.max(1, window.innerHeight / window.innerWidth);
+  const longitude = Number(
+    params.get('lon') ??
+      (place
+        ? place.longitude + (0.0012 * place.overviewDistance * framing) / 134
+        : START.longitude),
+  );
+  const latitude = Number(
+    params.get('lat') ??
+      (place ? place.latitude - (0.0009 * place.overviewDistance * framing) / 134 : START.latitude),
+  );
   if (!Number.isFinite(longitude) || longitude < -180 || longitude > 180) {
     throw new Error('longitude must be finite and between -180 and 180');
   }
@@ -581,15 +608,17 @@ function selectedStart(): { longitude: number; latitude: number; label: string }
   return {
     longitude,
     latitude,
-    label: params.has('lon') || params.has('lat') ? 'Custom coordinates' : START.label,
+    label:
+      params.has('lon') || params.has('lat') ? 'Custom coordinates' : (place?.title ?? START.label),
   };
 }
 
 function selectedCameraAngles(): { altitude: number; yaw: number; pitch: number } {
   const params = new URLSearchParams(location.search);
-  const altitude = Number(params.get('alt') ?? 1_400);
-  const yaw = Number(params.get('yaw') ?? -Math.PI / 2);
-  const pitch = Number(params.get('pitch') ?? -0.35);
+  const place = selectedDiorama(params.get('diorama'));
+  const altitude = Number(params.get('alt') ?? (place ? 200 : 1_400));
+  const yaw = Number(params.get('yaw') ?? (place ? -2.3 : -Math.PI / 2));
+  const pitch = Number(params.get('pitch') ?? (place ? -0.55 : -0.35));
   if (!Number.isFinite(altitude) || altitude < -1_000 || altitude > 500_000) {
     throw new Error('altitude must be finite and between -1000 and 500000 meters');
   }
@@ -721,6 +750,7 @@ async function main(): Promise<void> {
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
       color: EARTH_WATER_COLOR,
+      swells: EARTH_WATER_CONDITIONS.waves ?? [],
       waveScale: 0.028,
       waveStrength: 0.045,
       waveSpeed: 0.5,
@@ -1011,6 +1041,50 @@ async function main(): Promise<void> {
   const maybeStream = fixedEarth?.stream ?? pyramidEarth?.stream;
   if (maybeStream === undefined) throw new Error('terrain stream was not created');
   const stream = maybeStream;
+  const dioramasEnabled =
+    !loaded.synthetic &&
+    params.get('dioramas') !== '0' &&
+    (!params.has('freeze') ||
+      params.get('dioramas') === '1' ||
+      selectedDiorama(params.get('diorama')) !== undefined);
+  let dioramas = createExplorerDioramas(dioramasEnabled);
+  const dioramaToggle = document.getElementById('dioramas-enabled') as HTMLInputElement;
+  const dioramaStatus = document.getElementById('diorama-status') as HTMLParagraphElement;
+  dioramaToggle.checked = dioramasEnabled;
+  dioramaToggle.disabled = loaded.synthetic;
+  dioramaToggle.addEventListener('change', () => {
+    dioramas.dispose();
+    dioramas = createExplorerDioramas(dioramaToggle.checked);
+  });
+  const requestedDiorama = selectedDiorama(params.get('diorama'));
+  let fitDioramaCamera =
+    requestedDiorama !== undefined &&
+    !['lat', 'lon', 'alt', 'yaw', 'pitch'].some((key) => params.has(key));
+  const dioramaSelect = document.getElementById('diorama-select') as HTMLSelectElement;
+  for (const place of DIORAMA_SITES) dioramaSelect.add(new Option(place.title, place.scene));
+  dioramaSelect.value = requestedDiorama?.scene ?? 'football';
+  document.getElementById('visit-diorama')?.addEventListener('click', () => {
+    const next = new URL(location.href);
+    for (const key of [
+      'lat',
+      'lon',
+      'alt',
+      'yaw',
+      'pitch',
+      'synthetic',
+      'freeze',
+      'level',
+      'package',
+      'navigation',
+      'aircraft',
+      'boat',
+    ])
+      next.searchParams.delete(key);
+    next.searchParams.set('diorama', dioramaSelect.value);
+    next.searchParams.set('dioramas', '1');
+    next.searchParams.set('mode', 'human');
+    location.assign(next);
+  });
   let fogViewDistance = adaptive
     ? pyramidBudget.viewDistance
     : fixedBudget.loadRadius * finestTileSize;
@@ -1092,6 +1166,7 @@ async function main(): Promise<void> {
     if (!event.persisted) {
       gpuTimer?.dispose();
       worldgen?.dispose();
+      dioramas.dispose();
     }
   });
   const seaLevel =
@@ -1140,6 +1215,8 @@ async function main(): Promise<void> {
   }
 
   const keys = new Set<string>();
+  if (selectedDiorama(params.get('diorama')) !== undefined || params.get('mode') === 'human')
+    setMode('human');
   let jumpRequested = false;
   const walker = new WalkController();
   // A full scan of the streamed scene each frame was the walk mode's largest fixed cost; 5 Hz
@@ -1160,9 +1237,29 @@ async function main(): Promise<void> {
     sampleHeight,
     loadModel: loadEntityModel,
     types: content.types,
+    ...(water
+      ? {
+          waterAt: (x: number, z: number) => {
+            const ground = sampleHeight(x, z);
+            return ground === undefined
+              ? undefined
+              : ground < seaLevel
+                ? { height: seaLevel, depth: seaLevel - ground }
+                : null;
+          },
+        }
+      : {}),
     obstacles: (box, except) =>
       aircraftBlocks(vehicles.world, box, except) || (ambient?.blocks(box, except) ?? false),
   });
+  let requestedBoat = params.get('boat') ?? undefined;
+  let boatAttemptAt = 0;
+  let boatSearchStarted = 0;
+  const spawnBoat = (): void => {
+    requestedBoat = requestedBoat ?? 'molen.entities.watercraft.speedboat';
+    boatAttemptAt = 0;
+    boatSearchStarted = 0;
+  };
   const weatherControls = createWeatherControls(viewer.renderer, params, vehicles.world);
   aircraft = new WorldAircraft(
     vehicles.world,
@@ -1207,6 +1304,8 @@ async function main(): Promise<void> {
     .catch((error: unknown) => console.warn('audio unavailable', error));
   const walkHelp =
     'WASD walk · Shift run · Space jump · E board vehicle · click to look · Esc release mouse';
+  const boatHelp =
+    'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
   const exitVehicle = (): boolean => {
     const feet = vehicles.exit();
     if (!feet) {
@@ -1261,7 +1360,7 @@ async function main(): Promise<void> {
     help.textContent =
       mode === 'walk'
         ? walkHelp
-        : 'WASD travel · Q/E altitude · drag look · Shift boost · R reset origin';
+        : 'WASD travel · Q/E altitude · drag look · Shift boost · R reset origin · B launch boat nearby';
     document.body.dataset.navigation = mode;
     canvas.focus();
   };
@@ -1301,6 +1400,7 @@ async function main(): Promise<void> {
         'KeyR',
         'KeyV',
         'KeyL',
+        'KeyB',
         'KeyI',
         'KeyG',
         'KeyF',
@@ -1312,8 +1412,14 @@ async function main(): Promise<void> {
       event.preventDefault();
       keys.add(event.code);
       if (!event.repeat) flight.key(event.code);
+      if (event.code === 'KeyB' && !event.repeat) spawnBoat();
       if (event.code === 'Space' && !event.repeat) jumpRequested = true;
-      if (event.code === 'KeyE' && !event.repeat && navigation === 'walk' && walker.ready) {
+      if (
+        event.code === 'KeyE' &&
+        !event.repeat &&
+        navigation === 'walk' &&
+        (vehicles.mountedId || walker.ready)
+      ) {
         if (vehicles.mountedId) exitVehicle();
         else if (flight.enter(camera.pos) || vehicles.enter(camera.pos)) {
           keys.clear();
@@ -1322,7 +1428,9 @@ async function main(): Promise<void> {
           vehicles.lookPitch = -0.18;
           help.textContent = flight.mountedKind
             ? AIRCRAFT_HELP
-            : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
+            : vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)
+              ? boatHelp
+              : 'W/S accelerate / brake / reverse · A/D steer · Space brake · Shift handbrake · E exit · V change view · drag to look';
         }
       }
       if (event.code === 'KeyL' && !event.repeat && ambient !== undefined) {
@@ -1443,7 +1551,7 @@ async function main(): Promise<void> {
     frameTotal += frameMs;
     frameCount++;
     frameMax = Math.max(frameMax, frameMs);
-    const dt = Math.min(0.1, (now - lastTime) / 1000);
+    const dt = Math.max(0, Math.min(0.1, (now - lastTime) / 1000));
     lastTime = now;
     const sprint = keys.has('ShiftLeft') || keys.has('ShiftRight');
     const tunnelBefore = sampleTerrainTunnel(stream.object, ...camera.pos);
@@ -1475,6 +1583,37 @@ async function main(): Promise<void> {
       visitingAircraft = undefined;
     }
     vehicles.sync(now, camera.pos);
+    if (requestedBoat && now >= boatAttemptAt && !vehicles.mountedId && !flight.mountedKind) {
+      boatSearchStarted ||= now;
+      boatAttemptAt = now + 2000;
+      if (
+        now - boatSearchStarted >
+        (vehicles.message === 'Water is still loading' ? 60000 : 12000)
+      ) {
+        requestedBoat = undefined;
+        vehicles.message = 'Move near open water and press B to launch';
+      }
+      const kind =
+        !requestedBoat || requestedBoat === '1'
+          ? 'molen.entities.watercraft.speedboat'
+          : requestedBoat;
+      if (EarthVehicles.boatTypeIds(content.types).includes(kind)) {
+        const boat = vehicles.spawnNear(
+          kind,
+          camera.pos[0],
+          camera.pos[2],
+          Math.PI / 2 - camera.yaw,
+          { radius: 160 },
+        );
+        if (boat && vehicles.board(boat)) {
+          requestedBoat = undefined;
+          navigation = 'walk';
+          viewer.renderer.setCameraClip(0.05, 500_000);
+          document.body.dataset.navigation = 'walk';
+          help.textContent = boatHelp;
+        }
+      } else requestedBoat = undefined;
+    }
     ambient?.sync(
       now,
       { position: camera.pos, direction: viewDirection },
@@ -1629,10 +1768,75 @@ async function main(): Promise<void> {
           }),
     });
     const waterOrigin = viewer.renderer.getWorldOrigin();
-    setTerrainWaterTime(waterMaterial, params.has('freeze') ? 0 : now / 1000, [
-      waterOrigin[0],
-      waterOrigin[2],
-    ]);
+    dioramas.update({
+      root: stream.object,
+      camera: viewer.renderer.camera,
+      position: camera.pos,
+      dt: params.has('freeze') ? 0 : dt,
+      timeMs: Date.now(),
+      toWorld: (latitude, longitude) => {
+        const [x, z] = wgs84ToWebMercator(longitude, latitude);
+        return [x * metersPerUnit, z * metersPerUnit];
+      },
+      groundHeight: (x, z) => stream.sampleHeight(x, z),
+    });
+    const activePlaces = DIORAMA_SITES.filter((place) => dioramas.status(place.id) === 'playing');
+    const statusPlace =
+      requestedDiorama ??
+      activePlaces[0] ??
+      DIORAMA_SITES.find((place) => dioramas.status(place.id) === 'loading');
+    const dioramaState = statusPlace
+      ? dioramas.status(statusPlace.id)
+      : dioramaToggle.checked
+        ? 'idle'
+        : 'off';
+    dioramaStatus.dataset.state = dioramaState ?? 'off';
+    dioramaStatus.dataset.active = activePlaces.map((place) => place.scene).join(',');
+    const dioramaText =
+      dioramaState === 'playing'
+        ? `${statusPlace?.title} · ${statusPlace?.description}`
+        : dioramaState === 'loading'
+          ? `Loading ${statusPlace?.title}…`
+          : dioramaState === 'failed'
+            ? `${statusPlace?.title} unavailable · toggle living places to retry`
+            : dioramaState === 'idle'
+              ? 'Living places appear as you approach.'
+              : 'Living places off';
+    if (dioramaStatus.textContent !== dioramaText) dioramaStatus.textContent = dioramaText;
+    // Fit the visit once local terrain has arrived. Explicit camera parameters and navigation win.
+    if (fitDioramaCamera && requestedDiorama) {
+      if (keys.size > 0 || camera.pos[0] !== startX || camera.pos[2] !== startZ)
+        fitDioramaCamera = false;
+      else if (dioramaState === 'playing') {
+        const [mx, mz] = wgs84ToWebMercator(requestedDiorama.longitude, requestedDiorama.latitude);
+        const x = mx * metersPerUnit,
+          z = mz * metersPerUnit;
+        const heights: number[] = [];
+        for (const dx of [-1, 0, 1])
+          for (const dz of [-1, 0, 1]) {
+            const px = dx * requestedDiorama.groundFootprint[0];
+            const pz = dz * requestedDiorama.groundFootprint[1];
+            const yaw = requestedDiorama.yaw;
+            const height = stream.sampleHeight(
+              x + px * Math.cos(yaw) + pz * Math.sin(yaw),
+              z - px * Math.sin(yaw) + pz * Math.cos(yaw),
+            );
+            if (height !== undefined) heights.push(height);
+          }
+        if (heights.length === 9) {
+          camera.pos[1] =
+            Math.max(...heights) +
+            requestedDiorama.lookHeight +
+            Math.hypot(camera.pos[0] - x, camera.pos[2] - z) * Math.tan(-camera.pitch);
+          fitDioramaCamera = false;
+        }
+      }
+    }
+    setTerrainWaterTime(
+      waterMaterial,
+      params.has('freeze') ? 0 : vehicles.world.tick * vehicles.world.dt,
+      [waterOrigin[0], waterOrigin[2]],
+    );
     if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
@@ -1735,6 +1939,14 @@ async function main(): Promise<void> {
       if (navigationStatus.textContent !== navigationText)
         navigationStatus.textContent = navigationText;
       navigationStatus.dataset.vehicle = vehicles.mountedId ?? '';
+      const waterHere = vehicles.boatEnvironment.waterAt(camera.pos[0], camera.pos[2]);
+      navigationStatus.dataset.waterHeight = waterHere ? String(waterHere.height) : '';
+      navigationStatus.dataset.boat = String(
+        Boolean(vehicles.mountedId && vehicles.isBoat(vehicles.mountedId)),
+      );
+      navigationStatus.dataset.anchored = String(
+        vehicles.mountedId ? (vehicles.boatStatus(vehicles.mountedId)?.anchored ?? false) : false,
+      );
       navigationStatus.dataset.speed = (flight.state?.airspeed ?? vehicles.speed).toFixed(3);
       navigationStatus.dataset.aircraft = flight.mountedKind ?? '';
       navigationStatus.dataset.agl = (flight.state?.altitudeAGL ?? 0).toFixed(2);

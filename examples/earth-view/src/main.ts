@@ -1,7 +1,10 @@
 // The whole Earth view in one call: mountEarthView over host-selected terrain packages and the
 // content packs, with worker offload, a photo-pin marker, mode buttons and the required credits.
 // `?mode=walk|drive|fly` starts on foot, in a car or in the air; `?lat=&lon=&range=` choose the
-// first view; `?ambient=0` turns off ambient life (traffic, people, trains and aircraft).
+// first view; `?ambient=0` turns off ambient life (traffic, people, trains and aircraft);
+// `?package=<manifest>|qualla` replaces the regional packages with one terrain package;
+// `?companion=1` gives the walker a body (V for third person) and a companion who follows it,
+// rides along in the passenger seat and steps out again.
 
 import { composeMarkerImage } from '@bendyline/molen-client/markers';
 import {
@@ -12,6 +15,8 @@ import {
   openPacksFromIndex,
 } from '@bendyline/molen-earth/client';
 import type { TerrainPackageDescriptor } from '@bendyline/molen-terrain/kernel';
+import dioramaCatalog from '../../../content/dioramas/placements.json';
+import { loadDiorama } from './load-diorama.js';
 
 declare global {
   interface Window {
@@ -50,12 +55,32 @@ async function main(): Promise<void> {
     loadEarthContent(packs),
   );
   const manifests = new Map<string, TerrainPackageDescriptor>();
+  // `?package=<manifest>` serves one package everywhere; `?package=qualla` follows qualla.com's
+  // current release through the examples dev server's proxy (examples/home/qualla-proxy.mjs).
+  const packageParam = params.get('package');
+  const fixedManifest =
+    packageParam === null
+      ? undefined
+      : packageParam === 'qualla'
+        ? await fetch('/qualla/_data/terrain/current.json')
+            .then((response) => response.json() as Promise<{ package: string }>)
+            .then(
+              (pointer) =>
+                new URL(pointer.package, new URL('/qualla/_data/terrain/', location.href)),
+            )
+        : new URL(packageParam, location.href);
 
   const view = await mountEarthView({
     canvas,
     terrainSource: async ({ longitude }, signal) => {
-      const region = longitude < -122.15 ? 'seattle-bellevue-sammamish' : 'sammamish';
-      const manifestUrl = new URL(`terrain/${region}/terrain-package.json`, location.href);
+      const region =
+        fixedManifest !== undefined
+          ? 'package'
+          : longitude < -122.15
+            ? 'seattle-bellevue-sammamish'
+            : 'sammamish';
+      const manifestUrl =
+        fixedManifest ?? new URL(`terrain/${region}/terrain-package.json`, location.href);
       let terrain = manifests.get(region);
       if (terrain === undefined) {
         const response = await fetch(manifestUrl, { signal });
@@ -66,11 +91,33 @@ async function main(): Promise<void> {
       return { key: region, terrain, baseUrl: manifestUrl };
     },
     content,
+    dioramas: {
+      placements:
+        params.get('dioramas') === '0'
+          ? []
+          : dioramaCatalog.placements.map((place) => ({
+              ...place,
+              groundFootprint: place.groundFootprint as [number, number],
+              load: async (signal) => {
+                return loadDiorama(place.scene, signal);
+              },
+            })),
+    },
     ambient: params.get('ambient') === '0' ? false : { density: 0.6 },
     camera: {
-      latitude: Number(params.get('lat') ?? 47.6163),
-      longitude: Number(params.get('lon') ?? -122.0356),
-      range: Number(params.get('range') ?? 1_800),
+      latitude: Number(
+        params.get('lat') ??
+          dioramaCatalog.placements.find((place) => place.scene === params.get('diorama'))
+            ?.latitude ??
+          47.6163,
+      ),
+      longitude: Number(
+        params.get('lon') ??
+          dioramaCatalog.placements.find((place) => place.scene === params.get('diorama'))
+            ?.longitude ??
+          -122.0356,
+      ),
+      range: Number(params.get('range') ?? (params.has('diorama') ? 180 : 1_800)),
       heading: 0.9,
       pitch: 0.42,
     },
@@ -196,18 +243,35 @@ async function main(): Promise<void> {
         'W/S or ↑/↓ accelerate / brake · A/D or ←/→ steer · Space brake · E exit · V change view',
       fly: 'W/S pitch · A/D bank · Q/Z rudder · Shift/Ctrl power · I engine · G gear · F flaps · E exit · V view',
     }[mode];
+    if (mode === 'drive' && view.vehicleStatus()?.kind === 'boat')
+      help.textContent =
+        'W/S thrust / reverse · A/D helm · Space opposing thrust · hold Shift to anchor slowly · E dockside exit · V view';
   };
   view.on('modechange', ({ mode }) => syncButtons(mode));
   // Buttons are host controls: they always switch (`force`), and Drive adds a car on the nearest
   // road when none is parked within reach.
+  const ride = document.getElementById('ride') as HTMLSelectElement;
+  view.walker.setAvatar({ figure: { preset: 'human.adult', palette: { top: '#2f5a3b' } } });
+  const requestedRide = params.get('vehicle');
+  if (requestedRide !== null && [...ride.options].some((option) => option.value === requestedRide))
+    ride.value = requestedRide;
   const enter = (mode: EarthViewMode): boolean =>
-    view.setMode(mode, mode === 'drive' ? { vehicle: true, force: true } : { force: true });
+    view.setMode(mode, mode === 'drive' ? { vehicle: ride.value, force: true } : { force: true });
   for (const button of buttons) {
     button.addEventListener('click', () => {
       enter(button.dataset.mode as EarthViewMode);
       canvas.focus();
     });
   }
+  const enterBoat = (): void => {
+    view.setMode('drive', { vehicle: 'molen.entities.watercraft.speedboat', force: true });
+    help.textContent =
+      'W/S thrust / reverse · A/D helm · Space reverse thrust · hold Shift to anchor below walking speed · E dockside exit · V view';
+    canvas.focus();
+  };
+  document.getElementById('boat')?.addEventListener('click', enterBoat);
+  if (params.has('boat')) enterBoat();
+  if (params.get('companion') === '1') followMe(view);
   const startMode = params.get('mode');
   message.hidden = true;
   if (startMode === 'walk' || startMode === 'drive' || startMode === 'fly') enter(startMode);
@@ -216,6 +280,40 @@ async function main(): Promise<void> {
     if (event.persisted) return;
     clearTimeout(hideTimer);
     view.dispose();
+  });
+}
+
+/**
+ * A companion on foot: it appears beside the walker, follows it, climbs into whatever the viewer
+ * drives off in (the follower reports `target-mounted`), and steps out and follows again once the
+ * viewer is back on foot. The walker gets a body for the third-person view (V).
+ */
+function followMe(view: EarthView): void {
+  view.walker.setAvatar({ figure: { preset: 'human.adult', palette: { top: '#2f5a3b' } } });
+  let companion: string | undefined;
+  view.on('frame', ({ mode, viewer }) => {
+    if (companion !== undefined || mode !== 'walk' || !view.walker.ready) return;
+    const [x, z] = view.toWorld(viewer.latitude, viewer.longitude);
+    companion = view.actors.add({
+      figure: { preset: 'human.adult', height: 1.66, palette: { top: '#b0553a' } },
+      ...view.toGeo(x + Math.cos(viewer.heading) * 2, z + Math.sin(viewer.heading) * 2),
+      heading: viewer.heading,
+      behaviour: { kind: 'follow', target: 'viewer' },
+      interactable: true,
+    });
+    view.actors.lookAt(companion, 'viewer');
+  });
+  view.on('actorchange', ({ id, change, reason }) => {
+    if (id !== companion) return;
+    const vehicle = view.interactable().id;
+    if (change === 'stuck' && reason === 'target-mounted' && vehicle !== undefined)
+      view.actors.setBehaviour(id, { kind: 'board', vehicle, force: true });
+    else if (change === 'alighted')
+      view.actors.setBehaviour(id, { kind: 'follow', target: 'viewer' });
+  });
+  view.on('modechange', ({ mode }) => {
+    if (mode === 'walk' && companion !== undefined && view.actors.pose(companion)?.mounted)
+      view.actors.setBehaviour(companion, { kind: 'alight' });
   });
 }
 

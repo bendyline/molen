@@ -5,6 +5,24 @@ import type { VehicleInteriorSpec } from './vehicle-interior';
 /** Stable external entity/type id for a wheeled vehicle. */
 export type VehicleKind = string;
 
+/** Self-balancing two-wheel handling and metric rider contact points, in model space. */
+export interface CycleSpec extends JsonObject {
+  maxLean: number;
+  riderLean: number;
+  handlebarPivot: [number, number, number];
+  /** Left, then right hand grips. */
+  grips: [[number, number, number], [number, number, number]];
+  /** Left, then right ankle targets on the footrests (used without pedals). */
+  footrests: [[number, number, number], [number, number, number]];
+  pedals?: {
+    center: [number, number, number];
+    radius: number;
+    halfWidth: number;
+    /** Wheel revolutions per crank revolution. */
+    ratio: number;
+  };
+}
+
 /** Data-driven tuning consumed by the generic wheeled-vehicle solver. */
 export interface VehicleSpec extends JsonObject {
   label: string;
@@ -48,6 +66,8 @@ export interface VehicleSpec extends JsonObject {
   suspensionFrequency?: number;
   /** Suspension damping ratio; default 0.5. */
   suspensionDamping?: number;
+  /** Two contact patches on the centreline; balances upright at rest and leans into turns. */
+  cycle?: CycleSpec;
 }
 
 /** Named-node bindings for a GLB-backed wheeled vehicle. */

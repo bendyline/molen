@@ -75,6 +75,10 @@ ordered local foot positions; `reach` limits mounting distance. A seat accepts o
 only the current driver can submit vehicle intent. Mounted actors bypass the kernel character
 and kinematics solvers. When the mount disappears, the rider is detached.
 
+Passenger seats: every stock car carries a `passenger` seat beside the driver, mirrored across
+the centreline, and the OH-6 one on the pilot's left; the P-51D has a rear `passenger` seat behind
+the pilot, like the TF-51D trainer. Only the `driver` seat controls the vehicle.
+
 The solver is a dynamic bicycle model substepped at 120 Hz or finer. Each axle's tires turn slip
 angle into side force (`corneringStiffness` per unit load per radian) up to the road's grip, then
 let go to about 85% of it as they slide. Side grip is `grip` (m/s², so `grip / 9.81` is the
@@ -133,9 +137,63 @@ ground (under open sky, never a roof or deck), `board(id)` without walking to th
 in. The entity's `vehicle.color`, when set, paints the model's `paintMaterial`; without one the
 authored paint stays.
 
+Passengers use the same mount contract. A `mountable` lists seats with a role: `driver` seats
+drive, `passenger` seats ride. `mountEntity(world, actor, vehicle, 'passenger')` seats someone
+beside the driver (stopped vehicle, within `reach` of the seat), the `mounted-seats` system carries
+them along, and `unmountEntity` lets any seat out by the exits once the vehicle has stopped. A
+passenger climbing in or out leaves the driver's controls alone; the driver leaving idles them.
+`driveVehicle` accepts input only from a driver seat, and `self.occupied` engine sounds count only
+non-passenger seats. The entities pack's cars and the OH-6 have a `passenger` seat and the P-51D a
+rear one. In the Earth view, actors board and leave them (`{ kind: 'board', vehicle }` and
+`{ kind: 'alight' }`; see [actors](earth-view.md#actors-companions-and-npcs)), and
+`EarthVehicles.unmount(actor)` steps any mounted entity out by those rules.
+
+## Riding cycles
+
+The entities pack includes six rideable types: `molen.entities.cycle.standard_motorcycle`,
+`cruiser_motorcycle`, `motor_scooter`, `city_bicycle`, `road_bicycle` and `cargo_bicycle` (the same
+namespace prefix applies to each). Mount, drive and exit them with the same APIs as cars. In the
+Earth view example, select a cycle beside **Drive**, then press **Drive**. **W** supplies motor or
+pedal power, **S** and **Space** brake, **A/D** steer, **V** changes view, and **E** steps off once
+stopped. These cycles have no powered reverse. The Earth view API accepts the full type ID:
+
+```js
+view.setMode('drive', { vehicle: 'molen.entities.cycle.city_bicycle', force: true });
+```
+
+`vehicle.spec.cycle` opts into two centreline tire contacts and automatic balance: the cycle
+leans into the turn, limited by `maxLean`, and returns upright as it stops. Lean follows lateral
+acceleration through damped springs; `g * tan(maxLean)` also limits steering at speed, so reducing the lean
+limit increases the minimum turning radius. Braking, tire grip, weather, terrain gaps, collision hooks and safe exits use the existing solver. Bicycles have
+lighter mass and lower power and speed limits. `cycle.pedals.ratio` specifies wheel revolutions
+per crank revolution; snapshot-safe `vehicleState.pedalAngle` advances under forward power and
+holds while coasting or braking. Wheel spin continues while coasting.
+
+The driver seat is a pelvis anchor. `cycle.riderLean`, `handlebarPivot`, `grips`, `footrests` and
+optional `pedals` describe metric contact points in model space. The figures capability and
+Earth avatar renderer share the same pose evaluator: hands follow the turning handlebars and
+feet follow the pedals or footrests. At low-speed steering lock the rider counterweights at the
+saddle and turns the shoulders to keep both grips within reach. The stock dimensions fit an adult human; unusually small
+or large figures may not reach every contact point. The cockpit uses `spec.driverEye` separately
+from the saddle. `vehicle.visual.animation` binds the moving parts in Earth; `model.signals`
+provides the same steering, wheel and pedal animation in ordinary Molen scenes.
+
+Cycles use the existing `molenVehicle(types, id)` helper and are enumerated separately by
+`MOLEN_CYCLE_ENTITY_IDS`; `MOLEN_VEHICLE_ENTITY_IDS` continues to enumerate cars and trucks.
+Cycles are excluded from automatic car parking and ambient traffic. Balance is assisted; this
+is grounded riding, without falls, wheelies, jumps, gears or stunt simulation.
+
+For a repeatable mounted-rider review in the engine repository:
+
+```sh
+molen validate content/entities/scenes/cycles.scene.json
+molen sim run content/entities/scenes/cycles.scene.json --setup content/entities/scenes/cycles.setup.mjs --ticks 120 --hash
+molen shot content/entities/scenes/cycles.scene.json --setup content/entities/scenes/cycles.setup.mjs --ticks 60 --out content/entities/shots/cycles.png
+```
+
 ## Engine sound
 
-Every `molen.entities` vehicle type carries an `audioSource`: the compact, sedan and SUV run
+The original five road vehicle types carry an `audioSource`: the compact, sedan and SUV run
 `vehicle.engine.car`, the pickup and van `vehicle.engine.diesel`, each with its own pitch. The
 engine plays only while someone drives (`self.occupied`), rises in pitch with
 `vehicleState.speed`, and grows louder with `vehicleInput.throttle`. Any host that plays audio from
@@ -171,3 +229,10 @@ working reference for scripting [`molen play`](experience-playback.md) against y
 pnpm build
 npx molen play dist --scenario test/visual/vehicles.play.json --out-dir .artifacts/vehicles
 ```
+
+## Boats
+
+[Boats and water](boats.md) use the same mounting, passenger seats and camera controls with a
+separate hull solver. `mountable.entries` optionally locates a gangway away from the seat;
+boat exits are checked against their local deck height. Earth view and World Explorer share
+boat launching, driving and dry dockside exits through `EarthVehicles`.

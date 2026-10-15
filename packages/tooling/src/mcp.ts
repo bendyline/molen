@@ -633,7 +633,7 @@ export function createMcpServer(): McpServer {
         tile: z.string().optional(),
         radius: z.number().int().nonnegative().optional(),
         bbox: z.array(z.number()).length(4).optional(),
-        classes: z.array(z.enum(['road', 'rail', 'path'])).optional(),
+        classes: z.array(z.enum(['road', 'rail', 'path', 'water'])).optional(),
         outPath: z.string(),
         heights: z.boolean().optional(),
       },

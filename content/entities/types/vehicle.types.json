@@ -88,6 +88,11 @@
               "id": "driver",
               "role": "driver",
               "position": [0.36, 1.16, 0.22]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.36, 1.16, 0.22]
             }
           ],
           "exits": [[1.36, 0, 0.22], [-1.36, 0, 0.22]],
@@ -216,6 +221,11 @@
               "id": "driver",
               "role": "driver",
               "position": [0.4, 1.14, 0.25]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.4, 1.14, 0.25]
             }
           ],
           "exits": [[1.41, 0, 0.25], [-1.41, 0, 0.25]],
@@ -345,6 +355,11 @@
               "id": "driver",
               "role": "driver",
               "position": [0.43, 1.43, 0.35]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.43, 1.43, 0.35]
             }
           ],
           "exits": [[1.47, 0, 0.35], [-1.47, 0, 0.35]],
@@ -474,6 +489,11 @@
               "id": "driver",
               "role": "driver",
               "position": [0.44, 1.46, 0.65]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.44, 1.46, 0.65]
             }
           ],
           "exits": [[1.49, 0, 0.65], [-1.49, 0, 0.65]],
@@ -603,6 +623,11 @@
               "id": "driver",
               "role": "driver",
               "position": [0.43, 1.59, 1.1]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.43, 1.59, 1.1]
             }
           ],
           "exits": [[1.48, 0, 1.1], [-1.48, 0, 1.1]],
@@ -646,6 +671,546 @@
           "config": {}
         }
       ]
+    },
+    "molen.entities.vehicle.sports_coupe": {
+      "doc": "Sports coupe. Mountable and ambient road vehicle.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.sports_coupe",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.sports_coupe",
+          "color": "#c66a4a",
+          "spec": {
+            "label": "Sports coupe",
+            "width": 2.0832,
+            "length": 4.449999999999999,
+            "height": 1.43,
+            "centerOfMass": [0, 0.44279999999999997, 0],
+            "wheelbase": 2.6,
+            "wheelTrack": 1.8228,
+            "wheelRadius": 0.31,
+            "mass": 1500,
+            "engineForce": 6500,
+            "maxSpeed": 54,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [0.3906, 0.9594, 0.2],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.3906, 0.9594, 0.2]
+            }
+          ],
+          "exits": [[1.302, 0, 0.2], [-1.302, 0, 0.2]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0.4
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.vehicle.sports_coupe"]
+    },
+    "molen.entities.vehicle.station_wagon": {
+      "doc": "Station wagon. Mountable and ambient road vehicle.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.station_wagon",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.station_wagon",
+          "color": "#668b85",
+          "spec": {
+            "label": "Station wagon",
+            "width": 2.0832,
+            "length": 4.8999999999999995,
+            "height": 1.7,
+            "centerOfMass": [0, 0.54, 0],
+            "wheelbase": 2.85,
+            "wheelTrack": 1.8228,
+            "wheelRadius": 0.33,
+            "mass": 1500,
+            "engineForce": 6500,
+            "maxSpeed": 40,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [0.3906, 1.17, 0.2],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.3906, 1.17, 0.2]
+            }
+          ],
+          "exits": [[1.302, 0, 0.2], [-1.302, 0, 0.2]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0.4
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.vehicle.station_wagon"]
+    },
+    "molen.entities.vehicle.electric_hatchback": {
+      "doc": "Electric hatchback. Mountable and ambient road vehicle.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.electric_hatchback",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.electric_hatchback",
+          "color": "#839daf",
+          "spec": {
+            "label": "Electric hatchback",
+            "width": 2.0160000000000005,
+            "length": 4.199999999999999,
+            "height": 1.75,
+            "centerOfMass": [0, 0.5579999999999999, 0],
+            "wheelbase": 2.55,
+            "wheelTrack": 1.764,
+            "wheelRadius": 0.31,
+            "mass": 1500,
+            "engineForce": 6500,
+            "maxSpeed": 40,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [0.378, 1.209, 0.2],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.378, 1.209, 0.2]
+            }
+          ],
+          "exits": [[1.26, 0, 0.2], [-1.26, 0, 0.2]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0.4
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.vehicle.electric_hatchback"]
+    },
+    "molen.entities.vehicle.taxi": {
+      "doc": "City taxi. Mountable and ambient road vehicle.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.taxi",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.taxi",
+          "color": "#e0b74c",
+          "spec": {
+            "label": "City taxi",
+            "width": 2.0832,
+            "length": 4.85,
+            "height": 1.7,
+            "centerOfMass": [0, 0.54, 0],
+            "wheelbase": 2.8,
+            "wheelTrack": 1.8228,
+            "wheelRadius": 0.33,
+            "mass": 1500,
+            "engineForce": 6500,
+            "maxSpeed": 40,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [0.3906, 1.17, 0.2],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.3906, 1.17, 0.2]
+            }
+          ],
+          "exits": [[1.302, 0, 0.2], [-1.302, 0, 0.2]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0.6
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.vehicle.taxi"]
+    },
+    "molen.entities.vehicle.offroad": {
+      "doc": "Off-road utility. Mountable and ambient road vehicle.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.offroad",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.offroad",
+          "color": "#8a9b72",
+          "spec": {
+            "label": "Off-road utility",
+            "width": 2.1728,
+            "length": 4.3999999999999995,
+            "height": 2.1,
+            "centerOfMass": [0, 0.6839999999999999, 0],
+            "wheelbase": 2.6,
+            "wheelTrack": 1.9012,
+            "wheelRadius": 0.39,
+            "mass": 1500,
+            "engineForce": 6500,
+            "maxSpeed": 40,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [0.4074, 1.482, 0.2],
+            "drive": "all",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.4074, 1.482, 0.2]
+            }
+          ],
+          "exits": [[1.3579999999999999, 0, 0.2], [-1.3579999999999999, 0, 0.2]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0.4
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.vehicle.offroad"]
+    },
+    "molen.entities.vehicle.box_truck": {
+      "doc": "Delivery box truck. Mountable and ambient road vehicle.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.vehicle.box_truck",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.vehicle.box_truck",
+          "color": "#6687a7",
+          "spec": {
+            "label": "Delivery box truck",
+            "width": 2.576,
+            "length": 6.8999999999999995,
+            "height": 3.45,
+            "centerOfMass": [0, 1.17, 0],
+            "wheelbase": 3.9,
+            "wheelTrack": 2.254,
+            "wheelRadius": 0.44,
+            "mass": 3800,
+            "engineForce": 9000,
+            "maxSpeed": 28,
+            "reverseSpeed": 7,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.52,
+            "grip": 8,
+            "driverEye": [0.48299999999999993, 2.535, 2.176],
+            "drive": "rear",
+            "steeringRate": 1.8,
+            "steeringFadeSpeed": 18,
+            "rollingResistance": 0.15,
+            "aerodynamicResistance": 0.0025,
+            "terrainAlignRate": 1.8,
+            "supportTolerance": 0.08,
+            "maxStepHeight": 0.4,
+            "maxSlope": 0.61
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front-left",
+              "wheel-front-right",
+              "wheel-rear-left",
+              "wheel-rear-right"
+            ],
+            "frontWheelNodes": ["wheel-front-left", "wheel-front-right"],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.48299999999999993, 2.535, 2.176]
+            }
+          ],
+          "exits": [[1.6099999999999999, 0, 2.176], [-1.6099999999999999, 0, 2.176]],
+          "reach": 2.5
+        },
+        "ambientRole": {
+          "role": "car",
+          "weight": 0.4
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        }
+      },
+      "assets": ["molen.entities.vehicle.box_truck"]
     }
   }
 }

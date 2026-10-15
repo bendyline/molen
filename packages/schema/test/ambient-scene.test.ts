@@ -45,7 +45,7 @@ describe('scene ambient block', () => {
   });
 
   it('rejects an unknown class and a wrong network format', () => {
-    expect(validate('scene', { ...base, ambient: { classes: ['boat'] } }).ok).toBe(false);
+    expect(validate('scene', { ...base, ambient: { classes: ['unknown-class'] } }).ok).toBe(false);
     expect(
       validate('scene', { ...base, ambient: { network: { format: 'molen/terrain@2' } } }).ok,
     ).toBe(false);

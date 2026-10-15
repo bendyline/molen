@@ -60,6 +60,7 @@ const CLASS_INDEX: Readonly<Record<EdgeDraft['class'], number>> = {
   rail: 1,
   walk: 2,
   air: 3,
+  water: 4,
 };
 
 /** Cumulative distances of a polyline. */
@@ -158,7 +159,7 @@ export function planarSplit(
 
   // Snap every cut point into nodes (per class), in deterministic draft order.
   const nodes: PlanarNode[] = [];
-  const nodeCells: Map<number, number[]>[] = [new Map(), new Map(), new Map(), new Map()];
+  const nodeCells: Map<number, number[]>[] = Object.keys(CLASS_INDEX).map(() => new Map());
   const nodeAt = (x: number, z: number, draft: EdgeDraft): number => {
     const cx = dmath.floor(x / snap);
     const cz = dmath.floor(z / snap);

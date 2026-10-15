@@ -268,6 +268,7 @@ export function rebuildNodeGroup(store: GraphStore, nodeIds: readonly string[]):
   const cache = new EndCache(store);
   buildRoadMovements(store, cache, roadArms, junction);
   buildRailMovements(store, cache, armsOf(store, group, 'rail'));
+  buildWaterMovements(store, cache, armsOf(store, group, 'water'));
   buildWalkMovements(store, cache, armsOf(store, group, 'walk'), roadArms, junction, maxWidth);
 }
 
@@ -528,6 +529,30 @@ function buildRoadMovements(
       lane.next = moves;
     }
   });
+}
+
+/** Keep ferry services separate from navigation channels even where their lines intersect. */
+function buildWaterMovements(store: GraphStore, cache: EndCache, arms: readonly Arm[]): void {
+  for (const inArm of arms) {
+    for (const lane of lanesAt(store, inArm, 'water', true)) {
+      const moves: LaneMovement[] = [];
+      for (const outArm of arms) {
+        if (outArm === inArm || outArm.edge.kind !== inArm.edge.kind) continue;
+        for (const target of lanesAt(store, outArm, 'water', false)) {
+          const move = movement(cache, lane, target, 'straight', 1, undefined, 0);
+          if (move !== undefined) moves.push(move);
+        }
+      }
+      if (moves.length === 0) {
+        const back = lanesAt(store, inArm, 'water', false)[0];
+        if (back !== undefined) {
+          const move = movement(cache, lane, back, 'uturn', 1, undefined, 0);
+          if (move !== undefined) moves.push(move);
+        }
+      }
+      lane.next = moves;
+    }
+  }
 }
 
 function buildRailMovements(store: GraphStore, cache: EndCache, arms: readonly Arm[]): void {

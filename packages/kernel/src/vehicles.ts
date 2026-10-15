@@ -1,5 +1,6 @@
 import {
   type AircraftStateData,
+  type BoatStateData,
   type JsonObject,
   resolveWeather,
   type VehicleData,
@@ -8,7 +9,7 @@ import {
 } from '@bendyline/molen-schema';
 import { type ComponentType, defineComponent, Transform, type TransformData } from './component';
 import { dmath as m } from './dmath';
-import { approach } from './math3d';
+import { approach, yawOf } from './math3d';
 import { groundFieldOf } from './terrain';
 import { weatherOf } from './weather';
 import { windField } from './wind';
@@ -32,6 +33,8 @@ export interface VehicleStateData extends JsonObject {
   grounded: boolean;
   waitingForTerrain: boolean;
   wheelAngle: number;
+  /** Bicycle crank angle; holds while coasting or braking. */
+  pedalAngle?: number;
   /** Sideways speed in m/s, positive to the left: the slide. */
   lateralSpeed?: number;
   /** Yaw rate in rad/s, positive turning left. */
@@ -53,6 +56,7 @@ export interface SeatData extends JsonObject {
 export interface MountableData extends JsonObject {
   seats: SeatData[];
   exits: [number, number, number][];
+  entries?: [number, number, number][];
   reach: number;
 }
 export interface MountedData extends JsonObject {
@@ -264,15 +268,20 @@ export function stepVehicle(
     // Lock and steering speed both fade with road speed, as a driver's hands do, and full lock
     // asks for at most half again the cornering the tires can give at this speed.
     const fade = 1 + m.abs(u) / spec.steeringFadeSpeed;
+    // A balanced cycle cannot ask for a tighter turn than its lean can support (a = g tan θ).
+    // Tire friction may impose a lower limit, particularly in wet or snowy weather.
+    const corneringLimit = spec.cycle
+      ? m.min(1.5 * friction * g, g * m.tan(spec.cycle.maxLean))
+      : 1.5 * friction * g;
     const lock = m.min(
       spec.maxSteer / fade,
-      m.atan((1.5 * friction * g * wheelbase) / m.max(u * u, 1)),
+      m.atan((corneringLimit * wheelbase) / m.max(u * u, 1)),
     );
     const steering = m.clamp(input.steering, -1, 1) * lock;
     next.steer = approach(next.steer, steering, (h * spec.steeringRate) / fade);
     const delta = next.steer;
     const opposing = throttle * u < -0.1;
-    const braking = input.brake || opposing;
+    const braking = input.brake || opposing || (spec.cycle !== undefined && throttle < 0);
     // Tire and air forces in the body frame (forward, left), and the yaw moment (left positive).
     let fx = 0;
     let fy = 0;
@@ -389,8 +398,10 @@ export function stepVehicle(
     // under power and rolls out of a turn, then settles on its springs.
     bodyPitchRate +=
       (omega * omega * ((-pitchPerG * feltForward) / g - bodyPitch) - damping * bodyPitchRate) * h;
-    bodyRollRate +=
-      (omega * omega * ((rollPerG * feltLeft) / g - bodyRoll) - damping * bodyRollRate) * h;
+    const rollTarget = spec.cycle
+      ? m.clamp(-m.atan2(u * r, g), -spec.cycle.maxLean, spec.cycle.maxLean)
+      : (rollPerG * feltLeft) / g;
+    bodyRollRate += (omega * omega * (rollTarget - bodyRoll) - damping * bodyRollRate) * h;
     bodyPitch += bodyPitchRate * h;
     bodyRoll += bodyRollRate * h;
     const yaw = next.yaw + r * h;
@@ -403,7 +414,7 @@ export function stepVehicle(
     ];
     const heights: number[] = [];
     for (const z of [spec.wheelbase / 2, -spec.wheelbase / 2]) {
-      for (const x of [-spec.wheelTrack / 2, spec.wheelTrack / 2]) {
+      for (const x of spec.cycle ? [0] : [-spec.wheelTrack / 2, spec.wheelTrack / 2]) {
         const ground = env.groundHeight(
           candidate[0] + fc * x + fs * z,
           candidate[2] - fs * x + fc * z,
@@ -412,7 +423,7 @@ export function stepVehicle(
         heights.push(ground);
       }
     }
-    if (heights.length !== 4) {
+    if (heights.length !== (spec.cycle ? 2 : 4)) {
       u = 0;
       v = 0;
       r = 0;
@@ -420,10 +431,12 @@ export function stepVehicle(
       next.waitingForTerrain = true;
       break;
     }
-    const [fl, fr, rl, rr] = heights as [number, number, number, number];
+    const [fl, fr, rl, rr] = (
+      spec.cycle ? [heights[0], heights[0], heights[1], heights[1]] : heights
+    ) as [number, number, number, number];
     const support = (fl + fr + rl + rr) / 4;
     const pitch = m.atan2((rl + rr - fl - fr) / 2, spec.wheelbase);
-    const roll = m.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack);
+    const roll = spec.cycle ? 0 : m.atan2((fr + rr - fl - rl) / 2, spec.wheelTrack);
     // Curbs are climbable; abrupt steps and slopes above 35 degrees are barriers.
     if (
       support - pos[1] > spec.maxStepHeight ||
@@ -516,6 +529,11 @@ export function stepVehicle(
     next.pitch = approach(next.pitch, pitch, h * spec.terrainAlignRate);
     next.roll = approach(next.roll, roll, h * spec.terrainAlignRate);
     next.wheelAngle = (next.wheelAngle + (u * h) / spec.wheelRadius) % m.TAU;
+    if (spec.cycle?.pedals && throttle > 0 && !braking && next.grounded)
+      next.pedalAngle =
+        ((next.pedalAngle ?? 0) +
+          (m.max(0, u) * h) / (spec.wheelRadius * spec.cycle.pedals.ratio)) %
+        m.TAU;
     pos = candidate;
   }
   next.speed = u;
@@ -557,8 +575,12 @@ export function mountEntity(
     return false;
   const entry = vehicleLocalPoint(t, seat.position);
   if (
-    m.hypot(actorT.pos[0] - entry[0], actorT.pos[1] - entry[1], actorT.pos[2] - entry[2]) >
-    mount.reach
+    ![seat.position, ...(mount.entries ?? [])].some((point) => {
+      const at = vehicleLocalPoint(t, point);
+      return (
+        m.hypot(actorT.pos[0] - at[0], actorT.pos[1] - at[1], actorT.pos[2] - at[2]) <= mount.reach
+      );
+    })
   )
     return false;
   for (const [, mounted] of world.query(Mounted))
@@ -566,10 +588,21 @@ export function mountEntity(
   stopWalking(world, actor);
   world.set(actor, Mounted, { vehicle, seat: seatId });
   world.patch(actor, Transform, { pos: entry, rot: [...t.rot] });
-  world.set(vehicle, VehicleInput, { ...IDLE_VEHICLE_INPUT });
+  // Only the driver takes the controls: a passenger climbing in leaves the driver's input alone.
+  if (seat.role === 'driver') {
+    if (world.has(vehicle, { name: 'boat' }))
+      world.set(vehicle, { name: 'boatInput' }, { throttle: 0, steering: 0, anchor: true });
+    else world.set(vehicle, VehicleInput, { ...IDLE_VEHICLE_INPUT });
+  }
   world.emit('vehicle-mounted', { actor, vehicle, seat: seatId });
   return true;
 }
+/**
+ * Step `actor` out of whatever it is mounted in, at the first of the vehicle's `exits` with
+ * ground beside it that `env.canExit` accepts; the vehicle must be stopped (and an aircraft shut
+ * down). Any seat may leave: a passenger leaving does not touch the controls, while the driver
+ * leaving idles them (and shuts an aircraft's engine). Returns false when no exit works.
+ */
 export function unmountEntity(world: World, actor: string, env: VehicleEnvironment): boolean {
   const mounted = world.get(actor, Mounted);
   if (!mounted) return false;
@@ -577,22 +610,41 @@ export function unmountEntity(world: World, actor: string, env: VehicleEnvironme
   const t = world.get(mounted.vehicle, Transform),
     mount = world.get(mounted.vehicle, Mountable);
   if (!t || !mount || groundSpeed(world.get(mounted.vehicle, VehicleState)) > 0.7) return false;
+  const driver = mount.seats.find((s) => s.id === mounted.seat)?.role !== 'passenger';
   for (const offset of mount.exits) {
     const pos = vehicleLocalPoint(t, offset);
     const ground = env.groundHeight(pos[0], pos[2]);
-    if (ground === undefined || m.abs(ground - t.pos[1]) > 0.6) continue;
+    if (
+      ground === undefined ||
+      m.abs(ground - (world.has(mounted.vehicle, { name: 'boat' }) ? pos[1] : t.pos[1])) > 0.6
+    )
+      continue;
     pos[1] = ground + 0.02;
     if (env.canExit && !env.canExit(pos, actor, mounted.vehicle)) continue;
     stopWalking(world, actor);
     world.remove(actor, Mounted);
-    world.patch(actor, Transform, { pos });
-    world.set(mounted.vehicle, VehicleInput, { ...IDLE_VEHICLE_INPUT });
-    if (world.has(mounted.vehicle, { name: 'aircraftInput' }))
-      world.patch(
-        mounted.vehicle,
-        { name: 'aircraftInput' },
-        { power: 0, engine: false, brake: true, pitch: 0, roll: 0, yaw: 0 },
-      );
+    world.patch(actor, Transform, {
+      pos,
+      ...(world.get(mounted.vehicle, Vehicle)?.spec.cycle !== undefined ||
+      world.has(mounted.vehicle, { name: 'boat' })
+        ? { rot: vehicleRotation(yawOf(t.rot)) }
+        : {}),
+    });
+    if (driver) {
+      if (world.has(mounted.vehicle, { name: 'boat' }))
+        world.set(
+          mounted.vehicle,
+          { name: 'boatInput' },
+          { throttle: 0, steering: 0, anchor: true },
+        );
+      else world.set(mounted.vehicle, VehicleInput, { ...IDLE_VEHICLE_INPUT });
+      if (world.has(mounted.vehicle, { name: 'aircraftInput' }))
+        world.patch(
+          mounted.vehicle,
+          { name: 'aircraftInput' },
+          { power: 0, engine: false, brake: true, pitch: 0, roll: 0, yaw: 0 },
+        );
+    }
     world.emit('vehicle-unmounted', { actor, vehicle: mounted.vehicle });
     return true;
   }
@@ -639,7 +691,13 @@ export function installVehicles(world: World, environment?: VehicleEnvironment):
           !driven.has(id) &&
           state.speed === 0 &&
           (state.lateralSpeed ?? 0) === 0 &&
-          (state.yawRate ?? 0) === 0
+          (state.yawRate ?? 0) === 0 &&
+          (vehicle.spec.cycle === undefined ||
+            m.abs(state.bodyRoll ?? 0) +
+              m.abs(state.bodyRollRate ?? 0) +
+              m.abs(state.bodyPitch ?? 0) +
+              m.abs(state.bodyPitchRate ?? 0) <
+              1e-5)
         )
           continue;
         const input = driven.has(id)
@@ -688,6 +746,12 @@ function groundSpeed(state: VehicleStateData | undefined): number {
 }
 
 function mountStopped(world: World, vehicle: string): boolean {
+  const boat = world.get<BoatStateData>(vehicle, { name: 'boatState' });
+  if (
+    boat &&
+    (m.hypot(...boat.velocity) > 0.7 || m.abs(boat.yawRate) > 0.1 || boat.waitingForWater)
+  )
+    return false;
   const state = world.get<AircraftStateData>(vehicle, { name: 'aircraftState' });
   return (
     !state ||

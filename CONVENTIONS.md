@@ -122,7 +122,7 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   (register new components with `registerComponent`).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
-  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world` (the ECS
+  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/boats`, `/aircraft`, `/world` (the ECS
   World without the SES scripting runtime, for main-thread hosts).
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).

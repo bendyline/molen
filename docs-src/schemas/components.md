@@ -37,13 +37,16 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `aircraft` | kernel/aircraft | External airplane/helicopter instance. Y up, Z forward; landing-contact origin. |
 | `aircraftInput` | kernel/aircraft | Pilot flight controls. Power is retained when input keys are released. |
 | `aircraftState` | kernel/aircraft | Deterministic flight state, including rotor phase and engine spool, preserved by keyframes. |
-| `ambientAgent` | ambient | Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it. |
+| `ambientAgent` | ambient | Kernel-owned state of an ambient NPC (car, pedestrian, train car, aircraft or boat): its lane, position along it, speed and routing. Read it; the ambient systems write it. |
 | `ambientObserver` | ambient | Marks the entity ambient NPCs spawn around (usually the player or camera rig), with optional radius and density overrides. |
-| `ambientRole` | ambient | On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight. |
+| `ambientRole` | ambient | On an entity type: makes it an ambient NPC candidate (car, bus, rail car, aircraft, boat or ferry) with dimensions, speeds and spawn weight. |
 | `ambientState` | ambient | Kernel-owned ambient bookkeeping on the `$ambient` entity: observer, spawn sequence and policy overrides. |
 | `audioEnvironment` | audio | Singleton soundscape rules: bus gains, ambience layers gated on weather/sky/listener signals, music playlist, event → sound mappings and listener footsteps. |
 | `audioSource` | audio | Sound emitter on an entity: a sound-bank id, loop/autoplay, gain and pitch driven by signals (vehicleState.speed, listener.distance…), and one-shot triggers. Positional when the entity has a transform. Render-side only; see guide/audio.md. |
 | `audioZone` | audio | Area ambience: a looping sound that fades in as the listener enters a sphere or box around the entity (a waterfall, a machine room, a market). |
+| `boat` | kernel/boats | Waterline-aligned powered hull with data-driven handling and shared seats. |
+| `boatInput` | kernel/boats | Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it. |
+| `boatState` | kernel/boats | Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats. |
 | `character` | kernel/character | Kinematic character controller state (speed/jump/gravity + kernel-owned vy/grounded). |
 | `collider` | kernel/kinematics | 2.5D kinematic collider (circle or XZ AABB) with layer/mask bitmasks. |
 | `collider3d` | physics-rapier | 3D collider (ball/cuboid/capsule/hull/trimesh/asset/heightfield) with layer/mask, sensor, and material params. Static without a rigidbody. |
@@ -80,6 +83,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 | `vehicleInput` | kernel/vehicles | Driver intent: signed throttle (negative brakes then reverses), signed steering (positive right), service brake and optional handbrake. |
 | `vehicleState` | kernel/vehicles | Snapshot-safe chassis state. Speeds in m/s, angles in radians; owned by installVehicles. |
 | `velocity` | physics-rapier | Opt-in per-tick body velocity mirror (presence = subscription; plugin-written). |
+| `water` | kernel/boats | Deterministic swells and current for boats; heights and coverage come from the host water field. |
 | `weather` |  | Singleton physical atmosphere and visual weather: temperature, pressure, humidity, wind, independent cloud cover, precipitation and visibility. Readable by scripts and physics; see guide/weather.md. |
 | `worldgenBuilding` | worldgen | A building generated at runtime from an outline in the entity frame, styled by a molen/archstyle@1 in the loaded pack; rendered by the worldgen client entity layer. |
 
@@ -87,7 +91,7 @@ with `registerComponent(name, zodSchema, meta)` from `@bendyline/molen-schema`. 
 
 ### `ambientAgent`
 
-Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it.
+Kernel-owned state of an ambient NPC (car, pedestrian, train car, aircraft or boat): its lane, position along it, speed and routing. Read it; the ambient systems write it.
 
 Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `state`, `since`, `hops`, `spawnedTick`
 
@@ -123,7 +127,8 @@ Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `stat
         "car",
         "pedestrian",
         "train",
-        "aircraft"
+        "aircraft",
+        "boat"
       ],
       "description": "Agent class."
     },
@@ -147,6 +152,11 @@ Required: `kind`, `type`, `lane`, `s`, `speed`, `seed`, `length`, `width`, `stat
       "type": "number",
       "minimum": 0,
       "description": "Speed along the lane in m/s."
+    },
+    "cruise": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Vessel cruise limit in m/s."
     },
     "prev": {
       "type": "string",
@@ -333,7 +343,7 @@ Required: none
 
 ### `ambientRole`
 
-On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight.
+On an entity type: makes it an ambient NPC candidate (car, bus, rail car, aircraft, boat or ferry) with dimensions, speeds and spawn weight.
 
 Required: `role`
 
@@ -359,7 +369,9 @@ Required: `role`
         "car",
         "bus",
         "rail",
-        "aircraft"
+        "aircraft",
+        "boat",
+        "ferry"
       ],
       "description": "Which ambient pool the type joins (buses drive with cars)."
     },
@@ -5318,6 +5330,750 @@ Required: `velocity`, `yaw`, `pitch`, `roll`, `pitchRate`, `rollRate`, `rpm`, `r
 
 </details>
 
+## Owner: kernel/boats
+
+### `boat`
+
+Waterline-aligned powered hull with data-driven handling and shared seats.
+
+Required: `kind`, `spec`, `visual`
+
+```json
+{
+  "kind": "demo.boat",
+  "spec": {
+    "label": "Launch",
+    "length": 6,
+    "width": 2.4,
+    "height": 2,
+    "draft": 0.5,
+    "mass": 1200,
+    "thrust": 3600,
+    "maxSpeed": 14,
+    "reverseSpeed": 3,
+    "turnRate": 0.5,
+    "turnResponse": 1,
+    "lateralDrag": 2,
+    "buoyancyFrequency": 1,
+    "driverEye": [
+      0.5,
+      1.2,
+      0
+    ]
+  },
+  "visual": {
+    "wheelNodes": [],
+    "frontWheelNodes": [],
+    "paintMaterial": "hull"
+  }
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable external vessel entity/type id."
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable vessel name."
+        },
+        "length": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Hull length along Z in meters."
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Hull width along X in meters."
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Vessel height in meters."
+        },
+        "draft": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Minimum water depth in meters."
+        },
+        "mass": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Mass in kg."
+        },
+        "thrust": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Forward propeller thrust in newtons."
+        },
+        "maxSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Maximum forward speed through water in m/s."
+        },
+        "reverseSpeed": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Maximum reverse speed through water in m/s."
+        },
+        "turnRate": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Maximum cruise yaw rate in radians per second."
+        },
+        "turnResponse": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Time to build or lose yaw rate in seconds."
+        },
+        "lateralDrag": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Lateral water resistance per second."
+        },
+        "buoyancyFrequency": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 4,
+          "description": "Buoyancy spring frequency in hertz."
+        },
+        "driverEye": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Helm eye position in local meters."
+        }
+      },
+      "required": [
+        "label",
+        "length",
+        "width",
+        "height",
+        "draft",
+        "mass",
+        "thrust",
+        "maxSpeed",
+        "reverseSpeed",
+        "turnRate",
+        "turnResponse",
+        "lateralDrag",
+        "buoyancyFrequency",
+        "driverEye"
+      ],
+      "additionalProperties": false,
+      "description": "Complete hull dimensions and handling configuration."
+    },
+    "visual": {
+      "type": "object",
+      "properties": {
+        "wheelNodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Wheel nodes; empty for ordinary hulls."
+        },
+        "frontWheelNodes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Steering wheel nodes; usually empty."
+        },
+        "steeringWheelNode": {
+          "description": "External steeringWheelNode setting.",
+          "type": "string",
+          "minLength": 1
+        },
+        "paintMaterial": {
+          "type": "string",
+          "minLength": 1,
+          "description": "External paintMaterial setting."
+        },
+        "interior": {
+          "description": "External interior setting.",
+          "type": "object",
+          "properties": {
+            "nodes": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": "Cabin nodes in the same exterior/interior GLB."
+            },
+            "sources": {
+              "description": "Optional component fields overriding or extending host telemetry.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "component": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Component on this same entity."
+                  },
+                  "path": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      ]
+                    },
+                    "description": "Explicit property names or array indices leading to a number or boolean."
+                  }
+                },
+                "required": [
+                  "component",
+                  "path"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "bindings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Exact loaded GLB node name."
+                  },
+                  "source": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Named simulation signal."
+                  },
+                  "property": {
+                    "type": "string",
+                    "enum": [
+                      "rotation",
+                      "position"
+                    ],
+                    "description": "Local transform channel."
+                  },
+                  "axis": {
+                    "type": "string",
+                    "enum": [
+                      "x",
+                      "y",
+                      "z"
+                    ],
+                    "description": "Local transform axis."
+                  },
+                  "scale": {
+                    "description": "Multiply the signal by this value. Supply this or keys.",
+                    "type": "number"
+                  },
+                  "offset": {
+                    "description": "Offset after scaling; default zero.",
+                    "type": "number"
+                  },
+                  "keys": {
+                    "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+                    "minItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "ease": {
+                    "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "smooth"
+                    ]
+                  },
+                  "min": {
+                    "description": "Minimum displacement from authored pose.",
+                    "type": "number"
+                  },
+                  "max": {
+                    "description": "Maximum displacement from authored pose.",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "node",
+                  "source",
+                  "property",
+                  "axis"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Per-model node channels and their signal calibration."
+            }
+          },
+          "required": [
+            "nodes",
+            "bindings"
+          ],
+          "additionalProperties": false
+        },
+        "animation": {
+          "description": "External animation setting.",
+          "type": "object",
+          "properties": {
+            "sources": {
+              "description": "Optional component fields overriding or extending host telemetry.",
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "minLength": 1
+              },
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "component": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Component on this same entity."
+                  },
+                  "path": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      ]
+                    },
+                    "description": "Explicit property names or array indices leading to a number or boolean."
+                  }
+                },
+                "required": [
+                  "component",
+                  "path"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "bindings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "node": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Exact loaded GLB node name."
+                  },
+                  "source": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Named simulation signal."
+                  },
+                  "property": {
+                    "type": "string",
+                    "enum": [
+                      "rotation",
+                      "position"
+                    ],
+                    "description": "Local transform channel."
+                  },
+                  "axis": {
+                    "type": "string",
+                    "enum": [
+                      "x",
+                      "y",
+                      "z"
+                    ],
+                    "description": "Local transform axis."
+                  },
+                  "scale": {
+                    "description": "Multiply the signal by this value. Supply this or keys.",
+                    "type": "number"
+                  },
+                  "offset": {
+                    "description": "Offset after scaling; default zero.",
+                    "type": "number"
+                  },
+                  "keys": {
+                    "description": "Keyframed curve of [signal, displacement] pairs, signals strictly ascending; holds the end values outside them. Supply this or scale.",
+                    "minItems": 2,
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "ease": {
+                    "description": "Interpolation between keys: linear (default), or smooth to ease out of and into every key.",
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "smooth"
+                    ]
+                  },
+                  "min": {
+                    "description": "Minimum displacement from authored pose.",
+                    "type": "number"
+                  },
+                  "max": {
+                    "description": "Maximum displacement from authored pose.",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "node",
+                  "source",
+                  "property",
+                  "axis"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Per-model node channels and their signal calibration."
+            }
+          },
+          "required": [
+            "bindings"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "wheelNodes",
+        "frontWheelNodes",
+        "paintMaterial"
+      ],
+      "additionalProperties": false,
+      "description": "Named GLB nodes, material and animation bindings."
+    },
+    "color": {
+      "description": "Optional hull paint override.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind",
+    "spec",
+    "visual"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `boatInput`
+
+Helm intent: signed thrust, steering and low-speed anchor. Only the driver controls it.
+
+Required: `throttle`, `steering`, `anchor`
+
+```json
+{
+  "throttle": 0,
+  "steering": 0,
+  "anchor": true
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "throttle": {
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1,
+      "description": "Signed propeller power; negative reverses thrust."
+    },
+    "steering": {
+      "type": "number",
+      "minimum": -1,
+      "maximum": 1,
+      "description": "Signed helm input; positive turns right."
+    },
+    "anchor": {
+      "type": "boolean",
+      "description": "Request the low-speed anchor; release to apply thrust."
+    }
+  },
+  "required": [
+    "throttle",
+    "steering",
+    "anchor"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `boatState`
+
+Snapshot-safe hull motion, buoyancy and anchoring; owned by installBoats.
+
+Required: `speed`, `lateralSpeed`, `velocity`, `yaw`, `yawRate`, `steer`, `pitch`, `roll`, `vy`, `anchored`, `grounded`, `waitingForWater`
+
+```json
+{
+  "speed": 0,
+  "lateralSpeed": 0,
+  "velocity": [
+    0,
+    0
+  ],
+  "yaw": 0,
+  "yawRate": 0,
+  "steer": 0,
+  "pitch": 0,
+  "roll": 0,
+  "vy": 0,
+  "anchored": true,
+  "grounded": false,
+  "waitingForWater": false
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "speed": {
+      "type": "number",
+      "description": "Forward speed through water in m/s."
+    },
+    "lateralSpeed": {
+      "type": "number",
+      "description": "Lateral speed through water in m/s."
+    },
+    "velocity": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "World velocity [east, south] including current in m/s."
+    },
+    "yaw": {
+      "type": "number",
+      "description": "Heading about +Y in radians."
+    },
+    "yawRate": {
+      "type": "number",
+      "description": "Yaw rate in radians per second."
+    },
+    "steer": {
+      "type": "number",
+      "description": "Smoothed helm input in [-1, 1]."
+    },
+    "pitch": {
+      "type": "number",
+      "description": "Hull pitch in radians."
+    },
+    "roll": {
+      "type": "number",
+      "description": "Hull roll in radians."
+    },
+    "vy": {
+      "type": "number",
+      "description": "Vertical buoyancy velocity in m/s."
+    },
+    "anchored": {
+      "type": "boolean",
+      "description": "Whether the low-speed anchor is engaged."
+    },
+    "grounded": {
+      "type": "boolean",
+      "description": "Whether the hull is stopped by insufficient depth."
+    },
+    "waitingForWater": {
+      "type": "boolean",
+      "description": "Whether motion is paused for unavailable water data."
+    }
+  },
+  "required": [
+    "speed",
+    "lateralSpeed",
+    "velocity",
+    "yaw",
+    "yawRate",
+    "steer",
+    "pitch",
+    "roll",
+    "vy",
+    "anchored",
+    "grounded",
+    "waitingForWater"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
+### `water`
+
+Deterministic swells and current for boats; heights and coverage come from the host water field.
+
+Required: none
+
+```json
+{
+  "waves": [],
+  "current": [
+    0,
+    0
+  ]
+}
+```
+
+<details>
+<summary>JSON Schema</summary>
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "waves": {
+      "description": "Up to eight travelling swells added to the water surface.",
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amplitude": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Swell amplitude in meters."
+          },
+          "wavelength": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Wavelength in meters."
+          },
+          "direction": {
+            "type": "number",
+            "description": "Travel direction in radians; zero is +Z."
+          },
+          "speed": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Wave propagation speed in m/s."
+          }
+        },
+        "required": [
+          "amplitude",
+          "wavelength",
+          "direction",
+          "speed"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "current": {
+      "description": "Current [east, south] in m/s.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+</details>
+
 ## Owner: kernel/character
 
 ### `character`
@@ -6101,6 +6857,19 @@ Required: `seats`, `exits`, `reach`
       },
       "description": "Available seat definitions. Each seat can hold one actor."
     },
+    "entries": {
+      "description": "Optional boarding points in local meters, e.g. a boat gangway; seat anchors remain valid entry points.",
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "minItems": 3,
+        "maxItems": 3,
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
     "exits": {
       "minItems": 1,
       "type": "array",
@@ -6287,8 +7056,8 @@ Required: `kind`, `color`, `spec`, `visual`
         },
         "wheelTrack": {
           "type": "number",
-          "exclusiveMinimum": 0,
-          "description": "External wheelTrack setting."
+          "minimum": 0,
+          "description": "Lateral wheel spacing in meters; zero for cycles."
         },
         "wheelRadius": {
           "type": "number",
@@ -6312,8 +7081,8 @@ Required: `kind`, `color`, `spec`, `visual`
         },
         "reverseSpeed": {
           "type": "number",
-          "exclusiveMinimum": 0,
-          "description": "External reverseSpeed setting."
+          "minimum": 0,
+          "description": "Maximum reverse speed; zero disables powered reverse."
         },
         "brakeDeceleration": {
           "type": "number",
@@ -6423,6 +7192,128 @@ Required: `kind`, `color`, `spec`, `visual`
           "description": "Suspension damping ratio. Default 0.5.",
           "type": "number",
           "exclusiveMinimum": 0
+        },
+        "cycle": {
+          "description": "Self-balancing cycle handling and rider contact points. Driver seat anchors the pelvis.",
+          "type": "object",
+          "properties": {
+            "maxLean": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 1.2,
+              "description": "Maximum balanced inward lean in radians."
+            },
+            "riderLean": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Forward torso lean in radians."
+            },
+            "handlebarPivot": {
+              "minItems": 3,
+              "maxItems": 3,
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "description": "Steering pivot in model-local meters."
+            },
+            "grips": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Left and right hand targets in model-local meters."
+            },
+            "footrests": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "Left and right ankle targets in model-local meters."
+            },
+            "pedals": {
+              "description": "Bicycle crank geometry and gearing; omitted on motor vehicles.",
+              "type": "object",
+              "properties": {
+                "center": {
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "description": "Crank centre in model-local meters."
+                },
+                "radius": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Crank arm length in meters."
+                },
+                "halfWidth": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Distance from centreline to each pedal in meters."
+                },
+                "ratio": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Wheel revolutions per crank revolution."
+                }
+              },
+              "required": [
+                "center",
+                "radius",
+                "halfWidth",
+                "ratio"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "maxLean",
+            "riderLean",
+            "handlebarPivot",
+            "grips",
+            "footrests"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -6908,6 +7799,10 @@ Required: `speed`, `steer`, `yaw`, `pitch`, `roll`, `vy`, `grounded`, `waitingFo
     "wheelAngle": {
       "type": "number",
       "description": "Accumulated wheel spin angle in radians, wrapped each revolution."
+    },
+    "pedalAngle": {
+      "description": "Cycle crank angle in radians; advances under forward power and holds while coasting or braking.",
+      "type": "number"
     },
     "lateralSpeed": {
       "description": "Sideways speed in meters per second, positive to the left: the slide.",

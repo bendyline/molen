@@ -1,0 +1,136 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.watercraft.passenger_ferry": {
+      "doc": "Passenger ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.passenger_ferry",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "ferry",
+          "length": 32.2,
+          "width": 9.46,
+          "height": 8.5,
+          "cruise": 10,
+          "max": 10,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": [
+            "#678f9f"
+          ]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.passenger_ferry",
+          "color": "#678f9f",
+          "spec": {
+            "label": "Passenger ferry",
+            "length": 32.2,
+            "width": 9.46,
+            "height": 8.5,
+            "draft": 1.5,
+            "mass": 227040.00000000003,
+            "thrust": 136224.0,
+            "maxSpeed": 13.0,
+            "reverseSpeed": 3,
+            "turnRate": 0.09375,
+            "turnResponse": 2.6666666666666665,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [
+              1.634,
+              5.73,
+              7.36
+            ]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                1.634,
+                5.73,
+                7.36
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -1.634,
+                5.73,
+                7.36
+              ]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [
+                2.15,
+                2.3499999999999996,
+                -8.0
+              ]
+            }
+          ],
+          "exits": [
+            [
+              5.33,
+              1.4,
+              7.36
+            ],
+            [
+              -5.33,
+              1.4,
+              7.36
+            ]
+          ],
+          "entries": [
+            [
+              4.3,
+              2.4,
+              7.36
+            ],
+            [
+              -4.3,
+              2.4,
+              7.36
+            ]
+          ],
+          "reach": 3.5
+        }
+      },
+      "assets": [
+        "molen.entities.watercraft.passenger_ferry"
+      ]
+    }
+  }
+}

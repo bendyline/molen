@@ -1,0 +1,424 @@
+{
+  "format": "molen/scene@3",
+  "name": "Rideable motorcycles and bicycles",
+  "seed": "fleet-2026",
+  "tickRate": 60,
+  "entities": [
+    {
+      "id": "standard-motorcycle",
+      "type": "molen.entities.cycle.standard_motorcycle",
+      "components": {
+        "transform": {
+          "pos": [
+            -3.5,
+            0,
+            -2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "cruiser-motorcycle",
+      "type": "molen.entities.cycle.cruiser_motorcycle",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            -2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "motor-scooter",
+      "type": "molen.entities.cycle.motor_scooter",
+      "components": {
+        "transform": {
+          "pos": [
+            3.5,
+            0,
+            -2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "city-bicycle",
+      "type": "molen.entities.cycle.city_bicycle",
+      "components": {
+        "transform": {
+          "pos": [
+            -3.5,
+            0,
+            2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "road-bicycle",
+      "type": "molen.entities.cycle.road_bicycle",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "cargo-bicycle",
+      "type": "molen.entities.cycle.cargo_bicycle",
+      "components": {
+        "transform": {
+          "pos": [
+            3.5,
+            0,
+            2
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "rider-0",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "figure": {
+          "preset": "human.adult",
+          "seed": "cycle-0"
+        },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural"
+        },
+        "mounted": {
+          "vehicle": "standard-motorcycle",
+          "seat": "driver"
+        }
+      }
+    },
+    {
+      "id": "rider-1",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "figure": {
+          "preset": "human.adult",
+          "seed": "cycle-1"
+        },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural"
+        },
+        "mounted": {
+          "vehicle": "cruiser-motorcycle",
+          "seat": "driver"
+        }
+      }
+    },
+    {
+      "id": "rider-2",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "figure": {
+          "preset": "human.adult",
+          "seed": "cycle-2"
+        },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural"
+        },
+        "mounted": {
+          "vehicle": "motor-scooter",
+          "seat": "driver"
+        }
+      }
+    },
+    {
+      "id": "rider-3",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "figure": {
+          "preset": "human.adult",
+          "seed": "cycle-3"
+        },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural"
+        },
+        "mounted": {
+          "vehicle": "city-bicycle",
+          "seat": "driver"
+        }
+      }
+    },
+    {
+      "id": "rider-4",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "figure": {
+          "preset": "human.adult",
+          "seed": "cycle-4"
+        },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural"
+        },
+        "mounted": {
+          "vehicle": "road-bicycle",
+          "seat": "driver"
+        }
+      }
+    },
+    {
+      "id": "rider-5",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "figure": {
+          "preset": "human.adult",
+          "seed": "cycle-5"
+        },
+        "renderable": {
+          "kind": "figure",
+          "ref": "procedural"
+        },
+        "mounted": {
+          "vehicle": "cargo-bicycle",
+          "seat": "driver"
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -6,
+              10,
+              4
+            ],
+            "color": "#fff3dd",
+            "intensity": 3,
+            "castShadow": true
+          },
+          "background": "#b9d5e5",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "plaza",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.1,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            34,
+            0.2,
+            30
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#aaa59a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      9,
+      6,
+      11
+    ],
+    "lookAt": [
+      0,
+      1,
+      0
+    ],
+    "fov": 45
+  },
+  "commands": {
+    "ride": {
+      "payload": {
+        "type": "object",
+        "properties": {
+          "rider": {
+            "type": "string"
+          },
+          "throttle": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "steering": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "brake": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "rider",
+          "throttle",
+          "steering",
+          "brake"
+        ],
+        "additionalProperties": false
+      },
+      "doc": "Set controls for one mounted rider."
+    },
+    "exit": {
+      "payload": {
+        "type": "object",
+        "properties": {
+          "rider": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "rider"
+        ],
+        "additionalProperties": false
+      },
+      "doc": "Leave a stopped cycle."
+    }
+  }
+}

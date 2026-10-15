@@ -1,0 +1,90 @@
+{
+  "format": "molen/experience-play@1",
+  "name": "world-boat-driving",
+  "path": "/?quality=economy&lat=47.6200&lon=-122.0900&alt=120&yaw=0&pitch=-0.3&ambient=0&nostyles=1&backend=webgl",
+  "viewport": [1280, 720],
+  "probes": [
+    {
+      "name": "navigation",
+      "selector": "#navigation-status"
+    },
+    {
+      "name": "status",
+      "selector": "#status"
+    }
+  ],
+  "actions": [
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-water-height]:not([data-water-height=\"\"])",
+      "timeoutMs": 120000
+    },
+    {
+      "type": "wait",
+      "durationMs": 8000
+    },
+    {
+      "type": "screenshot",
+      "name": "00-lake"
+    },
+    {
+      "type": "click",
+      "selector": "#view"
+    },
+    {
+      "type": "keys",
+      "keys": ["b"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait-for",
+      "selector": "#navigation-status[data-vehicle^=earth-boat]",
+      "timeoutMs": 30000
+    },
+    {
+      "type": "wait",
+      "durationMs": 1500
+    },
+    {
+      "type": "screenshot",
+      "name": "01-aboard"
+    },
+    {
+      "type": "keys",
+      "keys": ["w"],
+      "durationMs": 4000
+    },
+    {
+      "type": "keys",
+      "keys": ["w", "d"],
+      "durationMs": 2000
+    },
+    {
+      "type": "screenshot",
+      "name": "02-underway"
+    },
+    {
+      "type": "keys",
+      "keys": ["Space"],
+      "durationMs": 6500
+    },
+    {
+      "type": "keys",
+      "keys": ["Shift"],
+      "durationMs": 800
+    },
+    {
+      "type": "keys",
+      "keys": ["e"],
+      "durationMs": 100
+    },
+    {
+      "type": "wait",
+      "durationMs": 1500
+    },
+    {
+      "type": "screenshot",
+      "name": "03-water-exit-blocked"
+    }
+  ]
+}

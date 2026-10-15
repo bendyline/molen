@@ -59,6 +59,18 @@ function tile(start = 0.05, end = 0.95) {
   });
   return result;
 }
+/** The road continuing above ground from a portal: ordinary lines along v = 0.5. */
+function surfacing(result: ReturnType<typeof tile>, ...spans: Array<[number, number]>) {
+  result.transportation.push({
+    class: 'highway',
+    width: 12,
+    lines: spans.map(([from, to]) => [
+      [from, 0.5],
+      [to, 0.5],
+    ]),
+  });
+  return result;
+}
 function ground() {
   const geometry = new THREE.PlaneGeometry(200, 200, 4, 4)
     .rotateX(-Math.PI / 2)
@@ -134,8 +146,8 @@ describe('mapped tunnels', () => {
   });
 
   it('joins buffered neighboring fragments before grading; the same seam has the same floor', async () => {
-    const left = tile(0.1, 1.015625),
-      right = tile(-0.015625, 0.9);
+    const left = surfacing(tile(0.1, 1.015625), [0, 0.1]),
+      right = surfacing(tile(-0.015625, 0.9), [0.9, 1]);
     const source = {
       load: vi.fn(async (address: { x: number; z: number }) =>
         address.z ? undefined : address.x === 0 ? left : address.x === 1 ? right : undefined,
@@ -182,6 +194,23 @@ describe('mapped tunnels', () => {
     const incomplete = await renderer.createTile(tile(0.1, 1.015625), context());
     expect(incomplete?.getObjectByName('semantic:tunnels')).toBeUndefined();
     expect(heights.load).not.toHaveBeenCalled();
+  });
+
+  it('grades only between portals where the route surfaces, not at gaps between buried fragments', async () => {
+    const inner = { createTile: vi.fn(() => new THREE.Group()) };
+    const heights = { load: vi.fn(async () => undefined) };
+    const renderer = withTerrainTunnels(inner, { load: vi.fn(async () => undefined) }, heights, 2);
+    // Both ends lie inside the tile, but no ordinary road continues from them.
+    const buried = await renderer.createTile(tile(0.1, 0.9), context());
+    expect(buried?.getObjectByName('terrain:tunnels')?.children).toHaveLength(0);
+    // The same bore whose road surfaces at each end is graded between those portals.
+    const portals = await renderer.createTile(
+      surfacing(tile(0.1, 0.9), [0, 0.1], [0.9, 1]),
+      context(),
+    );
+    const root = new THREE.Group();
+    if (portals) root.add(portals);
+    expect(sampleTerrainTunnel(root, 100, 13, 100)?.floor).toBeCloseTo(10.32);
   });
 
   it('uses authored floor and clearance measurements instead of inferring them from the DEM', () => {

@@ -513,7 +513,7 @@ export const AUDIO_SIGNALS: Readonly<Record<string, string>> = {
   'self.speed': "The source entity's speed (m/s), measured from its transform between frames.",
   'self.distance': 'Odometer: meters the source entity has moved.',
   'self.occupied':
-    'true while someone rides the source entity (a `mounted` component names it): engines that run only with a driver.',
+    'true while someone rides the source entity (a `mounted` component names it) in a seat that is not a `passenger` seat: engines that run only with a driver.',
   'time.seconds': 'Seconds since the audio layer started.',
 };
 

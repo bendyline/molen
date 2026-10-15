@@ -1,0 +1,30 @@
+{
+  "name": "@bendyline/molen-examples-dioramas",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Six on-demand scripted set pieces with bounded choreography",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5250",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome check src test",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@bendyline/molen-client": "workspace:*",
+    "@bendyline/molen-figures": "workspace:*",
+    "@bendyline/molen-kernel": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
+    "@bendyline/molen-tooling": "workspace:*",
+    "three": "0.184.0",
+    "@bendyline/molen-dioramas": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.0",
+    "@types/three": "0.184.0",
+    "typescript": "catalog:",
+    "vite": "^6.4.0",
+    "vitest": "catalog:"
+  }
+}

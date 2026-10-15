@@ -58,6 +58,8 @@ export interface PoseEvalOptions {
   ik?: Partial<Record<FigureIkEffector, Vec3>>;
   /** Re-anchor the root so this point sits at the figure origin (seats, saddles). */
   anchor?: FigureAnchor;
+  /** Saddle-relative contact points for a cycle rider, evaluated after the seated pose. */
+  riding?: { lean: number; turn?: number; ik: Partial<Record<FigureIkEffector, Vec3>> };
 }
 
 const DEG = dmath.PI / 180;
@@ -311,13 +313,56 @@ export function evaluatePose(
       if (index !== undefined) setQuat(cur, index, quatNormalize(q));
     }
   }
+  if (opts.riding !== undefined && rig.archetype === 'biped') {
+    // Replace the chair's upright torso with the posture authored for these handlebars.
+    const spine = rig.index.spine;
+    if (spine !== undefined)
+      setQuat(cur, spine, [dmath.sin(opts.riding.lean / 2), 0, 0, dmath.cos(opts.riding.lean / 2)]);
+    // At walking-speed steering lock the rider counterweights at the saddle and turns their
+    // shoulders with the bars. At speed the steering angle fades, so chassis lean dominates.
+    const turn = opts.riding.turn ?? 0;
+    const hips = rig.index.hips,
+      chest = rig.index.chest;
+    if (hips !== undefined)
+      setQuat(cur, hips, [0, 0, dmath.sin((turn * 0.75) / 2), dmath.cos((turn * 0.75) / 2)]);
+    if (chest !== undefined) setQuat(cur, chest, [0, dmath.sin(turn / 2), 0, dmath.cos(turn / 2)]);
+  }
   writeLocals(rig, cur, pose.local);
   const needsModel =
+    opts.riding !== undefined ||
     opts.ik !== undefined ||
     (opts.lookTarget !== undefined && (opts.lookWeight ?? 1) > 0) ||
     (opts.anchor !== undefined && opts.anchor !== 'origin');
   if (!needsModel) return pose;
   const model = scratchModel(jointCount);
+  if (opts.riding !== undefined && rig.archetype === 'biped') {
+    poseModelSpace(pose, model);
+    const hips = rig.index.hips;
+    const origin = hips === undefined ? [0, 0, 0] : readTransform(model, hips).pos;
+    for (const effector of ['hand.l', 'hand.r', 'foot.l', 'foot.r'] as const) {
+      const target = opts.riding.ik[effector];
+      if (target === undefined) continue;
+      applyIk(rig, cur, model, effector, [
+        target[0] + (origin[0] ?? 0),
+        target[1] + (origin[1] ?? 0),
+        target[2] + (origin[2] ?? 0),
+      ]);
+    }
+    writeLocals(rig, cur, pose.local);
+    poseModelSpace(pose, model);
+    // Keep the shoes level on the pedals/footrests as the knees flex.
+    for (const name of ['foot.l', 'foot.r']) {
+      const index = rig.index[name];
+      const joint = index === undefined ? undefined : rig.joints[index];
+      if (index !== undefined && joint !== undefined && joint.parent >= 0)
+        setQuat(
+          cur,
+          index,
+          quatConjugate(quatMul(readTransform(model, joint.parent).rot ?? IDENTITY, joint.bindRot)),
+        );
+    }
+    writeLocals(rig, cur, pose.local);
+  }
   if (opts.ik !== undefined) {
     poseModelSpace(pose, model);
     for (const effector of ['hand.l', 'hand.r', 'foot.l', 'foot.r'] as const) {

@@ -1149,7 +1149,8 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
               "car",
               "pedestrian",
               "train",
-              "aircraft"
+              "aircraft",
+              "boat"
             ]
           },
           "description": "Which NPC classes run (default ['car'])."
@@ -1162,7 +1163,8 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
               "car",
               "pedestrian",
               "train",
-              "aircraft"
+              "aircraft",
+              "boat"
             ]
           },
           "additionalProperties": {
@@ -1197,7 +1199,8 @@ Root document an experience boots from; instantiates into ECS state at tick 0.
               "car",
               "pedestrian",
               "train",
-              "aircraft"
+              "aircraft",
+              "boat"
             ]
           },
           "additionalProperties": {

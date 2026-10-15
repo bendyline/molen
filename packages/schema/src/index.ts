@@ -51,6 +51,15 @@ export {
   soundbankSchema,
   validateSoundbank,
 } from './audio';
+export type {
+  BoatData,
+  BoatInputData,
+  BoatSpec,
+  BoatStateData,
+  WaterSettings,
+  WaterWave,
+} from './boats';
+export { waterSettingsSchema } from './boats';
 export type { PayloadCheck } from './commands';
 export { commandPayloadValidator, compileCommandPayload } from './commands';
 export type {
@@ -192,6 +201,7 @@ export type {
 export type { VehicleInteriorBinding, VehicleInteriorSpec } from './vehicle-interior';
 export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
+  CycleSpec,
   VehicleData,
   VehicleKind,
   VehiclePlacement,
