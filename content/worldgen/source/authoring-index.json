@@ -898,6 +898,69 @@
         "packages/worldgen/scripts/structure-mesh.mjs",
         "packages/worldgen/scripts/structure-source-paths.mjs"
       ]
+    },
+    {
+      "id": "worldgen-authored-places",
+      "command": [
+        "node",
+        "packages/worldgen/scripts/generate-authored-places.mjs"
+      ],
+      "implementation": [
+        "packages/worldgen/scripts/authored-place-models.mjs",
+        "packages/worldgen/scripts/authored-structure-mesh.mjs",
+        "packages/worldgen/scripts/deterministic-math.mjs",
+        "packages/worldgen/scripts/deterministic-pow.mjs",
+        "packages/worldgen/scripts/evidence-text-hash.mjs",
+        "packages/worldgen/scripts/generate-authored-places.mjs",
+        "packages/worldgen/scripts/install-deterministic-math.mjs",
+        "packages/worldgen/scripts/landmark-model-helpers.mjs",
+        "packages/worldgen/scripts/standard-materials.mjs",
+        "packages/worldgen/scripts/structure-anne-frank-house.mjs",
+        "packages/worldgen/scripts/structure-arizona-biltmore.mjs",
+        "packages/worldgen/scripts/structure-asset-paths.mjs",
+        "packages/worldgen/scripts/structure-bach-house.mjs",
+        "packages/worldgen/scripts/structure-banff-springs-hotel.mjs",
+        "packages/worldgen/scripts/structure-beethoven-house.mjs",
+        "packages/worldgen/scripts/structure-brandenburg-gate.mjs",
+        "packages/worldgen/scripts/structure-chateau-frontenac.mjs",
+        "packages/worldgen/scripts/structure-chateau-laurier.mjs",
+        "packages/worldgen/scripts/structure-chatsworth-house.mjs",
+        "packages/worldgen/scripts/structure-eastern-state-penitentiary.mjs",
+        "packages/worldgen/scripts/structure-ennis-house.mjs",
+        "packages/worldgen/scripts/structure-fallingwater.mjs",
+        "packages/worldgen/scripts/structure-faneuil-hall.mjs",
+        "packages/worldgen/scripts/structure-ford-island-control-tower.mjs",
+        "packages/worldgen/scripts/structure-fords-theatre.mjs",
+        "packages/worldgen/scripts/structure-fraunces-tavern.mjs",
+        "packages/worldgen/scripts/structure-gamble-house.mjs",
+        "packages/worldgen/scripts/structure-getty-villa.mjs",
+        "packages/worldgen/scripts/structure-hangar-37.mjs",
+        "packages/worldgen/scripts/structure-hearst-castle.mjs",
+        "packages/worldgen/scripts/structure-hemingway-house.mjs",
+        "packages/worldgen/scripts/structure-hollyhock-house.mjs",
+        "packages/worldgen/scripts/structure-hollywood-sign.mjs",
+        "packages/worldgen/scripts/structure-hotel-chelsea.mjs",
+        "packages/worldgen/scripts/structure-hotel-del-coronado.mjs",
+        "packages/worldgen/scripts/structure-hotel-des-indes.mjs",
+        "packages/worldgen/scripts/structure-hotel-majapahit.mjs",
+        "packages/worldgen/scripts/structure-jamaica-inn.mjs",
+        "packages/worldgen/scripts/structure-jefferson-memorial.mjs",
+        "packages/worldgen/scripts/structure-kensington-palace-gardens-13.mjs",
+        "packages/worldgen/scripts/structure-liebermann-villa.mjs",
+        "packages/worldgen/scripts/structure-lincoln-memorial.mjs",
+        "packages/worldgen/scripts/structure-lorraine-motel.mjs",
+        "packages/worldgen/scripts/structure-mesh.mjs",
+        "packages/worldgen/scripts/structure-palace-hotel.mjs",
+        "packages/worldgen/scripts/structure-ponce-de-leon-hotel.mjs",
+        "packages/worldgen/scripts/structure-reichstag.mjs",
+        "packages/worldgen/scripts/structure-ritz-london.mjs",
+        "packages/worldgen/scripts/structure-robben-island-lighthouse.mjs",
+        "packages/worldgen/scripts/structure-robben-island-prison.mjs",
+        "packages/worldgen/scripts/structure-source-paths.mjs",
+        "packages/worldgen/scripts/structure-stonewall-inn.mjs",
+        "packages/worldgen/scripts/structure-watergate-complex.mjs",
+        "packages/worldgen/scripts/structure-winchester-mystery-house.mjs"
+      ]
     }
   ],
   "entries": [
@@ -1298,6 +1361,50 @@
       ],
       "recipes": [
         "examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.anne_frank_house",
+      "candidateId": "anne_frank_house",
+      "title": "Anne Frank House",
+      "sourceBundle": "content/worldgen/source/places/u1/u17/anne_frank_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.anne_frank_house",
+          "output": "assets/places/u1/u17/anne_frank_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:b8eb6ce7debe12d118c078792fd841d56753bd0aa0592a7235e7f8d9d9a9be70"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-anne-frank-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.arizona_biltmore",
+      "candidateId": "arizona_biltmore",
+      "title": "Arizona Biltmore Hotel",
+      "sourceBundle": "content/worldgen/source/places/9t/9tb/arizona_biltmore/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.arizona_biltmore",
+          "output": "assets/places/9t/9tb/arizona_biltmore/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:b14ec9c1a46027756d2955d626f7006155309120dbed98fbe5c6e91c87d0ceb4"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-arizona-biltmore.mjs"
       ]
     },
     {
@@ -1721,6 +1828,94 @@
       ]
     },
     {
+      "assetId": "molen.worldgen.structure.bach_house",
+      "candidateId": "bach_house",
+      "title": "Bach House (Eisenach)",
+      "sourceBundle": "content/worldgen/source/places/u1/u1p/bach_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.bach_house",
+          "output": "assets/places/u1/u1p/bach_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-bach-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.banff_springs_hotel",
+      "candidateId": "banff_springs_hotel",
+      "title": "The Fairmont Banff Springs Hotel",
+      "sourceBundle": "content/worldgen/source/places/c3/c3j/banff_springs_hotel/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.banff_springs_hotel",
+          "output": "assets/places/c3/c3j/banff_springs_hotel/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:f2996b493d3f94d6b5044ec9ff58e530f7bc25055d21d5991ca0b8b35f6eaff5"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-banff-springs-hotel.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.beethoven_house",
+      "candidateId": "beethoven_house",
+      "title": "Beethoven House",
+      "sourceBundle": "content/worldgen/source/places/u1/u1j/beethoven_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.beethoven_house",
+          "output": "assets/places/u1/u1j/beethoven_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:102ca8b1df837c1bb710059a9fd74514953cded983ebd884cf227c4e811c5781"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-beethoven-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.brandenburg_gate",
+      "candidateId": "brandenburg_gate",
+      "title": "Brandenburg Gate",
+      "sourceBundle": "content/worldgen/source/places/u3/u33/brandenburg_gate/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.brandenburg_gate",
+          "output": "assets/places/u3/u33/brandenburg_gate/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:d84942a49a54992e85e61015ff04305e1e050eaf79c9d0e8fb2c610a90a3fd2c"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-brandenburg-gate.mjs"
+      ]
+    },
+    {
       "assetId": "molen.worldgen.structure.c03_i_90_lacey_v_murrow_memorial_bridge",
       "candidateId": "C03",
       "title": "I-90 Lacey V. Murrow Memorial Bridge",
@@ -2096,6 +2291,72 @@
       ],
       "recipes": [
         "examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.chateau_frontenac",
+      "candidateId": "chateau_frontenac",
+      "title": "Château Frontenac",
+      "sourceBundle": "content/worldgen/source/places/f2/f2m/chateau_frontenac/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.chateau_frontenac",
+          "output": "assets/places/f2/f2m/chateau_frontenac/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:0fd47c18560ee91a39a232d4ddcd18e2f1b4beaf5bef09cb970fb84104b2a632"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-chateau-frontenac.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.chateau_laurier",
+      "candidateId": "chateau_laurier",
+      "title": "Château Laurier",
+      "sourceBundle": "content/worldgen/source/places/f2/f24/chateau_laurier/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.chateau_laurier",
+          "output": "assets/places/f2/f24/chateau_laurier/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:c79935600a563608dddebc2d5e8e814748d32bd9190ce31dc20ab254a6655559"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-chateau-laurier.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.chatsworth_house",
+      "candidateId": "chatsworth_house",
+      "title": "Chatsworth House",
+      "sourceBundle": "content/worldgen/source/places/gc/gcq/chatsworth_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.chatsworth_house",
+          "output": "assets/places/gc/gcq/chatsworth_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:e5e837b3947d727fa47f106e663fe159ba594792746bd92dc0a09fc4f02f5292"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-chatsworth-house.mjs"
       ]
     },
     {
@@ -2939,6 +3200,204 @@
       ]
     },
     {
+      "assetId": "molen.worldgen.structure.eastern_state_penitentiary",
+      "candidateId": "eastern_state_penitentiary",
+      "title": "Eastern State Penitentiary",
+      "sourceBundle": "content/worldgen/source/places/dr/dr4/eastern_state_penitentiary/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.eastern_state_penitentiary",
+          "output": "assets/places/dr/dr4/eastern_state_penitentiary/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:949806ec27a97d0ba5bcad5721cffe79bf529cc10bacfcb658005efcfe3e9c27"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-eastern-state-penitentiary.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.ennis_house",
+      "candidateId": "ennis_house",
+      "title": "Ennis House",
+      "sourceBundle": "content/worldgen/source/places/9q/9q5/ennis_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.ennis_house",
+          "output": "assets/places/9q/9q5/ennis_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:fa7b28b9a6b7206756ff505a32057ff9152cb32b276397775b60aa022384f0eb"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-ennis-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.fallingwater",
+      "candidateId": "fallingwater",
+      "title": "Fallingwater",
+      "sourceBundle": "content/worldgen/source/places/dp/dpp/fallingwater/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.fallingwater",
+          "output": "assets/places/dp/dpp/fallingwater/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:b5ee038ccda5d8b530d65730bb332eab3cd712446ee21afb82c6c808835f5687"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-fallingwater.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.faneuil_hall",
+      "candidateId": "faneuil_hall",
+      "title": "Faneuil Hall",
+      "sourceBundle": "content/worldgen/source/places/dr/drt/faneuil_hall/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.faneuil_hall",
+          "output": "assets/places/dr/drt/faneuil_hall/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:c2c981aa687ac43396c802c28caf6b666d915aa0079b4355812fc7400bd11237"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-faneuil-hall.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.ford_island_control_tower",
+      "candidateId": "ford_island_control_tower",
+      "title": "Ford Island control tower",
+      "sourceBundle": "content/worldgen/source/places/87/87z/ford_island_control_tower/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.ford_island_control_tower",
+          "output": "assets/places/87/87z/ford_island_control_tower/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:6d99a3f58fdb06068940d93d5ef63808033770e851195d64ad92fae857cb41d1"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-ford-island-control-tower.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.fords_theatre",
+      "candidateId": "fords_theatre",
+      "title": "Ford's Theatre",
+      "sourceBundle": "content/worldgen/source/places/dq/dqc/fords_theatre/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.fords_theatre",
+          "output": "assets/places/dq/dqc/fords_theatre/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:293914866bc196ee8ed97d3f7892fbc5db56a836773d84e668a0f1c03a8bd083"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-fords-theatre.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.fraunces_tavern",
+      "candidateId": "fraunces_tavern",
+      "title": "Fraunces Tavern",
+      "sourceBundle": "content/worldgen/source/places/dr/dr5/fraunces_tavern/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.fraunces_tavern",
+          "output": "assets/places/dr/dr5/fraunces_tavern/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:6d1be3fd4b2d1723eacde09deaf801c3c3b7db6c853a8dd344a7e98590bb7c15"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-fraunces-tavern.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.gamble_house",
+      "candidateId": "gamble_house",
+      "title": "Gamble House",
+      "sourceBundle": "content/worldgen/source/places/9q/9q5/gamble_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.gamble_house",
+          "output": "assets/places/9q/9q5/gamble_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:94198b90b55af09814cf37fd9d12a994fb3dac9047f8ba57f3520a597efa32fc"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-gamble-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.getty_villa",
+      "candidateId": "getty_villa",
+      "title": "Getty Villa",
+      "sourceBundle": "content/worldgen/source/places/9q/9q5/getty_villa/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.getty_villa",
+          "output": "assets/places/9q/9q5/getty_villa/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:2901d070218f4e76f6929327acb53c8211a8220041be58e5b258755514078fbd"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-getty-villa.mjs"
+      ]
+    },
+    {
       "assetId": "molen.worldgen.structure.golden_gate_bridge",
       "candidateId": "C01",
       "title": "Golden Gate Bridge suspension section",
@@ -2960,6 +3419,270 @@
         "examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md",
         "packages/worldgen/scripts/generate-site-structures.mjs",
         "packages/worldgen/scripts/generate-structure-catalog.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hangar_37",
+      "candidateId": "hangar_37",
+      "title": "Pearl Harbor Aviation Museum — Hangar 37",
+      "sourceBundle": "content/worldgen/source/places/87/87z/hangar_37/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hangar_37",
+          "output": "assets/places/87/87z/hangar_37/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:69cd159411f06b2a586986af5f1d0c6bc1d3962c8606f438589c920b7907dcef"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hangar-37.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hearst_castle",
+      "candidateId": "hearst_castle",
+      "title": "Hearst Castle",
+      "sourceBundle": "content/worldgen/source/places/9q/9q3/hearst_castle/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hearst_castle",
+          "output": "assets/places/9q/9q3/hearst_castle/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:6eef20ad92c594c54843956509dc7a5a32e6f6bd71546be9a4d72599b5557738"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hearst-castle.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hemingway_house",
+      "candidateId": "hemingway_house",
+      "title": "Ernest Hemingway House",
+      "sourceBundle": "content/worldgen/source/places/dh/dhm/hemingway_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hemingway_house",
+          "output": "assets/places/dh/dhm/hemingway_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:f6ca2031962be0ff19a4dd425541391f7d5d6442fbf72307969f6d9e3b26ba15"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hemingway-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hollyhock_house",
+      "candidateId": "hollyhock_house",
+      "title": "Hollyhock House",
+      "sourceBundle": "content/worldgen/source/places/9q/9q5/hollyhock_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hollyhock_house",
+          "output": "assets/places/9q/9q5/hollyhock_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:76c0bd1d88b51510ec0164131eb41f9b5cd0109a7839d48e7e5991d4246a7d8e"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hollyhock-house.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hollywood_sign",
+      "candidateId": "hollywood_sign",
+      "title": "Hollywood Sign",
+      "sourceBundle": "content/worldgen/source/places/9q/9q5/hollywood_sign/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hollywood_sign",
+          "output": "assets/places/9q/9q5/hollywood_sign/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hollywood-sign.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hotel_chelsea",
+      "candidateId": "hotel_chelsea",
+      "title": "Hotel Chelsea",
+      "sourceBundle": "content/worldgen/source/places/dr/dr5/hotel_chelsea/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hotel_chelsea",
+          "output": "assets/places/dr/dr5/hotel_chelsea/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:7619de4f17d6dcde2fb569f4cb22d4200a1db4c8040b4f7c6ffd30cccdf796d6"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hotel-chelsea.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hotel_del_coronado",
+      "candidateId": "hotel_del_coronado",
+      "title": "Hotel del Coronado",
+      "sourceBundle": "content/worldgen/source/places/9m/9mu/hotel_del_coronado/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hotel_del_coronado",
+          "output": "assets/places/9m/9mu/hotel_del_coronado/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:cd70feb764c1a87d00d7fc0c05d5df1591e50549e9aea9a86b5c81da3125a9ce"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hotel-del-coronado.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hotel_des_indes",
+      "candidateId": "hotel_des_indes",
+      "title": "Hotel des Indes (The Hague)",
+      "sourceBundle": "content/worldgen/source/places/u1/u17/hotel_des_indes/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hotel_des_indes",
+          "output": "assets/places/u1/u17/hotel_des_indes/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:93f683fb111df4746d95341fdfc9b5149e229ea372800355438299c6853d3941"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hotel-des-indes.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.hotel_majapahit",
+      "candidateId": "hotel_majapahit",
+      "title": "Hotel Majapahit",
+      "sourceBundle": "content/worldgen/source/places/qw/qw8/hotel_majapahit/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.hotel_majapahit",
+          "output": "assets/places/qw/qw8/hotel_majapahit/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:2294d609457f9a47bdb801af508a5de2bdf82e181312bd58f4b7b1043f8b4670"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-hotel-majapahit.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.jamaica_inn",
+      "candidateId": "jamaica_inn",
+      "title": "Jamaica Inn",
+      "sourceBundle": "content/worldgen/source/places/gb/gbu/jamaica_inn/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.jamaica_inn",
+          "output": "assets/places/gb/gbu/jamaica_inn/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:84c4ada72079177085c100ac719ca4fc8ee389c4fcb11f20d0f8aa2fb97120f9"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-jamaica-inn.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.jefferson_memorial",
+      "candidateId": "jefferson_memorial",
+      "title": "Jefferson Memorial",
+      "sourceBundle": "content/worldgen/source/places/dq/dqc/jefferson_memorial/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.jefferson_memorial",
+          "output": "assets/places/dq/dqc/jefferson_memorial/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:1937e8d85a72d89a7b5205d8555dc2998328b30059cbeab01665c97e40d94fe1"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-jefferson-memorial.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.kensington_palace_gardens_13",
+      "candidateId": "kensington_palace_gardens_13",
+      "title": "13 Kensington Palace Gardens",
+      "sourceBundle": "content/worldgen/source/places/gc/gcp/kensington_palace_gardens_13/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.kensington_palace_gardens_13",
+          "output": "assets/places/gc/gcp/kensington_palace_gardens_13/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:6774e4e77b3e785aa8642a686ea79b271cb319d4fa857d4f6f88d0dd40443a63"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-kensington-palace-gardens-13.mjs"
       ]
     },
     {
@@ -3343,6 +4066,72 @@
       "recipes": [
         "packages/worldgen/scripts/generate-ksiaz-entrances.mjs",
         "packages/worldgen/scripts/ksiaz-entrance-models.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.liebermann_villa",
+      "candidateId": "liebermann_villa",
+      "title": "Liebermann Villa",
+      "sourceBundle": "content/worldgen/source/places/u3/u33/liebermann_villa/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.liebermann_villa",
+          "output": "assets/places/u3/u33/liebermann_villa/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-liebermann-villa.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.lincoln_memorial",
+      "candidateId": "lincoln_memorial",
+      "title": "Lincoln Memorial",
+      "sourceBundle": "content/worldgen/source/places/dq/dqc/lincoln_memorial/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.lincoln_memorial",
+          "output": "assets/places/dq/dqc/lincoln_memorial/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:65114f38f35aa849ac1993e4da821bd76f3b5dc2580bfdc0c02bd5bd68e3967e"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-lincoln-memorial.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.lorraine_motel",
+      "candidateId": "lorraine_motel",
+      "title": "Lorraine Motel",
+      "sourceBundle": "content/worldgen/source/places/9y/9yp/lorraine_motel/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.lorraine_motel",
+          "output": "assets/places/9y/9yp/lorraine_motel/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:335d4371be8987e8b7605d6229017c563b1e1bdbf063b5af0739d743df9fc8b1"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-lorraine-motel.mjs"
       ]
     },
     {
@@ -8356,7 +9145,7 @@
           "assetId": "molen.worldgen.structure.n0333_lala_mustafa_pasha_mosque",
           "output": "assets/places/sy/sy0/n0333_lala_mustafa_pasha_mosque/asset.json",
           "pipeline": "import",
-          "sha256": "sha256:2384cf7f9d68f192eabe6983804b07cadf898e254c4419085537c70fca2f6fcd"
+          "sha256": "sha256:58f20a61a060dda35e3a613d8cb231d9fe1d940d50833157b4ce6e88d1665e91"
         }
       ],
       "generatorCandidates": [
@@ -11274,6 +12063,138 @@
       ]
     },
     {
+      "assetId": "molen.worldgen.structure.palace_hotel",
+      "candidateId": "palace_hotel",
+      "title": "Palace Hotel, San Francisco",
+      "sourceBundle": "content/worldgen/source/places/9q/9q8/palace_hotel/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.palace_hotel",
+          "output": "assets/places/9q/9q8/palace_hotel/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:f60c9517012a62678fbb12dd7e180095d0d2b75ef048c5183c5a519bf77ff6f9"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-palace-hotel.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.ponce_de_leon_hotel",
+      "candidateId": "ponce_de_leon_hotel",
+      "title": "Ponce de Leon Hotel",
+      "sourceBundle": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.ponce_de_leon_hotel",
+          "output": "assets/places/dj/djq/ponce_de_leon_hotel/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:037945043c7cd3400007455a7219568467f9e110d973acf39c82b264556d3ddd"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-ponce-de-leon-hotel.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.reichstag",
+      "candidateId": "reichstag",
+      "title": "Reichstag building",
+      "sourceBundle": "content/worldgen/source/places/u3/u33/reichstag/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.reichstag",
+          "output": "assets/places/u3/u33/reichstag/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:5fa548651c3c7aa23bd696f892b6a918a60a7fd74e619510fd5c213e3128e508"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-reichstag.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.ritz_london",
+      "candidateId": "ritz_london",
+      "title": "The Ritz Hotel, London",
+      "sourceBundle": "content/worldgen/source/places/gc/gcp/ritz_london/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.ritz_london",
+          "output": "assets/places/gc/gcp/ritz_london/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:2cfffb531492dd64b2cff8710749e22438c76cafa82671b569f49e4366a44d27"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-ritz-london.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.robben_island_lighthouse",
+      "candidateId": "robben_island_lighthouse",
+      "title": "Robben Island Lighthouse",
+      "sourceBundle": "content/worldgen/source/places/k3/k3v/robben_island_lighthouse/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.robben_island_lighthouse",
+          "output": "assets/places/k3/k3v/robben_island_lighthouse/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:f9b60d2e67bbd2622e1c3cece1b94d6af14e72bd37afc8c8d26517b0e4819ebc"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-robben-island-lighthouse.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.robben_island_prison",
+      "candidateId": "robben_island_prison",
+      "title": "Robben Island maximum-security prison",
+      "sourceBundle": "content/worldgen/source/places/k3/k3v/robben_island_prison/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.robben_island_prison",
+          "output": "assets/places/k3/k3v/robben_island_prison/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:b92ec0729bf31c833168bea630d2b4e845b472373102c64b3714ec174fd5fcb2"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-robben-island-prison.mjs"
+      ]
+    },
+    {
       "assetId": "molen.worldgen.structure.space_needle",
       "candidateId": "A01",
       "title": "Space Needle",
@@ -11319,6 +12240,72 @@
         "examples/world-explorer/STRUCTURE-EXPANSION-PLAN.md",
         "packages/worldgen/scripts/generate-site-structures.mjs",
         "packages/worldgen/scripts/generate-structure-catalog.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.stonewall_inn",
+      "candidateId": "stonewall_inn",
+      "title": "Stonewall Inn",
+      "sourceBundle": "content/worldgen/source/places/dr/dr5/stonewall_inn/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.stonewall_inn",
+          "output": "assets/places/dr/dr5/stonewall_inn/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:115729d6a60055925a94babd2ca29844ad7f81ca31f08d4c616cd090ca79c541"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-stonewall-inn.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.watergate_complex",
+      "candidateId": "watergate_complex",
+      "title": "Watergate complex",
+      "sourceBundle": "content/worldgen/source/places/dq/dqc/watergate_complex/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.watergate_complex",
+          "output": "assets/places/dq/dqc/watergate_complex/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:f82d7bd8d2c1e7e5a8ccadb2a1c482753fd744a59e9f3bef22e5bfd78384e801"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-watergate-complex.mjs"
+      ]
+    },
+    {
+      "assetId": "molen.worldgen.structure.winchester_mystery_house",
+      "candidateId": "winchester_mystery_house",
+      "title": "Winchester Mystery House",
+      "sourceBundle": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/source.json",
+      "models": [
+        {
+          "path": "models/source.glb",
+          "assetId": "molen.worldgen.structure.winchester_mystery_house",
+          "output": "assets/places/9q/9q9/winchester_mystery_house/asset.json",
+          "pipeline": "import",
+          "sha256": "sha256:80bfae3b5f7cd0369e9afc04b0349f81af71ad266868689ba1fcc0f1c1e0dc8f"
+        }
+      ],
+      "generatorCandidates": [
+        "worldgen-authored-places",
+        "worldgen-runtime-lods"
+      ],
+      "recipes": [
+        "packages/worldgen/scripts/structure-winchester-mystery-house.mjs"
       ]
     }
   ]

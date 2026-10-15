@@ -1,0 +1,307 @@
+{
+  "planId": "getty_villa",
+  "id": "getty_villa",
+  "assetId": "molen.worldgen.structure.getty_villa",
+  "title": "Getty Villa",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.56505,
+    "latitude": 34.04509
+  },
+  "size": [
+    83.6895866394043,
+    23.864999771118164,
+    167.1156997680664
+  ],
+  "actualBounds": {
+    "min": [
+      -44.10458755493164,
+      -10,
+      -77.58314514160156
+    ],
+    "max": [
+      39.584999084472656,
+      13.864999771118164,
+      89.53255462646484
+    ]
+  },
+  "visualBrief": "Roman villa museum with cream gallery ranges around an open inner peristyle, west atrium and double-height entrance porch, south balcony between projecting pavilions, long red-tile outer colonnade and shaped pool, with an attached brick-arched viewing terrace above sloping ground.",
+  "nativeAxes": {
+    "x": "east-southeast",
+    "y": "up",
+    "z": "south-southwest"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:060807-002-GettyVilla001.jpg",
+    "https://commons.wikimedia.org/wiki/File:Getty_Villa_Museum_Entrance.jpg"
+  ],
+  "stories": [
+    {
+      "id": "getty-villa-wp",
+      "url": "https://qualla.com/getty-villa/"
+    }
+  ],
+  "referenceInputHash": "0020f23902d90aec57fff999291f96e693f06195d58cf7ddb9a20f77a5cf161c",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-getty-villa.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-getty-villa.mjs",
+    "level": "skyline",
+    "export": "gettySkyline",
+    "errorMeters": 0.4,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "pool": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.2,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gettyDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "pool": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.2,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "gettyStreet",
+        "errorMeters": 0.065,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "pool": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.2,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "West museum approach [-44,-49] at Y=0; main/peristyle floor Y=1, upper gallery Y=6.3. Independent USGS bare-earth datum; southern terrace supports descend to hillside road level.",
+    "anchor": [
+      -118.56505,
+      34.04509
+    ],
+    "heading": -0.6,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.56514374824181,
+        34.04567646886418
+      ],
+      "modelHeight": 0,
+      "basis": "Museum entrance approach at west portico; floors and peristyle terrace rise slightly above approach datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776564314118",
+      "buildings/52776575800973",
+      "buildings/35185654432566",
+      "buildings/35184786703747"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0a79edc7f90fcdb62e92a1c0a840db9af8e1cf531b6f80b7c029375ac516224e",
+    "notes": "The mapped main roof includes an inner-court hole. Outer-peristyle footprint is an open U, not a solid slab. South viewing terrace extends beyond the peristyle width and is supported above sloping ground. Separate theater, entry pavilion, cafe, auditorium, parking and service buildings excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from six individually inspected local Qualla photographs, official Getty visitor plans/axonometric and aerial roof context. Hidden joins, gallery depths, heights and fine ornament are estimates, not surveyed geometry.",
+    "Main villa, peristyles, pools and attached viewing terrace only. Modern theater, entry pavilion, cafe, auditorium, parking and separate campus buildings excluded. No artworks, vegetation, people, interiors or photographic pixels copied.",
+    "Independent unmodified USGS CA_LosAngeles_B23 raster 114605 retained. Bare-earth ground under structures is interpolated by the source; host terrain may differ. Footprint replacement remains disabled.",
+    "Column capitals/fluting, painted wall panels, roof tiles, balusters and brick arcade details are simplified progressively with distance. No physical-device frame-rate measurement claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -37,
+        38,
+        190
+      ],
+      "lookAt": [
+        -3,
+        5,
+        10
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -115,
+        77,
+        -126
+      ],
+      "lookAt": [
+        -8,
+        5,
+        -26
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63477,
+    "vertices": 190431,
+    "materials": 6,
+    "bytes": 7620788,
+    "sha256": "sha256:2901d070218f4e76f6929327acb53c8211a8220041be58e5b258755514078fbd"
+  }
+}

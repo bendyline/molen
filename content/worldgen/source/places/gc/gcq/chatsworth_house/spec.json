@@ -1,0 +1,259 @@
+{
+  "planId": "chatsworth_house",
+  "id": "chatsworth_house",
+  "assetId": "molen.worldgen.structure.chatsworth_house",
+  "title": "Chatsworth House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -1.6117,
+    "latitude": 53.22717
+  },
+  "size": [
+    73.63069152832031,
+    30.52999997138977,
+    177.3700008392334
+  ],
+  "actualBounds": {
+    "min": [
+      -44.42499923706055,
+      -3.200000047683716,
+      -146.86000061035156
+    ],
+    "max": [
+      29.205692291259766,
+      27.329999923706055,
+      30.510000228881836
+    ]
+  },
+  "visualBrief": "Sandstone quadrangular house with open court, distinct pedimented west and pilastered south/east elevations, bowed north range, balustrades and urns; long attached gallery wing, glazed orangery, tall open belvedere and three-arch return gate.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chatsworth_House_-_geograph.org.uk_-_2191619.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chatsworth_House_201307_138.JPG"
+  ],
+  "stories": [
+    {
+      "id": "chatsworth-house-wp",
+      "url": "https://qualla.com/chatsworth-house/"
+    }
+  ],
+  "referenceInputHash": "a8aa3931e977dc4ae5feacd44b97af26cac30aebfd161c270db7e4791dc8d070",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chatsworth-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chatsworth-house.mjs",
+    "level": "skyline",
+    "export": "chatsworthSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.24
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chatsworthDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.24
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "chatsworthStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.24
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "West approach [-33,0], Y=0, independent Terrarium datum. Basement extends below the falling west/north ground; east/south terraces partly conceal basement. Courtyard Y=1.85; main upper floor Y=5.3. No terrain flattening.",
+    "anchor": [
+      -1.6117,
+      53.22717
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -1.6121951904255007,
+        53.22717
+      ],
+      "modelHeight": 0,
+      "basis": "West approach beside the main entrance, independent ground datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776566806492"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:703c261fbb4f9499ff840bacd974df8f01ce063961af7c1ebc184895c481ba0c",
+    "notes": "Main house approximately 57 by 54 m around an approximately 21 by 22.5 m courtyard. Connected north wing and gate reach approximately 175 m overall. Heights and roof details are photographic estimates; no surveyed elevations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from six individually inspected local Qualla photographs, four-page official visitor plan, Historic England architectural description and aerial/map context. Dimensions, hidden roof joins and fine ornament remain estimates; visitor plan is not a measured survey.",
+    "Main house, courtyard, attached north wing, orangery, belvedere and west-return gateway only. Separate stables, gardens, sculpture, interiors, furnishings, vegetation and photographic pixels excluded.",
+    "Independent unmodified Terrarium elevations retained. Elevations beneath structures are interpolated evidence, not a building survey; footprint replacement remains disabled.",
+    "Carved capitals, pediment relief, urn ornament, window surrounds and balusters are simplified progressively with distance; no physical-device performance measurement claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -115,
+        49,
+        85
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        125,
+        85,
+        -140
+      ],
+      "lookAt": [
+        7,
+        10,
+        -75
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62060,
+    "vertices": 186180,
+    "materials": 4,
+    "bytes": 7450008,
+    "sha256": "sha256:e5e837b3947d727fa47f106e663fe159ba594792746bd92dc0a09fc4f02f5292"
+  }
+}

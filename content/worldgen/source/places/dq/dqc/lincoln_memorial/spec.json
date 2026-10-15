@@ -1,0 +1,338 @@
+{
+  "planId": "lincoln_memorial",
+  "id": "lincoln_memorial",
+  "assetId": "molen.worldgen.structure.lincoln_memorial",
+  "title": "Lincoln Memorial",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.05017149448395,
+    "latitude": 38.88927185085194
+  },
+  "size": [
+    78.8499984741211,
+    31.40000033378601,
+    65.43249893188477
+  ],
+  "actualBounds": {
+    "min": [
+      -39.42499923706055,
+      -1.2999999523162842,
+      -28.924999237060547
+    ],
+    "max": [
+      39.42499923706055,
+      30.100000381469727,
+      36.50749969482422
+    ]
+  },
+  "visualBrief": "Marble temple with 36 fluted outer Doric columns and two entrance columns, inset attic, open central entrance and seated Lincoln silhouette, raised terrace and separate granite/marble upper stairs.",
+  "nativeAxes": {
+    "x": "north along the long east facade",
+    "y": "up",
+    "z": "east toward the stairs and Reflecting Pool"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Exterior_of_the_Lincoln_Memorial_(north_side)_20240601.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lincoln_Memorial_east_side.JPG"
+  ],
+  "stories": [
+    {
+      "id": "lincoln-memorial-wp",
+      "url": "https://qualla.com/lincoln-memorial/"
+    }
+  ],
+  "referenceInputHash": "cddf5900744e16bb092b28657991093636e3de1037e816e3354a2280d3213ac8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-lincoln-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-lincoln-memorial.mjs",
+    "level": "skyline",
+    "export": "lincolnSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "ground": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "lincolnDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "lincolnStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "ground": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Approachway [0,38] immediately east of the main granite flight; independent terrain unchanged.",
+    "anchor": [
+      -77.05017149448395,
+      38.88927185085194
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.04973293400725,
+        38.88927185085194
+      ],
+      "modelHeight": 0,
+      "basis": "Approachway immediately east of the main granite stair flight; reflecting-pool stairs and distant plaza excluded."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184815768769",
+      "buildings/35184815768768",
+      "buildings/35184815768767",
+      "buildings/35184815768765",
+      "buildings/35184815768771",
+      "buildings/35184815768763",
+      "buildings/35184815768797",
+      "buildings/35184815768773",
+      "buildings/35184815768764",
+      "buildings/35184815768766",
+      "buildings/35184815768762",
+      "buildings/35184815768770",
+      "buildings/35184815768775",
+      "buildings/35184815768776",
+      "buildings/35184815768782",
+      "buildings/35184815768786",
+      "buildings/35184815768783",
+      "buildings/35184815768794",
+      "buildings/35184815768807",
+      "buildings/35184815768795",
+      "buildings/35184815768789",
+      "buildings/35184815768798",
+      "buildings/35184815768810",
+      "buildings/35184815768791",
+      "buildings/35184815768815",
+      "buildings/35184815768784",
+      "buildings/35184815768809",
+      "buildings/35184815768779",
+      "buildings/35184815768812",
+      "buildings/35184815768811",
+      "buildings/35184815768813",
+      "buildings/35184815768777",
+      "buildings/35184815768814",
+      "buildings/35184815768808",
+      "buildings/35184815768801",
+      "buildings/35184815768785",
+      "buildings/35184815768799",
+      "buildings/35184815768780",
+      "buildings/35184815768781",
+      "buildings/35184815768804",
+      "buildings/35184815768788",
+      "buildings/35184815768805",
+      "buildings/35184815768803",
+      "buildings/35184815768787",
+      "buildings/35184815768806",
+      "buildings/35184815768792",
+      "buildings/35184815768793",
+      "buildings/35184815768778",
+      "buildings/35184815768796",
+      "buildings/35184815768800",
+      "buildings/35184815768790",
+      "buildings/35184815768802"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f12d10f53f37df64e4fb685637d7c73329b5f10ae9a386e58e26eb3770707956",
+    "notes": "The 36 outer columns, two additional entrance columns, main stair flights and raised terrace are independently mapped. NPS dimensional statistics take precedence over inconsistent OSM part heights. Low relief sculpture, inscriptions and statue likeness remain medium-fi approximations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi temple exterior based on individually inspected local Qualla photos, mapped parts and NPS statistics/2008 plan and elevation; not a measured survey.",
+    "NPS dimensions control the column count, spacing, height and major massing. Fine carvings, inscription strokes, statue likeness, optical corrections and exact roof panels are simplified; inscriptions are not claimed readable.",
+    "Seated statue is an original simplified silhouette visible through the portal, not a portrait-quality replica. Side chamber murals, inscriptions, undercroft and detailed interiors are excluded.",
+    "Upper terrace and main granite/marble stair flights are included. Reflecting pool, lower pool steps, distant approachway, temporary construction and surrounding gardens are excluded.",
+    "Independent terrain is preserved unchanged; foundation extends beneath it. Another host DEM can change exact ground contact. No reference photo pixels are embedded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        17,
+        98
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -75,
+        45,
+        -85
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62870,
+    "vertices": 188610,
+    "materials": 5,
+    "bytes": 7547644,
+    "sha256": "sha256:65114f38f35aa849ac1993e4da821bd76f3b5dc2580bfdc0c02bd5bd68e3967e"
+  }
+}

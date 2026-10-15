@@ -1,0 +1,319 @@
+{
+  "planId": "hemingway_house",
+  "id": "hemingway_house",
+  "assetId": "molen.worldgen.structure.hemingway_house",
+  "title": "Ernest Hemingway House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.80060774087906,
+    "latitude": 24.551198173921037
+  },
+  "size": [
+    16.31999969482422,
+    10.76999968290329,
+    17.495038986206055
+  ],
+  "actualBounds": {
+    "min": [
+      -8.15999984741211,
+      -0.699999988079071,
+      -8.53499984741211
+    ],
+    "max": [
+      8.15999984741211,
+      10.069999694824219,
+      8.960039138793945
+    ]
+  },
+  "visualBrief": "Two-story Key West limestone/stucco house with flat parapeted roofs, rear ell, wraparound open galleries, curved corrugated veranda canopies, slender iron columns, heart-pattern railing, arched yellow shutters and green/white casements. Small roof stair housing and two-flue chimney.",
+  "nativeAxes": {
+    "x": "southeast along southwest front",
+    "y": "up",
+    "z": "southwest toward Whitehead Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hemingway_House_tourists.jpg",
+    "https://commons.wikimedia.org/wiki/File:HemingwayAlleyCat.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ernest-hemingway-house-wp",
+      "url": "https://qualla.com/ernest-hemingway-house/"
+    }
+  ],
+  "referenceInputHash": "b75967ccaf8b77e2267dcf4891bfc7fecba837663cf6c08d0052f843b3a5aa4d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hemingway-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hemingway-house.mjs",
+    "level": "skyline",
+    "export": "hemingwaySkyline",
+    "errorMeters": 0.24,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "flatRoof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35,
+        "doubleSided": true
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.82,
+        "metallic": 0.25
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hemingwayDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "hemingwayStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "flatRoof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ground outside southwest entry steps at local [-.85,8.8]; preserved independent Terrarium evidence.",
+    "anchor": [
+      -81.80060774087906,
+      24.551198173921037
+    ],
+    "heading": -0.95,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.80068331682013,
+        24.551158402020135
+      ],
+      "modelHeight": 0,
+      "basis": "Ground immediately outside southwest principal-entry steps."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184709865921"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:795bbd43ca4f598ccb294481b5b2230800c6184a564ff469aab95a7ae79d5e7d",
+    "notes": "Map envelope is approximately 14 by 15 m, whereas HABS records approximately 52 ft 7 in by 52 ft 8 in overall. Authoring uses measured approximately 16 m outer galleries and 36 ft 4 in main facade; map envelope is retained without distortion. Front faces southwest. No neighboring structures or removed studio catwalk."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior informed by individually inspected Qualla photographs (2006, 2009, 2019), HABS FL-179 architectural description and measured drawings. Main facade and gallery dimensions follow the measured plans; fine dimensions, parapet height and ornamental profiles remain interpreted.",
+    "Surviving museum exterior only; interiors, detached studio, removed studio catwalk, pool, cats, visitors, furniture and garden structures excluded. Historic roof and rear-ell evidence guide portions obscured in local photos.",
+    "Coarse mapped envelope is approximately one metre inside some measured gallery edges; it is retained as evidence without stretching the building. Placement is an approximate terrain-relative preview, with footprint replacement disabled.",
+    "Independent unmodified Terrarium elevations are preserved; ground contact is host-dependent, not a site survey. Reference photographs are not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        15,
+        8.8,
+        30
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -22,
+        15,
+        -27
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 36694,
+    "vertices": 110082,
+    "materials": 6,
+    "bytes": 4406984,
+    "sha256": "sha256:f6ca2031962be0ff19a4dd425541391f7d5d6442fbf72307969f6d9e3b26ba15"
+  }
+}

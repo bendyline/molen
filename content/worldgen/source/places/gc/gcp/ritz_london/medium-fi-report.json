@@ -1,0 +1,878 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.ritz_london",
+  "sourceHash": "sha256:2cfffb531492dd64b2cff8710749e22438c76cafa82671b569f49e4366a44d27",
+  "runtimeHash": "sha256:ad30f0f28c73fb376f773add84ff530518e1e402de0e68391c2740c269b92493",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:94c5544c2de7da79a0f39e72b45fffca0163494645ea69630b8ebb6f03947a17",
+      "bytes": 67372,
+      "gzipBytes": 10991,
+      "triangles": 876,
+      "cpuBytes": 65952,
+      "gpuBytes": 65952,
+      "errorMeters": 0.8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:fb40f09db0731d54c813ccbed058c53fd0eebd529d64f631ec25fda859314815",
+      "bytes": 255608,
+      "gzipBytes": 54078,
+      "triangles": 3331,
+      "cpuBytes": 248264,
+      "gpuBytes": 248264,
+      "errorMeters": 0.35,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:137e0bcee374dbfa5fd8731d1545947eee4c51b676eca4e04b8735ca59efadee",
+      "bytes": 1195924,
+      "gzipBytes": 252434,
+      "triangles": 15535,
+      "cpuBytes": 1187360,
+      "gpuBytes": 1187360,
+      "errorMeters": 0.14,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:654f242c910b556d21be46bf7b03f5752db922543d7f771f14c4b20c893e4bae",
+      "bytes": 6515836,
+      "gzipBytes": 1198818,
+      "triangles": 54267,
+      "cpuBytes": 6512040,
+      "gpuBytes": 6512040,
+      "errorMeters": 0,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:29dd062abab5578ef42800a7d9eebef112f7b0d653ba506b6a0fd8cb5a4c3bcf"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:49742d5dab928d3b88cdff87a1b2f33ab0282cbd5f4e268462e4cc53f77e672d"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:be4b042d427269c48292567c4aa5560493a8e5a1e6a4a8c71e7ae496e372f308",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          51.5205,
+          43.65,
+          85.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:cdedf7cfbf95fcfdc7035f566b62124278cb87c9567737b5631d4ce3d21789e7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          51.5205,
+          43.65,
+          85.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:74f7fc09a38931203cb174e5c81fad41a200884ce69111fe4d2a1977c98d7530",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          51.5205,
+          43.65,
+          85.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:52e410913da2b10935c51c10c6d80f522de9205123344a2b3425e8286da5ad8e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          51.5205,
+          43.65,
+          85.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a8f4ac2dc2c30ce0558b9c1c72e3a8307d7479d3b7afee66e93423ffaf166937",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 17765,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:d1100186ed2c4cb72000b9ddf6d9069d859dffb95d881abbff6b29519efdfd27",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17765,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c422b9cbb1d217d4b59969b3566dae7b48ddf77b3fdef3891557d95647b919c4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 17765,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:020eca10f9fe1dd639cf457c60e410f926e3a228e60b898296c5b70f3a1a67fd",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17765,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:7edffabd7f9621423d79a4d6eeb096db2b55a4f80d80b9f9ba9d98018bbd45e9",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15310,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          197.5205,
+          117.65,
+          338.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:6fd042d2dd57935bdc1be2ff195f7a1845f0516eaa62c23e8c41651a9031e63b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15310,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          197.5205,
+          117.65,
+          338.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:6213ef094795fb5819a4cbce985b3614edfb7aeaffd0153e2a5d4c09f1fd2226",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15310,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          197.5205,
+          117.65,
+          338.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:9a6960d4b21e4702f198be2ab747440246ce70f23ae76fb84a5acc39e4bac08e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15310,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          197.5205,
+          117.65,
+          338.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:acfb80987685d4396b0dd4c445fe3c9abf4a47d74310331d43b21a551fd9312c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9070,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          197.5205,
+          117.65,
+          338.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:dce3ec68d843aa9f1d5d160c370bfb0f676bcca5461f3eabe8217f26e0887171",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          26,
+          140
+        ],
+        "lookAt": [
+          0,
+          17,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:1d22e5a67a11bab11578cbc599e0509eeb004375aeb558a4a5b1a03d0055efb2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          -83,
+          65,
+          -102
+        ],
+        "lookAt": [
+          0,
+          14,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:82999703c666d91508fba9dac3cab12629a13ef68020d117e04e8313645b31ba",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15310,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:d1100186ed2c4cb72000b9ddf6d9069d859dffb95d881abbff6b29519efdfd27",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 17765,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:72f8bdd555de76af4ebf8ddb1ca98b56b1a79e4b7a2b03ba8a11e3fbb97a20ab",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 29969,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4fcb0287a32953189f0a3c73d260f856d0a35d1b824c6fe91dc7d9eb08504dea",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 68701,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gc/gcp/ritz_london/terrain-review.height.png"
+        },
+        "position": [
+          100.5205,
+          79.65,
+          170.9625
+        ],
+        "lookAt": [
+          3.5205,
+          28.65,
+          2.9625
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_copper": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:a284111912c830574ad73a5c86a0dfccf5d7e8c4ed3aabc6bb0abbc069d06d79",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:30744edc863a63e26c0d9e63a9bc7e3f48de670c9267af1dbe7dd67b6387b076"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "planId": "chateau_laurier",
+  "id": "chateau_laurier",
+  "assetId": "molen.worldgen.structure.chateau_laurier",
+  "title": "Château Laurier",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.69510833333334,
+    "latitude": 45.42556666666666
+  },
+  "size": [
+    106.03627395629883,
+    73,
+    130.1291732788086
+  ],
+  "actualBounds": {
+    "min": [
+      -64.99543762207031,
+      -9,
+      -66.22917175292969
+    ],
+    "max": [
+      41.040836334228516,
+      64,
+      63.900001525878906
+    ]
+  },
+  "visualBrief": "Indiana-limestone railway hotel with historic U-shaped wings, steep individual copper roofs, octagonal entrance pavilions and tall rear tower, inset round turrets, corbelled cornices, three-arch portico and low canal terrace.",
+  "nativeAxes": {
+    "x": "northeast parallel to Rideau frontage",
+    "y": "up",
+    "z": "southeast toward Rideau Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hotel_Ch%C3%A2teau_Laurier_in_Ottawa.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chateau_laurier.JPG"
+  ],
+  "stories": [
+    {
+      "id": "ch-teau-laurier-wp",
+      "url": "https://qualla.com/ch-teau-laurier/"
+    }
+  ],
+  "referenceInputHash": "0746f6545c2e2061d0e5f1a1ff7ab752e0de2693287ce44c7f360ff41d3b2bf2",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chateau-laurier.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chateau-laurier.mjs",
+    "level": "skyline",
+    "export": "laurierSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.73,
+        "metallic": 0.3
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "laurierDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "laurierStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.73,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Rideau Street sidewalk [-6,65], independent unmodified NRCan HRDEM Mosaic DTM; canal terrace descends approximately six metres.",
+    "anchor": [
+      -75.69510833333334,
+      45.42556666666666
+    ],
+    "heading": 0.55,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.694738947051,
+        45.42504070352161
+      ],
+      "modelHeight": 0,
+      "basis": "Rideau Street sidewalk immediately outside the main entrance portico."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184440677241",
+      "buildings/35185389836324",
+      "buildings/35185389836338",
+      "buildings/35185389836339",
+      "buildings/35185389836334",
+      "buildings/35185389836337",
+      "buildings/35185389836343",
+      "buildings/35185389836351",
+      "buildings/35185389836352",
+      "buildings/35185389836349",
+      "buildings/35185389836385",
+      "buildings/35185389836373",
+      "buildings/35185389836387",
+      "buildings/35185389836388",
+      "buildings/35185389836345",
+      "buildings/35185389836347",
+      "buildings/35185389836386",
+      "buildings/35185389836335",
+      "buildings/35185389836376",
+      "buildings/35185389836377",
+      "buildings/35185389836333",
+      "buildings/35185389836342",
+      "buildings/35185389836340",
+      "buildings/35185389836389",
+      "buildings/35185389836375",
+      "buildings/35185389836341",
+      "buildings/35185389836348",
+      "buildings/35185389836390",
+      "buildings/35185389836370",
+      "buildings/35185389836362",
+      "buildings/35185389836366",
+      "buildings/35185389836350",
+      "buildings/35185389836391",
+      "buildings/35185389836392",
+      "buildings/35185389836393",
+      "buildings/35185389836374",
+      "buildings/35185389836331",
+      "buildings/35185389836353",
+      "buildings/35185389836382",
+      "buildings/35185389836336",
+      "buildings/35185389836354",
+      "buildings/35185389836363",
+      "buildings/35185389836384",
+      "buildings/35185389836365",
+      "buildings/35185389836394",
+      "buildings/35185389836323",
+      "buildings/35185389836371",
+      "buildings/35185389836383",
+      "buildings/35185389836325",
+      "buildings/35185389836330",
+      "buildings/35185389836395",
+      "buildings/35185389836372",
+      "buildings/35185389836346",
+      "buildings/35185389836344",
+      "buildings/35185389836364",
+      "buildings/35185389836326",
+      "buildings/35185389836379",
+      "buildings/35185389836380",
+      "buildings/35185389836381",
+      "buildings/35185389836328",
+      "buildings/35185389836327",
+      "buildings/35185389836367",
+      "buildings/35185389836368",
+      "buildings/35185389836369",
+      "buildings/35185101467533",
+      "buildings/35185389836329",
+      "buildings/35185389836355",
+      "buildings/35185389836396",
+      "buildings/35185389836332",
+      "buildings/35185389836358",
+      "buildings/35185389836357",
+      "buildings/35185389836359",
+      "buildings/35185389836356",
+      "buildings/35185389836360",
+      "buildings/35185389836361"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d5a7a55e7010c671643a8a6d12f51b56bfc4a7c526703665f04914e089607745",
+    "notes": "Mapped roof ridges 39/45 m and tallest octagonal roof 64 m agree approximately with the existing hotel shown beside dimensioned proposed additions in 2020 drawing A_2.3. Drawing dimensions apply to proposed buildings, not a measured hotel survey. Existing hotel only; proposed extension and demolished garage excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    }
+  ],
+  "limitations": [
+    "Historic 1912/1929 exterior interpreted from individually inspected Qualla 2008/2012 front and canal photographs, NCC phase/aerial study, existing west elevation in the 2020 heritage-impact report, mapped roof facets and satellite context.",
+    "Mapped ridge heights of 39/45 m and 64 m main tower are approximate and agree with the existing hotel depiction beside dimensioned proposed buildings. The drawing does not provide a measured hotel survey.",
+    "Fine heraldic carving, exact room-by-room openings, hidden service elevations, roof intersections and terrace limits remain simplified. Lower central halls are retained; no interiors or proposed modern addition, removed garage, separate canal buildings or landscaping.",
+    "Unmodified independent NRCan ground data retains the canal drop; host runtime terrain may differ. Footprint suppression remains disabled.",
+    "Photo pixels are not embedded. Copper tone follows the dated daylight images; weathering may differ today."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -106,
+        63,
+        172
+      ],
+      "lookAt": [
+        -7,
+        25,
+        17
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        131,
+        98,
+        -172
+      ],
+      "lookAt": [
+        -7,
+        23,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 53105,
+    "vertices": 159315,
+    "materials": 3,
+    "bytes": 6374928,
+    "sha256": "sha256:c79935600a563608dddebc2d5e8e814748d32bd9190ce31dc20ab254a6655559"
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "planId": "chateau_frontenac",
+  "id": "chateau_frontenac",
+  "assetId": "molen.worldgen.structure.chateau_frontenac",
+  "title": "Château Frontenac",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -71.2052236,
+    "latitude": 46.8119065
+  },
+  "size": [
+    158.54000091552734,
+    80.4000015258789,
+    85.11999893188477
+  ],
+  "actualBounds": {
+    "min": [
+      -95.81999969482422,
+      -4,
+      -43.41999816894531
+    ],
+    "max": [
+      62.720001220703125,
+      76.4000015258789,
+      41.70000076293945
+    ]
+  },
+  "visualBrief": "Red-brick château hotel with Maxwell tower, cylindrical stone corner turrets, layered copper roofs and dormers, two open courts, a through-arched Saint-Louis entrance and stepped connected wings.",
+  "nativeAxes": {
+    "x": "northeast along long hotel axis",
+    "y": "up",
+    "z": "southeast toward Dufferin Terrace and the river"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2016-11_Ch%C3%A2teau_Frontenac_06.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Frontenac_02.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ch-teau-frontenac-wp",
+      "url": "https://qualla.com/ch-teau-frontenac/"
+    }
+  ],
+  "referenceInputHash": "e83cd55194bf3fffea433d150c8bb3c9f4fa10be3a0baf9e76493cc372f1ac12",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chateau-frontenac.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chateau-frontenac.mjs",
+    "level": "skyline",
+    "export": "frontenacSkyline",
+    "errorMeters": 1.6,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.72,
+        "metallic": 0.3
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "frontenacDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "frontenacStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Rue Saint-Louis sidewalk [-30,-45], using independent NRCan HRDEM Mosaic ground elevations. Southwest wings occupy higher ground.",
+    "anchor": [
+      -71.2052236,
+      46.8119065
+    ],
+    "heading": 0.444,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -71.20583290666724,
+        46.81215578295543
+      ],
+      "modelHeight": 0,
+      "basis": "Rue Saint-Louis sidewalk outside the northwest courtyard entry wing."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776558165828",
+      "buildings/35184768383111",
+      "buildings/35184769698853",
+      "buildings/35184768382504",
+      "buildings/35184769037230",
+      "buildings/35185737716702",
+      "buildings/35184768382497",
+      "buildings/35184769698856",
+      "buildings/35184769029595",
+      "buildings/35184768382506",
+      "buildings/35185737716701",
+      "buildings/35184769037228"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:be7d78d9043838741e4158d6a2eba6c623fee70064a46698472c6ed4eb024fe2",
+    "notes": "Combined hotel footprint and holes retained. Part heights of 17–44 m omit roof structures and do not govern the complete tower silhouette. CVU reports 77 m architectural height while official tourism rounds to 80 m; no survey precision is claimed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi surviving exterior interpreted from three individually inspected 2013–2016 Qualla photographs, the 1927 ground-floor plan, CIEQ phase silhouette, heritage descriptions and mapped roof parts.",
+    "Central tower height follows the 77 m architectural record approximately; official tourism rounds to 80 m. Individual storeys, roof junctions, hidden service elevations and sculptural ornament are photographic interpretations, not a measured survey.",
+    "Later western ranges are represented by massing; interiors, whole Dufferin promenade, separate kiosks, landscaping and later unverified rooftop changes are excluded.",
+    "Independent NRCan DTM retains real southwest rise and river cliff. Small hotel terraces are simplified; runtime terrain may differ. Footprint suppression remains disabled.",
+    "No photograph pixels embedded; roof colors preserve the differing copper patina visible in the dated references."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        97,
+        69,
+        196
+      ],
+      "lookAt": [
+        -14,
+        29,
+        5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -138,
+        90,
+        -185
+      ],
+      "lookAt": [
+        -16,
+        27,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 46146,
+    "vertices": 138438,
+    "materials": 4,
+    "bytes": 5540304,
+    "sha256": "sha256:0fd47c18560ee91a39a232d4ddcd18e2f1b4beaf5bef09cb970fb84104b2a632"
+  }
+}

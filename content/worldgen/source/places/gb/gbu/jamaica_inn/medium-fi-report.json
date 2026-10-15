@@ -1,0 +1,821 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.jamaica_inn",
+  "sourceHash": "sha256:84c4ada72079177085c100ac719ca4fc8ee389c4fcb11f20d0f8aa2fb97120f9",
+  "runtimeHash": "sha256:44cbb51aea45480ad87a8f449b7a4834c4fb2825067f9b0b87841f824571a1af",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:ac092813e6e697abb8491457fd84e470181ff1bddd8c84a95601576b37933f98",
+      "bytes": 30880,
+      "gzipBytes": 5238,
+      "triangles": 369,
+      "cpuBytes": 29468,
+      "gpuBytes": 29468,
+      "errorMeters": 0.7,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:defa9c8e9834e3735340512ff9af7d43341cc332a38cc8f7c701d13ce24b8932",
+      "bytes": 46156,
+      "gzipBytes": 8698,
+      "triangles": 507,
+      "cpuBytes": 40232,
+      "gpuBytes": 40232,
+      "errorMeters": 0.25,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:004a3685ae800205bdd880db9f615e6ed727dc18f3840251bb1ce47225b77823",
+      "bytes": 431684,
+      "gzipBytes": 73678,
+      "triangles": 5605,
+      "cpuBytes": 425636,
+      "gpuBytes": 425636,
+      "errorMeters": 0.1,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:f8caad8b2290a579a6bb394699ff5c7795c974eb2a684f4347d6128b07424721",
+      "bytes": 1071460,
+      "gzipBytes": 181363,
+      "triangles": 8905,
+      "cpuBytes": 1068600,
+      "gpuBytes": 1068600,
+      "errorMeters": 0,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:f4f92045626703304e6f9a2ac140b5bc8031207dcd988cb9980f2855caee8926"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:a49ff825fd097b2eac1d9a6309eefa3df3305c5a2069b8a4370bfc55a6a2dff8"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:bb1c64b6d3821b5ea1a58914e934cee4fbf53a726cdb3aab0c16ddbd02f587bd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          48.775,
+          29.9,
+          82.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:bdcb6a1a897cf9eb55a1c9edfd80b35a2935adc205572c49fd8b1046327eb343",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          48.775,
+          29.9,
+          82.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:6095716e50c8f95989e0805e15bb90482fa423c5d4e879e61a9885002f853281",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          48.775,
+          29.9,
+          82.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:04f74a68692b4c0385ddd4920b4dd39bb6113e09390732c5ce7fcb3bdcc26a9e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          48.775,
+          29.9,
+          82.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a7907d28d88736ca161dbcbf5a2568be098505100bb063ccfb14d74011fba1be",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 14941,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:774411ee33b59c8ee07fa7ca77f9861bc91183015e6740c029ff57c52edcc50d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 14941,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:a21aabbe2c9d7e76afe48c853273002806b429bb2a5bb6eed4e2ebef3ba84c35",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 14941,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ec4b8166162087c21f4789073d0a4a58cb8f37d5f3494deeb278eb7beda53101",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 14941,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:14646469a93a364d740a48b288301d41551539d9ea2d909685eee1f77c62f0ca",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14803,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          194.775,
+          103.9,
+          335.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:1554987482923b1667f67d0b590a7769f362e7acf6106b54a67cbd5f24cb36a5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14803,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          194.775,
+          103.9,
+          335.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:dd58c1b4f59ae87a3c6a44a135914cb27d3395141164f340ba5a2236b7501691",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14803,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          194.775,
+          103.9,
+          335.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:70e9f99fa6dc3c611c16225663098b7e9dca3a4eed468ccd4a72df98b8551a53",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14803,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          194.775,
+          103.9,
+          335.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:2704d5fdf28af260fbdb204cfe82d7a73e648670c005aa386ef92e52e35dab6f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 8563,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          194.775,
+          103.9,
+          335.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:e34a4225bea7e4d20b077aeded9da3235934cd220901ed169a575d5c76f87b9c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          35,
+          13,
+          68
+        ],
+        "lookAt": [
+          1,
+          4,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:097df6bc8f8b378a857c7834284715a59c3fd7891a8b80de9ab8c2d1fc66f69a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          -55,
+          30,
+          -65
+        ],
+        "lookAt": [
+          0,
+          4,
+          -7
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2e947302d4c3d4e97eb39f6f21747f099efbdd6c7617e5cfefd71c8fa7a24628",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14803,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:774411ee33b59c8ee07fa7ca77f9861bc91183015e6740c029ff57c52edcc50d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 14941,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:e476c222c505c59cbc5752df23d21d97c85593e796d856968c66a87446760ad2",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 20039,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:6b19c8459259963a6a6b2c7b38c4228cadf94bcf313e50afcb4c50ff462d4988",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 23339,
+        "groundY": -8,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/gb/gbu/jamaica_inn/terrain-review.height.png"
+        },
+        "position": [
+          97.775,
+          65.9,
+          167.025
+        ],
+        "lookAt": [
+          0.775,
+          14.9,
+          -0.975
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:a7ae7f4ff5b16f9a74a1b976ea339b39d14f722a22b9d04cbdd1ae51228dbc81",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:937a4958ab6d8149bd2e99774aa659f98be675a36dbaa43774e44e9fc16f9708"
+  }
+}

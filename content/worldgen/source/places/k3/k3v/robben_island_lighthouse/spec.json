@@ -1,0 +1,332 @@
+{
+  "planId": "robben_island_lighthouse",
+  "id": "robben_island_lighthouse",
+  "assetId": "molen.worldgen.structure.robben_island_lighthouse",
+  "title": "Robben Island Lighthouse",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 18.374096006155014,
+    "latitude": -33.81469469201673
+  },
+  "size": [
+    8.399999618530273,
+    19.55000001192093,
+    8.399999618530273
+  ],
+  "actualBounds": {
+    "min": [
+      -4.199999809265137,
+      -0.800000011920929,
+      -4.199999809265137
+    ],
+    "max": [
+      4.199999809265137,
+      18.75,
+      4.199999809265137
+    ]
+  },
+  "visualBrief": "White tapered masonry lighthouse on Minto Hill, with black east daymark, red service drum and curved dome, two metal galleries and the sixteen-part glazed lantern.",
+  "nativeAxes": {
+    "x": "north",
+    "y": "up",
+    "z": "east toward door and black navigation stripe"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Robben_Island-003.jpg"
+  ],
+  "stories": [
+    {
+      "id": "robben-island-wk",
+      "url": "https://qualla.com/robben-island/"
+    }
+  ],
+  "referenceInputHash": "fb67bcebc2188e800da860378bf7d446026309e75c46ad744479d832c2b585b6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-robben-island-lighthouse.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-robben-island-lighthouse.mjs",
+    "level": "skyline",
+    "export": "robbenLighthouseSkyline",
+    "errorMeters": 0.35,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "lantern": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.22,
+        "metallic": 0.08,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.3
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "robbenLighthouseDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "lantern": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.22,
+            "metallic": 0.08,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.3
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "robbenLighthouseStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "lantern": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.22,
+            "metallic": 0.08,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.3
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "East doorway apron at [0,4.2], outside the masonry base. Independent terrain is preserved; foundation reaches -0.8 m.",
+    "anchor": [
+      18.374096006155014,
+      -33.81469469201673
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        18.374141416810552,
+        -33.81469469201673
+      ],
+      "modelHeight": 0,
+      "basis": "Apron immediately east of the lighthouse door, outside the masonry base."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185237377401"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0396ccf3157aab2def92ab14a84193335d4be6e985c8b3e08bcdbebf431d9cdc",
+    "notes": "The circular map footprint is about 7 m across; architect reports measured base circumference 21.25 m, used for 6.764 m base diameter. Height approximately 18 m follows the lighthouse fact file. Office/engine-room buildings, former keepers house, paths and site furnishings are outside the scope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi surviving tower exterior, based on an individually inspected 2012 Qualla image and the architect's 2019 northeast photograph; not a surveyed reconstruction.",
+    "Published 21.25 m base circumference controls the base diameter. Approximately 18 m tower height excludes the small interpreted weather vane. Other heights, window levels, ladder orientation and ornament are photographic estimates; upper proportions were adjusted against the long-lens Qualla photograph.",
+    "Map circle controls the actual Minto Hill location, independently of the island story point. Published coordinates and focal-plane heights differ and are not treated as precise geometry.",
+    "Round as-built shaft, staggered sash windows, east door and stripe, curved gallery rails and red lantern/dome are retained. Lens and glazing are visual approximations, not a working navigation light or optical simulation.",
+    "Office, engine room, demolished keeper house, paths, shell bollards and vegetation are excluded. No interior stairs or reference image pixels are embedded.",
+    "Independent terrain remains unmodified; other runtime elevation datasets can differ at the small foundation."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        10,
+        32
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -23,
+        16,
+        -27
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 15008,
+    "vertices": 45024,
+    "materials": 6,
+    "bytes": 1804564,
+    "sha256": "sha256:f9b60d2e67bbd2622e1c3cece1b94d6af14e72bd37afc8c8d26517b0e4819ebc"
+  }
+}

@@ -199,6 +199,13 @@ portable and shared source captures still show the detailed master. `qaLodCamera
 browser-only detail cameras for changed derivatives without altering source review views.
 
 Refresh the catalog, galleries and aggregate texture inventory once per meaningful batch.
+For Qualla-linked structures, also refresh the [story backlog and Qualla model annotations](worldgen/source/qualla-structures/README.md#remembering-model-coverage-in-qualla)
+after the source, registration, placement and readiness catalogs are current. The explicit
+scan/sync step remembers model IDs in the sibling Qualla curation catalog, including models
+that still need review; an asset build alone does not update story coverage.
+For the Qualla workstream, every next-1,000 candidate and collection member is reserved for
+production on a separate device. Retain coverage links, but exclude these models from local
+authoring and refinement; the Qualla batch preparation check enforces this ownership rule.
 After the selected generators and imports have run, a local lock checkpoint can use
 `pnpm assets:build --no-generate --update-lock`: this reuses current source GLBs, imports only
 stale runtime models, and hashes the inventory without running every generator. Review that

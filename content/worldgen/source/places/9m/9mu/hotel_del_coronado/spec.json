@@ -1,0 +1,289 @@
+{
+  "planId": "hotel_del_coronado",
+  "id": "hotel_del_coronado",
+  "assetId": "molen.worldgen.structure.hotel_del_coronado",
+  "title": "Hotel del Coronado",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -117.17847,
+    "latitude": 32.68098
+  },
+  "size": [
+    143.4572982788086,
+    49.69999921321869,
+    139.27769470214844
+  ],
+  "actualBounds": {
+    "min": [
+      -53.49720001220703,
+      -1.399999976158142,
+      -75.14119720458984
+    ],
+    "max": [
+      89.96009826660156,
+      48.29999923706055,
+      64.1364974975586
+    ]
+  },
+  "visualBrief": "Historic white wooden courtyard hotel with stepped red roof wings, ocean-front verandas, dormers, three smaller turrets and the twelve-sided main ballroom roof and belvedere.",
+  "nativeAxes": {
+    "x": "southeast along the ocean wing toward the main rotunda",
+    "y": "up",
+    "z": "southwest toward the beach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hotel_del_Coronado_Front.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-del-coronado-wp",
+      "url": "https://qualla.com/hotel-del-coronado/"
+    }
+  ],
+  "referenceInputHash": "b8d8cdcab991c7039d4120eff967292201c86483d5f583d7e0634edf1e92c2ad",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hotel-del-coronado.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hotel-del-coronado.mjs",
+    "level": "skyline",
+    "export": "coronadoSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "coronadoDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "coronadoStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Preserved independent terrain sampled outside the ocean wing at [0,55]; foundations extend to -1.4 m. Architectural floors and steps are photo-derived estimates above the common datum; no terrain flattening.",
+    "anchor": [
+      -117.17847,
+      32.68098
+    ],
+    "heading": -0.632,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -117.17881677525389,
+        32.68058135987968
+      ],
+      "modelHeight": 0,
+      "basis": "Ocean-front ground adjacent to the central hotel wing, outside mapped architecture."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776559918863"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:afd3a3cc8f11378a635a6596eeba7272ecd08ead62b8302ad644f21d56cf5f49",
+    "notes": "Courtyard and main footprint establish the frame. The slender north connector and large polygonal service pavilion are outside this historic-hotel scope; their original map coordinates are preserved as provenance. Main rotunda, three smaller turrets, stepped roof wings, balconies and dormers follow the dated local photos."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi historic hotel exterior derived from the mapped open courtyard and individually inspected Qualla 2006–2019 photographs; not an architectural survey.",
+    "White painted wood, red shingle roofs, verandas, dormers and twelve-sided ballroom tower are retained. Exact floor heights, roof intersections, hidden facade rhythm, ornament and stair joins are interpretations.",
+    "The later connected north service pavilion, separate modern resort neighborhoods, pool complex, utility buildings, landscaping and interiors are excluded.",
+    "This dated-reference exterior does not claim every 2021–2025 porch/courtyard restoration detail. Flagpoles are modeled without animated flags.",
+    "Independent ground is preserved. Other host terrain sources may differ. Reference images are not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        5,
+        28,
+        235
+      ],
+      "lookAt": [
+        15,
+        18,
+        20
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -85,
+        65,
+        -185
+      ],
+      "lookAt": [
+        12,
+        16,
+        -10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58094,
+    "vertices": 174282,
+    "materials": 5,
+    "bytes": 6974524,
+    "sha256": "sha256:cd70feb764c1a87d00d7fc0c05d5df1591e50549e9aea9a86b5c81da3125a9ce"
+  }
+}

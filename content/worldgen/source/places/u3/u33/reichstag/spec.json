@@ -1,0 +1,338 @@
+{
+  "planId": "reichstag",
+  "id": "reichstag",
+  "assetId": "molen.worldgen.structure.reichstag",
+  "title": "Reichstag building",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.376111111111111,
+    "latitude": 52.51861111111111
+  },
+  "size": [
+    140.03500366210938,
+    52.30000078678131,
+    132.91749954223633
+  ],
+  "actualBounds": {
+    "min": [
+      -68.29750061035156,
+      -1.600000023841858,
+      -52.91749954223633
+    ],
+    "max": [
+      71.73750305175781,
+      50.70000076293945,
+      80
+    ]
+  },
+  "visualBrief": "Present Berlin parliament exterior: mapped historic sandstone wings, two open courtyards, four square towers, west visitor colonnade and the transparent 40 m Foster dome.",
+  "nativeAxes": {
+    "x": "south along the west facade",
+    "y": "up",
+    "z": "west toward visitor entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Reichstagsgeb%C3%A4ude_von_Westen_bei_Nacht.jpg",
+    "https://commons.wikimedia.org/wiki/File:Reichstagsgeb%C3%A4ude,_Berlin-Mitte,_170402,_ako.jpg"
+  ],
+  "stories": [
+    {
+      "id": "reichstag-building-wp",
+      "url": "https://qualla.com/reichstag-building/"
+    }
+  ],
+  "referenceInputHash": "9a6b6b8fc167c5aa12a0cc46741a2d0dfb4908f5be324aa14fff2d4c36a3032d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-reichstag.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-reichstag.mjs",
+    "level": "skyline",
+    "export": "reichstagSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_ashlar",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.6,
+        "metallic": 0.45
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "dome": {
+        "slot": "window",
+        "localRef": "palette:#feffff",
+        "roughness": 0.2,
+        "metallic": 0.1,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.3
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "reichstagDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "dome": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.2,
+            "metallic": 0.1,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.6
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "reichstagStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_ashlar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "dome": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "roughness": 0.2,
+            "metallic": 0.1,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.3
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "West forecourt at [1.6,84] with original public Berlin ground elevations; foundation extends below this datum. Historic levels are photographic approximations.",
+    "anchor": [
+      13.376111111111111,
+      52.51861111111111
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.374871050627926,
+        52.51859673813232
+      ],
+      "modelHeight": 0,
+      "basis": "Unraised west forecourt beyond the entrance steps; DGM1 reveals the previous [1.6,64] point was on the raised stair landing."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184492913593",
+      "buildings/52776560334990",
+      "buildings/35184492913588",
+      "buildings/35184492913587",
+      "buildings/35184492913597",
+      "buildings/35184492913599"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:61c965938b68579dc9c6b908a44d51d9964dd2adcb17876a9172c8f46459d276",
+    "notes": "Mapped outline, two courtyard voids and four tower rectangles establish the plan. Historic west portico remains open, with glass entrance set behind columns. The dome follows Bundestag dimensions rather than generalized map height. Roof terrace and concealed courtyard facades are conservative approximations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_ashlar",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi present exterior, using individually inspected 2014 west-front and 2017 northeast Qualla photographs; not a survey or photogrammetric reconstruction.",
+    "Mapped outline, courtyard voids and tower positions are generalized. Roof terrace, courtyard facades, side details and ornament are conservative interpretations.",
+    "Dome diameter 40 m and rise 23.5 m follow Bundestag figures; base is approximately 24 m above forecourt. Rounded published total heights differ slightly. Top opening modeled approximately 10 m; another official page says 8 m.",
+    "The dome has 24 ribs and 17 horizontal divisions at close range, with four bottom glazing rows omitted. Internal ramps and reflector cone are simplified exterior-visible cues; parliamentary rooms are excluded.",
+    "Fine sculpture and inscriptions are simplified original relief forms. No reference image pixels, adjacent buildings, landscaping or temporary security installations are embedded.",
+    "Independent terrain is preserved. Other host terrain datasets may differ from the reviewed Berlin DGM1 sample."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        1.6,
+        31,
+        205
+      ],
+      "lookAt": [
+        1.6,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -145,
+        95,
+        -150
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 35333,
+    "vertices": 105999,
+    "materials": 6,
+    "bytes": 4243560,
+    "sha256": "sha256:5fa548651c3c7aa23bd696f892b6a918a60a7fd74e619510fd5c213e3128e508"
+  }
+}

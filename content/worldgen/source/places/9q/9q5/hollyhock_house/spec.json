@@ -1,0 +1,305 @@
+{
+  "planId": "hollyhock_house",
+  "id": "hollyhock_house",
+  "assetId": "molen.worldgen.structure.hollyhock_house",
+  "title": "Hollyhock House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.29436,
+    "latitude": 34.09996
+  },
+  "size": [
+    52.96999931335449,
+    10.399999618530273,
+    64.1200008392334
+  ],
+  "actualBounds": {
+    "min": [
+      -29.479999542236328,
+      -2,
+      -36.36000061035156
+    ],
+    "max": [
+      23.489999771118164,
+      8.399999618530273,
+      27.760000228881836
+    ]
+  },
+  "visualBrief": "Low buff stucco courtyard house with ten-degree battered upper walls, flat terrace roofs, geometric hollyhock friezes, west living-room projection and reflecting basin, raised west lawns, north entrance gallery, east upper bridge and circular pool, south garden and paired stair finials.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aline_Barnsdall_Complex_(9736565582).jpg",
+    "https://commons.wikimedia.org/wiki/File:Hollyhock_House_3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hollyhock-house-wp",
+      "url": "https://qualla.com/hollyhock-house/"
+    }
+  ],
+  "referenceInputHash": "d59feb9637bceff278d7eb6037f43033c231955c6e885125e4bd8af6b01cc0c6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hollyhock-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hollyhock-house.mjs",
+    "level": "skyline",
+    "export": "hollyhockSkyline",
+    "errorMeters": 0.35,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "pool": {
+        "slot": "window",
+        "roughness": 0.23,
+        "metallic": 0.12,
+        "localRef": "palette:#feffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hollyhockDistrict",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "pool": {
+            "slot": "window",
+            "roughness": 0.23,
+            "metallic": 0.12,
+            "localRef": "palette:#feffff"
+          }
+        }
+      },
+      "street": {
+        "export": "hollyhockStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "pool": {
+            "slot": "window",
+            "roughness": 0.23,
+            "metallic": 0.12,
+            "localRef": "palette:#feffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ground beside northern entrance gallery at local [-8,-18], model Y=0; main first floor Y=1.7. Independent USGS bare-earth datum.",
+    "anchor": [
+      -118.29436,
+      34.09996
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.29444678698523,
+        34.1001216960115
+      ],
+      "modelHeight": 0,
+      "basis": "Ground beside the northern entrance gallery; main floor and terraces sit above this garden level."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776564379813"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:8db75c6baf628e376c437bb7eaea4ae2a83df4cb4694f5b67b34a8680a12dd46",
+    "notes": "The mapped 18.7 m height conflicts with the documented one/two-storey house and is retained only as raw context, not used for roof height. Courtyard remains open under the east upper bridge. Long northern pet pergola is outside this main-house asset scope, as are separate park buildings."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from individually inspected Qualla photographs, HABS CA-356 description, official 2024 museum floor plan and aerial roof context. Dimensions, hidden joins and relief are interpretations, not surveyed measurements.",
+    "Main house, north entrance gallery, attached terraces and basins included. Long northern pet pergola, other park buildings, interiors, vegetation, visitors, furniture, pool sculpture, temporary construction coverings and reference-photo pixels excluded.",
+    "Independent USGS CA_LosAngeles_B23 ground preserved unmodified. Ground under buildings is source-interpolated; host terrain may differ. Preview placement retains footprint replacement disabled.",
+    "The mapped 18.7 m height is rejected as incompatible with the documented one/two-storey house. Upper east range and bridge are authored at 8.4 m above entrance-garden datum.",
+    "Hollyhock relief and art-glass patterns are simplified and progressively omitted at distant detail levels. No physical-device frame-rate measurement is claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -70,
+        19,
+        44
+      ],
+      "lookAt": [
+        -5,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        65,
+        25,
+        -45
+      ],
+      "lookAt": [
+        2,
+        3,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28990,
+    "vertices": 86970,
+    "materials": 6,
+    "bytes": 3482352,
+    "sha256": "sha256:76c0bd1d88b51510ec0164131eb41f9b5cd0109a7839d48e7e5991d4246a7d8e"
+  }
+}

@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.bach_house",
+  "sourceHash": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e",
+  "runtimeHash": "sha256:016463585bb282f89009f4d45441331a69e49ee38a16ac76057fc752615c2747",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:4339728e9a674d0e7cae909a90778b277196264fd6672719607c6c4e77eb9848",
+      "bytes": 29696,
+      "gzipBytes": 5599,
+      "triangles": 367,
+      "cpuBytes": 28268,
+      "gpuBytes": 28268,
+      "errorMeters": 0.18,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:568069ab0c4d5dfc27edb32084a262e270c50be153022c71feb85de5371e60c3",
+      "bytes": 100444,
+      "gzipBytes": 18956,
+      "triangles": 1199,
+      "cpuBytes": 93164,
+      "gpuBytes": 93164,
+      "errorMeters": 0.08,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:728c0050c2e518a78c3fe3f03db24375d2db94ffe110dfaced47b0086abea53e",
+      "bytes": 635140,
+      "gzipBytes": 109486,
+      "triangles": 8153,
+      "cpuBytes": 627800,
+      "gpuBytes": 627800,
+      "errorMeters": 0.03,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:a70d606fe0506e081fc5ec2606e31f6e83153735341489c3de40dcd3adb5bd70",
+      "bytes": 3115828,
+      "gzipBytes": 554115,
+      "triangles": 25937,
+      "cpuBytes": 3112440,
+      "gpuBytes": 3112440,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d7ad87799034b4756c50106cc4b09c8cf2b8b76e76e2aae9f71b128ea8c35783"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:382022b68c32edf459bac0927cdb0f242900eb75f8b02253c453ca85c570e7e8"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:0992a58563dca776fdb1d98c155eb623e65eb8f8abdbdce8472956577f02bd51",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.935,
+          84.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:84824d6b1978c375dba4d9aab3a8e95b876b3956a63f31c050591fc12b6cd1dc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.935,
+          84.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:035426e510a4248ff5cb23c9f3146916930ce581e5850ffab343b53fe270b346",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.935,
+          84.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:9835a4c9457b60db688ad8fdc35c3411fbd4127d084960d77236232eecb8de0c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.935,
+          84.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:3e55024747c85bb473a4fc94be8d77c4bd0d02c18e38152d7db779201b419a3b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 15633,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:66c6e7fcdf48bf579705ad9b74c9cc80ea5e168e201982beff1ac6a4c8396863",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 15633,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:07e9301b8e979d797ef59c6117b5dea276c878a3791e68f4cc39fa95e8125ebc",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 15633,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:8bdd0fbc486e53ac750dfca5d4c413d510396db4a5f659e021e0288bc5863cba",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 15633,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:2db42788d0b065ba4a342cb7a803db8b5a59d673b4b1111f014bbf008d56b8fd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14801,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.935,
+          337.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:4bae30b7ec8062230e9fabad4ce07cd9aa5abdf79951dcd0298c02c7838534bf",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14801,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.935,
+          337.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:6dfc00214c8ae64987b06d2bf7829b9e8e33cd939575174905f8b39dc46d5680",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14801,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.935,
+          337.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:e5a2ca5b793afa1c3ed024b52fb679f1283b1d2bc579d2c527eff1a05c4bb8a2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14801,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.935,
+          337.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:be7f733a12c890aa14c1164ee4675ac67e5ce4b57f2087583799489f57485360",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 8561,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.935,
+          337.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:c766fcf374581694ff48b02c1acd743ed9c4927e8935bf313602fd83b23dee65",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          5,
+          8,
+          31
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:571e5fb2d2ffbf478e247613a6298acb9419c0eb551b4c298d961fe30ec6ef21",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          -8,
+          15,
+          -29
+        ],
+        "lookAt": [
+          0,
+          5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:41482fccb6e42bbadfbe97204a0426ee10736f846754dddc237eef1ffed307fb",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14801,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:66c6e7fcdf48bf579705ad9b74c9cc80ea5e168e201982beff1ac6a4c8396863",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 15633,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:8bcb86cf67cab890e486fee78268a55c53c9187b8cb22ceceb2f6e225f7bac48",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22587,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d62abe2c1642cecaafe708f82944ec795e4d267b678fe146fbed710a371220d4",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 40371,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u1p/bach_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.935,
+          169.105
+        ],
+        "lookAt": [
+          0,
+          15.934999999999999,
+          1.105
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:50171ed8929913ae3fe194b7a1d8c74ba3e9b37ae431f79b1a9003d9c422aade",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:eaee5cfc44c422828dae16b7ddca6d7c6e92f959e6826cf5ecf425f6152e7eaf"
+  }
+}

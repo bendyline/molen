@@ -1,0 +1,287 @@
+{
+  "planId": "arizona_biltmore",
+  "id": "arizona_biltmore",
+  "assetId": "molen.worldgen.structure.arizona_biltmore",
+  "title": "Arizona Biltmore Hotel",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -112.0229,
+    "latitude": 33.5234
+  },
+  "size": [
+    134.09952545166016,
+    19.649999618530273,
+    131.11510467529297
+  ],
+  "actualBounds": {
+    "min": [
+      -77.81500244140625,
+      -1,
+      -72.11510467529297
+    ],
+    "max": [
+      56.284523010253906,
+      18.649999618530273,
+      59
+    ]
+  },
+  "visualBrief": "Historic main block with stepped textile-block tower, recessed upper veranda, long room bar, low Gold/Grand wings, octagonal copper-roofed Aztec Room and open entrance canopy.",
+  "nativeAxes": {
+    "x": "east-southeast along the historic main facade",
+    "y": "up",
+    "z": "south-southwest toward the entrance court"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Arizona_Biltmore_-_South_Facade.JPG",
+    "https://commons.wikimedia.org/wiki/File:Arizona_Biltmore-7.jpg"
+  ],
+  "stories": [
+    {
+      "id": "arizona-biltmore-hotel-wp",
+      "url": "https://qualla.com/arizona-biltmore-hotel/"
+    }
+  ],
+  "referenceInputHash": "5af6cba94f997a2009e9b938e61e6940791fed6328f0f4016798fa75bb29838f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-arizona-biltmore.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-arizona-biltmore.mjs",
+    "level": "skyline",
+    "export": "biltmoreSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.6,
+        "metallic": 0.45
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "biltmoreDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "biltmoreStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.45
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "South entrance approach [-19.5,60] immediately outside the mapped porte-cochere; independent terrain preserved unchanged.",
+    "anchor": [
+      -112.0229,
+      33.5234
+    ],
+    "heading": -0.2984988781512775,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -112.02329096593809,
+        33.522936363021834
+      ],
+      "modelHeight": 0,
+      "basis": "South entrance approach immediately beyond the mapped narrow porte-cochere."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185293185443/main-block-scope"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:53419d3da019a7ab4bb86360d55b5e7ec51f5c549fdf50f47c954f772e87d27b",
+    "notes": "The main compound is not a single flat extrusion: published floor plans and photographs establish the taller guest-room bar, recessed veranda, tower, low meeting rooms and octagonal Aztec Room. The map does not contain reliable part heights; heights and roof setbacks are photo-derived approximations. Later wings and wider grounds remain outside scope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi main-block exterior from individually inspected Qualla photos, architect-published 1929 plans and official 2024 resort map. Not a survey or photogrammetric reconstruction.",
+    "Current restored main building only. Later East/Garden/Paradise/Valley/Ocatilla wings, separate conference halls, cottages, villas, pools and broader grounds are excluded. Connected boundary clipping is an explicit scope decision.",
+    "Upper-room setbacks, heights, service-side roofs and exact window positions are photo-derived approximations. Original plans guide massing but do not claim that every 1929 interior survives.",
+    "Geometric textile-block relief uses the published 18 by 13.5 inch module with a simplified original stepped-leaf motif, not a replica of the exact mold. No photographic pixels, readable signage or interiors are embedded.",
+    "Independent terrain rises across the footprint and is not flattened; the foundation extends below the south approach datum. Another host DEM can change exact ground contact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -4,
+        22,
+        165
+      ],
+      "lookAt": [
+        -8,
+        7,
+        4
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        110,
+        65,
+        -155
+      ],
+      "lookAt": [
+        -8,
+        7,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60176,
+    "vertices": 180528,
+    "materials": 5,
+    "bytes": 7224352,
+    "sha256": "sha256:b14ec9c1a46027756d2955d626f7006155309120dbed98fbe5c6e91c87d0ceb4"
+  }
+}

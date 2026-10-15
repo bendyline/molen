@@ -1,0 +1,313 @@
+{
+  "planId": "gamble_house",
+  "id": "gamble_house",
+  "assetId": "molen.worldgen.structure.gamble_house",
+  "title": "Gamble House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.16094281998548,
+    "latitude": 34.15164015362752
+  },
+  "size": [
+    32.27999973297119,
+    12.649999618530273,
+    32.085289001464844
+  ],
+  "actualBounds": {
+    "min": [
+      -15.779999732971191,
+      -1,
+      -15.875
+    ],
+    "max": [
+      16.5,
+      11.649999618530273,
+      16.210289001464844
+    ]
+  },
+  "visualBrief": "Craftsman house with olive cedar-shake walls, overlapping broad gables and deep exposed timber eaves, raised attic, three open sleeping porches, warm timber casements and entry glass, three bracket-capped chimneys, gunite front terrace and fieldstone rear terrace.",
+  "nativeAxes": {
+    "x": "north-northeast",
+    "y": "up",
+    "z": "east-southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Gamble_House_2016-1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Gamble_House_6.jpg"
+  ],
+  "stories": [
+    {
+      "id": "gamble-house-pasadena-california-wp",
+      "url": "https://qualla.com/gamble-house-pasadena-california/"
+    }
+  ],
+  "referenceInputHash": "042955833419c07dc88454e538678d7996348c23743574542b47f28645491bb4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-gamble-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-gamble-house.mjs",
+    "level": "skyline",
+    "export": "gambleSkyline",
+    "errorMeters": 0.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "gambleDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "gambleStreet",
+        "errorMeters": 0.045,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Front garden at local [2,17], Y=0; main floor Y=1.5, upper sleeping porches Y=4.8. Independent USGS bare-earth datum.",
+    "anchor": [
+      -118.16094281998548,
+      34.15164015362752
+    ],
+    "heading": 1.13,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.16076666139011,
+        34.15159124604257
+      ],
+      "modelHeight": 0,
+      "basis": "Front garden at the foot of the entrance steps; house first floor and terraces raised above this level."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184758134702"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5dce52cff9be6c47fb723bf62017c3f07e0f2bbed35c5f28427e632c88658c48",
+    "notes": "Main house only. Detached garage northeast is excluded. Roof overhangs are substantial; mapped roof perimeter is not treated as wall perimeter."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from inspected local Qualla front/rear photographs, porch and entry details, local HABS construction section, online first-floor plan and aerial roof context. Dimensions, upper room boundaries and hidden roof joins are estimates, not survey data.",
+    "Main house and attached terraces only. Detached garage, interiors, furniture, vegetation, visitors and photographic pixels excluded.",
+    "Independent unmodified USGS CA_LosAngeles_B23 bare-earth tile retained. Ground under structures is interpolated by the source product; host terrain can differ. Footprint replacement remains disabled.",
+    "Cedar shakes, art-glass branches, beam-end profiles, terrace fieldstones and chimney brackets are simplified at medium-fi scale and omitted progressively at distance. No physical-device frame-rate measurement claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        22,
+        14,
+        57
+      ],
+      "lookAt": [
+        0,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -30,
+        17,
+        -49
+      ],
+      "lookAt": [
+        0,
+        4,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28706,
+    "vertices": 86118,
+    "materials": 6,
+    "bytes": 3448372,
+    "sha256": "sha256:94198b90b55af09814cf37fd9d12a994fb3dac9047f8ba57f3520a597efa32fc"
+  }
+}

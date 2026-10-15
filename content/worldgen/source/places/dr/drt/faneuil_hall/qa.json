@@ -1,0 +1,167 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.faneuil_hall",
+  "reviewedOn": "2026-10-14",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:1b3e36bdc60b1eae49592a0942e7a7210e576b405604a2c9b63b51bfe682a00f",
+  "sourceHash": "sha256:c2c981aa687ac43396c802c28caf6b666d915aa0079b4355812fc7400bd11237",
+  "runtimeHash": "sha256:4f34e5317c1866dca13d7e6b1e98c36b08ff7b930b6a23b798bb9564761a1c52",
+  "captureReportHash": "sha256:798e33ceab4182b92610904aa555450c8be0b4309a50df98c4928be9a8d76e54",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/back.png"
+    ],
+    "notes": "Inspected all seven final portable views against the two primary Qualla originals and supplemental eastern gable photograph. Three brick floors, seven-bay gables, nine-bay long sides, white pilasters/cornices, large fanlights and paired oculi, slate gable roof, east-end cupola and grasshopper remain identifiable. Rejected initial gable occlusion was corrected by separating the roof overhang from the gable plane. Open lantern arch spandrels were added before final captures."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:940fe2075ad428a4ac8aca547bdb0ab383ace35590e2fb84e9be85dc6967719a",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all seven final shared views including the north-up placement overlay. Brick, plain concrete, slate and painted metal retain metric UVs; glazing stays portable. The mapped hall outline and separate east-end tower parts agree with the model. Source/runtime transform, reference-point sampling, resource unload and material-graph reads pass. Fine stone carving and physical gold reflectance are simplified."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:778e8895d195e8401fcd8c6afa810374f7a764bec99d8469781484fcabf233b1",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all nineteen final medium-fi views, including both lights/quality modes, front/back, silhouette and forced LODs. Open cupola posts now persist in skyline instead of the rejected dark closed lantern. Window rhythm and three floor bands retain legibility at block distance; small trim and grasshopper details simplify at distant levels. Synthetic neighboring blocks are a style test, not downtown Boston. No physical-device performance claim."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:6416a99230b6a4764c467ba24be227687dd0055168e62f61c5965a189689f871",
+    "mapGeometryHash": "sha256:69cb788a83ee53c1a347594b1196a3d46dc0fe097561789a5ea072eab179d74c",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:006ea8e360544a1bff6e4f586baf957a3d2c6f9c99dd3fcce5c976d89a1a6694",
+      "descriptorHash": "sha256:c33d29f3c07dd8041d3dd1bece69c8d972d318659253502403c1149da9668344",
+      "heightfieldHash": "sha256:e4c04c895e692c7d2232608bb726d2e1bfc510d65f5932f6cee148ab4dc16fec",
+      "modelDatumElevationMeters": 5.5784,
+      "sourcePixelGroundSpacing": 3.5300794297906197,
+      "footprintRelativeRangeMeters": [
+        -0.012634842531616286,
+        0.17141758516929073
+      ],
+      "maxPngEncodingErrorMeters": 0.00003063011169501806
+    },
+    "notes": "Hall polygon 35184401640534 and cupola parts 35184612459110/35184612459142 establish the building and eastern tower. Anchor [-71.05623431503773,42.36003337249992], heading 1.7056862578319953, +X north-northwest and +Z east-northeast retain the east gable facing Quincy Market. Entrance reference [0,15.9] defines datum 5.5784 m. Unmodified terrain spans -0.012635..0.171418 m across control vertices; foundation reaches -0.75 m. Outline is generalized and the height estimates are not surveyed. Footprint suppression remains off."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Historic Faneuil Hall exterior, roof, cupola and simplified grasshopper weather vane; adjacent markets and interiors excluded.",
+    "notes": "Accepted original medium-fi historic Faneuil Hall exterior. The 2025 Ajay Suresh whole western gable/side view, Robert Linsdell lantern detail and supplemental Eric Kilby eastern gable establish the visible exterior. Main proportions, fanlights, white bands, roof/cupola relationship and insect weather-vane silhouette are retained. Detailed capitals, exact pane counts, access ramps, plaques, unseen roof services and interiors are omitted or simplified. Quincy Market is excluded. Reference photography is not redistributed."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:55e967b33545528cd6b3eff7517d38a904efb4227fe4a0bd4b4621ea3b33fdcc",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:9e9ab8a113beaec30948439ec3b255aecc9e2e2576b7dc3b61bfebab13eddd05",
+        "bytes": 64852,
+        "gzipBytes": 10595,
+        "triangles": 818,
+        "cpuBytes": 63444,
+        "gpuBytes": 63444,
+        "errorMeters": 1.2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:b9a94f6542914469ea8d3d507c83c2e578505278454fb8ea3c36295c19cc1d6a",
+        "bytes": 263024,
+        "gzipBytes": 52176,
+        "triangles": 3948,
+        "cpuBytes": 256968,
+        "gpuBytes": 256968,
+        "errorMeters": 0.3,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:b099738c2ec328d65efbf1e96a808b4169ac891df148c57032f00936858b76bb",
+        "bytes": 986072,
+        "gzipBytes": 178275,
+        "triangles": 14532,
+        "cpuBytes": 979992,
+        "gpuBytes": 979992,
+        "errorMeters": 0.14,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:20cb7a76dd3e5c312f607b5d97f33f14b31b5baed53e13b9394e797ccd3b2e2f",
+        "bytes": 2066472,
+        "gzipBytes": 323327,
+        "triangles": 17196,
+        "cpuBytes": 2063520,
+        "gpuBytes": 2063520,
+        "errorMeters": 0,
+        "drawCalls": 5
+      }
+    ],
+    "notes": "All four current hash-bound levels pass strict budgets and were visually inspected. Counts: skyline 818, district 3948, street 14532, closeup 17196. Skyline/district/street are authored; district keeps the facade rhythm using shallow trim planes. Error limits are declared authoring budgets, not independent mesh-distance measurements."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 17196,
+    "sourceMaterials": 5,
+    "runtimeLodsVerified": 4,
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+  },
+  "limitations": [
+    "Original medium-fi exterior from inspected local Qualla photographs and generalized hall/cupola footprints; not a measured architectural survey.",
+    "Facade bay rhythm, arched fanlights, pilasters, cornices, gables, open lantern and grasshopper silhouette are retained. Fine Corinthian ornament, pane counts, access ramps, plaques and hidden roof service details are simplified.",
+    "Only historic Faneuil Hall is included. Quincy Market, neighboring market buildings, plaza furniture and interiors are excluded.",
+    "Height estimates and entrance datum are photographic/map interpretations. Other host elevation datasets may require a new placement review.",
+    "Reference photography remains in Qualla; no photos are embedded or redistributed in the runtime pack."
+  ],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:5fa37b41a28702f75d6ff14c2b15f41fe3851f61878bcd34a9e7aca47338a19b",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  }
+}

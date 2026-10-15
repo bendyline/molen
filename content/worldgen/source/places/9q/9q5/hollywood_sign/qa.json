@@ -1,0 +1,167 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.hollywood_sign",
+  "reviewedOn": "2026-10-14",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:ba34af7eaa8254d7420e4d058ff6bf7ed98725985f3bc44fe6c31cc35c4a9a2c",
+  "sourceHash": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d",
+  "runtimeHash": "sha256:4f93ecdff3e87818fd9e7bd1d5b2c9c17bb81319e60d0612b811dd5daf3b5faf",
+  "captureReportHash": "sha256:32a875ecd4aff73447fda53611a1acc1bf3a91f77e0dfd25c74e96aaa6538fe3",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/back.png"
+    ],
+    "notes": "Inspected all seven current portable frames and full front render against the individually inspected Qualla aerial front and rear panorama. Nine custom white letter forms, openings, corrugated faces, independent angles, steel rear girts, twenty posts and ladders remain readable. Replaced the implausible terrain-driven panel arch with photograph-derived panel heights; raised the rear camera above the hill. Footings meet unmodified USGS elevation. Terrain and structural joints remain generalized."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e5ad925d5d760576ec5b03e1beb4118ec1d9e45538bc1a012145d5128960494f",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected seven current shared-material views and full rear frame. White painted metal panels and gray frame retain metric surface bindings. North-up panel lines, heading, terrain reference transform, graph reads and unload pass. Flat ground is only a material/transform fixture; actual hill contact is assessed in preserved-terrain portable and medium-fi captures."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ee729033b88939c65a58b47df509bdc531312aec11e2def4c91e4d74572b5685",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected nineteen current frames across lighting, quality, front/back, silhouette and all four forced detail levels. HOLLYWOOD remains legible at the distant detail levels; close levels retain the rear frame and corrugation. Shadow response changes with the renderer quality preset. Surrounding blocks are synthetic style fixtures. No physical-device performance measurement is claimed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:0f5dabe2b053d88e94fc3727f153182a86f8e60f031035231693ab72ab894fd7",
+    "mapGeometryHash": "sha256:887d9a700302940133469f6c299040649dd3ee0d140f5abbbb3c37c632009732",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:6f68b1e562f4413ee448bc683a4261f4b0e5d697a9c82c753a225b08fcfe5dd3",
+      "descriptorHash": "sha256:d1fa7cff914751be1f4dcd3ded7227acbbbc3f9a683dbc0187421c05bc893c4f",
+      "heightfieldHash": "sha256:cf068fbdad46d07f53d27bf4a34c8013ec54f894f44492c7d56c2642f08abe69",
+      "modelDatumElevationMeters": 480.9181,
+      "sourcePixelGroundSpacing": 0.9166728106545524,
+      "footprintRelativeRangeMeters": [
+        -4.158807409557312,
+        1.7327524555416858
+      ],
+      "maxPngEncodingErrorMeters": 0.0009263721466368224
+    },
+    "notes": "Nine individual OSM letter centerlines establish panel centers and angles; anchor [-118.32168815,34.134047800000005], heading 0, +X east and +Z south. Ground under Y is datum 480.9181 m. USGS 3DEP replaces the initial coarse Terrarium research grid: original elevation was not flattened or fitted. Panel lower edges follow the local front photograph independently of terrain; feet sample the USGS grid and enter it by 0.8 m. Export pixel spacing is not native DEM accuracy. Runtime contact with a different host DEM remains uncertain. Footprint suppression stays off."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Current nine-letter steel sign and immediate supports; surrounding broadcast facility, fences and vegetation excluded.",
+    "notes": "Original medium-fi exterior from two individually inspected local Qualla photographs. Trust sources establish 45 ft panel height, twenty main posts and steel/corrugated construction. Custom H/O/L/Y/W/D forms, narrow depth, separate orientations, six girts, I-section posts and ladders are retained. Small fasteners, exact engineering sections and photographic panel offsets are generalized. Published 450 ft total length conflicts with mapped span around 105 m; mapped placement is retained with the discrepancy documented. Reference images are not embedded or redistributed."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d67e097f3d585d84444f995bc08a903d7c076c757176479e642e96a26e547633",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:289aae42875482f2bad99231d4ff594790e2ddb27e83b1ac2e72c8e4541e22f5",
+        "bytes": 64192,
+        "gzipBytes": 13022,
+        "triangles": 884,
+        "cpuBytes": 62760,
+        "gpuBytes": 62760,
+        "errorMeters": 0.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:c87b50e96748ccdb5e8769a69f182e98434140dba244474a73440118b28dc2e1",
+        "bytes": 116028,
+        "gzipBytes": 26783,
+        "triangles": 1532,
+        "cpuBytes": 113304,
+        "gpuBytes": 113304,
+        "errorMeters": 0.2,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:2fd2666959c8c425a397f4f304b647866a5f8ece81bba941605e5edceacdcb9b",
+        "bytes": 394028,
+        "gzipBytes": 85541,
+        "triangles": 5096,
+        "cpuBytes": 391296,
+        "gpuBytes": 391296,
+        "errorMeters": 0.08,
+        "drawCalls": 2
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:d9d07b4a1bef63fecf29bf6d0376e38c43a123ae85cff898320b1864ce025678",
+        "bytes": 1656040,
+        "gzipBytes": 273564,
+        "triangles": 13784,
+        "cpuBytes": 1654080,
+        "gpuBytes": 1654080,
+        "errorMeters": 0,
+        "drawCalls": 2
+      }
+    ],
+    "notes": "All four current hash-bound detail levels pass strict geometry/draw budgets and were inspected. Skyline preserves all letter openings; district adds girts, street adds braces and coarse corrugation, closeup adds ladders and fine ribs. Error thresholds are authoring limits, not independently measured mesh distances."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 13784,
+    "sourceMaterials": 2,
+    "runtimeLodsVerified": 4,
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+  },
+  "limitations": [
+    "Original medium-fi current nine-letter steel sign based on inspected local Qualla front and rear photographs, individual OSM letter lines and independent terrain. Not an engineering survey.",
+    "Letter height is 13.716 m (45 ft). The Trust booklet reports 450 ft overall length, while mapped endpoints span about 105 m; mapped positions are retained and this discrepancy remains unresolved.",
+    "First O and second L widths are adjusted from short mapped lines to match the photographic proportions; all centers and angles remain mapped. Corrugation, beam sections, joints and ladders are simplified.",
+    "Photographic comparison sets approximate panel heights independently of USGS terrain-sampled feet. Native DEM resolution and vertical accuracy are unknown; exact ground contact remains host-terrain dependent.",
+    "Earlier HOLLYWOODLAND extension, mountaintop broadcast buildings, fences, surveillance equipment and landscape vegetation are outside this model. Reference photographs are not embedded or redistributed."
+  ],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:987ae8f079f5e0aa7891a8dd90882ed64042f63b647851ef7261acf7906ecc9d",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  }
+}

@@ -1,0 +1,840 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.hotel_chelsea",
+  "sourceHash": "sha256:7619de4f17d6dcde2fb569f4cb22d4200a1db4c8040b4f7c6ffd30cccdf796d6",
+  "runtimeHash": "sha256:95baea2db13da7d48b7238cf4570149c9e826a88963d648a1d6e03fd64f061db",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:b719d8a0df14a79dcebb16013693694714947306cf13bccc11adc25f2544be13",
+      "bytes": 69272,
+      "gzipBytes": 10339,
+      "triangles": 880,
+      "cpuBytes": 67848,
+      "gpuBytes": 67848,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:fcced91d6d61656889eafcf4d2fbe9f5d7ee1b681a8478401fcb5f6240a32601",
+      "bytes": 297304,
+      "gzipBytes": 48273,
+      "triangles": 3787,
+      "cpuBytes": 291176,
+      "gpuBytes": 291176,
+      "errorMeters": 0.4,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:748d88e14984b9928b27a04d091da0c48a98b834d50cb8dbc8e174c10bbcbf36",
+      "bytes": 1031476,
+      "gzipBytes": 194447,
+      "triangles": 13199,
+      "cpuBytes": 1025312,
+      "gpuBytes": 1025312,
+      "errorMeters": 0.15,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:d847c557e6965e1ed268dc9674072a96f22998104f4af8e24f3cded8162e8065",
+      "bytes": 5244228,
+      "gzipBytes": 864155,
+      "triangles": 43677,
+      "cpuBytes": 5241240,
+      "gpuBytes": 5241240,
+      "errorMeters": 0,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:b20faf01b146ef1dcc6f0142a6b759c8aa66c6dfd9fd0d726fdeee8d86808eb2"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:14b29c20357c92a35216a47498ad1a89ba613eb4bd8240face765e355701f913"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:3771d630855fafe93b62d57eeb297e5c7e49df305471e74193de5b1adc7520d8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          51.925,
+          83.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:684be63f6f74bad74cdef08ffa4f0a9296376a3790fa9870d42bdcd8bb413c06",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          51.925,
+          83.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:20d57394017b5a7fa209abeb77e18ad8773a78ea0c5fdc13029e2400eb209d92",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          51.925,
+          83.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:d907eb0457a33e4479f897b7248373aa9d5709a6c1c1ee85eafd5f3f35cec6e6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          51.925,
+          83.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:abda570361823217a00446586a09dabdfcac7badf8f6fbf38e5096674b3d67f3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 18221,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:35219cd7d7cd76f8e664032c7bc79ee9d28ea7d7e1cf0faf426e3410168a2158",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18221,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:fe582625439c4123906b9f7be882eb75e98305eb74e7b86a0d68340bf634be77",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 18221,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d5e4d24ff505089f08d80628dc10d0f0b23c6123030f1518c0d86dd8d180d41a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18221,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:9a92a0e3f8980b042b41da0fd3e1ee92d51d60f8e0ea2826aca4ae611db3c6a3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15314,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          125.925,
+          336.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:cdb59df7a72f1a6c3b8d1cec535ba08a2e1eb51a8fa107c4a9154b980b2e0643",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15314,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          125.925,
+          336.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:3074c5d91b511e23ee33f7a488169f5c6582eaf65a98d3c2507474bee90f4d34",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15314,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          125.925,
+          336.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:fbbe5f0227caacf349798d33a248db6af148295c2b30580c3cbfa97a29efbbdf",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15314,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          125.925,
+          336.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:193e92982d9c84089f1464b25080fc9c8e587e8682c454fd0c03993162b0866d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9074,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          125.925,
+          336.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:b9a5e73a0e55c4ac17bb56088ed77438e8097a33928ad437488e5c73dcf16184",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          30,
+          120
+        ],
+        "lookAt": [
+          0,
+          25,
+          2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:6616da8f7058e1d5f3eb8cab0e27f9ad4b3f1ba8956c1657df8ccb1f366cdf70",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          -72,
+          64,
+          -105
+        ],
+        "lookAt": [
+          0,
+          25,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:3b58ddb37c97526ba9329fb0065ff7ee28a92a8ed368e2a1a59a97d268103b91",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15314,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:35219cd7d7cd76f8e664032c7bc79ee9d28ea7d7e1cf0faf426e3410168a2158",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18221,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:0afe1fcd829fa41fb537a4138b169eaa239f950c396e34f5fc8775cddec65a58",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 27633,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:bd86f4d108055d21fb40396ea487c323b42cc41b3df4203fcac19a85a31dd10c",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 58111,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/hotel_chelsea/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          87.925,
+          168.825
+        ],
+        "lookAt": [
+          0,
+          36.925,
+          0.825
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:65d76e7305804e488d96df1b1dda8806c831726b9e0166b7eb3a42807cfa82f4",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:0a2f61c37a24ed2609f03bd72e37f4c3637d249b85a6de6cbc448ae5f0cf7a76"
+  }
+}

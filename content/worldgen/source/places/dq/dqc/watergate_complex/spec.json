@@ -1,0 +1,259 @@
+{
+  "planId": "watergate_complex",
+  "id": "watergate_complex",
+  "assetId": "molen.worldgen.structure.watergate_complex",
+  "title": "Watergate complex",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.05534279346466,
+    "latitude": 38.89892378334336
+  },
+  "size": [
+    224.78875732421875,
+    51.39999866485596,
+    313.9872131347656
+  ],
+  "actualBounds": {
+    "min": [
+      -113.01686096191406,
+      -6.800000190734863,
+      -157.5994110107422
+    ],
+    "max": [
+      111.77189636230469,
+      44.599998474121094,
+      156.38780212402344
+    ]
+  },
+  "visualBrief": "Coordinated curved residential, hotel and office blocks with recessed strip glazing, projecting residential balconies and white balustrade rhythm, flush office spandrels, low courtyard connections and rounded rooftop service forms.",
+  "nativeAxes": {
+    "x": "across principal front elevation",
+    "y": "up",
+    "z": "south"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Watergate_complex,_2025.jpg",
+    "https://commons.wikimedia.org/wiki/File:Watergate_Building_Complex_front.jpg"
+  ],
+  "stories": [
+    {
+      "id": "watergate-complex-wp",
+      "url": "https://qualla.com/watergate-complex/"
+    }
+  ],
+  "referenceInputHash": "4714e64c0de0b3202a0fb46ca54e299ec37bc0283e01af901bc95d5fc9fda147",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-watergate-complex.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-watergate-complex.mjs",
+    "level": "skyline",
+    "export": "watergateSkyline",
+    "errorMeters": 2.2,
+    "authoredLevels": {
+      "district": {
+        "export": "watergateDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "watergateStreet",
+        "errorMeters": 0.85,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Central courtyard [0,0] defines the independent host datum; lower facade and foundation closures extend to -6.8 m across the sloping generalized site. Ground-floor and terrace levels are interpretations, not a measured accessibility model.",
+    "anchor": [
+      -77.05534279346466,
+      38.89892378334336
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.05534279346466,
+        38.89892378334336
+      ],
+      "modelHeight": 0,
+      "basis": "Central landscape court reference on independently preserved host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184818078664",
+      "buildings/35184438506419",
+      "buildings/35184818078669",
+      "buildings/35184818078655",
+      "buildings/35184818078660",
+      "buildings/35184818078673",
+      "buildings/35184818078678",
+      "buildings/35184818078648"
+    ],
+    "source": "https://build.protomaps.com/20261008.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:646ac1b7295db110623963374270c0fb9bf4a19ce0e55f06969568b8d36ed91c",
+    "notes": "Separate mapped curved bodies remain coordinated in one model. Residential blocks receive projecting balcony slabs, recessed glazing and fine white balustrade rhythm. Office wings retain flush strip glazing and wider concrete spandrels. The hotel wing has shallow balconies, lower entry canopy and rounded rooftop service forms. Exact roof equipment and planted terraces are interpreted from local photographs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior of the coordinated Watergate complex; mapped outlines and photographic proportions are generalized, not surveyed.",
+    "The three residential blocks, hotel wing, adjoining northern office and southern office are differentiated. The rounded T-shaped mapped part is a rooftop form, not another tower. Former Howard Johnson hotel is excluded.",
+    "Individual balconies, fine balustrades, service pods and roof equipment are interpretations from the selected aerial and street photographs. Not every bay, renovation or rooftop appliance is reproduced.",
+    "Low podium, entry and court structures are approximate; landscaping, pools, interiors, exact stair/ramp connections and adjacent streets are outside scope.",
+    "Coarse preserved host terrain controls ground contact; variable exposed foundation depth is not a surveyed basement elevation. References are inspected locally, not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -0.6224822998046875,
+        33.40999913215637,
+        627.3686218261719
+      ],
+      "lookAt": [
+        -0.6224822998046875,
+        13.22999939918518,
+        -0.605804443359375
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -0.6224822998046875,
+        41.119998931884766,
+        -628.5802307128906
+      ],
+      "lookAt": [
+        -0.6224822998046875,
+        13.22999939918518,
+        -0.605804443359375
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 49972,
+    "vertices": 149916,
+    "materials": 3,
+    "bytes": 5998988,
+    "sha256": "sha256:f82d7bd8d2c1e7e5a8ccadb2a1c482753fd744a59e9f3bef22e5bfd78384e801"
+  }
+}

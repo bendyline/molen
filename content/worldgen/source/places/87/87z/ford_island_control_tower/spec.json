@@ -1,0 +1,253 @@
+{
+  "planId": "ford_island_control_tower",
+  "id": "ford_island_control_tower",
+  "assetId": "molen.worldgen.structure.ford_island_control_tower",
+  "title": "Ford Island control tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -157.96147719025612,
+    "latitude": 21.36059366963048
+  },
+  "size": [
+    37.249999046325684,
+    60.19999998807907,
+    26.602500438690186
+  ],
+  "actualBounds": {
+    "min": [
+      -21.299999237060547,
+      -0.699999988079071,
+      -4.457499980926514
+    ],
+    "max": [
+      15.949999809265137,
+      59.5,
+      22.145000457763672
+    ]
+  },
+  "visualBrief": "Restored orange-and-white control/water tower, three intermediate circular balconies, elevator spine, spiral escape stair and upper octagonal glazed cab; attached cream Moderne operations building with garage bays, rounded bay and smaller aerological cab.",
+  "nativeAxes": {
+    "x": "southwest across operations frontage",
+    "y": "up",
+    "z": "northwest toward the airstrip"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2.11_aerial_2_(8101025775).jpg"
+  ],
+  "stories": [
+    {
+      "id": "pearl-harbor-aviation-museum-wp",
+      "url": "https://qualla.com/pearl-harbor-aviation-museum/"
+    }
+  ],
+  "referenceInputHash": "ab4a94afe9addc454d126d0ebdc753bbbc155eb9b9341bf765189fe9faaeec9b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ford-island-control-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ford-island-control-tower.mjs",
+    "level": "skyline",
+    "export": "fordTowerSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "fordTowerDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "fordTowerStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Front entrance [-3.25,21] defines the 3.9986 m host datum. Preserved terrain spans -0.005437..0.0014 m across mapped vertices. Operations foundation closes to -0.7 m. Exact paving elevation is not surveyed.",
+    "anchor": [
+      -157.96147719025612,
+      21.36059366963048
+    ],
+    "heading": -2.1183586883302734,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -157.96163381480469,
+        21.36071680649286
+      ],
+      "modelHeight": 0,
+      "basis": "Front operations entrance reference, sampled independently from host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184729299344",
+      "buildings/35185639524528",
+      "buildings/35184564459484"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:c42d9e842b894176f6666840c9b42a53ef72ee4672d1cdfe680ab9ef8ef5852f",
+    "notes": "Main frontage about 34.2 x 13.3 m; separate small rooftop cab, tall cylindrical tank, rectangular elevator spine, spiral escape stair and upper octagonal glazed cabin. Rear connecting block generalized from side photo; missing from map geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi restored exterior, using inspected local Qualla aerial for site context and museum/Warren LeMay supplemental front and side photographs for architectural evidence; not a measured survey.",
+    "Museum sources describe 158 ft tower height and 168 ft observation access differently. The recipe approximates a 48.2 m shaft/tank transition and 51.2 m upper deck; individual levels, cabin roof and antenna heights are estimates.",
+    "Orange/white restored exterior represents the modern tower, not the incomplete camouflage-era 1941 structure. Spiral tread count, hidden rear windows, rail subdivisions, doors and rooftop equipment are simplified.",
+    "Includes the attached operations building and small aerological cab. Hangars, museum aircraft, interiors, vegetation and other site structures are excluded.",
+    "Reference photographs are viewed for research and are not embedded or redistributed. Generalized map geometry and host terrain require review when using another elevation dataset."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -2.674999713897705,
+        39.1299999922514,
+        112.44500043988228
+      ],
+      "lookAt": [
+        -2,
+        25,
+        6
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -2.674999713897705,
+        48.15999999046326,
+        -94.75749996304512
+      ],
+      "lookAt": [
+        -2,
+        25,
+        6
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 16666,
+    "vertices": 49998,
+    "materials": 3,
+    "bytes": 2002248,
+    "sha256": "sha256:6d99a3f58fdb06068940d93d5ef63808033770e851195d64ad92fae857cb41d1"
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "planId": "eastern_state_penitentiary",
+  "id": "eastern_state_penitentiary",
+  "assetId": "molen.worldgen.structure.eastern_state_penitentiary",
+  "title": "Eastern State Penitentiary",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -75.1727,
+    "latitude": 39.9683
+  },
+  "size": [
+    209.29999542236328,
+    26.700000762939453,
+    210.5999984741211
+  ],
+  "actualBounds": {
+    "min": [
+      -101.19999694824219,
+      -3,
+      -108.5
+    ],
+    "max": [
+      108.0999984741211,
+      23.700000762939453,
+      102.0999984741211
+    ]
+  },
+  "visualBrief": "Surviving radial prison with seven original cellblock roofs, later infill blocks, central hub, castellated Fairmount Avenue gatehouse, high stone perimeter and watch boxes.",
+  "nativeAxes": {
+    "x": "east",
+    "y": "up",
+    "z": "south toward the Fairmount Avenue entrance"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Eastern_state_peniteniary,_11_(14291270051).jpg",
+    "https://commons.wikimedia.org/wiki/File:Eastern_State_in_the_Rain.jpg"
+  ],
+  "stories": [
+    {
+      "id": "eastern-state-penitentiary-wk",
+      "url": "https://qualla.com/eastern-state-penitentiary/"
+    }
+  ],
+  "referenceInputHash": "6ebb91743f57ddb915e85b4adbfca02a272b55dd8257db4fc0052992e05aacc6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-eastern-state-penitentiary.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-eastern-state-penitentiary.mjs",
+    "level": "skyline",
+    "export": "easternStateSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "easternStateDistrict",
+        "errorMeters": 1.4,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "easternStateStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fairmount Avenue entry [0,99] defines the 27.45 m Terrarium datum. Preserved coarse host elevations span -1.512113..3.535385 m across the mapped footprint; lower closures extend to -3 m. These are not surveyed pavement levels.",
+    "anchor": [
+      -75.1727,
+      39.9683
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -75.1727,
+        39.96741067193676
+      ],
+      "modelHeight": 0,
+      "basis": "Fairmount Avenue gatehouse entry reference, sampled from independent host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776577410325",
+      "buildings/35184447538975",
+      "buildings/35185780674594",
+      "buildings/35184422281912",
+      "buildings/35184447538972",
+      "buildings/35184447538971",
+      "buildings/35185874880453",
+      "buildings/35185780674602",
+      "buildings/35185780674601",
+      "buildings/35185780674603"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7e6739f3e7aeabc0726b40753ec5430b0514bcb44d660eb020b4a815bfaf6efe",
+    "notes": "Surviving radial cellblocks and additions, gatehouse and perimeter; published historical illustration does not establish current roof state. Roof heights, service wings and fine ruined surfaces are photographic interpretations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi surviving exterior from local Qualla masonry/courtyard photographs, generalized current footprints, museum map and inspected archival HABS exterior views; not a measured survey or an exact 2026 condition inventory.",
+    "Seven original radial wings, later infill and separate gatehouse are differentiated. Detailed decay, exact skylight counts, hidden roof joins, smaller yard partitions and service fixtures are generalized.",
+    "The 1855 hero lithograph is rejected as current form evidence; its historic central turret and rows of separate exercise yards are not restored.",
+    "Three mapped corner controls establish the perimeter; northeast corner closure, roof heights and unseen rear details remain photographic interpretations. Ground contact uses coarse host terrain, not surveyed pavement levels.",
+    "No interiors, surrounding streets, temporary visitor attractions or reference-photo textures are included. Research images remain local and are not embedded in runtime packs."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        3.450000762939453,
+        17.355000495910645,
+        417.99999618530273
+      ],
+      "lookAt": [
+        3.450000762939453,
+        7.245000267028808,
+        -3.200000762939453
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        3.450000762939453,
+        21.360000610351562,
+        -424.39999771118164
+      ],
+      "lookAt": [
+        3.450000762939453,
+        7.245000267028808,
+        -3.200000762939453
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 24901,
+    "vertices": 74703,
+    "materials": 6,
+    "bytes": 2991788,
+    "sha256": "sha256:949806ec27a97d0ba5bcad5721cffe79bf529cc10bacfcb658005efcfe3e9c27"
+  }
+}

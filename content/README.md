@@ -36,6 +36,14 @@ See its generated [progress report](worldgen/source/next-1000/PROGRESS.md) for c
 and the [structure gallery](worldgen/source/places/gallery.html) for registered model bundles.
 Candidate metadata is excluded from the runtime pack.
 
+The [Qualla structure backlog](worldgen/source/qualla-structures/BACKLOG.md) discovers named
+buildings and fixed structures from the Qualla story corpus, links the stories to existing
+Molen candidates/models, and records resumable per-article scan decisions. Its
+[workflow](worldgen/source/qualla-structures/README.md) distinguishes automated discovery,
+editorial scope review and actual model readiness.
+The [fixed first 100](worldgen/source/qualla-structures/batches/QUALLA-001.md) tracks local
+photographic references and the [first five drafts](worldgen/source/qualla-structures/batches/PILOT-REVIEW.md).
+
 Authoring sources (`worldgen/source/`, `entities/source/`), fixtures and the entities authoring
 project sit beside the files they generate but are excluded from the packs.
 

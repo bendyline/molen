@@ -1,0 +1,314 @@
+{
+  "planId": "liebermann_villa",
+  "id": "liebermann_villa",
+  "assetId": "molen.worldgen.structure.liebermann_villa",
+  "title": "Liebermann Villa",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.16488802433014,
+    "latitude": 52.4287717083313
+  },
+  "size": [
+    23,
+    16.12000012397766,
+    20.755000114440918
+  ],
+  "actualBounds": {
+    "min": [
+      -11.5,
+      -1.2000000476837158,
+      -12.180000305175781
+    ],
+    "max": [
+      11.5,
+      14.920000076293945,
+      8.574999809265137
+    ]
+  },
+  "visualBrief": "Restored Wannsee villa with two tall street-front Ionic columns, curved eyebrow dormer, hipped tile roof, lake-facing three-bay pediment, open side loggia, mint shutters and raised terrace.",
+  "nativeAxes": {
+    "x": "southwest along the street facade",
+    "y": "up",
+    "z": "northwest toward the street and kitchen garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Liebermann-Villa_B-Wannsee_02-2014.jpg",
+    "https://commons.wikimedia.org/wiki/File:Berlin-Wannsee,_die_Liebermann-Villa.JPG"
+  ],
+  "stories": [
+    {
+      "id": "liebermann-villa-wp",
+      "url": "https://qualla.com/liebermann-villa/"
+    }
+  ],
+  "referenceInputHash": "fa090504d9ed9715db06f7edcb0fba86609660daae1a1515c066f5031f117e97",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-liebermann-villa.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-liebermann-villa.mjs",
+    "level": "skyline",
+    "export": "liebermannSkyline",
+    "errorMeters": 0.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_painted_lap",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "liebermannDistrict",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "liebermannStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Street-side approach [0,10] outside the entrance steps; independent terrain is preserved unchanged.",
+    "anchor": [
+      13.16488802433014,
+      52.4287717083313
+    ],
+    "heading": -2.156201909528956,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.164765230556425,
+        52.42882134339024
+      ],
+      "modelHeight": 0,
+      "basis": "Street-side central garden approach outside the entrance steps."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184398925731"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a24541ddb53baf6e52ff05dd07896ae3079afac69ecc4aa349a467faaec3e657",
+    "notes": "Map rectangle controls the roughly 19.45 by 14.29 m main building. Street portico, lake risalit, side loggia and terrace are interpreted from photographs; reported map height 8 m does not include a reliable roof measurement."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi restored villa exterior from individually inspected Qualla street and lake photographs; not a measured survey.",
+    "Mapped rectangle controls main building width and depth. Roof height, curved dormer, terrace depth, hidden side openings and Ionic capitals are photographic approximations.",
+    "Street columns, lake pediment and southwest open loggia are distinct. Wider garden, separate garden house, interiors, furniture and vegetation are excluded.",
+    "No reference-image pixels are embedded. Shared materials and original simplified geometry represent tile, shutters, iron guards and limestone.",
+    "Independent terrain remains unchanged; another host DEM can change exact foundation contact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        8,
+        42
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -26,
+        18,
+        -38
+      ],
+      "lookAt": [
+        0,
+        5,
+        -3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22869,
+    "vertices": 68607,
+    "materials": 6,
+    "bytes": 2747972,
+    "sha256": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716"
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "planId": "hotel_des_indes",
+  "id": "hotel_des_indes",
+  "assetId": "molen.worldgen.structure.hotel_des_indes",
+  "title": "Hotel des Indes (The Hague)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.313317716121674,
+    "latitude": 52.08384767340724
+  },
+  "size": [
+    40.9692440032959,
+    28.37999987602234,
+    42.75016403198242
+  ],
+  "actualBounds": {
+    "min": [
+      -19.81800079345703,
+      -1.7999999523162842,
+      -31.055164337158203
+    ],
+    "max": [
+      21.151243209838867,
+      26.579999923706055,
+      11.694999694824219
+    ]
+  },
+  "visualBrief": "Ochre historic hotel with gray rusticated base, seven-axis main front, rounded corner, central pediment, glazed semicircular entrance and taller dormered rear mansard.",
+  "nativeAxes": {
+    "x": "northeast along Lange Voorhout",
+    "y": "up",
+    "z": "southeast toward Lange Voorhout"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:DenHaagHotelDesIndes.JPG",
+    "https://commons.wikimedia.org/wiki/File:Den_Haag_-_Hotel_Des_Indes_(38926879195).jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-des-indes-the-hague-wp",
+      "url": "https://qualla.com/hotel-des-indes-the-hague/"
+    }
+  ],
+  "referenceInputHash": "0103a21f17e65ddc2ff544c44fcb41a2cb938795d7a97d27dcaca3f49d13818b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hotel-des-indes.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hotel-des-indes.mjs",
+    "level": "skyline",
+    "export": "indesSkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.55,
+        "metallic": 0.5
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "indesDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "indesStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.55,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Lange Voorhout public sidewalk [0,14]; independent terrain evidence.",
+    "anchor": [
+      4.313317716121674,
+      52.08384767340724
+    ],
+    "heading": 0.6193741530923883,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.313436525028156,
+        52.083745271438964
+      ],
+      "modelHeight": 0,
+      "basis": "Public sidewalk in front of the entrance canopy."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184512183822"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:b4029b8fbe463e6e41640c55a8fa131e30c009ca16c81433e6c433645a8804cc",
+    "notes": "Map height 14 m is inconsistent with AHN4 roof elevations: street approximately 2.65 m NAP, main roof approximately 28.55 m NAP. Model uses approximately 26 m total roof height; facade storeys remain photographic estimates. Front canopy projection is not extruded to full building height. Interior lightwell is inferred from lower DSM returns."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on individually inspected local front, entrance and rear-corner photographs; interiors excluded.",
+    "Mapped footprint and AHN4 surface heights control overall geometry; window/storey dimensions, upper court, roof joins and hidden elevations are estimates.",
+    "Simplified original relief and ornament; no copied photo textures, exact crest or lettering. Temporary flags, holiday decorations and crowds excluded.",
+    "AHN4 roof evidence dates to 2020–2022. Terrain ground beneath the building requires explicit gap interpolation; another host DEM can differ."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -4,
+        18,
+        94
+      ],
+      "lookAt": [
+        -3,
+        12,
+        1
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        60,
+        40,
+        -75
+      ],
+      "lookAt": [
+        1,
+        12,
+        -11
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 28305,
+    "vertices": 84915,
+    "materials": 7,
+    "bytes": 3400760,
+    "sha256": "sha256:93f683fb111df4746d95341fdfc9b5149e229ea372800355438299c6853d3941"
+  }
+}

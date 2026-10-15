@@ -1,0 +1,277 @@
+{
+  "planId": "jamaica_inn",
+  "id": "jamaica_inn",
+  "assetId": "molen.worldgen.structure.jamaica_inn",
+  "title": "Jamaica Inn",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -4.5667,
+    "latitude": 50.5623
+  },
+  "size": [
+    51.14999961853027,
+    13.800000190734863,
+    46.64999961853027
+  ],
+  "actualBounds": {
+    "min": [
+      -24.799999237060547,
+      -3,
+      -24.299999237060547
+    ],
+    "max": [
+      26.350000381469727,
+      10.800000190734863,
+      22.350000381469727
+    ]
+  },
+  "visualBrief": "Historic slate-hung five-window bar range with twin chimney stacks and gabled porch; perpendicular granite museum/stables wing with eaves dormers, attached rear range and lower east connector.",
+  "nativeAxes": {
+    "x": "northeast along main bar front",
+    "y": "up",
+    "z": "southeast toward forecourt and road"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Jamaica_Inn_museum_exterior.jpg",
+    "https://commons.wikimedia.org/wiki/File:Jamaica_Inn,_Bolventor_(461304)_(9456560157).jpg"
+  ],
+  "stories": [
+    {
+      "id": "jamaica-inn-wp",
+      "url": "https://qualla.com/jamaica-inn/"
+    }
+  ],
+  "referenceInputHash": "420df4c602807328a304ab1f9b5c284d1587673005cb18252f80c15851e8141d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-jamaica-inn.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-jamaica-inn.mjs",
+    "level": "skyline",
+    "export": "jamaicaSkyline",
+    "errorMeters": 0.7,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "cladding": {
+        "slot": "wall",
+        "localRef": "palette:#feffff",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "jamaicaDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "localRef": "palette:#feffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "jamaicaStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "cladding": {
+            "slot": "wall",
+            "localRef": "palette:#feffff",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Forecourt outside Smugglers Bar at [4,9.5], independent terrain evidence.",
+    "anchor": [
+      -4.5667,
+      50.5623
+    ],
+    "heading": 0.742,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -4.566567520955881,
+        50.56226137646588
+      ],
+      "modelHeight": 0,
+      "basis": "Forecourt at the main Smugglers Bar entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184548865965"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2159fb2fc6b2f4dec5350555b8f6cccdc157415346e7c5efb658572289147504",
+    "notes": "Combined mapped outline includes long modern hotel additions. Model retains the five-window bar range, projecting museum/stables wing, low east connector and attached rear range. Scope boundaries are editorial interpretations of visible roof divisions, not surveyed or statutory boundaries. Listed facade is slate-hung, not exposed granite."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on individually inspected local 2008–2010 photographs, Historic England architectural description and mapped roof layout.",
+    "Main facade and axial chimneys are slate-hung; original geometry and color courses represent this distinct cladding. Shared granite, roof slate and timber surfaces are bound; glass and vertical slate cladding use separate local materials.",
+    "Modern long east hotel wing and far rear service wing excluded. Rear elevations, roof joins, heights and fine stonework remain approximate; interiors, signs and temporary furniture excluded.",
+    "Independent Terrarium elevations are preserved without flattening; ground contact and foundations remain host-dependent rather than surveyed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        35,
+        13,
+        68
+      ],
+      "lookAt": [
+        1,
+        4,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -55,
+        30,
+        -65
+      ],
+      "lookAt": [
+        0,
+        4,
+        -7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8905,
+    "vertices": 26715,
+    "materials": 5,
+    "bytes": 1071688,
+    "sha256": "sha256:84c4ada72079177085c100ac719ca4fc8ee389c4fcb11f20d0f8aa2fb97120f9"
+  }
+}

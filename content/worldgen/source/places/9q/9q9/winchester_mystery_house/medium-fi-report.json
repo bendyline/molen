@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.winchester_mystery_house",
+  "sourceHash": "sha256:80bfae3b5f7cd0369e9afc04b0349f81af71ad266868689ba1fcc0f1c1e0dc8f",
+  "runtimeHash": "sha256:8742115f7874f804d65f3ef2a16c79af1f2a11bea85ae3a7b383270aa7524a40",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:352662d1225afcc30a0271f73a7eb8b77c176702a96d480387dd20ac01ae078f",
+      "bytes": 42280,
+      "gzipBytes": 7305,
+      "triangles": 532,
+      "cpuBytes": 40848,
+      "gpuBytes": 40848,
+      "errorMeters": 1.1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:5ebdb86686a35e6442023ff8aa7d77de662cd12dd3bebd2f3e30fd8393e1af56",
+      "bytes": 283188,
+      "gzipBytes": 56751,
+      "triangles": 3681,
+      "cpuBytes": 277004,
+      "gpuBytes": 277004,
+      "errorMeters": 0.4,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:606fabd836574674172ab8eb03da62e8acb0d00e2ec660f3b51895576bb6f093",
+      "bytes": 952212,
+      "gzipBytes": 201612,
+      "triangles": 12501,
+      "cpuBytes": 944804,
+      "gpuBytes": 944804,
+      "errorMeters": 0.13,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:035da0a87eef98635ab17e24298d387de36f28890f2be3d4e23abf0fc53d2830",
+      "bytes": 2873588,
+      "gzipBytes": 498750,
+      "triangles": 23918,
+      "cpuBytes": 2870160,
+      "gpuBytes": 2870160,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:f4e02a00ebc2ed2eeb0e12f4d48b2984a3920a7ad0c6ffc9333d08d1b2b4e7c1"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:95c9b561467e57ddab2e1e11f9cbfbb18ab7b8a24c421ac82a13f7acacba7535"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:a82994eb84ba76350bdc32a9311ceb63d640cca8d661d467afcd4fce54b287a3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          41.3866,
+          33.75,
+          83.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:b46628eec51f57dd8ccfdcc4e2ccc8ae5b9ae033fe86669e705afa393eee29b1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          41.3866,
+          33.75,
+          83.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:25fb7e2607525c7b21e2dac755c93cdac55b849a0346ebf7f904b2dd08d2802b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          41.3866,
+          33.75,
+          83.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:cace21be45ed45ef440e4cd64f77f3dc957cd88af8c8a5255dedcee4c14a9f2a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          41.3866,
+          33.75,
+          83.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:50a24bcef445861acd61ab713570bdb59f992c4c6caf91641f2966b1d82da597",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 18115,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:000d6c9acc3177948a96fc73a24f6c435d2d9dfe378d9e7f3eba83e21e613472",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18115,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:d7427e1d7987ec3d7f8e57ac70c804cbb2ad71db63929a8776d168f0deacefc4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 18115,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:48d2689493c8b778158cbf34a1191ea12b636bff6d3cc1a375f9c51c6a6f2ae3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18115,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:6e80f107e6868a1e18c9b726dfa0f472092ec9b11ab8132ef28999118620b9d7",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14966,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          187.3866,
+          107.75,
+          336.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:49fe1cf0a3ec161b1e5a98af245f4eaaf32ca09bc40c0da524b42ab0e30c2af2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14966,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          187.3866,
+          107.75,
+          336.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:239e5a91cd5d6ad6b3923edc144a5d81fa7ebd6ef630872c3f0608958d47e639",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14966,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          187.3866,
+          107.75,
+          336.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:45d43ca4900a7b1ea9b0f83f1332fe9e04632a39346fa867bc1a473cff094182",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14966,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          187.3866,
+          107.75,
+          336.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:b96b57a0841b81ad143791ca323c588cb8af449f819fd46166353d98ee0105f2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 8726,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          187.3866,
+          107.75,
+          336.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:29237507dc22447d7b2fc97a0b1e45f3357a4ea0cfae835c02d9a1eafe2c61c1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          -7,
+          8,
+          85
+        ],
+        "lookAt": [
+          -7,
+          6,
+          24
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:a12b8524ea9b553b1bcbe7ddaadbbda61cc138b8be1092165a4a3e57da08ec56",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          -65,
+          50,
+          -75
+        ],
+        "lookAt": [
+          -3,
+          5,
+          2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:2957315e32404a0da6ee586ab1e85354bb039fab96eb581a53bfa35edc372c06",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14966,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:000d6c9acc3177948a96fc73a24f6c435d2d9dfe378d9e7f3eba83e21e613472",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18115,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:9aa499debe2ba69617dc68cb1753ac3c249cbf7c59162a18f4721a453d7e5044",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 26935,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:0cfc16ab719806b5e060a490e7b2488dd55e0f686004c02b4ed168c0d1bbff07",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 38352,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q9/winchester_mystery_house/terrain-review.height.png"
+        },
+        "position": [
+          90.3866,
+          69.75,
+          168.7402
+        ],
+        "lookAt": [
+          -6.6134,
+          18.75,
+          0.7402
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.wood_painted_shingle": 1,
+          "molen.worldgen.material.shingle_cedar": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:58317caeea6068bed5612ea2f7a3af9b5d8d3070a091e9ef1b8f84d70e67d615",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:6692686c0d2bce5255ffd474e063fa551a117361bd733cdd57ed441c016709cf"
+  }
+}

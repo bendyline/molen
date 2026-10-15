@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.fords_theatre",
+  "sourceHash": "sha256:293914866bc196ee8ed97d3f7892fbc5db56a836773d84e668a0f1c03a8bd083",
+  "runtimeHash": "sha256:c0184d981fa26df9adb65c362cd196541cd0e3bfb21163683dd579057d99c700",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:06d2d9e0ab6f4f001487446d34be36d0ec2485b9ad20da6466037da61c55796e",
+      "bytes": 33640,
+      "gzipBytes": 4970,
+      "triangles": 409,
+      "cpuBytes": 32228,
+      "gpuBytes": 32228,
+      "errorMeters": 0.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:118a366422650fa2940027158de540f1b09baeb7d410ee936fcbc6c8230f20b3",
+      "bytes": 362832,
+      "gzipBytes": 56074,
+      "triangles": 3652,
+      "cpuBytes": 355564,
+      "gpuBytes": 355564,
+      "errorMeters": 0.47096509630755656,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:6af35fbf48f43798f00ff6906fe7160f25c1863b6633f6d58aa92dc78287e706",
+      "bytes": 967440,
+      "gzipBytes": 149755,
+      "triangles": 8034,
+      "cpuBytes": 964080,
+      "gpuBytes": 964080,
+      "errorMeters": 0,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6af35fbf48f43798f00ff6906fe7160f25c1863b6633f6d58aa92dc78287e706",
+      "bytes": 967440,
+      "gzipBytes": 149755,
+      "triangles": 8034,
+      "cpuBytes": 964080,
+      "gpuBytes": 964080,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d9d5c84212841f910f3e0477981582bf3549b63c5e9d5854942c7715d466d523"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:b270f9db9c1c2b77e13c41d4138ae4afc672d36266565d8d976c6ff0afed3762"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:f1dd629b39dae485fadc17af5f140cce0d0e45a4b911458c31d011d46b822133",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          47.9451,
+          36.8,
+          83.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:71bc4eccfef2ed230f5adc8106c9744024e199167cfd4aa1d5542518c445f400",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          47.9451,
+          36.8,
+          83.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:0f9328bf1e490da784dc38bb384ea72f9e2aa137de8cb996d94399bf9ea40c08",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          47.9451,
+          36.8,
+          83.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:abbb033fbee1f5ff24a70718bd39c301d1c8eff6ede0be1437207da3ac743de6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          47.9451,
+          36.8,
+          83.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:893f58b2ed273def90887258083b6ab691b78294f7cf7b45ba20f11687f7ac85",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18086,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:55a9247dfeb3e8f0032d984bb0b3da49477e4e8928d7af903c234159d1f70d0e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18086,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:da738902de8ca8407f1e21755add54b7c5d8acfb0890ddbf40a777ab9e4683c4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18086,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:8c9ffdbac59235f66856cdf5406ea7c14912409a01396e9faab12c03dacdaa61",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18086,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:5488fe692a7bf62e5a0a019b350fc7e913b51d22b4c16933664e053c301bf122",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14843,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          193.9451,
+          110.8,
+          336.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:3fd8a5d3f957a9e87346246338d0a7619f2403e10bbe91b4b399c54170c67da0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14843,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          193.9451,
+          110.8,
+          336.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:3c10b0db8097fc2e5f24632aeb8ffeece979409819d27d9f334d39fca2910852",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 14843,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          193.9451,
+          110.8,
+          336.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:83358136827cb1c3b392e139095ee26df417b467c5825b75afa9d0d56974fd94",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14843,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          193.9451,
+          110.8,
+          336.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:c42b8ab5fca2d1ed92477ea1205adcd50b4310adf4a3ada4f12b9bfb9d959a86",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 8603,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          193.9451,
+          110.8,
+          336.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:e28507e3d1cc97d18921ee9ff8ca00fe5feb5504b687a913e4e84a98e995d4f7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          -0.05485057830810547,
+          15.665000247955323,
+          71.7165002822876
+        ],
+        "lookAt": [
+          -0.05485057830810547,
+          7.560000133514404,
+          0.7580995559692383
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:9eb0e5cdaf5d8722909065572178913c54eabb3a5a4b8b5df92cc364c69690b1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          -0.05485057830810547,
+          19.280000305175783,
+          -70.20030117034912
+        ],
+        "lookAt": [
+          -0.05485057830810547,
+          7.560000133514404,
+          0.7580995559692383
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d93fd3be682da8a63b6e7e9ea3423b1d92532c896067e2c3f188057da6dbf47a",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 14843,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:55a9247dfeb3e8f0032d984bb0b3da49477e4e8928d7af903c234159d1f70d0e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18086,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:416142a058af0b8fc56032e6b6c642a6f0f5ef21a9904e04b255cfac0135eb62",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:007b18a83c9b07ee60af55801ded5ec7229a0d6f188a3d67123b5f89cf02f4d1",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 22468,
+        "groundY": -6,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/fords_theatre/terrain-review.height.png"
+        },
+        "position": [
+          96.9451,
+          72.8,
+          168.7581
+        ],
+        "lookAt": [
+          -0.0549,
+          21.8,
+          0.7581
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:d3a8e7ab3f6a134388ad4b7ca4c8ddd005cd654a6ed47c04f3aa5313d480e5d9",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:f2788b9bcda72bb3a989e2d3a2e6a8bf429a0a1d93f4ce3191e1e0d2c9aab421"
+  }
+}

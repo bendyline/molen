@@ -1,0 +1,313 @@
+{
+  "planId": "bach_house",
+  "id": "bach_house",
+  "assetId": "molen.worldgen.structure.bach_house",
+  "title": "Bach House (Eisenach)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 10.322559,
+    "latitude": 50.97149
+  },
+  "size": [
+    21.299999237060547,
+    13.490000247955322,
+    13.59000015258789
+  ],
+  "actualBounds": {
+    "min": [
+      -10.649999618530273,
+      -1.809999942779541,
+      -5.690000057220459
+    ],
+    "max": [
+      10.649999618530273,
+      11.680000305175781,
+      7.900000095367432
+    ]
+  },
+  "visualBrief": "Historic Frauenplan 21 house with ochre plaster, irregular red-bordered casements, projected upper west room, carved double door, steep weathered tile roof, three front gabled dormers and five rear shed dormers. Modern museum extension excluded.",
+  "nativeAxes": {
+    "x": "west-southwest along the frontage",
+    "y": "up",
+    "z": "north-northwest toward Frauenplan"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Bachhaus_in_Eisenach.jpg",
+    "https://commons.wikimedia.org/wiki/File:Bachhaus_Eisenach,_R%C3%BCckseite.jpg"
+  ],
+  "stories": [
+    {
+      "id": "bach-house-eisenach-wp",
+      "url": "https://qualla.com/bach-house-eisenach/"
+    }
+  ],
+  "referenceInputHash": "a7b170cdaa049e84616f3d8c6bd45cd148508a847ee4abf3a307349a9b5a96c4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-bach-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-bach-house.mjs",
+    "level": "skyline",
+    "export": "bachSkyline",
+    "errorMeters": 0.18,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.28
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "bachDistrict",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "bachStreet",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent terrain at the front approach [4,8], Y=0; historic portal floor Y=1.25 reached by the front steps. Foundations extend below the falling east street level.",
+    "anchor": [
+      10.322559,
+      50.97149
+    ],
+    "heading": 3.2815926535897932,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        10.322486570864228,
+        50.97155614764203
+      ],
+      "modelHeight": 0,
+      "basis": "Front approach below the historic door steps; terrain datum is independent of the building geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184619969273"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:636cbb5dae7d9f546eea39c3ef15eab233204902f21ec6e20ec1b207b07a5f01",
+    "notes": "Mapped historic footprint is approximately 20.3 by 9.4 m. Map height 8 m is not a surveyed roof/eave measurement. Roof pitch, two storeys, small rear projection and hidden ends are photographic estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from two primary and three supplemental individually inspected Qualla originals, official museum history and aerial/map control. Hidden ends, exact dimensions and the small rear projection remain photographic estimates; no surveyed plan.",
+    "Surviving historic house only. The timber frame is plastered, so no exposed frame grid is invented. Contemporary museum extension, neighboring buildings, garden landscaping, interiors and photo pixels excluded.",
+    "Roof weathering, curved tile profiles, leaded glass, door carving and iron grilles are authored approximations. Small ornament is simplified with distance; no exact lettering reproduced.",
+    "Independent unmodified Terrarium ground retained; urban interpolation is not survey accuracy and host terrain may differ. Footprint replacement disabled. No physical-device performance measurement claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        5,
+        8,
+        31
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -8,
+        15,
+        -29
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25937,
+    "vertices": 77811,
+    "materials": 6,
+    "bytes": 3116136,
+    "sha256": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e"
+  }
+}

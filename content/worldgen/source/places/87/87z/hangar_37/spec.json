@@ -1,0 +1,290 @@
+{
+  "planId": "hangar_37",
+  "id": "hangar_37",
+  "assetId": "molen.worldgen.structure.hangar_37",
+  "title": "Pearl Harbor Aviation Museum — Hangar 37",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -157.9618153721094,
+    "latitude": 21.359750397735485
+  },
+  "size": [
+    69.05000305175781,
+    11.609999656677246,
+    54.882484436035156
+  ],
+  "actualBounds": {
+    "min": [
+      -34.525001525878906,
+      -0.75,
+      -24.665000915527344
+    ],
+    "max": [
+      34.525001525878906,
+      10.859999656677246,
+      30.217483520507812
+    ]
+  },
+  "visualBrief": "Historic twin shallow-gable hangar with cream corrugated sliding doors, ridge vents and the white entrance canopy with red checker rows, following dated museum references.",
+  "nativeAxes": {
+    "x": "northwest across entrance frontage",
+    "y": "up",
+    "z": "northeast toward control tower"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2.11_aerial_2_(8101025775).jpg"
+  ],
+  "stories": [
+    {
+      "id": "pearl-harbor-aviation-museum-wp",
+      "url": "https://qualla.com/pearl-harbor-aviation-museum/"
+    }
+  ],
+  "referenceInputHash": "ed8d381166e849b24efc4ec34695102ae6f06b83953f18b9e2d85bb387df97a3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hangar-37.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hangar-37.mjs",
+    "level": "skyline",
+    "export": "hangar37Skyline",
+    "errorMeters": 0.65,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "metal_corrugated",
+        "roughness": 0.82,
+        "metallic": 0.15
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.8,
+        "metallic": 0.2
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.2
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hangar37District",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "hangar37Street",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "metal_corrugated",
+            "roughness": 0.82,
+            "metallic": 0.15
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.8,
+            "metallic": 0.2
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent apron terrain at [0,29]; foundation extends to -0.75 m without flattening ground. Heights are approximate photographic interpretations.",
+    "anchor": [
+      -157.9618153721094,
+      21.359750397735485
+    ],
+    "heading": 2.563691278339407,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -157.96166256806248,
+        21.359968603953657
+      ],
+      "modelHeight": 0,
+      "basis": "Apron immediately outside the entrance frontage."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184564459486"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5170900b3a61a3d1c56f3acdb04f38061ea263f7b726a2d63e70064c8f21240c",
+    "notes": "Mapped rectangle approximately 68.7 by 47.7 m. Entrance faces northeast toward the control tower. Two broad shallow roof gables, corrugated sliding door fronts, checker canopy and ridge ventilation follow dated photographs. Architect project floor area 42,442 sq ft is not assumed to equal the generalized footprint."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from a local Qualla aerial plus individually inspected museum and architect front photographs; no survey accuracy claimed.",
+    "Mapped approximately 68.7 by 47.7 m footprint and northeast entrance are retained. Architect project floor area is not assumed to equal the mapped footprint.",
+    "Twin shallow gables, cream metal cladding, door tracks, checker canopy and ridge vents follow dated references. Exact heights, rear service door, roof equipment placement and concealed side details are interpretations.",
+    "Dated 2008–2017 exterior and Pacific Aviation Museum lettering are represented; later name/signage or renovation changes are not fully documented.",
+    "Aircraft, exhibits, interiors, landscape, antennas outside the footprint, Hangars 79/54 and the separate control tower are excluded. Reference pixels are not redistributed.",
+    "Independent terrain is preserved; contact with other host DEMs remains uncertain."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        17,
+        105
+      ],
+      "lookAt": [
+        0,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -68,
+        36,
+        -83
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2318,
+    "vertices": 6954,
+    "materials": 5,
+    "bytes": 281436,
+    "sha256": "sha256:69cd159411f06b2a586986af5f1d0c6bc1d3962c8606f438589c920b7907dcef"
+  }
+}

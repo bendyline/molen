@@ -1,0 +1,339 @@
+{
+  "planId": "robben_island_prison",
+  "id": "robben_island_prison",
+  "assetId": "molen.worldgen.structure.robben_island_prison",
+  "title": "Robben Island maximum-security prison",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 18.371111111111112,
+    "latitude": -33.80027777777778
+  },
+  "size": [
+    259.2100067138672,
+    16.01596689224243,
+    266.09000396728516
+  ],
+  "actualBounds": {
+    "min": [
+      -124.66000366210938,
+      -1.4362969398498535,
+      -108.9000015258789
+    ],
+    "max": [
+      134.5500030517578,
+      14.579669952392578,
+      157.19000244140625
+    ]
+  },
+  "visualBrief": "Mapped four H-blocks, open isolation courts, blue-stone entrance, light corrugated roofs, service buildings, five watchtowers and the surrounding fence.",
+  "nativeAxes": {
+    "x": "northwest along the entrance facade",
+    "y": "up",
+    "z": "northeast toward the entrance approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Maximum_Security_Prison,_Robben_Island_(01).jpg",
+    "https://commons.wikimedia.org/wiki/File:B-Section,_Maximum_Security_Prison,_Robben_Island_(01).jpg"
+  ],
+  "stories": [
+    {
+      "id": "robben-island-prison-wp",
+      "url": "https://qualla.com/robben-island-prison/"
+    },
+    {
+      "id": "robben-island-wk",
+      "url": "https://qualla.com/robben-island/"
+    }
+  ],
+  "referenceInputHash": "c0cf7e15d60d676440293655426df0c42a100c586dfd297476844e20dc31e66b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-robben-island-prison.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-robben-island-prison.mjs",
+    "level": "skyline",
+    "export": "robbenPrisonSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_basalt",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_corrugated",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.82,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "robbenPrisonDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "robbenPrisonStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_corrugated",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Main entrance approach at [-38,151]; independent source terrain remains unchanged.",
+    "anchor": [
+      18.371111111111112,
+      -33.80027777777778
+    ],
+    "heading": 2.12,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        18.37271784046285,
+        -33.79986085812139
+      ],
+      "modelHeight": 0,
+      "basis": "Entrance approach just outside the main reception facade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184460522824",
+      "buildings/35184460522743",
+      "buildings/35184460522781",
+      "buildings/35185237377413",
+      "buildings/35184460522814",
+      "buildings/35184725477877",
+      "buildings/35184725477880",
+      "buildings/35185237397353",
+      "buildings/35184460522820",
+      "buildings/52776561368219",
+      "buildings/35185605344557",
+      "buildings/35184611967320",
+      "buildings/35184846777531",
+      "buildings/35184725477874",
+      "buildings/35184622319444",
+      "buildings/35184846777534",
+      "buildings/35185237377415",
+      "buildings/35185237377391"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0ec5244cc566e6bfa54294ddc0bbb1aa0795fe20f73b1973f3f2f2c1243e5db8",
+    "notes": "Map building outlines and five watchtowers control layout. Connecting court walls and roof segmentation are interpreted from exterior photos; the mapped solid main outline is not treated as one roof slab. The green-domed Kramat and other outlying structures are excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_basalt",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_corrugated",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi surviving museum exterior, based on individually inspected 2010–2018 Qualla photographs and mapped footprints; not a site survey.",
+    "Four H-blocks, main open courtyards, service buildings and five watchtowers retain their mapped layout. Main roof segmentation, smaller courtyard walls and hidden facade details are interpretations.",
+    "Heights, window spacing beyond the photographed entrance and B-section, fence bays and rooftop equipment are photographic estimates. Irregular blue-stone cladding is generalized using authored polygons and shared basalt.",
+    "Roof uses a matte corrugated shared surface to represent the observed pale cement sheets; it is not evidence that the original roof is metal.",
+    "Kramat, graveyard, other prisons, interiors, exhibits, furnishings and vegetation are excluded. No reference-image pixels are embedded.",
+    "Independent terrain is preserved. Whole blocks and towers use fixed locally sampled floor elevations; fences follow the sampled slope. These inferred levels are not a survey, and exact ground contact can differ on another host elevation dataset."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -30,
+        30,
+        250
+      ],
+      "lookAt": [
+        -30,
+        3,
+        110
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -220,
+        120,
+        -240
+      ],
+      "lookAt": [
+        0,
+        0,
+        10
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63280,
+    "vertices": 189840,
+    "materials": 6,
+    "bytes": 7597352,
+    "sha256": "sha256:b92ec0729bf31c833168bea630d2b4e845b472373102c64b3714ec174fd5fcb2"
+  }
+}

@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.hemingway_house",
+  "sourceHash": "sha256:f6ca2031962be0ff19a4dd425541391f7d5d6442fbf72307969f6d9e3b26ba15",
+  "runtimeHash": "sha256:cfd8b857182103b0a06584152110b635eff158d1d002cc84dd109bb223d94336",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:1629b753ced554e5a07cf82c5410b6cebeb45ef6ab6c5e0429cba1c14977d8b7",
+      "bytes": 71284,
+      "gzipBytes": 10305,
+      "triangles": 902,
+      "cpuBytes": 69852,
+      "gpuBytes": 69852,
+      "errorMeters": 0.24,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:14e61e88cb28a902122b291fbe95fc8bc8f7b3ba5b519688a40b36c7b9bf558f",
+      "bytes": 160256,
+      "gzipBytes": 32204,
+      "triangles": 2254,
+      "cpuBytes": 152988,
+      "gpuBytes": 152988,
+      "errorMeters": 0.12,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:efe1ded2eceabfc81db4a96bb709a0a8e09d453fdb757a801f0291c13b886960",
+      "bytes": 973140,
+      "gzipBytes": 185485,
+      "triangles": 13678,
+      "cpuBytes": 965796,
+      "gpuBytes": 965796,
+      "errorMeters": 0.05,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:67d0aa7ca2e174f0dbe61ca92541175e81526cc08d51f40698cc94479149d618",
+      "bytes": 4406716,
+      "gzipBytes": 892697,
+      "triangles": 36694,
+      "cpuBytes": 4403280,
+      "gpuBytes": 4403280,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:377b47ee62dc9e1364959a7d7d9811d8cd3b18ed565b8f8b5fe697b022fe50c9"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:eafe3e8352ad2590d29f4a4a532d0a0ad4758cc854d05e3b35334cd3af15b612"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:81014d45c4234021166a864c80542ba9c5968a2ec17e93c0cef9f150b95fa7a0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.685,
+          83.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:b492d92ab76078021beeecbbf164518807f50adc77cabd6b34dbfb4dc870df05",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.685,
+          83.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ac05c7206e2f3d21022ee48ebc455b110b5787f0773e349c55fea9fc8462feb7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.685,
+          83.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:01209249251e892c79084bb887ab58c9d83870b49217119c9de8e6b0e1c36ef8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          30.685,
+          83.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:934ca202d97d491cb0f80d4eafe215e1a4b29c121b77a4c588f4d19d69c46418",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 16688,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b812c06ccb15fbc92e6903874ea1ae5b5cc5e5d5691da771bd887f3ab280620d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 16688,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:9fd776b9e2cf35181dddcfa4fe1f4ae963be2bed5b3c668afde37ddfd2ca2659",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 16688,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:4939ff3b46ebac77907bf30bfc972dd625143b664e2bc25ce01623a7600fd0ab",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 16688,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:71a11c123875ab5550c24f33cfb138de8db42ce911e145b66107ebcdd50241fa",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15336,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.685,
+          336.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:5b8cbdcbc047282929a2db83c04e6648010d1c702039fdc9ead390079219bbb6",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15336,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.685,
+          336.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:877b06119a4ee9dc8395110c7b4a7f711125a439a79e62dcd71081a406ba4ab2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15336,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.685,
+          336.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:7475f5c6db6cc62e361564abb4315157ceb7a5ec27e1a1741b9f82256d83af9c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15336,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.685,
+          336.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:d50be248d4400c1d638fece83f2880e4e769b6ce5c34cbbd9c13f6db544cec75",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9096,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          104.685,
+          336.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:58543d40df9ae9e9daf904aba3dc56e84b3d4fe7e2f8376dec935b63a634b20e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          15,
+          8.8,
+          30
+        ],
+        "lookAt": [
+          0,
+          4,
+          2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:5f295d4d7cc6f9472f683021f77240590494df23dd9cba629ca6f54a52ba426b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          -22,
+          15,
+          -27
+        ],
+        "lookAt": [
+          0,
+          4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:4b276e90b9c2af7971522cefff697bfe4becbfa018fac51392e204dd8977b008",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15336,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b812c06ccb15fbc92e6903874ea1ae5b5cc5e5d5691da771bd887f3ab280620d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 16688,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:8f8ac96c63f9e3f8e484b476559672548f8e442b54053d9708b190516b16416d",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28112,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:f9decda2b1725d1c5add4e6515f85fb7a703eb7c0fc5e5200d3581e90d73bf95",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 51128,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dh/dhm/hemingway_house/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          66.685,
+          168.2125
+        ],
+        "lookAt": [
+          0,
+          15.684999999999999,
+          0.2125
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:7b2369450980a9cde4346b8ce2d2cfdf5012d019efe0b069460cc5f80c40fe77",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:2fc940bac2a5655a550edc8db1008043e382997222cf766e37ec40b414790087"
+  }
+}

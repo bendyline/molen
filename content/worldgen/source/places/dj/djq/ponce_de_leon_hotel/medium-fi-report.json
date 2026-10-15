@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.ponce_de_leon_hotel",
+  "sourceHash": "sha256:037945043c7cd3400007455a7219568467f9e110d973acf39c82b264556d3ddd",
+  "runtimeHash": "sha256:81bcf443990cc1a70167fc91f408cdd2487989dcc86ba1e6eccbef9aded11c5f",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:8b9b9895e82154fad8897ec1d7e875a086f81af9e136f967047541d80c6baad0",
+      "bytes": 69192,
+      "gzipBytes": 12311,
+      "triangles": 858,
+      "cpuBytes": 67788,
+      "gpuBytes": 67788,
+      "errorMeters": 1.2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:cd8a0e1a5262a7f28e1c23c177a6c8dd794bf13b3910d7168217d823110bd954",
+      "bytes": 307044,
+      "gzipBytes": 59126,
+      "triangles": 3930,
+      "cpuBytes": 299772,
+      "gpuBytes": 299772,
+      "errorMeters": 0.55,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:1df4fe9135aa8f1fd90d9bfcfb1059f2a98d18a74a44e94f0a7f5daf694107ae",
+      "bytes": 1104004,
+      "gzipBytes": 221681,
+      "triangles": 15941,
+      "cpuBytes": 1096700,
+      "gpuBytes": 1096700,
+      "errorMeters": 0.2,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:9cd61e5b02a4ec31ba878a38c571c784a9d39a3ad82f225ed1eda4a87ffdd793",
+      "bytes": 5725324,
+      "gzipBytes": 998228,
+      "triangles": 47683,
+      "cpuBytes": 5721960,
+      "gpuBytes": 5721960,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:305f4b7beaefe5f59937356a80a54e42381cd41526097d09537ff3225ad66617"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:17df2ba2321dc2f6650799ccb9fb9d004038ac1741eae8502c29033588c2be59"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:c14e3be0a3eaae4adb2a0dc0b505a97052d75b4aaf81eeb45fb196344f1015f6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4,
+          50.146,
+          65.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:d6e732b68992123efcd39bba709af0674a7f30855c85b67d8fd10c33ad3207ac",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4,
+          50.146,
+          65.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f719dd7257ec1eb9bbe9c1d07f388e018b3b860557802006de834ada796090a4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4,
+          50.146,
+          65.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:111129a7853d30ed4c4d9abc93d548c14ba9fdbaeb513efbd0ca4af1dc348789",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4,
+          50.146,
+          65.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:b15a7adfb3ea2cbb4c27230deb4f3b1ac0fde6fa19700e6e040c0f699d84a509",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18364,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:f87d47e72eb7677d233c0a4630652c774546acfc9a7715355f8545415d7993b9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18364,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:78df65b53bac2c9fab7f5435486412d517fe183ed29a61b05a9b5f8908df099f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18364,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ed79f8cb75c133b332ef78a968fb100cc090230dc67a5ce0aec21d1287b0fc27",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18364,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:95c74f936235c63d4effe3d699c71ec3cc484aa25a368b988b2aa7f51e384cec",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15292,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4,
+          124.146,
+          318.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:0e59a52cef5a95f6a29edffced85e68af921cfb6911dbf4180bbb5badf9f793f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15292,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4,
+          124.146,
+          318.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:3f67289d9dc8fbc9679fd086f4d4f7842a862e9b025d60d49b35099f35bf22d4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15292,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4,
+          124.146,
+          318.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:365ec1f3ddbef1eed80dec3e96580148484b643b77b1d1da45418ced6fa120dd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15292,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4,
+          124.146,
+          318.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:f5064bf17fc0a69902be7d9fd91a05b4c6cfd3e6485b5d6b5c0dfb565465be76",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9052,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4,
+          124.146,
+          318.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:08cf7e4db1dc8d1bcf884131f16b9e5d9a9504f69202b0580185bf8f8bfdbfa6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          78,
+          51,
+          151
+        ],
+        "lookAt": [
+          -1,
+          17,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:1765cfb9d2a937447a89d0eda2f7eb95ce559ecfb03d9a9cd7614413284ea1ed",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          -122,
+          75,
+          -166
+        ],
+        "lookAt": [
+          -1,
+          13,
+          -43
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:052bdb2cd2728bd351e8d6e8bad62d1c708405bda6ec46ed3e2eea545310f55f",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15292,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:f87d47e72eb7677d233c0a4630652c774546acfc9a7715355f8545415d7993b9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18364,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:f47be4cd8638fa5100c4bfc3f7e8e871514aa178e94f6f8b5ccca11f97acd279",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 30375,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:1a1946e8f7d6438bcfbb803978f915cee0a9efdb8ed6c4f1de1439574c41941c",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 62117,
+        "groundY": -2,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4,
+          86.146,
+          150.925
+        ],
+        "lookAt": [
+          -1.6,
+          35.146,
+          -17.075
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:858f21495859ce06691b06af2bbd1ef8a6bb038c5770d4919cd727d20365e697",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:89e18585def1ddc578409ff231186eba54ec87ae349f433a5b8a7a042fe9eb9b"
+  }
+}

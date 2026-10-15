@@ -1,0 +1,259 @@
+{
+  "planId": "banff_springs_hotel",
+  "id": "banff_springs_hotel",
+  "assetId": "molen.worldgen.structure.banff_springs_hotel",
+  "title": "The Fairmont Banff Springs Hotel",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -115.56183,
+    "latitude": 51.164332
+  },
+  "size": [
+    174.48965454101562,
+    63.279998779296875,
+    101.8550033569336
+  ],
+  "actualBounds": {
+    "min": [
+      -100.39482879638672,
+      -3,
+      -46.88600158691406
+    ],
+    "max": [
+      74.0948257446289,
+      60.279998779296875,
+      54.96900177001953
+    ]
+  },
+  "visualBrief": "Dark Rundle-stone main hotel with eleven-storey central tower, steep green-gray copper roofs, stacked shed dormers, angled end pavilions and lower public-room wings.",
+  "nativeAxes": {
+    "x": "south-southeast along the main guest wings",
+    "y": "up",
+    "z": "west-southwest toward Spray Avenue"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20130703_20_Banff_Springs_Hotel_(12331775865).jpg",
+    "https://commons.wikimedia.org/wiki/File:Banff_Springs_hotel_(4730481952).jpg"
+  ],
+  "stories": [
+    {
+      "id": "banff-springs-hotel-ghost-wk",
+      "url": "https://qualla.com/banff-springs-hotel-ghost/"
+    }
+  ],
+  "referenceInputHash": "57d994ef7917df80a176aae5ba26a494a7d4c02c7edc07ec58f320c0d5a91951",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-banff-springs-hotel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-banff-springs-hotel.mjs",
+    "level": "skyline",
+    "export": "banffSkyline",
+    "errorMeters": 1.3,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_drywall",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_standing_seam",
+        "roughness": 0.72,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "banffDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "banffStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "South entrance road forecourt [59,33], at the actual hotel rather than the displaced Qualla story coordinate.",
+    "anchor": [
+      -115.56183,
+      51.164332
+    ],
+    "heading": -1.08,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -115.56184856868641,
+        51.16372483734617
+      ],
+      "modelHeight": 0,
+      "basis": "Road forecourt immediately outside the south entrance pavilion."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184396912718"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:33d17dc61245afe0475dc508d1ded7e68d87184c66ae6bcd488ecc788c640cff",
+    "notes": "Original combined outline retained. Scope cuts at the narrow southern bridge exclude Gatehouse/conference facilities; later spa/pool additions and landscape terraces outside the historic main volumes excluded. Story coordinate is not the hotel footprint."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_standing_seam",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.5,
+        3
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi main-hotel exterior based on three individually inspected local Qualla photographs, the hotel floor plan, Parks Canada description and mapped roof context.",
+    "Heights, roof intersections, hidden elevations, masonry courses and detailed ornament are photographic interpretations, not measured architectural drawings.",
+    "Main stone hotel and Rundle cross-wing included; later Gatehouse, conference buildings, pool/spa additions, landscape terraces and interiors excluded.",
+    "Independent terrain is unflattened. Actual footprint placement supersedes the displaced story point; footprint suppression remains disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        133,
+        69,
+        191
+      ],
+      "lookAt": [
+        -8,
+        22,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -142,
+        80,
+        -180
+      ],
+      "lookAt": [
+        -10,
+        24,
+        -9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 55422,
+    "vertices": 166266,
+    "materials": 4,
+    "bytes": 6653460,
+    "sha256": "sha256:f2996b493d3f94d6b5044ec9ff58e530f7bc25055d21d5991ca0b8b35f6eaff5"
+  }
+}
