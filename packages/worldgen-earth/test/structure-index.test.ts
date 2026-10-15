@@ -60,7 +60,10 @@ describe('geographic structures', () => {
     expect(index.query([-122.28, 47.63, -122.24, 47.65], true).map((item) => item.id)).toContain(
       'seattle.sr-520-floating-bridge',
     );
-    expect(index.query([-123, 37, -122, 38])).toEqual([]);
+    // Nothing from Seattle answers a query around San Francisco, which has landmarks of its own.
+    expect(
+      index.query([-123, 37, -122, 38]).filter((item) => item.id.startsWith('seattle.')),
+    ).toEqual([]);
     expect(
       index.entries.filter((item) => item.status === 'preview' && item.id.startsWith('seattle.')),
     ).toHaveLength(13);

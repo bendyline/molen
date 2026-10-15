@@ -82,6 +82,26 @@ export function stubFrameGlobals(): void {
   );
 }
 
+/**
+ * Resolve on a `setTimeout(0)`, so promises and any `setTimeout(0)` work the view queued first
+ * (terrain's layer pump, for one) have run. Pending immediates keep the event loop from sleeping
+ * until the timer is due: an idle loop on Windows sleeps a whole ~15.6 ms timer tick instead of
+ * 1 ms, which made a thousand-frame test take 15 s there and 1 s on Linux.
+ */
+export function nextTimerTurn(): Promise<void> {
+  return new Promise((resolve) => {
+    let due = false;
+    setTimeout(() => {
+      due = true;
+      resolve();
+    }, 0);
+    const spin = (): void => {
+      if (!due) setImmediate(spin);
+    };
+    setImmediate(spin);
+  });
+}
+
 /** Run `frames` animation frames, 16 ms apart, letting promises settle between them. */
 export async function pump(frames: number): Promise<void> {
   for (let i = 0; i < frames; i++) {
@@ -89,7 +109,7 @@ export async function pump(frames: number): Promise<void> {
     const due = [...callbacks.values()];
     callbacks.clear();
     for (const callback of due) callback(clock);
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await nextTimerTurn();
   }
 }
 

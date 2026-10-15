@@ -45,8 +45,10 @@ function tarball(files: Record<string, string>): string {
     writeFileSync(join(root, 'package', path), text);
   }
   const archive = join(root, 'package.tgz');
-  // COPYFILE_DISABLE keeps macOS tar from adding AppleDouble `._*` twins.
-  execFileSync('tar', ['-czf', archive, '-C', root, 'package'], {
+  // COPYFILE_DISABLE keeps macOS tar from adding AppleDouble `._*` twins. Relative paths keep
+  // GNU tar (Git for Windows) from reading a `C:\` archive as a remote `host:path`.
+  execFileSync('tar', ['-czf', 'package.tgz', 'package'], {
+    cwd: root,
     env: { ...process.env, COPYFILE_DISABLE: '1' },
   });
   return archive;
