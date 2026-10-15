@@ -826,7 +826,7 @@ function wallLine(o, id, height = 4) {
       len = Math.hypot(b[0] - a[0], b[1] - a[1]);
     if (len < 0.3) continue;
     const f = edgeFrame(o, a, b);
-    let ya = level(...a),
+    const ya = level(...a),
       yb = level(...b);
 
     const h1 = ya + height,

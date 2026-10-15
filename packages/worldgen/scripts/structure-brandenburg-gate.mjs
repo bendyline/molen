@@ -153,7 +153,9 @@ function sculpture(o, detail) {
     B(o, 'metal', cx - 0.5, 23.9, cz - 1.4, 0.12, 2.1, 0.12, 'bronze');
     return;
   }
-  [-2.1, -0.7, 0.7, 2.1].forEach((dx, i) => horse(o, cx + dx, i));
+  [-2.1, -0.7, 0.7, 2.1].forEach((dx, i) => {
+    horse(o, cx + dx, i);
+  });
   // Two spoked wheels and the curved front of the chariot.
   for (const x of [cx - 1.5, cx + 1.5]) {
     const p = Array.from({ length: 16 }, (_, i) => [

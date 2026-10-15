@@ -42,14 +42,14 @@ function writer(out, far) {
     );
   };
   return {
-    addTriangle(s, r, p, n, u, c) {
+    addTriangle(s, _r, p, _n, _u, c) {
       tri(s, p, c);
     },
-    addQuad(s, r, p, n, u, c) {
+    addQuad(s, _r, p, _n, _u, c) {
       tri(s, p.slice(0, 3), c);
       tri(s, [p[0], p[2], p[3]], c);
     },
-    addConvexPolygon(s, r, p, n, u, c) {
+    addConvexPolygon(s, _r, p, _n, _u, c) {
       for (let i = 1; i < p.length - 1; i++) tri(s, [p[0], p[i], p[i + 1]], c);
     },
   };
@@ -215,12 +215,12 @@ function hillY(h, x, z) {
   return Math.max(0, y);
 }
 const mainBounds = [-166, -247, 176, 136],
-  fifthBounds = [345, 407, 465, 525],
+  _fifthBounds = [345, 407, 465, 525],
   museumBounds = [-338, -239, -237, -118];
 function inBounds([x, z], b, margin = 0) {
   return x >= b[0] + margin && z >= b[1] + margin && x <= b[2] - margin && z <= b[3] - margin;
 }
-function boundaryFade(x, z, b) {
+function _boundaryFade(x, z, b) {
   return smooth(Math.min(x - b[0], b[2] - x, z - b[1], b[3] - z) / 13);
 }
 function fieldHeight(x, z) {

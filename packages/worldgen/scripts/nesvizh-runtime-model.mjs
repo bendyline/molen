@@ -306,7 +306,7 @@ function scaled(p, k) {
   const c = center(p);
   return p.map((v) => mix(c, v, k));
 }
-function roofFacet(o, a, b, c, d, detailed = true) {
+function roofFacet(o, a, b, c, d, _detailed = true) {
   const collapsed = Math.hypot(...c.map((v, i) => v - d[i])) < 0.001;
   const p = collapsed ? [a, b, c] : [a, b, c, d];
   if (normalFor(...p)[1] < 0) p.reverse();
@@ -779,7 +779,7 @@ function bridge(o) {
       ) -
       floorShift +
       0.08;
-  let q = [
+  const q = [
     [aa[0] + n[0], baseY, aa[1] + n[1]],
     [aa[0] - n[0], baseY, aa[1] - n[1]],
     [bb[0] - n[0], top, bb[1] - n[1]],
@@ -1136,7 +1136,7 @@ function buildNesvizhRuntime(out, detail) {
         }
   }
 }
-const buildNesvizhSkyline = (o) => buildNesvizhRuntime(o, 'skyline');
+const _buildNesvizhSkyline = (o) => buildNesvizhRuntime(o, 'skyline');
 
 const means = {
   stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],

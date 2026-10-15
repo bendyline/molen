@@ -5,7 +5,6 @@ import { beam, cross, normalFor } from './authored-structure-mesh.mjs';
 import {
   face,
   guardrail,
-  lerp,
   localOutline,
   rectangularPlan,
   ringAt,
@@ -45,21 +44,21 @@ function writer(out, far) {
     );
   };
   return {
-    addTriangle(s, r, p, n, u, c) {
+    addTriangle(s, _r, p, _n, _u, c) {
       tri(s, p, c);
     },
-    addQuad(s, r, p, n, u, c) {
+    addQuad(s, _r, p, _n, _u, c) {
       tri(s, p.slice(0, 3), c);
       tri(s, [p[0], p[2], p[3]], c);
     },
-    addConvexPolygon(s, r, p, n, u, c) {
+    addConvexPolygon(s, _r, p, _n, _u, c) {
       for (let i = 1; i < p.length - 1; i++) tri(s, [p[0], p[i], p[i + 1]], c);
     },
   };
 }
 
 function simplify(points, error) {
-  let p = points.slice();
+  const p = points.slice();
   if (Math.hypot(...p.at(-1).map((v, i) => v - p[0][i])) < 0.001) p.pop();
   const rdp = (ps) => {
     if (ps.length < 3) return ps;
@@ -93,7 +92,7 @@ function simplify(points, error) {
   return [...rdp(p.slice(0, k + 1)).slice(0, -1), ...rdp([...p.slice(k), p[0]]).slice(0, -1)];
 }
 
-function closed(p, error) {
+function _closed(p, error) {
   const q = simplify(p, error);
   return [...q, q[0]];
 }

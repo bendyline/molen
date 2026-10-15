@@ -7,8 +7,8 @@ import { normalFor } from './authored-structure-mesh.mjs';
 const root = '../../../content/worldgen/source/places/u1/u10/n0284_dover_castle/';
 const read = (name) => JSON.parse(readFileSync(new URL(root + name, import.meta.url)));
 const frame = read('map-frame.json'),
-  relief = read('relief-grid.json'),
-  refs = read('reference-metadata.json'),
+  _relief = read('relief-grid.json'),
+  _refs = read('reference-metadata.json'),
   c = frame.controls;
 export const doverPalette = {
   stone: '#b4b6a6',
@@ -790,7 +790,7 @@ function build(o, d) {
 MEANS.foliage = [0.44849861649919487, 0.44906994842942866, 0.37575318374011624];
 function reviewed(o, d) {
   const far = d === 0;
-  function emit(s, r, p, n, uv, col) {
+  function emit(s, r, p, n, _uv, col) {
     const ps = p.map(([x, y, z]) => [
       x,
       n[1] < 0.98 && (Math.abs(y - keepPad) < 1e-6 || Math.abs(y - churchPad) < 1e-6)

@@ -107,8 +107,8 @@ function clean(r, tolerance = 0.15) {
   return area(p) < 0 ? p.reverse() : p;
 }
 function ring(id, detail) {
-  const f = map.features.find((f) => f.id === 'way/' + id);
-  if (!f) throw Error('Missing Edinburgh part' + id);
+  const f = map.features.find((f) => f.id === `way/${id}`);
+  if (!f) throw Error(`Missing Edinburgh part${id}`);
   return clean(
     f.points,
     id === 511343924 ? 0.08 : detail === 'skyline' ? 2.5 : detail === 'district' ? 0.3 : 0.12,
@@ -389,7 +389,7 @@ function roof(
 }
 const centroid = (p) => [0, 1].map((j) => p.reduce((s, v) => s + v[j], 0) / p.length);
 const feature = (id) => map.features.find((f) => f.id === `way/${id}`);
-const simpler = (p, t) => clean(p, t);
+const _simpler = (p, t) => clean(p, t);
 /** Douglas-Peucker retains a global error bound for mapped open wall paths. */
 function pathPoints(p, tolerance) {
   if (p.length < 3) return p;
@@ -1107,7 +1107,7 @@ function buildEdinburghRuntime(out, detail) {
   lowerWards(o);
   gates(o);
 }
-function originalSkyline(out) {
+function _originalSkyline(out) {
   buildEdinburghRuntime(out, 'skyline');
 }
 

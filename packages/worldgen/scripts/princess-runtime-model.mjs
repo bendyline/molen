@@ -1,13 +1,6 @@
 /** Reviewed Princess Tower browser derivatives; original recipe is preserved. */
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
-import {
-  commonLimit,
-  face,
-  mappedCap,
-  mappedSolid,
-  grid as originalGrid,
-  tri,
-} from './signature-tower-expansion-models.mjs';
+import { face, mappedCap, mappedSolid, tri } from './signature-tower-expansion-models.mjs';
 import { tube } from './structure-mesh.mjs';
 
 const cream = [0.76, 0.74, 0.69],
@@ -34,7 +27,7 @@ function patch(out, f, x0, x1, y0, y1, slot = 'concrete', color = cream, d = 0) 
     color,
   );
 }
-function grid(out, p, c, dx, dy, frame, fc, slot) {
+function grid(out, p, c, dx, _dy, frame, fc, slot) {
   face(out, 'glass', p, c);
   if (!out.detail.frames) return;
   const width = Math.hypot(p[1][0] - p[0][0], p[1][2] - p[0][2]),

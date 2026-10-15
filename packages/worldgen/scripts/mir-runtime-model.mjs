@@ -1062,7 +1062,7 @@ function buildMirRuntime(out, detail) {
   approachBridge(o);
   civilConnections(o);
 }
-function buildMirSkyline(out) {
+function _buildMirSkyline(out) {
   buildMirRuntime(out, 'skyline');
 }
 

@@ -824,7 +824,7 @@ function buildBranRuntime(out, detail) {
   courtyard(o);
   entrance(o);
 }
-function buildBranSkyline(out) {
+function _buildBranSkyline(out) {
   buildBranRuntime(out, 'skyline');
 }
 

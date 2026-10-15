@@ -1,12 +1,13 @@
 /** Acquire local map research for explicitly selected Qualla targets. Curated source frames remain a separate review. */
 import fs from 'node:fs';
-import path from 'node:path';
 import { createRequire } from 'node:module';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   next1000Entries,
   next1000Matches,
 } from '../../../content/worldgen/source/qualla-structures/work-ownership.mjs';
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const json = (p) => JSON.parse(fs.readFileSync(path.resolve(root, p)));
 const ids = process.argv

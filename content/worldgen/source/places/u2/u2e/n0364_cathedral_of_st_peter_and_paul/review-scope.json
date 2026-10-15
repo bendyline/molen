@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.3
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.72,
+      "metallic": 0.3
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.72,
+      "metallic": 0.12
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/brno-petrov-model.mjs",
+    "export": "buildBrnoPetrovSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBrnoPetrovDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.3
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildBrnoPetrovStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.3
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBrnoPetrovCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.3
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -115,
+      90,
+      115
+    ],
+    "lookAt": [
+      0,
+      31,
+      1
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-brno-petrov-skyline",
+      "position": [
+        -190,
+        150,
+        190
+      ],
+      "lookAt": [
+        0,
+        35,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-brno-petrov-district",
+      "position": [
+        -190,
+        150,
+        190
+      ],
+      "lookAt": [
+        0,
+        35,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-brno-petrov-street",
+      "position": [
+        -190,
+        150,
+        190
+      ],
+      "lookAt": [
+        0,
+        35,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-brno-petrov-closeup",
+      "position": [
+        -190,
+        150,
+        190
+      ],
+      "lookAt": [
+        0,
+        35,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 239.782823m; display datum offset 0.4m, mapped perimeter terrain -3.04..0.84m. Foundations follow terrain; approximate west/south exterior thresholds use local DEM +0.22m. Coarse standard DEM does not certify absolute altitude, Petrov terrace retaining walls, paving/step joins, thresholds, cut/fill, interiors or walking. No global flattening.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        16.607488912,
+        49.191010457
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 239.782823m; display datum offset 0.4m, mapped perimeter terrain -3.04..0.84m. Foundations follow terrain; approximate west/south exterior thresholds use local DEM +0.22m. Coarse standard DEM does not certify absolute altitude, Petrov terrace retaining walls, paving/step joins, thresholds, cut/fill, interiors or walking. No global flattening."
+    },
+    "bounds": [
+      16.602,
+      49.187,
+      16.614,
+      49.195
+    ],
+    "notes": "Standard DEM datum 239.782823m; display datum offset 0.4m, mapped perimeter terrain -3.04..0.84m. Foundations follow terrain; approximate west/south exterior thresholds use local DEM +0.22m. Coarse standard DEM does not certify absolute altitude, Petrov terrace retaining walls, paving/step joins, thresholds, cut/fill, interiors or walking. No global flattening."
+  },
+  "geographicNote": "Standard DEM datum 239.782823m; display datum offset 0.4m, mapped perimeter terrain -3.04..0.84m. Foundations follow terrain; approximate west/south exterior thresholds use local DEM +0.22m. Coarse standard DEM does not certify absolute altitude, Petrov terrace retaining walls, paving/step joins, thresholds, cut/fill, interiors or walking. No global flattening.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

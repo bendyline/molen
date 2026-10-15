@@ -1,5 +1,3 @@
-/** Budgeted derivatives retain Ristna's jacketed eight-rib structure and white lantern cap. */
-import { normalFor } from './authored-structure-mesh.mjs';
 import { ring } from './lighthouse-expansion-models.mjs';
 import { lathe, transformed } from './lighthouse-models.mjs';
 import { buildRistnaDetail, radialPlate } from './ristna-detail-model.mjs';

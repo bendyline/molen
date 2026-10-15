@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.87,
+      "metallic": 0.08
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.84,
+      "metallic": 0.08
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "roughness": 0.6,
+      "metallic": 0.4
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/konigsberg-cathedral-model.mjs",
+    "export": "buildKonigsbergSkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKonigsbergDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.4
+          }
+        }
+      },
+      "street": {
+        "export": "buildKonigsbergStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.4
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKonigsbergCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.87,
+            "metallic": 0.08
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.6,
+            "metallic": 0.4
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -88,
+      67,
+      86
+    ],
+    "lookAt": [
+      24,
+      15,
+      -9
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-konigsberg-skyline",
+      "position": [
+        -88,
+        67,
+        86
+      ],
+      "lookAt": [
+        24,
+        15,
+        -9
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-konigsberg-district",
+      "position": [
+        -88,
+        67,
+        86
+      ],
+      "lookAt": [
+        24,
+        15,
+        -9
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-konigsberg-street",
+      "position": [
+        -88,
+        67,
+        86
+      ],
+      "lookAt": [
+        24,
+        15,
+        -9
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-konigsberg-closeup",
+      "position": [
+        -88,
+        67,
+        86
+      ],
+      "lookAt": [
+        24,
+        15,
+        -9
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/picture frame prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 2.246535m;estimated common floor 0.7m clears sampled compound peak 0.257m and perimeter -0.97..0.22m. Foundations follow coarse terrain. Exact thresholds,absolute altitude and certified walking unverified;no independent survey.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        20.511666666,
+        54.706388888
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 2.246535m;estimated common floor 0.7m clears sampled compound peak 0.257m and perimeter -0.97..0.22m. Foundations follow coarse terrain. Exact thresholds,absolute altitude and certified walking unverified;no independent survey."
+    },
+    "bounds": [
+      20.5112,
+      54.7061,
+      20.5131,
+      54.7067
+    ],
+    "notes": "Standard DEM datum 2.246535m;estimated common floor 0.7m clears sampled compound peak 0.257m and perimeter -0.97..0.22m. Foundations follow coarse terrain. Exact thresholds,absolute altitude and certified walking unverified;no independent survey."
+  },
+  "geographicNote": "Standard DEM datum 2.246535m;estimated common floor 0.7m clears sampled compound peak 0.257m and perimeter -0.97..0.22m. Foundations follow coarse terrain. Exact thresholds,absolute altitude and certified walking unverified;no independent survey.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

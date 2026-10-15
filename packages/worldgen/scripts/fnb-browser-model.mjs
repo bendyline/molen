@@ -99,7 +99,7 @@ function build(destination, d) {
   const far = d === 0,
     n = [32, 48, 96, 192][d],
     rows = [4, 12, 18, 36][d];
-  function emit(s, r, p, hint, uv, c) {
+  function emit(s, r, p, hint, _uv, c) {
     p = p.map((v) => v.map(Math.fround));
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

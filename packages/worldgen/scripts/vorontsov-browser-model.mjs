@@ -1,12 +1,6 @@
 /** N0667 individually retained pier ensemble; original detailed source remains unchanged. */
 import earcut from 'earcut';
-import {
-  beam,
-  loft,
-  normalFor,
-  sphere as originalSphere,
-  radialRing,
-} from './authored-structure-mesh.mjs';
+import { beam, loft, normalFor, sphere as originalSphere } from './authored-structure-mesh.mjs';
 import { buildVorontsov as master } from './lighthouse-blacksea-models.mjs';
 import { ring as originalRing, shell as originalShell } from './lighthouse-expansion-models.mjs';
 import { lathe as originalLathe, panel, piercedFacade, transformed } from './lighthouse-models.mjs';

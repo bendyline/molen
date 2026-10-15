@@ -457,7 +457,7 @@ function build(target, detail) {
         ),
       );
   const cp = at(0, width / 2),
-    rear = at(length, width / 2);
+    _rear = at(length, width / 2);
   wall(face, at(0, 0), at(length, 0), 15.5, 1.7, floor);
   wall(face, at(0, width), at(length, width), 15.5, 1.7, floor);
   archWall(face, at(0, width), at(0, 0), 8.2, 20.5, 1.7, 4.6, 5.2, 2.6, archSegments);
@@ -473,7 +473,7 @@ function build(target, detail) {
           cp,
           add(
             v.map((n) => n * ((q - 0.5) * w)),
-            u.map((n) => -offset),
+            u.map((_n) => -offset),
           ),
         ),
         y,

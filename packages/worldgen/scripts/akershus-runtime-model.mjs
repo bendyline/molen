@@ -35,7 +35,7 @@ export function akershusGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if ((far && n[1] < -0.98) || (s === 'foliage' && p.some((v) => v[1] < 12))) return;
     const bottom = Math.min(...p.map((v) => v[1]));
     const ps = p.map(([x, y, z]) => [

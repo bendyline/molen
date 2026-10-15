@@ -12,8 +12,8 @@ const dir = new URL(
 const read = (name) => JSON.parse(readFileSync(new URL(name, dir)));
 const frame = read('map-frame.json'),
   relief = read('relief-grid.json'),
-  means = read('surface-means.json'),
-  references = read('reference-metadata.json'),
+  _means = read('surface-means.json'),
+  _references = read('reference-metadata.json'),
   apertures = read('openings.json');
 export const devinPalette = {
   wall: '#dfcfb3',
@@ -641,7 +641,7 @@ export function devinGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) => [
         x,

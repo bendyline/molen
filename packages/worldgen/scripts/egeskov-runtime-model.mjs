@@ -40,7 +40,7 @@ function reviewed(o, level) {
     angle = -0.08105105410598493,
     cs = Math.cos(angle),
     sn = Math.sin(angle);
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) =>
         [

@@ -489,7 +489,8 @@ function telemetry() {
       [...materials]
         .filter((material) => material.name.startsWith('worldgen:matgraph:'))
         .map((material) => [
-          material.name,
+          // Window-slot variants share the canonical graph's texture maps.
+          material.name.endsWith(':glass') ? material.name.slice(0, -6) : material.name,
           (material as THREE.MeshStandardMaterial).map?.uuid ?? null,
         ]),
     ),

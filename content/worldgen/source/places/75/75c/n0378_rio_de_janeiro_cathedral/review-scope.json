@@ -1,0 +1,273 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_boardformed",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.7,
+      "metallic": 0.5
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.45,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.62,
+      "metallic": 0.2
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/rio-cathedral-model.mjs",
+    "export": "buildRioCathedralSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRioCathedralDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildRioCathedralStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRioCathedralCloseup",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_boardformed",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.7,
+            "metallic": 0.5
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      175,
+      135,
+      178
+    ],
+    "lookAt": [
+      -12,
+      31,
+      -12
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-rio-cathedral-skyline",
+      "position": [
+        195,
+        165,
+        205
+      ],
+      "lookAt": [
+        -12,
+        33,
+        -12
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-rio-cathedral-district",
+      "position": [
+        195,
+        165,
+        205
+      ],
+      "lookAt": [
+        -12,
+        33,
+        -12
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-rio-cathedral-street",
+      "position": [
+        195,
+        165,
+        205
+      ],
+      "lookAt": [
+        -12,
+        33,
+        -12
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-rio-cathedral-closeup",
+      "position": [
+        195,
+        165,
+        205
+      ],
+      "lookAt": [
+        -12,
+        33,
+        -12
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum 17.295082m; source floor0.6m, raw whole perimeter -9.53..8.09m. Retained raw urban DEM has about18m local variation; source review uses an explicitly bounded estimated plaza grade near0.2m around the cathedral and campanile, blending into raw terrain. This fixture is not applied to host terrain. Runtime placement uses terrain-contact at the anchor; base clipping/sinking on noisy host DEM, exact plaza/door joins, absolute altitude and walking remain unverified. Footings extend below coarse samples; no global terrain flattening or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -43.180691413,
+        -22.910798343
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 17.295082m; source floor0.6m, raw whole perimeter -9.53..8.09m. Retained raw urban DEM has about18m local variation; source review uses an explicitly bounded estimated plaza grade near0.2m around the cathedral and campanile, blending into raw terrain. This fixture is not applied to host terrain. Runtime placement uses terrain-contact at the anchor; base clipping/sinking on noisy host DEM, exact plaza/door joins, absolute altitude and walking remain unverified. Footings extend below coarse samples; no global terrain flattening or road replacement."
+    },
+    "bounds": [
+      -43.188,
+      -22.916,
+      -43.174,
+      -22.905
+    ],
+    "notes": "Standard viewer DEM datum 17.295082m; source floor0.6m, raw whole perimeter -9.53..8.09m. Retained raw urban DEM has about18m local variation; source review uses an explicitly bounded estimated plaza grade near0.2m around the cathedral and campanile, blending into raw terrain. This fixture is not applied to host terrain. Runtime placement uses terrain-contact at the anchor; base clipping/sinking on noisy host DEM, exact plaza/door joins, absolute altitude and walking remain unverified. Footings extend below coarse samples; no global terrain flattening or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum 17.295082m; source floor0.6m, raw whole perimeter -9.53..8.09m. Retained raw urban DEM has about18m local variation; source review uses an explicitly bounded estimated plaza grade near0.2m around the cathedral and campanile, blending into raw terrain. This fixture is not applied to host terrain. Runtime placement uses terrain-contact at the anchor; base clipping/sinking on noisy host DEM, exact plaza/door joins, absolute altitude and walking remain unverified. Footings extend below coarse samples; no global terrain flattening or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

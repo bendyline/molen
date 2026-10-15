@@ -5,7 +5,6 @@ import { ShapeUtils, Vector2 } from 'three';
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
   clockwise,
-  commonLimit,
   face,
   mappedCap,
   mappedSolid,

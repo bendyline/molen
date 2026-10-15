@@ -1,5 +1,5 @@
 /** N0638 source-local reviewed restoration; historical buildMaiden remains unchanged. */
-import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
+import { beam, loft, radialRing } from './authored-structure-mesh.mjs';
 import { archBay, triangle } from './heritage-tower-detail-mesh.mjs';
 import { hipRoof } from './lighthouse-expansion-models.mjs';
 import {

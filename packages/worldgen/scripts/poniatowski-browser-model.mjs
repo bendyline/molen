@@ -70,7 +70,7 @@ const road = (x) => {
   );
 };
 const samples = (n, fn) => Array.from({ length: n + 1 }, (_, i) => fn(i / n));
-const shade = (seed, c = stone) => c.map((v) => v + Math.sin(seed * 5.217) * 0.5 * 0.065);
+const _shade = (seed, c = stone) => c.map((v) => v + Math.sin(seed * 5.217) * 0.5 * 0.065);
 function extrude(out, slot, xy, z0, z1, c) {
   let points = xy.filter(
     (p, i, a) =>
@@ -125,7 +125,7 @@ function line(out, slot, points, r, c) {
     if (Math.hypot(...points[i].map((v, j) => v - points[i - 1][j])) > 1e-5)
       beam(out, slot, points[i - 1], points[i], r * 2, r * 2, c);
 }
-function roundedLine(out, slot, points, r, c, sides = 10) {
+function _roundedLine(out, slot, points, r, c, sides = 10) {
   const rings = points.map((p, i) => {
     const a = points[Math.max(0, i - 1)],
       b = points[Math.min(points.length - 1, i + 1)],
@@ -150,7 +150,7 @@ function roundedLine(out, slot, points, r, c, sides = 10) {
   });
   loft(out, slot, rings, c);
 }
-function smoothPath(points, steps = 8) {
+function _smoothPath(points, steps = 8) {
   const result = [];
   for (let i = 0; i < points.length - 1; i++)
     for (let j = 0; j < steps; j++) {
@@ -184,7 +184,7 @@ function transform(out, angle, center) {
     addConvexPolygon: (k, r, p, n, u, t) => out.addConvexPolygon(k, r, p.map(pt), rot(n), u, t),
   };
 }
-function cylinder(out, slot, x, y, z, r, h, c, n = 24) {
+function _cylinder(out, slot, x, y, z, r, h, c, n = 24) {
   loft(out, slot, [radialRing(y, r, r, n, [x, z]), radialRing(y + h, r, r, n, [x, z])], c);
 }
 function ringXY(out, slot, x, y, z, rx, ry, r, c, n = 48) {
@@ -224,14 +224,14 @@ function writer(out, far) {
     );
   };
   return {
-    addTriangle(s, r, p, n, u, c) {
+    addTriangle(s, _r, p, _n, _u, c) {
       tri(s, p, c);
     },
-    addQuad(s, r, p, n, u, c) {
+    addQuad(s, _r, p, _n, _u, c) {
       tri(s, p.slice(0, 3), c);
       tri(s, [p[0], p[2], p[3]], c);
     },
-    addConvexPolygon(s, r, p, n, u, c) {
+    addConvexPolygon(s, _r, p, _n, _u, c) {
       for (let i = 1; i < p.length - 1; i++) tri(s, [p[0], p[i], p[i + 1]], c);
     },
   };

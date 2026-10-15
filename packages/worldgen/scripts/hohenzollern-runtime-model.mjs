@@ -971,7 +971,7 @@ function rampPassages(a, b, offset, upperFloor, upperId) {
   }
   return result;
 }
-function rampExterior(o, f, a, b, z, y0, y1, foot, wallHi, id, side) {
+function rampExterior(_o, f, a, b, z, y0, y1, foot, wallHi, id, side) {
   const len = Math.hypot(b[0] - a[0], b[1] - a[1]),
     holes = rampPassages(a, b, z, Math.min(y0, y1), id),
     cuts = [...new Set([0, len, ...holes.flatMap((h) => [h.left, h.right])])].sort((a, b) => a - b);
@@ -1252,7 +1252,7 @@ function buildHohenzollernRuntime(out, detail) {
     gableRoof(o, [-3.8, 14], [-3.8, 23.3], 6.7, 33.3, 2, { hips: 1 });
   }
 }
-const buildHohenzollernSkyline = (out) => buildHohenzollernRuntime(out, 'skyline');
+const _buildHohenzollernSkyline = (out) => buildHohenzollernRuntime(out, 'skyline');
 
 const means = {
   stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],

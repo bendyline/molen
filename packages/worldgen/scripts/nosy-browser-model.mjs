@@ -42,7 +42,7 @@ function detail(out, mode) {
     );
   const white = [0.86, 0.86, 0.82],
     black = [0.065, 0.075, 0.074],
-    red = [0.56, 0.095, 0.055];
+    _red = [0.56, 0.095, 0.055];
   const polar = (r, y, a) => [Math.sin(a) * r, y, Math.cos(a) * r];
   function glazing(out, y0, y1, r, color = white, n = 16) {
     for (let i = 0; i < n; i++) {

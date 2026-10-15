@@ -358,22 +358,20 @@ function mainChurch(out, detail) {
     'stone',
     detail >= 1 ? [{ center: [-7.5, 8], width: 3.6, bottom: 0.8, height: 6.6, spring: 4.7 }] : [],
   );
-  {
-    for (const z of [2.0, 13.9])
-      wall(
-        out,
-        detail,
-        [-19.1, z],
-        [-8.0, z],
-        1.18,
-        23,
-        (p) => 23 + Math.max(0, 1 - Math.abs(p[0] + 13.6) / 5.6) * 4.3,
-        'stone',
-        detail >= 2
-          ? [{ center: [-13.6, z], width: 1.4, bottom: 23.5, height: 2.0, spring: 1.6 }]
-          : [],
-      );
-  }
+  for (const z of [2.0, 13.9])
+    wall(
+      out,
+      detail,
+      [-19.1, z],
+      [-8.0, z],
+      1.18,
+      23,
+      (p) => 23 + Math.max(0, 1 - Math.abs(p[0] + 13.6) / 5.6) * 4.3,
+      'stone',
+      detail >= 2
+        ? [{ center: [-13.6, z], width: 1.4, bottom: 23.5, height: 2.0, spring: 1.6 }]
+        : [],
+    );
   // Open square crossing tower. Four pointed arch openings connect the transept and nave.
   const crossRing = rect(7.1, 9.1, 11.5, 11.7);
   for (let i = 0; i < 4; i++) {
@@ -518,7 +516,7 @@ function chapel(out, detail) {
     { ring: [raw[2], raw[3], raw[4], [22.85, 20.93]], top: 15.7, cap: true },
     { ring: [[23.85, 24.6], [26.15, 24.15], raw[8], raw[9]], top: 14.4, cap: false },
   ];
-  for (const [t, tower] of towers.entries()) {
+  for (const [_t, tower] of towers.entries()) {
     const r = tower.ring;
     for (let i = 0; i < 4; i++) {
       const a = r[i],

@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "spire": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_granite",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.36,
+      "metallic": 0.04
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.62,
+      "metallic": 0.4
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/mdina-model.mjs",
+    "export": "buildMdinaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMdinaDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.04
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.4
+          }
+        }
+      },
+      "street": {
+        "export": "buildMdinaStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.04
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.4
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMdinaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.04
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.4
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -81,
+      61,
+      -75
+    ],
+    "lookAt": [
+      0,
+      16,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-mdina-skyline",
+      "position": [
+        -99,
+        77,
+        -91
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-mdina-district",
+      "position": [
+        -99,
+        77,
+        -91
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-mdina-street",
+      "position": [
+        -99,
+        77,
+        -91
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-mdina-closeup",
+      "position": [
+        -99,
+        77,
+        -91
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum 193.391278m; display floor4.1m, whole perimeter terrain -4.71..3.85m. West threshold0.3m above model floor with short local steps; walls extend down to coarse standard terrain. DEM slopes under the rear plateau/adjacent buildings are coarse and may expose tall foundations; no bespoke terrain correction is claimed. Exact cathedral plaza/retaining-wall grading, threshold joins, absolute altitude and walking remain unverified. No global flattening or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        14.404111382,
+        35.886427018
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 193.391278m; display floor4.1m, whole perimeter terrain -4.71..3.85m. West threshold0.3m above model floor with short local steps; walls extend down to coarse standard terrain. DEM slopes under the rear plateau/adjacent buildings are coarse and may expose tall foundations; no bespoke terrain correction is claimed. Exact cathedral plaza/retaining-wall grading, threshold joins, absolute altitude and walking remain unverified. No global flattening or road replacement."
+    },
+    "bounds": [
+      14.396,
+      35.881,
+      14.412,
+      35.892
+    ],
+    "notes": "Standard viewer DEM datum 193.391278m; display floor4.1m, whole perimeter terrain -4.71..3.85m. West threshold0.3m above model floor with short local steps; walls extend down to coarse standard terrain. DEM slopes under the rear plateau/adjacent buildings are coarse and may expose tall foundations; no bespoke terrain correction is claimed. Exact cathedral plaza/retaining-wall grading, threshold joins, absolute altitude and walking remain unverified. No global flattening or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum 193.391278m; display floor4.1m, whole perimeter terrain -4.71..3.85m. West threshold0.3m above model floor with short local steps; walls extend down to coarse standard terrain. DEM slopes under the rear plateau/adjacent buildings are coarse and may expose tall foundations; no bespoke terrain correction is claimed. Exact cathedral plaza/retaining-wall grading, threshold joins, absolute altitude and walking remain unverified. No global flattening or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

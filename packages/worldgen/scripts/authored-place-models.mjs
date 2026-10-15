@@ -1,6 +1,5 @@
 /** Authored geographic structures: each source recipe owns its identity and review inputs. */
 
-import { kensington13Model } from './structure-kensington-palace-gardens-13.mjs';
 import { anneModel } from './structure-anne-frank-house.mjs';
 import { biltmoreModel } from './structure-arizona-biltmore.mjs';
 import { bachModel } from './structure-bach-house.mjs';
@@ -30,6 +29,7 @@ import { indesModel } from './structure-hotel-des-indes.mjs';
 import { majapahitModel } from './structure-hotel-majapahit.mjs';
 import { jamaicaModel } from './structure-jamaica-inn.mjs';
 import { jeffersonModel } from './structure-jefferson-memorial.mjs';
+import { kensington13Model } from './structure-kensington-palace-gardens-13.mjs';
 import { liebermannModel } from './structure-liebermann-villa.mjs';
 import { lincolnModel } from './structure-lincoln-memorial.mjs';
 import { lorraineModel } from './structure-lorraine-motel.mjs';

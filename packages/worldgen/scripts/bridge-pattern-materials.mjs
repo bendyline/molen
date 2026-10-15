@@ -21,14 +21,17 @@ function asanohaGraph() {
     { id: 'inv-u', type: 'invert', input: 'u', params: {} },
     { id: 'inv-v', type: 'invert', input: 'v', params: {} },
   ];
-  const add = (node) => (nodes.push(node), node.id),
-    masks = [];
+  const add = (node) => {
+    nodes.push(node);
+    return node.id;
+  };
+  const masks = [];
   // A whole parallel family shares one projection and multi-band ramp. There are
   // three continuous triangular grid families and three interrupted medians.
   function projection(id, a, b) {
     const low = Math.min(0, a) + Math.min(0, b),
       range = Math.abs(a) + Math.abs(b);
-    const axis = (name, c) => (c < 0 ? 'inv-' + name : name);
+    const axis = (name, c) => (c < 0 ? `inv-${name}` : name);
     const input =
       Math.abs(a) < 1e-8
         ? axis('v', b)
@@ -74,21 +77,17 @@ function asanohaGraph() {
     add({ id, type: 'blend', inputs: { a, b }, params: { mode, factor: 1 } });
   for (const [i, angle] of [0, Math.PI / 3, -Math.PI / 3].entries()) {
     const p = projection(
-      'grid-projection-' + i,
+      `grid-projection-${i}`,
       -Math.sin(angle) * width,
       Math.cos(angle) * height,
     );
-    masks.push(bands('grid-' + i, p, stripes(p, height / 2, 0, 0.003)));
+    masks.push(bands(`grid-${i}`, p, stripes(p, height / 2, 0, 0.003)));
   }
   for (const [i, angle] of [Math.PI / 2, Math.PI / 6, -Math.PI / 6].entries()) {
-    const n = projection('median-normal-' + i, -Math.sin(angle) * width, Math.cos(angle) * height),
-      t = projection('median-tangent-' + i, Math.cos(angle) * width, Math.sin(angle) * height);
+    const n = projection(`median-normal-${i}`, -Math.sin(angle) * width, Math.cos(angle) * height),
+      t = projection(`median-tangent-${i}`, Math.cos(angle) * width, Math.sin(angle) * height);
     for (const parity of [0, 1]) {
-      const line = bands(
-        'median-lines-' + i + '-' + parity,
-        n,
-        stripes(n, r, (parity * r) / 2, 0.003),
-      );
+      const line = bands(`median-lines-${i}-${parity}`, n, stripes(n, r, (parity * r) / 2, 0.003));
       const intervals = [];
       for (let k = -5; k <= 5; k++) {
         if (parity === 0)
@@ -96,8 +95,8 @@ function asanohaGraph() {
         else
           intervals.push([k * height + height / 6 - 0.003, k * height + (5 * height) / 6 + 0.003]);
       }
-      const extent = bands('median-extent-' + i + '-' + parity, t, intervals);
-      masks.push(merge('median-' + i + '-' + parity, line, extent, 'multiply'));
+      const extent = bands(`median-extent-${i}-${parity}`, t, intervals);
+      masks.push(merge(`median-${i}-${parity}`, line, extent, 'multiply'));
     }
   }
   let layer = masks,
@@ -105,7 +104,7 @@ function asanohaGraph() {
   while (layer.length > 1)
     layer = Array.from({ length: Math.ceil(layer.length / 2) }, (_, i) =>
       layer[i * 2 + 1]
-        ? merge('union-' + joins++, layer[i * 2], layer[i * 2 + 1], 'add')
+        ? merge(`union-${joins++}`, layer[i * 2], layer[i * 2 + 1], 'add')
         : layer[i * 2],
     );
   nodes.push(

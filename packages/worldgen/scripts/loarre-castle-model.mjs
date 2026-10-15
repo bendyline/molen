@@ -270,7 +270,11 @@ function crag(out, detail) {
         [a[0] - p[0], 0, a[1] - p[1]],
       );
     }
-    const indices = earcut(topRing.map((p) => [p[0], p[2]]).flat(), null, 2);
+    const indices = earcut(
+      topRing.flatMap((p) => [p[0], p[2]]),
+      null,
+      2,
+    );
     for (let i = 0; i < indices.length; i += 3)
       face(
         'rock',

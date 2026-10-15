@@ -2,7 +2,6 @@
 import './install-deterministic-math.mjs';
 import { readFileSync } from 'node:fs';
 import { beam, cross, loft, normalFor } from './authored-structure-mesh.mjs';
-import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { box, quad } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
 
@@ -14,7 +13,7 @@ const elevation = JSON.parse(
 );
 const start = frame.geometry.centerlines[0][0][0],
   end = frame.geometry.centerlines[0].at(-1)[0];
-const length = end - start;
+const _length = end - start;
 const apex = (frame.summitPassage[0][0] + frame.summitPassage[1][0]) / 2;
 const halfPassage = (frame.summitPassage[1][0] - frame.summitPassage[0][0]) / 2;
 const red = [0.47, 0.31, 0.235],
@@ -126,14 +125,14 @@ function writer(out, far) {
     );
   };
   return {
-    addTriangle(s, r, p, n, u, c) {
+    addTriangle(s, _r, p, _n, _u, c) {
       tri(s, p, c);
     },
-    addQuad(s, r, p, n, u, c) {
+    addQuad(s, _r, p, _n, _u, c) {
       tri(s, p.slice(0, 3), c);
       tri(s, [p[0], p[2], p[3]], c);
     },
-    addConvexPolygon(s, r, p, n, u, c) {
+    addConvexPolygon(s, _r, p, _n, _u, c) {
       for (let i = 1; i < p.length - 1; i++) tri(s, [p[0], p[i], p[i + 1]], c);
     },
   };
@@ -235,7 +234,7 @@ function build(target, tier) {
       start,
       end,
       ...deckProfile
-        .filter((p, i) => tier > 0 || i % 4 === 0 || i === deckProfile.length - 1)
+        .filter((_p, i) => tier > 0 || i % 4 === 0 || i === deckProfile.length - 1)
         .map((p) => p[0]),
       ...arches.flatMap((a) => [a.x - a.rx, a.x, a.x + a.rx]),
       ...[start + 34, start + 42, apex - 18.2, apex + 18.2, apex + 27.7, end - 8],
@@ -519,7 +518,7 @@ function build(target, tier) {
     top,
     depth,
     slot,
-    rough = false,
+    _rough = false,
   ) {
     const a = { x: 0, rx: opening, sy: spring, h: opening, bottom };
     const d0 = center - depth / 2,

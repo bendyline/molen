@@ -758,7 +758,7 @@ function filarete(o) {
       }
   }
 }
-function site(o) {
+function _site(o) {
   // Relative moat datum avoids a solid plinth masking the dry ditch and bridge spans.
   rect(o, -7, 0, 221, 235, 0, 0.08, 'foliage', [0.25, 0.3, 0.19]);
   rect(o, -7, -2, 182, 182, 0.08, 3, 'aggregate', [0.48, 0.46, 0.4]);
@@ -1272,7 +1272,7 @@ function fittedMappedBridge(o, p, id) {
         : 3.05;
   const ix = earcut(p.flat());
   for (let i = 0; i < ix.length; i += 3) {
-    let q = ix.slice(i, i + 3).map((j) => [p[j][0], y(p[j]), p[j][1]]);
+    const q = ix.slice(i, i + 3).map((j) => [p[j][0], y(p[j]), p[j][1]]);
     if (normalFor(...q)[1] < 0) q.reverse();
     tri(o, 'stone', q, stone);
   }

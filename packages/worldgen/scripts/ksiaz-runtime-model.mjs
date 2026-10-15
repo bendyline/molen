@@ -7,7 +7,7 @@ import { normalFor } from './authored-structure-mesh.mjs';
 const root = '../../../content/worldgen/source/places/u3/u35/n0291_ksiaz_castle_and_park_complex/';
 const read = (n) => JSON.parse(readFileSync(new URL(root + n, import.meta.url)));
 const frame = read('map-frame.json'),
-  refs = read('reference-metadata.json'),
+  _refs = read('reference-metadata.json'),
   c = structuredClone(frame.controls);
 export const ksiazPalette = {
   stone: '#c9b392',
@@ -330,7 +330,7 @@ function simple(loop, tolerance) {
 }
 const outer = frame.geometry.outline.slice(0, -1),
   courts = frame.geometry.holes.map((h) => h.slice(0, -1));
-const flatMeans = read('surface-means.json');
+const _flatMeans = read('surface-means.json');
 function cap(o, ring, holes, y, col = 'wall', slot = 'sandstone') {
   const points = [...ring, ...holes.flat()],
     starts = holes.map((_, i) => ring.length + holes.slice(0, i).reduce((n, h) => n + h.length, 0));
@@ -1027,7 +1027,7 @@ for (const t of [...c.terraces.south, ...c.terraces.west, ...c.terraces.north]) 
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) => [
         x,

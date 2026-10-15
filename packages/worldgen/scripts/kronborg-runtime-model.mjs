@@ -100,8 +100,8 @@ function clean(r, tolerance = 0.15) {
   return area(p) < 0 ? p.reverse() : p;
 }
 function ring(id) {
-  const f = map.features.find((f) => f.id === 'way/' + id);
-  if (!f) throw Error('Missing Kronborg part ' + id);
+  const f = map.features.find((f) => f.id === `way/${id}`);
+  if (!f) throw Error(`Missing Kronborg part ${id}`);
   return clean(f.points, 0.12);
 }
 function cap(o, p, y, slot, color) {
@@ -750,7 +750,7 @@ function cornerTowers(o) {
 function fortress(o) {
   const water = map.features.find((f) => f.id === 'way/89169065').points,
     shore = map.features.find((f) => f.id === 'way/92931982').points;
-  let p = [...water.slice(17, 35), ...shore.slice(0, 9).toReversed(), water[16]];
+  const p = [...water.slice(17, 35), ...shore.slice(0, 9).toReversed(), water[16]];
   if (area(p) < 0) p.reverse();
   // Narrow retaining masonry only: no land volume, grass cap or precinct excavation.
   if (o.detail !== 'skyline')
@@ -776,7 +776,7 @@ function buildKronborgRuntime(out, detail) {
       elevation(castle, p, [1], 3.3);
     }
 }
-function oldSkyline(out) {
+function _oldSkyline(out) {
   buildKronborgRuntime(out, 'skyline');
 }
 

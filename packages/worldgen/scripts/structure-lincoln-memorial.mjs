@@ -1,6 +1,6 @@
 /** Lincoln Memorial temple and upper approach; NPS dimensions, mapped parts and Qualla photos. */
 import './install-deterministic-math.mjs';
-import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
+import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
@@ -285,7 +285,7 @@ function statue(o, d) {
     }
   }
 }
-function memorial(o, frame, d = 3) {
+function memorial(o, _frame, d = 3) {
   // Retaining walls and shallow grassy slope around the three marble platform courses.
   for (const s of [-1, 1]) {
     B(o, 'granite', s * 39, -1.3, 0, 0.65, 5.6, 57, granite);

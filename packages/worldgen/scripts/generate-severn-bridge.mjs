@@ -4,7 +4,7 @@ import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from './architectural-surface-authoring.mjs';
 import { smoothMeshNormals, validateAuthoredMesh } from './authored-structure-mesh.mjs';
@@ -286,7 +286,7 @@ for (const [name, data] of [
 ])
   await emit(resolve(dir, name), Buffer.from(biomeJson(data, resolve(dir, name))));
 const scopedReadme = reviewScope
-  ? `# Severn Bridge — N0005\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Source and browser models\n\nThe original detailed recipe is preserved at \`packages/worldgen/scripts/severn-bridge-model.mjs#buildSevern\`. Original master hash: \`${reviewScope.sourceFacts.originalMasterHash}\`. The current shared-material master has ${mesh.triangleCount} triangles and ${glb.length} bytes. It binds reusable painted metal and concrete graphs with metric UVs and embeds no texture images. Independent silhouettes live in \`severn-browser-model.mjs\`; four browser levels follow the1k/4k/16k/64k budgets.\n\n## Approximate placement\n\n${reviewScope.geographicNote}\n\n## Accepted limits\n\n${reviewScope.limitations.map((t) => '- ' + t).join('\n')}\n\nRegenerate with \`node packages/worldgen/scripts/generate-severn-bridge.mjs\`; use \`--check\` for the selected source. QA reports bind the final inspected images and placement.\n`
+  ? `# Severn Bridge — N0005\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Source and browser models\n\nThe original detailed recipe is preserved at \`packages/worldgen/scripts/severn-bridge-model.mjs#buildSevern\`. Original master hash: \`${reviewScope.sourceFacts.originalMasterHash}\`. The current shared-material master has ${mesh.triangleCount} triangles and ${glb.length} bytes. It binds reusable painted metal and concrete graphs with metric UVs and embeds no texture images. Independent silhouettes live in \`severn-browser-model.mjs\`; four browser levels follow the1k/4k/16k/64k budgets.\n\n## Approximate placement\n\n${reviewScope.geographicNote}\n\n## Accepted limits\n\n${reviewScope.limitations.map((t) => `- ${t}`).join('\n')}\n\nRegenerate with \`node packages/worldgen/scripts/generate-severn-bridge.mjs\`; use \`--check\` for the selected source. QA reports bind the final inspected images and placement.\n`
   : readme;
 await emit(resolve(dir, 'README.md'), Buffer.from(scopedReadme));
 console.log(

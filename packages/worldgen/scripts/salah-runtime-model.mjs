@@ -177,7 +177,7 @@ function gradeWall(o, a, b, h, t) {
     ya = ground(...a) + 0.25,
     yb = ground(...b) + 0.25;
   for (const side of [-1, 1]) {
-    let q = [
+    const q = [
       [a[0] + nx * side, ya - 4, a[1] + nz * side],
       [b[0] + nx * side, yb - 4, b[1] + nz * side],
       [b[0] + nx * side, yb + h, b[1] + nz * side],
@@ -938,7 +938,7 @@ function buildSalahRuntime(out, detail) {
   }
   fountain(o);
 }
-const buildSalahSkyline = (o) => buildSalahRuntime(o, 'skyline');
+const _buildSalahSkyline = (o) => buildSalahRuntime(o, 'skyline');
 
 const means = {
   weathered: [0.44849861649919487, 0.44906994842942866, 0.37575318374011624],

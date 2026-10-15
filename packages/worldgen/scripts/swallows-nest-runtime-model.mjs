@@ -104,7 +104,7 @@ function rockApron(o, level, far) {
 function reviewed(o, level) {
   const far = level === 'skyline';
   rockApron(o, { skyline: 0, district: 1, street: 2, closeup: 3 }[level], far);
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) => [x, y === 0 ? 6.05 : y + 6, z]),
       col = far ? c.map((v, i) => v * (MEANS[s]?.[i] ?? 1)) : c;

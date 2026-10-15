@@ -1117,7 +1117,7 @@ function buildDurhamRuntime(out, detail) {
   keepStair(o);
   gate(o);
 }
-const buildDurhamSkyline = (o) => buildDurhamRuntime(o, 'skyline');
+const _buildDurhamSkyline = (o) => buildDurhamRuntime(o, 'skyline');
 
 const means = {
   sandstone: [0.6849383831581978, 0.6023767969729558, 0.46768227309766186],

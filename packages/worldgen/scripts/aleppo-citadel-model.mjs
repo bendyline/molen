@@ -254,7 +254,7 @@ function wall(out, detail, a, b, thickness, bottom, top, s = 'stone', holes = []
       }
   }
 }
-function roof(face, ring, eaves, ridge, s = 'roof', wallSurface = 'stone') {
+function _roof(face, ring, eaves, ridge, s = 'roof', wallSurface = 'stone') {
   const a = ring[0],
     b = ring[1],
     c = ring[2],
@@ -267,7 +267,7 @@ function roof(face, ring, eaves, ridge, s = 'roof', wallSurface = 'stone') {
   face(wallSurface, [at(d, eaves), at(a, eaves), r0], [-u[0], 0, -u[1]]);
   face(wallSurface, [at(b, eaves), at(c, eaves), r1], [u[0], 0, u[1]]);
 }
-function pyramid(face, x, z, w, d, y, top, s = 'stone') {
+function _pyramid(face, x, z, w, d, y, top, s = 'stone') {
   const p = rect(x, z, w, d);
   for (let i = 0; i < 4; i++)
     face(s, [at(p[i], y), at(p[(i + 1) % 4], y), [x, top, z]], [p[i][0] - x, 1, p[i][1] - z]);

@@ -31,7 +31,7 @@ export function miramareGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) => [
         x,

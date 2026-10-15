@@ -1,0 +1,1146 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0343_cathedral_of_the_most_holy_conception",
+  "sourceHash": "sha256:b27312f3a75d8bbf78902ba12c3e8278591f977349368edc6caa3b7774258ff6",
+  "runtimeHash": "sha256:f232ddf107809eebe7bd60e22ca3a0ba65b4d57fcf661aa990d3ada67e38ea1f",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5696,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:e2374affd2579c4b029295271a354b42d9605a5e53c583f8dc633f886fceda1e",
+      "bytes": 68400,
+      "gzipBytes": 12648,
+      "triangles": 667,
+      "cpuBytes": 66968,
+      "gpuBytes": 66968,
+      "errorMeters": 1.2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:4dbe3061e6148a7b407c7a1ef91db18390d7d2b13039ecffecff8386d9321731",
+      "bytes": 216748,
+      "gzipBytes": 63112,
+      "triangles": 2208,
+      "cpuBytes": 209348,
+      "gpuBytes": 209348,
+      "errorMeters": 0.5,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:b23c025759e4b2bc178a85ab25e95b2423894aaa485d4da39bcfbc111f9ee4b3",
+      "bytes": 489600,
+      "gzipBytes": 146771,
+      "triangles": 4937,
+      "cpuBytes": 482188,
+      "gpuBytes": 482188,
+      "errorMeters": 0.15,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:4d02c0794a1da23189a627efa342c95fbc702814eea81c98f03f7649987d47d5",
+      "bytes": 692768,
+      "gzipBytes": 214415,
+      "triangles": 6847,
+      "cpuBytes": 685348,
+      "gpuBytes": 685348,
+      "errorMeters": 0.06,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:181f453f33bbbde6b6802ab09fbd8902d39ef0ab1636fa054f9a846f51b5caef"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:1674b9e4057550e0319cd9d40e3db91377a9b1f9f076c7b52ab1a4250c0a1c7b"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e8f43031b6b8fae94a8a16cbf8ae8a0843eb1edd3c719782f3083dcdacc64887",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          54.3286,
+          45.2435,
+          91.31760000000001
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:6aee62135fd65a1b0abc596af87b40c609e5ab76f1ca3f00cf7fd6362d164792",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          54.3286,
+          45.2435,
+          91.31760000000001
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:635926f3250781bf992569d33fb7cc8407671fcff2fa5f3171214255395d4289",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          54.3286,
+          45.2435,
+          91.31760000000001
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:8d58d7ff612c5d38355fce8cae641476e2716324a1737d2db720a013ee818999",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          54.3286,
+          45.2435,
+          91.31760000000001
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:7cc565f6811e98a4787ac32856cbacb60a5fd549943d5a81beb0b557a1b5a2d0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 28706,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:49b9564adc65692d420ed0d071f340d2de3772971e175b0eda01d1efb2c3d809",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28706,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:64033e47859a21ad615e171fba2a7ce85143d96a3d8bde7fdb0518778728d832",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 28706,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:8aabee6a78117a7288cb4b06711830a29ef42aa50258da62d14205c9c01d0f79",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28706,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:efba00761664c4775c6c51aee1e24a9c9f58d8f4a8f88c0b78a357133eb5c022",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27165,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          214.92860000000002,
+          126.64350000000002,
+          369.61760000000004
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:9dc710728462a4b80693cd3764549e8148841f343e28b0f14c791ae4828ba780",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27165,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          214.92860000000002,
+          126.64350000000002,
+          369.61760000000004
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:6f4c0bf9a3e6af31c84d14a4d492279e67df73ce7b229e8a1dc436663b078efa",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 27165,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          214.92860000000002,
+          126.64350000000002,
+          369.61760000000004
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:456b7ee238b7b91a8d7f9e111a60f83470826eee6c51b55a27647cb0ec624871",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27165,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          214.92860000000002,
+          126.64350000000002,
+          369.61760000000004
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ec15728af7e2457438da35ca8c754c4bc8c5f8a2515b9d45a4e91892cf50db73",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21469,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          214.92860000000002,
+          126.64350000000002,
+          369.61760000000004
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/rounded-pylons-and-monumental-front.png",
+      "hash": "sha256:6a31b50610d4dfe976cb1dd80bff0e2ba4e49922c9c22b4fe7b38b46a714006b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          91,
+          29,
+          8
+        ],
+        "lookAt": [
+          32,
+          17,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-portals-and-warm-lunettes.png",
+      "hash": "sha256:97c4366a0e120e62991a75fd4b808df7b1ddbd92ae29f9a7baf04982d0f71635",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          52,
+          9,
+          6
+        ],
+        "lookAt": [
+          34,
+          5.5,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/central-rose-and-vertical-glazing.png",
+      "hash": "sha256:8d14d01695ad673c8efef412915b33519b40a2a8704d0ab2ba26bf1c1dc55460",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          23,
+          6
+        ],
+        "lookAt": [
+          34,
+          20,
+          3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/crown-slots-and-rounded-pylon-bands.png",
+      "hash": "sha256:8780a2308f6c19dedf94fcd5813c94e787bf83e1658dbd957c42ebb2e4e3fb6f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          53,
+          35,
+          19
+        ],
+        "lookAt": [
+          33,
+          28,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/faceted-crossing-lantern-and-transverse-arms.png",
+      "hash": "sha256:453f71b4028e9c7b45daf831752ae8d776d34bc13a35dae916db30dcd66b051f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          -41,
+          44,
+          37
+        ],
+        "lookAt": [
+          -8,
+          27,
+          2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/rounded-rear-apse-and-side-roofs.png",
+      "hash": "sha256:7a33dcc77be2449cf4e4955f4d807d528ffd5f131f131421ef1f0db61a4ec8ea",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          -69,
+          28,
+          -26
+        ],
+        "lookAt": [
+          -19,
+          13,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-concepcion-skyline.png",
+      "hash": "sha256:35788d2e069fe89ec7b70b52c8dd3cf3e3f5a6ebaf127629319599469ed104fa",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27165,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          96,
+          55,
+          79
+        ],
+        "lookAt": [
+          0,
+          14,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-concepcion-district.png",
+      "hash": "sha256:d859d93ec64829d34f78a7194e58f6157a5e4c19504ff0727561bc762b93c231",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28706,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          96,
+          55,
+          79
+        ],
+        "lookAt": [
+          0,
+          14,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-concepcion-street.png",
+      "hash": "sha256:84b529d60981c40fb68a0f72352b67df9d50d72e57973d1b4b3de09f6f0949e4",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 31435,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          96,
+          55,
+          79
+        ],
+        "lookAt": [
+          0,
+          14,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-concepcion-closeup.png",
+      "hash": "sha256:0bd3fc7a6bb1ca859497182ca263cee2765703b553e3a61a39c41465e1143217",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          96,
+          55,
+          79
+        ],
+        "lookAt": [
+          0,
+          14,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:9d5735918c1f39ca319447cbccd5b1e3b8ea0c1f19effbc404f92fcf6714fa84",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 27165,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:49b9564adc65692d420ed0d071f340d2de3772971e175b0eda01d1efb2c3d809",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28706,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:8b4e3b16750dfdbb0410cd6913ee764eca9d98877dd7d34c245d88c5e7445a6c",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 31435,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4ade0f68e680b988df6ff4be07bd0359e460ccbf868d59ac424bacfeaf100bcd",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 33345,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/63/63k/n0343_cathedral_of_the_most_holy_conception/terrain-review.height.png"
+        },
+        "position": [
+          108.2286,
+          84.8435,
+          184.8176
+        ],
+        "lookAt": [
+          1.5286,
+          28.7435,
+          0.0176
+        ],
+        "graphReads": {
+          "molen.worldgen.material.concrete_boardformed": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+        "contextScale": 1.1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

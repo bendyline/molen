@@ -196,7 +196,7 @@ function shell(out, detail, tower) {
   if (detail >= 3 && tower === towers[0])
     beam(face, [x, roofTop, z], [x, roofTop + 5, z], 0.17, 0.17, 'wood');
 }
-function roofRange(out, detail, a, b, width, top, rise, windowCount = 0) {
+function roofRange(out, detail, a, b, width, top, rise, _windowCount = 0) {
   const u = norm(b.map((v, i) => v - a[i])),
     n = [-u[1], u[0]],
     point = (p, side) => p.map((v, i) => v + (n[i] * side * width) / 2),
@@ -234,7 +234,7 @@ function roofRange(out, detail, a, b, width, top, rise, windowCount = 0) {
   if (detail >= 2) beam(face, ra, rb, 0.2, 0.24, 'roof');
 }
 function curtains(out, detail) {
-  const face = writer(out, detail),
+  const _face = writer(out, detail),
     omit = new Set([
       5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 28, 29, 30,
     ]);
@@ -289,8 +289,8 @@ function curtains(out, detail) {
     // True broad arch openings in the raised east-facing rampart.
     const a = [65.9, -31.6],
       b = [71.4, -7.7],
-      len = Math.hypot(...b.map((v, i) => v - a[i]));
-    const holes = Array.from({ length: detail === 1 ? 3 : 5 }, (_, i, arr) => ({
+      _len = Math.hypot(...b.map((v, i) => v - a[i]));
+    const holes = Array.from({ length: detail === 1 ? 3 : 5 }, (_, i, _arr) => ({
       center: a.map((v, k) => v + ((b[k] - v) * (i + 0.5)) / (detail === 1 ? 3 : 5)),
       width: detail === 1 ? 3.8 : 2.65,
       height: 2.4,

@@ -1,0 +1,296 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.74,
+      "metallic": 0.1
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.29,
+      "metallic": 0.05
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/york-minster-model.mjs",
+    "export": "buildYorkSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYorkDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.1
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "buildYorkStreet",
+        "errorMeters": 0.19,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.1
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYorkCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.74,
+            "metallic": 0.1
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -208,
+      138,
+      180
+    ],
+    "lookAt": [
+      0,
+      25,
+      -3
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-york-skyline",
+      "position": [
+        -208,
+        138,
+        180
+      ],
+      "lookAt": [
+        0,
+        25,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-york-district",
+      "position": [
+        -208,
+        138,
+        180
+      ],
+      "lookAt": [
+        0,
+        25,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-york-street",
+      "position": [
+        -208,
+        138,
+        180
+      ],
+      "lookAt": [
+        0,
+        25,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-york-closeup",
+      "position": [
+        -208,
+        138,
+        180
+      ],
+      "lookAt": [
+        0,
+        25,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate exterior and standard terrain fit; exact thresholds, tower heights and inferred architectural profiles remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -1.082101528,
+        53.962298485
+      ],
+      "modelHeight": 0,
+      "basis": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows15.794474m standardDEM; estimated floor0.7m clears coarse perimeter-0.33..0.36m. Foundation/plaza/doorstep joins remain approximate; no surveyed thresholds or certified walking surfaces."
+    },
+    "bounds": [
+      -1.0838,
+      53.9612,
+      -1.0802,
+      53.9635
+    ],
+    "notes": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows15.794474m standardDEM; estimated floor0.7m clears coarse perimeter-0.33..0.36m. Foundation/plaza/doorstep joins remain approximate; no surveyed thresholds or certified walking surfaces.",
+    "groundContactBasis": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows15.794474m standardDEM; estimated floor0.7m clears coarse perimeter-0.33..0.36m. Foundation/plaza/doorstep joins remain approximate; no surveyed thresholds or certified walking surfaces."
+  },
+  "geographicNote": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows15.794474m standardDEM; estimated floor0.7m clears coarse perimeter-0.33..0.36m. Foundation/plaza/doorstep joins remain approximate; no surveyed thresholds or certified walking surfaces.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

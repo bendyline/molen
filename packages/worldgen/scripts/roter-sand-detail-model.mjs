@@ -210,7 +210,7 @@ function detail(target, mode = 'reviewed') {
           color,
         );
         const outer = 0.237,
-          size0 = size,
+          _size0 = size,
           po = (t) => [
             outer * Math.cos(t),
             yc + outer * Math.sin(t),

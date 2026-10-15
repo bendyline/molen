@@ -47,7 +47,7 @@ function ground(x, z) {
 }
 function build(destination, d) {
   const far = d === 0;
-  function emit(s, r, p, hint, uv, c) {
+  function emit(s, r, p, hint, _uv, c) {
     p = p.map(([x, y, z]) => [Math.fround(x * X_SCALE), Math.fround(y), Math.fround(z)]);
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

@@ -9,7 +9,7 @@ const read = (name) => JSON.parse(readFileSync(new URL(root + name, import.meta.
 const frame = read('map-frame.json'),
   relief = read('relief-grid.json'),
   survey = read('survey-lines.json'),
-  references = read('reference-metadata.json'),
+  _references = read('reference-metadata.json'),
   controls = frame.controls;
 export const acrocorinthPalette = {
   wall: '#c8bea6',
@@ -177,7 +177,7 @@ function terrainAxes(d) {
     knots(-320, 320, [-40, 74, 80, 199.7]),
   ];
 }
-function originalGroundHeight(x, z, d) {
+function _originalGroundHeight(x, z, d) {
   const [xs, zs] = terrainAxes(d),
     i = Math.max(
       0,
@@ -200,7 +200,7 @@ function originalGroundHeight(x, z, d) {
   // Match the actual triangular terrain, rather than floating above a bilinear surface.
   return v <= u ? h00 + (h10 - h00) * u + (h11 - h10) * v : h00 + (h11 - h01) * u + (h01 - h00) * v;
 }
-function terrain(o, d) {
+function _terrain(o, d) {
   const [xs, zs] = terrainAxes(d);
   for (let i = 0; i < xs.length - 1; i++)
     for (let j = 0; j < zs.length - 1; j++) {
@@ -505,7 +505,7 @@ function reviewed(o, level) {
     Object.fromEntries(
       ['addQuad', 'addTriangle', 'addConvexPolygon'].map((k) => [
         k,
-        (s, r, p, n, uv, c) => {
+        (s, r, p, n, _uv, c) => {
           if (far && n[1] < -0.98) return;
           const col = far ? c.map((v, i) => v * (MEANS[s]?.[i] ?? 1)) : c;
           for (let i = 1; i < p.length - 1; i++) {

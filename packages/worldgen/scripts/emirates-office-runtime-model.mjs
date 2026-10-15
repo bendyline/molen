@@ -60,7 +60,7 @@ function grid(out, p, color, dx, dy, frame, frameColor, slot) {
   );
 }
 
-function panes(out, at, u0, u1, y0, y1, width, color = glazing) {
+function panes(out, at, u0, u1, y0, y1, _width, color = glazing) {
   grid(
     out,
     [at(u0, y0), at(u1, y0), at(u1, y1), at(u0, y1)],

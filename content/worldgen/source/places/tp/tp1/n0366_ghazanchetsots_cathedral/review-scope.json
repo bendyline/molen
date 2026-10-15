@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "spire": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.68,
+      "metallic": 0.4
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.72,
+      "metallic": 0.12
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ghazanchetsots-model.mjs",
+    "export": "buildGhazanchetsotsSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGhazanchetsotsDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.4
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildGhazanchetsotsStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.4
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGhazanchetsotsCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.68,
+            "metallic": 0.4
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -92,
+      59,
+      82
+    ],
+    "lookAt": [
+      -7,
+      15,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-ghazanchetsots-skyline",
+      "position": [
+        -123,
+        86,
+        110
+      ],
+      "lookAt": [
+        -8,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-ghazanchetsots-district",
+      "position": [
+        -123,
+        86,
+        110
+      ],
+      "lookAt": [
+        -8,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-ghazanchetsots-street",
+      "position": [
+        -123,
+        86,
+        110
+      ],
+      "lookAt": [
+        -8,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-ghazanchetsots-closeup",
+      "position": [
+        -123,
+        86,
+        110
+      ],
+      "lookAt": [
+        -8,
+        17,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 1373.138947m; display offset 0.4m, main perimeter terrain -4.51..0.14m; bell local datum offset -3.988m and perimeter -4.56..-3.21m. Foundations follow terrain; main portal thresholds use an estimated display datum+0.2m, with approximate steps connecting to local DEM+0.22m; bell-passage thresholds use local DEM+0.22m. Coarse viewer DEM does not certify absolute altitude, paved terraces, stairs, podium/cut-fill, entrance levels, interiors or walking. No global terrain flattening.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        46.747531266,
+        39.758753614
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 1373.138947m; display offset 0.4m, main perimeter terrain -4.51..0.14m; bell local datum offset -3.988m and perimeter -4.56..-3.21m. Foundations follow terrain; main portal thresholds use an estimated display datum+0.2m, with approximate steps connecting to local DEM+0.22m; bell-passage thresholds use local DEM+0.22m. Coarse viewer DEM does not certify absolute altitude, paved terraces, stairs, podium/cut-fill, entrance levels, interiors or walking. No global terrain flattening."
+    },
+    "bounds": [
+      46.741,
+      39.755,
+      46.754,
+      39.763
+    ],
+    "notes": "Standard DEM datum 1373.138947m; display offset 0.4m, main perimeter terrain -4.51..0.14m; bell local datum offset -3.988m and perimeter -4.56..-3.21m. Foundations follow terrain; main portal thresholds use an estimated display datum+0.2m, with approximate steps connecting to local DEM+0.22m; bell-passage thresholds use local DEM+0.22m. Coarse viewer DEM does not certify absolute altitude, paved terraces, stairs, podium/cut-fill, entrance levels, interiors or walking. No global terrain flattening."
+  },
+  "geographicNote": "Standard DEM datum 1373.138947m; display offset 0.4m, main perimeter terrain -4.51..0.14m; bell local datum offset -3.988m and perimeter -4.56..-3.21m. Foundations follow terrain; main portal thresholds use an estimated display datum+0.2m, with approximate steps connecting to local DEM+0.22m; bell-passage thresholds use local DEM+0.22m. Coarse viewer DEM does not certify absolute altitude, paved terraces, stairs, podium/cut-fill, entrance levels, interiors or walking. No global terrain flattening.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

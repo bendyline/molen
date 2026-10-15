@@ -1,0 +1,345 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.75,
+      "metallic": 0.3
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.72,
+      "metallic": 0.15
+    },
+    "clock": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.95,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/black-church-model.mjs",
+    "export": "buildBlackChurchSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBlackChurchDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBlackChurchStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBlackChurchCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.15
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -105,
+      72,
+      108
+    ],
+    "lookAt": [
+      0,
+      22,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-black-church-skyline",
+      "position": [
+        -105,
+        72,
+        108
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-black-church-district",
+      "position": [
+        -105,
+        72,
+        108
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-black-church-street",
+      "position": [
+        -105,
+        72,
+        108
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-black-church-closeup",
+      "position": [
+        -105,
+        72,
+        108
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum597.075184m; display datum offset0.4m, perimeter terrain-1.46..-0.17m. Foundations follow terrain; approximate west/south thresholds use local DEM+0.22m with short steps. Coarse DEM does not certify absolute altitude, precise paving/steps, doorway thresholds, cut/fill, interiors or walking. No global terrain flattening.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        25.588207851,
+        45.641023332
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum597.075184m; display datum offset0.4m, perimeter terrain-1.46..-0.17m. Foundations follow terrain; approximate west/south thresholds use local DEM+0.22m with short steps. Coarse DEM does not certify absolute altitude, precise paving/steps, doorway thresholds, cut/fill, interiors or walking. No global terrain flattening."
+    },
+    "bounds": [
+      25.582,
+      45.637,
+      25.594,
+      45.645
+    ],
+    "notes": "Standard DEM datum597.075184m; display datum offset0.4m, perimeter terrain-1.46..-0.17m. Foundations follow terrain; approximate west/south thresholds use local DEM+0.22m with short steps. Coarse DEM does not certify absolute altitude, precise paving/steps, doorway thresholds, cut/fill, interiors or walking. No global terrain flattening."
+  },
+  "geographicNote": "Standard DEM datum597.075184m; display datum offset0.4m, perimeter terrain-1.46..-0.17m. Foundations follow terrain; approximate west/south thresholds use local DEM+0.22m with short steps. Coarse DEM does not certify absolute altitude, precise paving/steps, doorway thresholds, cut/fill, interiors or walking. No global terrain flattening.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

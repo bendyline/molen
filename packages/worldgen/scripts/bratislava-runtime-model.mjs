@@ -133,7 +133,7 @@ function gateCivil(o, g) {
     for (const side of [-1, 1]) {
       const a = point(t, (side * width) / 2),
         b = point(t1, (side * width) / 2);
-      let q = [
+      const q = [
         [a[0], buriedEdge(a, b), a[1]],
         [b[0], buriedEdge(a, b), b[1]],
         [b[0], ys[1], b[1]],
@@ -145,7 +145,7 @@ function gateCivil(o, g) {
   }
   const c0 = Math.cos(g.a),
     s0 = Math.sin(g.a),
-    f = frame(o, g.x, 0, g.z, g.a);
+    _f = frame(o, g.x, 0, g.z, g.a);
   for (const side of [-1, 1]) {
     const p = [
       [side * 1.7, -g.d / 2],
@@ -408,7 +408,7 @@ function horizontal(o, p, y, slot = 'stone', c = stone, holes = []) {
     tri(o, slot, t, c);
   }
 }
-function roofFacet(o, a, b, c, d, detailed = true) {
+function roofFacet(o, a, b, c, d, _detailed = true) {
   const collapsed = Math.hypot(...c.map((v, i) => v - d[i])) < 0.001;
   const p = collapsed ? [a, b, c] : [a, b, c, d];
   if (normalFor(...p)[1] < 0) p.reverse();
@@ -1049,7 +1049,7 @@ function gate(o, { x, z, a, w = 9, d = 5, lo = 0, h = 8, rise = 3, kind = 'baroq
       }
   }
 }
-const outline = map.enclosureOutline;
+const _outline = map.enclosureOutline;
 function inside(p, poly) {
   let yes = false;
   for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
@@ -1545,7 +1545,7 @@ function buildBratislavaRuntime(out, detail) {
   groundsWalls(o);
   equestrianMemorial(o);
 }
-const buildBratislavaSkyline = (out) => buildBratislavaRuntime(out, 'skyline');
+const _buildBratislavaSkyline = (out) => buildBratislavaRuntime(out, 'skyline');
 
 const means = {
   stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],

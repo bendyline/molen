@@ -565,7 +565,7 @@ function part(o, name, w, dep, level = floor) {
   return Object.fromEntries(
     ['addQuad', 'addTriangle', 'addConvexPolygon'].map((k) => [
       k,
-      (slot, ref, ps, n, uv, col) => {
+      (slot, ref, ps, _n, uv, col) => {
         const mapped = ps.map(([x, y, z]) => {
           const X = p.center[0] + c * x * sx + s * z * sz,
             Z = p.center[1] - s * x * sx + c * z * sz;
@@ -608,7 +608,7 @@ function slab(o, p, y, color = 'paving') {
     );
 }
 function footing(o, p, y, color = 'wall') {
-  let r = p.slice();
+  const r = p.slice();
   if (r[0][0] === r.at(-1)[0] && r[0][1] === r.at(-1)[1]) r.pop();
   const area = r.reduce((n, a, i) => {
     const b = r[(i + 1) % r.length];

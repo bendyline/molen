@@ -15,8 +15,8 @@ const root = new URL(
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
 const frame = read('map-frame.json'),
-  refs = read('reference-metadata.json'),
-  means = read('surface-means.json'),
+  _refs = read('reference-metadata.json'),
+  _means = read('surface-means.json'),
   terrain = structuredClone(read('terrain-samples.json')),
   k = structuredClone(frame.controls);
 const fitdata = read('pmtiles-fit.json');
@@ -728,7 +728,7 @@ export function buildHochosterwitzRuntime(o, level = 'closeup') {
   for (const fn of Object.values(hochosterwitzParts)) fn(o, d);
 }
 export const buildHochosterwitzSkyline = (o) => buildHochosterwitzRuntime(o, 'skyline');
-const camera = (name, p, look) => ({ name, position: native(p), lookAt: native(look) });
+const _camera = (name, p, look) => ({ name, position: native(p), lookAt: native(look) });
 
 /** Picture-based Hochosterwitz Castle exterior fit to standard viewer PMTiles. */
 const grade = JSON.parse(
@@ -761,7 +761,7 @@ export function hochosterwitzGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) =>
         [

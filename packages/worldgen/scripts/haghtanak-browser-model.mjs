@@ -15,7 +15,7 @@ const basalt = [0.16, 0.164, 0.153],
   smooth = [0.23, 0.235, 0.215],
   iron = [0.105, 0.13, 0.119];
 function writer(destination, far) {
-  function emit(slot, ref, p, hint, uv, color) {
+  function emit(slot, ref, p, hint, _uv, color) {
     p = p.map((v) => v.map(Math.fround));
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

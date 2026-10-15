@@ -24,7 +24,7 @@ export function buildKingsCrossSkyline(out) {
     steel = tint('metal', [0.73, 0.74, 0.7]),
     slate = tint('slate', [0.22, 0.24, 0.25]),
     glass = [0.34, 0.43, 0.48];
-  function emit(s, r, p, h, uv, c) {
+  function emit(s, r, p, h, _uv, c) {
     p = p.map((v) => v.map(Math.fround));
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

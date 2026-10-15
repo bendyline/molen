@@ -527,7 +527,7 @@ function occupiedRoof(out) {
                     Math.abs((v[0] - u[0]) * (q[2] - u[1]) - (v[1] - u[1]) * (q[0] - u[0])) /
                     length;
                   if (distance(a) > 0.001 || distance(b) > 0.001) continue;
-                  let points = [
+                  const points = [
                     [a[0], Math.max(a[1], region.wallY), a[2]],
                     [b[0], Math.max(b[1], region.wallY), b[2]],
                     [b[0], region.wallY, b[2]],

@@ -81,7 +81,7 @@ function coarsePlaster(out, id) {
     triangles = [];
   buildTurkuPart(
     {
-      addTriangle(slot, ref, p, n, uv, color) {
+      addTriangle(slot, ref, p, n, _uv, color) {
         if (
           slot === 'plaster' &&
           p.every((q) => q[1] > 1 && q[1] < split + 0.001) &&

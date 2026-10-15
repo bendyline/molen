@@ -246,8 +246,8 @@ function gate(o, detail) {
   }
 }
 const base = '../../../content/worldgen/source/places/u8/u8d/n0260_khotyn_fortress/';
-const plan = JSON.parse(readFileSync(new URL(base + 'map-parts-reviewed.json', import.meta.url))),
-  grade = JSON.parse(readFileSync(new URL(base + 'site-grade.json', import.meta.url))),
+const plan = JSON.parse(readFileSync(new URL(`${base}map-parts-reviewed.json`, import.meta.url))),
+  grade = JSON.parse(readFileSync(new URL(`${base}site-grade.json`, import.meta.url))),
   by = Object.fromEntries(plan.features.map((f) => [f.key, f]));
 export function khotynGround(x, z) {
   const g = grade.grid,
@@ -269,7 +269,7 @@ function cap(o, p, y, col = 'paving') {
   const q = ring(p),
     ids = earcut(q.flat());
   for (let i = 0; i < ids.length; i += 3) {
-    let t = ids.slice(i, i + 3).map((k) => [q[k][0], y, q[k][1]]);
+    const t = ids.slice(i, i + 3).map((k) => [q[k][0], y, q[k][1]]);
     if (normalFor(...t)[1] < 0) t.reverse();
     face(o, 'limestone', t, col);
   }
@@ -297,13 +297,13 @@ function prism(o, p, bottom, top, col = 'stone') {
     face(o, 'limestone', v, col);
   }
 }
-function offset(o, old, target, angle = 0) {
+function _offset(o, old, target, angle = 0) {
   const c = Math.cos(angle),
     s = Math.sin(angle);
   return Object.fromEntries(
     ['addQuad', 'addTriangle', 'addConvexPolygon'].map((k) => [
       k,
-      (slot, r, p, n, uv, col) => {
+      (slot, r, p, _n, uv, col) => {
         const q = p.map((v) => {
           const x = v[0] - old[0],
             z = v[2] - old[1];
@@ -570,7 +570,7 @@ function output(out, level) {
   return Object.fromEntries(
     ['addQuad', 'addTriangle', 'addConvexPolygon'].map((k) => [
       k,
-      (s, r, p, n, u, c) => {
+      (s, r, p, _n, u, c) => {
         const q = p.map((v) => [
           v[0],
           (Math.abs(v[1]) < 0.00001 ? grade.foundationFloor - grade.architectureShift : v[1]) +

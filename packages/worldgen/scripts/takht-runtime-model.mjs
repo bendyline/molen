@@ -15,7 +15,7 @@ const map = JSON.parse(
 const stone = [0.66, 0.6, 0.46],
   pale = [0.76, 0.7, 0.55],
   brick = [0.64, 0.47, 0.32];
-const ground = [0.59, 0.55, 0.43],
+const _ground = [0.59, 0.55, 0.43],
   water = [0.08, 0.3, 0.32];
 const base = 0;
 const master = (o) => !o.detail,
@@ -922,7 +922,7 @@ function buildTakhtRuntime(out, detail) {
   rubble(o);
   protectiveCanopy(o);
 }
-function oldSkyline(out) {
+function _oldSkyline(out) {
   buildTakhtRuntime(out, 'skyline');
 }
 

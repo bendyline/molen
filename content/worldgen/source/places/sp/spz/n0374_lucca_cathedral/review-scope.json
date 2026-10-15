@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "spire": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.36,
+      "metallic": 0.04
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.62,
+      "metallic": 0.4
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lucca-model.mjs",
+    "export": "buildLuccaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLuccaDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.04
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.4
+          }
+        }
+      },
+      "street": {
+        "export": "buildLuccaStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.04
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.4
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLuccaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.04
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.62,
+            "metallic": 0.4
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -139,
+      103,
+      -124
+    ],
+    "lookAt": [
+      0,
+      29,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-lucca-skyline",
+      "position": [
+        -170,
+        141,
+        -153
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lucca-district",
+      "position": [
+        -170,
+        141,
+        -153
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lucca-street",
+      "position": [
+        -170,
+        141,
+        -153
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lucca-closeup",
+      "position": [
+        -170,
+        141,
+        -153
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum 18.798031m; display offset2.5m, mapped perimeter terrain 0.08..2.31m. Footings extend below coarse viewer terrain; portico threshold is0.3m above model floor with short local steps. Exact Piazza San Martino grading, portal thresholds and walking remain unverified. No global flattening or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        10.506033674,
+        43.840660731
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 18.798031m; display offset2.5m, mapped perimeter terrain 0.08..2.31m. Footings extend below coarse viewer terrain; portico threshold is0.3m above model floor with short local steps. Exact Piazza San Martino grading, portal thresholds and walking remain unverified. No global flattening or road replacement."
+    },
+    "bounds": [
+      10.498,
+      43.835,
+      10.514,
+      43.846
+    ],
+    "notes": "Standard viewer DEM datum 18.798031m; display offset2.5m, mapped perimeter terrain 0.08..2.31m. Footings extend below coarse viewer terrain; portico threshold is0.3m above model floor with short local steps. Exact Piazza San Martino grading, portal thresholds and walking remain unverified. No global flattening or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum 18.798031m; display offset2.5m, mapped perimeter terrain 0.08..2.31m. Footings extend below coarse viewer terrain; portico threshold is0.3m above model floor with short local steps. Exact Piazza San Martino grading, portal thresholds and walking remain unverified. No global flattening or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

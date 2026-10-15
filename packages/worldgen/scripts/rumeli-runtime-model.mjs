@@ -12,8 +12,8 @@ const root = new URL(
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
 const frame = read('map-frame.json'),
   relief = read('relief-grid.json'),
-  references = read('reference-metadata.json'),
-  means = read('surface-means.json');
+  _references = read('reference-metadata.json'),
+  _means = read('surface-means.json');
 export const rumeliPalette = {
   wall: '#d8c8a8',
   brick: '#b78268',
@@ -652,7 +652,7 @@ export function rumeliGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) => [
         x,

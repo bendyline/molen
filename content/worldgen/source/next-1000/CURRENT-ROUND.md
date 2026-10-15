@@ -1,6 +1,10 @@
-# Current structure round — N0334 Riga Cathedral
+# Current structure round — N0392 New Cathedral, Linz
 
-Updated 2026-10-14. New-model generation is active. **N0333 — Lala Mustafa Pasha Mosque is complete**, bringing the catalog to **343 authored and ready candidates**, **339 active geographic previews** and **657 remaining**. The fixed QA backlog is complete: **213 of 213** cleared, **0 remaining**. The next explicit model is **N0334 — Riga Cathedral**. The latest full source checkpoint is N0325–N0329: **32 generators, 505 imports, 460 structure LOD sets and 2,848 GLBs in 938 seconds**. All thirty reviewed outputs reproduced byte for byte; 49 existing generator metadata differences were reported and reviewed files retained. N0330–N0333 passed targeted source reproduction, geometry/hash checks and current visual QA. The next full source milestone is N0330–N0334, after Riga Cathedral. Each approval retains its stated fidelity and placement limits. Earlier input-binding reconciliations preserved original review dates and scopes.
+Updated 2026-10-15. Model generation is active. **N0391 — Liège Cathedral has completed its medium-fi exterior and approximate horizontal-placement review:401 authored and ready candidates,397 active geographic previews,599 remaining. Heights and exact host-ground contact remain unverified;Monaco host-DEM contact remains pending.** Next explicit model:**N0392 — New Cathedral, Linz**,Q257481,with no source/runtime model and preparation not yet started. The fixed QA backlog remains **213 of213 cleared**.
+
+The N0360–N0379 full source checkpoint passed: **32 generators, 555 forced imports, 510 structure LOD sets and 3148 GLBs** rebuilt in 723s. All **120 reviewed master/runtime/LOD files** reproduced byte for byte, with unchanged model-input, source/review/capture and runtime metadata bindings. Installed source bundle: **assets-06bf9933d26e89c7**. The build reported 49 generator metadata differences and retained the existing files; those differences did not alter this batch's reviewed metadata. Other semantic metadata reconciliation remains separate cleanup. No Git mutations, uploads or release publication were performed.
+
+Continue targeted generation/import, geometry, shared-material, placement and current visual checks for each model. The next routine full source checkpoint covers **N0380–N0399**, or earlier if generator/build-system changes require it. Earlier checkpoints and model limits remain in the consolidated batch journal.
 
 ## N0310 completion checklist
 
@@ -244,15 +248,600 @@ Source: [Lala Mustafa Pasha Mosque bundle](../places/sy/sy0/n0333_lala_mustafa_p
 
 ## N0334 completion checklist
 
-Next explicit candidate: Riga Cathedral. Use useful pictures and standard viewer PMTiles/DEM for its individual exterior, shared textures and four budgeted browser levels. Retain source facts, mark untagged profile estimates and inspect actual renders. Authoring and visual approval remain pending. After this model, run the full N0330–N0334 source-build milestone once.
+Source: [Riga Cathedral bundle](../places/ud/ud1/n0334_riga_cathedral/README.md). [Current QA and limits](../places/ud/ud1/n0334_riga_cathedral/QA-REVIEW.md) records 49 inspected frames, 30 map controls, 237 imported geometry probes, four browser levels and seven existing shared graphs. Initial geometry is 449,736 bytes. Individual arcaded western shaft/copper clock/lantern/bulb, stepped gray nave/aisle/transept roofs, lower eastern ranges/apses and mapped roof features are complete. Corrected hidden clock faces, crossing roof surfaces, dormer support and district cost. Retained 90m overall crown and nominal roof/cap controls; intermediate profiles, low eastern tags and exact thresholds remain approximate/unverified.
 
-- [ ] Compare reference pictures and standard viewer PMTiles; record approximate controls.
-- [ ] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
-- [ ] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
-- [ ] Verify source/runtime hashes, shared textures, source inventory and placement.
-- [ ] Record current QA and limitations, then confirm readiness before counting completion.
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+- [x] Prove the full N0330–N0334 batch from source once; compare all thirty reviewed GLBs and review/input bindings.
 
-[Batch completion and verification](rounds/2026-10-12-backlog-completion.md) records the completed backlog and source milestones.
+## N0335 completion checklist
+
+Source: [York Minster bundle](../places/gc/gcx/n0335_york_minster/README.md). [Current QA and limits](../places/gc/gcx/n0335_york_minster/QA-REVIEW.md) records 49 inspected frames,23 map controls,65 imported geometry probes, four browser levels and four existing shared graphs. Initial geometry is368,252 bytes. Twin pinnacled western towers, broad crossing tower, great west/east windows, long nave/choir, stepped aisles/flying buttresses, gabled transepts and northeast chapter house are individually authored. Corrected buried mullions, rectangular rose, west framing and missing district belfry surfaces. Nominal heights and full site envelope retained; lower annexes, profiles and exact thresholds remain approximate/unverified.
+
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0336 completion checklist
+
+Source: [Nidaros Cathedral bundle](../places/u5/u5r/n0336_nidaros_cathedral/README.md). [Current QA and limits](../places/u5/u5r/n0336_nidaros_cathedral/QA-REVIEW.md) records 49 inspected frames, 157 retained map controls, 75 imported geometry probes, four browser levels and five existing shared graphs. Initial geometry is 335,964 bytes. Broad western twin-tower screen/rose/selected niche reliefs, green crossing spire/four conical turrets, nave/choir/aisles, flying buttresses, transepts and eastern octagon are complete for the stated exterior scope. Closed the crossing roof at the spire base and extended the two eastern turret supports to the foundation. Nominal stage heights retained, including the 82m spire; sculpture identities, intermediate profiles and exact thresholds remain approximate/unverified.
+
+- [x] Compare reference pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual cathedral exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0337 completion checklist
+
+Source: [Saint Sophia / Selimiye bundle](../places/sw/swr/n0337_saint_sophia_cathedral/README.md). [Current QA and limits](../places/sw/swr/n0337_saint_sophia_cathedral/QA-REVIEW.md) records 49 inspected frames, one current map parent, 53 imported geometry probes, four browser levels and five existing shared graphs. Initial geometry is 210,936 bytes. Current Selimiye Mosque keeps the planned former-cathedral identity: twin minarets/balconies, asymmetric square/round western bases, three recessed Gothic porch arches, pale pointed screen, low nave roof/gable crests, flying buttresses and polygonal eastern/annex envelope. Retained the southern porch jamb and corrected the solid screen’s shared plaster binding. All architectural heights, roof subdivision, annex functions and precise thresholds remain picture-led estimates or unverified; generic parent11m is not a measured cathedral height.
+
+- [x] Compare reference pictures and standard viewer PMTiles; confirm current building identity and approximate controls.
+- [x] Author the individual exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0338 completion checklist
+
+Source: [Pannonhalma core bundle](../places/u2/u2k/n0338_pannonhalma_archabbey/README.md). [Current QA and limits](../places/u2/u2k/n0338_pannonhalma_archabbey/QA-REVIEW.md) records 49 inspected frames, six current map controls, 56 imported geometry probes, four browser levels and seven existing shared graphs. Initial geometry is 425,536 bytes. Historic core includes cream monastic ranges/two roofless courts, basilica/tile roofs, dark hipped library, clock/belfry tower with round open gallery/copper dome, gatehouse, classical front, split raised-entry steps and approximate retaining terrace. Removed the basilica gable/window overlap from the tower and raised the estimated floor to clear courtyard terrain. Modern school, sports/visitor buildings and neighboring campus excluded. Heights, roof subdivision, retaining boundary, court paving and thresholds remain approximate.
+
+- [x] Compare useful pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual core exterior; retain a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations, then confirm readiness before counting completion.
+
+## N0339 completion checklist
+
+Source: [Šibenik Cathedral bundle](../places/sr/srg/n0339_sibenik_cathedral/README.md). [Current QA and limits](../places/sr/srg/n0339_sibenik_cathedral/QA-REVIEW.md) records 49 inspected frames, nine current map controls, 92 imported geometry probes, four browser levels and four shared graphs. Initial geometry is 205,664 bytes. Individual curved/ribbed stone vaults, western roses/portals, octagonal windowed drum/pointed dome, selected side bays/pilasters and three eastern apses. Corrected the floating crossing plinth and restored transept roses. Map height values constrain approximate roof/drum interpretation; exact sculpture,head frieze,full interiors and neighboring town excluded. The 0.297m² parent/part quantization difference, coarse terrain and thresholds remain documented.
+
+- [x] Compare useful pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author the individual exterior; preserve a deterministic master and four browser levels.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct defects.
+- [x] Verify source/runtime hashes, shared textures, source inventory and placement.
+- [x] Record current QA and limitations; confirm readiness before counting completion.
+
+## N0335–N0339 source checkpoint — passed
+
+- [x] All five individual targeted authoring/review loops passed.
+- [x] Run one full source rebuild for the batch.
+- [x] Confirm all 30 reviewed GLBs reproduce exactly, with unchanged input/review metadata.
+
+## N0340 — Matthias Church: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u2/u2m/n0340_matthias_church/QA-REVIEW.md): 49 inspected frames, 123 imported geometry probes, five existing shared 256² graphs and 324,296-byte initial skyline/district geometry. Map-derived heights and picture-led roof profiles remain approximate.
+
+## N0341 — Euphrasian Basilica: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u2/u21/n0341_euphrasian_basilica/QA-REVIEW.md): 49 inspected frames, 280 imported geometry probes, five existing shared 256² graphs and 261,836-byte initial skyline/district geometry. Seven mapped controls have no heights; all vertical dimensions, octagonal baptistery and roof/arcade roles remain picture-led estimates. Corrected missing lower connections, overlapping palace ranges and inner belfry obstruction.
+
+## N0342 — Modena Cathedral/Ghirlandina: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sp/spz/n0342_modena_cathedral/QA-REVIEW.md): 49 inspected frames, 253 imported geometry probes, four existing shared 256² graphs and 269,652-byte initial skyline/district geometry. Current map supplies22 church/tower controls and85m tower crown. Corrected single-slope aisle roofs, obstructed south portal and unsupported roof-turret stems. Galleries/sculptural detail and inferred eaves/porches/terrain thresholds remain approximate.
+
+## N0343 — Cathedral of the Most Holy Conception: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles;record approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable,shared-material,geographic and medium-fi renders;correct visible defects.
+- [x] Verify current geometry,openings/supports,source/runtime hashes,shared textures and placement.
+- [x] Record scope/limits and current QA,then confirm readiness before counting completion.
+
+[Current QA and limits](../places/63/63k/n0343_cathedral_of_the_most_holy_conception/QA-REVIEW.md): 49 inspected frames,171 imported probes,six stray-triangle checks,four existing shared 256² graphs and285,148-byte initial geometry. Corrected a stray reveal triangle,front panel depth and real arch jambs. Single35m map parent controls overall height/footprint;roof/opening/figure/terrain stages remain picture-led estimates.
+
+## N0344 — Saint George's Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u8/u8c/n0344_saint_george_s_cathedral/QA-REVIEW.md): 49 inspected frames, 186 imported probes, five existing shared 256² graphs and 383,008-byte initial geometry. Individual cross plan, bowed yellow Baroque facade, curved gable, selected sculptural silhouettes, split stairs/grotto and central dark dome/gold lantern. Enlarged side windows, added main pilasters/ledges and closed roof-edge gaps after inspection. The current 5m map height is explicitly rejected; vertical dimensions, sculpture and terrain thresholds remain picture-led estimates.
+
+## N0345 — Salzburg Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u2/u23/n0345_salzburg_cathedral/QA-REVIEW.md): 49 inspected frames, 307 imported probes, 35 current map controls, four existing shared 256² graphs and 386,252-byte initial geometry. Staged twin towers/clocks/open belfries/green cupolas, three recessed closed portals, layered facade, dark nave/aisles, three rounded arms and central dome/lantern. Corrected a foreground wall hiding facade details, lower-window attachment and dark crest placeholders. Principal heights follow mapped parts; profile subdivisions, selected sculpture and terrain thresholds remain approximate.
+
+## N0346 — Vilnius Cathedral and detached bell tower: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u9/u99/n0346_vilnius_cathedral/QA-REVIEW.md): 49 standard inspected frames plus two matched shadow diagnostics,322 imported probes,24 viewer footprint checks,74 current map controls,five existing shared 256² graphs and 452,160-byte initial geometry. Six-column open portico,open lateral galleries,long nave,pair of domed rear chapels and detached staged bell tower. Reframed obstructed portico/summary cameras. Matched Economy/High views confirm diagonal corner marks are shadows,not stray geometry;High shadow artifacts remain an explicit rendering limit. Principal stages and spacing follow mapped parts;selected figures,profiles and terrain thresholds remain approximate.
+
+## N0347 — St. John's Co-Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sq/sq6/n0347_st_john_s_co_cathedral/QA-REVIEW.md): 49 inspected views,248 imported probes,24 actual viewer footprint checks,three current map controls,five existing shared 256² graphs and 405,604-byte initial geometry. Twin pale pyramids/open belfries/green bells,upper-right bell frame,three clock fields,column-supported balcony/single recessed portal,nave roof and repeated sloping buttresses. Corrected the detached landing,hidden side/rear glazing and false rotated-face coverage of the open front square. All heights and the north upper-tower subdivision are picture-led;exact carvings,clock text,interiors,adjacent blocks/background dome and precise terrain thresholds are excluded or approximate as recorded.
+
+## N0348 — Dresden Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u3/u31/n0348_dresden_cathedral/QA-REVIEW.md): 49 inspected views,410 imported probes,24 actual viewer footprint checks,86 current map controls,four existing shared 256² graphs and 429,024-byte initial geometry. Rounded lower/upper body,layered hipped roofs/pale apron,two selected figure/balustrade tiers,repeated tall/oval glazing/pilasters and single staged open tower/green onion-spike/cross. Corrected the inward-folded upper roof,boxy distant reductions and pilaster placement along the actual boundary. Raw height inconsistency is explicit;upper nave stages and about 3.5m figures are picture-led. Exact carvings/sculptures,interiors,adjacent castle/covered connection and precise ground thresholds are excluded or approximate as recorded.
+
+## N0349 — Cattedrale di Monreale and cloister complex: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sq/sqc/n0349_cattedrale_di_monreale/QA-REVIEW.md): 49 inspected views,533 imported probes,54 actual viewer footprint checks,five current map controls,four existing shared 256² graphs and 394,696-byte initial geometry. Unequal clock/open-belfry towers,three-arch pale front portico,north gallery,nave/high sanctuary,three patterned apses,open paired-column cloister/garden,two paved roofless courts and mapped surrounding monastery ranges. The model origin centers the full complex while preserving geographic positions;retained cathedral identity is 70.16m from the new anchor. Corrected inward apse decoration faces and widened that detail camera. All architectural heights and selected details are approximate;exact inlay/bronze/carvings,full interiors,individual monastery rooms and certified walking excluded.
+
+## N0350 — St. Martin's Cathedral, Bratislava: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u2/u2s/n0350_st_martin_s_cathedral_bratislava/QA-REVIEW.md): 49 inspected views,310 imported geometry probes,78 actual viewer footprint checks,eight current map controls,five existing shared 256² graphs and 317,976-byte initial geometry. Single western crowned copper spire,open pointed belfry/octagonal lantern,clock/rose fields,steep red nave,lower polygonal chancel,northern chapels,southern vestibule,closed recessed side portals,tall lancets and stepped outward buttresses. Corrected inward buttresses,blocked windows/apse supports and floor-relative clock/metal details. Five current mapped height controls retained,including 85m tower top. Other architectural stages,exact crown/sculpture/tracery,full interiors,adjacent citywalls/buildings and precise plaza/portal terrain joins remain approximate or excluded;certified walking excluded.
+
+## N0351 — Turku Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u6/u6x/n0351_turku_cathedral/QA-REVIEW.md): 49 inspected views,514 imported geometry probes,240 actual viewer footprint checks,36 current map controls,five existing shared 256² graphs and 353,752-byte initial geometry. Brick western clock tower,pale blind niches/patch bands,dark closed upper belfry,green flared copper spire/closed roof-light marks/gold ball/cross,long clerestory/gabled nave,broad lower aisle roofs,north projecting/rounded northeast chapels,southern additions and polygonal east choir. Removed roof-hidden tower windows and refined the spire tip. Main/north plans equal recorded map roof unions;raw positions/scale retained. Current 85m spire top retained;older 101.9m fact has uncertain datum. Intermediate eaves,roof fields,selected details and terrain contact approximate;exact altitude,sculpture/weathering,full interiors,adjacent city/plaza and certified walking unverified or excluded.
+
+## N0352 — Vank Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible source master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/tj/tju/n0352_vank_cathedral/QA-REVIEW.md): 49 inspected views,724 imported geometry probes,66 actual viewer footprint checks,eight current map controls,five existing shared 256² graphs and 396,768-byte initial geometry. Buff pointed dome/short drum,blind-niche church,two open double-stage belfries,western clock gateway,northwest pedimented pavilion,four mapped ranges/low south vaults and paved open courtyard with the garden retained. Corrected roof-belfry support/door threshold,removed shared-wall windows,lowered/vaulted the southern range and optimized skyline hidden paving/upper stages. Previous unresolved facing now has an approximate source-local frame from named Vank/museum POIs,the reference coordinate,current plans and three pictures. All heights,peripheral facade/function details,enclosure and terrain joins are estimates;exact-QID polygon matching,precise thresholds/altitude,exact lettering/tile/sculpture,full interiors,forecourt statue/fountain and certified walking unverified or excluded.
+
+## N0353 — Königsberg Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, facade recesses/open tomb, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u3/u3w/n0353_konigsberg_cathedral/QA-REVIEW.md): 49 inspected views, 464 imported geometry probes, 36 actual viewer footprint checks, 28 current map controls, five existing shared 256² graphs and 363,668-byte initial geometry. Asymmetric brick westwork, three blind-arch tiers, octagonal clock drum/green spire, northern/central gables, steep continuous dark nave/choir roof, paired windows, mapped buttresses/south porch, minor turrets and open northeast Kant tomb colonnade. Corrected the blocked projection window and missing lower west-panel rhythm; removed hidden skyline caps. Approximate source-local frame preserves raw plans around named organ-hall/Kant-museum/tomb POIs. Mapped 50.75m spire top retained; eave/ridge interpretation, drum/gables, tomb height, facade details and precise terrain joins remain estimated. No exact-QID polygon identity or certified walking claim.
+
+## N0354 — St. Mary's Cathedral, Tallinn: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, facade recesses/open lanterns, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/ud/ud9/n0354_st_mary_s_cathedral/QA-REVIEW.md): 49 inspected views, 770 imported geometry probes, 30 actual viewer footprint checks, 22 current map controls, five existing shared 256² graphs and 427,680-byte initial geometry. Individual off-white basilica, upper clerestory/lower aisle roofs, polygonal choir, western clock tower/two-bulb spire/open lantern, north rooms, connected southern entrance ranges and minor choir roof lantern. Corrected tiny boolean slivers, blocked choir openings, skewed gable joins, missing exposed aisle window and upper-bulb profile; added estimated DEM entry steps/ramp and corrected matched LOD framing to retain the finial. Retained exact-QID way26902813 matches current main identity; source-local sign/vertical subdivision remain picture-led. Current 69m spire versus old whole-building 42m tag is explicit. Eaves/roof/lantern/annex details, entry transition and precise terrain thresholds remain estimated; later restoration color, exact lettering/tracery/sculpture, full interiors and certified walking unverified or excluded.
+
+## N0355 — Cathedral of Magdeburg: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, open belfries/arcades, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u3/u32/n0355_cathedral_of_magdeburg/QA-REVIEW.md): 49 inspected views, 1,050 imported geometry probes, 42 actual viewer footprint checks, 37 current map controls, five existing shared 256² graphs and 476,900-byte initial geometry. Individual twin square western towers/open arched belfries/stone cones, central clock gable/portal, high nave/transept/polygonal choir, aisle gables, ambulatory/five radiating chapels, eastern towers, crossing turret and southern cloister ranges/open court. Corrected blocked upper window/buttress spacing, excluded inward fields obscured by the west gable, supported gallery roofs and widened portal/courtyard review views. Current 99m upper tower tags conflict with the retained unqualified 104m fact. Wall/roof/belfry subdivisions, peripheral cloister facades, ornament and terrain/threshold joins remain approximate; full interiors and certified walking excluded. All six actual viewer footprints preserve the court and unrelated neighbors/plaza.
+
+## N0356 — Cathedral of Saint Mother Teresa in Pristina: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, open tower chambers/porch, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sr/srx/n0356_cathedral_of_saint_mother_teresa_in_pristina/QA-REVIEW.md): 49 inspected frames, 1,674 imported geometry probes, 42 actual viewer footprint checks, four current map controls, five existing shared 256² graphs and 395,140-byte initial geometry. Individually authored two tiered campaniles with open round/paired upper arches, clock/blank circular field, shallow caps/crosses, raised nave/paired clerestory, red aisle/transept/apse roofs, front rose/open gabled porch/wood doors, stairs and mapped low platform. The 2025 two-tower view supersedes older one-tower construction pictures. Corrected the porch roof at a tiny map-edge spike, closed the tower face meeting the transept, widened/thinned upper masonry, replaced skeletal district towers with solid arched panels and grounded both tower feet. Deeper rays confirm empty upper chambers. Current 70m tower tags control the top; main roof/stage subdivisions and low 5m platform interpretation remain estimated. Rear/low-platform facade functions, precise terrain/door thresholds and physical device timings remain unverified; exact text/sculpture/stained-glass pictures, full interiors and certified walking excluded.
+
+## N0357 — Cefalù Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify current geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sq/sqc/n0357_cefalu_cathedral/QA-REVIEW.md): 49 inspected frames, 1,250 imported geometry probes, 36 actual viewer footprint checks, one current map control, five shared 256² graphs and 226,672-byte initial geometry. Individually authored unequal-crowned twin towers/open upper belfries, two-tier blind west facade/round-headed window, open three-arch porch/wood entry, raised red-tiled nave/aisles, gray barrel crossing, high choir, three eastern apses and descending front stairs. Corrected apse window placement, crown centering, nave roof pitch, porch frames/paired-window mullions, aisle-blocked tower windows and the flat skyline stair block. Standard review cameras now rotate outside steep terrain; original DEM is retained. All heights/architectural subdivisions remain estimates from pictures and map fit. Exact thresholds, cut/fill and absolute altitude remain unverified; separate cloister/urban buildings, exact sculpture/ironwork/text, mosaics, interiors and certified walking are excluded. Physical device timings pending.
+
+## N0358 — St Giles' Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record the individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, crown gaps/ribs, window recesses/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/gc/gcv/n0358_st_giles_cathedral/QA-REVIEW.md): 49 inspected frames, 2,080 imported geometry probes, 108 actual viewer footprint checks, fourteen map controls, five shared 256² graphs and 310,324-byte initial geometry. Individually authored open eight-rib crown, tiered finial/pinnacles and triple louver fields, broad lead-gray nave/choir/crossing/aisle roofs, stepped side ranges, Gothic front/east windows and sparse tracery, northwest turret, Thistle Chapel and short entry steps. Thirteen discovered building parts corrected the first estimated tower width/height and main roof masses: current tags retain tower39m, nave/crossing20m, aisle16m, side ranges/chapel14m and low projections6m. Connected tower/turret shafts to their supports, narrowed overlapping niches, moved piers off windows and cut wall/roof/cornice overlaps through the pointed window heads. Wall/eave divisions, curves, ornament and exact street/door thresholds remain approximate. Adjacent town buildings/monument, exact sculpture/text/stained-glass art, full interiors and certified walking are excluded; physical device timings pending.
+
+## N0359 — Transfiguration Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u8/u8m/n0359_transfiguration_cathedral/QA-REVIEW.md): 49 inspected frames, 2,176 imported geometry probes, 138 actual viewer footprint checks, nineteen map controls, five shared 256² graphs and 415,316-byte initial geometry. Tall bronze-brown needle, open arched belfry/clock tower, three domes, low gray cruciform roofs and cream/white open classical porticoes. Corrected inward dome/needle winding, missing low-wing roof caps, west-door glazing overlap and excessive basement elevation. Map identity/orientation are an explicit reference-coordinate/picture approximation. Retained37m bulb-stage boundary is separate from the unqualified72m total-height claim. Exact repair/damage/current roof condition, thresholds, interiors and physical device timings remain unverified.
+
+## N0360 — Ljubljana Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u2/u24/n0360_ljubljana_cathedral/QA-REVIEW.md): 49 inspected frames, 1,444 imported geometry probes, 90 actual viewer footprint checks, eleven map controls, five shared256² graphs and327,052-byte initial geometry. Paired clock/belfry towers, octagonal round-window crowns, tiered green copper caps and three open lanterns, large green dome, red nave/cross/choir gables, lower green aisle roofs, curved west pediment and classical facades. Joined wall layers remove first-draft overlap/flicker and blocked panes. Tagged heights are estimates; front detail, cap profiles, door/street thresholds, absolute altitude and physical device timings remain approximate or unverified. Exact reliefs/sculpture/text, separate market/neighbors, interiors and certified walking excluded.
+
+## N0361 — Hagia Sophia, Thessaloniki: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sx/sx0/n0361_hagia_sophia/QA-REVIEW.md):49 inspected frames,886 imported geometry probes,60 actual viewer footprint checks, six map controls, six shared256² graphs and251,260-byte initial geometry. Ochre three-door west facade with ten narrow clerestory windows and a broad central portal; square brick drum/low ribbed metal dome, small open bell and three eastern apses. Removed a bell-occluded window, kept the bell brick, bounded long triangles to preserve the front courtyard patch, and changed the brick binding from banded Flemish to the existing plain running-bond graph. Map heights are approximate controls; drum/roof/apse subdivisions, threshold/altitude fit and physical device timings remain estimated or unverified. Unmapped separate courtyard gateway/retaining wall/fence, sculpture/icons/text, interiors and certified walking excluded.
+
+## N0362 — Black Church: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u8/u84/n0362_black_church/QA-REVIEW.md): 49 inspected frames, 602 imported geometry probes, 48 actual viewer footprint checks, four raw map controls and five shared 256² graphs. Individual southwest clock tower with layered tile hip/open gallery/spire; long steep-roofed Gothic hall, lower polygonal choir, pointed glazing, stepped buttresses/pinnacles, choir parapet rings, south stair turret and ridge fleche. Corrected inward-facing profile surfaces. Initial geometry is 346,956 bytes; skyline/district/street/closeup use 718/3,322/12,876/16,776 triangles. Approximate map roof envelopes, tower divisions and terrain contact remain explicit estimates; exact clock mural/numerals, sculpture, interiors and physical device timings excluded or pending.
+
+## N0363 — St. Martin’s Cathedral, Utrecht: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u1/u17/n0363_st_martin_s_cathedral_utrecht/QA-REVIEW.md): 49 inspected frames, 1,050 geometry probes, 174 actual viewer footprint checks, 24 raw map controls and six existing shared 256² graphs. Surviving transept/choir with cross roof and central west gable, layered ambulatory/chapels, flying buttresses, pointed glazing and low south cloister. Separate Dom Tower retains its open passage, tall belfry and octagonal lantern across the open square. Corrected a thin roof-plan sliver, annex roof/wall overlap and a blocked arcade; widened matched whole-model cameras to include the tower tip. LODs use 759/3,601/11,003/12,395 triangles; initial geometry is 401,092 bytes. Height qualifiers distinguish tower from church. Terrain contact, small ornament and physical device timings retain explicit limits.
+
+## N0364 — Cathedral of St. Peter and Paul, Brno: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u2/u2e/n0364_cathedral_of_st_peter_and_paul/QA-REVIEW.md): 49 inspected frames, 708 geometry probes, 66 actual viewer footprint checks, seven raw map controls and four existing shared 256² graphs. Paired junction towers/green needle spires, broad higher nave and lower polygonal choir, small ridge fleche, metal roof dormers, pointed glazing, stepped buttresses and west gabled portal/porch. Joined height-layer walls avoid overlapping skins; porch side arches now cut through the full inner wall, with a closed wood entry behind. LODs use 1,000/3,913/8,182/8,764 triangles and initial geometry is 390,980 bytes. Current height envelopes are approximate controls; fine sculpture/text, Petrov terraces, exact thresholds and physical device timing are excluded or pending.
+
+## N0365 — Glasgow Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/gc/gcu/n0365_glasgow_cathedral/QA-REVIEW.md): 49 inspected frames, 1,964 imported geometry probes, 84 actual viewer footprint checks, ten raw PMTiles controls and four existing shared 256² ashlar/limestone/copper/wood graphs. Long nave/choir, lower aisles, crossing transepts, north ranges and open square belfry with tiered octagonal stone spire. Great west window/circular tracery, recessed wood entries, paired clerestory lancets, lower-church windows, buttresses and pinnacles. Corrected portal/window overlap, roof joins that buried clerestory glazing and fields hidden by adjacent ranges. LODs use 794 / 1,777 / 10,532 / 13,132 triangles; initial geometry is 215,964 bytes. Map envelopes, roof subdivisions, crypt levels and coarse DEM/threshold fit remain approximate; exact sculpture/art, graveyard/retaining terraces, full interiors and physical device timing are excluded or pending.
+
+## N0366 — Ghazanchetsots Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/tp/tp1/n0366_ghazanchetsots_cathedral/QA-REVIEW.md): 49 inspected frames, 1,180 imported geometry probes, 36 actual viewer footprint checks, two raw PMTiles controls and four existing shared 256² ashlar/limestone/standing-seam metal/wood graphs. Photographed2018–2019 cathedral: three faceted entrance porches, round recessed portals, crossed gable lights, narrow arched glazing, folded roofs and faceted drum with tall silver cone/cross. Detached western bell tower has an open base, two arcaded stages and pointed stone cone. Corrected shallow cone proportions and excessive portal panels; approximate steps now meet standard terrain. LODs use 761 / 2,051 / 10,419 / 14,574 triangles; initial geometry is 269,716 bytes. Later restoration changes, exact sculpture/text, surveyed plaza/threshold levels, full interiors and physical device timing are excluded or pending.
+
+## N0367 — Freiburg Minster: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u0/u0t/n0367_freiburg_minster/QA-REVIEW.md): 49 inspected frames, 2,116 imported geometry probes, 240 actual viewer footprint checks, 36 raw PMTiles controls and four existing shared 256² sandstone/ashlar/flat tile/wood graphs. Single stepped west tower with dark recessed portal, wood door, geometric clocks, open octagonal belfry and porous stone lattice spire. Tiled nave, higher polygonal choir/chapel ring, twin cock turrets, pointed glazing, flying buttresses and distinct Romanesque transept rose over an open Renaissance arcade. Corrected coarse west buttresses, thin lattice members and blue vault backing. LODs use 995 / 3,760 / 15,844 / 22,326 triangles; initial geometry is 416,724 bytes. Tiny carved tracery/sculpture, exact stained glass, north-side/fenestration details, Münsterplatz paving/thresholds and physical device timing remain simplified, excluded or pending.
+
+## N0368 — Basilica of Saint Nicholas: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sr/sr7/n0368_basilica_of_saint_nicholas/QA-REVIEW.md): 49 inspected frames, 1,562 imported geometry probes, 30 actual viewer footprint checks, one raw PMTiles control and four existing shared256² ashlar/limestone/tile/wood graphs. Unequal flat-topped west towers, open south belfry, triple portals/gabled prothyron, paired rounded windows/oculi, six deep side arcade bays, five groups of upper gallery fields and flat eastern wall with framed barred window. Closed the low-tower shoulder gap, fitted side bays clear of the tall tower, repaired round surrounds and lowered east blind arches beneath the central window. LODs use 979 / 1,824 / 12,328 / 23,190 triangles; initial geometry is 262,096 bytes. All heights, inferred north facade, fine Romanesque carving and plaza/doorstep contact are approximate or excluded; physical device timing pending.
+
+## N0369 — San Thome Basilica: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/tf/tf3/n0369_san_thome_basilica/QA-REVIEW.md): 49 inspected frames, 1,114 imported geometry probes, 30 actual viewer footprint checks, one raw PMTiles control and four existing shared256² plaster/limestone/tile/wood graphs. Off-white Gothic nave, offset west-south main needle/cross, smaller crossing spire, triple west facade/porch gables, two tiers of pointed side fields, buttresses/pinnacles, red roofs, tall transept and three eastern choir/chapel fingers. Changed the common porch roof into three small gables, seated side doors at estimated entry floor and removed chapel fields hidden under the taller transept. LODs use 523 / 3,703 / 7,859 / 8,447 triangles; initial geometry is 394,100 bytes. Raw8m map height is retained as incomplete whole-building metadata; all authored heights, north/hidden roof details and paving/thresholds are approximate. Fine carvings/interiors and physical device timing remain excluded or pending.
+
+## N0370 — St Bavo's Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u1/u14/n0370_st_bavo_s_cathedral/QA-REVIEW.md): 49 inspected frames, 1,768 imported geometry probes, 156 actual viewer footprint checks, 22 raw PMTiles controls and four existing shared256² ashlar/limestone/slate/wood graphs. Stepped western tower with recessed vault/wood entry, paired lancet tiers, four89m corner pinnacles and smaller83m crown; slate nave/round choir, lean aisles, high transept/four46m turrets, two29m western stair turrets and low chapel ring. Closed roofs independently of wall cutouts, raised clerestory above roof joins, moved lower fields to exposed chapel faces and removed a window occupied by a buttress. LODs use 754 / 2,894 / 9,473 / 10,793 triangles; initial geometry is 313,024 bytes. Roof/eave subdivisions, modern hidden chapel/north details, exact carving and paving/thresholds remain approximate or excluded; physical device timing pending.
+
+## N0371 — St. Mary's Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/xn/xn7/n0371_st_mary_s_cathedral/QA-REVIEW.md): Eight curved silver steel sails, narrow cross skylight, unequal tall glazed ends, wood doors, low beige annexes and detached unequal-blade concrete belfry with an open bell slot. Four existing shared256² stainless/concrete/granite/wood graphs, six merged groups, metric UVs, linear tints, flat architectural normals and zero embedded images. Corrected vertical shell-tip winding using local ruled-surface normals per triangle. **49 inspected frames,716 imported geometry probes,36 current viewer footprint checks**. LODs **532 /2,310 /6,732 /11,020 triangles**; initial skyline plus district **249,212bytes**. Main39.4m height retained; eight ruled sails and other subdivisions approximate the exterior. Belfry location/61.6m auxiliary height and courtyard pocket are explicitly picture-estimated rather than mapped. Terrain grading, exact steel fabrication, hidden annex/interior plans, bell proportions and thresholds remain approximate or excluded; physical device timing pending.
+
+## N0372 — Uspenski Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/ud/ud9/n0372_uspenski_cathedral/QA-REVIEW.md): Red-brick cross church with three round east apses, high polygonal drum/tiered green copper helmet/gold onion and44m tip, four27m medium roof turrets, eight23m smaller corner tips, lower south22m bell/vestibule tower and joined low link, and open western gabled porch with granite columns/wood entrance. **49 inspected frames,1822 imported geometry probes,336 current viewer footprint checks and52 raw PMTiles controls**. Four existing shared256² brick/granite/copper/wood graphs, six merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **885 /3541 /15207 /27987 triangles**; initial geometry **469360bytes**. Corrected unsupported turret bases, a roof-buried window, uncapped base ledges and mismatched simplified wall/cap outlines. Joined the low corridor with an approximate rectangular envelope; smaller distant crosses merge into solid gold tips. Heights are mapped whole envelopes with explicit picture-estimated subdivisions. Fine brick ornament, hidden room/roof plans, precise hill/plaza grading and thresholds remain approximate or excluded; physical device timings pending.
+
+## N0373 — Saint Gregory the Illuminator Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sz/szp/n0373_saint_gregory_the_illuminator_cathedral/QA-REVIEW.md): Warm stone complex with large rear church/steep roof planes/54m main drum-cone-cross, two lower western chapel pavilions/36m cupolas, projecting west gateway-bell shaft/37m open bell arcade cupola, deep round portal and flanking stacked bays, blue polygonal roof skylight, rectangular side window strips and short local approach steps. **49 inspected frames,2034 imported geometry probes,30 viewer footprint checks and one raw36-vertex PMTiles control**. Four existing shared256² ashlar/limestone/granite/wood graphs, six merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **558 /2557 /5957 /7811 triangles**; initial geometry **272016bytes**. Raised the hidden main roof apex to40m for the aerial slope and moved drum glazing above the roof join. Retained54m fact and full mapped envelope; internal partitions/tower centers, other heights, rear fenestration and entry/terrain details are explicit picture estimates. Fine carving/panel seams, bells/interiors, park/long approach and surveyed plaza/thresholds remain excluded or approximate; physical device timings pending.
+
+## N0374 — Lucca Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sp/spz/n0374_lucca_cathedral/QA-REVIEW.md): Asymmetric marble west front with two large/one small deep portico arches, three recessed gallery tiers, red-tiled long nave/aisles and cross transept, rounded apse and southwest69m brick/marble campanile with graduated belfry arches and merlons. **49 inspected frames,1494 imported geometry probes,96 viewer footprint checks and12 raw PMTiles controls**. Five existing shared256-square ashlar/limestone/tile/brick/wood graphs, seven merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **667 /1492 /13271 /25603triangles**, initial geometry **196080bytes**. Corrected obstructed galleries, coplanar base/tower overlap, crowded belfry surrounds, rib/window clash and fields buried by attached chapels. Raw map outlines/tags remain intact; only69m tower height is mapped. Most heights, roof partitions, openings, fine ornament and plaza/threshold joins remain approximate; physical device timings pending.
+
+## N0375 — St. Paul's Cathedral, Mdina: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sq/sq6/n0375_st_paul_s_cathedral_mdina/QA-REVIEW.md): Warm limestone Baroque west front with three recessed portals, paired pilasters/capitals, clocks and open belfry towers/curved stone spires, central triangular pediment and upper arched window; larger eastern octagonal drum/low weathered metal dome/ribs/lantern and low nave/aisle roof forms. **49 inspected frames,546 imported geometry probes,48 viewer footprint checks and four raw PMTiles controls**. Five existing shared256-square ashlar/limestone/granite/standing-seam-metal/wood graphs, seven merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **639 /1784 /5650 /8042triangles**; initial geometry **241316bytes**. Removed tower/front/base overlaps and made pediments solid from behind. Main20m/dome30m/towers30m remain whole-component map controls; internal heights, octagonal reconstruction and roof partitions are estimates. Fine carving/heraldry/scrolls/clock numerals and hidden rear details remain approximate; coarse DEM exposes taller rear foundations and does not certify plaza/threshold fit. Physical device timings pending.
+
+## N0376 — Cathedral of the Holy Name of Saint Virgin Mary: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u9/u9e/n0376_cathedral_of_the_holy_name_of_saint_virgin_mary/QA-REVIEW.md): Pale cream plaster/white pilaster Baroque twin-tower front with stacked arches, curved gray metal caps/34.95m crosses, shaped central gable/figure niche/lantern, projecting wood-backed entry/arched glazing/free-standing columns/open balcony and long25m nave/10m aisles/21m rounded rear apse/two smaller cupolas. **49 inspected frames,744 imported geometry probes,498 viewer footprint checks and79 raw PMTiles controls**. Four existing shared256-square plaster/limestone/standing-seam metal/wood graphs, six merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **881 /3598 /11343 /16315triangles**; initial geometry **312620bytes**. Separated inset ground entry from elevated balcony/deck and shortened large triangle spans to eliminate conservative rotated-grid spill into the front plaza probe. Full height/min_height tags and retained earlier controls remain intact. Fine ornament and hidden side/rear appearance/roof joins are explicit approximations; exact plaza/threshold joins and physical device timings remain unverified.
+
+## N0377 — Nikortsminda Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sz/szw/n0377_nikortsminda_cathedral/QA-REVIEW.md): Gray-tan stone church with cross-gabled silver metal roofs, tall twelve-sided drum with narrow slits and blind arcades, conical roof and 25.8 m cross. Selected relief crosses/rosettes and wood-backed portal with short steps; western campanile has open middle/upper tiers and a 19.2 m tip. **49 inspected frames, 538 imported geometry probes and 30 viewer footprint checks**. Four existing shared 256-square ashlar/limestone/standing-seam metal/wood graphs, six merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **382 / 1,700 / 4,440 / 7,265 triangles**; initial geometry **172,536 bytes**. Extended lower drum support into the roof volume and removed the internal ledge across narrow wall windows. Exact-QID whole outline is retained; all heights and internal partitions are picture estimates. The western campanile/porch assignment has about 3 m internal uncertainty and its separation is unverified. Exact churchyard grading, hidden details/roof joins, thresholds and physical device timings remain unverified.
+
+## N0378 — Rio de Janeiro Cathedral: completed for recorded scope
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/75/75c/n0378_rio_de_janeiro_cathedral/QA-REVIEW.md): Mapped 75 m high concrete truncated cone, approximately 107 m base/33 m crown, four tall inset window axes, merged concrete louver/rib quadrants, recessed cross skylight and simplified bronze portals/steps. Separate mapped open tapering campanile has six stages, selected bells and a 75 m cross envelope. **49 inspected frames, 406 imported geometry probes, 48 viewer footprint checks and three raw PMTiles controls**. Three existing shared 256-square plain/boardformed concrete and cast-bronze graphs, five merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **758 / 3,182 / 9,066 / 20,022 triangles**; initial geometry **365,404 bytes**. Corrected crown/pylon height and dark district switching with additional tiers and omitted-grille coverage color. Full original multilingual identity/map tags and upper min_height 50 m remain retained. Exact glass art, portal sculpture/interiors and tower sub-heights are simplified. **Raw urban DEM varies about 18 m across the main footprint; bounded estimated plaza grading exists only in the source fixture. Noisy host-terrain base fit, surveyed thresholds and physical device timing remain unverified.**
+
+## N0379 — Saint Sophia Cathedral in Polotsk: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u9/u9u/n0379_saint_sophia_cathedral_in_polotsk/QA-REVIEW.md): Off-white Baroque twin towers with two actual open arched belfry tiers each, round-window attics, green caps and estimated 55 m crosses; shaped central/rear gables, tall arched glazing/wood portal, green nave roof, rounded side chapels/rear apse with lanterns and low service ranges. **49 inspected frames, 1,202 imported geometry probes, 30 viewer footprint checks and one51-vertex raw PMTiles whole**. Four existing shared 256-square lime-plaster/limestone/standing-seam metal/wood graphs, six merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **793 / 3,680 / 12,517 / 15,369 triangles**; initial geometry **397,304 bytes**. Separate skyline removes tiny roof partitions/trim; district keeps real open belfries. Added service windows, fan glazing and gable opening thickness/reveals. Retained map height5m conflicts with the pictured cathedral and remains cartographic metadata; original source supplies no measured height. Every modeled height/internal partition is an explicit picture estimate. Fine stucco/ironwork/interiors and exact hilltop paving/thresholds remain approximate; physical device timings pending.
+
+## N0380 — Dubrovnik Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and placement.
+- [x] Record scope/limits and current QA, then confirm readiness before counting completion.
+
+[Current QA and limits](../places/sr/srs/n0380_dubrovnik_cathedral/QA-REVIEW.md): Pale limestone Baroque front with four free-standing columns/recessed wood entry, two side doors, actual figure niches, upper rectangular window/open balcony, volute shoulders/balustrades/statues and triangular crown; gray nave/aisle/transept roofs, pale windowed drum, dark ribbed dome and slender pale lantern/cross. **49 inspected frames, 784 imported geometry probes, 36 viewer footprint checks and one77-vertex raw PMTiles whole**. Four existing shared256-square coursed limestone/continuous limestone/standing-seam metal/wood graphs, six merged groups, metric UVs, linear tints, flat normals and zero embedded images. LODs **911 /1572 /12120 /17137 triangles**; initial geometry **223776 bytes**. Fixed crown/volute edge winding and canopy underside. No measured height or independent component control; all modeled heights/internal partitions/dome position are explicit picture estimates. Fine carving/statue identity, hidden rear/current finish, interiors and exact paving/thresholds remain approximate; physical device timings pending.
+
+## N0381 — St. Pierre Cathedral: completed
+
+- [x] Compare useful pictures and standard viewer PMTiles;record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable,shared-material,geographic and medium-fi renders;correct visible defects.
+- [x] Verify geometry,openings/supports,source/runtime hashes,shared textures and placement.
+- [x] Record scope/limits and current QA,then confirm readiness before counting completion.
+
+[Current QA and limits](../places/u0/u0h/n0381_st_pierre_cathedral/QA-REVIEW.md):Six-column pale classical portico with actual clear entry space/recessed wood portals,triangular pediment/rounded gray vault; adjoining Gothic Maccabees chapel with tall pointed glazing/clean steep brown roof,buttressed nave/aisles/rounded apse,unequal actual open belfry towers and tall green octagonal central spire. **49 inspected final frames,1294 imported geometry probes,96 viewer footprint checks and11 raw PMTiles controls/312 current vertices**. Five existing shared256-square stone/continuous limestone/flat tile/copper/wood graphs,seven groups,metric UVs,linear tints,flat normals and zero embedded images. LODs **945 /3896 /15604 /19340 triangles**;initial geometry **391936 bytes**. Fixed overlapping core/base and residual front strip that blocked the portico,roof spikes following buttress jogs,and conservative far-footprint spill. No measured heights;all vertical architecture/internal partitions/clean roof contours remain explicit estimates. Exact carving/current hidden finish,interiors and surveyed paving/thresholds remain approximate;physical-device timings pending.
+
+## N0382 — Cathedral of Our Lady Immaculate: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/sp/spv/n0382_cathedral_of_our_lady_immaculate/QA-REVIEW.md): Pale Romanesque front with three deep round porches, paired two-stage supports, rectangular timber portals beneath arched stone tympana, twelve-spoke wheel rose, round window tiers, blind arcades and raised gable/abstract figures. Red-tiled nave/aisles and transepts, scalloped apse/ambulatory, broad rounded east chapel, actual open paired rear belfries, octagonal lantern and front corner chapel/gray-roof turret. **49 final frames inspected, 1952 imported geometry probes and 36 viewer footprint checks passed.** Four existing shared 256-square stone/continuous limestone/tile/wood graphs. LODs **654 / 3856 / 12673 / 42641 triangles**; initial geometry **367272 bytes**. Corrected blocked porches, hidden/disconnected supports, floating figures, gable arcade crossings, pilaster/window overlaps and stairs. All heights, internal partitions and hidden architecture remain explicit estimates. **Exterior and approximate horizontal placement accepted; host-DEM ground contact remains pending.**
+
+## N0383 — Esztergom Basilica: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and height/terrain limits](../places/u2/u2m/n0383_esztergom_basilica/QA-REVIEW.md):Broad pale masonry basilica with eight free-standing classical portico columns, clear deep portico/inset timber portals and triangular pediment; two wing passages with actual open round arches/balustrades, square tower bases/oculi, octagonal upper stages and green domes/crosses. Dominant24-column central drum with recessed rectangular bays, heavy cornice and ribbed green copper dome/orb/cross; side lunettes/paired round fields, shallow copper roof and rear parapeted terrace. **49 final frames inspected,1604 imported geometry probes and30 viewer footprint checks passed.** Four existing shared256-square stone/continuous limestone/copper/wood graphs, six groups, metric UVs, linear tints and flat normals; no embedded images. LODs **870 /3275 /15608 /29430 triangles**; initial geometry **409204 bytes**. Corrected tower-door trim obstruction, conservative stair footprint spill and an over-tall drum. **Existing100m height/dome tag and120m length/40m width facts retained; modeled90m tip above entrance floor is an explicit picture estimate because source measurement scope/datum is unresolved.** Other heights/internal partitions/hidden/current finishes are approximate. Exact hilltop ground/retaining-wall and doorway joins, absolute altitude and physical-device timings remain unverified.
+
+## N0384 — São Paulo Cathedral: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/6g/6gy/n0384_sao_paulo_cathedral/QA-REVIEW.md):Twin pale Gothic towers with pointed fields/recessed louver stages,corner shafts/pinnacles,steep green octagonal spires and92m crosses. Deep central and tower timber/glass portals,large geometric wheel/flower rose,steep central stone gable,small lancets/supported simplified figures and connected entry landing/broad stairs. Buttressed nave/aisles,gabled transepts,faceted southern apse,green copper roofs and broad ribbed dome/actual open lantern/cross at70m. **49 current frames inspected,1384 imported geometry probes and66 viewer footprint checks passed.** Four existing shared256-square stone/continuous limestone/copper/wood graphs,six groups,metric UVs,linear tints,flat normals and no embedded images. LODs **650 /3306 /11903 /15915 triangles**;initial geometry **377132 bytes**. Corrected roof/window intersections,buried tower fields,figure/lancet overlap,disconnected landing and district portal backing. Raw26/40/70/92m heights and92m height/111m length/46m width facts retained;floor/measurement datum and hidden side/rear details remain approximate. **Exact runtime urban terrain contact remains unverified.**
+
+## N0385 — Serbian Orthodox Cathedral in Sarajevo: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/sr/srv/n0385_serbian_orthodox_cathedral_in_sarajevo/QA-REVIEW.md):Single projecting western square bell tower with round-headed dark louver fields,clocks,pediments,rounded-square swelling metal cap,dark upper lantern/onion and gold cross. Broad central windowed drum/dome plus four smaller corner drums/domes over dark hip roof;rose-brown plaster body,cream pilasters/cornices,recessed round-headed windows/portals,front/rear curved shoulder gables,three eastern rounded apses and connected entry landing/stairs. **49 current frames inspected,1308 imported geometry probes and246 viewer footprint checks passed.** Four existing shared256-square plaster/continuous limestone/standing-seam metal/wood graphs,six groups,metric UVs,linear tints,flat normals and no embedded images. LODs **909 /2427 /15162 /41753 triangles**;initial geometry **332900 bytes**. Corrected angular bulb,light cap lantern,sideways shoulders and district door backing.247 current whole/component vertices,tags,heights/min_height values retained rigidly;floor,overlapping stage interpretations and hidden details remain approximate. **Exact runtime terrain contact remains unverified.**
+
+## N0386 — Poznań Cathedral: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/u3/u3k/n0386_archcathedral_basilica_of_st_peter_and_st_paul/QA-REVIEW.md):Twin tall western brick towers with dark copper belfries,recessed louvers,narrow lower fields,one southern front clock and tiered caps/crosses. Deep central pointed portal/window field and stepped Gothic pale-panel gable. Long pitched green nave/lower aisles,three smaller faceted eastern brick choir towers with swelling copper caps/actual open lanterns/onions,and pale ambulatory/chapels with domed eastern chapel,pilasters and supported geometric figures. **49 current frames inspected,1412 imported geometry probes and174 viewer footprint checks passed.** Five existing shared256-square brick/stone/copper/wood/plaster graphs,seven groups,metric UVs,linear tints,flat normals and no embedded images. LODs **997 /3247 /13319 /24318 triangles**;initial geometry **415856 bytes**. Corrected front-belfry tone,short gable panels,oversized plinths and a brick pattern reading as vertical bands.337 current vertices/tags and raw0.1m envelope/component height controls retained rigidly;72m length/36m width facts retained with differing mapped scope. Floor,hidden architecture and exact runtime terrain contact remain approximate or unverified.
+
+## N0387 — Crystal Cathedral: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/9q/9qh/n0387_crystal_cathedral/QA-REVIEW.md):Individually authored four-point folded glass shell with high wing tips/inward valleys,blue-gray pane grid,silver primary framing and recessed low entrances. Separate mapped73m open steel spire has pointed staggered blades,connectors,simplified bell rows and a small capped pale pavilion. **49 current frames inspected,156 imported geometry probes and42 actual viewer-footprint checks passed.** Four existing shared256-square graphs,five groups,metric UVs,linear tints,flat normals,no embedded images. LODs **828 /1780 /5024 /7960 triangles**;initial geometry **225096 bytes**. Corrected portable glass tone,blade density and conservative footprint stamps covering the real plaza gap.15 current map vertices/tags,40m/73m controls and signed rigid placement retained. Roof folds,entrances,steel/bell details,floor and exact ground contact remain estimated or unverified.
+
+## N0388 — Samtavisi Cathedral: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/sz/szr/n0388_samtavisi_cathedral/QA-REVIEW.md):Individually authored stepped cream/tan ashlar body,red-tile nave/cross gables and lower lean roofs,tall12-sided slit drum and brown-gray cone/cross. Decorated east facade has two genuine deep pointed V-section niches,large geometric cross,slit frame,selected rosettes/paired diamonds and round blind arches. Southern transverse gable/slit,blind bays and small recessed western-side door/landings complete the main church. **49 current frames inspected,514 actual geometry probes and30 viewer-footprint checks passed.** Five existing shared256-square graphs,seven groups,metric UVs,linear tints,flat normals,no embedded images. LODs **240 /2172 /6072 /8326 triangles**;initial geometry **234512 bytes**. Corrected shallow arcade readability with rib depth. Four current map vertices/raw tags and earlier exact identity retained rigidly;all component partitions/heights,hidden rear details,floor and exact ground contact are estimates or unverified. Separate bell tower/ruins remain host content.
+
+## N0389 — Cathedral of Christ the Saviour, Banja Luka: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and terrain limits](../places/sr/sru/n0389_cathedral_of_christ_the_saviour/QA-REVIEW.md): Individually authored five-domed striped church with curved side gables, recessed rose windows/wooden portals and sparse white star/diamond relief. A low northwest three-door porch/wing joins the separate mapped clock tower, with paired louvers, four clocks, stepped cornices and a genuinely open upper crown/cap. **49 current frames inspected, 1419 actual geometry probes and 42 viewer-footprint checks passed.** Five existing shared 256-square graphs, seven merged groups, metric UVs, linear tints, flat normals and no embedded images. LODs **792 /3931 /15837 /37632 triangles**; initial geometry **430024 bytes**. Fixed crown support and filled the raised porch gable. Both raw map controls retain all36 vertices/tags and22.37/44.95m heights rigidly. Internal partitions, height datums, crown openness, hidden bays and exact ground contact remain estimates or unverified. Distant average color and simplified street band pitch are intentional LOD differences.
+
+## N0390 — Havana Cathedral: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles; record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable, shared-material, geographic and medium-fi renders; correct visible defects.
+- [x] Verify geometry, openings/supports, source/runtime hashes, shared textures and horizontal placement; state height/terrain limits.
+- [x] Record scope/limits and current QA, then confirm readiness before counting the reviewed scope.
+
+[Current QA and height/terrain limits](../places/dh/dhj/n0390_havana_cathedral/QA-REVIEW.md): Individually authored unequal clock/bell towers with genuinely open stages/crowns, wavy pale-stone Baroque screen, three recessed timber doors, two column orders, blind niches, broken cornices/pediments and simplified floral tracery/volutes. Red clay nave/aisle/rear roofs and broad rear dome/open lantern complete the envelope. **49 current frames inspected, 745 actual geometry probes and 48 viewer-footprint checks passed.** Four existing shared256-square graphs, six merged groups, metric UVs, linear tints, flat normals and no embedded images. LODs **986 /3860 /12540 /18283 triangles**; initial geometry **396464 bytes**. Fixed side-to-side bell air blocked by inner walls, crown aperture placement, conservative stamps hiding a neighbor, and tall entrance-step blocks. All37 raw map control vertices/tags and11/17m heights retained; full31/30.4m tower crowns, differently scoped36/34m dimensions and historic plaza grading remain explicitly uncertain. Steps adapt to coarse standard DEM; exact host contact remains unverified.
+
+## N0391 — Liège Cathedral: exterior review completed
+
+- [x] Compare useful pictures and standard viewer PMTiles;record individual scope and approximate controls.
+- [x] Author a reproducible master and four budgeted browser levels with shared materials.
+- [x] Inspect portable,shared-material,geographic and medium-fi renders;correct visible defects.
+- [x] Verify geometry,openings/supports,source/runtime hashes,shared textures and horizontal placement;state height/terrain limits.
+- [x] Record scope/limits and current QA,then confirm readiness before counting the reviewed scope.
+
+[Current QA and height/terrain limits](../places/u1/u15/n0391_liege_cathedral/QA-REVIEW.md): Individually authored Gothic nave/transept and polygonal choir,steep shared-slate roofs,recessed pointed glazing with cream geometric tracery,step buttresses/flying struts,pinnacles and blind transept panels. West paired-louver tower has corner turrets,clocks attached to its sloping spire and genuinely open upper lantern. Low cloister ranges,dormers and stair turret surround a genuinely open court. **49 current frames inspected,1230 actual geometry probes and30 viewer-footprint checks passed.** Four existing shared256-square graphs,six groups,metric UVs,linear tints,flat normals and zero embedded images. LODs **997 /3038 /10733 /20815 triangles**;initial geometry **280484 bytes**. Corrected floating upper cornices/detached clocks,window/buttress intersections,blocked cloister recesses and north-square footprint overreach. All38 current compound/court points and earlier exact identity/facts retained without rescale. No mapped height exists;vertical dimensions and exact host-ground joins remain explicit estimates.
+
+## N0392 — New Cathedral, Linz: current completion checklist
+
+- [ ] Compare useful pictures and standard viewer PMTiles;record individual scope and approximate controls.
+- [ ] Author a reproducible master and four budgeted browser levels with shared materials.
+- [ ] Inspect portable,shared-material,geographic and medium-fi renders;correct visible defects.
+- [ ] Verify geometry,openings/supports,source/runtime hashes,shared textures and horizontal placement;state height/terrain limits.
+- [ ] Record scope/limits and current QA,then confirm readiness before counting the reviewed scope.
+
+[Batch journal](rounds/2026-10-12-backlog-completion.md) retains completed models and source milestones. Bulk captures stay local/ignored.
 
 ## Completion checklist
 

@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.86,
+      "metallic": 0.08
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.64,
+      "metallic": 0.35
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.28,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lviv-georges-cathedral-model.mjs",
+    "export": "buildLvivSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLvivDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.64,
+            "metallic": 0.35
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildLvivStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.64,
+            "metallic": 0.35
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLvivCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.64,
+            "metallic": 0.35
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -87,
+      56,
+      71
+    ],
+    "lookAt": [
+      -2,
+      18,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-lviv-skyline",
+      "position": [
+        -87,
+        56,
+        71
+      ],
+      "lookAt": [
+        -2,
+        18,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-lviv-district",
+      "position": [
+        -87,
+        56,
+        71
+      ],
+      "lookAt": [
+        -2,
+        18,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-lviv-street",
+      "position": [
+        -87,
+        56,
+        71
+      ],
+      "lookAt": [
+        -2,
+        18,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-lviv-closeup",
+      "position": [
+        -87,
+        56,
+        71
+      ],
+      "lookAt": [
+        -2,
+        18,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 316.656407m;estimated church floor 3.9m includes a raised entry platform above sampled footprint peak 1.228m and perimeter -0.87..1.23m. Foundation and lower stair approach follow coarse terrain. Precise court/stair thresholds and heights are picture-led approximations;no survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        24.012947223,
+        49.838651351
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 316.656407m;estimated church floor 3.9m includes a raised entry platform above sampled footprint peak 1.228m and perimeter -0.87..1.23m. Foundation and lower stair approach follow coarse terrain. Precise court/stair thresholds and heights are picture-led approximations;no survey or certified walking."
+    },
+    "bounds": [
+      24.0123,
+      49.8383,
+      24.0135,
+      49.839
+    ],
+    "notes": "Standard DEM datum 316.656407m;estimated church floor 3.9m includes a raised entry platform above sampled footprint peak 1.228m and perimeter -0.87..1.23m. Foundation and lower stair approach follow coarse terrain. Precise court/stair thresholds and heights are picture-led approximations;no survey or certified walking."
+  },
+  "geographicNote": "Standard DEM datum 316.656407m;estimated church floor 3.9m includes a raised entry platform above sampled footprint peak 1.228m and perimeter -0.87..1.23m. Foundation and lower stair approach follow coarse terrain. Precise court/stair thresholds and heights are picture-led approximations;no survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

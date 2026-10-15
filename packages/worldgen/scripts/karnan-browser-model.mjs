@@ -1,6 +1,6 @@
 /** N0620 browser derivatives. Detailed historic/current source karnan-model.mjs is preserved. */
 import { readFileSync } from 'node:fs';
-import { beam, loft } from './authored-structure-mesh.mjs';
+import { beam } from './authored-structure-mesh.mjs';
 import { face, transform, triangle } from './heritage-tower-detail-mesh.mjs';
 import { box, tube as sourceTube } from './structure-mesh.mjs';
 import { structureSourcePath } from './structure-source-paths.mjs';
@@ -809,7 +809,7 @@ export function buildKarnanSkyline(destination) {
     brick = [0.48, 0.29, 0.22],
     pale = [0.69, 0.65, 0.53],
     wood = [0.38, 0.34, 0.26],
-    iron = [0.19, 0.2, 0.18],
+    _iron = [0.19, 0.2, 0.18],
     main = [outline[4], outline[3], outline[2], outline[1]],
     turret = [
       outline[10],

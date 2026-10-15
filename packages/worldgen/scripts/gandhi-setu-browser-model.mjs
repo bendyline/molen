@@ -19,7 +19,7 @@ const deck = (x) => 23.5 + 0.22 * Math.cos((x / half) * Math.PI),
   concrete = [0.52, 0.49, 0.43],
   asphalt = [0.12, 0.125, 0.125];
 function writer(destination, far) {
-  function emit(slot, ref, p, hint, uv, color) {
+  function emit(slot, ref, p, hint, _uv, color) {
     p = p.map((v) => v.map(Math.fround));
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.88,
+      "metallic": 0.06
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.12
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    },
+    "apron": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.92,
+      "metallic": 0.04
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dresden-cathedral-model.mjs",
+    "export": "buildDresdenSkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildDresdenDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.06
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "apron": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "buildDresdenStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.06
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "apron": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92,
+            "metallic": 0.04
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDresdenCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.06
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.12
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "apron": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.92,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      135,
+      92,
+      112
+    ],
+    "lookAt": [
+      0,
+      35,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-dresden-skyline",
+      "position": [
+        135,
+        92,
+        112
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-dresden-district",
+      "position": [
+        135,
+        92,
+        112
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-dresden-street",
+      "position": [
+        135,
+        92,
+        112
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-dresden-closeup",
+      "position": [
+        135,
+        92,
+        112
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 122.273763m;estimated floor 1.3m clears sampled footprint peak 0.866m and perimeter -3.75..0.87m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        13.737352375,
+        51.053501535
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 122.273763m;estimated floor 1.3m clears sampled footprint peak 0.866m and perimeter -3.75..0.87m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+    },
+    "bounds": [
+      13.7364,
+      51.0529,
+      13.7383,
+      51.0541
+    ],
+    "notes": "Standard DEM datum 122.273763m;estimated floor 1.3m clears sampled footprint peak 0.866m and perimeter -3.75..0.87m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+  },
+  "geographicNote": "Standard DEM datum 122.273763m;estimated floor 1.3m clears sampled footprint peak 0.866m and perimeter -3.75..0.87m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

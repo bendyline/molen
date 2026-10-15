@@ -11,7 +11,7 @@ const root = new URL(
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root))),
   frame = read('map-frame.json'),
-  refs = read('reference-metadata.json'),
+  _refs = read('reference-metadata.json'),
   means = read('surface-means.json'),
   k = structuredClone(frame.controls);
 
@@ -734,7 +734,7 @@ export function saoJorgeGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c, mode) {
+  function emit(s, r, p, n, _uv, c, mode) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) =>
         [

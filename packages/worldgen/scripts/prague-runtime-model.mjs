@@ -515,8 +515,8 @@ function roofFor(o, rs, y, rise, slot = 'tile', color = tiles) {
       // The clipped outline can cross diagonal hips. Split at actual active
       // plane intersections so a gable follows the roof instead of its chord.
       const planes = [
-        ([x, z]) => (z - z0) / ((z1 - z0) / 2),
-        ([x, z]) => (z1 - z) / ((z1 - z0) / 2),
+        ([_x, z]) => (z - z0) / ((z1 - z0) / 2),
+        ([_x, z]) => (z1 - z) / ((z1 - z0) / 2),
         ([x]) => (x - x0) / inset,
         ([x]) => (x1 - x) / inset,
         () => 1,
@@ -1240,13 +1240,13 @@ function rangeFloor(id) {
   const p = rings(id)[0],
     x = p.reduce((n, v) => n + v[0], 0) / p.length,
     z = p.reduce((n, v) => n + v[1], 0) / p.length;
-  return laneIds.some((n) => id === 'relation/' + n)
+  return laneIds.some((n) => id === `relation/${n}`)
     ? laneFloor(x)
     : x < 20
       ? westFloor(x)
       : Math.min(0, pragueGroundY(x, z));
 }
-const roofFloor = (x, z, y) =>
+const roofFloor = (x, _z, y) =>
   y === 25 || y === 21
     ? westFloor(x)
     : y === 23
@@ -1378,7 +1378,7 @@ function occupiedRoof(out) {
                     Math.abs((v[0] - u[0]) * (q[2] - u[1]) - (v[1] - u[1]) * (q[0] - u[0])) /
                     length;
                   if (distance(a) > 0.001 || distance(b) > 0.001) continue;
-                  let points = [
+                  const points = [
                     [a[0], Math.max(a[1], region.wallY), a[2]],
                     [b[0], Math.max(b[1], region.wallY), b[2]],
                     [b[0], region.wallY, b[2]],
@@ -1437,7 +1437,7 @@ export const buildPragueReviewedCloseup = (o) => buildReviewed(o, 'closeup');
 export const buildPragueReviewedStreet = (o) => buildReviewed(o, 'street');
 
 function skyGeometry(out) {
-  const o = grounded({ ...out, detail: 'skyline' }, 'skyline', (x, z) =>
+  const o = grounded({ ...out, detail: 'skyline' }, 'skyline', (x, _z) =>
     x > 140 ? laneFloor(x) : x > 35 ? -0.75 : westFloor(x),
   );
   // Distant model keeps court holes and the cathedral's three unequal tower silhouettes.
@@ -1489,7 +1489,7 @@ function skyGeometry(out) {
 }
 
 function districtGeometry(out) {
-  const o = grounded({ ...out, detail: 'district' }, 'district', (x, z) =>
+  const o = grounded({ ...out, detail: 'district' }, 'district', (x, _z) =>
     x > 140 ? laneFloor(x) : x > 35 ? -0.75 : westFloor(x),
   );
   // Distant model keeps court holes and the cathedral's three unequal tower silhouettes.

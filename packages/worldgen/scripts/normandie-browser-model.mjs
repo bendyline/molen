@@ -19,7 +19,7 @@ const MEANS = {
   deckY = (x) =>
     Math.abs(x) <= 428 ? 59 + 12.84 * (1 - (x / 428) ** 2) : 59 - (Math.abs(x) - 428) * 0.06;
 function writer(destination, far = false) {
-  function emit(s, r, p, hint, uv, c) {
+  function emit(s, r, p, hint, _uv, c) {
     p = p.map((v) => [Math.fround(v[0]), Math.fround(v[1] + shift), Math.fround(v[2])]);
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

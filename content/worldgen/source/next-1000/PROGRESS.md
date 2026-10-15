@@ -2,7 +2,7 @@
 
 Generated from source masters, imported sidecars, geographic placements and hash-bound reviews.
 The scope remains **all 1,000 candidates**. Collections require every declared independent member.
-There are 343 authored assets, 343 imported assets and 339 active geographic asset previews.
+There are 401 authored assets, 401 imported assets and 397 active geographic asset previews.
 A candidate is complete only after its current source/runtime,
 portable render, shared-material render, geographic fit and its declared fidelity standard pass.
 New models follow [medium-fi](../../../../docs-src/guide/medium-fi.md); older maximum-fidelity
@@ -10,14 +10,14 @@ approvals retain their original scope and are not automatically medium-fi approv
 
 | Stage | Models |
 | --- | ---: |
-| Source GLBs authored | 343 |
-| Runtime GLBs imported | 343 |
-| Portable visual reviews passed | 343 |
-| Shared-material reviews passed | 343 |
-| Active geographic previews | 339 |
-| Declared fidelity reviews passed | 343 |
-| Complete | 343 |
-| Source models still to author | 657 |
+| Source GLBs authored | 401 |
+| Runtime GLBs imported | 401 |
+| Portable visual reviews passed | 401 |
+| Shared-material reviews passed | 401 |
+| Active geographic previews | 397 |
+| Declared fidelity reviews passed | 401 |
+| Complete | 401 |
+| Source models still to author | 599 |
 
 ## Authored models
 
@@ -239,6 +239,64 @@ for exact blockers, identity issues and all 1,000 candidates.
 | N0331 | [Etchmiadzin Cathedral](../places/sz/szp/n0331_etchmiadzin_cathedral/README.md) | 18613 | Passed | Passed | Passed | Passed | Yes |
 | N0332 | [Wawel Cathedral](../places/u2/u2y/n0332_wawel_cathedral/README.md) | 17476 | Passed | Passed | Passed | Passed | Yes |
 | N0333 | [Lala Mustafa Pasha Mosque](../places/sy/sy0/n0333_lala_mustafa_pasha_mosque/README.md) | 5446 | Passed | Passed | Passed | Passed | Yes |
+| N0334 | [Riga Cathedral](../places/ud/ud1/n0334_riga_cathedral/README.md) | 16157 | Passed | Passed | Passed | Passed | Yes |
+| N0335 | [York Minster](../places/gc/gcx/n0335_york_minster/README.md) | 15521 | Passed | Passed | Passed | Passed | Yes |
+| N0336 | [Nidaros Cathedral](../places/u5/u5r/n0336_nidaros_cathedral/README.md) | 15571 | Passed | Passed | Passed | Passed | Yes |
+| N0337 | [Saint Sophia Cathedral](../places/sw/swr/n0337_saint_sophia_cathedral/README.md) | 6195 | Passed | Passed | Passed | Passed | Yes |
+| N0338 | [Pannonhalma Archabbey](../places/u2/u2k/n0338_pannonhalma_archabbey/README.md) | 33623 | Passed | Passed | Passed | Passed | Yes |
+| N0339 | [Šibenik Cathedral](../places/sr/srg/n0339_sibenik_cathedral/README.md) | 10843 | Passed | Passed | Passed | Passed | Yes |
+| N0340 | [Matthias Church](../places/u2/u2m/n0340_matthias_church/README.md) | 9363 | Passed | Passed | Passed | Passed | Yes |
+| N0341 | [Euphrasian Basilica](../places/u2/u21/n0341_euphrasian_basilica/README.md) | 10524 | Passed | Passed | Passed | Passed | Yes |
+| N0342 | [Modena Cathedral](../places/sp/spz/n0342_modena_cathedral/README.md) | 24852 | Passed | Passed | Passed | Passed | Yes |
+| N0343 | [Cathedral of the Most Holy Conception](../places/63/63k/n0343_cathedral_of_the_most_holy_conception/README.md) | 6847 | Passed | Passed | Passed | Passed | Yes |
+| N0344 | [Saint George's Cathedral](../places/u8/u8c/n0344_saint_george_s_cathedral/README.md) | 10368 | Passed | Passed | Passed | Passed | Yes |
+| N0345 | [Salzburg Cathedral](../places/u2/u23/n0345_salzburg_cathedral/README.md) | 21774 | Passed | Passed | Passed | Passed | Yes |
+| N0346 | [Vilnius Cathedral](../places/u9/u99/n0346_vilnius_cathedral/README.md) | 16272 | Passed | Passed | Passed | Passed | Yes |
+| N0347 | [St. John's Co-Cathedral](../places/sq/sq6/n0347_st_john_s_co_cathedral/README.md) | 9285 | Passed | Passed | Passed | Passed | Yes |
+| N0348 | [Dresden Cathedral](../places/u3/u31/n0348_dresden_cathedral/README.md) | 39121 | Passed | Passed | Passed | Passed | Yes |
+| N0349 | [Cattedrale di Monreale](../places/sq/sqc/n0349_cattedrale_di_monreale/README.md) | 39202 | Passed | Passed | Passed | Passed | Yes |
+| N0350 | [St. Martin's Cathedral, Bratislava](../places/u2/u2s/n0350_st_martin_s_cathedral_bratislava/README.md) | 8280 | Passed | Passed | Passed | Passed | Yes |
+| N0351 | [Turku Cathedral](../places/u6/u6x/n0351_turku_cathedral/README.md) | 9515 | Passed | Passed | Passed | Passed | Yes |
+| N0352 | [Vank Cathedral](../places/tj/tju/n0352_vank_cathedral/README.md) | 9402 | Passed | Passed | Passed | Passed | Yes |
+| N0353 | [Königsberg Cathedral](../places/u3/u3w/n0353_konigsberg_cathedral/README.md) | 6291 | Passed | Passed | Passed | Passed | Yes |
+| N0354 | [St. Mary's Cathedral](../places/ud/ud9/n0354_st_mary_s_cathedral/README.md) | 7625 | Passed | Passed | Passed | Passed | Yes |
+| N0355 | [Cathedral of Magdeburg](../places/u3/u32/n0355_cathedral_of_magdeburg/README.md) | 19807 | Passed | Passed | Passed | Passed | Yes |
+| N0356 | [Cathedral of Saint Mother Teresa in Pristina](../places/sr/srx/n0356_cathedral_of_saint_mother_teresa_in_pristina/README.md) | 19100 | Passed | Passed | Passed | Passed | Yes |
+| N0357 | [Cefalù Cathedral](../places/sq/sqc/n0357_cefalu_cathedral/README.md) | 10777 | Passed | Passed | Passed | Passed | Yes |
+| N0358 | [St Giles' Cathedral](../places/gc/gcv/n0358_st_giles_cathedral/README.md) | 16957 | Passed | Passed | Passed | Passed | Yes |
+| N0359 | [Transfiguration Cathedral](../places/u8/u8m/n0359_transfiguration_cathedral/README.md) | 16673 | Passed | Passed | Passed | Passed | Yes |
+| N0360 | [Ljubljana Cathedral](../places/u2/u24/n0360_ljubljana_cathedral/README.md) | 16896 | Passed | Passed | Passed | Passed | Yes |
+| N0361 | [Hagia Sophia](../places/sx/sx0/n0361_hagia_sophia/README.md) | 13512 | Passed | Passed | Passed | Passed | Yes |
+| N0362 | [Black Church](../places/u8/u84/n0362_black_church/README.md) | 16776 | Passed | Passed | Passed | Passed | Yes |
+| N0363 | [St. Martin's Cathedral, Utrecht](../places/u1/u17/n0363_st_martin_s_cathedral_utrecht/README.md) | 12395 | Passed | Passed | Passed | Passed | Yes |
+| N0364 | [cathedral of St. Peter and Paul](../places/u2/u2e/n0364_cathedral_of_st_peter_and_paul/README.md) | 8764 | Passed | Passed | Passed | Passed | Yes |
+| N0365 | [Glasgow Cathedral](../places/gc/gcu/n0365_glasgow_cathedral/README.md) | 13132 | Passed | Passed | Passed | Passed | Yes |
+| N0366 | [Ghazanchetsots Cathedral](../places/tp/tp1/n0366_ghazanchetsots_cathedral/README.md) | 14574 | Passed | Passed | Passed | Passed | Yes |
+| N0367 | [Freiburg Minster](../places/u0/u0t/n0367_freiburg_minster/README.md) | 22326 | Passed | Passed | Passed | Passed | Yes |
+| N0368 | [Basilica of Saint Nicholas](../places/sr/sr7/n0368_basilica_of_saint_nicholas/README.md) | 23190 | Passed | Passed | Passed | Passed | Yes |
+| N0369 | [San Thome Basilica](../places/tf/tf3/n0369_san_thome_basilica/README.md) | 8447 | Passed | Passed | Passed | Passed | Yes |
+| N0370 | [St Bavo's Cathedral](../places/u1/u14/n0370_st_bavo_s_cathedral/README.md) | 10793 | Passed | Passed | Passed | Passed | Yes |
+| N0371 | [St. Mary's Cathedral](../places/xn/xn7/n0371_st_mary_s_cathedral/README.md) | 11020 | Passed | Passed | Passed | Passed | Yes |
+| N0372 | [Uspenski Cathedral](../places/ud/ud9/n0372_uspenski_cathedral/README.md) | 27987 | Passed | Passed | Passed | Passed | Yes |
+| N0373 | [Saint Gregory the Illuminator Cathedral](../places/sz/szp/n0373_saint_gregory_the_illuminator_cathedral/README.md) | 7811 | Passed | Passed | Passed | Passed | Yes |
+| N0374 | [Lucca Cathedral](../places/sp/spz/n0374_lucca_cathedral/README.md) | 25603 | Passed | Passed | Passed | Passed | Yes |
+| N0375 | [St. Paul's Cathedral, Mdina](../places/sq/sq6/n0375_st_paul_s_cathedral_mdina/README.md) | 8042 | Passed | Passed | Passed | Passed | Yes |
+| N0376 | [Cathedral of the Holy Name of Saint Virgin Mary](../places/u9/u9e/n0376_cathedral_of_the_holy_name_of_saint_virgin_mary/README.md) | 16315 | Passed | Passed | Passed | Passed | Yes |
+| N0377 | [Nikortsminda Cathedral](../places/sz/szw/n0377_nikortsminda_cathedral/README.md) | 7265 | Passed | Passed | Passed | Passed | Yes |
+| N0378 | [Rio de Janeiro Cathedral](../places/75/75c/n0378_rio_de_janeiro_cathedral/README.md) | 20022 | Passed | Passed | Passed | Passed | Yes |
+| N0379 | [Saint Sophia Cathedral in Polotsk](../places/u9/u9u/n0379_saint_sophia_cathedral_in_polotsk/README.md) | 15369 | Passed | Passed | Passed | Passed | Yes |
+| N0380 | [Dubrovnik Cathedral](../places/sr/srs/n0380_dubrovnik_cathedral/README.md) | 17137 | Passed | Passed | Passed | Passed | Yes |
+| N0381 | [St. Pierre Cathedral](../places/u0/u0h/n0381_st_pierre_cathedral/README.md) | 19340 | Passed | Passed | Passed | Passed | Yes |
+| N0382 | [Cathedral of Our Lady Immaculate](../places/sp/spv/n0382_cathedral_of_our_lady_immaculate/README.md) | 42641 | Passed | Passed | Passed | Passed | Yes |
+| N0383 | [Esztergom Basilica](../places/u2/u2m/n0383_esztergom_basilica/README.md) | 29430 | Passed | Passed | Passed | Passed | Yes |
+| N0384 | [São Paulo Cathedral](../places/6g/6gy/n0384_sao_paulo_cathedral/README.md) | 15915 | Passed | Passed | Passed | Passed | Yes |
+| N0385 | [Serbian Orthodox Cathedral in Sarajevo](../places/sr/srv/n0385_serbian_orthodox_cathedral_in_sarajevo/README.md) | 41753 | Passed | Passed | Passed | Passed | Yes |
+| N0386 | [Archcathedral Basilica of St. Peter and St. Paul](../places/u3/u3k/n0386_archcathedral_basilica_of_st_peter_and_st_paul/README.md) | 24318 | Passed | Passed | Passed | Passed | Yes |
+| N0387 | [Crystal Cathedral](../places/9q/9qh/n0387_crystal_cathedral/README.md) | 7960 | Passed | Passed | Passed | Passed | Yes |
+| N0388 | [Samtavisi Cathedral](../places/sz/szr/n0388_samtavisi_cathedral/README.md) | 8326 | Passed | Passed | Passed | Passed | Yes |
+| N0389 | [Cathedral of Christ the Saviour](../places/sr/sru/n0389_cathedral_of_christ_the_saviour/README.md) | 37632 | Passed | Passed | Passed | Passed | Yes |
+| N0390 | [Havana Cathedral](../places/dh/dhj/n0390_havana_cathedral/README.md) | 18283 | Passed | Passed | Passed | Passed | Yes |
+| N0391 | [Liège Cathedral](../places/u1/u15/n0391_liege_cathedral/README.md) | 20815 | Passed | Passed | Passed | Passed | Yes |
 | N0498 | [Garni Temple](../places/sz/szp/n0498_garni_temple/README.md) | 1209206 | Passed | Passed | Passed | Passed | Yes |
 | N0561 | [Galata Tower](../places/sx/sxk/n0561_galata_tower/README.md) | 121046 | Passed | Passed | Passed | Passed | Yes |
 | N0562 | [Maiden Tower](../places/tp/tp5/n0562_maiden_tower/README.md) | 85366 | Passed | Passed | Passed | Passed | Yes |

@@ -193,7 +193,7 @@ function rings(id, o) {
     o.detail === 'skyline' ? 9 : o.detail === 'district' ? 3 : o.detail === 'street' ? 1.2 : 0.4;
   const plan = roofPlans.levels[o.detail]?.[id];
   if (plan) {
-    if (plan.parts.length !== 1) throw Error('Split Hofburg wing ' + id);
+    if (plan.parts.length !== 1) throw Error(`Split Hofburg wing ${id}`);
     return plan.parts[0].rings.map((r) => (area(r) < 0 ? r.toReversed() : r));
   }
   const outer = clean(feature(id).points, tol);
@@ -337,9 +337,9 @@ function minRect(p) {
   return best;
 }
 /** Authored continuous hip/ridge planes, not a horizontal-grid height-field triangulation. */
-function roof(o, rs, y, rise, slot = 'tile', color = redRoof, id) {
+function roof(o, _rs, y, rise, slot = 'tile', color = redRoof, id) {
   const item = roofPlans.levels[o.detail]?.[id];
-  if (!item) throw Error('Missing Hofburg roof ' + id);
+  if (!item) throw Error(`Missing Hofburg roof ${id}`);
   const clip = (p, above) => {
     const q = [],
       cut = rise / 1.3;

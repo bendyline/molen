@@ -3,9 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { beam, loft, radialRing, sphere } from './authored-structure-mesh.mjs';
 import {
-  commonLimit,
   face,
-  grid,
   lerp,
   localOutline,
   mappedCap,
@@ -185,7 +183,7 @@ function louvers(out, edge, y0, y1) {
     );
   }
 }
-function kFrame(out, x, z0, z1, top, side) {
+function kFrame(out, x, z0, z1, top, _side) {
   const brace = (a, b, w, d, c) => {
     if (!out.detail.flatBraces) {
       beam(out, 'stainless', a, b, w, d, c);

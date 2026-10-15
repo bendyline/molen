@@ -41,14 +41,14 @@ function writer(out, far) {
     );
   };
   return {
-    addTriangle(s, r, p, n, u, c) {
+    addTriangle(s, _r, p, _n, _u, c) {
       tri(s, p, c);
     },
-    addQuad(s, r, p, n, u, c) {
+    addQuad(s, _r, p, _n, _u, c) {
       tri(s, p.slice(0, 3), c);
       tri(s, [p[0], p[2], p[3]], c);
     },
-    addConvexPolygon(s, r, p, n, u, c) {
+    addConvexPolygon(s, _r, p, _n, _u, c) {
       for (let i = 1; i < p.length - 1; i++) tri(s, [p[0], p[i], p[i + 1]], c);
     },
   };
@@ -57,9 +57,9 @@ function writer(out, far) {
 function build(target, tier) {
   const out = writer(target, tier === 0),
     segments = [4, 8, 16, 32][tier],
-    radialRing = (y, rx, rz, n, center) => fullRing(y, rx, rz, segments, center),
-    tube = (o, s, a, b, r, c, n) => fullTube(o, s, a, b, r, c, segments),
-    torus = (o, s, p, r, t, c, n, m) => {
+    radialRing = (y, rx, rz, _n, center) => fullRing(y, rx, rz, segments, center),
+    tube = (o, s, a, b, r, c, _n) => fullTube(o, s, a, b, r, c, segments),
+    torus = (o, s, p, r, t, c, _n, _m) => {
       if (tier > 1 && (tier === 3 || r > 6)) fullTorus(o, s, p, r, t, c, segments, 3);
     };
   function spherePanel(out, p, color, slot) {

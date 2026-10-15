@@ -99,8 +99,8 @@ function clean(r, tolerance = 0.15) {
   return area(p) < 0 ? p.reverse() : p;
 }
 function ring(id) {
-  const f = map.features.find((f) => f.id === 'way/' + id);
-  if (!f) throw Error('Missing Malbork part' + id);
+  const f = map.features.find((f) => f.id === `way/${id}`);
+  if (!f) throw Error(`Missing Malbork part${id}`);
   return clean(f.points, 0.12);
 }
 function cap(o, p, y, slot, color) {
@@ -1185,7 +1185,7 @@ function buildMalborkRuntime(out, detail) {
   lowerCastle(o);
   curtainWalls(o);
 }
-function oldSkyline(out) {
+function _oldSkyline(out) {
   buildMalborkRuntime(out, 'skyline');
 }
 

@@ -52,7 +52,7 @@ function rounded(a, hx, hz, r, y) {
 const roofY = (r) => 40.3 + ((r - 68) / 64.5) * 2.9,
   bottomY = (r) => 31.3 + ((r - 68) / 64.5) * 7.9 - 1.1 * Math.sin(((r - 68) / 64.5) * Math.PI);
 function build(destination, d) {
-  function emit(s, r, p, hint, uv, c) {
+  function emit(s, r, p, hint, _uv, c) {
     p = p.map((v) => v.map(Math.fround));
     for (let i = 1; i < p.length - 1; i++) {
       let t = [p[0], p[i], p[i + 1]],

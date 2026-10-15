@@ -1,0 +1,590 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.03
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.7,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/monaco-cathedral-model.mjs",
+    "export": "buildMonacoCathedralSkyline",
+    "errorMeters": 3.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMonacoCathedralDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMonacoCathedralStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMonacoCathedralCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -140,
+      85,
+      -125
+    ],
+    "lookAt": [
+      0,
+      14,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-monaco-cathedral-skyline",
+      "position": [
+        -170,
+        112,
+        -160
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-monaco-cathedral-district",
+      "position": [
+        -170,
+        112,
+        -160
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-monaco-cathedral-street",
+      "position": [
+        -170,
+        112,
+        -160
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-monaco-cathedral-closeup",
+      "position": [
+        -170,
+        112,
+        -160
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "previewGrade": {
+    "kind": "estimated-source-preview-only",
+    "targetY": 0.4,
+    "marginMeters": 8,
+    "blendMeters": 16,
+    "outline": [
+      [
+        3.71357757506453,
+        -18.3463081734462
+      ],
+      [
+        3.703713687574194,
+        -11.428657762320132
+      ],
+      [
+        -24.612993076709042,
+        -11.428657762320125
+      ],
+      [
+        -24.78396137465738,
+        -14.228267730593931
+      ],
+      [
+        -36.46576789895826,
+        -14.379507012448391
+      ],
+      [
+        -36.506870464349426,
+        -4.433740382314378
+      ],
+      [
+        -38.22971693489702,
+        -4.3285285377953935
+      ],
+      [
+        -38.48617559411678,
+        5.630389590308667
+      ],
+      [
+        -36.54797309290074,
+        5.512026251676739
+      ],
+      [
+        -36.66305093128894,
+        10.706839923562248
+      ],
+      [
+        -33.595464557186986,
+        11.384137682819492
+      ],
+      [
+        -33.89466193368365,
+        13.563986763265738
+      ],
+      [
+        -33.39819344416967,
+        14.614456876981578
+      ],
+      [
+        -32.2425064941002,
+        15.840827184752055
+      ],
+      [
+        -30.91091829493298,
+        16.407982193712527
+      ],
+      [
+        -28.985869209743885,
+        16.07426436479231
+      ],
+      [
+        -27.355084650958265,
+        14.46157035540588
+      ],
+      [
+        -26.0103460074487,
+        15.244080036131297
+      ],
+      [
+        -24.731364651094122,
+        14.949816667371575
+      ],
+      [
+        -23.720344576585095,
+        13.807286317805628
+      ],
+      [
+        -24.040911245402054,
+        12.097600870373004
+      ],
+      [
+        3.603432825783095,
+        11.706345625207415
+      ],
+      [
+        3.651106455331751,
+        16.0265892860184
+      ],
+      [
+        14.875835239939343,
+        15.773426169184246
+      ],
+      [
+        14.994197907749731,
+        17.7116176856815
+      ],
+      [
+        15.745471632462472,
+        19.39500045056358
+      ],
+      [
+        17.142807622657617,
+        21.0389290889245
+      ],
+      [
+        18.716043203996826,
+        22.023642529724352
+      ],
+      [
+        20.47832962611423,
+        22.56449539555001
+      ],
+      [
+        22.429666724793474,
+        22.661487696429962
+      ],
+      [
+        24.32839763120952,
+        21.897061579861564
+      ],
+      [
+        25.796420341689256,
+        21.158938215464403
+      ],
+      [
+        26.79428092416586,
+        19.801053746663392
+      ],
+      [
+        27.77898992225959,
+        18.22781467571813
+      ],
+      [
+        28.104486156842448,
+        16.478675062807618
+      ],
+      [
+        27.98612348903206,
+        14.540483546310366
+      ],
+      [
+        27.221699572617524,
+        12.64174609423493
+      ],
+      [
+        30.073903493006437,
+        13.332196961223804
+      ],
+      [
+        31.98578342266168,
+        12.783125603205155
+      ],
+      [
+        32.60554139512783,
+        12.312962341051911
+      ],
+      [
+        33.146390862384926,
+        10.550671404898075
+      ],
+      [
+        32.597321053412564,
+        8.638782576158455
+      ],
+      [
+        33.92889662370977,
+        9.205938356346502
+      ],
+      [
+        34.790310716553286,
+        9.153332992402547
+      ],
+      [
+        35.62542188379759,
+        8.670018409320244
+      ],
+      [
+        36.838634202053115,
+        7.298982708689235
+      ],
+      [
+        36.72027153424273,
+        5.360791192191985
+      ],
+      [
+        35.75364645902793,
+        3.6905596356115793
+      ],
+      [
+        37.46332256452498,
+        3.3699943358576676
+      ],
+      [
+        38.28528193579994,
+        2.6713251635524027
+      ],
+      [
+        38.82613079356168,
+        0.909034264619605
+      ],
+      [
+        38.5581718012712,
+        0.060767143993428085
+      ],
+      [
+        37.389345008288885,
+        -1.3809584829565944
+      ],
+      [
+        35.627063323181986,
+        -1.9218116380649213
+      ],
+      [
+        37.029326115886896,
+        -3.7367078912989182
+      ],
+      [
+        37.126316857599136,
+        -5.6880507418393735
+      ],
+      [
+        36.64300440525793,
+        -6.523166525336665
+      ],
+      [
+        35.069773267234574,
+        -7.507880237483649
+      ],
+      [
+        32.7140361089298,
+        -7.147860885264939
+      ],
+      [
+        33.09213755363567,
+        -8.03558202074917
+      ],
+      [
+        32.98692629335977,
+        -9.75841892430228
+      ],
+      [
+        32.718967130536925,
+        -10.606686034514283
+      ],
+      [
+        31.145735158799724,
+        -11.591399695747517
+      ],
+      [
+        27.05401577033757,
+        -11.341524067551024
+      ],
+      [
+        25.748741928754928,
+        -11.477970555508636
+      ],
+      [
+        25.02377217178372,
+        -12.730644164894553
+      ],
+      [
+        23.07243644999553,
+        -12.82763654985933
+      ],
+      [
+        22.237323833226014,
+        -12.344321878256531
+      ],
+      [
+        21.121100166082094,
+        -12.924628900495897
+      ],
+      [
+        15.064885232208601,
+        -12.987099756249455
+      ],
+      [
+        14.964605552507065,
+        -18.168761843187266
+      ]
+    ],
+    "basis": "Bounded diagnostic plaza grade guided by pictures;raw DEM remains in pmtiles-fit.json. Host terrain is not modified."
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization;current acceptance and terrain limitations recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reviewed coordinate convention only:Y=0 is the standard DEM anchor datum58.459324m and foundations cross this plane;surveyed site contact is not established. Standard viewer DEM datum58.459324m;display floor1.5m,raw whole perimeter-16.53..9.98m. About26.5m slope crosses the building;raw samples remain retained. Source review uses an explicitly estimated local0.4m plaza grade within the footprint plus8m and a16m blend beyond it;this diagnostic fixture is not applied to host terrain. Runtime terrain-contact remains anchored to the coarse DEM;front skirt exposure/rear base clipping,exact street/door joins,absolute altitude and walking are unverified. Footings extend below raw samples. No global flattening or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        7.422658929,
+        43.730341513
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum58.459324m;display floor1.5m,raw whole perimeter-16.53..9.98m. About26.5m slope crosses the building;raw samples remain retained. Source review uses an explicitly estimated local0.4m plaza grade within the footprint plus8m and a16m blend beyond it;this diagnostic fixture is not applied to host terrain. Runtime terrain-contact remains anchored to the coarse DEM;front skirt exposure/rear base clipping,exact street/door joins,absolute altitude and walking are unverified. Footings extend below raw samples. No global flattening or road replacement."
+    },
+    "bounds": [
+      7.415,
+      43.725,
+      7.43,
+      43.736
+    ],
+    "notes": "Standard viewer DEM datum58.459324m;display floor1.5m,raw whole perimeter-16.53..9.98m. About26.5m slope crosses the building;raw samples remain retained. Source review uses an explicitly estimated local0.4m plaza grade within the footprint plus8m and a16m blend beyond it;this diagnostic fixture is not applied to host terrain. Runtime terrain-contact remains anchored to the coarse DEM;front skirt exposure/rear base clipping,exact street/door joins,absolute altitude and walking are unverified. Footings extend below raw samples. No global flattening or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum58.459324m;display floor1.5m,raw whole perimeter-16.53..9.98m. About26.5m slope crosses the building;raw samples remain retained. Source review uses an explicitly estimated local0.4m plaza grade within the footprint plus8m and a16m blend beyond it;this diagnostic fixture is not applied to host terrain. Runtime terrain-contact remains anchored to the coarse DEM;front skirt exposure/rear base clipping,exact street/door joins,absolute altitude and walking are unverified. Footings extend below raw samples. No global flattening or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

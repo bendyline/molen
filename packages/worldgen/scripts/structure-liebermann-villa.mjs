@@ -312,7 +312,7 @@ function tileRoof(o, d) {
       );
     }
 }
-function villa(o, frame, d = 3) {
+function villa(o, _frame, d = 3) {
   // Split ground mass leaves the southwest lake-facing loggia genuinely open.
   B(o, 'stone', 0, -1.2, 0, 19.45, 1.75, 14.3, stone);
   B(o, 'wall', 0, 0.55, 1.3, 19.45, 7.7, 9.7, plaster);

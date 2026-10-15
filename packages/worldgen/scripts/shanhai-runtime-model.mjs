@@ -485,7 +485,7 @@ function output(out, level) {
   return Object.fromEntries(
     ['addQuad', 'addTriangle', 'addConvexPolygon'].map((k) => [
       k,
-      (s, r, p, n, u, c) => {
+      (s, r, p, _n, u, c) => {
         const q = p.map((v) => [
           v[0],
           (Math.abs(v[1]) < 0.00001

@@ -8,7 +8,6 @@ import {
   localOutline,
   mappedSolid,
   panel,
-  ringAt,
   tri,
 } from './signature-tower-expansion-models.mjs';
 import { box, tube } from './structure-mesh.mjs';

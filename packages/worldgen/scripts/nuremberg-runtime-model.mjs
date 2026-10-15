@@ -11,8 +11,8 @@ const root = new URL(
 );
 const read = (name) => JSON.parse(readFileSync(new URL(name, root)));
 const frame = read('map-frame.json'),
-  refs = read('reference-metadata.json'),
-  means = read('surface-means.json');
+  _refs = read('reference-metadata.json'),
+  _means = read('surface-means.json');
 const fitdata = read('pmtiles-fit.json');
 function fitGround(x, z) {
   const g = fitdata.grid,
@@ -1058,7 +1058,7 @@ export function nurembergGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) =>
         [x, y <= 3.501 ? nurembergGround(x, z) - 0.4 : y - 15, z].map(Math.fround),

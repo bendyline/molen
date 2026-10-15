@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick_flemish",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "base": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.84,
+      "metallic": 0.08
+    },
+    "belfry": {
+      "slot": "wall",
+      "graph": "metal_copper",
+      "roughness": 0.84,
+      "metallic": 0.06
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "roughness": 0.5,
+      "metallic": 0.55
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/turku-cathedral-model.mjs",
+    "export": "buildTurkuCathedralSkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTurkuCathedralDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "belfry": {
+            "slot": "wall",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.06
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildTurkuCathedralStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "belfry": {
+            "slot": "wall",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.06
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTurkuCathedralCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick_flemish",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "belfry": {
+            "slot": "wall",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.06
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -135,
+      100,
+      120
+    ],
+    "lookAt": [
+      0,
+      35,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-turku-cathedral-skyline",
+      "position": [
+        -135,
+        100,
+        120
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-turku-cathedral-district",
+      "position": [
+        -135,
+        100,
+        120
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-turku-cathedral-street",
+      "position": [
+        -135,
+        100,
+        120
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-turku-cathedral-closeup",
+      "position": [
+        -135,
+        100,
+        120
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 40.297409m;estimated floor 2.1m clears sampled footprint peak 1.729m and perimeter -10.29..0.98m. Foundation follows coarse terrain. Absolute altitude/exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        22.278491799,
+        60.452447201
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 40.297409m;estimated floor 2.1m clears sampled footprint peak 1.729m and perimeter -10.29..0.98m. Foundation follows coarse terrain. Absolute altitude/exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+    },
+    "bounds": [
+      22.2774,
+      60.4519,
+      22.2796,
+      60.453
+    ],
+    "notes": "Standard DEM datum 40.297409m;estimated floor 2.1m clears sampled footprint peak 1.729m and perimeter -10.29..0.98m. Foundation follows coarse terrain. Absolute altitude/exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+  },
+  "geographicNote": "Standard DEM datum 40.297409m;estimated floor 2.1m clears sampled footprint peak 1.729m and perimeter -10.29..0.98m. Foundation follows coarse terrain. Absolute altitude/exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

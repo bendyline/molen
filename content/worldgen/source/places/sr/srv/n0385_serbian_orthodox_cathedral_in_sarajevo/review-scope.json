@@ -1,0 +1,297 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.35
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.48,
+      "metallic": 0.03
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.65,
+      "metallic": 0.35
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sarajevo-orthodox-model.mjs",
+    "export": "buildSarajevoOrthodoxSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSarajevoOrthodoxDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      },
+      "street": {
+        "export": "buildSarajevoOrthodoxStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSarajevoOrthodoxCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.35
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -84,
+      58,
+      76
+    ],
+    "lookAt": [
+      0,
+      19,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-sarajevo-orthodox-skyline",
+      "position": [
+        -90,
+        65,
+        83
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sarajevo-orthodox-district",
+      "position": [
+        -90,
+        65,
+        83
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sarajevo-orthodox-street",
+      "position": [
+        -90,
+        65,
+        83
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sarajevo-orthodox-closeup",
+      "position": [
+        -90,
+        65,
+        83
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance and terrain limits recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "ReviewedY=0 coordinate convention and foundations crossing that plane; exact host terrain contacts remain unverified. Standard viewer DEM datum552.646207m; estimated floor0.6m, raw whole perimeter-1.63..1.46m. Retained coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain; local front landing/stairs are approximate. No source preview flattening or host DEM change. Runtime foundation exposure/base clipping, exact garden/street/door contact, absolute altitude and walking remain unverified. No road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        18.425198099,
+        43.858218828
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum552.646207m; estimated floor0.6m, raw whole perimeter-1.63..1.46m. Retained coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain; local front landing/stairs are approximate. No source preview flattening or host DEM change. Runtime foundation exposure/base clipping, exact garden/street/door contact, absolute altitude and walking remain unverified. No road replacement."
+    },
+    "bounds": [
+      18.418,
+      43.853,
+      18.432,
+      43.864
+    ],
+    "notes": "Standard viewer DEM datum552.646207m; estimated floor0.6m, raw whole perimeter-1.63..1.46m. Retained coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain; local front landing/stairs are approximate. No source preview flattening or host DEM change. Runtime foundation exposure/base clipping, exact garden/street/door contact, absolute altitude and walking remain unverified. No road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum552.646207m; estimated floor0.6m, raw whole perimeter-1.63..1.46m. Retained coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain; local front landing/stairs are approximate. No source preview flattening or host DEM change. Runtime foundation exposure/base clipping, exact garden/street/door contact, absolute altitude and walking remain unverified. No road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

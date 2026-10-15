@@ -627,7 +627,7 @@ function buildWarsawBody(o, level) {
 }
 
 const base = '../../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw/';
-const grade = JSON.parse(readFileSync(new URL(base + 'site-grade.json', import.meta.url)));
+const grade = JSON.parse(readFileSync(new URL(`${base}site-grade.json`, import.meta.url)));
 export function warsawGround(x, z) {
   const g = grade.grid,
     u = Math.max(0, Math.min(g.width - 1.000001, (x - g.origin[0]) / g.stepMeters)),
@@ -732,7 +732,7 @@ function reviewed(o, level) {
   const wrapped = Object.fromEntries(
     ['addQuad', 'addTriangle', 'addConvexPolygon'].map((k) => [
       k,
-      (s, r, p, n, uv, c) => {
+      (s, r, p, _n, uv, c) => {
         const q = p.map((v) => [v[0], v[1] + grade.architectureShift, v[2]]);
         o[k](
           s,

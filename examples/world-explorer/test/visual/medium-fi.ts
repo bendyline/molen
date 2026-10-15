@@ -40,8 +40,11 @@ const read = async (path: string) => {
 const id = new URLSearchParams(location.search).get('id');
 const contextOptions = new URLSearchParams(location.search);
 const contextScale = Number(contextOptions.get('scale') ?? 1);
+// Rotate the standard review cameras around steep or one-sided terrain fixtures.
+const cameraYaw = Number(contextOptions.get('cameraYaw') ?? 0);
 const neighborStyle = contextOptions.get('neighborStyle') ?? 'molen.worldgen.catalog.siheyuan';
 if (!Number.isFinite(contextScale) || contextScale <= 0) throw new Error('Invalid context scale');
+if (!Number.isFinite(cameraYaw)) throw new Error('Invalid review camera yaw');
 const pack = await read('content/worldgen/stylepack.json');
 const match = Object.entries(pack.assets as Record<string, string>).find(([key]) =>
   key.endsWith(id ?? ''),
@@ -307,8 +310,13 @@ function view(options: View = {}) {
     160 * contextScale + reviewCenter[2],
   );
   const positions = { street: [48, 26, 83], block: [97, 62, 168], skyline: [194, 100, 336] };
-  const p =
-      options.position ?? positions[distance].map((v, i) => v * contextScale + reviewCenter[i]),
+  const [x, y, z] = positions[distance];
+  const rotatedPosition = [
+    x * Math.cos(cameraYaw) + z * Math.sin(cameraYaw),
+    y,
+    z * Math.cos(cameraYaw) - x * Math.sin(cameraYaw),
+  ];
+  const p = options.position ?? rotatedPosition.map((v, i) => v * contextScale + reviewCenter[i]),
     look = options.lookAt ?? [
       reviewCenter[0],
       11 * contextScale + reviewCenter[1],
@@ -342,6 +350,7 @@ function view(options: View = {}) {
     graphReads: { ...graphReads },
     neighborStyle,
     contextScale,
+    cameraYaw,
     reflections: reflections ? 'sky-pmrem' : 'none',
   };
 }

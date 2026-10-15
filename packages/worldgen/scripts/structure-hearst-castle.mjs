@@ -3,7 +3,7 @@ import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
 import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
-import { B, c, cleanRing, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
+import { B, cleanRing, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
 const framePath = new URL(

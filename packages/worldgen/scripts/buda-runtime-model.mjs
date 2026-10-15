@@ -853,7 +853,7 @@ function buildBudaRuntime(out, detail) {
   front(o);
   courtPortal(o);
 }
-const buildBudaSkyline = (o) => buildBudaRuntime(o, 'skyline');
+const _buildBudaSkyline = (o) => buildBudaRuntime(o, 'skyline');
 
 const means = {
   stone: [0.7011092892788303, 0.7011092892788303, 0.7011092892788303],

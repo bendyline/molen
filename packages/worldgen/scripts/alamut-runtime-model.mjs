@@ -730,7 +730,7 @@ function buildAlamutRuntime(out, detail) {
     box(f, 'brick', [-7.65, 0, -3.65], [-6.35, 8.812, -2.35], brick);
   }
 }
-function buildAlamutSkyline(out) {
+function _buildAlamutSkyline(out) {
   buildAlamutRuntime(out, 'skyline');
 }
 

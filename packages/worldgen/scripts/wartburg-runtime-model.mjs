@@ -102,8 +102,8 @@ function clean(r, tolerance = 0.15) {
   return area(p) < 0 ? p.reverse() : p;
 }
 function ring(id, detail) {
-  const f = map.features.find((f) => f.id === 'way/' + id);
-  if (!f) throw Error('Missing Wartburg part' + id);
+  const f = map.features.find((f) => f.id === `way/${id}`);
+  if (!f) throw Error(`Missing Wartburg part${id}`);
   return clean(f.points, detail === 'skyline' ? 0.5 : detail === 'district' ? 0.3 : 0.12);
 }
 function cap(o, p, y, slot, color) {
@@ -985,7 +985,7 @@ function openNorthGate(out, detail) {
     ]),
   );
 }
-function originalSkyline(out) {
+function _originalSkyline(out) {
   buildWartburgRuntime(out, 'skyline');
 }
 

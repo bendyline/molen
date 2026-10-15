@@ -1,7 +1,7 @@
 /** Curved Gherkin skin with six dark spiral bands and tiered exterior diagrid. */
 import './install-deterministic-math.mjs';
 import { beam, cross, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
-import { cap, face, lerp, shift } from './signature-tower-expansion-models.mjs';
+import { cap, face, shift } from './signature-tower-expansion-models.mjs';
 import { tube } from './structure-mesh.mjs';
 
 const MEANS = {
@@ -30,14 +30,14 @@ function writer(out, far) {
     );
   };
   return {
-    addTriangle(s, r, p, n, u, c) {
+    addTriangle(s, _r, p, _n, _u, c) {
       tri(s, p, c);
     },
-    addQuad(s, r, p, n, u, c) {
+    addQuad(s, _r, p, _n, _u, c) {
       tri(s, p.slice(0, 3), c);
       tri(s, [p[0], p[2], p[3]], c);
     },
-    addConvexPolygon(s, r, p, n, u, c) {
+    addConvexPolygon(s, _r, p, _n, _u, c) {
       for (let i = 1; i < p.length - 1; i++) tri(s, [p[0], p[i], p[i + 1]], c);
     },
   };
@@ -124,7 +124,7 @@ function build(target, tier) {
           aa = shift(a, normal, 0.035),
           bb = shift(b, normal, 0.035),
           cc = shift(c, normal, 0.035),
-          dd = shift(d, normal, 0.035);
+          _dd = shift(d, normal, 0.035);
         strip(aa, cc, [0, 0.12, 0.09, 0.07][tier]);
         if (tier > 1) {
           strip(aa, bb, 0.08);

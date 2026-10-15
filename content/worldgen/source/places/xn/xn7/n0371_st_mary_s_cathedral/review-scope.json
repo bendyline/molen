@@ -1,0 +1,297 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_granite",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_stainless",
+      "roughness": 0.5,
+      "metallic": 0.8
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.3,
+      "metallic": 0.12
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.6,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tokyo-st-mary-model.mjs",
+    "export": "buildTokyoMarySkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTokyoMaryDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_stainless",
+            "roughness": 0.5,
+            "metallic": 0.8
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildTokyoMaryStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_stainless",
+            "roughness": 0.5,
+            "metallic": 0.8
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTokyoMaryCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_stainless",
+            "roughness": 0.5,
+            "metallic": 0.8
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      118,
+      88,
+      104
+    ],
+    "lookAt": [
+      5,
+      25,
+      1
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tokyo-mary-skyline",
+      "position": [
+        165,
+        124,
+        147
+      ],
+      "lookAt": [
+        5,
+        28,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tokyo-mary-district",
+      "position": [
+        165,
+        124,
+        147
+      ],
+      "lookAt": [
+        5,
+        28,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tokyo-mary-street",
+      "position": [
+        165,
+        124,
+        147
+      ],
+      "lookAt": [
+        5,
+        28,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tokyo-mary-closeup",
+      "position": [
+        165,
+        124,
+        147
+      ],
+      "lookAt": [
+        5,
+        28,
+        1
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard viewer DEM datum 30.944234m; display offset0.4m, mapped perimeter terrain -0.06..2.81m. Side footings follow coarse terrain. Bell base uses local DEM+0.15m; main entry steps/threshold estimate uses local DEM+0.2m with a short visual transition to shell floor. Exact courtyard grading, cuts/fills, steps/ramps/thresholds, absolute altitude and walking remain unverified. No global flattening or road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        139.726526164,
+        35.714287404
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum 30.944234m; display offset0.4m, mapped perimeter terrain -0.06..2.81m. Side footings follow coarse terrain. Bell base uses local DEM+0.15m; main entry steps/threshold estimate uses local DEM+0.2m with a short visual transition to shell floor. Exact courtyard grading, cuts/fills, steps/ramps/thresholds, absolute altitude and walking remain unverified. No global flattening or road replacement."
+    },
+    "bounds": [
+      139.721,
+      35.71,
+      139.733,
+      35.719
+    ],
+    "notes": "Standard viewer DEM datum 30.944234m; display offset0.4m, mapped perimeter terrain -0.06..2.81m. Side footings follow coarse terrain. Bell base uses local DEM+0.15m; main entry steps/threshold estimate uses local DEM+0.2m with a short visual transition to shell floor. Exact courtyard grading, cuts/fills, steps/ramps/thresholds, absolute altitude and walking remain unverified. No global flattening or road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum 30.944234m; display offset0.4m, mapped perimeter terrain -0.06..2.81m. Side footings follow coarse terrain. Bell base uses local DEM+0.15m; main entry steps/threshold estimate uses local DEM+0.2m with a short visual transition to shell floor. Exact courtyard grading, cuts/fills, steps/ramps/thresholds, absolute altitude and walking remain unverified. No global flattening or road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

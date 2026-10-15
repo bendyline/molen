@@ -16,7 +16,7 @@ const root = new URL(
 );
 const read = (n) => JSON.parse(readFileSync(new URL(n, root)));
 const frame = read('map-frame.json'),
-  refs = read('reference-metadata.json'),
+  _refs = read('reference-metadata.json'),
   means = read('surface-means.json'),
   k = structuredClone(frame.controls);
 const co = Math.cos(k.planAngleRadians),
@@ -671,7 +671,7 @@ export function buildLiechtensteinRuntime(o, level = 'closeup') {
   for (const fn of Object.values(liechtensteinParts)) fn(o, d);
 }
 export const buildLiechtensteinSkyline = (o) => buildLiechtensteinRuntime(o, 'skyline');
-const camera = (name, p, look) => ({ name, position: native(p), lookAt: native(look) });
+const _camera = (name, p, look) => ({ name, position: native(p), lookAt: native(look) });
 
 /** Picture-based Liechtenstein Castle exterior fit to standard viewer PMTiles. */
 const grade = JSON.parse(
@@ -704,7 +704,7 @@ export function liechtensteinGround(x, z) {
 }
 function reviewed(o, level) {
   const far = level === 'skyline';
-  function emit(s, r, p, n, uv, c) {
+  function emit(s, r, p, n, _uv, c) {
     if (far && n[1] < -0.98) return;
     const ps = p.map(([x, y, z]) =>
         [

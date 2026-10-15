@@ -1,0 +1,345 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.72,
+      "metallic": 0.3
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.7,
+      "metallic": 0.12
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/utrecht-dom-model.mjs",
+    "export": "buildUtrechtDomSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildUtrechtDomDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildUtrechtDomStreet",
+        "errorMeters": 0.24,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildUtrechtDomCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.7,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -175,
+      115,
+      160
+    ],
+    "lookAt": [
+      -30,
+      34,
+      8
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-utrecht-dom-skyline",
+      "position": [
+        -290,
+        200,
+        260
+      ],
+      "lookAt": [
+        -30,
+        48,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-utrecht-dom-district",
+      "position": [
+        -290,
+        200,
+        260
+      ],
+      "lookAt": [
+        -30,
+        48,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-utrecht-dom-street",
+      "position": [
+        -290,
+        200,
+        260
+      ],
+      "lookAt": [
+        -30,
+        48,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-utrecht-dom-closeup",
+      "position": [
+        -290,
+        200,
+        260
+      ],
+      "lookAt": [
+        -30,
+        48,
+        8
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 12.733629m; display datum offset 0.4m, main/tower/cloister perimeter terrain -1.07..0.81m. Foundations follow terrain; approximate western entries/tower passage thresholds use local DEM +0.22m. Coarse standard terrain does not certify absolute altitude, square paving, threshold/step joins, cut/fill, interiors or walking. No global flattening or modeled connection across the square.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        5.122413686,
+        52.090856631
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 12.733629m; display datum offset 0.4m, main/tower/cloister perimeter terrain -1.07..0.81m. Foundations follow terrain; approximate western entries/tower passage thresholds use local DEM +0.22m. Coarse standard terrain does not certify absolute altitude, square paving, threshold/step joins, cut/fill, interiors or walking. No global flattening or modeled connection across the square."
+    },
+    "bounds": [
+      5.115,
+      52.087,
+      5.13,
+      52.095
+    ],
+    "notes": "Standard DEM datum 12.733629m; display datum offset 0.4m, main/tower/cloister perimeter terrain -1.07..0.81m. Foundations follow terrain; approximate western entries/tower passage thresholds use local DEM +0.22m. Coarse standard terrain does not certify absolute altitude, square paving, threshold/step joins, cut/fill, interiors or walking. No global flattening or modeled connection across the square."
+  },
+  "geographicNote": "Standard DEM datum 12.733629m; display datum offset 0.4m, main/tower/cloister perimeter terrain -1.07..0.81m. Foundations follow terrain; approximate western entries/tower passage thresholds use local DEM +0.22m. Coarse standard terrain does not certify absolute altitude, square paving, threshold/step joins, cut/fill, interiors or walking. No global flattening or modeled connection across the square.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}
