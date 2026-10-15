@@ -1,3 +1,19 @@
+## @bendyline/molen-ambient [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.9...@bendyline/molen-ambient@0.0.10) (2026-10-15)
+
+### Bug Fixes
+
+* 6-DOF airplane, tire dynamics, wind field, exterior animation ([f68f1e8](https://github.com/bendyline/molen/commit/f68f1e807191079e8fb088aa6742ea9758d1054f))
+* Many model improvements ([1e69b33](https://github.com/bendyline/molen/commit/1e69b33755ab30845d3aad267efbaf57e148d09b))
+
+
+### Dependencies
+
+* **@bendyline/molen-figures:** upgraded to 0.0.9
+* **@bendyline/molen-kernel:** upgraded to 0.0.7
+* **@bendyline/molen-schema:** upgraded to 0.0.7
+* **@bendyline/molen-terrain:** upgraded to 0.0.10
+* **@bendyline/molen-client:** upgraded to 0.0.9
+
 ## @bendyline/molen-ambient [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.8...@bendyline/molen-ambient@0.0.9) (2026-10-07)
 
 ### Bug Fixes

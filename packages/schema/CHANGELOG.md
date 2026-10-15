@@ -1,3 +1,10 @@
+## @bendyline/molen-schema [0.0.7](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.6...@bendyline/molen-schema@0.0.7) (2026-10-15)
+
+### Bug Fixes
+
+* 6-DOF airplane, tire dynamics, wind field, exterior animation ([f68f1e8](https://github.com/bendyline/molen/commit/f68f1e807191079e8fb088aa6742ea9758d1054f))
+* Many model improvements ([1e69b33](https://github.com/bendyline/molen/commit/1e69b33755ab30845d3aad267efbaf57e148d09b))
+
 ## @bendyline/molen-schema [0.0.6](https://github.com/bendyline/molen/compare/@bendyline/molen-schema@0.0.5...@bendyline/molen-schema@0.0.6) (2026-10-07)
 
 ### Bug Fixes

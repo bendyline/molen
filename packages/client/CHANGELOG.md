@@ -1,3 +1,18 @@
+## @bendyline/molen-client [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.8...@bendyline/molen-client@0.0.9) (2026-10-15)
+
+### Bug Fixes
+
+* 6-DOF airplane, tire dynamics, wind field, exterior animation ([f68f1e8](https://github.com/bendyline/molen/commit/f68f1e807191079e8fb088aa6742ea9758d1054f))
+* Add accessibility, pause/resume and touch controls to examples ([c7458e4](https://github.com/bendyline/molen/commit/c7458e48538a04e5a8c973d01feae88cc09bd38d))
+* Basic molen fixes ([a348d7e](https://github.com/bendyline/molen/commit/a348d7e23a3c92d78b5ace1d62bb2105223a8336))
+* Many model improvements ([1e69b33](https://github.com/bendyline/molen/commit/1e69b33755ab30845d3aad267efbaf57e148d09b))
+
+
+### Dependencies
+
+* **@bendyline/molen-materials:** upgraded to 0.0.8
+* **@bendyline/molen-schema:** upgraded to 0.0.7
+
 ## @bendyline/molen-client [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-client@0.0.7...@bendyline/molen-client@0.0.8) (2026-10-07)
 
 ### Bug Fixes

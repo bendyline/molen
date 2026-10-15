@@ -1,3 +1,18 @@
+## @bendyline/molen-worldgen [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.8...@bendyline/molen-worldgen@0.0.9) (2026-10-15)
+
+### Bug Fixes
+
+* 6-DOF airplane, tire dynamics, wind field, exterior animation ([f68f1e8](https://github.com/bendyline/molen/commit/f68f1e807191079e8fb088aa6742ea9758d1054f))
+* Don't validate output GLB hashes ([8eedfd3](https://github.com/bendyline/molen/commit/8eedfd3152050d298c9637bf4dc25e0a5c5e3d2a))
+
+
+### Dependencies
+
+* **@bendyline/molen-kernel:** upgraded to 0.0.7
+* **@bendyline/molen-materials:** upgraded to 0.0.8
+* **@bendyline/molen-schema:** upgraded to 0.0.7
+* **@bendyline/molen-client:** upgraded to 0.0.9
+
 ## @bendyline/molen-worldgen [0.0.8](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.7...@bendyline/molen-worldgen@0.0.8) (2026-10-07)
 
 ### Bug Fixes

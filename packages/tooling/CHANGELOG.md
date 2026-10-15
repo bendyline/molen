@@ -1,3 +1,25 @@
+## @bendyline/molen-tooling [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.9...@bendyline/molen-tooling@0.0.10) (2026-10-15)
+
+### Bug Fixes
+
+* Add accessibility, pause/resume and touch controls to examples ([c7458e4](https://github.com/bendyline/molen/commit/c7458e48538a04e5a8c973d01feae88cc09bd38d))
+* Many model improvements ([1e69b33](https://github.com/bendyline/molen/commit/1e69b33755ab30845d3aad267efbaf57e148d09b))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.10
+* **@bendyline/molen-client:** upgraded to 0.0.9
+* **@bendyline/molen-figures:** upgraded to 0.0.9
+* **@bendyline/molen-kernel:** upgraded to 0.0.7
+* **@bendyline/molen-materials:** upgraded to 0.0.8
+* **@bendyline/molen-pack:** upgraded to 0.0.8
+* **@bendyline/molen-physics-rapier:** upgraded to 0.0.7
+* **@bendyline/molen-schema:** upgraded to 0.0.7
+* **@bendyline/molen-terrain:** upgraded to 0.0.10
+* **@bendyline/molen-worldgen:** upgraded to 0.0.9
+* **@bendyline/molen-worldgen-earth:** upgraded to 0.0.10
+
 ## @bendyline/molen-tooling [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-tooling@0.0.8...@bendyline/molen-tooling@0.0.9) (2026-10-07)
 
 ### Bug Fixes
