@@ -191,6 +191,27 @@
       "uvOffset": "meters",
       "uvMirror": false
     },
+    "flatRoof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 2
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.gravel",
+          "weight": 1
+        }
+      ],
+      "palette": "flatRoof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        4,
+        4
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
     "trim": {
       "choices": [
         {
@@ -249,19 +270,43 @@
         },
         {
           "color": "#a9b3ba",
-          "weight": 1,
+          "weight": 2,
           "name": "grey"
         },
         {
-          "color": "#b0735a",
-          "weight": 2,
-          "name": "brick"
+          "color": "#aab59c",
+          "weight": 1,
+          "name": "sage"
         }
       ],
       "jitter": {
         "hue": 0.01,
         "saturation": 0.05,
         "lightness": 0.06
+      }
+    },
+    "brick": {
+      "entries": [
+        {
+          "color": "#b0735a",
+          "weight": 2,
+          "name": "red brick"
+        },
+        {
+          "color": "#c9ab84",
+          "weight": 1,
+          "name": "buff brick"
+        },
+        {
+          "color": "#bb9a7c",
+          "weight": 1,
+          "name": "tan brick"
+        }
+      ],
+      "jitter": {
+        "hue": 0.01,
+        "saturation": 0.04,
+        "lightness": 0.05
       }
     },
     "roof": {
@@ -286,6 +331,25 @@
         "hue": 0.01,
         "saturation": 0.04,
         "lightness": 0.05
+      }
+    },
+    "flatRoof": {
+      "entries": [
+        {
+          "color": "#b3afa6",
+          "weight": 3,
+          "name": "gravel"
+        },
+        {
+          "color": "#c8c5bd",
+          "weight": 2,
+          "name": "membrane"
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.02,
+        "lightness": 0.04
       }
     },
     "trim": {
