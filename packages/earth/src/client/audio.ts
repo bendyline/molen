@@ -166,6 +166,11 @@ export const EARTH_AUDIO_ENVIRONMENT: AudioEnvironmentData = {
     mode: 'shuffle',
     crossfadeS: 6,
   },
+  // Cars striking walls, each other or aircraft (installVehicles emits both, at the car).
+  events: {
+    'vehicle-impact': { sound: 'impact.metal.heavy' },
+    'vehicle-bump': { sound: 'impact.metal.light', gain: 0.7 },
+  },
 };
 
 export interface EarthAudioOptions {

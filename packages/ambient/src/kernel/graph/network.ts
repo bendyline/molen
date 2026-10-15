@@ -83,7 +83,7 @@ export interface TransportNetworkStats {
 
 /** A script-added polyline. */
 export interface AmbientPolyline {
-  class: 'road' | 'rail' | 'path';
+  class: 'road' | 'rail' | 'path' | 'water';
   subclass?: string;
   /** `[x, z]` or `[x, y, z]` points in scene metres. */
   points: ([number, number] | [number, number, number])[];
@@ -141,7 +141,7 @@ export class TransportNetwork implements GraphStore {
     this.traffic = options.traffic ?? 'right';
     this.tunnels = options.tunnels ?? 'hidden';
     this.ground = options.ground ?? (() => 0);
-    this.classes = new Set(options.classes ?? ['road', 'rail', 'walk', 'air']);
+    this.classes = new Set(options.classes ?? ['road', 'rail', 'walk', 'air', 'water']);
   }
 
   /** Change which lane classes are built (applies to tiles registered afterwards). */
@@ -436,6 +436,9 @@ export class TransportNetwork implements GraphStore {
         dense.heights.forEach((h, i) => {
           ys[i] = h;
         });
+      } else if (draft.class === 'water') {
+        // Unspecified water is sea level, never the terrain/seabed sampler.
+        ys.fill(0);
       } else if (draft.bridge || draft.bridgeConnections?.length) {
         const deck = bridgeDeckHeightFn(path, heightAt, {
           ...(draft.deckElevation !== undefined ? { deckElevation: draft.deckElevation } : {}),
@@ -490,7 +493,7 @@ export class TransportNetwork implements GraphStore {
       record.edges.push(id);
       (this.nodes.get(from) as TransportNode).edges.push(id);
       if (to !== from) (this.nodes.get(to) as TransportNode).edges.push(id);
-      const counts = { road: 0, rail: 0, walk: 0, air: 0 };
+      const counts = { road: 0, rail: 0, walk: 0, air: 0, water: 0 };
       for (const laneId of edge.lanes) counts[(this.lanes.get(laneId) as TransportLane).class]++;
       this.grid.insert(edge, counts);
     }
@@ -565,6 +568,10 @@ export class TransportNetwork implements GraphStore {
         make('sl+', 'walk', 1, 1, -o + side * 0.35, SIDEWALK_LIFT);
         make('sl-', 'walk', -1, 1, o + side * 0.35, SIDEWALK_LIFT);
       }
+    } else if (draft.class === 'water') {
+      // Starboard traffic is independent of the country's road driving side.
+      make('f0', 'water', 1, 0, draft.oneway ? 0 : draft.width / 4);
+      if (!draft.oneway) make('b0', 'water', -1, 0, draft.width / 4);
     } else if (draft.class === 'rail') {
       make('f0', 'rail', 1, 0, 0);
       make('b0', 'rail', -1, 0, 0);
@@ -637,15 +644,16 @@ export class TransportNetwork implements GraphStore {
     record.pois.forEach((poi, i) => {
       const wantRail = poi.kind === 'station' || poi.kind === 'tram_stop';
       const wantWalk = poi.kind === 'bus_stop';
-      if (!wantRail && !wantWalk) return;
-      const reach = wantRail ? 25 : 12;
+      const wantWater = poi.kind === 'ferry_terminal';
+      if (!wantRail && !wantWalk && !wantWater) return;
+      const wanted = wantWater ? 'water' : wantRail ? 'rail' : 'walk';
+      const reach = wantWater ? 80 : wantRail ? 25 : 12;
       let best: { edge: TransportEdge; d: number; distance: number } | undefined;
       for (const edgeId of this.grid.edgesNear(poi.x, poi.z, reach)) {
         if (!own.has(edgeId)) continue;
         const edge = this.edges.get(edgeId) as TransportEdge;
-        const hasClass = edge.lanes.some(
-          (l) => this.lanes.get(l)?.class === (wantRail ? 'rail' : 'walk'),
-        );
+        if (wantWater && edge.kind !== 'ferry') continue;
+        const hasClass = edge.lanes.some((l) => this.lanes.get(l)?.class === wanted);
         if (!hasClass) continue;
         const hit = projectOnPath(edge.path, poi.x, poi.z);
         if (hit.distance <= reach && (best === undefined || hit.distance < best.distance))
@@ -654,13 +662,13 @@ export class TransportNetwork implements GraphStore {
       if (best === undefined) return;
       const stop: LaneStop = {
         d: best.d,
-        kind: wantRail ? 'station' : 'bus',
+        kind: wantWater ? 'ferry' : wantRail ? 'station' : 'bus',
         id: `${record.key}:${poi.kind}:${i}`,
         ...(poi.dwell !== undefined ? { dwell: poi.dwell } : {}),
       };
       for (const laneId of best.edge.lanes) {
         const lane = this.lanes.get(laneId) as TransportLane;
-        if (lane.class === (wantRail ? 'rail' : 'walk')) lane.stops.push(stop);
+        if (lane.class === wanted) lane.stops.push(stop);
       }
     });
   }
@@ -751,7 +759,7 @@ export class TransportNetwork implements GraphStore {
   }
 
   stats(): TransportNetworkStats {
-    const laneKm: Record<TransportClass, number> = { road: 0, rail: 0, walk: 0, air: 0 };
+    const laneKm: Record<TransportClass, number> = { road: 0, rail: 0, walk: 0, air: 0, water: 0 };
     for (const lane of this.lanes.values()) laneKm[lane.class] += lane.length / 1000;
     let signals = 0;
     for (const junction of this.junctions.values()) if (junction.control === 'signal') signals++;

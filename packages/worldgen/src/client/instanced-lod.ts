@@ -6,7 +6,7 @@ import type { PreparedModel } from './instanced-models';
 import { ScreenSpaceLod, type ScreenSpaceLodPolicy } from './screen-space-lod';
 
 export interface InstancedPlacementLodOptions {
-  /** Local meters per culling cell (default 512). */
+  /** Local meters per culling cell (default 512); `Infinity` keeps the whole set in one cell. */
   cellSize?: number;
   /** Distance from a cell's bounds before the medium/far model takes over. */
   distances?: [number, number];
@@ -24,8 +24,7 @@ export function createInstancedPlacementLod(
   const size = options.cellSize ?? 512;
   const distances = options.distances ?? [180, 650];
   if (
-    !Number.isFinite(size) ||
-    size <= 0 ||
+    !(size > 0) ||
     !distances.every(Number.isFinite) ||
     distances[0] < 0 ||
     distances[1] <= distances[0]

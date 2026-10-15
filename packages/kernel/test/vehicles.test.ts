@@ -8,10 +8,12 @@ import {
   driveVehicle,
   initialVehicleState,
   installVehicles,
+  Mountable,
   Mounted,
   mountEntity,
   stepVehicle,
   unmountEntity,
+  VehicleInput,
   VehicleState,
   vehicleLocalPoint,
   vehicleMounts,
@@ -142,7 +144,9 @@ describe('mountable vehicle foundation', () => {
       canOccupy: (p) => p[2] < 0.6,
     });
     expect(wall.transform.pos[2]).toBeLessThan(0.6);
-    expect(wall.state.speed).toBe(0);
+    // A hard hit bounces back rather than stopping dead.
+    expect(wall.state.speed).toBeLessThan(0);
+    expect(wall.impact).toBeGreaterThan(30);
   });
   it('follows slopes, handles falling, and rejects steep slopes', () => {
     const input = { throttle: 1, steering: 0, brake: false },
@@ -177,6 +181,43 @@ describe('mountable vehicle foundation', () => {
       { groundHeight: (_x, z) => z },
     );
     expect(steep.state.speed).toBe(0);
+  });
+  it('carries a passenger, who boards and leaves without touching the controls', () => {
+    const w = setup();
+    const mounts = vehicleMounts(SEDAN);
+    w.set('car', Mountable, {
+      ...mounts,
+      seats: [
+        ...mounts.seats,
+        { id: 'passenger', role: 'passenger', position: [-0.4, 1.14, 0.25] },
+      ],
+    });
+    w.spawnRaw({ transform: { pos: [-1.8, 0, 0.25], rot: [0, 0, 0, 1] } }, 'rider');
+    expect(mountEntity(w, 'player', 'car')).toBe(true);
+    driveVehicle(w, 'player', { throttle: 0, steering: 0.4, brake: true });
+    // The passenger seat, not the driver's (which is taken), and the driver keeps the wheel.
+    expect(mountEntity(w, 'rider', 'car')).toBe(false);
+    expect(mountEntity(w, 'rider', 'car', 'passenger')).toBe(true);
+    expect(w.get('car', VehicleInput)?.steering).toBe(0.4);
+    expect(driveVehicle(w, 'rider', { throttle: 1, steering: 0, brake: false })).toBe(false);
+    driveVehicle(w, 'player', { throttle: 1, steering: 0, brake: false });
+    w.stepN(90);
+    const t = w.get('car', Transform) as TransformData;
+    expect(t.pos[2]).toBeGreaterThan(3);
+    expect(w.get('rider', Transform)?.pos).toEqual(vehicleLocalPoint(t, [-0.4, 1.14, 0.25]));
+    // Moving: nobody gets out. Stopped: the passenger leaves by an exit and the driver stays.
+    expect(unmountEntity(w, 'rider', flat)).toBe(false);
+    driveVehicle(w, 'player', { throttle: 0, steering: 0.2, brake: true });
+    w.stepN(120);
+    expect(w.get('car', VehicleState)?.speed).toBe(0);
+    expect(unmountEntity(w, 'rider', flat)).toBe(true);
+    expect(w.has('rider', Mounted)).toBe(false);
+    expect(w.get('rider', Transform)?.pos[1]).toBeCloseTo(0.02, 5);
+    expect(w.get('player', Mounted)?.seat).toBe('driver');
+    expect(w.get('car', VehicleInput)?.steering).toBe(0.2);
+    // The driver leaving idles the controls.
+    expect(unmountEntity(w, 'player', flat)).toBe(true);
+    expect(w.get('car', VehicleInput)?.steering).toBe(0);
   });
   it('replays and restores all durable driving and mount state', () => {
     const a = setup();

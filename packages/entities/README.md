@@ -1,7 +1,7 @@
 # @bendyline/molen-entities
 
 Ids and helpers for Molen's curated entity collection: trees, a shrub and a boulder, the P-51D and
-OH-6 aircraft, and five road vehicles. The models and type documents themselves are content, not
+OH-6 aircraft, eleven road vehicles, six cycles and eight watercraft. The models and type documents themselves are content, not
 code: they ship as the `molen.entities` content pack.
 
 Part of [Molen](https://molen.dev), an AI-legible 3D experience engine: a deterministic headless
@@ -46,7 +46,7 @@ const mustang = molenAircraft(types, 'molen.entities.aircraft.p51d').spec;
 The renderable refs and type ids are identical, for example `molen.entities.tree.conifer.pine`. In
 a project, list the pack in `project.json` `packs` and scenes can use the types by id. Each model is
 a deterministic glTF with a `molen/asset@1` sidecar (bounds and collision hull): Y-up,
-meter-scaled, rooted at ground level.
+meter-scaled, rooted at ground level (watercraft use the waterline).
 
 ## What's in it
 
@@ -54,6 +54,7 @@ meter-scaled, rooted at ground level.
 | --- | --- |
 | `MOLEN_ENTITY_IDS`, `MolenEntityId` | Every id in the pack |
 | `MOLEN_AIRCRAFT_ENTITY_IDS`, `MOLEN_VEHICLE_ENTITY_IDS` | The aircraft and vehicle ids, with typed unions |
+| `MOLEN_CYCLE_ENTITY_IDS`, `MOLEN_WATERCRAFT_ENTITY_IDS` | Rideable cycles and watercraft |
 | `molenAircraft(types, id)`, `molenVehicle(types, id)` | Resolved `aircraft` and `vehicle` component data from a type library |
 | `createMolenEntitiesAssetIndex(baseUrl)` | A client `assets.index` for the pack's files extracted to a static directory (`molen pack extract`) |
 

@@ -196,6 +196,11 @@ export class World {
     return this._tick;
   }
 
+  /** Committed entities, including those without components; pending spawns count after flush. */
+  get entityCount(): number {
+    return this.entities.size;
+  }
+
   /**
    * The error that killed a tick, or undefined for a healthy world. A faulted world refuses to
    * step again: hosts and schedulers check this to report the failure and to refuse a resume

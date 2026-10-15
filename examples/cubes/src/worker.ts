@@ -11,5 +11,6 @@ if (!scene.ok) throw new Error(scene.formatted);
 
 const world = buildWorld(scene.value, setup);
 new KernelHost(world, self as unknown as MessageLink, {
+  startPaused: true,
   keyframeInterval: scene.value.keyframeInterval,
 });

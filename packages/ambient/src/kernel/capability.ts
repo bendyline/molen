@@ -67,6 +67,7 @@ export function ambientCapability(
         ...(density.pedestrian !== undefined
           ? { pedestrian: { perLaneKm: density.pedestrian } }
           : {}),
+        ...(density.boat !== undefined ? { boat: { perLaneKm: density.boat } } : {}),
         ...(density.train !== undefined ? { train: { perLaneKm: density.train } } : {}),
         ...(density.aircraft !== undefined ? { aircraft: { max: density.aircraft } } : {}),
       },

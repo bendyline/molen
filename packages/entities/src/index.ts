@@ -25,7 +25,38 @@ export const MOLEN_VEHICLE_ENTITY_IDS = [
   'molen.entities.vehicle.suv',
   'molen.entities.vehicle.pickup',
   'molen.entities.vehicle.van',
+  'molen.entities.vehicle.sports_coupe',
+  'molen.entities.vehicle.station_wagon',
+  'molen.entities.vehicle.electric_hatchback',
+  'molen.entities.vehicle.taxi',
+  'molen.entities.vehicle.offroad',
+  'molen.entities.vehicle.box_truck',
 ] as const;
+
+/** Rideable motorcycles and bicycles, sharing the vehicle and mountable capabilities. */
+export const MOLEN_CYCLE_ENTITY_IDS = [
+  'molen.entities.cycle.standard_motorcycle',
+  'molen.entities.cycle.cruiser_motorcycle',
+  'molen.entities.cycle.motor_scooter',
+  'molen.entities.cycle.city_bicycle',
+  'molen.entities.cycle.road_bicycle',
+  'molen.entities.cycle.cargo_bicycle',
+] as const;
+
+/** Ambient watercraft; the origin is the waterline. */
+export const MOLEN_WATERCRAFT_ENTITY_IDS = [
+  'molen.entities.watercraft.speedboat',
+  'molen.entities.watercraft.sailboat',
+  'molen.entities.watercraft.fishing_boat',
+  'molen.entities.watercraft.tugboat',
+  'molen.entities.watercraft.container_ship',
+  'molen.entities.watercraft.bulk_carrier',
+  'molen.entities.watercraft.passenger_ferry',
+  'molen.entities.watercraft.car_ferry',
+] as const;
+
+export type MolenCycleEntityId = (typeof MOLEN_CYCLE_ENTITY_IDS)[number];
+export type MolenWatercraftEntityId = (typeof MOLEN_WATERCRAFT_ENTITY_IDS)[number];
 
 export type MolenAircraftEntityId = (typeof MOLEN_AIRCRAFT_ENTITY_IDS)[number];
 export type MolenVehicleEntityId = (typeof MOLEN_VEHICLE_ENTITY_IDS)[number];
@@ -49,11 +80,59 @@ export const MOLEN_ENTITY_IDS = [
   'molen.entities.vehicle.van',
   'molen.entities.transit.bus',
   'molen.entities.transit.lightrail',
+  'molen.entities.vehicle.sports_coupe',
+  'molen.entities.vehicle.station_wagon',
+  'molen.entities.vehicle.electric_hatchback',
+  'molen.entities.vehicle.taxi',
+  'molen.entities.vehicle.offroad',
+  'molen.entities.vehicle.box_truck',
+  'molen.entities.cycle.standard_motorcycle',
+  'molen.entities.cycle.cruiser_motorcycle',
+  'molen.entities.cycle.motor_scooter',
+  'molen.entities.cycle.city_bicycle',
+  'molen.entities.cycle.road_bicycle',
+  'molen.entities.cycle.cargo_bicycle',
+  'molen.entities.watercraft.speedboat',
+  'molen.entities.watercraft.sailboat',
+  'molen.entities.watercraft.fishing_boat',
+  'molen.entities.watercraft.tugboat',
+  'molen.entities.watercraft.container_ship',
+  'molen.entities.watercraft.bulk_carrier',
+  'molen.entities.watercraft.passenger_ferry',
+  'molen.entities.watercraft.car_ferry',
 ] as const;
 
 export type MolenEntityId = (typeof MOLEN_ENTITY_IDS)[number];
 
 const MODEL_PATHS: Record<MolenEntityId, string> = {
+  'molen.entities.vehicle.sports_coupe': 'assets/molen/entities/vehicle/sports_coupe/model.glb',
+  'molen.entities.vehicle.station_wagon': 'assets/molen/entities/vehicle/station_wagon/model.glb',
+  'molen.entities.vehicle.electric_hatchback':
+    'assets/molen/entities/vehicle/electric_hatchback/model.glb',
+  'molen.entities.vehicle.taxi': 'assets/molen/entities/vehicle/taxi/model.glb',
+  'molen.entities.vehicle.offroad': 'assets/molen/entities/vehicle/offroad/model.glb',
+  'molen.entities.vehicle.box_truck': 'assets/molen/entities/vehicle/box_truck/model.glb',
+  'molen.entities.cycle.standard_motorcycle':
+    'assets/molen/entities/cycle/standard_motorcycle/model.glb',
+  'molen.entities.cycle.cruiser_motorcycle':
+    'assets/molen/entities/cycle/cruiser_motorcycle/model.glb',
+  'molen.entities.cycle.motor_scooter': 'assets/molen/entities/cycle/motor_scooter/model.glb',
+  'molen.entities.cycle.city_bicycle': 'assets/molen/entities/cycle/city_bicycle/model.glb',
+  'molen.entities.cycle.road_bicycle': 'assets/molen/entities/cycle/road_bicycle/model.glb',
+  'molen.entities.cycle.cargo_bicycle': 'assets/molen/entities/cycle/cargo_bicycle/model.glb',
+  'molen.entities.watercraft.speedboat': 'assets/molen/entities/watercraft/speedboat/model.glb',
+  'molen.entities.watercraft.sailboat': 'assets/molen/entities/watercraft/sailboat/model.glb',
+  'molen.entities.watercraft.fishing_boat':
+    'assets/molen/entities/watercraft/fishing_boat/model.glb',
+  'molen.entities.watercraft.tugboat': 'assets/molen/entities/watercraft/tugboat/model.glb',
+  'molen.entities.watercraft.container_ship':
+    'assets/molen/entities/watercraft/container_ship/model.glb',
+  'molen.entities.watercraft.bulk_carrier':
+    'assets/molen/entities/watercraft/bulk_carrier/model.glb',
+  'molen.entities.watercraft.passenger_ferry':
+    'assets/molen/entities/watercraft/passenger_ferry/model.glb',
+  'molen.entities.watercraft.car_ferry': 'assets/molen/entities/watercraft/car_ferry/model.glb',
+
   'molen.entities.tree.conifer.pine': 'assets/tree/conifer/pine/model.glb',
   'molen.entities.tree.conifer.fir': 'assets/tree/conifer/fir/model.glb',
   'molen.entities.tree.deciduous.oak': 'assets/tree/deciduous/oak/model.glb',
@@ -78,7 +157,10 @@ export function molenAircraft(types: TypeLibrary, id: MolenAircraftEntityId): Ai
 }
 
 /** Resolved vehicle data for one of the pack's vehicles, from a type library holding it. */
-export function molenVehicle(types: TypeLibrary, id: MolenVehicleEntityId): VehicleData {
+export function molenVehicle(
+  types: TypeLibrary,
+  id: MolenVehicleEntityId | MolenCycleEntityId,
+): VehicleData {
   return types.component<VehicleData>(id, 'vehicle');
 }
 

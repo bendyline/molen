@@ -2,6 +2,7 @@ import { createServer as createHttpServer } from 'node:http';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer as createViteServer } from 'vite';
+import { proxyQualla, QUALLA_PREFIX } from './qualla-proxy.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const examplesRoot = resolve(here, '..');
@@ -9,6 +10,7 @@ const host = process.env.HOST ?? 'localhost';
 const port = Number(process.env.PORT ?? 5225);
 const exampleNames = [
   'world-explorer',
+  'earth-view',
   'lantern-dungeon',
   'city-courier',
   'skybound',
@@ -17,11 +19,17 @@ const exampleNames = [
   'data-viz',
   'cubes',
   'figures-gallery',
+  'dioramas',
 ];
 
 const viteServers = new Map();
 const httpServer = createHttpServer((request, response) => {
   const url = new URL(request.url ?? '/', `http://${request.headers.host ?? 'localhost'}`);
+  // Qualla's published terrain releases, for `?package=qualla` (see qualla-proxy.mjs).
+  if (url.pathname.startsWith(QUALLA_PREFIX)) {
+    void proxyQualla(request, response, url);
+    return;
+  }
   const exampleName = exampleNames.find(
     (name) => url.pathname === `/${name}` || url.pathname.startsWith(`/${name}/`),
   );
@@ -44,6 +52,8 @@ const httpServer = createHttpServer((request, response) => {
     response.end('Example not found.');
   });
 });
+// Each Vite application owns an HMR upgrade listener on the shared HTTP server.
+httpServer.setMaxListeners(exampleNames.length + 5);
 
 async function addViteServer(name, root, base, configFile = false) {
   const vite = await createViteServer({
@@ -76,7 +86,9 @@ httpServer.on('error', (error) => {
 });
 
 httpServer.listen(port, host, () => {
-  console.log(`\n  Molen examples  http://${host}:${port}/\n`);
+  const address = httpServer.address();
+  const listeningPort = typeof address === 'object' && address !== null ? address.port : port;
+  console.log(`\n  Molen examples  http://${host}:${listeningPort}/\n`);
 });
 
 async function close() {

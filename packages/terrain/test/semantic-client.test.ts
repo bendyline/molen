@@ -184,7 +184,7 @@ describe('normalized semantic mesh adapter', () => {
     expect(material.transparent).toBe(false);
     expect(material.depthWrite).toBe(true);
     expect(material.userData.terrainWaterMaterial).toBe(true);
-    expect(material.customProgramCacheKey()).toBe('terrain-water@1');
+    expect(material.customProgramCacheKey()).toBe('terrain-water@2:[]');
     expect(() => setTerrainWaterTime(material, 2.5, [100, 200])).not.toThrow();
   });
 

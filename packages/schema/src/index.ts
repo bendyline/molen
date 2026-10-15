@@ -51,6 +51,15 @@ export {
   soundbankSchema,
   validateSoundbank,
 } from './audio';
+export type {
+  BoatData,
+  BoatInputData,
+  BoatSpec,
+  BoatStateData,
+  WaterSettings,
+  WaterWave,
+} from './boats';
+export { waterSettingsSchema } from './boats';
 export type { PayloadCheck } from './commands';
 export { commandPayloadValidator, compileCommandPayload } from './commands';
 export type {
@@ -90,7 +99,7 @@ export { blockingIssues, formatIssues, noticeIssues } from './issues';
 export type { JsonObject, JsonPrimitive, JsonValue } from './json';
 export { deepMergeJson } from './merge';
 export type { ModelSignalBinding, ModelSignalSource, ModelSignalSpec } from './model-signals';
-export { modelSignalsSchema } from './model-signals';
+export { modelSignalSpecSchema, modelSignalsSchema } from './model-signals';
 export type {
   PackBlock,
   PackEntry,
@@ -192,6 +201,7 @@ export type {
 export type { VehicleInteriorBinding, VehicleInteriorSpec } from './vehicle-interior';
 export { vehicleInteriorSchema } from './vehicle-interior';
 export type {
+  CycleSpec,
   VehicleData,
   VehicleKind,
   VehiclePlacement,

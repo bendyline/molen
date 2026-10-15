@@ -92,7 +92,7 @@ async function loadBundles() {
       });
     }
   }
-  const kindOrder = { nature: 0, aircraft: 1, vehicle: 2, transit: 3 };
+  const kindOrder = { nature: 0, aircraft: 1, vehicle: 2, transit: 3, cycle: 4, watercraft: 5 };
   bundles.sort(
     (a, b) =>
       (kindOrder[a.manifest.kind] ?? Number.MAX_SAFE_INTEGER) -
@@ -149,6 +149,9 @@ function projectDocument(bundles) {
       aircraft: 'scenes/aircraft.scene.json',
       vehicles: 'scenes/vehicles.scene.json',
       transit: 'scenes/transit.scene.json',
+      fleet: 'scenes/fleet.scene.json',
+      cycles: 'scenes/cycles.scene.json',
+      harbor: 'scenes/harbor.scene.json',
     },
     defaultScene: 'gallery',
     types: [
@@ -156,6 +159,8 @@ function projectDocument(bundles) {
       'types/aircraft.types.json',
       'types/vehicle.types.json',
       'types/transit.types.json',
+      'types/cycle.types.json',
+      'types/watercraft.types.json',
     ],
     assets,
     reservations: [
@@ -295,6 +300,22 @@ await emit(
     bundles,
     'transit',
     'Buses and rail cars for ambient traffic; models animate from their ambientRole bindings.',
+  ),
+);
+await emit(
+  'types/cycle.types.json',
+  aggregateTypes(
+    bundles,
+    'cycle',
+    'Rideable bicycles and motorcycles with balanced handling, saddle poses and animated controls.',
+  ),
+);
+await emit(
+  'types/watercraft.types.json',
+  aggregateTypes(
+    bundles,
+    'watercraft',
+    'Waterline-aligned boats, cargo ships and ferries for ambient water routes.',
   ),
 );
 await emit('project.json', projectDocument(bundles));

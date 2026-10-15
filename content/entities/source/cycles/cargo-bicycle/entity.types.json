@@ -1,0 +1,298 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.cargo_bicycle": {
+      "doc": "Rideable cargo bicycle with self-balancing handling, saddle, animated steering and pedals.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.cargo_bicycle",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.cargo_bicycle",
+          "color": "#a16c56",
+          "spec": {
+            "label": "Cargo bicycle",
+            "width": 0.67,
+            "length": 2.55,
+            "height": 1.22,
+            "centerOfMass": [
+              0,
+              0.7,
+              0
+            ],
+            "wheelbase": 1.91,
+            "wheelTrack": 0,
+            "wheelRadius": 0.32,
+            "mass": 125,
+            "engineForce": 165,
+            "maxSpeed": 7,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 5.5,
+            "maxSteer": 0.6,
+            "grip": 6,
+            "driverEye": [
+              0,
+              1.6716000000000002,
+              -0.2200980203727385
+            ],
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 6,
+            "rollingResistance": 0.06,
+            "aerodynamicResistance": 0.006,
+            "terrainAlignRate": 2.5,
+            "supportTolerance": 0.06,
+            "maxStepHeight": 0.14,
+            "maxSlope": 0.55,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2,
+            "pitchStiffness": 0.012,
+            "cycle": {
+              "maxLean": 0.5,
+              "riderLean": 0.25,
+              "handlebarPivot": [
+                0,
+                1.1712,
+                0.2292
+              ],
+              "grips": [
+                [
+                  0.2881,
+                  1.1712,
+                  0.08620000000000003
+                ],
+                [
+                  -0.2881,
+                  1.1712,
+                  0.08620000000000003
+                ]
+              ],
+              "footrests": [
+                [
+                  0.26,
+                  0.388,
+                  -0.2128
+                ],
+                [
+                  -0.26,
+                  0.388,
+                  -0.2128
+                ]
+              ],
+              "pedals": {
+                "center": [
+                  0,
+                  0.272,
+                  -0.191
+                ],
+                "radius": 0.14,
+                "halfWidth": 0.18,
+                "ratio": 2.1
+              }
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front",
+              "wheel-rear"
+            ],
+            "frontWheelNodes": [
+              "wheel-front"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                },
+                "pedalAngle": {
+                  "component": "vehicleState",
+                  "path": [
+                    "pedalAngle"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                },
+                {
+                  "node": "pedal-crank",
+                  "source": "pedalAngle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": 1
+                },
+                {
+                  "node": "pedal-left",
+                  "source": "pedalAngle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -1
+                },
+                {
+                  "node": "pedal-right",
+                  "source": "pedalAngle",
+                  "property": "rotation",
+                  "axis": "x",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "pedalAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                1.0116,
+                -0.3438
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.935,
+              0,
+              -0.3438
+            ],
+            [
+              -0.935,
+              0,
+              -0.3438
+            ],
+            [
+              0,
+              0,
+              -1.875
+            ]
+          ],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "pedalAngle": {
+              "component": "vehicleState",
+              "path": [
+                "pedalAngle"
+              ]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": [
+                "wheelAngle"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "pedal-crank",
+              "source": "pedalAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "pedal-left",
+              "source": "pedalAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -1
+            },
+            {
+              "node": "pedal-right",
+              "source": "pedalAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.cargo_bicycle"
+      ]
+    }
+  }
+}

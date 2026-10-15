@@ -1,6 +1,7 @@
 import type { VehicleData, VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { createModelSignalVisual, type ModelSignalVisual } from './model-signals';
 import {
   createVehicleInteriorVisual,
   type VehicleInteriorSignals,
@@ -15,19 +16,54 @@ export { createVehicleInteriorVisual } from './vehicle-interior';
 export interface VehicleVisual {
   object: THREE.Object3D;
   interior?: VehicleInteriorVisual;
+  /** The visual's exterior `animation` bindings, posed from the same signals as the interior. */
+  animation?: ModelSignalVisual;
   update(steer: number, wheelAngle: number, signals?: VehicleInteriorSignals): void;
   dispose(): void;
 }
 
-/** Bind a loaded entity GLB to generic wheel/steering animation using external node names. */
-export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData): VehicleVisual {
+interface Wheel {
+  node: THREE.Object3D;
+  front: boolean;
+  baseY: number;
+  /** Authored position in the parent's frame, and the wheel centre in the model's frame. */
+  rest: THREE.Vector3;
+  center: THREE.Vector3;
+  /** Rotation from the model's frame into the wheel's parent frame. */
+  toParent: THREE.Quaternion;
+}
+
+const bodyLean = new THREE.Quaternion();
+const leanEuler = new THREE.Euler(0, 0, 0, 'YXZ');
+const leaned = new THREE.Vector3();
+const travel = new THREE.Vector3();
+
+/**
+ * Bind a loaded entity GLB to generic wheel/steering animation using external node names.
+ *
+ * The simulation leans the whole model with its sprung body (`vehicleState.bodyRoll` and
+ * `bodyPitch`). Given those as signals, the wheels take up the lean as suspension travel instead:
+ * each moves along the body's up axis to keep its centre at its resting height, so the outside
+ * wheels stay on the road in a turn rather than sinking into it.
+ */
+export function createVehicleVisual(
+  model: THREE.Object3D,
+  vehicle: Pick<VehicleData, 'visual'> & {
+    color?: string;
+    spec?: { length: number; cycle?: unknown };
+  },
+): VehicleVisual {
   const interior =
     vehicle.visual.interior === undefined
       ? undefined
       : createVehicleInteriorVisual(model, vehicle.visual.interior);
+  const animation =
+    vehicle.visual.animation === undefined
+      ? undefined
+      : createModelSignalVisual(model, vehicle.visual.animation);
   const nodes = new Map<string, THREE.Object3D[]>();
   const frontWheels = new Set(vehicle.visual.frontWheelNodes);
-  const wheels: { node: THREE.Object3D; front: boolean; baseY: number }[] = [];
+  const wheels: Wheel[] = [];
   let steeringWheel: THREE.Object3D | undefined;
   // Types without a paint color keep the model's authored paint.
   const color = vehicle.color !== undefined ? new THREE.Color(vehicle.color) : undefined;
@@ -57,9 +93,22 @@ export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData)
       object.material = Array.isArray(object.material) ? cloned : (cloned[0] as THREE.Material);
     }
   });
+  model.updateMatrixWorld(true);
+  const toModel = new THREE.Matrix4().copy(model.matrixWorld).invert();
   for (const name of vehicle.visual.wheelNodes) {
     for (const node of nodes.get(name) ?? []) {
-      wheels.push({ node, front: frontWheels.has(name), baseY: node.rotation.y });
+      const parent = new THREE.Matrix4().multiplyMatrices(
+        toModel,
+        node.parent?.matrixWorld ?? model.matrixWorld,
+      );
+      wheels.push({
+        node,
+        front: frontWheels.has(name),
+        baseY: node.rotation.y,
+        rest: node.position.clone(),
+        center: node.getWorldPosition(new THREE.Vector3()).applyMatrix4(toModel),
+        toParent: new THREE.Quaternion().setFromRotationMatrix(parent).invert(),
+      });
     }
   }
   if (vehicle.visual.steeringWheelNode !== undefined)
@@ -68,15 +117,31 @@ export function createVehicleVisual(model: THREE.Object3D, vehicle: VehicleData)
   return {
     object: model,
     interior,
+    animation,
     update(steer, angle, signals) {
+      const roll = signals?.bodyRoll ?? 0;
+      const pitch = signals?.bodyPitch ?? 0;
+      const lean = Number.isFinite(roll) && Number.isFinite(pitch) && (roll !== 0 || pitch !== 0);
+      if (lean) bodyLean.setFromEuler(leanEuler.set(pitch, 0, roll));
       for (const wheel of wheels) {
         wheel.node.rotation.y = wheel.baseY + (wheel.front ? -steer : 0);
         const spinner = wheel.node.children[0] ?? wheel.node;
         spinner.rotation.x = angle;
+        wheel.node.position.copy(wheel.rest);
+        // A cycle leans its entire fork and wheel about the tire contact line. Car suspension
+        // compensation would detach its wheels from the fork.
+        if (!lean || vehicle.spec?.cycle !== undefined) continue;
+        // The model leans about its ground origin; move the wheel along the body's up axis by the
+        // height the lean added or took away.
+        const up = travel.set(0, 1, 0).applyQuaternion(bodyLean).y;
+        const lift = (wheel.center.y - leaned.copy(wheel.center).applyQuaternion(bodyLean).y) / up;
+        wheel.node.position.add(travel.set(0, lift, 0).applyQuaternion(wheel.toParent));
       }
       if (interior === undefined && steeringWheel !== undefined)
         steeringWheel.rotation.z = steer * 2.5;
-      interior?.update({ steering: steer, wheelAngle: angle, ...signals });
+      const telemetry = { steering: steer, wheelAngle: angle, ...signals };
+      interior?.update(telemetry);
+      animation?.update(telemetry);
     },
     dispose() {
       const geometries = new Set<THREE.BufferGeometry>();

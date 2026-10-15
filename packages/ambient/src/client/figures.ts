@@ -2,7 +2,9 @@
  * Pedestrians as procedural figures, posed without the kernel figures systems (so a main-thread
  * host never loads the script host): gait comes from each agent's speed and the distance it has
  * walked, which keeps feet planted across lane changes. Meshes are pooled per body key, detail
- * tiers follow distance with hysteresis, and pose evaluation is budgeted per frame.
+ * tiers follow distance with hysteresis, and pose evaluation is budgeted per frame. A walker can
+ * also be seated (`mode: 'sit'`, `anchor: 'eye'` for a vehicle seat) or turn its head toward a
+ * point (`lookAt`), which is how a host draws its own characters with the same bodies.
  */
 
 import {
@@ -20,17 +22,41 @@ import {
   type ResolvedFigureDescriptor,
   resolveFigureDescriptor,
   strideRateFor,
+  worldToFigure,
 } from '@bendyline/molen-figures/client';
 import * as THREE from 'three';
 
 export interface WalkerView {
   id: string;
   figure: FigureData;
+  /** World position of the walker's `anchor` point (its feet unless `anchor` says otherwise). */
   pos: readonly [number, number, number];
   rot: readonly [number, number, number, number];
+  /** Planar speed, m/s. */
   speed: number;
+  /** Tick the current motion began. */
   since: number;
   hidden: boolean;
+  /**
+   * The gait: `idle` or `walk` from `speed` by default, `run` for the running gait, `sit` for a
+   * seated pose (a passenger). Seated and eye-anchored walkers draw only at the animated detail
+   * tiers, since a rigid stand-in cannot sit.
+   */
+  mode?: 'idle' | 'walk' | 'run' | 'sit';
+  /**
+   * Which point of the body sits at `pos`: the feet (`origin`, default) or the eye (`eye`, the
+   * point a vehicle seat names).
+   */
+  anchor?: 'origin' | 'eye' | 'pelvis';
+  /** Saddle-relative cycle contact points, shared with the kernel pose evaluator. */
+  riding?: import('@bendyline/molen-figures/client').PoseEvalOptions['riding'];
+  /** A world point the head turns toward (within the neck's reach). */
+  lookAt?: readonly [number, number, number];
+}
+
+/** Whether a walker's pose depends on more than its gait, so a rigid stand-in would be wrong. */
+function posed(walker: WalkerView): boolean {
+  return walker.mode === 'sit' || (walker.anchor !== undefined && walker.anchor !== 'origin');
 }
 
 interface Active {
@@ -155,6 +181,8 @@ export class AmbientFigures {
         if (skinned >= this.budget.skinned) tier = 2;
         else skinned++;
       }
+      // A seated or eye-anchored body needs bones; past the animated tiers it is not drawn.
+      if (tier === 2 && posed(w)) tier = undefined;
       if (tier === undefined) {
         if (entry !== undefined) {
           this.releaseMesh(entry.key, entry.mesh);
@@ -220,21 +248,56 @@ export class AmbientFigures {
       chosen.push(rest[(this.cursor + i) % rest.length] as [string, Active]);
     }
     if (rest.length > 0) this.cursor = (this.cursor + budget - nearest) % rest.length;
+    // A new seated or anchored body is posed at once: its bind pose would stand at the seat.
+    const picked = new Set(chosen.map(([id]) => id));
+    for (const pair of rest) {
+      const walker = byId.get(pair[0]);
+      if (
+        pair[1].pose === undefined &&
+        !picked.has(pair[0]) &&
+        walker !== undefined &&
+        posed(walker)
+      )
+        chosen.push(pair);
+    }
     for (const [id, entry] of chosen) {
       const walker = byId.get(id);
       if (walker === undefined) continue;
-      const moving = walker.speed > 0.05;
+      const seated = walker.mode === 'sit';
+      const moving = !seated && walker.speed > 0.05 && walker.mode !== 'idle';
       const strideRate = moving ? strideRateFor(walker.speed, entry.rig.legLength) : 0;
       const stride = strideRate > 0 ? walker.speed / strideRate : 1;
       const state: FigureStateData = {
-        mode: moving ? 'walk' : 'idle',
-        speed: walker.speed,
+        mode: seated ? 'sit' : moving ? (walker.mode === 'run' ? 'run' : 'walk') : 'idle',
+        speed: moving ? walker.speed : 0,
         strideRate,
         phaseAt: moving ? (entry.walked / stride) % 1 : 0,
         phaseAtTick: tick,
         modeAtTick: walker.since,
       };
-      entry.pose = evaluatePose(entry.rig, state, tick, { tickRate, seed: entry.seed }, entry.pose);
+      const lookTarget =
+        walker.lookAt !== undefined
+          ? worldToFigure({ pos: [...walker.pos], rot: [...walker.rot] }, [
+              walker.lookAt[0],
+              walker.lookAt[1],
+              walker.lookAt[2],
+            ])
+          : undefined;
+      entry.pose = evaluatePose(
+        entry.rig,
+        state,
+        tick,
+        {
+          tickRate,
+          seed: entry.seed,
+          riding: walker.riding,
+          ...(lookTarget !== undefined ? { lookTarget } : {}),
+          ...(walker.anchor !== undefined && walker.anchor !== 'origin'
+            ? { anchor: walker.anchor }
+            : {}),
+        },
+        entry.pose,
+      );
       applyPose(entry.pose, entry.mesh.bones);
     }
   }

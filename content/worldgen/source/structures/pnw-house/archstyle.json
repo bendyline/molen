@@ -239,6 +239,27 @@
       "uvOffset": "meters",
       "uvMirror": false
     },
+    "flatRoof": {
+      "choices": [
+        {
+          "ref": "matgraph:molen.worldgen.material.membrane",
+          "weight": 2
+        },
+        {
+          "ref": "matgraph:molen.worldgen.material.gravel",
+          "weight": 1
+        }
+      ],
+      "palette": "flatRoof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [
+        4,
+        4
+      ],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
     "trim": {
       "choices": [
         {
@@ -334,6 +355,16 @@
           "color": "#6f9370",
           "weight": 1,
           "name": "forest green"
+        },
+        {
+          "color": "#c6c8c6",
+          "weight": 2,
+          "name": "light grey"
+        },
+        {
+          "color": "#a3a9ad",
+          "weight": 1,
+          "name": "pewter"
         }
       ],
       "jitter": {
@@ -351,7 +382,7 @@
         },
         {
           "color": "#725c49",
-          "weight": 2,
+          "weight": 1,
           "name": "brown shingle"
         },
         {
@@ -361,19 +392,38 @@
         },
         {
           "color": "#66717c",
-          "weight": 2,
+          "weight": 3,
           "name": "slate grey"
         },
         {
-          "color": "#80513f",
+          "color": "#6b665f",
           "weight": 1,
-          "name": "rust brown"
+          "name": "weathered grey"
         }
       ],
       "jitter": {
         "hue": 0.01,
         "saturation": 0.04,
         "lightness": 0.05
+      }
+    },
+    "flatRoof": {
+      "entries": [
+        {
+          "color": "#b3afa6",
+          "weight": 3,
+          "name": "gravel"
+        },
+        {
+          "color": "#c8c5bd",
+          "weight": 2,
+          "name": "membrane"
+        }
+      ],
+      "jitter": {
+        "hue": 0,
+        "saturation": 0.02,
+        "lightness": 0.04
       }
     },
     "trim": {

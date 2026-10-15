@@ -27,3 +27,25 @@ The panel is an approximation combining period and restored references, not a se
 restoration. Additional engine/system instruments and switches are visual; the existing bound
 airspeed, altitude, heading, climb, RPM, attitude and stick pivots remain live. The game solver's
 level ground pose is retained; a parked Mustang normally has a nose-up taildragger attitude.
+
+## Landing gear and flaps
+
+The gear and flap motion was checked against descriptions rather than drawings. These were the
+claims used, and where they came from:
+
+- The main gear retracts inward toward the centreline, 11 ft 10 in between wheel centres:
+  [Mustang: Thoroughbred Stallion of the Air, "Structures and Systems"](https://erenow.org/ww/mustang-thoroughbred-stallion-of-the-air/15.php).
+  The model's track is 3.66 m (12 ft).
+- A sequencing valve opens the inner wheel doors, moves the gear and closes the doors again, both
+  ways, so the doors are shut with the gear down; they are held up only by hydraulic pressure and
+  droop once it bleeds off after shutdown: modelers' and pilots' discussions at
+  [Finescale Modeler](https://forum.finescale.com/t/mustang-gear-doors-and-flaps-the-eternal-debate/255191)
+  and [IL-2 Sturmovik forum](https://forum.il2sturmovik.com/topic/55064-p-51-shut-down-procedure-hydraulic-pressure-release).
+  The droop is not modelled: the simulation has no hydraulic pressure.
+- The tail wheel is steerable and fully retractable, with doors:
+  [Mustang: Thoroughbred Stallion of the Air](https://erenow.org/ww/mustang-thoroughbred-stallion-of-the-air/15.php).
+  Which way it folds was not confirmed; the model folds it forward, the only direction this
+  airframe has room for.
+- Flaps set in 10° steps to 50°, and 10–15 s for the gear and 11–15 s for full flap travel, are
+  attributed by secondary sources to the period pilot's manuals (AAF Manual 51-127-5); the manual
+  itself was not consulted.

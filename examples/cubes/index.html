@@ -6,11 +6,16 @@
     <title>molen — cubes</title>
     <style>
       html, body { margin: 0; height: 100%; overflow: hidden; background: #11131a; }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+      #view:focus-visible { outline: 3px solid #ffd37a; outline-offset: -4px; }
       #view { display: block; width: 100vw; height: 100vh; }
     </style>
   </head>
   <body>
-    <canvas id="view"></canvas>
+    <main>
+    <h1 class="sr-only">Cubes</h1>
+    <canvas id="view" tabindex="0" aria-label="Animated cubes. Press Space to spawn a cube."></canvas>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

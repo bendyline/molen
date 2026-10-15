@@ -16,7 +16,16 @@ export interface NavigationPointerSurface {
   getBoundingClientRect?(): { left: number; top: number; width: number; height: number };
   requestPointerLock?(): unknown;
   focus?(options?: { preventScroll?: boolean }): void;
-  ownerDocument?: { pointerLockElement?: unknown; exitPointerLock?(): void } | null;
+  ownerDocument?: {
+    pointerLockElement?: unknown;
+    exitPointerLock?(): void;
+    addEventListener?(type: string, listener: () => void): void;
+    removeEventListener?(type: string, listener: () => void): void;
+    defaultView?: {
+      addEventListener(type: string, listener: () => void): void;
+      removeEventListener(type: string, listener: () => void): void;
+    } | null;
+  } | null;
 }
 
 /** The pointer-event fields the tracker reads. */
@@ -109,6 +118,7 @@ export class NavigationPointer {
     this.listen('pointermove', (event: NavigationPointerEvent) => this.move(event));
     this.listen('pointerup', (event: NavigationPointerEvent) => this.up(event, true));
     this.listen('pointercancel', (event: NavigationPointerEvent) => this.up(event, false));
+    this.listen('lostpointercapture', (event: NavigationPointerEvent) => this.up(event, false));
     this.listen('wheel', (event: NavigationWheelEvent) => this.wheel(event), { passive: false });
     this.listen('contextmenu', (event: { preventDefault?(): void }) => event.preventDefault?.());
   }
@@ -129,7 +139,11 @@ export class NavigationPointer {
 
   /** Forget held pointers and pending gestures (e.g. on blur or a mode change). */
   reset(): void {
+    const captured = [...this.pointers.keys()];
     this.pointers.clear();
+    for (const id of captured) {
+      if (this.surface.hasPointerCapture?.(id) === true) this.surface.releasePointerCapture?.(id);
+    }
     this.pending = emptyGestures();
   }
 
@@ -169,14 +183,20 @@ export class NavigationPointer {
       startX: event.clientX,
       startY: event.clientY,
       startTime: this.now(),
-      moved: false,
+      moved: button !== 0 || event.shiftKey === true || this.pointers.size > 0,
       pan: button === 1 || button === 2 || event.shiftKey === true,
     });
+    // A two-finger gesture never becomes a marker tap when the last finger lifts.
+    if (this.pointers.size > 1) {
+      for (const pointer of this.pointers.values()) pointer.moved = true;
+    }
     this.surface.setPointerCapture?.(event.pointerId);
   }
 
   private move(event: NavigationPointerEvent): void {
     if (this.locked() && this.pointers.size <= 1) {
+      const pointer = this.pointers.get(event.pointerId);
+      if (pointer !== undefined && (event.movementX || event.movementY)) pointer.moved = true;
       this.pending.look[0] += event.movementX ?? 0;
       this.pending.look[1] += event.movementY ?? 0;
       return;

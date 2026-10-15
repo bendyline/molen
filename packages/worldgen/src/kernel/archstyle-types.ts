@@ -134,6 +134,8 @@ export interface ArchFacade {
 export interface ArchMaterialChoice {
   ref: string;
   weight: number;
+  /** Key of `palettes` that tints this choice instead of the part palette. */
+  palette?: string;
 }
 
 export interface ArchMaterialSpec {
@@ -197,6 +199,8 @@ export interface ArchStyleDoc {
   materials: {
     wall: ArchMaterialSpec;
     roof: ArchMaterialSpec;
+    /** Replaces `roof` when the style resolves a flat roof (a flat choice or the flat fallback). */
+    flatRoof?: ArchMaterialSpec;
     trim: ArchMaterialSpec;
     foundation: ArchMaterialSpec;
     window?: ArchMaterialSpec;

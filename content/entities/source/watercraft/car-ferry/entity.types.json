@@ -1,0 +1,136 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.watercraft.car_ferry": {
+      "doc": "Roll-on car ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.car_ferry",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "ferry",
+          "length": 64.2,
+          "width": 17.6,
+          "height": 13,
+          "cruise": 8,
+          "max": 8,
+          "weight": 0.2,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": [
+            "#6f9684"
+          ]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.car_ferry",
+          "color": "#6f9684",
+          "spec": {
+            "label": "Roll-on car ferry",
+            "length": 64.2,
+            "width": 17.6,
+            "height": 13,
+            "draft": 3,
+            "mass": 1689600.0000000002,
+            "thrust": 202752.00000000003,
+            "maxSpeed": 10.4,
+            "reverseSpeed": 3,
+            "turnRate": 0.046875,
+            "turnResponse": 5.333333333333333,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 0.7,
+            "driverEye": [
+              3.04,
+              9.8,
+              14.72
+            ]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                3.04,
+                9.8,
+                14.72
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -3.04,
+                9.8,
+                14.72
+              ]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [
+                4.0,
+                3.1500000000000004,
+                -16.0
+              ]
+            }
+          ],
+          "exits": [
+            [
+              9.4,
+              2.2,
+              14.72
+            ],
+            [
+              -9.4,
+              2.2,
+              14.72
+            ]
+          ],
+          "entries": [
+            [
+              8.0,
+              3.2,
+              14.72
+            ],
+            [
+              -8.0,
+              3.2,
+              14.72
+            ]
+          ],
+          "reach": 3.5
+        }
+      },
+      "assets": [
+        "molen.entities.watercraft.car_ferry"
+      ]
+    }
+  }
+}

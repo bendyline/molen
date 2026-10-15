@@ -16,7 +16,7 @@ export type TransportNetworkPoint = [number, number] | [number, number, number];
 
 export interface TransportNetworkWay {
   id?: string;
-  class: 'road' | 'rail' | 'path' | 'air';
+  class: 'road' | 'rail' | 'path' | 'air' | 'water';
   subclass?: string;
   points: TransportNetworkPoint[];
   oneway?: boolean;
@@ -32,7 +32,7 @@ export interface TransportNetworkWay {
 export interface TransportNetworkStation {
   id: string;
   at: [number, number];
-  kind: 'rail' | 'bus';
+  kind: 'rail' | 'bus' | 'ferry';
   dwell?: number;
 }
 
@@ -98,6 +98,15 @@ export function wayDraft(way: TransportNetworkWay): EdgeDraft | undefined {
     ...(way.speed !== undefined ? { speed: way.speed } : {}),
     ...(way.name !== undefined ? { name: way.name } : {}),
   };
+  if (way.class === 'water')
+    return {
+      ...common,
+      class: 'water',
+      kind: way.subclass === 'ferry' ? 'ferry' : 'channel',
+      width: way.width ?? 60,
+      lanes: way.oneway ? 1 : 2,
+      oneway: way.oneway === true,
+    };
   if (way.class === 'rail')
     return {
       ...common,
@@ -130,7 +139,12 @@ export function documentPois(doc: TransportNetworkDocument): WorldPoi[] {
   const pois: WorldPoi[] = [];
   for (const station of doc.stations ?? [])
     pois.push({
-      kind: station.kind === 'rail' ? 'station' : 'bus_stop',
+      kind:
+        station.kind === 'ferry'
+          ? 'ferry_terminal'
+          : station.kind === 'rail'
+            ? 'station'
+            : 'bus_stop',
       x: station.at[0],
       z: station.at[1],
       name: station.id,

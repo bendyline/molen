@@ -13,9 +13,15 @@ import {
 } from './schema';
 
 /** An ambient NPC class. */
-export type AmbientKind = 'car' | 'pedestrian' | 'train' | 'aircraft';
+export type AmbientKind = 'car' | 'pedestrian' | 'train' | 'aircraft' | 'boat';
 
-export const AMBIENT_KINDS: readonly AmbientKind[] = ['car', 'pedestrian', 'train', 'aircraft'];
+export const AMBIENT_KINDS: readonly AmbientKind[] = [
+  'car',
+  'pedestrian',
+  'train',
+  'aircraft',
+  'boat',
+];
 
 /** An aircraft corridor: a straight line flown at linearly varying altitude. */
 export interface AmbientAirCorridor extends JsonObject {
@@ -35,6 +41,8 @@ export interface AmbientAgentData extends JsonObject {
   lane: string;
   s: number;
   speed: number;
+  /** Vessel cruise limit, stored so checkpoint/replay does not depend on a mutable type pool. */
+  cruise?: number;
   prev?: string;
   next?: string;
   seed: number;
@@ -69,7 +77,7 @@ export interface AmbientRoleVisual extends JsonObject {
 }
 
 export interface AmbientRoleData extends JsonObject {
-  role: 'car' | 'bus' | 'rail' | 'aircraft';
+  role: 'car' | 'bus' | 'rail' | 'aircraft' | 'boat' | 'ferry';
   length?: number;
   width?: number;
   height?: number;

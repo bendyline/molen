@@ -1,4 +1,6 @@
 import { mountExperience } from '@bendyline/molen-client';
+import { createGameControls } from '../../shared/game-controls';
+import { readyToPlay } from '../../shared/playback';
 import { startAudio } from './audio';
 import { scene } from './scene';
 import '../../game-shell.css';
@@ -23,6 +25,7 @@ const mounted = await mountExperience({
   link: worker,
   scene: scene(),
   canvas,
+  frameLoop: 'manual',
   antialias: true,
   pixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
   sceneOptimization: { maxLocalLights: 6 },
@@ -43,29 +46,22 @@ client.onDiag((d) => {
   if (d.code !== 'tick-overrun') diagnostic(`${d.code}: ${JSON.stringify(d.detail)}`);
 });
 client.onEvent('script-error', (e) => diagnostic(JSON.stringify(e.payload)));
+let controls: ReturnType<typeof createGameControls> | undefined;
+let disposed = false;
+void readyToPlay(client)
+  .catch((error: unknown) => diagnostic(String(error)))
+  .then(() => {
+    if (disposed) return;
+    canvas.dataset.assetsReady = 'true';
+    controls = createGameControls({ kind: 'dungeon', client, input: mounted.input, canvas });
+  });
 element('restart').addEventListener('click', () => {
-  client.command('restart');
+  controls?.restart();
   canvas.focus();
 });
-let assetsLoading = false;
 const timer = setInterval(() => {
   const g = client.get('game', 'dungeonGame');
   if (!g) return;
-  if (!assetsLoading) {
-    assetsLoading = true;
-    void client
-      .ready()
-      .then(() => {
-        canvas.dataset.assetsReady = 'true';
-      })
-      .catch((error: unknown) => diagnostic(String(error)))
-      .finally(() => {
-        // The worker booted paused (src/worker.ts) so the vault does not run during the load.
-        // Resume either way: a model that failed to arrive should degrade the scene, not freeze
-        // the game — the diagnostic above already says what went wrong.
-        client.control({ action: 'resume' });
-      });
-  }
   const p = client.get('player', 'transform');
   const pos = p?.pos as number[] | undefined;
   element('message').textContent = String(g.message);
@@ -100,15 +96,18 @@ const timer = setInterval(() => {
 }, 80);
 // Optional mouse look; keyboard turning remains available without pointer lock.
 const lock = (): void => {
+  if (canvas.dataset.paused === 'true') return;
   void canvas.requestPointerLock()?.catch(() => {});
 };
 const look = (event: MouseEvent): void => {
-  if (document.pointerLockElement === canvas)
+  if (document.pointerLockElement === canvas && canvas.dataset.paused !== 'true')
     client.command('look', { yaw: Math.max(-1, Math.min(1, event.movementX * 0.003)) });
 };
 canvas.addEventListener('click', lock);
 document.addEventListener('mousemove', look);
 function dispose(): void {
+  disposed = true;
+  controls?.dispose();
   clearInterval(timer);
   void stopAudio.then((stop) => stop());
   mounted.dispose();
@@ -116,5 +115,8 @@ function dispose(): void {
   canvas.removeEventListener('click', lock);
   document.removeEventListener('mousemove', look);
 }
-window.addEventListener('pagehide', dispose, { once: true });
+window.addEventListener('pagehide', (event) => {
+  // A cached page resumes the same workers and renderer on Back/Forward.
+  if (!event.persisted) dispose();
+});
 if (import.meta.hot) import.meta.hot.dispose(dispose);

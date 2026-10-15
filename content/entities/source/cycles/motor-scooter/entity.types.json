@@ -1,0 +1,245 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.cycle.motor_scooter": {
+      "doc": "Rideable motor scooter with self-balancing handling, saddle, animated steering.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.cycle.motor_scooter",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "vehicle": {
+          "kind": "molen.entities.cycle.motor_scooter",
+          "color": "#9eb6a2",
+          "spec": {
+            "label": "Motor scooter",
+            "width": 0.7,
+            "length": 1.85,
+            "height": 1.2,
+            "centerOfMass": [
+              0,
+              0.6,
+              0
+            ],
+            "wheelbase": 1.39,
+            "wheelTrack": 0,
+            "wheelRadius": 0.23,
+            "mass": 185,
+            "engineForce": 900,
+            "maxSpeed": 22,
+            "reverseSpeed": 0,
+            "brakeDeceleration": 8,
+            "maxSteer": 0.6,
+            "grip": 8,
+            "driverEye": [
+              0,
+              1.6560000000000001,
+              -0.1264980203727385
+            ],
+            "steeringRate": 2.5,
+            "steeringFadeSpeed": 12,
+            "rollingResistance": 0.12,
+            "aerodynamicResistance": 0.003,
+            "terrainAlignRate": 2.5,
+            "supportTolerance": 0.06,
+            "maxStepHeight": 0.2,
+            "maxSlope": 0.55,
+            "drive": "rear",
+            "suspensionDamping": 1,
+            "suspensionFrequency": 2,
+            "pitchStiffness": 0.012,
+            "cycle": {
+              "maxLean": 0.65,
+              "riderLean": 0.25,
+              "handlebarPivot": [
+                0,
+                1.152,
+                0.4726
+              ],
+              "grips": [
+                [
+                  0.301,
+                  1.152,
+                  0.17980000000000002
+                ],
+                [
+                  -0.301,
+                  1.152,
+                  0.17980000000000002
+                ]
+              ],
+              "footrests": [
+                [
+                  0.26,
+                  0.30700000000000005,
+                  -0.1712
+                ],
+                [
+                  -0.26,
+                  0.30700000000000005,
+                  -0.1712
+                ]
+              ]
+            }
+          },
+          "visual": {
+            "wheelNodes": [
+              "wheel-front",
+              "wheel-rear"
+            ],
+            "frontWheelNodes": [
+              "wheel-front"
+            ],
+            "paintMaterial": "vehicle-paint-and-trim",
+            "animation": {
+              "sources": {
+                "steering": {
+                  "component": "vehicleState",
+                  "path": [
+                    "steer"
+                  ]
+                },
+                "pedalAngle": {
+                  "component": "vehicleState",
+                  "path": [
+                    "pedalAngle"
+                  ]
+                }
+              },
+              "bindings": [
+                {
+                  "node": "handlebar",
+                  "source": "steering",
+                  "property": "rotation",
+                  "axis": "y",
+                  "scale": -1
+                }
+              ]
+            }
+          }
+        },
+        "vehicleInput": {
+          "throttle": 0,
+          "steering": 0,
+          "brake": true
+        },
+        "vehicleState": {
+          "speed": 0,
+          "steer": 0,
+          "yaw": 0,
+          "pitch": 0,
+          "roll": 0,
+          "vy": 0,
+          "wheelAngle": 0,
+          "grounded": true,
+          "waitingForTerrain": false
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0,
+                0.996,
+                -0.2502
+              ]
+            }
+          ],
+          "exits": [
+            [
+              0.95,
+              0,
+              -0.2502
+            ],
+            [
+              -0.95,
+              0,
+              -0.2502
+            ],
+            [
+              0,
+              0,
+              -1.525
+            ]
+          ],
+          "reach": 2.5
+        },
+        "model.signals": {
+          "sources": {
+            "steering": {
+              "component": "vehicleState",
+              "path": [
+                "steer"
+              ]
+            },
+            "pedalAngle": {
+              "component": "vehicleState",
+              "path": [
+                "pedalAngle"
+              ]
+            },
+            "wheelAngle": {
+              "component": "vehicleState",
+              "path": [
+                "wheelAngle"
+              ]
+            }
+          },
+          "bindings": [
+            {
+              "node": "handlebar",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front",
+              "source": "steering",
+              "property": "rotation",
+              "axis": "y",
+              "scale": -1
+            },
+            {
+              "node": "wheel-front-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            },
+            {
+              "node": "wheel-rear-spin",
+              "source": "wheelAngle",
+              "property": "rotation",
+              "axis": "x",
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "assets": [
+        "molen.entities.cycle.motor_scooter"
+      ]
+    }
+  }
+}

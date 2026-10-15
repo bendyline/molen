@@ -211,10 +211,11 @@ function resolvePart(
       )
     ];
   const ref = choice?.ref ?? spec.choices[0]?.ref ?? 'palette:#cccccc';
-  const palette = spec.palette !== undefined ? style.palettes[spec.palette] : undefined;
+  const paletteKey = choice?.palette ?? spec.palette;
+  const palette = paletteKey !== undefined ? style.palettes[paletteKey] : undefined;
   const color: RGB =
     spec.tint === 'multiply' && palette !== undefined
-      ? samplePalette(palette, aspectSeed(seed, `palette:${spec.palette}`))
+      ? samplePalette(palette, aspectSeed(seed, `palette:${paletteKey}`))
       : [1, 1, 1];
   const scaleU = spec.uvScale?.[0] ?? 4;
   let offsetU = 0;
@@ -404,9 +405,13 @@ export function resolveBuildingRecipe(
       ? { baseHeight, floorLines: bandSpec.floorLines, corniceHeight }
       : undefined;
 
+  const flatRoof = type === 'flat' ? style.materials.flatRoof : undefined;
   const parts: BuildingRecipe['parts'] = {
     wall: resolvePart(style.materials.wall, style, seed, 'wall', collapse),
-    roof: resolvePart(style.materials.roof, style, seed, 'roof', collapse),
+    roof:
+      flatRoof !== undefined
+        ? resolvePart(flatRoof, style, seed, 'flatRoof', collapse)
+        : resolvePart(style.materials.roof, style, seed, 'roof', collapse),
     trim: resolvePart(style.materials.trim, style, seed, 'trim', collapse),
     foundation: resolvePart(style.materials.foundation, style, seed, 'foundation', collapse),
     window:

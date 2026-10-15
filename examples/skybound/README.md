@@ -18,6 +18,24 @@ npm run dev
 
 A/D or Left/Right: run. Space: jump; hold for a full jump, release for a short hop. R: restart.
 
+## Accessible play
+
+The game offers **Pause animation**, **Touch controls**, and **Text play** beside the HUD.
+Touch buttons support simultaneous holds (move while jumping, steering, or striking); releasing,
+cancelling, hiding the page, or pausing releases every held action. Touch controls appear by default
+on devices with a coarse pointer and can also be enabled manually.
+
+Reduced-motion preferences start the game paused. Pausing stops the simulation, camera, rendering,
+and audio; returning from a hidden page requires an explicit resume. The world also waits for its
+initial snapshot and assets before play starts.
+
+**Text play** (or `?text=1`) describes the actual world: position, objectives, nearby hazards and
+resources. Named buttons advance short turns, then pause so reading takes no game time. Precise
+actions use two ticks, including the release tick. Keyboard and assistive activation work on the
+same buttons. The dungeon additionally offers compass and target-facing controls. Visual play can
+be resumed from the same state. These controls change input and pacing; the game's collisions,
+combat, collectibles, time limit and win conditions remain in its scene scripts.
+
 ## Authoring map
 
 - `scene.json`: validated prefabs, level entities, component schemas, command payloads, input bindings, camera, physics, and gameplay configuration.

@@ -128,7 +128,7 @@ makes a sound flicker.
 | --- | --- |
 | `<component>.<field>` | A field of a component on the source's entity, e.g. `vehicleState.speed`, `aircraftState.rpm`, `transform.pos.1`. In `audioEnvironment` rules it reads the `listenerEntity` |
 | `self.speed`, `self.distance`, `self.x/y/z` | The source entity's measured speed (m/s), distance travelled (m) and position |
-| `self.occupied` | true while someone rides the source entity (an entity's `mounted` component names it) |
+| `self.occupied` | true while someone rides the source entity (an entity's `mounted` component names it), in any seat but a `passenger` one: a passenger alone does not start an engine |
 | `listener.speed`, `listener.distance`, `listener.x/y/z`, `listener.altitude` | The listener's speed, odometer and position |
 | `listener.heightAboveGround` | What the host reports as the listener's height above the terrain (m); 0 when it reports nothing |
 | `listener.mode`, `listener.grounded`, `listener.surface`, `listener.indoors` | What the host reports: walk, drive, fly, pilot or orbit; on the ground; the surface underfoot; inside a building |

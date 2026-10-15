@@ -34,6 +34,8 @@ export type { Rng } from './rng';
 export { createRng, rngFromState, seedToInt } from './rng';
 export type { AtmosphereSample } from './weather';
 export { sampleAtmosphere, Weather, weatherOf } from './weather';
+export type { WindField } from './wind';
+export { sampleWind, terrainSlope, windField } from './wind';
 export type {
   EventHandler,
   Phase,

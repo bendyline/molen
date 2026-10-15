@@ -1,0 +1,326 @@
+{
+  "format": "molen/scene@3",
+  "name": "Molen harbor and ferry traffic",
+  "seed": "fleet-2026",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "speedboat",
+      "type": "molen.entities.watercraft.speedboat",
+      "components": {
+        "transform": {
+          "pos": [
+            -68,
+            0,
+            70
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "sailboat",
+      "type": "molen.entities.watercraft.sailboat",
+      "components": {
+        "transform": {
+          "pos": [
+            -50,
+            0,
+            40
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "fishing-boat",
+      "type": "molen.entities.watercraft.fishing_boat",
+      "components": {
+        "transform": {
+          "pos": [
+            -25,
+            0,
+            20
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "tugboat",
+      "type": "molen.entities.watercraft.tugboat",
+      "components": {
+        "transform": {
+          "pos": [
+            8,
+            0,
+            20
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "container-ship",
+      "type": "molen.entities.watercraft.container_ship",
+      "components": {
+        "transform": {
+          "pos": [
+            -55,
+            0,
+            -100
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "bulk-carrier",
+      "type": "molen.entities.watercraft.bulk_carrier",
+      "components": {
+        "transform": {
+          "pos": [
+            28,
+            0,
+            -90
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "passenger-ferry",
+      "type": "molen.entities.watercraft.passenger_ferry",
+      "components": {
+        "transform": {
+          "pos": [
+            46,
+            0,
+            45
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "car-ferry",
+      "type": "molen.entities.watercraft.car_ferry",
+      "components": {
+        "transform": {
+          "pos": [
+            100,
+            0,
+            -30
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -6,
+              10,
+              4
+            ],
+            "color": "#fff3dd",
+            "intensity": 3,
+            "castShadow": true
+          },
+          "background": "#b9d5e5",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.15,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            450,
+            0.2,
+            500
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#286d83",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "observer",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            8,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    }
+  ],
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      250,
+      230,
+      310
+    ],
+    "lookAt": [
+      5,
+      0,
+      -35
+    ],
+    "fov": 45
+  },
+  "prefabs": {
+    "harbor-ferry": {
+      "components": {
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.passenger_ferry",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    }
+  },
+  "ambient": {
+    "observer": "observer",
+    "classes": [
+      "boat"
+    ],
+    "density": {
+      "boat": 3
+    },
+    "templates": {
+      "boat": "harbor-ferry"
+    },
+    "network": {
+      "format": "molen/transport-network@1",
+      "ways": [
+        {
+          "class": "water",
+          "subclass": "ferry",
+          "width": 60,
+          "speed": 6,
+          "points": [
+            [
+              -180,
+              0,
+              145
+            ],
+            [
+              0,
+              0,
+              175
+            ],
+            [
+              180,
+              0,
+              145
+            ]
+          ]
+        }
+      ],
+      "stations": [
+        {
+          "id": "west-terminal",
+          "kind": "ferry",
+          "at": [
+            -160,
+            148
+          ],
+          "dwell": 8
+        },
+        {
+          "id": "east-terminal",
+          "kind": "ferry",
+          "at": [
+            160,
+            148
+          ],
+          "dwell": 8
+        }
+      ]
+    }
+  }
+}

@@ -62,5 +62,36 @@ serves them like any other model. See [Aircraft](aircraft.md) for world-view con
 `molen.entities.transit.bus` is a 12 m city bus, `molen.entities.transit.lightrail` a 27 m
 two-section light-rail car, and `molen.entities.aircraft.airliner` a narrow-body airliner. They are
 models for background traffic, not mountable vehicles. [Ambient life](ambient-life.md) spawns them
-through their `ambientRole` component, as it does the pack's five cars and the two aircraft above.
+through their `ambientRole` component, as it does the pack's road vehicles and the two aircraft above.
 In the engine repository, `content/entities/scenes/transit.scene.json` shows them side by side.
+
+## Road, cycle and water fleets
+
+The road fleet has eleven mountable models. Alongside compact, sedan, SUV, pickup and van,
+`molen.entities.vehicle.*` includes `sports_coupe`, `station_wagon`, `electric_hatchback`,
+`taxi`, `offroad` and `box_truck`. They expose the usual wheel pivots, paint material, driver
+seat and vehicle tuning, and join the ambient car pool.
+
+`molen.entities.cycle.*` contains `standard_motorcycle`, `cruiser_motorcycle`, `motor_scooter`,
+`city_bicycle`, `road_bicycle` and `cargo_bicycle`. These are rideable through the same vehicle/mount API as cars, with self-balancing
+handling, saddle poses, animated steering and bicycle pedals. See [Riding cycles](vehicles.md#riding-cycles).
+They do not spawn as ambient traffic or in car parking bays.
+
+`molen.entities.watercraft.*` contains `speedboat`, `sailboat`, `fishing_boat`, `tugboat`,
+`container_ship`, `bulk_carrier`, `passenger_ferry` and `car_ferry`. Their origin is **Y=0 at
+the waterline**, with the hull extending below it. The two ferries have `ambientRole.role:
+"ferry"`; the other vessels have `role: "boat"`. See [water traffic](ambient-life.md#water-traffic)
+for routing and terminal stops. Each type also supplies a powered `boat` and driver/passenger
+seats for [player boating](boats.md), swells, currents and dockside boarding. The sailboat uses
+its auxiliary motor.
+
+The id helpers `MOLEN_CYCLE_ENTITY_IDS` and `MOLEN_WATERCRAFT_ENTITY_IDS` enumerate the new
+collections. All are in `MOLEN_ENTITY_IDS` and the pack's type documents.
+
+In the engine repository, `content/entities/scenes/fleet.scene.json` displays the road and
+cycle models; `content/entities/scenes/harbor.scene.json` displays the water fleet with moving
+ferries. Each new bundle has an editable `models/recipe.json`; the shared authoring capability
+`packages/entities/scripts/generate-fleet.mjs --ids=sports-coupe,tugboat` rebuilds selected
+models. It preserves an artist-edited master that no longer matches its generator pin.
+After importing, `node packages/entities/scripts/capture-fleet.mjs` renders four views of each
+model and both demo scenes; `--ids=sports-coupe,tugboat` narrows the review to selected models.

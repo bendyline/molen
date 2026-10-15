@@ -11,11 +11,13 @@
     "lint": "biome check src",
     "predev": "node ../world-explorer/scripts/build-content-packs.mjs",
     "prebuild": "node ../world-explorer/scripts/build-content-packs.mjs",
-    "test:unit": "vitest run --passWithNoTests"
+    "test:unit": "vitest run --passWithNoTests --exclude \"test/golden/**\"",
+    "test:golden": "vitest run --config vitest.golden.config.ts"
   },
   "dependencies": {
     "@bendyline/molen-client": "workspace:*",
     "@bendyline/molen-earth": "workspace:*",
+    "@bendyline/molen-schema": "workspace:*",
     "@bendyline/molen-terrain": "workspace:*",
     "three": "0.184.0"
   },

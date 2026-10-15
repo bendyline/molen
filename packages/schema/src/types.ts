@@ -130,7 +130,7 @@ export interface SceneTerrainRef {
 }
 
 /** An NPC class the ambient-life capability simulates. */
-export type SceneAmbientKind = 'car' | 'pedestrian' | 'train' | 'aircraft';
+export type SceneAmbientKind = 'car' | 'pedestrian' | 'train' | 'aircraft' | 'boat';
 
 /** Ambient life (NPC traffic) settings; consumed by `@bendyline/molen-ambient`. */
 export interface SceneAmbient {

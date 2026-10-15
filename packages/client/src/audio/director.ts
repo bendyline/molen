@@ -167,12 +167,23 @@ function audibility(gain: number, spatial: Desired['spatial'], d: number): numbe
   return (gain * ref) / (ref + spatial.rolloff * Math.max(0, d - ref));
 }
 
-/** Vehicles someone is riding: every `mounted` component names one. */
+/**
+ * Vehicles someone is riding: every `mounted` component names one, unless its seat is a
+ * `passenger` seat of the vehicle's `mountable` (a companion waiting in a parked car does not
+ * start its engine).
+ */
 function occupiedBy(source: AudioEntitySource | undefined): Set<EntityId> {
   const out = new Set<EntityId>();
   if (!source) return out;
   for (const [, mounted] of source.each('mounted')) {
-    if (typeof mounted.vehicle === 'string') out.add(mounted.vehicle);
+    const vehicle = mounted.vehicle;
+    if (typeof vehicle !== 'string') continue;
+    const seats = source.get(vehicle, 'mountable')?.seats;
+    const seat = Array.isArray(seats)
+      ? seats.find((s) => (s as { id?: unknown } | null)?.id === mounted.seat)
+      : undefined;
+    if ((seat as { role?: unknown } | undefined)?.role === 'passenger') continue;
+    out.add(vehicle);
   }
   return out;
 }

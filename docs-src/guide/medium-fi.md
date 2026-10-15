@@ -89,12 +89,14 @@ its neighbors.
 
 ## Color and palette
 
-The palette is vivid and coherent. Use clear, pleasant hues in a narrow band of lightness for
-each kind of surface. Avoid both grey-on-grey and candy color.
+The palette is clean, coherent and realistic. Each kind of surface uses a narrow band of
+lightness. Houses carry most of the color; downtown blocks are mostly light neutrals with color
+where real buildings have it. Avoid both grey-on-grey and candy color.
 
 | Surface | HSL lightness | HSL saturation | Reference swatches |
 | --- | --- | --- | --- |
 | Painted wall, siding, render | 60–90% | 15–60% | sage `#a3b78f`, slate blue `#8199b2`, cream `#efe3c4`, butter `#e6cf86` |
+| Urban wall: concrete, panel, limestone | 55–90% | 0–25% | light concrete `#d2cec5`, limestone `#ddd6c6`, cool grey `#b8bfc4`, graphite `#8f9397` |
 | Masonry, brick, timber walls | 45–65% | 25–45% | brick `#a8634b`, sandstone `#c9ab84`, cedar `#a77a54` |
 | Pitched roof (shingle, tile, slate) | 35–50% | 6–40% | charcoal `#575c62`, brown `#725c49`, moss `#5a6d55`, terracotta `#a5644b` |
 | Flat roof (membrane, gravel) | 62–80% | 0–12% | gravel `#a9a59c`, membrane `#c4c0b6` |
@@ -108,14 +110,21 @@ each kind of surface. Avoid both grey-on-grey and candy color.
 
 Palette rules:
 
-- **Give a third of a palette a clear hue.** At least a third of a wall palette's weight should be
-  colors with saturation of 25% or more, so a street of procedural houses never reads as grey
-  concrete. Neutrals (whites, creams, greys) are welcome, but not as the majority.
+- **Houses carry the hue; urban blocks stay mostly neutral.** A house palette gives at least a
+  third of its weight to colors with saturation of 25% or more, so a street of procedural houses
+  never reads as grey concrete. Commercial, office and apartment palettes reverse that: about
+  three quarters light neutrals (concrete, limestone, off-white, warm and cool greys), with clear
+  hue as the minority. A downtown should read as a clean, light skyline, not a patchwork.
+- **Tie color to material.** Brick colors belong on brick and concrete colors on concrete, so a
+  style that mixes them names a `palette` on each material choice. Keep red and brown brick to
+  about a tenth of an urban style's weight. Dark red and brown towers read as heavy blocks across
+  a whole skyline.
 - **No black and no white on large surfaces.** Large surfaces stay between 22% and 94% lightness.
   A near-black roof reads as a hole in the frame, and a pure white wall blooms in sun.
 - **Roofs are darker than walls; flat commercial roofs are lighter.** Pitched roofs sit 15–35
   lightness points below their walls, so a neighborhood seen from above reads as roofs. Large
-  flat roofs are light membranes and gravel, as they are in reality.
+  flat roofs are light membranes and gravel, as they are in reality. A pitched style declares
+  `materials.flatRoof` so its flat fallback is membrane, not shingle tinted charcoal.
 - **Reserve saturated accents.** Strong saturation belongs to identity: a store's sign band, a
   landmark's signature color, a bus livery, a fire station. Use one accent per object.
 - **Real landmarks use their real colors.** The Tacoma Narrows towers are green and the Golden

@@ -14,7 +14,12 @@ import type {
   RenderableKind,
 } from '@bendyline/molen-client';
 import { dmath, type TransformLike, type Vec3 } from '@bendyline/molen-kernel/determinism';
-import type { EntityId, JsonObject } from '@bendyline/molen-schema';
+import type {
+  MountableData,
+  MountedData,
+  VehicleStateData,
+} from '@bendyline/molen-kernel/vehicles';
+import type { EntityId, JsonObject, VehicleData } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import type {
   FigureAnchor,
@@ -25,6 +30,7 @@ import type {
 } from '../kernel/components';
 import { resolveFigureDescriptor } from '../kernel/descriptor';
 import { evaluatePose, type FigurePose, worldToFigure } from '../kernel/pose';
+import { cycleRiderPose } from '../kernel/riding';
 import type { FigureRig } from '../kernel/rig';
 import { figureSeed } from '../kernel/seed';
 import type { FigureTier } from '../kernel/skinned-mesh-builder';
@@ -187,6 +193,10 @@ class FigureHandle implements KindHandle {
     const mounted = mirror.peek(this.id, 'mounted') as { vehicle?: string } | undefined;
     if (mounted?.vehicle === undefined) return undefined;
     if (mirror.peek(mounted.vehicle, 'figure') !== undefined) return 'pelvis';
+    if (
+      (mirror.peek(mounted.vehicle, 'vehicle') as VehicleData | undefined)?.spec.cycle !== undefined
+    )
+      return 'pelvis';
     return mirror.peek(mounted.vehicle, 'vehicle') !== undefined ? 'eye' : 'pelvis';
   }
 
@@ -214,6 +224,18 @@ class FigureHandle implements KindHandle {
     const intent = this.ctx.mirror?.peek(this.id, 'figureIntent') as FigureIntentData | undefined;
     const lookWeight =
       state?.lookAtTick !== undefined ? dmath.smoothstep((tick - state.lookAtTick) / 12) : 1;
+    const mirror = this.ctx.mirror;
+    const mounted = mirror?.peek(this.id, 'mounted') as MountedData | undefined;
+    const riding =
+      mounted === undefined
+        ? undefined
+        : cycleRiderPose(
+            mirror?.peek(mounted.vehicle, 'vehicle') as VehicleData | undefined,
+            mirror?.peek(mounted.vehicle, 'vehicleState') as VehicleStateData | undefined,
+            (mirror?.peek(mounted.vehicle, 'mountable') as MountableData | undefined)?.seats.find(
+              (seat) => seat.id === mounted.seat,
+            ),
+          );
     this.pose = evaluatePose(
       this.rig,
       state,
@@ -227,6 +249,7 @@ class FigureHandle implements KindHandle {
         overrides: intent?.overrides,
         ik: intent?.ik,
         anchor: this.anchor(),
+        riding,
       },
       this.pose,
     );

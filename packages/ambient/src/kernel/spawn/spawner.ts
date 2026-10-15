@@ -13,7 +13,7 @@ import {
   seedToInt,
 } from '@bendyline/molen-kernel/determinism';
 import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
-import { agentRotation, agentSample, chooseNext, walkBack } from '../agents/step';
+import { agentRotation, agentSample, chooseNext, chooseVesselNext, walkBack } from '../agents/step';
 import {
   AMBIENT_KINDS,
   AmbientAgent,
@@ -72,6 +72,7 @@ const LANE_CLASS: Readonly<Record<Exclude<AmbientKind, 'aircraft'>, TransportCla
   car: 'road',
   pedestrian: 'walk',
   train: 'rail',
+  boat: 'water',
 };
 
 /** Resolve the observer from state, an entity, or the first `ambientObserver` entity. */
@@ -148,6 +149,7 @@ export function despawnAgents(
     pedestrian: [],
     train: [],
     aircraft: [],
+    boat: [],
   };
   for (const [id, a, t] of world.query(AmbientAgent, Transform)) {
     if (a.consist !== undefined) {
@@ -212,7 +214,7 @@ interface SpawnContext {
   env: SpawnEnv;
   observer: ObserverView;
   rng: Rng;
-  occupancy: Map<string, number[]>;
+  occupancy: Map<string, { s: number; length: number }[]>;
   state: { nextSeq: number; spawned: number };
 }
 
@@ -225,14 +227,20 @@ export function spawnAgents(
 ): void {
   const { policy, tick } = env;
   const rng = createRng(`${env.seed}:ambient:${tick}`);
-  const counts: Record<AmbientKind, number> = { car: 0, pedestrian: 0, train: 0, aircraft: 0 };
-  const occupancy = new Map<string, number[]>();
+  const counts: Record<AmbientKind, number> = {
+    car: 0,
+    pedestrian: 0,
+    train: 0,
+    aircraft: 0,
+    boat: 0,
+  };
+  const occupancy = new Map<string, { s: number; length: number }[]>();
   for (const [, a] of world.query(AmbientAgent)) {
     if (a.consist === undefined) counts[a.kind]++;
     if (a.air !== undefined) continue;
     const list = occupancy.get(a.lane);
-    if (list === undefined) occupancy.set(a.lane, [a.s]);
-    else list.push(a.s);
+    if (list === undefined) occupancy.set(a.lane, [{ s: a.s, length: a.length }]);
+    else list.push({ s: a.s, length: a.length });
   }
   const ctx: SpawnContext = { world, env, observer, rng, occupancy, state };
   const targets = {} as Record<AmbientKind, number>;
@@ -308,10 +316,20 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
     if (lane === undefined) continue;
     const seq = ctx.state.nextSeq;
     const seed = fmix32(seq ^ env.seed);
+    const available =
+      kind === 'boat'
+        ? (types as readonly AmbientVehicleType[]).filter(
+            (t) =>
+              (t.waterway ?? 'channel') === edge.kind &&
+              t.width <= edge.width / (edge.oneway ? 1 : 2) &&
+              t.length + 2 < lane.length,
+          )
+        : types;
+    if (kind === 'boat' && available.length === 0) continue;
     const vehicle =
       kind === 'pedestrian'
         ? undefined
-        : pickWeighted(types as readonly AmbientVehicleType[], unit01(seed, 10));
+        : pickWeighted(available as readonly AmbientVehicleType[], unit01(seed, 10));
     const length = kind === 'pedestrian' ? 0.5 : (vehicle?.length ?? 4.5);
     const width = kind === 'pedestrian' ? 0.5 : (vehicle?.width ?? 1.8);
     const cars = kind === 'train' ? dmath.max(1, vehicle?.cars ?? 2) : 1;
@@ -330,12 +348,24 @@ function spawnOne(ctx: SpawnContext, kind: AmbientKind): boolean {
       if (facing > env.policy.forwardConeCos) continue;
     }
     const minGap =
-      kind === 'train' ? 250 : kind === 'pedestrian' ? 2.5 : length + env.policy.driver.gap + 8;
+      kind === 'train'
+        ? 250
+        : kind === 'boat'
+          ? length + env.policy.marine.gap + 30
+          : kind === 'pedestrian'
+            ? 2.5
+            : length + env.policy.driver.gap + 8;
     const clearLanes = kind === 'train' ? edge.lanes : [lane.id];
     let clear = true;
     for (const id of clearLanes)
       for (const other of ctx.occupancy.get(id) ?? [])
-        if (dmath.abs(other - s) < minGap + behind) clear = false;
+        if (
+          dmath.abs(other.s - s) <
+          (kind === 'boat'
+            ? (length + other.length) / 2 + env.policy.marine.gap + 30
+            : minGap + behind)
+        )
+          clear = false;
     if (!clear) continue;
     createLaneAgent(ctx, kind, lane, edge, s, seed, vehicle, length, width, cars);
     return true;
@@ -380,14 +410,20 @@ function createLaneAgent(
       : kind === 'train'
         ? edge.speed * 0.5
         : dmath.min(edge.speed * 0.7, vehicle?.cruise ?? edge.speed);
-  const next = chooseNext(lane, seed, 0);
+  const next =
+    kind === 'boat'
+      ? chooseVesselNext(env.net, lane, seed, 0, width, length)
+      : chooseNext(lane, seed, 0);
   const agent: AmbientAgentData = {
     kind,
     type,
     ...(color !== undefined ? { color } : {}),
     lane: lane.id,
     s: q4(s),
-    speed: q4(speed),
+    speed: q4(kind === 'boat' ? dmath.min(speed, vehicle?.max ?? speed) : speed),
+    ...(kind === 'boat'
+      ? { cruise: dmath.min(vehicle?.cruise ?? edge.speed, vehicle?.max ?? 99) }
+      : {}),
     ...(next !== undefined ? { next } : {}),
     seed,
     length,
@@ -413,7 +449,7 @@ function createLaneAgent(
         seed: fmix32(seed + k),
       });
     }
-  ctx.occupancy.set(lane.id, [...(ctx.occupancy.get(lane.id) ?? []), s]);
+  ctx.occupancy.set(lane.id, [...(ctx.occupancy.get(lane.id) ?? []), { s, length }]);
 }
 
 function spawnWithTemplate(ctx: SpawnContext, id: string, agent: AmbientAgentData): void {

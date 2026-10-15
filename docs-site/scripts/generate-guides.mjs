@@ -96,6 +96,7 @@ const GUIDE_ORDER = [
   'aircraft',
   'vehicle-interiors',
   'ambient-life',
+  'dioramas',
   'materials',
   '3d-model-assets',
   'source-bundles',

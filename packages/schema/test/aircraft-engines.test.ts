@@ -21,7 +21,12 @@ describe('aircraft engine authoring', () => {
     expect(
       valid({
         ...twin,
-        airplane: { ...twin.airplane, yawInertia: 45000, thrustYawDamping: 2 },
+        airplane: { ...twin.airplane, yawInertia: 45000, rollInertia: 9000, propellerEffects: 1 },
+        // Counter-rotating propellers cancel each other's torque and swing.
+        engines: [
+          { ...twin.engines[0], propellerRotation: 'clockwise', propellerInertia: 60 },
+          { ...twin.engines[1], propellerRotation: 'counterclockwise', propellerInertia: 60 },
+        ],
         visual: {
           ...twin.visual,
           rotors: [{ node: 'left-prop', axis: 'z', multiplier: 1, engine: 'left' }],
@@ -40,6 +45,10 @@ describe('aircraft engine authoring', () => {
       { ...twin, engines: [{ ...engine, id: 'left', thrustAxis: [0, 0, 0] }] },
       { ...twin, engines: [{ ...engine, id: 'left', propellerEfficiency: 2 }] },
       { ...twin, airplane: { ...twin.airplane, yawInertia: 0 } },
+      { ...twin, airplane: { ...twin.airplane, propellerEffects: 2 } },
+      // Attitude limits are gone: the airplane is a free rigid body.
+      { ...twin, airplane: { ...twin.airplane, maxRoll: 1.3 } },
+      { ...twin, engines: [{ ...engine, id: 'left', propellerRotation: 'sideways' }] },
       {
         ...twin,
         visual: {

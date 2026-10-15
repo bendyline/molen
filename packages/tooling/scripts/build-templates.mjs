@@ -78,6 +78,7 @@ const EMIT_OPTIONS = [
 ];
 
 const SHARED_CSS = join(EXAMPLES, 'game-shell.css');
+const SHARED_DIR = join(EXAMPLES, 'shared');
 const SHARED_CSS_TARGET = 'src/game-shell.css';
 const CODE_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.mjs', '.cjs', '.html', '.css']);
 
@@ -224,7 +225,7 @@ function standalonePackage(dir, catalog, hasTests) {
  * Rewrite a code file's relative specifiers: the shared game-shell.css moves into the template,
  * and anything else reaching out of the sample is a build error rather than a broken project.
  */
-function localizeSpecifiers(dir, path, text) {
+function localizeSpecifiers(dir, path, text, shared) {
   let usesSharedCss = false;
   const fileDir = dirname(join(dir, path));
   const rewritten = text.replace(/(['"])(\.{1,2}\/[^'"\n]*)\1/g, (match, quote, specifier) => {
@@ -232,6 +233,13 @@ function localizeSpecifiers(dir, path, text) {
     if (target === SHARED_CSS) {
       usesSharedCss = true;
       let local = posix.relative(posix.dirname(path), SHARED_CSS_TARGET);
+      if (!local.startsWith('.')) local = `./${local}`;
+      return `${quote}${local}${quote}`;
+    }
+    if (target.startsWith(SHARED_DIR + sep)) {
+      const name = relative(SHARED_DIR, target).split(sep).join('/');
+      shared.add(name);
+      let local = posix.relative(posix.dirname(path), `src/shared/${name}`);
       if (!local.startsWith('.')) local = `./${local}`;
       return `${quote}${local}${quote}`;
     }
@@ -291,15 +299,28 @@ export function buildTemplates() {
 
     const outputs = new Map();
     let usesSharedCss = false;
+    const shared = new Set();
     for (const path of shipped) {
       const bytes = readFileSync(join(dir, path));
       if (!CODE_EXTENSIONS.has(extname(path))) {
         outputs.set(path, bytes);
         continue;
       }
-      const localized = localizeSpecifiers(dir, path, bytes.toString('utf8'));
+      const localized = localizeSpecifiers(dir, path, bytes.toString('utf8'), shared);
       usesSharedCss ||= localized.usesSharedCss;
       outputs.set(path, localized.text);
+    }
+    // Copy only reachable shared modules, following their relative imports transitively.
+    const copied = new Set();
+    for (const name of shared) {
+      const file = existsSync(join(SHARED_DIR, name)) ? name : `${name}.ts`;
+      if (copied.has(file)) continue;
+      copied.add(file);
+      const source = readFileSync(join(SHARED_DIR, file), 'utf8');
+      for (const match of source.matchAll(/(?:from\s*|import\s*)['"](\.\/[^'"\n]+)['"]/g)) {
+        shared.add(posix.join(posix.dirname(file), match[1]));
+      }
+      outputs.set(`src/shared/${file}`, source);
     }
     if (usesSharedCss) {
       if (outputs.has(SHARED_CSS_TARGET)) fail(`examples/${id} already has ${SHARED_CSS_TARGET}`);

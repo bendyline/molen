@@ -6,6 +6,7 @@ import {
   createMolenEntitiesAssetIndex,
   MOLEN_AIRCRAFT_ENTITY_IDS,
   MOLEN_AMBIENT_AIRCRAFT_ENTITY_IDS,
+  MOLEN_CYCLE_ENTITY_IDS,
   MOLEN_ENTITY_IDS,
   MOLEN_TRANSIT_ENTITY_IDS,
   MOLEN_VEHICLE_ENTITY_IDS,
@@ -52,7 +53,10 @@ describe('entity content parity', () => {
       expect(index[id]).toBe(`https://assets.example/${pack.manifest.ids[id]}`);
     }
     expect(types.idsWith('aircraft')).toEqual([...MOLEN_AIRCRAFT_ENTITY_IDS]);
-    expect(types.idsWith('vehicle')).toEqual([...MOLEN_VEHICLE_ENTITY_IDS]);
+    expect(types.idsWith('vehicle')).toEqual([
+      ...MOLEN_VEHICLE_ENTITY_IDS,
+      ...MOLEN_CYCLE_ENTITY_IDS,
+    ]);
     expect(molenAircraft(types, 'molen.entities.aircraft.p51d').spec).toBeDefined();
     expect(molenVehicle(types, 'molen.entities.vehicle.van').spec).toBeDefined();
   });

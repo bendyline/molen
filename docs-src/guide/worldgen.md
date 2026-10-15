@@ -153,6 +153,14 @@ the sampled palette color multiplies the texture, so pack textures are authored 
 default pack asserts a mean luminance of at least 0.55 for every tinted material). Windows use
 `tint: 'none'` and `uv: 'cell'`: every window is one texture repeat.
 
+A material choice may name its own `palette`, which replaces the part's palette when that choice
+is picked. The material and the color are otherwise independent picks, so without it a brick wall
+can draw a concrete grey and a concrete panel can draw brick red. `materials.flatRoof` is an
+optional roof material used only when the style resolves a flat roof (a flat choice or the
+wide-footprint fallback). A pitched style keeps shingles or tile on its slopes and puts light
+membrane or gravel on its flat tops. Tile-edge cuts and dropped roof shapes keep `roof`, so a
+clipped house still matches its neighbors from above.
+
 `facade.windows` places windows per bay and floor: `punched` (one window per bay, seeded
 `probabilityPerBay`), `ribbon` (one strip per floor), `grid` (glazing filling the bay), or
 `none`; `groundFloor: 'storefront'` adds ground-floor glazing even when upper windows are

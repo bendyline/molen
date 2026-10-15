@@ -1577,6 +1577,11 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "minimum": 0,
                     "maximum": 1000,
                     "description": "Relative weight among sibling entries; 0 disables the entry."
+                  },
+                  "palette": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
                   }
                 },
                 "required": [
@@ -1660,6 +1665,11 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "minimum": 0,
                     "maximum": 1000,
                     "description": "Relative weight among sibling entries; 0 disables the entry."
+                  },
+                  "palette": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
                   }
                 },
                 "required": [
@@ -1724,6 +1734,95 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
           ],
           "additionalProperties": false
         },
+        "flatRoof": {
+          "type": "object",
+          "properties": {
+            "choices": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ref": {
+                    "type": "string",
+                    "pattern": "^(palette:#[0-9a-fA-F]{6}|matgraph:\\S+|pixelgrid:\\S+)$",
+                    "description": "materialRef: 'palette:#rrggbb', 'matgraph:<pack material id or path>', or 'pixelgrid:<id or path>'."
+                  },
+                  "weight": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000,
+                    "description": "Relative weight among sibling entries; 0 disables the entry."
+                  },
+                  "palette": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
+                  }
+                },
+                "required": [
+                  "ref",
+                  "weight"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Weighted materials; one is picked per building."
+            },
+            "palette": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Key of `palettes` used to tint this part."
+            },
+            "tint": {
+              "default": "multiply",
+              "type": "string",
+              "enum": [
+                "multiply",
+                "none"
+              ],
+              "description": "'multiply' = vertex color times texture (author textures light); 'none' = texture as is."
+            },
+            "uv": {
+              "default": "meters",
+              "type": "string",
+              "enum": [
+                "meters",
+                "cell"
+              ],
+              "description": "'meters': world-metric UVs; 'cell': one repeat per (bay, floor) facade cell."
+            },
+            "uvScale": {
+              "minItems": 2,
+              "maxItems": 2,
+              "type": "array",
+              "items": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "description": "Meters per texture repeat [u, v] when uv is meters."
+            },
+            "uvOffset": {
+              "default": "meters",
+              "type": "string",
+              "enum": [
+                "cell",
+                "meters",
+                "none"
+              ],
+              "description": "Seeded per-building UV shift so neighbours never align."
+            },
+            "uvMirror": {
+              "default": false,
+              "type": "boolean",
+              "description": "Allow a seeded horizontal flip."
+            }
+          },
+          "required": [
+            "choices"
+          ],
+          "additionalProperties": false,
+          "description": "Replaces `roof` when the style resolves a flat roof (a flat choice or the flat fallback), so a pitched style keeps shingles on its slopes but light membrane or gravel on flat tops."
+        },
         "trim": {
           "type": "object",
           "properties": {
@@ -1743,6 +1842,11 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "minimum": 0,
                     "maximum": 1000,
                     "description": "Relative weight among sibling entries; 0 disables the entry."
+                  },
+                  "palette": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
                   }
                 },
                 "required": [
@@ -1826,6 +1930,11 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "minimum": 0,
                     "maximum": 1000,
                     "description": "Relative weight among sibling entries; 0 disables the entry."
+                  },
+                  "palette": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
                   }
                 },
                 "required": [
@@ -1909,6 +2018,11 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
                     "minimum": 0,
                     "maximum": 1000,
                     "description": "Relative weight among sibling entries; 0 disables the entry."
+                  },
+                  "palette": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored."
                   }
                 },
                 "required": [

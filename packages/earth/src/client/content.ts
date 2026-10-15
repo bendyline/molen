@@ -83,7 +83,12 @@ export interface EarthWorldgenContent {
 
 export interface EarthContent {
   packs: PackSet;
-  /** Entity types, when the entities pack is present. */
+  /**
+   * Entity types merged from every opened pack that provides `types` documents (the entities
+   * pack first, then the others in the order they were opened), when any does. A host pack can
+   * add its own figure or prop types next to the stock cars and aircraft; one type id declared
+   * by two packs is an error naming both.
+   */
   types?: TypeLibrary;
   /** Parked-car kinds for street surfaces, in type order. */
   parkedVehicles: TerrainParkedVehicle[];
@@ -102,11 +107,41 @@ export interface LoadEarthContentOptions {
   stylePack?: string | false;
 }
 
-async function readTypes(pack: Pack): Promise<TypeLibrary> {
+/** A pack's `provides.types` documents, read in declaration order (none when it provides none). */
+async function readTypeDocs(pack: Pack): Promise<{ label: string; docs: unknown[] }> {
   const docs = await Promise.all(
     (pack.manifest.provides.types ?? []).map((path) => pack.readJson(path)),
   );
-  return createTypeLibrary(docs, { label: `${pack.manifest.id}@${pack.manifest.version}` });
+  return { label: `${pack.manifest.id}@${pack.manifest.version}`, docs };
+}
+
+/**
+ * One type library over the types documents of every pack in `packs`, in that order. A type id
+ * declared by two different packs is an error naming both; duplicates inside one pack are left
+ * to the library's own validation. Undefined when no pack provides types.
+ */
+async function readTypes(packs: readonly Pack[]): Promise<TypeLibrary | undefined> {
+  const read = await Promise.all(packs.map(readTypeDocs));
+  const owners = new Map<string, string>();
+  const docs: unknown[] = [];
+  const labels: string[] = [];
+  for (const { label, docs: packDocs } of read) {
+    if (packDocs.length === 0) continue;
+    for (const doc of packDocs) {
+      const types = (doc as { types?: unknown } | null)?.types;
+      if (types === null || typeof types !== 'object') continue; // validation reports the shape
+      for (const id of Object.keys(types as Record<string, unknown>)) {
+        const owner = owners.get(id);
+        if (owner !== undefined && owner !== label)
+          throw new Error(`entity type "${id}" is declared by both ${owner} and ${label}`);
+        owners.set(id, label);
+      }
+    }
+    docs.push(...packDocs);
+    labels.push(label);
+  }
+  if (docs.length === 0) return undefined;
+  return createTypeLibrary(docs, { label: labels.join(' + ') });
 }
 
 async function readWorldgen(styles: Pack, earth: Pack): Promise<EarthWorldgenContent> {
@@ -211,7 +246,9 @@ export interface OpenPacksFromIndexOptions {
 /**
  * Open the packs with the given ids from a `molen/pack-index@1` document at `indexUrl`, in
  * parallel and hash-checked. Ids the index does not list are skipped. The supplied fetch
- * handles the index, archive opening and later asset range requests.
+ * handles the index, archive opening and later asset range requests. `ids` defaults to the
+ * stock Earth packs; append a host pack's id to open it too, and `loadEarthContent` merges the
+ * entity types it provides.
  */
 export async function openPacksFromIndex(
   indexUrl: string | URL,
@@ -320,8 +357,13 @@ export async function loadEarthContent(
 ): Promise<EarthContent> {
   const byId = new Map(opened.map((pack) => [pack.manifest.id, pack]));
   const packs = createPackSet([...opened]);
+  // Entity types come from every pack: the entities pack first, so the stock cars and aircraft
+  // keep their document order, then host packs in the order they were opened.
   const entities = byId.get(EARTH_PACK_IDS.entities);
-  const types = entities === undefined ? undefined : await readTypes(entities);
+  const types = await readTypes([
+    ...(entities === undefined ? [] : [entities]),
+    ...opened.filter((pack) => pack.manifest.id !== EARTH_PACK_IDS.entities),
+  ]);
   const styleId =
     options.stylePack === false ? undefined : (options.stylePack ?? EARTH_PACK_IDS.style);
   let worldgen: EarthWorldgenContent | undefined;
@@ -347,10 +389,13 @@ export async function loadEarthContent(
     packs,
     ...(types !== undefined ? { types } : {}),
     parkedVehicles:
-      types?.idsWith('vehicle').map((id) => ({
-        id,
-        spec: types.component<VehicleData>(id, 'vehicle').spec,
-      })) ?? [],
+      types
+        ?.idsWith('vehicle')
+        .filter((id) => types.component<VehicleData>(id, 'vehicle').spec.cycle === undefined)
+        .map((id) => ({
+          id,
+          spec: types.component<VehicleData>(id, 'vehicle').spec,
+        })) ?? [],
     assets: {
       load: (ref, options) => packs.readBytes(styleIndex[ref] ?? ref, options),
       loadText: (ref, options) => packs.readText(styleIndex[ref] ?? ref, options),

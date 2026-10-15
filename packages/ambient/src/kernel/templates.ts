@@ -25,6 +25,8 @@ export interface AmbientVehicleType {
   colors?: string[];
   /** Rail: cars per consist. */
   cars?: number;
+  /** Vessels: ferry service or general navigation channel. */
+  waterway?: 'ferry' | 'channel';
 }
 
 export interface AmbientPedestrianType {
@@ -36,6 +38,7 @@ export interface AmbientTypes {
   car: AmbientVehicleType[];
   train: AmbientVehicleType[];
   aircraft: AmbientVehicleType[];
+  boat: AmbientVehicleType[];
   pedestrian: AmbientPedestrianType[];
 }
 
@@ -67,6 +70,10 @@ export const DEFAULT_TYPES: AmbientTypes = {
   ],
   train: [{ id: 'proxy.rail', length: 27, width: 2.65, height: 3.6, cars: 2, colors: ['#e8e6de'] }],
   aircraft: [{ id: 'proxy.airliner', length: 38, width: 36, height: 12, cruise: 110 }],
+  boat: [
+    { id: 'proxy.boat', length: 12, width: 4, height: 4, cruise: 5, waterway: 'channel' },
+    { id: 'proxy.ferry', length: 32, width: 9, height: 8, cruise: 8, waterway: 'ferry' },
+  ],
   pedestrian: [
     { preset: 'human.adult', weight: 7 },
     { preset: 'human.elder', weight: 1.5 },
@@ -173,6 +180,7 @@ function outfitFor(preset: string, seed: number): Outfit {
 
 /** Built-in templates: vehicles render through `ambient-vehicle`, pedestrians as figures. */
 export const DEFAULT_TEMPLATES: Readonly<Record<AmbientKind, AmbientTemplate>> = {
+  boat: (agent) => ({ renderable: { kind: 'ambient-vehicle', ref: agent.type } }),
   car: (agent) => ({ renderable: { kind: 'ambient-vehicle', ref: agent.type } }),
   train: (agent) => ({ renderable: { kind: 'ambient-vehicle', ref: agent.type } }),
   aircraft: (agent) => ({ renderable: { kind: 'ambient-vehicle', ref: agent.type } }),

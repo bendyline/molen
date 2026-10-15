@@ -66,8 +66,8 @@ is the road surface height.
 
 | Field | What it holds |
 |---|---|
-| `ways[]` | `class` (`road`, `rail`, `path`, `air`), `subclass` (the OSM kind, for example `primary`, `residential`, `service`, `footway`, `tram`), `points`, and optionally `oneway`, `lanes`, `width`, `speed` (m/s), `layer`, `bridge`, `tunnel` |
-| `stations[]` | `id`, `at: [x, z]`, `kind` (`rail` or `bus`), `dwell` in seconds. Trains stop at the rail station nearest their track |
+| `ways[]` | `class` (`road`, `rail`, `path`, `air`, `water`), `subclass` (the OSM kind, for example `primary`, `residential`, `service`, `footway`, `tram`), `points`, and optionally `oneway`, `lanes`, `width`, `speed` (m/s), `layer`, `bridge`, `tunnel` |
+| `stations[]` | `id`, `at: [x, z]`, `kind` (`rail`, `bus` or `ferry`), `dwell` in seconds. Trains stop at the rail station nearest their track |
 | `signals[]` | `at: [x, z]` and `kind`. A `light` signalises the junction nearest the point. A `stop` or `yield` sign makes the arm it stands on give way |
 | `aerodromes[]` | `id`, `at: [x, z]`, `heading`, `length`. Some aircraft fly its approach and departure |
 | `drivingSide` | `right` (default) or `left` |
@@ -117,7 +117,7 @@ Every field is optional. [`molen/scene@3`](../schemas/scene.md) lists them with 
 |---|---|
 | `network` | A path to a transport-network document, or the document inline |
 | `observer` | The entity the spawn ring follows |
-| `classes` | Which classes run: `car`, `pedestrian`, `train`, `aircraft` (default `["car"]`) |
+| `classes` | Which classes run: `car`, `pedestrian`, `train`, `aircraft`, `boat` (default `["car"]`) |
 | `density` | Target agents per kilometre of lane near the observer, per class. For `aircraft` it is the number in the sky |
 | `drivingSide` | `right` (default) or `left`, when the network does not say |
 | `radius` | Outer spawn radius for cars in metres (default 350) |
@@ -281,6 +281,14 @@ For streamed maps, `registerTile` and `unregisterTile` add and drop one tile's t
 features. Changes queue until the next tick, so a tile never changes the network mid-step.
 `blocks(box)` answers whether an ambient car overlaps a box, for a vehicle solver's obstacle test.
 
+`createAmbientRenderer` draws pedestrians with `AmbientFigures`, which a host can also use for its
+own characters: `update(walkers, camera, tick, tickRate)` takes `WalkerView`s (`id`, `figure`,
+`pos`, `rot`, `speed`, `since`, `hidden`), pools a skinned body per descriptor and poses it from
+its speed. Three optional fields go beyond walking: `mode` (`'run'`, or `'sit'` for a seated pose),
+`anchor: 'eye'` (the position is the eye point, as a vehicle seat names it) and `lookAt` (a world
+point the head turns toward). A seated or eye-anchored figure is drawn only at the animated detail
+tiers. The Earth view draws its actors and the walker's avatar this way.
+
 ## In the Earth view
 
 `mountEarthView` runs ambient life by default on the roads, footways and railways of the streamed
@@ -297,8 +305,7 @@ const view = await mountEarthView({
 trafficButton.onclick = () => view.setAmbientEnabled(!view.ambientEnabled);
 ```
 
-`density` scales how busy the streets are, from 0 to 1. `cars`, `pedestrians`, `rail` and
-`aircraft` switch classes, and `drivingSide` sets the side of the road. `ambient: false` turns the
+`density` scales how busy the streets are, from 0 to 1. `cars`, `pedestrians`, `rail`, `aircraft` and `boats` switch classes, and `drivingSide` sets the side of the road. `ambient: false` turns the
 layer off entirely. `stats().ambient` reports the counts on screen and the tiles in use.
 
 The quality tier caps the numbers:
@@ -313,8 +320,31 @@ The quality tier caps the numbers:
 | Ultra | 320 | 120 | 2 | 4 | 16 | 1000 m |
 
 Ambient cars share the view's vehicle world, so the car you drive stops against them and traffic
-waits for you. They follow the rendered ground and bridge decks, and they rebuild when the view
-re-anchors after a long trip.
+waits for you, and for the view's [actors](earth-view.md#actors-companions-and-npcs) on foot. They
+follow the rendered ground and bridge decks, and they rebuild when the view re-anchors after a long
+trip.
+
+### Promoting a pedestrian
+
+Ambient pedestrians come and go with the spawn ring; a host that wants one to stay (someone the
+player stopped to talk to, a fare at the kerb) promotes it to an [actor](earth-view.md#actors-companions-and-npcs):
+
+```ts
+const view = await mountEarthView({ /* … */ interaction: { pedestrians: true } });
+view.on('interact', ({ kind, id, claim }) => {
+  if (kind !== 'pedestrian' || id === undefined) return;
+  claim();
+  const actor = view.actors.adopt(id, { behaviour: { kind: 'follow', target: 'viewer' } });
+  if (actor !== undefined) startConversation(actor);
+});
+```
+
+`interaction.pedestrians` makes the interact key offer the nearest pedestrian in reach
+(`kind: 'pedestrian'`), and `view.actors.adopt(id, { id?, behaviour?, interactable? })` keeps it
+where it stands with the same body. The agent leaves ambient life for good: it stops, the spawner
+no longer counts or removes it, and the actors draw it from then on, looking at the viewer and
+interactable unless the spec says otherwise. `adopt` returns undefined when the pedestrian has
+already gone. It is one-way; an actor never returns to the pool.
 
 ## NPC content and `ambientRole`
 
@@ -345,16 +375,73 @@ An entity type joins the ambient pools with an `ambientRole`:
 }
 ```
 
-`role` is `car`, `bus` (drives with cars), `rail` or `aircraft`. A type with a `vehicle`
+`role` is `car`, `bus` (drives with cars), `rail`, `aircraft`, `boat` or `ferry`. A type with a `vehicle`
 component takes its dimensions and wheels from the vehicle spec, so its role can be as short as
 `{ "role": "car" }`. Other types give `length`, `width` and `height`, and `visual` names their
 wheel, paint, rotor and landing-gear nodes. `weight` sets how often a type spawns within its pool,
 and `cars` how many cars a train has.
 
-The `molen.entities` pack gives roles to its five cars, a city bus, a light-rail car, an airliner
-and the P-51 and OH-6 aircraft. See [Reusable entities](entities.md). Near the camera the Earth
-view draws those cars and trains with their full models, painted in the agent's colour. Further
+The `molen.entities` pack gives roles to its eleven road vehicles, a city bus, a light-rail car, an airliner
+the P-51 and OH-6 aircraft, and eight watercraft. See [Reusable entities](entities.md). Near the
+camera the Earth view draws cars, trains and vessels with their full models, painted in the
+agent's colour. Further
 out, and without content, every vehicle is a proxy shape built from its dimensions.
+
+## Water traffic
+
+Enable the `boat` agent class and supply **navigation routes**, not water polygon boundaries:
+
+```json
+{
+  "ambient": {
+    "observer": "player",
+    "classes": ["boat"],
+    "density": { "boat": 1 },
+    "network": {
+      "format": "molen/transport-network@1",
+      "ways": [
+        { "class": "water", "subclass": "ferry", "width": 60, "speed": 8,
+          "points": [[-800, 0, 0], [800, 0, 0]] },
+        { "class": "water", "subclass": "channel", "width": 120, "speed": 7,
+          "points": [[-1200, 0, 250], [1200, 0, 250]] }
+      ],
+      "stations": [{ "id": "harbor", "kind": "ferry", "at": [0, 0], "dwell": 20 }]
+    }
+  }
+}
+```
+
+The boat pool serves `water` lanes only. Ferries use `ferry` routes; other vessels use `channel`
+routes. Two-way routes keep to starboard regardless of the road driving side; `oneway: true`
+uses the centreline. `width` is the whole navigation corridor: a vessel must fit its half on a
+two-way route, and its length must fit the segment. Junction choices also reject narrower or
+shorter branches. Roads crossing a water route never create road/water connections.
+
+Two-coordinate points default to sea level, **never seabed terrain height**. Use explicit
+`[x, y, z]` surface heights for inland/elevated water. Author broad curves and clear channels:
+there is no depth, shoreline or obstacle planner. Mapped `ferry` transportation lines and
+`ferry_terminal` POIs are retained by streamed Earth networks and `network bake --classes water`.
+Mapped routes currently assume sea level; inland ferry elevation needs an authored network.
+
+Vessels accelerate and brake slowly, follow the vessel ahead, and keep a generous gap. Ferries
+dwell at terminals (`dwell` seconds, default 30), then resume; an unannotated route end also
+receives a 30-second turnaround stop. Boats return along a two-way route at its end. No routes
+means no boats: the engine does not invent shipping lanes across arbitrary water.
+
+Defaults are near/far/keep radii of 100/1800/2400 metres, 0.8 vessels per lane-km and a cap of
+12. `setBudget({ boats })` caps the kernel population. `createAmbientRenderer` uses vessel
+proxies without content and up to four full vessel models within 1.2 km when a model provider
+is available; `detailedBoats` controls that separate render budget. Earth quality tiers cap
+boats at 0/2/4/6/8/12; `ambient: { boats: false }` disables them, and stats report `boats`.
+
+Content hosts populate `types.boat` with `AmbientVehicleType` entries whose `waterway` is
+`"ferry"` or `"channel"`, and supply full models through the existing renderer vehicle adapter
+(with empty wheel lists). The Earth content adapter derives these from `ambientRole` automatically.
+A scene may instead use `ambient.templates.boat` for a vessel prefab, as the engine repository's
+harbor scene does. Without a type pool the capability uses dimensioned ferry/boat proxies.
+
+This is ambient route following. It does not model buoyancy, waves, maritime crossing priority,
+ship schedules, passenger boarding or player helm controls. Cycles are player-rideable through [vehicles](vehicles.md#riding-cycles); ambient cycle riders are not spawned.
 
 ## Determinism and cost
 
@@ -380,6 +467,8 @@ most one tile every 200 ms. In the engine repository,
 - Aircraft fly straight lines. They do not taxi, circle or land beyond the approach.
 - Pedestrians keep to their lane and follow the walker ahead. They do not step around each other.
 - Agents do not open doors, board, or park. A parked car in the Earth view is a separate entity.
+- A promoted pedestrian keeps its body but nothing of its walk: it stands until its actor
+  behaviour moves it, and it never rejoins ambient life.
 
 ## Read next
 

@@ -71,6 +71,9 @@ importers:
       '@bendyline/molen-examples-data-viz':
         specifier: workspace:*
         version: link:../examples/data-viz
+      '@bendyline/molen-examples-dioramas':
+        specifier: workspace:*
+        version: link:../examples/dioramas
       '@bendyline/molen-examples-earth-view':
         specifier: workspace:*
         version: link:../examples/earth-view
@@ -228,6 +231,46 @@ importers:
         specifier: 'catalog:'
         version: 5.0.1(@types/node@24.13.2)(vite@6.4.3(@types/node@24.13.2)(lightningcss@1.33.0)(yaml@2.9.1))
 
+  examples/dioramas:
+    dependencies:
+      '@bendyline/molen-client':
+        specifier: workspace:*
+        version: link:../../packages/client
+      '@bendyline/molen-dioramas':
+        specifier: workspace:*
+        version: link:../../packages/dioramas
+      '@bendyline/molen-figures':
+        specifier: workspace:*
+        version: link:../../packages/figures
+      '@bendyline/molen-kernel':
+        specifier: workspace:*
+        version: link:../../packages/kernel
+      '@bendyline/molen-schema':
+        specifier: workspace:*
+        version: link:../../packages/schema
+      '@bendyline/molen-tooling':
+        specifier: workspace:*
+        version: link:../../packages/tooling
+      three:
+        specifier: 0.184.0
+        version: 0.184.0
+    devDependencies:
+      '@biomejs/biome':
+        specifier: ^2.5.0
+        version: 2.5.0
+      '@types/three':
+        specifier: 0.184.0
+        version: 0.184.0
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vite:
+        specifier: ^6.4.0
+        version: 6.4.3(@types/node@24.13.2)(lightningcss@1.33.0)(yaml@2.9.1)
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.1(@types/node@24.13.2)(vite@6.4.3(@types/node@24.13.2)(lightningcss@1.33.0)(yaml@2.9.1))
+
   examples/earth-view:
     dependencies:
       '@bendyline/molen-client':
@@ -236,6 +279,9 @@ importers:
       '@bendyline/molen-earth':
         specifier: workspace:*
         version: link:../../packages/earth
+      '@bendyline/molen-schema':
+        specifier: workspace:*
+        version: link:../../packages/schema
       '@bendyline/molen-terrain':
         specifier: workspace:*
         version: link:../../packages/terrain
@@ -600,11 +646,54 @@ importers:
         specifier: 'catalog:'
         version: 5.0.1(@types/node@24.13.2)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.2)(yaml@2.9.1))
 
+  packages/dioramas:
+    dependencies:
+      '@bendyline/molen-figures':
+        specifier: workspace:*
+        version: link:../figures
+      '@bendyline/molen-kernel':
+        specifier: workspace:*
+        version: link:../kernel
+      '@bendyline/molen-schema':
+        specifier: workspace:*
+        version: link:../schema
+    devDependencies:
+      '@bendyline/molen-client':
+        specifier: workspace:*
+        version: link:../client
+      '@biomejs/biome':
+        specifier: ^2.5.0
+        version: 2.5.0
+      '@types/three':
+        specifier: 0.184.0
+        version: 0.184.0
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      three:
+        specifier: 0.184.0
+        version: 0.184.0
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.22.2(typescript@6.0.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.1(@types/node@24.13.2)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.2)(yaml@2.9.1))
+
   packages/earth:
     dependencies:
       '@bendyline/molen-ambient':
         specifier: workspace:*
         version: link:../ambient
+      '@bendyline/molen-dioramas':
+        specifier: workspace:*
+        version: link:../dioramas
+      '@bendyline/molen-figures':
+        specifier: workspace:*
+        version: link:../figures
       '@bendyline/molen-kernel':
         specifier: workspace:*
         version: link:../kernel
@@ -4371,10 +4460,6 @@ packages:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
 
-  picomatch@4.0.4:
-    resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
-    engines: {node: '>=12'}
-
   picomatch@4.0.7:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
@@ -7421,10 +7506,6 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
-  fdir@6.5.0(picomatch@4.0.4):
-    optionalDependencies:
-      picomatch: 4.0.4
-
   fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
       picomatch: 4.0.7
@@ -8311,8 +8392,6 @@ snapshots:
 
   picomatch@2.3.2: {}
 
-  picomatch@4.0.4: {}
-
   picomatch@4.0.7: {}
 
   pify@3.0.0: {}
@@ -9010,8 +9089,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   to-regex-range@5.0.1:
     dependencies:

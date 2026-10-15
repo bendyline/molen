@@ -344,9 +344,33 @@ async function completeRoutes(
       endpoints: TerrainSemanticPoint[];
     }
   >();
+  // Where routes surface: endpoints of the ordinary (non-tunnel) lines, on a one-source-pixel
+  // grid. A tunnel end with no such continuation is a gap between fragments of a longer buried
+  // line (a city's subway splits into thousands), not a portal: grading the bore to the ground
+  // there would lay it at street level and open the ground along its whole length.
+  const surfaced = new Set<string>();
+  const pixel = (p: TerrainSemanticPoint): [number, number] => [
+    Math.round(p[0] * 4096),
+    Math.round(p[1] * 4096),
+  ];
+  const surfaces = (p: TerrainSemanticPoint): boolean => {
+    const [i, j] = pixel(p);
+    for (let di = -1; di <= 1; di++)
+      for (let dj = -1; dj <= 1; dj++) if (surfaced.has(`${i + di},${j + dj}`)) return true;
+    return false;
+  };
   for (const { address, tile: part } of loaded.values())
     for (const f of part.transportation) {
-      if (!f.tunnel) continue;
+      const map = (p: TerrainSemanticPoint): TerrainSemanticPoint => [
+        p[0] + address.x - context.address.x,
+        p[1] + address.z - context.address.z,
+      ];
+      if (!f.tunnel) {
+        for (const line of f.lines)
+          for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[])
+            surfaced.add(pixel(map(p)).join(','));
+        continue;
+      }
       const key = JSON.stringify([
         transportKind(f),
         f.layer ?? 0,
@@ -358,10 +382,6 @@ async function completeRoutes(
         group = { feature: f, lines: [], endpoints: [] };
         groups.set(key, group);
       }
-      const map = (p: TerrainSemanticPoint): TerrainSemanticPoint => [
-        p[0] + address.x - context.address.x,
-        p[1] + address.z - context.address.z,
-      ];
       for (const line of f.lines) {
         for (const p of [line[0], line.at(-1)] as TerrainSemanticPoint[])
           if (p[0] > 0 && p[0] < 1 && p[1] > 0 && p[1] < 1) group.endpoints.push(map(p));
@@ -384,7 +404,8 @@ async function completeRoutes(
     const complete = joinTerrainLines(lines).filter((line) => {
       const realEnd = (p: TerrainSemanticPoint) =>
         endpoints.some((q) => Math.hypot(p[0] - q[0], p[1] - q[1]) < tolerance) &&
-        lines.reduce((n, l) => n + Number(l[0] === p) + Number(l.at(-1) === p), 0) === 1;
+        lines.reduce((n, l) => n + Number(l[0] === p) + Number(l.at(-1) === p), 0) === 1 &&
+        surfaces(p);
       const intersects = clipTerrainSemanticLine(line, [0, 0, 1, 1]).length > 0;
       return (
         intersects &&

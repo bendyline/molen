@@ -36,7 +36,7 @@ describe('terrain water rendering backends', () => {
   it('keeps the asynchronous default on the original WebGL material', async () => {
     const material = await createTerrainWaterMaterialAsync();
     expect(material).toBeInstanceOf(THREE.MeshPhysicalMaterial);
-    expect(material.customProgramCacheKey()).toBe('terrain-water@1');
+    expect(material.customProgramCacheKey()).toBe('terrain-water@2:[]');
     material.dispose();
   });
 

@@ -278,6 +278,13 @@ const materialSpec = z.strictObject({
             "materialRef: 'palette:#rrggbb', 'matgraph:<pack material id or path>', or 'pixelgrid:<id or path>'.",
           ),
         weight,
+        palette: z
+          .string()
+          .min(1)
+          .describe(
+            'Key of `palettes` that tints this choice instead of the part palette, so brick stays brick-colored and concrete stays concrete-colored.',
+          )
+          .optional(),
       }),
     )
     .min(1)
@@ -397,6 +404,11 @@ const archStyleSchema = z.strictObject({
   materials: z.strictObject({
     wall: materialSpec,
     roof: materialSpec,
+    flatRoof: materialSpec
+      .describe(
+        'Replaces `roof` when the style resolves a flat roof (a flat choice or the flat fallback), so a pitched style keeps shingles on its slopes but light membrane or gravel on flat tops.',
+      )
+      .optional(),
     trim: materialSpec,
     foundation: materialSpec,
     window: materialSpec.optional(),
@@ -541,6 +553,18 @@ export function validateArchStyle(data: unknown): ValidationIssue[] {
         ...(near !== undefined ? { hint: `did you mean "${near}"?` } : {}),
       });
     }
+    spec.choices.forEach((choice, index) => {
+      if (choice.palette === undefined || paletteNames.includes(choice.palette)) return;
+      const near = nearest(choice.palette, paletteNames);
+      issues.push({
+        path: `${path}/choices/${index}/palette`,
+        code: 'unknown_palette',
+        message: `palette "${choice.palette}" is not defined`,
+        expected:
+          paletteNames.length > 0 ? `one of: ${paletteNames.join(' ')}` : 'a key of palettes',
+        ...(near !== undefined ? { hint: `did you mean "${near}"?` } : {}),
+      });
+    });
     if (spec.uv === 'meters' && spec.uvScale === undefined) {
       const textured = spec.choices.some(
         (choice) => parseMaterialRef(choice.ref)?.kind !== 'palette',

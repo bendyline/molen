@@ -50,6 +50,16 @@ it('plays the built Worker game under a hosting subpath and restarts cleanly', a
       () => document.querySelector('canvas')?.dataset.assetsReady === 'true',
     );
     await page.waitForFunction(() => Number(document.querySelector('canvas')?.dataset.tick) > 3);
+    // Model a page-cache round trip; teardown must only happen for a discarded document.
+    const cachedTick = await page.evaluate(() => {
+      dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true }));
+      dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+      return Number(document.querySelector('canvas')?.dataset.tick);
+    });
+    await page.waitForFunction(
+      (tick) => Number(document.querySelector('canvas')?.dataset.tick) > tick,
+      cachedTick,
+    );
     expect(models.size).toBe(28);
     await mkdir('.artifacts', { recursive: true });
     await page.screenshot({ path: '.artifacts/start.png' });

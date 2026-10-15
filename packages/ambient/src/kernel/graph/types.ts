@@ -8,7 +8,7 @@
 import type { TerrainLinePath } from '@bendyline/molen-terrain/kernel';
 
 /** Which agents a lane serves. */
-export type TransportClass = 'road' | 'rail' | 'walk' | 'air';
+export type TransportClass = 'road' | 'rail' | 'walk' | 'air' | 'water';
 
 /** Finer classification used for speeds, spawn preferences and routing weights. */
 export type RoadKind =
@@ -23,7 +23,9 @@ export type RoadKind =
   | 'path'
   | 'crossing'
   | 'rail'
-  | 'tram';
+  | 'tram'
+  | 'channel'
+  | 'ferry';
 
 export type TurnKind = 'straight' | 'left' | 'right' | 'uturn' | 'merge';
 
@@ -98,7 +100,7 @@ export interface TransportLane {
 export interface LaneStop {
   /** Edge-path distance of the stop (convert with `laneCoordinate`). */
   readonly d: number;
-  readonly kind: 'station' | 'bus' | 'crossing' | 'level-crossing';
+  readonly kind: 'station' | 'bus' | 'ferry' | 'crossing' | 'level-crossing';
   /** Station/crossing id, used to remember a served stop. */
   readonly id: string;
   /** Stations: dwell time in seconds (default: a seeded 20–40 s). */

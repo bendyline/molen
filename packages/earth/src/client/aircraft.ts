@@ -20,6 +20,7 @@ import {
   IDLE_AIRCRAFT_INPUT,
   initialAircraftState,
   installAircraft,
+  levelFlightAngleOfAttack,
 } from '@bendyline/molen-kernel/aircraft';
 import type { TypeLibrary } from '@bendyline/molen-kernel/content';
 import {
@@ -31,7 +32,13 @@ import {
   vehicleLocalPoint,
   vehicleRotation,
 } from '@bendyline/molen-kernel/vehicles';
-import { Transform, type TransformData, type World } from '@bendyline/molen-kernel/world';
+import {
+  sampleAtmosphere,
+  Transform,
+  type TransformData,
+  type World,
+  weatherOf,
+} from '@bendyline/molen-kernel/world';
 import type {
   AircraftData,
   AircraftInputData,
@@ -93,13 +100,23 @@ export interface EarthFlightStatus {
   heading: number;
   pitch: number;
   roll: number;
+  /** Load along the airframe's up axis in g: 1 in level flight, more in a pull. */
+  loadFactor: number;
+  /** Sideslip in radians, positive with the relative wind from the left (the slip ball). */
+  sideslip: number;
   /** Throttle (airplane) or collective (helicopter), 0..1. */
   power: number;
   engine: boolean;
   /** Maximum engine RPM, 0..1. */
   rpm: number;
+  /** The gear selection; `gearPosition` is where the gear actually is. */
   gearDown: boolean;
+  /** The flap selection; `flapPosition` is where the flaps actually are. */
   flaps: boolean;
+  /** Landing gear 0 up and locked … 1 down and locked; between them it is in transit. */
+  gearPosition: number;
+  /** Flap travel, 0 up … 1 fully down. */
+  flapPosition: number;
   stalled: boolean;
   grounded: boolean;
   crashed: boolean;
@@ -148,6 +165,8 @@ export class EarthAircraft {
   private readonly vehicleEnvironment: VehicleEnvironment;
   private readonly visuals = new Map<string, AircraftVisual>();
   private readonly spawned = new Set<string>();
+  /** Spawned aircraft a host owns: they survive `release` until removed. */
+  private readonly owned = new Set<string>();
   private controls: AircraftInputData = { ...IDLE_AIRCRAFT_INPUT };
   private sequence = 0;
   private disposed = false;
@@ -213,10 +232,20 @@ export class EarthAircraft {
     return false;
   }
 
-  /** Add an aircraft of `typeId`; its model loads in the background. Returns its entity id. */
-  spawn(typeId: string, placement: EarthAircraftPlacement): string {
+  /**
+   * Add an aircraft of `typeId`; its model loads in the background. Returns its entity id
+   * (`options.id`, or `earth-aircraft-<n>`). With `retain` it stays through `release` until
+   * {@link remove}d. Throws when the id is already in the world.
+   */
+  spawn(
+    typeId: string,
+    placement: EarthAircraftPlacement,
+    options: { id?: string; retain?: boolean } = {},
+  ): string {
     const data = this.types.component<AircraftData>(typeId, 'aircraft');
-    const id = `earth-aircraft-${++this.sequence}`;
+    const id = options.id ?? `earth-aircraft-${++this.sequence}`;
+    if (this.world.exists(id)) throw new Error(`An entity with id ${id} already exists`);
+    if (options.retain === true) this.owned.add(id);
     const yaw = headingToYaw(placement.heading);
     const components = this.types.components(typeId);
     components.transform = {
@@ -292,7 +321,7 @@ export class EarthAircraft {
     this.world.remove(PLAYER, Mounted);
     this.world.emit('vehicle-unmounted', { actor: PLAYER, vehicle: id });
     this.controls = { ...IDLE_AIRCRAFT_INPUT };
-    if (this.spawned.has(id)) this.remove(id);
+    if (this.spawned.has(id) && !this.owned.has(id)) this.remove(id);
     if (!t) return undefined;
     const ground = this.sampleHeight(t.pos[0], t.pos[2]);
     return ground === undefined ? undefined : [t.pos[0], ground, t.pos[2]];
@@ -304,7 +333,105 @@ export class EarthAircraft {
     this.visuals.get(id)?.dispose();
     this.visuals.delete(id);
     this.spawned.delete(id);
+    this.owned.delete(id);
     if (this.world.exists(id)) this.world.destroy(id);
+  }
+
+  /** Whether `id` was spawned here with `retain` (it survives release). */
+  isOwned(id: string): boolean {
+    return this.owned.has(id);
+  }
+
+  /**
+   * The aircraft whose pilot's eye is within `reach` meters of a point (the walker's eye), for
+   * boarding on foot. Undefined when none is that close.
+   */
+  nearest(position: [number, number, number], reach = 4.5): string | undefined {
+    let best: string | undefined;
+    let distance = reach;
+    for (const [id, t, aircraft] of this.world.query(Transform, Aircraft)) {
+      const eye = vehicleLocalPoint(t, aircraft.spec.pilotEye);
+      const d = Math.hypot(eye[0] - position[0], eye[1] - position[1], eye[2] - position[2]);
+      if (d < distance) {
+        best = id;
+        distance = d;
+      }
+    }
+    return best;
+  }
+
+  /**
+   * Board the nearest parked aircraft from a point on foot, like {@link EarthVehicles.enter} for a
+   * car: within reach, not through a wall, stopped and unoccupied. False (with `message`) otherwise.
+   */
+  enter(position: [number, number, number]): boolean {
+    this.message = '';
+    const id = this.nearest(position);
+    if (id === undefined) {
+      this.message = 'No aircraft within reach';
+      return false;
+    }
+    const t = this.world.get(id, Transform);
+    if (!t) return false;
+    this.collision.update(this.root, position[0], position[2], position[1]);
+    const a = new THREE.Vector3(
+      position[0] - this.collision.origin.x,
+      position[1],
+      position[2] - this.collision.origin.z,
+    );
+    const target = new THREE.Vector3(
+      t.pos[0] - this.collision.origin.x,
+      t.pos[1] + 1.2,
+      t.pos[2] - this.collision.origin.z,
+    );
+    const distance = a.distanceTo(target);
+    const wall = this.collision.octree.rayIntersect(new THREE.Ray(a, target.sub(a).normalize()));
+    if (wall && wall.distance < distance - 0.15) {
+      this.message = 'Move closer to the aircraft';
+      return false;
+    }
+    const state = this.world.get(id, AircraftState);
+    if (state !== undefined && (!state.grounded || Math.hypot(...state.velocity) > 0.7)) {
+      this.message = 'That aircraft is moving';
+      return false;
+    }
+    return this.board(id);
+  }
+
+  /** Whether an aircraft of `typeId` fits at a world position and compass heading (no walls, cars or aircraft). */
+  fits(typeId: string, position: [number, number, number], heading: number): boolean {
+    const data = this.types.component<AircraftData>(typeId, 'aircraft');
+    this.collision.update(this.root, position[0], position[2], position[1]);
+    return this.canOccupy(
+      {
+        pos: [position[0], position[1], position[2]],
+        rot: vehicleRotation(headingToYaw(heading), 0, 0),
+      },
+      data.spec,
+      '',
+    );
+  }
+
+  /** An aircraft's world position, compass heading, speed (m/s), whether it is on the ground and piloted. */
+  pose(id: string):
+    | {
+        position: [number, number, number];
+        heading: number;
+        speed: number;
+        grounded: boolean;
+        occupied: boolean;
+      }
+    | undefined {
+    const t = this.world.get(id, Transform);
+    const state = this.world.get(id, AircraftState);
+    if (!t || !state) return undefined;
+    return {
+      position: [t.pos[0], t.pos[1], t.pos[2]],
+      heading: (((Math.PI - state.yaw) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI),
+      speed: Math.hypot(...state.velocity),
+      grounded: state.grounded,
+      occupied: this.mountedId === id,
+    };
   }
 
   /**
@@ -417,11 +544,15 @@ export class EarthAircraft {
       heading: (((Math.PI - state.yaw) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI),
       pitch: state.pitch,
       roll: state.roll,
+      loadFactor: state.loadFactor ?? (state.grounded ? 0 : 1),
+      sideslip: state.sideslip ?? 0,
       power: this.controls.power,
       engine: this.controls.engine,
       rpm: state.rpm,
       gearDown: this.controls.gear,
       flaps: this.controls.flaps,
+      gearPosition: state.gearPosition ?? Number(this.controls.gear),
+      flapPosition: state.flapPosition ?? Number(this.controls.flaps),
       stalled: state.stalled,
       grounded: state.grounded,
       crashed: state.crashed,
@@ -441,12 +572,20 @@ export class EarthAircraft {
     const speed = airborne.speed ?? (airplane ? 70 : 12);
     const t = this.world.get(id, Transform);
     const ground = t ? this.sampleHeight(t.pos[0], t.pos[2]) : undefined;
+    const altitude = t?.pos[1] ?? 0;
+    const weather = weatherOf(this.world);
+    const density = weather
+      ? sampleAtmosphere(weather, altitude).densityKgM3
+      : 1.225 * Math.exp(-Math.max(0, altitude) / 8500);
+    // Trimmed at the angle of attack that carries the weight, so it holds level flight hands-off;
+    // helicopters hover level.
+    const trim = airplane ? levelFlightAngleOfAttack(spec, speed, density) : 0;
     const state: AircraftStateData = {
       ...initialAircraftState(yaw),
       velocity: [Math.sin(yaw) * speed, 0, Math.cos(yaw) * speed],
       airspeed: speed,
-      // A few degrees of nose-up trim holds level flight at cruise; helicopters hover level.
-      pitch: airplane ? 0.04 : 0,
+      pitch: trim,
+      ...(airplane ? { pitchTrim: trim } : {}),
       rpm: 1,
       grounded: false,
       altitudeAGL: t !== undefined && ground !== undefined ? t.pos[1] - ground : 0,

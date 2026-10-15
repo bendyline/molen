@@ -1,4 +1,8 @@
-import type { ModelSignalSource, ModelSignalSpec } from '@bendyline/molen-schema';
+import type {
+  ModelSignalBinding,
+  ModelSignalSource,
+  ModelSignalSpec,
+} from '@bendyline/molen-schema';
 import type { Object3D } from 'three';
 
 export type ModelSignals = Readonly<Record<string, number | undefined>>;
@@ -30,6 +34,27 @@ export function readModelSignals(
   return signals;
 }
 
+/**
+ * A binding's displacement for a signal, before its limits: linear in the signal, or along its
+ * keyframed curve, which holds its end values outside the keys. Exported for tests.
+ */
+export function modelSignalDisplacement(binding: ModelSignalBinding, signal: number): number {
+  const keys = binding.keys;
+  if (keys === undefined) return signal * (binding.scale ?? 1) + (binding.offset ?? 0);
+  const first = keys[0];
+  const last = keys[keys.length - 1];
+  if (first === undefined || last === undefined) return 0;
+  if (signal <= first[0]) return first[1];
+  if (signal >= last[0]) return last[1];
+  let index = 1;
+  while (index < keys.length - 1 && signal > (keys[index]?.[0] ?? Infinity)) index++;
+  const [x0, y0] = keys[index - 1] ?? first;
+  const [x1, y1] = keys[index] ?? last;
+  let f = (signal - x0) / (x1 - x0);
+  if (binding.ease === 'smooth') f = f * f * (3 - 2 * f);
+  return y0 + (y1 - y0) * f;
+}
+
 /** Model-agnostic; moves existing geometry without creating a cockpit or changing physics. */
 export function createModelSignalVisual(model: Object3D, spec: ModelSignalSpec): ModelSignalVisual {
   const nodes = new Map<string, Object3D[]>();
@@ -53,7 +78,7 @@ export function createModelSignalVisual(model: Object3D, spec: ModelSignalSpec):
       for (const { binding, node, rest } of bindings) {
         const signal = signals[binding.source];
         if (signal === undefined || !Number.isFinite(signal)) continue;
-        const value = signal * binding.scale + (binding.offset ?? 0);
+        const value = modelSignalDisplacement(binding, signal);
         if (!Number.isFinite(value)) continue;
         node[binding.property][binding.axis] =
           rest + Math.max(binding.min ?? -Infinity, Math.min(binding.max ?? Infinity, value));

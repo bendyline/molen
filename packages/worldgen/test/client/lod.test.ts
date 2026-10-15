@@ -86,4 +86,33 @@ describe('camera-distance instance LOD', () => {
     disposeWorldgenObject(root);
     library.dispose();
   });
+
+  it('keeps every placement in one batch with an infinite cell size', async () => {
+    const library = new ModelLibrary();
+    const ref = 'builtin:tree.deciduous.oak';
+    const models = [
+      await library.prepare(ref),
+      await library.prepare(ref, true),
+      await library.prepare(ref, 'distant'),
+    ] as const;
+    // Placements on both sides of the origin and far apart would otherwise span several cells.
+    const set: PlacementSet = {
+      setId: 'forest',
+      modelRef: ref,
+      count: 3,
+      data: new Float32Array([
+        -3, 0, -2, 0, 1, 1, 1, 1, 1, 1, 1020, 0, 10, 0, 1, 1, 1, 1, 1, 1, 400, 0, 2000, 0, 1, 1, 1,
+        1, 1, 1,
+      ]),
+    };
+    const root = createInstancedPlacementLod(set, models, { cellSize: Number.POSITIVE_INFINITY });
+    expect(root.children).toHaveLength(1);
+    expect(((root.children[0] as THREE.LOD).levels[0]?.object as THREE.InstancedMesh).count).toBe(
+      3,
+    );
+    expect(() => createInstancedPlacementLod(set, models, { cellSize: Number.NaN })).toThrow();
+    expect(() => createInstancedPlacementLod(set, models, { cellSize: 0 })).toThrow();
+    disposeWorldgenObject(root);
+    library.dispose();
+  });
 });

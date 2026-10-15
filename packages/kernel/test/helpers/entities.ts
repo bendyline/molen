@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import type { AircraftData } from '@bendyline/molen-schema';
+import type { AircraftData, VehicleData } from '@bendyline/molen-schema';
 import { createTypeLibrary } from '../../src/type-library';
 
 // Tests read the molen.entities type documents from the repository's content directory; no
@@ -18,4 +18,9 @@ const types = createTypeLibrary(
 /** Resolved aircraft data for one of the molen.entities aircraft. */
 export function molenAircraft(id: string): AircraftData {
   return types.component<AircraftData>(id, 'aircraft');
+}
+
+/** Resolved vehicle data for one of the molen.entities cars. */
+export function molenVehicle(id: string): VehicleData {
+  return types.component<VehicleData>(id, 'vehicle');
 }

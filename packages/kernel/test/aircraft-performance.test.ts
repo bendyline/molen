@@ -7,7 +7,12 @@ import { molenAircraft } from './helpers/entities';
 
 const mustang = molenAircraft('molen.entities.aircraft.p51d').spec;
 const mustangEngine = mustang.engine;
-if (!mustangEngine) throw new Error('Missing Mustang engine');
+if (!mustangEngine || !mustang.airplane) throw new Error('Missing Mustang engine');
+// A propeller makes left and right turns differ; mirror-image checks fly without its effects.
+const symmetric: AircraftSpec = {
+  ...mustang,
+  airplane: { ...mustang.airplane, propellerEffects: 0 },
+};
 const helicopter = molenAircraft('molen.entities.aircraft.oh6').spec;
 const flat = { groundHeight: () => 0 };
 const clean: AircraftInputData = {
@@ -52,10 +57,22 @@ function fly(
   }
   return result;
 }
-const level = (state: AircraftStateData): AircraftInputData => ({
-  ...clean,
-  pitch: clamp(-state.verticalSpeed * 0.08 - state.pitchRate * 0.8),
-});
+/**
+ * A pilot holding a bank angle (wings level by default) and zero vertical speed, damping with
+ * the rate the pitch attitude changes (body pitch rate is nonzero throughout a level turn).
+ */
+const hold =
+  (bank = 0) =>
+  (state: AircraftStateData): AircraftInputData => ({
+    ...clean,
+    pitch: clamp(
+      -state.verticalSpeed * 0.08 -
+        (state.pitchRate * Math.cos(state.roll) + (state.yawRate ?? 0) * Math.sin(state.roll)) *
+          0.8,
+    ),
+    roll: clamp((bank - state.roll) * 2 - state.rollRate * 0.5),
+  });
+const level = hold();
 function sideslip(result: ReturnType<typeof airborne>) {
   const left = vehicleLocalPoint({ ...result.transform, pos: [0, 0, 0] }, [1, 0, 0]);
   return Math.asin(
@@ -76,6 +93,8 @@ describe('aircraft performance and recovery envelope', () => {
           gear: true,
           flaps: true,
           pitch: state.grounded && state.airspeed >= 42 ? 1 : 0,
+          // Right aileron against the propeller's torque once off the ground.
+          roll: state.grounded ? 0 : clamp(-state.roll * 2 - state.rollRate * 0.5),
         };
       },
       { transform: { pos: [0, 0, 0], rot: [0, 0, 0, 1] }, state: initialAircraftState() },
@@ -161,7 +180,7 @@ describe('aircraft performance and recovery envelope', () => {
     expect(on.state.velocity[2]).toBeCloseTo(off.state.velocity[2], 10);
   });
 
-  it('does not force a banked heading turn when the wing produces no lift', () => {
+  it('does not turn the flight path when the wing produces no lift', () => {
     if (!mustang.airplane) throw new Error('Missing wing');
     const spec: AircraftSpec = {
       ...mustang,
@@ -169,11 +188,11 @@ describe('aircraft performance and recovery envelope', () => {
         ...mustang.airplane,
         liftSlope: 0,
         postStallLift: 0,
-        stallPitchRate: 0,
-        yawStability: 0,
         lateralDamping: 0,
       },
     };
+    // The banked, pitched airframe still rotates under its own stability, but with no lift
+    // and no side force nothing pushes the airplane sideways.
     const result = fly(
       1,
       () => ({ ...clean, engine: false }),
@@ -181,8 +200,7 @@ describe('aircraft performance and recovery envelope', () => {
       60,
       spec,
     );
-    expect(result.state.yaw).toBe(0);
-    expect(result.state.velocity[0]).toBe(0);
+    expect(result.state.velocity[0]).toBeCloseTo(0, 12);
   });
 
   it.each([
@@ -216,7 +234,7 @@ describe('aircraft performance and recovery envelope', () => {
 
   it('makes symmetric coordinated banked turns without accumulating sideslip', () => {
     const turns = [-0.45, 0.45].map((roll) =>
-      fly(15, level, airborne({ roll, velocity: [0, 0, 100] })),
+      fly(15, hold(roll), airborne({ roll, velocity: [0, 0, 100] }), 60, symmetric),
     );
     const [left, right] = turns;
     if (!left || !right) throw new Error('Missing turn result');

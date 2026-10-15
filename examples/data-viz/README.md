@@ -45,3 +45,7 @@ One wrinkle worth knowing: `src/viz.ts` imports `data.json` without an import at
 In the engine repository this sample lives in `examples/data-viz/`. The same commands run from
 that directory, and `pnpm --filter @bendyline/molen-examples-data-viz test:unit` (or `test:golden`) runs its tests from the
 root.
+
+The browser includes a Pause animation button and a Chart values table. With reduced motion enabled,
+it opens on the completed, still chart. Pausing freezes both the camera track and the simulation;
+resuming continues the camera from its paused position.

@@ -1,4 +1,6 @@
 import { mountExperience } from '@bendyline/molen-client';
+import { createGameControls } from '../../shared/game-controls';
+import { readyToPlay } from '../../shared/playback';
 import { startAudio } from './audio';
 import { scene } from './scene';
 import '../../game-shell.css';
@@ -9,7 +11,13 @@ element('interface').innerHTML =
   `<header class="topbar"><div><div class="eyebrow">MOLEN / 03 / PLATFORM ADVENTURE</div><h1>Skybound</h1><div class="subtitle">A LITTLE LEAP GOES A LONG WAY</div></div><div class="stats"><div class="stat"><label>SEEDS</label><strong id="stat0">0 / 15</strong></div><div class="stat"><label>LIVES</label><strong id="stat1">3</strong></div><div class="stat"><label>CHECKPOINT</label><strong id="stat2">START</strong></div></div></header><div class="bottom"><div class="brief"><div class="label">Five islands. One lighthouse.</div><p id="message">Loading the experience...</p><div class="controls"><kbd>A D / &larr; &rarr;</kbd> run &nbsp; <kbd>Space</kbd> jump (hold for height)<br/>Stomp the purple creatures. Avoid pink thorns. &nbsp; <kbd>R</kbd> restart</div></div><div class="brief"><div class="label">TO THE LIGHTHOUSE</div><div class="progress"><span id="progress"></span></div><div class="controls">Eastbound &middot; 75 meters</div></div></div><div id="outcome" hidden><h2 id="outcome-title"></h2><p id="outcome-detail"></p><button id="restart" type="button">Play again &rarr;</button></div><div id="diagnostic" role="alert"></div>`;
 const canvas = document.getElementById('view') as HTMLCanvasElement;
 const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
-const mounted = await mountExperience({ link: worker, scene: scene(), canvas, antialias: true });
+const mounted = await mountExperience({
+  link: worker,
+  scene: scene(),
+  canvas,
+  frameLoop: 'manual',
+  antialias: true,
+});
 const { client } = mounted;
 const stopAudio = startAudio(client, scene().tickRate ?? 30);
 function element(id: string): HTMLElement {
@@ -25,8 +33,17 @@ client.onDiag((d) => {
   if (d.code !== 'tick-overrun') diagnostic(`${d.code}: ${JSON.stringify(d.detail)}`);
 });
 client.onEvent('script-error', (e) => diagnostic(JSON.stringify(e.payload)));
+let controls: ReturnType<typeof createGameControls> | undefined;
+let disposed = false;
+void readyToPlay(client)
+  .catch((error: unknown) => diagnostic(String(error)))
+  .then(() => {
+    if (disposed) return;
+    canvas.dataset.assetsReady = 'true';
+    controls = createGameControls({ kind: 'skybound', client, input: mounted.input, canvas });
+  });
 element('restart').addEventListener('click', () => {
-  client.command('restart');
+  controls?.restart();
   canvas.focus();
 });
 const timer = setInterval(() => {
@@ -54,10 +71,15 @@ const timer = setInterval(() => {
   element('progress').style.width = `${Math.max(0, Math.min(100, ((pos?.[0] ?? 0) / 75) * 100))}%`;
 }, 80);
 function dispose(): void {
+  disposed = true;
+  controls?.dispose();
   clearInterval(timer);
   void stopAudio.then((stop) => stop());
   mounted.dispose();
   worker.terminate();
 }
-window.addEventListener('pagehide', dispose, { once: true });
+window.addEventListener('pagehide', (event) => {
+  // A cached page resumes the same workers and renderer on Back/Forward.
+  if (!event.persisted) dispose();
+});
 if (import.meta.hot) import.meta.hot.dispose(dispose);

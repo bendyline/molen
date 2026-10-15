@@ -1,3 +1,5 @@
+import { createPlayback, readyToPlay } from '../../shared/playback';
+import '../../shared/accessibility.css';
 import { mountExperience } from '@bendyline/molen-client';
 import { figureKind } from '@bendyline/molen-figures/client';
 import { validate } from '@bendyline/molen-schema';
@@ -11,13 +13,30 @@ if (!scene.ok) throw new Error(scene.formatted);
 const canvas = document.getElementById('view') as HTMLCanvasElement;
 const worker = new Worker(new URL('./worker.ts', import.meta.url), { type: 'module' });
 
-const { client } = await mountExperience({
+const mounted = await mountExperience({
   link: worker,
   scene: scene.value,
   canvas,
+  frameLoop: 'manual',
   clearColor: '#1b2130',
   kinds: [figureKind()],
 });
+const { client, input } = mounted;
+await readyToPlay(client);
+const toolbar = document.createElement('div');
+toolbar.className = 'demo-playback';
+canvas.parentElement?.append(toolbar);
+const playback = createPlayback({ client, input, canvas, container: toolbar });
+function dispose(): void {
+  clearInterval(status);
+  playback.dispose();
+  mounted.dispose();
+  worker.terminate();
+}
+window.addEventListener('pagehide', (event) => {
+  if (!event.persisted) dispose();
+});
+if (import.meta.hot) import.meta.hot.dispose(dispose);
 
 // Status for headless checks: the kernel tick, the mirrored entity count, and asset readiness.
 const status = setInterval(() => {
@@ -41,4 +60,4 @@ const hint = document.createElement('div');
 hint.textContent = 'press 1 (idle), 2 (walk) or 3 (run)';
 hint.style.cssText =
   'position:fixed;left:12px;bottom:10px;font:13px system-ui;color:#9aa;pointer-events:none';
-document.body.appendChild(hint);
+canvas.parentElement?.appendChild(hint);

@@ -972,6 +972,12 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
   private idleWaiters: Array<() => void> = [];
   private budget: TerrainPyramidBudget;
   private readonly groundCutouts = new TerrainGroundCutoutController();
+  /**
+   * Whether ground cutouts must be recomputed: a surface, layer or tile changed visibility or a
+   * surface's grid changed. The pass walks every cutter (a city's tunnels hold thousands) and
+   * otherwise reran on every 10 Hz camera update with nothing to change.
+   */
+  private cutoutsDirty = true;
   private geometryBytes = 0;
   private decodedHeightBytes = 0;
   private displayedBytes = 0;
@@ -1199,6 +1205,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       ) as THREE.BufferAttribute;
       applySurfaceHeightMorph(position.array as Float32Array, morph, progress);
       position.needsUpdate = true;
+      this.cutoutsDirty = true;
       if (progress >= 1 || !tile.surface.visible) {
         applySurfaceHeightMorph(position.array as Float32Array, morph, 1);
         this.morphing.delete(tile);
@@ -1290,6 +1297,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         ) as THREE.BufferAttribute;
         applySurfaceHeightMorph(position.array as Float32Array, tile.morph, 1);
         position.needsUpdate = true;
+        this.cutoutsDirty = true;
         this.morphing.delete(tile);
         delete tile.morph;
       }
@@ -1664,7 +1672,10 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
         neighborHeight: this.levelNeighborHeight(tile.address.level),
       },
     );
-    if (refreshed) attribute.needsUpdate = true;
+    if (refreshed) {
+      attribute.needsUpdate = true;
+      this.cutoutsDirty = true;
+    }
   }
 
   private admit<T>(task: () => T, signal: AbortSignal, label: string, bytes = 0): Promise<T> {
@@ -1771,6 +1782,7 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
       const tileVisible = displayed.has(key);
       if (tileVisible && !tile.surface.visible && tile.morph && !this.morphing.has(tile))
         this.morphing.set(tile, performance.now());
+      if (tile.surface.visible !== tileVisible) this.cutoutsDirty = true;
       tile.surface.visible = tileVisible;
     }
     this.updateLayerVisibility();
@@ -1919,14 +1931,20 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
 
     for (const [key, tile] of this.resident) {
       for (const [id, object] of tile.layers) {
-        object.visible = this.displayedLayers.get(id)?.has(key) === true;
+        const visible = this.displayedLayers.get(id)?.has(key) === true;
+        if (object.visible !== visible) this.cutoutsDirty = true;
+        object.visible = visible;
       }
       // A warm tile can contain hundreds of LOD groups. Hide its root too, so renderer
       // traversal and WebGPU command inspection stop before visiting that cached subtree.
-      tile.object.visible = this.visiblyRetains(key);
+      const retained = this.visiblyRetains(key);
+      if (tile.object.visible !== retained) this.cutoutsDirty = true;
+      tile.object.visible = retained;
     }
-    if (this.groundCutouts.update(this.object)) {
-      for (const tile of this.resident.values()) this.trackAllocations(tile);
+    if (this.cutoutsDirty) {
+      this.cutoutsDirty = false;
+      if (this.groundCutouts.update(this.object))
+        for (const tile of this.resident.values()) this.trackAllocations(tile);
     }
     this.refreshDisplayedBytes();
   }

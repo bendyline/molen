@@ -71,7 +71,10 @@ function defaultMinimumLevel(minLevel: number, maxLevel: number, detailLevels: n
 /**
  * Open declared sidecars and create conservative, detail-bounded adaptive layers.
  *
- * The defaults decorate the finest three landcover levels and finest two built-feature levels.
+ * The defaults decorate the finest three landcover levels and finest two built-feature levels
+ * that the layers reach: with overzoom, the package's finest terrain levels, not the sidecar's.
+ * A package deeper than its vector archive would otherwise generate trees and buildings for
+ * tiles many kilometres across (zoom 11 to 13 over a zoom-15 package).
  * Hydrology spans every available sidecar level so distant lakes retain mapped shorelines.
  * A caller can override bounds or replace a renderer without changing package/archive code.
  */
@@ -178,7 +181,7 @@ export async function createTerrainPackageSemanticLayers(
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??
-          defaultMinimumLevel(semantics.landcover.minLevel, semantics.landcover.maxLevel, 3),
+          defaultMinimumLevel(semantics.landcover.minLevel, reach(semantics.landcover.maxLevel), 3),
         maxLevel: style.maxLevel ?? reach(semantics.landcover.maxLevel),
       }),
     );
@@ -270,7 +273,7 @@ export async function createTerrainPackageSemanticLayers(
         visible: style.visible ?? false,
         minLevel:
           style.minLevel ??
-          defaultMinimumLevel(semantics.features.minLevel, semantics.features.maxLevel, 2),
+          defaultMinimumLevel(semantics.features.minLevel, reach(semantics.features.maxLevel), 2),
         maxLevel: style.maxLevel ?? reach(semantics.features.maxLevel),
       }),
     );

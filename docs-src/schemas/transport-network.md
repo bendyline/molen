@@ -159,7 +159,8 @@ Roads, railways and paths ambient NPCs move on, for scenes without streamed map 
               "road",
               "rail",
               "path",
-              "air"
+              "air",
+              "water"
             ],
             "description": "What moves on it."
           },
@@ -258,7 +259,8 @@ Roads, railways and paths ambient NPCs move on, for scenes without streamed map 
             "type": "string",
             "enum": [
               "rail",
-              "bus"
+              "bus",
+              "ferry"
             ]
           },
           "dwell": {

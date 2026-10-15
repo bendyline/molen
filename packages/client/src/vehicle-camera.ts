@@ -19,7 +19,7 @@ export interface VehicleCameraPose {
 /** Seat-space cockpit and collision-shortened chase views for any vehicle host. */
 export function vehicleCameraPose(
   transform: { pos: [number, number, number]; rot: [number, number, number, number] },
-  spec: VehicleSpec,
+  spec: Pick<VehicleSpec, 'driverEye' | 'length'>,
   options: VehicleCameraOptions,
 ): VehicleCameraPose {
   const rotation = new THREE.Quaternion().fromArray(transform.rot);

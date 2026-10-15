@@ -23,6 +23,13 @@ export type WeatherData = {
     scale?: number;
   };
   precipitation?: { kind?: 'none' | 'rain' | 'snow'; intensity?: number };
+  wind?: {
+    referenceHeight?: number;
+    shear?: number;
+    turbulence?: number;
+    gusts?: number;
+    terrain?: number;
+  };
   seed?: number;
 };
 
@@ -104,6 +111,41 @@ export const weatherSchema: z.ZodType<WeatherData> = z.strictObject({
     })
     .optional()
     .describe('Precipitation independent of cloud coverage and visibility.'),
+  wind: z
+    .strictObject({
+      referenceHeight: finite
+        .positive()
+        .optional()
+        .describe(
+          'Height above ground in meters where atmosphere.windVelocity is measured; default 10.',
+        ),
+      shear: finite
+        .min(0)
+        .max(1)
+        .optional()
+        .describe(
+          'Power-law exponent of mean wind speed with height above ground, up to 600 m; default 0 (uniform). About 0.14 over open country, 0.3 over cities.',
+        ),
+      turbulence: fraction
+        .optional()
+        .describe(
+          'Turbulence intensity 0–1, default 0: about 0.15 light chop, 0.4 moderate, 0.8 severe. Grows with wind speed and fades above the 1 km boundary layer.',
+        ),
+      gusts: fraction
+        .optional()
+        .describe(
+          'Gust factor 0–1, default 0: along-wind speed swings as a fraction of the mean wind, advected with it.',
+        ),
+      terrain: fraction
+        .optional()
+        .describe(
+          'Strength 0–1 of wind deflected by terrain slopes: ridge lift upwind, sink in the lee. Default 0.',
+        ),
+    })
+    .optional()
+    .describe(
+      'Spatial and temporal structure of the wind around the mean atmosphere.windVelocity. Deterministic from seed and simulation time; consumes no simulation RNG.',
+    ),
   seed: finite
     .int()
     .min(0)
@@ -117,6 +159,7 @@ export type ResolvedWeather = {
   visibility: number;
   clouds: Required<NonNullable<WeatherData['clouds']>>;
   precipitation: Required<NonNullable<WeatherData['precipitation']>>;
+  wind: Required<NonNullable<WeatherData['wind']>>;
   seed: number;
 };
 
@@ -142,6 +185,7 @@ export function resolveWeather(data: WeatherData = {}): ResolvedWeather {
       ...data.clouds,
     },
     precipitation: { kind: 'none', intensity: 0, ...data.precipitation },
+    wind: { referenceHeight: 10, shear: 0, turbulence: 0, gusts: 0, terrain: 0, ...data.wind },
     seed: data.seed ?? 1,
   };
 }
@@ -158,6 +202,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         relativeHumidity: 0.4,
         windVelocity: [2, 0, 1],
       },
+      wind: { shear: 0.14, turbulence: 0.2, gusts: 0.25, terrain: 0.6 },
     },
     'partly-cloudy': {
       atmosphere: {
@@ -166,6 +211,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         relativeHumidity: 0.55,
         windVelocity: [5, 0, 2],
       },
+      wind: { shear: 0.16, turbulence: 0.2, gusts: 0.3, terrain: 0.7 },
       clouds: { coverage: 0.42, density: 0.65 },
     },
     overcast: {
@@ -175,6 +221,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         relativeHumidity: 0.8,
         windVelocity: [6, 0, 2],
       },
+      wind: { shear: 0.2, turbulence: 0.15, gusts: 0.3, terrain: 0.7 },
       clouds: { coverage: 1, density: 0.85, baseAltitude: 1600, thickness: 900 },
       visibility: 12000,
     },
@@ -185,6 +232,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         relativeHumidity: 0.95,
         windVelocity: [7, 0, 3],
       },
+      wind: { shear: 0.22, turbulence: 0.35, gusts: 0.45, terrain: 0.8 },
       clouds: { coverage: 0.98, density: 0.95, baseAltitude: 1600, thickness: 1200 },
       precipitation: { kind: 'rain', intensity: 0.7 },
       visibility: 4500,
@@ -196,6 +244,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         relativeHumidity: 0.9,
         windVelocity: [2, 0, 1],
       },
+      wind: { shear: 0.2, turbulence: 0.2, gusts: 0.35, terrain: 0.7 },
       clouds: { coverage: 0.94, density: 0.8, baseAltitude: 1600, thickness: 1000 },
       precipitation: { kind: 'snow', intensity: 0.65 },
       visibility: 2500,
@@ -207,6 +256,7 @@ export function weatherProfile(profile: WeatherProfile): WeatherData {
         relativeHumidity: 1,
         windVelocity: [0.3, 0, 0.2],
       },
+      wind: { shear: 0.3, turbulence: 0.03, gusts: 0.1, terrain: 0.3 },
       clouds: { coverage: 0.3 },
       visibility: 450,
     },

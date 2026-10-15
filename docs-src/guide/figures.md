@@ -112,7 +112,13 @@ anchored to a tick, so a steadily walking figure sends no deltas. `figureIntent.
 mode; `lookAt` aims the head at a point or an entity.
 
 Pedestrians in [ambient life](ambient-life.md) are figures moved this way: the ambient kernel
-writes their transform along footways and `speedSource: 'transform'` animates the gait.
+writes their transform along footways and `speedSource: 'transform'` animates the gait. The Earth
+view, whose world steps on the main thread without the figures systems, poses its pedestrians,
+[actors](earth-view.md#actors-companions-and-npcs) and the walker's avatar client-side with the
+same `evaluatePose` from `@bendyline/molen-figures/client` (sitting in vehicle seats with the `eye`
+anchor, and turning heads with `worldToFigure` look targets). Cycle drivers use a `pelvis`
+anchor and `cycleRiderPose(vehicle, state, seat)` to reach the handlebars and pedals; the kernel,
+figure kind and Earth avatar share that contact solver.
 
 ## Sockets and attachments
 

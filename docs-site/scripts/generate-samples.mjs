@@ -107,6 +107,22 @@ const SAMPLES = [
     guides: [['Figures', '/guide/figures']],
   },
   {
+    dir: 'dioramas',
+    title: 'Dioramas',
+    kind: 'capability',
+    tagline: 'Six scripted places that come alive when you approach.',
+    body:
+      'Football, airport ground traffic, little league, fireworks, a fair and a Saturday market. ' +
+      'The director loads its scripts on demand, plays a short repeating performance and ' +
+      'disposes the scene when the observer leaves. The same content can be placed in Earth view.',
+    concepts: ['Scene-data scripts', 'Lazy loading', 'Local bounds', 'Proximity and schedules'],
+    guides: [
+      ['Dioramas', '/guide/dioramas'],
+      ['Scripting', '/guide/scripting'],
+      ['Earth view', '/guide/earth-view'],
+    ],
+  },
+  {
     dir: 'earth-view',
     title: 'Earth view',
     kind: 'capability',
@@ -470,7 +486,7 @@ export async function generateSamples() {
   const covered = new Set(SAMPLES.map((s) => s.dir));
   const onDisk = await readdir(join(repoRoot, 'examples'), { withFileTypes: true });
   const missing = onDisk
-    .filter((d) => d.isDirectory() && !covered.has(d.name) && d.name !== 'home')
+    .filter((d) => d.isDirectory() && !covered.has(d.name) && !['home', 'shared'].includes(d.name))
     .map((d) => d.name);
   if (missing.length > 0) {
     console.warn(`samples: no page for ${missing.join(', ')} — add an entry to SAMPLES`);

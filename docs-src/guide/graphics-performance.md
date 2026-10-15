@@ -41,6 +41,14 @@ sample at 15 Hz and hidden meshes at 5 Hz by default; returning nearby updates i
 Use `animation: false` for full-rate sampling everywhere. Snapshot/capture poses remain exact.
 Finite local lights whose entire influence sphere lies outside the camera frustum are omitted.
 An explicit light-count cap ranks remaining lights by intensity/distance and can change images.
+On WebGPU, capped point lights without shadows use persistent shader slots: moving or turning
+changes each slot's position, color and intensity instead of compiling a new lighting shader
+for every selected combination. Unused slots have zero intensity. Shadow-casting lights and
+spotlights retain their own objects.
+
+Resuming a paused simulation re-anchors the interpolation clock while keeping its pose history.
+Loading screens and paused manual turns therefore do not leave live motion snapping between
+simulation ticks while the clock slowly catches up.
 
 ## Staged preparation and admission
 
@@ -126,9 +134,14 @@ and cell-preparation timings are reported separately. Compatible opaque groups a
 by the resolved Three material, including groups with different authored references that resolve
 to the same material. Transparent group order is preserved.
 
-World prop cells start at 512 metres and grow with coarser terrain levels, capped at 8192 metres.
-This retains fine nearby culling without creating thousands of tiny distant batches. Every prop
-placement remains intact; larger cells trade some culling precision for fewer submissions.
+World props (trees, ground cover, rocks, rooftop and street props) keep one batch per model per
+terrain tile: the tile is already the culling unit. On WebGPU, three.js builds a separate shader
+for every `InstancedMesh`, about 6 ms on the main thread even when the material and geometry are
+shared, so splitting each tile into culling cells multiplied that cost by cells times LOD levels
+and starved terrain publication during fast flight. Every prop placement remains intact; whole-tile
+batches trade some culling precision (more instanced triangles drawn) for far fewer shader builds
+and draw submissions. `createInstancedPlacementLod` still accepts a finite `cellSize` for callers
+that want spatial cells.
 
 Terrain palettes compile once per mesh. Terrain index topology is immutable and shared in a
 bounded CPU cache; use a copy before editing or transferring it. Grids and building cells use
