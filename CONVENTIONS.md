@@ -46,6 +46,13 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Build & test
 
+- Repository builds and regression checks use the exact Node version in `.node-version`, shared
+  by CI and Release. Native fractional powers differ between Node 22 and 24, enough to change
+  figure animation phases by about 1e-15 and invalidate a pinned hash. Root build/test entry
+  points check the version first. Published packages still support Node ≥22.13; the packed-install
+  CI job tests Node 22 independently of the regression fixtures.
+- `pnpm build` compiles and bundles; it does not execute unit or browser assertions.
+  `pnpm verify` adds the headless checks, while `pnpm all` includes the browser golden tests.
 - **Build before typecheck/test.** Packages import each other's `dist`. Use the root scripts
   (`pnpm typecheck`, `pnpm test:unit`) which rebuild the library packages first via `pre*`
   hooks, or run `pnpm -r --filter './packages/**' build` before invoking `tsc`/`vitest`
@@ -122,7 +129,7 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
   (register new components with `registerComponent`).
 - `@bendyline/molen-kernel` depends only on schema (+ `ses` for the script Compartment). No
   DOM/three.js/WASM. Subpaths: `/testing`, `/kinematics`, `/character`, `/scripting`, `/terrain`,
-  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/aircraft`, `/world` (the ECS
+  `/platformer`, `/determinism`, `/content`, `/vehicles`, `/boats`, `/aircraft`, `/world` (the ECS
   World without the SES scripting runtime, for main-thread hosts).
   `buildWorld` is the one build order every host uses (data systems → commands → entities →
   physics hook → terrain hook → setup → scripts).

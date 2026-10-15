@@ -52,10 +52,12 @@ downloads them into a project and pins them in project.json.
 - [Logical source bundles](guide/source-bundles.md): one copyable folder per entity, structure, vehicle, prop, or other authored thing, with all definitions and source files listed in `source.json`.
 - [Components](schemas/components.md): the component vocabulary `molen validate` checks against.
 - [Mountable vehicles](guide/vehicles.md): stable parking entities, driver seats, deterministic vehicle physics, safe exits, and cockpit/chase views.
+- [Boats and water](guide/boats.md): powered hulls, helm controls, passengers, boarding points, swells, currents and Earth-view water coverage.
 - [Aircraft](guide/aircraft.md): P-51D and OH-6 assets, flight physics, cockpit instruments, practice airfield and controls.
-- [Vehicle interiors and model signals](guide/vehicle-interiors.md): model-owned cabins, declarative simulation-to-GLB bindings, script-owned telemetry, and nearby detail loading.
+- [Vehicle interiors and model signals](guide/vehicle-interiors.md): model-owned cabins, declarative simulation-to-GLB bindings, keyframed exterior animation (landing gear, doors, control surfaces), script-owned telemetry, and nearby detail loading.
 - [Figures](guide/figures.md): stylized humans, bipeds and quadrupeds: presets and descriptors, canonical rigs and sockets, deterministic gaits, `figureAttachment` accessories, riders, and `molen figure preview`.
-- [Ambient life](guide/ambient-life.md): NPC cars, pedestrians, trains and aircraft that spawn around an observer on a transport network (the scene `ambient` block, `molen/transport-network@1`, `molen.ambient.*`, the Earth view's `ambient` option, `ambientRole` content).
+- [Ambient life](guide/ambient-life.md): NPC cars, pedestrians, trains, aircraft and watercraft that spawn around an observer on a transport network (the scene `ambient` block, `molen/transport-network@1`, `molen.ambient.*`, the Earth view's `ambient` option, `ambientRole` content).
+- [Dioramas](guide/dioramas.md): bounded scripted set pieces loaded near the viewer; local deterministic scenes, schedules, lazy playback, football choreography, and geographic Earth placements.
 - [Complete game samples](guide/game-samples.md): city driving, first-person dungeon, and platformer; shared follow cameras and XY platform physics.
 - [Samples gallery](guide/examples.md): every sample with its molen.dev/play link and `--template` id, plus the capability layers (kinematics,
   character, pathfinding, physics-rapier, terrain) — copy-and-modify starting points.
@@ -90,7 +92,7 @@ with `molen validate <file>`, which prints precise, fixable errors. The shipped 
 Schema + example, generated from the registry) live in [schemas/](schemas/README.md):
 
 - [Scene manifest](schemas/scene.md) (`molen/scene@3`: entities, prefabs, `commands`, `components`, camera, input, physics, terrain, ambient)
-- [Transport network](schemas/transport-network.md) (`molen/transport-network@1`: roads, railways and paths for ambient traffic)
+- [Transport network](schemas/transport-network.md) (`molen/transport-network@1`: roads, railways, paths and water routes for ambient traffic)
 - [Command envelope](schemas/command.md) · [Assertions](schemas/assert.md)
 - [Keyframe](schemas/keyframe.md) · [Delta](schemas/delta.md) · [Replay](schemas/replay.md)
 - [Components](schemas/components.md) — every component with units and axis conventions

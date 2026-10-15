@@ -18,6 +18,7 @@ function movingNodes(spec: AircraftSpec): Set<string> {
     ...visual.ailerons.map((binding) => binding.node),
     ...(visual.controlStick !== undefined ? [visual.controlStick.node] : []),
     ...(visual.collective !== undefined ? [visual.collective.node] : []),
+    ...(visual.animation?.bindings.map((binding) => binding.node) ?? []),
   ]);
 }
 
@@ -82,6 +83,18 @@ export interface AmbientAircraftModels {
 interface Active {
   visual: AircraftVisual;
   rotor: number;
+  /** Gear and flap travel, 0..1 (NaN until first seen): an approach lowers both at the type's rates. */
+  gear: number;
+  flaps: number;
+  spec: AircraftSpec;
+}
+
+/** Move toward a selection at `time` seconds for full travel; 0, unset or a first sight is instant. */
+function travel(position: number, selected: boolean, time: number | undefined, dt: number): number {
+  const target = selected ? 1 : 0;
+  if (time === undefined || time <= 0 || Number.isNaN(position)) return target;
+  const step = dt / time;
+  return position + Math.max(-step, Math.min(step, target - position));
 }
 
 const INPUT: AircraftInputData = {
@@ -134,6 +147,9 @@ export class AmbientAircraft {
         continue;
       }
       entry.rotor = (entry.rotor + dt * 40) % (Math.PI * 2);
+      const airplane = entry.spec.airplane;
+      entry.gear = travel(entry.gear, plane.descending, airplane?.gearTransitTime, dt);
+      entry.flaps = travel(entry.flaps, plane.descending, airplane?.flapTransitTime, dt);
       const object = entry.visual.object;
       object.position.set(plane.pos[0] ?? 0, plane.pos[1] ?? 0, plane.pos[2] ?? 0);
       object.quaternion.set(
@@ -152,6 +168,8 @@ export class AmbientAircraft {
           roll: 0,
           rpm: 2400,
           verticalSpeed: 0,
+          gearPosition: entry.gear,
+          flapPosition: entry.flaps,
         } as unknown as AircraftStateData,
         { ...INPUT, gear: plane.descending, flaps: plane.descending },
         plane.pos[1] ?? 0,
@@ -194,7 +212,7 @@ export class AmbientAircraft {
         visual.dispose();
         return;
       }
-      this.active.set(id, { visual, rotor: 0 });
+      this.active.set(id, { visual, rotor: 0, gear: Number.NaN, flaps: Number.NaN, spec });
     } catch {
       this.missing.add(type);
     } finally {

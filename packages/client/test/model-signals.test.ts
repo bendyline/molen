@@ -2,7 +2,11 @@ import type { ModelSignalSpec } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { expect, it } from 'vitest';
 import { AssetCache } from '../src/assets';
-import { createModelSignalVisual, readModelSignals } from '../src/model-signals';
+import {
+  createModelSignalVisual,
+  modelSignalDisplacement,
+  readModelSignals,
+} from '../src/model-signals';
 import { ThreeSceneBackend } from '../src/three/backend';
 
 const spec: ModelSignalSpec = {
@@ -124,4 +128,38 @@ it('adding and removing bindings during clip playback uses the authored rest pos
   expect(needle('a').rotation.z).toBeCloseTo(1.3);
   backend.destroy('a');
   cache.dispose();
+});
+
+it('follows keyframed curves, holding their end values and easing between keys', () => {
+  const door = {
+    node: 'door',
+    source: 'gear',
+    property: 'rotation',
+    axis: 'x',
+    keys: [
+      [0, 0],
+      [0.12, 1.5],
+      [0.88, 1.5],
+      [1, 0],
+    ],
+  } as const satisfies ModelSignalSpec['bindings'][number];
+  expect(modelSignalDisplacement(door, -1)).toBe(0);
+  expect(modelSignalDisplacement(door, 0.06)).toBeCloseTo(0.75);
+  expect(modelSignalDisplacement(door, 0.5)).toBe(1.5);
+  expect(modelSignalDisplacement(door, 0.94)).toBeCloseTo(0.75);
+  expect(modelSignalDisplacement(door, 2)).toBe(0);
+  const smooth = { ...door, ease: 'smooth' as const };
+  // Halfway between keys is the same; a quarter of the way the eased door has moved less.
+  expect(modelSignalDisplacement(smooth, 0.06)).toBeCloseTo(0.75);
+  expect(modelSignalDisplacement(smooth, 0.03)).toBeCloseTo(1.5 * 0.15625);
+  expect(modelSignalDisplacement({ ...door, keys: undefined, scale: 2, offset: 1 }, 0.5)).toBe(2);
+
+  const node = new THREE.Group();
+  node.name = 'door';
+  node.rotation.x = 0.2;
+  const visual = createModelSignalVisual(node, { bindings: [smooth] });
+  visual.update({ gear: 0.5 });
+  expect(node.rotation.x).toBeCloseTo(1.7);
+  visual.update({ gear: 1 });
+  expect(node.rotation.x).toBeCloseTo(0.2);
 });

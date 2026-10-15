@@ -107,6 +107,56 @@ function setup(): {
   return { link, backend, core, clock };
 }
 
+describe('client core: paused playback interpolation', () => {
+  it.each([
+    'startup',
+    'pause',
+    'step',
+  ] as const)('resumes smooth motion after a long %s without rewinding the displayed pose', (mode) => {
+    const { link, core, clock } = setup();
+    link.deliver({ type: 'keyframe', keyframe: keyframe(0, 0), events: [] });
+    if (mode !== 'startup') {
+      core.control({ action: 'resume' });
+      core.control({ action: 'pause' });
+    }
+    if (mode === 'step') {
+      core.control({ action: 'step', ticks: 1 });
+      clock.t = 100;
+      link.deliver({ type: 'delta', delta: delta(0, 1, 10) });
+    }
+    const start = core.tick ?? 0;
+    clock.t = 5000;
+    core.sampleTransforms(clock.t + 100, () => {}); // the paused still frame
+    core.control({ action: 'resume' });
+    for (let i = 1; i <= 3; i++) {
+      clock.t = 5000 + i * 100;
+      link.deliver({ type: 'delta', delta: delta(start + i - 1, start + i, (start + i) * 10) });
+    }
+    const positions: number[] = [];
+    for (const time of [5300, 5325, 5350, 5375]) {
+      core.sampleTransforms(time, (_id, pose) => positions.push(pose.pos[0]));
+    }
+    expect(positions).toEqual([15, 17.5, 20, 22.5].map((x) => x + start * 10));
+    core.dispose();
+  });
+
+  it('does not reset a running clock on redundant resume controls', () => {
+    const { link, core, clock } = setup();
+    link.deliver({ type: 'keyframe', keyframe: keyframe(0, 0), events: [] });
+    core.control({ action: 'resume' });
+    clock.t = 100;
+    link.deliver({ type: 'delta', delta: delta(0, 1, 10) });
+    clock.t = 200;
+    link.deliver({ type: 'delta', delta: delta(1, 2, 20) });
+    clock.t = 250;
+    const before = core.buffer?.estimateRenderTick(clock.t);
+    core.control({ action: 'resume' });
+    expect(core.buffer?.estimateRenderTick(clock.t)).toBe(before);
+    expect(core.buffer?.estimateRenderTick(275)).toBeCloseTo(1.25);
+    core.dispose();
+  });
+});
+
 describe('client core: periodic keyframes do not hitch', () => {
   it('a contiguous keyframe keeps the interpolation ring (no reset, no jump)', () => {
     const { link, core, clock } = setup();

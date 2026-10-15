@@ -77,7 +77,7 @@ function mountSoundControls(layer: AudioLayer, settings: StoredSettings): () => 
       <label><input id="sound-mute" type="checkbox" /> Mute</label>
       <label><input id="sound-music" type="checkbox" /> Music</label></div>
     <input id="sound-volume" type="range" min="0" max="100" step="1" aria-label="Volume" />
-    <p id="sound-status" role="status"></p>`;
+    <p id="sound-status"></p>`;
   const weather = document.getElementById('weather-controls');
   if (weather?.parentElement === hud) weather.after(root);
   else hud.append(root);
@@ -104,11 +104,12 @@ function mountSoundControls(layer: AudioLayer, settings: StoredSettings): () => 
     // Level per voice (before master volume), so you can hear and see ground ambience fade
     // as you climb away from it.
     const voices = layer.director.voices().map((v) => `${v.sound} ${Math.round(v.gain * 100)}%`);
-    status.textContent = !layer.unlocked
+    const text = !layer.unlocked
       ? 'Click or press a key to turn sound on'
       : voices.length > 0
         ? `Playing ${voices.join(', ')}`
         : 'Quiet';
+    if (status.textContent !== text) status.textContent = text;
     status.dataset.voices = String(voices.length);
     status.dataset.unlocked = String(layer.unlocked);
   }, 500);

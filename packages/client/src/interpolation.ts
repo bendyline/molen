@@ -136,6 +136,12 @@ export class InterpolationBuffer {
     return this.snaps.length;
   }
 
+  /** Resume wall-clock playback after an intentional pause, retaining poses and the render floor. */
+  resumeClock(nowMs: number): void {
+    const tick = this.latestTick;
+    if (tick !== undefined) this.clockOffsetMs = nowMs - tick * this.tickMs;
+  }
+
   /**
    * Fold one arrival into the smoothed clock offset. Anchoring on the newest arrival instead (the
    * old `latest.tick + (now - latest.recvMs)`) makes every stall a visible rewind: a delta that

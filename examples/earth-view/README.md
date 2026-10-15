@@ -31,11 +31,19 @@ order instead of regenerating the shared packs concurrently.
 
 `?mode=walk`, `?mode=drive` and `?mode=fly` start on foot, in a car or in the air,
 `?lat=&lon=&range=` choose the first view, and `?ambient=0` turns ambient life off. For a Seattle
-start, use `?lat=47.62051&lon=-122.3493&range=950`.
+start, use `?lat=47.62051&lon=-122.3493&range=950`. `?companion=1` (try it with `?mode=walk`)
+gives the walker a body, with V switching to a third-person camera, and adds a companion who
+follows on foot, takes the passenger seat of whatever you drive off in, and steps out after you.
+It is about forty lines at the end of `src/main.ts` over the view's actors API.
 The [Seattle capture](captures/seattle-space-needle.png) records that view through the shipped
 `mountEarthView` API, including the authored Space Needle model.
 
 ## Authoring map
+
+Registered dioramas are enabled by default, starting at the mapped Eastlake football field.
+Open `?diorama=football` (also `airport`, `little-league`, `fireworks`, `fair`, `market`) to visit it, or `?dioramas=0` to disable them. The lightweight placement
+catalog is shared with World Explorer; scene scripts load only when a site is near. Geographic
+anchors follow terrain refinement and survive package re-anchoring.
 
 - `src/main.ts`: resolve a terrain package from the requested location, open the content packs, and call
   `mountEarthView` with worker factories. It then adds a `composeMarkerImage` pin, the credits
@@ -44,3 +52,11 @@ The [Seattle capture](captures/seattle-space-needle.png) records that view throu
 
 `mountEarthView` itself is covered by `packages/earth/test/earth-view.test.ts` (streaming, credits,
 markers and walking over a procedural archive). This example has no browser test of its own.
+
+Select a motorcycle, scooter or bicycle beside **Drive**, then press **Drive** to ride it. W powers,
+S/Space brake, A/D steer, V switches rider/chase view and E dismounts once stopped. The avatar
+sits on the saddle and follows the handlebars and pedals. A direct start is
+`?mode=drive&vehicle=molen.entities.cycle.city_bicycle`.
+
+The Boat button (or `?boat=1`) launches a speedboat on nearby mapped water. W/S thrust, A/D helm,
+Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dry dockside exit.

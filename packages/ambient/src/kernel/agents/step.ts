@@ -4,7 +4,7 @@
  * the next tick and a keyframe restores exactly.
  *
  * Order: gather → occupancy → armed crossings → junction grants → cars → pedestrians → trains
- * (leads, then their cars) → aircraft → write changed agents and transforms.
+ * (leads, then their cars) → vessels → aircraft → write changed agents and transforms.
  */
 
 import { dmath, lookRotation, type Quat } from '@bendyline/molen-kernel/determinism';
@@ -90,6 +90,28 @@ export function chooseNext(lane: TransportLane, seed: number, hops: number): str
     if (target < 0) return move.to;
   }
   return (moves[moves.length - 1] as LaneMovement).to;
+}
+
+/** Reject branches narrower/shorter than a vessel before choosing a seeded turn. */
+export function chooseVesselNext(
+  net: TransportNetwork,
+  lane: TransportLane,
+  seed: number,
+  hops: number,
+  width: number,
+  length: number,
+): string | undefined {
+  const next = lane.next.filter((move) => {
+    const target = net.lane(move.to);
+    const edge = target !== undefined ? net.edge(target.edge) : undefined;
+    return (
+      edge !== undefined &&
+      target !== undefined &&
+      width <= edge.width / (edge.oneway ? 1 : 2) &&
+      length + 2 < target.length
+    );
+  });
+  return chooseNext({ ...lane, next }, seed, hops);
 }
 
 /** Where an agent is: its lane body, or the connector curve into its lane. */
@@ -195,6 +217,7 @@ export function stepAgents(world: World, env: AgentEnv): void {
   for (const ref of refs) {
     if (ref.lane === undefined || ref.edge === undefined) continue;
     if (ref.a.kind === 'car') stepRoad(ref, occupancy, granted, armed, env);
+    else if (ref.a.kind === 'boat') stepVessel(ref, occupancy, env);
     else if (ref.a.kind === 'pedestrian') stepWalker(ref, occupancy, env);
     else if (ref.a.kind === 'train' && ref.a.consist === undefined)
       stepTrainLead(ref, occupancy, env, consistSize.get(ref.id) ?? 0);
@@ -281,7 +304,11 @@ function advanceLanes(ref: Ref, env: AgentEnv): void {
     w.prev = lane.id;
     w.lane = nextLane.id;
     w.hops += 1;
-    const chosen = chooseNext(nextLane, w.seed, w.hops);
+    const chosen =
+      w.kind === 'boat'
+        ? chooseVesselNext(net, nextLane, w.seed, w.hops, w.width, w.length)
+        : chooseNext(nextLane, w.seed, w.hops);
+    if (w.kind === 'boat') delete w.served;
     if (chosen === undefined) delete w.next;
     else w.next = chosen;
     lane = nextLane;
@@ -835,6 +862,75 @@ function reverseConsist(ref: Ref, env: AgentEnv, cars: number): void {
   ref.lane = headLane;
   ref.edge = net.edge(headLane.edge);
   delete w.served;
+}
+
+/** Kinematic water navigation: slow acceleration, following gaps and scheduled dock dwell. */
+function stepVessel(ref: Ref, occupancy: ReadonlyMap<string, Ref[]>, env: AgentEnv): void {
+  const { a, w } = ref;
+  const { net, dt, tick, tickRate } = env;
+  const lane = ref.lane as TransportLane;
+  const edge = ref.edge as TransportEdge;
+  const p = env.policy.marine;
+  if (a.state === 'dwell') {
+    const stop = lane.stops.find((s) => s.id === a.served);
+    if (tick - a.since < (stop?.dwell ?? 30) * tickRate) {
+      w.speed = 0;
+      return;
+    }
+  }
+  const move = net.movement(a.lane, a.next ?? '');
+  let v0 = dmath.min(edge.speed, a.cruise ?? edge.speed);
+  // Navigation routes supply safe curves; slow down through endpoint turns.
+  if (move?.turn === 'uturn' && lane.length - a.s < a.length + 20) v0 = dmath.min(v0, 1.5);
+  if (a.s < 0) v0 = dmath.min(v0, 2.5);
+  let limit = Number.POSITIVE_INFINITY;
+  let gap = Number.POSITIVE_INFINITY;
+  let leaderSpeed = 0;
+  const leader = leaderOnLane(ref, occupancy);
+  if (leader !== undefined) {
+    gap = leader.a.s - a.s - (a.length + leader.a.length) / 2;
+    limit = leader.a.s - (a.length + leader.a.length) / 2 - p.gap;
+    leaderSpeed = leader.a.speed;
+  } else if (a.next !== undefined && move !== undefined) {
+    const next = firstOnLane(a.next, occupancy);
+    if (next !== undefined) {
+      gap = lane.length - a.s + move.length + next.a.s - (a.length + next.a.length) / 2;
+      limit = a.s + gap - p.gap;
+      leaderSpeed = next.a.speed;
+    }
+  } else {
+    limit = lane.length - a.length / 2;
+    gap = limit - a.s + p.gap;
+  }
+  let dock: { at: number; id: string } | undefined;
+  if (edge.kind === 'ferry') {
+    for (const stop of lane.stops) {
+      if (stop.kind !== 'ferry' || stop.id === a.served) continue;
+      const at = laneCoordinate(lane, edge, stop.d);
+      if (at >= a.s - 0.1 && (dock === undefined || at < dock.at)) dock = { at, id: stop.id };
+    }
+    // A double-ended service waits before returning even without mapped terminal POIs.
+    if (dock === undefined && move?.turn === 'uturn' && a.served !== `end:${lane.id}`)
+      dock = { at: lane.length, id: `end:${lane.id}` };
+  }
+  if (dock !== undefined && dock.at - a.s + p.gap < gap) {
+    gap = dock.at - a.s + p.gap;
+    leaderSpeed = 0;
+    limit = dmath.min(limit, dock.at);
+  }
+  const accel = idmAcceleration(a.speed, v0, gap, a.speed - leaderSpeed, p);
+  w.speed = dmath.max(0, a.speed + accel * dt);
+  w.s = dmath.min(a.s + w.speed * dt, dmath.max(a.s, limit));
+  if (w.s >= limit) w.speed = dmath.min(w.speed, leaderSpeed);
+  if (dock !== undefined && dmath.abs(w.s - dock.at) < 0.5 && w.speed < 0.3) {
+    w.s = dock.at;
+    w.speed = 0;
+    w.served = dock.id;
+    setState(w, 'dwell', tick);
+    return;
+  }
+  advanceLanes(ref, env);
+  setState(w, w.speed < 0.05 ? 'wait' : 'move', tick);
 }
 
 function stepAircraft(ref: Ref, env: AgentEnv): void {

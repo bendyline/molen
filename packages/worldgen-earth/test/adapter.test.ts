@@ -135,8 +135,10 @@ describe('labels', () => {
 
 describe('semantic adapter', () => {
   it.each([
-    -122.03, 2.35,
-  ])('keeps large low residential buildings low and tall residential roofs flat at longitude %s', (lon) => {
+    // The Pacific Northwest builds mid-rise housing as apartments, not as its wood-sided house.
+    [-122.03, 'catalog.modern_apartments'],
+    [2.35, '.house'],
+  ] as const)('keeps large low residential buildings low and tall residential roofs flat at longitude %s', (lon, tallStyle) => {
     const tile = tileFixture();
     tile.buildings = [
       {
@@ -216,7 +218,7 @@ describe('semantic adapter', () => {
     expect(['gable', 'hip']).toContain(known?.roof);
     const tall = output.records.find((r) => r.identity === 'f:12');
     expect(tall?.height).toBe(17);
-    expect(tall?.styleId).toContain('.house');
+    expect(tall?.styleId).toContain(tallStyle);
     expect(tall?.roof).toBe('flat');
   });
 
@@ -335,7 +337,7 @@ describe('semantic adapter', () => {
     expect(house?.outline[1]?.[0]).toBeCloseTo(0.21 * geom.size, 6);
     expect(batch.buildings[1]?.identity.startsWith('c:')).toBe(true);
     expect(batch.buildings[1]?.height).toBe(24);
-    expect(batch.rules[0]?.style).toBe('molen.worldgen.pnw.house');
+    expect(batch.rules.map((rule) => rule.style)).toContain('molen.worldgen.pnw.house');
     // Unmapped ground first, as the whole tile, so every mapped polygon paints over it.
     expect(batch.scatter?.polygons[0]?.label).toBe(OPEN_GROUND_LABEL);
     expect(batch.scatter?.polygons[0]?.ring).toEqual([
@@ -526,7 +528,7 @@ describe('semantic adapter', () => {
   });
 
   it.each([
-    [-122.03, 47.61, 'molen.worldgen.pnw.house'],
+    [-122.03, 47.61, 'molen.worldgen.catalog.modern_apartments'],
     [139.7, 35.7, 'molen.worldgen.japan.house'],
     [2.35, 48.85, 'molen.worldgen.generic.house'],
   ] as const)('keeps mapped eight-storey buildings out of low-rise variants at %s,%s', (lon, lat, expectedStyle) => {

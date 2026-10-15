@@ -205,8 +205,10 @@ describe('terrain package semantic layer wiring', () => {
       },
     });
     const features = opened.layers.find((layer) => layer.category === 'human-feature');
-    // The sidecar ends at 8; the package, and so the layer, reaches 10.
-    expect(features).toMatchObject({ minLevel: 7, maxLevel: 10 });
+    // The sidecar ends at 8; the package, and so the layer, reaches 10. The default detail band
+    // is the finest two levels the layer reaches, not the sidecar's: sidecar tiles two levels
+    // coarser than the terrain would cover sixteen of its finest tiles each.
+    expect(features).toMatchObject({ minLevel: 9, maxLevel: 10 });
     await features?.createTile({
       address: { level: 10, x: 1, z: 0 },
       signal: new AbortController().signal,

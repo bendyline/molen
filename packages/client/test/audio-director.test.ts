@@ -222,6 +222,27 @@ describe('entity sources', () => {
     expect(stops(d.update({ nowMs: 1600, source: s }))).toHaveLength(1);
   });
 
+  it('keeps the engine off for a passenger alone in a parked car', () => {
+    const s = new FakeSource();
+    s.set('car', 'transform', { pos: [2, 0, 0] });
+    s.set('car', 'audioSource', { sound: 'engine.car', when: { 'self.occupied': true } });
+    s.set('car', 'mountable', {
+      seats: [
+        { id: 'driver', role: 'driver', position: [0.4, 1.1, 0] },
+        { id: 'passenger', role: 'passenger', position: [-0.4, 1.1, 0] },
+      ],
+      exits: [],
+      reach: 2,
+    });
+    s.set('rider', 'mounted', { vehicle: 'car', seat: 'passenger' });
+    const d = director();
+    d.update({ nowMs: 0, source: s });
+    expect(starts(d.update({ nowMs: 400, source: s }))).toEqual([]);
+    s.set('driver', 'mounted', { vehicle: 'car', seat: 'driver' });
+    d.update({ nowMs: 500, source: s });
+    expect(starts(d.update({ nowMs: 900, source: s }))).toMatchObject([{ sound: 'engine.car' }]);
+  });
+
   it('holds no voice for a loop driven to silence', () => {
     const s = new FakeSource();
     s.set('plane', 'transform', { pos: [5, 0, 0] });

@@ -329,7 +329,25 @@ export class WorldAircraft {
               : 'Airborne');
     const spec = this.aircraftData(ENTITY_IDS[kind]).spec;
     const airplane = spec.model === 'airplane';
-    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} kt · ${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${this.inputs.gear ? 'down' : 'up'} · Flaps ${this.inputs.flaps ? 'down' : 'up'} · ` : ''}${alert}`;
+    const load = airplane && !s.grounded ? `${(s.loadFactor ?? 1).toFixed(1)} g · ` : '';
+    // The selection, until the gear and flaps actually get there.
+    const gearPosition = s.gearPosition ?? Number(this.inputs.gear);
+    const flapPosition = s.flapPosition ?? Number(this.inputs.flaps);
+    const gear =
+      gearPosition === 1
+        ? 'down'
+        : gearPosition === 0
+          ? 'up'
+          : this.inputs.gear
+            ? 'lowering'
+            : 'raising';
+    const flaps =
+      flapPosition === 1
+        ? 'down'
+        : flapPosition === 0
+          ? 'up'
+          : `${Math.round(flapPosition * 100)}%`;
+    return `${spec.label} · ${(s.airspeed * 1.94384).toFixed(0)} kt · ${(s.altitudeAGL * 3.28084).toFixed(0)} ft AGL · ${(s.verticalSpeed * 196.85).toFixed(0)} ft/min · ${load}${airplane ? 'Throttle' : 'Collective'} ${(this.inputs.power * 100).toFixed(0)}% · RPM ${(s.rpm * 100).toFixed(0)}% · ${this.inputs.engine ? 'Engine on' : 'Engine off'} · ${airplane ? `Gear ${gear} · Flaps ${flaps} · ` : ''}${alert}`;
   }
   exitHint(): void {
     this.message =

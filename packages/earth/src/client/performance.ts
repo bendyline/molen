@@ -34,12 +34,12 @@ const SPECS = [
 // cars, pedestrians, trains, aircraft, detailed cars, skinned figures, figure radius (m),
 // activity radius (m), pose evaluations per frame.
 const AMBIENT = [
-  [24, 8, 0, 0, 2, 6, 60, 250, 4],
-  [48, 16, 0, 1, 4, 12, 80, 350, 8],
-  [96, 32, 1, 1, 6, 20, 100, 450, 12],
-  [160, 48, 1, 2, 8, 32, 120, 600, 20],
-  [240, 80, 2, 3, 12, 48, 150, 800, 32],
-  [320, 120, 2, 4, 16, 64, 180, 1000, 48],
+  [24, 3, 0, 0, 2, 6, 60, 250, 4],
+  [48, 5, 0, 1, 4, 12, 80, 350, 8],
+  [96, 11, 1, 1, 6, 20, 100, 450, 12],
+  [160, 16, 1, 2, 8, 32, 120, 600, 20],
+  [240, 27, 2, 3, 12, 48, 150, 800, 32],
+  [320, 40, 2, 4, 16, 64, 180, 1000, 48],
 ] as const;
 
 /** Explicit work/working-set budgets, driven by measurements instead of device names. */
@@ -71,6 +71,7 @@ export function earthPerformanceTier(level: number): EarthPerformanceTier {
       pedestrians: ambient[1],
       trains: ambient[2],
       aircraft: ambient[3],
+      boats: [0, 2, 4, 6, 8, 12][index] ?? 4,
       detailedCars: ambient[4],
       skinnedFigures: ambient[5],
       figureRadius: ambient[6],

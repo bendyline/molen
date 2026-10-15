@@ -147,6 +147,8 @@ export {
 export { ENGINE_VERSION, STATE_FORMAT, STATE_FORMAT_KEY } from './version';
 export type { AtmosphereSample } from './weather';
 export { sampleAtmosphere, Weather, weatherOf } from './weather';
+export type { WindField } from './wind';
+export { sampleWind, terrainSlope, windField } from './wind';
 export type {
   EventHandler,
   Phase,

@@ -35,8 +35,8 @@ export interface NetworkBakeInput {
   radius?: number;
   /** Area [west, south, east, north] in degrees, instead of `tile`. */
   bbox?: [number, number, number, number];
-  /** Classes to keep (default road, rail and path). */
-  classes?: ('road' | 'rail' | 'path')[];
+  /** Classes to keep (default road, rail, path and water). */
+  classes?: ('road' | 'rail' | 'path' | 'water')[];
   /** Write the document here. */
   outPath: string;
   /** Include surface heights from the package elevation (default false: flat ground). */
@@ -146,12 +146,13 @@ async function bakeNetworkImpl(input: NetworkBakeInput): Promise<NetworkBakeOutp
     });
     const cx = (minX + maxX) / 2;
     const cz = (minZ + maxZ) / 2;
-    const classes = new Set(input.classes ?? ['road', 'rail', 'path']);
+    const classes = new Set(input.classes ?? ['road', 'rail', 'path', 'water']);
     const network = new TransportNetwork({
       classes: [
         ...(classes.has('road') ? (['road'] as const) : []),
         ...(classes.has('rail') ? (['rail'] as const) : []),
         ...(classes.has('path') ? (['walk'] as const) : []),
+        ...(classes.has('water') ? (['water'] as const) : []),
       ],
     });
     let loaded = 0;

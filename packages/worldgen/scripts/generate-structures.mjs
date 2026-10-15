@@ -49,8 +49,9 @@ const range = (value, spread = 0) => ({
   min: +(value - spread).toFixed(3),
   max: +(value + spread).toFixed(3),
 });
+// A recipe gives one hex, or weighted `colors` entries for a family of related finishes.
 const palette = (color) => ({
-  entries: [{ color, weight: 1 }],
+  entries: Array.isArray(color) ? color : [{ color, weight: 1 }],
   jitter: { hue: 0.008, saturation: 0.025, lightness: 0.025 },
 });
 const material = (name, part, scale = MATERIAL_REPEAT_METERS[name] ?? [2, 2]) => ({
@@ -196,6 +197,8 @@ function makeStyle(entry) {
     materials: {
       wall: material(entry.wall, 'wall'),
       roof: material(entry.roofMaterial, 'roof'),
+      // Tiles, thatch and shingles belong on slopes; tall or wide outlines that go flat get membrane.
+      ...(entry.roof !== 'flat' ? { flatRoof: material('membrane', 'flatRoof') } : {}),
       trim: material('#ffffff', 'trim'),
       foundation: material('stone', 'foundation'),
       window: {
@@ -212,8 +215,9 @@ function makeStyle(entry) {
       },
     },
     palettes: {
-      wall: palette(entry.color),
+      wall: palette(entry.colors ?? entry.color),
       roof: palette(roofColors[entry.roofMaterial] ?? '#8b887a'),
+      ...(entry.roof !== 'flat' ? { flatRoof: palette(roofColors.membrane) } : {}),
       trim: palette(entry.trim ?? (entry.framing === 'timber' ? '#70624e' : '#dfd7c2')),
       foundation: palette('#b4aa93'),
     },

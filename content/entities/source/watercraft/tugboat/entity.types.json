@@ -1,0 +1,136 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.watercraft.tugboat": {
+      "doc": "Harbor tug. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.tugboat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 24.2,
+          "width": 9.02,
+          "height": 8.5,
+          "cruise": 6,
+          "max": 6,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": [
+            "#af6750"
+          ]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.tugboat",
+          "color": "#af6750",
+          "spec": {
+            "label": "Harbor tug",
+            "length": 24.2,
+            "width": 9.02,
+            "height": 8.5,
+            "draft": 2.7,
+            "mass": 292248.00000000006,
+            "thrust": 175348.80000000002,
+            "maxSpeed": 7.800000000000001,
+            "reverseSpeed": 2.4000000000000004,
+            "turnRate": 0.125,
+            "turnResponse": 2.0,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [
+              1.5579999999999998,
+              5.1000000000000005,
+              4.800000000000001
+            ]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                1.5579999999999998,
+                5.1000000000000005,
+                4.800000000000001
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -1.5579999999999998,
+                5.1000000000000005,
+                4.800000000000001
+              ]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [
+                2.05,
+                2.8499999999999996,
+                -6.0
+              ]
+            }
+          ],
+          "exits": [
+            [
+              5.109999999999999,
+              1.9,
+              4.800000000000001
+            ],
+            [
+              -5.109999999999999,
+              1.9,
+              4.800000000000001
+            ]
+          ],
+          "entries": [
+            [
+              4.1,
+              2.9,
+              4.800000000000001
+            ],
+            [
+              -4.1,
+              2.9,
+              4.800000000000001
+            ]
+          ],
+          "reach": 3.5
+        }
+      },
+      "assets": [
+        "molen.entities.watercraft.tugboat"
+      ]
+    }
+  }
+}

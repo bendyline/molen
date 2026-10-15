@@ -21,7 +21,11 @@ describe('molen entities library', () => {
     const sidecarPath = resolve(
       root,
       'assets',
-      (id.includes('.aircraft.') || id.includes('.vehicle.') || id.includes('.transit.')
+      (id.includes('.aircraft.') ||
+      id.includes('.vehicle.') ||
+      id.includes('.transit.') ||
+      id.includes('.cycle.') ||
+      id.includes('.watercraft.')
         ? id
         : id.replace('molen.entities.', '')
       ).replaceAll('.', '/'),

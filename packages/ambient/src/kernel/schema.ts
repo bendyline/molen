@@ -28,7 +28,7 @@ export const AMBIENT_STATE_COMPONENT: 'ambientState' = 'ambientState';
 const num = z.number();
 const vec2 = z.array(num).length(2);
 const vec3 = z.array(num).length(3);
-const kind = z.enum(['car', 'pedestrian', 'train', 'aircraft']);
+const kind = z.enum(['car', 'pedestrian', 'train', 'aircraft', 'boat']);
 
 const ambientAgentSchema = z.strictObject({
   kind: kind.describe('Agent class.'),
@@ -39,6 +39,7 @@ const ambientAgentSchema = z.strictObject({
   lane: z.string().describe('Lane id the agent is on ("" for aircraft).'),
   s: num.describe('Metres along the lane; negative while on the connector into it.'),
   speed: num.nonnegative().describe('Speed along the lane in m/s.'),
+  cruise: num.positive().describe('Vessel cruise limit in m/s.').optional(),
   prev: z.string().describe('Previous lane (its connector leads onto `lane`).').optional(),
   next: z.string().describe('Chosen next lane.').optional(),
   seed: z.int().nonnegative().describe('Per-agent seed for every random choice it makes.'),
@@ -84,7 +85,7 @@ const ambientObserverSchema = z.strictObject({
 
 const ambientRoleSchema = z.strictObject({
   role: z
-    .enum(['car', 'bus', 'rail', 'aircraft'])
+    .enum(['car', 'bus', 'rail', 'aircraft', 'boat', 'ferry'])
     .describe('Which ambient pool the type joins (buses drive with cars).'),
   length: num.positive().describe('Body length in metres (default from vehicle.spec).').optional(),
   width: num.positive().describe('Body width in metres (default from vehicle.spec).').optional(),
@@ -147,7 +148,7 @@ const point = z.union([vec2, vec3]);
 
 const waySchema = z.strictObject({
   id: z.string().min(1).describe('Optional stable id.').optional(),
-  class: z.enum(['road', 'rail', 'path', 'air']).describe('What moves on it.'),
+  class: z.enum(['road', 'rail', 'path', 'air', 'water']).describe('What moves on it.'),
   subclass: z
     .string()
     .describe(
@@ -188,7 +189,7 @@ const transportNetworkSchema = z.strictObject({
       z.strictObject({
         id: z.string().min(1),
         at: vec2.describe('[x, z]; projected onto the nearest rail (rail) or footway (bus).'),
-        kind: z.enum(['rail', 'bus']),
+        kind: z.enum(['rail', 'bus', 'ferry']),
         dwell: num.positive().describe('Dwell time in seconds.').optional(),
       }),
     )
@@ -270,7 +271,7 @@ export function registerAmbientSchema(): void {
     ambientAgentSchema,
     {
       description:
-        'Kernel-owned state of an ambient NPC (car, pedestrian, train car or aircraft): its lane, position along it, speed and routing. Read it; the ambient systems write it.',
+        'Kernel-owned state of an ambient NPC (car, pedestrian, train car, aircraft or boat): its lane, position along it, speed and routing. Read it; the ambient systems write it.',
       owner,
       examples: [AMBIENT_AGENT_EXAMPLE],
       docsRef,
@@ -294,7 +295,7 @@ export function registerAmbientSchema(): void {
     ambientRoleSchema,
     {
       description:
-        'On an entity type: makes it an ambient NPC candidate (car, bus, rail car or aircraft) with dimensions, speeds and spawn weight.',
+        'On an entity type: makes it an ambient NPC candidate (car, bus, rail car, aircraft, boat or ferry) with dimensions, speeds and spawn weight.',
       owner,
       examples: [
         { role: 'car', cruise: 13, max: 25 },

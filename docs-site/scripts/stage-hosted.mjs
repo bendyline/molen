@@ -123,8 +123,9 @@ async function main() {
       }
     }
     // A chunk that imports an entry chunk deadlocks when the entry has a top-level `await` on
-    // something that loads that chunk (mountExperience → the lazy WebGPU driver): a blank page, no
-    // error, and only in browsers with a WebGPU adapter, which the golden runners do not have.
+    // something that loads that chunk (mountExperience → the lazy WebGPU driver, a diorama → its
+    // lazy scripting runtime): a blank page and no error — for the WebGPU driver only in browsers
+    // with a WebGPU adapter, which the golden runners do not have.
     const assets = join(dist, 'assets');
     const importers = [];
     for (const chunk of (await exists(assets)) ? await readdir(assets) : []) {
@@ -135,8 +136,10 @@ async function main() {
     if (importers.length > 0) {
       errors.push(
         `examples/${dir}/dist: ${importers.join(', ')} import the entry chunk, which deadlocks ` +
-          `on WebGPU when the entry awaits at top level — give three and @bendyline/molen-client ` +
-          `their own chunk (build.rollupOptions.output.manualChunks in examples/${dir}/vite.config).`,
+          `when the entry awaits at top level — give three, @bendyline/molen-client and the ` +
+          `packages whose code those chunks share with the entry (such as ` +
+          `@bendyline/molen-earth/client) their own chunk ` +
+          `(build.rollupOptions.output.manualChunks in examples/${dir}/vite.config).`,
       );
     }
   }

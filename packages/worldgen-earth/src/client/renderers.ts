@@ -349,11 +349,11 @@ export function createWorldgenSemanticRenderers(
                 set,
                 [prepared, medium, distant],
                 {
-                  // Coarse terrain spans much more ground. Keep a bounded number of spatial
-                  // batches per tile instead of compiling thousands of tiny distant cells.
-                  cellSize:
-                    512 *
-                    2 ** Math.min(4, Math.max(0, context.pyramid.maxLevel - context.address.level)),
+                  // One batch per tile: the terrain tile is already the culling unit. On WebGPU
+                  // every InstancedMesh pays its own shader build (about 6 ms on the main
+                  // thread, shared material or not), so four cells per tile times each model's
+                  // three LOD levels starved terrain and building publication in fast flight.
+                  cellSize: Number.POSITIVE_INFINITY,
                   ...(options.lodPolicy ? { screenSpace: options.lodPolicy } : {}),
                 },
                 `${name}:${set.setId}`,

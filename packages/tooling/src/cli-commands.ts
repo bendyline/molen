@@ -1633,7 +1633,7 @@ export async function runCli(argv: string[]): Promise<number> {
 async function cmdNetwork(args: ParsedArgs): Promise<number> {
   const sub = args.positionals[0];
   const usage =
-    'usage: molen network bake <terrain-package.json> (--tile z/x/y [--radius n] | --bbox w,s,e,n) --out network.json [--classes road,rail,path] [--heights] [--json]';
+    'usage: molen network bake <terrain-package.json> (--tile z/x/y [--radius n] | --bbox w,s,e,n) --out network.json [--classes road,rail,path,water] [--heights] [--json]';
   if (sub !== 'bake') {
     err(usage);
     return 2;
@@ -1651,8 +1651,8 @@ async function cmdNetwork(args: ParsedArgs): Promise<number> {
     return 2;
   }
   const classes = str(args.flags.classes)?.split(',');
-  if (classes?.some((c) => !['road', 'rail', 'path'].includes(c))) {
-    err('--classes takes road, rail and/or path');
+  if (classes?.some((c) => !['road', 'rail', 'path', 'water'].includes(c))) {
+    err('--classes takes road, rail, path and/or water');
     return 2;
   }
   const radius = str(args.flags.radius);
@@ -1662,7 +1662,9 @@ async function cmdNetwork(args: ParsedArgs): Promise<number> {
     ...(str(args.flags.tile) !== undefined ? { tile: str(args.flags.tile) } : {}),
     ...(radius !== undefined ? { radius: Number(radius) } : {}),
     ...(bbox !== undefined ? { bbox: bbox as [number, number, number, number] } : {}),
-    ...(classes !== undefined ? { classes: classes as ('road' | 'rail' | 'path')[] } : {}),
+    ...(classes !== undefined
+      ? { classes: classes as ('road' | 'rail' | 'path' | 'water')[] }
+      : {}),
     heights: args.flags.heights === true,
   });
   if (!r.ok) {

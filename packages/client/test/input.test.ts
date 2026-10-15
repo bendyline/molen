@@ -17,6 +17,29 @@ describe('resolveAction', () => {
 });
 
 describe('InputMap', () => {
+  it('reserves bound gameplay keys without consuming browser shortcuts or control input', () => {
+    const handlers = new Map<string, (ev: unknown) => void>();
+    const target = {
+      addEventListener: (type: string, fn: (ev: unknown) => void) => handlers.set(type, fn),
+      removeEventListener: (type: string) => handlers.delete(type),
+    };
+    const im = new InputMap({ bindings, target });
+    let prevented = 0;
+    const send = (extra: Record<string, unknown> = {}) =>
+      handlers.get('keydown')?.({ code: 'Space', preventDefault: () => prevented++, ...extra });
+    send({ target: { closest: () => ({}) } });
+    send({ metaKey: true });
+    send({ ctrlKey: true });
+    send({ isComposing: true });
+    send({ defaultPrevented: true });
+    send({ code: 'Tab' });
+    expect(im.isActive('fire')).toBe(false);
+    expect(prevented).toBe(0);
+    send();
+    expect(im.isActive('fire')).toBe(true);
+    expect(prevented).toBe(1);
+    im.dispose();
+  });
   it('tracks held actions from press/release', () => {
     const im = new InputMap({ bindings });
     im.press('KeyW');

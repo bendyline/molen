@@ -108,7 +108,7 @@ describe('region atlas', () => {
     const pnw = resolver.resolve(...world(-122.3, 47.6));
     const rules = regionStyleRules(atlas, pnw);
     expect(rules.length).toBeGreaterThan(atlas.default.buildings.length);
-    expect(rules[0]?.style).toBe('molen.worldgen.pnw.house');
+    expect(rules.map((rule) => rule.style)).toContain('molen.worldgen.pnw.house');
     expect(regionScatterId(atlas, pnw)).toBe('molen.worldgen.scatter.pnw');
     expect(regionScatterId(atlas, undefined)).toBe(atlas.default.scatter);
   });

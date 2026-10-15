@@ -1,3 +1,4 @@
+import type { WaterWave } from '@bendyline/molen-schema';
 /** Format-neutral semantic-tile loading and default three.js mesh adapters. */
 
 import * as THREE from 'three';
@@ -63,6 +64,8 @@ export interface TerrainWaterMaterialOptions {
   opacity?: number;
   /** World-space wave frequency. The default produces broad, gently moving highlights. */
   waveScale?: number;
+  /** Analytic swell slopes matching kernel sampleWaves. Polygon shorelines remain at their datum. */
+  swells?: WaterWave[];
   waveStrength?: number;
   waveSpeed?: number;
 }
@@ -117,6 +120,14 @@ export function createTerrainWaterMaterial(
     waveStrength: { value: options.waveStrength ?? 0.035 },
     waveSpeed: { value: options.waveSpeed ?? 0.55 },
   };
+  const swells = options.swells ?? [];
+  const literal = (n: number): string => Number(n).toFixed(9);
+  const slopes = swells
+    .map((w) => {
+      const k = (2 * Math.PI) / w.wavelength;
+      return `slope += vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))}) * ${literal(w.amplitude * k)} * cos(${literal(k)} * (dot(vTerrainWaterWorldPosition, vec2(${literal(Math.sin(w.direction))}, ${literal(Math.cos(w.direction))})) - ${literal(w.speed)} * terrainWaterTime));`;
+    })
+    .join('\n');
   const material = new THREE.MeshPhysicalMaterial(terrainWaterParameters(options));
   material.name = 'terrain-water';
   material.userData.terrainWaterMaterial = true;
@@ -157,6 +168,16 @@ export function createTerrainWaterMaterial(
       }
     ${shader.fragmentShader}`
       .replace(
+        '#include <normal_fragment_maps>',
+        `#include <normal_fragment_maps>
+        ${
+          swells.length
+            ? `vec2 slope = vec2(0.0); ${slopes}
+          normal = normalize(mat3(viewMatrix) * vec3(-slope.x, 1.0, -slope.y));`
+            : ''
+        }`,
+      )
+      .replace(
         '#include <color_fragment>',
         `#include <color_fragment>
          diffuseColor.rgb *= 1.0 + terrainWaterWave() * terrainWaterWaveStrength;`,
@@ -171,7 +192,7 @@ export function createTerrainWaterMaterial(
          );`,
       );
   };
-  material.customProgramCacheKey = (): string => 'terrain-water@1';
+  material.customProgramCacheKey = (): string => `terrain-water@2:${JSON.stringify(swells)}`;
   terrainWaterShaderStates.set(material, state);
   return material;
 }
@@ -188,7 +209,16 @@ export async function createTerrainWaterMaterialAsync(
   if (backend === 'webgl') return createTerrainWaterMaterial(options);
   const [
     { MeshPhysicalNodeMaterial },
-    { materialColor, materialRoughness, positionWorld, uniform, vec4 },
+    {
+      materialColor,
+      materialRoughness,
+      positionWorld,
+      uniform,
+      vec4,
+      vec3,
+      float,
+      cameraViewMatrix,
+    },
   ] = await Promise.all([import('three/webgpu'), import('three/tsl')]);
   const time = uniform(0).setName('terrainWaterTime');
   const worldOrigin = uniform(new THREE.Vector2()).setName('terrainWaterWorldOrigin');
@@ -215,6 +245,26 @@ export async function createTerrainWaterMaterialAsync(
   const baseRoughness = materialRoughness as unknown as Node<'float'>;
   // Affect only RGB, preserving authored opacity and any subsequently attached color map alpha.
   material.colorNode = vec4(baseColor.rgb.mul(highlight.add(1)), baseColor.a);
+  if (options.swells?.length) {
+    let slopeX: Node<'float'> = float(0),
+      slopeZ: Node<'float'> = float(0);
+    for (const wave of options.swells) {
+      const k = (2 * Math.PI) / wave.wavelength;
+      const dx = Math.sin(wave.direction),
+        dz = Math.cos(wave.direction);
+      const phase = worldPosition.x
+        .mul(dx)
+        .add(worldPosition.y.mul(dz))
+        .sub(time.mul(wave.speed))
+        .mul(k);
+      const slope = phase.cos().mul(wave.amplitude * k);
+      slopeX = slopeX.add(slope.mul(dx));
+      slopeZ = slopeZ.add(slope.mul(dz));
+    }
+    material.normalNode = cameraViewMatrix
+      .mul(vec4(vec3(slopeX.negate(), 1, slopeZ.negate()).normalize(), 0))
+      .xyz.normalize();
+  }
   material.roughnessNode = baseRoughness.sub(highlight.mul(0.8)).clamp(0.08, 1);
   terrainWaterShaderStates.set(material, { time, worldOrigin, waveScale, waveStrength, waveSpeed });
   return material;

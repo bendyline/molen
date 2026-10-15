@@ -180,6 +180,7 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
     ...(classes.has('car') ? (['road'] as const) : []),
     ...(classes.has('pedestrian') ? (['walk'] as const) : []),
     ...(classes.has('train') ? (['rail'] as const) : []),
+    ...(classes.has('boat') ? (['water'] as const) : []),
   ]);
   const base = mergePolicy(
     DEFAULT_POLICY,
@@ -188,11 +189,12 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
       pedestrian: { enabled: classes.has('pedestrian') },
       train: { enabled: classes.has('train') },
       aircraft: { enabled: classes.has('aircraft') },
+      boat: { enabled: classes.has('boat') },
     },
     options.policy,
   );
   const types: AmbientTypes = { ...DEFAULT_TYPES, ...options.types };
-  for (const kind of ['car', 'train', 'aircraft', 'pedestrian'] as const)
+  for (const kind of ['car', 'train', 'aircraft', 'pedestrian', 'boat'] as const)
     if ((types[kind] as unknown[]).length === 0)
       (types as unknown as Record<string, unknown>)[kind] = DEFAULT_TYPES[kind];
   const templates = {} as Record<AmbientKind, AmbientTemplate | null>;
@@ -383,7 +385,13 @@ export function installAmbient(world: World, options: AmbientOptions = {}): Ambi
     },
     policy: effectivePolicy,
     stats() {
-      const agents: Record<AmbientKind, number> = { car: 0, pedestrian: 0, train: 0, aircraft: 0 };
+      const agents: Record<AmbientKind, number> = {
+        car: 0,
+        pedestrian: 0,
+        train: 0,
+        aircraft: 0,
+        boat: 0,
+      };
       let waiting = 0;
       for (const [, a] of world.query(AmbientAgent)) {
         agents[a.kind]++;

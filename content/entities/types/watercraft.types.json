@@ -1,0 +1,635 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "doc": "Waterline-aligned boats, cargo ships and ferries for ambient water routes.",
+  "types": {
+    "molen.entities.watercraft.speedboat": {
+      "doc": "Open speedboat. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.speedboat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 6.6000000000000005,
+          "width": 2.5850000000000004,
+          "height": 1.45,
+          "cruise": 12,
+          "max": 12,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#709cb5"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.speedboat",
+          "color": "#709cb5",
+          "spec": {
+            "label": "Open speedboat",
+            "length": 6.6000000000000005,
+            "width": 2.5850000000000004,
+            "height": 1.45,
+            "draft": 0.5,
+            "mass": 1200,
+            "thrust": 2160,
+            "maxSpeed": 15.600000000000001,
+            "reverseSpeed": 3,
+            "turnRate": 0.46875,
+            "turnResponse": 0.8,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [0.4465, 1.55, -0.6400000000000001]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.4465, 1.55, -0.6400000000000001]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.4465, 1.55, -0.6400000000000001]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [0.5875, 1.6, -1.6]
+            }
+          ],
+          "exits": [[1.8925, 0.65, -0.6400000000000001], [-1.8925, 0.65, -0.6400000000000001]],
+          "entries": [[1.175, 1.65, -0.6400000000000001], [-1.175, 1.65, -0.6400000000000001]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.speedboat"]
+    },
+    "molen.entities.watercraft.sailboat": {
+      "doc": "Coastal sailboat. Waterline origin; powered boat with driver and passenger seats (sailboat uses its auxiliary motor).",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.sailboat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 10.7,
+          "width": 3.63,
+          "height": 12,
+          "cruise": 4,
+          "max": 4,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#e5dfcd"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.sailboat",
+          "color": "#e5dfcd",
+          "spec": {
+            "label": "Coastal sailboat",
+            "length": 10.7,
+            "width": 3.63,
+            "height": 12,
+            "draft": 1.5,
+            "mass": 5000,
+            "thrust": 3000,
+            "maxSpeed": 5.2,
+            "reverseSpeed": 1.6,
+            "turnRate": 0.2857142857142857,
+            "turnResponse": 0.875,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [0.627, 1.7, -3.4650000000000003]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.627, 1.7, -3.4650000000000003]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.627, 1.7, -3.4650000000000003]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [0.825, 1.7, -2.625]
+            }
+          ],
+          "exits": [[2.415, 0.75, -3.4650000000000003], [-2.415, 0.75, -3.4650000000000003]],
+          "entries": [[1.65, 1.75, -3.4650000000000003], [-1.65, 1.75, -3.4650000000000003]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.sailboat"]
+    },
+    "molen.entities.watercraft.fishing_boat": {
+      "doc": "Coastal fishing boat. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.fishing_boat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 12.2,
+          "width": 4.620000000000001,
+          "height": 5,
+          "cruise": 5,
+          "max": 5,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#668b81"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.fishing_boat",
+          "color": "#668b81",
+          "spec": {
+            "label": "Coastal fishing boat",
+            "length": 12.2,
+            "width": 4.620000000000001,
+            "height": 5,
+            "draft": 1.2,
+            "mass": 33264,
+            "thrust": 19958.399999999998,
+            "maxSpeed": 6.5,
+            "reverseSpeed": 2,
+            "turnRate": 0.25,
+            "turnResponse": 1,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [0.798, 2.9, -0.36]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [0.798, 2.9, -0.36]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-0.798, 2.9, -0.36]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [1.05, 2.05, -3]
+            }
+          ],
+          "exits": [[2.9100000000000006, 1.1, -0.36], [-2.9100000000000006, 1.1, -0.36]],
+          "entries": [[2.1, 2.1, -0.36], [-2.1, 2.1, -0.36]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.fishing_boat"]
+    },
+    "molen.entities.watercraft.tugboat": {
+      "doc": "Harbor tug. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.tugboat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 24.2,
+          "width": 9.02,
+          "height": 8.5,
+          "cruise": 6,
+          "max": 6,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#af6750"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.tugboat",
+          "color": "#af6750",
+          "spec": {
+            "label": "Harbor tug",
+            "length": 24.2,
+            "width": 9.02,
+            "height": 8.5,
+            "draft": 2.7,
+            "mass": 292248.00000000006,
+            "thrust": 175348.80000000002,
+            "maxSpeed": 7.800000000000001,
+            "reverseSpeed": 2.4000000000000004,
+            "turnRate": 0.125,
+            "turnResponse": 2,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [1.5579999999999998, 5.1000000000000005, 4.800000000000001]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [1.5579999999999998, 5.1000000000000005, 4.800000000000001]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-1.5579999999999998, 5.1000000000000005, 4.800000000000001]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [2.05, 2.8499999999999996, -6]
+            }
+          ],
+          "exits": [
+            [5.109999999999999, 1.9, 4.800000000000001],
+            [-5.109999999999999, 1.9, 4.800000000000001]
+          ],
+          "entries": [[4.1, 2.9, 4.800000000000001], [-4.1, 2.9, 4.800000000000001]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.tugboat"]
+    },
+    "molen.entities.watercraft.container_ship": {
+      "doc": "Container feeder ship. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.container_ship",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 150.2,
+          "width": 26.400000000000002,
+          "height": 25,
+          "cruise": 9,
+          "max": 9,
+          "weight": 0.2,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#668898"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.container_ship",
+          "color": "#668898",
+          "spec": {
+            "label": "Container feeder ship",
+            "length": 150.2,
+            "width": 26.400000000000002,
+            "height": 25,
+            "draft": 7,
+            "mass": 13860000.000000002,
+            "thrust": 1663200.0000000002,
+            "maxSpeed": 11.700000000000001,
+            "reverseSpeed": 3,
+            "turnRate": 0.02,
+            "turnResponse": 12.5,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 0.7,
+            "driverEye": [4.5600000000000005, 19.25, -45]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [4.5600000000000005, 19.25, -45]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-4.5600000000000005, 19.25, -45]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [6, 6.95, -37.5]
+            }
+          ],
+          "exits": [[13.8, 6, -45], [-13.8, 6, -45]],
+          "entries": [[12, 7, -45], [-12, 7, -45]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.container_ship"]
+    },
+    "molen.entities.watercraft.bulk_carrier": {
+      "doc": "Geared bulk carrier. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.bulk_carrier",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 135.2,
+          "width": 25.3,
+          "height": 24,
+          "cruise": 8,
+          "max": 8,
+          "weight": 0.2,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#a36b55"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.bulk_carrier",
+          "color": "#a36b55",
+          "spec": {
+            "label": "Geared bulk carrier",
+            "length": 135.2,
+            "width": 25.3,
+            "height": 24,
+            "draft": 7.5,
+            "mass": 12808125,
+            "thrust": 1536975,
+            "maxSpeed": 10.4,
+            "reverseSpeed": 3,
+            "turnRate": 0.022222222222222223,
+            "turnResponse": 11.25,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 0.7,
+            "driverEye": [4.37, 18.71, -40.5]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [4.37, 18.71, -40.5]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-4.37, 18.71, -40.5]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [5.75, 6.95, -33.75]
+            }
+          ],
+          "exits": [[13.25, 6, -40.5], [-13.25, 6, -40.5]],
+          "entries": [[11.5, 7, -40.5], [-11.5, 7, -40.5]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.bulk_carrier"]
+    },
+    "molen.entities.watercraft.passenger_ferry": {
+      "doc": "Passenger ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.passenger_ferry",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "ferry",
+          "length": 32.2,
+          "width": 9.46,
+          "height": 8.5,
+          "cruise": 10,
+          "max": 10,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#678f9f"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.passenger_ferry",
+          "color": "#678f9f",
+          "spec": {
+            "label": "Passenger ferry",
+            "length": 32.2,
+            "width": 9.46,
+            "height": 8.5,
+            "draft": 1.5,
+            "mass": 227040.00000000003,
+            "thrust": 136224,
+            "maxSpeed": 13,
+            "reverseSpeed": 3,
+            "turnRate": 0.09375,
+            "turnResponse": 2.6666666666666665,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [1.634, 5.73, 7.36]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [1.634, 5.73, 7.36]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-1.634, 5.73, 7.36]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [2.15, 2.3499999999999996, -8]
+            }
+          ],
+          "exits": [[5.33, 1.4, 7.36], [-5.33, 1.4, 7.36]],
+          "entries": [[4.3, 2.4, 7.36], [-4.3, 2.4, 7.36]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.passenger_ferry"]
+    },
+    "molen.entities.watercraft.car_ferry": {
+      "doc": "Roll-on car ferry. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [0, 0, 0],
+          "rot": [0, 0, 0, 1]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.car_ferry",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "ferry",
+          "length": 64.2,
+          "width": 17.6,
+          "height": 13,
+          "cruise": 8,
+          "max": 8,
+          "weight": 0.2,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": ["#6f9684"]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.car_ferry",
+          "color": "#6f9684",
+          "spec": {
+            "label": "Roll-on car ferry",
+            "length": 64.2,
+            "width": 17.6,
+            "height": 13,
+            "draft": 3,
+            "mass": 1689600.0000000002,
+            "thrust": 202752.00000000003,
+            "maxSpeed": 10.4,
+            "reverseSpeed": 3,
+            "turnRate": 0.046875,
+            "turnResponse": 5.333333333333333,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 0.7,
+            "driverEye": [3.04, 9.8, 14.72]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [3.04, 9.8, 14.72]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [-3.04, 9.8, 14.72]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [4, 3.1500000000000004, -16]
+            }
+          ],
+          "exits": [[9.4, 2.2, 14.72], [-9.4, 2.2, 14.72]],
+          "entries": [[8, 3.2, 14.72], [-8, 3.2, 14.72]],
+          "reach": 3.5
+        }
+      },
+      "assets": ["molen.entities.watercraft.car_ferry"]
+    }
+  }
+}

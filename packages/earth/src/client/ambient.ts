@@ -44,6 +44,8 @@ export interface EarthAmbientSettings {
   pedestrians?: boolean;
   rail?: boolean;
   aircraft?: boolean;
+  /** Ambient vessels on mapped ferry routes (default true). */
+  boats?: boolean;
   drivingSide?: 'right' | 'left';
 }
 
@@ -53,6 +55,7 @@ export interface EarthAmbientBudget {
   pedestrians: number;
   trains: number;
   aircraft: number;
+  boats?: number;
   detailedCars: number;
   skinnedFigures: number;
   figureRadius: number;
@@ -65,6 +68,7 @@ export interface EarthAmbientStats {
   pedestrians: number;
   trains: number;
   aircraft: number;
+  boats?: number;
   detailedCars: number;
   figures: number;
   tiles: number;
@@ -100,7 +104,7 @@ interface Entry {
   detachedAt?: number;
 }
 
-const BASE_DENSITY = { car: 20, pedestrian: 40, train: 0.8 };
+const BASE_DENSITY = { car: 20, pedestrian: 40 / 3, train: 0.8 };
 
 /** Whether two tiles' areas overlap (an ancestor and its descendant do). */
 function overlaps(a: TerrainPyramidTileLayerContext, b: TerrainPyramidTileLayerContext): boolean {
@@ -212,6 +216,7 @@ export class EarthAmbient implements SemanticTileObserver {
     if (settings.pedestrians !== false) classes.push('pedestrian');
     if (settings.rail !== false) classes.push('train');
     if (settings.aircraft !== false) classes.push('aircraft');
+    if (settings.boats !== false) classes.push('boat');
     const ground = options.ground;
     this.handle = installAmbient(this.world, {
       traffic: settings.drivingSide ?? 'right',
@@ -222,6 +227,7 @@ export class EarthAmbient implements SemanticTileObserver {
         car: { perLaneKm: BASE_DENSITY.car * density },
         pedestrian: { perLaneKm: BASE_DENSITY.pedestrian * density },
         train: { perLaneKm: BASE_DENSITY.train * density },
+        boat: { perLaneKm: 0.8 * density },
       },
       seed: 'earth-ambient',
     });
@@ -372,11 +378,13 @@ export class EarthAmbient implements SemanticTileObserver {
       pedestrians: on ? b.pedestrians : 0,
       trains: on ? b.trains : 0,
       aircraft: on ? b.aircraft : 0,
+      boats: on ? (b.boats ?? 4) : 0,
       radius: b.activityRadius,
       pedestrianRadius: b.figureRadius,
     });
     const render: Partial<AmbientRenderBudget> = {
       detailedCars: b.detailedCars,
+      detailedBoats: Math.min(4, b.boats ?? 4),
       skinnedFigures: b.skinnedFigures,
       figureRadius: b.figureRadius,
       posesPerFrame: b.posesPerFrame,
@@ -441,6 +449,7 @@ export class EarthAmbient implements SemanticTileObserver {
       pedestrians: s.pedestrians,
       trains: s.trains,
       aircraft: s.aircraft,
+      boats: s.boats,
       detailedCars: s.detailedCars,
       figures: s.figures,
       tiles: network.tiles,
@@ -470,6 +479,7 @@ export function ambientContentFromTypes(
   const cars: AmbientVehicleType[] = [];
   const trains: AmbientVehicleType[] = [];
   const aircraft: AmbientVehicleType[] = [];
+  const boats: AmbientVehicleType[] = [];
   const heights: Record<string, number> = {};
   const vehicles = new Set(types.idsWith('vehicle'));
   const planes = new Set(types.idsWith('aircraft'));
@@ -535,12 +545,15 @@ export function ambientContentFromTypes(
     if (role.role === 'car' || role.role === 'bus') cars.push(type);
     else if (role.role === 'rail') trains.push(type);
     else if (role.role === 'aircraft') aircraft.push(type);
+    else if (role.role === 'boat' || role.role === 'ferry')
+      boats.push({ ...type, waterway: role.role === 'ferry' ? 'ferry' : 'channel' });
   }
   return {
     types: {
       ...(cars.length > 0 ? { car: cars } : {}),
       ...(trains.length > 0 ? { train: trains } : {}),
       ...(aircraft.length > 0 ? { aircraft } : {}),
+      ...(boats.length > 0 ? { boat: boats } : {}),
     },
     heights,
     vehicle: vehicleOf,

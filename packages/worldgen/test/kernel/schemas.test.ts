@@ -67,6 +67,16 @@ describe('worldgen formats', () => {
     expect(issues.find((issue) => issue.code === 'unknown_palette')?.hint).toContain('siding');
   });
 
+  it('checks the palette a material choice names', () => {
+    const doc = structuredClone(ARCHSTYLE_EXAMPLE) as Record<string, unknown> & {
+      materials: { wall: { choices: Array<{ palette?: string }> } };
+    };
+    (doc.materials.wall.choices[0] as { palette?: string }).palette = 'sidings';
+    const issue = issuesOf('archstyle', doc).find((entry) => entry.code === 'unknown_palette');
+    expect(issue?.path).toBe('/materials/wall/choices/0/palette');
+    expect(issue?.hint).toContain('siding');
+  });
+
   it('reports scatter and stylepack problems', () => {
     const scatter = structuredClone(SCATTER_EXAMPLE) as Record<string, unknown> & {
       defaults: { lod: { keepByTier: number[] } };

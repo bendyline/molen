@@ -90,8 +90,8 @@ const STICKS: NonNullable<InputProfile['axes']> = [
 
 /**
  * Default key/gamepad bindings per navigation mode. Orbit and fly use Q/E for down/up; walk and
- * drive use E to interact (board or leave a vehicle), Space to jump or brake, and V to switch
- * the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
+ * drive use E to interact (board or leave a vehicle), Space to jump or brake, Shift to sprint
+ * or pull the handbrake, and V to switch the vehicle view. Pilot flies an aircraft: W/S (or ↑/↓) pitch the nose down/up, A/D (or ←/→)
  * bank, Q/Z work the rudder or pedals, Shift/Ctrl (or +/−, Page Up/Down) set throttle or
  * collective, I toggles the engine, G the gear, F the flaps, R recovers after an impact, Space
  * brakes, V switches the view and E leaves. Hosts may replace any profile through
@@ -276,8 +276,28 @@ export class NavigationInputSource {
       this.map.onPress(A.view, () => {
         this.viewPresses++;
       }),
-      this.map.onReset(() => this.pointer.reset()),
+      this.map.onReset(() => {
+        this.pointer.reset();
+        this.interactPresses = 0;
+        this.viewPresses = 0;
+        this.pilotPresses.engine = 0;
+        this.pilotPresses.gear = 0;
+        this.pilotPresses.flaps = 0;
+        this.pilotPresses.recover = 0;
+      }),
     ];
+    this.pointer.setPointerLock(this.profile === 'walk');
+    // A focused canvas does not receive the window's blur when the user changes apps.
+    const document = options.element.ownerDocument;
+    const reset = (): void => this.map.reset();
+    document?.defaultView?.addEventListener('blur', reset);
+    document?.addEventListener?.('visibilitychange', reset);
+    document?.addEventListener?.('pointerlockchange', reset);
+    this.unsubscribe.push(() => {
+      document?.defaultView?.removeEventListener('blur', reset);
+      document?.removeEventListener?.('visibilitychange', reset);
+      document?.removeEventListener?.('pointerlockchange', reset);
+    });
   }
 
   setProfile(profile: NavigationProfileName): void {

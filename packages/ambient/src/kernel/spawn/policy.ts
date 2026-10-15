@@ -49,8 +49,10 @@ export interface AmbientPolicy {
   pedestrian: AmbientClassPolicy;
   train: AmbientClassPolicy;
   aircraft: AmbientClassPolicy;
+  boat: AmbientClassPolicy;
   driver: DriverParams;
   rail: DriverParams;
+  marine: DriverParams;
 }
 
 export const DEFAULT_POLICY: AmbientPolicy = {
@@ -64,6 +66,8 @@ export const DEFAULT_POLICY: AmbientPolicy = {
   pedestrian: { enabled: false, near: 25, far: 140, keep: 180, perLaneKm: 25, max: 60 },
   train: { enabled: false, near: 150, far: 1200, keep: 1500, perLaneKm: 0.4, max: 2 },
   aircraft: { enabled: false, near: 800, far: 5000, keep: 6000, perLaneKm: 0, max: 4 },
+  boat: { enabled: false, near: 100, far: 1800, keep: 2400, perLaneKm: 0.8, max: 12 },
+  marine: { accel: 0.25, brake: 0.5, gap: 12, headway: 8 },
   driver: { accel: 1.6, brake: 2.8, gap: 2, headway: 1.3 },
   rail: { accel: 0.5, brake: 0.9, gap: 8, headway: 6 },
 };
@@ -111,6 +115,7 @@ export interface AmbientBudget {
   pedestrians?: number;
   trains?: number;
   aircraft?: number;
+  boats?: number;
   /** Outer spawn radius for cars; trains keep their ratio to it. */
   radius?: number;
   /** Outer spawn radius for pedestrians. */
@@ -140,6 +145,7 @@ export function policyForBudget(policy: AmbientPolicy, budget: AmbientBudget): A
     pedestrian: ring(policy.pedestrian, budget.pedestrians, walkScale),
     train: ring(policy.train, budget.trains, scale),
     aircraft: ring(policy.aircraft, budget.aircraft, 1),
+    boat: ring(policy.boat, budget.boats, 1),
   };
 }
 
@@ -153,5 +159,6 @@ export function classesPolicy(
     pedestrian: { enabled: on.has('pedestrian') },
     train: { enabled: on.has('train') },
     aircraft: { enabled: on.has('aircraft') },
+    boat: { enabled: on.has('boat') },
   };
 }

@@ -9,6 +9,20 @@ const spec = {
     gearNodes: ['gear'],
     flaps: [],
     ailerons: [{ node: 'aileron', axis: 'x', multiplier: 0.4 }],
+    animation: {
+      bindings: [
+        {
+          node: 'wheel-door',
+          source: 'gear',
+          property: 'rotation',
+          axis: 'x',
+          keys: [
+            [0, 0],
+            [1, 1.5],
+          ],
+        },
+      ],
+    },
   },
 } as unknown as AircraftSpec;
 
@@ -30,7 +44,13 @@ describe('ambient aircraft', () => {
     const propeller = new THREE.Group();
     propeller.name = 'propeller';
     propeller.add(part('blade', metal, 0));
-    model.add(fuselage, propeller, part('gear', metal, -2), part('aileron', metal, 5));
+    model.add(
+      fuselage,
+      propeller,
+      part('gear', metal, -2),
+      part('aileron', metal, 5),
+      part('wheel-door', metal, 7),
+    );
     mergeStaticAircraftParts(model, spec);
     const meshes: THREE.Mesh[] = [];
     model.traverse((object) => {
@@ -51,6 +71,7 @@ describe('ambient aircraft', () => {
     expect(model.getObjectByName('propeller')?.getObjectByName('blade')).toBeDefined();
     expect(model.getObjectByName('gear')).toBeInstanceOf(THREE.Mesh);
     expect(model.getObjectByName('aileron')?.position.x).toBe(5);
+    expect(model.getObjectByName('wheel-door')?.position.x).toBe(7);
     expect(model.getObjectByName('skin-a')).toBeUndefined();
   });
 });

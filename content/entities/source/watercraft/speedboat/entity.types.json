@@ -1,0 +1,136 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.watercraft.speedboat": {
+      "doc": "Open speedboat. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.speedboat",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 6.6000000000000005,
+          "width": 2.5850000000000004,
+          "height": 1.45,
+          "cruise": 12,
+          "max": 12,
+          "weight": 1,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": [
+            "#709cb5"
+          ]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.speedboat",
+          "color": "#709cb5",
+          "spec": {
+            "label": "Open speedboat",
+            "length": 6.6000000000000005,
+            "width": 2.5850000000000004,
+            "height": 1.45,
+            "draft": 0.5,
+            "mass": 1200,
+            "thrust": 2160.0,
+            "maxSpeed": 15.600000000000001,
+            "reverseSpeed": 3,
+            "turnRate": 0.46875,
+            "turnResponse": 0.8,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 1.2,
+            "driverEye": [
+              0.4465,
+              1.55,
+              -0.6400000000000001
+            ]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                0.4465,
+                1.55,
+                -0.6400000000000001
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -0.4465,
+                1.55,
+                -0.6400000000000001
+              ]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [
+                0.5875,
+                1.6,
+                -1.6
+              ]
+            }
+          ],
+          "exits": [
+            [
+              1.8925,
+              0.65,
+              -0.6400000000000001
+            ],
+            [
+              -1.8925,
+              0.65,
+              -0.6400000000000001
+            ]
+          ],
+          "entries": [
+            [
+              1.175,
+              1.65,
+              -0.6400000000000001
+            ],
+            [
+              -1.175,
+              1.65,
+              -0.6400000000000001
+            ]
+          ],
+          "reach": 3.5
+        }
+      },
+      "assets": [
+        "molen.entities.watercraft.speedboat"
+      ]
+    }
+  }
+}

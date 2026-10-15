@@ -32,13 +32,23 @@ streaming and floating-origin changes. Reloading starts a fresh session.
 | R | Recover at the airfield after an impact |
 
 Mustang: start the engine, set flaps, hold the brake while raising throttle, then release the brake.
-Rotate gently around 85–100 knots and release the pitch key once the nose is about 10 degrees up.
-Retract gear and flaps after climbing. Reduce throttle on approach, lower gear and flaps, and land
-with wings level and a gentle descent. Gear-up and hard landings register an impact.
-To accelerate, ease the nose down toward level flight after cleaning up; holding the takeoff
-attitude spends engine power on climbing. During a stall, lower the nose, add power and gently
-level the wings. Let airspeed rebuild before pulling out; hauling back immediately can stall
-the wing again. A stall recovery requires altitude.
+The propeller swings the nose left as the tail gets light, and a crosswind turns it into the wind:
+hold a little right rudder (Z), or rudder away from the wind, to keep the runway centerline.
+Rotate around 85–100 knots and release the pitch key once the nose is about 10 degrees up; the
+airplane keeps the attitude it lifted off at. At climb power the propeller's torque rolls it
+slowly left, so tap right bank (D) as needed. Retract gear and flaps after climbing. Reduce
+throttle on approach, lower gear and flaps, and land with wings level and a gentle descent.
+Gear-up and hard landings register an impact. To accelerate, ease the nose down toward level
+flight after cleaning up; holding the takeoff attitude spends engine power on climbing. During a
+stall, lower the nose, add power and gently level the wings. Let airspeed rebuild before pulling
+out; hauling back immediately can stall the wing again, and rudder in a stall drops a wing. A
+stall recovery requires altitude.
+
+There are no attitude limits: hold A or D to roll through inverted, hold S at speed to loop.
+Releasing the stick holds the flight path the airplane is on; a brief tap of W or S changes it
+by a degree or so. Above about 250 knots full back stick stops at 6 g. In a bank the wing's lift
+no longer holds the airplane up, so add back pressure to keep a turn level. Gusts and turbulence
+from the Weather setting bump, roll and yaw the airplane, more so near the ground on windy days.
 
 OH-6: start the engine and allow roughly six simulation seconds to reach full rotor speed. Raise
 collective gradually toward 50%; exact hover power varies with altitude and ground effect. Small
@@ -48,8 +58,11 @@ flight while airborne. After an impact, R resets its aircraft state and places i
 
 Cockpit needles show airspeed, altitude, heading, vertical speed and RPM; the artificial horizon
 banks with the aircraft. The HUD supplies precise knot/feet/feet-per-minute readings, AGL height,
-power, engine/gear/flap state, stall alerts and terrain waiting status. Propellers, both helicopter
-rotors, controls, gear, flaps and ailerons animate from simulation state.
+g load, power, engine/gear/flap state, stall alerts and terrain waiting status. Propellers, both helicopter
+rotors, controls, gear, flaps, ailerons, elevators and rudder animate from simulation state. The
+Mustang's gear takes 12 seconds: its inner wheel doors open, each main leg swings inboard into a
+well in the wing root, the tail wheel folds forward into the fuselage, and the doors close behind
+them. Its flaps take 13 seconds to run down to 50°.
 
 ## Reuse in another experience
 
@@ -88,24 +101,79 @@ bypass walking physics. Only the occupied pilot seat can submit flight intent.
 The render half is `@bendyline/molen-client/aircraft`: `createAircraftVisual(loadedGlb, spec)` takes
 ownership of a loaded GLB and animates the nodes named by `spec.visual` from aircraft state, and
 `aircraftCameraPose(transform, spec, options)` returns the cockpit or chase pose from the same
-`VehicleCameraOptions` that `@bendyline/molen-client/vehicles` exports.
+`VehicleCameraOptions` that `@bendyline/molen-client/vehicles` exports. The gear and flaps follow
+`aircraftState.gearPosition` and `flapPosition` as they travel. `spec.visual.animation` adds
+exterior moving parts as [model-signal bindings](vehicle-interiors.md#exterior-animation), with
+keyframed curves so one gear position can sequence doors and legs.
 
-The deterministic solver uses lift, induced/profile/gear/flap drag, propeller thrust, air density,
-wind-relative airspeed, gravity, ground friction, damped control response and a progressive stall
-envelope for the plane. Stall depends on wing incidence, including camber, rather than a fixed
-true-airspeed cutoff. Separated flow progressively loses lift and control authority, adds drag,
-and unloads the nose toward attached flow for both positive and negative incidence. Lift remains
-perpendicular to airflow. Turn assistance follows the lift actually produced; fin stability
-aligns the aircraft with the relative wind instead of forcing a level-flight turn during a stall.
-Elevator and rudder retain limited propwash authority at low speed. Throttle controls shaft power
-with a transient RPM spool limit, avoiding a second steady power penalty from RPM.
+The deterministic airplane solver is a six-degree-of-freedom rigid body. The transform's
+quaternion is the attitude, with no pitch or bank stops, so loops, rolls, inverted flight and
+spins follow from the forces; `aircraftState.yaw`, `pitch` and `roll` report that attitude (roll
+is ±π inverted). Forces are lift, induced/profile/gear/flap drag, side force, propeller thrust
+and gravity at the center of mass, from wind-relative airflow and air density. Moments are
+angle-of-attack (pitch) and weathercock (yaw) stability, roll, pitch and yaw damping, dihedral
+effect, roll from yaw rate, inertia coupling, asymmetric thrust, and, scaled by
+`propellerEffects`, propeller torque, P-factor and slipstream yaw, and gyroscopic precession.
+The airframe turns about its center of mass in flight and about its wheels on the ground.
 
-`airplane.stallTransitionAngle` sets the separation transition width (radians, default `0.12`),
-and `airplane.yawStability` sets sideslip restoring response (1/s at reference airspeed, default
-`1`). `stallDrag` is the broadside separated-flow coefficient, scaled by separation and
+Stall depends on wing incidence, including camber, rather than a fixed true-airspeed cutoff.
+Separated flow progressively loses lift and control authority, adds drag, breaks the nose toward
+attached flow, and loses roll damping so yaw drops a wing. Lift remains perpendicular to airflow.
+Elevator and rudder retain limited propwash authority at low speed. Throttle controls shaft
+power with a transient RPM spool limit, avoiding a second steady power penalty from RPM.
+
+Flight assistance is limited to the pitch axis, so a keyboard can fly it. The stick moves an
+elevator (deflecting at `pitchResponse` per second and springing back four times faster) that
+adds up to `pitchAuthority` radians of angle of attack to a trim angle; the airframe's
+short-period dynamics (`pitchFrequency`, `pitchDamping`) fly toward it. Trim follows the angle of
+attack that keeps the flight path straight at `autoTrim` per second (0 leaves it fixed, like a
+real stick-fixed airplane), is captured at liftoff, and never exceeds the stall. Full stick stops
+at `maxLoadFactor` / `minLoadFactor` g at high speed. Ailerons command a roll rate
+(`rollAuthority`) against roll damping (`rollResponse`). The rudder is a yaw moment
+(`rudderAuthority`) against `directionalStability` and `yawDamping`; yaw damping acts on half the
+turn rate, so turns need little rudder while dihedral (`dihedralEffect`) still levels the wings
+slowly hands-off. Rates are given at `controlAuthoritySpeed` and scale with dynamic pressure.
+
+On the ground a steerable tailwheel (`groundSteerSpeed`) and tire side grip (`groundTrackRate`)
+hold the rolling direction to the nose, sharing the load with the wing: as lift builds the
+tires let go, so crosswind weathervaning and propeller swing grow through the takeoff roll and
+drift persists after touchdown. The gear holds the wings level and the nose at its resting
+attitude until the elevator lifts it, up to `maxGroundPitch`.
+
+The gear and flaps travel rather than switch. `aircraftInput.gear` and `flaps` select a position,
+and `aircraftState.gearPosition` and `flapPosition` (0 up, 1 down) move toward it over
+`airplane.gearTransitTime` seconds for a full gear cycle, doors included, and `flapTransitTime`
+for full flap travel. Gear drag, flap lift and flap drag scale with the positions. A
+weight-on-wheels lock holds the gear still on the ground, so selecting it up before takeoff raises
+it once the wheels leave the runway. Touching down before the gear locks down is a belly landing,
+which counts as a crash. Both times default to 0, which switches instantly as before, and a state
+without positions starts at the selection.
+
+Each engine's `propellerRotation` (default `clockwise` seen from the cockpit, the left-turning
+case) and `propellerInertia` set the direction and size of the propeller effects;
+`airplane.propellerEffects` scales them from 0 (none, the default) to 1. The shipped Mustang uses
+0.2, enough to feel on the takeoff roll and at climb power; raise it toward 1 for the full
+handful. `rollInertia`, `pitchInertia` and `yawInertia` set the moments of inertia.
+`airplane.stallTransitionAngle` sets the separation transition width (radians, default `0.12`).
+`stallDrag` is the broadside separated-flow coefficient, scaled by separation and
 `sin(alpha)^2`. The legacy `stallSpeed` tuning reference no longer triggers aerodynamic stall.
-The authored engine thrust axis is respected. Engine positions relative to the center of mass
-produce thrust-induced yaw; wing position remains metadata rather than a distributed lift model.
+Wing position remains metadata rather than a distributed lift model.
+
+`levelFlightAngleOfAttack(spec, airspeed, density?)` returns the angle of attack that carries an
+airplane's weight. Start an airplane in flight with that as its pitch and `pitchTrim` (the Earth
+view's airborne launch does) and it holds level flight hands-off.
+
+### Wind and turbulence
+
+Aircraft feel the weather's wind field, not only its mean `windVelocity`: a shear profile with
+height above ground, turbulence carried downwind, gusts along the wind, and slope flow that lifts
+air up windward hillsides and sinks it, rougher, in the lee (see
+[Weather](weather.md#wind-shear-turbulence-and-gusts)). The airplane samples it at its center of
+mass and both wingtips, so uneven gusts across the span roll it; the helicopter samples across
+its rotor disc. The field is a function of the weather, the position and simulation time, so
+replays and keyframes reproduce every bump. `installAircraft` hands the solver the world clock;
+callers of `stepAircraft` pass `time` in the environment. An explicit uniform `wind` override
+turns the structure off.
 
 ## In an Earth view
 
@@ -117,7 +185,8 @@ altitude, vertical speed, attitude, power and engine/gear/flap state for a HUD, 
 Hosts composing their own view use `EarthAircraft` from `@bendyline/molen-earth/client`: it
 spawns any aircraft type into the vehicles' ECS world, on the ground or with
 `airborne: { speed, power }`, boards and releases the pilot, applies `EarthPilotControls` and
-draws the models.
+draws the models. To start from a real runway, ask `view.airfields` for one and spawn at its
+`threshold` placement; see [Airfields](earth-view.md#airfields).
 
 ## Engine sound
 
@@ -165,9 +234,9 @@ Positions are meters from the aircraft's landing-contact origin, with +Z forward
 `(position - centerOfMass) × thrust`. A failed left engine therefore leaves the right engine
 yawing the nose left. Rudder can counter the yaw; cutting the remaining engine removes the
 powered asymmetry. Greater lateral separation produces a larger moment. `airplane.yawInertia`
-sets yaw inertia in kg m² (default `mass * (span² + length²) / 12`), while `thrustYawDamping`
-sets the thrust-induced yaw-rate damping in 1/s at reference airspeed (default `1.2`). Damping
-scales with airspeed, with a 20% floor; ground tracking adds damping while on the wheels.
+sets yaw inertia in kg m² (default `mass * (span² + length²) / 12`). The thrust moment joins the
+airframe's other yaw moments in `aircraftState.yawRate`, against weathercock stability and yaw
+damping in the air and tire grip on the ground.
 
 The normal throttle and engine switch still control the whole bank. Optional
 `aircraftInput.engines` entries override individual throttles or switches; omitted fields inherit
@@ -195,17 +264,18 @@ API does not add a twin-engine model, failure key or automatic random failures.
 The solver initializes missing engine state from the legacy RPM/phase, then the per-engine state
 is authoritative. The aggregate `rpm` is the maximum across engines, and aggregate `rotorAngle`
 follows the first engine. Set `visual.rotors[].engine` to animate independent propellers; omitted
-bindings retain the common phase. `thrustYawRate`, all engine state and input overrides survive
+bindings retain the common phase. Body rates, trim, all engine state and input overrides survive
 keyframes/replay and pause at terrain gaps. Boarding and exit checks consider every engine.
 
-This extension models propeller aircraft thrust imbalance within the assisted flight solver.
-It does not add roll/pitch thrust moments, propeller reaction torque, P-factor, feathering,
-windmilling drag or a calibrated minimum-control-speed envelope. Helicopters continue to use
+This extension models propeller thrust imbalance as a yaw moment. It does not add pitch or roll
+moments from the thrust line, feathering, windmilling drag or a calibrated minimum-control-speed
+envelope; propeller torque, P-factor and precession come from `propellerEffects` above. Helicopters continue to use
 one `engine` driving the shared rotor; multiple turbines feeding a common gearbox require a
 different shaft-power model and are not represented by independent propeller engines.
 
 Helicopter forces include rotor spool, collective lift, cyclic tilt, ground effect,
-translational lift, air drag and assisted yaw. State includes velocity, attitude/rates, rotor phase
+translational lift, air drag and assisted yaw; the helicopter keeps the assisted model, in which
+cyclic commands a disc tilt bounded by `maxTilt`, and gusts across the disc tip it. State includes velocity, attitude/rates, rotor phase
 and controls for checkpoint/replay. Translational lift uses air-relative horizontal speed, so
 wind and forward motion give consistent results. Collision sampling is at least 120 Hz and at most one meter
 of translation per substep. Unknown terrain pauses at the last known position and resumes when
@@ -217,10 +287,10 @@ conservative aircraft bounds. Imported collision hulls are
 available for hosts that need a different collision solver. Without `canOccupy`, the kernel only
 collides with terrain. Do not add a second physics body that also writes the aircraft transform.
 
-This is an assisted game flight model with recognizable polygonal aircraft, not a full aircraft
-systems simulation. Pitch and bank are bounded; aerobatic loops, spin recovery, rotor blade-element
-aerodynamics, autorotation, vortex-ring state, fuel, automatic engine damage, detailed avionics and weapons
-are outside this implementation. Cockpit switches and pedals are visual details; the listed input
+This is a game flight model with recognizable polygonal aircraft, not a full aircraft systems
+simulation or a calibrated replica of any airplane's handling. Rotor blade-element aerodynamics,
+autorotation, vortex-ring state, a calibrated spin model, fuel, automatic engine damage, detailed
+avionics and weapons are outside this implementation. Cockpit switches and pedals are visual details; the listed input
 controls operate the simulated systems. Collision uses coarse airframe probes and resident world
 geometry; it does not model deformation or distant unloaded obstacles.
 
@@ -234,7 +304,10 @@ scenario is `examples/world-explorer/test/visual/aircraft.play.json`.
 
 `packages/kernel/test/aircraft-performance.test.ts` exercises level acceleration, part-throttle
 power, configuration drag, stall recovery from either bank direction, coordinated turns,
-unpowered energy loss, wind equivalence and 30/60/120 Hz consistency. In calm air at 1,000 m,
+unpowered energy loss, wind equivalence and 30/60/120 Hz consistency.
+`packages/kernel/test/aircraft-dynamics.test.ts` covers full rolls, loops and the load-factor
+limit, flight-path hold, trimmed launches, propeller swing and crosswind on the takeoff roll,
+and turbulence that matches across host rates and keyframes. In calm air at 1,000 m,
 starting at 60 m/s and using a test pilot to hold altitude for 120 seconds, the tuned Mustang
 reaches approximately 311 knots at full throttle, 262 knots at 65% throttle, and 203 knots with
 gear and flaps extended. These are simulation regression targets, not a certified performance

@@ -165,6 +165,7 @@ export class ThreeSceneBackend implements SceneBackend {
   >();
   private readonly identities = new Map<EntityId, string>();
   private readonly lights = new Map<EntityId, THREE.Light>();
+  private readonly pointLightSlots: THREE.PointLight[] = [];
   /** Refcounted primitive geometry, keyed by `geometryKey`; disposed when the count hits 0. */
   private readonly geometries = new Map<string, GeometryEntry>();
   private readonly entityGeometry = new Map<EntityId, string>();
@@ -637,6 +638,21 @@ export class ThreeSceneBackend implements SceneBackend {
     light.castShadow = data.castShadow === true;
     this.scene.add(light);
     this.lights.set(id, light);
+    // Three's WebGPU lighting cache includes light identities, not just their count. Keep
+    // capped, unshadowed point lights in stable shader slots as the selected torches change.
+    const cap = this.optimization.maxLocalLights;
+    if (this.renderer?.backend === 'webgpu' && cap !== undefined && this.isSlottedPoint(light)) {
+      light.visible = false;
+      const count = [...this.lights.values()].filter((value) => this.isSlottedPoint(value)).length;
+      if (this.pointLightSlots.length < Math.min(cap, count)) {
+        const slot = new THREE.PointLight(0xffffff, 0);
+        slot.name = `molen-point-slot-${this.pointLightSlots.length}`;
+        slot.matrixAutoUpdate = false;
+        slot.updateMatrix();
+        this.pointLightSlots.push(slot);
+        this.scene.add(slot);
+      }
+    }
   }
 
   updateLight(id: EntityId, data: LightData): void {
@@ -698,6 +714,8 @@ export class ThreeSceneBackend implements SceneBackend {
       this.applyModelSignals(id);
     }
     for (const handle of this.handles.values()) handle.setTick?.(tick, tickRate, undefined);
+    if (this.pointLightSlots.length > 0 && this.renderer)
+      this.updateLocalLights(this.renderer.camera);
   }
 
   /** Flush static membership only when bindings change; world-origin shifts move the common root. */
@@ -797,6 +815,12 @@ export class ThreeSceneBackend implements SceneBackend {
   }
 
   private updateLocalLights(camera: THREE.Camera): void {
+    camera.updateMatrixWorld();
+    this.frustum.setFromProjectionMatrix(
+      this.viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse),
+      camera.coordinateSystem,
+      camera.reversedDepth,
+    );
     const local: Array<{ light: THREE.PointLight | THREE.SpotLight; score: number }> = [];
     const cameraPosition = camera.getWorldPosition(new THREE.Vector3());
     for (const light of this.lights.values()) {
@@ -820,6 +844,30 @@ export class ThreeSceneBackend implements SceneBackend {
       for (let i = Math.max(0, Math.floor(cap)); i < local.length; i++)
         (local[i] as { light: THREE.Light }).light.visible = false;
     }
+    if (this.pointLightSlots.length > 0) {
+      let index = 0;
+      for (const { light } of local) {
+        if (!light.visible || !this.isSlottedPoint(light)) continue;
+        const slot = this.pointLightSlots[index++];
+        if (!slot) continue;
+        slot.color.copy(light.color);
+        slot.intensity = light.intensity;
+        slot.distance = light.distance;
+        slot.decay = light.decay;
+        slot.layers.mask = light.layers.mask;
+        // Both objects have the same parent, including its floating-origin transform.
+        slot.position.copy(light.position);
+        slot.updateMatrix();
+      }
+      for (; index < this.pointLightSlots.length; index++)
+        (this.pointLightSlots[index] as THREE.PointLight).intensity = 0;
+      for (const light of this.lights.values())
+        if (this.isSlottedPoint(light)) light.visible = false;
+    }
+  }
+
+  private isSlottedPoint(light: THREE.Light): light is THREE.PointLight {
+    return light instanceof THREE.PointLight && !light.castShadow;
   }
 
   entityForIntersection(hit: THREE.Intersection): EntityId | undefined {
@@ -842,6 +890,11 @@ export class ThreeSceneBackend implements SceneBackend {
     this.batches?.dispose();
     for (const id of [...this.objects.keys()]) this.destroy(id);
     for (const id of [...this.lights.keys()]) this.destroyLight(id);
+    for (const slot of this.pointLightSlots) {
+      this.scene.remove(slot);
+      slot.dispose();
+    }
+    this.pointLightSlots.length = 0;
     for (const kind of this.kinds.values()) kind.dispose?.();
     this.kinds.clear();
     // Every entity released above, so the caches are empty unless a count was unbalanced.

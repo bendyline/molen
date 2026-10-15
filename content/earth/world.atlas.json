@@ -24,11 +24,13 @@
                 "terrace",
                 "townhouse",
                 "townhouses",
-                "farmhouse"
+                "farmhouse",
+                "apartments",
+                "dormitory"
               ],
               "levelsMin": 4
             },
-            "style": "molen.worldgen.pnw.house"
+            "style": "molen.worldgen.catalog.modern_apartments"
           },
           {
             "when": {
@@ -36,7 +38,35 @@
               "contextClass": ["residential"],
               "levelsMin": 4
             },
-            "style": "molen.worldgen.pnw.house"
+            "style": "molen.worldgen.catalog.modern_apartments"
+          },
+          {
+            "when": {
+              "class": [
+                "house",
+                "detached",
+                "semidetached",
+                "residential",
+                "bungalow",
+                "cabin",
+                "terrace",
+                "townhouse",
+                "townhouses",
+                "farmhouse",
+                "apartments",
+                "dormitory"
+              ],
+              "heightMin": 14
+            },
+            "style": "molen.worldgen.catalog.modern_apartments"
+          },
+          {
+            "when": {
+              "class": ["yes", "building"],
+              "contextClass": ["residential"],
+              "heightMin": 14
+            },
+            "style": "molen.worldgen.catalog.modern_apartments"
           },
           {
             "when": {

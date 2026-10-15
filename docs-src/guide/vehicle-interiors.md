@@ -93,10 +93,12 @@ bind the loaded names explicitly. Two bindings cannot write the same node/proper
 
 Aircraft signals are `airspeed` (m/s), `altitude`/`altitudeAGL` (m), `verticalSpeed` (m/s),
 `heading`/`pitch`/`roll` (radians), `rpm`/`power` (0–1), `pitchInput`/`rollInput`/`yawInput`
-(-1–1), and `gear`/`flaps`/`engine` (0 or 1). Calibration belongs to each model.
+and `elevator` (-1–1), `gear`/`flaps` (the positions 0–1 as they travel, 0 up), and
+`engine`/`brake`/`grounded` (0 or 1). Calibration belongs to each model.
 Cars supply `steering` and `wheelAngle` (radians); their optional third `update` argument accepts
 additional signals. World explorer passes `speed` (signed m/s), `heading`/`pitch`/`roll` (radians),
-`throttle` (-1–1) and `brake` (0 or 1).
+`throttle` (-1–1), `brake` (0 or 1) and the sprung body's `bodyRoll`/`bodyPitch` (radians), which
+the car visual also uses to keep its wheels on the road.
 
 An interior can also include `sources`, using the same component/path mappings as `model.signals`.
 World explorer resolves these for each vehicle and merges them over the convenience signals,
@@ -116,6 +118,42 @@ Legacy explicit `controlStick`, `collective` and `steeringWheelNode` bindings wo
 `interior`. New models should use `interior.bindings`. The implicit `needle-*`/`attitude-ball`
 convention is removed: assets must list instruments explicitly. `airspeedGaugeMax` remains
 legacy metadata and no longer drives a gauge.
+
+## Exterior animation
+
+Landing gear, doors, flaps and control surfaces are bound the same way, in an `animation` block
+beside `interior`: `aircraft.spec.visual.animation` or `vehicle.visual.animation`, with the same
+`sources` and `bindings` and the same signals. The interior and the animation may not bind the
+same node channel.
+
+A binding can replace `scale` and `offset` with a keyframed curve: `keys` are `[signal,
+displacement]` pairs with strictly ascending signals, and the displacement holds the first or
+last value outside them. `"ease": "smooth"` eases out of and into every key, the way a hydraulic
+actuator starts and stops; the default is `linear`. Keys let one signal sequence several parts.
+The P-51's gear position runs from 0 (up) to 1 (down); its inner wheel doors open over the first
+and last eighth of that travel and stay open in between, while the legs swing:
+
+```json
+{
+  "animation": {
+    "bindings": [
+      { "node": "wheel-door-1", "source": "gear", "property": "rotation", "axis": "x",
+        "keys": [[0, 0], [0.12, 1.5], [0.88, 1.5], [1, 0]], "ease": "smooth" },
+      { "node": "gear-1", "source": "gear", "property": "rotation", "axis": "x",
+        "keys": [[0.12, 1.5708], [0.88, 0]], "ease": "smooth" },
+      { "node": "rudder", "source": "yawInput", "property": "rotation", "axis": "y", "scale": 0.44 }
+    ]
+  }
+}
+```
+
+Each moving part rotates about one local axis, so the model gives it a parent frame aligned with
+its hinge: a canted trunnion, a door's edge. Author the GLB in the at-rest pose (gear down,
+doors as they stand on the ground); keys are displacements from it. A model whose retracted parts
+would show through the skin can also list them in `visual.gearNodes`, hidden while the gear is
+fully up. Simulated gear and flap positions come from `airplane.gearTransitTime` and
+`flapTransitTime` (see [Aircraft](aircraft.md)); a script can drive any other part by publishing
+a component and naming it in `sources`.
 
 ## Exterior views and detail levels
 

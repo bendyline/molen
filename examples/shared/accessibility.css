@@ -1,0 +1,325 @@
+.access-toolbar,
+.demo-playback {
+  position: fixed;
+  z-index: 6;
+  top: calc(var(--game-header-height, 124px) + 8px);
+  left: 16px;
+  right: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+}
+.demo-playback {
+  top: 12px;
+}
+.access-toolbar button,
+.demo-playback button,
+.touch-controls button,
+.text-play-panel button {
+  pointer-events: auto;
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid #b7c9cc;
+  border-radius: 8px;
+  color: #f5f7fa;
+  background: #19343e;
+  font: 14px / 1.4 system-ui;
+  cursor: pointer;
+}
+.access-toolbar button:focus-visible,
+.demo-playback button:focus-visible,
+.touch-controls button:focus-visible,
+.text-play-panel button:focus-visible {
+  outline: 3px solid #ffd68e;
+  outline-offset: 2px;
+}
+.touch-controls button[data-held] {
+  background: #466979;
+}
+.access-toolbar button:disabled,
+.touch-controls:disabled {
+  opacity: 0.65;
+}
+.touch-controls {
+  position: fixed;
+  z-index: 5;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: #122b36ed;
+  color: white;
+  font: 12px / 1.5 system-ui;
+  max-width: 650px;
+  margin-inline: auto;
+}
+.touch-controls button {
+  touch-action: none;
+  user-select: none;
+  min-width: 60px;
+}
+.touch-controls legend {
+  background: #122b36;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.touch-controls[hidden],
+.text-play-panel[hidden] {
+  display: none;
+}
+body:has(.touch-controls:not([hidden])) .bottom {
+  bottom: 150px;
+}
+body:has(.touch-controls:not([hidden])) .sound-toggle {
+  bottom: 154px;
+}
+.access-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+body.text-play {
+  overflow: auto;
+  height: auto;
+  background: #102530;
+}
+.text-play canvas#view {
+  position: fixed;
+  visibility: hidden;
+}
+.text-play #interface,
+.text-play .touch-controls {
+  display: none;
+}
+.text-play .access-toolbar {
+  position: sticky;
+  top: 0;
+  left: auto;
+  padding: 12px;
+  background: #102530;
+}
+.text-play-panel {
+  max-width: 900px;
+  margin: auto;
+  padding: 16px 24px 40px;
+  color: #f5f7fa;
+  background: #102530;
+  font: 16px / 1.65 system-ui;
+}
+.text-play-panel h1 {
+  font-size: 28px;
+}
+.text-play-panel li {
+  margin-bottom: 10px;
+}
+.text-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.text-actions button[aria-disabled] {
+  opacity: 0.65;
+}
+@media (max-width: 720px) {
+  .access-toolbar {
+    left: 10px;
+    right: 10px;
+    gap: 6px;
+  }
+  .access-toolbar button {
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+  body:has(.touch-controls:not([hidden])) .bottom {
+    bottom: 230px;
+  }
+  body:has(.touch-controls:not([hidden])) .bottom > :not(:first-child) {
+    display: none;
+  }
+  body:has(.touch-controls:not([hidden])) .brief {
+    max-width: none;
+    padding: 8px 12px;
+  }
+  body:has(.touch-controls:not([hidden])) .brief .controls {
+    display: none;
+  }
+  body:has(.touch-controls:not([hidden])) .sound-toggle {
+    bottom: 200px;
+    right: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto;
+    transition: none;
+    animation: none;
+  }
+}
+
+.demo-playback {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: fixed;
+  z-index: 5;
+  top: 12px;
+  right: 12px;
+  left: auto;
+}
+.data-values {
+  position: fixed;
+  top: 68px;
+  right: 12px;
+  padding: 10px;
+  color: #f5f7fa;
+  background: #102530;
+  font: 14px / 1.6 system-ui;
+}
+.data-values table {
+  border-collapse: collapse;
+}
+.data-values td,
+.data-values th {
+  padding: 3px 14px;
+  text-align: left;
+}
+
+html:has(body.text-play),
+body.text-play > main {
+  height: auto;
+  overflow: visible;
+}
+.text-play-panel h1 {
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.fine-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-bottom: 12px;
+}
+.fine-actions input {
+  width: 20px;
+  height: 20px;
+}
+
+.face-direction {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.face-direction select {
+  min-height: 44px;
+  font: inherit;
+  border: 1px solid #b7c9cc;
+  border-radius: 6px;
+  padding: 6px;
+  color: #f5f7fa;
+  background: #19343e;
+}
+
+@media (max-width: 720px) {
+  body:has(.access-toolbar) .topbar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 18px;
+  }
+  body:has(.access-toolbar) .eyebrow {
+    letter-spacing: 2px;
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+  body:has(.access-toolbar) .stats {
+    width: 100%;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+  body:has(.access-toolbar) .topbar h1 {
+    margin-bottom: 0;
+  }
+  .access-toolbar button {
+    padding-inline: 8px;
+  }
+}
+
+@media (min-width: 600px) and (max-height: 500px) {
+  body:has(.access-toolbar) .topbar {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+  }
+  body:has(.access-toolbar) .topbar h1 {
+    font-size: 22px;
+    margin: 0;
+  }
+  body:has(.access-toolbar) .topbar .eyebrow,
+  body:has(.access-toolbar) .subtitle {
+    display: none;
+  }
+  body:has(.access-toolbar) .stats {
+    width: auto;
+    padding: 4px 12px;
+    gap: 20px;
+  }
+  body:has(.access-toolbar) .stat strong {
+    font-size: 16px;
+  }
+  body:has(.touch-controls:not([hidden])) .bottom {
+    bottom: 12px;
+    left: 12px;
+    right: 380px;
+  }
+  body:has(.touch-controls:not([hidden])) .bottom > :not(:first-child),
+  body:has(.touch-controls:not([hidden])) .brief .controls,
+  body:has(.touch-controls:not([hidden])) .brief .label {
+    display: none;
+  }
+  body:has(.touch-controls:not([hidden])) .brief {
+    padding: 8px 12px;
+    max-width: 100%;
+  }
+  body:has(.touch-controls:not([hidden])) #message {
+    margin: 0;
+    font-size: 12px;
+  }
+  body:has(.touch-controls:not([hidden])) .sound-toggle {
+    top: 64px;
+    bottom: auto;
+    right: 12px;
+  }
+  .touch-controls {
+    left: auto;
+    right: 8px;
+    bottom: 8px;
+    width: 360px;
+    gap: 4px;
+    padding: 6px;
+  }
+  .touch-controls button {
+    min-width: 54px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .touch-controls legend {
+    font-size: 11px;
+  }
+}

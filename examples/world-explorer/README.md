@@ -6,6 +6,19 @@ along with its [structure library](https://molen.dev/play/world-explorer/structu
 streams terrain tiles and content packs that Molen's npm packages never carry. To run and change
 it, clone the engine repository and run `pnpm install && pnpm dev` from the root.
 
+**Living places** plays six scripted dioramas at registered geographic sites. Choose a place
+and press **Visit**, or open `?diorama=football`, `airport`, `little-league`, `fireworks`, `fair`
+or `market`. Scenes load within 450 meters and unload beyond 550 meters. They run in separate
+deterministic worlds under the viewer's lighting and floating origin. The checkbox unloads them;
+`?dioramas=0` disables them at startup. Frozen captures omit them unless explicitly requested,
+and synthetic terrain has none. The visit camera fits above local terrain and adjusts to the
+viewport. Explicit latitude, longitude and camera parameters take precedence.
+
+Locations, orientation and provenance live in `content/dioramas/placements.json`. These are
+illustrative performances, not live events or exact reconstructions. The airport has terrain
+but lies outside the bundled detailed street extract. Scripts load only when their sites are
+near. Use the host time slider to see fireworks at dusk.
+
 The standalone [sky observatory](sky.html) previews the reusable Earth/custom sky system without
 loading terrain. Open `/sky.html` on the dev server for date/location controls, accelerated time,
 Sun/Moon tracking, a full-moon preset and an authored fantasy world. See
@@ -108,6 +121,15 @@ manifest:
 http://localhost:5225/?package=/earth/terrain-package.json&quality=balanced
 ```
 
+`?package=qualla` opens qualla.com's current terrain release (Qualla's elevation, vector and
+zoom-15 building archives), for example
+`http://localhost:5225/world-explorer/?package=qualla&lat=40.758&lon=-73.9855&alt=400` for
+Midtown Manhattan. It works only under the examples dev server (`pnpm dev`): qualla.com sends no
+CORS headers, so `examples/home/qualla-proxy.mjs` reads it through `/qualla/` and rewrites the
+release's URLs to come back through the proxy. A document qualla.com does not publish falls back
+to the sibling `qualla-internal` checkout's built copy (`QUALLA_PUBLIC` overrides the directory).
+The Earth view example takes the same `?package=qualla`.
+
 Add `&level=13` to pin a single archive level for fixed-grid diagnostics. Adaptive semantic layers
 have inclusive detail-level bounds. Trees, roads, and buildings appear on sufficiently detailed
 displayed tiles; hydrology also covers coarse horizon tiles when the sidecar supplies them.
@@ -190,3 +212,12 @@ The reusable store identity library and mapped street furniture can be reviewed 
 `?synthetic=1&stores=1&style=default`.
 See the [recognizable places guide](../../docs-src/guide/recognizable-places.md) and
 [3D art guidelines](../../docs-src/guide/3d-art-guidelines.md) for catalog and material conventions.
+
+The structure library enables search and detail browsing as soon as the catalog is loaded. Preview
+images render only near the viewport, yield between structures, and pause while a detail dialog is
+open. Details use a separate renderer. Download model sheet explicitly generates the remaining
+previews; a failed preview leaves its named card and detail controls available.
+
+Press B near mapped water (or use `?boat=1`) to launch a speedboat. W/S thrust, A/D helm,
+Space opposing thrust, hold Shift to anchor below walking speed, V helm/chase, E dockside exit.
+`?boat=molen.entities.watercraft.tugboat` selects another boat type from the content pack.

@@ -1,0 +1,310 @@
+{
+  "format": "molen/scene@3",
+  "name": "Molen road vehicle and cycle gallery",
+  "seed": "fleet-2026",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "sports-coupe",
+      "type": "molen.entities.vehicle.sports_coupe",
+      "components": {
+        "transform": {
+          "pos": [
+            -9.75,
+            0,
+            -8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "station-wagon",
+      "type": "molen.entities.vehicle.station_wagon",
+      "components": {
+        "transform": {
+          "pos": [
+            -3.25,
+            0,
+            -8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "electric-hatchback",
+      "type": "molen.entities.vehicle.electric_hatchback",
+      "components": {
+        "transform": {
+          "pos": [
+            3.25,
+            0,
+            -8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "taxi",
+      "type": "molen.entities.vehicle.taxi",
+      "components": {
+        "transform": {
+          "pos": [
+            9.75,
+            0,
+            -8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "offroad",
+      "type": "molen.entities.vehicle.offroad",
+      "components": {
+        "transform": {
+          "pos": [
+            -9.75,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "box-truck",
+      "type": "molen.entities.vehicle.box_truck",
+      "components": {
+        "transform": {
+          "pos": [
+            -3.25,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "standard-motorcycle",
+      "type": "molen.entities.cycle.standard_motorcycle",
+      "components": {
+        "transform": {
+          "pos": [
+            3.25,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "cruiser-motorcycle",
+      "type": "molen.entities.cycle.cruiser_motorcycle",
+      "components": {
+        "transform": {
+          "pos": [
+            9.75,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "motor-scooter",
+      "type": "molen.entities.cycle.motor_scooter",
+      "components": {
+        "transform": {
+          "pos": [
+            -9.75,
+            0,
+            8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "city-bicycle",
+      "type": "molen.entities.cycle.city_bicycle",
+      "components": {
+        "transform": {
+          "pos": [
+            -3.25,
+            0,
+            8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "road-bicycle",
+      "type": "molen.entities.cycle.road_bicycle",
+      "components": {
+        "transform": {
+          "pos": [
+            3.25,
+            0,
+            8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "cargo-bicycle",
+      "type": "molen.entities.cycle.cargo_bicycle",
+      "components": {
+        "transform": {
+          "pos": [
+            9.75,
+            0,
+            8
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -6,
+              10,
+              4
+            ],
+            "color": "#fff3dd",
+            "intensity": 3,
+            "castShadow": true
+          },
+          "background": "#b9d5e5",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "plaza",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.1,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            34,
+            0.2,
+            30
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#aaa59a",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "physics": {
+    "engine": "none"
+  },
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      29,
+      22,
+      34
+    ],
+    "lookAt": [
+      0,
+      0.6,
+      0
+    ],
+    "fov": 45
+  }
+}

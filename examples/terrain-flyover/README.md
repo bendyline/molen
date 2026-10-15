@@ -16,7 +16,11 @@ npm install
 npm run dev
 ```
 
-WASD: fly. Drag: look. Shift: boost. There is no scene manifest and no `input` block in this sample — the camera is a plain browser loop in `src/main.ts`, clamped to four metres above `hf.sampleHeight(x, z)` so you cannot fly through the island.
+Click the view or Tab to it, then use WASD or the arrow keys to fly, Q/E to change altitude,
+drag to look, and Shift to boost. Touch devices also get a movement stick. There is no scene
+manifest and no `input` block in this sample — the camera uses the shared navigation input in
+`src/main.ts`, clamped to four metres above `hf.sampleHeight(x, z)` so you cannot fly through
+the island.
 
 ## Authoring map
 

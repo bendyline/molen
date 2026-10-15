@@ -1,4 +1,11 @@
 import { createViewer } from '@bendyline/molen-client';
+import {
+  applyCameraLookDelta,
+  cameraForward,
+  cameraRight,
+  createTouchJoystick,
+  NavigationInputSource,
+} from '@bendyline/molen-client/navigation';
 import { createTerrainObject } from '@bendyline/molen-terrain/client';
 import { generateHeightmapPng, heightfieldFromPng } from '@bendyline/molen-terrain/kernel';
 import { FLYOVER_CAMERA, HEIGHTMAP_SEED, HEIGHTMAP_SIZE, TERRAIN } from './flyover';
@@ -30,49 +37,33 @@ const cam = {
   yaw: -Math.PI / 2,
   pitch: -0.35,
 };
-const keys = new Set<string>();
-window.addEventListener('keydown', (e) => keys.add(e.code));
-window.addEventListener('keyup', (e) => keys.delete(e.code));
-let dragging = false;
-canvas.addEventListener('mousedown', () => {
-  dragging = true;
-});
-window.addEventListener('mouseup', () => {
-  dragging = false;
-});
-window.addEventListener('mousemove', (e) => {
-  if (!dragging) return;
-  cam.yaw -= e.movementX * 0.003;
-  cam.pitch = Math.max(-1.5, Math.min(1.5, cam.pitch - e.movementY * 0.003));
-});
-window.addEventListener('resize', () =>
-  viewer.renderer.setSize(window.innerWidth, window.innerHeight),
-);
+const input = new NavigationInputSource({ element: canvas, profile: 'fly' });
+const joystick = matchMedia('(any-pointer: coarse)').matches
+  ? createTouchJoystick(document.body, input.map, { focusTarget: canvas })
+  : undefined;
+const resize = (): void => viewer.renderer.setSize(window.innerWidth, window.innerHeight);
+window.addEventListener('resize', resize);
 
 let last = performance.now();
+let frameHandle = 0;
 function frame(now: number): void {
-  const dt = (now - last) / 1000;
+  const dt = Math.min(0.1, Math.max(0, (now - last) / 1000));
   last = now;
-  const speed = (keys.has('ShiftLeft') ? 220 : 90) * dt;
-  const fwd: [number, number, number] = [
-    Math.cos(cam.pitch) * Math.cos(cam.yaw),
-    Math.sin(cam.pitch),
-    Math.cos(cam.pitch) * Math.sin(cam.yaw),
-  ];
-  const right: [number, number, number] = [
-    Math.cos(cam.yaw - Math.PI / 2),
-    0,
-    Math.sin(cam.yaw - Math.PI / 2),
-  ];
+  const controls = input.read(dt);
+  const orientation = applyCameraLookDelta(cam.yaw, cam.pitch, ...controls.look);
+  cam.yaw = orientation.yaw;
+  cam.pitch = orientation.pitch;
+  const speed = (controls.sprint ? 220 : 90) * dt;
+  const fwd = cameraForward(cam.yaw, cam.pitch);
+  const right = cameraRight(cam.yaw);
   const move = (v: [number, number, number], s: number): void => {
     cam.pos[0] += v[0] * s;
     cam.pos[1] += v[1] * s;
     cam.pos[2] += v[2] * s;
   };
-  if (keys.has('KeyW')) move(fwd, speed);
-  if (keys.has('KeyS')) move(fwd, -speed);
-  if (keys.has('KeyA')) move(right, -speed);
-  if (keys.has('KeyD')) move(right, speed);
+  move(fwd, speed * controls.move.forward);
+  move(right, speed * controls.move.right);
+  cam.pos[1] += speed * controls.move.up;
   // Clamp above the terrain (client-side heightfield).
   const ground = hf.sampleHeight(cam.pos[0], cam.pos[2]) + 4;
   if (cam.pos[1] < ground) cam.pos[1] = ground;
@@ -82,12 +73,22 @@ function frame(now: number): void {
     lookAt: [cam.pos[0] + fwd[0], cam.pos[1] + fwd[1], cam.pos[2] + fwd[2]],
   });
   viewer.renderFrame();
-  requestAnimationFrame(frame);
+  frameHandle = requestAnimationFrame(frame);
 }
-requestAnimationFrame(frame);
+frameHandle = requestAnimationFrame(frame);
 
 const hint = document.createElement('div');
-hint.textContent = 'WASD to fly · drag to look · Shift to boost';
+hint.id = 'help';
+hint.textContent =
+  'Click view or Tab to begin · WASD / arrows to fly · Q/E altitude · drag to look · Shift to boost';
 hint.style.cssText =
-  'position:fixed;left:12px;bottom:10px;font:13px system-ui;color:#234;pointer-events:none';
-document.body.appendChild(hint);
+  'position:fixed;left:12px;right:12px;top:10px;font:13px system-ui;color:white;background:#173141e8;padding:8px;border-radius:6px;pointer-events:none';
+document.querySelector('main')?.appendChild(hint);
+window.addEventListener('pagehide', (event) => {
+  if (event.persisted) return;
+  cancelAnimationFrame(frameHandle);
+  window.removeEventListener('resize', resize);
+  input.dispose();
+  joystick?.dispose();
+  viewer.dispose();
+});

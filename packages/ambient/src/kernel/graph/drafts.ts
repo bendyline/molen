@@ -56,6 +56,8 @@ export const KIND_SPEED: Readonly<Record<RoadKind, number>> = {
   crossing: 1.4,
   rail: 20,
   tram: 12,
+  ferry: 8,
+  channel: 7,
 };
 
 export interface FeatureDraftOptions {
@@ -72,7 +74,7 @@ export function classifyFeature(
   if (cls === 'aeroway' || /runway|taxiway|apron/.test(sub)) {
     return sub === 'runway' || cls === 'runway' ? 'runway' : undefined;
   }
-  if (cls === 'ferry' || sub === 'ferry') return undefined;
+  if (cls === 'ferry' || sub === 'ferry') return { class: 'water', kind: 'ferry' };
   const kind = transportKind(feature);
   if (kind === 'rail') {
     if (/disused|abandoned|construction|proposed|platform|station|miniature|funicular/.test(sub))
@@ -233,11 +235,13 @@ export function featureDrafts(input: TileDraftInput, options: FeatureDraftOption
     if (feature.tunnel === true && options.tunnels === 'skip') continue;
     const kind = transportKind(feature);
     const width =
-      classified.class === 'walk'
-        ? dmath.max(1.2, feature.width ?? 2.4)
-        : classified.class === 'rail'
-          ? 3
-          : transportWidth(feature, kind);
+      classified.class === 'water'
+        ? (feature.width ?? 60)
+        : classified.class === 'walk'
+          ? dmath.max(1.2, feature.width ?? 2.4)
+          : classified.class === 'rail'
+            ? 3
+            : transportWidth(feature, kind);
     const lanes = classified.class === 'road' ? roadLanes(feature, width).total : 2;
     const link = isTransportLink(feature);
     for (const line of joinTerrainLines(feature.lines)) {
@@ -248,7 +252,9 @@ export function featureDrafts(input: TileDraftInput, options: FeatureDraftOption
           points: piece,
           width,
           lanes,
-          oneway: feature.oneway === true && classified.class === 'road',
+          oneway:
+            feature.oneway === true &&
+            (classified.class === 'road' || classified.class === 'water'),
           layer: feature.layer ?? 0,
           bridge: feature.bridge === true,
           tunnel: feature.tunnel === true,
@@ -272,6 +278,7 @@ export function featureDrafts(input: TileDraftInput, options: FeatureDraftOption
 /** POIs in world metres, filtered to the kinds agents care about. */
 export interface WorldPoi {
   kind:
+    | 'ferry_terminal'
     | 'station'
     | 'tram_stop'
     | 'bus_stop'
@@ -287,6 +294,7 @@ export interface WorldPoi {
 }
 
 const POI_KINDS: ReadonlySet<string> = new Set([
+  'ferry_terminal',
   'station',
   'tram_stop',
   'bus_stop',

@@ -70,6 +70,64 @@ function model(): THREE.Group {
 }
 
 describe('vehicle visuals', () => {
+  it('takes up the body lean as suspension travel so the wheels stay on the road', () => {
+    const visual = createVehicleVisual(model(), DATA);
+    const bodyRoll = 0.05,
+      bodyPitch = -0.03;
+    // The simulation leans the whole model about its ground origin (vehicleRotation is YXZ).
+    const car = new THREE.Group();
+    car.add(visual.object);
+    car.quaternion.setFromEuler(new THREE.Euler(bodyPitch, 0, bodyRoll, 'YXZ'));
+    const heights = () => {
+      car.updateMatrixWorld(true);
+      return DATA.visual.wheelNodes.map(
+        (name) => visual.object.getObjectByName(name)?.getWorldPosition(new THREE.Vector3()).y,
+      );
+    };
+    visual.update(0, 0);
+    // Without the lean signals the wheels lean with the body: the left ones lift, the right sink.
+    expect(Math.max(...(heights() as number[])) - SPEC.wheelRadius).toBeGreaterThan(0.03);
+    visual.update(0, 0, { bodyRoll, bodyPitch });
+    for (const y of heights()) expect(y).toBeCloseTo(SPEC.wheelRadius, 9);
+    // Back to level, the wheels return to their authored places.
+    car.quaternion.identity();
+    visual.update(0, 0, { bodyRoll: 0, bodyPitch: 0 });
+    for (const y of heights()) expect(y).toBeCloseTo(SPEC.wheelRadius, 12);
+    visual.dispose();
+  });
+
+  it('poses exterior animation bindings from the same signals as the interior', () => {
+    const source = model();
+    const door = new THREE.Group();
+    door.name = 'door-left';
+    source.add(door);
+    const visual = createVehicleVisual(source, {
+      ...DATA,
+      visual: {
+        ...DATA.visual,
+        animation: {
+          bindings: [
+            {
+              node: 'door-left',
+              source: 'doorOpen',
+              property: 'rotation',
+              axis: 'y',
+              keys: [
+                [0, 0],
+                [1, 1.1],
+              ],
+              ease: 'smooth',
+            },
+          ],
+        },
+      },
+    });
+    expect(visual.animation?.missingNodes).toEqual([]);
+    visual.update(0, 0, { doorOpen: 1 });
+    expect(door.rotation.y).toBeCloseTo(1.1);
+    visual.dispose();
+  });
+
   it('binds external paint and named wheel nodes', () => {
     const visual = createVehicleVisual(model(), DATA);
     visual.update(0.4, 1.2);

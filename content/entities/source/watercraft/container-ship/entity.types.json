@@ -1,0 +1,136 @@
+{
+  "format": "molen/types@1",
+  "namespace": "molen.entities",
+  "owner": "@bendyline/molen-entities",
+  "types": {
+    "molen.entities.watercraft.container_ship": {
+      "doc": "Container feeder ship. Waterline origin; powered boat with driver and passenger seats.",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.entities.watercraft.container_ship",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        },
+        "ambientRole": {
+          "role": "boat",
+          "length": 150.2,
+          "width": 26.400000000000002,
+          "height": 25,
+          "cruise": 9,
+          "max": 9,
+          "weight": 0.2,
+          "visual": {
+            "paintMaterial": "vehicle-paint-and-trim"
+          },
+          "colors": [
+            "#668898"
+          ]
+        },
+        "boat": {
+          "kind": "molen.entities.watercraft.container_ship",
+          "color": "#668898",
+          "spec": {
+            "label": "Container feeder ship",
+            "length": 150.2,
+            "width": 26.400000000000002,
+            "height": 25,
+            "draft": 7,
+            "mass": 13860000.000000002,
+            "thrust": 1663200.0000000002,
+            "maxSpeed": 11.700000000000001,
+            "reverseSpeed": 3,
+            "turnRate": 0.02,
+            "turnResponse": 12.5,
+            "lateralDrag": 1.4,
+            "buoyancyFrequency": 0.7,
+            "driverEye": [
+              4.5600000000000005,
+              19.25,
+              -45.0
+            ]
+          },
+          "visual": {
+            "wheelNodes": [],
+            "frontWheelNodes": [],
+            "paintMaterial": "vehicle-paint-and-trim"
+          }
+        },
+        "mountable": {
+          "seats": [
+            {
+              "id": "driver",
+              "role": "driver",
+              "position": [
+                4.5600000000000005,
+                19.25,
+                -45.0
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -4.5600000000000005,
+                19.25,
+                -45.0
+              ]
+            },
+            {
+              "id": "passenger-2",
+              "role": "passenger",
+              "position": [
+                6.0,
+                6.95,
+                -37.5
+              ]
+            }
+          ],
+          "exits": [
+            [
+              13.8,
+              6,
+              -45.0
+            ],
+            [
+              -13.8,
+              6,
+              -45.0
+            ]
+          ],
+          "entries": [
+            [
+              12.0,
+              7,
+              -45.0
+            ],
+            [
+              -12.0,
+              7,
+              -45.0
+            ]
+          ],
+          "reach": 3.5
+        }
+      },
+      "assets": [
+        "molen.entities.watercraft.container_ship"
+      ]
+    }
+  }
+}

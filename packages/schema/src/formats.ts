@@ -357,7 +357,7 @@ const sceneTerrainRefSchema = z.strictObject({
     .optional(),
 });
 
-const ambientKind = z.enum(['car', 'pedestrian', 'train', 'aircraft']);
+const ambientKind = z.enum(['car', 'pedestrian', 'train', 'aircraft', 'boat']);
 
 const sceneAmbientSchema = z.strictObject({
   network: z

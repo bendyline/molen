@@ -18,6 +18,8 @@ import { proxyHeight, proxyShapeFor } from './proxies';
 export interface AmbientRenderBudget {
   /** Cars drawn with their full model at most. */
   detailedCars: number;
+  /** Full vessel models at most (default 4). */
+  detailedBoats?: number;
   /** Animated (skinned) pedestrians at most. */
   skinnedFigures: number;
   /** Pedestrians beyond this distance (m) are not drawn. */
@@ -46,8 +48,10 @@ export interface AmbientRenderStats {
   pedestrians: number;
   trains: number;
   aircraft: number;
+  boats: number;
   proxies: number;
   detailedCars: number;
+  detailedBoats: number;
   figures: number;
   drawBatches: number;
 }
@@ -64,6 +68,7 @@ export interface AmbientRenderer {
 
 const DEFAULT_BUDGET: AmbientRenderBudget = {
   detailedCars: 8,
+  detailedBoats: 4,
   skinnedFigures: 32,
   figureRadius: 120,
   posesPerFrame: 20,
@@ -90,6 +95,16 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
           ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
         })
       : undefined;
+  const boatDetail =
+    options.vehicles !== undefined
+      ? new VehicleDetail({
+          models: options.vehicles,
+          parent: object,
+          near: 1200,
+          far: 1500,
+          ...(options.prepare !== undefined ? { prepare: options.prepare } : {}),
+        })
+      : undefined;
   const figures = new AmbientFigures(prepareSync);
   object.add(figures.group);
   const aircraft =
@@ -99,6 +114,7 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
   let budget: AmbientRenderBudget = { ...DEFAULT_BUDGET, ...options.budget };
   const applyBudget = (): void => {
     detail?.setMax(budget.detailedCars);
+    boatDetail?.setMax(budget.detailedBoats ?? 4);
     figures.setBudget({
       skinned: budget.skinnedFigures,
       radius: budget.figureRadius,
@@ -123,8 +139,10 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
     pedestrians: 0,
     trains: 0,
     aircraft: 0,
+    boats: 0,
     proxies: 0,
     detailedCars: 0,
+    detailedBoats: 0,
     figures: 0,
     drawBatches: 0,
   };
@@ -146,7 +164,8 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
         descending: boolean;
       }[] = [];
       const candidates: DetailCandidate[] = [];
-      const next = { cars: 0, pedestrians: 0, trains: 0, aircraft: 0 };
+      const boatCandidates: DetailCandidate[] = [];
+      const next = { cars: 0, pedestrians: 0, trains: 0, aircraft: 0, boats: 0 };
       for (const [id, a, t] of world.query(AmbientAgent, Transform)) {
         const agent = a as Readonly<AmbientAgentData>;
         if (agent.kind === 'pedestrian') {
@@ -166,6 +185,7 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
         }
         if (agent.kind === 'car') next.cars++;
         else if (agent.kind === 'train') next.trains++;
+        else if (agent.kind === 'boat') next.boats++;
         else next.aircraft++;
         if (agent.hidden === true) continue;
         if (agent.kind === 'aircraft') {
@@ -178,6 +198,18 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
             descending: agent.air !== undefined && agent.air.y1 < agent.air.y0,
           });
           if (aircraft?.modelled(id) === true) continue;
+        }
+        if (agent.kind === 'boat') {
+          const distance = Math.hypot(
+            t.pos[0] - camera[0],
+            t.pos[1] - camera[1],
+            t.pos[2] - camera[2],
+          );
+          boatCandidates.push({ id, type: agent.type, color: agent.color ?? '#d8d8d4', distance });
+          if (boatDetail?.has(id) === true) {
+            boatDetail.update(id, t.pos, t.rot, agent.speed, dt);
+            continue;
+          }
         }
         if (agent.kind === 'car' || agent.kind === 'train') {
           // Long vehicles count from their nearest end.
@@ -213,11 +245,13 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
       if (detail !== undefined && elapsed - lastSelect >= 0.2) {
         lastSelect = elapsed;
         detail.select(candidates, (id) => world.exists(id));
+        boatDetail?.select(boatCandidates, (id) => world.exists(id));
       }
       counts = {
         ...next,
         proxies,
         detailedCars: detail?.count ?? 0,
+        detailedBoats: boatDetail?.count ?? 0,
         figures: figures.count,
         drawBatches: batches.meshCount,
       };
@@ -232,6 +266,7 @@ export function createAmbientRenderer(options: AmbientRendererOptions): AmbientR
     stats: () => counts,
     dispose() {
       detail?.dispose();
+      boatDetail?.dispose();
       aircraft?.dispose();
       figures.dispose();
       batches.dispose();

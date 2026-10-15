@@ -90,6 +90,25 @@ it('retains bank in the cockpit quaternion and shortens obstructed chase views',
   ).toBeCloseTo(1.7);
 });
 
+it('keeps the chase view upright and defined through the vertical of a loop', () => {
+  const pose = (pitch: number) => {
+    const rot = new THREE.Quaternion()
+      .setFromAxisAngle(new THREE.Vector3(1, 0, 0), -pitch)
+      .toArray() as [number, number, number, number];
+    const camera = aircraftCameraPose({ pos: [0, 500, 0], rot }, SPEC, { view: 'chase' });
+    return new THREE.Vector3(0, 1, 0).applyQuaternion(
+      new THREE.Quaternion().fromArray(camera.rotation),
+    );
+  };
+  // Level flight keeps the horizon level (the camera only tilts down at the airplane);
+  // straight up, the camera's up is the airframe's (its back).
+  expect(Math.abs(pose(0).x)).toBeLessThan(1e-9);
+  expect(pose(0).y).toBeGreaterThan(0.8);
+  const vertical = pose(Math.PI / 2);
+  expect(Number.isFinite(vertical.length())).toBe(true);
+  expect(vertical.z).toBeLessThan(-0.9);
+});
+
 it('drives externally named rotor and instrument nodes without moving their pivots', () => {
   const model = new THREE.Group();
   const rotor = new THREE.Group();
@@ -128,5 +147,72 @@ it('drives externally named rotor and instrument nodes without moving their pivo
   );
   expect(needle.rotation.z).toBeCloseTo(-2.3 + 0.3 * 4.6);
   expect(state.rpm).toBe(0.8);
+  visual.dispose();
+});
+
+it('moves the gear, its doors and the flaps with their positions, not the selection', () => {
+  const airplane: AircraftSpec = {
+    ...SPEC,
+    visual: {
+      rotors: [],
+      gearNodes: ['gear-leg'],
+      flaps: [{ node: 'flap', axis: 'x', multiplier: -0.8 }],
+      ailerons: [],
+      animation: {
+        bindings: [
+          {
+            node: 'gear',
+            source: 'gear',
+            property: 'rotation',
+            axis: 'x',
+            keys: [
+              [0.1, 1.6],
+              [0.9, 0],
+            ],
+          },
+          { node: 'rudder', source: 'yawInput', property: 'rotation', axis: 'y', scale: 0.4 },
+        ],
+      },
+    },
+  };
+  const model = new THREE.Group();
+  const gear = new THREE.Group();
+  const leg = new THREE.Group();
+  const flap = new THREE.Group();
+  const rudder = new THREE.Group();
+  gear.name = 'gear';
+  leg.name = 'gear-leg';
+  flap.name = 'flap';
+  rudder.name = 'rudder';
+  gear.add(leg);
+  model.add(gear, flap, rudder);
+  const visual = createAircraftVisual(model, airplane);
+  expect(visual.animation?.missingNodes).toEqual([]);
+  const input = {
+    power: 0.5,
+    pitch: 0,
+    roll: 0,
+    yaw: 1,
+    engine: true,
+    gear: false,
+    flaps: true,
+    brake: false,
+  };
+  const state = (gearPosition: number, flapPosition: number) =>
+    ({ rotorAngle: 0, rpm: 1, gearPosition, flapPosition }) as AircraftStateData;
+  // Selected up and flaps down, but still travelling: the parts follow the positions.
+  visual.update(state(0.5, 0.25), input, 100);
+  expect(gear.rotation.x).toBeCloseTo(0.8);
+  expect(leg.visible).toBe(true);
+  expect(flap.rotation.x).toBeCloseTo(-0.2);
+  expect(rudder.rotation.y).toBeCloseTo(0.4);
+  visual.update(state(0, 1), input, 100);
+  expect(gear.rotation.x).toBeCloseTo(1.6);
+  expect(leg.visible).toBe(false);
+  expect(flap.rotation.x).toBeCloseTo(-0.8);
+  // Without positions (a host that only animates), the selection still poses the model.
+  visual.update({ rotorAngle: 0, rpm: 1 } as AircraftStateData, { ...input, gear: true }, 100);
+  expect(gear.rotation.x).toBeCloseTo(0);
+  expect(leg.visible).toBe(true);
   visual.dispose();
 });

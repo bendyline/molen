@@ -53,8 +53,15 @@ external data with `weatherSchema.parse` before using it in typed code.
 | `clouds.baseAltitude`, `thickness`, `scale` | Absolute base Y, layer separation, and horizontal pattern repeat size in meters. |
 | `precipitation.kind`, `intensity` | Explicit none/rain/snow and 0–1 visual intensity; not calibrated mm/hour. |
 | `visibility` | Approximate visual fade distance in meters, independent of clouds and precipitation. |
+| `wind.referenceHeight` | Height above ground in meters where `windVelocity` applies; default 10. |
+| `wind.shear` | Power-law exponent of wind speed with height, to 600 m; default 0 (uniform). About 0.14 over open country, 0.3 over cities. |
+| `wind.turbulence` | 0–1 intensity; default 0. About 0.15 light chop, 0.4 moderate, 0.8 severe. |
+| `wind.gusts` | 0–1 along-wind gust swing as a fraction of the mean wind; default 0. |
+| `wind.terrain` | 0–1 strength of slope flow: lift up windward hillsides, sink and rougher air in the lee; default 0. |
 
 Presets are starting points, not classifications that constrain these independent parameters.
+Every preset includes a `wind` block: light chop and gusts for sunny skies, rougher air in rain,
+and nearly still, strongly sheared air in fog.
 
 ## Simulation and physics
 
@@ -76,9 +83,44 @@ temperature lapse rate or fluid simulation.
 
 `installAircraft` reads the world's weather each physics tick. Wind changes airspeed, and
 temperature/pressure change aerodynamic density. Explicit `AircraftEnvironment.weather`
-overrides the component; explicit `wind` overrides its wind. `stepAircraft` accepts the same
-optional weather value. Without weather, aircraft retain their existing altitude-density
-model exactly. Ground friction and character temperature exposure are not implicitly changed.
+overrides the component; explicit `wind` overrides its wind with a uniform velocity. `stepAircraft`
+accepts the same optional weather value and a `time`. Without weather, aircraft retain their
+existing altitude-density model exactly. Ground friction and character temperature exposure are
+not implicitly changed.
+
+## Wind shear, turbulence and gusts
+
+The `wind` block shapes the air around the mean `windVelocity`. `windField(weather)` returns its
+deterministic field, and `sampleWind(weather, position, time, groundHeight?)` samples it, both
+from `@bendyline/molen-kernel`:
+
+```ts
+import { sampleWind, weatherOf } from '@bendyline/molen-kernel';
+
+world.addSystem((w, ctx) => {
+  const weather = weatherOf(w);
+  if (!weather) return;
+  // Air velocity in m/s at a point, on the world clock, over the world's terrain.
+  const air = sampleWind(weather, [0, 120, 0], ctx.tick * ctx.dt, (x, z) => ground(x, z));
+});
+```
+
+- **Shear.** The mean wind's horizontal speed follows `(height / referenceHeight) ^ shear` with
+  height above the ground beneath the point, up to 600 m. Below the reference height it is
+  lighter.
+- **Turbulence.** Eddies from 20 m to 1.2 km across, with the -5/3 energy spectrum of real air,
+  are carried downwind with the mean wind and slowly evolve. Their strength grows with
+  `turbulence` and with wind speed, comes in patches a few kilometers across, fades above the
+  1 km boundary layer, and near the ground loses its vertical part.
+- **Gusts.** Along-wind speed swings of up to `gusts` times the mean, in fronts a few hundred
+  meters apart that sweep past with the wind.
+- **Terrain.** With a ground-height function, wind blowing up a slope rises and wind blowing
+  down one sinks, fading over a few hundred meters of height; the lee side is also rougher.
+
+The field is a pure function of the weather, the point and simulation time, so it needs no state
+in snapshots and consumes no simulation random numbers; `seed` varies the pattern. Two aircraft
+crossing the same air feel the same bump, and a replay feels every bump again. The renderer's
+clouds and precipitation still drift with the mean wind; audio's wind level follows the mean too.
 
 ## Rendering and clocks
 

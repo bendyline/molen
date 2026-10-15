@@ -128,6 +128,10 @@ const supplements = {
   'us.southwest': ['ranch'],
   jp: ['kyoto_machiya', 'gassho_farmhouse'],
 };
+// Mid- and high-rise housing is concrete and panel construction, not the region's wood-sided
+// house: four or more storeys, or a mapped height above a three-storey walk-up with its roof.
+const tallResidential = { 'us.pnw': 'molen.worldgen.catalog.modern_apartments' };
+const TALL_RESIDENTIAL_HEIGHT = 14;
 for (const region of atlas.regions) {
   const ids = supplements[region.id];
   if (!ids) continue;
@@ -135,15 +139,18 @@ for (const region of atlas.regions) {
     // Measured geometry and taller residential blocks retain the existing region recipe.
     delete rule.variants;
   }
+  // Stable idempotent augmentation: remove previously generated low-rise rules first.
+  region.bindings.buildings = region.bindings.buildings.filter(
+    (rule) =>
+      rule.when?.hasHeight !== false &&
+      rule.when?.levelsMin !== 4 &&
+      rule.when?.heightMin !== TALL_RESIDENTIAL_HEIGHT,
+  );
   const base = region.bindings.buildings[0].style;
   const pool = [
     { style: base, weight: 4 },
     ...ids.map((id) => ({ style: `molen.worldgen.catalog.${id}`, weight: 1 })),
   ];
-  // Stable idempotent augmentation: remove previously generated low-rise rules first.
-  region.bindings.buildings = region.bindings.buildings.filter(
-    (rule) => rule.when?.hasHeight !== false && rule.when?.levelsMin !== 4,
-  );
   region.bindings.buildings.unshift({
     when: { class: residential, notClass: ['apartments', 'dormitory'], hasHeight: false },
     style: base,
@@ -159,11 +166,32 @@ for (const region of atlas.regions) {
     style: base,
     variants: pool,
   });
-  region.bindings.buildings.unshift({ when: { class: residential, levelsMin: 4 }, style: base });
-  region.bindings.buildings.splice(1, 0, {
-    when: { class: ['yes', 'building'], contextClass: ['residential'], levelsMin: 4 },
-    style: base,
-  });
+  const tall = tallResidential[region.id];
+  if (tall === undefined) {
+    region.bindings.buildings.unshift({ when: { class: residential, levelsMin: 4 }, style: base });
+    region.bindings.buildings.splice(1, 0, {
+      when: { class: ['yes', 'building'], contextClass: ['residential'], levelsMin: 4 },
+      style: base,
+    });
+    continue;
+  }
+  const housing = [...residential, 'apartments', 'dormitory'];
+  region.bindings.buildings.unshift(
+    { when: { class: housing, levelsMin: 4 }, style: tall },
+    {
+      when: { class: ['yes', 'building'], contextClass: ['residential'], levelsMin: 4 },
+      style: tall,
+    },
+    { when: { class: housing, heightMin: TALL_RESIDENTIAL_HEIGHT }, style: tall },
+    {
+      when: {
+        class: ['yes', 'building'],
+        contextClass: ['residential'],
+        heightMin: TALL_RESIDENTIAL_HEIGHT,
+      },
+      style: tall,
+    },
+  );
 }
 for (const [id, title, bbox, countries, priority] of regions) {
   const buildings = rulesFor(inCountries(countries));

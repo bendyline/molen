@@ -14,11 +14,12 @@ export type { FigureMesh } from './client/upload';
 export { applyPose, figureBodyToSkinnedMesh, figureGeometry } from './client/upload';
 // Pure, SES-free pose helpers for hosts that pose figures without the kernel figures systems
 // (a main-thread world, where importing the kernel half would load the script host).
-export type { FigureData, FigureStateData } from './kernel/components';
+export type { FigureAnchor, FigureData, FigureMode, FigureStateData } from './kernel/components';
 export { resolveFigureDescriptor } from './kernel/descriptor';
 export { strideRateFor } from './kernel/gait';
 export type { FigurePose, PoseEvalOptions } from './kernel/pose';
-export { evaluatePose } from './kernel/pose';
+export { evaluatePose, worldToFigure } from './kernel/pose';
+export { cycleRiderPose } from './kernel/riding';
 export type { FigureRig } from './kernel/rig';
 export { figureSeed } from './kernel/seed';
 export type { FigureTier } from './kernel/skinned-mesh-builder';

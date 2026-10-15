@@ -8,7 +8,7 @@ import { vehicleProxyGeometry } from '@bendyline/molen-client/vehicles';
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
-export type ProxyShape = 'car' | 'bus' | 'rail' | 'aircraft';
+export type ProxyShape = 'car' | 'bus' | 'rail' | 'aircraft' | 'boat';
 
 export interface ProxyDimensions {
   length: number;
@@ -102,6 +102,7 @@ function aircraftGeometry({ length, width }: ProxyDimensions): THREE.BufferGeome
 
 /** The shape to draw for an agent kind and its dimensions. */
 export function proxyShapeFor(kind: string, length: number): ProxyShape {
+  if (kind === 'boat') return 'boat';
   if (kind === 'train') return 'rail';
   if (kind === 'aircraft') return 'aircraft';
   return length > 7.5 ? 'bus' : 'car';
@@ -116,6 +117,7 @@ export function proxyHeight(
 ): number {
   if (shape === 'bus') return 3.1;
   if (shape === 'rail') return 3.6;
+  if (shape === 'boat') return Math.max(2, length * 0.18);
   if (shape === 'aircraft') return length * 0.25;
   if (/van/.test(type) || width >= 1.98) return 2.0;
   if (/suv|pickup/.test(type)) return 1.75;
@@ -141,7 +143,35 @@ export function proxyGeometry(shape: ProxyShape, dims: ProxyDimensions): THREE.B
     });
   else if (shape === 'bus') geometry = busGeometry(d);
   else if (shape === 'rail') geometry = railGeometry(d);
-  else geometry = aircraftGeometry(d);
+  else if (shape === 'boat') {
+    const hull = box(0, d.height * 0.08, 0, d.width, d.height * 0.25, d.length, WHITE);
+    const position = hull.getAttribute('position');
+    for (let i = 0; i < position.count; i++) {
+      if (position.getZ(i) > 0) position.setX(i, position.getX(i) * 0.15);
+    }
+    hull.computeVertexNormals();
+    geometry = merged([
+      hull,
+      box(
+        0,
+        d.height * 0.42,
+        -d.length * 0.2,
+        d.width * 0.65,
+        d.height * 0.45,
+        d.length * 0.4,
+        WHITE,
+      ),
+      box(
+        0,
+        d.height * 0.5,
+        -d.length * 0.2,
+        d.width * 0.66,
+        d.height * 0.15,
+        d.length * 0.36,
+        GLASS,
+      ),
+    ]);
+  } else geometry = aircraftGeometry(d);
   cache.set(key, geometry);
   return geometry;
 }

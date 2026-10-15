@@ -1,6 +1,7 @@
 import { FrameAdmissionQueue } from '@bendyline/molen-client';
 import * as THREE from 'three';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import { setTerrainGroundCutout, TerrainGroundCutoutController } from '../src/ground-cutout';
 import { Heightfield } from '../src/heightfield';
 import {
   createTerrainPyramidStream,
@@ -2228,5 +2229,50 @@ describe('budgeted terrain publication', () => {
     expect(stream.displayedTiles().filter((t) => t.level === 1)).toHaveLength(4);
     stream.dispose();
     queue.dispose();
+  });
+
+  it('recomputes ground cutouts only when visibility or a surface changes', async () => {
+    const d = descriptor({ maxLevel: 0 });
+    const stream = createTerrainPyramidStream(
+      d,
+      { load: async (address) => flatTile(d, address) },
+      {
+        initialView: VIEW,
+        maxScreenSpaceError: 10_000,
+        viewDistance: 100,
+        maxSelectedTiles: 4,
+        maxResidentTiles: 16,
+        maxConcurrentLoads: 4,
+        layers: [
+          {
+            id: 'cutters',
+            category: 'human-feature',
+            createTile() {
+              const group = new THREE.Group();
+              const owner = new THREE.Object3D();
+              setTerrainGroundCutout(owner, [
+                [2, 2],
+                [6, 2],
+                [6, 6],
+              ]);
+              group.add(owner);
+              return group;
+            },
+          },
+        ],
+      },
+    );
+    try {
+      await stream.whenIdle();
+      const update = vi.spyOn(TerrainGroundCutoutController.prototype, 'update');
+      // A still camera reselects ten times a second; nothing it shows has changed.
+      for (let i = 0; i < 5; i++) stream.update(VIEW);
+      expect(update).not.toHaveBeenCalled();
+      stream.setLayerVisible('cutters', false);
+      expect(update).toHaveBeenCalled();
+      update.mockRestore();
+    } finally {
+      stream.dispose();
+    }
   });
 });

@@ -2,4 +2,4 @@
 import { startKernelWorker } from '@bendyline/molen-kernel';
 import { scene } from './scene';
 
-startKernelWorker({ scene: scene() });
+startKernelWorker({ scene: scene(), host: { startPaused: true } });

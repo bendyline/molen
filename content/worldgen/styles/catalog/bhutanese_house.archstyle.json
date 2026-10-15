@@ -80,6 +80,15 @@
       "uvOffset": "meters",
       "uvMirror": false
     },
+    "flatRoof": {
+      "choices": [{ "ref": "matgraph:molen.worldgen.material.membrane", "weight": 1 }],
+      "palette": "flatRoof",
+      "tint": "multiply",
+      "uv": "meters",
+      "uvScale": [4, 4],
+      "uvOffset": "meters",
+      "uvMirror": false
+    },
     "trim": {
       "choices": [{ "ref": "palette:#ffffff", "weight": 1 }],
       "palette": "trim",
@@ -113,6 +122,10 @@
     },
     "roof": {
       "entries": [{ "color": "#9e8865", "weight": 1 }],
+      "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
+    },
+    "flatRoof": {
+      "entries": [{ "color": "#a2a69e", "weight": 1 }],
       "jitter": { "hue": 0.008, "saturation": 0.025, "lightness": 0.025 }
     },
     "trim": {

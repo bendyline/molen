@@ -57,7 +57,7 @@ export async function startAudio(client: MolenClient, tickRate: number): Promise
     muted: readMuted(),
     onWarning: (message) => console.warn(`audio: ${message}`),
   });
-  const detachClient = layer.attachClient(client, { tickRate });
+  let detachClient: (() => void) | undefined;
   const detachUnlock = attachAutoplayUnlock(layer);
 
   const toggle = document.createElement('button');
@@ -82,15 +82,37 @@ export async function startAudio(client: MolenClient, tickRate: number): Promise
     document.body.append(toggle);
   }
 
-  let frame = requestAnimationFrame(function loop(now) {
+  const canvas = document.getElementById('view');
+  let frame = 0;
+  const paused = (): boolean => canvas?.dataset.paused !== 'false' || document.hidden;
+  function loop(now: number): void {
+    frame = 0;
+    if (paused()) return;
     layer.update(now);
     frame = requestAnimationFrame(loop);
-  });
+  }
+  function sync(): void {
+    cancelAnimationFrame(frame);
+    layer.setSuspended(paused());
+    if (paused()) {
+      // Text turns still advance the world. Do not queue their sounds for a burst on resume.
+      detachClient?.();
+      detachClient = undefined;
+    } else {
+      detachClient ??= layer.attachClient(client, { tickRate });
+      frame = requestAnimationFrame(loop);
+    }
+  }
+  canvas?.addEventListener('playbackchange', sync);
+  document.addEventListener('visibilitychange', sync);
+  sync();
   return () => {
     cancelAnimationFrame(frame);
+    canvas?.removeEventListener('playbackchange', sync);
+    document.removeEventListener('visibilitychange', sync);
     toggle.remove();
     detachUnlock();
-    detachClient();
+    detachClient?.();
     layer.dispose();
   };
 }

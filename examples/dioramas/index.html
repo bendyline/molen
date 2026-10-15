@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Molen · Living places</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #17252b; color: #f1eee3; font: 15px/1.5 system-ui, sans-serif; }
+      canvas { display: block; width: 100vw; height: 100vh; }
+      header { position: absolute; left: 28px; top: 24px; pointer-events: none; }
+      .eyebrow { font-size: 11px; letter-spacing: .18em; color: #d5bb7e; text-transform: uppercase; }
+      h1 { margin: 5px 0; font-size: clamp(26px, 4vw, 44px); letter-spacing: -.035em; font-weight: 600; }
+      header p { margin: 0; color: #ccd6d5; }
+      footer { position: absolute; left: 28px; bottom: 24px; right: 28px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      button, select { background: #213a42; color: #f1eee3; border: 1px solid #64767b; padding: 9px 16px; border-radius: 5px; font: inherit; cursor: pointer; }
+      button:hover { background: #35535b; }
+      button:focus-visible { outline: 3px solid #ebc969; }
+      #status { margin-left: auto; color: #d5bb7e; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <canvas id="view" tabindex="0" aria-label="Scripted diorama. Drag to orbit; scroll to zoom."></canvas>
+    <header><span class="eyebrow">Molen / Living places</span><h1>Friday night lights</h1><p id="description">Little places, always in motion. Drag to explore.</p></header>
+    <footer><select id="scene" aria-label="Diorama"></select><button id="pause" type="button">Pause</button><button id="visit" type="button">Leave place</button><button id="camera" type="button">Close view</button><span id="status" role="status">Approaching…</span></footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

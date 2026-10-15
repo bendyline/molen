@@ -18,7 +18,13 @@ import { mountEntity, unmountEntity } from '../src/vehicles';
 import { World } from '../src/world';
 import { molenAircraft } from './helpers/entities';
 
-const single = molenAircraft('molen.entities.aircraft.p51d').spec;
+const mustang = molenAircraft('molen.entities.aircraft.p51d').spec;
+if (!mustang.airplane) throw new Error('Missing Mustang fixture');
+// Propeller torque, P-factor and precession off: these tests isolate the engine layout.
+const single: AircraftSpec = {
+  ...mustang,
+  airplane: { ...mustang.airplane, propellerEffects: 0 },
+};
 const engine = single.engine;
 if (!engine || !single.airplane) throw new Error('Missing Mustang fixture');
 const { engine: _singleEngine, ...airframe } = single;
@@ -96,7 +102,7 @@ describe('independent aircraft engines', () => {
     const result = fly(3);
     const original = fly(3, power, single);
     expect(result.state.yaw).toBe(0);
-    expect(result.state.thrustYawRate).toBe(0);
+    expect(result.state.yawRate).toBe(0);
     expect(result.state.velocity[2]).toBeCloseTo(original.state.velocity[2], 9);
     expect(result.state.engines?.left?.thrust).toBeGreaterThan(1000);
     expect(result.state.engines?.left?.thrust).toBe(result.state.engines?.right?.thrust);
@@ -125,17 +131,17 @@ describe('independent aircraft engines', () => {
     const wing = twin.airplane;
     if (!wing) throw new Error('Missing wing');
     const calibrated = { ...twin, airplane: { ...wing, yawInertia: 60000 } };
-    const base = tick(calibrated).thrustYawRate ?? 0;
+    const base = tick(calibrated).yawRate ?? 0;
     const light = tick({ ...calibrated, airplane: { ...wing, yawInertia: 30000 } });
     expect(base).toBeGreaterThan(0);
-    expect(light.thrustYawRate).toBeCloseTo(base * 2, 10);
+    expect(light.yawRate).toBeCloseTo(base * 2, 10);
     const centered = tick({ ...calibrated, centerOfMass: [-2.5, 1, 0] });
-    expect(centered.thrustYawRate).toBe(0);
+    expect(centered.yawRate).toBe(0);
     const wider = tick({
       ...calibrated,
       engines: aircraftEngines(twin).map((e) => ({ ...e, position: [e.position[0] * 2, 1, 1] })),
     });
-    expect(wider.thrustYawRate).toBeCloseTo(base * 2, 10);
+    expect(wider.yawRate).toBeCloseTo(base * 2, 10);
     const canted = tick({
       ...calibrated,
       centerOfMass: [0, 1, 0],
@@ -145,7 +151,7 @@ describe('independent aircraft engines', () => {
         thrustAxis: [1, 0, 1],
       })),
     });
-    expect(canted.thrustYawRate).toBeGreaterThan(0);
+    expect(canted.yawRate).toBeGreaterThan(0);
   });
 
   it('supports more than two engines and per-engine propeller tuning', () => {
@@ -166,7 +172,7 @@ describe('independent aircraft engines', () => {
     expect(Object.values(result.state.engines ?? {}).map((e) => e.thrust)).toEqual([
       500, 500, 500, 500,
     ]);
-    expect(result.state.thrustYawRate).toBe(0);
+    expect(result.state.yawRate).toBe(0);
     const coast = airborne();
     coast.state.rpm = 0;
     coast.state.engines = Object.fromEntries(
@@ -253,7 +259,7 @@ describe('independent aircraft engines', () => {
     b.stepN(180);
     expect(stateHash(a)).toBe(stateHash(b));
     expect(b.get('craft', AircraftState)?.engines?.left?.failed).toBe(true);
-    expect(b.get('craft', AircraftState)?.thrustYawRate).toBeGreaterThan(0);
+    expect(b.get('craft', AircraftState)?.yawRate).toBeGreaterThan(0);
   });
 
   it('keeps exits locked and the solver active while any engine is spinning', () => {

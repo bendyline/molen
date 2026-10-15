@@ -8,5 +8,6 @@ const scene = validate('scene', sceneDoc);
 if (!scene.ok) throw new Error(scene.formatted);
 
 new KernelHost(buildWorld(scene.value, setup), self as unknown as MessageLink, {
+  startPaused: true,
   keyframeInterval: scene.value.keyframeInterval,
 });

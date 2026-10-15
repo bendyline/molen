@@ -151,6 +151,7 @@ for (const body of ['sun', 'moon'] as const)
   document.getElementById(body)?.addEventListener('click', () => face(body));
 let drag: { x: number; y: number } | undefined;
 canvas.addEventListener('pointerdown', (event) => {
+  canvas.focus({ preventScroll: true });
   drag = { x: event.clientX, y: event.clientY };
   canvas.setPointerCapture(event.pointerId);
 });
@@ -166,9 +167,32 @@ canvas.addEventListener('pointerup', () => {
 canvas.addEventListener('pointercancel', () => {
   drag = undefined;
 });
+canvas.addEventListener('lostpointercapture', () => {
+  drag = undefined;
+});
+canvas.addEventListener('keydown', (event) => {
+  if (event.altKey || event.ctrlKey || event.metaKey || event.isComposing) return;
+  switch (event.key) {
+    case 'ArrowLeft':
+      yaw -= 0.06;
+      break;
+    case 'ArrowRight':
+      yaw += 0.06;
+      break;
+    case 'ArrowUp':
+      pitch = Math.min(1.5, pitch + 0.06);
+      break;
+    case 'ArrowDown':
+      pitch = Math.max(-0.25, pitch - 0.06);
+      break;
+    default:
+      return;
+  }
+  event.preventDefault();
+});
 addEventListener('resize', () => renderer.setSize(innerWidth, innerHeight));
 if (params.get('hud') === '0')
-  for (const element of document.querySelectorAll('main,footer'))
+  for (const element of document.querySelectorAll('#controls,footer'))
     (element as HTMLElement).hidden = true;
 if (params.has('date')) {
   epoch = Date.parse(params.get('date') ?? '');

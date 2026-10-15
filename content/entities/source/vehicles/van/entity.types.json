@@ -54,7 +54,11 @@
             "terrainAlignRate": 1.8,
             "supportTolerance": 0.08,
             "maxStepHeight": 0.4,
-            "maxSlope": 0.61
+            "maxSlope": 0.61,
+            "drive": "front",
+            "rollStiffness": 0.075,
+            "pitchStiffness": 0.038,
+            "suspensionFrequency": 1.25
           },
           "visual": {
             "wheelNodes": [
@@ -108,6 +112,15 @@
               "role": "driver",
               "position": [
                 0.43,
+                1.59,
+                1.1
+              ]
+            },
+            {
+              "id": "passenger",
+              "role": "passenger",
+              "position": [
+                -0.43,
                 1.59,
                 1.1
               ]
