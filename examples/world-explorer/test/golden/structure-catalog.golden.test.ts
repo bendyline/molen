@@ -24,7 +24,8 @@ it('opens and filters structures before offscreen previews render', async () => 
     const page = await browser.newPage({ viewport: { width: 1000, height: 700 } });
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    // Hold thumbnail encoding long enough to exercise a detail view during a pending preview.
+    // Hold the first thumbnail until the detail interactions finish. A fixed delay races
+    // faster renderers: the detail view can be ready before the encoding error is delivered.
     await page.addInitScript(() => {
       const original = HTMLCanvasElement.prototype.toBlob;
       let first = true;
@@ -32,10 +33,10 @@ it('opens and filters structures before offscreen previews render', async () => 
         if (first) {
           first = false;
           document.body.dataset.encoding = 'true';
-          setTimeout(() => callback(null), 500);
+          document.addEventListener('finish-thumbnail', () => callback(null), { once: true });
           return;
         }
-        original.call(this, (blob) => setTimeout(() => callback(blob), 500), ...args);
+        original.call(this, callback, ...args);
       };
     });
     await page.goto(`http://127.0.0.1:${address.port}/structures.html`);
@@ -57,6 +58,9 @@ it('opens and filters structures before offscreen previews render', async () => 
         document.querySelector('#width-value')?.textContent === '30 m' &&
         document.querySelector('#detail-stats')?.textContent?.includes('triangles'),
     );
+    expect(await page.locator('.card[data-preview="error"]').count()).toBe(0);
+    await page.evaluate(() => document.dispatchEvent(new Event('finish-thumbnail')));
+    await page.locator('.card[data-preview="error"]').waitFor();
     expect(await page.locator('.card[data-preview="error"]').count()).toBe(1);
     await page.keyboard.press('Escape');
     expect(await page.locator('#detail').isVisible()).toBe(false);
