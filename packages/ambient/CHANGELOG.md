@@ -1,3 +1,14 @@
+## @bendyline/molen-ambient [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.10...@bendyline/molen-ambient@0.0.11) (2026-10-16)
+
+### Bug Fixes
+
+* Updated models and biomes + ecology ([35bdd46](https://github.com/bendyline/molen/commit/35bdd46ddca21d938635658aee5e3281f14ee433))
+
+
+### Dependencies
+
+* **@bendyline/molen-terrain:** upgraded to 0.0.11
+
 ## @bendyline/molen-ambient [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-ambient@0.0.9...@bendyline/molen-ambient@0.0.10) (2026-10-15)
 
 ### Bug Fixes

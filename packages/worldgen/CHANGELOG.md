@@ -1,3 +1,17 @@
+## @bendyline/molen-worldgen [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.9...@bendyline/molen-worldgen@0.0.10) (2026-10-16)
+
+### Bug Fixes
+
+* Adjust content build ([4662a1b](https://github.com/bendyline/molen/commit/4662a1bd6e805033d6c6a33a8333a7bf5a6d68b6))
+* Agriculture ([1cb687d](https://github.com/bendyline/molen/commit/1cb687ddace908fd3e0bf8d0666d73c695f88d9b))
+* Brush and flora ([d3344e2](https://github.com/bendyline/molen/commit/d3344e2548fc1713dda27191f5c74aed9d3d67e2))
+* Content updates ([2104944](https://github.com/bendyline/molen/commit/210494447c5afba4952ed10ce76a8096c7b2dec0))
+* Model updates ([a7ad9c2](https://github.com/bendyline/molen/commit/a7ad9c29e2796baef0ad400534bf1c27626bb20b))
+* More content ([954f0c4](https://github.com/bendyline/molen/commit/954f0c4c56f9bd8ebe215d4febf8aab28ccb5151))
+* More models ([4a55c75](https://github.com/bendyline/molen/commit/4a55c75e582eeaf18c562cff77b3dc2a08e2ed15))
+* Updated models ([08b9e93](https://github.com/bendyline/molen/commit/08b9e93bca63636c8ccafb8e2e8b83232e3ae345))
+* Updated models and biomes + ecology ([35bdd46](https://github.com/bendyline/molen/commit/35bdd46ddca21d938635658aee5e3281f14ee433))
+
 ## @bendyline/molen-worldgen [0.0.9](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen@0.0.8...@bendyline/molen-worldgen@0.0.9) (2026-10-15)
 
 ### Bug Fixes

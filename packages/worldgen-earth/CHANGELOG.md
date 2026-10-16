@@ -1,3 +1,21 @@
+## @bendyline/molen-worldgen-earth [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.10...@bendyline/molen-worldgen-earth@0.0.11) (2026-10-16)
+
+### Bug Fixes
+
+* Adjust content build ([4662a1b](https://github.com/bendyline/molen/commit/4662a1bd6e805033d6c6a33a8333a7bf5a6d68b6))
+* Agriculture ([1cb687d](https://github.com/bendyline/molen/commit/1cb687ddace908fd3e0bf8d0666d73c695f88d9b))
+* Brush and flora ([d3344e2](https://github.com/bendyline/molen/commit/d3344e2548fc1713dda27191f5c74aed9d3d67e2))
+* Model updates ([a7ad9c2](https://github.com/bendyline/molen/commit/a7ad9c29e2796baef0ad400534bf1c27626bb20b))
+* Test updates ([91f64e1](https://github.com/bendyline/molen/commit/91f64e1171c5b9d50fdb29e95b08f69bedb4fd8d))
+* Updated models and biomes + ecology ([35bdd46](https://github.com/bendyline/molen/commit/35bdd46ddca21d938635658aee5e3281f14ee433))
+
+
+### Dependencies
+
+* **@bendyline/molen-ambient:** upgraded to 0.0.11
+* **@bendyline/molen-terrain:** upgraded to 0.0.11
+* **@bendyline/molen-worldgen:** upgraded to 0.0.10
+
 ## @bendyline/molen-worldgen-earth [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-worldgen-earth@0.0.9...@bendyline/molen-worldgen-earth@0.0.10) (2026-10-15)
 
 ### Bug Fixes

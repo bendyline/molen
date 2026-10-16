@@ -1,3 +1,11 @@
+## @bendyline/molen-terrain [0.0.11](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.10...@bendyline/molen-terrain@0.0.11) (2026-10-16)
+
+### Bug Fixes
+
+* Agriculture ([1cb687d](https://github.com/bendyline/molen/commit/1cb687ddace908fd3e0bf8d0666d73c695f88d9b))
+* Model updates ([a7ad9c2](https://github.com/bendyline/molen/commit/a7ad9c29e2796baef0ad400534bf1c27626bb20b))
+* Updated models and biomes + ecology ([35bdd46](https://github.com/bendyline/molen/commit/35bdd46ddca21d938635658aee5e3281f14ee433))
+
 ## @bendyline/molen-terrain [0.0.10](https://github.com/bendyline/molen/compare/@bendyline/molen-terrain@0.0.9...@bendyline/molen-terrain@0.0.10) (2026-10-15)
 
 ### Bug Fixes
