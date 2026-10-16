@@ -487,6 +487,28 @@ test('a capture-looking path declared as a source texture is still required', as
   assert.deepEqual(await checkSourceBundles({ root, log: quiet }), { verified: 1 });
 });
 
+test('a required file that Git ignores fails locally until it is force-added', async () => {
+  const root = await fixture();
+  await writeFile(join(root, '.gitignore'), 'shots/\n*.glb\n');
+  const path = await sourceBundleFixture(root, {
+    documents: ['reference.json', 'shots/context/report.json', 'shots/context/street.png'],
+  });
+  const report = `${path}/shots/context/report.json`;
+  const ignored = new RegExp(
+    `ignored by Git.*\\(1\\):\\n${path}/source\\.json: ${report} \\(\\.gitignore:1 shots/\\)\\n`,
+  );
+  // GLBs come back with assets:fetch, and capture images are optional, so neither is named.
+  await asset(root, `${path}/models/source.glb`);
+  await asset(root, `${path}/reference.json`, Buffer.from('{}'));
+  // A checkout without the report learns why, rather than meeting an ENOENT.
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), ignored);
+  // The machine that wrote it has it on disk, and still fails.
+  await asset(root, report, Buffer.from('{}'));
+  await assert.rejects(checkSourceBundles({ root, log: quiet }), ignored);
+  execFileSync('git', ['add', '--force', '--', report], { cwd: root });
+  assert.deepEqual(await checkSourceBundles({ root, log: quiet }), { verified: 1 });
+});
+
 test('CI rejects staged bulk captures while allowing small summary previews', async () => {
   const root = await fixture();
   await writeFile(
