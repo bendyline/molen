@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0261_royal_castle_in_warsaw",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:c7421844956debbb7827c58e99dd6430bc87d8c39356a8039f96c5af6be35be1",
+  "inputHash": "sha256:48183cd8d058ded89ca103ac591bb5212d06ad2eb6c9c91e5e7cacc09cf4456f",
   "sourceHash": "sha256:81e8ef1c55fc2bbc1028b4ba5e55982157a264d1ca79b2d64dfe467dc183ac38",
   "runtimeHash": "sha256:cd3c3ba3b1071588054f6ddd8070c4ebe7acc528eaecf27c01f58a40c4a2c724",
-  "captureReportHash": "sha256:c4b3f7f905ff2bc5fc7f7c6f04dc10d7919912de7fcf10225113a1aa6d414a11",
+  "captureReportHash": "sha256:eaf10e9f8e0ad4a068d390fea08eddde58ab81f9f2bcd8e9bfed6fce54e13319",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -27,7 +27,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:219362feb42c62833f774d6820e1eadeb9528c2d005836ea30c073af92fd0fac",
+    "captureReportHash": "sha256:bc2fcd51a06827abbfba525670c9ad503f7946b5b5cc5561a9ab5f287718132a",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -345,5 +345,76 @@
       "shots/grade/closeup-library-foundation.png"
     ],
     "notes": "All35 final normal-placement pixels inspected: master plus four tiers at seven views of whole palace, city clock/corners, river pavilions, Gothic court, Clock barrel, Grodzka barrel and library foundation. Each state samples signed anchor once, passes three retained outside-ground probes within0.015 m fixture offset, three outward foundation rays and six passage rays. Model-only bounded plinth stays buried into retained terrain; roofless court floor lies above decoded occupied grade. Both reconstructed sloping aprons meet entrance floor and sampled outside ground. Host terrain stays uncut; library/river foundation heights are approximations because real terrace and basement levels are not surveyed. Five unloads retain original ground geometry and dispose every model geometry."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:c7421844956debbb7827c58e99dd6430bc87d8c39356a8039f96c5af6be35be1",
+    "inputHash": "sha256:48183cd8d058ded89ca103ac591bb5212d06ad2eb6c9c91e5e7cacc09cf4456f",
+    "previousQaHash": "sha256:c63d62d76c38ec217bf8d5564cff4fba3d9b62c13b6dc44022a944d482ba5bfe",
+    "sourceHash": "sha256:81e8ef1c55fc2bbc1028b4ba5e55982157a264d1ca79b2d64dfe467dc183ac38",
+    "runtimeHash": "sha256:cd3c3ba3b1071588054f6ddd8070c4ebe7acc528eaecf27c01f58a40c4a2c724",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:1a83d149e919082e10c967b001834301c12160955cbd4abc64c1ca07480ded9d"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:3bf88e06a2d63cdb19d737274d5b7effb87c481cab8e1422373ea37efab1eea8"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:9a55c8ab5a1858b9d18abc235b61d86ff71d90061374d5017a900e7ec10128cf"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:4e648d14b645fcbe981bb16d0cdc835a4b83753987321b89490793df78e0e468"
+      }
+    ],
+    "sceneHash": "sha256:a8f251a87246a1158391c30144dfa6b96eebaf6df5f0c81381fe300106172e71",
+    "qaCamerasHash": "sha256:740e65d6cc2b1bf74f80c5b4245f4ffd0c4092a1500015c3b37792cf86443cdc",
+    "placementHash": "sha256:601b3601affde9c9894430b1952f82a1cdc424031fddae05ec79f380d85fd1bc",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:5f4719e15c0faea084abce2abda662f61d30f5237da373f4f8d0776882613ac6"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:30d02403311e0ced935dffedb25a2542f1fdab0cb14d88ca3d466225d7495cf1"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:a8d20d3322421d08a09cdcc316ab6884c709c120ffe4fb72e10020f91e8a4f4d"
+      }
+    ],
+    "framesVerified": 55,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

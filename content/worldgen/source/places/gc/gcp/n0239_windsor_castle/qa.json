@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0239_windsor_castle",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:257bcbb59561ec6230e6f2896768dbbba341fc191136231919523a5a0559102a",
+  "inputHash": "sha256:c125923fc8f51fcb12ba6a42b180532682d521a8a662c34bf5417a1e077985be",
   "sourceHash": "sha256:144217f616ca908575cec6b9e5c8b103400e1abc8970f24da0a8d3f12ec51d4d",
   "runtimeHash": "sha256:d5cde7338da52316b5ebac1e7b8e4b029dede14fa101e1573946deac97ebd582",
-  "captureReportHash": "sha256:8e475d178dc14d4d70a802e2f11a104043881b0cff57f0089de2c8cd75f2dcd9",
+  "captureReportHash": "sha256:4029ee07fa90abd342948151571a6329c88e6010714786c2e86d72a5a95ca8a4",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -34,7 +34,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:688951620166f3fb6ae3bf4e80752dadd9f2455b6da9f07c0f338415f3b4cd3a",
+    "captureReportHash": "sha256:d626e11cd91bc7aecd2b32c43b0184bf782a8f2eda7261c38df0e410001690fa",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -358,5 +358,67 @@
       "shots/grade/closeup-motte-and-round-tower.png"
     ],
     "notes": "Actually inspected all 30 final terrain images: six cameras across master and four browser levels. Public Environment Agency bare-earth raster sampled at6m retains the Upper Ward slope and central motte; native Y0 is the HenryVIII gateway control, and production samples that signed terrain reference. The upper quadrangle is14.052m above the reference, chapel control4.222m and motte summit25.053m. Architectural floors/heights are reconstructed, not surveyed. Three open-ground datum probes have approximately0.015m fixture clearance; they verify coordinate/datum alignment, not floors or building contact. Separate horizontal rays against actual model geometry check mapped foundation contact in master/street/close within1.2m outline tolerance. Foundation toes sample the minimum retained ground along each straight edge, preventing floating spans; original faces are grounded before passage clipping so shared vertices remain identical. There is no duplicated hill or ground cutout. Every level unload leaves zero live model geometry. Relative grade is evidence only: the raster’s under-building values are interpolated ground, service product vintage is ambiguous between its2022 copyright and2025 item label,6m sampling does not resolve stairs, terrace tops remain percentile-based approximations, and no physical phone/laptop measurements or as-built wall heights are asserted."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:257bcbb59561ec6230e6f2896768dbbba341fc191136231919523a5a0559102a",
+    "inputHash": "sha256:c125923fc8f51fcb12ba6a42b180532682d521a8a662c34bf5417a1e077985be",
+    "previousQaHash": "sha256:c1e3c3d4e205c393905643276f92766056e034b81c1cb6c441ac864ce76de44f",
+    "sourceHash": "sha256:144217f616ca908575cec6b9e5c8b103400e1abc8970f24da0a8d3f12ec51d4d",
+    "runtimeHash": "sha256:d5cde7338da52316b5ebac1e7b8e4b029dede14fa101e1573946deac97ebd582",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:2f4da552992ecc54e54a821cefcbedefb184c322c34f51cc9bd4d16dd5fc307b"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:feee70f61425daa858fb46b948c10ee75b59ef4f1dbc826ccc17440791a3bf89"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:2809867cbecab661ac0b80de334de67a1ccb128739e0b88183f29dd3dad8f51e"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:259962e9d0e1c0d8e05eaa2f1173b95486f585c3e781a103337d63034e2935ef"
+      }
+    ],
+    "sceneHash": "sha256:bb3f801a6076ecd0a828a2f17ffc60c755fbabbbce99bcdaf551c4c8ad310f91",
+    "qaCamerasHash": "sha256:2baa26991c1d9cf41f884e39eb5e0a4209dd6b4c66ef942b64552327a0404040",
+    "placementHash": "sha256:cec79af6bc73d7700f74609ccf77895e11d006008c84a0dce8516e636bc7d495",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:1396f1df137aa0410fbc3f10638143b21bb577935fe14e246b9f7450f89c058b"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 76,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

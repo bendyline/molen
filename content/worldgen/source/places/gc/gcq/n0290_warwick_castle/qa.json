@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0290_warwick_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:69d3ed9619b5754c9a9b80c9feb5c52b65a3e9836a8cab7b3530d5c9e716ba86",
+  "inputHash": "sha256:1bb5f7fdd4d0257ccddbf6811f414267ca90e0b6a782957073f6d48f07ebc0d6",
   "sourceHash": "sha256:cb18d533e9cbbbfb3c31c5b16db382fbaefae5eb45fd2ed09d3fe94660a33c72",
   "runtimeHash": "sha256:f926c3e4fc58a15619c35ef60864d0cfb78d3ccd930f42fe3b189db7b699d517",
-  "captureReportHash": "sha256:4668e65fb2694e1c69d54189b730b837feed859b943368cf1e24b689d9ac86d9",
+  "captureReportHash": "sha256:4352473b7ea70fe4f423b1c6ee5e820da5f3d130efec556696cee31afc017c11",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:95857b0a92de1caa91846ae0807f66c29d93da8d4438ae4b9d210f7d2c023b06",
+    "captureReportHash": "sha256:9a58c42d62b2942d5be219694b92fd4d1429ede2a3830c895828a5b6e7e35f9a",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -338,5 +338,68 @@
       }
     ],
     "retainedInspectedImageCount": 49
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:69d3ed9619b5754c9a9b80c9feb5c52b65a3e9836a8cab7b3530d5c9e716ba86",
+    "inputHash": "sha256:1bb5f7fdd4d0257ccddbf6811f414267ca90e0b6a782957073f6d48f07ebc0d6",
+    "previousQaHash": "sha256:74f57fb9f9463a6671e826920f88765d842c15bc9c85319ebfbd68b2e610c19d",
+    "sourceHash": "sha256:cb18d533e9cbbbfb3c31c5b16db382fbaefae5eb45fd2ed09d3fe94660a33c72",
+    "runtimeHash": "sha256:f926c3e4fc58a15619c35ef60864d0cfb78d3ccd930f42fe3b189db7b699d517",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:9e8df176b26ceb9b7463ed5ee17e129f7a2cf666ece5b5d7c336de3836b74f62"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:21138d83a9dcccee2e4a6a270c7834ff589f023d6530ea9b9dc41240e2980cbe"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:3bf95c3c82f0f919ad3a1c1cea78c71013ebee0df836723ac8704737f519581f"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:f98407359646b30bfb3f1548b077cc3c5f332ebe45ae1d3cd91425a8b345e02e"
+      }
+    ],
+    "sceneHash": "sha256:5328347b2fa75ba21f8337304870934ae1c40bc49db4af2d368e683fcfa916ed",
+    "qaCamerasHash": "sha256:2b9afd308959424be15611d83648de48d3acf16aec6d58abc857c11dc66e3d66",
+    "placementHash": "sha256:a2d34e352e18e220f32fade51cdd9da94ebf01af8d89bb88112f3204a4cd9a1b",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:d5ff380665cec8a28e711a0eb009291f1107c4b884bbe7b845827e7ce0c083e6"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:de17347116f00927cb9ab7af2a2b867b5abd540a2a7ce349a7fd2724731561e8"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:9a311193081cb292151d61927b6703eca7ed5eb98156a1aeeda366d3f2268090"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0667_vorontsov_lighthouse",
-  "inputHash": "sha256:cae42ad241800490e1f41b62215fb8dcab97d4cce26dc7608b9b8e972618c311",
+  "inputHash": "sha256:6577437a66ec7e9c8bc1ecbb8233493fff9c3350e3b248d6cfa8a9e435c32488",
   "sourceHash": "sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c",
   "runtimeHash": "sha256:f1f5caca8c6f9f09c3193105b3d61c812e48813794287fcea233f53c12d3f3e7",
   "reviewGroundY": null,
@@ -680,5 +680,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:cae42ad241800490e1f41b62215fb8dcab97d4cce26dc7608b9b8e972618c311",
+    "inputHash": "sha256:6577437a66ec7e9c8bc1ecbb8233493fff9c3350e3b248d6cfa8a9e435c32488",
+    "previousReportHash": "sha256:8cb5a88cdfe5ba3ed6f3770402161b1a386e6297304a778924c52be488b10944",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

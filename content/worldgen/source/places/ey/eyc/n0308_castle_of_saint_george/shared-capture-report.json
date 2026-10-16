@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0308_castle_of_saint_george",
-  "inputHash": "sha256:f3ada1355162201c94eb5dedbb2af58b86c41a657b354dfc49ff11e567433b79",
+  "inputHash": "sha256:ac27c49452448023c8102436dc8a334c4bd25bf8cb966e3c0494930fe73d10a6",
   "sourceHash": "sha256:502d5cfe8223e0c2732001af078cfc99103d62bc3037202f75c16b4a0c5ff44b",
   "runtimeHash": "sha256:971a55b3415a4d155b05318ba7ae420996098c698fb8e166936635983c84ea79",
   "reviewGroundY": -17,
@@ -995,5 +995,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:f3ada1355162201c94eb5dedbb2af58b86c41a657b354dfc49ff11e567433b79",
+    "inputHash": "sha256:ac27c49452448023c8102436dc8a334c4bd25bf8cb966e3c0494930fe73d10a6",
+    "previousReportHash": "sha256:8be472fe5e7405cce8b23242ef5f4f52a61d3d471c74b46086ea7c34b2681341",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

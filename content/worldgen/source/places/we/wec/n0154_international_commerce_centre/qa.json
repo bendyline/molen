@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0154_international_commerce_centre",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:29f65cc5cad78c36095620ba117d69dc9dd883568adb1e9088420bb0ea141399",
+  "inputHash": "sha256:11ec995d5cf2d5491d994adef4b64e750edfb9ad51c0adb877c190a8796a98f4",
   "sourceHash": "sha256:5598637cbc93daab23ccad35d6670e38db2a5b3753bdb8ef85fb831841f94a6a",
   "runtimeHash": "sha256:5cd9111c22c8afab627300548a327ac0d999af88a60b84defdd023599e4559a2",
-  "captureReportHash": "sha256:83ac7ff69e5b29bb1c3dc8ae3189638913f7df89b963f3ad37abdece8b12c9ce",
+  "captureReportHash": "sha256:01d461899c71bf688de1826a59d3d0e69ceb4f56db9ff53b734f6c541f6424d3",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f5dd6e2e37004797f1c44699118e34aa18e93c50813ee2c778a79eac12726e03",
+    "captureReportHash": "sha256:458d15bd375d964f8fc5d14a59785e57bf65149f878b7f6efc51f6cf7da44d17",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -334,5 +334,68 @@
       }
     ],
     "retainedInspectedImageCount": 46
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:29f65cc5cad78c36095620ba117d69dc9dd883568adb1e9088420bb0ea141399",
+    "inputHash": "sha256:11ec995d5cf2d5491d994adef4b64e750edfb9ad51c0adb877c190a8796a98f4",
+    "previousQaHash": "sha256:2f6c0a88f3971a6a1ca542aa4ca81c2e81e1931af2dd33b0920953220e01e74f",
+    "sourceHash": "sha256:5598637cbc93daab23ccad35d6670e38db2a5b3753bdb8ef85fb831841f94a6a",
+    "runtimeHash": "sha256:5cd9111c22c8afab627300548a327ac0d999af88a60b84defdd023599e4559a2",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:a385e71cc30a6c9321f9fe632e7950586db7388c1974797dca9896229019a9bd"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:57722b0a087976b863e0144b6722ff9f42512badeee9dc401c31b7ca020094ec"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:27e936a028c87f1f43c933b95b5759aee6b186a3061afe31d4c25a94626ba760"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:6fecf7a8ec12f664b53ddac2978b59bf441f0ea0d15da88f15eb063f618556a0"
+      }
+    ],
+    "sceneHash": "sha256:2b728ae2370fd1d034b6c2e212481cdba43526d6adca6bc18f41971710f41c07",
+    "qaCamerasHash": "sha256:a6344f37c17403d28502b14f0bc265ac4b82d11a1385e9d1d6ee01e39cf8e88c",
+    "placementHash": "sha256:7666a43dc7024b1412c7c5bee4cb0bd16144abb4a940d017f7367c4a818e4d86",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:ce48479fd7a9eba72ced428ff377e2a1b9bd9a1acf10b7fc257f1976b0971bbc"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:ca83ee0460b6db813f79aeb81828d3e98599daf47eb479e48e478f3ef96c8d9f"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:c4b881cd5b50030f03b5d80a025df4ed2e62ea199e5268006fa574ff8af865a3"
+      }
+    ],
+    "framesVerified": 46,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

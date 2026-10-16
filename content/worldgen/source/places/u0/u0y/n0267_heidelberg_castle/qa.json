@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0267_heidelberg_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:7f403078c2bd9265f99539c7cdf66c6d2d9542cb6ce88f0c176ba946136b7486",
+  "inputHash": "sha256:15d933f6789ada46f6468fda5cda9be00eb2f1869ec7489f7cdca066bc4ee87c",
   "sourceHash": "sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab",
   "runtimeHash": "sha256:c907d5baf66ddf324d767d5caf219072eb38138f1b7d55d6064142787b93c762",
-  "captureReportHash": "sha256:0b7cc712a17765ba641c317ea24db7f8e44a773630f959c4f3868e37b9be9b6d",
+  "captureReportHash": "sha256:d436c8e16d1adc17c16441af73a6aeb7146b671a9f0be4b99f8d807c46551445",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:508874991f34a1701046d117ceb5d24ba9087902bf5c913a72f248c45df40e5b",
+    "captureReportHash": "sha256:d798a921a9712de3dd0e4e0031c7f895b5647e9e71b2b3df49b065f27ea624ff",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -293,5 +293,72 @@
     "Runtime derivative corrects wing positions and courtyard size, adds distinct library/Ruprecht/Ludwig volumes and the Hall of Glass arched protective roof. The dated owner aerial supplies overall proportions; scaffolding and restoration details are omitted.",
     "Mapped component rectangles approximate irregular footprints; roofs, floors, windows, bridge supports, western retaining walls and detached tower fragment remain reconstructions. No terrain cutout, whole-site slab, interiors, distant gardens or vegetation.",
     "Four shared sandstone, plaster, slate and tile graphs; local opaque glass. No copied private textures. Physical-device timing and continuous-motion shimmer are pending."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:7f403078c2bd9265f99539c7cdf66c6d2d9542cb6ce88f0c176ba946136b7486",
+    "inputHash": "sha256:15d933f6789ada46f6468fda5cda9be00eb2f1869ec7489f7cdca066bc4ee87c",
+    "previousQaHash": "sha256:0806ff0f74ab1bfeb29f145c69a524655f3505a29577b088a4d48d4b8f2c7b7f",
+    "sourceHash": "sha256:ba8b3e32671f8f9dbaa80d25725c6d7f460597bef76d789e798a6a539e545fab",
+    "runtimeHash": "sha256:c907d5baf66ddf324d767d5caf219072eb38138f1b7d55d6064142787b93c762",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:24b0a5f3b622159372db49892b87872c94e53fac37e7433777dc7e5d5dd2e46b"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:300709b667f80f28240665800b1f2a193206e5ce81fce8737373dabf350a416d"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:979bea53634086370afcfe55b8972485c9aa61271f9321664ad9fd3d29cb621f"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:a14448b77c9a225afd6e571806d577a1657f65a105b3edffd79185bec92c1d85"
+      }
+    ],
+    "sceneHash": "sha256:446004505ff76e30635cd43dd67095ca3dd052521b23e918328dbc608e6f411a",
+    "qaCamerasHash": "sha256:73b37ceb176a5b30a063c3e95d0828d3983dd3fcd50fbfca13a7ca80e6a8e5f6",
+    "placementHash": "sha256:82021f7a24c67d665f65d66089e25371eaeca7dbee212ece61b102810d298627",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:e52d823cbb7b22858b431ac2e01065b30b2a09dd4d722c6adceac130cbe49ecc"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:6eda6ff4399dcec6c8ef752f770ca08bc03a54f94b5405cf108b80ba5dd599a9"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:c19e3f11ecace2a3890185e91ed46b4e627898f5babb925fc0680f003a5ea3ec"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

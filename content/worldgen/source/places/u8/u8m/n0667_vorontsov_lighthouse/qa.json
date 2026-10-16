@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0667_vorontsov_lighthouse",
   "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:cae42ad241800490e1f41b62215fb8dcab97d4cce26dc7608b9b8e972618c311",
+  "inputHash": "sha256:6577437a66ec7e9c8bc1ecbb8233493fff9c3350e3b248d6cfa8a9e435c32488",
   "sourceHash": "sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c",
   "runtimeHash": "sha256:f1f5caca8c6f9f09c3193105b3d61c812e48813794287fcea233f53c12d3f3e7",
-  "captureReportHash": "sha256:b453cc31ec8fa0ce56fecf21e9c8bd20d0e66b6b50fecc71848d9162e153037b",
+  "captureReportHash": "sha256:f2769381b085efda43c8dfe11df91afe0f512ffb0b185b9fda24435c70f40fc6",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -23,7 +23,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8cb5a88cdfe5ba3ed6f3770402161b1a386e6297304a778924c52be488b10944",
+    "captureReportHash": "sha256:4edf867b4d7318b7cfb2f3d14a3def66021fd98ebf03d5393cea4e284da3804a",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -285,5 +285,63 @@
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
     "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
     "Exterior represents the operator-published2018–2019 configuration. Hidden power-room equipment and unlocated later solar equipment are not invented; external service fittings visible in those references are represented. Published26m structural and27m light heights govern the silhouette; service-deck height, pipe details and cast-iron seam pitch are reconstructed from photographs. The remaining long breakwater is a separate map structure."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:cae42ad241800490e1f41b62215fb8dcab97d4cce26dc7608b9b8e972618c311",
+    "inputHash": "sha256:6577437a66ec7e9c8bc1ecbb8233493fff9c3350e3b248d6cfa8a9e435c32488",
+    "previousQaHash": "sha256:b550ae042e1c1ac668adfe6dbe77163c1322b8ddd2fc1d5bc2f0bba2a23b9b20",
+    "sourceHash": "sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c",
+    "runtimeHash": "sha256:f1f5caca8c6f9f09c3193105b3d61c812e48813794287fcea233f53c12d3f3e7",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:0ee51017e106058292b838a05a3d6b6d3a65ab75e3812be40bec15c0abb310aa"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:38148a02c7f65d25fd5f2a599af322d9a251cba99591f9b8785c8ac3ad43f689"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:9c65f49b04ac1a0c6c0f655c0d6ca0920ccc45da3d3cdd52df030ffc47c4a3d4"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:5f24e692d61800d127623ca7ad6c039bb4aade0d06a09047d83f80fa78c7c503"
+      }
+    ],
+    "sceneHash": "sha256:bef9091dbe70a7f667f10dc90aae8dc441eaae3d72d78a1fa1884f2e3db31098",
+    "qaCamerasHash": "sha256:0e53bc7e1bd8ce4b60899a8fb6e7edab36dfd09c19cbe45c741b4b45f6274ade",
+    "placementHash": "sha256:4dfced84a6ce78db9aa1e003bcce6879e3c1186e1b458564410efec62a22a625",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:93b8c4fbd486ae2b1028d98d7e3ad83a4393179d17bcf9d5484ea157f1467fd0"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone.matgraph.json",
+        "hash": "sha256:12f7f585fa19aba3337114e043f93d51f88e27728ef1f0743733fcb75df5340c"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 42,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

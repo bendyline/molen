@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0254_nesvizh_castle",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:a239f1d9ed2695cd6db7a823b762f1c58a619aa1dc2777320646f5361f5736bb",
+  "inputHash": "sha256:c5843d83b335799acf7b1b6fe2968de2b533f4a95f198183f99f3511122470c6",
   "sourceHash": "sha256:37818a259aa66f8895ecef0e369094c9a4d2da06c0fd832c2c64582c0a4fb3b3",
   "runtimeHash": "sha256:80e7560d0a596f5a529b1aa9df1a9ce72f300bbab829ec763b1ed50d71dcccce",
-  "captureReportHash": "sha256:f4e6680f42abc32c79e0a61bb6c0a2390fbe76791a87ddf76f051c268b14b943",
+  "captureReportHash": "sha256:ce678b33f62f50ce1cd90c9b6b52bfb8b107c4d0030f83c12c6473ded1f23ce6",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:813d5105c9951cddfdb76f795032e9ad59138d89de92afb431121fd087db6ce8",
+    "captureReportHash": "sha256:bf55b01f7d725262cf4b885600e1cda49ba3986679a8503ca77e9b1c54fe9299",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -347,5 +347,76 @@
       "shots/grade/closeup-palace-east-feet.png"
     ],
     "notes": "Actually inspected all25 final normal-placement terrain images: independent derivative and four browser levels each show palace/banks, west entrance, three bridge vaults, north bank and east building feet. The mapped passage and arches remain open, structural feet meet retained terrain, and the broader park remains host ground. Mapped bank paths support angular interpreted strips; crest heights, inner faces, widths, bridge springing and civil floor are reconstructed. Coarse ground does not resolve moat water or surveyed earthwork profiles. Skyline is a distant silhouette; close-up photographs are compared to the detailed derivative, not the coarse tier. Signed normal renderer, numeric reference, two exposed service-building feet, six passage rays per state and five unloads are hash-bound. Other contacts are visible checks, not exhaustive numeric coverage."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:a239f1d9ed2695cd6db7a823b762f1c58a619aa1dc2777320646f5361f5736bb",
+    "inputHash": "sha256:c5843d83b335799acf7b1b6fe2968de2b533f4a95f198183f99f3511122470c6",
+    "previousQaHash": "sha256:1d0ba57de854190ec3cef7ed04897cd195d028e9d04d8f6c3236dd6db69e0dbf",
+    "sourceHash": "sha256:37818a259aa66f8895ecef0e369094c9a4d2da06c0fd832c2c64582c0a4fb3b3",
+    "runtimeHash": "sha256:80e7560d0a596f5a529b1aa9df1a9ce72f300bbab829ec763b1ed50d71dcccce",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:dff718be38b505804fa085932bacaa177a22428526897a35e93ff82545282e17"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:ce9c8c89cc3b14622f41bf22928b7c439bc2d20e10c4c99cfaa383755b1210e3"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:96f2d1489b74381b5c1ba0afa8c9ae6bedb1345f9897b4e37032390a779a7cbf"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3d64bc37a6083041150b845fc1ff85d0a39b9c0c8e14464c47631e679931a0d1"
+      }
+    ],
+    "sceneHash": "sha256:0e15256ece934153cacae16a55181562a0757e3082b206e6eda480072b945fc1",
+    "qaCamerasHash": "sha256:6067c3196c5f29942df7eb879bf3c4b9b817658768e0e93bd55bb7e8c4ec53c7",
+    "placementHash": "sha256:80cf617ac9ccff2a09f2de42d5c3ae3b53800b6032187e7ec41fdaf57c97769e",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:d0eaedf0a6af5e3393b226e2f674b546baf043ca208117d19ef5c5b77921cc6f"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:5f184a54b7ef4554cc8545fad1af1d7ce4c9b4aa17ff9af7c90b2ed72a99c615"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:349e1f05c9ca0831c98988e6375d230fa329ebb34874ffa27b34d9313547860a"
+      }
+    ],
+    "framesVerified": 67,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

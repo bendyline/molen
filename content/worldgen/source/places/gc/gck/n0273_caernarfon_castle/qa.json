@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0273_caernarfon_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:ad46c6c4f078503128bc10a27b8f0102f39b4acb77e8f87787dfd6ccbeb13abb",
+  "inputHash": "sha256:06283cb412ef6b8c781963456c7f07f9abad92fdd8ddeeae42f83dc3d7940d17",
   "sourceHash": "sha256:1bd0a76124e8e0a63620cbbb71652c21734416cb836880400efc0d57e224f317",
   "runtimeHash": "sha256:4790d10de10e33d4e9f0703c53cb3b3726b9dc1c042a3394027941ef545b1f4f",
-  "captureReportHash": "sha256:92771b9595dc45218a8242ed3694093858383c820d299240b977bcdd065ce602",
+  "captureReportHash": "sha256:dae8fe20e175103b52aa604a6fbacdf7be3099283b7020a773970cff2f24e6bf",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:6ba7cc16d4bfd08ecedf4c7a791795b5994f671591245e22afb9b311e0f998c3",
+    "captureReportHash": "sha256:0c7df24efc93bdb49535a4339055a762e999fc1e68d786e370a3f3576f0825f9",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -339,5 +339,68 @@
       }
     ],
     "retainedInspectedImageCount": 49
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:ad46c6c4f078503128bc10a27b8f0102f39b4acb77e8f87787dfd6ccbeb13abb",
+    "inputHash": "sha256:06283cb412ef6b8c781963456c7f07f9abad92fdd8ddeeae42f83dc3d7940d17",
+    "previousQaHash": "sha256:d593c551bcf7ea8dbbc4d3ce23bbbc15e68e3fd74886ad8fb7ffdb9be850e09f",
+    "sourceHash": "sha256:1bd0a76124e8e0a63620cbbb71652c21734416cb836880400efc0d57e224f317",
+    "runtimeHash": "sha256:4790d10de10e33d4e9f0703c53cb3b3726b9dc1c042a3394027941ef545b1f4f",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:271f68419db501ffbdc816f546edfa6a9c6cdc8caeb1536ac706a355deccaf33"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:4b4d9b0eb470b78c629e0ed1c02382560612e30e5046b80c379038c1e7381aa7"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:d762e24a7d70d76b0f72f0264e0fac6b410f0ccee5ab96df052534f1948bf5da"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:bf3ec242edcc5629175052637fc6ecaac9331ac1c610881b49fd103fba2b0e1e"
+      }
+    ],
+    "sceneHash": "sha256:864428d6dbd2320c4478c52b2bd81fdc45ca81836b2f3078c047c63e0f282174",
+    "qaCamerasHash": "sha256:3fd59b1605bdf104dfc9c7982b7966d7f76c3d78da0f9e8d114af07f8cf40d77",
+    "placementHash": "sha256:adf0e4419c3af775b69db20fec80f155aae38b4197ec32661266f6a2d1dff185",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:251765d837a92650853a0e481271bc087406e66b45293933aa02f0601d91c7a7"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:0b6ad8741500c0a86794085803ac4c01d391ca4fdb6f16f2b98407d26bae00aa"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:22df2716c8b01cfac57aa01332848f3a3b7977776720d3907bd64c70fe204910"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

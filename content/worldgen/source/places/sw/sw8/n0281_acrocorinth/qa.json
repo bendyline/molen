@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0281_acrocorinth",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:811e24105e201f60e8dbe67a3afffc3e3375b97cb02959c0f62be05320b52700",
+  "inputHash": "sha256:712bef68dc7ca983c9fcaa658f6c4e1508350fe70ec4563acd3027fd3ccebdcb",
   "sourceHash": "sha256:3cac2e543c7a1151aa6e1a70030536982b5fa2c3929f5d628b1e8d246410f0d9",
   "runtimeHash": "sha256:686d5496c14202953f4c70fc3110c0dec75881bead2ecc6629259f0a4cac9a88",
-  "captureReportHash": "sha256:ec7ba41644506714a3db02f3bf4053d64c37c403ddd30b034b0665a0d748f080",
+  "captureReportHash": "sha256:84f6cab603571d8e75a6ba45efb3f9427c3f6087343188547cb0867171ad0cb1",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:efa5e56c05355fec0b24a648f3ce1faaa488a5160fc030190201f1c2f2a32fc8",
+    "captureReportHash": "sha256:ff97f02cc57aa51fb59f3f7ae39528ee9a4da1e825a6ba7280291c5f82328a14",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -291,5 +291,64 @@
     "Site boundary is context, not a wall footprint; replacement remains off. Selected surviving walls and remains do not imply archaeological completeness.",
     "Host provides ridge terrain. Modern roads, vegetation, fixtures, interiors, buried remains and lost roofs excluded.",
     "Two common material graphs and local recess color; no embedded images. Physical-device timing pending."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:811e24105e201f60e8dbe67a3afffc3e3375b97cb02959c0f62be05320b52700",
+    "inputHash": "sha256:712bef68dc7ca983c9fcaa658f6c4e1508350fe70ec4563acd3027fd3ccebdcb",
+    "previousQaHash": "sha256:1cae111563e1fb599a30e2b5f51e9e22a3c378d55199532f3bf05e355540b1eb",
+    "sourceHash": "sha256:3cac2e543c7a1151aa6e1a70030536982b5fa2c3929f5d628b1e8d246410f0d9",
+    "runtimeHash": "sha256:686d5496c14202953f4c70fc3110c0dec75881bead2ecc6629259f0a4cac9a88",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:3c83a77dd0eba7628d138174d196d7cf9127a04199cf3bf82c9757a84c71bb65"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:df4d56291abcd4ddd749d92aa40ec32b1fa778789c1fd7bda1f2f9bc71b361ba"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0482f7317f007743303ea1883398edc7d82497aab2e06bede2bb593aa52402cf"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:f81dc09994d884755a7c8b924a545704805ec28fd4eaf412fd0826b4b38a3ee2"
+      }
+    ],
+    "sceneHash": "sha256:080b2492af5dda020ead6f3cb0c7923c67194a62d9bbaffe6167f7d187e59301",
+    "qaCamerasHash": "sha256:d153f02cb92711f7ad4daab5ce9d509c6aa8496c62898e651425313c74c842db",
+    "placementHash": "sha256:035aded359323d9d55110aca23603e642abce6ec0b6635ecedde900e10acab96",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:7642f4922f376a0e07657d3a54af78beb986a7f6a0052dfba3b9c2d1ca010b86"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:202677142c051836b3d31275e70adc322306df74415b406746a2ba6419048a17"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:939f7a6a3e60d03b7abff1a108b6c387a0edb9edb7d8bc727c2a609e19a20d80"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

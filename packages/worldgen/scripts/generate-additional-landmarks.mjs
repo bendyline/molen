@@ -30,6 +30,7 @@ import { konigsbergStudy } from './konigsberg-cathedral-model.mjs';
 import { krumlovStudy } from './krumlov-castle-model.mjs';
 import { lalaStudy } from './lala-mustafa-mosque-model.mjs';
 import { liegeCathedralStudy } from './liege-cathedral-model.mjs';
+import { linzCathedralStudy } from './linz-cathedral-model.mjs';
 import { linlithgowStudy } from './linlithgow-palace-model.mjs';
 import { ljubljanaStudy } from './ljubljana-cathedral-model.mjs';
 import { loarreStudy } from './loarre-castle-model.mjs';
@@ -167,6 +168,7 @@ const additions = [
   banjaCathedralStudy,
   havanaCathedralStudy,
   liegeCathedralStudy,
+  linzCathedralStudy,
 ];
 signatureTowers.push(...additions);
 if (!process.argv.some((arg) => arg.startsWith('--ids='))) {

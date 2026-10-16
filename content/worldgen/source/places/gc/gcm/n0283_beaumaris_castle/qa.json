@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0283_beaumaris_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:b18c92765bfa1261d085afebb11740a91d95ceed48ed40a8fed3195b9e7e5254",
+  "inputHash": "sha256:a274d2bf9f4efd39877dd96f5ccb5a6d32dd309d9e679b4916f9965a52126094",
   "sourceHash": "sha256:c7dfda06edfd13c6729ae8f422b60a2f3e877a8c1adb50ee8e5f4f2ad5b4ae50",
   "runtimeHash": "sha256:ff507cb114793cfbbf4cae5f687f80326e911228554c97fb2ba04715e9fc3214",
-  "captureReportHash": "sha256:becb359657417c5712aef8f3635be79fade4565c3c81db224331517dde93f75e",
+  "captureReportHash": "sha256:fd6f22fb93ee535361e125fd1d7db30c10a73ebff331729202fca283560efe2a",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fe6206aa1e15743c01f20be01690b9a12d236b9d2c16dfad09100baf9d4a66b0",
+    "captureReportHash": "sha256:d6513ecc3561c529c35e9e534ff95315bb450e3c201307adb1da2f27bad743dd",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -340,5 +340,68 @@
       }
     ],
     "retainedInspectedImageCount": 49
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:b18c92765bfa1261d085afebb11740a91d95ceed48ed40a8fed3195b9e7e5254",
+    "inputHash": "sha256:a274d2bf9f4efd39877dd96f5ccb5a6d32dd309d9e679b4916f9965a52126094",
+    "previousQaHash": "sha256:345142161fa510d4e49daa3d3965e0d76bc6559b3a4608bbe05a36f0d9a33e6c",
+    "sourceHash": "sha256:c7dfda06edfd13c6729ae8f422b60a2f3e877a8c1adb50ee8e5f4f2ad5b4ae50",
+    "runtimeHash": "sha256:ff507cb114793cfbbf4cae5f687f80326e911228554c97fb2ba04715e9fc3214",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:06e203e25099e4964b4230824ce4a955556000a56cb34a32f4b90218a06b15ec"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:072e072785fbe215a710c3300182bcc70a94d45ed4e28ff1ff936d423c3125f2"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:179da44707df56cdcd4c9d6eeefaea931da0154c85d3c08cc56433c54a09e3ec"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3d63b26274c60747346edec0467ad4d22c1aa29d55fa6d710b826f4ea95cbf57"
+      }
+    ],
+    "sceneHash": "sha256:a625cc0921671a5a852e08d476496e982dac0b35fa4e6de4062309fddc1b0edd",
+    "qaCamerasHash": "sha256:34063e25c5648762189c94181372ff031bbf894b187cb1d5891bc6434f2f9f92",
+    "placementHash": "sha256:d6aff59d035cf61d706c0ab289ded0122c32068016d31ff319f74bf9fca6dedb",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:5717f1d14043f54d1215013efe42f513e7a09669d3d13b00711864dae00daf7e"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/stone_limestone_weathered.matgraph.json",
+        "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:8ed383875b3de097d233769bdcc02654e54ade009e04381d99c5e98a9542801f"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:db8c096be19268aa8b99fe68ef49627b437fe85eef3cf1889d71799936f7c7c1"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

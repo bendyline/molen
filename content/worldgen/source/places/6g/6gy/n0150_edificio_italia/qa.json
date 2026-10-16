@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0150_edificio_italia",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:cd9872a0012be1ed1ffaebc6878f819e131e00ecb07f571bd1b5496180869e8a",
+  "inputHash": "sha256:e773dbbe0690a7c232c7700e0575afda764aec99d365416399792071cb964b1e",
   "sourceHash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
   "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
-  "captureReportHash": "sha256:caeb33955b391408645405dc864e499cd58b41f3d63a3c5a075541ec3a7b4869",
+  "captureReportHash": "sha256:6048e13b3c3a31ff1dbc12bdbe7d50d630ee2478c5753869546b17fffc85757b",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:c8ce9fc53fdafc00ae6d8b0c5603002968f6c1ef3ebb8494df79792bd5c4b243",
+    "captureReportHash": "sha256:1295778ba4fe14b5a4d590835201aec70e40adb8b8f786d66e3da989daeb64f8",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -334,5 +334,68 @@
       }
     ],
     "retainedInspectedImageCount": 46
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:cd9872a0012be1ed1ffaebc6878f819e131e00ecb07f571bd1b5496180869e8a",
+    "inputHash": "sha256:e773dbbe0690a7c232c7700e0575afda764aec99d365416399792071cb964b1e",
+    "previousQaHash": "sha256:454923f82b94f0b0d75f3101e88771b88b88423c27da672761ff3c24112bb814",
+    "sourceHash": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c",
+    "runtimeHash": "sha256:7126685f2034214e5bdbb38724115c6ae870e8b5f654803615507110188ff378",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:fdfdfca71e8691e8855dbfb450b81748e76e7cb052450be2dd4ca146eca93d3e"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:90d365e57e2c5b492a83367c59bce989196504d736a3fdc135e57d072e7b0c34"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:e931b1a073eb887bf978784ca7f4e8a3f1601e90fb5544f38edbf010140ebf24"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:ccb38910cfbfe9e97ee7acdfb025619d64e8d52997c9c738abef8ea05273b5d5"
+      }
+    ],
+    "sceneHash": "sha256:449c479977843aafccf603efa329485e89c6b15311e7435ed287f7dc66e66c8a",
+    "qaCamerasHash": "sha256:e3ce941e34d97ea910aa2d5145291f11bbe340b616d16bfa3b0c6e86a7421b81",
+    "placementHash": "sha256:d784a96f1867f4cc93abdca062071a5a55a55897e4c924d504b55848e37c282b",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:55f5956119303204204369d7f10c5c57fd4fbde88582667deb086c03cda9e94e"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:b802a01a9e654a5d2475d2e4acb58754fc7e36871a3001809c61f3719a6538b4"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:e13bcfeb1355581d73a84724b0eff6be6fbd169d7534b759ab4be5a11fba7bb3"
+      }
+    ],
+    "framesVerified": 46,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

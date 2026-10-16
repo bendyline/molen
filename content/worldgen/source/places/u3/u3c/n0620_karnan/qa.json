@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0620_karnan",
   "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:d7028b79a2dd48229ba1ffc49de692b0389495b2f6c2c36788b967f65383acde",
+  "inputHash": "sha256:6570aaaa4194028fe0f91fe13d4d686881bbc00039672df3b1e60244803e7093",
   "sourceHash": "sha256:61cf21c5bf16a87254076fb19933f193888cbe3ad4b121e93fd049b16f1b05cb",
   "runtimeHash": "sha256:46eb4c94e672a3c55972d4d4cea4c65a799f6063ef9573910cc9e74b300adfcd",
-  "captureReportHash": "sha256:b94fff4b695097d446a20784daa50ad0e048ff7cbb912ab84fb20f4778c21bae",
+  "captureReportHash": "sha256:1ef10e55207ce38c608deaafb6ae0e51f6ce7cd565fa44fc07dcd268c7119e6f",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -30,7 +30,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:23f422466f4dbd52f6539e7ee6c76e3b0d70a9aa4166d3e091aaad657df0a453",
+    "captureReportHash": "sha256:df4eb754c93f602e77200436946cc727df3b6fa1c01bdebec4fa76fd3f8d9801",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -305,5 +305,71 @@
   },
   "limitations": [
     "Static restored exterior: main34.5m battlements and approximately15m plan are city/preservation documented;38.5m turret,44.08m mast,5.8m threshold and minor openings are photographic proportions. Original detailed source is preserved. Current collar-wall remnants and timber approach are approximate plan/photo reconstructions, not surveyed ruins or terrain. Shared brick provides canonical repeating joints with original weathering in the detailed source; no scan or copied individual brick repair. Browser skyline uses facade marks, district omits subpixel putlog holes, street uses original flat dark marks, close-up retains physical putlog/window recesses. Small roof paving joints are averaged into an intact floor. Hidden interiors, archaeological predecessor, distant Terrace Stairs, landscape and temporary visitor equipment are excluded. Host must fit terrain contact locally; footprint replacement is disabled."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:d7028b79a2dd48229ba1ffc49de692b0389495b2f6c2c36788b967f65383acde",
+    "inputHash": "sha256:6570aaaa4194028fe0f91fe13d4d686881bbc00039672df3b1e60244803e7093",
+    "previousQaHash": "sha256:d017ee8a2189a11db422b6c21097fe0526fb601887b3224dad6ad45f8eafa21b",
+    "sourceHash": "sha256:61cf21c5bf16a87254076fb19933f193888cbe3ad4b121e93fd049b16f1b05cb",
+    "runtimeHash": "sha256:46eb4c94e672a3c55972d4d4cea4c65a799f6063ef9573910cc9e74b300adfcd",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:1e8cf629c2d14bb2071249b0977ce3b7a0e5e61718c593fe91f4330102a2c851"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:0b8c912bac336959c65e332e496947bb4d64d3fc9ed1fd7f9b10d9cabab63fe1"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:8fe0ec23353d5fff7e4d72ddc4fbcb7bc953500ec42a59037d01f3efd70423b3"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:1e659ba035c805397157c2359c87374f5f8ace353c9d80a58c7b9d51ecd70211"
+      }
+    ],
+    "sceneHash": "sha256:0914908aa4a6dab5f9fec6032bc970a6f65804ab5e762db555d55e8459a37835",
+    "qaCamerasHash": "sha256:72fcab04fd42c43ac50e089681f7653e261de0548fd3f1db5433a85da3ab7ab6",
+    "placementHash": "sha256:3b77646ef2cb96732b93fd5130f7ceb0f3c6ace405ed7ce6fa661a4224598263",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:0bd9905244e3146937d81a520d69576a16ffb80984f058a093ef51c4446cc5d1"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 64,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

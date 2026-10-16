@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0025_yi_sun_sin_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:ad65a79d785d60ccc670f32600d636ca3bc5a3b53620f5b11d60b068e19b7ec5",
+  "inputHash": "sha256:87b60fe7656613c4c78ae88ab61e3ecba6cf31a2fb0900a85a08075049f79a65",
   "sourceHash": "sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e",
   "runtimeHash": "sha256:125baaa6a3f88add7bbe608dc87c3c01b3142a7509fd6d9de36c8dfb837f088a",
-  "captureReportHash": "sha256:71497f5ad02deb1e03f4461342d4decb38369a8761184b0c9fb72a4707abdbc8",
+  "captureReportHash": "sha256:3fcd023da4728a240abae3be9525c9e962b2d01e062ac84d2080f70f677d0684",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -32,7 +32,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:111916315858c14a6520178e7c7104601e2d2f227e3bdd79eb1c4845bf606174",
+    "captureReportHash": "sha256:206061508e81ee2a7d3e3a6149cbb80da9858aadc51d61ccb37ebaf9cadf22cc",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -358,5 +358,68 @@
       }
     ],
     "retainedInspectedImageCount": 70
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:ad65a79d785d60ccc670f32600d636ca3bc5a3b53620f5b11d60b068e19b7ec5",
+    "inputHash": "sha256:87b60fe7656613c4c78ae88ab61e3ecba6cf31a2fb0900a85a08075049f79a65",
+    "previousQaHash": "sha256:dca04886a67aeebb38f4dbfb074afd51a59b9109246a666c414d5c462aa22d3a",
+    "sourceHash": "sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e",
+    "runtimeHash": "sha256:125baaa6a3f88add7bbe608dc87c3c01b3142a7509fd6d9de36c8dfb837f088a",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:3d8634b892724300b7bbbb64cd12565b8cf243290c91706f765302863c5fe838"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:8411e4ae605ead31f94294717c0c47e0801bae1ddd8f469df50a6b3ec6e480d1"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:2c5faab41b844d5e686eadd1ac1d28b37b8c0ac11933a21175ddc68fe664a73f"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:4132be6e8e449af1e1b2d8e4f41fa7f397038c662c089944fa276d0c8fec4439"
+      }
+    ],
+    "sceneHash": "sha256:835975d03c60525d2aeb1953c43c2523a99de55303beebc732672648244e032f",
+    "qaCamerasHash": "sha256:45a333a446f862a3dca23eee5361764b9941f7fbd6c5687ddf423f6759d42684",
+    "placementHash": "sha256:6c07b641775285b4fb8520b663e9c9d6224babc160fc7d67926405d5184f306d",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:873e0498345cd5221fa77c7d61e526f45c2dbefd971eecb8fdb3f38ad6eef3c6"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-water.terrain.json",
+        "hash": "sha256:ff4ca8a1a30a15fd12378aee5f88abdb6fe0400c808f3c7b80eb2bbb18d82a9c"
+      },
+      {
+        "path": "terrain-water.height.png",
+        "hash": "sha256:a64477d21912c25eb825b64ba3501984e9fcb07eb564d01613b3dc06e1b7eda9"
+      }
+    ],
+    "framesVerified": 70,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

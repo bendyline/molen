@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0241_wartburg",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:3ca7801ac06952e205069b650643d349fbe2730a916ab73e40a6d131b1526db8",
+  "inputHash": "sha256:3d86350f1d17276156b5b68a69ebda4c5de7295f048f81a637312a90069247d8",
   "sourceHash": "sha256:454ebff90f26342831c28192c85b7123db0815f25655df82d704a04b48cb0354",
   "runtimeHash": "sha256:74d180642d41c40e3bd614f4f73b052c4aeb66c5c58af37107635db974a158b8",
-  "captureReportHash": "sha256:386b6e3b08b7bb1f160111d4ef92022ab735827a4a9097750d5850b95355dad0",
+  "captureReportHash": "sha256:4e6f382869da4e977a1626674b2c3d1a2df929d9321f1077cf85df0589b27191",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -29,7 +29,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:3b1c0c95fbab31deb8a554a8771acaa44d96ef191562d6b1329de8e248bd7e8b",
+    "captureReportHash": "sha256:4c440ff9189d0331c2bbdbf092658984e48db6f238cbbab1af6597a8f10f34e4",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -342,5 +342,75 @@
       "shots/grade/closeup-northern-entry-grade.png"
     ],
     "notes": "Actually inspected all30final terrain images:six cameras across master and four browser levels. Public Thüringen DGM1 retains exact1mXYZ crop,November2022 airborne laser capture,EPSG25832/EPSG7837,GCG2016 and documented.15–.30m vertical accuracy. Bilinear reprojection yields a3m native fixture relative to Hofburg[-20,0],406.905m DHHN2016. The southern court descends about3.3m,the keep court rises2.7m,northern entrance falls5.3m. The photographic working range floors and gallery gradients remain separate from bare-earth interpolation under roofs. Foundations extend below retained slopes with minimum edge sampling. Three probes at actual grid vertices show.015m clearance and check signed coordinate/datum integration; horizontal rays independently test the occupied walls of Palas,keep,SouthTower,Vogtei and east gallery. Five unload cycles each leave0model geometries. No terrain hill is duplicated,no whole-court ground cutout is imposed. Skyline/district intentionally omit the stair and facade ornament; street/close restore them. The steep eastern/northern cliff is host terrain,not asset geometry. Fine paving,retaining steps and doorway floor elevations remain reconstructed; host terrain must provide comparable site detail."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:3ca7801ac06952e205069b650643d349fbe2730a916ab73e40a6d131b1526db8",
+    "inputHash": "sha256:3d86350f1d17276156b5b68a69ebda4c5de7295f048f81a637312a90069247d8",
+    "previousQaHash": "sha256:40405a6fd766422d2878d50b4a0038d4dba7eb6e1635f4ea7f06bf9a7d065e0e",
+    "sourceHash": "sha256:454ebff90f26342831c28192c85b7123db0815f25655df82d704a04b48cb0354",
+    "runtimeHash": "sha256:74d180642d41c40e3bd614f4f73b052c4aeb66c5c58af37107635db974a158b8",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:42457fe9a32814992333476a8e0ea67e36f5a4d36243f668d76214a7862b7d1f"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e3251564c68f31eb2a335c197179328ba24946747fa3787692dbc1cf9d6c9b1a"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:ac979e86a37620341ed41bb900f57bebe0d59daefb4fe34761cb7da5e95a80c9"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:7063778ec285e9aa3475b415331ef1844327ea683141601c8a7f5c333cae2f52"
+      }
+    ],
+    "sceneHash": "sha256:861fcc3fb4de3fb7ccd8dec6b32c7e0ed663c75950d825d3c3ba596051ad8fe7",
+    "qaCamerasHash": "sha256:e0fbcefaf584ca736b77cc922e8437c6f997888ee5caed8534e9d37cc6a82d73",
+    "placementHash": "sha256:6a461dd7c091d2e6dc1bf72e0b06acec9cfd99a6de29930665494cdf8cd202c3",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:cdbb345ee3aa83e57466f41bbd5060421ff096acb1bac7323e850cd6421d2215"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 61,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

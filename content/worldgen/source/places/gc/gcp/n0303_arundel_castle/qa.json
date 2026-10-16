@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0303_arundel_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:0002cedd4df75e89e40b405f78fe58fdace579aeb63cbd526a8bd0123472d7f6",
+  "inputHash": "sha256:f8c7f83af817e81d50e3df67d25e52d0294179cf565a4e8fe48e15e8c5d3188e",
   "sourceHash": "sha256:359b5177ad7e3ad38ac7ed1bfd96d1c9ec41e1cb3710b8d48b75832ef67cf1c4",
   "runtimeHash": "sha256:9562500d29128a53ffc65f9e8fb54414780313de65c81e2c882551138fb6c90c",
-  "captureReportHash": "sha256:eee1c47904bba11b5e5b042592fb911d06ceaf56b16ed513caa93fb85d6c8ad6",
+  "captureReportHash": "sha256:9468c20c4438c3f5669eb02aef32e45a6ad186e9a1ffc50637087852aa140510",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9452889a50c8a317c9cc635dfd30053196692e1b618de87ba95925219890681b",
+    "captureReportHash": "sha256:04cdc7ba5e328e4d195eccf582a9a1af1caad18ddd98bf760335f839c8c7af08",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -338,5 +338,76 @@
       }
     ],
     "retainedInspectedImageCount": 49
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:0002cedd4df75e89e40b405f78fe58fdace579aeb63cbd526a8bd0123472d7f6",
+    "inputHash": "sha256:f8c7f83af817e81d50e3df67d25e52d0294179cf565a4e8fe48e15e8c5d3188e",
+    "previousQaHash": "sha256:a7b9f5130ce86eb7ed5de0e3415b199ac3df2c4c6599dd6a51dd33e148c2b18e",
+    "sourceHash": "sha256:359b5177ad7e3ad38ac7ed1bfd96d1c9ec41e1cb3710b8d48b75832ef67cf1c4",
+    "runtimeHash": "sha256:9562500d29128a53ffc65f9e8fb54414780313de65c81e2c882551138fb6c90c",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:5bab4723bc35774906e154d251b55cf04d37ad5c67a23346440b4b9e9cddd68f"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:37fbf266bf214e313df481c11e7d13714ca7b663e47f450740db9e27ae585b10"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:c5ba69ca54c7f54ff0e25877463d9117de66f6ef8ea8d07ec09e10d773abb9d2"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:98ec72d5f6dbf7da08d85d665dc583c8fd30d760160c8da676fa669d6ae708e1"
+      }
+    ],
+    "sceneHash": "sha256:2d009132e65acda931cacb80e0f23f0cb672243e80775e75dba9caecfba5ca2c",
+    "qaCamerasHash": "sha256:7b25c7f02869ada951e1a1562b85149679d8587a3605646ad0b44b282bb22db4",
+    "placementHash": "sha256:ebd2c9aa9ccbe91a7667e4fccde77ccafb4138e0e189fb16bd778dea62b44ee8",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:5cab11c8c7f16b829ed371935929ea188fa37fae11bfbc968a0ef15f40c20445"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:98092e7ed28573112dd30cf2b8631711c67b9a144bdae70bf0e64620d6ff04a3"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:509f1d309173c5a02be15e502977d7bd06235aba882758b023c555d89e7216c6"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

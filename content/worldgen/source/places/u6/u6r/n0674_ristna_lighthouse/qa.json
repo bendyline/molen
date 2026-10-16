@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0674_ristna_lighthouse",
   "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:e3235f3213304b06a9bb55814c9cebe00456de0b385b323b177adb86d2f9e5ba",
+  "inputHash": "sha256:2ad8b189815bdf9f49fd43f94493352cc939325d8a81ac5fbe91ce7e250e3d6c",
   "sourceHash": "sha256:d3328345835d0fc4183bba5a833628ac5c70f6a31c71a4b5f33b4bd23d5869a1",
   "runtimeHash": "sha256:8cf6ddc2767969926f1c2f20a5d72b9e28ed23afd1ab2cc3c06d2a911be68d23",
-  "captureReportHash": "sha256:a933954e00ff5464ebfb823531a434823a513f0657733f8e5f3d3024ae9f787e",
+  "captureReportHash": "sha256:969fb894d1895e4ff3072462cfb67114a1a265298b11195b42e243dbada50dc5",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -24,7 +24,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:72dec599156ef0ebfea33fa3460cfffc9fb998c60ee78dd16fa19554c5bf484f",
+    "captureReportHash": "sha256:9bbc4d7d0462a0877b5a19cb82ba57529c258b9d920ad081cecde8df55ae9b0a",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -283,5 +283,59 @@
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
     "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
     "Detailed exterior follows the documented post1920 concrete jacket, not the original1874 open iron frame. Published total height and5m service drum constrain a photographed/archival component reconstruction. Exact entrance azimuth and minor restored2026 vent fittings are not surveyed. Detached station buildings remain map structures."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:e3235f3213304b06a9bb55814c9cebe00456de0b385b323b177adb86d2f9e5ba",
+    "inputHash": "sha256:2ad8b189815bdf9f49fd43f94493352cc939325d8a81ac5fbe91ce7e250e3d6c",
+    "previousQaHash": "sha256:8622f62eb26cdac4c1ca467f746471c0983dd027a7807858e6d6a711d3a2674a",
+    "sourceHash": "sha256:d3328345835d0fc4183bba5a833628ac5c70f6a31c71a4b5f33b4bd23d5869a1",
+    "runtimeHash": "sha256:8cf6ddc2767969926f1c2f20a5d72b9e28ed23afd1ab2cc3c06d2a911be68d23",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:0a1e01604811c0d48ae8b88696da9422ab805c22984c4abc71c360b8b9bd58ef"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:c5135d64b18ec07c253bc799e5a0fb5a5bbb42ffbbc2f8e8b030b0f87704eb7e"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:337251a0dd348a8cfc36a5ff2544164ca609ceb29596feaf12cc43e8947c90cd"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:8cdfb838440a07d698c02fee4d18caae0f6160657b68ac72aa6f21df9677a534"
+      }
+    ],
+    "sceneHash": "sha256:25db7ec899a2c9a3810451adcf8ce4d79afdedd9f68dbead76ff16cf8439a0f3",
+    "qaCamerasHash": "sha256:4b39c10c207cfe669ca7c667abf331c05d0ce6e0870b8a5ffe957900fbead4b1",
+    "placementHash": "sha256:a457d8a0ae186804e6d1d2e996eb5a8576bd5fb1ae52ac005a08e2dfeb62d624",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:3c0305c4e82361910f7381af292e084eb4225ca6cf2959d78f2f72df614a1b4b"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 46,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0245_hofburg_palace",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:b01c230eb1cdd81f4c18708427259e76c2fdd01bb0e2043a4b83c323e7c55c9d",
+  "inputHash": "sha256:4f8f667dd026f019dcfc66ceee2d8645b1be3646a053f0be708daac8743c3c09",
   "sourceHash": "sha256:c42e9629f63ef486480159eb3d707a8fc2dd3abd53969939766c23503075a975",
   "runtimeHash": "sha256:3ad45cf969c2dabb633a31ea3dbf1017098f99298176ac6f3419bd426501061e",
-  "captureReportHash": "sha256:d3e8d2da9382284a7249aade7dcb74c757c27b7fc3a544b60a4b5ee6af514007",
+  "captureReportHash": "sha256:3e38810a8478d7d1cc2a0c41e71dbb7bb74a257023284fdd65ae6955f01a54c9",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -30,7 +30,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:1cdb4ef3d28722d3622b68ff5605360435561540fba520970717e7b7c1890c45",
+    "captureReportHash": "sha256:9896fabfaef7ca6d5215e03a2408d321ebe34f746c85b9d0c5b7274661980b44",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -341,5 +341,84 @@
       "shots/grade/closeup-swiss-open-court.png"
     ],
     "notes": "Actually inspected25final gradeimages:5cameras acrosssource master and4browserlevels. RetainedpublicWien1mFloat32DGMcrop spans both35/3and35/4tiles inEPSG31256;5mnativegridcontains10197values. PublishedOGDheightdatum WienerNull EPSG8881 is156.68maboveAdria; modelY0 is18.85mWienerNull workinggate datum. Actualsignedplacement uses−0.3728mgridheight atsourceanchor; modeloriginis0within0.1mm. Threegridvertexgroundprobes show.015mclearance. Nearlevelraysets verifySwiss,Albertina andAmalienoccupiedfoundations atsampledterrain;5levelsincludetrueopenMichaelerpassage. Albertinafloor+9.56m,canopy15m,pylonandgardenbalcony4.45m areevidence-guidedworkingreconstruction,not surveyedarchitecture. Terrain suppliesBasteiearth;nogeneratedlandplatformorwholeprecinctcutout. Fiveunloadsrestoregroundandleave0modelgeometries. Source/mediumdisplayresamplesbounded5mgridto4mandclampsonlyoutsidethecrop;no evidencebeyondit isclaimed. Stair risers,underroofterraininterpolation,vintage,verticalprecisionandexacthostterraincompatibility remainlimits. CitydataCCBY4.0attribution retained."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:b01c230eb1cdd81f4c18708427259e76c2fdd01bb0e2043a4b83c323e7c55c9d",
+    "inputHash": "sha256:4f8f667dd026f019dcfc66ceee2d8645b1be3646a053f0be708daac8743c3c09",
+    "previousQaHash": "sha256:82eb27260dfd0183c6ae31f0c6491a49fad8b65c8979a208b2fafdec2c4cbcc0",
+    "sourceHash": "sha256:c42e9629f63ef486480159eb3d707a8fc2dd3abd53969939766c23503075a975",
+    "runtimeHash": "sha256:3ad45cf969c2dabb633a31ea3dbf1017098f99298176ac6f3419bd426501061e",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:93103b18a3cef0f7fb84ae044e2a8082d0295dfc83986c2debe46dc3f68e7ab4"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:0492202ec9982c012dd375b77bf4ec8cb8fda7e3392218411a8ce0749f170843"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:fb77dc8e75d9112300ec6004913b6849c572b1139f800b62245a104b5e778daf"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:3b784c8a62359da7f87ff6062d982c1398247d7bffecfdf539c4deda3d89fa69"
+      }
+    ],
+    "sceneHash": "sha256:71cda5b8208b0604a50b40300c45d32baa068c2590ec6e4afa235f7fb61ded2c",
+    "qaCamerasHash": "sha256:4fbc5a93624634aaab9a28e09adecb48bbcd70400282cf0773a0110c2a3d4964",
+    "placementHash": "sha256:1aa3b3fda8c4c451cf924901dc2ce619e5a291f1ae5be1742cd5e2b53d5adf72",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:597cc623d9b1fed72a6d3e214ac8a3282f300550a64827237fffeb4135d35ca9"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:fb33c2e3bd3dcf58e2db5974af89458cf815764935c9c72cea7d61bdc939376b"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:ed35919ad3aeca5f013ed0880be0e2b8e3186baf5d5985833930e6f8959d93f8"
+      }
+    ],
+    "framesVerified": 64,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

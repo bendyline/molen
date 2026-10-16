@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0358_st_giles_cathedral",
-  "inputHash": "sha256:0e9989f2da055c5d25e047423107218071d638b0af375801334c6458e0fb96a6",
+  "inputHash": "sha256:65875ba02b44d2d89ccafdcec6c11e443ba3961daa9200e9fb4b559ed7fa65d6",
   "sourceHash": "sha256:6612156fd0c6553fe4d79ad40e0a926763bd3f989200499cbf16569726a754b8",
   "runtimeHash": "sha256:64aba2bd0873756249d0c09d1084df048b51b6ae03f4fd74003defc6632c2078",
   "reviewGroundY": 0,
@@ -1051,5 +1051,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:0e9989f2da055c5d25e047423107218071d638b0af375801334c6458e0fb96a6",
+    "inputHash": "sha256:65875ba02b44d2d89ccafdcec6c11e443ba3961daa9200e9fb4b559ed7fa65d6",
+    "previousReportHash": "sha256:d76defff562fe5ff4ccfe7e0a07ed9877ec10b3a8356a00c05073b6b6e7a13b0",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

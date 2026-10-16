@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0380_dubrovnik_cathedral",
-  "inputHash": "sha256:1b25fbf722945849b650302b8d45b8ed2b23de509aea8fdcfc347d9d7b93d5c3",
+  "inputHash": "sha256:e0388ceda6d7be07d51325f64772ad513dd6fb288ae07483f392e5f285ebe060",
   "sourceHash": "sha256:0d950157262e6a122a998a0c5278ab51f7b2d2b1563ec3c019b0aec27942e3b2",
   "runtimeHash": "sha256:d9c3ff5fd295d129e84d1589f92697e58901e4b311eba5dbb568ceab1652ef58",
   "reviewGroundY": 0,
@@ -1025,5 +1025,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:1b25fbf722945849b650302b8d45b8ed2b23de509aea8fdcfc347d9d7b93d5c3",
+    "inputHash": "sha256:e0388ceda6d7be07d51325f64772ad513dd6fb288ae07483f392e5f285ebe060",
+    "previousReportHash": "sha256:b19179ae999c95ac010505477381b705532074936f6782ad7d295d9e4af3dad9",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

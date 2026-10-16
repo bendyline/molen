@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0386_archcathedral_basilica_of_st_peter_and_st_paul",
-  "inputHash": "sha256:1223493dd749ffbb0428c29a0b77628f382884bcca54c8530d255c39c4ac8e2c",
+  "inputHash": "sha256:626266f06063e1704bf0e0e478c1a535dbdcd947a1ecbcb1d408a0e6760c6a1a",
   "sourceHash": "sha256:8896b5e802d1b31fece20e0892e04ab71fd21abec777bf0591296a0e8fb5fa86",
   "runtimeHash": "sha256:148aaf87645aecd99419b6ff393914e24304b82e96495ab86ff01c5557b1630a",
   "reviewGroundY": 0,
@@ -1051,5 +1051,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:1223493dd749ffbb0428c29a0b77628f382884bcca54c8530d255c39c4ac8e2c",
+    "inputHash": "sha256:626266f06063e1704bf0e0e478c1a535dbdcd947a1ecbcb1d408a0e6760c6a1a",
+    "previousReportHash": "sha256:c6634eea635449ee2a9e97d04b25160b0c7b63073c3772be143ef23ed4dc8a4e",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

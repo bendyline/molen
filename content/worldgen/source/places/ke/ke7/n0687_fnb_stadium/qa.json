@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0687_fnb_stadium",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:ea7141c30208e6421d3f2e1c6e26855e4b084c51f2a10f4ab43313235fac7b42",
+  "inputHash": "sha256:1285a0ad8ef699feba6efbfea2c45dde91985c12e81a0df949b2cdc4a2ec2906",
   "sourceHash": "sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01",
   "runtimeHash": "sha256:0ca42a36babb08f158dc745f4abad158a152975d4cf2aec42e0497375daffcdf",
-  "captureReportHash": "sha256:b087ac746d28227418fd36b3fdfeeb28dc6b7ac8fb996647356387cc82955117",
+  "captureReportHash": "sha256:9fca7eb5981cd7859f58a988b45b693b6a574e7425d48b644042066565850962",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +26,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ca86a26763e2c056f7cd3b4dd869c4e599d220ae31909daae78825f17f4db3e2",
+    "captureReportHash": "sha256:6c217fbd496d5af52e1bd542828bd93fae917a7e4eb47e12993795242c3df121",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -342,5 +342,68 @@
       }
     ],
     "retainedInspectedImageCount": 52
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:ea7141c30208e6421d3f2e1c6e26855e4b084c51f2a10f4ab43313235fac7b42",
+    "inputHash": "sha256:1285a0ad8ef699feba6efbfea2c45dde91985c12e81a0df949b2cdc4a2ec2906",
+    "previousQaHash": "sha256:e82c7216711f75cae112017c1f72a9fd04282ddb5c1c8e365723cf2efc148ea8",
+    "sourceHash": "sha256:ae0a53abbfab6c1f741d1baf6231eea84834b1e4d0e78bd80b86c7aaab079d01",
+    "runtimeHash": "sha256:0ca42a36babb08f158dc745f4abad158a152975d4cf2aec42e0497375daffcdf",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:51b145d8ccc47f5bb0791e1f5b66631e2f2e48876304edea002d25ce88fa9713"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:d8167ee6b530af7aacf4a2debd592dde971634ce5b511cd29ea2004a1ca1bb30"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:d6302950bd7f9ca6b30ca3a9f3574ed12a26a4dcd663199a2b6d77823abfeee7"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:ba8bb62fa2c3d000874cd27bb6594471bb1e39604c9babb99cac7a3d99e6ef2a"
+      }
+    ],
+    "sceneHash": "sha256:a209adf0f16f6550600e69b1a0ab398c6c9da2899f8b19714cad80291f242229",
+    "qaCamerasHash": "sha256:69bddc5dea7070b056526f8547535a7327622164d284628abed612b0db8dbf8b",
+    "placementHash": "sha256:881679802e4a28580e560f7dc9acaf0bb23eb9015f775fda48e3af4deaae6551",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:c4b0f319b1cf36ae086a82f177e61247c5a6bb747cb977660be0702cb9ee607f"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-cutout.terrain.json",
+        "hash": "sha256:1186a6b17cae60a72f9737e7e1673dc3795916c5ce438f5511792604fd923265"
+      },
+      {
+        "path": "terrain-cutout.height.png",
+        "hash": "sha256:eda91532568570a1a0228ea42048b00ec2fadbe6420b15d160a352e3304c3ec6"
+      }
+    ],
+    "framesVerified": 52,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

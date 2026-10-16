@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0243_malbork_castle",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:9420b6e0d61bc01a8a4075db8d5eb2a01b1d451099d422b0bb70f74ba0b8a199",
+  "inputHash": "sha256:e2c52eb56a6289e2a86bcafd381142b30574160300ed16459e1685cd290f987d",
   "sourceHash": "sha256:18af4066b3ef5de40890dfc92f1af0843e661f48a564d37bb4be46c4d836a62a",
   "runtimeHash": "sha256:6e450d7e7f98da4920d4d4331736395ab4e276d74046624aa3a866fd99ae38c5",
-  "captureReportHash": "sha256:7ea6b0e5a4ff287854d64b5f68bb71a879535e348f85224cc4d423ea3aa196ac",
+  "captureReportHash": "sha256:e26c1ef953105f904ad4cac68ccad11af2bf55ebc0695ab858852994f7803c16",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -29,7 +29,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:28912771f80c275555853bb6d531e3faacb28f2ea21db85eab37b15979b00303",
+    "captureReportHash": "sha256:39d31bff907aef1d4aed49b45562f2b3f25406f2f3b128583e5b03bce9540889",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -348,5 +348,80 @@
       "shots/grade/closeup-buttermilk-and-northern-range.png"
     ],
     "notes": "Actually inspected35 final terrain images:seven cameras across source master and four browser levels. Public GUGiK WCS retains exact Float32 bare-earth2m crop and bounded0.5m surface crop;the native6m grid contains6660 values. CRS conversion uses EPSG2180 service advertised easting,northing with always_xy. ModelY0 is a working19m Highcourt floor in advertisedPL-EVRF2007-NH;runtime reference subtracts actual local grid bare earth -0.7849167m. Working relative floors include Middle-3.8m,entry-4.7m,Dansker-10.4m,Palace-9.4m and Lower ranges around-7..-10m. Foundations extend beneath local slopes and defensive walls follow local relief without a second castle hill or whole-precinct excavation. Narrow3-section entry/bridge caps follow mapped centerline and working grades;floor probes are within3cm and clear the terrain. Public surface crop informs approximate keep crown68.5m and pole77.5m absolute,not surveyed ground-relative heights. Three actual grid-vertex probes show.015m clearance. Four mapped occupied-wall ray sets test foundation contact;five unload cycles restore terrain and leave0model geometries. Source/medium terrain preview resamples the retained grid to4m and clamps outside its bounded extent for display only;no evidence outside the crop is asserted. National terrain reuse is publicly allowed with attribution;no inventedCCBYlicense or exact acquisition vintage/vertical accuracy is claimed. Host terrain must supply comparable local detail."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:9420b6e0d61bc01a8a4075db8d5eb2a01b1d451099d422b0bb70f74ba0b8a199",
+    "inputHash": "sha256:e2c52eb56a6289e2a86bcafd381142b30574160300ed16459e1685cd290f987d",
+    "previousQaHash": "sha256:60a1e41872a9a20be14bcdcdc0a5ec546a12aecf331885ef84645529a9968d44",
+    "sourceHash": "sha256:18af4066b3ef5de40890dfc92f1af0843e661f48a564d37bb4be46c4d836a62a",
+    "runtimeHash": "sha256:6e450d7e7f98da4920d4d4331736395ab4e276d74046624aa3a866fd99ae38c5",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:96fd9da582d21fa0a4d4a1cef05d58d5152e486e63c454e1f12ab4806bbb0464"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:f31a83ebc944cd0321e83f644fc058abc9f565c6877a7057e083376a7f3d43c4"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:2741f15425da828c3b12eda3c3a393a3600f699efbd42b20b77579f097126780"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:c68b754e8b229d44984336bd0d84a7dff806310d806d23530329689a20bfa475"
+      }
+    ],
+    "sceneHash": "sha256:cdb6b5dd2c011153b2e019b9f05de2de1a35ecebb3b1efc308c196494cbcbdba",
+    "qaCamerasHash": "sha256:534dec732ee940a7f33038beb5f8c585215778943d59bbf2f785e1c324e22db5",
+    "placementHash": "sha256:e7f2d2b80a2fa1b03761c61a5548b0da1b21be8338f7b1e588c59ca8e1e7c745",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:61b2937fbceaccea6e5ea9d9bcf205a304a5333d85b05c3889746ad2c07a8967"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:d05decf1beb17e67cb782130830e4abce34243d34bcdfaa80439f67d5962f15e"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:0978b07997b397e0cfb99f8ab663db0bc9fdbf81a50f926a718758bd8ce26c62"
+      }
+    ],
+    "framesVerified": 61,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

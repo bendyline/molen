@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0253_bratislava_castle",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:e476d0cd0e754b5432e032a1113e1e30b7c81ebfe597744fd02933106556a406",
+  "inputHash": "sha256:bd5d8ce0949419c43161ed4806505919db614bc1c79f1560d71bb657953af2e9",
   "sourceHash": "sha256:bd983d93d5a6d05029e6571d2c3924533600fc42c1def78f7c3d3962967d819e",
   "runtimeHash": "sha256:9e3aa515fd180dc4e6f3f90c7c8376dcbaef9384a63ec2878488e32e6c05b20c",
-  "captureReportHash": "sha256:0691aff2908940b5f1d663721a097d8a28d85d13b1a7ccc92c1ca91161356d6a",
+  "captureReportHash": "sha256:3b66eb42f4d5149df1ccb940ab5d3215f1b7f01990d763dc3d24b581b0478c70",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -32,7 +32,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:c458a524aa58c6cc5d896b3e045f16d8ab95851b4f916c1a84b69b251a0ecd84",
+    "captureReportHash": "sha256:6ea1e5d13e37302c91d0f8913932d2a1ff2bafdbe0ef0f876d9f29e11a455fc1",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -349,5 +349,80 @@
       "shots/grade/closeup-leopold-mapped-gate-on-grade.png"
     ],
     "notes": "Actually inspected all 25 final normal-placement terrain images: original derivative and four browser levels each show the whole castle plus Vienna, Sigismund, Nicholas and Leopold passages. Gates remain open, approach decks fit this retained terrain, sampled palace retaining faces meet grade, and the park remains host ground. Garden is an interpreted flat upper platform; its large eastern retaining face reflects unresolved coarse terrain/terrace levels. This is accepted medium-fi exterior scope, not a survey or fit to arbitrary host terrain. Signed normal renderer, numeric reference, three exposed retaining feet, twelve gate rays per level and five unloads are hash-bound. Other buried feet and civil path detail are visible checks, not exhaustive numerical tests."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:e476d0cd0e754b5432e032a1113e1e30b7c81ebfe597744fd02933106556a406",
+    "inputHash": "sha256:bd5d8ce0949419c43161ed4806505919db614bc1c79f1560d71bb657953af2e9",
+    "previousQaHash": "sha256:ad208da8a676fc2c444bb906a73a3c0325d49098672ed5d72c90cecd9c870007",
+    "sourceHash": "sha256:bd983d93d5a6d05029e6571d2c3924533600fc42c1def78f7c3d3962967d819e",
+    "runtimeHash": "sha256:9e3aa515fd180dc4e6f3f90c7c8376dcbaef9384a63ec2878488e32e6c05b20c",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:e8455729d5d5fabce61625f4c517decac57b752617f346e81838844d549c3aa8"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:b7d9a6e8a994929fddd849f202ffa2b3367c4878ac1689fcd752890c5f3401e0"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:5bcbb184a8220e61abcffde3be8213421f8de3a1c81ced5f883340c633a5cee9"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:55bed6fff0363edc314dd3311bd505397ff325786c19c2731c28b0540f4dd9b1"
+      }
+    ],
+    "sceneHash": "sha256:cb8cbd6d1066237d91e60fd64fb4139892e4acb1053aa31d86007800c457c879",
+    "qaCamerasHash": "sha256:c15e9473af1cf26074728a4529b3c71b321e6935d29d6370061a543ebf24acbc",
+    "placementHash": "sha256:820866c340deaf7144a5fa130e21db88f9ec037ad566c374d36fcaa7efee64a3",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:14e9f8801b7672ce66a65cb28ab8e5a971af03ed8a58bbaabf5712bde89d67d9"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:6fff614932c91862f3633e3ef1fd22f8b45bf5632967e0a6713140d78137a167"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:e265ae87605fc6090789af2c375f25a5529d7d014743af9575d0f668e617610b"
+      }
+    ],
+    "framesVerified": 70,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

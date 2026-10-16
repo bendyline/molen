@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0248_bran_castle",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:173401d62d40757921712724bad1982e9a8724275618cb493f89e3da8abdf3e3",
+  "inputHash": "sha256:dac990897419fe2e3b1a5c465068159b51e620111cb2ea8f0235b7f9ac8da7b2",
   "sourceHash": "sha256:b25949c6ee650d1837c75839acf40e8acf4768811d0555b38d3d471b0de1ea11",
   "runtimeHash": "sha256:07fc69ba8fca25813830b61138456f0db51303987cfa35018a01d160e0eea87e",
-  "captureReportHash": "sha256:9142da9a2e25f24868456fee7663209a73e37116295bf23dbc439f5d9c03d968",
+  "captureReportHash": "sha256:3a5a4f876a9bb3f03a4c98465b2618380ff7ec04d270be5fc1fc4732b55da8d1",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -28,7 +28,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:49037992a393f9b990422fab38da856d9aff26978524412e7e49acfaf0d1e17a",
+    "captureReportHash": "sha256:3fcde7e35cb9b9b257e7292afb872d7c9e72e2617df8941b20bc7896a892339b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -335,5 +335,80 @@
       "shots/grade/closeup-southern-entrance-stairs.png"
     ],
     "notes": "Actually inspected all 25 final normal-placement images: five cameras for source plus four browser levels. Signed heading and retained terrainReference give zero model-origin elevation within 0.1 mm against the working native grid. Three open-ground probes differ by about 0.015 m from triangulated ground. Foundation front faces and open lower-gallery passage pass at every level; five unloads restore terrain and leave zero model geometries. The rocky cliff and exact floor/stair profiles are smoothed or photograph-guided, not surveyed. Retained Terrarium numeric images are height data, not model textures. Mapzen/underlying-provider and OSM attribution remain explicit."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:173401d62d40757921712724bad1982e9a8724275618cb493f89e3da8abdf3e3",
+    "inputHash": "sha256:dac990897419fe2e3b1a5c465068159b51e620111cb2ea8f0235b7f9ac8da7b2",
+    "previousQaHash": "sha256:e49748796c1f810a2d7e945c3dcce547bd9e6102f107e71114116e56937e04ab",
+    "sourceHash": "sha256:b25949c6ee650d1837c75839acf40e8acf4768811d0555b38d3d471b0de1ea11",
+    "runtimeHash": "sha256:07fc69ba8fca25813830b61138456f0db51303987cfa35018a01d160e0eea87e",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:fdee629103e2c1f13387e6e21f8eebf81bdab0591ce6d28dc2040455a6c09199"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:6cab733364a16acf9df4b976cb72420edf01a485b8a27208ada935cbccaf1bda"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:f95c232df9589328983cf70b9a7643dcf0e8fe2dd9cd160c0d792fd669b3a50d"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:84f5488be43628539589a0747f3f893547fdbd339f3416237a8ea1cbb4cfc743"
+      }
+    ],
+    "sceneHash": "sha256:1798240b456e70c37a96c6671128af9ad36215c706d8f16050d869ce7cccc4bc",
+    "qaCamerasHash": "sha256:7c517c5f509b115d2516bd8241851a489988b5976bc7d2ffb160a93148e1f552",
+    "placementHash": "sha256:ec3903120e02faf3995bac02d185b37d34764eff40ad6f8a8aaebe75377e868a",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:2f0b14c338b26c36f7a06193673a39cfa28ed61742503f453e27f4da2a6454d8"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:44a34ff64de0d55168ad64ad44d1da2af2f56f9c13344aeaab539c3b5623381b"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:59b26298c1fbcf701754b3d7080266e1f5dc6cfac4c97bd3f0f58a44dc46a315"
+      }
+    ],
+    "framesVerified": 58,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

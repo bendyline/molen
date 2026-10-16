@@ -4,7 +4,13 @@ Updated 2026-10-15. Model generation is active. **N0391 — Liège Cathedral has
 
 The N0360–N0379 full source checkpoint passed: **32 generators, 555 forced imports, 510 structure LOD sets and 3148 GLBs** rebuilt in 723s. All **120 reviewed master/runtime/LOD files** reproduced byte for byte, with unchanged model-input, source/review/capture and runtime metadata bindings. Installed source bundle: **assets-06bf9933d26e89c7**. The build reported 49 generator metadata differences and retained the existing files; those differences did not alter this batch's reviewed metadata. Other semantic metadata reconciliation remains separate cleanup. No Git mutations, uploads or release publication were performed.
 
-Continue targeted generation/import, geometry, shared-material, placement and current visual checks for each model. The next routine full source checkpoint covers **N0380–N0399**, or earlier if generator/build-system changes require it. Earlier checkpoints and model limits remain in the consolidated batch journal.
+Continue targeted generation/import, geometry, shared-material, placement and current visual checks for each model. The full branch audit below covers all models throughN0391. The next routine source checkpoint covers **N0392–N0409**, or earlier if generator/build-system changes require it. Earlier checkpoints and model limits remain in the consolidated batch journal.
+
+## Branch integrity audit — 2026-10-15
+
+Before resumed production,checked all **564 authored structures /3384 master,runtime and LOD GLBs**,all820 logical source bundles,canonical paths/shared UV-material bindings and2256 LOD layouts. A clean34-generator/629-forced-import source build produced3512 generated GLBs in770s as **assets-4c110226cdb7e02d**. Every structure GLB reproduced byte for byte;no model or required source was missing. The five retained vehicle masters bring the full local inventory to3517.
+
+Revalidated122 stale next-1000 source fingerprints only after proving unchanged master/runtime/LOD bytes,scenes,cameras,terrain,map controls,placements,shared graphs and all stored capture hashes. Original inspection dates/scopes remain intact. Ledger **401 ready /397 active previews /599 remaining**. Four other site reviews with absent disposable captures remain pending,and19 older site reviews retain their unfingerprinted historical scope. Existing medium-fi budget exceptions remain separate cleanup. Build metadata differences141 were retained;five unrelated generated Dungeon source GLBs changed and pre-build copies remain local. No structure bytes changed,no Git mutations/uploads.
 
 ## N0310 completion checklist
 

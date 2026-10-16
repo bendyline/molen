@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0261_royal_castle_in_warsaw",
-  "inputHash": "sha256:c7421844956debbb7827c58e99dd6430bc87d8c39356a8039f96c5af6be35be1",
+  "inputHash": "sha256:48183cd8d058ded89ca103ac591bb5212d06ad2eb6c9c91e5e7cacc09cf4456f",
   "sourceHash": "sha256:81e8ef1c55fc2bbc1028b4ba5e55982157a264d1ca79b2d64dfe467dc183ac38",
   "runtimeHash": "sha256:cd3c3ba3b1071588054f6ddd8070c4ebe7acc528eaecf27c01f58a40c4a2c724",
   "reviewGroundY": -18,
@@ -1078,5 +1078,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:c7421844956debbb7827c58e99dd6430bc87d8c39356a8039f96c5af6be35be1",
+    "inputHash": "sha256:48183cd8d058ded89ca103ac591bb5212d06ad2eb6c9c91e5e7cacc09cf4456f",
+    "previousReportHash": "sha256:219362feb42c62833f774d6820e1eadeb9528c2d005836ea30c073af92fd0fac",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

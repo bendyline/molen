@@ -1391,3 +1391,11 @@ Anchor **[5.571799634,50.640129855]**,heading **0.293601642088rad**,unchanged. R
 Skyline has simplified solid tower/cloister envelopes and an open lantern/court. District adds selected glazing,clock,turrets/buttresses;street adds more windows/louvers/dormers;closeup refines simple foils/transoms and gable panels. Fine curved tracery,sculpture,crockets,glass artwork/clock lettering,hidden bays,full interiors and engineering sections simplified or excluded. Surrounding city/vegetation/site furniture stays host content. Physical-device timing pending. [Current QA and limitations](../places/u1/u15/n0391_liege_cathedral/QA-REVIEW.md).
 
 Ledger **401 ready /397 active previews /599 remaining**. Readiness accepts exterior/approximate horizontal placement. Next **N0392 — New Cathedral, Linz**,Q257481. Next routine full source checkpoint **N0380–N0399**. GLBs and bulk captures remain ignored;no Git mutations or uploads.
+
+
+## Branch integrity audit — 2026-10-15
+
+Before resumed production,checked all **564 authored structures /3384 master,runtime and LOD GLBs**,all820 logical source bundles,canonical paths/shared UV-material bindings and2256 LOD layouts. A clean34-generator/629-forced-import source build produced3512 generated GLBs in770s as **assets-4c110226cdb7e02d**. Every structure GLB reproduced byte for byte;no model or required source was missing. The five retained vehicle masters bring the full local inventory to3517.
+
+Revalidated122 stale next-1000 source fingerprints only after proving unchanged master/runtime/LOD bytes,scenes,cameras,terrain,map controls,placements,shared graphs and all stored capture hashes. Original inspection dates/scopes remain intact. Ledger **401 ready /397 active previews /599 remaining**. Four other site reviews with absent disposable captures remain pending,and19 older site reviews retain their unfingerprinted historical scope. Existing medium-fi budget exceptions remain separate cleanup. Build metadata differences141 were retained;five unrelated generated Dungeon source GLBs changed and pre-build copies remain local. No structure bytes changed,no Git mutations/uploads.
+

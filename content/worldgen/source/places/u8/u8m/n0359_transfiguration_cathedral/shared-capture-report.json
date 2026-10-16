@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0359_transfiguration_cathedral",
-  "inputHash": "sha256:084c127cbe26217eadbf5fb290d6cf1cbf236894b36f31d88efe44760c37136f",
+  "inputHash": "sha256:b3e944ddafd623f7476a6bb17f54b019bfb24eb46b1716e4bd674ab8ebaba242",
   "sourceHash": "sha256:2d8c8b9c67929637f2be71a2b7c0618b14a279d053b0ffbb7e0ef66ab97f8573",
   "runtimeHash": "sha256:642b2ad3c3aa66e316e0fe663991d047ceb6cc2819f00bdb8e441f57460ea453",
   "reviewGroundY": 0,
@@ -1051,5 +1051,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:084c127cbe26217eadbf5fb290d6cf1cbf236894b36f31d88efe44760c37136f",
+    "inputHash": "sha256:b3e944ddafd623f7476a6bb17f54b019bfb24eb46b1716e4bd674ab8ebaba242",
+    "previousReportHash": "sha256:f558e58991cc3c0ca46a324c41b2cc94804da10925be863adf4ca8ad78c88c39",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

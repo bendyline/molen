@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0024_great_bridge_of_hrazdan",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:6d5bd91c5d825c414d474b17aae48dc853b384eadc8581b4a9688493d8cfab55",
+  "inputHash": "sha256:be0d01222ef23091dea763db52afb64122635ee570f6ff7447f524af54cef641",
   "sourceHash": "sha256:503be133db247da8ef5fc5d728155b1d9241a38b246e5a929c0520dca29a757f",
   "runtimeHash": "sha256:9a288b9c37df89b5c5a7648da998bbbbeb89d549e01ff1ef2d3187a44308f941",
-  "captureReportHash": "sha256:341f03007dd57c7b2dccd9a0369795785f471335dde340033b217fbf8390d695",
+  "captureReportHash": "sha256:1f81bb5c42c7fcba0d4cfe82d1367f2c1cba30d792f250c9a8cbf47c7a0a1349",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fbc0f053132d46a9bec0603990e30c0c836c0fcc06a9a65efdbc76d9662bf9bf",
+    "captureReportHash": "sha256:faca709f6f0a8dc84a7910db0083cdbd4f795e1b2b0def6f07fb7515a712a60b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -354,5 +354,68 @@
       }
     ],
     "retainedInspectedImageCount": 67
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:6d5bd91c5d825c414d474b17aae48dc853b384eadc8581b4a9688493d8cfab55",
+    "inputHash": "sha256:be0d01222ef23091dea763db52afb64122635ee570f6ff7447f524af54cef641",
+    "previousQaHash": "sha256:c2fc03261465a9e80c3a78af08916283b02804d8491ce2c1b3f9f273bbc3455b",
+    "sourceHash": "sha256:503be133db247da8ef5fc5d728155b1d9241a38b246e5a929c0520dca29a757f",
+    "runtimeHash": "sha256:9a288b9c37df89b5c5a7648da998bbbbeb89d549e01ff1ef2d3187a44308f941",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:662187040d448d97ac7eb02d63301c36cfa7c55209834599d7331e76b57b6cde"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:907a36b088d9698a13ce1ba7f86c94b3d7f9255d1fbbb8bf83bef4a0648d609b"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:f8119b5acefe9e952a7e0a0ed0a87616f5128faaceffe02b7a08be558adb825a"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:9683f0458159aee871be86f2465c00327258ec4409abbb356799b91885a5eb5f"
+      }
+    ],
+    "sceneHash": "sha256:e1e001c3ec54e56e15ec104526410c1fdb2e8ecd82815bb43f6879187f15cf97",
+    "qaCamerasHash": "sha256:24d940fb9da176c061565c9e60ab473f972f73bec364ade2cb42d50b62ebca75",
+    "placementHash": "sha256:ed06d1874d49d3be4b1d4f44c121367a3e9c12cffcb4f76f0f1881dbd2df7843",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:6fe0ae1beecac72ec4732d3a84467475e327c3ff5bc65dda6323c13032249624"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_basalt_raw.matgraph.json",
+        "hash": "sha256:4a0e752aa8330a06238149d39fe4ddf6398c3e9f7c17e41a4438f40136baed10"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:34de48988e86252df55ffc6fac7b211f58e49a89b113a653b95aa4a518df0fcc"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:0f625e148cc0472f070d82a1f67c6e34616c3fee73376b47ec1115a1b3b4849c"
+      }
+    ],
+    "framesVerified": 67,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0381_st_pierre_cathedral",
-  "inputHash": "sha256:4c774bdc5501d0c6d51a3013c94e9b78087444fd220ae9c79d9d21b9e2a71bfa",
+  "inputHash": "sha256:fcac1ada06d12a9adf48aa33c85916ac4590963bfcf704308082528924499736",
   "sourceHash": "sha256:dce559e249779a69ae402ed71bbdf2a975d000775489a20b6b94969214921658",
   "runtimeHash": "sha256:20ecc3d90fb7f0716d767ef13d8ebb6715bbf0b26b7af7146c533449dd72b0c0",
   "reviewGroundY": 0,
@@ -1051,5 +1051,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:4c774bdc5501d0c6d51a3013c94e9b78087444fd220ae9c79d9d21b9e2a71bfa",
+    "inputHash": "sha256:fcac1ada06d12a9adf48aa33c85916ac4590963bfcf704308082528924499736",
+    "previousReportHash": "sha256:483ab1388db79b23059f822aed74dfce6e683bb468b7a51a96fc3eefd00582ac",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

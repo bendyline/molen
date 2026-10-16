@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0293_rumeli_hisar",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:ec21cb1a26ae9fc6756226e515fd890c6f90250da9a5e56fe03f5fc80e0afffe",
+  "inputHash": "sha256:faa1af7f59d74ccca137da2ee4d4002bc5ac0c7ecb1a347585d12aea772470eb",
   "sourceHash": "sha256:2f30ffb0b1c3596adf69d0840150492fcf4e990cb2a574695e66ad722ac0ab7f",
   "runtimeHash": "sha256:e7154079be2f2cb9de5caed8037c3701b386754d01b63c2f1ef72b67f11cea84",
-  "captureReportHash": "sha256:22b3b12f0846034d79cff2883ee3f28813a0258d66af8afbe473fce461f73413",
+  "captureReportHash": "sha256:a5cbd6bc64a7a5d3c67760e6189c3420228310a92d7675ab6aa2ae855596d145",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -26,7 +26,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5a6cb331fc56531b825a823666c8fce4dcc6e36c357955e56fb2ed3923b2ecf8",
+    "captureReportHash": "sha256:42df284d844e649911de9d64b302272550dc16b4a4d7631a5d1dd1b2b0978c9f",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -292,5 +292,72 @@
     "Detailed original master/hash/recipe preserved. Roofless towers, forecourt and mosque are an exterior interpretation; ongoing restoration and visitor fixtures are not exhaustively reconstructed.",
     "Four common graphs plus explicit color slot, zero embedded images. Terrain comes from the host; interiors, waterline/simulation, vegetation and terrain cutouts excluded.",
     "Footprint replacement remains off; physical-device timing unmeasured."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:ec21cb1a26ae9fc6756226e515fd890c6f90250da9a5e56fe03f5fc80e0afffe",
+    "inputHash": "sha256:faa1af7f59d74ccca137da2ee4d4002bc5ac0c7ecb1a347585d12aea772470eb",
+    "previousQaHash": "sha256:9f114bb36fb4c9b180dd4ece1b35ae69bc2e1ffedca0dd97ef3e0f4d2cd9683c",
+    "sourceHash": "sha256:2f30ffb0b1c3596adf69d0840150492fcf4e990cb2a574695e66ad722ac0ab7f",
+    "runtimeHash": "sha256:e7154079be2f2cb9de5caed8037c3701b386754d01b63c2f1ef72b67f11cea84",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:2bc7c586b61d36e24ae243757165a7a6a7ba3d53ed1a1b65c974152a7f825ea5"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:d099adb942eeefa243ba74a8b8934c09780b8eb0965de93ae3e7fafeb30ac0a6"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:e92af3652c5f727d1ff762faabb6cc2e6288c8b75c25ac87e8b83807f359cec7"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:ad47fa96d97fb3dcf9b74e888d3226849bee31e8efc51eda8f50b2d1c1d43c55"
+      }
+    ],
+    "sceneHash": "sha256:f6039e799530e9a10ab0886594fc43d55ecfba4f555ff91d9e09b38875d49f52",
+    "qaCamerasHash": "sha256:73db5d93114e7cd7429489b440b9e86b17b6f638cc1ab3baff5463e75c79e4d8",
+    "placementHash": "sha256:8d6674faafe929a1d4c09301576372c8c9af3676fe6c7d66a5f553a9b16bae7d",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:f04408dfcaceaccf53f07e4bca44f3430b45a402f58580e4f9b56abb690285a8"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:f810f5f9f070972ca3e63386e4ce233fe7e6dce3c1559e7c561c2858163aec6f"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:ff022219c2afcf2df325277ecf33aaf2fe938b43bc43b3cca40c8011f05090d2"
+      }
+    ],
+    "framesVerified": 52,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

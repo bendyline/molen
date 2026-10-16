@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0258_sforza_castle",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:94adba80bff92ff2b2a989cf2001ee4ff9055c5116b128164927f4ede0d88a44",
+  "inputHash": "sha256:86f170c8348335850c5289b42ea25026884f1f07ced9d089af98c95f038895e9",
   "sourceHash": "sha256:6c429325fbb0713999efba43150d4d1f73d073d8e64d1bbb735ec48c9e5b1e9c",
   "runtimeHash": "sha256:90f3b390bfea23a10e6a3bb9777021a0199d020623cc309edc91c4b09d20ba89",
-  "captureReportHash": "sha256:6221dd85fdb8a775e50dff2e7bc605c6b0c0969890e81faceeb45294a536cd50",
+  "captureReportHash": "sha256:58c5411a02413e6c04a25cca0c3c8c7bc7de6b140751f138927bb7e260ca390f",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a30dedefbf9805471ffc1eb475d9d5c5432203a2c74ebb16815c0195087acf6b",
+    "captureReportHash": "sha256:c2a273e46bd536e11a3974425bf55eb85effa7225502d203403b9c9a3ae102a4",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -362,5 +362,84 @@
       "shots/grade/closeup-inside-west-moat-floor-and-walls.png"
     ],
     "notes": "All40 final normal-placement pixels inspected: five model states with whole castle, city gate/bridge, west gate/moat, Ponticella, Rocchetta, belfry/loggia, court-facing trifora and in-ditch floor/walls. Complete floor and inward sides are visible; three-light window faces court near the viewer. Each state samples anchor once, passes three retained outside-ground probes within0.015 m fixture offset, three foundation rays and three lateral Filarete passage rays. Active bounded cut removes host surface only within castle-ground opening; five unloads restore original ground geometry and dispose every model geometry. Ditch/court floors and bank/bridge envelopes reconstructed; broader terrain remains retained."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:94adba80bff92ff2b2a989cf2001ee4ff9055c5116b128164927f4ede0d88a44",
+    "inputHash": "sha256:86f170c8348335850c5289b42ea25026884f1f07ced9d089af98c95f038895e9",
+    "previousQaHash": "sha256:3718e3891cfec4e940be34076be3e4193f51f998f82bdfeac9498fa7fad57e30",
+    "sourceHash": "sha256:6c429325fbb0713999efba43150d4d1f73d073d8e64d1bbb735ec48c9e5b1e9c",
+    "runtimeHash": "sha256:90f3b390bfea23a10e6a3bb9777021a0199d020623cc309edc91c4b09d20ba89",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:58d6505d5ceedcb85ad4247ad69114e5dd94e844f2cce2535f031d9c318c3f74"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:3be1f54fc92e68aa3422e2e58efb3cbd599d0b38c62b38003e38bd25ccade1e4"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:ac8decf4bbf8647d0f5107a63cd3aee687bc7e5fdc5efcf6c935b0dfd42be991"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:42c7dbd4a7df46fcdb2e891d4d073e0ced38386f281bd1665c3d41ae115b9ae4"
+      }
+    ],
+    "sceneHash": "sha256:2eaa6ab24c50c11a35c8a1b1763bc47b6aa2b6fcdb305eecf014956187373246",
+    "qaCamerasHash": "sha256:0061de16e50bdf2e2a497b0bbab5af4b7c6041fa85bea3888bd77904d88f9e8b",
+    "placementHash": "sha256:8d73c5eaf7f7ede0f48df484bfa724ea5bf77ce10c7343f82acc9b5bc52f133c",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:c688e3b3faef9951ad036bbc0dd2ad10273875416dbc64e2ac150c807edb9160"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:80cace7eb8a99739780f0590802f0668c26fae4558d1be50f09dae703cc7831d"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:02a00f76a00f9b783ee60f0acdd1c616bf528c317b56bf5a523c61cf09cab536"
+      }
+    ],
+    "framesVerified": 67,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

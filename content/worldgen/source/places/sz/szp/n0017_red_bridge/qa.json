@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0017_red_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:7bd4b055a94042a44347c84e0a938c69648cc3591af84d38c1b753c1ec2b0be0",
+  "inputHash": "sha256:57e9a0cad02302de16eb5bc2d5e0394a045f7484aa6d6173e15221cf5350fa61",
   "sourceHash": "sha256:680b961d019685af24bbf9cb69d1bb3dd49b299d4270f0a6ecc1a69f95326512",
   "runtimeHash": "sha256:64441df37692c04d54eec242fd62efc3c77bccbca1202f9f76a02f0e34c1edc2",
-  "captureReportHash": "sha256:bf6327e646f08eb3cb7398655c96301e98e35dcb45e4f63173dfec869fd1f482",
+  "captureReportHash": "sha256:c76dae25f127f4a31b0fd87cd49b5170547003d96b1979ad0d7ac7020fd7da4c",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -27,7 +27,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:973890204a28a821a94ef29bbde086adc9037123856b3a9ab264c0b16a102dcb",
+    "captureReportHash": "sha256:927741d6bd9bd75131054b7089c9207526f3ad1e0a0621bbdc0bc87db733c880",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -344,5 +344,68 @@
       }
     ],
     "retainedInspectedImageCount": 55
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:7bd4b055a94042a44347c84e0a938c69648cc3591af84d38c1b753c1ec2b0be0",
+    "inputHash": "sha256:57e9a0cad02302de16eb5bc2d5e0394a045f7484aa6d6173e15221cf5350fa61",
+    "previousQaHash": "sha256:a875a0b828527d326dad04716050511286c252c19234ac8cd1ca2f39575f130e",
+    "sourceHash": "sha256:680b961d019685af24bbf9cb69d1bb3dd49b299d4270f0a6ecc1a69f95326512",
+    "runtimeHash": "sha256:64441df37692c04d54eec242fd62efc3c77bccbca1202f9f76a02f0e34c1edc2",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:682ce67f90666764adf47735bae4d147e41f313788fbde2dea75220cf8ce7334"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:d202841292c2e53b90a759dc9b680904476a7c968ff8ef3b4aad42308125bcc3"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:f48920e82b2aced1cebe5e8738ac3f4701fdddfae0a9e30f7f7003348200a255"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:48b669e0d97c90a773bff1349b20bf8d2c66530773c031e3a57621a59cfffde6"
+      }
+    ],
+    "sceneHash": "sha256:e7d716ac0626dc63d7fddbacdc828bf000935985d532843aba4c0e3b386ae435",
+    "qaCamerasHash": "sha256:6044f34972fbbe63f58bbf487955ea85db44a75057368940011453dcbd00f7b6",
+    "placementHash": "sha256:25edf3e7d2d182fc553db7520610679434d0f0836d02a8dabe0a2db165fc6277",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:0ce37d3d599f7658c8871fff9c3753b987fa1a215eaadff19a472ee9ffad2c82"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/clay_fired.matgraph.json",
+        "hash": "sha256:4192e3e339b114e542fc7c37a103ef8d0954ad6b14dc527300edd0fd3b78aa34"
+      },
+      {
+        "path": "materials/stone_basalt_raw.matgraph.json",
+        "hash": "sha256:4a0e752aa8330a06238149d39fe4ddf6398c3e9f7c17e41a4438f40136baed10"
+      },
+      {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:b263061cd63af6b53b887c13387ab162a6e80f2ecc8011e998575de25b69375f"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:6848434e8cf02a6d4f339aed97a299cc131fa4f0cb5761d0800efe600c408dfd"
+      }
+    ],
+    "framesVerified": 55,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

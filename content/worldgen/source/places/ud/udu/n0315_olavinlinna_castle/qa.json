@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0315_olavinlinna_castle",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:4fa371475d8758050e0f246bd8b7384e472583ade153add831d6bcc93d850cad",
+  "inputHash": "sha256:1e249fbf88d56ce2089aef8228f788b84c564b19bda12a672aadc3f87b8b1192",
   "sourceHash": "sha256:2c95e598db544b5113ccf9e2bee684ad20cbbba2597ebff36c85082b3cd4e474",
   "runtimeHash": "sha256:fe4f34bccca774c512561ebd1a7efbdc7ba92baf5e1058dde9eaf0fd5d8f0a0e",
-  "captureReportHash": "sha256:19747fe8366365f59ef4341b87efcb346f1d3405ee9bd1c455dca42d0423cbf0",
+  "captureReportHash": "sha256:a8be7ca6b3878154e828605fe1bdb43906f8a388f60283782abf20f18dae9987",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:736318517090f3be8138033f15727d22f23c68e6491378dc5a0e2ec14d572915",
+    "captureReportHash": "sha256:ec389f099f201129eb5c064e34c3b83948eb2d0082b9d73a5f7d7a8660068bd9",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -147,5 +147,80 @@
     "The seasonal courtyard canopy is a fixed approximate visual representation, not a year-round claim or engineered structure. Interiors, furnishings, festival seats and certified walkable collision are excluded.",
     "Standard viewer terrain is coarse. Preview PMTiles lake-mask clipping and review water level are explicit fixture approximations, not runtime terrain carving or verified real shoreline/deck elevation. Pontoon water contact and precise entrance joins remain approximate.",
     "Physical laptop and phone frame-rate measurements remain pending."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:4fa371475d8758050e0f246bd8b7384e472583ade153add831d6bcc93d850cad",
+    "inputHash": "sha256:1e249fbf88d56ce2089aef8228f788b84c564b19bda12a672aadc3f87b8b1192",
+    "previousQaHash": "sha256:881b0a11a5a15f60c20f9c2bd73c646e55d5fdf6ef21e10444e62e0d7ff5d1a7",
+    "sourceHash": "sha256:2c95e598db544b5113ccf9e2bee684ad20cbbba2597ebff36c85082b3cd4e474",
+    "runtimeHash": "sha256:fe4f34bccca774c512561ebd1a7efbdc7ba92baf5e1058dde9eaf0fd5d8f0a0e",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:e209f937a86c41f52a181be748fc82da5828a45ddca221209db0a77e369c5edd"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:8c92706eba2576937301414c6e723831d34582432ab4500642b0b74b34adeeee"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:3598f37510c600796eb7e8b6635f898c7c1435289922d218c8b568f3a652bc06"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:dc8008680f1b2fbc49c19534455ceb761bc2f226ac220a608fdfc7787baab252"
+      }
+    ],
+    "sceneHash": "sha256:12b938298e2e5179a288d71e985b3f66a2d2dc499614afade0084586db1f0873",
+    "qaCamerasHash": "sha256:9f94ba34850985670af529f3b30d72cdd3ee7b43479e70c26d6e6d3b4d9b263a",
+    "placementHash": "sha256:553e1178cce06de479ab23ced5ad07c76ce4226c7249c56f2400564cc35c8e7d",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:4f8629139d8a06cd66d69be3f12fb4ffb045da1638251b951070cb0202cb20e6"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:bf116bc5038a7d7a346006bfe12dece6c74704e4546315b0a091501d53bb75b4"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:457c7f61d5c81c940ef111ff7663649d8e5af3a8982bfb8545242c4153a7a61b"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

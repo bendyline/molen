@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0291_ksiaz_castle_and_park_complex",
-  "inputHash": "sha256:214c10c1bb2377dbd8873dd29f3c8b8a5a172ca1e6b9c53ffb38974cf48e1a43",
+  "inputHash": "sha256:22056580ebe0c248b8f8f223924e94279110f94ba4535279f8deb5d5c19b1920",
   "sourceHash": "sha256:1a72f7525190785b18f4e481506f4eac6fd4ff2c5a5a471fb320314e49d0c07a",
   "runtimeHash": "sha256:22884124d3e37bd8c3105896e1c935ad91c9aa6e26ab934827d5ec3407602020",
   "reviewGroundY": -51,
@@ -995,5 +995,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:214c10c1bb2377dbd8873dd29f3c8b8a5a172ca1e6b9c53ffb38974cf48e1a43",
+    "inputHash": "sha256:22056580ebe0c248b8f8f223924e94279110f94ba4535279f8deb5d5c19b1920",
+    "previousReportHash": "sha256:f0ad674f7daff64e19d882cc5a6957539f485ce5ec88898be09583c45ca3e40f",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

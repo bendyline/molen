@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0284_dover_castle",
-  "inputHash": "sha256:c5adf006e8c25a724640b5fc0cae2b9444218dfcaafcba7637704e1596c8247b",
+  "inputHash": "sha256:a6535f685d6ac7e7d16bdf62cafb5176f30134a2365205cd5214c29289c22a79",
   "sourceHash": "sha256:828ca564441df5aaf6c59fd6d7ac3e811a648881de370a243a8e505745b7b49b",
   "runtimeHash": "sha256:bce9d2d0df976e19d0c0eeae644b979f91fe55ede2c12656a2bee31693d09708",
   "reviewGroundY": -115,
@@ -912,5 +912,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:c5adf006e8c25a724640b5fc0cae2b9444218dfcaafcba7637704e1596c8247b",
+    "inputHash": "sha256:a6535f685d6ac7e7d16bdf62cafb5176f30134a2365205cd5214c29289c22a79",
+    "previousReportHash": "sha256:3108c4ab861a095ad265d1f3be0fa659ed50c96bd1384452e5ec6dec8cb387a8",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0703_estadio_nacional_de_brasilia",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:060b967799d4e5b5f510a436daae3d5ed5e7b89dee63b2ef2b5f3ccf2399a14f",
+  "inputHash": "sha256:2b5827ff13909471c40844fe2a323879858fd762594bdb64dbdaed235c74d04f",
   "sourceHash": "sha256:4a1212d45834f872b1b7ee3a263289663bd81d668f37024a1685c2c0d68b2688",
   "runtimeHash": "sha256:f3a24fb07c0007735efdb33a79aaf4329ec0a3ebb743ef0cab4cd1b57b543b73",
-  "captureReportHash": "sha256:9cb90f781f63e6c4a05cf36542f5dc5ab4aaa02a75c2cd281062d5b1a2692364",
+  "captureReportHash": "sha256:c1fdb107b23ec5034c92ef9004666f85269a287572380026b2dc5f69fc813ee6",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:0abfb0869760bd2a254dd85a96b1abb5a9ff390a0460739341362499c69a87f0",
+    "captureReportHash": "sha256:3d8963c7a9335ae0385590c29262b0f1317c38935d9105295db4610c7c787a93",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -357,5 +357,68 @@
       }
     ],
     "retainedInspectedImageCount": 67
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:060b967799d4e5b5f510a436daae3d5ed5e7b89dee63b2ef2b5f3ccf2399a14f",
+    "inputHash": "sha256:2b5827ff13909471c40844fe2a323879858fd762594bdb64dbdaed235c74d04f",
+    "previousQaHash": "sha256:1f61e187660f0e676606b8212cd9a4de1d2e22c9675eb71622456f4ae8f986ee",
+    "sourceHash": "sha256:4a1212d45834f872b1b7ee3a263289663bd81d668f37024a1685c2c0d68b2688",
+    "runtimeHash": "sha256:f3a24fb07c0007735efdb33a79aaf4329ec0a3ebb743ef0cab4cd1b57b543b73",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:e4326613ce5e3deed7f6c9e6c4303de7cee0d0b26bdd40561b5330c5e7576035"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:75a080bc73eea90bdd6b1369826bf07bbc2d68b42cfa441d0552a78077380ce7"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:f94cb88f89b6063f00460138993d41fdd7a51b562300f8f4f5d6695cb1f50348"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:9b450e0cd86ac97711057ae265856ddab0a473d20ba896a149d7ffcb35236a6b"
+      }
+    ],
+    "sceneHash": "sha256:3119a9686369196fbd287cfcccb9c4383b93b0ac42f7f46ad0560366dbfe83c9",
+    "qaCamerasHash": "sha256:83ca11f96acb9003e7c37b8c19a0b2a8ba236cad70180359b9dd1b20fed1458c",
+    "placementHash": "sha256:6f419c045d3a2c23598b96c4c7b8bda66527fe63f105ff9d37c164fc24a7bfa3",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:ffd3416c7438bf0de00dc04ca88a2ba0d0032e85f2710ccab87455513df6ccdf"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-cutout.terrain.json",
+        "hash": "sha256:170f822dfa11edce05d62805de7a2f12193c3386464fb5df08cf709c5d8efaf6"
+      },
+      {
+        "path": "terrain-cutout.height.png",
+        "hash": "sha256:66fb9cc7a07b5f00f1769c7a69ceb974d305c7b5543e664e82762ffb6bad2d49"
+      }
+    ],
+    "framesVerified": 67,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

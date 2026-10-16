@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0386_archcathedral_basilica_of_st_peter_and_st_paul",
   "reviewedOn": "2026-10-15",
-  "inputHash": "sha256:1223493dd749ffbb0428c29a0b77628f382884bcca54c8530d255c39c4ac8e2c",
+  "inputHash": "sha256:626266f06063e1704bf0e0e478c1a535dbdcd947a1ecbcb1d408a0e6760c6a1a",
   "sourceHash": "sha256:8896b5e802d1b31fece20e0892e04ab71fd21abec777bf0591296a0e8fb5fa86",
   "runtimeHash": "sha256:148aaf87645aecd99419b6ff393914e24304b82e96495ab86ff01c5557b1630a",
-  "captureReportHash": "sha256:e137aac130a9ee53117957d81706a76ddbaede8384e4fce2ce2d5153ebfb597f",
+  "captureReportHash": "sha256:b5ef5e6d77999707f0327a7ae7a4b47644b8659984392b327530a79c3577b25d",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -39,7 +39,7 @@
       "shots/shared/placement.png"
     ],
     "notes": "Inspected11 current shared/geographic frames. Five existing cached256-square running-bond brick,continuous limestone,oxidized copper,plain wood and lime-plaster graphs serve seven merged groups;skyline is one draw. Front belfries use a darker tint of the same copper graph. Changed the first brick selection because its minified pattern read as vertical bands;current canonical brick gives a quieter coherent surface. Metric UVs,linear brick/pale-stone/green-copper/wood/cream tints and flat normals. Glass,clock hands and small metal tips use geometric PBR colors. No embedded images,unique facade maps or baked shadows. Each graph reads once;unload disposes geometry and leaves zero live model geometries. Details show real door/window/louver recesses,blind gable panels and open choir lanterns. Signed top placement matches current western twin-tower/eastern choir plan. Flat geographic ground does not verify actual DEM/street/door contact. Some detail cameras intentionally crop other sections.",
-    "captureReportHash": "sha256:c6634eea635449ee2a9e97d04b25160b0c7b63073c3772be143ef23ed4dc8a4e"
+    "captureReportHash": "sha256:a685ba4e2814bb949754a4e792ed65b26c3936d5d06e31c184bd8375555e9d07"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -167,5 +167,76 @@
     "Standard viewer DEM datum59.888618m;estimated floor1m,raw whole perimeter-1.25..0.91m. Coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain;front landing/stairs are approximate. No preview flattening or host DEM change. Runtime foundation exposure/base clipping,exact plaza/street/door contact,absolute altitude and walking remain unverified. No road replacement.",
     "Medium-fi exterior from actually inspected undated front,2006 and2012 eastern exteriors and a distant2026 aerial used only for broad silhouette,plus standard viewer PMTiles/DEM.No bespoke plans/surveys researched or photographs redistributed.Hidden side/nave bay rhythm,stage/eave levels,exact compound roof profiles,upper-body hull,plaster tone and sculpture remain picture estimates.Fine inscriptions,sculptural identity and interiors simplified or excluded.Adjacent buildings,gardens/trees and actual street surfaces remain host content.Physical phone/laptop timing pending.",
     "Skyline preserves five-tower silhouette,stepped front,green roof/chapel family and actual simplified open rear lanterns.District adds shared surfaces,flat fields/cornices and recessed central portal.Street adds recessed selected glazing/louvers,arch frames,pilasters,buttresses and small supported geometric figures;some alternating low aisle/chapel fields remain flat.Closeup/master add all field recesses,finer opening/roof profiles and louver rows.Synthetic cottages are fixtures."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:1223493dd749ffbb0428c29a0b77628f382884bcca54c8530d255c39c4ac8e2c",
+    "inputHash": "sha256:626266f06063e1704bf0e0e478c1a535dbdcd947a1ecbcb1d408a0e6760c6a1a",
+    "previousQaHash": "sha256:91668c04e2e3fe8000f0ce80157d650f4eabf9ffb489821c1a540394bf42ffcd",
+    "sourceHash": "sha256:8896b5e802d1b31fece20e0892e04ab71fd21abec777bf0591296a0e8fb5fa86",
+    "runtimeHash": "sha256:148aaf87645aecd99419b6ff393914e24304b82e96495ab86ff01c5557b1630a",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:a30e1266f138a9300e9997a88c210bec7c1a1218660ab6d1cdc953446f79c667"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a7bdee4ea9b326badac321c6d118481fb3904056b44475eb45991c1faac206c6"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:d05409f665eee81b96fbfe53a16e9a3d335b0613182de974b6489a15cfb1fe43"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:74ed5315adb01174795a033d938e88ca53672bc7a16baa1012dab54d568685bd"
+      }
+    ],
+    "sceneHash": "sha256:38659932c15eccc3587041e7a63f6c89cdb28c1113cd6f49afb1a06e2c4b223c",
+    "qaCamerasHash": "sha256:0fa5e0f8682dfad2c5de95e7ab6b523f26f84aa3e48d47944ff499e3351daf1e",
+    "placementHash": "sha256:6aa5742f129fd2e4f6a1ab160f835097fba4eb6955bc7e5a97c083327ec235bc",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:b23e8f10d88e5c882bae5caa67c75b4ae0514feb7f5ea8bcc8792ea58afc61a3"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:b5dc9c783f8e5e3f3d4aa0a593d6e9a3e23d945e1251d0e8465c217cd905ed18"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:23168866bf2e88339ec326e04d6f5042a3f6e515cb25145601357356dd21fcf6"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

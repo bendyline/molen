@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0358_st_giles_cathedral",
   "reviewedOn": "2026-10-15",
-  "inputHash": "sha256:0e9989f2da055c5d25e047423107218071d638b0af375801334c6458e0fb96a6",
+  "inputHash": "sha256:65875ba02b44d2d89ccafdcec6c11e443ba3961daa9200e9fb4b559ed7fa65d6",
   "sourceHash": "sha256:6612156fd0c6553fe4d79ad40e0a926763bd3f989200499cbf16569726a754b8",
   "runtimeHash": "sha256:64aba2bd0873756249d0c09d1084df048b51b6ae03f4fd74003defc6632c2078",
-  "captureReportHash": "sha256:259919731cfc784097a913ad42f81fd953fb20755b55b108ed0258a39eb85af6",
+  "captureReportHash": "sha256:df9ebaeceba82fdcc5177d581eb2befd683be7536e8d6b3fc15e0568645534fc",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -39,7 +39,7 @@
       "shots/shared/placement.png"
     ],
     "notes": "Inspected all 11 current shared-material/geographic frames. Five existing 256-square coursed sandstone, raw sandstone, standing-seam metal, granite and plain wood graphs serve seven material groups. Warm gray-tan walls, pale trim, silver-gray lead-like roofs, stone foundations/steps and brown wood use linear tints and metric UVs. Glazing is flat blue-gray; louver backing and restrained finial metal use flat PBR color. No embedded images or bespoke facade textures, baked weathering, soot or shadows. Every graph reads once. Unload disposes geometry, leaves zero live model geometries and restores ground. Flat placement views establish signed plan alignment; source terrain views show approximate sloped contact. Ground colors are diagnostic.",
-    "captureReportHash": "sha256:d76defff562fe5ff4ccfe7e0a07ed9877ec10b3a8356a00c05073b6b6e7a13b0"
+    "captureReportHash": "sha256:d109ff9e449f2ce5baa9522342670eb40f02d6bed7471e314e5c0fb0ed38505f"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -177,5 +177,76 @@
     "Standard DEM datum 94.402203m; estimated common architectural floor 1.16m above it, with terrain-following foundations. Raw perimeter terrain spans -1.91..0.91m. West steps approximate a short street transition. Exact thresholds, absolute altitude, terrain cut/fill and certified walking are unverified; no terrain flattening or bespoke survey.",
     "Medium-fi exterior from four useful inspected pictures and standard viewer PMTiles/DEM. Main masses use fourteen current controls and recorded aisle subtraction with sparse approximate windows, tracery, buttresses, turret, pinnacles, chapel and steps; body rings simplify map buttress notches within about1.4m while the foundation retains the raw envelope. Exact sculpture, adjacent monument/town buildings, lettering, stained-glass art, full interiors and certified walking excluded. Absolute thresholds and physical device timings pending.",
     "Skyline keeps the open eight-rib crown/finial, central tower, broad church roofs, main gable pinnacles, northwest turret and inclined entrance. District adds shared textures, flat windows/louvers/door and sparse stepped buttresses. Street opens recesses and adds mullions, crown railing and louver slats; closeup/master refine crown curves, pointed heads and sparse geometric tracery. Synthetic Swedish-cottage neighbors are not mapped Edinburgh buildings."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:0e9989f2da055c5d25e047423107218071d638b0af375801334c6458e0fb96a6",
+    "inputHash": "sha256:65875ba02b44d2d89ccafdcec6c11e443ba3961daa9200e9fb4b559ed7fa65d6",
+    "previousQaHash": "sha256:7c6d66e1186267700c5ebb0bf2bfa7dd5863aafd13e39fb94b3605b02503bf2c",
+    "sourceHash": "sha256:6612156fd0c6553fe4d79ad40e0a926763bd3f989200499cbf16569726a754b8",
+    "runtimeHash": "sha256:64aba2bd0873756249d0c09d1084df048b51b6ae03f4fd74003defc6632c2078",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:f633178e76ba25f65e10e2a0e58b8fd81f0f3f4b3bafaa76899e5a93d9523260"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e0631b339cc53b06fe65459f079c52f2573b3c03c64303771b3dfe0b2e05a1c2"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:89b35c19feda7510818c4b00a7da79f88a03575c8347d2ddf30645b36be34e66"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:e18529f026ff91dc4174322229ffdff587a657eb5691e4326d45e57ff30e186f"
+      }
+    ],
+    "sceneHash": "sha256:11c7744ac3ebb78c6c9bf3b5da728c81c77b7d0dfdeeaff7a3f3a3d8b6b283f5",
+    "qaCamerasHash": "sha256:a6f778c590ea848678ae272dde6b6cbd0e4ee6c0cf20c726c8a3374897fbe6f1",
+    "placementHash": "sha256:1bb7c0e10136bc41a29c05bd3b611e953783e29b0f3a3a1d4ba7ea183265f3a2",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:04a45533b93f6eb2cf383283fca77e02411bdce6e06f760f6aacda86d27b62f1"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      {
+        "path": "materials/stone_sandstone_raw.matgraph.json",
+        "hash": "sha256:90353c0fb198878c912441035ab224f701d5f3ac5331b3cd7a28fb4453a9df27"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:1e645d7a1ce5967ab47d3f9aea66678666128f5c5dc7a798352da7f4b640540a"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:429f7755ccd87fdf4d0542e5d4796d676c1c52f3884cab7ca396927417e76108"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

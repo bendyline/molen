@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0033_circle_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:cf1520b3975db906d8f2b4eb9aee4547a75c376649078fdd1299df74b81d6ce1",
+  "inputHash": "sha256:029befa4a89f784aeb1993245035afb7562c55ee7296bbefdf15126fe429b1a7",
   "sourceHash": "sha256:ed5f2c6834c3334577af9e7a79fbc12bfc903ae8bef17bd84c21814ad0748f61",
   "runtimeHash": "sha256:fd861a04e39df2f9228ad846d2ad01da6c517ea3eea804ff7759606dc08f6473",
-  "captureReportHash": "sha256:18f4594ec5355b0bcae6c5e55be94f97f8d9e6b351c2f02811dba5582015f561",
+  "captureReportHash": "sha256:9bbc92ce0bddf53203839500cf862a05f00dd70bc5f428ec61642a1c3cbf9745",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -28,7 +28,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:932b91db08e3af78f876ba60cc18140d863d16ecea852e16ff254208771c665b",
+    "captureReportHash": "sha256:6e2688250a0466b0e74a7e580bc807ab5faa4356034ebda4ada3accdaaf28bcc",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -296,5 +296,72 @@
   "limitations": [
     "One actually inspected designer-gallery overview establishes the five staggered cream circular decks, white masts and circular stay rings, red rails and wood caps. Retain authored platform centers/radii and analytic exposed arcs; source is the closed state. Standard viewer PMTiles confirms the Christianshavn canal crossing and northeast direction. Retain approximate harbor origin0m; centerDEM0.9918m includes bridge imprint, no water-stage or quay-threshold survey. The bounded complete outline removes map road/ground only under the successfully loaded crossing. Source-local bed and shore contacts are picture-based preview corrections with raw samples preserved. Long quay ramps, opening mechanism/animation and surrounding buildings remain separate.",
     "Four canonical shared graphs reused. Skyline uses filled rail ribbons and representative stays. District restores cap/rail posts and mast rings; street/closeup restore woven rail impressions and increasingly dense stays. Closeup keeps118stay positions; bolts, pivots and light fittings simplified. Exact Matacryl coating and Guariuba species use shared concrete/wood approximations. Physical-device timings remain unmeasured."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:cf1520b3975db906d8f2b4eb9aee4547a75c376649078fdd1299df74b81d6ce1",
+    "inputHash": "sha256:029befa4a89f784aeb1993245035afb7562c55ee7296bbefdf15126fe429b1a7",
+    "previousQaHash": "sha256:d365e970284f02926ab9ed6f29c5a9b9422642e9c858aa2fd19fab1539fa2c57",
+    "sourceHash": "sha256:ed5f2c6834c3334577af9e7a79fbc12bfc903ae8bef17bd84c21814ad0748f61",
+    "runtimeHash": "sha256:fd861a04e39df2f9228ad846d2ad01da6c517ea3eea804ff7759606dc08f6473",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:4e704222c3ce9af67083a7e907e712d5b033b5c08108be2e2078c5f8b8da810d"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:9f9339311835bb1b479d12603de637f3395285e64016246df588ac933858d90d"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:eae151f5c01875b84cfee5146712b1f0b31f24df847025c7c95e861aaf53305f"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:693048ff53d2d42da440b6435798bb491708166c67528734c1e4dbbef766c54f"
+      }
+    ],
+    "sceneHash": "sha256:9090a742341289d872eefa41d1252eca4feb52c59b3e830f61ba64cd8ba4e406",
+    "qaCamerasHash": "sha256:877d8c33664e5156a6f98c6b48ebd028ca733054d8a4686520ca76e3093d1e0f",
+    "placementHash": "sha256:5780b828bc5f370cc262c8a2e6a9d3a6d37917230f3a1478d07876449f4cf80d",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:d67a270dd88420f6b25c22e5483a3f65a95a0f6f286cbc42e84006bfe97c04e2"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:b5b2ed08fe7d3b695c02c34b0c5c16b6f15bfd24ecef4c20151c50c8918f1a81"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:879314b4b17b4362ef7f69b390b1c107c370b3c172e091ae303fbd9c5e072287"
+      }
+    ],
+    "framesVerified": 58,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

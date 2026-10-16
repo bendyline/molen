@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0791_london_king_s_cross_railway_station",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:a2023aacfbcc573aa42009820ffe32a62f71714af255dbef9ff6c24e2b2a541c",
+  "inputHash": "sha256:2a4e88d05cda5625245c37ef3497bafc1104edeb5bb27e378c280ca5dd8d4d56",
   "sourceHash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
   "runtimeHash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
-  "captureReportHash": "sha256:18d69a98963362c8d8840b5400d56d6ba989e6939b85fcf1d527f85ff3bd2667",
+  "captureReportHash": "sha256:7f64c7856786c63d23de14678a9e32628a6bd78289848a22bbb24adddc369443",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -28,7 +28,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4cc13ca01c83615f3ff95ff8b72bc72731259c3df81c0f1cc442b7e0bc4dcace",
+    "captureReportHash": "sha256:c326c1f417ec7e81ecc51253ec4a509b918f07c8c93e8685964416e290d01d4d",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -347,5 +347,80 @@
       }
     ],
     "retainedInspectedImageCount": 58
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:a2023aacfbcc573aa42009820ffe32a62f71714af255dbef9ff6c24e2b2a541c",
+    "inputHash": "sha256:2a4e88d05cda5625245c37ef3497bafc1104edeb5bb27e378c280ca5dd8d4d56",
+    "previousQaHash": "sha256:75ce6a32b6e6132d26bdea0719ef74bf74394ce270cc541d9e3146e07976cf94",
+    "sourceHash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
+    "runtimeHash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:3120f687112ac3f919934d81a5a36adccdb2f3de34c4fef472689317605db1b1"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a9ca9d24dc87ebb118bd9f70dc43d03f5b54fa5430d27dc08f58224418cf9f02"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:959e07313cdd14025006bdb4974300b7db4c95347c8bc27f5a159695acd4ac85"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:057bf0f0011137ed271ef5901e1af7f4dc2eb1cb8e676348647a7b13db32a843"
+      }
+    ],
+    "sceneHash": "sha256:b7aa8f311ac8c57e21318883ecfd4f2545987308f232654f45dd83c9d89565c7",
+    "qaCamerasHash": "sha256:5df163ddcc006a4e50e528412e2b84ac507264f6a92a4f1fee54c69151aaded9",
+    "placementHash": "sha256:0b24a521e89415247063398b03123b5387207e0e1b244fdb01422112a19a2a5d",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:e572100e9f375327e1ec282a43517f3cccd8b64bd889e677c6d07cd3feb4a995"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-cutout.terrain.json",
+        "hash": "sha256:9819241ac14b55254e89c3f13ab10d7595e06fe1f8d22c6ce36ec419b9bdc502"
+      },
+      {
+        "path": "terrain-cutout.height.png",
+        "hash": "sha256:d04b81d11e018190dacc53c8c8af47945ea6ffdb2187f435d7e3e6ae0baca90e"
+      }
+    ],
+    "framesVerified": 58,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

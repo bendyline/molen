@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0029_poniatowski_bridge",
-  "inputHash": "sha256:3b33a0b585d0020520ab417cecb16a9c7bfd7f65579bbb959f902fc73b44999e",
+  "inputHash": "sha256:c129902772047ea1a387b9f8b7163fa545f2973308c9432e8beba09adf91f9c5",
   "sourceHash": "sha256:8d08cd0f4c7e56683b6d545d0840c29ea3b86fe2cf2cd71e481cb15eeaf2191c",
   "runtimeHash": "sha256:2f99724af4398155adb301672d7b0956da00fd0a9e64f7010ca9f0b7be1c5f45",
   "reviewGroundY": 0,
@@ -1845,5 +1845,14 @@
     "visibleOpen": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:3b33a0b585d0020520ab417cecb16a9c7bfd7f65579bbb959f902fc73b44999e",
+    "inputHash": "sha256:c129902772047ea1a387b9f8b7163fa545f2973308c9432e8beba09adf91f9c5",
+    "previousReportHash": "sha256:fa453cd57e0ec83be9e92c19163c17cc4751716ba8fe0aaac8526f9dd93b2464",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

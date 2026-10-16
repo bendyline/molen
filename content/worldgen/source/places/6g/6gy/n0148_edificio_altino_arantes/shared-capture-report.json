@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0148_edificio_altino_arantes",
-  "inputHash": "sha256:2616c45c685fd6c62e14b315760af0eb9dfa75f06c10dc5f58de125b090f75f0",
+  "inputHash": "sha256:40e856f31a112005940b573da5f0c46c73fc281e9be152251b9693595cc51d7e",
   "sourceHash": "sha256:b546065d2344187367749493b1a3e437824663df64b60b60f1c51cf678b081c8",
   "runtimeHash": "sha256:37c69f98fa47810e881c01fd5d876bf66371c5a78ffae2ab510b672ad0c51757",
   "reviewGroundY": null,
@@ -902,5 +902,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:2616c45c685fd6c62e14b315760af0eb9dfa75f06c10dc5f58de125b090f75f0",
+    "inputHash": "sha256:40e856f31a112005940b573da5f0c46c73fc281e9be152251b9693595cc51d7e",
+    "previousReportHash": "sha256:81935bb90687a6285273740ff221664bc1e1eb9666ad2e0aaf29b2a5bbf8e0f7",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

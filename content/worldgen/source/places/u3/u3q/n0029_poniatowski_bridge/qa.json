@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0029_poniatowski_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:3b33a0b585d0020520ab417cecb16a9c7bfd7f65579bbb959f902fc73b44999e",
+  "inputHash": "sha256:c129902772047ea1a387b9f8b7163fa545f2973308c9432e8beba09adf91f9c5",
   "sourceHash": "sha256:8d08cd0f4c7e56683b6d545d0840c29ea3b86fe2cf2cd71e481cb15eeaf2191c",
   "runtimeHash": "sha256:2f99724af4398155adb301672d7b0956da00fd0a9e64f7010ca9f0b7be1c5f45",
-  "captureReportHash": "sha256:0fb52d95f850ef521b0f4e08461d527aa033e7988b13d921fca8092b3d45369e",
+  "captureReportHash": "sha256:19ecc4a999961ee5db1b14b362532ab2d231227ffe078002f37fbad12c558084",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -36,7 +36,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fa453cd57e0ec83be9e92c19163c17cc4751716ba8fe0aaac8526f9dd93b2464",
+    "captureReportHash": "sha256:8e24c4d9187f7e64c071bdc90cb4b6950587d49a58fb70b0cbc2a062593db162",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -320,5 +320,72 @@
   "limitations": [
     "Inspected current upstream bridge picture: four rebuilt central arches, outer N-trusses, red fascia, tall stone pylons and lower central caps. Retained directed OSM controls place the503.74m river deck, seven piers, four bank towers and curved stairs at their existing positions; published506.13m is a separate nominal definition. Standard viewer PMTiles confirms the Vistula crossing and bank context. Use coarse river-center74.0063m as approximate runtime origin; original77m engineering reconstruction and its native road profile remain preserved without a asserted datum conversion. Bounded river opening and source-local water/bank contacts remove coarse DEM imprint. Road deck levels and stair contacts are approximate; separate701m western approach, exact heraldry/casting, bathymetry and survey joins are excluded.",
     "Four shared material graphs reused; silhouette level bakes their means. Closer levels restore seven ribs, ornate rail impressions, windows, crown crests, stairs and shield benches. Exact emblems, curls, individual stone joints and rivets remain in the original master. No new bespoke terrain research. Physical-device timings unmeasured."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:3b33a0b585d0020520ab417cecb16a9c7bfd7f65579bbb959f902fc73b44999e",
+    "inputHash": "sha256:c129902772047ea1a387b9f8b7163fa545f2973308c9432e8beba09adf91f9c5",
+    "previousQaHash": "sha256:e1ea378bfef4920ef0baf55c22fef215a115983017e4954ce0deda9e3fcfdcfc",
+    "sourceHash": "sha256:8d08cd0f4c7e56683b6d545d0840c29ea3b86fe2cf2cd71e481cb15eeaf2191c",
+    "runtimeHash": "sha256:2f99724af4398155adb301672d7b0956da00fd0a9e64f7010ca9f0b7be1c5f45",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:43faa916e28a5cd6b93d82629485abc7c46bf054348797bb0fc884aec7c121e5"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:5d487addb0c11266ed90cc70127b0acedd0414c5bb4604f22ca191812585808b"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:f85d1dd65fb912960a0062ee99acf80c6c3fb81906d8ee507c60cb5a871ed0da"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:33f0fd33b103ce004e0772bf8e11aff6a87de148178a87b84ee6a39b03537dc0"
+      }
+    ],
+    "sceneHash": "sha256:5aa3733c9de02a951e8a86c07036ab69a2a2e6c3a340cdb50786078b980e0e7d",
+    "qaCamerasHash": "sha256:05e483451358305689e79e91658841a92f26458c1b6e153c714ca95f61031b20",
+    "placementHash": "sha256:e00d5c31256ba2a5557e521b7037b91b6ee9984d76619eb5fa78842c36c698ad",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:2394b668417721137ce9b9f92ca5ec6e26c837c826bcbc559c6f5a32130b83f1"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:32765d394e4b7e559732488a7db65c4f923a88b2c918cdb6ec1acbacf8c4a2ff"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:3d10dd713c6436b66f680528fb22ad5a6a414bf3ef391f704695b37eb0e6ac11"
+      }
+    ],
+    "framesVerified": 82,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

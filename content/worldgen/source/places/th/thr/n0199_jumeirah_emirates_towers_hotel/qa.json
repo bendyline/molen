@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0199_jumeirah_emirates_towers_hotel",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:e86be3bd74b7d57c494f152134861d5f727e203f9543993cf544d3f1c67b6b30",
+  "inputHash": "sha256:50e79ce49b9fab814c7a4f2e29c094e5fec366194040db3efc3524fb1376ecc7",
   "sourceHash": "sha256:f5ef79e5827e30f09d566c2cfe834647fe42e1fc575053b423458e58a39ff528",
   "runtimeHash": "sha256:59b849563492effe74c239d41285d9fc219872d61c5c2c70b3e324b36193e8ed",
-  "captureReportHash": "sha256:b1b0d7726fc391d6cbe93b7cfd3222885555c0a1ef0c97aad8046ed1201e9be5",
+  "captureReportHash": "sha256:1a2627e92faf86a7d52e90e85a38faffb143907e73f820ca14bc73e296c203fe",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8aa4ce7248f5e21a93d9703901f291e3020e3ff0b3369617bd2131830a0d3f91",
+    "captureReportHash": "sha256:677044db2292829611ca0d34866493a1b2ef2412ea845c63873d8d1a39e67401",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -357,5 +357,55 @@
       }
     ],
     "retainedInspectedImageCount": 70
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:e86be3bd74b7d57c494f152134861d5f727e203f9543993cf544d3f1c67b6b30",
+    "inputHash": "sha256:50e79ce49b9fab814c7a4f2e29c094e5fec366194040db3efc3524fb1376ecc7",
+    "previousQaHash": "sha256:689ccca890a1f9af402072515e5087a32b7f0921717714148f07fff128b3fe0c",
+    "sourceHash": "sha256:f5ef79e5827e30f09d566c2cfe834647fe42e1fc575053b423458e58a39ff528",
+    "runtimeHash": "sha256:59b849563492effe74c239d41285d9fc219872d61c5c2c70b3e324b36193e8ed",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:a80099496692870feb90659471306377073208f512869d08934f5b914145e78d"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:0223f74cbf1bccc6570c1ed7338961fb7583fb776b276290e63eb320356b2a86"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:4622bccd4634483a36430be5ce9f42c7827dc35823fe4891724acc56d45c2a6f"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:def57f9d963991d498e399c059b715af17b24c8d316ee31208ea61043be93c72"
+      }
+    ],
+    "sceneHash": "sha256:0d8a760d7a5ff8e3941f4a9c762f42939195d13b4382c1ee4336ec2813792e0d",
+    "qaCamerasHash": "sha256:4c14e889ae52a251ff0e4ba93acb46c1b19a84bf0c94cad076987441aaef0699",
+    "placementHash": "sha256:ccf652acf80276a2e1508d1350ef7a95ecf45f04cff26cb54d12cd81bf91127b",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:8ce98fc8b3579ea6a37fe8fbb6ba11c935e99f0e1f2dcb440cee8be982ac1c0b"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 70,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

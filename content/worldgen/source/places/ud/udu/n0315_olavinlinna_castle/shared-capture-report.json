@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0315_olavinlinna_castle",
-  "inputHash": "sha256:4fa371475d8758050e0f246bd8b7384e472583ade153add831d6bcc93d850cad",
+  "inputHash": "sha256:1e249fbf88d56ce2089aef8228f788b84c564b19bda12a672aadc3f87b8b1192",
   "sourceHash": "sha256:2c95e598db544b5113ccf9e2bee684ad20cbbba2597ebff36c85082b3cd4e474",
   "runtimeHash": "sha256:fe4f34bccca774c512561ebd1a7efbdc7ba92baf5e1058dde9eaf0fd5d8f0a0e",
   "reviewGroundY": -10,
@@ -1077,5 +1077,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:4fa371475d8758050e0f246bd8b7384e472583ade153add831d6bcc93d850cad",
+    "inputHash": "sha256:1e249fbf88d56ce2089aef8228f788b84c564b19bda12a672aadc3f87b8b1192",
+    "previousReportHash": "sha256:736318517090f3be8138033f15727d22f23c68e6491378dc5a0e2ec14d572915",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

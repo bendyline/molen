@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0195_3_world_trade_center",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:13eb6bd1ba3a079367eec33431108a957b7af037ace645b3a7b12a36f2654acd",
+  "inputHash": "sha256:c1d003c4eea466cd3a518f36a8a3412559edd9b06684ae2ebb681f9e18490d83",
   "sourceHash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
   "runtimeHash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
-  "captureReportHash": "sha256:c5a501963a068d86efbc1ff4a9aa264723ad8bf2021f6b6b8157eaca1dd4a535",
+  "captureReportHash": "sha256:ca5bccd78a8082c7fa7879d7a661898571bc449c6c9ed24eb21f2b0a2c1337a6",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -32,7 +32,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:044c8683c44dcf45b0303691266e644064b1e16e7c37127eda140a62556209c4",
+    "captureReportHash": "sha256:c3c4af87e5086dda60d72301e39e2063708feb7be951f841f18e5b70d731ab21",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -360,5 +360,55 @@
       }
     ],
     "retainedInspectedImageCount": 73
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:13eb6bd1ba3a079367eec33431108a957b7af037ace645b3a7b12a36f2654acd",
+    "inputHash": "sha256:c1d003c4eea466cd3a518f36a8a3412559edd9b06684ae2ebb681f9e18490d83",
+    "previousQaHash": "sha256:797633aeaa3f69338319b0fedca8923317993429d1479947508c9c09d99dd0e4",
+    "sourceHash": "sha256:2c3871a64cecdf8642836e38bcc58d8cc5819306178cb549f9b7285d1f0ddd68",
+    "runtimeHash": "sha256:66c0c411e6d7292cbbe8f60e4b9d8515e762d4c47c240661d2885a4f75c4b0bd",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:f2b035e345db9364e63a9f759da4676357d51d711ff21f795646035c7509fe5f"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:c3507800fd82dfc425ff96fab4cd469c0c72732f736e118960c31d24b163853a"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:16abc0940c978d0a661365d333ebcc38d5ba3bebf8619edd5188ed6f0dbcc92d"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:560af81c3ef07654794f1ca572a6c0eec4c1faa5813b09e80e16c299b887903a"
+      }
+    ],
+    "sceneHash": "sha256:110e66f4cde179a9711d97985f65de9f5b7934bc5d80addcecede3ad7c93ce9c",
+    "qaCamerasHash": "sha256:6f68bf56aa44814e9e7158600fb12309a35773ed15049822a48b2bc089562c27",
+    "placementHash": "sha256:fbeabb25cc82b6971b31a23856c57fbe3d88699580d241d61c2c2f92f192f0c8",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:37afbfa46edaba7029d85c6a4be2c93cd21fc561df2752669895b2dfefc37d68"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/metal_stainless.matgraph.json",
+        "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
+      },
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 73,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

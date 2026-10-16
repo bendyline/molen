@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0387_crystal_cathedral",
-  "inputHash": "sha256:746e4b414678b844c2a0a6a6ac8613a2c5dee3c99e84c9d03388e31d5814ded1",
+  "inputHash": "sha256:32793049bc04387e7fcb8bd09d071c7540de3fe4e735b2304df41b8c62795c50",
   "sourceHash": "sha256:2aa1548f65441586177b2bea9cdf9ec7117f254b081458c7390fe0a9449ca89c",
   "runtimeHash": "sha256:545c96a78746d1192dffb675be72a8b3ea0966d219a1f35658a6b0e0ad05e6b0",
   "reviewGroundY": 0,
@@ -1025,5 +1025,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:746e4b414678b844c2a0a6a6ac8613a2c5dee3c99e84c9d03388e31d5814ded1",
+    "inputHash": "sha256:32793049bc04387e7fcb8bd09d071c7540de3fe4e735b2304df41b8c62795c50",
+    "previousReportHash": "sha256:c2181b29462e1ef6220d3680605cc42b1f14d3bbf05a2912531d714ab2b0933b",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

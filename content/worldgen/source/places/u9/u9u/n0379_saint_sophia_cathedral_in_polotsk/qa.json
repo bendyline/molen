@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0379_saint_sophia_cathedral_in_polotsk",
   "reviewedOn": "2026-10-15",
-  "inputHash": "sha256:bbf2cc398cfe619d1724d37695061c4985cdf815b8d4cd5e6c860e09da8892b5",
+  "inputHash": "sha256:41fb143ac74367fe6cb55789cc22373e82608eb02388b4f83d2b8be17d9c4a01",
   "sourceHash": "sha256:46d9afe9f5959d12307033afb23e4029bb87d06e77895536118ba3e7d211621e",
   "runtimeHash": "sha256:ad15dec155cda0af0f312d3f56d85e6575597b9405ac990ce1e8230a7158f321",
-  "captureReportHash": "sha256:c838cde1176cf4099ca837038b4dfc4667964bb8999e8e5883f6e915bbea3b9e",
+  "captureReportHash": "sha256:b779be030bc6470a195b850298bc658915ce655d0ae117f1fb4df3fc9e9f9ee8",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -39,7 +39,7 @@
       "shots/shared/placement.png"
     ],
     "notes": "Inspected all 11 current shared/geographic frames. Four existing cached 256-square lime-plaster, limestone, standing-seam metal and plain-wood graphs serve six merged groups. Linear off-white/green/wood tints, metric UVs and flat architectural normals; glass/ironwork use geometric PBR colors. No embedded images or unique facade maps. Each graph reads once; unloading disposes geometry and leaves zero live model geometries. Close views show green metal seam rhythm, open two-tier belfries, recessed tall windows/wood portal and low service glazing. Top placement matches front paired corners, rounded rear and side projections. Whole views include the full envelope and estimated 55 m tips; detail crops intentionally exclude other sections. Flat diagnostic ground does not establish surveyed hilltop paving.",
-    "captureReportHash": "sha256:b6af73bc3cb7c0a7a0750e37cf17bc0d068a1c1091e6f18ea8115cc099e1a937"
+    "captureReportHash": "sha256:bf575e4892ae808863f2c580a9b55315b167ffea0f6d4806ad3bdb203d60e671"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -167,5 +167,72 @@
     "Standard viewer DEM datum 133.974217m; display floor0.4m, raw whole perimeter -2.26..-0.00m. Footings extend below coarse terrain; short local entrance steps approach a threshold0.3m above model floor. Exact hilltop paving/door joins, absolute altitude and walking remain unverified. No global flattening or road replacement.",
     "Medium-fi exterior from two inspected2025 front/2006 reverse-side pictures and standard viewer PMTiles/DEM only. Cartographic5m height is retained but is not a measured cathedral height; all modeled vertical levels and internal partitions are estimated. Fine stucco/iron scrollwork, inscriptions, exact hidden rear/door details, full interiors/bells and surveyed paving/thresholds remain approximate or excluded. Physical phone/laptop timings pending.",
     "Skyline retains white stepped twin towers/green caps/crosses, shaped central gable, nave and rounded apse/side chapels. District adds shared textures, flat arched fields and actual open belfries. Street adds recessed glazing/wood portal, simple pilasters and blind arches; closeup/master refine frames/finials. Synthetic cottages are fixtures."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:bbf2cc398cfe619d1724d37695061c4985cdf815b8d4cd5e6c860e09da8892b5",
+    "inputHash": "sha256:41fb143ac74367fe6cb55789cc22373e82608eb02388b4f83d2b8be17d9c4a01",
+    "previousQaHash": "sha256:d04297f2573c631a5bfdb92790177a0a1afdd353d385b39466d9384955dc7bef",
+    "sourceHash": "sha256:46d9afe9f5959d12307033afb23e4029bb87d06e77895536118ba3e7d211621e",
+    "runtimeHash": "sha256:ad15dec155cda0af0f312d3f56d85e6575597b9405ac990ce1e8230a7158f321",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:e4a911170eaa31f859c1a37c81051d44df65d5ac93a53a26673750d4cdfe9619"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e3def9e969c22b046cc96502c4833b899bc4907d8e9c80e361650e2c04bd4da8"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:b294998d7f49ff7ebd6590aab760c403ed88a172b000d07f9df8ed0998716ca6"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:76cefc2e684cd6123b1b087890af7191234bca62d98a17b9daadcc06d5d10b1b"
+      }
+    ],
+    "sceneHash": "sha256:7abd0533e39871126050c597173cfe1a448911253274d76a663b0342ef0239f2",
+    "qaCamerasHash": "sha256:d66d72923d466d4474027fe7615e11bcb63b866fada5daf4ca7a63f294bd3c2e",
+    "placementHash": "sha256:a0fe09f404f834d082b2c4163d8f4f67ae420db657f4ce7f86e1f917cbf86407",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:f5e02d4749f93082c347fd32b8a6c9525e44537b9e664ddc808c5e172789c52a"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:3cf3032a5981d44199639d8d8f985f7a9966a1c5203f418fd255bede52408fdf"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:0527cd070e32461922ce5c32d30d6549cb1b54b8248bd13fee7268ec30864f44"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

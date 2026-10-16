@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0260_khotyn_fortress",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:4bee2d11f5c873532f09a6269924b447e95108c4787450297e9922eab26f1c92",
+  "inputHash": "sha256:6914ab191af2e1c06978c9debf12cd71a2441a42ec4fdac581ce837b572db147",
   "sourceHash": "sha256:afe6886547cdfc71acd06a77cfbbf5ee0423f75ceef7ebfe6e79816a9c868121",
   "runtimeHash": "sha256:b231a43f811056f68bac0e7bb35ee98f81cee879b4645316fd0c46b2e0d1b0e5",
-  "captureReportHash": "sha256:32dc1821659cf00167b324afd34cd703dce9643e1a4fdec9a72e948003d89bde",
+  "captureReportHash": "sha256:d5ca421aec29abbcaf55f42c8e9a26682ccd4c370b5519b8e95ac16e194aeba8",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -28,7 +28,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:0103adad71587cb4305dbf0d58629cc37e7083053f76dc84978802d5db32488f",
+    "captureReportHash": "sha256:747bb7914e467c5d41a50918ad33f1d8c1f947bbe323bd8491b2f9ba836e716d",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -349,5 +349,72 @@
       "shots/grade/closeup-open-well-pavilion.png"
     ],
     "notes": "All35 final normal-placement images inspected: master plus four browser tiers at seven views covering whole citadel, gate/bridge, river curtains, west foundation, real open portal, palace veranda/chapel and open well. Each state samples the signed anchor once, passes three retained outside-ground probes within0.015 m fixture offset, three outward foundation rays and three lateral passage rays. Model court floor stays above occupied decoded grade; bounded masonry plinth remains buried into retained ground. Timber bridge meets the portal and outer apron meets sampled ground. Host terrain remains uncut, including below bridge; coarse terrain does not resolve the historical moat. Five unloads retain original ground geometry and dispose every model geometry. This is rendered-contact evidence, not a surveyed court/river-bank profile."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:4bee2d11f5c873532f09a6269924b447e95108c4787450297e9922eab26f1c92",
+    "inputHash": "sha256:6914ab191af2e1c06978c9debf12cd71a2441a42ec4fdac581ce837b572db147",
+    "previousQaHash": "sha256:e6b0abad2e1e88db45e9005a080c81b633b11b50073319ec0a2b6c3125cce3d4",
+    "sourceHash": "sha256:afe6886547cdfc71acd06a77cfbbf5ee0423f75ceef7ebfe6e79816a9c868121",
+    "runtimeHash": "sha256:b231a43f811056f68bac0e7bb35ee98f81cee879b4645316fd0c46b2e0d1b0e5",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:527a9816cc04d794d0858c9c6ccf7a3f160e0cf85fae47b1a7943233f16e9b5d"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e83d20b3ccc068324325dcfd5e633eecfd7d21a81aea9bbbb432d2d59b0a9964"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:3ba8650298e2fe67355330a0dabc9eb0bd8ac0aee3eb910f73da8adc7167432f"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:23f6871677dc38665b4db18a8e94d4a907196982acf98d44cc56ab1ab5da775c"
+      }
+    ],
+    "sceneHash": "sha256:111ba6388df3dfd4e4b9efe155756e6a462df0d59cceb0a0964a33bd9f850fc7",
+    "qaCamerasHash": "sha256:8d4df4efea0ec5fbfbd2d65ce76cd0705bcba1610dde55369aaee120d5652a55",
+    "placementHash": "sha256:790d8c2c089615c5143f3d83c4c2783afdfca2ad7dccf8750937004b8e8981f0",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:ac73e3b901121afd6f64ad12b117d43afe15cbf1b29b0d3e21892618c7ecbbdf"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/shingle_cedar.matgraph.json",
+        "hash": "sha256:da2d5afad62132e4108afa85f07ead25b88396297f3f3bdafc3693eaac2b878e"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:b8972dd4266950cd7e4ee8e581d19eeb89880a83552223eaa39f91eec4be4120"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:9d21bff0fcfabd61386ec3dc107cfacee1e68d78ef7c45a217f5197b493f548e"
+      }
+    ],
+    "framesVerified": 58,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

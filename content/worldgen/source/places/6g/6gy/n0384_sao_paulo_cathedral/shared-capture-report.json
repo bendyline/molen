@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0384_sao_paulo_cathedral",
-  "inputHash": "sha256:b6486cee2c73b9ddbe4671e58e569929b126c847f204ea093acd3688e5ff00e4",
+  "inputHash": "sha256:9c3ed20f04938650b47d7a3c9dea2c81633ebb3c7e644cb36ef6e2040d1b04ad",
   "sourceHash": "sha256:e602d4d430499c7e8d6dffbaaf0a665fcca9ea49083f6b91a285a3a5cc10ab49",
   "runtimeHash": "sha256:5bbd13cdb6ded1ebb378b14b148350837a712b416549003199b8ec642632ff98",
   "reviewGroundY": 0,
@@ -1157,5 +1157,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:b6486cee2c73b9ddbe4671e58e569929b126c847f204ea093acd3688e5ff00e4",
+    "inputHash": "sha256:9c3ed20f04938650b47d7a3c9dea2c81633ebb3c7e644cb36ef6e2040d1b04ad",
+    "previousReportHash": "sha256:30c4b498c9e19db600b6bb336b806324283e57420cc9a15bb63436904ccb15ff",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

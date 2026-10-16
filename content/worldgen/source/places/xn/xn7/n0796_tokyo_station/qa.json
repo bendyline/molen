@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0796_tokyo_station",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:d346c96607b6b3d3fabea03b11638c066fdef8abd255731c2a882dc8c9222386",
+  "inputHash": "sha256:1ec8f7190cc364d55213cbdda5b5dc8e898b54ffaa580483c05073c0dba8ea35",
   "sourceHash": "sha256:6201210010cb118eb9e0f676b401dd27c4ab4f777fbf79555306aa48fddcaf07",
   "runtimeHash": "sha256:f28a30b846840cff261a43f981a8b6580c3ff67731430bb933a8104ab7c44725",
-  "captureReportHash": "sha256:3c08e1d831cbb0c35cddc326a24260aacc49cebb8e7c14493be4eb9e7f5d5787",
+  "captureReportHash": "sha256:f02e70e59a169a90c18000c7d516d1772a271376c7b761b80c77140e58567947",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:20783d5e0b9e9cd5b30621d7e5f82f8842ec86c423e62281dba2052b156dd8aa",
+    "captureReportHash": "sha256:857db192051218c9001e711301cfdc300cbd7a0411c3533e137d987e5d97de24",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -338,5 +338,72 @@
       }
     ],
     "retainedInspectedImageCount": 49
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:d346c96607b6b3d3fabea03b11638c066fdef8abd255731c2a882dc8c9222386",
+    "inputHash": "sha256:1ec8f7190cc364d55213cbdda5b5dc8e898b54ffaa580483c05073c0dba8ea35",
+    "previousQaHash": "sha256:c901d395b04d4e1584eba4f77de37c9ac32e2847fc9ab251bc93cd5696a2fff2",
+    "sourceHash": "sha256:6201210010cb118eb9e0f676b401dd27c4ab4f777fbf79555306aa48fddcaf07",
+    "runtimeHash": "sha256:f28a30b846840cff261a43f981a8b6580c3ff67731430bb933a8104ab7c44725",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:38f6d7cbd1dc7cffd6a63bc18d16d26f83f4891c462077ce5de49ecc0930ec39"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:a9e3b081076d5134ec342fd59ee9156a68346d223f5610b0288aea3b403e3098"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:0e5781c6b530415383918c7122c24cdedee279ee2f4e5d0d84dc14f86af3f9c1"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:7c3a4cebe9ada28955b0589dff6603806364ce1f075ac1a7c287e34458515664"
+      }
+    ],
+    "sceneHash": "sha256:b12093e72a92ded03bf08bf56bb63606384f004671612bcbc48bc14812d26965",
+    "qaCamerasHash": "sha256:397b33e4fca6cafc04806f9d7028703e6dceecdb36ed2bb775e2fb6f7a5aac3e",
+    "placementHash": "sha256:0363afb0393540b2fa949726504dabfc9796f3d159291b740b25b98d0bfc5776",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:c6767e5a56a777c46d7e2189c9c534ee0c06e90f059f6ee0f84dee1e9449af8f"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-cutout.terrain.json",
+        "hash": "sha256:2202ab3a009a2d8fd83b5654ccdce5aac158fc227125b985447bee1da1469895"
+      },
+      {
+        "path": "terrain-cutout.height.png",
+        "hash": "sha256:b7b9afc8809e07c024fc547fbd5c61b7274953575bcb7f199eb32dd5ae91f7d3"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

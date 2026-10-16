@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0379_saint_sophia_cathedral_in_polotsk",
-  "inputHash": "sha256:bbf2cc398cfe619d1724d37695061c4985cdf815b8d4cd5e6c860e09da8892b5",
+  "inputHash": "sha256:41fb143ac74367fe6cb55789cc22373e82608eb02388b4f83d2b8be17d9c4a01",
   "sourceHash": "sha256:46d9afe9f5959d12307033afb23e4029bb87d06e77895536118ba3e7d211621e",
   "runtimeHash": "sha256:ad15dec155cda0af0f312d3f56d85e6575597b9405ac990ce1e8230a7158f321",
   "reviewGroundY": 0,
@@ -1025,5 +1025,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:bbf2cc398cfe619d1724d37695061c4985cdf815b8d4cd5e6c860e09da8892b5",
+    "inputHash": "sha256:41fb143ac74367fe6cb55789cc22373e82608eb02388b4f83d2b8be17d9c4a01",
+    "previousReportHash": "sha256:b6af73bc3cb7c0a7a0750e37cf17bc0d068a1c1091e6f18ea8115cc099e1a937",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

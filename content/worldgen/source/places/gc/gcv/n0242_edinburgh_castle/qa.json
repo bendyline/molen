@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0242_edinburgh_castle",
   "reviewedOn": "2026-10-11",
-  "inputHash": "sha256:95097f6cb79bf399d730a4af6f2203783006deee3627c2fd75b8df2aad009f8b",
+  "inputHash": "sha256:4b84a965778061d502e636d7c27f8927e20a3e4f3693bc3fdb7c7d34175d3ffb",
   "sourceHash": "sha256:46932b0fcfc354df497b50aa6c4a1ea9a70f0cab69422daf307f9b61829baa14",
   "runtimeHash": "sha256:9c8e3f92246e29f2683a5fa7566437c2d42ca9235040ef900ad3c65d7c49bcfc",
-  "captureReportHash": "sha256:ceb6b6a247742083c66e0c62f90286a1d6a85a36d03030d583c52917fe1460f8",
+  "captureReportHash": "sha256:809d0845a0f04a661d1be3e5bce28aafab70255b397245cfd5dc97eec85e6a51",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -30,7 +30,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ed1de38b82af4472ac0ede9a666e8f8451837f8af4e4b42be42fac9ac977e00c",
+    "captureReportHash": "sha256:0c23bc44af48156f9d8ea1fff5046b9cd34f367f40383f21a93260de68e1da3b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -351,5 +351,67 @@
       "shots/grade/closeup-drawbridge-through-open-entrance.png"
     ],
     "notes": "Actually inspected35 current terrain images:seven cameras across master and four browser levels. Public Scottish Phase5 OGL3 retains exact0.5m Float32 crops and a6695-value3m native grid converted with OSTN15. Y0 uses east-gate source height111.547m relatively; the runtime reference subtracts the matching3m interpolated bare earth -0.3228723m rather than the raised road floor0. This removes a32cm whole-model offset. Working floors are CrownSquare20m,chapel21.8m,NewBarracks11m,Hospital3.8m and Portcullis7m. Foundations extend below local slopes. The model supplies masonry and paving without duplicating CastleRock. A reversible mask covers only connected court/battery paving and the mapped4m approach road beneath a4.8m cap. Road retaining faces close the actual inset mask edge; separate court inward/upward and outward/downward faces close the formerly exposed sky seam while preserving external foundations. The final battery and through-entrance views show both seams closed. Pole detail was reduced to a tiny triangular shaft in skyline to keep the closed retaining faces within1000triangles. Three actual grid-vertex probes show.015m clearance,five mapped occupied-wall ray sets check contact,two paving probes and two passage probes check visible floors. Five unload cycles restore the ground and leave0model geometries. Coarse grid relief and reconstructed paving gradients are approximate; host terrain must provide comparable local detail. Exact tile vintage and absolute vertical datum are not asserted; restricted Scottish Ten data is excluded."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:95097f6cb79bf399d730a4af6f2203783006deee3627c2fd75b8df2aad009f8b",
+    "inputHash": "sha256:4b84a965778061d502e636d7c27f8927e20a3e4f3693bc3fdb7c7d34175d3ffb",
+    "previousQaHash": "sha256:5882b8474e241164a967a7ad60f83e82cb2ba98af6679c8dc26699025cf86483",
+    "sourceHash": "sha256:46932b0fcfc354df497b50aa6c4a1ea9a70f0cab69422daf307f9b61829baa14",
+    "runtimeHash": "sha256:9c8e3f92246e29f2683a5fa7566437c2d42ca9235040ef900ad3c65d7c49bcfc",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:b176c33960f243d19ed25f8e6e2ad7e349b9e8e7dcadbf7af636b1910260d5b2"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:403d89eff5c953a6df69f213e48d60f4522f11a65786b4d689fa47633534bc3e"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:4b076adf8e8b0c7cf02f0f0de20873863385d9fa827adba14421c2be5d581214"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:ab4da99e26fa6e457a993fefe597bbb18d14210bdae837ea1b8979f0c4146c46"
+      }
+    ],
+    "sceneHash": "sha256:0c5096a28bad72864a54522ca1470b63f7765ea82dad4c885f1b3713684214c2",
+    "qaCamerasHash": "sha256:562c3e80e3d2da28932751b52cd8ba97f5d4675fb55d585cebf1019983d3e71e",
+    "placementHash": "sha256:7383635555d9ffc58a1bec98cae214392dbf46ad41dab8d0cd1eda16251c0322",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:12c5f7557ecb466736b6f8da2e0cbf6da7160f3dda27690822fb49173baaaf25"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 64,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

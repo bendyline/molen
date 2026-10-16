@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0310_margat",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:fdaad056ff2bb011a0a438c3522d4056dfad223fb9fa0d261f2ac6eb5ef62761",
+  "inputHash": "sha256:f171a9a5c111f6ef0c6892031c34accc0f051c14b47fe98f62ffef634f17f893",
   "sourceHash": "sha256:348610288e1cf9eb1fe5b28a449729af050567ae9ac608efde9885ff836d6738",
   "runtimeHash": "sha256:b8cc9a5fce9e775d24c82dd18ba81ddf54bc4f27fe26ecec320898673d5f4905",
-  "captureReportHash": "sha256:cb004509f100c36944e09cd99d662ca4ec1dacb59e2329110f526696e9632aec",
+  "captureReportHash": "sha256:b51f1c567f3f4260634b4ff79849c16f2290e4b9490c343ae71dabac2d814c61",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,7 +25,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:58a29dc3bd1e2770fb9ec7afb8133558cde0e19dc129c94ac192dd1cdd8e0895",
+    "captureReportHash": "sha256:7d06e892a807511993157206024e4973ff122b4faa186687eb42a19fc11aa6c7",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -302,5 +302,68 @@
     "Architectural heights, outer curtains/bastion locations, broken profiles, portal bearing and precise terrain contact are reconstructed from pictures and coarse standard PMTiles, not surveyed.",
     "Northern settlement, lost fortifications, vegetation, frescoes, room interiors and certified traversable collision are excluded. No claim of complete archaeological or engineering reconstruction.",
     "Physical laptop and phone frame-rate measurements remain pending."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:fdaad056ff2bb011a0a438c3522d4056dfad223fb9fa0d261f2ac6eb5ef62761",
+    "inputHash": "sha256:f171a9a5c111f6ef0c6892031c34accc0f051c14b47fe98f62ffef634f17f893",
+    "previousQaHash": "sha256:e396b8c60c1be1dc0c33fcc92e8a4485075acc998205d82b4d8f848fa865c74f",
+    "sourceHash": "sha256:348610288e1cf9eb1fe5b28a449729af050567ae9ac608efde9885ff836d6738",
+    "runtimeHash": "sha256:b8cc9a5fce9e775d24c82dd18ba81ddf54bc4f27fe26ecec320898673d5f4905",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:20c4364bb535f8a9bacd0f6bb66439de57aa2b2987877c95e87331d6bda08f2e"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:c4c0508d19ce3fadecbfda0525656987df52335205a580a54c4e23f6d78506bf"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:216d26859b2cfd22385fb2ac953b305ea991ac30dc138627999a6f7a9f1db256"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:a8db926438e37b5db17ae236d7b9d3aef8fb8d9fe91156e1b6667fc416ab0cfe"
+      }
+    ],
+    "sceneHash": "sha256:5497f6d1e4bfcf9b6716e4af2b0b2040a7e4465d2c42df353af50c4a727e1dd2",
+    "qaCamerasHash": "sha256:6ec22bcfd53279f90dacc64062025234493cb750988943c2ac2d1df3bd494c79",
+    "placementHash": "sha256:02d7cca06acddb00cf4a9231eb66d525ea7b8a21c6295093de5a0ed141d29308",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:6a51ec5c07be382a6df1910bea580c568a040bab77864b8b257885e874edb632"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_basalt.matgraph.json",
+        "hash": "sha256:41efa6ad89840fdf50772224f4eabb544099dc0cafa791c3a85f916b44b9bf8c"
+      },
+      {
+        "path": "materials/gravel.matgraph.json",
+        "hash": "sha256:0783a09d97d73a088d929b62693d03bfb218162391774a0c0e19dd37556fe1ec"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:b3def24bdafda3d2342fc23793fb99e167ee2900a3cf52aebafb3291b7c1ead7"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:58b704c92ea19056a39192185ecd4e1f6e92b7b4a45184df36ae6658d3bf5b0c"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

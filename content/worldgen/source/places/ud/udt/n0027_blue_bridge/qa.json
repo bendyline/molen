@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0027_blue_bridge",
   "reviewedOn": "2026-10-12",
-  "inputHash": "sha256:66c2feecc89a84eef6eec360dc357892261d25aa33fe034d88bc0c793fe7fdef",
+  "inputHash": "sha256:5a44f73342e005c3389f80de6de3995a2110361761b21fb170fa18b92a45bbbd",
   "sourceHash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
   "runtimeHash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
-  "captureReportHash": "sha256:34f86724c154b0be35a189d32a6ce9687042ec6562cee6f02ddd36e076322781",
+  "captureReportHash": "sha256:5b691d2d2f7a0d13d835b4adf8c91cee21db4d9742b782b460c8eb8abc216450",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -30,7 +30,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5985ebbfc10c01a1e839bd12a036abf860fb22627b75ca6c99c669e895c68442",
+    "captureReportHash": "sha256:a8481b8155b809e968fce55993c4e3c5e8f599c3028db3d9199f2a17a852d587",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -352,5 +352,68 @@
       }
     ],
     "retainedInspectedImageCount": 64
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:66c2feecc89a84eef6eec360dc357892261d25aa33fe034d88bc0c793fe7fdef",
+    "inputHash": "sha256:5a44f73342e005c3389f80de6de3995a2110361761b21fb170fa18b92a45bbbd",
+    "previousQaHash": "sha256:0ec7f625ca2701737ba33b8e42297fef34ce29bbfac4778068e6733b297da4bc",
+    "sourceHash": "sha256:e04f0ec552d9c64277dc4dc84e5c0ad9a390ae99f87fad453e40c5da8ef6d466",
+    "runtimeHash": "sha256:f5a4c78ba06ee1c587ebd9d44cbd2119b5ba7e18f7705d2b363bca64bf22297e",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:c4580e47d8e9420ec105d176259e4b22fa3fe2207f6cbeb827feaee107158fc8"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:e2647f6355ad5b0c05b3752b7850fd4809cfc80a76c51390093e94be7b381f3c"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:5529b0637fe85cd6ab7e62cd5a31c6fe9f3e2f6bee31aa2016554f26b76122b0"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:7fac11cc9a9b4b88bea6710eaac027ab972176c7bc9fae2d4f02b878abc21e0c"
+      }
+    ],
+    "sceneHash": "sha256:df9db3bef2f9fd133e6cb41f702de6e3742c7adef7294bb84f4ae892dfaa64e0",
+    "qaCamerasHash": "sha256:f0c4f17ba8c3ae40f86dfef2f5b5ab52d0cc94c1356a078335fda606122b75db",
+    "placementHash": "sha256:0179fbd9e79d3159d9cc334d79e589aa8cd7aa651c313afa9a64406841154b00",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:d552dd75b2bab90003d05d0287c77b45c12971c70b5c94c6a35123547152b2dd"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_granite.matgraph.json",
+        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-fit.terrain.json",
+        "hash": "sha256:24ca177f541994187154040be7ec195dee5d142f6b8ad0fd72acbe1a7ff9cd9f"
+      },
+      {
+        "path": "terrain-fit.height.png",
+        "hash": "sha256:da34ba9596675a8b205aaa1a970b990d7102adffa610cc6f4409351e2bfe68b1"
+      }
+    ],
+    "framesVerified": 64,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0148_edificio_altino_arantes",
   "reviewedOn": "2026-10-09",
-  "inputHash": "sha256:2616c45c685fd6c62e14b315760af0eb9dfa75f06c10dc5f58de125b090f75f0",
+  "inputHash": "sha256:40e856f31a112005940b573da5f0c46c73fc281e9be152251b9693595cc51d7e",
   "sourceHash": "sha256:b546065d2344187367749493b1a3e437824663df64b60b60f1c51cf678b081c8",
   "runtimeHash": "sha256:37c69f98fa47810e881c01fd5d876bf66371c5a78ffae2ab510b672ad0c51757",
-  "captureReportHash": "sha256:61e920d9709521c57fb9313f4971b1c3b308469da38aa36c6da5337f437c17a6",
+  "captureReportHash": "sha256:ed013b1245391568e6205cb081dbd3a7956a22aa31bf4a954a574f67a371bc8d",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -27,7 +27,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:81935bb90687a6285273740ff221664bc1e1eb9666ad2e0aaf29b2a5bbf8e0f7",
+    "captureReportHash": "sha256:eec7983f8e55a33076dd9be3c784fa13d511c908e2604455b109ed69c5be58c7",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -294,5 +294,59 @@
     "Exterior reconstruction from operator dimensions, dated photos/plans and attributed OSM perimeter/upper part. Exact1119window correspondence, minor rooftop fixtures and interiors are excluded.",
     "Shared5cm mosaic approximates smaller ceramic pieces; no photographs or separate baked texture copies. Setback heights and projecting outlook band are reconstructed. Convex collision is exterior only.",
     "The datum for adjoining streets and podium has not been surveyed. Host terrain supplies nativeY0; mapped address entrance faces -Z."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:2616c45c685fd6c62e14b315760af0eb9dfa75f06c10dc5f58de125b090f75f0",
+    "inputHash": "sha256:40e856f31a112005940b573da5f0c46c73fc281e9be152251b9693595cc51d7e",
+    "previousQaHash": "sha256:7e9b9ccf11b6be321c4ecd1ed6dd1418a623b1cc4ad0c45526f694d25175df55",
+    "sourceHash": "sha256:b546065d2344187367749493b1a3e437824663df64b60b60f1c51cf678b081c8",
+    "runtimeHash": "sha256:37c69f98fa47810e881c01fd5d876bf66371c5a78ffae2ab510b672ad0c51757",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:300ff8857721e2e7d6414d2ffdfaa5d7a939c4a32385ad4abe3d53cb28e21b0d"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:55b5d6f6f7117b73db927c4285e25cbb8dad8b8e63bca451d1be419f8ea033b0"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:3409a1e68ae1698d1f402db1e1aef693d311d0d93ab7b242ee976b542c32ff7c"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:c286b7a405e0eae6c5e580ebe8932d5b7bbb88dac21e297796ffb18ca9458446"
+      }
+    ],
+    "sceneHash": "sha256:2e8caf5991729c1b5cebd1a6c9f84fdcccf9ed035bd410659eb73ea95292ab22",
+    "qaCamerasHash": "sha256:bb0c22ee16c6c2f20966e04f43031c80205691e72224a0c78a0ec2e04ae7d834",
+    "placementHash": "sha256:99e719db29241abb4bdd2fb9849a1cff0040cd34150f07a4953e042bd84069a8",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:4349c9bda66745b752001b5a3906b80d2715462721f68384b92ca51ec5d03c71"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/tile_mosaic.matgraph.json",
+        "hash": "sha256:4588b0d86337ef684fcff456751cf630a16907d5bcacb798aea7b516e3fd7ad0"
+      },
+      {
+        "path": "materials/fabric_canvas.matgraph.json",
+        "hash": "sha256:976bdd6522a098da4129dcd7d33e4c7df97a7e49f2d4329143028ff5af8cfd4a"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 53,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

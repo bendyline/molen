@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0382_cathedral_of_our_lady_immaculate",
   "reviewedOn": "2026-10-15",
-  "inputHash": "sha256:7108e75cd8489c0e8f7614807396e407ba1dcc11e25eaae6d24d070d7d2b4cda",
+  "inputHash": "sha256:bfa630a1672445540ecc3dbd49ff319b12df25427611094d14678d5b4e6e02a2",
   "sourceHash": "sha256:7b6c0a029638f1310409c99d1c9ec77fd87abc0007ad869d875acaa7a4d4aeb5",
   "runtimeHash": "sha256:5f2b7f83d72ed4d8b8af9d299ab30ffe1ae9b7821a5d26da4d10cd6b226fb6bc",
-  "captureReportHash": "sha256:226aedd97742a2b1829311ff25a42cc09c8c6a4ab3bbb85683cb402fd6b5989f",
+  "captureReportHash": "sha256:dc187f7129d8c58708b8fdde42ecd9535578b4723f646e0ebd6b4e2d9f72a7fa",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -39,7 +39,7 @@
       "shots/shared/placement.png"
     ],
     "notes": "Inspected all 11 current shared/geographic frames. Four existing cached 256-square graphs—coursed limestone, continuous limestone, flat tile and plain wood—serve six groups at street/closeup/master, five at district and one at skyline. Metric UVs, linear pale-stone/red-tile/wood tints and flat architectural normals preserve shared style. Glass and small stone accents use local PBR colors. No embedded images, unique facade maps or baked shadows. Each graph reads once, unloading disposes geometry and zero model geometries remain live. Close views show the deep porches, two-stage supports, timber portals/stone tympana, wheel rose, side openings and actual clear belfry arches. Top placement retains the mapped whole, four neighbors and front plaza. Flat geographic diagnostic ground does not establish contact with the host DEM.",
-    "captureReportHash": "sha256:f98e3d9d4e9499813e883490b3a3f011b2eab4e089a34e176441a69e979f9568"
+    "captureReportHash": "sha256:22edd7b94c0b1eaf6ecd4ff53ce09d8dfd5ebad8931b15e2c52747d8238123c5"
   },
   "mediumFiReview": {
     "status": "passed",
@@ -168,5 +168,72 @@
     "Medium-fi exterior from three inspected2015/2021 front and west-transept pictures plus standard viewer PMTiles/DEM only. All heights/internal partitions,opposite/hidden rear/roof/tower details and minor chapel functions are estimates. Wheel rose/tracery,abstract relief/figures,porch carving,roof decoration,full interiors and exact paving/street thresholds are simplified or excluded. Physical phone/laptop timings pending.",
     "Source preview includes a bounded estimated plaza grade to show the exterior on noisy coarse coastal terrain;it does not alter host DEM. Runtime front skirt exposure/rear clipping and exact terrain/door contact remain unverified.",
     "Skyline retains three-porch front silhouette,red roofs,rounded rear/side forms,paired low tower caps and octagonal lantern;small windows/recesses omitted. District adds shared surfaces,flat glazing/doors,actual porch recesses/open belfries. Street adds major recessed body glazing/deep portals,flat small fields,rose spokes and columns/cornices;closeup/master add the small recesses,shallow blind arcades,abstract relief/figures and finer frames. Synthetic cottages are fixtures."
-  ]
+  ],
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:7108e75cd8489c0e8f7614807396e407ba1dcc11e25eaae6d24d070d7d2b4cda",
+    "inputHash": "sha256:bfa630a1672445540ecc3dbd49ff319b12df25427611094d14678d5b4e6e02a2",
+    "previousQaHash": "sha256:bf02adacc7fa122f996485016ca6a7b285acaaba8b97160008457855901f2f9e",
+    "sourceHash": "sha256:7b6c0a029638f1310409c99d1c9ec77fd87abc0007ad869d875acaa7a4d4aeb5",
+    "runtimeHash": "sha256:5f2b7f83d72ed4d8b8af9d299ab30ffe1ae9b7821a5d26da4d10cd6b226fb6bc",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:f4a901327d81ecce7ffe45590c9fe7b955e874c9f41e0c652a53693ab96bc4b3"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:00d51bdbe01f77136d4936507e9ebad855ece4aeeee9df59001353331aa253df"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:1aea473f43483afc4f3d5e0f60b6ef4cd7327ce563eca1480814aaeff9839227"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:6d33a44134b440ebefb107b84ae3a48cf1d22aed2eb203e874755d7504afb92d"
+      }
+    ],
+    "sceneHash": "sha256:99a030a3c751c19691d7608bfbbe75928c93b37088a9e9c63e8d33858f01fbd8",
+    "qaCamerasHash": "sha256:e7e37ede24ea79629451a6d13f669d0fa4ee760c5a9a3b2726f051fa3d9eb0d9",
+    "placementHash": "sha256:0ac0aac5265259063eab82be8690b8abc7e8cfab2549445f3b9e042857f6e6e2",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:96b216d038f984fb82bc0c8ba7ae0af4b22e4f4de0f6e44bdc8373e88ec25e25"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/tile_flat.matgraph.json",
+        "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+      },
+      {
+        "path": "materials/stone_limestone_raw.matgraph.json",
+        "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [
+      {
+        "path": "terrain-review.terrain.json",
+        "hash": "sha256:09b1b26857744f9ec6a9a3aa5d861d49373c1514052edac625975ee07547ab6f"
+      },
+      {
+        "path": "terrain-review.height.png",
+        "hash": "sha256:987434a79a0672fca2179da25fef797d6b932496b0dffe0b2d2dcb4331e008af"
+      }
+    ],
+    "framesVerified": 49,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

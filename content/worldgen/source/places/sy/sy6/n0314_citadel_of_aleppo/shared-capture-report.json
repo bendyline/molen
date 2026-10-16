@@ -1,7 +1,7 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0314_citadel_of_aleppo",
-  "inputHash": "sha256:44a683a44c2b2d233df1d9b56c830f2c493168bac5400fb852371372e528be3a",
+  "inputHash": "sha256:561a02fc598d566ad9f3e9996fec849dc11eb0d4b514f7d8ce381edeb3e63846",
   "sourceHash": "sha256:92037456ef21df1a6877f47d4684a4a45d891cffd055fa4a13ff5f915079fc10",
   "runtimeHash": "sha256:668c9eb6b2d2dc380fb4c1a9ab32dd319a8125f4c845b9888d57bddae5fb466d",
   "reviewGroundY": -41,
@@ -1025,5 +1025,14 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:44a683a44c2b2d233df1d9b56c830f2c493168bac5400fb852371372e528be3a",
+    "inputHash": "sha256:561a02fc598d566ad9f3e9996fec849dc11eb0d4b514f7d8ce381edeb3e63846",
+    "previousReportHash": "sha256:c540db9b394e2bc67a826ebcdfc5452a6c7f468e5191c77d9020f37b964ef943",
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
+  }
 }

@@ -2,10 +2,10 @@
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0240_prague_castle",
   "reviewedOn": "2026-10-10",
-  "inputHash": "sha256:30e48e92d1a1d1aa3cae39898b717c107b259f3e32f7377b1121e6803ef7f663",
+  "inputHash": "sha256:02160bbcbbb4aeec218046fa0ef98be58158c4bf330887d7c4ab9c127c58a6ba",
   "sourceHash": "sha256:4aefcfad8be943fa5be66dceb79bcee6ab530fdb5723789c59bbf40fe77d9bb9",
   "runtimeHash": "sha256:3d414f87c237904126fdf72d7ee722eaf3b85acc88e59f118833b76c4f4c9168",
-  "captureReportHash": "sha256:382dd67e1c3f88550954cf327f9ea1775a5afdb17050c52d4dff814ed2e5fa1b",
+  "captureReportHash": "sha256:6b5821fd3e90c5acf6a08ebca93ea809671bab749994ba79c881ca0b15491bd6",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -31,7 +31,7 @@
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:fe665f1aee8ceb838054e964f6ae18f45b043c1a5fa83e6c844c5f38cfdbf19f",
+    "captureReportHash": "sha256:2293ff3b01388338052b69e234ef5a518d5eb89b6bffb961424bbb7df35935ab",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -349,5 +349,75 @@
       "shots/grade/closeup-eastern-defences.png"
     ],
     "notes": "Actually inspected all30 final terrain renders: six cameras across master and four browser levels, plus a full-size GoldenLane image. Public Czech DMR5G F32 bare-earth raster establishes a6m native grid relative to ThirdCourtyard[-114,29],256.749m Bpv. Northern eastern-gate control drops11.448m and southern slope control20.382m; architectural range floors use declared quarter-specific/smooth working reconstructions, not per-pixel roof warping. Under-building terrain values are ground interpolation, not measured floors. Three open-ground probes have0.0151/0.0150/0.0191m fixture clearance and verify coordinate/datum alignment. Independent horizontal rays check actual mapped foundation geometry at five occupied parts in master/street/close; foundation toes extend beneath retained ground. Every level unload leaves zero model geometries. Gallery wall and roof share an axis; the formerly open WhiteTower gable now follows the clipped hip boundary. No terrain hill is duplicated and there is no courtyard ground cutout. Raster metadata spans2010–2025 with castle acquisition unknown; exported geographic resampling and6m working grid omit steps/retaining-wall detail. Runtime placement requires suitable local host terrain; architectural heights, floor bands, house colors and minor roofs remain approximations."
+  },
+  "inputRevalidation": {
+    "method": "clean-source-rebuild-and-reviewed-render-input-equivalence",
+    "validatedOn": "2026-10-15",
+    "previousInputHash": "sha256:30e48e92d1a1d1aa3cae39898b717c107b259f3e32f7377b1121e6803ef7f663",
+    "inputHash": "sha256:02160bbcbbb4aeec218046fa0ef98be58158c4bf330887d7c4ab9c127c58a6ba",
+    "previousQaHash": "sha256:0ce523d2224becdec4b5e4c89210943b23d7ea00f2a65c919640592cf839f56e",
+    "sourceHash": "sha256:4aefcfad8be943fa5be66dceb79bcee6ab530fdb5723789c59bbf40fe77d9bb9",
+    "runtimeHash": "sha256:3d414f87c237904126fdf72d7ee722eaf3b85acc88e59f118833b76c4f4c9168",
+    "levels": [
+      {
+        "name": "skyline",
+        "hash": "sha256:68298df2f942ef2e871a2a4d25eaf23a3856242f243704d420045568c5eb0bba"
+      },
+      {
+        "name": "district",
+        "hash": "sha256:ede3425fc7487bb2322fd3850297c3260e18203db57c09aab0bb460788cb5d2d"
+      },
+      {
+        "name": "street",
+        "hash": "sha256:13688eb60588ad1981b61010688e868d61db28f42d76798fb6de8ea1d8f828e4"
+      },
+      {
+        "name": "closeup",
+        "hash": "sha256:1ad81b6798aee16314f9cee38b3cdc1c89ca82e4b0c9baa4184cade22e9d7bca"
+      }
+    ],
+    "sceneHash": "sha256:7fb651853ea5972c159dbb625906bf9fb9945752102ea6230f713c4503d65dfc",
+    "qaCamerasHash": "sha256:984f3bd10fb7cc8a741519ff37499bbacfbcdbca4c0d5e778c8a8c298440e598",
+    "placementHash": "sha256:fd1961a8674e5894f472809bc4127eecb1a4f99819de0918b02ba5a33c3bed96",
+    "maps": [
+      {
+        "path": "map-frame.json",
+        "hash": "sha256:6ec666141052d4c2d8cf4b6282a0b589da6a407e21298811d1eb31b81f877aae"
+      }
+    ],
+    "materials": [
+      {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      },
+      {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      {
+        "path": "materials/tile_ceramic.matgraph.json",
+        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
+      },
+      {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    ],
+    "terrain": [],
+    "framesVerified": 67,
+    "sourceRebuild": "assets-4c110226cdb7e02d",
+    "note": "Existing visual inspection retained after reproducing identical master/runtime/LOD bytes and checking unchanged scene,cameras,map control,placement,shared materials,terrain fixtures and every capture image. This is an integrity revalidation,not a new render or a new visual/fidelity approval."
   }
 }
