@@ -22,9 +22,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-493,066 triangles; 982,340 vertices; 7 material groups; 41,285,012 bytes. Native bounds: -46.085, 0.000, -21.985 to 46.000, 152.317, 21.960. Source hash: `sha256:d81f191ad09fb5ecc6d550b879b931a8a0a6a6f70c22bd53769f0b630d700066`.
+493,066 triangles; 982,340 vertices; 7 material groups; 41,285,012 bytes. Native bounds: -46.085, 0.000, -21.985 to 46.000, 152.317, 21.960. Source hash: `sha256:d365a61e61ea34c6f76106693ec211d4f6f878dd86d07f1ffaecfac3b0613c95`.
 
-{"up":"+Y","longitudinal":"+X northeast along the quay","front":"+Z southeast toward the water","origin":"BAG plan envelope center; Y0 is terrain contact."}
+{"up":"+Y","longitudinal":"+X northeast along the quay","front":"+Z southeast toward the water","origin":"BAG plan envelope center; Y0 is terrain contact. Native+X east-northeast follows the AntoinePlatekade edge and native+Z south-southeast faces the Rijnhaven. Actual north-up Google satellite viewed2026-10-09 shows tall tower at the southwest negative-X end, lower projecting wing at the northeast positive-X end, terraces between and quay on the southeast. Architect river overview and cantilever photograph independently show that signed arrangement. The glass-fronted low-wing cantilever remains open below over the pedestrian quay; the BAG perimeter is an upper-volume projection, not a ground solid. RD-to-WGS84 operation accuracy1m and approximately3degree heading uncertainty describe reconstructed placement, not a surveyed azimuth."}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -34,12 +34,9 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0619` (
 
 ## Pending work
 
-- Maximum-fidelity approval requires measured facade and floor schedules, exact pale-panel composition, current window arrangements, loggia depths and roof-equipment/sculpture dimensions. Photo-derived modules and the 43/44-level convention remain explicit approximations.
-- 3DBAG LoD2.2 roof evidence has 2.20 m RMSE; roof boundaries are regularized. The 152.317 m tip is established independently from the roof survey.
-- Interior fit-out, underground parking, the surrounding quay, moored vessels and adjacent buildings are outside this exterior model. Balcony and entrance glazing is transparent; ordinary windows use opaque reflective PBR.
-- Geographic approval requires actual terrain and quay contact, signed facade alignment and scene-level attribution verification. Footprint overlay captures alone do not establish those conditions.
+- Static medium-fi exterior preserves the unchanged original493066-triangle detailed draft and supplies a separate reviewed terracotta-soffit source correction with four complete browser levels. Published152.317m tip and8m weather vane are retained, with a fixed documented M pose. Three structural zones, offset brick/pale volumes, circular windows, recessed glazed loggias, connecting terraces, braced open quay cantilever, roof tank sculpture and parked crane are retained. Exact43/44floor conventions,27A technical floor, individual floor heights, pale-panel substrate, balcony depths, entrance details and roof equipment proportions remain reconstructed. 2022BAG roof envelope has2.20mRMSE. GroundNAP3.279 is estimated, not surveyed. Hidden interiors, underground parking, adjoining buildings, vessels and surrounding quay are excluded; real host pavement/quay fitting is required and footprint replacement is disabled.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

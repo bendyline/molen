@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The 492 m SWFC with its six-sided curved cutbacks, real trapezoidal crown opening, glazed observation bridge, split side piers, curtain-wall panels, transoms, edge ribs and lobby canopies.
+Compact SWFC exterior preserves the original curved six-sided envelope, real crown aperture, split piers, upper bridge, curtain-wall bands and representative lobby canopies. Detailed original source remains reproducible.
 
 ## Evidence and reconstruction
 
@@ -17,11 +17,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-227,144 triangles; 454,280 vertices; 3 material groups; 19,082,184 bytes. Native bounds: -41.132, 0.000, -41.044 to 41.132, 492.000, 41.044. Source hash: `sha256:7a026395f00bf0f68c68afdbacb6694fcc9701aa39199a2bacfeb72432c366ea`.
+27,408 triangles; 82,224 vertices; 3 material groups; 3,291,320 bytes. Native bounds: -41.132, 0.000, -41.051 to 41.132, 492.000, 41.051. Source hash: `sha256:dcc6c7893926b740e19aa905f55dbf00e8b61d06bff7c943dd6838b9573efeab`.
 
 {"up":"+Y","longitudinal":"+X along the crown edge/58 m square diagonal","front":"+Z through the aperture","origin":"Ground-level center of the tower square; excludes wider retail podium"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.
 
 ## Reproduce
 
@@ -29,8 +29,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0140` (
 
 ## Pending work
 
-- Exterior only. No as-built curtain-wall schedule, survey-calibrated arc radii, interiors, retail block, underground works or animated observation roof.
-- The 58 m structural square differs from the roughly 60 m mapped envelope. Detailed upper map parts resolve the crown ridge orientation; no 90-degree ambiguity remains.
-- Glass uses opaque metallic-roughness glazing with local vertex tints; it does not transmit interior rooms or a copied photographic environment.
+- Inspected architect skyline and oblique facade pictures confirm the curved square prism, blue-gray curtain wall and open trapezoidal crown. Preserve original492m height,58m structural square and aperture between439/474m. Existing mapped upper parts establish the crown ridge orientation and exact-QID anchor. Standard viewer PMTiles confirms the Lujiazui tower and road context; structural square remains smaller than the mapped roughly60m envelope. Off-footprint PMTiles point[-60,0]0.2921m sets approximate ground contact; center8.3629m contains coarse urban imprint. Bounded preview correction retains raw terrain separately. Exact cutback curvature, observation beam elevations, facade schedule and lobby thresholds remain authored approximations; wider retail podium excluded.
+- Two canonical concrete/painted-metal graphs reused; glazing retains opaque PBR without copied images. Low tiers merge facade levels and panels, retaining the crown opening. Physical-device timings remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

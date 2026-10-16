@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Individually jointed pale granite facade, recessed blue windows, glazed end strips, three series of north/south chevron setbacks, diamond crown, 80-foot spire and transparent double-height lobby. Repeated facade modules are GPU instances with shared canonical materials.
+Pale granite tower with blue recessed vision bays, continuous glazed central north/south strips, chevron setbacks and a diamond crown with slender spire; tall glazed Stetson lobby with reconstructed revolving doors.
 
 ## Evidence and reconstruction
 
@@ -21,7 +21,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-51,888 triangles; 112,964 vertices; 8 material groups; 1,268,948 bytes. Native bounds: -28.235, 0.000, -20.576 to 28.235, 303.300, 20.576. Source hash: `sha256:2392b9a0cdad878ccdcf94ac39f5bd8038362ff174f609676905a679d13ca953`.
+52,004 triangles; 111,704 vertices; 6 material groups; 4,649,048 bytes. Native bounds: -28.235, 0.000, -21.445 to 28.235, 303.300, 20.576. Source hash: `sha256:c85bd1ad1556ec7647d576b6a077f35b509105ca9687ecc8c9f7ee40a61e9bfe`.
 
 {"up":"+Y","longitudinal":"+X south along the long mapped axis","front":"-Z east toward Stetson","origin":"Cached tower envelope center at provisional local pavement contact"}
 
@@ -33,10 +33,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0228` (
 
 ## Pending work
 
-- Maximum exterior fidelity remains pending. Chevron heights, bay count, floor allocation, crown-to-shoulder transition and granite joint sections are photographic working reconstructions; source plans have no printed scale.
-- The crown now intersects the facade along four gables; roof slope, exact stepped profile and glazing-band heights require dimensioned upper-floor plans before completion approval.
-- The shared One/Two Prudential plaza, sculpture, planting, stairs, lobby connection and wider podium are outside the cached tower footprint and remain to be registered and authored.
-- Owner lobby photographs establish a tall glazed entrance, but signed door positions, exact pier spacing and ground levels remain provisional. Geographic and terrain-contact approval are pending.
-- The contractor website has conflicting storey counts. The registry count of 64 and 250 m highest occupied datum are recorded separately from the reconstructed facade grid.
+- The unchanged twoPrudentialPlazaStudy.encodeAssembly reproduces the original fourteen-part instanced source master, preserved in its unchanged original recipe and local review artifact. Reviewed source and close-up retain the original granite/glass facade modules, chevron setbacks, terrace caps, clipped diamond crown and 80 ft spire, with two reconstructed revolving entrance drums replacing the four provisional swing doors and whole rectangular lobby piers replacing facade-only strips. Owner photos show revolving doors; exact counts, offsets and rotor angle are not surveyed. Street replaces masonry bay pieces with flat full wall faces and blue panes 0.14 m forward of the original reveal plane; the floor/window rhythm, central glazed end strips and every chevron step remain. District merges up to three facade rows/bays, always splitting at actual plan changes, and omits door detail; skyline averages granite/window area colors while retaining principal glazed end strips, every setback cap, diamond roof and spire. Near levels retain fifteen crown stripes; far omits roof ribs. Four shared graphs supply granite, stainless, painted metal and concrete; opaque/clear glass produces six near groups with one transparent group. No copied photo textures. Joint arrises and fine glazing divisions are omitted by the preserved original recipe despite older maximum-fidelity wording. 63 photographic office rows, 3.875 m intervals, shoulder heights and slope 1.4 are working reconstructions, not floor surveys; registry 64 floors is separate, and the contractor page has conflicting 60/68 counts. The wider One/Two Pru plaza, fountain, sculpture, shared connector, rooftop garden and neighboring tower are excluded from this tower asset. Owner upper-floor plans are undimensioned and not a complete ground survey; local grade and internal floors are approximate. Physical laptop/phone and dense-city timings remain pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

@@ -1,0 +1,360 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#b7b59f",
+      "coping": "#c6bfa8",
+      "weathered": "#a9aa96",
+      "grass": "#8aa065",
+      "paving": "#b4afa3",
+      "water": "#286d83",
+      "wood": "#b59a74"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 4,
+    "identityFeatures": [
+      "Squat six-tower inner ward with two twin-D gatehouses",
+      "Lower concentric outer tower circuit around grass wards",
+      "Offset sea gate,moat and surviving dock wall"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z toward the sea gate and dock",
+    "lateral": "+X across the inner ward toward the chapel tower",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/48296427 exactQ756815",
+    "mappedOuterPlanMeters": [
+      144.312,
+      106.348
+    ],
+    "innerTowers": 6,
+    "outerTowers": 16,
+    "measuredTowerHeight": null,
+    "originalMasterHash": "sha256:1da3b3af8ac20f9955c4e4ed7c555649bc9ff3fce42be9f3bed9c322dcc1cad6",
+    "originalMasterRecipe": "packages/worldgen/scripts/beaumaris-castle-model.mjs#buildBeaumarisRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed architectural master/recipe preserved; derivative fits working wards and bounded foundations.",
+    "Roofless squat towers, twin-D gatehouses, five north-hall openings, lower outer ring, sea gate and low unfinished foundations retain identity. Fine openings and wall/tower dimensions reconstructed.",
+    "Moat is an approximate opaque surface on partial strips and dock study; no exact present waterline or engine water simulation, no terrain cutout. Eastern former moat stays dry.",
+    "Lost roofs/unbuilt stories, coast/town walls, demolished mill, trees, visitor center, modern fixtures and interiors excluded. Footprint replacement stays off.",
+    "Three common material graphs and local grass/water color slot; zero embedded images. Physical-device timing pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      -4.089706701,
+      53.26470434
+    ],
+    "heading": 0.26314714676,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms roofless concentric wards, six squat inner towers, twin-D gatehouses, lower outer circuit and partial moat. Standard viewer PMTiles and the retained outline set approximate location, scale and sea-gate/dock orientation. A reconstructed1.6m working rise clears coarse ground around the castle; bounded wall/tower bottoms extend beneath sampled terrain. Moat/dock blue surfaces remain an approximate visual interpretation, with no terrain cutout or water simulation. Anchor -4.089706701,53.26470434; heading 0.26314714676; standard PMTiles datum 7.4077225530211805m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture confirms roofless concentric wards, six squat inner towers, twin-D gatehouses, lower outer circuit and partial moat. Standard viewer PMTiles and the retained outline set approximate location, scale and sea-gate/dock orientation. A reconstructed1.6m working rise clears coarse ground around the castle; bounded wall/tower bottoms extend beneath sampled terrain. Moat/dock blue surfaces remain an approximate visual interpretation, with no terrain cutout or water simulation. Anchor -4.089706701,53.26470434; heading 0.26314714676; standard PMTiles datum 7.4077225530211805m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        -4.089706701,
+        53.26470434
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture confirms roofless concentric wards, six squat inner towers, twin-D gatehouses, lower outer circuit and partial moat. Standard viewer PMTiles and the retained outline set approximate location, scale and sea-gate/dock orientation. A reconstructed1.6m working rise clears coarse ground around the castle; bounded wall/tower bottoms extend beneath sampled terrain. Moat/dock blue surfaces remain an approximate visual interpretation, with no terrain cutout or water simulation. Anchor -4.089706701,53.26470434; heading 0.26314714676; standard PMTiles datum 7.4077225530211805m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/beaumaris-runtime-model.mjs",
+    "export": "buildBeaumarisReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "weathered": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "foliage": {
+      "slot": "wall",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/beaumaris-runtime-model.mjs",
+    "export": "buildBeaumarisReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBeaumarisReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildBeaumarisReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBeaumarisReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-beaumaris-skyline",
+      "position": [
+        155,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        8,
+        -5
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-beaumaris-district",
+      "position": [
+        155,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        8,
+        -5
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-beaumaris-street",
+      "position": [
+        155,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        8,
+        -5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-beaumaris-closeup",
+      "position": [
+        155,
+        105,
+        175
+      ],
+      "lookAt": [
+        0,
+        8,
+        -5
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -4,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "qaCameraOverrides": {
+    "concentric-wards-and-six-inner-towers": {
+      "position": [
+        -110,
+        101.6,
+        95
+      ],
+      "lookAt": [
+        0,
+        6.6,
+        -14
+      ]
+    },
+    "north-hall-five-openings": {
+      "position": [
+        0.3,
+        9.6,
+        -5
+      ],
+      "lookAt": [
+        0.3,
+        10.6,
+        -35
+      ]
+    },
+    "south-unfinished-gate": {
+      "position": [
+        -38,
+        16.6,
+        52
+      ],
+      "lookAt": [
+        0,
+        6.6,
+        22
+      ]
+    },
+    "sea-gate-and-dock": {
+      "position": [
+        -44,
+        26.6,
+        80
+      ],
+      "lookAt": [
+        -6,
+        5.6,
+        45
+      ]
+    },
+    "lower-outer-defenses-and-moat": {
+      "position": [
+        -120,
+        15.6,
+        -64
+      ],
+      "lookAt": [
+        -40,
+        6.6,
+        -35
+      ]
+    },
+    "north-llanfaes-foundations": {
+      "position": [
+        34,
+        20.6,
+        -101
+      ],
+      "lookAt": [
+        20,
+        4.6,
+        -65
+      ]
+    }
+  }
+}

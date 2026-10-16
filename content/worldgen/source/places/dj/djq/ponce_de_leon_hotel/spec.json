@@ -1,0 +1,335 @@
+{
+  "planId": "ponce_de_leon_hotel",
+  "id": "ponce_de_leon_hotel",
+  "assetId": "molen.worldgen.structure.ponce_de_leon_hotel",
+  "title": "Ponce de Leon Hotel",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -81.3148,
+    "latitude": 29.89265
+  },
+  "size": [
+    111,
+    52.29199981689453,
+    138.8499984741211
+  ],
+  "actualBounds": {
+    "min": [
+      -57.099998474121094,
+      -2,
+      -86.5
+    ],
+    "max": [
+      53.900001525878906,
+      50.29199981689453,
+      52.349998474121094
+    ]
+  },
+  "visualBrief": "U-shaped Spanish Renaissance hotel with open courtyard loggias, ochre timber galleries, paired water towers, central solarium dome, four King Street miradors and curved dining verandas.",
+  "nativeAxes": {
+    "x": "east-northeast along King Street",
+    "y": "up",
+    "z": "south-southeast toward King Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Flagler_College,_Ponce_de_Leon_Hotel,_St._Augustine_FL,_South_courtyard_view_20160707_1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Flagler_College_(St._Augustine,_Florida)_001.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ponce-de-leon-hotel-wp",
+      "url": "https://qualla.com/ponce-de-leon-hotel/"
+    }
+  ],
+  "referenceInputHash": "d2b565857d957e411099b75d1cc2643450bb27f1d531d4dddc6d4256ed4ff926",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ponce-de-leon-hotel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ponce-de-leon-hotel.mjs",
+    "level": "skyline",
+    "export": "ponceSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ponceDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "ponceStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "King Street approach [-1.3,53] outside entry pavilion, independent terrain evidence.",
+    "anchor": [
+      -81.3148,
+      29.89265
+    ],
+    "heading": 0.285,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -81.31465852475665,
+        29.892189816993554
+      ],
+      "modelHeight": 0,
+      "basis": "King Street approach immediately outside entry pavilion."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185915303491",
+      "buildings/35185920813470",
+      "buildings/35185920813469",
+      "buildings/52776563657420",
+      "buildings/35185915303492",
+      "buildings/35185915303490",
+      "buildings/35185915303497",
+      "buildings/35185915303499",
+      "buildings/35185915303498",
+      "buildings/35185915303500",
+      "buildings/35185915303493",
+      "buildings/35185920813471",
+      "buildings/35185915303502",
+      "buildings/35185921241866",
+      "buildings/35185915303495",
+      "buildings/35185915303506",
+      "buildings/35185915303505",
+      "buildings/35185915303494",
+      "buildings/35185915303504",
+      "buildings/35184744073210",
+      "buildings/35185915303503",
+      "buildings/35185915303501",
+      "buildings/35185915303496"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d7f51a82bd83f2d9105cabbc0c1465488e3abb4a4985ad7f03d1cb0a6c860a7d",
+    "notes": "Main hotel, oval dining room and original connected service block retained. Separate boiler house/chimney, Artists Studios, landscaping and later college facilities excluded. NPS records 165-foot towers; lower inconsistent map height tags are retained as evidence rather than adopted directly."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on six individually inspected local Qualla originals, NPS architectural description and mapped component footprints.",
+    "NPS 165-foot tower height governs overall skyline; inconsistent lower map height tags are retained as source evidence. Other vertical dimensions, roof joins and hidden elevations remain estimates.",
+    "Main hotel, dining oval and connected original service block included. Separate boiler house/chimney, Artists Studios, later college facilities, interior decoration, fine sculpture and exact inscriptions excluded.",
+    "Dated local photographs govern finishes; temporary roof-restoration works visible in current satellite context are excluded. Independent terrain remains unflattened and host-dependent."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        78,
+        51,
+        151
+      ],
+      "lookAt": [
+        -1,
+        17,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -122,
+        75,
+        -166
+      ],
+      "lookAt": [
+        -1,
+        13,
+        -43
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 47683,
+    "vertices": 143049,
+    "materials": 6,
+    "bytes": 5725632,
+    "sha256": "sha256:037945043c7cd3400007455a7219568467f9e110d973acf39c82b264556d3ddd"
+  }
+}

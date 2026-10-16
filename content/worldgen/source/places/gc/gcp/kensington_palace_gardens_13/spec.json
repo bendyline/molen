@@ -1,0 +1,265 @@
+{
+  "planId": "kensington_palace_gardens_13",
+  "id": "kensington_palace_gardens_13",
+  "assetId": "molen.worldgen.structure.kensington_palace_gardens_13",
+  "title": "13 Kensington Palace Gardens",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.19057005687384387,
+    "latitude": 51.507109984476585
+  },
+  "size": [
+    42.347272872924805,
+    18.899999618530273,
+    34.40999221801758
+  ],
+  "actualBounds": {
+    "min": [
+      -17.33727264404297,
+      -1.5,
+      -20.329992294311523
+    ],
+    "max": [
+      25.010000228881836,
+      17.399999618530273,
+      14.079999923706055
+    ]
+  },
+  "visualBrief": "Buff masonry residence with two-storey wings, projecting three-storey entrance bay, white sash surrounds, open quatrefoil parapets, flat roof, chimneys and lower glazed south conservatory.",
+  "nativeAxes": {
+    "x": "south-southeast along the principal street facade",
+    "y": "up",
+    "z": "west-southwest outward toward Kensington Palace Gardens"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Russian_Embassy_Residence_London_01926.JPG"
+  ],
+  "stories": [
+    {
+      "id": "13-kensington-palace-gardens-wp",
+      "url": "https://qualla.com/13-kensington-palace-gardens/"
+    }
+  ],
+  "referenceInputHash": "6290e55907871c83e6bc1f268af793b01f8338251741ca39a3b0fe4ac1915c11",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-kensington-palace-gardens-13.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-kensington-palace-gardens-13.mjs",
+    "level": "skyline",
+    "export": "kensington13Skyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "kensington13District",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "kensington13Street",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Entrance reference [-1.35,13.2] defines the 27.931 m Terrarium datum. Preserved coarse terrain spans -1.088107..1.290926 m across the footprint; lower closures extend to -1.5 m. Terrain is not a surveyed pavement level.",
+    "anchor": [
+      -0.19057005687384387,
+      51.507109984476585
+    ],
+    "heading": -1.2662857194627608,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.1907576445390408,
+        51.507086001221346
+      ],
+      "modelHeight": 0,
+      "basis": "Street-side entrance reference in the signed frame, independently sampled from host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184430612503"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0bec0528bbd64fe4ff5686cea6c89f373e821034ff2b47a87779a5b832355d34",
+    "notes": "Two-storey buff masonry wings, three-storey entrance bay, white stone window surrounds and open quatrefoil parapets follow the inspected 2014 Qualla facade. The article records removal of the old bell turret and flattening of the roof in 1924; the model uses that surviving flat silhouette. Rear openings and the southern conservatory are conservative interpretations inside mapped controls."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi surviving exterior from a local 2014 Qualla facade photo and generalized map controls; no measured survey or interior.",
+    "Buff masonry, white sash surrounds, entrance bay and open parapet rhythm are represented. Fine carvings, exact tracery and secondary elevation openings are simplified interpretations.",
+    "The former bell turret and earlier pitched roof are omitted following the article description of the 1924 alteration. The southern glazed conservatory and hidden roof/rear details are conservative interpretations.",
+    "Independent coarse terrain determines host contact. The ambassadorial flag, garden hedges, security fixtures, surrounding streets and interiors are omitted. Local reference photography is not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        3.8363637924194336,
+        12.284999752044678,
+        77.60090923309326
+      ],
+      "lookAt": [
+        3.8363637924194336,
+        5.5649998664855955,
+        -3.1249961853027344
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        3.8363637924194336,
+        15.11999969482422,
+        -83.85090160369873
+      ],
+      "lookAt": [
+        3.8363637924194336,
+        5.5649998664855955,
+        -3.1249961853027344
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 44448,
+    "vertices": 133344,
+    "materials": 5,
+    "bytes": 5337012,
+    "sha256": "sha256:6774e4e77b3e785aa8642a686ea79b271cb319d4fa857d4f6f88d0dd40443a63"
+  }
+}

@@ -13,7 +13,7 @@
   "visualBrief": "Tapered rectangular tower with recessed glazed corners, alternating-floor curtain-wall slopes, 600 mm external glass fins, service louvre belts, diamond-pattern lobby fins, tall cross-braced crown, rooftop helipad, east hotel and west office canopies and curved glass vestibules.",
   "size": [
     60.93093490600586,
-    330.0010986328125,
+    330,
     72.70000076293945
   ],
   "actualBounds": {
@@ -24,15 +24,9 @@
     ],
     "max": [
       30.46546745300293,
-      330.0010986328125,
+      330,
       33.79999923706055
     ]
-  },
-  "assembly": {
-    "uniqueMeshes": 5,
-    "meshInstances": 7,
-    "storedTriangles": 485508,
-    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
   },
   "nativeAxes": {
     "up": "+Y",
@@ -54,7 +48,9 @@
     "entryDirections": {
       "office": "west",
       "hotel": "east"
-    }
+    },
+    "originalMasterHash": "sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3",
+    "originalMasterRecipe": "packages/worldgen/scripts/china-world-tower-model.mjs#chinaWorldTowerStudy.encodeAssembly"
   },
   "reconstruction": {
     "sectionEnvelope": [
@@ -191,7 +187,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "signed medium-fi mapped tower with architect cardinal entrance control",
     "anchor": [
       116.45236545,
       39.91097545
@@ -199,32 +195,26 @@
     "heading": -1.568897708342,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "source": "https://www.openstreetmap.org/way/116944490",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=116.4512,39.9100,116.4535,39.9120",
     "groundModelY": 0,
     "featureIds": [
       "way/116944490"
     ],
     "wikidataId": "Q2006129",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f49c0a8644e8ffbfc8624f409567d7d564771c26158d7ca0820d137f6a069911",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact Q2006129 map identity supplies the 58.465 by 52.803 m tower frame. Cached heading near -pi/2 maps native -Z to east, matching SOM hotel entry; opposite +Z faces west office entry. This cardinal facing is supported, but entrance extents, real terrain and neighboring site boundaries require visual review."
+    "orientationConfidence": "exact-QID outline and architect east hotel/west office control; precise entry offsets approximate",
+    "notes": "Fresh exact Q2006129 way 116944490 independently confirms the individual 330 m/74-level China World Tower A rectangular footprint, unchanged from the cached 58.465 by 52.803 m ring within 0.002 m rounding. Retain anchor [116.45236545,39.91097545] and heading -1.568897708342: native +X north bearing 359.89 degrees, -Z east bearing 89.89 degrees for the hotel, and +Z west bearing 269.89 degrees for offices. SOM explicitly documents office entrance west and hotel entrance east, supplying the signed cardinal control that the rectangle alone lacks. Primary architect whole/base/fin/canopy photographs and facade-consultant pages 10/11 were actually inspected. Authored body half dimensions 28.65/25.8 m sit about 0.6 m inside the exact mapped rectangle; chamfers/recesses simplify its ring and projecting diamond fins/canopies intentionally extend beyond it. Entrance sides are documented but centered offsets, vestibule positions, widths and canopy extents are illustrative photo reconstructions, not surveyed. Separate ballroom/retail annexes, mall, road skywalk, fountains, Tower B and actual terrain/plaza grade remain outside this individual tower. Flat geographic capture certifies relative footprint and facing only.",
+    "evidence": "Fresh exact Q2006129 way 116944490 independently confirms the individual 330 m/74-level China World Tower A rectangular footprint, unchanged from the cached 58.465 by 52.803 m ring within 0.002 m rounding. Retain anchor [116.45236545,39.91097545] and heading -1.568897708342: native +X north bearing 359.89 degrees, -Z east bearing 89.89 degrees for the hotel, and +Z west bearing 269.89 degrees for offices. SOM explicitly documents office entrance west and hotel entrance east, supplying the signed cardinal control that the rectangle alone lacks. Primary architect whole/base/fin/canopy photographs and facade-consultant pages 10/11 were actually inspected. Authored body half dimensions 28.65/25.8 m sit about 0.6 m inside the exact mapped rectangle; chamfers/recesses simplify its ring and projecting diamond fins/canopies intentionally extend beyond it. Entrance sides are documented but centered offsets, vestibule positions, widths and canopy extents are illustrative photo reconstructions, not surveyed. Separate ballroom/retail annexes, mall, road skywalk, fountains, Tower B and actual terrain/plaza grade remain outside this individual tower. Flat geographic capture certifies relative footprint and facing only.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
   "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
-    {
-      "ref": "matgraph:molen.worldgen.material.metal_painted",
-      "slot": "trim",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
     {
       "ref": "matgraph:molen.worldgen.material.metal_stainless",
       "slot": "trim",
@@ -254,14 +244,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Geographic fit and maximum exterior fidelity remain pending. Cardinal entrance sides are documented; exact facade yaw, ground contact and canopy extent need real-site review.",
-    "Published floor totals conflict (74, 80, 81); the model does not claim a surveyed floor schedule. Intermediate floor divisions, taper, crown base and service belts are reconstructions.",
-    "Crown braces, helipad, roof plant, revolving vestibules, canopy structure and lobby details follow visible forms but lack construction drawings.",
-    "The large adjoining shopping mall, ballroom annex, skywalks, landscaped water courts and neighboring Tower B are separate structures and remain outside this individual tower asset.",
-    "Fins use transparent local PBR with modeled metal edges; their exact frit pattern and programmable night lighting remain unauthored. No reference photography or third-party mesh is embedded."
+    "Original chinaWorldTowerStudy.encodeAssembly remains byte-reconstitutable: 40771324 bytes, sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3, 938584 expanded /485508 stored triangles, five mesh parts/seven placements, seven groups/four shared graphs and no embedded images. The new flattened browser source and four authored levels preserve taper, recessed chamfer returns, alternating-floor curtain wall, 600 mm glass fins at street/close, two service belts, full-height lobby diamonds, four-sided tall crown with open corner/top gaps, schematic roof plant/helipad and east hotel/west office canopies with four illustrative revolving drums. Close retains narrow flat metal fin leading edges and finer curtain rhythm instead of hundreds of thousands of solid facade prisms; street coarsens fin/diamond spacing; district groups floor rows and uses opaque crown screens; skyline keeps silhouette/service color bands, coarse diamonds and open framed crown in one opaque draw. Three canonical shared graphs (stainless metal, concrete and granite) plus opaque glazing, 52-percent clear glazing and recess palette yield six near groups with no bitmap copies. Published 74/80/81 floor labels describe different schedules and remain distinct; 70 equal tower intervals are a working facade division, not a surveyed floor schedule. Intermediate taper dimensions, alternating-depth amplitudes, service levels 122.6/134.9 and 238.8/251.3 m, 294 m crown base, braces, fine bay counts, canopy heights and dimensions, drums, generic lobby fitout, rooftop equipment and 327 m helipad datum are inferred. Helipad existence follows SOM opening report; precise platform datum and roof equipment layout are unaudited. Glass frit, LED strips, fountain courts, annexes, interiors and structural bolts are not modeled. Actual phone/laptop dense-city measurements remain pending."
   ],
   "qaCameras": [
     {
@@ -406,6 +392,417 @@
         160,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-china-world",
+      "position": [
+        -330,
+        195,
+        -420
+      ],
+      "lookAt": [
+        0,
+        161,
+        0
+      ]
+    },
+    {
+      "name": "alternating-fins-and-returns",
+      "position": [
+        -30,
+        66,
+        -31
+      ],
+      "lookAt": [
+        -24,
+        66,
+        -24
+      ]
+    },
+    {
+      "name": "east-clear-canopy-and-vestibules",
+      "position": [
+        -31,
+        12,
+        -47
+      ],
+      "lookAt": [
+        0,
+        6,
+        -27
+      ]
+    },
+    {
+      "name": "west-office-entry",
+      "position": [
+        30,
+        10,
+        43
+      ],
+      "lookAt": [
+        0,
+        6,
+        27
+      ]
+    },
+    {
+      "name": "open-crown-and-helipad",
+      "position": [
+        -57,
+        349,
+        -60
+      ],
+      "lookAt": [
+        0,
+        313,
+        0
+      ]
+    },
+    {
+      "name": "roof-open-top",
+      "position": [
+        0,
+        375,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        320,
+        0
+      ]
+    },
+    {
+      "name": "mapped-individual-tower",
+      "position": [
+        0,
+        435,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/china-world-runtime-model.mjs",
+    "export": "buildChinaWorldCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/china-world-runtime-model.mjs",
+    "export": "buildChinaWorldReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildChinaWorldDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildChinaWorldStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildChinaWorldCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-china-world-skyline",
+      "position": [
+        -330,
+        195,
+        -420
+      ],
+      "lookAt": [
+        0,
+        161,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-china-world-district",
+      "position": [
+        -330,
+        195,
+        -420
+      ],
+      "lookAt": [
+        0,
+        161,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-china-world-street",
+      "position": [
+        -330,
+        195,
+        -420
+      ],
+      "lookAt": [
+        0,
+        161,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-china-world-closeup",
+      "position": [
+        -330,
+        195,
+        -420
+      ],
+      "lookAt": [
+        0,
+        161,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "alternating-fins-and-returns",
+      "position": [
+        -30,
+        66,
+        -31
+      ],
+      "lookAt": [
+        -24,
+        66,
+        -24
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "east-clear-canopy-and-vestibules",
+      "position": [
+        -31,
+        12,
+        -47
+      ],
+      "lookAt": [
+        0,
+        6,
+        -27
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "west-office-entry",
+      "position": [
+        30,
+        10,
+        43
+      ],
+      "lookAt": [
+        0,
+        6,
+        27
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-crown-and-helipad",
+      "position": [
+        -57,
+        349,
+        -60
+      ],
+      "lookAt": [
+        0,
+        313,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "roof-open-top",
+      "position": [
+        0,
+        375,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        320,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -413,10 +810,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 938584,
-    "vertices": 1876528,
-    "materials": 7,
-    "bytes": 40771324,
-    "sha256": "sha256:692047904356122c40524acc84d8d1b53e10088e1f63b426816b4fa7e6703ee3"
+    "triangles": 56000,
+    "vertices": 112560,
+    "materials": 6,
+    "bytes": 4727692,
+    "sha256": "sha256:db1ab9f866d7c192434286c2c41ca109d20a32282a0d05fb33e05e5205966b4d"
   }
 }

@@ -1,0 +1,127 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "White square tower above four asymmetric sloping buttresses, red anchor plates/gallery/lantern roof, mapped south porch.",
+    "epoch": "Authority exterior and2020 operator-submitted IALA photographs; no interior or operational optic.",
+    "master": "Original9798-triangle master remains reproducible. Separate current leaf aligns ground edges/entry with source-local map and retains upper windows and fittings.",
+    "browser": "Hand skyline/district preserve four buttresses, square upper tower and red lantern; street and closeup retain the current detailed mesh.",
+    "exclusions": "Survey-level ground elevations, restored boulder-by-boulder relief, detached station buildings, interiors and navigation apparatus."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kopu-current-model.mjs",
+    "export": "buildKopuCurrent"
+  },
+  "size": [
+    22.05,
+    37.7,
+    24.7
+  ],
+  "geographic": {
+    "notes": "Authority aid668 fixes the tower center. Exact-QID mapped cross edges resolve heading-.087025590763rad; main entrance node11157582818 selects the south-facing arm. Current leaf follows all21 ground-outline vertices and moves the porch/entry to the marked point. Higher buttress/core profiles and porch dimensions are photo-proportioned. Y=0 contacts host terrain; OSMele67 and published69m hill description are not adopted as surveyed foundation elevations."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kopu-current-model.mjs",
+    "export": "buildKopuSkyline",
+    "errorMeters": 0.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKopuDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "buttresses-district",
+      "position": [
+        27,
+        12,
+        29
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-district",
+      "position": [
+        6,
+        38,
+        8
+      ],
+      "lookAt": [
+        0,
+        35.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "entry-district",
+      "position": [
+        8,
+        5,
+        20
+      ],
+      "lookAt": [
+        -0.76,
+        1.5,
+        12.44
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-skyline",
+      "position": [
+        37,
+        28,
+        47
+      ],
+      "lookAt": [
+        0,
+        18,
+        0
+      ],
+      "reviewLod": "skyline"
+    }
+  ]
+}

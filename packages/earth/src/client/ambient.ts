@@ -46,6 +46,8 @@ export interface EarthAmbientSettings {
   aircraft?: boolean;
   /** Ambient vessels on mapped ferry routes (default true). */
   boats?: boolean;
+  /** Habitat and range constrained animals when the wildlife content pack is loaded. */
+  wildlife?: boolean;
   drivingSide?: 'right' | 'left';
 }
 

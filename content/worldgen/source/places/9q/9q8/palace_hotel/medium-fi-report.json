@@ -1,0 +1,840 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.palace_hotel",
+  "sourceHash": "sha256:f60c9517012a62678fbb12dd7e180095d0d2b75ef048c5183c5a519bf77ff6f9",
+  "runtimeHash": "sha256:240393cc0f663443e55a13b44aa3d518d3a612c8f80246d8203f1cca4e7097c5",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:36ad53553541dcfd04bcee3efb73fc35cba558d0cadc5cf6eaa484ccff152919",
+      "bytes": 65348,
+      "gzipBytes": 10618,
+      "triangles": 881,
+      "cpuBytes": 63932,
+      "gpuBytes": 63932,
+      "errorMeters": 1.1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e2100f2b3395f9d6bda5205cb2b9ee7ded6d182ab32b5c9deaa3863c9ca7a293",
+      "bytes": 225944,
+      "gzipBytes": 41565,
+      "triangles": 2928,
+      "cpuBytes": 219816,
+      "gpuBytes": 219816,
+      "errorMeters": 0.5,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:67284eac394658f68fe2c711426c927017faa730d83bb896918df344cf01e511",
+      "bytes": 1097956,
+      "gzipBytes": 219479,
+      "triangles": 14571,
+      "cpuBytes": 1091792,
+      "gpuBytes": 1091792,
+      "errorMeters": 0.2,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:579a9a2fb1fef2cc0bcee1bdfa4a0798d499f3de3cae51c3b25fb73cf91f38e5",
+      "bytes": 6978960,
+      "gzipBytes": 1174922,
+      "triangles": 58133,
+      "cpuBytes": 6975960,
+      "gpuBytes": 6975960,
+      "errorMeters": 0,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:c048d5c45fda8efe702aff81942e3f1a29f054590569b2272b7c7490de59a013"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:9969552e71e65e4a08d17ee5649ccc52391d2282b59333eba157a4dfb299a5bd"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:f17cb2938d8699611086c3c2f46c5c23a5fa2e620fe430cb47b2826c6303104e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4842,
+          46.9,
+          83.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:d71e88d5f9f307c4914bc6547fd4366377ce4b8c177d314b26792f13cfc1c242",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4842,
+          46.9,
+          83.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:445263abdf2df0bb6732809d375b87dea33fc940e65e276ed133feebd2608ef6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4842,
+          46.9,
+          83.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:e48ff49fa08270e60b6bc6ca271bf62ccc9be3e2ba6a1175c8af59c3d7fdcab6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          46.4842,
+          46.9,
+          83.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:b8de7d30359bdc1be545cb6800932195bdefccdb630f500e48669d6205f37c55",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 17362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:bde7f141ef8706ebc3cad2e29625b28565647acf1c1ec0f6bf637e3472746b86",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 17362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:4e1a9361feb939b6ee874e37b2733c6689e4cd9eb3c82364e6e36b78e6605499",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 17362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:14d45c812e404684dc1b1f9bf90355b127037f4cf09ba86247ea456017bdc61c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 17362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:88bc9192ffbbd05e62f65be16e6614a6cabea5e909b91ea84eacda804bc341e2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15315,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4842,
+          120.9,
+          336.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:b9c414c534e748301e6fdbcdb60f3ded1af2e9e41c2ea30d5898e6044354f770",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15315,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4842,
+          120.9,
+          336.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:4eb238f41eb941cffae3aab8a90b9b3754e1b006a4ba5c2459510ce6c63eaefe",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15315,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4842,
+          120.9,
+          336.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:da53168c8ab9d82c8961cb98d0097e9e4ef0dc6498809fc35f51fa6755a90b8d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15315,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4842,
+          120.9,
+          336.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ae163e0d165fdbd8483af163672a02c61276a41d5e7a48fcdb4f07b76a60f383",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9075,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          192.4842,
+          120.9,
+          336.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:0a1f6060c9462cb7479a69f319aa52a6a4d1237a19b8219c54e270d667eac08e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          -116,
+          51,
+          133
+        ],
+        "lookAt": [
+          -5,
+          21,
+          8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:70dce0e880e31411fc3e9f58c7c916315133fcb261ef1ced156bb9d5c41314a5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          128,
+          91,
+          -148
+        ],
+        "lookAt": [
+          0,
+          18,
+          -4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:314afab6f82739b868d846e40ff63d53f8d661131e849dc57038b88549e121ed",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15315,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:bde7f141ef8706ebc3cad2e29625b28565647acf1c1ec0f6bf637e3472746b86",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 17362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:71e6a091f70b39d5269995f62fd56ec211b6622015d01b370af56d0110288133",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29005,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:1692b73931c67a1c22a1886004a2fb1b9a662b2f4be527a8feb25ec79b215f96",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 72567,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q8/palace_hotel/terrain-review.height.png"
+        },
+        "position": [
+          95.4842,
+          82.9,
+          168.3492
+        ],
+        "lookAt": [
+          -1.5158,
+          31.9,
+          0.3492
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:0edc47759cab3757b3522d9520ee294cee3c494388e262e281ae24d16d36e6e7",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:83b2fdf96bcea0c083f7d32895228ee2e9436a75b5e0f2a65b75de5700aa3854"
+  }
+}

@@ -6,10 +6,14 @@ import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { createArchitecturalSurfaceAuthoring } from './architectural-surface-authoring.mjs';
 import { smoothMeshNormals, validateAuthoredMesh } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { biomeJson } from './format-json.mjs';
 import { buildSevern, severnStudy as study } from './severn-bridge-model.mjs';
+import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { readOptionalJson } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
@@ -18,6 +22,11 @@ const key = `${study.id.toLowerCase()}_${study.key}`;
 const assetId = `molen.worldgen.structure.${key}`;
 const dir = structureSourceDirectory(key);
 const modelPath = resolve(dir, 'models/source.glb');
+const priorSource = await readOptionalJson(resolve(dir, 'source.json'));
+const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
+if (reviewScope && reviewScope.fidelityTarget !== 'medium-fi')
+  throw new Error('N0005: review scope must declare medium-fi');
 const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const materials = {
   wall: { name: 'white-painted-steel', roughness: 0.63, metallic: 0.08 },
@@ -68,9 +77,12 @@ if (candidate?.wikidataId !== 'Q1850537')
   throw new Error('N0005 is not the expected original Severn Bridge identity');
 
 const out = new MeshBufferBuilder();
-buildSevern(out);
+const authoring = reviewScope
+  ? createArchitecturalSurfaceAuthoring(reviewScope.surfaces)
+  : undefined;
+buildSevern(authoring ? authoring.wrap(out) : out);
 const mesh = out.finalize();
-smoothMeshNormals(mesh, ['cable'], 35);
+smoothMeshNormals(mesh, reviewScope ? ['trim'] : ['cable'], 35);
 validateAuthoredMesh(mesh, study.id);
 const min = [Infinity, Infinity, Infinity],
   max = [-Infinity, -Infinity, -Infinity];
@@ -81,7 +93,9 @@ for (let i = 0; i < mesh.positions.length; i++) {
 const glb = Buffer.from(
   encodeGlb(
     mesh,
-    mesh.groups.map((group) => materials[group.slot]),
+    authoring
+      ? authoring.materials(mesh.groups)
+      : mesh.groups.map((group) => materials[group.slot]),
     'Molen original 1966 Severn Bridge',
   ),
 );
@@ -132,6 +146,50 @@ const spec = {
     sha256: hash(glb),
   },
 };
+if (reviewScope) {
+  for (const field of [
+    'fidelityTarget',
+    'quality',
+    'appearance',
+    'mediumFiContext',
+    'runtimeLodOverlay',
+    'qaLodCameras',
+    'limitations',
+    'referencePages',
+    'geographicProposal',
+    'placementStatus',
+  ])
+    if (reviewScope[field] !== undefined) spec[field] = reviewScope[field];
+  spec.nativeAxes = { ...spec.nativeAxes, ...reviewScope.nativeAxes };
+  spec.sourceFacts = { ...spec.sourceFacts, ...reviewScope.sourceFacts };
+  spec.qaCameras = reviewScope.qaCameras ?? spec.qaCameras;
+  spec.materialMethod =
+    'Shared painted-metal and concrete graphs with metric UVs; vertex colors retain the authored paint/road tints. No embedded images.';
+  spec.sharedSurfaces = authoring
+    .materials(mesh.groups)
+    .filter((m) => m.sharedSurface)
+    .map((m) => ({
+      ref: m.sharedSurface.ref,
+      slot: m.sharedSurface.slot,
+      repeatMeters: MATERIAL_REPEAT_METERS[m.name],
+    }));
+  spec.scaleBasis =
+    'Preserved detailed dimensions fitted approximately to the standard PMTiles crossing and inspected pictures.';
+  spec.reviewStatus = 'Source ready for picture/PMTiles and browser-level visual review.';
+  if (
+    !mapFrame ||
+    mapFrame.heading !== spec.geographicProposal.heading ||
+    !mapFrame.anchor.every((v, i) => v === spec.geographicProposal.anchor[i])
+  )
+    throw new Error('N0005: map frame disagrees with placement');
+  spec.geographicProposal = {
+    ...spec.geographicProposal,
+    mapGeometrySource: 'map-frame.json',
+    mapGeometryHash: hashEvidenceText(await readFile(resolve(dir, 'map-frame.json'))),
+    mapGeometryLicense: mapFrame.license,
+    attribution: mapFrame.attribution,
+  };
+}
 const scene = {
   format: 'molen/scene@3',
   name: 'Original Severn Bridge asset preview',
@@ -174,6 +232,12 @@ const scene = {
   camera: { mode: 'fixed', position: [615, 155, 300], lookAt: [400, 75, 0], fov: 42 },
   physics: { engine: 'none' },
 };
+if (reviewScope?.previewGround === false)
+  scene.entities = scene.entities.filter((e) => e.id !== 'ground');
+if (reviewScope?.previewTerrain) scene.terrain = reviewScope.previewTerrain;
+if (reviewScope?.previewEntities)
+  scene.entities.push(...structuredClone(reviewScope.previewEntities));
+if (reviewScope?.previewCamera) Object.assign(scene.camera, reviewScope.previewCamera);
 const optionalReports = (
   await readdir(dir).catch((error) => {
     if (error.code === 'ENOENT') return [];
@@ -201,7 +265,15 @@ const source = {
     scripts: [],
     textures: [],
     sounds: [],
-    documents: ['README.md', 'preview.png', ...optionalReports],
+    documents: [
+      ...new Set([
+        'README.md',
+        'preview.png',
+        ...optionalReports,
+        ...(reviewScope?.sourceDocuments ?? []),
+        ...(reviewScope ? (priorSource?.files.documents ?? []) : []),
+      ]),
+    ],
   },
 };
 const readme = `# Severn Bridge — original 1966 crossing\n\n![Lit Molen preview](preview.png)\n\n${study.brief}\n\n## Identity and authored scope\n\nN0005 / Wikidata Q1850537 is the original **M48 Severn suspension bridge**. It is not the M4 Prince of Wales Bridge. The authored suspension span is 1,597.5 m; simplified anchorage exteriors extend the asset to 1,637.5 m. Separate Aust, Beachley and Wye approach structures are outside this asset. +X points toward Aust, +Y is up, and the horizontal origin is the main-span midpoint.\n\n## Evidence and uncertainty\n\nThe [Historic England listing](${study.refs[0]}) gives the 987.5 m main span and two 305 m side spans. [Severn Bridges Trust construction details](${study.refs[2]}) give 23.5 m tower-leg spacing and 40 × 11.5 m cutwater piers. Its [deck account](${study.refs[1]}) describes the 3.048 m deep aerofoil box with corners 22.86 m apart. The [hanger account](${study.refs[3]}) gives 18.288 m clamp spacing and a usual 9.144 m longitudinal offset to each lower eye.\n\nThe detailed hanger account implies 344 hangers, while the general account says 340; this model uses 344 and records the difference. Main cables use a nominal 0.5 m diameter; the [construction account](${study.refs[5]}) gives 0.05 m original hangers. Modern replacement diameters and exact fitting profiles remain unverified. The overall 32 m deck width follows the source's 105 ft figure, whose adjacent 35 m metric conversion is inconsistent.\n\n**The vertical frame is unresolved.** [Stannah's project account](${study.refs[7]}) places tower tops 136 m above mean high water. The [Trust foundation account](${study.refs[6]}) places the deck center 37 m above mean sea level and other text rounds steel tower height to 125 m. These are not a reconciled survey frame. The source has explicit local reconstruction coordinates and must not be terrain-draped into geographic production as though Y=0 were a checked elevation. See \`spec.json\` sourceFacts, reconstruction and limitations for the complete distinction.\n\n## Source and verification\n\nOriginal deterministic geometry from \`packages/worldgen/scripts/severn-bridge-model.mjs\`, with five PBR materials and no third-party mesh or embedded photograph. ${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${glb.length.toLocaleString('en-US')} bytes. Actual AABB: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m. SHA-256: \`${hash(glb)}\`.\n\nRegenerate with \`node packages/worldgen/scripts/generate-severn-bridge.mjs\`; verify determinism with \`--check\`. The generator protects artist-edited GLB masters by comparing their baseline hash before any overwrite and validates finite attributes, triangle winding and nondegenerate Float32 geometry. Import using the normal Molen asset workflow and \`--no-optimize\`: whole-crossing position quantization destroys small parapet and cable geometry. Do not handwrite runtime asset sidecars.\n\nRuntime asset ID: \`${assetId}\`. The scene supplies an oblique tower-and-span preview; \`spec.json\` supplies near tower/deck/hanger, under-deck and full-crossing cameras. Valid source geometry is not visual acceptance: import, runtime rendering and inspected captures are separate gates.\n\n## Remaining work\n\n${study.limitations.map((text) => `- ${text}`).join('\n')}\n`;
@@ -213,7 +285,10 @@ for (const [name, data] of [
   ['source.json', source],
 ])
   await emit(resolve(dir, name), Buffer.from(biomeJson(data, resolve(dir, name))));
-await emit(resolve(dir, 'README.md'), Buffer.from(readme));
+const scopedReadme = reviewScope
+  ? `# Severn Bridge — N0005\n\n![Molen preview](preview.png)\n\n${study.brief}\n\n## Source and browser models\n\nThe original detailed recipe is preserved at \`packages/worldgen/scripts/severn-bridge-model.mjs#buildSevern\`. Original master hash: \`${reviewScope.sourceFacts.originalMasterHash}\`. The current shared-material master has ${mesh.triangleCount} triangles and ${glb.length} bytes. It binds reusable painted metal and concrete graphs with metric UVs and embeds no texture images. Independent silhouettes live in \`severn-browser-model.mjs\`; four browser levels follow the1k/4k/16k/64k budgets.\n\n## Approximate placement\n\n${reviewScope.geographicNote}\n\n## Accepted limits\n\n${reviewScope.limitations.map((t) => `- ${t}`).join('\n')}\n\nRegenerate with \`node packages/worldgen/scripts/generate-severn-bridge.mjs\`; use \`--check\` for the selected source. QA reports bind the final inspected images and placement.\n`
+  : readme;
+await emit(resolve(dir, 'README.md'), Buffer.from(scopedReadme));
 console.log(
   `${key}: ${mesh.triangleCount} triangles, ${glb.length} bytes, ${hash(glb)}; bounds ${JSON.stringify({ min, max })}`,
 );

@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0025_yi_sun_sin_bridge",
-  "inputHash": "sha256:7f2301868ccc43e0fac9221f109716d702d1f48741d25fe890be8dd339f104a8",
-  "captureReportHash": "sha256:7e6b3af7ffba2dea3dc449586d5d84f420a356680a7b0f5144c514feb19e6fbe",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:ad65a79d785d60ccc670f32600d636ca3bc5a3b53620f5b11d60b068e19b7ec5",
+  "sourceHash": "sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e",
+  "runtimeHash": "sha256:125baaa6a3f88add7bbe608dc87c3c01b3142a7509fd6d9de36c8dfb837f088a",
+  "captureReportHash": "sha256:71497f5ad02deb1e03f4461342d4decb38369a8761184b0c9fb72a4707abdbc8",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -25,11 +28,11 @@
       "shots/south-rock-anchorage.png",
       "shots/street-light.png"
     ],
-    "notes": "All18 current portable frames inspected; corrected full elevation also viewed at full resolution. Twin aerodynamic boxes and open wind slot, inclined H pylons with upper crossbeams, flared feet, cable bands and paired hangers, barriers, curved lamp arms and distinct north/south anchorages render. Full-span cables and fine formwork courses alias at kilometre-scale overview distances; detail views resolve the geometry. Render-integrity approval does not establish reconstructed engineering dimensions."
+    "notes": "Inspected all18 final source views: bay overview, four turntables, elevation, tower/foot/head, twin box soffits, wind slot, cable band/socket, road barriers, end pier, both anchorages and lamp. The H towers, suspension arrangement and twin roads match the inspected VisitKorea picture. The complete crossing and open central slot remain visible; fine inspection hardware is simplified."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9cb7843f44a83175edd02c4babf9a3300db1ef3e39d5b097cf575484354176d3",
+    "captureReportHash": "sha256:111916315858c14a6520178e7c7104601e2d2f227e3bdd79eb1c4845bf606174",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -50,16 +53,310 @@
       "shots/shared/street-light.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All18 current shared-surface views inspected. Corrected elevation fits both anchorages. Concrete, painted metal and stainless graphs resolve once each; exact source geometry reaches the viewer and unloading releases it. Fine cable coverage is limited by screen resolution in overview frames."
+    "notes": "Inspected all18 shared-viewer images, including north-up mapped placement. Three canonical concrete, stainless and painted-metal graphs reuse the shared library without embedded images. Bounded selection, full geometry, retained sea-level placement, road replacement, graph cache and unload passed. Geographic flat staging is separate from the PMTiles bay fixture."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:adca2b8683c5d6ffc1e86f693bfbe5ca18310b0730c85ca1a6626ceab827c5bd",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/main-elevation.png",
+      "medium-fi/south-tower.png",
+      "medium-fi/tower-head.png",
+      "medium-fi/tower-foot.png",
+      "medium-fi/twin-box-soffit.png",
+      "medium-fi/open-wind-slot.png",
+      "medium-fi/cable-band.png",
+      "medium-fi/hanger-socket.png",
+      "medium-fi/road-barriers.png",
+      "medium-fi/deck-end-pier.png",
+      "medium-fi/north-gravity-anchorage.png",
+      "medium-fi/south-rock-anchorage.png",
+      "medium-fi/street-light.png",
+      "medium-fi/whole-yi-sun-sin-skyline.png",
+      "medium-fi/whole-yi-sun-sin-district.png",
+      "medium-fi/whole-yi-sun-sin-street.png",
+      "medium-fi/whole-yi-sun-sin-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all34 final browser light/LOD images. Skyline retains the whole silhouette with merged deck/end supports and two-sided suspension ribbons. District restores the twin decks and wind slot; street and closeup add cylindrical cables, with paired hangers, bands and sockets at close range. Tower feet and both unequal anchorages remain intact. Distant large-water-plane aliasing in a few far views is a recorded preview limitation."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:c7d92b03c571e3689ac9c9f391a2757369e7eae1218a6be1f6d5e5d82d3ef381",
-    "notes": "Directed north axis and foundation-centered anchor established independently of the longer OSM approach-road extent. Several-metre aerial uncertainty remains. Sea-level reference and road vertical profile are provisional; host terrain/road connection review is still required."
+    "status": "passed",
+    "placementHash": "sha256:6c07b641775285b4fb8520b663e9c9d6224babc160fc7d67926405d5184f306d",
+    "mapFrameHash": "sha256:873e0498345cd5221fa77c7d61e526f45c2dbefd971eecb8fdb3f38ad6eef3c6",
+    "notes": "One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior and approximate picture/PMTiles fit. Retain2260m deck,1545m main span and2545m anchorage spacing, distinct from the longer mapped approach. Retained sea-level0m agrees with coarse bay samples; tides, vertical curve, exact foundation pads and end joins remain unverified. Approach viaducts are separate viewer roads. Formwork joints, saddle shrouds, foundation rails, inspection fixtures and bolts are simplified; low-tier ribbons and stepped foundation invert are deliberate approximations. Physical-device timing remains pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "1,331,812-triangle exterior with measured1545m main span,2260m deck and2545m anchor spacing. Exact as-built twin-box section, hanger/lamp pitches, anchorage exterior profiles and road vertical curve remain photographic or engineering reconstructions; primary drawing verification is outstanding."
+    "notes": "1,331,812-triangle exterior with measured1545m main span,2260m deck and2545m anchor spacing. Exact as-built twin-box section, hanger/lamp pitches, anchorage exterior profiles and road vertical curve remain photographic or engineering reconstructions; primary drawing verification is outstanding.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/models/source.glb",
+        "hash": "sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e",
+        "bytes": 6242620,
+        "triangles": 51996,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -1295,
+          0,
+          -37.5
+        ],
+        "max": [
+          1317.5,
+          272.70001220703125,
+          37.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.glb",
+        "hash": "sha256:125baaa6a3f88add7bbe608dc87c3c01b3142a7509fd6d9de36c8dfb837f088a",
+        "bytes": 6242100,
+        "triangles": 51996,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -1295,
+          0,
+          -37.5
+        ],
+        "max": [
+          1317.5,
+          272.70001220703125,
+          37.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.skyline.glb",
+        "hash": "sha256:3d8634b892724300b7bbbb64cd12565b8cf243290c91706f765302863c5fe838",
+        "bytes": 90296,
+        "triangles": 920,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -1295,
+          0,
+          -37.5
+        ],
+        "max": [
+          1311,
+          270.79998779296875,
+          37.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.district.glb",
+        "hash": "sha256:8411e4ae605ead31f94294717c0c47e0801bae1ddd8f469df50a6b3ec6e480d1",
+        "bytes": 256320,
+        "triangles": 3200,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -1295,
+          0,
+          -37.5
+        ],
+        "max": [
+          1317.5,
+          272.70001220703125,
+          37.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.street.glb",
+        "hash": "sha256:2c5faab41b844d5e686eadd1ac1d28b37b8c0ac11933a21175ddc68fe664a73f",
+        "bytes": 1253904,
+        "triangles": 13668,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -1295,
+          0,
+          -37.5
+        ],
+        "max": [
+          1317.5,
+          272.70001220703125,
+          37.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.closeup.glb",
+        "hash": "sha256:4132be6e8e449af1e1b2d8e4f41fa7f397038c662c089944fa276d0c8fec4439",
+        "bytes": 4615132,
+        "triangles": 51996,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -1295,
+          0,
+          -37.5
+        ],
+        "max": [
+          1317.5,
+          272.70001220703125,
+          37.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original1331812-triangle,99412424-byte master reproduced exactly at sha256:b09eae200f884d6443d31bdb85514245a2a161e590ab5a4405749bcf1e4579b9. Detailed recipe and geometric map controls are preserved. Independent compact source51996triangles; browser920/3200/13668/51996meet1k/4k/16k/64k. Initial346616bytes. Current hashes and graph bindings verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:9bfbb30601bfad1e22821c214378ad00f219948efdd5cc27be4365d6cb038a4b",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:3d8634b892724300b7bbbb64cd12565b8cf243290c91706f765302863c5fe838",
+        "bytes": 90296,
+        "gzipBytes": 11934,
+        "triangles": 920,
+        "cpuBytes": 88932,
+        "gpuBytes": 88932,
+        "errorMeters": 10,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:8411e4ae605ead31f94294717c0c47e0801bae1ddd8f469df50a6b3ec6e480d1",
+        "bytes": 256320,
+        "gzipBytes": 51650,
+        "triangles": 3200,
+        "cpuBytes": 251472,
+        "gpuBytes": 251472,
+        "errorMeters": 5,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:2c5faab41b844d5e686eadd1ac1d28b37b8c0ac11933a21175ddc68fe664a73f",
+        "bytes": 1253904,
+        "gzipBytes": 281771,
+        "triangles": 13668,
+        "cpuBytes": 1247904,
+        "gpuBytes": 1247904,
+        "errorMeters": 2,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:4132be6e8e449af1e1b2d8e4f41fa7f397038c662c089944fa276d0c8fec4439",
+        "bytes": 4615132,
+        "gzipBytes": 995591,
+        "triangles": 51996,
+        "cpuBytes": 4609104,
+        "gpuBytes": 4609104,
+        "errorMeters": 0.7,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 346616,
+    "notes": "skyline: 920 triangles, 90296 bytes, 1 draws; district: 3200 triangles, 256320 bytes, 4 draws; street: 13668 triangles, 1253904 bytes, 5 draws; closeup: 51996 triangles, 4615132 bytes, 5 draws. Initial skyline+district 346616 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model.",
+    "Skyline merges twin boxes and end-pier legs; low tiers use two-sided suspension ribbons. District/street/closeup restore wind slot and closer levels cylindrical cables, paired closeup hangers, sockets, bands, simple rails and sparse lights. Fine formwork courses, exact cable shrouds, foundation rails, inspection fixtures and bolts are omitted; original master remains independently reproducible.",
+    "Shared concrete/stainless/painted metal are reused, with flat road and marking materials. Physical-device timings remain unmeasured."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:31d909464423e5b76081a863e39286b699824541a2bb51c218655e1a69e1d5d7",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:d71e63585af5472cd07fa75f653abae54fcd8fa367b3a9b399a977eb486b0500",
+    "previousSharedCaptureReportHash": "sha256:2d48b61bd6810b92c02595663b3ce3ec7d27e70241b38d76dcb4cbb4e1320d50",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/yi-sun-sin-browser-model.mjs",
+        "beforeHash": "sha256:c1ef661bce3e4cb435437469e6390044491f6efef61b95356860b353c68dcf54",
+        "afterHash": "sha256:c9d60a5efee28e4b0d44eaa287cccc647359a8d32ef4e04054de8695c0e864fd",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/models/source.glb",
+        "hash": "sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e",
+        "bytes": 6242620
+      },
+      {
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.glb",
+        "hash": "sha256:125baaa6a3f88add7bbe608dc87c3c01b3142a7509fd6d9de36c8dfb837f088a",
+        "bytes": 6242100
+      },
+      {
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.skyline.glb",
+        "hash": "sha256:3d8634b892724300b7bbbb64cd12565b8cf243290c91706f765302863c5fe838",
+        "bytes": 90296
+      },
+      {
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.district.glb",
+        "hash": "sha256:8411e4ae605ead31f94294717c0c47e0801bae1ddd8f469df50a6b3ec6e480d1",
+        "bytes": 256320
+      },
+      {
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.street.glb",
+        "hash": "sha256:2c5faab41b844d5e686eadd1ac1d28b37b8c0ac11933a21175ddc68fe664a73f",
+        "bytes": 1253904
+      },
+      {
+        "path": "content/worldgen/assets/places/wy/wy4/n0025_yi_sun_sin_bridge/model.closeup.glb",
+        "hash": "sha256:4132be6e8e449af1e1b2d8e4f41fa7f397038c662c089944fa276d0c8fec4439",
+        "bytes": 4615132
+      }
+    ],
+    "retainedInspectedImageCount": 70
   }
 }

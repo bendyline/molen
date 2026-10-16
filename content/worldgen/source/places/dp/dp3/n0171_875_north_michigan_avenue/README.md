@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Chicago’s tapering dark-bronze trussed tube with individually framed windows, projecting perimeter columns, continuous large diagonal diamonds, mapped roof plant and twin red-white broadcast masts.
+Chicago tapering dark bronze trussed tube, crossing lower diagonals and closed crown, pale retail base, mapped roof plant, unequal white-and-grey broadcast arrays and resting south TILT.
 
 ## Evidence and reconstruction
 
@@ -18,9 +18,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-146,050 triangles; 424,874 vertices; 4 material groups; 17,050,792 bytes. Native bounds: -42.171, 0.000, -27.348 to 42.177, 456.900, 27.347. Source hash: `sha256:1e43024073ee21e843e9df323e0d00e8cc84b52dff10059717b1f4230e01983e`.
+8,614 triangles; 18,458 vertices; 4 material groups; 770,684 bytes. Native bounds: -42.012, 0.000, -27.242 to 42.007, 456.904, 27.233. Source hash: `sha256:ea618eb614a170b48abc1825c9d6eebd15602665d1f0f63765fd936ef10b8cc5`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east/slightly north","front":"+Z south/slightly east; TILT facade","origin":"Exact-QID mapped ground-contact footprint frame"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -30,7 +30,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0171` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Intermediate floor heights, bracing joint heights, member widths and broadcast-platform equipment are reconstructed from published diagrams/photos. TILT is static in its resting position; below-grade plaza and planned future observation alterations are excluded.
+- Original 146050-triangle/17050792-byte detailed master remains reproducible from the unchanged global recipe. Reviewed source repairs the unsupported bottom-center V to crossing lower diagonals, adds the pale travertine retail surround, and replaces equally tall red-white solid poles with contemporary white mast bases and grey upper arrays at unequal heights seen in current SOM photos. Four-face taper, independent mapped penthouse and west/east antenna locations retained. Architectural top 343.7 m, highest tip 456.9 m and 100 floors from CVU; SOM 1127 ft/1970 differs from CVU 1969 completion. Main roof 1107 ft (337.4136 m), structural base 165x265 ft and roof 100x160 ft from Yasmin Sabina Khan engineering history. Office and residential floor stations, bracing tiers 4.15/92/176/242/304/337.1136 m, member thicknesses, east tip 435 m and platform equipment are reconstructed from photos, not surveyed. Four crossing tiers and the closed crown preserve the structural identity; exact joint heights are not asserted. Full facade planes and strip windows replace repeated panel frame geometry; distant strips aggregate coverage. Mast lattice is explicit at street/close levels and an opaque faceted grey aggregate at district/skyline. TILT is a static resting eight-pane assembly on the south facade; motion/interiors, sunken plaza, underground elements, exact door hardware, lettering/flags, small aerial equipment and unbuilt/future observation alterations excluded. Three canonical shared 256px concrete/travertine/painted-metal graphs, opaque palette glass and zero embedded images; no copied facade photograph. Terrain slope and physical device/dense-city performance unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

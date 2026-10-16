@@ -1,0 +1,400 @@
+{
+  "format": "molen/structure-review-scope@1",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "masonry": "#d4c8ac",
+      "plaster": "#eee5cd",
+      "copper": "#8cbdac",
+      "metal": "#62686f",
+      "wood": "#ab8056",
+      "brick": "#ba8065",
+      "paving": "#c4bfb2",
+      "glass": "#4d6178"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "masonry": [
+        0.527226,
+        0.504248,
+        0.457096
+      ],
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "copper": [
+        0.635757,
+        0.680369,
+        0.617469
+      ],
+      "metal": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ],
+      "brick": [
+        0.620345,
+        0.549823,
+        0.504963
+      ],
+      "paving": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 8,
+    "identityFeatures": [
+      "West38m and east32m rectangular towers with copper pyramids",
+      "Green copper main wings and elevated timber gallery above two open courts",
+      "White bailey with charcoal metal roofs and southeast round tower"
+    ],
+    "referenceState": "Current castle exterior; coarse plaster islands and measured inner-court elevation, reconstructed lower bailey level and sparse ground interpolation."
+  },
+  "mediumFiContext": {
+    "scale": "2",
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/turku-castle-current-model.mjs",
+    "export": "buildTurkuCurrent"
+  },
+  "surfaceOverrides": {
+    "masonry": {
+      "slot": "wall",
+      "graph": "stone_drywall",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.7,
+      "metallic": 0.12
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_painted",
+      "roughness": 0.78,
+      "metallic": 0.1
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "trim",
+      "graph": "brick",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "roughness": 0.25,
+      "metallic": 0.15,
+      "localRef": "palette:#ffffff"
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "surface-means.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "replaceFootprint": false,
+    "elevationMode": "sea-level",
+    "elevationMeters": 4,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Local Y0=4m N2000 is the reconstructed bailey floor; upper courts use City of Turku point22.2279555,60.4353175 at8.572m. Original27point/107contour interpolation supplies the source review ground; foundations extend below local grades. Bailey and second upper-court levels and between-observation terrain remain explicit reconstruction. Compatible N2000 host terrain required.",
+    "reviewStatus": "Original medium-fi exterior reviewed against operator and city references; placement preserves original map footprints and requires matching host ground. Current hash-bound QA recorded separately.",
+    "notes": "Native+X East,+Z South and heading0 retain all attributed mapped parts. Source-local city heights establish8.572m N2000 in the inner court; lower bailey4m is reconstructed and not claimed measured. Sparse interpolated review terrain and foundations are included; host terrain resolution/datum agreement controls final ground fit."
+  },
+  "geographicNote": "Native+X East,+Z South and heading0 retain all attributed mapped parts. Source-local city heights establish8.572m N2000 in the inner court; lower bailey4m is reconstructed and not claimed measured. Sparse interpolated review terrain and foundations are included; host terrain resolution/datum agreement controls final ground fit.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "Native+X east,+Z south, current WGS84 component traces; runtime heading0.",
+    "origin": "Original horizontal map anchor; local Y0=4m N2000 reconstructed bailey datum. Upper courts8.572m from City of Turku inner-court height point. Signed +X East/+Z South and heading0."
+  },
+  "sourceFacts": {
+    "exactCastleWay": 466736288,
+    "publishedDimensions": {
+      "westTowerHeight": 38,
+      "eastTowerHeight": 32,
+      "maximumWallThickness": 3,
+      "castleWallLength": 120,
+      "source": "https://turunlinna.fi/sv/abo-slotts-historia/",
+      "precision": "Museum-published integer metric facts, not a surveyed common height datum. Wall length is museum wording and is not the140m combined envelope."
+    },
+    "innerCourtElevation": {
+      "meters": 8.572,
+      "datum": "N2000",
+      "coordinate": [
+        22.2279555,
+        60.4353175
+      ],
+      "source": "https://turku.asiointi.fi/teklaogcweb/wfs.ashx",
+      "layer": "GIS:Kanta_Korkeuspiste",
+      "retrieved": "2026-10-09"
+    },
+    "baileyDatum": {
+      "meters": 4,
+      "datum": "N2000",
+      "basis": "Original photographic reconstruction, not a measured city point"
+    }
+  },
+  "limitations": [
+    "Current medium-fi exterior reconstructs architectural sections from operator photos and original attributed17part map traces. Official west/east totals38/32m are kept relative to upper court; exact height datums, roof pitches, windows and plaster shapes are not surveys.",
+    "Measured city inner-court height8.572m N2000 anchors both adjoining upper courts. Lower bailey4m, eastern stair dimensions and between-observation grades are original reconstruction; no interior bailey city height point was returned.",
+    "The source terrain is an original4m grid interpolation of27 city spot heights and107 contour fragments, with explicit court constraints. It is not a downloaded official DTM. Host terrain needs compatible N2000 datum and adequate local resolution.",
+    "Foundations extend below interpolated ground and the three passage openings remain visible. No interior navigation or walkable collision certification. Western approach/ramp and current harbour street works are outside this landmark scope.",
+    "Seven existing shared256-square irregular stone, lime plaster, copper, painted metal, wood, brick and gravel graphs; opaque local glass. Flat far stone uses the current graph mean and retains coarse plaster coverage. No new, embedded or photographic texture.",
+    "Nearby cottages/warehouses, park vegetation, natural rock microdetail, port development, interior exhibits, heraldry, exact painted ornaments and window grids are excluded. Operator photographs and planning aerial remain private research references.",
+    "Physical phone/laptop timing and downtown memory are unmeasured; browser byte, triangle, draw and unloading checks are separate from physical-device validation."
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/turku-castle-current-model.mjs",
+    "export": "buildTurkuCurrentSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTurkuCurrentDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.15,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "buildTurkuCurrentStreet",
+        "errorMeters": 0,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.15,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTurkuCurrent",
+        "errorMeters": 0,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_drywall",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.25,
+            "metallic": 0.15,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-plaster",
+      "position": [
+        -118,
+        20,
+        31
+      ],
+      "lookAt": [
+        -59,
+        16,
+        10
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "skyline-plaster",
+      "position": [
+        -118,
+        20,
+        31
+      ],
+      "lookAt": [
+        -59,
+        16,
+        10
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "east-court-grade",
+      "position": [
+        23,
+        17,
+        14
+      ],
+      "lookAt": [
+        4,
+        6,
+        -2
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "identity": "Silver eightfold pagoda tower with twelve occupied setback zones, corner ribs and a stepped braced crown.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
+  },
+  "brief": "Compact Jin Mao exterior preserves the mapped star-shaped base, twelve occupied setbacks, horizontal courses and eight crown stages. Far levels merge corner facets and glazing; closer levels restore fins and bracing. Detailed original master stays reproducible.",
+  "sourceFacts": {
+    "heightMeters": 420.5,
+    "floors": 88,
+    "observationDeckMeters": 340.1,
+    "completion": 1999,
+    "form": "Pagoda-inspired rhythmic setbacks; stainless metal and glass facade",
+    "originalMasterHash": "sha256:73b4eba82b06cdd4842de52e6544d0fee3ffaa771c6daaf09f021aec59f5e650",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[N0145].build",
+    "reviewScope": "Original79841-triangle7311168-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/jinmao-browser-model.mjs",
+    "export": "buildJinmaoCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      121.501401565,
+      31.237249826
+    ],
+    "heading": 0.803479888551,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/376075961",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/376075961"
+    ],
+    "wikidataId": "Q80813",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "One inspected architect exterior picture confirms the silver pagoda form, repeated setbacks, horizontal courses, corner ribs and stepped crown. Preserve original420.5m height, twelve authored occupied setback zones and eight crown stages. Retain the existing exact-QID star-shaped ground envelope and signed eightfold axes; standard viewer PMTiles confirms the Lujiazui tower/road context. Off-footprint PMTiles[0,80]12.9977m sets approximate terrain contact; center17.5403m is coarse. Raw terrain remains separate from bounded local preview contacts. Exact setback elevations, crown widths, stainless finishes, rib sections, glazing schedule and thresholds remain approximations; separate attached exhibition/retail podium excluded.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One inspected architect exterior picture confirms the silver pagoda form, repeated setbacks, horizontal courses, corner ribs and stepped crown. Preserve original420.5m height, twelve authored occupied setback zones and eight crown stages. Retain the existing exact-QID star-shaped ground envelope and signed eightfold axes; standard viewer PMTiles confirms the Lujiazui tower/road context. Off-footprint PMTiles[0,80]12.9977m sets approximate terrain contact; center17.5403m is coarse. Raw terrain remains separate from bounded local preview contacts. Exact setback elevations, crown widths, stainless finishes, rib sections, glazing schedule and thresholds remain approximations; separate attached exhibition/retail podium excluded.",
+    "terrainReference": {
+      "anchor": [
+        121.50200653840415,
+        31.2367509331849
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
+  },
+  "geographicNote": "One inspected architect exterior picture confirms the silver pagoda form, repeated setbacks, horizontal courses, corner ribs and stepped crown. Preserve original420.5m height, twelve authored occupied setback zones and eight crown stages. Retain the existing exact-QID star-shaped ground envelope and signed eightfold axes; standard viewer PMTiles confirms the Lujiazui tower/road context. Off-footprint PMTiles[0,80]12.9977m sets approximate terrain contact; center17.5403m is coarse. Raw terrain remains separate from bounded local preview contacts. Exact setback elevations, crown widths, stainless finishes, rib sections, glazing schedule and thresholds remain approximations; separate attached exhibition/retail podium excluded.",
+  "camera": {
+    "position": [
+      400,
+      285,
+      640
+    ],
+    "lookAt": [
+      0,
+      210,
+      0
+    ],
+    "fov": 44
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/jinmao-browser-model.mjs",
+    "export": "buildJinmaoSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildJinmaoDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildJinmaoStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildJinmaoCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0145-skyline",
+      "position": [
+        400,
+        285,
+        640
+      ],
+      "lookAt": [
+        0,
+        210,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0145-district",
+      "position": [
+        400,
+        285,
+        640
+      ],
+      "lookAt": [
+        0,
+        210,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0145-street",
+      "position": [
+        400,
+        285,
+        640
+      ],
+      "lookAt": [
+        0,
+        210,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0145-closeup",
+      "position": [
+        400,
+        285,
+        640
+      ],
+      "lookAt": [
+        0,
+        210,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "One inspected architect exterior picture confirms the silver pagoda form, repeated setbacks, horizontal courses, corner ribs and stepped crown. Preserve original420.5m height, twelve authored occupied setback zones and eight crown stages. Retain the existing exact-QID star-shaped ground envelope and signed eightfold axes; standard viewer PMTiles confirms the Lujiazui tower/road context. Off-footprint PMTiles[0,80]12.9977m sets approximate terrain contact; center17.5403m is coarse. Raw terrain remains separate from bounded local preview contacts. Exact setback elevations, crown widths, stainless finishes, rib sections, glazing schedule and thresholds remain approximations; separate attached exhibition/retail podium excluded.",
+    "Two shared granite/painted-metal graphs reused with opaque glass PBR and zero copied textures. Silver vertex tint approximates the metal finish using the common graph. Low tiers merge facade bays and eightfold corner facets; street and closeup restore full facets, fins and crown bracing. Physical-device timings pending."
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

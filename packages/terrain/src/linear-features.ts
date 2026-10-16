@@ -67,6 +67,28 @@ export class TerrainSurfaceMeshBuilder {
   private readonly positions: number[] = [];
   private readonly colors: number[] = [];
   private readonly normals: number[] = [];
+  private readonly attributes = new Map<string, { size: number; values: number[] }>();
+  get vertexCount(): number {
+    return this.positions.length / 3;
+  }
+
+  /** Decorate a just-appended feature without coupling the draper to its semantic meaning. */
+  attributeSince(
+    name: string,
+    size: number,
+    start: number,
+    sample: (x: number, z: number) => number[],
+  ): void {
+    const entry = this.attributes.get(name) ?? { size, values: [] };
+    while (entry.values.length < start * size) entry.values.push(0);
+    for (let i = start; i < this.vertexCount; i++) {
+      const x = this.positions[i * 3],
+        z = this.positions[i * 3 + 2];
+      if (x === undefined || z === undefined) throw new Error('Missing terrain surface vertex');
+      entry.values.push(...sample(x, z));
+    }
+    this.attributes.set(name, entry);
+  }
   constructor(readonly context: TerrainPyramidTileLayerContext) {}
 
   /** Clip a convex 3D face to this tile, interpolating heights at its boundaries. */
@@ -116,7 +138,7 @@ export class TerrainSurfaceMeshBuilder {
 
   polygon(
     points: readonly TerrainSemanticPoint[],
-    color: THREE.Color,
+    color: THREE.Color | ((x: number, z: number) => THREE.Color),
     elevation: number,
     absolute = false,
   ): void {
@@ -125,7 +147,8 @@ export class TerrainSurfaceMeshBuilder {
         for (const p of [a, b, c]) {
           this.positions.push(p[0], p[1] + elevation, p[2]);
           this.normals.push(p[3], p[4], p[5]);
-          this.colors.push(color.r, color.g, color.b);
+          const tint = typeof color === 'function' ? color(p[0], p[2]) : color;
+          this.colors.push(tint.r, tint.g, tint.b);
         }
       });
       return;
@@ -135,7 +158,8 @@ export class TerrainSurfaceMeshBuilder {
       for (const p of [clipped[0], clipped[i], clipped[i + 1]] as TerrainSemanticPoint[]) {
         this.positions.push(p[0], elevation, p[1]);
         this.normals.push(0, 1, 0);
-        this.colors.push(color.r, color.g, color.b);
+        const tint = typeof color === 'function' ? color(p[0], p[1]) : color;
+        this.colors.push(tint.r, tint.g, tint.b);
       }
     }
   }
@@ -150,6 +174,10 @@ export class TerrainSurfaceMeshBuilder {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.positions, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(this.colors, 3));
     geometry.setAttribute('normal', new THREE.Float32BufferAttribute(this.normals, 3));
+    for (const [name, entry] of this.attributes) {
+      while (entry.values.length < this.vertexCount * entry.size) entry.values.push(0);
+      geometry.setAttribute(name, new THREE.Float32BufferAttribute(entry.values, entry.size));
+    }
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = name;
     mesh.receiveShadow = true;
@@ -163,7 +191,7 @@ export class TerrainSurfaceMeshBuilder {
 export function appendTerrainSurfaceArea(
   builder: TerrainSurfaceMeshBuilder,
   polygon: TerrainSemanticPolygon,
-  color: THREE.Color,
+  color: THREE.Color | ((x: number, z: number) => THREE.Color),
   elevation: number,
 ): void {
   const rings = [polygon.outer, ...(polygon.holes ?? [])].map((ring) =>

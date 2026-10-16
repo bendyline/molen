@@ -1,0 +1,212 @@
+{
+  "planId": "hollywood_sign",
+  "id": "hollywood_sign",
+  "assetId": "molen.worldgen.structure.hollywood_sign",
+  "title": "Hollywood Sign",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.32168815,
+    "latitude": 34.134047800000005
+  },
+  "size": [
+    105.19187927246094,
+    20.62301015853882,
+    15.249323844909668
+  ],
+  "actualBounds": {
+    "min": [
+      -48.74009323120117,
+      -4.377009868621826,
+      -9.563539505004883
+    ],
+    "max": [
+      56.451786041259766,
+      16.246000289916992,
+      5.685784339904785
+    ]
+  },
+  "visualBrief": "Nine custom faceted white metal letter panels on individually mapped alignments, terrain-specific feet, twenty steel support posts, rear girts, bracing, ladders and restrained corrugated surfaces.",
+  "nativeAxes": {
+    "x": "east across the sign",
+    "y": "up",
+    "z": "south toward the frontal view"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Aerial_Hollywood_Sign.jpg",
+    "https://commons.wikimedia.org/wiki/File:View_from_behind_Hollywood_Sign_overlooking_LA.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hollywood-sign-wk",
+      "url": "https://qualla.com/hollywood-sign/"
+    }
+  ],
+  "referenceInputHash": "d51879862ec9f145a21a89f24d7900c1e492458d17bff37ce448eadf7162859b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hollywood-sign.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hollywood-sign.mjs",
+    "level": "skyline",
+    "export": "hollywoodSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "hollywoodDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "hollywoodStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ground beneath the Y defines the common datum. Panel edges use photo-derived offsets from Y at 1.8 m; twenty post feet sample the independent USGS 3DEP terrain and penetrate by 0.8 m. Terrain is not flattened or fitted. Elevation, panel lines and inferred panel heights are not an engineering survey; another host DEM may differ.",
+    "anchor": [
+      -118.32168815,
+      34.134047800000005
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.32168815,
+        34.134047800000005
+      ],
+      "modelHeight": 0,
+      "basis": "Ground beneath the center of Y. Panel heights follow the inspected front photograph; support feet sample independent USGS terrain within this common datum."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "osm/way/125433363",
+      "osm/way/125433366",
+      "osm/way/125433364",
+      "osm/way/125433365",
+      "osm/way/125433372",
+      "osm/way/125433370",
+      "osm/way/125433367",
+      "osm/way/125433369",
+      "osm/way/125433362"
+    ],
+    "source": "https://overpass.private.coffee/api/interpreter",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:887d9a700302940133469f6c299040649dd3ee0d140f5abbbb3c37c632009732",
+    "notes": "Nine mapped panel centerlines determine each letter position and heading. Custom faceted block letter forms use inspected photos; height 45 ft from the Hollywood Sign Trust. Overall published length conflicts with mapped span and is not forced into geometry."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi current nine-letter steel sign based on inspected local Qualla front and rear photographs, individual OSM letter lines and independent terrain. Not an engineering survey.",
+    "Letter height is 13.716 m (45 ft). The Trust booklet reports 450 ft overall length, while mapped endpoints span about 105 m; mapped positions are retained and this discrepancy remains unresolved.",
+    "First O and second L widths are adjusted from short mapped lines to match the photographic proportions; all centers and angles remain mapped. Corrugation, beam sections, joints and ladders are simplified.",
+    "Photographic comparison sets approximate panel heights independently of USGS terrain-sampled feet. Native DEM resolution and vertical accuracy are unknown; exact ground contact remains host-terrain dependent.",
+    "Earlier HOLLYWOODLAND extension, mountaintop broadcast buildings, fences, surveillance equipment and landscape vegetation are outside this model. Reference photographs are not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        2,
+        14,
+        155
+      ],
+      "lookAt": [
+        2,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -12,
+        85,
+        -110
+      ],
+      "lookAt": [
+        2,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 13784,
+    "vertices": 41352,
+    "materials": 2,
+    "bytes": 1656064,
+    "sha256": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d"
+  }
+}

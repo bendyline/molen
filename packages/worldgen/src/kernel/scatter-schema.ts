@@ -50,6 +50,19 @@ const population = z.strictObject({
     .regex(MODEL_REF_RE, "must be 'builtin:<name>' or a namespaced asset id")
     .describe("Model: an asset id (e.g. 'molen.entities.tree.conifer.fir') or 'builtin:<name>'."),
   weight,
+  variants: z
+    .array(
+      z.strictObject({
+        model: z.string().regex(MODEL_REF_RE),
+        weight: z.number().finite().positive().max(1000),
+      }),
+    )
+    .min(1)
+    .max(16)
+    .describe(
+      'Interchangeable model forms sampled independently of species. Unretained forms fall back to model under the model budget; all must share habitat and scale bounds.',
+    )
+    .optional(),
   scale: range('uniform scale'),
   widthScale: z
     .strictObject({
@@ -58,7 +71,10 @@ const population = z.strictObject({
     })
     .describe('Independent X/Z scale multiplier for crown width/bushiness; omitted means 1.')
     .optional(),
-  yaw: z.enum(['random', 'none']).describe('Random heading or fixed.').default('random'),
+  yaw: z
+    .enum(['random', 'none', 'rows'])
+    .describe('Random, fixed, or aligned with cultivation rows.')
+    .default('random'),
   align: z
     .enum(['up', 'normal'])
     .describe('Upright, or tilted to the ground normal.')
@@ -88,19 +104,71 @@ const rule = z.strictObject({
     .max(20000)
     .describe('Target instances per hectare before clustering and polygon density.'),
   minSpacing: z.number().nonnegative().describe('Minimum spacing hint in meters.').default(2),
+  rows: z
+    .strictObject({
+      headland: z.number().min(0).max(30).optional(),
+      spacing: z.number().min(0.5).max(100).describe('Distance between cultivation rows, meters.'),
+      interval: z
+        .number()
+        .min(0.5)
+        .max(100)
+        .describe('Distance between plants along a row, meters.'),
+      angle: z
+        .number()
+        .min(0)
+        .max(180)
+        .describe('Grid rotation in degrees from world X.')
+        .default(0),
+      jitter: z
+        .number()
+        .min(0)
+        .max(0.2)
+        .describe('Fractional cell jitter; 0 gives exact rows.')
+        .default(0.04),
+    })
+    .describe(
+      'Optional world-anchored cultivation grid. Density may thin it, but cannot overfill it.',
+    )
+    .optional(),
+  nearWater: z
+    .strictObject({
+      maxDistance: z
+        .number()
+        .positive()
+        .max(500)
+        .describe('Maximum horizontal distance from mapped water edges, meters.'),
+      classes: z
+        .array(z.string().min(1))
+        .min(1)
+        .describe('Optional water labels; omitted accepts any mapped water.')
+        .optional(),
+    })
+    .describe(
+      'Require mapped water nearby, at the exclusion raster resolution. Water itself remains excluded.',
+    )
+    .optional(),
   clustering: z
     .strictObject({
       scale: z.number().positive().describe('Noise wavelength in meters.'),
       threshold: unit.describe('Noise value below which density is zero.').default(0.35),
       contrast: z.number().positive().describe('Steepness of the density ramp.').default(1.4),
       seedOffset: z.int().describe('Decorrelates rules sharing a class.').default(0),
+      sharedSeed: z
+        .int()
+        .describe('Shared density field across layers; does not change placement seeds.')
+        .optional(),
+      detailScale: z
+        .number()
+        .positive()
+        .describe('Wavelength of smaller clumps inside density patches, meters.')
+        .optional(),
     })
     .describe('Noise-modulated density for natural clumps and clearings.')
     .optional(),
   layer: z
-    .enum(['canopy', 'groundcover'])
+    .enum(['canopy', 'understory', 'groundcover', 'agriculture'])
     .describe(
-      'Budget pool: canopy (trees, shrubs, rocks) shares the batch instance and model caps; groundcover (knee-high near detail such as tussocks and ferns) has its own, so it never thins the canopy.',
+      'Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees.',
     )
     .default('canopy'),
   slopeMax: unit.describe('Slope limit for this rule (0 = flat, 1 = vertical).').optional(),
@@ -123,7 +191,7 @@ const rule = z.strictObject({
     .optional(),
 });
 
-const scatterSchema = z.strictObject({
+export const scatterSchema: z.ZodType<ScatterDoc> = z.strictObject({
   format: z.literal('molen/scatter@1').describe("Format envelope; always 'molen/scatter@1'."),
   id: z
     .string()
@@ -170,6 +238,16 @@ export function validateScatter(data: unknown): ValidationIssue[] {
   const ids = new Set<string>();
   doc.rules.forEach((rule, index) => {
     const path = `/rules/${index}`;
+    if (
+      rule.rows !== undefined &&
+      Math.min(rule.rows.spacing, rule.rows.interval) * (1 - rule.rows.jitter) < rule.minSpacing
+    ) {
+      issues.push({
+        path: `${path}/rows`,
+        code: 'row_spacing',
+        message: 'Row spacing after jitter must respect minSpacing',
+      });
+    }
     if (ids.has(rule.id)) {
       issues.push({
         path: `${path}/id`,

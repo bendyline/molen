@@ -1,0 +1,31 @@
+# N0188 —70 Pine Street: complete
+
+Reviewed2026-10-10.
+
+## Actual visual inspection
+
+Actually inspected all77 final frames:18 portable,18 shared and41 medium-fi. Whole turntables and explicit whole-tower cameras retain the entire trapezoidal parcel, western lower tiers, eastern slab, all principal setbacks and the tiered lantern below the290.17m tip. The two tall eastern portals retain their stylized tower portraits; both shorter western entries and Pearl entrance have visible revolving casings. Source and browser entrance views now show window fields above the smaller portals. First derivative renders exposed a one-row ground-facade error, corrected to four rows; its independent14m-high window probe passes. The western Pine detail camera was recentered after correcting the portal position. No missing wing or shaft segment remains within the declared exterior scope.
+
+## Shared surfaces
+
+The master binds six reusable256px concrete, granite, limestone, brick and metal graphs with zero embedded images. Canonical brick provides pale mortar/brick courses; component tints establish subdued gray-buff Art Deco masonry and green-gray glazing. All browser levels use at most six material groups. Skyline includes baked linear graph means and glazing-area averages; district uses canonical window_punched as an explicitly generic repeating bay motif rather than measured facade photography. Street and closeup retain metric brick/stone repeats and physical glazing recess depth. Thin fan-rail strips use double-sided shared metal, avoiding duplicated back geometry. Shared fixture reads each master graph once; unloading disposes all model geometry.
+
+## Browser levels and medium-fi
+
+Actually inspected noon/late and economy/high frames, untextured skyline silhouette, all source detail views, eleven browser-only cameras and four transitions. Skyline866triangles preserves the whole asymmetric mass and lantern/spire; district1370 adds the generic repeated opening graphic; street14740 restores four base window rows and five portals; closeup59842 retains recessed sash, whole setback roofs, upper brick relief motifs, three-ray fan-rail abstractions and entrance reliefs. Continuous sash strips replace repetitive hidden uploads. The initial white blank field above smaller portals and the first incorrect ground-row schedule were corrected before these final captures. Generic street framing intentionally crops the crown; dedicated whole cameras cover it. Synthetic context is a style fixture, not the actual Manhattan neighborhood.
+
+Final browser levels are skyline866triangles/86172bytes/one draw; district1370/112852/six; street14740/1149008/six; closeup59842/5166260/six. Initial skyline+district download totals199024bytes, below3MB phones and6MB laptops. Whole-asset error allowances are1.7m/1.7m/1.25m/0.22m. Detailed reviewed source remains53933232bytes and is not the initial viewer payload. Actual transition frames preserve the envelope; district graphic pane proportions/phase are approximate and some tonal differences from physical facade remain. Runtime uploads use separate streams. Physical-device timing, night rendering and absolute terrain accuracy remain unmeasured.
+
+## Signed placement
+
+Fresh public OSM snapshot2026-10-10 confirms exactQ262041 whole outline way278069587 and all58 source component footprints unchanged. Retained anchor[-74.007724812,40.70646602] and heading-0.684218977291rad put native+X southeast toward Pearl Street, +Z southwest toward Pine Street, -Z northeast toward Cedar Street. Actually inspected the north-up whole-parcel overlay, supported by LPC2011 exterior photographs and tax plan. Rounded whole-outline residual is0.000595m. Independent Pine entrance nodes12361301178/9 bracket the tall portal nearx+5.9; accessible entrance12085335624 corrects the western Pine portal fromx-23 tox-13.874. Cedar nodes support its separate west/east portals nearx-23.053/+6.209. The complete base is not stretched into the shaft. Accepted map/reconstruction tolerance2m/1degree; sourceY0 is contact datum, actual street slope and absolute grade unmeasured. Footprint replacement is disabled.
+
+## Reference scope
+
+Preserved original539422-triangle recipe re-encodes its exact a048f2d4 hash in the focused test. Reviewed540264-triangle source adds three revolving forms, corrects the western Pine portal and restores window fields above smaller entries while retaining the original detailed upper massing. Actually inspected LPC2011pages15-23, plus the larger western-portal page21; read historic description/27ft lantern/97ft spire on pages4-10. Current owner text corroborates952ft tip,1932completion and2015residential conversion; owner67-story labeling and historic66th-floor observation account describe different floor conventions and are not invented into geometry. Fine bay counts, relief shapes, intermediate heights, hardware dimensions and current door operation remain original reconstruction. Closeup reduces four horizontal brick relief lines to two and retains upper paired motifs; fan railings use three rays and omit tiny arcs/tube sidewalls within0.22m. Separate Pine footbridge, adjacent buildings, tenant branding and interiors are excluded. This is a complete medium-fi exterior, not an architectural survey.
+
+References: [NYC LPC exterior report](https://s-media.nyc.gov/agencies/lpc/lp/2441.pdf), [current owner](https://www.dthcapital.com/properties/70-pine-street), [mapped parcel](https://www.openstreetmap.org/way/278069587).
+
+## Geometry and reproducibility
+
+Three focused tests pass: exact original-master byte reproduction plus current source/import identity and signed independent door controls; whole parcel/crown ray probes, three distinct revolving casings and the corrected fourth ground window row in source/street/closeup; force-rebuilt deterministic four-level hashes, triangle/draw/download caps, no embedded images and separate12-byte POSITION/NORMAL GPU streams. All six final GLBs pass Khronos validation with zero errors and zero warnings. The targeted medium-fi audit reports no findings. One initial regression probe landed on an adjacent masonry pier; the corrected probe at the window center passes. No repository-wide build or dependency audit was needed.

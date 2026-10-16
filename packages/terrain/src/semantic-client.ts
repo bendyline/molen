@@ -4,6 +4,8 @@ import type { WaterWave } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { mergeGeometries, mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { MeshPhysicalNodeMaterial, Node } from 'three/webgpu';
+import { appendAgricultureAttributes } from './agriculture-surface';
+import { createTerrainGroundMaterial } from './ground-material';
 import { visibleLandcoverPolygons } from './landcover-surface';
 import { appendTerrainSurfaceArea, TerrainSurfaceMeshBuilder } from './linear-features';
 import {
@@ -315,11 +317,7 @@ const DEFAULT_TREE_CANOPY_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#2f633d',
   roughness: 0.96,
 });
-const DEFAULT_LANDCOVER_MATERIAL = new THREE.MeshStandardMaterial({
-  vertexColors: true,
-  roughness: 0.98,
-  metalness: 0,
-});
+const DEFAULT_LANDCOVER_MATERIAL = createTerrainGroundMaterial({ agriculture: true, strength: 0 });
 const DEFAULT_BUILDING_MATERIAL = new THREE.MeshStandardMaterial({
   color: '#b9ab96',
   roughness: 0.84,
@@ -363,6 +361,11 @@ export interface TerrainSemanticMeshOptions {
   treeCanopyGeometry?: THREE.BufferGeometry;
   forestClasses?: readonly string[];
   landcoverColors?: Readonly<Record<string, string>>;
+  /** Optional world-space palettes, sampled per vertex. Half-open bounds meet across tiles. */
+  landcoverPaletteAreas?: ReadonlyArray<{
+    bounds: readonly [number, number, number, number];
+    colors: Readonly<Record<string, string>>;
+  }>;
   landcoverOffset?: number;
   treesPerSquareKilometer?: number;
   maxTreesPerTile?: number;
@@ -647,13 +650,36 @@ export function createLandcoverMesh(
   for (let featureIndex = 0; featureIndex < tile.landcover.length; featureIndex++) {
     const feature = tile.landcover[featureIndex];
     if (feature === undefined) continue;
-    const color = landcoverColor(feature.class, options);
+    const color = feature.cultivation
+      ? new THREE.Color(feature.cultivation.color)
+      : landcoverColor(feature.class, options);
+    const palettes = options.landcoverPaletteAreas?.map((area) => ({
+      bounds: area.bounds,
+      color: landcoverColor(feature.class, {
+        landcoverColors: { ...options.landcoverColors, ...area.colors },
+      }),
+    }));
+    const colorAt =
+      palettes === undefined || feature.cultivation !== undefined
+        ? color
+        : (x: number, z: number): THREE.Color => {
+            const worldX = context.origin[0] + x,
+              worldZ = context.origin[1] + z;
+            return (
+              palettes.find(
+                ({ bounds: b }) =>
+                  worldX >= b[0] && worldX < b[2] && worldZ >= b[1] && worldZ < b[3],
+              )?.color ?? color
+            );
+          };
     // Retain the authored layer heights below pavement; covered faces were removed above.
     const offset =
       (options.landcoverOffset ?? 0.18) +
       (featureIndex / Math.max(1, tile.landcover.length - 1)) * 0.064;
+    const start = builder.vertexCount;
     for (const polygon of visible[featureIndex] ?? [])
-      appendTerrainSurfaceArea(builder, polygon, color, offset);
+      appendTerrainSurfaceArea(builder, polygon, colorAt, offset);
+    appendAgricultureAttributes(builder, start, feature);
   }
   const mesh = builder.mesh(
     'semantic:landcover',
@@ -684,7 +710,8 @@ function averageGroundHeight(
   return sum / polygon.outer.length;
 }
 
-function waterSurfaceHeight(
+/** Shared rendered water datum for water-bound ambient objects and the surface mesh. */
+export function terrainWaterSurfaceHeight(
   polygon: TerrainSemanticPolygon,
   context: TerrainPyramidTileLayerContext,
   offset: number,
@@ -772,7 +799,7 @@ function createWaterMesh(
       const geometry = new THREE.ShapeGeometry(shape);
       geometry.rotateX(-Math.PI / 2);
       const positions = geometry.getAttribute('position');
-      const height = waterSurfaceHeight(
+      const height = terrainWaterSurfaceHeight(
         polygon,
         context,
         options.waterOffset ?? 0.65,

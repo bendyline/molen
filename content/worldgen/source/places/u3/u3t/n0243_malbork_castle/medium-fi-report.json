@@ -1,0 +1,1364 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0243_malbork_castle",
+  "sourceHash": "sha256:18af4066b3ef5de40890dfc92f1af0843e661f48a564d37bb4be46c4d836a62a",
+  "runtimeHash": "sha256:6e450d7e7f98da4920d4d4331736395ab4e276d74046624aa3a866fd99ae38c5",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:96fd9da582d21fa0a4d4a1cef05d58d5152e486e63c454e1f12ab4806bbb0464",
+      "bytes": 82000,
+      "gzipBytes": 16937,
+      "triangles": 998,
+      "cpuBytes": 80580,
+      "gpuBytes": 80580,
+      "errorMeters": 8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:f31a83ebc944cd0321e83f644fc058abc9f565c6877a7057e083376a7f3d43c4",
+      "bytes": 239920,
+      "gzipBytes": 78230,
+      "triangles": 3197,
+      "cpuBytes": 231440,
+      "gpuBytes": 231440,
+      "errorMeters": 3,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:2741f15425da828c3b12eda3c3a393a3600f699efbd42b20b77579f097126780",
+      "bytes": 1245512,
+      "gzipBytes": 331171,
+      "triangles": 15915,
+      "cpuBytes": 1236980,
+      "gpuBytes": 1236980,
+      "errorMeters": 1,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:c68b754e8b229d44984336bd0d84a7dff806310d806d23530329689a20bfa475",
+      "bytes": 4587792,
+      "gzipBytes": 1456210,
+      "triangles": 57078,
+      "cpuBytes": 4579204,
+      "gpuBytes": 4579204,
+      "errorMeters": 0.3,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d05decf1beb17e67cb782130830e4abce34243d34bcdfaa80439f67d5962f15e"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:0978b07997b397e0cfb99f8ab663db0bc9fdbf81a50f926a718758bd8ce26c62"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e8cbae0c238b7c7161863f9948dca923dd98e63ea1e070ce13e6c9500547c608",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          202.3193,
+          48.531,
+          133.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:110c718a89d055a33d1b2e48e299782e7841c835314a5b16f5f1b289f13276e1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          202.3193,
+          48.531,
+          133.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:b9031ca6818e4717459997af5a408f609cec499c391c1de97497747fc59beb40",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          202.3193,
+          48.531,
+          133.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6d73d668a97f9c2703d2194a6b78325e8fc025b311d08e8bb1bee6d29a5862cb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          202.3193,
+          48.531,
+          133.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:8de2bd01a66c7824dc20373ac9285aa274499c816f25bbd52c76162232334548",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 140511,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:68fc1c2726ab858e6ce960f102ee2803408fe627ce82b2ec19ff0ceed58def5f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 140511,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6038cfb11f529228ab1e3230bca42a97be171da8c48c417a7251205a06f9fc8d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 140511,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:a7f1a8840154180745c5c8b5b719e497e6c4af44b5910608783a13a6c5885bf3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 140511,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:26f2205c276236603702b7ab6b01a5ef02ce2f9804ea7f7df8767af78a7ebece",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 138312,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          348.3193,
+          122.531,
+          386.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:560e4838873da67665ae66e6f352d6dd3a6e028bcfa978ca98c2d6e62c132b6d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 138312,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          348.3193,
+          122.531,
+          386.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:d20010474b34e55f9c154e1212e4df5bc2ba870f10cd18348e428714e7e5f1e9",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 138312,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          348.3193,
+          122.531,
+          386.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:8b951a17926338664b711f5012866ebc4883ff35e9926aa5be8fe8fff4ba9e79",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 138312,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          348.3193,
+          122.531,
+          386.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:53ef98f3b4a73e72014bbdca164d772d9e3622487081fc0a3bc3bc92da056cac",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 132072,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          348.3193,
+          122.531,
+          386.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/high-castle-cloister.png",
+      "hash": "sha256:78bb5f2c7337983673bb95374e6b9cd188217228a81fcd21319fa33bdf21ad0d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -31,
+          14,
+          31
+        ],
+        "lookAt": [
+          -10,
+          14,
+          35
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/high-castle-and-dansker.png",
+      "hash": "sha256:f0f1e03fbbc946798eaf25675792523da57911d3a03d76bd2df22b43e2e153bb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -165,
+          68,
+          -105
+        ],
+        "lookAt": [
+          -39,
+          15,
+          14
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/middle-castle-courtyard.png",
+      "hash": "sha256:3f923dd87d4950e82766ce0b2c64d696ac3cbf53dfa2d41b21041e47310dff70",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          17,
+          38,
+          29
+        ],
+        "lookAt": [
+          115,
+          15,
+          23
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/grand-masters-palace.png",
+      "hash": "sha256:94e8b61fa168c36960bfc4f3d1895207d3318db6d70f8231050192a2e77906d8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -20,
+          29,
+          -97
+        ],
+        "lookAt": [
+          39,
+          16,
+          -27
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/church-and-keep.png",
+      "hash": "sha256:69bbb03bb89f5019005c7fa07570f7967612d0cd61cbad3346c4280e2c4c1c4b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          10,
+          50,
+          143
+        ],
+        "lookAt": [
+          -10,
+          24,
+          48
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-gate-and-bridge.png",
+      "hash": "sha256:439ce6a322ce44f022ca444034044899b60354abd8b4df47d8f13fb6f32c33bb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          176,
+          24,
+          50
+        ],
+        "lookAt": [
+          115,
+          12,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-castle-karwan.png",
+      "hash": "sha256:fbebc065ddd4bb1dde31c49c43d6994e237a848c7760501a5583f4b087a5cc67",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          266,
+          36,
+          174
+        ],
+        "lookAt": [
+          228,
+          13,
+          98
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/lower-castle-ranges.png",
+      "hash": "sha256:87acaf794f2db33333b217062515a6f1e92b09cd66002648c2375d8dfdf0ac04",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          336,
+          120,
+          -168
+        ],
+        "lookAt": [
+          267,
+          10,
+          2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/all-three-castles-plan.png",
+      "hash": "sha256:6f28abd2d80761b1719e19df74b8086a307b8588ea913630bd566e30bdec805f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          160,
+          470,
+          90
+        ],
+        "lookAt": [
+          160,
+          0,
+          38
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/signed-occupied-plan.png",
+      "hash": "sha256:34f138499429f55de088e17ef0a27fee70332439dc85aebf73002fc1bc4db31d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          135,
+          590,
+          0.1
+        ],
+        "lookAt": [
+          135,
+          5,
+          20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-malbork-skyline.png",
+      "hash": "sha256:5f47334f05fa604c6b5a8916c41e2d957547acc70864fbb0adfaf13ec06b9c99",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 138312,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -230,
+          200,
+          -350
+        ],
+        "lookAt": [
+          135,
+          6,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-malbork-district.png",
+      "hash": "sha256:396b69ea9c2aabb3cef974830828c1440be5142275037d92e87ea7b955a5d4f7",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 140511,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -230,
+          200,
+          -350
+        ],
+        "lookAt": [
+          135,
+          6,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-malbork-street.png",
+      "hash": "sha256:3798968b944a4f3ebcded357340bf04f4a281df511e5267a7fee711397d3f921",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 153229,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -230,
+          200,
+          -350
+        ],
+        "lookAt": [
+          135,
+          6,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-malbork-closeup.png",
+      "hash": "sha256:8f8f45db85922a54e183e1f766c1590e51f2783df2f076b360ba9d5feca9c89f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          -230,
+          200,
+          -350
+        ],
+        "lookAt": [
+          135,
+          6,
+          25
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:3641446243ba67068bb2d918d175edaad9e64d128581126ff0ef4b389ac8b82f",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 138312,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:68fc1c2726ab858e6ce960f102ee2803408fe627ce82b2ec19ff0ceed58def5f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 140511,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:9eaa8acebbf6ba691f174cfd68059abdab7ada9de5294083a1b767539b575902",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 153229,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:7417da4251cf8dd9137e64fbbff500d3ea94f6fd83de866071e0c4441302c6ab",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 194392,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/terrain-review.height.png"
+        },
+        "position": [
+          251.3193,
+          84.531,
+          218.2417
+        ],
+        "lookAt": [
+          154.3193,
+          33.531,
+          50.2417
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

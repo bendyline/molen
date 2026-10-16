@@ -26,14 +26,16 @@ import {
   type WorldgenBatchInput,
   type WorldgenBudgets,
 } from '@bendyline/molen-worldgen/kernel';
+import { prepareAgricultureTile, withAgricultureRules } from './agriculture';
 import { identityFor } from './building-identity';
 import { buildingPieces } from './building-parts';
 import { applyBusinessAppearance, associateBusinesses } from './businesses';
-import { contextLabelForPolygon, landcoverLabel } from './labels';
+import { contextLabelForPolygon, isLandcoverDesignation, landcoverLabel } from './labels';
 import { mappedPropExclusions, mappedPropRequests } from './mapped-props';
 import type { PlacesContent } from './places';
 import { type RegionResolver, regionScatterId, regionStyleRules } from './region';
 import type { RegionAtlasDoc } from './region-atlas-types';
+import type { RegionalEnvironment } from './regional-environment';
 import { residentialTreePolygons } from './residential-trees';
 import { analyzeTileEdge, buildingClipBuffer, PROTOMAPS_TILE_BUFFER } from './tile-edges';
 
@@ -56,6 +58,8 @@ export interface SemanticAdapterOptions {
   pack: ResolvedStylePack;
   atlas?: RegionAtlasDoc;
   regions?: RegionResolver;
+  /** Independent ecological geography and composable regional channels. */
+  environment?: RegionalEnvironment;
   budgets?: Partial<WorldgenBudgets>;
   features?: { buildings?: boolean; scatter?: boolean; interiors?: boolean };
   /** Source clip buffer in tile units (default: the Protomaps basemap buffer). */
@@ -74,6 +78,7 @@ export interface SemanticAdapterOptions {
 export interface SemanticBatch extends WorldgenBatchInput {
   regionId?: string;
   scatterId?: string;
+  regional?: { ecoregions: number[]; profileAtCenter?: string; uncovered: boolean };
   /** Building polygons this tile skipped because a neighbour owns them. */
   skippedByOwnership: number;
   clippedPieces: number;
@@ -117,6 +122,7 @@ export function scatterRequestFromTile(
     },
   ];
   for (const feature of tile.landcover) {
+    if (isLandcoverDesignation(feature)) continue;
     const label = landcoverLabel(feature);
     for (const polygon of feature.polygons) {
       const { outline, holes } = toMeters(polygon, size);
@@ -134,6 +140,7 @@ export function scatterRequestFromTile(
     for (const polygon of feature.polygons) {
       exclusions.push({
         ring: toMeters(polygon, size).outline,
+        holes: toMeters(polygon, size).holes,
         radius: avoid.buildings,
         kind: 'buildings',
       });
@@ -143,6 +150,8 @@ export function scatterRequestFromTile(
     for (const polygon of feature.polygons ?? []) {
       exclusions.push({
         ring: toMeters(polygon, size).outline,
+        holes: toMeters(polygon, size).holes,
+        ...(feature.class !== undefined ? { label: feature.class } : {}),
         radius: avoid.water,
         kind: 'water',
       });
@@ -151,6 +160,7 @@ export function scatterRequestFromTile(
       exclusions.push({
         polyline: line.map((point): Vec2 => [point[0] * size, point[1] * size]),
         width: waterwayWidth(feature.class, feature.width),
+        ...(feature.class !== undefined ? { label: feature.class } : {}),
         radius: avoid.water,
         kind: 'water',
       });
@@ -187,6 +197,8 @@ export function semanticTileToBatch(
   geom: TileGeometry,
   options: SemanticAdapterOptions,
 ): SemanticBatch {
+  const agriculture = prepareAgricultureTile(tile, geom, options.environment);
+  tile = agriculture.tile;
   const buffer = buildingClipBuffer(tile, geom.level, options.buffer ?? PROTOMAPS_TILE_BUFFER);
   const size = geom.size;
   const tileBounds: [number, number, number, number] = [
@@ -246,13 +258,21 @@ export function semanticTileToBatch(
             }
           : {}),
       };
-      if (straddles && atlas !== undefined && options.regions !== undefined) {
+      if (
+        (straddles && atlas !== undefined && options.regions !== undefined) ||
+        options.environment !== undefined
+      ) {
         const world: Vec2 = [
           geom.originX + centroidUv[0] * size,
           geom.originZ + centroidUv[1] * size,
         ];
-        const region = options.regions.resolve(world[0], world[1]);
-        const rules = [...regionStyleRules(atlas, region), ...packRules];
+        const region = options.regions?.resolve(world[0], world[1]);
+        const regional = options.environment?.at(world[0], world[1]);
+        const rules = [
+          ...(regional?.buildings ?? []),
+          ...(atlas !== undefined ? regionStyleRules(atlas, region) : []),
+          ...packRules,
+        ];
         const analysis = analyzeFootprint(outline, holes);
         request.style = selectStyle(
           rules,
@@ -270,7 +290,18 @@ export function semanticTileToBatch(
   const scatterId =
     (atlas !== undefined ? regionScatterId(atlas, centreRegion) : undefined) ??
     options.pack.root.defaults.scatter;
-  const scatterDoc = scatterId !== undefined ? options.pack.scatters[scatterId] : undefined;
+  const scatterEnvironment = withAgricultureRules(
+    options.environment?.scatter(tileBounds),
+    agriculture.rules,
+  );
+  const ecologicalRegions = options.environment?.ecology?.intersecting(tileBounds);
+  const profileAtCenter = options.environment?.at(
+    geom.originX + size / 2,
+    geom.originZ + size / 2,
+  ).ecologyProfile;
+  const scatterDoc =
+    scatterEnvironment?.doc ??
+    (scatterId !== undefined ? options.pack.scatters[scatterId] : undefined);
   let scatter: ScatterRequest | undefined;
   if (options.features?.scatter !== false && scatterDoc !== undefined) {
     scatter = scatterRequestFromTile(tile, geom, scatterDoc.defaults.avoid, options.keep ?? 1);
@@ -283,11 +314,28 @@ export function semanticTileToBatch(
       geom,
       options.features?.scatter !== false,
       options.features?.buildings !== false ? options.places?.landmarks : undefined,
+      options.environment,
     ),
     ...(scatter !== undefined ? { scatter } : {}),
+    ...(scatterEnvironment !== undefined ? { scatterEnvironment } : {}),
     pack: options.pack,
     rules: tileRules,
-    ...(scatterId !== undefined ? { scatterId } : {}),
+    ...(scatterEnvironment !== undefined
+      ? { scatterId: scatterEnvironment.doc.id }
+      : scatterId !== undefined
+        ? { scatterId }
+        : {}),
+    ...(ecologicalRegions !== undefined
+      ? {
+          regional: {
+            ecoregions: ecologicalRegions.flatMap((region) =>
+              region !== undefined ? [region.id] : [],
+            ),
+            ...(profileAtCenter !== undefined ? { profileAtCenter } : {}),
+            uncovered: ecologicalRegions.includes(undefined),
+          },
+        }
+      : {}),
     ...(options.budgets !== undefined ? { budgets: options.budgets } : {}),
     tier: geom.levelBelowMax + Math.max(0, options.tierOffset ?? 0),
     interiors: options.features?.interiors === true && geom.levelBelowMax === 0,

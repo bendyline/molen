@@ -11,28 +11,32 @@
     "longitude": 50.586111111
   },
   "visualBrief": "Roofless Alamut upper-castle ruins on a narrow fluted rock ridge, with ten mapped ruin groups, northwest cells, open rock-cut reservoirs, brick arch remnants, broken stone walls and eastern approach stairs.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 3
+  },
   "size": [
-    191.16907501220703,
-    47.02859878540039,
-    67.18659591674805
+    190.69306182861328,
+    68.27822303771973,
+    67.20514678955078
   ],
   "actualBounds": {
     "min": [
-      -95.29432678222656,
-      0,
+      -94.81831359863281,
+      -46.71962356567383,
       -33.28897476196289
     ],
     "max": [
       95.87474822998047,
-      47.02859878540039,
-      33.897621154785156
+      21.5585994720459,
+      33.91617202758789
     ]
   },
   "nativeAxes": {
     "up": "+Y",
     "longitudinal": "+X southeast, 45.63 degrees south of east",
     "front": "+Z southwest",
-    "origin": "Mapped upper castle anchor, provisional local rock contact"
+    "origin": "Retained signed upper-castle anchor; Y0 decoded 2098.7457 m numeric working datum."
   },
   "sourceFacts": {
     "identity": "Exact Q4706020 on OSM way/590499418",
@@ -45,11 +49,13 @@
       "2024-01-01",
       "2024-12-22"
     ],
-    "surveyedVerticalDatum": false
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588",
+    "originalMasterRecipe": "packages/worldgen/scripts/alamut-castle-model.mjs#alamutStudy.build"
   },
   "reconstruction": {
     "basis": "OSM upper-castle outline and ruin groups; UNESCO 2024 aerial/ground photographs; published Willey ground plan and 2014 field photographs for cisterns and northwest ridge.",
-    "verticalDatum": "Local bedrock contact with plateau 38 - 0.032*x + 0.012*z meters. Ruin walls and cut depths are photographic estimates. The much larger mountain is not included.",
+    "verticalDatum": "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain.",
     "state": "Surviving roofless archaeological remains. Temporary excavation shelters in older photographs are omitted in the 2024 interpretation."
   },
   "referencePages": [
@@ -60,8 +66,8 @@
     "https://www.burgenwelt.org/iran/alamut/object.php"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Map anchor and ten surviving footprints retained; vertical datum and terrain fit pending",
+    "status": "preview-proposal",
+    "reviewStatus": "Signed upper-castle frame and retained coarse terrain, reconstructed architecture/cliff",
     "anchor": [
       50.586098381,
       36.44473323
@@ -76,11 +82,22 @@
     ],
     "wikidataId": "Q4706020",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:0b3cec46341d60b118ac737edef502611da16b4a5fbc27e3a47f60668c403c5d",
+    "mapGeometryHash": "sha256:0491b28b0503b63cdb3272b3df7496aff006e6381de288705904abdcb93325d6",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Do not extrude the upper-castle boundary as a solid building. Ruin chambers and cisterns remain open."
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain.",
+    "notes": "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain.",
+    "evidence": "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain.",
+    "terrainReference": {
+      "anchor": [
+        50.586098381,
+        36.44473323
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Terrarium grid center relative to decoded working anchor datum."
+    }
   },
   "scaleBasis": "Map outlines in meters; +X 45.63 degrees south of east. Only the horizontal outer envelope and mapped ruin footprints are georeferenced; heights and chamber subdivisions remain approximate.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -98,6 +115,15 @@
       ]
     },
     {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.wood_plain",
       "slot": "trim",
       "uv": "repeats",
@@ -107,12 +133,12 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        1.8,
-        1.5
+        2,
+        2
       ]
     },
     {
@@ -144,14 +170,19 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Maximum fidelity pending: mapped ruin footprints are preserved, but heights, individual chamber divisions, arch positions, masonry profiles and cistern positions/depths need measured archaeological plans.",
-    "Includes the mapped upper castle only. The lower/onion castle, passing zone and complete 220 m mountain require additional source coverage and terrain integration.",
-    "Rock geometry is a provisional local contact. Geological strata, excavated floor levels and the approach stair vertical alignment are not surveyed.",
-    "The roofless state follows 2024 UNESCO views. Protective scaffolding visible in 2014 field photos is not treated as permanent historic architecture.",
-    "Shared procedural sandstone, weathered stone, brick, plaster, timber and metal contain no embedded photos. Exact rock and mortar appearance remain to refine."
+    "Original 271061-triangle / 26756940-byte source remains preserved and exactly reproducible at sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588 from alamut-castle-model.mjs#alamutStudy.build.",
+    "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain.",
+    "Numeric Terrarium tile spacing and 4 m review grid do not establish native DEM resolution or vertical accuracy. Small rocky crest, caves and archaeological cuts are smoothed.",
+    "A rigid architectural translation is chosen to clear retained terrain at mapped ruin bases, cut-reservoir floors and the interpreted approach route. This is not a measured archaeological floor datum.",
+    "The retained sloping plateau and local cliff shell belong to this exterior reconstruction. Cliff bottoms extend below sampled host terrain, without including the full mountain.",
+    "All five cut-reservoir floors remain above retained host heights, avoiding a whole-precinct terrain cutout. Compatibility with other terrain vintages/products remains unverified.",
+    "Exact geological flutes, broken-wall profiles, reservoir depths and positions, cave passages and modern route elevations require a surveyed archaeological model.",
+    "Accepted exterior scope is mapped upper castle only. Lower/onion castle, passing zone and complete mountain are host terrain or outside this source coverage. Temporary excavation shelters/scaffolding are omitted from the 2024 interpretation. Interior caves and tunnel network are not supplied.",
+    "Six shared rubble masonry, weathered stone, brick, plaster, timber and painted-metal graphs. Bedrock and dark reservoir floors share tinted weathered stone; no embedded photographs or per-model bitmap copies. Regular sandstone masonry joints and floating relief chips are removed from bedrock and ruined walls. Exact geological ribs and archaeological floor details are simplified.",
+    "Broken walls, arch positions, subdivisions, reservoir depths and approach elevations are plan/photo interpretations, not measured archaeology. Physical phone/laptop timings remain unmeasured."
   ],
   "qaCameras": [
     {
@@ -270,6 +301,337 @@
         37,
         16
       ]
+    },
+    {
+      "name": "reviewed-upper-castle-plan",
+      "position": [
+        0,
+        204.53,
+        0.2
+      ],
+      "lookAt": [
+        0,
+        -25.47,
+        0
+      ]
+    },
+    {
+      "name": "reviewed-northwest-cells-and-cisterns",
+      "position": [
+        -99,
+        41.53,
+        1
+      ],
+      "lookAt": [
+        -58,
+        13.530000000000001,
+        -12
+      ]
+    },
+    {
+      "name": "reviewed-rock-cut-reservoir",
+      "position": [
+        -82,
+        23.53,
+        -12
+      ],
+      "lookAt": [
+        -74,
+        12.530000000000001,
+        -19
+      ]
+    },
+    {
+      "name": "reviewed-central-excavation",
+      "position": [
+        -39,
+        45.53,
+        37
+      ],
+      "lookAt": [
+        -4,
+        13.530000000000001,
+        1
+      ]
+    },
+    {
+      "name": "reviewed-brick-arches-and-plaster",
+      "position": [
+        -20,
+        21.53,
+        11
+      ],
+      "lookAt": [
+        -10,
+        15.530000000000001,
+        -3
+      ]
+    },
+    {
+      "name": "reviewed-three-central-cisterns",
+      "position": [
+        42,
+        40.53,
+        25
+      ],
+      "lookAt": [
+        12,
+        12.530000000000001,
+        7
+      ]
+    },
+    {
+      "name": "reviewed-eastern-gate-remains",
+      "position": [
+        110,
+        29.53,
+        19
+      ],
+      "lookAt": [
+        74,
+        11.530000000000001,
+        -1
+      ]
+    },
+    {
+      "name": "reviewed-cliff-and-approach",
+      "position": [
+        65,
+        15.530000000000001,
+        -93
+      ],
+      "lookAt": [
+        48,
+        -1.4699999999999989,
+        -24
+      ]
+    },
+    {
+      "name": "reviewed-southern-retaining-wall",
+      "position": [
+        21,
+        23.53,
+        72
+      ],
+      "lookAt": [
+        42,
+        11.530000000000001,
+        16
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/alamut-runtime-model.mjs",
+    "export": "buildAlamutReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/alamut-runtime-model.mjs",
+    "export": "buildAlamutReviewedSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAlamutReviewedDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "sandstone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "recess": {
+            "graph": "stone_limestone_weathered",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAlamutReviewedStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "sandstone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "recess": {
+            "graph": "stone_limestone_weathered",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAlamutReviewedCloseup",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "sandstone": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "recess": {
+            "graph": "stone_limestone_weathered",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-alamut-skyline",
+      "position": [
+        -180,
+        90,
+        140
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-alamut-district",
+      "position": [
+        -180,
+        90,
+        140
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-alamut-street",
+      "position": [
+        -180,
+        90,
+        140
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-alamut-closeup",
+      "position": [
+        -180,
+        90,
+        140
+      ],
+      "lookAt": [
+        0,
+        8,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -277,10 +639,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 271061,
-    "vertices": 652777,
+    "triangles": 8275,
+    "vertices": 19803,
     "materials": 7,
-    "bytes": 26756940,
-    "sha256": "sha256:9b4f6d2f2a9967113c0bd7b502235807b944b8a44fe682a1a7fd30d4bf9bd588"
+    "bytes": 816568,
+    "sha256": "sha256:95d3e22eb0f33e1af63b25a59bfd35a5f8ddfc2eccceff412b6554c6521cdbc5"
   }
 }

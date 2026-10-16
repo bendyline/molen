@@ -30,9 +30,9 @@
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along the mapped building long axis",
-    "front": "+Z",
-    "origin": "Ground-level center of exact-QID mapped footprint frame"
+    "longitudinal": "+X southeast",
+    "front": "four similar faces; reconstructed symmetric entries",
+    "origin": "Mapped tower-only frame at reconstructed street grade"
   },
   "sourceFacts": {
     "architecturalHeightMeters": 296.3,
@@ -46,7 +46,25 @@
       27,
       19.66
     ],
-    "architect": "The Stubbins Associates and Mitsubishi Estate (now Mitsubishi Jisho Design)"
+    "architect": "The Stubbins Associates and Mitsubishi Estate (now Mitsubishi Jisho Design)",
+    "occupiedHeightMeters": 273,
+    "cvuAboveGroundStoreys": 73,
+    "cvuBasements": 3,
+    "ownerBasements": 4,
+    "originalMasterHash": "sha256:317f1d8b3dcec33203c05628f2bc4b5e5560b2c87dc271f34936a07d68a8e333",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-yokohama-model.mjs#buildYokohama",
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
   },
   "reconstruction": {
     "massing": "The separately mapped exact-QID tower way64891750 establishes the approximately74.9m ground envelope, excluding the adjacent mall. Mitsubishi Estate measured20F plan gives66.32m width. Original Stubbins section and architect photographs constrain the gentle taper, three transition zones and four extended corner piers.",
@@ -64,7 +82,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed tower-only placement",
     "anchor": [
       139.6314769440695,
       35.45459663781969
@@ -79,25 +97,19 @@
     ],
     "wikidataId": "Q587108",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:9be44398a8d6470f3faa88b1e3cbfb7d6d33dc886fe8a18ffc5e90fbb888eb51",
+    "mapGeometryHash": "sha256:9d99e93b5670357c4544d4b471efcd9be37d05832328a0143250b4c2e0e20f7f",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Source-local exact-QID tower way64891750 replaces the incorrectly selected adjacent mall. Native+X points southeast and+Z southwest, matching the owner20F north arrow toward upper-left. Symmetric tower ground envelope is fitted to the four measured facade directions; narrow recess details and entries are photo reconstruction. GroundY0 is tower entry."
+    "orientationConfidence": "exact tower footprint plus owner north-arrow20F plan; symmetric entries reconstructed",
+    "notes": "Fresh OSM API2026-10-10 confirms exact Q587108 tower64891750, unchanged from independent source-local map-frame; adjacent shopping mall45537790 remains excluded. Signed heading−0.9963155525273629 puts+X southeast and+Z southwest, corroborated by owner20F north arrow pointing native upper-left. Owner19.66+27+19.66=66.32m plan width constrains the20F shaft; mapped roughly74.9m ground envelope and reconstructed74.4m model are distinct. Four similar sides are treated symmetrically: tower-only glazing, doors and canopies are reconstructed on all four faces, not surveyed entrance locations. SourceY0 is reconstructed street entry/grade. CVU296.3m architectural/tip and273m occupied remain distinct from owner rounded296m/70occupied+threepenthouse floors. Accept2m main-envelope/1degree reconstruction allowance; no automatic footprint replacement. Adjacent mall, separate pavilion, interior fit-out and surrounding landscape excluded.",
+    "evidence": "Fresh OSM API2026-10-10 confirms exact Q587108 tower64891750, unchanged from independent source-local map-frame; adjacent shopping mall45537790 remains excluded. Signed heading−0.9963155525273629 puts+X southeast and+Z southwest, corroborated by owner20F north arrow pointing native upper-left. Owner19.66+27+19.66=66.32m plan width constrains the20F shaft; mapped roughly74.9m ground envelope and reconstructed74.4m model are distinct. Four similar sides are treated symmetrically: tower-only glazing, doors and canopies are reconstructed on all four faces, not surveyed entrance locations. SourceY0 is reconstructed street entry/grade. CVU296.3m architectural/tip and273m occupied remain distinct from owner rounded296m/70occupied+threepenthouse floors. Accept2m main-envelope/1degree reconstruction allowance; no automatic footprint replacement. Adjacent mall, separate pavilion, interior fit-out and surrounding landscape excluded.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
   "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
-    {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
     {
       "ref": "matgraph:molen.worldgen.material.stone_granite",
       "slot": "wall",
@@ -115,32 +127,13 @@
         2,
         2
       ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.metal_stainless",
-      "slot": "trim",
-      "uv": "repeats",
-      "repeatMeters": [
-        1,
-        1
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "wall",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Intermediate vertical levels, smooth taper, granite panel joints, tiny slit windows, fold projection and roof plant are reconstructed from the original architect section/model and completed photographs; the measured20F plan is preserved as a separate shaft constraint. No whole-mall, adjacent pavilion, interior fit-out or survey-grade facade claim is made. Changing tenant signs and lights are excluded."
+    "Original93742triangles/10852416byte master remains exactly reproducible from unchanged recipe. Reviewed source retains all58 modeled ribbon floor datums, narrow pier slits, three groups of4/4/3 creased folds, recessed hotel panes, projecting granite corner crown piers and three crown bars per face, mechanical roof/plant/rods and symmetric tower-only entries. It reduces granite panel joints, seal width subdivisions, louvre repeats and tube sampling; all original small detail remains available through original recipe. The canopy now faces upward and downward explicitly. Skyline averages facade ribbons and shared graph colours into one group, retaining all folds, recessed crown and four coarse supported canopies while omitting plant/rods/fine seams/door details. District restores coarse ribbon cadence, roof equipment and reconstructed entry frames; street restores all ribbon heights with proud slit patches and planar sill trim, sparse louvres and no fold-edge tubes/door handles; close-up restores fine seals, closed sills, reveal depth, tubes and handles. Granite and coated-metal graphs approximate stone, roof concrete and stainless trim with three near draw groups, zero embedded images. Intermediate heights/fold projection, entry compass identity and plant details remain reconstructed. Finite along-ray1.5/.75/.3/.1m main-surface comparisons exclude omitted narrow trim/hardware; no global geometric-error, surveyed grade or device-performance claim."
   ],
   "qaCameras": [
     {
@@ -272,6 +265,302 @@
         145,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        420,
+        232,
+        535
+      ],
+      "lookAt": [
+        0,
+        146,
+        0
+      ]
+    },
+    {
+      "name": "above-recessed-crown",
+      "position": [
+        62,
+        329,
+        -63
+      ],
+      "lookAt": [
+        0,
+        286,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/yokohama-runtime-model.mjs",
+    "export": "buildYokohamaReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yokohama-runtime-model.mjs",
+    "export": "buildYokohamaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYokohamaDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildYokohamaStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYokohamaCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        420,
+        232,
+        535
+      ],
+      "lookAt": [
+        0,
+        146,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        420,
+        232,
+        535
+      ],
+      "lookAt": [
+        0,
+        146,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        420,
+        232,
+        535
+      ],
+      "lookAt": [
+        0,
+        146,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        420,
+        232,
+        535
+      ],
+      "lookAt": [
+        0,
+        146,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-three-fold-zones",
+      "position": [
+        0,
+        163,
+        235
+      ],
+      "lookAt": [
+        0,
+        131,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-lower-folds",
+      "position": [
+        0,
+        36,
+        66
+      ],
+      "lookAt": [
+        0,
+        29,
+        29
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-green-canopy",
+      "position": [
+        19,
+        13,
+        52
+      ],
+      "lookAt": [
+        0,
+        4.2,
+        33
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-recessed-crown",
+      "position": [
+        58,
+        329,
+        -61
+      ],
+      "lookAt": [
+        0,
+        287,
+        0
+      ],
+      "reviewLod": "district"
     }
   ],
   "importOptions": {
@@ -279,10 +568,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 93742,
-    "vertices": 270094,
-    "materials": 7,
-    "bytes": 10852416,
-    "sha256": "sha256:317f1d8b3dcec33203c05628f2bc4b5e5560b2c87dc271f34936a07d68a8e333"
+    "triangles": 63342,
+    "vertices": 178510,
+    "materials": 3,
+    "bytes": 7188828,
+    "sha256": "sha256:a1897da07d99154df5ab13607c7da8f4db8553ac113e81b1873ce7433e9d75ea"
   }
 }

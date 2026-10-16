@@ -16,16 +16,12 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/garni-temple-model.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-1,209,054 triangles; 2,357,174 vertices; 2 material groups; 99,368,824 source bytes. Source hash: `sha256:e0bcd04a75baad4b60f9b65534a23bff413f08cb0bcddc764b810d480c08e67a`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+1,209,206 triangles; 2,357,358 vertices; 2 material groups; 99,377,272 source bytes. Source hash: `sha256:5b4c456559e7d7c305dfecee73f2fb232f0d01951deb884a615bf5b9eee0da77`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0498`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
 ## Remaining detail and review
 
-- Exterior study in progress; maximum-fidelity and real-location placement approval remain pending.
-- Individual ancient reliefs differ across the monument. Current foliage, lion heads and stair figures reconstruct their motifs without reproducing the distinct surviving carvings; facial anatomy and weathering need closer references.
-- Roof pitch, acroterion profiles, coffer distribution, exact restored stone pattern and staircase cheek extents need drawing and photographic comparison. There is no claim of a measured survey for these elements.
-- Adjacent palace, bathhouse, church ruins and surrounding precinct are outside this individual temple model.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Complete static medium-fi exterior of the reconstructed Garni temple: measured6-by8 arrangement with24Ionic columns, entasis and bases, open cella doorway and visible vaulted chamber, high podium and nine entrance steps with paired relief cheeks, open peristyle walks and coffered ceiling, molded entablature/dentils, two triangular pediments, basalt tile roof and palmette acroteria. The original1209054triangle source recipe remains reproducible; the reviewed full master retains that detailed sculpture and corrects the podium stair recess so all nine steps stay exposed. Four whole-temple browser levels reduce roundness, drum joints, ashlar blocks, capital curls and sculpted motifs. Sculpture is a stylized interpretation, not a reproduction of each distinct ancient vine, lion, coffer or human portrait. Photograph and map registration are approximate; the broad mapped rectangle is retained as a comparison and does not rescale the measured temple. Position tolerance5m and heading5° acknowledge generalized mapping and unsurveyed stair offset. Ground0 is the bottom stair/site platform. The separate palace, bathhouse, church ruins, canyon, adjacent precinct and visitor objects are not part of this temple asset. Absolute elevation, detailed surrounding grade and physical phone/laptop timings remain unmeasured.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

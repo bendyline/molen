@@ -123,13 +123,27 @@ describe('land-cover worker', () => {
     const { tile, context } = fixture();
     const thread = worker();
     const bridge = createTerrainLandcoverWorkerBridge(thread.bridge);
-    const options = { landcoverColors: { forest: '#123456' }, landcoverOffset: 0.3 };
+    const options = {
+      landcoverColors: { forest: '#123456' },
+      landcoverOffset: 0.3,
+      landcoverPaletteAreas: [
+        { bounds: [200, 400, 250, 501] as const, colors: { forest: '#ff0000' } },
+        { bounds: [250, 400, 301, 501] as const, colors: { forest: '#00ff00' } },
+      ],
+    };
     const direct = createLandcoverMesh(tile, context, options) as THREE.Mesh;
+    const position = direct.geometry.getAttribute('position'),
+      color = direct.geometry.getAttribute('color');
+    for (let i = 0; i < position.count; i++) {
+      const west = position.getX(i) < 50;
+      expect(color.getX(i)).toBe(west ? 1 : 0);
+      expect(color.getY(i)).toBe(west ? 0 : 1);
+    }
     const before = context.heightfield.sampleHeight(235, 450);
     const result = bridge.generate(tile, context, options);
     thread.run();
     const mesh = (await result) as THREE.Mesh;
-    for (const attr of ['position', 'normal', 'color']) {
+    for (const attr of ['position', 'normal', 'color', 'agricultureRows', 'agricultureSoil']) {
       expect(mesh.geometry.getAttribute(attr).array).toEqual(
         direct.geometry.getAttribute(attr).array,
       );
@@ -162,6 +176,38 @@ describe('land-cover worker', () => {
     const failed = bridge.generate(tile, context, {});
     thread.fail();
     await expect(failed).rejects.toThrow('worker crashed');
+    bridge.dispose();
+  });
+  it('preserves nonzero agricultural attributes through worker transfer', async () => {
+    const { tile, context } = fixture();
+    const feature = tile.landcover[0];
+    if (!feature) throw new Error('Missing landcover fixture');
+    feature.cultivation = {
+      fieldId: 'field',
+      crop: 'maize',
+      evidence: 'inferred',
+      source: 'fixture',
+      stage: 'mature',
+      color: '#83a65c',
+      soil: '#ad9678',
+      rowAngle: 12,
+      spacing: 1.15,
+      pattern: 'rows',
+    };
+    const thread = worker();
+    const bridge = createTerrainLandcoverWorkerBridge(thread.bridge);
+    const direct = createLandcoverMesh(tile, context, {}) as THREE.Mesh;
+    const pending = bridge.generate(tile, context, {});
+    thread.run();
+    const mesh = (await pending) as THREE.Mesh;
+    for (const name of ['agricultureRows', 'agricultureSoil']) {
+      expect(mesh.geometry.getAttribute(name).array).toEqual(
+        direct.geometry.getAttribute(name).array,
+      );
+      expect([...mesh.geometry.getAttribute(name).array].some((value) => value !== 0)).toBe(true);
+    }
+    direct.geometry.dispose();
+    mesh.geometry.dispose();
     bridge.dispose();
   });
 });

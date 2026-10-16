@@ -1,0 +1,230 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "sourceFacts": {
+    "heightMeters": 27.2,
+    "focalHeightMeters": 35.9,
+    "serviceRoomDiameterMeters": 5,
+    "structuralRibs": 8,
+    "appearance": "Maintained red/white exterior; published authority text confirms restoration completion in summer 2026. Small details follow the genuine April 2026 Ristna close photograph and earlier records.",
+    "basis": "National aid 673 gives 27.2 m base-relative height and WGS84 location. Society archival 1925 elevation and sections identify eight concrete-jacketed ribs and three braces; cited industrial-heritage record gives a 5 m service drum. Genuine April 2026 Ristna photograph controls fittings, prior to repainting. July 2026 reopening article confirms works in text; its lead photograph depicts Mehikoorma and is excluded as a Ristna visual reference."
+  },
+  "appearance": {
+    "identity": "Red concrete-jacketed eight-rib tower with three braces, expanded 16-port service drum, scalloped gallery, diamond glazing and white dome/vane.",
+    "epoch": "Maintained red/white exterior, reconstructed from the operator photograph, genuine April 2026 pre-restoration close photograph, society aerial and archival section.",
+    "master": "Preserve the original 68696-triangle master, true holes, radial plates, rail hoops and optical representation.",
+    "browser": "Component-resampled street and closeup retain actual holes and stable regular dome facets. Far derivatives retain eight ribs, three braces, sixteen port positions, service drum and white dome; omit rivets, reduce gallery brackets and use opaque glazing.",
+    "exclusions": "Surveyed minor fitting dimensions, post-restoration vent changes not shown in the accepted photo, interiors, detached station buildings, operational navigation light and surveyed site terrain."
+  },
+  "geographic": {
+    "notes": "Mapped road is station context; no mapped tower footprint or surveyed doorway azimuth is available. Aerial coastal/station arrangement supports the southeast door quadrant, not a precise bearing. National authority anchor is retained instead of the offset OSM point. Y=0 is host terrain contact; no surveyed foundation elevation, detached station buildings or shoreline is included. Public API returned 429 on 2026-10-09; this review uses the dated 2026-09-28 map snapshot. +Y up; +Z southeast and +X northeast. Entrance quadrant is reconstructed from the inspected 2014 aerial and archival site layout; the eight ribs retain 45-degree rotational symmetry."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/ristna-browser-model.mjs",
+    "export": "buildRistnaSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRistnaDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildRistnaStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRistnaCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "ports-street",
+      "position": [
+        5,
+        21.5,
+        6
+      ],
+      "lookAt": [
+        0,
+        21.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "ribs-district",
+      "position": [
+        9,
+        12,
+        13
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "lantern-closeup",
+      "position": [
+        3.7,
+        26.4,
+        4.9
+      ],
+      "lookAt": [
+        0,
+        25.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "lantern-street",
+      "position": [
+        3.7,
+        26.4,
+        4.9
+      ],
+      "lookAt": [
+        0,
+        25.1,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/ristna-detail-model.mjs",
+    "export": "buildRistnaDetail",
+    "reason": "Exact default master retained; model-specific browser subdivision recipe isolated from unrelated ready Baltic assets."
+  }
+}

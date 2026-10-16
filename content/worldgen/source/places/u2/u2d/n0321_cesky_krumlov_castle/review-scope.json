@@ -1,0 +1,375 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "accent": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.85,
+      "metallic": 0.02
+    },
+    "copper": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.25
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.3,
+      "metallic": 0.12
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/krumlov-castle-model.mjs",
+    "export": "buildKrumlovSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKrumlovDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0.02
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildKrumlovStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0.02
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKrumlovCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0.02
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.25
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      260,
+      159,
+      304
+    ],
+    "lookAt": [
+      -35,
+      12,
+      0
+    ],
+    "fov": 45
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-krumlov-skyline",
+      "position": [
+        260,
+        159,
+        304
+      ],
+      "lookAt": [
+        -35,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-krumlov-district",
+      "position": [
+        260,
+        159,
+        304
+      ],
+      "lookAt": [
+        -35,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-krumlov-street",
+      "position": [
+        260,
+        159,
+        304
+      ],
+      "lookAt": [
+        -35,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-krumlov-closeup",
+      "position": [
+        260,
+        159,
+        304
+      ],
+      "lookAt": [
+        -35,
+        12,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.bohemian_townhouse",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate exterior fit against two inspected photographs and retained standard viewer PMTiles/DEM; survey precision and navigable collision are excluded.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        14.314620849,
+        48.812614626
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 equals retained standard viewer DEM497.6021m at the anchor. Upper/lower/theater courts and bridge attachment levels are photo-led exterior estimates; coarse DEM is not a bare-earth survey."
+    },
+    "replaceRoads": {
+      "length": 161,
+      "width": 16,
+      "outline": [
+        [
+          -251,
+          -40
+        ],
+        [
+          -137,
+          -43
+        ],
+        [
+          -90,
+          -38
+        ],
+        [
+          -90,
+          -28
+        ],
+        [
+          -137,
+          -33
+        ],
+        [
+          -251,
+          -20
+        ]
+      ]
+    },
+    "bounds": [
+      14.3108,
+      48.8113,
+      14.318,
+      48.8142
+    ],
+    "notes": "Exact-QID compound plus current component plans, courtyard holes, tower height and named bridge fix approximate scale/facing. Court heights, roof/arch profiles, foundations and precise bridge joins remain estimates.",
+    "groundContactBasis": "Source-terrain views inspected. NativeY0 follows the retained standard viewer DEM497.6021m at the anchor. Lower/upper/theater courts are modeled at0/3/15m, with separate foundations and an open bridge ravine. Coarse DEM, court contact, bridge/corridor levels and terrain joins remain exterior estimates; this is not a bare-earth survey or walking surface certification."
+  },
+  "geographicNote": "Two inspected exterior photographs and standard viewer PMTiles/DEM guide the individual castle compound and approximate signed fit. Town/gardens are excluded. Untagged profiles and terrace/bridge joins are exterior estimates. © OpenStreetMap contributors, ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ]
+}

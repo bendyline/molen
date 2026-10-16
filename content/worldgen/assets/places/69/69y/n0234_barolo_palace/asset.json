@@ -11,60 +11,44 @@
       "closeup": "model.closeup.glb"
     }
   },
-  "hash": "sha256:c486f38e0760052fb52fd79b5f82991378bbcfcf1449bd253dc8332eab9be093",
-  "sourceHash": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8",
+  "hash": "sha256:85f0ab073f1542a48b304c8c2615fde62cfba4bb42b82fe77e09454d30b40300",
+  "sourceHash": "sha256:fcb0a63abd36b33013ce8513ccd3d73b0e751e39956523368f0e595ce0f3881d",
   "bounds": {
     "aabb": {
       "min": [
-        -15.525,
-        -0.05,
-        -23.8697
+        -15.5,
+        0,
+        -23.8656
       ],
       "max": [
-        15.525,
+        15.5,
         100,
-        23.8697
+        23.8656
       ]
     },
     "sphere": {
       "center": [
         0,
-        49.975,
+        50,
         0
       ],
-      "radius": 56.8044
+      "radius": 56.8264
     }
   },
   "stats": {
-    "triangles": 646738,
-    "vertices": 1162112,
-    "meshes": 4,
-    "primitives": 14,
+    "triangles": 62940,
+    "vertices": 127964,
+    "meshes": 1,
+    "primitives": 5,
     "materials": 5,
     "textures": 0,
     "animations": 0,
-    "sizeBytes": 49606948
+    "sizeBytes": 5364688
   },
   "nodes": [
     {
-      "name": "bow-window-module",
-      "triangles": 1542
-    },
-    {
-      "name": "body-passage-and-central-bays-0",
-      "triangles": 250828
-    },
-    {
-      "name": "green-mansard-0",
-      "triangles": 53024
-    },
-    {
-      "name": "green-mansard-1",
-      "triangles": 53024
-    },
-    {
-      "name": "sculpted-tower-and-lantern-0",
-      "triangles": 341344
+      "name": "worldgen",
+      "triangles": 62940
     }
   ],
   "nodesTruncated": false,
@@ -72,6 +56,14 @@
   "materials": [
     {
       "name": "concrete_plain-wall",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "stone_marble-wall",
       "slots": [
         "baseColor"
       ],
@@ -91,216 +83,90 @@
       "slots": [
         "baseColor"
       ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
-    },
-    {
-      "name": "stone_marble-wall",
-      "slots": [
-        "baseColor"
-      ],
-      "doubleSided": false,
-      "alphaMode": "OPAQUE"
+      "doubleSided": true,
+      "alphaMode": "BLEND"
     },
     {
       "name": "window-window",
       "slots": [
         "baseColor"
       ],
-      "doubleSided": true,
-      "alphaMode": "BLEND"
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
     }
   ],
   "collision": {
     "hulls": [
       {
-        "node": "bow-window-module",
-        "points": [
-          -1.115,
-          -0.05,
-          -0.81,
-          -1.115,
-          -0.05,
-          0.05,
-          -1.115,
-          3.8,
-          -0.81,
-          -1.115,
-          3.8,
-          0.05,
-          1.115,
-          -0.05,
-          -0.81,
-          1.115,
-          -0.05,
-          0.05,
-          1.115,
-          3.8,
-          -0.81,
-          1.115,
-          3.8,
-          0.05
-        ]
-      },
-      {
-        "node": "body-passage-and-central-bays-0",
+        "node": "worldgen",
         "points": [
           -15.5,
           0,
-          -23.8697,
+          -23.8656,
           -15.5,
           0,
-          23.8697,
+          23.8656,
           -15.5,
-          51.5,
-          -23.8697,
+          100,
+          -23.8656,
           -15.5,
-          51.5,
-          23.8697,
+          100,
+          23.8656,
           15.5,
           0,
-          -23.8697,
+          -23.8656,
           15.5,
           0,
-          23.8697,
+          23.8656,
           15.5,
-          51.5,
-          -23.8697,
+          100,
+          -23.8656,
           15.5,
-          51.5,
-          23.8697
-        ]
-      },
-      {
-        "node": "green-mansard-0",
-        "points": [
-          -15.525,
-          39.79,
-          -22.79,
-          -15.525,
-          39.79,
-          -11.5,
-          -15.525,
-          53.39,
-          -22.79,
-          -15.525,
-          53.39,
-          -11.5,
-          15.44,
-          39.79,
-          -22.79,
-          15.44,
-          39.79,
-          -11.5,
-          15.44,
-          53.39,
-          -22.79,
-          15.44,
-          53.39,
-          -11.5
-        ]
-      },
-      {
-        "node": "green-mansard-1",
-        "points": [
-          -15.44,
-          39.79,
-          11.5,
-          -15.44,
-          39.79,
-          22.79,
-          -15.44,
-          53.39,
-          11.5,
-          -15.44,
-          53.39,
-          22.79,
-          15.525,
-          39.79,
-          11.5,
-          15.525,
-          39.79,
-          22.79,
-          15.525,
-          53.39,
-          11.5,
-          15.525,
-          53.39,
-          22.79
-        ]
-      },
-      {
-        "node": "sculpted-tower-and-lantern-0",
-        "points": [
-          -9.4597,
-          40.1,
-          -23.4597,
-          -9.4597,
-          40.1,
-          -4.5403,
-          -9.4597,
           100,
-          -23.4597,
-          -9.4597,
-          100,
-          -4.5403,
-          9.4597,
-          40.1,
-          -23.4597,
-          9.4597,
-          40.1,
-          -4.5403,
-          9.4597,
-          100,
-          -23.4597,
-          9.4597,
-          100,
-          -4.5403
+          23.8656
         ]
       }
     ]
   },
-  "extensionsUsed": [
-    "EXT_mesh_gpu_instancing"
-  ],
+  "extensionsUsed": [],
   "runtimeLods": {
     "recipe": 1,
-    "masterHash": "sha256:c486f38e0760052fb52fd79b5f82991378bbcfcf1449bd253dc8332eab9be093",
+    "masterHash": "sha256:85f0ab073f1542a48b304c8c2615fde62cfba4bb42b82fe77e09454d30b40300",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:4ea5acb1d7be7b8c38684979121e8ee9c64fbadf0f57d1a1331c2780ef3c1827",
-        "bytes": 36532,
-        "gzipBytes": 6646,
-        "triangles": 480,
-        "cpuBytes": 35136,
-        "gpuBytes": 35136,
+        "hash": "sha256:2878cad8a8b0d89a6e7c9ac7e9c593a5f4238e8577745c4158bbc8c15bc5e98a",
+        "bytes": 42140,
+        "gzipBytes": 7280,
+        "triangles": 550,
+        "cpuBytes": 40740,
+        "gpuBytes": 40740,
         "errorMeters": 7,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:2a8d99047f363ecb0f32ac756551aa87f657c5fa3ffac4c5978745df2a0b5193",
-        "bytes": 331972,
-        "gzipBytes": 68350,
-        "triangles": 4364,
-        "cpuBytes": 325848,
-        "gpuBytes": 325848,
-        "errorMeters": 1.5,
+        "hash": "sha256:026b918257c92b74b7999f4fd6a75b248a9ac9d5517417329190c12d3cb7ded3",
+        "bytes": 292224,
+        "gzipBytes": 60889,
+        "triangles": 3788,
+        "cpuBytes": 286104,
+        "gpuBytes": 286104,
+        "errorMeters": 1.8,
         "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:c01d0d059083583315995434354f121a51504d01a8915f9cb792223d6595c80c",
-        "bytes": 1184936,
-        "gzipBytes": 244740,
-        "triangles": 16444,
-        "cpuBytes": 1178808,
-        "gpuBytes": 1178808,
-        "errorMeters": 0.5,
+        "hash": "sha256:2bbaf47b0894f8382626b258500b2f695df87ca1609db361bab2d657d7aaa598",
+        "bytes": 1072604,
+        "gzipBytes": 218792,
+        "triangles": 15004,
+        "cpuBytes": 1066488,
+        "gpuBytes": 1066488,
+        "errorMeters": 0.75,
         "drawCalls": 5
       },
       {
@@ -316,6 +182,6 @@
         "drawCalls": 5
       }
     ],
-    "recipeHash": "sha256:6bd9a1e558346d6078fc8a61dbfebf6ce6fb45a620f5c16fd24b14a5ede11c57"
+    "recipeHash": "sha256:1957f3c5601641d8bffb0e440f36c6ee0835eddbed8b7519b9985f92f8ecd740"
   }
 }

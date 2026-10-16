@@ -1,0 +1,251 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z east-northeast",
+    "origin": "Native+X follows the mapped north-northwest fort axis; native+Z faces east-northeast. Heading1.721295251 places west pavilion, north court entry and newly reopened east Fatih doorway on their published sides. Tower center averages the four actual shaft corners. Historic roof polygons are map controls, not the restored open courtyard."
+  },
+  "size": [
+    20,
+    32.5,
+    23
+  ],
+  "sourceFacts": {
+    "restoration": "2023 restoration follows the Mahmut II period arrangement with timber upper structure and a one-storey western building.",
+    "modeledHeightMeters": 32.5,
+    "heightBasis": "Photo-proportioned full mast envelope; not a published measured height.",
+    "originalMasterHash": "sha256:edc07774f5ba692057bb7c1ff2a5434e52ac14466f05501839bf8a372fc4f4b0",
+    "basis": "Medium-fi restored2023 daylight exterior: actual mapped6.4m shaft and fort/pavilion plan control horizontal placement;32.5m mast envelope, arch heights, timber covertways, roof/coping and ornament details are proportional reconstruction from official restoration text/illustrations. The homepage courtyard image is an architectural illustration, not a survey photograph. Closed old roof polygons are not recreated after2023 courtyard reopening. Exact masonry, curved profiles, Fatih doorway shape, full visitor/internal routes, flag cloth, night laser show and underground reinforcement are outside this architectural exterior scope. Host terrain supplies inhabited island height; no artificial water offset or footprint replacement."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/maiden-tower-detail-model.mjs",
+    "export": "buildMaidenReviewed"
+  },
+  "appearance": {
+    "identity": "Restored Bosphorus castle-tower ensemble: stone square shaft, projecting octagonal plaster room, curved lead-colored cap, ornamental balconies, tall mast, crenellated courtyard and one-storey pavilion.",
+    "master": "Reviewed actual fort frame with west pavilion, arched north/east tower doorways and timber court wall walks; historical source function remains reproducible.",
+    "browser": "Four complete levels retain tower, cap/mast, crenellated court and western pavilion; near levels retain real recessed openings, arches, stair treads and timber wall walks.",
+    "exclusions": "Medium-fi restored2023 daylight exterior: actual mapped6.4m shaft and fort/pavilion plan control horizontal placement;32.5m mast envelope, arch heights, timber covertways, roof/coping and ornament details are proportional reconstruction from official restoration text/illustrations. The homepage courtyard image is an architectural illustration, not a survey photograph. Closed old roof polygons are not recreated after2023 courtyard reopening. Exact masonry, curved profiles, Fatih doorway shape, full visitor/internal routes, flag cloth, night laser show and underground reinforcement are outside this architectural exterior scope. Host terrain supplies inhabited island height; no artificial water offset or footprint replacement."
+  },
+  "geographic": {
+    "anchor": [
+      29.004089875,
+      41.021059
+    ],
+    "heading": 1.721295251,
+    "elevationMode": "terrain-contact",
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/way/398210643",
+    "notes": "Native+X follows the mapped north-northwest fort axis; native+Z faces east-northeast. Heading1.721295251 places west pavilion, north court entry and newly reopened east Fatih doorway on their published sides. Tower center averages the four actual shaft corners. Historic roof polygons are map controls, not the restored open courtyard. Medium-fi restored2023 daylight exterior: actual mapped6.4m shaft and fort/pavilion plan control horizontal placement;32.5m mast envelope, arch heights, timber covertways, roof/coping and ornament details are proportional reconstruction from official restoration text/illustrations. The homepage courtyard image is an architectural illustration, not a survey photograph. Closed old roof polygons are not recreated after2023 courtyard reopening. Exact masonry, curved profiles, Fatih doorway shape, full visitor/internal routes, flag cloth, night laser show and underground reinforcement are outside this architectural exterior scope. Host terrain supplies inhabited island height; no artificial water offset or footprint replacement.",
+    "replaceFootprint": false
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/maiden-tower-browser-model.mjs",
+    "export": "buildMaidenSkyline",
+    "errorMeters": 0.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMaidenDistrict",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildMaidenStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMaidenCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "ashlar": {
+            "graph": "stone_ashlar",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "tiles": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.85
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "east-fatih-door",
+      "position": [
+        3,
+        2,
+        8
+      ],
+      "lookAt": [
+        0,
+        2.4,
+        3.2
+      ]
+    },
+    {
+      "name": "timber-court-walk",
+      "position": [
+        20,
+        12,
+        16
+      ],
+      "lookAt": [
+        10,
+        4,
+        3
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "ensemble-district",
+      "position": [
+        45,
+        30,
+        47
+      ],
+      "lookAt": [
+        5,
+        10,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "court-street",
+      "position": [
+        20,
+        12,
+        16
+      ],
+      "lookAt": [
+        10,
+        4,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "east-door-street",
+      "position": [
+        3,
+        2,
+        8
+      ],
+      "lookAt": [
+        0,
+        2.4,
+        3.2
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

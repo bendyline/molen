@@ -1,0 +1,445 @@
+{
+  "planId": "N0268",
+  "id": "N0268",
+  "assetId": "molen.worldgen.structure.n0268_hohensalzburg_fortress",
+  "title": "Hohensalzburg Fortress",
+  "category": "castle",
+  "quality": "detailed",
+  "wikidataId": "Q679292",
+  "referenceCoordinate": {
+    "latitude": 47.795,
+    "longitude": 13.0473
+  },
+  "visualBrief": "Salzburg hilltop fortress: broad white high palace under eight shallow parallel roofs, green Krautturm lantern, chapel spire, open courts and stepped artillery bastions.",
+  "mediumFiContext": {
+    "groundY": -35,
+    "scale": 3.5,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "size": [
+    264.72703552246094,
+    91.8994140625,
+    157.6080093383789
+  ],
+  "actualBounds": {
+    "min": [
+      -133.6270294189453,
+      -56.8994140625,
+      -72
+    ],
+    "max": [
+      131.10000610351562,
+      35,
+      85.6080093383789
+    ]
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast",
+    "front": "-Z north-northwest toward old town",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "Full fortress way/58379993 exact Q679292; chapel way/58379483 is a control only",
+    "publishedSiteAreaSquareMeters": 32000,
+    "publishedKuenburgBastionHeightMeters": 30,
+    "publishedOriginal1220CorePlanMeters": [
+      22,
+      33
+    ],
+    "roofReplacedYear": 1643,
+    "originalMasterHash": "sha256:b71ddaa869e602e7492f2b0d5a3a73d5e22b7f561ef3e5952ba2b3b025fd6156",
+    "originalMasterRecipe": "packages/worldgen/scripts/hohensalzburg-fortress-model.mjs#buildHohensalzburgRuntime"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e8e5dc",
+      "trim": "#eee7d8",
+      "stone": "#b0aba0",
+      "paving": "#b6b1a1",
+      "slate": "#626972",
+      "copper": "#608779",
+      "glass": "#4d6178",
+      "door": "#775d4d"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "High white palace with eight parallel valley roofs and corner fire walls",
+      "Krautturm green lantern and slender courtyard chapel spire",
+      "Tiered stone bastions and irregular white curtain around open courtyards"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "reconstruction": {
+    "basis": "Reference pictures plus standard viewer PMTiles.",
+    "scope": "Bounded main fortress and immediate terraces; approximate exterior."
+  },
+  "referencePages": [
+    "https://www.festung-hohensalzburg.at/en/the-fortress",
+    "https://www.stadt-salzburg.at/festung-hohensalzburg",
+    "https://sammlung-online.salzburgmuseum.at/detail/collection/f0ee88fa-68c2-4ced-bde8-b4c337e1c59c",
+    "https://hdbg.eu/burgen/detail/burgschloss-hohensalzburg/237?lang=de&p=1",
+    "https://www.openstreetmap.org/way/58379993"
+  ],
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "anchor": [
+      13.04787405,
+      47.7952134
+    ],
+    "heading": 0.255395266735,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/58379993",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/58379993"
+    ],
+    "wikidataId": "Q679292",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4849dbc79efc6fd2109a3ae05d2d8b665b1443f9757efb0ce13dcd8bb442d124",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate.",
+    "notes": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate.",
+    "terrainReference": {
+      "anchor": [
+        13.04787405,
+        47.7952134
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample, reconstructed court and terrace floors."
+    }
+  },
+  "scaleBasis": "Mapped267m-wide site frame; individual wings manually reconstructed. Published30m Kuenburg wall controls court datum, inferred upper terrace33m and maximum60m. Original1220core22×33m is not the current enlarged palace. Terrain attachment pending.",
+  "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
+  "sourceLicense": "Original reconstruction under repository license. OSM geometry © OpenStreetMap contributors, ODbL-1.0; reference photographs and historical plan linked, not redistributed.",
+  "dataAttribution": "© OpenStreetMap contributors, ODbL-1.0; owner, city and museum references used as research.",
+  "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "reviewStatus": "source-geometry; near/far and shared-material captures pending",
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "limitations": [
+    "Picture and PMTiles exterior fit, not surveyed geometry or thresholds.",
+    "Original detailed source recipe is preserved unchanged; reviewed derivative shifts the architecture to the working terrain datum and extends bounded foundations.",
+    "The current eight palace roof ridges, white walls, green lantern and chapel spire supply identity. Window rhythm, secondary towers, roof shapes and internal terrace divisions remain approximate.",
+    "No artificial mountain, interiors, distant outerworks or vegetation. Coarse terrain can intersect narrow approaches; no navigable paths are claimed.",
+    "Four shared material graphs and local opaque glass; no embedded bitmap textures. Physical-device timing and continuous-motion shimmer remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "north-palace-and-bastions",
+      "position": [
+        -60,
+        95,
+        -300
+      ],
+      "lookAt": [
+        -5,
+        30,
+        0
+      ]
+    },
+    {
+      "name": "south-courts-and-ranges",
+      "position": [
+        15,
+        130,
+        290
+      ],
+      "lookAt": [
+        -20,
+        30,
+        5
+      ]
+    },
+    {
+      "name": "west-hasengraben",
+      "position": [
+        -315,
+        95,
+        20
+      ],
+      "lookAt": [
+        -50,
+        30,
+        5
+      ]
+    },
+    {
+      "name": "east-chapel-and-outworks",
+      "position": [
+        295,
+        115,
+        -45
+      ],
+      "lookAt": [
+        25,
+        30,
+        0
+      ]
+    },
+    {
+      "name": "chapel-courtyard",
+      "position": [
+        78,
+        53,
+        30
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ]
+    },
+    {
+      "name": "compound-plan",
+      "position": [
+        0,
+        410,
+        1
+      ],
+      "lookAt": [
+        0,
+        20,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hohensalzburg-runtime-model.mjs",
+    "export": "buildHohensalzburgReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hohensalzburg-runtime-model.mjs",
+    "export": "buildHohensalzburgReviewedSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHohensalzburgReviewedDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildHohensalzburgReviewedStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHohensalzburgReviewedCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hohensalzburg-skyline",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hohensalzburg-district",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hohensalzburg-street",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hohensalzburg-closeup",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "importReason": "Preserve Hohensalzburg-specific roof rhythm, white palace, green lantern, chapel spire and terraced courts at every level.",
+  "mesh": {
+    "triangles": 5419,
+    "vertices": 16257,
+    "materials": 5,
+    "bytes": 653520,
+    "sha256": "sha256:a87d74e043874076ac8396386b3d10cd0c903eae4d45ca103e87d9e5a5a8a86e"
+  }
+}

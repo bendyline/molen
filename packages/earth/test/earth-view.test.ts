@@ -12,6 +12,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EarthContent } from '../src/client/content';
 import type { EarthFrame } from '../src/client/earth-view';
 import { ENTITY_TYPES } from './entity-types';
+import { nextTimerTurn } from './view-harness';
 
 const viewerState = vi.hoisted(() => ({
   disposed: 0,
@@ -122,7 +123,7 @@ async function pump(frames: number): Promise<void> {
     const due = [...callbacks.values()];
     callbacks.clear();
     for (const callback of due) callback(clock);
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await nextTimerTurn();
   }
 }
 

@@ -1,0 +1,1417 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0025_yi_sun_sin_bridge",
+  "sourceHash": "sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e",
+  "runtimeHash": "sha256:125baaa6a3f88add7bbe608dc87c3c01b3142a7509fd6d9de36c8dfb837f088a",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:3d8634b892724300b7bbbb64cd12565b8cf243290c91706f765302863c5fe838",
+      "bytes": 90296,
+      "gzipBytes": 11934,
+      "triangles": 920,
+      "cpuBytes": 88932,
+      "gpuBytes": 88932,
+      "errorMeters": 10,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:8411e4ae605ead31f94294717c0c47e0801bae1ddd8f469df50a6b3ec6e480d1",
+      "bytes": 256320,
+      "gzipBytes": 51650,
+      "triangles": 3200,
+      "cpuBytes": 251472,
+      "gpuBytes": 251472,
+      "errorMeters": 5,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:2c5faab41b844d5e686eadd1ac1d28b37b8c0ac11933a21175ddc68fe664a73f",
+      "bytes": 1253904,
+      "gzipBytes": 281771,
+      "triangles": 13668,
+      "cpuBytes": 1247904,
+      "gpuBytes": 1247904,
+      "errorMeters": 2,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:4132be6e8e449af1e1b2d8e4f41fa7f397038c662c089944fa276d0c8fec4439",
+      "bytes": 4615132,
+      "gzipBytes": 995591,
+      "triangles": 51996,
+      "cpuBytes": 4609104,
+      "gpuBytes": 4609104,
+      "errorMeters": 0.7,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-water.terrain.json",
+      "hash": "sha256:ff4ca8a1a30a15fd12378aee5f88abdb6fe0400c808f3c7b80eb2bbb18d82a9c"
+    },
+    "heightmap": {
+      "path": "terrain-water.height.png",
+      "hash": "sha256:a64477d21912c25eb825b64ba3501984e9fcb07eb564d01613b3dc06e1b7eda9"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-bay",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            2800,
+            0.06,
+            2800
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#608b94",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ee25dde002474ab34fb5281e22b02966edcfdbcaa3fa9e275baf0ca715610294",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          731.25,
+          526.35,
+          1245
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:2c7ec55e78186e883c0d99328586b31b86496c9d086c3ba01be33c5c0c76c756",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          731.25,
+          526.35,
+          1245
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:1116961f5fc5ab595c39aea05223e96471c14d3b187a73786a7c2fa3f3ed6e9b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          731.25,
+          526.35,
+          1245
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:aa5dfb21e879798c768a03ba027e4fe478ced0deeaac4185362e754a9c1a2b04",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          731.25,
+          526.35,
+          1245
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:e0e7c18febe9873e09413171e5392e8ad307f77a1aef36e8f00083785919b059",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 48090,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:29f4abffa26fce0afca73f295c34bdc9d00e343d5e4a78f209a33580f43aeacb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48090,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:7d59773677dd8aa4dd22cbc3540253dce2250330a8abad7123c087b8c07256bc",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 48090,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:ac4e594fb7f825f0a14e48a19aaf495c9e7c8c045ac181d1d857b8570a8fcf58",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48090,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:c82bb722c1d34fdb37639dcf5e02465eb46b3e65145120fbc930761ae0a10a48",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 45810,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          2921.25,
+          1636.35,
+          5040
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:20bcd2be72cd69609b9487d86596fa584f64fc95727c1bd48655ead4284ab590",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45810,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          2921.25,
+          1636.35,
+          5040
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:763634dcdf8804207d3a3d0ebde324fdf2fb2f0416491dcec12b0c1680d9f766",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 45810,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          2921.25,
+          1636.35,
+          5040
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:cb5094a0e8bc9a6c206a0df43bcf89bf363b83f512fc7474b95ab00006149483",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45810,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          2921.25,
+          1636.35,
+          5040
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:ac1194c45efc87061928e2f52113ce01d158735c892a250296d36065ae72979f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 41254,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          2921.25,
+          1636.35,
+          5040
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/main-elevation.png",
+      "hash": "sha256:56cf239b6f495aa55d45319bbabe348544661d42b4d20e627f78484ad617098a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          0,
+          210,
+          3020
+        ],
+        "lookAt": [
+          0,
+          130,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-tower.png",
+      "hash": "sha256:2d79154e3f21d13837501710bdf3dc64a2dc4f4cc1bac5c6f3c8186c899bd6ed",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -860,
+          142,
+          164
+        ],
+        "lookAt": [
+          -772.5,
+          139,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tower-head.png",
+      "hash": "sha256:9339d0ee0587f6719d31790328d71fd71eae01ea371d22c1a0ba7244d31c6a6e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -820,
+          280,
+          48
+        ],
+        "lookAt": [
+          -772.5,
+          263,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/tower-foot.png",
+      "hash": "sha256:152d68e2029c4fb243d72a248d6ea88e68b5be789cb57f5e84930450e7438195",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -805,
+          22,
+          75
+        ],
+        "lookAt": [
+          -772.5,
+          12,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/twin-box-soffit.png",
+      "hash": "sha256:f4bf42f4f5681d36cec9ef8529c31939fb4e9f24cb68e76b0e4d870c9255d9c5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          85,
+          68,
+          37
+        ],
+        "lookAt": [
+          60,
+          86,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-wind-slot.png",
+      "hash": "sha256:45409966f8ad6d7996871167cc7e6407de3e06b6cc35aca940a754ad60110385",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          100,
+          95,
+          0
+        ],
+        "lookAt": [
+          10,
+          88,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/cable-band.png",
+      "hash": "sha256:59e9ec022de1abaaedd34c36479fe404f43876795604e5b68c8099da77d80715",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          14,
+          109,
+          22
+        ],
+        "lookAt": [
+          12,
+          98.47475728155342,
+          14.55
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/hanger-socket.png",
+      "hash": "sha256:e5309860f7fbee4097864a68660a75259a3dbb5456f96286c9572315536bcc70",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          14,
+          88,
+          20
+        ],
+        "lookAt": [
+          12,
+          87.54718067193986,
+          14.55
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/road-barriers.png",
+      "hash": "sha256:3f9beadbabe07781d7ebc114f472d52e93c8d4e42cabaf785279b504671b5ba0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          45,
+          91,
+          10
+        ],
+        "lookAt": [
+          -90,
+          88,
+          10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/deck-end-pier.png",
+      "hash": "sha256:1746ecb581084e0d7a73e3f099ff7634f5415e7877d2cd777cd635f019d3274d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1210,
+          44,
+          82
+        ],
+        "lookAt": [
+          1130,
+          29,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-gravity-anchorage.png",
+      "hash": "sha256:207f860e3143024f11d1fbfee4e7bb5e89c05073904a45c67f78ac4571c58797",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1372,
+          70,
+          96
+        ],
+        "lookAt": [
+          1283.5,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-rock-anchorage.png",
+      "hash": "sha256:f47abb72b1fec5685315ddc61d2c4fd0482ae46227b16ae1dc0647589bc80d42",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          -1350,
+          70,
+          82
+        ],
+        "lookAt": [
+          -1275,
+          28,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-light.png",
+      "hash": "sha256:913fcfbaac1a1801b66e671ba2e01b36d1cf806a2a319db71fa8565ffbb0b40d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          43,
+          98,
+          20
+        ],
+        "lookAt": [
+          36,
+          97.8,
+          12.6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yi-sun-sin-skyline.png",
+      "hash": "sha256:55354c1b857ecab55583ad738ea9900ce8a25624e4b36e3b5aef3ff766d81b55",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45810,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1450,
+          590,
+          1520
+        ],
+        "lookAt": [
+          0,
+          115,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yi-sun-sin-district.png",
+      "hash": "sha256:dd64eb11203cc24a3295688007a588fe85d76e4b042a43847d469ea027dd2cab",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48090,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1450,
+          590,
+          1520
+        ],
+        "lookAt": [
+          0,
+          115,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yi-sun-sin-street.png",
+      "hash": "sha256:06ff84828fef7bdfc3762a0ea5a1421d994c2d3b1ad9e8b05142a377b5ae391b",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 58558,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1450,
+          590,
+          1520
+        ],
+        "lookAt": [
+          0,
+          115,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-yi-sun-sin-closeup.png",
+      "hash": "sha256:fd648fdefdc31d5ed47c246881b9da94322e0d04dbd366d4de163e572b3664bf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1450,
+          590,
+          1520
+        ],
+        "lookAt": [
+          0,
+          115,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:fd8830e30bd8a40e9b47b94ab5eff448175f1865bf0ce605e176cea0498a7eaf",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45810,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:29f4abffa26fce0afca73f295c34bdc9d00e343d5e4a78f209a33580f43aeacb",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48090,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2f4e076fc57559d7f5c4aadabc0af729fc7293e1be1f1f2452e31d593717d5cb",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 58558,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:f903e54e89ad28ca7673a9bf8532f7d2a4b34ddd6a09ce942dcb521d3bcc85eb",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 96886,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/wy/wy4/n0025_yi_sun_sin_bridge/terrain-water.height.png"
+        },
+        "position": [
+          1466.25,
+          1066.35,
+          2520
+        ],
+        "lookAt": [
+          11.25,
+          301.35,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 15,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

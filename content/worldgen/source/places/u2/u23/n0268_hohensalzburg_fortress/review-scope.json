@@ -1,0 +1,324 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Salzburg hilltop fortress: broad white high palace under eight shallow parallel roofs, green Krautturm lantern, chapel spire, open courts and stepped artillery bastions.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e8e5dc",
+      "trim": "#eee7d8",
+      "stone": "#b0aba0",
+      "paving": "#b6b1a1",
+      "slate": "#626972",
+      "copper": "#608779",
+      "glass": "#4d6178",
+      "door": "#775d4d"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 5,
+    "identityFeatures": [
+      "High white palace with eight parallel valley roofs and corner fire walls",
+      "Krautturm green lantern and slender courtyard chapel spire",
+      "Tiered stone bastions and irregular white curtain around open courtyards"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast",
+    "front": "-Z north-northwest toward old town",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "Full fortress way/58379993 exact Q679292; chapel way/58379483 is a control only",
+    "publishedSiteAreaSquareMeters": 32000,
+    "publishedKuenburgBastionHeightMeters": 30,
+    "publishedOriginal1220CorePlanMeters": [
+      22,
+      33
+    ],
+    "roofReplacedYear": 1643,
+    "originalMasterHash": "sha256:b71ddaa869e602e7492f2b0d5a3a73d5e22b7f561ef3e5952ba2b3b025fd6156",
+    "originalMasterRecipe": "packages/worldgen/scripts/hohensalzburg-fortress-model.mjs#buildHohensalzburgRuntime"
+  },
+  "reconstruction": {
+    "basis": "Reference pictures plus standard viewer PMTiles.",
+    "scope": "Bounded main fortress and immediate terraces; approximate exterior."
+  },
+  "limitations": [
+    "Picture and PMTiles exterior fit, not surveyed geometry or thresholds.",
+    "Original detailed source recipe is preserved unchanged; reviewed derivative shifts the architecture to the working terrain datum and extends bounded foundations.",
+    "The current eight palace roof ridges, white walls, green lantern and chapel spire supply identity. Window rhythm, secondary towers, roof shapes and internal terrace divisions remain approximate.",
+    "No artificial mountain, interiors, distant outerworks or vegetation. Coarse terrain can intersect narrow approaches; no navigable paths are claimed.",
+    "Four shared material graphs and local opaque glass; no embedded bitmap textures. Physical-device timing and continuous-motion shimmer remain pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      13.04787405,
+      47.7952134
+    ],
+    "heading": 0.255395266735,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate.",
+    "terrainReference": {
+      "anchor": [
+        13.04787405,
+        47.7952134
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample, reconstructed court and terrace floors."
+    }
+  },
+  "geographicNote": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hohensalzburg-runtime-model.mjs",
+    "export": "buildHohensalzburgReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "patina": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.8,
+      "metallic": 0.05
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hohensalzburg-runtime-model.mjs",
+    "export": "buildHohensalzburgReviewedSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHohensalzburgReviewedDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildHohensalzburgReviewedStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHohensalzburgReviewedCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "camera": {
+    "position": [
+      -260,
+      140,
+      -260
+    ],
+    "lookAt": [
+      0,
+      0,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hohensalzburg-skyline",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hohensalzburg-district",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hohensalzburg-street",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hohensalzburg-closeup",
+      "position": [
+        -215,
+        120,
+        -205
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -35,
+    "scale": 3.5,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  }
+}

@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The Nanjing tower’s rounded triangular shaft with individually angled glass scales, staggered deep atrium bands, exposed seam braces, two curved crown fins and its separate ringed450 m spire.
+Rounded triangular interlocking scale-glass tower with staggered recessed atriums, curved crown pair,450m ringed mast and complete mapped podium/northwest annex.
 
 ## Evidence and reconstruction
 
@@ -18,9 +18,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-154,955 triangles; 428,545 vertices; 5 material groups; 17,290,264 bytes. Native bounds: -84.288, 0.000, -50.881 to 43.526, 450.000, 68.124. Source hash: `sha256:eec29a41b8176f179990694eb65a9dac6881b5cc8863d380ac958be2a1ce8e79`.
+41,020 triangles; 114,938 vertices; 5 material groups; 4,633,180 bytes. Native bounds: -84.238, 0.000, -50.841 to 43.476, 450.000, 68.084. Source hash: `sha256:243cccfecec6d3f3ed41e7e951533199369844af7b7c28e1828f32d9570e9b9a`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X southeast","front":"+Z southwest; exact doors unverified","origin":"Ground-contact center of mapped main tower"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -30,7 +30,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0168` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Horizontal seam heights, corner radii, crown profile and facade/crown compass phase are reconstructed from the architect photo set. Fine lettering, nighttime lighting and the separate office annex are excluded.
+- Complete main tower with triangular rounded shaft, staggered angled scales, recessed horizontal/vertical seams and exposed braces, two separate curved crown forms,450m pipe mast,44m podium and added99.5m northwest office annex. Original154955-triangle/17290264byte recipe preserved. Built450m/occupied316.6m/observatory271.8m followCVU, not architect earlier458m design text. CVU66floors differs from map89; map count not imposed on facade. Source/closeup group panes across4.3m by8.1m; street8.6m/16.2m, district17.2m/32.4m representative modules rather than exact pane count or tilt. Both horizontal recesses156–172m and268–284m, lower41–49m band,2.1m depth,339.25/327m shoulder heights,381.25/370.5m crown, mast offsets/radii and compass phase reconstructed from architect photos, not survey. Exact porch/doors/rooftop plant arrangement unknown. Static outdoor pool and two tree planters on supported44m roof are a declared layout approximation from architect garden/pool description.99.5m annex height approximate map, rounded corners/pane grid reconstructed from actual photos04/05. Larger ground plaza, adjacentDrumTower park, subterranean floors and interiors excluded. Shared256px concrete/granite/paintedmetal graphs with tint; opaque palette glass/recess/pool water, zero embedded photos. Source geometry intentionally polygonal; exact scale tilt, signage, night illumination, terrain slope and physical-device timing unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

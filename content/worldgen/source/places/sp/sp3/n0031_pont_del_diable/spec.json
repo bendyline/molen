@@ -10,7 +10,7 @@
     "latitude": 41.475,
     "longitude": 1.937777777
   },
-  "visualBrief": "Unequal Gothic stone arches with double voussoirs, mixed red and pale Roman ashlar, V/U cutwaters, a stepped humpback walk and open summit shelter, terminating in the surviving Roman gateway with 2026 copper crown protection. Deck and roof envelopes derive from ICGC elevation data, CC BY 4.0.",
+  "visualBrief": "Compact Pont del Diable: open unequal arches, pointed/rounded cutwaters, graded stair walk, actual shelter passage, surviving Roman gateway and representative copper crown. Detailed master independently preserved.",
   "size": [
     131.4964141845703,
     30.589999437332153,
@@ -67,7 +67,10 @@
       "Lime mortar",
       "2026 copper-sheet crown cap"
     ],
-    "evidence": "Heritage inventories and2007archaeological section establish spans and arrangement;2012petrography distinguishes stone types.2026municipal record supersedes gateway photos with protective net."
+    "evidence": "Heritage inventories and2007archaeological section establish spans and arrangement;2012petrography distinguishes stone types.2026municipal record supersedes gateway photos with protective net.",
+    "originalMasterHash": "sha256:f72226567cf184a03ac60d574b1aa65dfd3c4fbd9417d1fff02665d061445291",
+    "originalMasterRecipe": "packages/worldgen/scripts/pont-del-diable-model.mjs#buildPontDelDiable",
+    "reviewScope": "Original369096-triangle30955476-byte master reproduced exactly. Independent browser recipe retains profiles and openings with reduced tessellation and larger masonry impressions."
   },
   "reconstruction": {
     "mappedLengthMeters": 125.04140972698593,
@@ -247,7 +250,7 @@
     ],
     "source": "https://www.openstreetmap.org/way/1335097110",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:309bd4de01337ad215666251c3fa95be56cd9247972080799dbf261274688d44",
+    "mapGeometryHash": "sha256:3709b9b703df9b3b1aa3afb9cadcb5a368e783ae084cee7abedfbb0430348414",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "anchor": [
@@ -258,15 +261,69 @@
     "elevationMode": "terrain-contact",
     "terrainReference": {
       "anchor": [
-        1.936803,
-        41.4749082
+        1.9368092201542357,
+        41.47490860018533
       ],
-      "modelHeight": 14.933,
-      "basis": "Western dry approach: ICGC50cm terrain 56.833m, relative to native origin41.9m. The independent25cm surface sample is56.805m. Host terrain must resolve this bank consistently; river-center terrain cannot replace it."
+      "modelHeight": 14.91,
+      "basis": "Approximate western PMTiles walkway contact; original authored profile retained."
     },
     "groundContactReviewed": true,
-    "groundContactBasis": "River-region datum is tied to ICGC50cm terrain; dry-bank reference and stair heights use separate terrain/surface layers. Buried foundations remain below Y0. Host-terrain and actual current water agreement require site review.",
-    "notes": "Connected three-way map frame covers both stairs and summit passage. +X points to the independently inventoried eastern Roman gateway. Terrain reference avoids draping the model to the riverbed."
+    "groundContactBasis": "One inspected oblique picture establishes the unequal pointed arches, red/pale stone, humpback stair walk, roofed summit shelter and surviving Roman gateway. Existing authored profile and span controls are retained. Standard viewer PMTiles places the east-directed crossing at the Llobregat route;125.0414m mapped path and nominal130m are separate definitions. Native -1m lateral adjustment retained. West approach PMTiles56.9653m versus native14.91m gives approximate origin42.0553m, close to retainedICGC41.9m. East-bank PMTiles34.8258m conflicts with the original authored gateway threshold; approximate local preview contacts retain that source profile rather than certifying a new datum. Bounded opening removes bridge imprint. Exact bank joins, water stage, stone courses and crown restoration appearance remain limited;2007picture does not verify2026copper cap.",
+    "notes": "One inspected oblique picture establishes the unequal pointed arches, red/pale stone, humpback stair walk, roofed summit shelter and surviving Roman gateway. Existing authored profile and span controls are retained. Standard viewer PMTiles places the east-directed crossing at the Llobregat route;125.0414m mapped path and nominal130m are separate definitions. Native -1m lateral adjustment retained. West approach PMTiles56.9653m versus native14.91m gives approximate origin42.0553m, close to retainedICGC41.9m. East-bank PMTiles34.8258m conflicts with the original authored gateway threshold; approximate local preview contacts retain that source profile rather than certifying a new datum. Bounded opening removes bridge imprint. Exact bank joins, water stage, stone courses and crown restoration appearance remain limited;2007picture does not verify2026copper cap.",
+    "bounds": [
+      1.9367771227935666,
+      41.474853361796356,
+      1.9383921995436444,
+      41.475081649908766
+    ],
+    "replaceRoads": {
+      "length": 125.0414,
+      "width": 9,
+      "outline": [
+        [
+          -62.521,
+          -5.5
+        ],
+        [
+          69.9,
+          -5.5
+        ],
+        [
+          69.9,
+          3.5
+        ],
+        [
+          -62.521,
+          3.5
+        ]
+      ],
+      "deckHeights": [
+        14.91,
+        13.75
+      ],
+      "includeConnectedApproaches": true
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -62.521,
+          -5.5
+        ],
+        [
+          69.9,
+          -5.5
+        ],
+        [
+          69.9,
+          3.5
+        ],
+        [
+          -62.521,
+          3.5
+        ]
+      ],
+      "basis": "Bounded covered crossing removes coarse DEM below source arches; visual fit only."
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -310,14 +367,185 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Martorell unequal Gothic arches with summit shelter and Roman gateway.",
+    "exclusions": "Modern road/rail bridges, individual archaeological blocks and conservation survey."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/pont-del-diable-browser-model.mjs",
+    "export": "buildPontCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/pont-del-diable-browser-model.mjs",
+    "export": "buildPontSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPontDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.7
+          }
+        }
+      },
+      "street": {
+        "export": "buildPontStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.7
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPontCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.7
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-pont-skyline",
+      "position": [
+        115,
+        68,
+        105
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-pont-district",
+      "position": [
+        115,
+        68,
+        105
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-pont-street",
+      "position": [
+        115,
+        68,
+        105
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-pont-closeup",
+      "position": [
+        115,
+        68,
+        105
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "fov": 47,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
-    "ICGC samples constrain the main vertical envelope, but the occluded summit walkway, arch intrados, gateway depth and exact wall edges need survey confirmation. Host terrain and current water fit remain pending.",
-    "Individual masonry courses, weathering, tread count, rail spacing, and2026 copper cap thickness are original proportional reconstructions.",
-    "The sources distinguish36.4m clear span from a43m narrative span; reference datum for the reported21m height is unclear. Clear span controls the mesh.",
-    "Partial buried masonry and foundation outlines are inferred; adjoining modern roads, railways, river terrain and vegetation are site context.",
-    "Current maximum-fidelity acceptance remains pending measured profiles and close comparison with restoration drawings."
+    "One inspected oblique picture establishes the unequal pointed arches, red/pale stone, humpback stair walk, roofed summit shelter and surviving Roman gateway. Existing authored profile and span controls are retained. Standard viewer PMTiles places the east-directed crossing at the Llobregat route;125.0414m mapped path and nominal130m are separate definitions. Native -1m lateral adjustment retained. West approach PMTiles56.9653m versus native14.91m gives approximate origin42.0553m, close to retainedICGC41.9m. East-bank PMTiles34.8258m conflicts with the original authored gateway threshold; approximate local preview contacts retain that source profile rather than certifying a new datum. Bounded opening removes bridge imprint. Exact bank joins, water stage, stone courses and crown restoration appearance remain limited;2007picture does not verify2026copper cap.",
+    "Four canonical shared graphs reused. Lower tiers merge steps, masonry and voussoirs; closeup retains larger colored stone impressions. Gateway remains ruined without conjectural capitals. Original detailed reconstruction preserved. Physical-device timings unmeasured.",
+    "Cutwater uses a continuous tapered body rather than separated course volumes. East small-arch camera raised above the coarse fixture bank."
   ],
   "qaCameras": [
     {
@@ -473,6 +701,20 @@
         -1
       ],
       "fov": 52
+    },
+    {
+      "name": "east-small-arch-above-bank",
+      "position": [
+        46.2,
+        18,
+        17
+      ],
+      "lookAt": [
+        46.2,
+        11.5,
+        -1
+      ],
+      "fov": 52
     }
   ],
   "importOptions": {
@@ -480,10 +722,10 @@
   },
   "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
   "mesh": {
-    "triangles": 369096,
-    "vertices": 736760,
+    "triangles": 54116,
+    "vertices": 162348,
     "materials": 4,
-    "bytes": 30955476,
-    "sha256": "sha256:f72226567cf184a03ac60d574b1aa65dfd3c4fbd9417d1fff02665d061445291"
+    "bytes": 6496876,
+    "sha256": "sha256:daae1b1614f4ceb5e8801ac2bdc3ce472d0aeadca0529019a9b48ed5e09c717b"
   }
 }

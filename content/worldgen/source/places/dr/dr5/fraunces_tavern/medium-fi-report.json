@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.fraunces_tavern",
+  "sourceHash": "sha256:6d1be3fd4b2d1723eacde09deaf801c3c3b7db6c853a8dd344a7e98590bb7c15",
+  "runtimeHash": "sha256:bc4a0b38eb4b8fef80b393a92872e46a0ad93f2ec4d723c104059714287585e0",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:44206137d820ac06fa1922535e1d2d4cfef23d8c21fe9b148fab10f8efdf9527",
+      "bytes": 51824,
+      "gzipBytes": 8561,
+      "triangles": 646,
+      "cpuBytes": 50388,
+      "gpuBytes": 50388,
+      "errorMeters": 0.45,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ca9b032be780e9716e42074ac3224d04f37c36461cda981060fa1a1630a6c0c1",
+      "bytes": 175564,
+      "gzipBytes": 40102,
+      "triangles": 2163,
+      "cpuBytes": 168248,
+      "gpuBytes": 168248,
+      "errorMeters": 0.2,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:e3ba5067ea63cd8dff1bebf5531d6cc2df011e387ab718e2086768598851182f",
+      "bytes": 710180,
+      "gzipBytes": 157442,
+      "triangles": 9013,
+      "cpuBytes": 702836,
+      "gpuBytes": 702836,
+      "errorMeters": 0.08,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:d7841574ac5c239f07c66bb0e54814c9728c100fdab541e22390f8258c0e8be1",
+      "bytes": 2390780,
+      "gzipBytes": 462330,
+      "triangles": 19895,
+      "cpuBytes": 2387400,
+      "gpuBytes": 2387400,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:46ef64eec673e83bd920cf2512bab6aa19e66f7e8ff34685a275e0d4f7b10fd8"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:225385b293bc79d274b514c3a81f7634fd7a5a897c84b79704b10ee6fd75b2b7"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:520c3c82fd3f008e4167664a8c398bf0cab5b7c07cf55265c3e7b401600510eb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          47.1686,
+          34.64,
+          83.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:666883cf54559afb35e77aac18b05c681ce0ed00884a61cf968bf05ac8bd3a90",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          47.1686,
+          34.64,
+          83.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:1280af727d90cb6c2e036df5934701e617a12fbbfafbed575339ee40bcfda3a3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          47.1686,
+          34.64,
+          83.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:051980063623e424b70c54a59e88c9f9fdf92e900a14035e1a7820c89c33fe8e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          47.1686,
+          34.64,
+          83.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:a569462ee288081c5edead46fa010ac041aeeb9d4ca67fa456a5a6998137b084",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 16597,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:3271318e7d5117dd1cc3531b9bf2163b966b7dfa8e18bc00233196b6482f24ec",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 16597,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6bc89631e71285e58d655f77bafc469b1d3aad22606636169013564b7a6f3733",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 16597,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d1de08de13efe0d01065a743cbb4a959374205db2ccf4886c3e0a1fe59dfc3d7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 16597,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:d8db89c6828d6b0bc1b9f3fee0fb7ac8065baa552eac64b214fbd71d041772c5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15080,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          193.1686,
+          108.64,
+          336.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c674db602e1acb1e566c06f3df94c39733a9e4108c4fd1a15af0f7ae59ec3745",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15080,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          193.1686,
+          108.64,
+          336.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:dcfa6f3c90102e3fbf6e3b262462424f5c1b98caab9ed25492fe12bdd7b3eb0a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15080,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          193.1686,
+          108.64,
+          336.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:0738c40df05b6cb7733d473c54bf96522845a237db82898030b42e5d6ebf1f60",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15080,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          193.1686,
+          108.64,
+          336.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:91ee14786adf1c72fb8fa8359f3c0839e7e8cb85a04d487ba793065cf61e2aba",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 8840,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          193.1686,
+          108.64,
+          336.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:3502d7e63baf0a4aa411da2592c246be10fe6ddb66d6626b349650dd43cfbddb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          14,
+          10,
+          40
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:737efdebfbce68439e0ebdf41a04f98da1edecd84c566239b5bc27cf867c45c6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          -28,
+          23,
+          -31
+        ],
+        "lookAt": [
+          0,
+          7,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:4997571e1a44dbf0b7c7c5abbc5cf7d0b81783229809a21d6c106732281e379e",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15080,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:3271318e7d5117dd1cc3531b9bf2163b966b7dfa8e18bc00233196b6482f24ec",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 16597,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:c7dc76a1d963f1246f10b037a9443896ee492e9e830498895c8a3763bc313153",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 23447,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:0891fee17f56cf001ed89340d1441654eb70e3ad79f6e64d70ba8b238c626ece",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 34329,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dr/dr5/fraunces_tavern/terrain-review.height.png"
+        },
+        "position": [
+          96.1686,
+          70.64,
+          168.8851
+        ],
+        "lookAt": [
+          -0.8314,
+          19.64,
+          0.8851
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:644feb3c308af5e0bbd4d2a5c4a455229efcacac04ffe7d7da2ae731f1b4ea79",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:e4679587fa6cdb951ee4a52e2ebe1ea4ec51a78f879f82f2617728e0bf4d975b"
+  }
+}

@@ -4,6 +4,7 @@ import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { agathaTower } from './agatha-tower-model.mjs';
 import { aljazTower } from './aljaz-tower-model.mjs';
@@ -19,6 +20,7 @@ import { civicTowers } from './civic-tower-models.mjs';
 import { civicTowersMore } from './civic-tower-more-models.mjs';
 import { copan } from './copan-model.mjs';
 import { emleyMoor } from './emley-moor-model.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { finalHeritageTowers } from './final-heritage-tower-models.mjs';
 import { garniTemple } from './garni-temple-model.mjs';
 import { gatewayArch } from './gateway-arch-model.mjs';
@@ -41,6 +43,7 @@ import { moreHeritageTowers } from './next-heritage-tower-more-models.mjs';
 import { spireOfDublin } from './spire-of-dublin-model.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { readOptionalJson } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 import { sukharevTower } from './sukharev-tower-model.mjs';
 import { torreDeiConti } from './torre-dei-conti-model.mjs';
@@ -254,6 +257,18 @@ for (const asset of [
   if (asset.encodeAssembly && asset.groundNormalize)
     throw new Error(`${asset.id}: assembly parts must supply an explicit shared ground datum`);
   const dir = structureSourceDirectory(asset.id);
+  const priorSource = await readOptionalJson(resolve(dir, 'source.json'));
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (reviewScope && reviewScope.fidelityTarget !== 'medium-fi')
+    throw new Error(`${asset.id}: review scope must declare medium-fi`);
+  const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
+  const reviewedProposal = { ...asset.geographicProposal, ...(reviewScope?.geographic ?? {}) };
+  if (
+    mapFrame &&
+    (!mapFrame.anchor?.every((n, i) => n === reviewedProposal.anchor[i]) ||
+      mapFrame.heading !== reviewedProposal.heading)
+  )
+    throw new Error(`${asset.id}: local map controls disagree with recipe placement`);
   const assetId = `molen.worldgen.structure.${asset.id}`;
   const modelPath = resolve(dir, 'models/source.glb');
   try {
@@ -267,7 +282,18 @@ for (const asset of [
   }
   const builder = new MeshBufferBuilder(),
     used = new Map();
-  asset.build(wrap(builder, used, asset.componentMap));
+  let build = asset.build;
+  if (reviewScope?.sourceGeometry) {
+    const definition = reviewScope.sourceGeometry;
+    if (
+      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(definition.module) ||
+      typeof definition.export !== 'string'
+    )
+      throw new Error(`${asset.id}: invalid source geometry override`);
+    build = (await import(pathToFileURL(resolve(definition.module)).href))[definition.export];
+    if (typeof build !== 'function') throw new Error(`${asset.id}: missing source geometry export`);
+  }
+  build(wrap(builder, used, asset.componentMap));
   const mesh = builder.finalize();
   asset.decorateMesh?.(mesh);
   if (asset.groundNormalize) {
@@ -389,6 +415,47 @@ for (const asset of [
     importOptions: { optimize: false },
     qaCameras: asset.cameras,
   };
+  if (reviewScope) {
+    Object.assign(spec, {
+      fidelityTarget: reviewScope.fidelityTarget,
+      appearance: reviewScope.appearance,
+      mediumFiContext: reviewScope.mediumFiContext,
+      nativeAxes: { ...spec.nativeAxes, ...(reviewScope.nativeAxes ?? {}) },
+      sourceFacts: { ...spec.sourceFacts, ...(reviewScope.sourceFacts ?? {}) },
+      ...(reviewScope.sourceGeometry ? { sourceGeometry: reviewScope.sourceGeometry } : {}),
+      referencePages: [...new Set([...spec.referencePages, ...(reviewScope.referencePages ?? [])])],
+      geographicProposal: { ...spec.geographicProposal, ...(reviewScope.geographic ?? {}) },
+      limitations: reviewScope.limitations ?? asset.limits,
+      reviewStatus: 'medium-fi; current hash-bound visual acceptance recorded in qa.json',
+      qaCameras: [
+        ...asset.cameras.map((camera) => ({
+          ...camera,
+          ...(reviewScope.qaCameraOverrides?.[camera.name] ?? {}),
+        })),
+        ...(reviewScope.qaCameras ?? []),
+      ],
+      mesh: {
+        triangles: mesh.triangleCount,
+        vertices: mesh.vertexCount,
+        groups: mesh.groups.length,
+        bytes: glb.length,
+        sha256: hash(glb),
+        min,
+        max,
+      },
+      ...(reviewScope.runtimeLodOverlay
+        ? { runtimeLodOverlay: reviewScope.runtimeLodOverlay }
+        : {}),
+      ...(reviewScope.qaLodCameras ? { qaLodCameras: reviewScope.qaLodCameras } : {}),
+    });
+  }
+  if (mapFrame)
+    Object.assign(spec.geographicProposal, {
+      mapGeometrySource: 'map-frame.json',
+      mapGeometryHash: hashEvidenceText(await readFile(resolve(dir, 'map-frame.json'))),
+      mapGeometryLicense: mapFrame.license,
+      attribution: mapFrame.attribution,
+    });
   const h = max[1],
     extent = Math.max(h, max[0] - min[0], max[2] - min[2]);
   const scene = {
@@ -443,6 +510,10 @@ for (const asset of [
     },
     physics: { engine: 'none' },
   };
+  if (reviewScope?.previewGround === false)
+    scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
+  if (reviewScope?.previewTerrain) scene.terrain = reviewScope.previewTerrain;
+  if (reviewScope?.camera) Object.assign(scene.camera, reviewScope.camera);
   const optionalReports = (
     await readdir(dir).catch((error) => {
       if (error.code === 'ENOENT') return [];
@@ -462,6 +533,9 @@ for (const asset of [
         'map-parts.json',
         'state-park-boundary.json',
         'reconstruction-brief.json',
+        'review-scope.json',
+        'medium-fi-report.json',
+        'QA-REVIEW.md',
       ].includes(name),
     )
     .sort();
@@ -484,10 +558,18 @@ for (const asset of [
       scripts: [],
       textures: [],
       sounds: [],
-      documents: ['README.md', 'preview.png', ...optionalReports],
+      documents: [
+        ...new Set([
+          'README.md',
+          'preview.png',
+          ...optionalReports,
+          ...(reviewScope?.sourceDocuments ?? []),
+          ...(reviewScope ? (priorSource?.files?.documents ?? []) : []),
+        ]),
+      ],
     },
   };
-  const readme = `# ${asset.title}\n\n![Lit Molen preview](preview.png)\n\n${asset.brief}\n\n## Identity and geometry\n\nCatalog ${asset.planId}, [${asset.wikidata}](https://www.wikidata.org/wiki/${asset.wikidata}). ${asset.scaleBasis}\n\n${asset.origin}. ${asset.front}; +Y is up. The geographic proposal identifies its anchor and orientation evidence separately from remaining terrain and azimuth uncertainty.\n\nSource facts and measured references are recorded in spec.json. References: ${asset.refs.map((url, i) => `[${i + 1}](${url})`).join(', ')}. Reference pages and images are not redistributed.\n\n## Original source and shared materials\n\nGeometry is authored in \`packages/worldgen/scripts/${asset.authoringFile ?? (nextHeritageTowers.includes(asset) ? 'next-heritage-tower-models.mjs' : 'heritage-tower-models.mjs')}\`. ${spec.materialMethod} No third-party mesh or photograph is embedded.\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} source bytes. Source hash: \`${hash(glb)}\`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.\n\nRegenerate with \`node packages/worldgen/scripts/generate-heritage-towers.mjs ${asset.planId}\`; add \`--check\` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses \`--no-optimize\` to preserve facade recesses.\n\n## Remaining detail and review\n\n${spec.limitations.map((s) => `- ${s}`).join('\n')}\n\nNamed near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.\n`;
+  const readme = `# ${asset.title}\n\n![Lit Molen preview](preview.png)\n\n${asset.brief}\n\n## Identity and geometry\n\nCatalog ${asset.planId}, [${asset.wikidata}](https://www.wikidata.org/wiki/${asset.wikidata}). ${asset.scaleBasis}\n\n${spec.nativeAxes.origin}. ${spec.nativeAxes.front}; +Y is up. The geographic proposal identifies its anchor and orientation evidence separately from remaining terrain and azimuth uncertainty.\n\nSource facts and measured references are recorded in spec.json. References: ${asset.refs.map((url, i) => `[${i + 1}](${url})`).join(', ')}. Reference pages and images are not redistributed.\n\n## Original source and shared materials\n\nGeometry is authored in \`packages/worldgen/scripts/${asset.authoringFile ?? (nextHeritageTowers.includes(asset) ? 'next-heritage-tower-models.mjs' : 'heritage-tower-models.mjs')}\`. ${spec.materialMethod} No third-party mesh or photograph is embedded.\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles; ${mesh.vertexCount.toLocaleString('en-US')} vertices; ${mesh.groups.length} material groups; ${glb.length.toLocaleString('en-US')} source bytes. Source hash: \`${hash(glb)}\`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.\n\nRegenerate with \`node packages/worldgen/scripts/generate-heritage-towers.mjs ${asset.planId}\`; add \`--check\` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses \`--no-optimize\` to preserve facade recesses.\n\n## Remaining detail and review\n\n${spec.limitations.map((s) => `- ${s}`).join('\n')}\n\nNamed near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.\n`;
   await emit(modelPath, glb);
   for (const [name, value] of [
     ['spec.json', spec],

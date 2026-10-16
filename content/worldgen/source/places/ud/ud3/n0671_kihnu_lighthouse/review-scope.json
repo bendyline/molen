@@ -1,0 +1,270 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "White tapered iron tower with red diamond ports, pierced octagonal gallery, red Greek-key drum and red domed lantern; adjacent stone oil store.",
+    "epoch": "Restored exterior shown in the operator record and 2024 Brand Estonia close photograph.",
+    "master": "Preserve and reproduce the original 126985-triangle master, including true circular ports, gallery piercings, dome rivets and visible optical assembly.",
+    "browser": "Authored far levels keep the real taper, 24 port positions, octagonal gallery, domed lantern and mapped oil store. District uses flat port marks and reduced graphic strokes; street/closeup resample the original component recipe, preserving true apertures, optic and regular curved surfaces with fewer subdivisions.",
+    "exclusions": "Surveyed dimensions of fine fittings, operational optics, interior rooms, detached keeper dwellings and surveyed shoreline terrain."
+  },
+  "geographic": {
+    "notes": "Aid 840 fixes the authority center and 28.3 m height. The mapped oil-store rectangle resolves the signed ensemble rotation at heading PI, matching the original west/south offset and 0.191 rad store rotation. Main north entry remains an explicitly landward-access reconstruction. The offset broader mapped tower ring does not stretch the photo-proportioned shaft. Both source floors Y=0 contact the common host ground; no surveyed site elevation is asserted."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kihnu-browser-model.mjs",
+    "export": "buildKihnuSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKihnuDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildKihnuStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKihnuCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "ports-street",
+      "position": [
+        5.5,
+        11.1,
+        7.2
+      ],
+      "lookAt": [
+        0,
+        11.1,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "gallery-street",
+      "position": [
+        5.2,
+        22.5,
+        6.3
+      ],
+      "lookAt": [
+        0,
+        22.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lantern-closeup",
+      "position": [
+        4.1,
+        26.3,
+        5.3
+      ],
+      "lookAt": [
+        0,
+        25.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "lantern-district",
+      "position": [
+        4.1,
+        26.3,
+        5.3
+      ],
+      "lookAt": [
+        0,
+        25.1,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "oil-store-district",
+      "position": [
+        10,
+        6,
+        -3
+      ],
+      "lookAt": [
+        2.6,
+        1.7,
+        -11.7
+      ],
+      "reviewLod": "district"
+    }
+  ]
+}

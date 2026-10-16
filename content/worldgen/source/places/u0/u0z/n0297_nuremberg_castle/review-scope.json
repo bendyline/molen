@@ -1,0 +1,518 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#d1b18f",
+      "rock": "#c4ad8e",
+      "plaster": "#f0e3c8",
+      "timber": "#986449",
+      "roof": "#d9916e",
+      "trim": "#eadbc0",
+      "glass": "#4d6178",
+      "paving": "#b7b0a1",
+      "grass": "#8aa469",
+      "copper": "#98bfaf",
+      "dark": "#70634f",
+      "flower": "#ca9265"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "sandstone": [
+        0.684938,
+        0.602377,
+        0.467682
+      ],
+      "rawstone": [
+        0.790898,
+        0.790898,
+        0.790898
+      ],
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ],
+      "tile": [
+        0.559267,
+        0.552465,
+        0.529503
+      ],
+      "aggregate": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 8,
+    "identityFeatures": [
+      "Round Sinwell with flared observation floor,red roof and small green lantern",
+      "Three precincts with red-roofed Palas and half-timbered ranges around open courts",
+      "Steep multi-row dormer roof of Kaiserstallung between Pentagonal Tower and corner-oriel Luginsland"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "South-facing city prospect with Palas/double chapel and Sinwell in native East/South coordinates",
+    "longitudinal": "+X east along castle complex",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactIdentityNode": 31013768,
+    "publishedSinwellHeightMeters": 41,
+    "mappedBuildingParts": 13,
+    "mappedSignatureTowers": 4,
+    "historicPrecincts": 3,
+    "physicalPassages": 3,
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:5ad45217b302e304fd1b7347d0a17d31431279146c7640c842d53b8d1a762ed0",
+    "originalMasterRecipe": "packages/worldgen/scripts/nuremberg-castle-model.mjs#buildNurembergRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate exterior and fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Building floors, terrace/ruin detail, roof partitioning and restoration fixtures are interpreted; interiors and collision excluded.",
+    "Five common graphs plus explicit glass/foliage color slots; zero embedded images. Bounded courts/gardens/terraces retained, surrounding hill supplied by host.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      11.0753908,
+      49.4580789
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        11.0753908,
+        49.4580789
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture supports Sinwell's cylindrical body/capped roof, square towers, open court, red tiled roof groups and timber/plaster wings. Retained east/south map geometry sets approximate extent and orientation. Standard viewer PMTiles supply surrounding ground; the old study is translated-15m, lower reconstructed building/tower floors are raised only as needed above sampled coarse terrain, terrace toes reach it and the outer approach joins its sampled endpoint. Original detailed master remains preserved. Anchor 11.0753908,49.4580789; heading 0; standard PMTiles datum 337.1664037330291m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/nuremberg-runtime-model.mjs",
+    "export": "buildNurembergReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "sandstone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "rawstone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "aggregate": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "foliage": {
+      "slot": "wall",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/nuremberg-runtime-model.mjs",
+    "export": "buildNurembergReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNurembergReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "rawstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildNurembergReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "rawstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNurembergReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "sandstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "rawstone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nuremberg-skyline",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nuremberg-district",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nuremberg-street",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nuremberg-closeup",
+      "position": [
+        340,
+        240,
+        350
+      ],
+      "lookAt": [
+        30,
+        15,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -4,
+    "scale": 6.3,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "camera": {
+    "position": [
+      340,
+      240,
+      350
+    ],
+    "lookAt": [
+      30,
+      15,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "sinwell-renaissance-helm": {
+      "position": [
+        139,
+        32,
+        101
+      ],
+      "lookAt": [
+        85,
+        28,
+        33
+      ]
+    },
+    "imperial-inner-court": {
+      "position": [
+        1,
+        48,
+        17
+      ],
+      "lookAt": [
+        1,
+        6,
+        8
+      ]
+    },
+    "timber-well-and-bailey": {
+      "position": [
+        64,
+        19,
+        45
+      ],
+      "lookAt": [
+        53,
+        10,
+        25
+      ]
+    },
+    "hasenburg-passage": {
+      "position": [
+        99,
+        4.100000000000001,
+        56
+      ],
+      "lookAt": [
+        74,
+        4.100000000000001,
+        52
+      ]
+    },
+    "palas-chapel-city-front": {
+      "position": [
+        -7,
+        14,
+        99
+      ],
+      "lookAt": [
+        4,
+        16,
+        27
+      ]
+    },
+    "stables-and-eastern-towers": {
+      "position": [
+        190,
+        32,
+        75
+      ],
+      "lookAt": [
+        172,
+        20,
+        -17
+      ]
+    },
+    "mapped-bastions": {
+      "position": [
+        -115,
+        104,
+        -114
+      ],
+      "lookAt": [
+        -27,
+        1,
+        -34
+      ]
+    }
+  }
+}

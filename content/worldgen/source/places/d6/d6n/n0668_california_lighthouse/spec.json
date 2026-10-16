@@ -18,7 +18,9 @@
     "focalHeightMeters": 55,
     "structureHeightExcludesVane": true,
     "baseDiameterPhotoApproxMeters": 5.3,
-    "basis": "Royal Netherlands Navy2026 HP2B light4000/J6330 lists30m stone structure and55m focal elevation. Owner Monuments Fund Aruba publishes restoration history and opposed daylight/night/aerial facade photographs. Those photographs govern the14 staggered stair windows, octagonal pedestal, light-pink plaster, gallery stack and green cap; small dimensions are photograph-proportioned."
+    "basis": "Royal Netherlands Navy2026 HP2B light4000/J6330 lists30m stone structure and55m focal elevation. Owner Monuments Fund Aruba publishes restoration history and opposed daylight/night/aerial facade photographs. Those photographs govern the14 staggered stair windows, octagonal pedestal, light-pink plaster, gallery stack and green cap; small dimensions are photograph-proportioned.",
+    "originalMasterHash": "sha256:2e7ace4149fece384c104dca2cf8f42a32e3ef53cea871f53cb0eaa468e265c0",
+    "reviewScope": "Static restored2016 exterior from owner daylight, sunset and aerial photographs. Published30m structural height excludes the thin vane;55m focal elevation does not mean55m tower height. Base5.3m diameter, pedestal/cup/gallery profiles, pediments and minor fittings are photo-proportioned. Night light sectors, interior staircase, current visitor status, detached restaurant/landscape, exact weathering and vane animation are outside this medium-fi architectural scope."
   },
   "referencePages": [
     "https://www.defensie.nl/site/binaries/site-content/collections/documents/2026/04/30/hp2b/hp2b-lichtenlijst-2026-01.pdf",
@@ -38,7 +40,12 @@
     "groundModelY": 0,
     "status": "preview-proposal",
     "source": "https://www.openstreetmap.org/node/540121391",
-    "notes": "Exact-QID OSM node540121391 locates the actual tower, approximately124m northeast of the catalog coordinate near the restaurant. Local+Z entrance faces southwest toward the former keeper house/restaurant and road approach, as reconstructed from the owner aerial and entrance photographs. The octagonal base and four window ranks constrain rotation; facade bearing is photograph-derived rather than surveyed."
+    "notes": "Native+Z entrance faces southwest at heading-1.2rad, toward the former keeper house/restaurant and road approach visible in the owner aerial. Exact-Q2279321 tower node is the origin. This is a photograph-derived bearing with approximately15degree uncertainty, not a surveyed doorway azimuth. Four staggered window ranks rotate with the entry. Static restored2016 exterior from owner daylight, sunset and aerial photographs. Published30m structural height excludes the thin vane;55m focal elevation does not mean55m tower height. Base5.3m diameter, pedestal/cup/gallery profiles, pediments and minor fittings are photo-proportioned. Night light sectors, interior staircase, current visitor status, detached restaurant/landscape, exact weathering and vane animation are outside this medium-fi architectural scope.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ef456126bb8cf5833d434a3c4a052a1d894fe40626419f722ec2902a63e46635",
+    "mapGeometryLicense": "OSM ODbL1.0; reference pictures are research links only.",
+    "attribution": "© OpenStreetMap contributors; Monuments Fund Aruba."
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -102,12 +109,185 @@
   "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
   "nativeAxes": {
     "up": "+Y",
-    "front": "+Z",
-    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+    "front": "+Z southwest entrance",
+    "origin": "Native+Z entrance faces southwest at heading-1.2rad, toward the former keeper house/restaurant and road approach visible in the owner aerial. Exact-Q2279321 tower node is the origin. This is a photograph-derived bearing with approximately15degree uncertainty, not a surveyed doorway azimuth. Four staggered window ranks rotate with the entry."
   },
   "assetId": "molen.worldgen.structure.n0668_california_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "Restored pale-rose taper over an octagonal cream-trimmed pedestal, fourteen staggered pedimented windows and four upper vents, projecting gallery cup, narrow service drum, two metal gallery decks, green domed lantern, vane and southwest entrance steps.",
+    "master": "Exact preserved original restored California Lighthouse.",
+    "browser": "Full taper/pedestal/cup/gallery/green cap/vane/steps at all distances; near levels retain all14 recessed staggered windows,4 vents, pediments, entry and ladder.",
+    "exclusions": "Static restored2016 exterior from owner daylight, sunset and aerial photographs. Published30m structural height excludes the thin vane;55m focal elevation does not mean55m tower height. Base5.3m diameter, pedestal/cup/gallery profiles, pediments and minor fittings are photo-proportioned. Night light sectors, interior staircase, current visitor status, detached restaurant/landscape, exact weathering and vane animation are outside this medium-fi architectural scope."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/california-browser-model.mjs",
+    "export": "buildCaliforniaSkyline",
+    "errorMeters": 0.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCaliforniaDistrict",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildCaliforniaStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCaliforniaCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.9
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "full-tower-district",
+      "position": [
+        24,
+        19,
+        35
+      ],
+      "lookAt": [
+        0,
+        15.4,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "windows-street",
+      "position": [
+        6.2,
+        12.5,
+        8.1
+      ],
+      "lookAt": [
+        0,
+        12.6,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "entry-street",
+      "position": [
+        6.3,
+        4.8,
+        8.4
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        1.2
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -2.6607730388641357,
@@ -119,6 +299,13 @@
       30.829999923706055,
       3.6982808113098145
     ]
+  },
+  "mesh": {
+    "triangles": 36198,
+    "vertices": 69322,
+    "materials": 6,
+    "bytes": 2933708,
+    "sha256": "sha256:2e7ace4149fece384c104dca2cf8f42a32e3ef53cea871f53cb0eaa468e265c0"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

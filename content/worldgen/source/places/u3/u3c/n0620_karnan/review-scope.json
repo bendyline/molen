@@ -1,0 +1,254 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "Native -X faces southwest toward the city and sea; native -Z is the northwest privy elevation, +Z southeast.",
+    "origin": "Native-X faces southwest toward the city/sea; native-Z is the northwest privy side; native+Z southeast. Exact-Q1779457 way236992894 contains the asymmetric stair-turret projection. Hikuin19 article p43 explicitly names southwest principal facade/stair turret and northwest privy; inspected Fig2 plan and current2015/2025 exterior photos agree. Heading0.909308291221rad follows the mapped long edge, not a surveyed azimuth;±3degree map/photo estimate."
+  },
+  "sourceFacts": {
+    "mainBattlementHeightMeters": 34.5,
+    "mainPlanApproximateMeters": 15,
+    "stairTurretReconstructionHeightMeters": 38.5,
+    "mainMerlonsPerSide": 8,
+    "restorationYears": [
+      1893,
+      1894
+    ],
+    "wallThicknessApproximateMeters": 4,
+    "originalMasterHash": "sha256:61cf21c5bf16a87254076fb19933f193888cbe3ad4b121e93fd049b16f1b05cb",
+    "reviewScope": "Static restored exterior: main34.5m battlements and approximately15m plan are city/preservation documented;38.5m turret,44.08m mast,5.8m threshold and minor openings are photographic proportions. Original detailed source is preserved. Current collar-wall remnants and timber approach are approximate plan/photo reconstructions, not surveyed ruins or terrain. Shared brick provides canonical repeating joints with original weathering in the detailed source; no scan or copied individual brick repair. Browser skyline uses facade marks, district omits subpixel putlog holes, street uses original flat dark marks, close-up retains physical putlog/window recesses. Small roof paving joints are averaged into an intact floor. Hidden interiors, archaeological predecessor, distant Terrace Stairs, landscape and temporary visitor equipment are excluded. Host must fit terrain contact locally; footprint replacement is disabled."
+  },
+  "appearance": {
+    "identity": "Helsingborg’s brick keep with its asymmetric octagonal stair turret, eight merlons per main elevation, recessed windows and putlog holes, sandstone belt, raised timber entrance, projecting northwest privy shaft, open roof terrace and low collar-wall remnants. Shared metric materials and original continuous brick weathering.",
+    "master": "Preserved original researched exterior.",
+    "browser": "Complete main keep, raised octagonal turret/mast, eight main merlons per elevation, privy, open roof, timber stairs and collar-wall remnants at every level.",
+    "exclusions": "Static restored exterior: main34.5m battlements and approximately15m plan are city/preservation documented;38.5m turret,44.08m mast,5.8m threshold and minor openings are photographic proportions. Original detailed source is preserved. Current collar-wall remnants and timber approach are approximate plan/photo reconstructions, not surveyed ruins or terrain. Shared brick provides canonical repeating joints with original weathering in the detailed source; no scan or copied individual brick repair. Browser skyline uses facade marks, district omits subpixel putlog holes, street uses original flat dark marks, close-up retains physical putlog/window recesses. Small roof paving joints are averaged into an intact floor. Hidden interiors, archaeological predecessor, distant Terrace Stairs, landscape and temporary visitor equipment are excluded. Host must fit terrain contact locally; footprint replacement is disabled."
+  },
+  "geographic": {
+    "anchor": [
+      12.697479224,
+      56.04827929
+    ],
+    "heading": 0.909308291221,
+    "source": "https://www.openstreetmap.org/way/236992894",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:356d2f20e6453ba1ea9de0f6c3cbda6405460ed8a85cd6bfe03505b5b6866d39",
+    "evidence": "Exact-QID OSM main footprint, including the offset stair turret, supplies anchor and axis. Hikuin19, printed p43 explicitly locates the stair turret on the southwest face and the privy projection on the northwest. Native -X is southwest and -Z northwest under the recorded heading; native +Z is southeast. The source preserves that signed frame.",
+    "limitations": "The main footprint and signed facade orientation are map/publication based. Ground levels, the reconstructed collar wall and timber stair need detailed site terrain and survey confirmation.",
+    "status": "preview-proposal",
+    "elevationMode": "terrain-contact",
+    "notes": "Native-X faces southwest toward the city/sea; native-Z is the northwest privy side; native+Z southeast. Exact-Q1779457 way236992894 contains the asymmetric stair-turret projection. Hikuin19 article p43 explicitly names southwest principal facade/stair turret and northwest privy; inspected Fig2 plan and current2015/2025 exterior photos agree. Heading0.909308291221rad follows the mapped long edge, not a surveyed azimuth;±3degree map/photo estimate. Static restored exterior: main34.5m battlements and approximately15m plan are city/preservation documented;38.5m turret,44.08m mast,5.8m threshold and minor openings are photographic proportions. Original detailed source is preserved. Current collar-wall remnants and timber approach are approximate plan/photo reconstructions, not surveyed ruins or terrain. Shared brick provides canonical repeating joints with original weathering in the detailed source; no scan or copied individual brick repair. Browser skyline uses facade marks, district omits subpixel putlog holes, street uses original flat dark marks, close-up retains physical putlog/window recesses. Small roof paving joints are averaged into an intact floor. Hidden interiors, archaeological predecessor, distant Terrace Stairs, landscape and temporary visitor equipment are excluded. Host must fit terrain contact locally; footprint replacement is disabled.",
+    "attribution": "© OpenStreetMap contributors, ODbL-1.0",
+    "replaceFootprint": false
+  },
+  "limitations": [
+    "Static restored exterior: main34.5m battlements and approximately15m plan are city/preservation documented;38.5m turret,44.08m mast,5.8m threshold and minor openings are photographic proportions. Original detailed source is preserved. Current collar-wall remnants and timber approach are approximate plan/photo reconstructions, not surveyed ruins or terrain. Shared brick provides canonical repeating joints with original weathering in the detailed source; no scan or copied individual brick repair. Browser skyline uses facade marks, district omits subpixel putlog holes, street uses original flat dark marks, close-up retains physical putlog/window recesses. Small roof paving joints are averaged into an intact floor. Hidden interiors, archaeological predecessor, distant Terrace Stairs, landscape and temporary visitor equipment are excluded. Host must fit terrain contact locally; footprint replacement is disabled."
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/karnan-browser-model.mjs",
+    "export": "buildKarnanSkyline",
+    "errorMeters": 0.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKarnanDistrict",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "sandstone": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.88
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24
+          }
+        }
+      },
+      "street": {
+        "export": "buildKarnanStreet",
+        "errorMeters": 0.025,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "sandstone": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.88
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKarnanCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "sandstone": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.96
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.93
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.88
+          },
+          "shadow": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-district",
+      "position": [
+        -58,
+        28,
+        73
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "southwest-entry-street",
+      "position": [
+        -32,
+        12,
+        13
+      ],
+      "lookAt": [
+        -6,
+        10,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "roof-street",
+      "position": [
+        24,
+        52,
+        25
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "putlogs-closeup",
+      "position": [
+        0,
+        18,
+        17
+      ],
+      "lookAt": [
+        0,
+        18,
+        8.15
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

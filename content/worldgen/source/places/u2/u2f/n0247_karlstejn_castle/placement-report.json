@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0247_karlstejn_castle",
-  "inputHash": "sha256:91e8b6ac41c4e25e5183c7d510e3ee67acd695abce2be1c1c06ced75970b1025",
-  "placementHash": "sha256:0ae1a2581cf3aab5db20d896d7af4a29ad6c55e1a59fff8039d31a1cca3943da",
+  "inputHash": "sha256:7170e96313b4f078040849fa0b94c364516db4a201cee3f9c541f17fcedb255b",
+  "placementHash": "sha256:e755e0cd5c8f38157da2927cdd08346a3bfc14f38645496b6ffc6ae287160e96",
   "entry": {
     "id": "next1000.n0247",
     "title": "Karlštejn Castle",
@@ -20,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        14.187600418,
+        49.939448506
+      ],
+      "modelHeight": -11.701599999999985,
+      "basis": "Retained numeric grid height at source anchor relative to300mBpv; placement subtracts this interpolant."
+    },
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/relation/6706848",
-    "note": "Precinct includes open courts and the approach. Do not replace its entire footprint with occupied building geometry. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

@@ -40,7 +40,9 @@ import {
   type WorldgenSemanticRenderers,
 } from '@bendyline/molen-worldgen-earth/client';
 import {
+  createRegionalEnvironment,
   isStructureViewingDate,
+  type RegionalEnvironment,
   type WorldgenTileOutput,
 } from '@bendyline/molen-worldgen-earth/kernel';
 import type * as THREE from 'three';
@@ -63,6 +65,7 @@ export interface EarthViewWorkers {
 }
 
 export interface EarthWorldgen extends WorldgenSemanticRenderers {
+  readonly environment: RegionalEnvironment | undefined;
   /** Wait for the initial requested surfaces; later visible buildings request textures on demand. */
   prepareMaterials(): Promise<void>;
   updateStructures(view: StructureStreamingView): void;
@@ -74,6 +77,8 @@ export interface CreateEarthWorldgenOptions {
   landmarkStreaming?: StructureStreamingOptions | false;
   /** Explicit YYYY-MM-DD date for archival landmarks; omitted keeps them unloaded. */
   viewingDate?: string;
+  /** Explicit month (1..12) for regional deciduous foliage. Omitted means neutral leaf-on. */
+  vegetationMonth?: number;
   /** Ground heights in this terrain's vertical reference; may retrieve neighboring tiles. */
   sampleStructureTerrain?: StructureTerrainSampler;
   content: EarthWorldgenContent;
@@ -126,13 +131,35 @@ const inThreadBaker: MaterialBaker = {
 export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthWorldgen {
   if (options.viewingDate !== undefined && !isStructureViewingDate(options.viewingDate))
     throw new Error('viewingDate must be a valid YYYY-MM-DD calendar date');
+  if (
+    options.vegetationMonth !== undefined &&
+    (!Number.isInteger(options.vegetationMonth) ||
+      options.vegetationMonth < 1 ||
+      options.vegetationMonth > 12)
+  )
+    throw new Error('vegetationMonth must be an integer from 1 through 12');
   const { pack, atlas, places, placesDocs, structures } = options.content;
   const workers = options.workers ?? {};
   const regions = createRegionResolver(atlas, { metersPerUnit: options.metersPerUnit });
+  const environment =
+    options.content.environment !== undefined
+      ? createRegionalEnvironment(
+          {
+            ...options.content.environment,
+            ...(options.vegetationMonth !== undefined
+              ? { vegetationMonth: options.vegetationMonth }
+              : {}),
+          },
+          options.metersPerUnit,
+          regions,
+        )
+      : undefined;
   const assets = new AssetCache(options.assets, new GLTFLoader());
   const models = new ModelLibrary(
     async (ref) => (await assets.instance(ref)).scene,
     places.landmarks.definitions,
+    false,
+    environment?.library.plants,
   );
   // Geographic assets are loaded only when a visible tile asks for them. Their source glTF
   // resources leave memory when the last tile using the asset is evicted. Keep the original
@@ -251,6 +278,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
           atlas,
           metersPerUnit: options.metersPerUnit,
           places: placesDocs,
+          ...(environment !== undefined ? { environment: environment.docs } : {}),
         })
       : undefined;
   const renderers = createWorldgenSemanticRenderers(pack, {
@@ -263,6 +291,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
     atlas,
     regions,
+    ...(environment !== undefined ? { environment } : {}),
     models,
     structureObjects,
     materials,
@@ -293,6 +322,7 @@ export function createEarthWorldgen(options: CreateEarthWorldgenOptions): EarthW
   });
   return {
     ...renderers,
+    environment,
     prepareMaterials,
     updateStructures: (view) => streamingStructures?.update(view),
     structureStats: () =>

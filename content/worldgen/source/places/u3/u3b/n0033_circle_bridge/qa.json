@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0033_circle_bridge",
-  "inputHash": "sha256:a5cb2c204294dd7d5e01041ce1ef85336f0063ce75fcb9e21bd9811f391ddfbd",
-  "captureReportHash": "sha256:85d9a7db93d9a5202ca6c944a0a624ad4090553208097fd28427468bdb1b2856",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:cf1520b3975db906d8f2b4eb9aee4547a75c376649078fdd1299df74b81d6ce1",
+  "sourceHash": "sha256:ed5f2c6834c3334577af9e7a79fbc12bfc903ae8bef17bd84c21814ad0748f61",
+  "runtimeHash": "sha256:fd861a04e39df2f9228ad846d2ad01da6c517ea3eea804ff7759606dc08f6473",
+  "captureReportHash": "sha256:18f4594ec5355b0bcae6c5e55be94f97f8d9e6b351c2f02811dba5582015f561",
   "visualReview": {
     "status": "passed",
-    "scope": "Current exterior render integrity; maximum fidelity remains pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -22,11 +24,11 @@
       "shots/stay-anchors.png",
       "shots/north-entrance.png"
     ],
-    "notes": "All14 current portable frames inspected. Five offset decks retain continuous open pedestrian connections, with no coincident overlapping top surfaces. Diamond railings, tapered masts, spreader rings,118 stays and trumpet supports render coherently. Corrected small gaps between curved handrails and shore interface rails before final capture. Thin10mm stays alias in distant portable views; close geometry is preserved."
+    "notes": "Inspected all14 source images: overview, four turntables, plan, harbor/canal elevations, diamond rail, walk-through, flared support, mast ring, stay anchors and north entrance. Five staggered connected decks, white unequal masts and rings, red woven rail impressions and wood caps agree with the inspected designer-gallery overview. Walking openings remain clear. Exact rail miters, anchor hardware and coating finish are simplified; long shore ramps and open bridge state are separate."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:888d9f66f939eca68a4f0a87b42f01f8cf37523dce2591a71966ce023c7f0b74",
+    "captureReportHash": "sha256:932b91db08e3af78f876ba60cc18140d863d16ecea852e16ff254208771c665b",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -43,31 +45,256 @@
       "shots/shared/north-entrance.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All14 current world-viewer frames inspected; shore connection and north-up placement additionally inspected at full resolution. Four canonical material graphs are each read once; no per-model images. Shared paint, stainless, wood and fine concrete grain render coherently. Matacryl and gloss calibration remain fidelity limits. Unload leaves zero live model geometry."
+    "notes": "Inspected all14 shared-viewer images including mapped north-up outline. Four canonical painted-metal, stainless-metal, wood and concrete graphs reused without embedded images. Complete closed crossing, native northeast heading, bounded footprint road replacement and ground opening/restoration, graph cache and unloading pass. Geographic flat staging exposes submerged support geometry and is separate from the canal-water preview."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:617a0573cbca31a80a73cb9cc7b87d68ca5507a06c9f9103aa4a18715c10943e",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/deck-plan.png",
+      "medium-fi/harbor-elevation.png",
+      "medium-fi/canal-elevation.png",
+      "medium-fi/diamond-rail.png",
+      "medium-fi/walk-through.png",
+      "medium-fi/trumpet-support.png",
+      "medium-fi/mast-ring.png",
+      "medium-fi/stay-anchors.png",
+      "medium-fi/north-entrance.png",
+      "medium-fi/whole-circle-skyline.png",
+      "medium-fi/whole-circle-district.png",
+      "medium-fi/whole-circle-street.png",
+      "medium-fi/whole-circle-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all30 lighting, LOD and transition images. Five decks and unequal masts persist through every tier. Skyline has coarse discs and filled rail ribbons; district restores wood caps, rail posts and mast rings. Street/closeup add woven rail impressions and increasingly dense stays; closeup keeps118stay positions. Thin details are visible in closer component views and are intentionally sparse or subpixel at skyline distance. Canal/shore terrain is an approximate reconstructed fitting context; synthetic neighboring houses are not real Copenhagen buildings."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:f1207cb92613c58941c8c99d44e8beb5e285add15f18578d9020779fa4ff4fec",
-    "notes": "North-up flat fixture follows the exact-QID outline, with a deliberately outboard white deck flange.2012 engineer north arrow resolves P1 southwest/P5 northeast. Model uses absolute sea-level datum and preserves submerged pontoon geometry; actual water elevation, quay interfaces and long approach ramps remain unverified."
+    "status": "passed",
+    "placementHash": "sha256:5780b828bc5f370cc262c8a2e6a9d3a6d37917230f3a1478d07876449f4cf80d",
+    "mapFrameHash": "sha256:d67a270dd88420f6b25c22e5483a3f65a95a0f6f286cbc42e84006bfe97c04e2",
+    "notes": "One actually inspected designer-gallery overview establishes the five staggered cream circular decks, white masts and circular stay rings, red rails and wood caps. Retain authored platform centers/radii and analytic exposed arcs; source is the closed state. Standard viewer PMTiles confirms the Christianshavn canal crossing and northeast direction. Retain approximate harbor origin0m; centerDEM0.9918m includes bridge imprint, no water-stage or quay-threshold survey. The bounded complete outline removes map road/ground only under the successfully loaded crossing. Source-local bed and shore contacts are picture-based preview corrections with raw samples preserved. Long quay ramps, opening mechanism/animation and surrounding buildings remain separate."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi closed exterior and approximate picture/PMTiles fitting. Retain five authored platform centers/radii and analytic clipping at joins/exposed rails. Standard viewer PMTiles confirms canal crossing and northeast direction. Approximate sea origin0m retained; centerDEM0.9918m includes bridge imprint. Bounded opening and source-local canal-bed/shore contacts expose the supports while preserving raw samples. Exact tide/quay thresholds, long ramps, opening mechanism and animation, hardware and rail/light details remain unverified or simplified. Shared concrete/wood approximate Matacryl and Guariuba finishes. Physical-device timings remain pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Original detailed closed-state exterior.2015 materials and118 total stays are documented; individual mast heights, stay allocation, flange offsets, fine hardware and pontoon dimensions are photographic/design reconstructions. Full maximum-fidelity approval needs as-built dimensions and current site fit. No animation, concealed hydraulics or long quay ramps are claimed. Do not count as complete."
+    "notes": "Original detailed closed-state exterior.2015 materials and118 total stays are documented; individual mast heights, stay allocation, flange offsets, fine hardware and pontoon dimensions are photographic/design reconstructions. Full maximum-fidelity approval needs as-built dimensions and current site fit. No animation, concealed hydraulics or long quay ramps are claimed. Do not count as complete.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u3/u3b/n0033_circle_bridge/models/source.glb",
+        "hash": "sha256:ed5f2c6834c3334577af9e7a79fbc12bfc903ae8bef17bd84c21814ad0748f61",
+        "bytes": 6059816,
+        "triangles": 50474,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.230791091918945,
+          -2.7200000286102295,
+          -9.12600040435791
+        ],
+        "max": [
+          20.393274307250977,
+          25,
+          9.15999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u3/u3b/n0033_circle_bridge/model.glb",
+        "hash": "sha256:fd861a04e39df2f9228ad846d2ad01da6c517ea3eea804ff7759606dc08f6473",
+        "bytes": 6059356,
+        "triangles": 50474,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.230791091918945,
+          -2.7200000286102295,
+          -9.12600040435791
+        ],
+        "max": [
+          20.393274307250977,
+          25,
+          9.15999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u3/u3b/n0033_circle_bridge/model.skyline.glb",
+        "hash": "sha256:4e704222c3ce9af67083a7e907e712d5b033b5c08108be2e2078c5f8b8da810d",
+        "bytes": 73908,
+        "triangles": 670,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -20.202211380004883,
+          -2.5999999046325684,
+          -9.12600040435791
+        ],
+        "max": [
+          20.364696502685547,
+          25,
+          9.15999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u3/u3b/n0033_circle_bridge/model.district.glb",
+        "hash": "sha256:9f9339311835bb1b479d12603de637f3395285e64016246df588ac933858d90d",
+        "bytes": 353444,
+        "triangles": 3794,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.235212326049805,
+          -2.5999999046325684,
+          -9.12600040435791
+        ],
+        "max": [
+          20.397695541381836,
+          25,
+          9.15999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u3/u3b/n0033_circle_bridge/model.street.glb",
+        "hash": "sha256:eae151f5c01875b84cfee5146712b1f0b31f24df847025c7c95e861aaf53305f",
+        "bytes": 1249288,
+        "triangles": 12278,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.235212326049805,
+          -2.7200000286102295,
+          -9.12600040435791
+        ],
+        "max": [
+          20.397695541381836,
+          25,
+          9.15999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u3/u3b/n0033_circle_bridge/model.closeup.glb",
+        "hash": "sha256:693048ff53d2d42da440b6435798bb491708166c67528734c1e4dbbef766c54f",
+        "bytes": 5322632,
+        "triangles": 50474,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -20.230791091918945,
+          -2.7200000286102295,
+          -9.12600040435791
+        ],
+        "max": [
+          20.393274307250977,
+          25,
+          9.15999984741211
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
     },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0
-    },
-    "triangles": 166522,
-    "materials": 4,
-    "sharedGraphs": 4,
-    "embeddedImages": 0
-  }
+    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original166522-triangle12745196-byte master reproduced exactly at sha256:15417d6bfa6e0d93de9fbf5a08dafcd1dfcfeb3c48d521765b3458f8bde37257. Original recipe and mapped controls preserved. Independent compact source50474triangles; browser670/3794/12278/50474meet1k/4k/16k/64k. Initial427352bytes. Final source/runtime/LOD hashes and shared graph bindings verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:3bc6ad877a5c2a236e7a56b1aa7cd3e82fae03f4725f983202bf54854101d325",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:4e704222c3ce9af67083a7e907e712d5b033b5c08108be2e2078c5f8b8da810d",
+        "bytes": 73908,
+        "gzipBytes": 15046,
+        "triangles": 670,
+        "cpuBytes": 72492,
+        "gpuBytes": 72492,
+        "errorMeters": 0.8,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:9f9339311835bb1b479d12603de637f3395285e64016246df588ac933858d90d",
+        "bytes": 353444,
+        "gzipBytes": 109079,
+        "triangles": 3794,
+        "cpuBytes": 348352,
+        "gpuBytes": 348352,
+        "errorMeters": 0.4,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:eae151f5c01875b84cfee5146712b1f0b31f24df847025c7c95e861aaf53305f",
+        "bytes": 1249288,
+        "gzipBytes": 433007,
+        "triangles": 12278,
+        "cpuBytes": 1244172,
+        "gpuBytes": 1244172,
+        "errorMeters": 0.2,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:693048ff53d2d42da440b6435798bb491708166c67528734c1e4dbbef766c54f",
+        "bytes": 5322632,
+        "gzipBytes": 1777521,
+        "triangles": 50474,
+        "cpuBytes": 5317484,
+        "gpuBytes": 5317484,
+        "errorMeters": 0.1,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 427352,
+    "notes": "skyline: 670 triangles, 73908 bytes, 1 draws; district: 3794 triangles, 353444 bytes, 4 draws; street: 12278 triangles, 1249288 bytes, 4 draws; closeup: 50474 triangles, 5322632 bytes, 4 draws. Initial skyline+district 427352 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "One actually inspected designer-gallery overview establishes the five staggered cream circular decks, white masts and circular stay rings, red rails and wood caps. Retain authored platform centers/radii and analytic exposed arcs; source is the closed state. Standard viewer PMTiles confirms the Christianshavn canal crossing and northeast direction. Retain approximate harbor origin0m; centerDEM0.9918m includes bridge imprint, no water-stage or quay-threshold survey. The bounded complete outline removes map road/ground only under the successfully loaded crossing. Source-local bed and shore contacts are picture-based preview corrections with raw samples preserved. Long quay ramps, opening mechanism/animation and surrounding buildings remain separate.",
+    "Four canonical shared graphs reused. Skyline uses filled rail ribbons and representative stays. District restores cap/rail posts and mast rings; street/closeup restore woven rail impressions and increasingly dense stays. Closeup keeps118stay positions; bolts, pivots and light fittings simplified. Exact Matacryl coating and Guariuba species use shared concrete/wood approximations. Physical-device timings remain unmeasured."
+  ]
 }

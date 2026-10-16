@@ -1,0 +1,342 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0299_wawel_castle",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:b4b38db60958d763ba248225a236548836fd0d07e0737cd7a61ccff4f10b5e09",
+  "sourceHash": "sha256:d64a83cf5b14811c835793ad8808a37da26f2bf1eb7bab825c69d038262c075f",
+  "runtimeHash": "sha256:8bb6c1691d436e212cf4d3e870143672e8235c1e1e4e505e174a55c2371aa3d0",
+  "captureReportHash": "sha256:4673a2ef48e942b20860411b037efc65f7eed3fbb9ec03be6cb8c13c50ba2dd0",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/courtyard-galleries.png",
+      "shots/court-plan.png",
+      "shots/northern-copper-helms.png",
+      "shots/senator-and-south-wall.png",
+      "shots/berrecci-entry.png",
+      "shots/eastern-pavilion.png"
+    ],
+    "notes": "Inspected all11 final portable views. Open irregular court, two arcaded gallery tiers and tall upper columns, steep tiled roofs, northern copper helms, Senator tower, eastern projections and true Berrecci entry remain readable. Two inspected courtyard pictures support gallery proportions and pale/tile treatment."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:417145021e80e60ea6e93b447d6d0c30f7e2c7aab7a82dd27482675cfabb1b58",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/courtyard-galleries.png",
+      "shots/shared/court-plan.png",
+      "shots/shared/northern-copper-helms.png",
+      "shots/shared/senator-and-south-wall.png",
+      "shots/shared/berrecci-entry.png",
+      "shots/shared/eastern-pavilion.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all11 final shared-material views. Six common brick/limestone/plaster/copper/tile/aggregate graphs plus explicit glass color are reused. Court columns/arches, tiled roof masses, copper helms and brick Senator read correctly. Retained map controls support approximate heading0 placement; cache reuse and unload passed."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:1452d5534a750d8ab8214f3f5951f96fb86ee70eeec962607356790cca3ee99a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/courtyard-galleries.png",
+      "medium-fi/court-plan.png",
+      "medium-fi/northern-copper-helms.png",
+      "medium-fi/senator-and-south-wall.png",
+      "medium-fi/berrecci-entry.png",
+      "medium-fi/eastern-pavilion.png",
+      "medium-fi/whole-wawel-skyline.png",
+      "medium-fi/whole-wawel-district.png",
+      "medium-fi/whole-wawel-street.png",
+      "medium-fi/whole-wawel-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all27 final medium-fi views across noon/late light, high/economy quality, identity views, silhouette and four matched levels. The-6m study translation retains court floorY2.35 above coarse PMTiles ground; palace basement and tower toes reach sampled terrain. Open court and primary masses stay consistent across levels."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:0871bb2b11e5e97f647143ec6d0cd4d9029db11809d59d6fdc4d8dffab849e60",
+    "mapFrameHash": "sha256:d7c2f59875501f0f0531c2da4392073a7f2ef1e0c368a2fb1918e5a8335d49f2",
+    "notes": "The inspected courtyard pictures support two arcaded gallery levels, a taller upper colonnade, pale masonry and steep tiled roof groups. Retained east/south palace and tower map controls set approximate location, scale and orientation. Standard viewer PMTiles supply the surrounding hill; the derivative translates the old study-6m, retains the reconstructed courtyard floorY2.35 and extends palace/tower wall toes to coarse sampled ground. This is the palace asset, not every independent landmark on Wawel hill. Anchor 19.9366,50.0544; heading 0; standard PMTiles datum 230.8644554645171m. Floors are reconstructed and foundations extend below the coarse sampled ground."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate palace exterior and hill fit from inspected courtyard pictures and standard viewer PMTiles. Reconstructed floors, gallery detail, roof partitioning and restoration ornaments are interpreted. This asset covers the palace/towers; cathedral and other independent hill buildings, full interiors, collision, terrain cutouts and river simulation excluded. No bespoke survey or exact thresholds. Footprint replacement remains off; physical-device timing unmeasured."
+  },
+  "legacyFidelityScope": {
+    "status": "pending",
+    "target": "medium-fi",
+    "notes": "Current museum and city photos guide the three residential wings,southern curtain,open irregular Renaissance court,two lower arcade tiers,tall upper columns,steep roofs and copper Sobieski/Sigismund III helms. Historic enclosed-gallery photo was used only to distinguish historical state; current model follows current open-gallery photos. Separate Danish/Jordanka and Senator traces retain attribution. Senator39m is an OSMtag; no primary surveyed palace height verified. All authored vertical/floor sections,bay counts,apertures,roof ridges and helm profiles are photographic estimates. Fine sculpture/heraldry/frescoes,interior rooms,cathedral,detached towers,gardens and walkable collision are outside this exterior draft. Real current-site and full exterior fidelity remain pending.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u2/u2y/n0299_wawel_castle/models/source.glb",
+        "hash": "sha256:d64a83cf5b14811c835793ad8808a37da26f2bf1eb7bab825c69d038262c075f",
+        "bytes": 2771520,
+        "triangles": 23061,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -69.00800323486328,
+          -9.27707576751709,
+          -67.4000015258789
+        ],
+        "max": [
+          63.86199951171875,
+          37.54999923706055,
+          64.55020904541016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.glb",
+        "hash": "sha256:8bb6c1691d436e212cf4d3e870143672e8235c1e1e4e505e174a55c2371aa3d0",
+        "bytes": 2770888,
+        "triangles": 23061,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -69.00800323486328,
+          -9.27707576751709,
+          -67.4000015258789
+        ],
+        "max": [
+          63.86199951171875,
+          37.54999923706055,
+          64.55020904541016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.skyline.glb",
+        "hash": "sha256:40f4ed1b6f8ed45c05630ea7b3fb4b139835e080a2dc26c49b39cebdb1b89097",
+        "bytes": 105532,
+        "triangles": 984,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -69.00800323486328,
+          -9.27707576751709,
+          -67.4000015258789
+        ],
+        "max": [
+          63.86199951171875,
+          34.5,
+          64.48699951171875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.district.glb",
+        "hash": "sha256:55915b3740842ea96658bcfca252357af7b0134181f6a95812610419611cd582",
+        "bytes": 365528,
+        "triangles": 3935,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -69.00800323486328,
+          -9.27707576751709,
+          -67.4000015258789
+        ],
+        "max": [
+          63.86199951171875,
+          35.79999923706055,
+          64.48699951171875
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.street.glb",
+        "hash": "sha256:9d11a8e0b0ce9b2a45aa47e6c1619b429f3de97a577cb25f78b8ed3f4b26acd6",
+        "bytes": 1252740,
+        "triangles": 14551,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -69.00800323486328,
+          -9.27707576751709,
+          -67.4000015258789
+        ],
+        "max": [
+          63.86199951171875,
+          37.54999923706055,
+          64.55020904541016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.closeup.glb",
+        "hash": "sha256:ae1f83c747a4c10be96904ec5980f057a21372d36761b3aa757790dd1647ef85",
+        "bytes": 1906664,
+        "triangles": 23061,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -69.00800323486328,
+          -9.27707576751709,
+          -67.4000015258789
+        ],
+        "max": [
+          63.86199951171875,
+          37.54999923706055,
+          64.55020904541016
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original detailed master/hash/recipe preserved. Levels contain984/3935/14551/23061 triangles; initial skyline+district download totals471060 bytes. Separate POSITION/NORMAL streams retained."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d2cb1a67e7e66f2e163a7622fd0d759ba17a476d1004e2573c68e521ca6b9376",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:40f4ed1b6f8ed45c05630ea7b3fb4b139835e080a2dc26c49b39cebdb1b89097",
+        "bytes": 105532,
+        "gzipBytes": 21674,
+        "triangles": 984,
+        "cpuBytes": 104112,
+        "gpuBytes": 104112,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:55915b3740842ea96658bcfca252357af7b0134181f6a95812610419611cd582",
+        "bytes": 365528,
+        "gzipBytes": 102631,
+        "triangles": 3935,
+        "cpuBytes": 357012,
+        "gpuBytes": 357012,
+        "errorMeters": 0.7,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:9d11a8e0b0ce9b2a45aa47e6c1619b429f3de97a577cb25f78b8ed3f4b26acd6",
+        "bytes": 1252740,
+        "gzipBytes": 314834,
+        "triangles": 14551,
+        "cpuBytes": 1244172,
+        "gpuBytes": 1244172,
+        "errorMeters": 0.3,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:ae1f83c747a4c10be96904ec5980f057a21372d36761b3aa757790dd1647ef85",
+        "bytes": 1906664,
+        "gzipBytes": 465479,
+        "triangles": 23061,
+        "cpuBytes": 1898088,
+        "gpuBytes": 1898088,
+        "errorMeters": 0.1,
+        "drawCalls": 7
+      }
+    ],
+    "initialBytes": 471060,
+    "notes": "skyline: 984 triangles, 105532 bytes, 1 draws; district: 3935 triangles, 365528 bytes, 7 draws; street: 14551 triangles, 1252740 bytes, 7 draws; closeup: 23061 triangles, 1906664 bytes, 7 draws. Initial skyline+district 471060 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate palace exterior and fit from inspected courtyard pictures and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Gallery/roof details and reconstructed floors are interpreted; cathedral, other hill buildings, full interiors and collision excluded.",
+    "Six common graphs plus explicit glass color slot, zero embedded images. Host terrain supplies the surrounding hill; no terrain cutout or river simulation.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:aca2be4624771d291c6ba394eaf4cf09f3e160ed6b834d0c03183da7c9a5c438",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:b3d72baa9d039c25760037618a77ffc47003f790746b5c6d7bcbafeafae471dd",
+    "previousSharedCaptureReportHash": "sha256:2b42a4a6b09ed355cda62bfe7fadca061222c1580e9fcc215ae70515e64ccd9c",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/wawel-runtime-model.mjs",
+        "beforeHash": "sha256:a654fd0eb3d367e79f699ef380d52d3eff0093979ed476a251cc23acd9ebb9b7",
+        "afterHash": "sha256:7cc8309272bd77a728607c8cd1a9294b53f54ed0dd7d4adc4d73ff7892e61eb1",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/u2/u2y/n0299_wawel_castle/models/source.glb",
+        "hash": "sha256:d64a83cf5b14811c835793ad8808a37da26f2bf1eb7bab825c69d038262c075f",
+        "bytes": 2771520
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.glb",
+        "hash": "sha256:8bb6c1691d436e212cf4d3e870143672e8235c1e1e4e505e174a55c2371aa3d0",
+        "bytes": 2770888
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.skyline.glb",
+        "hash": "sha256:40f4ed1b6f8ed45c05630ea7b3fb4b139835e080a2dc26c49b39cebdb1b89097",
+        "bytes": 105532
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.district.glb",
+        "hash": "sha256:55915b3740842ea96658bcfca252357af7b0134181f6a95812610419611cd582",
+        "bytes": 365528
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.street.glb",
+        "hash": "sha256:9d11a8e0b0ce9b2a45aa47e6c1619b429f3de97a577cb25f78b8ed3f4b26acd6",
+        "bytes": 1252740
+      },
+      {
+        "path": "content/worldgen/assets/places/u2/u2y/n0299_wawel_castle/model.closeup.glb",
+        "hash": "sha256:ae1f83c747a4c10be96904ec5980f057a21372d36761b3aa757790dd1647ef85",
+        "bytes": 1906664
+      }
+    ],
+    "retainedInspectedImageCount": 49
+  }
+}

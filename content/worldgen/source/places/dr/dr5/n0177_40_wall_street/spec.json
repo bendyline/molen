@@ -14,25 +14,25 @@
   "size": [
     71.82768249511719,
     282.5495910644531,
-    70.2286376953125
+    60.65588569641113
   ],
   "actualBounds": {
     "min": [
       -35.91364288330078,
       0,
-      -35.189537048339844
+      -30.327999114990234
     ],
     "max": [
       35.914039611816406,
       282.5495910644531,
-      35.039100646972656
+      30.3278865814209
     ]
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along the mapped building long axis",
-    "front": "+Z",
-    "origin": "Ground-level center of exact-QID mapped footprint frame"
+    "longitudinal": "+X southeast",
+    "front": "+Z southwest Wall Street",
+    "origin": "Ground-level mapped plot center at bank street datum"
   },
   "sourceFacts": {
     "heightFeet": 927,
@@ -56,10 +56,29 @@
       28,
       29
     ],
-    "roofStories": 7
+    "roofStories": 7,
+    "originalMasterHash": "sha256:63978404408ea1e020db09ae433c501c1c821f7551a99f3dde0d402a81f163ea",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-world-models.mjs#skylineWorld[N0177].build",
+    "surfaceMeans": {
+      "stone_limestone": [
+        0.7539,
+        0.710243,
+        0.616244
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "brick": [
+        0.620345,
+        0.549823,
+        0.504963
+      ]
+    }
   },
   "reconstruction": {
-    "massing": "Exact-QID L-shaped outline and twenty-four separately mapped building parts preserve the unequal pavilions, recessed light courts and stepped shaft. Mapped copper-roof geometry provides its signed rectangular orientation.",
+    "massing": "Fresh thirty map ways: exact-QID L-shaped whole outline and twenty-nine parts, including signed rectangular roof. Mapped estimates retain unequal pavilions, courts and setbacks.",
     "facade": "LPC measured drawings and close exterior photographs establish the giant limestone colonnades, fluted piers, seventh-floor roundels, darker brick spandrels and contrasting upper terracotta decoration.",
     "roof": "Four standing-seam pyramid faces with small roof windows, two-story central Gothic wall dormers, parapet pinnacles and two-stage copper lantern are reconstructed from the LPC roof/spire photograph."
   },
@@ -70,7 +89,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed placement",
     "anchor": [
       -74.00980175,
       40.7070285
@@ -81,14 +100,46 @@
     "source": "https://www.openstreetmap.org/way/278042253",
     "groundModelY": 0,
     "featureIds": [
-      "way/278042253"
+      "way/277555173",
+      "way/277555174",
+      "way/278042253",
+      "way/286057075",
+      "way/286057077",
+      "way/286057080",
+      "way/286057082",
+      "way/286057085",
+      "way/286057087",
+      "way/286057089",
+      "way/286057091",
+      "way/286057094",
+      "way/286057096",
+      "way/286057098",
+      "way/286057100",
+      "way/286057102",
+      "way/286057105",
+      "way/286057107",
+      "way/286057109",
+      "way/286057111",
+      "way/286057113",
+      "way/286057115",
+      "way/286057117",
+      "way/286057119",
+      "way/286057122",
+      "way/286057124",
+      "way/378615994",
+      "way/378615999",
+      "way/378616009",
+      "way/378616016"
     ],
     "wikidataId": "Q218305",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:aea4a003735a33df6687486ce324d30dba5cf902dd76a41c2712f5599a4836e7",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact-QID L-shaped footprint and separate building parts preserve the Wall Street south facade, longer asymmetric Pine Street pavilion and shaft east of the overall plot center. Roof part286057109 determines the signed square copper-pyramid frame. GroundY0 follows the street-level bank base."
+    "orientationConfidence": "mapped signed roof and distinct street elevations",
+    "notes": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q218305 whole outline 278042253 and twenty-nine separately retained mapped parts, including roof 286057109. Signed heading -0.668872591958 retained: native +X southeast, +Z southwest. Wall Street facade is +Z south/southwest; the longer Pine Street pavilion is -Z north/northeast. Shaft remains east of plot center. Roof rectangle supplies its signed copper-pyramid frame. Ground Y=0 is bank street datum. LPC Pine/Wall elevations and cadastral plan support these asymmetric sides. Mapped part heights are estimates rather than surveyed storey sections. Accept 2 m footprint / 1 degree reconstruction allowance; automatic footprint replacement disabled. Local slope and door thresholds are unmeasured.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q218305 whole outline 278042253 and twenty-nine separately retained mapped parts, including roof 286057109. Signed heading -0.668872591958 retained: native +X southeast, +Z southwest. Wall Street facade is +Z south/southwest; the longer Pine Street pavilion is -Z north/northeast. Shaft remains east of plot center. Roof rectangle supplies its signed copper-pyramid frame. Ground Y=0 is bank street datum. LPC Pine/Wall elevations and cadastral plan support these asymmetric sides. Mapped part heights are estimates rather than surveyed storey sections. Accept 2 m footprint / 1 degree reconstruction allowance; automatic footprint replacement disabled. Local slope and door thresholds are unmeasured.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -96,21 +147,12 @@
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
     {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
       "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
-        2,
-        2
+        2.4,
+        1.6
       ]
     },
     {
@@ -133,11 +175,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "The exterior geometry follows mapped setback heights and LPC original elevations/photos. Fine terracotta relief, window replacement variation, roof seams and spire profiles are reconstructed; tenant lettering, individual mechanical fittings and flags are omitted. Published927ft height includes the final finial/pole envelope."
+    "Original 431590-triangle, 39306480-byte detailed master remains exactly reproducible from the unchanged world-tower recipe. Reviewed source/four browser levels preserve L-shaped base, unequal Wall/Pine pavilions, mapped asymmetric setbacks and courts, limestone street colonnades, buff brick piers, darker spandrels, contrasting upper ornament, four Gothic wall dormers, turquoise copper pyramid and two-stage octagonal lantern/pole. Continuous facade backing and long piers replace independent window frames; district/street aggregate floors and skyline averages materials. Four dormers gain closed returns and the pyramid gains a top cap. Fine relief, replacement-window variations, copper seam pitch, and lantern section sizes are reconstructed. Original granite ground veneer uses a gray tint on the shared limestone graph in this medium-fi exterior. Published 927 ft sets the 282.5496 m envelope; LPC 71 floors and current owner 72 remain distinct. Three shared 256 px graphs, opaque glazing and zero images. Tenant lettering, moving flags, detailed doorway mechanisms, interiors/basement vaults, equipment and neighbouring buildings are excluded. 1.5 / 0.75 / 0.3 / 0.1 m shaft probe allowances exclude omitted fine relief/frames and distant facade subdivisions. No physical-device performance or surveyed grade claim."
   ],
   "qaCameras": [
     {
@@ -230,6 +271,284 @@
         133,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        280,
+        230,
+        430
+      ],
+      "lookAt": [
+        4,
+        133,
+        0
+      ]
+    },
+    {
+      "name": "roof-dormer-returns",
+      "position": [
+        57,
+        248,
+        61
+      ],
+      "lookAt": [
+        12,
+        233,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/wall40-runtime-model.mjs",
+    "export": "buildWall40ReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/wall40-runtime-model.mjs",
+    "export": "buildWall40Skyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWall40District",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildWall40Street",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWall40Closeup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        280,
+        230,
+        430
+      ],
+      "lookAt": [
+        4,
+        133,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        280,
+        230,
+        430
+      ],
+      "lookAt": [
+        4,
+        133,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        280,
+        230,
+        430
+      ],
+      "lookAt": [
+        4,
+        133,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        280,
+        230,
+        430
+      ],
+      "lookAt": [
+        4,
+        133,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-asymmetric-courts",
+      "position": [
+        -103,
+        166,
+        90
+      ],
+      "lookAt": [
+        -8,
+        107,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-limestone-colonnade",
+      "position": [
+        14,
+        28,
+        82
+      ],
+      "lookAt": [
+        12,
+        17,
+        28
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-copper-dormers",
+      "position": [
+        55,
+        259,
+        73
+      ],
+      "lookAt": [
+        11.65,
+        240,
+        -0.27
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-upper-terracotta",
+      "position": [
+        48,
+        220,
+        63
+      ],
+      "lookAt": [
+        12,
+        207,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -237,10 +556,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 431590,
-    "vertices": 947882,
-    "materials": 6,
-    "bytes": 39306480,
-    "sha256": "sha256:63978404408ea1e020db09ae433c501c1c821f7551a99f3dde0d402a81f163ea"
+    "triangles": 16020,
+    "vertices": 39788,
+    "materials": 4,
+    "bytes": 1627408,
+    "sha256": "sha256:6b7cd97d005f7763a18bfdb9ff7371e591a827f41a491fa683147426cd24235e"
   }
 }

@@ -1,0 +1,313 @@
+{
+  "planId": "beethoven_house",
+  "id": "beethoven_house",
+  "assetId": "molen.worldgen.structure.beethoven_house",
+  "title": "Beethoven House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 7.101225,
+    "latitude": 50.736893
+  },
+  "size": [
+    9.019999980926514,
+    13.950000196695328,
+    25.790000915527344
+  ],
+  "actualBounds": {
+    "min": [
+      -4.519999980926514,
+      -0.4000000059604645,
+      -19.950000762939453
+    ],
+    "max": [
+      4.5,
+      13.550000190734863,
+      5.840000152587891
+    ]
+  },
+  "visualBrief": "Bonngasse 20: narrow three-storey pink street facade, paired white casements and green/red shutters, carved stone portal and paneled green door, slate roof with two curved dormers; yellow rear elevation and lower garden wing beside the paved courtyard.",
+  "nativeAxes": {
+    "x": "south",
+    "y": "up",
+    "z": "west toward Bonngasse"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2013-08-27_Beethoven-Haus,_Bonngasse_20,_Bonn_IMG_5191.jpg",
+    "https://commons.wikimedia.org/wiki/File:Beethoven_house.jpg"
+  ],
+  "stories": [
+    {
+      "id": "beethoven-house-wp",
+      "url": "https://qualla.com/beethoven-house/"
+    }
+  ],
+  "referenceInputHash": "3f7e83a2b6001f6b4be3ac0f6be7b837defad38849b2b46240208d85b72a963e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-beethoven-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-beethoven-house.mjs",
+    "level": "skyline",
+    "export": "beethovenSkyline",
+    "errorMeters": 0.18,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.62,
+        "metallic": 0.28
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "beethovenDistrict",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "beethovenStreet",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.62,
+            "metallic": 0.28
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Bonngasse pavement at local [1.6,5.65], Y=0. Front doorway floor about Y=0.12; courtyard Y=0.62 and lower rear-wing threshold Y=0.65 follow the slight independent ground rise.",
+    "anchor": [
+      7.101225,
+      50.736893
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        7.101144804095689,
+        50.736878627021206
+      ],
+      "modelHeight": 0,
+      "basis": "Bonngasse pavement directly outside the historic entrance portal."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184495740276"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4edb37677fd669a6859599c1935c9bc29b912a00eb02d1b8f538b49069489a42",
+    "notes": "The single mapped L-shaped building is Bonngasse 20, with the lower rear garden wing to the east. Neighboring Bonngasse 18 and 24–26 remain separate. Ground/roof heights and hidden party walls are photographic estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from five individually inspected local Qualla street/courtyard/garden/portal photographs, official museum building history and aerial roof context. Hidden party walls, exact dimensions, roof joins and small ornament are estimates; no surveyed plan used.",
+    "Bonngasse 20 front building, connected lower birthplace garden wing and courtyard hardscape only. Bonngasse 18, research/concert buildings, sculpture, vegetation, interiors, people and photographic pixels excluded.",
+    "Independent unmodified Terrarium ground retained. Urban elevation interpolation is not survey accuracy; host terrain may differ. Footprint replacement remains disabled.",
+    "Shutter panels, door relief, dormer caps, trellis, slate courses and garden gate are simplified progressively at distance. No physical-device performance measurement claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        8,
+        10,
+        29
+      ],
+      "lookAt": [
+        0,
+        5,
+        1
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        25,
+        19,
+        -35
+      ],
+      "lookAt": [
+        -1,
+        4,
+        -8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7510,
+    "vertices": 22530,
+    "materials": 6,
+    "bytes": 904856,
+    "sha256": "sha256:102ca8b1df837c1bb710059a9fd74514953cded983ebd884cf227c4e811c5781"
+  }
+}

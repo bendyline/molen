@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The asymmetric curved São Paulo tower follows its mapped perimeter with projecting concrete sunshade cells, inset glazing and selected louvered shutters, a glazed upper restaurant, observation parapet and roof service enclosure.
+Budgeted Italia tower preserves mapped curved outline, projecting sunshade rhythm, restaurant and roof; distance tiers merge repeating windows and louvers.
 
 ## Evidence and reconstruction
 
@@ -16,11 +16,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-473,498 triangles; 1,003,798 vertices; 4 material groups; 41,821,548 bytes. Native bounds: -27.288, 0.000, -13.768 to 27.289, 165.000, 13.768. Source hash: `sha256:647a5c5cc663718214ebc333eaa74ce7934df878f5a1f4e8786aab629f67d23e`.
+27,418 triangles; 82,254 vertices; 4 material groups; 3,292,976 bytes. Native bounds: -27.232, 0.000, -13.758 to 27.256, 165.000, 13.758. Source hash: `sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed.
 
 ## Reproduce
 
@@ -28,7 +28,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0150` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Shutter distribution, individual window state and rooftop service details are reconstructed. The source covers the mapped tower part; neighboring lower blocks are not falsely included in its footprint.
+- Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed.
+- Three shared granite/concrete/painted-metal graphs plus opaque glass PBR; no embedded photographs. Perimeter simplification bounded2.4/1/.35/.1m; detail grid is reconstructed. Picture crops roof, retained authored dimensions control it. Physical-device timing pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

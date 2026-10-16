@@ -1,0 +1,280 @@
+{
+  "planId": "ennis_house",
+  "id": "ennis_house",
+  "assetId": "molen.worldgen.structure.ennis_house",
+  "title": "Ennis House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -118.2929,
+    "latitude": 34.11622
+  },
+  "size": [
+    73.13000106811523,
+    20.609999656677246,
+    35.119998931884766
+  ],
+  "actualBounds": {
+    "min": [
+      -33.130001068115234,
+      -10,
+      -20.389999389648438
+    ],
+    "max": [
+      40,
+      10.609999656677246,
+      14.729999542236328
+    ]
+  },
+  "visualBrief": "Stepped buff textile-block house above massive retaining terraces, with projecting dining-window tower, high living-room block, rear loggia, eastern master room, western motor court, bridge and garage wing. Visible 16-inch block courses and restrained Greek-key relief.",
+  "nativeAxes": {
+    "x": "east-southeast along the house and terraces",
+    "y": "up",
+    "z": "south-southwest down the slope"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:EnnisHouse.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ennis_House_3.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ennis-house-wp",
+      "url": "https://qualla.com/ennis-house/"
+    }
+  ],
+  "referenceInputHash": "35ca31df6cbce0af2014178ae3641e23fa5a69eebc8f0f8a33a09b82152f407f",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ennis-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ennis-house.mjs",
+    "level": "skyline",
+    "export": "ennisSkyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "pool": {
+        "slot": "window",
+        "roughness": 0.24,
+        "metallic": 0.14,
+        "localRef": "palette:#feffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ennisDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "pool": {
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14,
+            "localRef": "palette:#feffff"
+          }
+        }
+      },
+      "street": {
+        "export": "ennisStreet",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "pool": {
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14,
+            "localRef": "palette:#feffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Western motor-court paving at local [-18,2], model Y=0; independent USGS 3DEP ground datum.",
+    "anchor": [
+      -118.2929,
+      34.11622
+    ],
+    "heading": -0.39,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -118.2930888928082,
+        34.11626485782745
+      ],
+      "modelHeight": 0,
+      "basis": "Flat western motor-court paving, visible in satellite context; avoids the sloping street outside the northwest gate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184798746946"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fa304b1b968e8639bfd06507fa4f7598af8ecd03ca9335618c64d4ce7d018e73",
+    "notes": "Combined map polygon includes broad terrace/court platform, not one solid 16.1 m tall box. The mapped height is retained as coarse context; stepped rooms and retaining walls require separate authored heights. HABS drawing labels its long street-facing view west elevation; satellite/local frame control actual orientation. Historic house, bridge and garage/servants wing are one compound. Ground datum uses the motor court; the initial northwest street control lay on the steep approach and was replaced before authoring."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on individually inspected Qualla photographs, HABS CA-1942 elevation/description, 1928 Architectural Record plan/perspective and satellite roof context. Room dimensions, roof heights and precise relief are interpreted, not surveyed.",
+    "House, linked garage/servant wing, bridge, court, terraces and pool basin included. Interiors, vegetation, neighboring houses, vehicles, temporary scaffolds, furniture and photo pixels excluded.",
+    "Independent USGS CA_LosAngeles_B23 bare-earth evidence is preserved unmodified. Terrain under buildings is source-interpolated, and host datasets may differ; placement remains a preview with footprint replacement disabled.",
+    "16-inch block course spacing is retained; ornate block relief and leaded-glass geometry are simplified at medium-fi and progressively omitted at distant detail levels."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        60,
+        23,
+        98
+      ],
+      "lookAt": [
+        2,
+        3,
+        1
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -65,
+        25,
+        -76
+      ],
+      "lookAt": [
+        0,
+        3,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60816,
+    "vertices": 182448,
+    "materials": 5,
+    "bytes": 7301024,
+    "sha256": "sha256:fa7b28b9a6b7206756ff505a32057ff9152cb32b276397775b60aa022384f0eb"
+  }
+}

@@ -1,0 +1,1023 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0304_leeds_castle",
+  "sourceHash": "sha256:d16b54283a0f86440f462d94a9e9e5c41b4530f2a8f7dab7e021e1bd9878df27",
+  "runtimeHash": "sha256:87e977079a474c8ac684619ad339af7da6fefe61e441ca6ef72f1e5bd33ed39b",
+  "fixtureHash": "sha256:f55930ad1e6f65444be9b7980501d0eef3dc3c6d3706028226a99cf0509c2cb6",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:0d293e88f30ecfa2072b56c0af6682a775a85ce7fae43972086cbdcfb4183ab7",
+      "bytes": 75924,
+      "gzipBytes": 20010,
+      "triangles": 856,
+      "cpuBytes": 74508,
+      "gpuBytes": 74508,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:150a4c6eabf11e81fc4feed38d2f50af9d46813681df00a723ff4959b5c564e4",
+      "bytes": 264172,
+      "gzipBytes": 80775,
+      "triangles": 2905,
+      "cpuBytes": 255792,
+      "gpuBytes": 255792,
+      "errorMeters": 0.7,
+      "drawCalls": 7
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:e9fd00697df8bb2ebc4cb160338a71bbd59f23998294d3a375fb687276297983",
+      "bytes": 1059156,
+      "gzipBytes": 261241,
+      "triangles": 11725,
+      "cpuBytes": 1050776,
+      "gpuBytes": 1050776,
+      "errorMeters": 0,
+      "drawCalls": 7
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:a413e244d86235d8a369b5bd17e73a318f8c07dfaa8164383470608889a4b227",
+      "bytes": 1061928,
+      "gzipBytes": 261792,
+      "triangles": 11755,
+      "cpuBytes": 1053548,
+      "gpuBytes": 1053548,
+      "errorMeters": 0,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:55fe1798e2e505ef05d57cf67b3cba945f5c580ea7ef785e8b14e58445d51db0"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:0b02d1c6153b7a4dfb9cd2244c25acf75c2222524337734cfdc4c390bd7ad820"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-lake",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.04,
+            -40
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            384,
+            0.06,
+            384
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#527a85",
+          "shadows": {
+            "cast": false,
+            "receive": false
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:8a4b38da7c519aecb808413fc3529b2268d8a308136e25e961be3e8952b603fe",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          88.73500000000001,
+          78.72500000000001,
+          209.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:cc515eff1330423b88da8b5db145a6ddbe449ae00c55a36e9261c1fa1ef46b88",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          88.73500000000001,
+          78.72500000000001,
+          209.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8f273067de0233d5ca2c98c3b4ae5c84da613492bb71c4403579a339ac022d7b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          88.73500000000001,
+          78.72500000000001,
+          209.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:4131aff7f37e0a467fc952b276d8b15724b23ffda5a537cf09c03c1e5e8c633b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          88.73500000000001,
+          78.72500000000001,
+          209.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:d214a0d3cc9ce188193ba25eda542dfb7cb0c13da16051d8abd3f9d167971d36",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 40999,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:5ff52ead6de857577193a2cfec2e35b52cf6f141860894da5b9cf54128f332c7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 40999,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:27bbfe63cacbc766acabf8b8882dbaac15c965d892e6d956b4341149cc58355f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 40999,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:015cd00e84f541d2fe781de451f3537ce2af7b19863c7ea7931ec48d344313ad",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 40999,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:edab176df13393dfbe69635a9de2f04801c6bad0d1c312f149cb14b081dc144f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 38950,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          468.33500000000004,
+          271.125,
+          867.4963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:95e9dbcc2b7c8d665c17606c3f9c3caaa69ea9c5278287c5f5815c676e82f611",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 38950,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          468.33500000000004,
+          271.125,
+          867.4963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:81b81c8695caa43bd7035bad4122fdc37de7911c287f0c620597ceb3dd35b8c3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 38950,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          468.33500000000004,
+          271.125,
+          867.4963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:bd7ce73330ecd16dfa86db97a1e263eace6b2037462380abdd2f07b39934071e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 38950,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          468.33500000000004,
+          271.125,
+          867.4963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:f7cce9f9a6fc85324e5715202d069fb9d2562ce422124b718368701e2eac9980",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 33638,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          468.33500000000004,
+          271.125,
+          867.4963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/new-castle-front.png",
+      "hash": "sha256:38b0d8ae1ef8cc4c5d97d345930923027610ff81ed49877eaa800a2f3207f182",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          -25.2053378258121,
+          30,
+          17.34044247090269
+        ],
+        "lookAt": [
+          18.093725061473943,
+          10,
+          -20.06532116363428
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/gloriette-courtyard.png",
+      "hash": "sha256:47888000fdcde32e24e89e5c54ac328aefd62f18fb4d246a5db20122a63974c4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49846,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          49.89444111281526,
+          54,
+          -70.03245494797258
+        ],
+        "lookAt": [
+          40.713357601987965,
+          7,
+          -69.19120256775892
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/covered-bridge-water-arches.png",
+      "hash": "sha256:5c35ce33f02793616af112ca1943ef8324fef4f97c4c82270a30ff73da1a5c04",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49846,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          54.1007030138836,
+          7,
+          -24.127037393836112
+        ],
+        "lookAt": [
+          28.275883741500778,
+          4,
+          -49.20847893033407
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/maidens-tower-and-bath.png",
+      "hash": "sha256:7e28c0851da42acab9b73e9ebc91f4b3f3572230683a4346ac431e0def0e83e3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 49846,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          40.35778552434449,
+          13,
+          51.74214092566146
+        ],
+        "lookAt": [
+          4.820371084206073,
+          5,
+          39.5318102622502
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/gatehouse-passage.png",
+      "hash": "sha256:63ada92680a292a4bc615869aabd4a700114d943ad2fbc1fd5d7323f42c99287",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          -108.75356706624785,
+          9,
+          58.86987048029857
+        ],
+        "lookAt": [
+          -67.33813049147975,
+          7,
+          37.756803120927046
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/mapped-roofs-and-islands.png",
+      "hash": "sha256:ae16020653a6ab02078f40c0fe4fd3b178bebc69dc532825ea44d412701601f1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          1.3727640371419736,
+          250,
+          -2.8487749820457338
+        ],
+        "lookAt": [
+          1.3727640371419736,
+          0,
+          -2.8487749820457338
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:84b1cd0c0ba205814d3a1ed34c743c1797627d502061c24c27162a8d51bcfb55",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 38950,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:5ff52ead6de857577193a2cfec2e35b52cf6f141860894da5b9cf54128f332c7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 40999,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:98207b5b9a293e30148f88988263f4070160250cff4b6ea1b44e7b0eeaaf1489",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49819,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:f95b99bba17d97ed81b8d66243e1c2711fa5efbbd17af7504379b41dc2cde596",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 49849,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u1/u10/n0304_leeds_castle/terrain-review.height.png"
+        },
+        "position": [
+          216.13500000000002,
+          172.32500000000002,
+          430.6963
+        ],
+        "lookAt": [
+          -36.065,
+          39.725,
+          -6.1037
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_sandstone": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 2.6
+      }
+    }
+  ],
+  "errors": []
+}

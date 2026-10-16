@@ -41,7 +41,21 @@
     "highestOccupiedMeters": 370.9,
     "crownHeightMeters": 45,
     "aboveGroundFloors": 101,
-    "crownSteelTonnes": 650
+    "crownSteelTonnes": 650,
+    "originalMasterHash": "sha256:32983a7b00ca2180904812a857dc3217de6645f5628dcd106f4bb2282d337d25",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-marina101-model.mjs#buildMarina101",
+    "surfaceMeans": {
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
   },
   "reconstruction": {
     "frame": "Exact-QID41.284×38.135m shaft and independent surrounding podium; published425m supersedes mapped432m.",
@@ -60,7 +74,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed sea lift and Dubai/AbuDhabi shaft frame",
     "anchor": [
       55.148624441,
       25.089056291
@@ -68,17 +82,21 @@
     "heading": 0.864924013745,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "source": "https://www.openstreetmap.org/way/195527261",
+    "source": "https://www.openstreetmap.org/api/0.6/map?bbox=55.1479,25.0884,55.1494,25.0897",
     "groundModelY": 0,
     "featureIds": [
-      "way/195527261"
+      "way/195527261",
+      "way/1074877791"
     ],
     "wikidataId": "Q1165269",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5c2bbef4600b5130948000a271a53992695210fee08520b3ca54ed2d987b186c",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact named shaft and separate podium retain their signed mapped frame. Developer plans explicitly label Dubai, AbuDhabi, SEA and SZR, placing the paired panoramic lift on native-Z/northwest sea facade. Published425m controls architectural height; sourceY0 is the ground podium. Entry portal is a photograph-based seaward reconstruction, not an independently mapped doorway."
+    "orientationConfidence": "independent exactQID rings and developer directional floor plans, fabricator drawing and completed crown photo",
+    "notes": "Fresh2026-10-10 exact-Q1165269 shaft195527261 and surrounding podium1074877791 match both independently preserved raw source rings exactly. Developer2014 floor plans actually inspected on pages9–10 explicitly label Dubai/AbuDhabi and SEA/SZR and show paired lift on SEA facade towardDubai end, independently resolving the180degree map ambiguity. Original anchor[55.148624441,25.089056291] and heading0.864924013745 retain native+X northeast/Dubai, -X southwest/AbuDhabi, -Z northwest/sea and +Z southeast/SheikhZayedRoad. Native liftx2.7/z-22.117 follows this signed facade. Primary425m supersedes raw432m height while raw tags remain unchanged. Principal41.284×38.135m shaft is preserved; podium is separately projected from its raw ring. Three flared bands and attached seaward canopy project beyond shaft. Accept1m principal plan/1degree bearing allowance; projection rounding residual under1mm is not survey precision. GroundY0 is unsurveyed approximate podium/street contact. Portal, intermediate podium heights and door details are photographic approximations; no independently mapped doorway bearing is claimed. No footprint replacement; adjacentMarinaPinnacle/Sulafa, public streets, basements, interiors and landscaping excluded.",
+    "evidence": "Fresh2026-10-10 exact-Q1165269 shaft195527261 and surrounding podium1074877791 match both independently preserved raw source rings exactly. Developer2014 floor plans actually inspected on pages9–10 explicitly label Dubai/AbuDhabi and SEA/SZR and show paired lift on SEA facade towardDubai end, independently resolving the180degree map ambiguity. Original anchor[55.148624441,25.089056291] and heading0.864924013745 retain native+X northeast/Dubai, -X southwest/AbuDhabi, -Z northwest/sea and +Z southeast/SheikhZayedRoad. Native liftx2.7/z-22.117 follows this signed facade. Primary425m supersedes raw432m height while raw tags remain unchanged. Principal41.284×38.135m shaft is preserved; podium is separately projected from its raw ring. Three flared bands and attached seaward canopy project beyond shaft. Accept1m principal plan/1degree bearing allowance; projection rounding residual under1mm is not survey precision. GroundY0 is unsurveyed approximate podium/street contact. Portal, intermediate podium heights and door details are photographic approximations; no independently mapped doorway bearing is claimed. No footprint replacement; adjacentMarinaPinnacle/Sulafa, public streets, basements, interiors and landscaping excluded.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -105,11 +123,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Crown shoulder contours, facade-course elevations, light-dish profiles, typical window modules, entry portal and service bracing are reconstructed from primary drawings and completed exterior photos. Architectural completion is represented without asserting hotel opening or occupancy. Temporary maintenance defects, leasing banners, buried basement structure, neighboring towers and interiors are excluded."
+    "Unchanged buildMarina101 original reproduces233064triangles/24689924bytes exactly. Reviewed source retains separately mapped granite podium,41.284×38.135m rectangular shaft, two-tone14bay piers and94 reconstructed courses, recessed opaque vision glass, pale upper wings, three rows of physically flared light dishes, projecting paired panoramic lift/diagonal bracing, four separate folded blue crown tips plus413/400m shoulder folds and inset service ties. Continuous vertical glazing and flat mullions replace repeated window cells. Projected sill leading-edge strips and flat crown seams replace repeated beam shells; tiny podium masonry joints omitted. All24closed crown blades remain; narrow central cruciform slot stays open. Skyline keeps full closed podium/shaft, paired projecting lift, three continuous flare silhouettes and all four tips/shoulder folds, with eight-course ribbons; porch/windows, internal lift/crown ties and panel seams omitted. District restores podium windows/seaward porch, four sampled flare piers and six-bay lift bracing intervals, four-course ribbon cadence. Street restores14flare piers, every ribbon datum, coarse window frames, wing ribs, alternate lift ties and sparse crown seams. Near restores per-bay two-tone spandrels/reveals/projected sills, fine crown seams/wing ribs/full lift ties and translucent vestibule doors. Canonical painted-metal tint approximates aluminium; opaque glass approximates double glazing.425m peak/370.9m occupied/45m crown are primary;94window-course count and13/61/232/316/380m datums, exact crown shoulder shapes, liftwidth/baypitches and portal positions are reconstructed. FabricatorPDF page20 is an unrelated AbuDhabi structure despite its mislabeledMarina101title and is excluded; only page19 Dubai crown/lift drawing is used. Developer renderings are cross-checked with contractor construction photo and2020completed crown, not claimed as as-built surveys. Opening/occupancy, current defects, interior/basement/site landscape are excluded. Physical-device/dense-city timings, surveyed curb fit and global geometric bounds are unmeasured."
   ],
   "qaCameras": [
     {
@@ -254,6 +271,251 @@
         206,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-marina101",
+      "position": [
+        -700,
+        295,
+        -730
+      ],
+      "lookAt": [
+        0,
+        212,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/marina101-runtime-model.mjs",
+    "export": "buildMarina101ReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/marina101-runtime-model.mjs",
+    "export": "buildMarina101Skyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMarina101District",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildMarina101Street",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMarina101Closeup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-marina101-skyline",
+      "position": [
+        -700,
+        295,
+        -730
+      ],
+      "lookAt": [
+        0,
+        212,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-marina101-district",
+      "position": [
+        -700,
+        295,
+        -730
+      ],
+      "lookAt": [
+        0,
+        212,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-marina101-street",
+      "position": [
+        -700,
+        295,
+        -730
+      ],
+      "lookAt": [
+        0,
+        212,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-marina101-closeup",
+      "position": [
+        -700,
+        295,
+        -730
+      ],
+      "lookAt": [
+        0,
+        212,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-four-tip-crown",
+      "position": [
+        82,
+        427,
+        -87
+      ],
+      "lookAt": [
+        0,
+        401,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-sea-lift",
+      "position": [
+        -52,
+        207,
+        -113
+      ],
+      "lookAt": [
+        2,
+        200,
+        -20
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-crown-folds",
+      "position": [
+        35,
+        411,
+        38
+      ],
+      "lookAt": [
+        12,
+        402,
+        12
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -261,10 +523,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 233064,
-    "vertices": 608068,
+    "triangles": 63994,
+    "vertices": 186202,
     "materials": 4,
-    "bytes": 24689924,
-    "sha256": "sha256:32983a7b00ca2180904812a857dc3217de6645f5628dcd106f4bb2282d337d25"
+    "bytes": 7473896,
+    "sha256": "sha256:47b051c85342cbc4ac0f03856bb36fcb599649183119a3d247c894cf93e13cf1"
   }
 }

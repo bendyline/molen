@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Unequal Gothic stone arches with double voussoirs, mixed red and pale Roman ashlar, V/U cutwaters, a stepped humpback walk and open summit shelter, terminating in the surviving Roman gateway with 2026 copper crown protection. Deck and roof envelopes derive from ICGC elevation data, CC BY 4.0.
+Compact Pont del Diable: open unequal arches, pointed/rounded cutwaters, graded stair walk, actual shelter passage, surviving Roman gateway and representative copper crown. Detailed master independently preserved.
 
 ## Evidence
 
@@ -18,7 +18,7 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-369096 triangles; 30955476 bytes; 4 material groups. SHA256: sha256:f72226567cf184a03ac60d574b1aa65dfd3c4fbd9417d1fff02665d061445291.
+54116 triangles; 6496876 bytes; 4 material groups. SHA256: sha256:daae1b1614f4ceb5e8801ac2bdc3ce472d0aeadca0529019a9b48ed5e09c717b.
 
 Shared surfaces (stone_sandstone_raw, stone_limestone_raw, metal_painted, metal_copper) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
@@ -26,8 +26,6 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 ## Reconstruction limits
 
-- ICGC samples constrain the main vertical envelope, but the occluded summit walkway, arch intrados, gateway depth and exact wall edges need survey confirmation. Host terrain and current water fit remain pending.
-- Individual masonry courses, weathering, tread count, rail spacing, and2026 copper cap thickness are original proportional reconstructions.
-- The sources distinguish36.4m clear span from a43m narrative span; reference datum for the reported21m height is unclear. Clear span controls the mesh.
-- Partial buried masonry and foundation outlines are inferred; adjoining modern roads, railways, river terrain and vegetation are site context.
-- Current maximum-fidelity acceptance remains pending measured profiles and close comparison with restoration drawings.
+- One inspected oblique picture establishes the unequal pointed arches, red/pale stone, humpback stair walk, roofed summit shelter and surviving Roman gateway. Existing authored profile and span controls are retained. Standard viewer PMTiles places the east-directed crossing at the Llobregat route;125.0414m mapped path and nominal130m are separate definitions. Native -1m lateral adjustment retained. West approach PMTiles56.9653m versus native14.91m gives approximate origin42.0553m, close to retainedICGC41.9m. East-bank PMTiles34.8258m conflicts with the original authored gateway threshold; approximate local preview contacts retain that source profile rather than certifying a new datum. Bounded opening removes bridge imprint. Exact bank joins, water stage, stone courses and crown restoration appearance remain limited;2007picture does not verify2026copper cap.
+- Four canonical shared graphs reused. Lower tiers merge steps, masonry and voussoirs; closeup retains larger colored stone impressions. Gateway remains ruined without conjectural capitals. Original detailed reconstruction preserved. Physical-device timings unmeasured.
+- Cutwater uses a continuous tapered body rather than separated course volumes. East small-arch camera raised above the coarse fixture bank.

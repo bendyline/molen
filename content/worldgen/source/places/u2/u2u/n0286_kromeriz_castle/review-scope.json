@@ -1,0 +1,421 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#d4c6ae",
+      "trim": "#ede6d4",
+      "wall": "#efe3c4",
+      "roof": "#a5644b",
+      "patina": "#8ba995",
+      "recess": "#4d6178",
+      "paving": "#aaa59a",
+      "gold": "#c3a252"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "identityFeatures": [
+      "Open quadrangular palace courtyard and projecting garden corner masses",
+      "Red roof pitches with broad green copper upper panels",
+      "Tall stacked copper bulb tower with open lantern and40m viewing-gallery datum"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along cached mapped axis; direction remains undirected",
+    "longitudinal": "+Z toward garden-facing wing in this original reconstruction",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/33992 exactQ200693",
+    "mappedEnvelopeMeters": [
+      103.556,
+      93.322
+    ],
+    "mappedLevels": 4,
+    "towerHeightMeters": 84,
+    "viewingGalleryMeters": 40,
+    "palaceEaveEstimateMeters": 32,
+    "roofTopEstimateMeters": 40,
+    "originalMasterHash": "sha256:0213e6c9f0272d90b1e65ef8ae278cf52a049835ceff7b2883ce4c03c0d34dd8",
+    "originalMasterRecipe": "packages/worldgen/scripts/kromeriz-castle-model.mjs#buildKromerizRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior from two inspected pictures and standard viewer PMTiles, without bespoke survey or exact thresholds.",
+    "Original master/hash/recipe preserved. Tower and portico controls retain the mapped courtyard notch and recessed facade; tourist POI is not a measured footprint.",
+    "Roof, portico, court floor and facade proportions reconstructed; orientation is approximate visual map fit.",
+    "Five common graphs plus an explicit recess slot; zero embedded images. Gardens, town neighbors, interiors and terrain cutouts excluded. Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      17.393266452,
+      49.300303249
+    ],
+    "heading": -0.813010109964,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two inspected pictures confirm pale pilastered palace, red roof pitches/green upper panels, garden portico, projecting corner masses and stacked copper tower. Standard viewer PMTiles and retained mapped outer/court rings set approximate location, scale and orientation. The mapped courtyard notch supports the original tower control; the tourist POI is approximate and does not override this geometry. Original portico and corner roofs fit the mapped recessed facade and projecting corners. A reconstructed4.4m working rise clears coarse ground; bounded wall bottoms extend below terrain. Anchor 17.393266452,49.300303249; heading -0.813010109964; standard PMTiles datum 202.37749866501176m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Two inspected pictures confirm pale pilastered palace, red roof pitches/green upper panels, garden portico, projecting corner masses and stacked copper tower. Standard viewer PMTiles and retained mapped outer/court rings set approximate location, scale and orientation. The mapped courtyard notch supports the original tower control; the tourist POI is approximate and does not override this geometry. Original portico and corner roofs fit the mapped recessed facade and projecting corners. A reconstructed4.4m working rise clears coarse ground; bounded wall bottoms extend below terrain. Anchor 17.393266452,49.300303249; heading -0.813010109964; standard PMTiles datum 202.37749866501176m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        17.393266452,
+        49.300303249
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "Two inspected pictures confirm pale pilastered palace, red roof pitches/green upper panels, garden portico, projecting corner masses and stacked copper tower. Standard viewer PMTiles and retained mapped outer/court rings set approximate location, scale and orientation. The mapped courtyard notch supports the original tower control; the tourist POI is approximate and does not override this geometry. Original portico and corner roofs fit the mapped recessed facade and projecting corners. A reconstructed4.4m working rise clears coarse ground; bounded wall bottoms extend below terrain. Anchor 17.393266452,49.300303249; heading -0.813010109964; standard PMTiles datum 202.37749866501176m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kromeriz-runtime-model.mjs",
+    "export": "buildKromerizReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "limestone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "patina": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.7,
+      "metallic": 0.2
+    },
+    "foliage": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kromeriz-runtime-model.mjs",
+    "export": "buildKromerizReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKromerizReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildKromerizReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKromerizReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.2
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kromeriz-skyline",
+      "position": [
+        150,
+        115,
+        150
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kromeriz-district",
+      "position": [
+        150,
+        115,
+        150
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kromeriz-street",
+      "position": [
+        150,
+        115,
+        150
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kromeriz-closeup",
+      "position": [
+        150,
+        115,
+        150
+      ],
+      "lookAt": [
+        0,
+        30,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -12,
+    "scale": 2,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "camera": {
+    "position": [
+      150,
+      115,
+      150
+    ],
+    "lookAt": [
+      0,
+      30,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "garden-portico-and-tower": {
+      "position": [
+        85,
+        68.4,
+        133
+      ],
+      "lookAt": [
+        0,
+        32.4,
+        0
+      ]
+    },
+    "clock-and-open-copper-lantern": {
+      "position": [
+        48,
+        71.4,
+        -57
+      ],
+      "lookAt": [
+        5.7,
+        65.4,
+        -8.7
+      ]
+    },
+    "courtyard-and-upper-roof-panels": {
+      "position": [
+        61,
+        139.4,
+        76
+      ],
+      "lookAt": [
+        0,
+        35.4,
+        4
+      ]
+    },
+    "courtyard-window-rhythm": {
+      "position": [
+        5,
+        26.4,
+        14
+      ],
+      "lookAt": [
+        -25,
+        23.4,
+        6
+      ]
+    },
+    "town-facade-and-tower": {
+      "position": [
+        -60,
+        62.4,
+        -122
+      ],
+      "lookAt": [
+        0,
+        32.4,
+        -10
+      ]
+    },
+    "garden-corner-projections": {
+      "position": [
+        -122,
+        67.4,
+        78
+      ],
+      "lookAt": [
+        0,
+        33.4,
+        10
+      ]
+    }
+  }
+}

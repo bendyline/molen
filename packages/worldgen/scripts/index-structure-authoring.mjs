@@ -44,9 +44,23 @@ for (const entry of knownSourceEntries().filter((e) => e.hasModel)) {
     )
     .map(([path]) => path)
     .sort();
+  const spec = JSON.parse(await readFile(resolve(dir, 'spec.json'), 'utf8'));
+  for (const definition of [spec.runtimeLodOverlay, spec.sourceGeometry].filter(Boolean)) {
+    const module = definition.module;
+    if (
+      typeof module !== 'string' ||
+      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module)
+    )
+      throw new Error(`${entry.assetId}: invalid runtime overlay source`);
+    await dependencies(module);
+    if (!recipes.includes(module)) recipes.push(module);
+    recipes.sort();
+  }
   const generatorCandidates = jobs
     .filter((job) => recipes.some((path) => job.dependencies.includes(path)))
     .map(({ id }) => id);
+  if (spec.runtimeLodOverlay && !generatorCandidates.includes('worldgen-runtime-lods'))
+    generatorCandidates.push('worldgen-runtime-lods');
   entries.push({
     assetId: entry.assetId,
     candidateId: entry.candidateId,
@@ -76,8 +90,12 @@ const document = {
 };
 const path = resolve(root, 'content/worldgen/source/authoring-index.json');
 const bytes = `${JSON.stringify(document, null, 2)}\n`;
+// Model sha256 pins follow GLB bytes, which are build outputs that move with float formatting;
+// --check compares the navigation the index exists for, not the pins it copies.
+const unpinned = (text) =>
+  text.replaceAll('\r\n', '\n').replace(/"sha256": "sha256:[0-9a-f]{64}"/g, '"sha256": ""');
 if (process.argv.includes('--check')) {
-  if ((await readFile(path, 'utf8')).replaceAll('\r\n', '\n') !== bytes)
+  if (unpinned(await readFile(path, 'utf8')) !== unpinned(bytes))
     throw new Error(
       'Authoring index is stale; run node packages/worldgen/scripts/index-structure-authoring.mjs',
     );

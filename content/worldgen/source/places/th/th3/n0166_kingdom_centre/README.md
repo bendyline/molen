@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Riyadh’s elliptical mirrored tower with a true through-opening bounded by a curved catenary roof, glass skybridge, clipped end piers and the independently mapped spreading shopping and event podium.
+Complete elliptical blue-grey tower with open inverted arch, curved crossbridge and both sloping-roof podium wings.
 
 ## Evidence and reconstruction
 
@@ -17,9 +17,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-217,710 triangles; 514,022 vertices; 5 material groups; 21,120,500 bytes. Native bounds: -140.157, 0.000, -137.546 to 140.156, 302.389, 137.545. Source hash: `sha256:ac11062b72fdbda9b34a1cc85d3fe611eb8e011bded9c49e895b5e0488c26e5a`.
+16,667 triangles; 49,823 vertices; 4 material groups; 1,996,456 bytes. Native bounds: -140.057, 0.000, -137.499 to 140.057, 302.301, 137.498. Source hash: `sha256:e941d6d0fa344a4f9631145ed04be03d814d45e05b065f2b971784b2f14b1e34`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east-northeast","front":"+Z south-southeast; four doors not surveyed","origin":"Mapped ground-contact podium center"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0166` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Catenary parameters and curtain-wall panel schedule are reconstructed. The unobstructed void, inner curved roof and skybridge are modeled; interior uses, signs and individual rooftop equipment are excluded.
+- Preserved217710-triangle/21120500byte original master is reproducible from unchanged global recipe. Reviewed exterior retains exact mapped elliptical tower, independently curved skybridge/end piers and full spreading shopping/conference podium.302.3m top published byCVU,302m engineer and300m architect rounded; CVU41floors/290.4m observatory retained as published facts, not imposed on detailed facade grid. Catenary205m center/2.1shape parameter and skybridge296.5–302.3m floors are reconstructed; bridge200feet architect length describes observation walkway, not exact full map envelope. Tower glazing is drawn once with full-length strips, aggregate rows and opaque PBR. Added pale faceted sloping roofs on both separately clipped mapped podium wings, reconstructed27m apex and15.75m eaves follow architect aerial and street photographs; not surveyed roof dimensions. Podium levels remain three physical facade bands despite four-level map tag. Exact doors, branded lettering, interior trusses, basement, rooftop recreation equipment/pool and night lighting excluded. No copied photograph used as texture; canonical256px granite/paintedmetal graphs shared, zero embedded images. Original speculative roof planters removed rather than intersecting new roof. Terrain slope and physical device performance unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

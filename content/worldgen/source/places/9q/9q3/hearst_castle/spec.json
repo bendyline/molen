@@ -1,0 +1,265 @@
+{
+  "planId": "hearst_castle",
+  "id": "hearst_castle",
+  "assetId": "molen.worldgen.structure.hearst_castle",
+  "title": "Hearst Castle",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.16806000471115,
+    "latitude": 35.685240350260685
+  },
+  "size": [
+    126.5758056640625,
+    62.79999923706055,
+    239.32283782958984
+  ],
+  "actualBounds": {
+    "min": [
+      -88.09941101074219,
+      -22,
+      -128.94090270996094
+    ],
+    "max": [
+      38.47639465332031,
+      40.79999923706055,
+      110.3819351196289
+    ]
+  },
+  "visualBrief": "Casa Grande with twin tiled bell towers and timber balcony, its stepped rear wings, three distinct guest houses, Neptune pool temple and curved colonnades, Roman Pool exterior with rooftop tennis courts, and immediate entrance terraces.",
+  "nativeAxes": {
+    "x": "south-southeast across Casa Grande facade",
+    "y": "up",
+    "z": "west-southwest toward main terrace"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Hearst_Castle_Casa_Grande_September_2012_panorama_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hearst_Castle.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hearst-castle-wk",
+      "url": "https://qualla.com/hearst-castle/"
+    }
+  ],
+  "referenceInputHash": "b32e313f4e9b3a9e2ffafb021f18a82b0f9b46b9de2e8043dc2299ccf1e6a712",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hearst-castle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hearst-castle.mjs",
+    "level": "skyline",
+    "export": "hearstSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "hearstDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "hearstStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Ground reference [0,3] near the Casa Grande entrance defines datum 492.9056 m. The physical forecourt deck is 0.8 m and the stair-top landing 3.8 m above this coarse terrain sample; retaining geometry is stepped without altering the DEM. Independent terrain controls range -18.30..0.95 m across five main building footprints. The raised Neptune pool deck is -13.2 m with retaining walls reaching -22 m, keeping temple columns above the coarse hillside. Casa del Sol has a roof eave at -6 m and lower terrace at -14.6 m; these inferred levels meet the independently sampled slope. Guest houses and pool are stepped below the main house; foundations and terrace retaining walls enter the hill. Exact ground and historic retaining levels are not surveyed.",
+    "anchor": [
+      -121.16806000471115,
+      35.685240350260685
+    ],
+    "heading": -1.3197933216173452,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.16809214428034,
+        35.68523365670179
+      ],
+      "modelHeight": 0,
+      "basis": "Ground sample near the Casa Grande entrance. The model retains a raised physical terrace and stair landing above the coarse unmodified hill surface; not a surveyed floor elevation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184463043734",
+      "buildings/35184463043741",
+      "buildings/35184463043740",
+      "buildings/35184463043742",
+      "buildings/35184463043735"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:224b6a45de6f13bd75b980785cab54eba4562a7c448cba7a2ecb962243754787",
+    "notes": "Twin bell towers and ornate stone front, long rear wings, tile roofs, three distinct guest-house plans, pool colonnades and terraced hilltop site. Heights and retaining-wall joins require terrain review; exact carving and garden sculpture simplified."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi coordinated exterior from inspected Qualla photographs and map/terrain controls; not an architectural or land survey.",
+    "Main facade and twin towers, rear wing layout, three guest-house footprints, pool temple/colonnades and terraced setting are retained. Fine carved figures, tile motifs, unseen window rhythms, interiors and complete garden ornament are generalized or omitted.",
+    "The 1941 aerial is supplementary layout evidence only. Modern exterior photographs control visible fabric; exact current roof services and restoration details remain uncertain.",
+    "Neptune pool center is mapped; basin dimensions come from California State Parks. Detailed curved perimeter, retaining joins and vertical terrace levels are interpretations, with unmodified host terrain retained for review.",
+    "Guest roofs and hidden sides are conservative approximations. Outlying service buildings, the broader estate, vegetation and zoo are outside this model. Reference photos are not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        17,
+        65
+      ],
+      "lookAt": [
+        0,
+        21,
+        -3
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        115,
+        75,
+        -180
+      ],
+      "lookAt": [
+        -15,
+        1,
+        -25
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 25176,
+    "vertices": 75528,
+    "materials": 4,
+    "bytes": 3023880,
+    "sha256": "sha256:6eef20ad92c594c54843956509dc7a5a32e6f6bd71546be9a4d72599b5557738"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "chapel": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.88,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/cashel-ruins-model.mjs",
+    "export": "buildCashelSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCashelDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "chapel": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCashelStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "chapel": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCashelCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "chapel": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-cashel-skyline",
+      "position": [
+        95,
+        65,
+        108
+      ],
+      "lookAt": [
+        0,
+        9,
+        5
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-cashel-district",
+      "position": [
+        95,
+        65,
+        108
+      ],
+      "lookAt": [
+        0,
+        9,
+        5
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-cashel-street",
+      "position": [
+        95,
+        65,
+        108
+      ],
+      "lookAt": [
+        0,
+        9,
+        5
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-cashel-closeup",
+      "position": [
+        95,
+        65,
+        108
+      ],
+      "lookAt": [
+        0,
+        9,
+        5
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "current source horizontal arrangement and approximate terrain contact visually reviewed; shared-material/tier review pending",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -7.89064,
+        52.52016
+      ],
+      "modelHeight": 0,
+      "basis": "Native datum is the retained standard viewer terrain at the mapped enclosure center. Ruin footings follow the coarse retained surface."
+    },
+    "bounds": [
+      -7.892,
+      52.5192,
+      -7.8891,
+      52.5212
+    ],
+    "notes": "Current PMTiles footprints control cathedral, round tower, chapel and lower ranges. The prior identity-matched enclosure controls approximate low boundary walls. Heights, broken profiles and ground contact are picture-led and coarse.",
+    "groundContactBasis": "Current source whole compound, north transept, south ranges, west tower, open interior, chapel and north-up plan renders were inspected against the retained standard viewer terrain. Native Y=0 samples the enclosure center at119.1608m; masonry bases extend0.30m below local coarse ground and the ruin floor follows terrain+0.12m. Low boundary walls follow the same terrain and remain seated. The coarser surface smooths the real rocky hill; exact terraces and floor/path elevations remain approximate."
+  },
+  "geographicNote": "Current named PMTiles cathedral and Cormac chapel polygons, separate round tower and two lower ranges control individual component fit. The retained Q1255597 enclosure supplies the low site boundary. Native east/south axes contain all plan rotations; placement heading0 avoids rotating them again. Heights, damage, detailed hill strata and exact floor/path joins remain approximate.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

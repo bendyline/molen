@@ -1,0 +1,237 @@
+{
+  "planId": "KSI_S02",
+  "id": "KSI_S02",
+  "assetId": "molen.worldgen.structure.ksiaz_swiss_house_i",
+  "title": "Książ Swiss House I",
+  "category": "historic-service-building",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "swiss-houses",
+    "identity": {
+      "type": "way",
+      "id": 255269521
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.317301811041244,
+    "latitude": 50.85139116446646
+  },
+  "size": [
+    7.623270034790039,
+    7.199999809265137,
+    7.612619876861572
+  ],
+  "actualBounds": {
+    "min": [
+      -3.8116350173950195,
+      0,
+      -3.806309938430786
+    ],
+    "max": [
+      3.8116350173950195,
+      7.199999809265137,
+      3.806309938430786
+    ]
+  },
+  "visualBrief": "Own five-vertex plaster pavilion with pink blind panels, a red hipped mansard roof, central curved dormer with an oval window, cream cornices and a brick chimney.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along longest mapped side in source vertex order",
+    "longitudinal": "+Z perpendicular to mapped side; photograph-facing provisional",
+    "origin": "Own mapped envelope center; Y0 estimated local ground contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#f0e9d0",
+      "panel": "#eed9ce",
+      "trim": "#f2edda",
+      "stone": "#d0c3aa",
+      "roof": "#ce8161",
+      "brick": "#c78d72",
+      "fascia": "#8b6d57",
+      "door": "#ac8968",
+      "glass": "#536c7c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/255269521",
+    "mappedTags": {
+      "addr:city": "Świebodzice",
+      "addr:country": "PL",
+      "addr:housenumber": "44",
+      "addr:postcode": "58-160",
+      "addr:street": "Wałbrzyska",
+      "building": "apartments",
+      "heritage": "2",
+      "heritage:operator": "nid",
+      "historic": "yes",
+      "name": "Dom szwajcarski",
+      "ref:nid": "A/5052/1215/WŁ"
+    },
+    "independentWikidataIdKnown": false,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Individual heritage house at Wałbrzyska 44, NID A/5052/1215/WŁ. Exterior identity follows Irena Goderska’s primary photograph dated 2012-07-28."
+  },
+  "reconstruction": {
+    "basis": "Own attributed OSM ring, individual official NID address/heritage record and Irena Goderska’s primary 2012 photograph.",
+    "scope": "One of two Swiss houses in N0291; nearby annexes/fences are separate features and are not merged into the main house.",
+    "registration": "Map-derived axis/anchor. Signed facade orientation and actual terrain fit remain unreviewed."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://zabytek.pl/pl/obiekty/g-240579",
+    "https://commons.wikimedia.org/wiki/File:PL,_%C5%9Awiebodzice_dom_szwajcarski_44_DSC_0015.JPG",
+    "https://www.openstreetmap.org/way/255269521"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.317301811041244,
+      50.85139116446646
+    ],
+    "heading": 1.8269649061556579,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/255269521"
+    ],
+    "source": "https://www.openstreetmap.org/way/255269521",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f4a9b0ba2095fb3f5a9c41953525ed0463529e93ba43b8b2c8869faff9269afa",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Own attributed mapped footprint. Heights, roof subdivisions, openings and unseen details are photographic interpretations.",
+    "No independent Wikidata identifier is asserted; main facade facing remains provisional.",
+    "References show 2012 appearance; current restoration state is unconfirmed.",
+    "No unique textures, copied photos or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "oval-dormer-and-blind-panels",
+      "position": [
+        16,
+        10,
+        16
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        0
+      ]
+    },
+    {
+      "name": "side-portal-and-mansard-break",
+      "position": [
+        16,
+        10,
+        -16
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-own-footprint",
+      "position": [
+        2,
+        25,
+        3
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "rear-and-hipped-roof",
+      "position": [
+        -16,
+        10,
+        -16
+      ],
+      "lookAt": [
+        0,
+        3.4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 933,
+    "vertices": 2799,
+    "materials": 6,
+    "bytes": 115612,
+    "sha256": "sha256:6d65ea80052effb8f78716a0dbf0ef00ad869fddc49e302ab6666740141e82e7"
+  }
+}

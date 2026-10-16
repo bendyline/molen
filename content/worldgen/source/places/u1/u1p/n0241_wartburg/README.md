@@ -21,11 +21,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-227,673 triangles; 446,281 vertices; 10 material groups; 18,803,828 bytes. Native bounds: -60.471, -0.065, -31.194 to 91.585, 34.000, 25.458. Source hash: `sha256:573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372`.
+23,028 triangles; 42,338 vertices; 8 material groups; 1,805,172 bytes. Native bounds: -60.471, -11.279, -31.111 to 91.503, 36.700, 25.458. Source hash: `sha256:454ebff90f26342831c28192c85b7123db0815f25655df82d704a04b48cb0354`.
 
-{"up":"+Y","longitudinal":"+X from Suedturm toward Torhaus (north)","front":"+Z toward eastern Palas exterior","origin":"Exact OSM Q151545 point, provisional terrain-contact datum"}
+{"up":"+Y","longitudinal":"+X from Suedturm toward Torhaus (north)","front":"+Z toward eastern Palas exterior","origin":"Exact Q151545 map point;Y0 relative Hofburg ground reference[-20,0]."}
 
-Draft geographic registration from a signed source-local frame. Terrain fit remains pending; no automatic footprint replacement.
+Fresh exact-Q151545 node2272817622 and21 individual occupied ways match original coordinates within1.3mm. Native+X348.48deg follows South Tower to north gate,+Z78.48deg faces Palas east exterior. Both courtyards remain open and precinct replacement stays disabled. Retained Thüringen DGM1 November2022 bare-earth1mXYZ values sampled into a3m native grid establish relative contact. Y0 is court reference[-20,0] at406.905m DHHN2016,used relatively; no absolute height is imposed. Southern court declines3.3m,keep court rises2.7m,northern entrance drops5.3m. Separate range floors and long gallery gradients are photographic working reconstructions; foundations extend below the sampled hillside. The viewer must supply fine local terrain and neither model nor fixture substitutes a floor survey.
 
 ## Reproduce
 
@@ -33,14 +33,13 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0241` (
 
 ## Pending work
 
-- Maximum fidelity remains pending: exterior reconstruction is not surveyed as-built geometry. Heights, stair elevations, roof junctions, window spacing and weathering require more source comparison.
-- Palas heraldic lions and carved capitals, precise Gothic oriel tracery and roof dormers are incomplete. No sculpture is claimed as a faithful individual reproduction.
-- The keep height is deliberately provisional because OSM height tags disagree with the owner description. Cross is 3.8 m; ground and parapet datums need measurement.
-- Vogtei roof is represented as a gable instead of its exact half-hip profile. Gadem roof intersections and covered South Tower stair attachment need further review.
-- No interiors, landscape hill, trees, temporary works or photographic textures. Open courtyard voids are preserved.
-- Shared sandstone, raw limestone, plaster, timber, slate, tile, copper, painted metal and gold-colored stainless graphs; local PBR glazing.
+- Original detailed master18803828bytes/227673triangles remains exactly reproducible atsha256:573bd5f665c287318d5bc4323cdfdba84ca83ffc8cb37f4139dd2bfe4e2e6372 from wartburg-castle-model.mjs#wartburgStudy.build. Separate reviewed source supplies corrected ground contact,South Tower22.5m relative floor and Vogtei half-hip roof.
+- Fresh exact-Q151545 node2272817622 and21 individual occupied ways match original coordinates within1.3mm. Native+X348.48deg follows South Tower to north gate,+Z78.48deg faces Palas east exterior. Both courtyards remain open and precinct replacement stays disabled. Retained Thüringen DGM1 November2022 bare-earth1mXYZ values sampled into a3m native grid establish relative contact. Y0 is court reference[-20,0] at406.905m DHHN2016,used relatively; no absolute height is imposed. Southern court declines3.3m,keep court rises2.7m,northern entrance drops5.3m. Separate range floors and long gallery gradients are photographic working reconstructions; foundations extend below the sampled hillside. The viewer must supply fine local terrain and neither model nor fixture substitutes a floor survey.
+- Seven shared sandstone,lime plaster,timber,slate,ceramic tile,copper and painted-metal graphs plus opaque PBR glazing. Small carved/gold accents use common graph grain with vertex tint. Skyline bakes graph linear means into one draw; no copied photo textures or embedded bitmaps.
+- Exterior medium-fi reconstruction. The3.8m cross follows owner record;34m keep top remains reconstructed because map40–46m tags conflict with owner description. South Tower22.5m meets owner more-than22m description. Eaves,bays,oriel tracery,gallery slopes and roof junctions are not surveyed as-built values. No exact heraldic lions,sculptural capitals,interiors,landscape hill or temporary works.
+- Grade-source.xyz preserves exact cropped public1m samples; independent signed fixture uses3m grid. Source metadata givesNovember2022 laser capture,EPSG25832/EPSG7837,GCG2016,height accuracy.15–.30m. Open ground under roofs may be interpolated. Physical laptop/phone measurements remain pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

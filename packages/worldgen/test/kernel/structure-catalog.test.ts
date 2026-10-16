@@ -135,7 +135,9 @@ describe('default structure catalog', () => {
     expect(new Set(catalog.entries.map((entry) => entry.title)).size).toBe(120);
     expect(catalog.taxonomies).toHaveLength(13);
     expect(catalog.entries.map((entry) => entry.style).sort()).toEqual(
-      Object.keys(pack.archstyles).sort(),
+      Object.keys(pack.archstyles)
+        .filter((id) => !id.startsWith('molen.worldgen.regional.'))
+        .sort(),
     );
     for (const entry of catalog.entries) {
       expect(

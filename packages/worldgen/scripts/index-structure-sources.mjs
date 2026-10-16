@@ -16,6 +16,20 @@ import {
 const posix = (path) => path.replaceAll('\\', '/');
 const optionalJson = (path) =>
   existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : undefined;
+
+/** Generated GLBs may be absent from a checkout; a pinned source declaration still exists. */
+export function sourceBundleReportsModel(manifest, assetId) {
+  return !!(
+    manifest?.id === assetId &&
+    manifest?.files?.models?.some(
+      (model) =>
+        model.assetId === assetId &&
+        model.path === 'models/source.glb' &&
+        /^sha256:[a-f0-9]{64}$/.test(model.sha256 ?? ''),
+    )
+  );
+}
+
 async function discover(directory) {
   if (!existsSync(directory)) return [];
   if (
@@ -190,7 +204,9 @@ export async function buildStructureSourceIndex({ includeLegacy = false } = {}) 
       geohash2,
       geohash3,
       legacySourcePath,
-      hasModel: existsSync(resolve(dir, 'models/source.glb')),
+      hasModel:
+        existsSync(resolve(dir, 'models/source.glb')) ||
+        sourceBundleReportsModel(optionalJson(resolve(dir, 'source.json')), assetId),
     });
   }
   entries.sort((a, b) => a.key.localeCompare(b.key));
@@ -206,7 +222,7 @@ export async function buildStructureSourceIndex({ includeLegacy = false } = {}) 
     format: 'molen/structure-source-index@1',
     coordinateOrder: 'longitude, latitude',
     policy:
-      'Geographic sources use places/geohash2/geohash3/key; reusable models use semantic folders. Folder anchors are organizational references, not placement approval. Registered paths stay pinned when placement evidence changes.',
+      'Geographic sources use places/geohash2/geohash3/key; reusable models use semantic folders. Folder anchors are organizational references, not placement approval. Registered paths stay pinned when placement evidence changes. hasModel includes hash-pinned source declarations even when generated GLBs are not cached locally; it is not readiness approval.',
     entries: JSON.parse(JSON.stringify(entries)),
   };
 }

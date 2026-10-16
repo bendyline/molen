@@ -313,6 +313,19 @@ release build; the app half is the normal Vite build.
 
 ## 9. Record evidence
 
+Always render and inspect the affected model before recording visual acceptance. Bulk
+turntables, detail shots and lighting variants are local working outputs: keep them under
+ignored `shots/`, `medium-fi/` or `.artifacts/` directories. Retain one or two small summary
+previews, plus the source inputs and concise review report, in version control. Source textures
+and heightmaps are required inputs and must not be confused with disposable screenshots.
+
+Record the source/model hashes, render commands, camera settings, inspected views, decision
+and limitations. A report may retain paths and hashes for local captures after those images
+are gone. Ordinary builds and CI do not download an image archive; model tests check geometry,
+hashes, materials and budgets, and render tests generate their own views. A new visual review
+still requires actually looking at current renders. In the engine repository, `pnpm source:check`
+rejects tracked bulk captures while allowing required source images and summary previews.
+
 For a landmark collection whose buildings occupy separate sites, keep each building as an
 independent asset and geographic placement. The repository's next-1,000 catalog declares
 required members in `content/worldgen/source/next-1000/collections.json`; the authoring/import

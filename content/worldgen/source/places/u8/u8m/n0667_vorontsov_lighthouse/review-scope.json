@@ -1,0 +1,190 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z south-southeast",
+    "origin": "Native+Z follows the mapped south-southeast pier axis,0.5rad from south toward east; service doors/cowls face the southwest harbor side. Exact-Q1976702 tower node is the origin. Y0 is sea level; service deckY4 and light centerY27."
+  },
+  "sourceFacts": {
+    "towerHeightMeters": 26,
+    "focalHeightMeters": 27,
+    "appearanceEra": "Operator photographs published2018–2019",
+    "towerBaseAboveModelDatumPhotoApproxMeters": 4,
+    "bodyDiameterPhotoApproxMeters": 4.32,
+    "basis": "Ukraine State Hydrography publishes26m tower height from base and27m focal elevation. Its two station photographs control the cylindrical section joints, red lantern, radial brackets, blue service fittings and asymmetric white compound. Tower cap is at30m over model sea datum and main tower base at4m, with lantern focal center27m. Thin aerial tip extends above the documented tower envelope. Compound plan is derived from exact tower-QID node and adjoining coastline ways; small exterior dimensions remain photo-proportioned.",
+    "originalMasterHash": "sha256:4b5dbd6cb1816d93d83a361ddce9882f62bd996c120c31a0694a5f30eb518c2c",
+    "reviewScope": "Static daylight2018–2019 operator-photograph exterior. Published26m structure and27m focal height control the envelope;4m deck,4.32m body diameter, cast-iron seam pitch, tiny fittings and mast/cable dimensions are photographic reconstruction. OSM approximate11m seamark height is not used for scale. Solar equipment mentioned in2019 but not located in the photographs, interior machinery, operational flashing light, current condition and the remaining long breakwater are excluded."
+  },
+  "appearance": {
+    "identity": "White jointed cylindrical cast-iron tower with sparse portholes, projecting circular gallery and eight light arms, red caged lantern and shallow roof, paired blue cowled pipes, harbor-side service doors, tiered white platform, deck railings, chain barrier and breakwater access stair.",
+    "master": "Exact preserved original operator-photo reconstruction.",
+    "browser": "Complete tower/lantern/tiered quay/stair/cowls at all distances; near levels retain service openings, cast-iron joints, rails and chains.",
+    "exclusions": "Static daylight2018–2019 operator-photograph exterior. Published26m structure and27m focal height control the envelope;4m deck,4.32m body diameter, cast-iron seam pitch, tiny fittings and mast/cable dimensions are photographic reconstruction. OSM approximate11m seamark height is not used for scale. Solar equipment mentioned in2019 but not located in the photographs, interior machinery, operational flashing light, current condition and the remaining long breakwater are excluded."
+  },
+  "geographic": {
+    "anchor": [
+      30.7600343,
+      46.4965348
+    ],
+    "heading": 0.5,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/703128124",
+    "notes": "Native+Z follows the mapped south-southeast pier axis,0.5rad from south toward east; service doors/cowls face the southwest harbor side. Exact-Q1976702 tower node is the origin. Y0 is sea level; service deckY4 and light centerY27. Static daylight2018–2019 operator-photograph exterior. Published26m structure and27m focal height control the envelope;4m deck,4.32m body diameter, cast-iron seam pitch, tiny fittings and mast/cable dimensions are photographic reconstruction. OSM approximate11m seamark height is not used for scale. Solar equipment mentioned in2019 but not located in the photographs, interior machinery, operational flashing light, current condition and the remaining long breakwater are excluded.",
+    "elevation": 0,
+    "replaceFootprint": false
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/vorontsov-browser-model.mjs",
+    "export": "buildVorontsovSkyline",
+    "errorMeters": 0.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVorontsovDistrict",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildVorontsovStreet",
+        "errorMeters": 0.02,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildVorontsovCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "full-ensemble-district",
+      "position": [
+        -46,
+        24,
+        45
+      ],
+      "lookAt": [
+        -1,
+        13,
+        3
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "service-street",
+      "position": [
+        -17,
+        7,
+        16
+      ],
+      "lookAt": [
+        -4,
+        3.2,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lantern-street",
+      "position": [
+        -10,
+        28.9,
+        12
+      ],
+      "lookAt": [
+        0,
+        26.8,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

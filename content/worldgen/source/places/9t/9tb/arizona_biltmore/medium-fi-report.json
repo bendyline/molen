@@ -1,0 +1,840 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.arizona_biltmore",
+  "sourceHash": "sha256:b14ec9c1a46027756d2955d626f7006155309120dbed98fbe5c6e91c87d0ceb4",
+  "runtimeHash": "sha256:a3fabc24465a0f83eefb6df63d5ff9856d37ae983ae2f030c47a7a4e6b601494",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:d67c997b8945a1206255734fe3d88af4aee5779b857272ac26a0106e94a065aa",
+      "bytes": 68568,
+      "gzipBytes": 12385,
+      "triangles": 928,
+      "cpuBytes": 67164,
+      "gpuBytes": 67164,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:658a056de16704768b3a1de33bf7ca500594521f330767bc4859e1294e15fda0",
+      "bytes": 245032,
+      "gzipBytes": 44424,
+      "triangles": 3152,
+      "cpuBytes": 238908,
+      "gpuBytes": 238908,
+      "errorMeters": 0.4,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:6298a5dc82f4b07566d719e7b3c11a1b2ebef9762fd06b9d3317950df2d6958b",
+      "bytes": 1000692,
+      "gzipBytes": 177917,
+      "triangles": 12974,
+      "cpuBytes": 994512,
+      "gpuBytes": 994512,
+      "errorMeters": 0.15,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:ccc9bc65fd1d4142b35e3e940315b510d1a70d7ac7a2cd8a35fdd0787cad7fc4",
+      "bytes": 7224112,
+      "gzipBytes": 1465906,
+      "triangles": 60176,
+      "cpuBytes": 7221120,
+      "gpuBytes": 7221120,
+      "errorMeters": 0,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d2abefd0ebe4ae7b2bccaecd01cf66e4ea146c7b29977c9ef2e24a6617e454f6"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:71fbd224671a9f9461f221a336b49029be398249d4fc196199a2dd4a0a5d60e2"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:194e39182adc31ea8cc5ed24972a735f1d8271ddf72bf993ed6560cb946f8320",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          37.2348,
+          34.825,
+          76.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:db537612bffb5c3c46591b6f27880fec4f841ce76ca80d2c7b47a6d13a0863c0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          37.2348,
+          34.825,
+          76.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:08169fed971440ceb28b52c85a1023cb512240bb3a48b57977f62b759f68fba2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          37.2348,
+          34.825,
+          76.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:9fa6edb586e863a97f3ddc104d4ca3d8cf89307feeff2b90a2fcf9b36be79a48",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          37.2348,
+          34.825,
+          76.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:4d79d6f2bf8ca91c4ebb92c28756c318eec8a1afec5c735bb6bcbf071159887c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 17586,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:8018765c7e900a0e6b3cfbbbbc77ec9481ee0275fa25471c30ecb840ee0de6f2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 17586,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:b5f2e88f5dc4dc670edf0463488ac7f258b85e80b086d4810c36c09792db0485",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 17586,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:93d504fb8d9e400f91af3aa98037c918d7b983363e4024c18316346ba2eab1a9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 17586,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:c341a43d1def32a02ce1f3aeb1f7f73a94bd39aa2173bba3792d2f1504a5e218",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          183.2348,
+          108.825,
+          329.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:c2131b3b455cb879376ac1be59721549a5cc121205938a1634df43a1ec2c3907",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          183.2348,
+          108.825,
+          329.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:fadba89c022cc0814c441e80f07aa95c17ba9466a39db3c4dfe0bb6537d12b8c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          183.2348,
+          108.825,
+          329.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:277abf24384ddfd9b6ebaf27ac0ff05ae2c181b46e28f0b172e1c14fa07f96fd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          183.2348,
+          108.825,
+          329.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:982cea00bb27cf34b20a0309b6fb1528fad5b79b707517fdbfb1e90200b575ce",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9122,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          183.2348,
+          108.825,
+          329.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:8380011b110e1b18552b28828cb859fa830a70b58db2609d50192b5ed1a79f82",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          -4,
+          22,
+          165
+        ],
+        "lookAt": [
+          -8,
+          7,
+          4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:d114ec7fe806b7bfb1b2c2068b93b5bf70c58138f97bcd4f3c86671d9c11d671",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          110,
+          65,
+          -155
+        ],
+        "lookAt": [
+          -8,
+          7,
+          -5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:87dfa4aaa34172b089669fbf3c16dc397a22681b25088dd303f2f0b25bd0d0eb",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15362,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:8018765c7e900a0e6b3cfbbbbc77ec9481ee0275fa25471c30ecb840ee0de6f2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 17586,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:a7fdf231ac9d4d7057ab6b5e5e37b48e7799ce6a400dcd349bcdab595e5eee6b",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 27408,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:f80a73f718778fd4142e66fc5e57cab8baf8d428c8d120b310903f2cb4b82027",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 74610,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9t/9tb/arizona_biltmore/terrain-review.height.png"
+        },
+        "position": [
+          86.2348,
+          70.825,
+          161.4424
+        ],
+        "lookAt": [
+          -10.7652,
+          19.825,
+          -6.5576
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:96c79cf5d8d56acb351ddd16abc2fa5b98f978a244590354aa88b80f442167ba",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:3bed0f8c14f0c3b1df3cbd4390eabdb9b425e1503431a407c6e4fa40c5a34d7f"
+  }
+}

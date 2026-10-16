@@ -1,7 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0139_abeno_harukas",
-  "placementHash": "sha256:558b6a3f3a4de48f2b7bc42c60f05e177111a3267cc5a326886e9b73cca5fe5f",
+  "inputHash": "sha256:4ed76497b49ab240f03efc20f466d310d848a0a97edb85b9c5b668e57b059a1d",
+  "placementHash": "sha256:939dc60022474caebc1231cc5a90bc333be741211aa0836a6bd3e1a4581441c8",
   "entry": {
     "id": "next1000.n0139",
     "title": "Abeno Harukas",
@@ -19,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        135.51422435822263,
+        34.64506015517174
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate PMTiles off-footprint ground contact; urban DEM has building imprint."
+    },
     "minLevel": 11,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/187296989",
-    "note": "Whole station/mall outline fixes the global frame. Separate named Tower-Kan way488467176 supplies the actual western tower perimeter, including its clipped corner and southern entrance notch. Upper tier offsets remain exterior reconstructions inside that measured tower part. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

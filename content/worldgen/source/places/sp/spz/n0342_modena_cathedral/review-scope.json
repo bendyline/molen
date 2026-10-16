@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "pink": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.28,
+      "metallic": 0.03
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/modena-cathedral-model.mjs",
+    "export": "buildModenaSkyline",
+    "errorMeters": 1.6,
+    "authoredLevels": {
+      "district": {
+        "export": "buildModenaDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "buildModenaStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildModenaCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "pink": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -119,
+      88,
+      116
+    ],
+    "lookAt": [
+      0,
+      32,
+      -3
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-modena-skyline",
+      "position": [
+        -119,
+        88,
+        116
+      ],
+      "lookAt": [
+        0,
+        32,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-modena-district",
+      "position": [
+        -119,
+        88,
+        116
+      ],
+      "lookAt": [
+        0,
+        32,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-modena-street",
+      "position": [
+        -119,
+        88,
+        116
+      ],
+      "lookAt": [
+        0,
+        32,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-modena-closeup",
+      "position": [
+        -119,
+        88,
+        116
+      ],
+      "lookAt": [
+        0,
+        32,
+        -3
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared; current render review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "StandardDEM datum43.367101m; estimated floor0.8m clears footprint peak0.499m and perimeter-0.21..0.50m. Terrain-following foundations; exact piazza/step/tower thresholds and all eave/gallery/roof-stage roles approximate. No independent survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        10.925536709,
+        44.646288103
+      ],
+      "modelHeight": 0,
+      "basis": "StandardDEM datum43.367101m; estimated floor0.8m clears footprint peak0.499m and perimeter-0.21..0.50m. Terrain-following foundations; exact piazza/step/tower thresholds and all eave/gallery/roof-stage roles approximate. No independent survey or certified walking."
+    },
+    "bounds": [
+      10.9247,
+      44.6459,
+      10.9263,
+      44.6468
+    ],
+    "notes": "StandardDEM datum43.367101m; estimated floor0.8m clears footprint peak0.499m and perimeter-0.21..0.50m. Terrain-following foundations; exact piazza/step/tower thresholds and all eave/gallery/roof-stage roles approximate. No independent survey or certified walking."
+  },
+  "geographicNote": "StandardDEM datum43.367101m; estimated floor0.8m clears footprint peak0.499m and perimeter-0.21..0.50m. Terrain-following foundations; exact piazza/step/tower thresholds and all eave/gallery/roof-stage roles approximate. No independent survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

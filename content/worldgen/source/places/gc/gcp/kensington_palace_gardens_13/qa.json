@@ -1,0 +1,166 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.kensington_palace_gardens_13",
+  "reviewedOn": "2026-10-14",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:8309a79c8e280d14be8e6602cbac720c58c58747424f3f9b85f1398292c86f06",
+  "sourceHash": "sha256:6774e4e77b3e785aa8642a686ea79b271cb319d4fa857d4f6f88d0dd40443a63",
+  "runtimeHash": "sha256:8ebdf9cbc447494316085c3532a552b3bd1fde76d68771f39c74f9846e3ab9f7",
+  "captureReportHash": "sha256:f98c1fa310c7bcd697b349479ce8b5c2544a517d82ca8533ffeb1478704be9e2",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/back.png"
+    ],
+    "notes": "Inspected all seven portable views and full shared front. The western entrance has a projecting chamfered three-storey bay, two-storey wings with paired shallow window projections, cream sash surrounds, patterned parapets and corner finials. The surviving flat roof replaces the removed bell turret. The mapped south appendage is a low conservatory. Secondary openings, chimneys, roof and conservatory glazing remain documented interpretations of obscured elevations."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c5cfe7742a2af04c5907d8c8bcceaa8c445ea1f239567aab83a2d5ade234d0b4",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all seven shared-material views, including north-up map alignment. Buff masonry and pale mineral trim use shared graphs and metric UVs; dark glazing remains portable. The outline and west-facing entrance align with the signed map frame, and the independent terrain reference is sampled by the geographic fixture. Unload and fixed transform assertions pass. The shared flat fixture verifies placement; source/context views retain the coarse terrain."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:062d01f3e41f51d1ce95b0de4b44565ac42f3542c8ac483e166b6f7a309c5287",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all nineteen medium-fi frames: twelve light/distance/mode combinations, front/back, untextured silhouette and four forced levels. The deliberate distant recipes preserve the entrance tower, two-storey wings, south conservatory and front window rhythm; parapets and sash details simplify with distance. No missing main bodies or unstable colors observed. Automatic capped derivatives were rejected after losing a surface group; final district and street levels are explicitly authored. Context neighbors are synthetic style fixtures and no physical-device frame rate is claimed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:d5c3acbe4027784e2f8a27470aebee2393db89f29349ba286ac2e53877483a20",
+    "mapGeometryHash": "sha256:0bec0528bbd64fe4ff5686cea6c89f373e821034ff2b47a87779a5b832355d34",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:ff0e89d0b2483b6316ce44f5e15ddfd76afefcdd9bb01b6d113bcb1f06159842",
+      "descriptorHash": "sha256:3a5b15ddfd8f17d55e279dc37cdd3c30a0635214611b88ee2e791469fa65ca84",
+      "heightfieldHash": "sha256:ccdcb7959172b84c7bb74d890992680100ae2b8d2a7d7ef81b7bb3b851ed6a6a",
+      "modelDatumElevationMeters": 27.931,
+      "sourcePixelGroundSpacing": 2.973484079412037,
+      "footprintRelativeRangeMeters": [
+        -1.0881066093822191,
+        1.2909257281708761
+      ],
+      "maxPngEncodingErrorMeters": 0.000045950698851271454
+    },
+    "notes": "Mapped building 35184430612503 identifies the residence independently of Kensington Palace. Anchor [-0.19057005687384387,51.507109984476585] and heading -1.2662857194627608 align +Z west-southwest toward the entrance street. Front reference [-1.35,13.2] defines the 27.931 m host datum. Preserved 65 by 65 Terrarium samples remain unflattened; footprint relief is -1.088107..1.290926 m and lower closures extend to -1.5 m. These coarse host heights are not surveyed pavement or entrance levels. Footprint suppression stays off."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Surviving exterior of 13 Kensington Palace Gardens, including its south conservatory; separate from Kensington Palace.",
+    "notes": "Accepted original medium-fi surviving exterior based on the inspected 2014 Qualla photograph, article alteration history and current generalized map footprint. Principal shape, facade bay/window rhythm, buff masonry, cream trim and open parapet motif are represented. Fine stonework, exact tracery and hidden elevations are interpretations, not measured replicas. The pre-1924 bell turret is intentionally omitted. Gardens, flag, security fixtures and interior are outside scope. Reference photography is not embedded or redistributed."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:c10b4d7a66fa54714b1984ec6f8d9d56b62a1b0dcbdb59529613a62f3ff79243",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:f2e2721e75f01aa5694d1b8eb262d400c601da3d6446a703ffc9937b117dfba9",
+        "bytes": 46192,
+        "gzipBytes": 9230,
+        "triangles": 592,
+        "cpuBytes": 44772,
+        "gpuBytes": 44772,
+        "errorMeters": 1.2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:f736a9303f830003be5bc332cc3af415616aa7ba0a80a6ae4176b92244bde58f",
+        "bytes": 150096,
+        "gzipBytes": 32287,
+        "triangles": 1908,
+        "cpuBytes": 143964,
+        "gpuBytes": 143964,
+        "errorMeters": 0.7,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:c64c6d4a9584de282a63238fd045fcca830378dbbfce1aeb70eaf53d4151b481",
+        "bytes": 1056248,
+        "gzipBytes": 212511,
+        "triangles": 13824,
+        "cpuBytes": 1050084,
+        "gpuBytes": 1050084,
+        "errorMeters": 0.25,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:e91fd805dc8fcd793f434f77dc24a4c642dd2af17cbb0f0bc31c8e9a86aa93ea",
+        "bytes": 5336768,
+        "gzipBytes": 968291,
+        "triangles": 44448,
+        "cpuBytes": 5333760,
+        "gpuBytes": 5333760,
+        "errorMeters": 0,
+        "drawCalls": 5
+      }
+    ],
+    "notes": "All four current hash-bound levels pass strict triangle/material/download budgets and were inspected: skyline 592, district 1908, street 13824 and closeup 44448 triangles. Skyline, district and street are explicitly authored. Distance versions use solid or diamond parapets before closeup quatrefoil motifs, while preserving the main silhouette. Declared authoring error budgets are not independent measured mesh distances."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 44448,
+    "sourceMaterials": 5,
+    "runtimeLodsVerified": 4,
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass. Terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+  },
+  "limitations": [
+    "Original medium-fi surviving exterior from a local 2014 Qualla facade photo and generalized map controls; no measured survey or interior.",
+    "Buff masonry, white sash surrounds, entrance bay and open parapet rhythm are represented. Fine carvings, exact tracery and secondary elevation openings are simplified interpretations.",
+    "The former bell turret and earlier pitched roof are omitted following the article description of the 1924 alteration. The southern glazed conservatory and hidden roof/rear details are conservative interpretations.",
+    "Independent coarse terrain determines host contact. The ambassadorial flag, garden hedges, security fixtures, surrounding streets and interiors are omitted. Local reference photography is not embedded or redistributed."
+  ],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:49233339e04ba2e7fd3185933941cac069c823d193e3985325356ce026f5e4ed",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  }
+}

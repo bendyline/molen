@@ -1,0 +1,821 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Edinburgh Castle with stepped wards, open Crown Square and Hospital Square, Royal Palace and octagonal clock turret, Great Hall, Queen Anne range, Scottish National War Memorial, St Margaret chapel, New Barracks, Governors House, Half Moon and Argyle batteries, and open gate passages.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X toward the eastern entrance/esplanade",
+    "front": "+Z toward the southern palace and barracks exterior",
+    "origin": "Exact-Q212065 precinct frame;Y0 relative east-gate reference[106.54,-25.61]."
+  },
+  "sourceFacts": {
+    "mapIdentity": "OSM way/4301292, exact Q212065 precinct",
+    "mapComponents": 116,
+    "surveyedVerticalDimensions": false,
+    "originalMasterHash": "sha256:4cd274cfb172ebeddbbb803c2f7f3cd6aa3140f3c27f8823e8bda61562641388",
+    "originalMasterRecipe": "packages/worldgen/scripts/edinburgh-castle-model.mjs#edinburghStudy.build"
+  },
+  "reconstruction": {
+    "basis": "Individual OSM component polygons and height tags, illustrated plan and inspected exterior photographs.",
+    "lowerWardDatumMeters": "Separate3.8–11m wards",
+    "upperWardDatumMeters": 20,
+    "palaceClockTopMeters": 40,
+    "flagpoleTopMeters": 52,
+    "verticalDatum": "Fresh exact-Q212065 precinct way4301292 and116individual mapped parts match original coordinates within1.7mm. Native+X76.35deg follows the east gate/esplanade;+Z166.35deg faces southern palace/barracks. Whole-precinct replacement is disabled. Retained Scottish Public Sector LiDAR Phase5OGL3 bare-earth0.5mF32 crop and OSTN15 grid conversion establish a3m native relative fixture. Y0 references the east gate[106.54,-25.61],source height111.547m,used relatively; no absolute vertical datum is asserted. CrownSquare floor20m,chapel21.8m,NewBarracks11m,HospitalSquare3.8m and Portcullis7m are photographic working elevations adjusted to this evidence,not a floor survey. Separate foundations extend beneath slopes; the model supplies defensive masonry but no second CastleRock hill. Host must supply fine terrain."
+  },
+  "limitations": [
+    "Original detailed master21794276bytes/259930triangles remains exactly reproducible atsha256:4cd274cfb172ebeddbbb803c2f7f3cd6aa3140f3c27f8823e8bda61562641388 from edinburgh-castle-model.mjs#edinburghStudy.build. Separate reviewed source corrects relative floors and foundation contact and retains open passages at every detail level.",
+    "Fresh exact-Q212065 precinct way4301292 and116individual mapped parts match original coordinates within1.7mm. Native+X76.35deg follows the east gate/esplanade;+Z166.35deg faces southern palace/barracks. Whole-precinct replacement is disabled. Retained Scottish Public Sector LiDAR Phase5OGL3 bare-earth0.5mF32 crop and OSTN15 grid conversion establish a3m native relative fixture. Y0 references the east gate[106.54,-25.61],source height111.547m,used relatively; no absolute vertical datum is asserted. CrownSquare floor20m,chapel21.8m,NewBarracks11m,HospitalSquare3.8m and Portcullis7m are photographic working elevations adjusted to this evidence,not a floor survey. Separate foundations extend beneath slopes; the model supplies defensive masonry but no second CastleRock hill. Host must supply fine terrain.",
+    "Six shared weathered limestone,sandstone,slate,timber,painted-metal and ceramic graphs plus opaque PBR glass. Carved trim reuses sandstone grain. Skyline bakes common graph linear means into one draw. No copied photography or embedded bitmaps.",
+    "Exterior medium-fi reconstruction. Bay counts,eaves,working floors,roof junctions and statue niches are approximations. No exact carvings,inscriptions,memorial sculptures or interiors. Bare-earth interpolation beneath roofs does not establish occupied floor heights.",
+    "Phase5metadata describes2020–2021 capture but exact tile vintage and vertical datum are not asserted. The restricted HES Scottish Ten data was excluded. Retained0.5mpublic crop is source evidence;3mfixture is a practical contact check,not an exhaustive survey. Physical laptop/phone dense-view timings remain pending.",
+    "CrownSquare/forecourt/HalfMoonBattery paving is reconstructed at20.2m; mapped drawbridge and winding road have working gate floors0/7m and terrain-derived slopes. A reversible mask covers only their connected paved surfaces. Road width,gradients and bridging are exterior approximations,not a navigation survey. The memorial-palace connecting arch follows the owner courtyard photo."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "heading": -0.238261013131,
+    "groundModelY": 0,
+    "reviewStatus": "Signed116-part map frame and retained relative CastleRock grade reviewed; architecture reconstructed",
+    "notes": "Fresh exact-Q212065 precinct way4301292 and116individual mapped parts match original coordinates within1.7mm. Native+X76.35deg follows the east gate/esplanade;+Z166.35deg faces southern palace/barracks. Whole-precinct replacement is disabled. Retained Scottish Public Sector LiDAR Phase5OGL3 bare-earth0.5mF32 crop and OSTN15 grid conversion establish a3m native relative fixture. Y0 references the east gate[106.54,-25.61],source height111.547m,used relatively; no absolute vertical datum is asserted. CrownSquare floor20m,chapel21.8m,NewBarracks11m,HospitalSquare3.8m and Portcullis7m are photographic working elevations adjusted to this evidence,not a floor survey. Separate foundations extend beneath slopes; the model supplies defensive masonry but no second CastleRock hill. Host must supply fine terrain.",
+    "evidence": "Fresh exact-Q212065 precinct way4301292 and116individual mapped parts match original coordinates within1.7mm. Native+X76.35deg follows the east gate/esplanade;+Z166.35deg faces southern palace/barracks. Whole-precinct replacement is disabled. Retained Scottish Public Sector LiDAR Phase5OGL3 bare-earth0.5mF32 crop and OSTN15 grid conversion establish a3m native relative fixture. Y0 references the east gate[106.54,-25.61],source height111.547m,used relatively; no absolute vertical datum is asserted. CrownSquare floor20m,chapel21.8m,NewBarracks11m,HospitalSquare3.8m and Portcullis7m are photographic working elevations adjusted to this evidence,not a floor survey. Separate foundations extend beneath slopes; the model supplies defensive masonry but no second CastleRock hill. Host must supply fine terrain.",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fresh exact-Q212065 precinct way4301292 and116individual mapped parts match original coordinates within1.7mm. Native+X76.35deg follows the east gate/esplanade;+Z166.35deg faces southern palace/barracks. Whole-precinct replacement is disabled. Retained Scottish Public Sector LiDAR Phase5OGL3 bare-earth0.5mF32 crop and OSTN15 grid conversion establish a3m native relative fixture. Y0 references the east gate[106.54,-25.61],source height111.547m,used relatively; no absolute vertical datum is asserted. CrownSquare floor20m,chapel21.8m,NewBarracks11m,HospitalSquare3.8m and Portcullis7m are photographic working elevations adjusted to this evidence,not a floor survey. Separate foundations extend beneath slopes; the model supplies defensive masonry but no second CastleRock hill. Host must supply fine terrain.",
+    "terrainReference": {
+      "anchor": [
+        -3.198667750982701,
+        55.948546353435
+      ],
+      "modelHeight": -0.32287230489107765,
+      "basis": "East-gate reference[106.54,-25.61]: retained3m grid bare-earth interpolation -0.32287230489107765m relative to source height111.547m. The reconstructed raised gate floor is Y0; sampling it as bare earth would shift the castle32cm below its terrain. Relative placement only;no absolute runtime elevation."
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          110.04379076150516,
+          -28.97482592737214
+        ],
+        [
+          109.36026848169445,
+          -28.70256127850803
+        ],
+        [
+          101.6522897548461,
+          -26.197022286005463
+        ],
+        [
+          98.56592125301023,
+          -25.32227812978555
+        ],
+        [
+          95.92402534162733,
+          -26.083126395966467
+        ],
+        [
+          92.76145279697393,
+          -28.3258651674786
+        ],
+        [
+          86.14087336466226,
+          -32.754051889646846
+        ],
+        [
+          79.90860486948333,
+          -35.33032899159369
+        ],
+        [
+          64.14046249451422,
+          -36.04707671466102
+        ],
+        [
+          57.52850284655527,
+          -36.85842620477597
+        ],
+        [
+          50.18871549788715,
+          -38.12902688653608
+        ],
+        [
+          38.731284692092,
+          -42.41963337146078
+        ],
+        [
+          38.01459712836913,
+          -42.773839111087774
+        ],
+        [
+          31.312709722051903,
+          -46.24249094118883
+        ],
+        [
+          17.782417961505054,
+          -54.46142802299355
+        ],
+        [
+          14.523672732381055,
+          -54.94387577394869
+        ],
+        [
+          11.374600364555604,
+          -55.075324604974476
+        ],
+        [
+          7.892731198844215,
+          -54.57047016539731
+        ],
+        [
+          -6.969958772029709,
+          -50.253192277753435
+        ],
+        [
+          -11.783478792178832,
+          -48.580866580294725
+        ],
+        [
+          -16.981001427451627,
+          -45.700133144556695
+        ],
+        [
+          -20.80062733857586,
+          -41.720599785888126
+        ],
+        [
+          -24.292978909704704,
+          -34.308361320358486
+        ],
+        [
+          -31.096075006214228,
+          -19.81879942816846
+        ],
+        [
+          -32.769683209389925,
+          -14.19206130076301
+        ],
+        [
+          -32.9522444462677,
+          -8.555426191122837
+        ],
+        [
+          -31.698978857952948,
+          -2.909429074813405
+        ],
+        [
+          -20.64009925812921,
+          22.902782916986283
+        ],
+        [
+          -17.79896936006336,
+          26.881066711459788
+        ],
+        [
+          -13.128517319117602,
+          28.47913242474635
+        ],
+        [
+          -8.35164888842027,
+          28.245298393799427
+        ],
+        [
+          -3.706526682898583,
+          26.471413807379744
+        ],
+        [
+          0.5559755191249399,
+          24.034676389040683
+        ],
+        [
+          2.8841643291856243,
+          21.915236813474642
+        ],
+        [
+          4.66204585100241,
+          19.301363635862735
+        ],
+        [
+          7.224426323102151,
+          10.917200609046155
+        ],
+        [
+          11.034742316642632,
+          -1.635005885293659
+        ],
+        [
+          14.689464719420448,
+          -9.161139973648524
+        ],
+        [
+          20.451702621678816,
+          -14.132131296513268
+        ],
+        [
+          26.558127757925174,
+          -17.738188274244038
+        ],
+        [
+          35.67792689642892,
+          -19.868317220979726
+        ],
+        [
+          45.31597008047445,
+          -17.827547227973533
+        ],
+        [
+          52.38026136392944,
+          -13.534056384186083
+        ],
+        [
+          58.65557000008861,
+          -8.24348469660531
+        ],
+        [
+          64.45437460981533,
+          -2.1580049042887106
+        ],
+        [
+          66.93539661126131,
+          1.2543767068347815
+        ],
+        [
+          65.4,
+          10.4
+        ],
+        [
+          65.41098674915638,
+          10.41757879865019
+        ],
+        [
+          64.99648496138889,
+          10.583456973015062
+        ],
+        [
+          65.67791338763841,
+          12.286232531026217
+        ],
+        [
+          44.2,
+          20.8
+        ],
+        [
+          55,
+          45
+        ],
+        [
+          75.4,
+          38
+        ],
+        [
+          78,
+          23
+        ],
+        [
+          96.2,
+          16.6
+        ],
+        [
+          100.5,
+          5.2
+        ],
+        [
+          93.2,
+          -8
+        ],
+        [
+          74.5,
+          -18.5
+        ],
+        [
+          70,
+          -17
+        ],
+        [
+          67.86312260340844,
+          -4.271643333345959
+        ],
+        [
+          67.5334321321895,
+          -4.72509747470161
+        ],
+        [
+          61.40077141119455,
+          -11.160938204383886
+        ],
+        [
+          54.72206576659017,
+          -16.791604844336803
+        ],
+        [
+          46.811175763593944,
+          -21.599636171360764
+        ],
+        [
+          35.63531123217394,
+          -23.966026168386165
+        ],
+        [
+          25.0517162182994,
+          -21.493995616265863
+        ],
+        [
+          18.109727132458193,
+          -17.394508989673646
+        ],
+        [
+          11.451768895099631,
+          -11.650793928389241
+        ],
+        [
+          7.298803461512076,
+          -3.0986328412088797
+        ],
+        [
+          3.3979864393337422,
+          9.75170840136135
+        ],
+        [
+          1.0138141673440149,
+          17.552770433338726
+        ],
+        [
+          -0.15771814355141003,
+          19.275178167812506
+        ],
+        [
+          -1.8112862643260315,
+          20.78048465366094
+        ],
+        [
+          -5.422850946585801,
+          22.845101721972693
+        ],
+        [
+          -9.183518987687021,
+          24.28122993940058
+        ],
+        [
+          -12.558648993492763,
+          24.44644701951854
+        ],
+        [
+          -15.289721441745009,
+          23.511969328324923
+        ],
+        [
+          -17.133643934788864,
+          20.93002227362129
+        ],
+        [
+          -27.875021835358925,
+          -4.141118157093393
+        ],
+        [
+          -28.938017048952116,
+          -8.929941824284505
+        ],
+        [
+          -28.788492740616952,
+          -13.546551464538636
+        ],
+        [
+          -27.347686330034662,
+          -18.39060059697615
+        ],
+        [
+          -20.67335487620254,
+          -32.60591334831439
+        ],
+        [
+          -17.461296846428493,
+          -39.42325106386083
+        ],
+        [
+          -14.513524187494319,
+          -42.494431305840855
+        ],
+        [
+          -10.14552984177372,
+          -44.915397647273934
+        ],
+        [
+          -5.754891562521574,
+          -46.4408046658183
+        ],
+        [
+          8.741692311505547,
+          -50.65173694849122
+        ],
+        [
+          11.579943615768126,
+          -51.063269864691385
+        ],
+        [
+          14.146315213403916,
+          -50.95614417589054
+        ],
+        [
+          16.396786783002703,
+          -50.62296840699704
+        ],
+        [
+          29.35279300811847,
+          -42.75287943329163
+        ],
+        [
+          36.2090084666974,
+          -39.20435304719478
+        ],
+        [
+          37.139720571034054,
+          -38.74437078158393
+        ],
+        [
+          49.13701165009736,
+          -34.2515961117756
+        ],
+        [
+          56.94340675144028,
+          -32.900220320261
+        ],
+        [
+          63.8055617569248,
+          -32.058169512145696
+        ],
+        [
+          79.0275498124619,
+          -31.366247469592125
+        ],
+        [
+          84.24649367962893,
+          -29.208855567794366
+        ],
+        [
+          90.49219326784755,
+          -25.031407918390595
+        ],
+        [
+          94.16428530413097,
+          -22.42734332665289
+        ],
+        [
+          98.55713010890537,
+          -21.1622335473789
+        ],
+        [
+          102.81634666950168,
+          -22.369388426726758
+        ],
+        [
+          110.7200652937199,
+          -24.93855420942016
+        ],
+        [
+          111.51038733193468,
+          -25.253359971543535
+        ],
+        [
+          112.30797096944042,
+          -25.56431266464382
+        ],
+        [
+          125.69341452348344,
+          -31.202477779590307
+        ],
+        [
+          124.14067450102515,
+          -34.88880364997347
+        ],
+        [
+          110.80485088893758,
+          -29.27153925636725
+        ]
+      ],
+      "basis": "Mapped drawbridge,gate passages and winding cobbled route connect the eastern gate to CrownSquare. Owner visual-story pages7–11 confirm drawbridge,open entrance and steep cobbled path. Reconstructed4.8m exterior width is not a survey. A4m terrain mask retains a0.4m overlap beneath the paving edges to prevent exposed ground-cut seams. Working gate floors0/7m clamp interpolated terrain under the two passages; remaining road follows retained relative terrain. Existing20.2m court paving covers the shared end. Cap triangulation is split at local gate floor and approach thresholds. Unloading restores terrain. Cap triangulation is split at each mapped gate floor and graded approach threshold; this prevents long road triangles from interpolating a floor across the passage. Court mask is intersected with every detail-level cap perimeter so level changes cannot expose sky along simplified paving edges."
+    }
+  },
+  "geographicNote": "Fresh exact-Q212065 precinct way4301292 and116individual mapped parts match original coordinates within1.7mm. Native+X76.35deg follows the east gate/esplanade;+Z166.35deg faces southern palace/barracks. Whole-precinct replacement is disabled. Retained Scottish Public Sector LiDAR Phase5OGL3 bare-earth0.5mF32 crop and OSTN15 grid conversion establish a3m native relative fixture. Y0 references the east gate[106.54,-25.61],source height111.547m,used relatively; no absolute vertical datum is asserted. CrownSquare floor20m,chapel21.8m,NewBarracks11m,HospitalSquare3.8m and Portcullis7m are photographic working elevations adjusted to this evidence,not a floor survey. Separate foundations extend beneath slopes; the model supplies defensive masonry but no second CastleRock hill. Host must supply fine terrain.",
+  "sourceDocuments": [
+    "map-parts.json",
+    "reference-metadata.json",
+    "review-map-parts.json",
+    "map-frame.json",
+    "review-scope.json",
+    "georeferencing-baseline.json",
+    "site-grade.json",
+    "grade-source.tif",
+    "road-surface.json"
+  ],
+  "surfaceOverrides": {
+    "weathered": {
+      "graph": "stone_limestone_weathered",
+      "slot": "foundation",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "sandstone": {
+      "graph": "stone_sandstone",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "carved": {
+      "graph": "stone_sandstone",
+      "slot": "wall",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "slate": {
+      "graph": "slate",
+      "slot": "roof",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "tile": {
+      "graph": "tile_ceramic",
+      "slot": "roof",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "alphaMode": "OPAQUE",
+      "roughness": 0.2,
+      "metallic": 0.28,
+      "ref": "palette:#ffffff"
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/edinburgh-runtime-model.mjs",
+    "export": "buildEdinburghReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/edinburgh-runtime-model.mjs",
+    "export": "buildEdinburghReviewedSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEdinburghReviewedDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "weathered": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sandstone": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildEdinburghReviewedStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "weathered": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sandstone": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEdinburghReviewedCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "weathered": {
+            "graph": "stone_limestone_weathered",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "sandstone": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_sandstone",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "tile": {
+            "graph": "tile_ceramic",
+            "slot": "roof",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "signed-occupied-plan",
+      "position": [
+        0,
+        230,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "name": "clock-turret-and-connecting-arch",
+      "position": [
+        48,
+        25,
+        33
+      ],
+      "lookAt": [
+        69,
+        33,
+        22
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-edinburgh-skyline",
+      "position": [
+        200,
+        145,
+        200
+      ],
+      "lookAt": [
+        5,
+        17,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-edinburgh-district",
+      "position": [
+        200,
+        145,
+        200
+      ],
+      "lookAt": [
+        5,
+        17,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-edinburgh-street",
+      "position": [
+        200,
+        145,
+        200
+      ],
+      "lookAt": [
+        5,
+        17,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-edinburgh-closeup",
+      "position": [
+        200,
+        145,
+        200
+      ],
+      "lookAt": [
+        5,
+        17,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

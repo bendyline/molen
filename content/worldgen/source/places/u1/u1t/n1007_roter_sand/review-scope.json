@@ -1,0 +1,249 @@
+{
+  "fidelityTarget": "medium-fi",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/roter-sand-detail-model.mjs",
+    "export": "buildRoterSandReviewed"
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "origin": "Native+X east,+Z south; heading0 preserves the GMG survey south180/WNW292.5/NE45-degree bays, ENE67.5/WSW247.5-degree ladders and SSE157.5/NNW337.5-degree caisson long axis."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "sourceFacts": {
+    "survey": "GMG GA218014, 14 June 2019, section 1.02 pp I-5–7; field visits October 2018 and May 2019",
+    "plinthHeightMeters": 6.1,
+    "plinthDiametersMeters": [
+      10.1,
+      6.4
+    ],
+    "shaftHeightMeters": 12.7,
+    "shaftDiametersMeters": [
+      6.4,
+      5.1
+    ],
+    "bayDiameterMeters": 1.9,
+    "bayBearingsDegrees": [
+      180,
+      292.5,
+      45
+    ],
+    "lanternDiameterMeters": 4,
+    "baseLadderRungs": 19,
+    "aboveLowWaterMeters": 30.95,
+    "verticalDatum": "GMG III-9 uses low water = NN -2.05 m; tower tip NN +28.90 m",
+    "originalMasterHash": "sha256:266c5b5a60e6815673ecd1dc2e0de61dab764367c46e5cb26b5549878207a5ce",
+    "reviewedCaisson": {
+      "circleRadiusMeters": 7.3,
+      "circleCenterSeparationMeters": 3.6,
+      "longAxisBearingDegrees": 157.5
+    },
+    "bayExposedArcDegrees": 270,
+    "basis": "2018–2019 surveyed offshore exterior. Above-water caisson is reconstructed from two7.3m-radius arcs with3.6m circle-center separation, approximately11x14m; bay offset is reconstructed from published1.9m diameter/270-degree exposed arcs and5.1m central service-room diameter. These rounded facts are not a fabrication survey. Exact corrosion/fasteners, submerged caisson, hidden interior and operating optics excluded. Static viewer water zero approximates historical NN; local floor datum−2.05m is explicit and no tide/datum conversion is claimed. The owner2026 chronology proposes relocation but does not document a completed move."
+  },
+  "appearance": {
+    "identity": "Offshore riveted taper with black plinth, white/red/white shaft, red service room and three unequal-height round bays; white lantern, black domes, scalloped gallery, portholes, rivets, ladders, davit and mooring dolphins.",
+    "master": "Exact historical master retained; reviewed exterior cuts real circular portholes, reconstructs almond caisson and270-degree bay intersections.",
+    "browser": "Whole three-bay tower, two domes, service-room openings, scalloped gallery, lantern, finial, two ladders, mooring posts and davit retained. Rivet density and curved subdivisions reduce with distance.",
+    "exclusions": "2018–2019 surveyed offshore exterior. Above-water caisson is reconstructed from two7.3m-radius arcs with3.6m circle-center separation, approximately11x14m; bay offset is reconstructed from published1.9m diameter/270-degree exposed arcs and5.1m central service-room diameter. These rounded facts are not a fabrication survey. Exact corrosion/fasteners, submerged caisson, hidden interior and operating optics excluded. Static viewer water zero approximates historical NN; local floor datum−2.05m is explicit and no tide/datum conversion is claimed. The owner2026 chronology proposes relocation but does not document a completed move."
+  },
+  "geographic": {
+    "anchor": [
+      8.0821686,
+      53.8531662
+    ],
+    "heading": 0,
+    "elevationMode": "sea-level",
+    "elevationMeters": -2.05,
+    "status": "preview-proposal",
+    "source": "https://www.openstreetmap.org/node/635484478",
+    "notes": "Native+X east,+Z south; heading0 preserves the GMG survey south180/WNW292.5/NE45-degree bays, ENE67.5/WSW247.5-degree ladders and SSE157.5/NNW337.5-degree caisson long axis. 2018–2019 surveyed offshore exterior. Above-water caisson is reconstructed from two7.3m-radius arcs with3.6m circle-center separation, approximately11x14m; bay offset is reconstructed from published1.9m diameter/270-degree exposed arcs and5.1m central service-room diameter. These rounded facts are not a fabrication survey. Exact corrosion/fasteners, submerged caisson, hidden interior and operating optics excluded. Static viewer water zero approximates historical NN; local floor datum−2.05m is explicit and no tide/datum conversion is claimed. The owner2026 chronology proposes relocation but does not document a completed move.",
+    "reviewSurface": "water",
+    "replaceFootprint": false
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/roter-sand-browser-model.mjs",
+    "export": "buildRoterSandSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRoterSandDistrict",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildRoterSandStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRoterSandCloseup",
+        "errorMeters": 0.03,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "caisson-overhead",
+      "position": [
+        13,
+        8,
+        14
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "porthole-recess",
+      "position": [
+        1.1,
+        14.1,
+        4.2
+      ],
+      "lookAt": [
+        0,
+        14.1,
+        2.9
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "bays-district",
+      "position": [
+        11,
+        27,
+        12
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "porthole-street",
+      "position": [
+        1.1,
+        14.1,
+        4.2
+      ],
+      "lookAt": [
+        0,
+        14.1,
+        2.9
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

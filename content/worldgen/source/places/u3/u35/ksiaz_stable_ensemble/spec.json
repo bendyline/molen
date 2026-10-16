@@ -1,0 +1,244 @@
+{
+  "planId": "KSI_E01",
+  "id": "KSI_E01",
+  "assetId": "molen.worldgen.structure.ksiaz_stable_ensemble",
+  "title": "Książ stable ensemble",
+  "category": "equestrian-complex",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "stable-ensemble",
+    "identity": {
+      "type": "way",
+      "id": 238999226
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.299691892057304,
+    "latitude": 50.84329352576271
+  },
+  "size": [
+    168.6225128173828,
+    20.299999237060547,
+    128.97999954223633
+  ],
+  "actualBounds": {
+    "min": [
+      -66.05000305175781,
+      0,
+      -65
+    ],
+    "max": [
+      102.572509765625,
+      20.299999237060547,
+      63.97999954223633
+    ]
+  },
+  "visualBrief": "Open stable quadrangle with five distinct ranges, arched gate tower, carriage-house bays, red mansard residence tower, cream administration gable, timber framing and the separate covered riding hall with connecting annexes.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along longest mapped ensemble side",
+    "longitudinal": "+Z perpendicular to that edge",
+    "origin": "Own stable quadrangle envelope center; Y0 estimated shared contact datum"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#efe7cf",
+      "trim": "#ece4ce",
+      "stone": "#cbbf9f",
+      "roof": "#c27e59",
+      "slate": "#7d8180",
+      "timber": "#6d5c4b",
+      "door": "#857c58",
+      "glass": "#536c7c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/238999226",
+    "mappedTags": {
+      "building": "yes",
+      "heritage": "2",
+      "heritage:operator": "nid",
+      "historic": "yes",
+      "name": "Stado Ogierów w Książu",
+      "ref:nid": "A/4631/655/WŁ",
+      "source": "Orto Geoportal",
+      "source:heritage": "photograph",
+      "source_ref": "https://www.flickr.com/photos/124589265@N07/13998762617/"
+    },
+    "independentWikidataIdKnown": false,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Own named stable ensemble, NID A/4631/655/WŁ. Exterior identities follow the numbered 2005 primary monograph plan and photographs, plus the operator aerial. One connected source asset represents the ranges; these are not five separately surveyed footprints."
+  },
+  "reconstruction": {
+    "basis": "Own attributed connected stable footprint, separately mapped adjacent hall complex, 2005 labeled primary monograph plan and photographs, plus present operator aerial.",
+    "scope": "One exterior ensemble asset: all five stable ranges, carriage-house range, open gate tower, residence tower, administration, rounded former canteen and covered riding hall with attached ranges. No horse/carriage collections, interiors, garden layout, adjoining houses or parent castle geometry.",
+    "registration": "Map-based anchor/axis, interpreted facade/part positions and estimated shared Y0. Activation remains pending terrain and component-association review."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://pcbj.pl/wp-content/uploads/Stado-ogierow-Ksiaz-2005-Izabela-Rajca-Pisz.pdf",
+    "https://www.stadoksiaz.pl/zwiedzanie",
+    "https://www.openstreetmap.org/way/276970733",
+    "https://www.openstreetmap.org/way/238999226"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.299691892057304,
+      50.84329352576271
+    ],
+    "heading": 2.452529451376471,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/238999226"
+    ],
+    "source": "https://www.openstreetmap.org/way/238999226",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:fc6c3ca40dd505d2c5e7b68702b358cf6fb99dd6c12e16fb0d10225ad4a7406f",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own connected stable outline and adjacent riding-hall outline; named semantic parts follow the primary plan. Facade bays, boundaries, heights and shared datum are proposed. Inactive until component/terrain fit reviewed."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Own stable and adjacent hall-complex rings. Range boundaries, facade bays, roof/tower heights and common datum are photographic/plan interpretations.",
+    "No independent Wikidata identifier asserted. Hall identity, component registration and terrain fit remain provisional.",
+    "References combine the 2005 labeled plan/photos with current operator aerial; facade/restoration details are not surveyed.",
+    "Exterior ensemble only. No unique textures, copied photos, interior, horses, carriages or garden reconstruction. Terrain/component fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "quadrangle-and-gate-towers",
+      "position": [
+        -175,
+        116,
+        -165
+      ],
+      "lookAt": [
+        12,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "stable-wings-and-riding-hall",
+      "position": [
+        190,
+        110,
+        165
+      ],
+      "lookAt": [
+        12,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "own-outlines-and-open-courtyard",
+      "position": [
+        22,
+        345,
+        4
+      ],
+      "lookAt": [
+        18,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "gate-passage-and-carriage-bays",
+      "position": [
+        -8,
+        15,
+        -26
+      ],
+      "lookAt": [
+        -57.2,
+        6,
+        -26
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 9592,
+    "vertices": 28776,
+    "materials": 7,
+    "bytes": 1155164,
+    "sha256": "sha256:0ce6a963f22a75546a2485ebe1cd646452208fb272b1889948241440579a3e31"
+  }
+}

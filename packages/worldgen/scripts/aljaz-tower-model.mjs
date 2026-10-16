@@ -117,7 +117,7 @@ const glyphs = {
     ],
   ],
 };
-function inscription(out) {
+function inscription(out, lettering = true) {
   const t = deform(out, ([u, y, z]) => p(u, y, z)),
     text = 'ALJAZEV STOLP',
     step = 0.055,
@@ -139,6 +139,7 @@ function inscription(out) {
       body,
     );
   }
+  if (!lettering) return;
   for (const [i, c] of [...text].entries())
     for (const path of glyphs[c] ?? []) {
       for (let j = 1; j < path.length; j++) {
@@ -179,7 +180,7 @@ function inscription(out) {
     for (const y of [1.766, 1.916])
       sphere(out, 'metal', p(u, y, 0.014), [0.005, 0.005, 0.005], body, 8, 4);
 }
-function flag(out) {
+function flag(out, cutout = true) {
   // Stencil-cut numerals retain small bridges, so the counters do not float.
   const digits = {
     1: ['00100', '01100', '00100', '00100', '00100', '00100', '01110'],
@@ -209,23 +210,71 @@ function flag(out) {
       col = ix % 6;
     return digit < 4 && col < 5 && digits[word[digit]][iy][col] === '1';
   };
-  for (let i = 1; i < xx.length; i++)
-    for (let j = 1; j < yy.length; j++) {
-      const x = (xx[i - 1] + xx[i]) / 2,
-        y = (yy[j - 1] + yy[j]) / 2;
-      if (x < plateLeft || x > plateRight || y < 2.68 || y > 2.88 || cut(x, y)) continue;
-      // Swallowtail is represented by a clipped left contour, not a painted V.
-      const edge = y < 2.78 ? plateLeft + (y - 2.68) * 0.9 : plateLeft + (2.88 - y) * 0.9;
-      const a = Math.max(xx[i - 1], edge),
-        b = xx[i];
-      if (b - a < 1e-5) continue;
-      box(out, 'metal', [a, yy[j - 1], -0.003], [b, yy[j], 0.003], [0.67, 0.7, 0.69]);
+  if (!cutout) {
+    // Two solid convex prisms retain the swallowtail at distances where the stencil is subpixel.
+    for (const outline of [
+      [
+        [plateLeft, 2.68],
+        [plateRight, 2.68],
+        [plateRight, 2.78],
+        [plateLeft + 0.09, 2.78],
+      ],
+      [
+        [plateLeft + 0.09, 2.78],
+        [plateRight, 2.78],
+        [plateRight, 2.88],
+        [plateLeft, 2.88],
+      ],
+    ]) {
+      face(
+        out,
+        'metal',
+        outline.map(([x, y]) => [x, y, 0.003]),
+        [0.67, 0.7, 0.69],
+      );
+      face(
+        out,
+        'metal',
+        [...outline].reverse().map(([x, y]) => [x, y, -0.003]),
+        [0.67, 0.7, 0.69],
+      );
+      for (let i = 0; i < outline.length; i++) {
+        const [a, b] = [outline[i], outline[(i + 1) % outline.length]];
+        face(
+          out,
+          'metal',
+          [
+            [...a, -0.003],
+            [...b, -0.003],
+            [...b, 0.003],
+            [...a, 0.003],
+          ],
+          [0.67, 0.7, 0.69],
+        );
+      }
     }
+  } else
+    for (let i = 1; i < xx.length; i++)
+      for (let j = 1; j < yy.length; j++) {
+        const x = (xx[i - 1] + xx[i]) / 2,
+          y = (yy[j - 1] + yy[j]) / 2;
+        if (x < plateLeft || x > plateRight || y < 2.68 || y > 2.88 || (cutout && cut(x, y)))
+          continue;
+        // Swallowtail is represented by a clipped left contour, not a painted V.
+        const edge = y < 2.78 ? plateLeft + (y - 2.68) * 0.9 : plateLeft + (2.88 - y) * 0.9;
+        const a = Math.max(xx[i - 1], edge),
+          b = xx[i];
+        if (b - a < 1e-5) continue;
+        box(out, 'metal', [a, yy[j - 1], -0.003], [b, yy[j], 0.003], [0.67, 0.7, 0.69]);
+      }
   beam(out, 'metal', [0, 2.38, 0], [0, 2.9, 0], 0.018, 0.018, steel);
   for (const y of [2.69, 2.85])
     sphere(out, 'metal', [-0.004, y, 0.007], [0.012, 0.012, 0.012], body, 10, 5);
 }
-function buildAljaz(out) {
+export function buildAljaz(out, options = {}) {
+  const segments = options.segments ?? 192,
+    roofSegments = options.roofSegments ?? 128,
+    rivets = options.rivets ?? true;
   const circumference = tau * r,
     holes = [];
   for (let i = 0; i < 4; i++) {
@@ -239,8 +288,8 @@ function buildAljaz(out) {
   }
   const xs = [-circumference / 2, circumference / 2, -0.323, 0.323],
     ys = [0, 0.415, 1.475, 2];
-  for (let i = 0; i <= 192; i++) xs.push(-circumference / 2 + (i * circumference) / 192);
-  for (let y = 0.1; y < 2; y += 0.1) ys.push(y);
+  for (let i = 0; i <= segments; i++) xs.push(-circumference / 2 + (i * circumference) / segments);
+  if (options.shellBands !== false) for (let y = 0.1; y < 2; y += 0.1) ys.push(y);
   for (const h of holes) {
     xs.push(h.u - h.w / 2, h.u + h.w / 2);
     ys.push(h.y, h.y + h.h);
@@ -320,14 +369,16 @@ function buildAljaz(out) {
     }
   }
   // Visible rivet seams and the two hinge barrels on the small raised door.
-  for (const u of [-0.35, 0.35, circumference / 2 - 0.025])
-    for (let y = 0.08; y < 1.98; y += 0.095)
-      sphere(out, 'metal', p(u, y, 0.005), [0.005, 0.005, 0.005], body, 8, 4);
-  for (let i = 0; i < 36; i++) {
-    const u = -circumference / 2 + (i * circumference) / 36;
-    for (const y of [0.06, 1.98])
-      sphere(out, 'metal', p(u, y, 0.007), [0.008, 0.008, 0.008], body, 8, 4);
-  }
+  if (rivets)
+    for (const u of [-0.35, 0.35, circumference / 2 - 0.025])
+      for (let y = 0.08; y < 1.98; y += 0.095)
+        sphere(out, 'metal', p(u, y, 0.005), [0.005, 0.005, 0.005], body, 8, 4);
+  if (rivets)
+    for (let i = 0; i < 36; i++) {
+      const u = -circumference / 2 + (i * circumference) / 36;
+      for (const y of [0.06, 1.98])
+        sphere(out, 'metal', p(u, y, 0.007), [0.008, 0.008, 0.008], body, 8, 4);
+    }
   for (const y of [0.55, 1.29]) {
     box(shell, 'metal', [0.306, y - 0.06, 0.014], [0.365, y + 0.06, 0.033], body);
     loft(
@@ -346,7 +397,7 @@ function buildAljaz(out) {
   loft(
     out,
     'metal',
-    [radialRing(1.993, 0.642, 0.642, 128), radialRing(2.395, 0.038, 0.038, 128)],
+    [radialRing(1.993, 0.642, 0.642, roofSegments), radialRing(2.395, 0.038, 0.038, roofSegments)],
     steel,
   );
   for (let i = 0; i < 8; i++) {
@@ -364,7 +415,7 @@ function buildAljaz(out) {
   loft(
     out,
     'metal',
-    [radialRing(1.979, 0.63, 0.63, 128), radialRing(1.999, 0.643, 0.643, 128)],
+    [radialRing(1.979, 0.63, 0.63, roofSegments), radialRing(1.999, 0.643, 0.643, roofSegments)],
     steel,
   );
   loft(
@@ -373,8 +424,8 @@ function buildAljaz(out) {
     [radialRing(2.386, 0.055, 0.055, 32), radialRing(2.437, 0.012, 0.012, 32)],
     steel,
   );
-  flag(out);
-  inscription(out);
+  flag(out, options.cutFlag ?? true);
+  inscription(out, options.lettering ?? true);
   // Three original Y anchors retained in the 2018 restoration. Six rock bolts,
   // triangulated braces, guy-rope eyes and turnbuckles are explicit components.
   for (let i = 0; i < 3; i++) {

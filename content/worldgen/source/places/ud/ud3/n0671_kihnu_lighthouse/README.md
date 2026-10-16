@@ -28,7 +28,7 @@ Shared canonical material graphs with metric UV repeats in extras.molenSurface; 
 
 ## Placement proposal
 
-Navigation authority exact coordinate fixes tower center, within one meter of exact-QID OSMnode3369832511. Native+Z faces north toward the keeper-house access; the north entry is reconstructed from the photographed closed sea-facing elevations and landward approach. Oil-store footprint is mapped in actual east/south offsets, resolving ensemble rotation; its roof and openings follow the municipal aerial. The broader OSMtower circle includes the stone/plinth skirt and is not used to stretch the shaft. Proposed anchor 23.97109316, 58.097058 (longitude, latitude), heading 3.141592653589793 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
+Aid 840 fixes the authority center and 28.3 m height. The mapped oil-store rectangle resolves the signed ensemble rotation at heading PI, matching the original west/south offset and 0.191 rad store rotation. Main north entry remains an explicitly landward-access reconstruction. The offset broader mapped tower ring does not stretch the photo-proportioned shaft. Both source floors Y=0 contact the common host ground; no surveyed site elevation is asserted. Proposed anchor 23.97109316, 58.097058 (longitude, latitude), heading 3.141592653589793 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 

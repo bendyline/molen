@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Chicago’s tall white granite shaft with individually modeled V-faced vertical piers, recessed charcoal window bands, signed notched corner geometry, glazed lobby and its separately mapped rooftop mechanical block.
+Chicago white granite pinstriped tube with four notched solid corners, full-height V piers, tall glass lobby, mapped roof plant and current eastern broadcast mast.
 
 ## Evidence and reconstruction
 
@@ -17,9 +17,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-168,138 triangles; 429,412 vertices; 5 material groups; 17,479,792 bytes. Native bounds: -30.505, 0.000, -30.054 to 30.505, 346.300, 30.054. Source hash: `sha256:b92e60895bc497091a848d3d0496c4b40ff75da7869261501710b2f98655ccfc`.
+2,310 triangles; 5,902 vertices; 4 material groups; 242,980 bytes. Native bounds: -30.505, 0.000, -30.054 to 30.505, 362.500, 30.054. Source hash: `sha256:ce857e47a6f0ec1b42809a9b55abc8246ab3ef925f4164956192f1c195dde5d9`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X south/slightly east","front":"+X south Randolph lobby; +Z west/slightly south","origin":"Exact-QID mapped ground-contact footprint frame"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0172` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Individual pier dimensions and glazing pitch are reconstructed. Granite joints and roof ventilation are modeled, while corporate lettering, plaza fountains and proposed observation-deck alterations are excluded.
+- Original 168138-triangle/17479792-byte master remains exactly reproducible from the unchanged global recipe. Reviewed source keeps the signed notched tower and separate roof plant, corrects the corner returns to broad solid granite surfaces, retains full-height V-faced granite piers down through the tall lobby and adds the photo-supported eastern roof antenna to published362.5 m tip. Published architectural346.3 m/occupied328 m/83floors/1973/recladding1992 from CVU. Main roof340 m, lobby10.4 m,15bays per long face, pier half-width.69 m/depth.58 m, glazing/floor pitch,8 m south/12 m east antenna offset, antenna diameter/supports and service forms are reconstructed, not measured construction dimensions. Full vertical glass planes and long frame/spandrel strips replace per-window frame geometry; distant levels aggregate horizontal coverage. Stone grain uses canonical shared granite; no tiny joint geometry or copied facade photo. Three shared256px concrete/granite/painted-metal graphs and opaque palette glass, zero embedded images. Two-level landscaped sunken plaza, fountains/sculptures, subterranean garage/pedways, lobby interiors, detailed doors, flags/lettering, minor rooftop aerials and proposed observation-deck/elevator alterations excluded. Ground-contact shell has no terrain-grade proof. Physical phones/laptops and dense-city timing remain unmeasured. Cached Los Angeles Aon photos/brochure explicitly rejected; they do not inform this model.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

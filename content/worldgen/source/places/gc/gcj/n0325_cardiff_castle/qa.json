@@ -1,0 +1,400 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0325_cardiff_castle",
+  "reviewedOn": "2026-10-13",
+  "inputHash": "sha256:4a10e37609e1b7927d07f89aea9f0611754a69bfdab54f2a2a3c83f53bf6a4a7",
+  "sourceHash": "sha256:a7fced94f50f88756c16f674142b8ddfd44330039ba58daa6bfffedc33c7297e",
+  "runtimeHash": "sha256:ae6b267a24e5fc93d463b1c06f8132025297c7061a3a3320ddfe45ebfc50f857",
+  "captureReportHash": "sha256:be37eefa1f398428791224fd17268c8f70978b1dbca4ef92c64597aceb45d230",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/keep-motte-and-stairs.png",
+      "shots/keep-courtyard.png",
+      "shots/palace-court-facade.png",
+      "shots/southwest-clock-tower.png",
+      "shots/south-entrance.png",
+      "shots/north-gate-and-bridge.png"
+    ],
+    "notes": "All11 current portable/source-terrain views inspected, including the retained1024x640 summary. Open shell keep/court, motte/stairs, western palace and unequal towers/roofs, clock tower, outer/inner enclosure, gate passages, north/west bridge approaches and mapped visitor range remain distinct. Bridge gaps, clock corner supports, low panes, intersecting reveals and tile-clipped sections were corrected."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:fdf9d1502d9940d8c5842b8a35aacf2b8d08c76cd94e30d4a07a9543d3694b54",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/keep-motte-and-stairs.png",
+      "shots/shared/keep-courtyard.png",
+      "shots/shared/palace-court-facade.png",
+      "shots/shared/southwest-clock-tower.png",
+      "shots/shared/south-entrance.png",
+      "shots/shared/north-gate-and-bridge.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All11 current shared/geographic views inspected. Four existing256-square graphs supply weathered limestone, slate, painted metal and lime plaster with linear tints and metric UVs. Glass/grass/clock accents use vertex colors. Each graph loads once; unloading leaves zero live model geometries. Flat fixture is complemented by source-terrain views."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2c9dded2445d4dc07c3a2208a1dd037eba03aa4a910594964686e6bd32ecfed8",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/keep-motte-and-stairs.png",
+      "medium-fi/keep-courtyard.png",
+      "medium-fi/palace-court-facade.png",
+      "medium-fi/southwest-clock-tower.png",
+      "medium-fi/south-entrance.png",
+      "medium-fi/north-gate-and-bridge.png",
+      "medium-fi/whole-cardiff-skyline.png",
+      "medium-fi/whole-cardiff-district.png",
+      "medium-fi/whole-cardiff-street.png",
+      "medium-fi/whole-cardiff-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All27 current Earth-lighting views inspected: Economy/High, noon/late, three distances, untextured silhouette, six details, four matched levels and four transitions. Keep/motte, western palace/clock and enclosure identity persists. Skyline simplifies mapped silhouette and omits visitor range/ornament. District has sparse surface panes/coarse stairs; street has one recessed facade row/slits/treads; closeup restores both rows and denser trim/merlons. Synthetic English-terrace neighbors are review context."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:c2a2b83bb2373d58af8d858438bc58be727a20ca25865a32414b7386258b3efc",
+    "mapFrameHash": "sha256:5365ec77e29ef6c49184b8db556834640b5e014279c8f0eeeb52b24e2a08fa71",
+    "notes": "Retained exact-QID site and24 current component IDs/25 unioned polygons, keep courtyard, gate/stair/bridge paths and DEM match. Six IDs spanning tile boundaries were joined. Cardinal authoring output rotates135degrees; inverse viewer heading restores the same geographic west palace, southwest clock, southern entrance and northwestern keep. Both actual named bridge roads are suppressed while unrelated bridge/path/tunnel guards remain. NativeY0 follows standardDEM12.8751m; estimated10.8m motte and2.8m palace/west gate floors, foundations and terrain/moat/deck joins remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Individual exterior from two inspected pictures and standard viewer PMTiles/DEM, deterministic master and four independently authored levels. Shared surfaces, open keep/motte, tower/roof silhouette, clock and gate/curtain rhythm carry identity. Untagged heights, component roles, roof profiles, windows, clock sculpture/lettering and terrain/moat joins are estimates. Full interiors, underground shelters and surveyed walking collision are excluded."
+  },
+  "geometryValidation": {
+    "format": "molen/structure-geometry-validation@1",
+    "errors": [],
+    "checks": [
+      {
+        "check": "Khronos-source",
+        "passed": true,
+        "notes": "{\"name\":\"source\",\"path\":\"content/worldgen/source/places/gc/gcj/n0325_cardiff_castle/models/source.glb\",\"hash\":\"sha256:a7fced94f50f88756c16f674142b8ddfd44330039ba58daa6bfffedc33c7297e\",\"bytes\":2749476,\"triangles\":22875,\"materials\":8,\"images\":0,\"min\":[-136.73797607421875,-2.05484938621521,-131.13221740722656],\"max\":[132.6516876220703,39.5,132.57676696777344],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-runtime",
+        "passed": true,
+        "notes": "{\"name\":\"runtime\",\"path\":\"content/worldgen/assets/places/gc/gcj/n0325_cardiff_castle/model.glb\",\"hash\":\"sha256:ae6b267a24e5fc93d463b1c06f8132025297c7061a3a3320ddfe45ebfc50f857\",\"bytes\":2748756,\"triangles\":22875,\"materials\":8,\"images\":0,\"min\":[-136.73797607421875,-2.05484938621521,-131.13221740722656],\"max\":[132.6516876220703,39.5,132.57676696777344],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-skyline",
+        "passed": true,
+        "notes": "{\"name\":\"skyline\",\"path\":\"content/worldgen/assets/places/gc/gcj/n0325_cardiff_castle/model.skyline.glb\",\"hash\":\"sha256:7d4048636006a7aa55b04fb34de6f96dc1d52467051176a9863fc4f2996e7d00\",\"bytes\":87732,\"triangles\":927,\"materials\":1,\"images\":0,\"min\":[-135.07969665527344,-1.600996732711792,-131.13221740722656],\"max\":[132.2616424560547,39.5,130.86676025390625],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-district",
+        "passed": true,
+        "notes": "{\"name\":\"district\",\"path\":\"content/worldgen/assets/places/gc/gcj/n0325_cardiff_castle/model.district.glb\",\"hash\":\"sha256:782e06a609b5cdc650b47ec2f0e92e7fcc29a4bb9fd6e0893a54be4774534298\",\"bytes\":363144,\"triangles\":3974,\"materials\":8,\"images\":0,\"min\":[-136.49208068847656,-2.05484938621521,-131.13221740722656],\"max\":[132.6516876220703,39.5,132.31378173828125],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-street",
+        "passed": true,
+        "notes": "{\"name\":\"street\",\"path\":\"content/worldgen/assets/places/gc/gcj/n0325_cardiff_castle/model.street.glb\",\"hash\":\"sha256:96bb220302d2a6e4734fc785b7f10079d117736290ac49481a575ef6b5dc0099\",\"bytes\":1258584,\"triangles\":15793,\"materials\":8,\"images\":0,\"min\":[-136.73797607421875,-2.05484938621521,-131.13221740722656],\"max\":[132.7578887939453,39.5,132.57676696777344],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "Khronos-closeup",
+        "passed": true,
+        "notes": "{\"name\":\"closeup\",\"path\":\"content/worldgen/assets/places/gc/gcj/n0325_cardiff_castle/model.closeup.glb\",\"hash\":\"sha256:c633b32e250b1e51e121ee9b80a1b330a18c9c3406fcafe6672db6a2c52ce7ef\",\"bytes\":1791444,\"triangles\":22875,\"materials\":8,\"images\":0,\"min\":[-136.73797607421875,-2.05484938621521,-131.13221740722656],\"max\":[132.6516876220703,39.5,132.57676696777344],\"errors\":0,\"warnings\":0}"
+      },
+      {
+        "check": "24-component-IDs-25-unioned-polygons-and-keep-courtyard",
+        "passed": true
+      },
+      {
+        "check": "native-output-and-inverse-geographic-heading",
+        "passed": true
+      },
+      {
+        "check": "retained-exact-QID-site-and-standard-DEM",
+        "passed": true
+      },
+      {
+        "check": "both-actual-named-bridge-roads-suppressed-with-preservation-guards",
+        "passed": true
+      },
+      {
+        "check": "four-budgeted-levels-split-GPU-streams",
+        "passed": true
+      },
+      {
+        "check": "targeted-source-recipe-exact-byte-reproduction",
+        "passed": true
+      },
+      {
+        "check": "keep-entrance-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[50.49393959518916,12.100000000000001,-13.580643463578099],\"end\":[42.985576877672415,12.100000000000001,-15.693577277544971],\"hits\":0}"
+      },
+      {
+        "check": "keep-entrance-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[50.04697282685001,12.100000000000001,-11.992335965641868],\"end\":[42.53861010933326,12.100000000000001,-14.105269779608738],\"hits\":2}"
+      },
+      {
+        "check": "keep-entrance-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[50.49393959518916,15.200000000000001,-13.580643463578099],\"end\":[42.985576877672415,15.200000000000001,-15.693577277544971],\"hits\":2}"
+      },
+      {
+        "check": "north-gate-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[89.76493084915539,3.3,56.13429695755878],\"end\":[77.81937629205638,3.3,49.22461343923679],\"hits\":0}"
+      },
+      {
+        "check": "north-gate-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[88.51317658858981,3.3,58.29834669616366],\"end\":[76.56762203149079,3.3,51.38866317784168],\"hits\":2}"
+      },
+      {
+        "check": "north-gate-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[89.76493084915539,7,56.13429695755878],\"end\":[77.81937629205638,7,49.22461343923679],\"hits\":2}"
+      },
+      {
+        "check": "west-gate-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[24.637539931707927,4.1,-120.15546501242409],\"end\":[6.475158440500152,4.1,-108.09860395459346],\"hits\":0}"
+      },
+      {
+        "check": "west-gate-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[26.07551418631158,4.1,-117.98930942172959],\"end\":[7.913132695103805,4.1,-105.93244836389897],\"hits\":2}"
+      },
+      {
+        "check": "west-gate-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[24.637539931707927,8,-120.15546501242409],\"end\":[6.475158440500152,8,-108.09860395459346],\"hits\":2}"
+      },
+      {
+        "check": "south-gate-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[-80.66958360017188,3.9000000000000004,-44.34561229619997],\"end\":[-97.66274661507542,3.9000000000000004,-54.50791571367937],\"hits\":0}"
+      },
+      {
+        "check": "south-gate-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-82.13233939511208,3.9000000000000004,-41.89962671072142],\"end\":[-99.12550241001566,3.9000000000000004,-52.061930128200814],\"hits\":2}"
+      },
+      {
+        "check": "south-gate-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-80.66958360017188,8,-44.34561229619997],\"end\":[-97.66274661507542,8,-54.50791571367937],\"hits\":4}"
+      },
+      {
+        "check": "inner-wall-gate-clear-passage",
+        "passed": true,
+        "notes": "{\"start\":[22.292866865133814,2.1,-23.690224979584016],\"end\":[8.112724725887722,2.1,-27.928570047033954],\"hits\":0}"
+      },
+      {
+        "check": "inner-wall-gate-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[21.61988639834278,2.1,-21.438648356122645],\"end\":[7.439744259096685,2.1,-25.676993423572583],\"hits\":1}"
+      },
+      {
+        "check": "inner-wall-gate-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[22.292866865133814,4.9,-23.690224979584016],\"end\":[8.112724725887722,4.9,-27.928570047033954],\"hits\":1}"
+      },
+      {
+        "check": "palace-0-0-7.3-recessed-glazing",
+        "passed": true,
+        "notes": "{\"start\":[22.14080838398141,7.95,-91.6283721065048],\"end\":[23.6166218402118,7.95,-94.57997754124861],\"hits\":1}"
+      },
+      {
+        "check": "palace-0-0-7.3-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[21.313464436363823,7.95,-92.04204709044816],\"end\":[22.789277892594207,7.95,-94.99365252519198],\"hits\":2}"
+      },
+      {
+        "check": "palace-0-0-7.3-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[22.52093938694084,10.35,-91.43830522199028],\"end\":[23.99675284317123,10.35,-94.38991065673409],\"hits\":2}"
+      },
+      {
+        "check": "tower-52776575618496-0-0-7.3-recessed-glazing",
+        "passed": true,
+        "notes": "{\"start\":[31.514327108900932,7.95,-93.42776856187986],\"end\":[33.05348446767301,7.95,-96.34684283721748],\"hits\":1}"
+      },
+      {
+        "check": "tower-52776575618496-0-0-7.3-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[30.696101743844185,7.95,-93.85919903365688],\"end\":[32.23525910261626,7.95,-96.7782733089945],\"hits\":1}"
+      },
+      {
+        "check": "tower-52776575618496-0-0-7.3-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[31.890268492845937,10.35,-93.22954375052285],\"end\":[33.42942585161801,10.35,-96.14861802586049],\"hits\":1}"
+      },
+      {
+        "check": "tower-52776575618494-0-0-7.3-recessed-glazing",
+        "passed": true,
+        "notes": "{\"start\":[-9.382292936335013,7.95,-106.98419521652522],\"end\":[-7.981645624043644,7.95,-109.9722024297981],\"hits\":1}"
+      },
+      {
+        "check": "tower-52776575618494-0-0-7.3-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-10.219840412782723,7.95,-107.37680090254628],\"end\":[-8.819193100491354,7.95,-110.36480811581919],\"hits\":1}"
+      },
+      {
+        "check": "tower-52776575618494-0-0-7.3-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-8.997473825534712,10.35,-106.80380882024527],\"end\":[-7.596826513243343,10.35,-109.79181603351817],\"hits\":1}"
+      },
+      {
+        "check": "tower-35185181463444-0-0-7.3-recessed-glazing",
+        "passed": true,
+        "notes": "{\"start\":[14.473629154535814,7.95,-116.85405096898003],\"end\":[12.775802853894312,7.95,-119.68378343917047],\"hits\":1}"
+      },
+      {
+        "check": "tower-35185181463444-0-0-7.3-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[13.680446568194554,7.95,-116.37814511198204],\"end\":[11.982620267553052,7.95,-119.20787758217247],\"hits\":2}"
+      },
+      {
+        "check": "tower-35185181463444-0-0-7.3-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[14.838064396908813,10.35,-117.07271041678993],\"end\":[13.140238096267318,10.35,-119.90244288698035],\"hits\":1}"
+      },
+      {
+        "check": "tower-35185182135588-0-0-7.3-recessed-glazing",
+        "passed": true,
+        "notes": "{\"start\":[4.036797255610914,7.95,-105.53136818481147],\"end\":[5.419703014266602,7.95,-108.52762779684056],\"hits\":1}"
+      },
+      {
+        "check": "tower-35185182135588-0-0-7.3-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[3.196936606784554,7.95,-105.91900085958616],\"end\":[4.579842365440257,7.95,-108.91526047161527],\"hits\":1}"
+      },
+      {
+        "check": "tower-35185182135588-0-0-7.3-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[4.422679175341933,10.35,-105.35326668559065],\"end\":[5.805584933997622,10.35,-108.34952629761976],\"hits\":1}"
+      },
+      {
+        "check": "clock-tower-0-0-11.5-recessed-glazing",
+        "passed": true,
+        "notes": "{\"start\":[-38.21200445211527,12.15,-121.47180851621752],\"end\":[-36.579483493069056,12.15,-124.33971285881245],\"hits\":1}"
+      },
+      {
+        "check": "clock-tower-0-0-11.5-adjacent-wall",
+        "passed": true,
+        "notes": "{\"start\":[-39.01588672996386,12.15,-121.92940908807138],\"end\":[-37.38336577091763,12.15,-124.79731343066629],\"hits\":1}"
+      },
+      {
+        "check": "clock-tower-0-0-11.5-overhead-wall",
+        "passed": true,
+        "notes": "{\"start\":[-37.84265313526593,14.549999999999999,-121.2615596048252],\"end\":[-36.21013217621971,14.549999999999999,-124.12946394742012],\"hits\":1}"
+      },
+      {
+        "check": "keep-court--49,-35-open-courtyard",
+        "passed": true,
+        "notes": "{\"start\":[59.39696961966999,45,-9.89949493661167],\"end\":[59.39696961966999,10.92,-9.89949493661167],\"hits\":0}"
+      },
+      {
+        "check": "keep-court--49,-35-courtyard-floor",
+        "passed": true,
+        "notes": "{\"start\":[59.39696961966999,10.92,-9.89949493661167],\"end\":[59.39696961966999,10.680000000000001,-9.89949493661167],\"hits\":1}"
+      },
+      {
+        "check": "keep-court--51,-37-open-courtyard",
+        "passed": true,
+        "notes": "{\"start\":[62.22539674441619,45,-9.899494936611667],\"end\":[62.22539674441619,10.92,-9.899494936611667],\"hits\":0}"
+      },
+      {
+        "check": "keep-court--51,-37-courtyard-floor",
+        "passed": true,
+        "notes": "{\"start\":[62.22539674441619,10.92,-9.899494936611667],\"end\":[62.22539674441619,10.680000000000001,-9.899494936611667],\"hits\":1}"
+      },
+      {
+        "check": "keep-court--47,-33-open-courtyard",
+        "passed": true,
+        "notes": "{\"start\":[56.568542494923804,45,-9.899494936611674],\"end\":[56.568542494923804,10.92,-9.899494936611674],\"hits\":0}"
+      },
+      {
+        "check": "keep-court--47,-33-courtyard-floor",
+        "passed": true,
+        "notes": "{\"start\":[56.568542494923804,10.92,-9.899494936611674],\"end\":[56.568542494923804,10.680000000000001,-9.899494936611674],\"hits\":1}"
+      },
+      {
+        "check": "roof--73,43-covered-roof",
+        "passed": true,
+        "notes": "{\"start\":[21.213203435596423,50,-82.02438661763952],\"end\":[21.213203435596423,17,-82.02438661763952],\"hits\":1}"
+      },
+      {
+        "check": "roof--69,55-covered-roof",
+        "passed": true,
+        "notes": "{\"start\":[9.89949493661166,50,-87.68124086713189],\"end\":[9.89949493661166,17,-87.68124086713189],\"hits\":1}"
+      },
+      {
+        "check": "roof--65,68-covered-roof",
+        "passed": true,
+        "notes": "{\"start\":[-2.1213203435596526,50,-94.04520189781081],\"end\":[-2.1213203435596526,17,-94.04520189781081],\"hits\":1}"
+      },
+      {
+        "check": "roof--55,111-covered-roof",
+        "passed": true,
+        "notes": "{\"start\":[-39.597979746446676,50,-117.37972567696688],\"end\":[-39.597979746446676,17,-117.37972567696688],\"hits\":3}"
+      },
+      {
+        "check": "keep-stair-0.2-stair-tread",
+        "passed": true,
+        "notes": "{\"start\":[29.175701910851636,2.6036550680325012,-19.783629650978586],\"end\":[29.175701910851636,1.403655068032501,-19.783629650978586],\"hits\":1}"
+      },
+      {
+        "check": "keep-stair-0.5-stair-tread",
+        "passed": true,
+        "notes": "{\"start\":[34.50071692240901,5.902284417520313,-18.166408368472432],\"end\":[34.50071692240901,4.702284417520314,-18.166408368472432],\"hits\":2}"
+      },
+      {
+        "check": "keep-stair-0.8-stair-tread",
+        "passed": true,
+        "notes": "{\"start\":[39.82573193396638,9.200913767008126,-16.549187085966278],\"end\":[39.82573193396638,8.000913767008127,-16.549187085966278],\"hits\":1}"
+      },
+      {
+        "check": "keep-landing-landing-contact",
+        "passed": true,
+        "notes": "{\"start\":[45.466966030295,11.15,-15.061374439273465],\"end\":[45.466966030295,10.450000000000001,-15.061374439273465],\"hits\":3}"
+      },
+      {
+        "check": "bridge-gate--22.12,-97-deck-contact",
+        "passed": true,
+        "notes": "{\"start\":[84.23055977494154,2.46,52.94815577524868],\"end\":[84.23055977494154,1.36,52.94815577524868],\"hits\":2}"
+      },
+      {
+        "check": "bridge-gate--92.05,69.77-deck-contact",
+        "passed": true,
+        "notes": "{\"start\":[15.754339084836275,3.26,-114.42401933160713],\"end\":[15.754339084836275,2.16,-114.42401933160713],\"hits\":2}"
+      }
+    ]
+  },
+  "limitations": [
+    "Mapped castle/site/keep courtyard and24selected component polygons control the exterior. Component roles, wall/window arrangement, roof/gable/turret profiles and untagged heights are approximate picture-led interpretations.",
+    "NativeY0 follows standardDEM12.8751m; the small motte is not represented in that DEM and uses an approximate10.8m plateau. Palace2.8m floor, moat/terrace levels, stairs, foundations and bridge/terrain joins are approximate, not surveyed or certified walking collision.",
+    "Skyline keeps open keep/motte, simplified palace/tower/roof silhouette, clock and enclosure, omitting the modern visitor range and ornament. District adds sparse surface windows, crenellations, clocks and bridge rails. Street restores a single recessed facade row, slits, stair treads, chimneys and selected clock accents; closeup restores both facade rows and denser crenellations/trim. Full interiors, underground shelters, exact sculpture, heraldry, clock lettering and weathering are excluded.",
+    "City, trees, visitors, exact animal wall sculptures and full gardens remain host content. Physical laptop and phone performance measurements remain pending."
+  ]
+}

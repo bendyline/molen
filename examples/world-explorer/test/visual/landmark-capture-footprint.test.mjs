@@ -55,6 +55,7 @@ test('parallel bridge centerlines remain open and disconnected', () => {
     anchor: [85.21, 25.63],
     heading: 0,
     geometry: {
+      outline: [],
       centerlines: [
         [
           [-100, -6],
@@ -109,4 +110,33 @@ test('the established source field is accepted as attributed evidence', () => {
   };
   assert.deepEqual(check(frame).footprint[0], frame.anchor);
   assert.throws(() => check({ ...frame, source: './unattributed' }), /absolute evidence URL/);
+});
+
+test('an exact mapped point remains a point without an invented tower perimeter', () => {
+  const frame = {
+    sourceUrl: 'https://www.openstreetmap.org/node/5316362054',
+    anchor: [49.4600634, -18.0488027],
+    heading: 2.7,
+    geometry: { point: [0, 0], outline: [], centerlines: [] },
+  };
+  const check = (f) => {
+    const bytes = Buffer.from(JSON.stringify(f));
+    return sourceLocalFootprint(
+      {
+        geographicProposal: {
+          mapGeometrySource: 'map-frame.json',
+          mapGeometryHash: `sha256:${createHash('sha256').update(bytes).digest('hex')}`,
+        },
+      },
+      bytes,
+    );
+  };
+  const result = check(frame);
+  assert.deepEqual(result.point, frame.anchor);
+  assert.equal(result.footprint, undefined);
+  assert.equal(result.lines, undefined);
+  assert.throws(
+    () => check({ ...frame, geometry: { point: [null, 0] } }),
+    /Invalid source-local footprint point/,
+  );
 });

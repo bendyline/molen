@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.88,
+      "metallic": 0.08
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.86,
+      "metallic": 0.08
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "roughness": 0.56,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tallinn-st-mary-model.mjs",
+    "export": "buildTallinnMarySkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTallinnMaryDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.56,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildTallinnMaryStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.56,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTallinnMaryCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.88,
+            "metallic": 0.08
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.56,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -76,
+      60,
+      82
+    ],
+    "lookAt": [
+      0,
+      24,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tallinn-mary-skyline",
+      "position": [
+        -88,
+        74,
+        95
+      ],
+      "lookAt": [
+        -3,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tallinn-mary-district",
+      "position": [
+        -88,
+        74,
+        95
+      ],
+      "lookAt": [
+        -3,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tallinn-mary-street",
+      "position": [
+        -88,
+        74,
+        95
+      ],
+      "lookAt": [
+        -3,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tallinn-mary-closeup",
+      "position": [
+        -88,
+        74,
+        95
+      ],
+      "lookAt": [
+        -3,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Existing map axis signed with ground/aerial pictures;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 56.265474m;estimated common floor 2.3m clears sampled compound peak 1.911m and perimeter -3.61..1.29m. Foundations follow coarse hill terrain. Exact street/door thresholds,absolute altitude and certified walking unverified;no independent survey.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        24.739166428,
+        59.437057279
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 56.265474m;estimated common floor 2.3m clears sampled compound peak 1.911m and perimeter -3.61..1.29m. Foundations follow coarse hill terrain. Exact street/door thresholds,absolute altitude and certified walking unverified;no independent survey."
+    },
+    "bounds": [
+      24.7385,
+      59.4368,
+      24.7398,
+      59.4374
+    ],
+    "notes": "Standard DEM datum 56.265474m;estimated common floor 2.3m clears sampled compound peak 1.911m and perimeter -3.61..1.29m. Foundations follow coarse hill terrain. Exact street/door thresholds,absolute altitude and certified walking unverified;no independent survey."
+  },
+  "geographicNote": "Standard DEM datum 56.265474m;estimated common floor 2.3m clears sampled compound peak 1.911m and perimeter -3.61..1.29m. Foundations follow coarse hill terrain. Exact street/door thresholds,absolute altitude and certified walking unverified;no independent survey.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

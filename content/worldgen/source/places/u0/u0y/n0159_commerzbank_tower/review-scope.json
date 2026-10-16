@@ -1,0 +1,406 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/commerzbank-runtime-model.mjs",
+    "export": "buildCommerzbankReviewedMaster"
+  },
+  "brief": "Complete triangular silver/green tower with nine visible staggered garden recesses, three rounded corner cores, flat stepped crown, red/white lattice mast and independently mapped western main entrance.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east through signed asymmetric three-core plan",
+    "front": "-X western Große Gallusstraße19 main entry",
+    "origin": "Ground contact in exactQ151765 frame"
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "scale": 2
+  },
+  "appearance": {
+    "identity": "Three rounded silver cores, green glazed wings, nine staggered garden recesses and flat southwestern crown with lattice mast.",
+    "scope": "Complete medium-fi tower includes rounded triangular base, three occupied wings around central atrium, nine staggered four-storey garden volumes, three rounded service cores, western tall flat-roof crown and red/white open lattice antenna to300m. Original54151-triangle recipe remains unchanged and reproducible. Engineer photograph and award section show flat stepped corner cores and lattice mast; reviewed source replaces the original sloping glass crown and solid mast approximation, while keeping mapped component positions. Arup publishes259m architectural height,160m atrium,nine15m gardens alternating30m offices; professional registry publishes300m tip and190m occupied height. Counts differ between architect53storeys and engineer50above-ground/45office; no literal floor-count claim. Three garden schedules and15m depth remain reconstruction using mapped coarse strata, not a surveyed schedule. Broad rounded cores use silver shared painted-metal panels and narrow reconstructed vertical dark strips; outer office curtain walls use opaque palette PBR glazing. Garden exterior transparent glass is omitted around structural bars to keep vegetation/recess readable; it is a deliberate abstraction, not literal exterior open air. Source trees are original medium-fi foliage. Named Große Gallusstraße19 entry belongs to base, receives reconstructed glazing/recess and small threshold; hardware and grade unmeasured. Separate perimeter historic block, galleria interior, neighboring restored structures, public cafés, basements and interiors are outside this tower bundle. Official award interior images support galleria context only. Exact service fittings, logos, mast lights, panel joints, plant species and garden furniture are simplified or omitted. Night illumination, real grade and physical-device performance unmeasured."
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 259,
+    "tipHeightMeters": 300,
+    "occupiedHeightMeters": 190,
+    "skyGardens": 9,
+    "gardenStories": 4,
+    "architect": "Foster + Partners",
+    "gardenHeightMeters": 15,
+    "atriumHeightMeters": 160,
+    "originalMasterHash": "sha256:8ed1b2691732cf14c1754411257a39f9ffa167c5ef8fd77d841d98d4cc7f6ea0",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#skylineNext[N0159].build",
+    "mappedComponents": 21,
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ]
+    }
+  },
+  "reconstruction": {
+    "plans": "Signed exact footprint with independent mapped office wings, core heights and highest crown/mast parts",
+    "gardens": "Nine original staggered schedules and15m height retain readable recesses and vegetation, all variants preserve garden bands",
+    "crown": "Independent mapped rounded head reaches flat259m roof, open triangular red/white lattice mast follows two mapped mast controls to300m",
+    "entry": "Mapped main-entry node1414949624 controls position; dimensions are original reconstruction",
+    "atrium": "Triangular gap between three independent office-wing plans has reconstructed opaque-glass roof at engineer-published160m atrium height; roof framing simplified, exact glazing segmentation unmeasured."
+  },
+  "limitations": [
+    "Complete medium-fi tower includes rounded triangular base, three occupied wings around central atrium, nine staggered four-storey garden volumes, three rounded service cores, western tall flat-roof crown and red/white open lattice antenna to300m. Original54151-triangle recipe remains unchanged and reproducible. Engineer photograph and award section show flat stepped corner cores and lattice mast; reviewed source replaces the original sloping glass crown and solid mast approximation, while keeping mapped component positions. Arup publishes259m architectural height,160m atrium,nine15m gardens alternating30m offices; professional registry publishes300m tip and190m occupied height. Counts differ between architect53storeys and engineer50above-ground/45office; no literal floor-count claim. Three garden schedules and15m depth remain reconstruction using mapped coarse strata, not a surveyed schedule. Broad rounded cores use silver shared painted-metal panels and narrow reconstructed vertical dark strips; outer office curtain walls use opaque palette PBR glazing. Garden exterior transparent glass is omitted around structural bars to keep vegetation/recess readable; it is a deliberate abstraction, not literal exterior open air. Source trees are original medium-fi foliage. Named Große Gallusstraße19 entry belongs to base, receives reconstructed glazing/recess and small threshold; hardware and grade unmeasured. Separate perimeter historic block, galleria interior, neighboring restored structures, public cafés, basements and interiors are outside this tower bundle. Official award interior images support galleria context only. Exact service fittings, logos, mast lights, panel joints, plant species and garden furniture are simplified or omitted. Night illumination, real grade and physical-device performance unmeasured."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "recess": {
+      "slot": "wall",
+      "localRef": "palette:#fffefd",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "geographic": {
+    "heading": 0.03415534455,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms exactQ151765 base183060777 and20 component plans unchanged. Three separately mapped corner cores, southwestern highest core/mast and named base entrance1414949624 on Große Gallusstraße19 resolve the signed frame. Retain anchor/heading and scale: native-X west and northwest main arrival, +Z south, southwestern tall core at-X/+Z; geographic north has negative nativeZ. Reconcile coarse259m architectural core and300m mast with engineer and professional height definitions. Accept plan reconstruction2m/1degree, Y0 contact datum, surveyed ground grade/slope unmeasured. Footprint replacement disabled.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms exactQ151765 base183060777 and20 component plans unchanged. Three separately mapped corner cores, southwestern highest core/mast and named base entrance1414949624 on Große Gallusstraße19 resolve the signed frame. Retain anchor/heading and scale: native-X west and northwest main arrival, +Z south, southwestern tall core at-X/+Z; geographic north has negative nativeZ. Reconcile coarse259m architectural core and300m mast with engineer and professional height definitions. Accept plan reconstruction2m/1degree, Y0 contact datum, surveyed ground grade/slope unmeasured. Footprint replacement disabled.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/commerzbank-runtime-model.mjs",
+    "export": "buildCommerzbankSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCommerzbankDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCommerzbankStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCommerzbankCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "mapped-west-main-entry",
+      "position": [
+        -34.979908818755355,
+        3,
+        -14.987312204589895
+      ],
+      "lookAt": [
+        -17.979908818755355,
+        2,
+        -5.987312204589894
+      ]
+    },
+    {
+      "name": "flat-crown-and-lattice",
+      "position": [
+        -75,
+        284,
+        97
+      ],
+      "lookAt": [
+        -20,
+        255,
+        18
+      ]
+    },
+    {
+      "name": "whole-three-core-tower",
+      "position": [
+        340,
+        224,
+        450
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ]
+    },
+    {
+      "name": "central-atrium-roof",
+      "position": [
+        0.3,
+        248,
+        6.1
+      ],
+      "lookAt": [
+        0.3,
+        160,
+        6.1
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        340,
+        224,
+        450
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        340,
+        224,
+        450
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        340,
+        224,
+        450
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        340,
+        224,
+        450
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-garden-recess",
+      "position": [
+        -73,
+        89,
+        -47
+      ],
+      "lookAt": [
+        -16,
+        79,
+        -3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-garden-structure",
+      "position": [
+        -42,
+        89,
+        -23
+      ],
+      "lookAt": [
+        -16,
+        78,
+        -3
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-flat-crown-lattice",
+      "position": [
+        -70,
+        276,
+        80
+      ],
+      "lookAt": [
+        -21,
+        252,
+        18
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-main-arrival",
+      "position": [
+        -29.979908818755355,
+        2.8,
+        -12.987312204589895
+      ],
+      "lookAt": [
+        -17.979908818755355,
+        1.9,
+        -5.987312204589894
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-central-atrium-roof",
+      "position": [
+        0.3,
+        248,
+        6.1
+      ],
+      "lookAt": [
+        0.3,
+        160,
+        6.1
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

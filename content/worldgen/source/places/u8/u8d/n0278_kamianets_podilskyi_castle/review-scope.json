@@ -1,0 +1,407 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#c9bba2",
+      "trim": "#e0d7c2",
+      "brick": "#bd8c70",
+      "white": "#ded7c5",
+      "roof": "#626d77",
+      "wood": "#a77a54",
+      "glass": "#4d6178",
+      "paving": "#b5afa1"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "materialBudgetReason": "Fortification campus uses five shared limestone,brick,lime-plaster,shingle and wood graphs plus one untextured glass group. All parts merged by material.",
+    "identityFeatures": [
+      "Irregular open stone court with asymmetric tower chain",
+      "Tall dark pointed northern roofs above warm arched crown bands and broad Papal cap",
+      "Pentagonal gate corner and paired open western bastion,lower outer courts"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X toward northwest end / New West tower; -X toward southeast entry and Papal tower",
+    "front": "Northern cone towers and lower gate court at+Z;Papal/southern chain at-Z",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/274749273 exact Q2375603,whole-site boundary",
+    "publishedOldCastleApproximateLengthMeters": 180,
+    "publishedOldCastleApproximateWidthMeters": 50,
+    "historicalTowerDescription": "Sitsinsky1928:eleven including separate river-level Water tower;current city description includes restored Small tower and excludes some historical ruins.",
+    "verifiedTowerHeightsMeters": null,
+    "originalMasterHash": "sha256:564cf387f7ff1641251bf7eda0f9c84e70b04246ab66d7392c3caee6173c9eae",
+    "originalMasterRecipe": "packages/worldgen/scripts/kamianets-castle-model.mjs#buildKamianetsRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current Old Castle exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original architectural recipe/master preserved; independent derivative fits the working court and bounded foundation bottoms.",
+    "Asymmetric towers, pointed northern roofs, warm crown bands, broad Papal cap, open western bastion, gate corner and outer courts retain identity. Dimensions and tower positions reconstructed.",
+    "Reference anchor and axis are approximate; whole-site outline does not validate individual tower registration. Footprint replacement remains off.",
+    "Separate New Castle earthworks, river-level Water tower, canyon, city bridge, removed gates and interiors excluded. Outer court elevations simplified.",
+    "Five common material graphs and local opaque glass; no embedded images. Physical-device timing pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      26.5625,
+      48.67333333
+    ],
+    "heading": 2.356194490192345,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the asymmetric Old Castle tower chain, two tall northern cones with warm crown bands, broad Papal cap, paired open western bastion and lower outer courts. Standard viewer PMTiles and the retained site frame establish approximate reference-anchor placement and northwest/southeast sign. The parent map ring is a broad compound boundary, not an exact tower footprint. A reconstructed11m working court clears coarse western ground; bounded walls/towers extend below sampled terrain. Individual tower centers and elevations remain approximate. Anchor 26.5625,48.67333333; heading 2.356194490192345; standard PMTiles datum 172.23851829222582m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture confirms the asymmetric Old Castle tower chain, two tall northern cones with warm crown bands, broad Papal cap, paired open western bastion and lower outer courts. Standard viewer PMTiles and the retained site frame establish approximate reference-anchor placement and northwest/southeast sign. The parent map ring is a broad compound boundary, not an exact tower footprint. A reconstructed11m working court clears coarse western ground; bounded walls/towers extend below sampled terrain. Individual tower centers and elevations remain approximate. Anchor 26.5625,48.67333333; heading 2.356194490192345; standard PMTiles datum 172.23851829222582m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        26.5625,
+        48.67333333
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture confirms the asymmetric Old Castle tower chain, two tall northern cones with warm crown bands, broad Papal cap, paired open western bastion and lower outer courts. Standard viewer PMTiles and the retained site frame establish approximate reference-anchor placement and northwest/southeast sign. The parent map ring is a broad compound boundary, not an exact tower footprint. A reconstructed11m working court clears coarse western ground; bounded walls/towers extend below sampled terrain. Individual tower centers and elevations remain approximate. Anchor 26.5625,48.67333333; heading 2.356194490192345; standard PMTiles datum 172.23851829222582m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kamianets-runtime-model.mjs",
+    "export": "buildKamianetsReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "shingle": {
+      "slot": "roof",
+      "graph": "shingle_cedar",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kamianets-runtime-model.mjs",
+    "export": "buildKamianetsReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKamianetsReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildKamianetsReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKamianetsReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kamianets-skyline",
+      "position": [
+        150,
+        98,
+        125
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kamianets-district",
+      "position": [
+        150,
+        98,
+        125
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kamianets-street",
+      "position": [
+        150,
+        98,
+        125
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kamianets-closeup",
+      "position": [
+        150,
+        98,
+        125
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -3,
+    "scale": 0.75,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "qaCameraOverrides": {
+    "entry-papal-and-northern-cones": {
+      "position": [
+        -124,
+        40,
+        74
+      ],
+      "lookAt": [
+        -28,
+        24,
+        10
+      ]
+    },
+    "open-courtyard": {
+      "position": [
+        0,
+        76,
+        0
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    "paired-western-bastion": {
+      "position": [
+        136,
+        41,
+        43
+      ],
+      "lookAt": [
+        79,
+        23,
+        9
+      ]
+    },
+    "rozhanka-pointed-crown": {
+      "position": [
+        43,
+        41,
+        94
+      ],
+      "lookAt": [
+        34,
+        28,
+        36
+      ]
+    },
+    "papal-faceted-body": {
+      "position": [
+        -122,
+        38,
+        -70
+      ],
+      "lookAt": [
+        -72,
+        25,
+        -28
+      ]
+    },
+    "old-castle-and-outer-courts": {
+      "position": [
+        0,
+        251,
+        1
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    }
+  }
+}

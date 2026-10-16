@@ -1,0 +1,455 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Stepped Gothic castle with separately mapped Great and Marian towers, slate roofs, timber galleries, Imperial Palace and round eastern tower, Burgrave House, well tower, gatehouses, crenellated curtains and two elevated covered passages.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X 19.49 degrees north of east",
+    "front": "+Z south-southeast",
+    "origin": "Retained exact-Q266698 frame;Y0 reconstructed300mBpv working datum."
+  },
+  "sourceFacts": {
+    "identity": "Exact Q266698 match on OSM relation/6706848",
+    "construction": "1348–1365; present exterior includes Josef Mocker’s late nineteenth-century restoration",
+    "greatTowerOfficialHeightMeters": 60,
+    "greatTowerOsmHeightMeters": 53,
+    "marianOsmHeightWithLanternMeters": 40,
+    "mappedPrecinctMeters": [
+      150.397,
+      143.111
+    ],
+    "surveyedVerticalDatum": false,
+    "originalMasterHash": "sha256:2094e82b6eb86b1ab78993df6cc09a84d5a65e8fd2f108cb34bf698c82150b85",
+    "originalMasterRecipe": "packages/worldgen/scripts/karlstejn-castle-model.mjs#karlstejnStudy.build",
+    "numericTerrainDatum": "DMR5G Bpv / EPSG8357"
+  },
+  "reconstruction": {
+    "basis": "OSM component outlines, Sedláček 1889 plan and contemporary exterior photographs; the old plan is used for topology, not as the present facade.",
+    "greatTower": "60m from evidence-guided local working base to main roof; small finials exceed that. Floor elevation is estimated from mapped boundary terrain,not a surveyed Great Tower datum.",
+    "openings": "Exterior window rhythms and detailing inferred from views; interior rooms are not reconstructed.",
+    "workingFloors": {
+      "443238530": 25.891,
+      "443238531": 15.269,
+      "443238533": 13.796,
+      "449117940": -13.939,
+      "453018670": 1.841,
+      "453018671": 4.577,
+      "453018676": -5.016,
+      "453018679": 23.04,
+      "453018680": 23.778,
+      "495183181": -5.184,
+      "495183275": 18.007,
+      "495183278": 21.954,
+      "495183281": 24.169,
+      "495183285": 23.686,
+      "495183288": 5.495,
+      "495878779": 13.45,
+      "617430390": 14.305,
+      "617430391": 13.796,
+      "617430392": 3.891,
+      "617430393": 15.269,
+      "695579421": -2.508
+    },
+    "verticalDatum": "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified."
+  },
+  "limitations": [
+    "Original detailed556934-triangle/46864188-byte master remains exactly reproducible atsha256:2094e82b6eb86b1ab78993df6cc09a84d5a65e8fd2f108cb34bf698c82150b85 from karlstejn-castle-model.mjs#karlstejnStudy.build. Independent medium-fi model removes the provisional filled terraces and adapts components to retained numeric grade.",
+    "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.",
+    "The DMR5G bare-earth service describes2009–2013 acquisition. Under buildings it interpolates; working floor estimates and steep perimeter foundation exposure require surveyed architectural elevations. The raster retains Bpv heights; no conversion to ellipsoidal heights is asserted.",
+    "Published1889 plan guides component topology,not the restored current facade. Original window rhythms,roof silhouettes,hoarding and restored detailing remain photograph-guided approximations. Interior chapels,artworks,visitor fixtures and surrounding village/forest are excluded.",
+    "Six shared granite,limestone,lime plaster,timber,painted metal and slate graphs; carved stone shares tinted limestone and recesses share tinted plaster. Glass uses local opaque PBR. No photographic or per-model embedded image textures.",
+    "Covered passage deck heights,sloping stairs,well court and wall profiles remain reconstructions. Terrain owns the open courts. Fine railings/scaffolding and exact historic crenellations are simplified. Physical laptop/phone timings remain unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "heading": 0.340165327482,
+    "groundModelY": 0,
+    "reviewStatus": "Signed identified components and retained numeric grade; medium-fi reconstructed working floors",
+    "notes": "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.",
+    "evidence": "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.",
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.",
+    "terrainReference": {
+      "anchor": [
+        14.187600418,
+        49.939448506
+      ],
+      "modelHeight": -11.701599999999985,
+      "basis": "Retained numeric grid height at source anchor relative to300mBpv; placement subtracts this interpolant."
+    }
+  },
+  "geographicNote": "Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.",
+  "sourceDocuments": [
+    "map-parts.json",
+    "reference-metadata.json",
+    "map-frame.json",
+    "review-scope.json",
+    "georeferencing-baseline.json",
+    "site-grade.json",
+    "grade-source.tif",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "limestone": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "carved": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "plaster": {
+      "graph": "plaster_lime",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "slate": {
+      "graph": "slate",
+      "slot": "roof",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "recess": {
+      "graph": "plaster_lime",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.35,
+      "metallic": 0.05,
+      "alphaMode": "OPAQUE",
+      "ref": "palette:#ffffff"
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/karlstejn-runtime-model.mjs",
+    "export": "buildKarlstejnReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/karlstejn-runtime-model.mjs",
+    "export": "buildKarlstejnReviewedSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKarlstejnReviewedDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "recess": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "street": {
+        "export": "buildKarlstejnReviewedStreet",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "recess": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKarlstejnReviewedCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "plaster": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "recess": {
+            "graph": "plaster_lime",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.35,
+            "metallic": 0.05,
+            "alphaMode": "OPAQUE"
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaCameras": [
+    {
+      "name": "reconstructed-great-tower-datum",
+      "position": [
+        118,
+        54,
+        -30
+      ],
+      "lookAt": [
+        56,
+        56,
+        -20
+      ]
+    },
+    {
+      "name": "lower-well-terrain-contact",
+      "position": [
+        -100,
+        2,
+        80
+      ],
+      "lookAt": [
+        -70,
+        -8,
+        44
+      ]
+    },
+    {
+      "name": "graded-clock-gate-stair-route",
+      "position": [
+        -7,
+        12,
+        61
+      ],
+      "lookAt": [
+        12,
+        8,
+        40
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-karlstejn-skyline",
+      "position": [
+        -160,
+        120,
+        190
+      ],
+      "lookAt": [
+        5,
+        30,
+        8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-karlstejn-district",
+      "position": [
+        -160,
+        120,
+        190
+      ],
+      "lookAt": [
+        5,
+        30,
+        8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-karlstejn-street",
+      "position": [
+        -160,
+        120,
+        190
+      ],
+      "lookAt": [
+        5,
+        30,
+        8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-karlstejn-closeup",
+      "position": [
+        -160,
+        120,
+        190
+      ],
+      "lookAt": [
+        5,
+        30,
+        8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 3
+  }
+}

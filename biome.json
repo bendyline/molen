@@ -8,6 +8,7 @@
       "!**/node_modules",
       "!**/.turbo",
       "!**/.artifacts",
+      "!review-lock.json",
       "!**/__output__",
       "!**/.tmp",
       "!spikes",
@@ -45,6 +46,12 @@
     }
   },
   "overrides": [
+    {
+      "includes": ["content/earth/world.atlas.json", "content/ecology/regional.catalog.json"],
+      "files": {
+        "maxSize": 4194304
+      }
+    },
     {
       "includes": [
         "packages/worldgen/scripts/**",
@@ -86,6 +93,9 @@
         "content/earth/businesses/catalog.json",
         "content/earth/structures/evidence/bridge-terrain/**/*.json",
         "content/earth/world.atlas.json",
+        "content/ecology/ecoregions.json",
+        "content/**/regional.catalog.json",
+        "content/wildlife/ranges.json",
         "examples/**/captures/**/*.json",
         "examples/**/public/terrain/**/SOURCES.json"
       ],

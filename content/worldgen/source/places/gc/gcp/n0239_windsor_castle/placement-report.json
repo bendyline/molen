@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0239_windsor_castle",
-  "inputHash": "sha256:41e65d9de4126df4861b2ad07cc1635b0846027cd6af4b09abc9dde1b89dc975",
-  "placementHash": "sha256:71a66efec4c53da3658b7f07c7b9279992c8e1c3904118da95580b5ad7bde778",
+  "inputHash": "sha256:257bcbb59561ec6230e6f2896768dbbba341fc191136231919523a5a0559102a",
+  "placementHash": "sha256:cec79af6bc73d7700f74609ccf77895e11d006008c84a0dce8516e636bc7d495",
   "entry": {
     "id": "next1000.n0239",
     "title": "Windsor Castle",
@@ -20,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -0.606913193,
+        51.482978564
+      ],
+      "modelHeight": 0,
+      "basis": "Native[-197,0,86] HenryVIII gateway reference; public Environment Agency bare-earth height38.271m, relative only at runtime."
+    },
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://www.openstreetmap.org/way/23580556",
-    "note": "Preserve the cached anchor and signed heading without scaling. Precinct includes open gardens and courtyards: never replace its entire polygon with a building. Cross-site levels need terrain integration before world activation. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "preview",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-0.610,51.482,-0.599,51.486",
+    "note": "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

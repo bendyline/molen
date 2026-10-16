@@ -1,0 +1,821 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.chateau_frontenac",
+  "sourceHash": "sha256:0fd47c18560ee91a39a232d4ddcd18e2f1b4beaf5bef09cb970fb84104b2a632",
+  "runtimeHash": "sha256:bb56978414d00f5df6d3639e4edd85a6c3e53482164b06e543e96a02798deb77",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:333c8b899445a6468761556f5e16c7532a49a931cf914596f17d864a94126aff",
+      "bytes": 77892,
+      "gzipBytes": 14493,
+      "triangles": 986,
+      "cpuBytes": 76476,
+      "gpuBytes": 76476,
+      "errorMeters": 1.6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:3ae003cf1f7063c8a082158758b2afaef3f7f3f7286438c1edab4d2d8e9713aa",
+      "bytes": 293848,
+      "gzipBytes": 56929,
+      "triangles": 3834,
+      "cpuBytes": 288900,
+      "gpuBytes": 288900,
+      "errorMeters": 0.7,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:7183784efa7a2b9d0bc28141b3a6df86f87afcd9a78231812ed7c72cc425fab0",
+      "bytes": 1147800,
+      "gzipBytes": 229260,
+      "triangles": 14994,
+      "cpuBytes": 1142820,
+      "gpuBytes": 1142820,
+      "errorMeters": 0.25,
+      "drawCalls": 4
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:5e03d2624a7c7678f17b7ac9150a3a0162ae617bc20857d24df1730805b6e56e",
+      "bytes": 5540140,
+      "gzipBytes": 965681,
+      "triangles": 46146,
+      "cpuBytes": 5537520,
+      "gpuBytes": 5537520,
+      "errorMeters": 0,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:e0fb79c4cc1d3df0ccddbc9b5457ea35912e998c1300fb8cc78b599fe83e24f9"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:4e318ec28b048ae4ac1b321ec3ec87f8d4185fdfdc8ee486158c7bda3e6d14fc"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:75cddb0e00b68885a9ab731e7b65a8c2f7b010ce7fcefc71ef8b7780c67774f4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          31.45,
+          62.2,
+          82.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:29e0fe69390d7f6d6f072c64af6e2fce2d9034b6e6cf96eb7a7b6a1e263905d1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          31.45,
+          62.2,
+          82.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ebeca2e84236e8c943e3829c2ddcaca1219951aa8fdf7abb918b178b50c206b9",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          31.45,
+          62.2,
+          82.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:2f3f0cc4d6f32c7bf80b648eb35afa8391200fecd0fb6e426196489d75bce45d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          31.45,
+          62.2,
+          82.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:f88d93fb07dcb35da0f666ea0e27ae0affa5c2a884234d4931ccb4e81cf98ae0",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 18268,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:7523fbb53b05b2dbd01bbebeedad5547dd2c072fe9355cf478b1d9dc8401dfd7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 18268,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:2ce486df522c9e250b5d1dd4e262bd8f5e37e8015f26f953b0723f4a4b8c0f52",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 18268,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:2c5dd43cb2682f5e30f5cd7544b375d4ce440f21286171328f9a5ccc9c190bd3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 18268,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:276e174a2ad5eea78cb450f5e5df4b010f62329ed71f14e41cd4442f8163eaf2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15420,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          177.45,
+          136.2,
+          335.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:8744a60e3413df0326e16cf3ef8b4b11550a0f54335e109313c155b2f9b64703",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15420,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          177.45,
+          136.2,
+          335.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:6ea3768c045ac8594238ccaa0af5f6616fc48e0d111dbdb4d2312eada7a2deb2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15420,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          177.45,
+          136.2,
+          335.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:057b6d08d350c122e184d2ff07ceacec6aaec459101ff386b3a416c192ce5863",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15420,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          177.45,
+          136.2,
+          335.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:26c6989a8b19805e7167e96e9ed0800d6425bab0798a0e93018384668fbf4591",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9180,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          177.45,
+          136.2,
+          335.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:79a1c5cebcf372bf7c9da46d7e320efe16da776ef2f2418de407c57cc8a5c12a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          69,
+          196
+        ],
+        "lookAt": [
+          -14,
+          29,
+          5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:b76c35dc4e8d66c9dc31871823c51c53a6ca23d2948cc79ea70af03e0fd02ba4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          -138,
+          90,
+          -185
+        ],
+        "lookAt": [
+          -16,
+          27,
+          -5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:80889b102d5a507b1a2f2cfd1e7ff8facf20a99d686f6b105cca05f487776b3f",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15420,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:7523fbb53b05b2dbd01bbebeedad5547dd2c072fe9355cf478b1d9dc8401dfd7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 18268,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2195cf79805de172882bf9eb7c278c781704fb01b3a1511822e96677a62f55a1",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 29428,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:613a0deb0601cfadc2b8dcd284f2b0661c0a389283d7def2b99424899ccc8975",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60580,
+        "groundY": -54,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/f2/f2m/chateau_frontenac/terrain-review.height.png"
+        },
+        "position": [
+          80.45,
+          98.2,
+          167.14
+        ],
+        "lookAt": [
+          -16.55,
+          47.2,
+          -0.86
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:d016a3f17b64328728bc3fe0772964390e1d00a3d53787083c59781dfb12e373",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:32448a1cf07a57f54d4b4363be29752e7be4b9f493af92260f0ab48e72eaa4e6"
+  }
+}

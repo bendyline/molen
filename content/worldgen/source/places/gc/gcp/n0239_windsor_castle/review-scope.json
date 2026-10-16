@@ -1,0 +1,433 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Individually arranged Upper, Middle and Lower Wards: mapped palace ranges and named towers, open quadrangle, Round Tower and artificial motte, Saint George’s and Albert Memorial chapels, timber-and-brick Horseshoe Cloister and Henry VIII gateway.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X from Lower Ward toward Upper Ward and East Terrace Garden",
+    "front": "+Z toward the Long Walk",
+    "origin": "Signed precinct frame;Y0 is the retained HenryVIII gateway ground datum. Absolute Newlyn height is only evidence, not forced at runtime."
+  },
+  "sourceFacts": {
+    "stoneCastleConstruction": "1165–1179",
+    "saintGeorgesChapelConstruction": "1475–1511",
+    "majorExteriorRemodelling": "1800–1830",
+    "footprints": "Individual OpenStreetMap ways and courtyard holes, retrieved 2026-10-04",
+    "surveyedVerticalDimensions": false,
+    "originalMasterHash": "sha256:e9e70f934d7a05e8f2c5b4d091c1759e1dfacf58f82306cc6c85dc8e93c90396",
+    "originalMasterRecipe": "packages/worldgen/scripts/windsor-castle-model.mjs#windsorStudy.build",
+    "siteGrade": "Environment Agency2m bare-earth DTM samples;6m retained fixture grid; under-building interpolation is not a floor survey."
+  },
+  "reconstruction": {
+    "basis": "Meter-scale mapped building footprints in the cached signed precinct frame, with separately reconstructed Gothic elevations, roofs, chimneys and corbelled tower crowns from inspected aerial, quadrangle, Round Tower, chapel and cloister photographs.",
+    "verticalDatum": "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain.",
+    "roundTowerCrownY": 52.862749634,
+    "flagpoleTipY": 65.25274963400001,
+    "heights": "Photographic estimates; do not treat as measured building heights.",
+    "chapelPlan": "Saint George's Chapel follows occupied way1162821758, with its nave +X axis tilted north in the signed precinct frame (native rotation+0.183rad). Mapped aisle/bay/corner foundations replace the earlier rectangular body; tower positions are fitted to the plan. Straight foundation toes use the minimum retained ground along each edge, preventing floating spans over a dipping slope. Dimensions above the footprint remain photograph-based estimates."
+  },
+  "limitations": [
+    "Original detailed master 32829044 bytes/385417 triangles remains byte-reproducible at sha256:e9e70f934d7a05e8f2c5b4d091c1759e1dfacf58f82306cc6c85dc8e93c90396 from windsor-castle-model.mjs#windsorStudy.build. Separate reviewed geometry uses current medium-fi scope and four authored browser levels.",
+    "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain.",
+    "Motte and open grounds are host terrain, not a duplicated mountain mesh. No visitor interiors, statues, heraldic beasts, exact tracery, sculptural capitals, coats of arms or copied photo textures are supplied. Facade bays, heights, roof profiles and quarter-specific datum shifts are photographic working estimates. Lower-Ward long bands follow a smooth sampled-path interpolation rather than an as-built floor survey; the retained ground raster under buildings is not floor evidence. Terrace tops use a declared80th-percentile retained-ground approximation plus0.8m parapet, not surveyed wall elevations. The mapped covered route through the southern Horseshoe Cloister is represented by a real arched passage; its width, vault profile and gate-room detailing remain photographic approximations.",
+    "Five common limestone, slate, wood, brick and painted-metal graphs are reused, with vertex tint distinguishing approximate Heath/Bath/weathered stone. Glazing is local opaque PBR. Skyline bakes common-graph linear means in one draw; no model contains embedded images. Street omits fine tracery/reveals; close preserves the original medium-fi facade geometry within64000 triangles.",
+    "Primary photographs establish signed ensemble arrangement and visible exterior features. Source and runtime are schematic reconstruction; no restoration-survey accuracy or physical phone/laptop timings are claimed.",
+    "Saint George's Chapel follows occupied way1162821758, with its nave +X axis tilted north in the signed precinct frame (native rotation+0.183rad). Mapped aisle/bay/corner foundations replace the earlier rectangular body; tower positions are fitted to the plan. Straight foundation toes use the minimum retained ground along each edge, preventing floating spans over a dipping slope. Dimensions above the footprint remain photograph-based estimates."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "heading": 0.052063510228,
+    "reviewStatus": "Signed occupied plan and relative DTM site grade reviewed; architectural levels reconstructed",
+    "notes": "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain.",
+    "evidence": "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain.",
+    "replaceFootprint": false,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain.",
+    "terrainReference": {
+      "anchor": [
+        -0.606913193,
+        51.482978564
+      ],
+      "modelHeight": 0,
+      "basis": "Native[-197,0,86] HenryVIII gateway reference; public Environment Agency bare-earth height38.271m, relative only at runtime."
+    }
+  },
+  "geographicNote": "Exact-Q42646 castle precinct way23580556 and separately retained occupied building ways establish identity and signed orientation. Native +X is east toward the Upper Ward/East Terrace (bearing92.983deg), +Z is south toward the Long Walk (182.983deg). Fresh map parts agree with all retained occupied vertices to within0.005m. The precinct is not extruded and whole-precinct footprint replacement stays disabled. Public Environment Agency2m bare-earth DTM, sampled at6m for the fixture, replaces the old provisional4m cross-site offset: the HenryVIII gateway reference38.271m versus upper quadrangle52.323m yields14.052m. Chapel center42.493m and motte summit63.324m are separate controls. Lower-Ward long ranges use a declared smooth reconstruction through sampled open-path levels, not per-pixel warping of roofs. Foundation toes extend into the independently retained bare-earth grid. The artificial hill is supplied by host terrain and is excluded from the reviewed geometry to avoid double height. Absolute Newlyn heights are used only by the review fixture; runtime uses the explicit gate terrain reference. All architectural heights remain photo-fitted. Host terrain must preserve the local grade and motte; no contact promise is made on coarse global terrain.",
+  "sourceDocuments": [
+    "map-parts.json",
+    "reference-metadata.json",
+    "map-frame.json",
+    "review-scope.json",
+    "georeferencing-baseline.json",
+    "site-grade.json",
+    "grade-responses.json"
+  ],
+  "surfaceOverrides": {
+    "limestone": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "carved": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "weathered": {
+      "graph": "stone_limestone",
+      "slot": "wall",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "slate": {
+      "graph": "slate",
+      "slot": "roof",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wood": {
+      "graph": "wood_plain",
+      "slot": "trim",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "brick": {
+      "graph": "brick",
+      "slot": "wall",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "alphaMode": "OPAQUE",
+      "roughness": 0.2,
+      "metallic": 0.28,
+      "ref": "palette:#ffffff"
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/windsor-runtime-model.mjs",
+    "export": "buildWindsorReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/windsor-runtime-model.mjs",
+    "export": "buildWindsorReviewedSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildWindsorReviewedDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildWindsorReviewedStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildWindsorReviewedCloseup",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "limestone": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "carved": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "weathered": {
+            "graph": "stone_limestone",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "alphaMode": "OPAQUE",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-windsor",
+      "position": [
+        -300,
+        290,
+        620
+      ],
+      "lookAt": [
+        -25,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "signed-occupied-plan",
+      "position": [
+        0,
+        690,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "corrected-upper-quadrangle",
+      "position": [
+        60,
+        24,
+        0
+      ],
+      "lookAt": [
+        92,
+        30,
+        56
+      ]
+    },
+    {
+      "name": "corrected-round-tower",
+      "position": [
+        -77,
+        67,
+        68
+      ],
+      "lookAt": [
+        -16,
+        44,
+        -10
+      ]
+    },
+    {
+      "name": "open-cloister-passage",
+      "position": [
+        -220,
+        5.5,
+        60
+      ],
+      "lookAt": [
+        -229,
+        4.2,
+        35
+      ]
+    },
+    {
+      "name": "cloister-court-and-chapel",
+      "position": [
+        -265,
+        20,
+        72
+      ],
+      "lookAt": [
+        -245,
+        8.5,
+        35
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-windsor-skyline",
+      "position": [
+        -300,
+        290,
+        620
+      ],
+      "lookAt": [
+        -25,
+        35,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-windsor-district",
+      "position": [
+        -300,
+        290,
+        620
+      ],
+      "lookAt": [
+        -25,
+        35,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-windsor-street",
+      "position": [
+        -300,
+        290,
+        620
+      ],
+      "lookAt": [
+        -25,
+        35,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-windsor-closeup",
+      "position": [
+        -300,
+        290,
+        620
+      ],
+      "lookAt": [
+        -25,
+        35,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

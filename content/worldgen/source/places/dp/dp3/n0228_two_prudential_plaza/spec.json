@@ -10,29 +10,23 @@
     "latitude": 41.885555555,
     "longitude": -87.622777777
   },
-  "visualBrief": "Individually jointed pale granite facade, recessed blue windows, glazed end strips, three series of north/south chevron setbacks, diamond crown, 80-foot spire and transparent double-height lobby. Repeated facade modules are GPU instances with shared canonical materials.",
+  "visualBrief": "Pale granite tower with blue recessed vision bays, continuous glazed central north/south strips, chevron setbacks and a diamond crown with slender spire; tall glazed Stetson lobby with reconstructed revolving doors.",
   "size": [
     56.46900177001953,
     303.29998779296875,
-    41.1510009765625
+    42.020999908447266
   ],
   "actualBounds": {
     "min": [
       -28.234500885009766,
       0,
-      -20.57550048828125
+      -21.445499420166016
     ],
     "max": [
       28.234500885009766,
       303.29998779296875,
       20.57550048828125
     ]
-  },
-  "assembly": {
-    "uniqueMeshes": 14,
-    "meshInstances": 3789,
-    "storedTriangles": 9600,
-    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
   },
   "nativeAxes": {
     "up": "+Y",
@@ -45,11 +39,9 @@
     "highestOccupiedMeters": 250,
     "aboveGroundFloors": 64,
     "completionYear": 1990,
-    "contractorSpireLengthFeet": 80
-  },
-  "appearance": {
-    "period": "Original exterior with 2012/2016 photography and owner 2021 plans",
-    "excluded": "Unbuilt marketing proposals and neighboring One Prudential tower."
+    "contractorSpireLengthFeet": 80,
+    "originalMasterHash": "sha256:2392b9a0cdad878ccdcf94ac39f5bd8038362ff174f609676905a679d13ca953",
+    "originalMasterRecipe": "packages/worldgen/scripts/two-prudential-plaza-model.mjs#twoPrudentialPlazaStudy.encodeAssembly"
   },
   "reconstruction": {
     "groundEnvelopeMeters": [
@@ -81,7 +73,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "signed medium-fi owner north plan and Stetson entrance",
     "anchor": [
       -87.622721048,
       41.885419934
@@ -89,17 +81,20 @@
     "heading": -1.551105215919,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "source": "https://www.openstreetmap.org/way/64388666",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-87.6237,41.8848,-87.6217,41.8861",
     "groundModelY": 0,
     "featureIds": [
       "way/64388666"
     ],
     "wikidataId": "Q1121971",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:cdd4d59d47a67cd2996452f5a95704cdef7fcd6651383b135abdc5175f180b56",
+    "mapGeometryHash": "sha256:356ff3f64cabcf4bc70cb044736be1967464f3b7d04c162d70a40c11f835d781",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact-QID footprint and owner north arrow establish the long axis. Cached yaw maps +X roughly south and -Z roughly east; signed entrance and actual shared-site elevation still require review."
+    "orientationConfidence": "independent owner annotated plan/entrance address with fresh QID raw ring",
+    "notes": "Fresh raw Q1121971 way 64388666 matches the independently preserved outline within 0.002 m projection rounding. Anchor [-87.622721048,41.885419934] and heading -1.551105215919 remain fixed: native +X approximately south at bearing 178.872 degrees, native -Z approximately east at 88.872 degrees. Actually inspected owner north-annotated floor-28 and floor-30 plans sign the north/south projecting ends and east Stetson/Lake Michigan side against south Randolph/Millennium Park. The owner filming brochure explicitly assigns Two Pru entrance to 180 N Stetson and separately One Pru to 130 E Randolph; its actual lobby photographs support revolving glazed drums and tall double-height glazing. This signs the east entrance side independently of the map rectangle, but its exact offset and door count are approximate. Model extents remain the tower envelope, separate from neighboring One Pru, shared plaza, fountain and wider connector. Registry 303.3 m tip/architecture and 250 m occupied datum are recorded separately from map 303 m and reconstructed floor/crown levels. Y0 is approximate local Stetson entrance pavement; grade is not surveyed. No footprint replacement.",
+    "evidence": "Fresh raw Q1121971 way 64388666 matches the independently preserved outline within 0.002 m projection rounding. Anchor [-87.622721048,41.885419934] and heading -1.551105215919 remain fixed: native +X approximately south at bearing 178.872 degrees, native -Z approximately east at 88.872 degrees. Actually inspected owner north-annotated floor-28 and floor-30 plans sign the north/south projecting ends and east Stetson/Lake Michigan side against south Randolph/Millennium Park. The owner filming brochure explicitly assigns Two Pru entrance to 180 N Stetson and separately One Pru to 130 E Randolph; its actual lobby photographs support revolving glazed drums and tall double-height glazing. This signs the east entrance side independently of the map rectangle, but its exact offset and door count are approximate. Model extents remain the tower envelope, separate from neighboring One Pru, shared plaza, fountain and wider connector. Registry 303.3 m tip/architecture and 250 m occupied datum are recorded separately from map 303 m and reconstructed floor/crown levels. Y0 is approximate local Stetson entrance pavement; grade is not surveyed. No footprint replacement.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -109,15 +104,6 @@
     {
       "ref": "matgraph:molen.worldgen.material.concrete_plain",
       "slot": "wall",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.stone_granite",
-      "slot": "foundation",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -153,14 +139,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Maximum exterior fidelity remains pending. Chevron heights, bay count, floor allocation, crown-to-shoulder transition and granite joint sections are photographic working reconstructions; source plans have no printed scale.",
-    "The crown now intersects the facade along four gables; roof slope, exact stepped profile and glazing-band heights require dimensioned upper-floor plans before completion approval.",
-    "The shared One/Two Prudential plaza, sculpture, planting, stairs, lobby connection and wider podium are outside the cached tower footprint and remain to be registered and authored.",
-    "Owner lobby photographs establish a tall glazed entrance, but signed door positions, exact pier spacing and ground levels remain provisional. Geographic and terrain-contact approval are pending.",
-    "The contractor website has conflicting storey counts. The registry count of 64 and 250 m highest occupied datum are recorded separately from the reconstructed facade grid."
+    "The unchanged twoPrudentialPlazaStudy.encodeAssembly reproduces the original fourteen-part instanced source master, preserved in its unchanged original recipe and local review artifact. Reviewed source and close-up retain the original granite/glass facade modules, chevron setbacks, terrace caps, clipped diamond crown and 80 ft spire, with two reconstructed revolving entrance drums replacing the four provisional swing doors and whole rectangular lobby piers replacing facade-only strips. Owner photos show revolving doors; exact counts, offsets and rotor angle are not surveyed. Street replaces masonry bay pieces with flat full wall faces and blue panes 0.14 m forward of the original reveal plane; the floor/window rhythm, central glazed end strips and every chevron step remain. District merges up to three facade rows/bays, always splitting at actual plan changes, and omits door detail; skyline averages granite/window area colors while retaining principal glazed end strips, every setback cap, diamond roof and spire. Near levels retain fifteen crown stripes; far omits roof ribs. Four shared graphs supply granite, stainless, painted metal and concrete; opaque/clear glass produces six near groups with one transparent group. No copied photo textures. Joint arrises and fine glazing divisions are omitted by the preserved original recipe despite older maximum-fidelity wording. 63 photographic office rows, 3.875 m intervals, shoulder heights and slope 1.4 are working reconstructions, not floor surveys; registry 64 floors is separate, and the contractor page has conflicting 60/68 counts. The wider One/Two Pru plaza, fountain, sculpture, shared connector, rooftop garden and neighboring tower are excluded from this tower asset. Owner upper-floor plans are undimensioned and not a complete ground survey; local grade and internal floors are approximate. Physical laptop/phone and dense-city timings remain pending."
   ],
   "qaCameras": [
     {
@@ -318,6 +300,308 @@
         150,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-prudential",
+      "position": [
+        -465,
+        298,
+        550
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/prudential-runtime-model.mjs",
+    "export": "buildPrudentialCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/prudential-runtime-model.mjs",
+    "export": "buildPrudentialSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPrudentialDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildPrudentialStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPrudentialCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#fffefd",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-prudential-skyline",
+      "position": [
+        -465,
+        298,
+        550
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-prudential-district",
+      "position": [
+        -465,
+        298,
+        550
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-prudential-street",
+      "position": [
+        -465,
+        298,
+        550
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-prudential-closeup",
+      "position": [
+        -465,
+        298,
+        550
+      ],
+      "lookAt": [
+        0,
+        148,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-chevrons",
+      "position": [
+        52,
+        210,
+        46
+      ],
+      "lookAt": [
+        22,
+        182,
+        8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-revolving-entrance",
+      "position": [
+        -13,
+        4,
+        -32
+      ],
+      "lookAt": [
+        -5,
+        2,
+        -20.5
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-revolving-entrance",
+      "position": [
+        -13,
+        4,
+        -32
+      ],
+      "lookAt": [
+        -5,
+        2,
+        -20.5
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -325,10 +609,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 51888,
-    "vertices": 112964,
-    "materials": 8,
-    "bytes": 1268948,
-    "sha256": "sha256:2392b9a0cdad878ccdcf94ac39f5bd8038362ff174f609676905a679d13ca953"
+    "triangles": 52004,
+    "vertices": 111704,
+    "materials": 6,
+    "bytes": 4649048,
+    "sha256": "sha256:c85bd1ad1556ec7647d576b6a077f35b509105ca9687ecc8c9f7ee40a61e9bfe"
   }
 }

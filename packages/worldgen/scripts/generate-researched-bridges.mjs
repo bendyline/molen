@@ -1,7 +1,8 @@
 /** Shared-material source bundles for individually researched bridges; runtime import is separate. */
 import './install-deterministic-math.mjs';
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { archevecheStudy } from './archeveche-bridge-model.mjs';
 import {
@@ -37,7 +38,7 @@ import { skopjeStudy } from './skopje-bridge-exterior.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { stariMostStudy } from './stari-most-model.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
-import { hashBytes, root } from './structure-model-files.mjs';
+import { hashBytes, readOptionalJson, root, writeIndex } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 import { tolbiacStudy } from './tolbiac-bridge-model.mjs';
 import { yiSunSinStudy } from './yi-sun-sin-bridge-model.mjs';
@@ -147,9 +148,9 @@ async function emit(path, bytes) {
   }
   if (old?.equals(bytes)) return;
   await mkdir(resolve(path, '..'), { recursive: true });
-  await writeFile(path, bytes);
+  await writeIndex(path, bytes);
 }
-for (const study of [
+for (let study of [
   stariMostStudy,
   helixStudy,
   skopjeStudy,
@@ -185,6 +186,36 @@ for (const study of [
   const key = `${study.id.toLowerCase()}_${study.key}`,
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key);
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (reviewScope) {
+    if (reviewScope.fidelityTarget !== 'medium-fi')
+      throw new Error(`${study.id}: review scope must use medium-fi`);
+    study = {
+      ...study,
+      ...Object.fromEntries(
+        [
+          'brief',
+          'sourceFacts',
+          'reconstruction',
+          'nativeAxes',
+          'limitations',
+          'surfaceOverrides',
+          'camera',
+          'previewGround',
+          'previewTerrain',
+          'previewEntities',
+          'sourceDocuments',
+        ]
+          .filter((key) => Object.hasOwn(reviewScope, key))
+          .map((key) => [key, reviewScope[key]]),
+      ),
+      fidelityTarget: reviewScope.fidelityTarget,
+      appearance: reviewScope.appearance,
+      mediumFiContext: reviewScope.mediumFiContext,
+      qaCameras: [...study.qaCameras, ...(reviewScope.qaCameras ?? [])],
+      ...(reviewScope.geographic ? { geographic: () => reviewScope.geographic } : {}),
+    };
+  }
   const modelPath = resolve(dir, 'models/source.glb');
   const sourceFrame = study.mapFrameDocument
     ? await readFile(resolve(dir, study.mapFrameDocument))
@@ -200,7 +231,14 @@ for (const study of [
   }
   const out = new MeshBufferBuilder(),
     used = new Map();
-  study.build(mapper(out, used, study.surfaceOverrides), mapped);
+  if (reviewScope?.sourceGeometry) {
+    const definition = reviewScope.sourceGeometry;
+    if (!/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(definition.module))
+      throw new Error('Invalid source-local bridge module');
+    const module = await import(pathToFileURL(resolve(root, definition.module)));
+    if (typeof module[definition.export] !== 'function') throw new Error('Missing bridge builder');
+    module[definition.export](mapper(out, used, study.surfaceOverrides));
+  } else study.build(mapper(out, used, study.surfaceOverrides), mapped);
   const mesh = out.finalize();
   smoothMeshNormals(mesh, ['trim'], 45);
   if (study.normalSmoothing)
@@ -283,7 +321,12 @@ for (const study of [
         repeatMeters: MATERIAL_REPEAT_METERS[s.graph],
       })),
     reviewStatus: 'source-geometry; current renders and geographic fit require review',
-    fidelityTarget: 'maximum',
+    fidelityTarget: study.fidelityTarget ?? 'maximum',
+    ...(study.appearance ? { appearance: study.appearance } : {}),
+    ...(study.mediumFiContext ? { mediumFiContext: study.mediumFiContext } : {}),
+    ...(reviewScope?.sourceGeometry ? { sourceGeometry: reviewScope.sourceGeometry } : {}),
+    ...(reviewScope?.runtimeLodOverlay ? { runtimeLodOverlay: reviewScope.runtimeLodOverlay } : {}),
+    ...(reviewScope?.qaLodCameras ? { qaLodCameras: reviewScope.qaLodCameras } : {}),
     fidelityStatus: 'pending',
     limitations: study.limitations,
     qaCameras: study.qaCameras,
@@ -344,6 +387,10 @@ for (const study of [
     camera: { mode: 'fixed', ...study.camera },
     physics: { engine: 'none' },
   };
+  if (study.previewGround === false)
+    scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
+  if (study.previewTerrain) scene.terrain = study.previewTerrain;
+  if (study.previewEntities) scene.entities.push(...study.previewEntities);
   const optional = (
     await readdir(dir).catch((e) => {
       if (e.code === 'ENOENT') return [];
@@ -375,6 +422,8 @@ for (const study of [
           'README.md',
           'preview.png',
           ...(study.mapFrameDocument ? [study.mapFrameDocument] : []),
+          ...(reviewScope ? ['review-scope.json'] : []),
+          ...(study.sourceDocuments ?? []),
           ...optional,
         ]),
       ],

@@ -10,22 +10,27 @@
     "latitude": -23.545417,
     "longitude": -46.643611
   },
-  "visualBrief": "The asymmetric curved São Paulo tower follows its mapped perimeter with projecting concrete sunshade cells, inset glazing and selected louvered shutters, a glazed upper restaurant, observation parapet and roof service enclosure.",
+  "visualBrief": "Budgeted Italia tower preserves mapped curved outline, projecting sunshade rhythm, restaurant and roof; distance tiers merge repeating windows and louvers.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
-    54.57670593261719,
+    54.48790740966797,
     165,
-    27.535770416259766
+    27.515775680541992
   ],
   "actualBounds": {
     "min": [
-      -27.287921905517578,
+      -27.231956481933594,
       0,
-      -13.767770767211914
+      -13.75777530670166
     ],
     "max": [
-      27.28878402709961,
+      27.255950927734375,
       165,
-      13.767999649047852
+      13.758000373840332
     ]
   },
   "nativeAxes": {
@@ -39,7 +44,14 @@
     "floors": 46,
     "observationDeckMeters": 151,
     "windowsPublished": 4000,
-    "completion": 1965
+    "completion": 1965,
+    "originalMasterHash": "sha256:647a5c5cc663718214ebc333eaa74ce7934df878f5a1f4e8786aab629f67d23e",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[N0150].build",
+    "reviewScope": "Original473498-triangle41821548-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "appearance": {
+    "identity": "Curved asymmetric concrete sunshade tower with dark windows and upper restaurant terrace.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
   },
   "reconstruction": {
     "plan": "Exact-QID mapped curved asymmetric tower outline",
@@ -53,7 +65,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       -46.643574738,
       -23.54552655
@@ -67,11 +79,21 @@
       "way/251211619"
     ],
     "wikidataId": "Q170610",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:55f5956119303204204369d7f10c5c57fd4fbde88582667deb086c03cda9e94e",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Native curved facade follows the exact-QID tower-part outline and signed frame.165 m follows operator rather than168 m map tag. Adjacent theatre/club buildings are outside this tower source."
+    "notes": "Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed.",
+    "terrainReference": {
+      "anchor": [
+        -46.64359398005357,
+        -23.544897976773438
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -107,11 +129,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Shutter distribution, individual window state and rooftop service details are reconstructed. The source covers the mapped tower part; neighboring lower blocks are not falsely included in its footprint."
+    "Retain the existing exact-QID curved asymmetric tower part and signed long-axis frame,165m authored height and151m terrace. Inspected street exterior picture supports concrete grid and selected louver/window states. Standard viewer PMTiles checks the curved tower and streets, with off-footprint[-70,0] supplying approximate ground; raw terrain retained separate from radius40m bounded preview contact correction. The standalone tower excludes adjacent club/theatre blocks. Exact shutter state, roof details and thresholds remain reconstructed; no surveyed fit claimed.",
+    "Three shared granite/concrete/painted-metal graphs plus opaque glass PBR; no embedded photographs. Perimeter simplification bounded2.4/1/.35/.1m; detail grid is reconstructed. Picture crops roof, retained authored dimensions control it. Physical-device timing pending."
   ],
   "qaCameras": [
     {
@@ -180,15 +202,179 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/italia-browser-model.mjs",
+    "export": "buildItaliaCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/italia-browser-model.mjs",
+    "export": "buildItaliaSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildItaliaDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.18,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildItaliaStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.18,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildItaliaCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.18,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0150-skyline",
+      "position": [
+        147,
+        113,
+        247
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0150-district",
+      "position": [
+        147,
+        113,
+        247
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0150-street",
+      "position": [
+        147,
+        113,
+        247
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0150-closeup",
+      "position": [
+        147,
+        113,
+        247
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 473498,
-    "vertices": 1003798,
+    "triangles": 27418,
+    "vertices": 82254,
     "materials": 4,
-    "bytes": 41821548,
-    "sha256": "sha256:647a5c5cc663718214ebc333eaa74ce7934df878f5a1f4e8786aab629f67d23e"
+    "bytes": 3292976,
+    "sha256": "sha256:e94ca61523b47f87c09352bbd12153489ed910c62712a18ad7f4b56cba98a14c"
   }
 }

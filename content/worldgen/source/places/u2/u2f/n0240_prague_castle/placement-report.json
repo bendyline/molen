@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0240_prague_castle",
-  "inputHash": "sha256:ddf9bdde7294e55ccc93c7a91d36fa1cc8630d730d0315a13f71074a218e8a90",
-  "placementHash": "sha256:f3a17b99de553a5cd6354294e98bf7e8853737e1c12aa4f775d43b3f8c29975d",
+  "inputHash": "sha256:30e48e92d1a1d1aa3cae39898b717c107b259f3e32f7377b1121e6803ef7f663",
+  "placementHash": "sha256:fd1961a8674e5894f472809bc4127eecb1a4f99819de0918b02ba5a33c3bed96",
   "entry": {
     "id": "next1000.n0240",
     "title": "Prague Castle",
@@ -20,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        14.40035952875168,
+        50.09028019945339
+      ],
+      "modelHeight": 0,
+      "basis": "Third Courtyard native[-114,0,29],public Czech DMR5G reference256.749m Bpv used relatively; absolute elevation is not supplied by the asset."
+    },
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://www.openstreetmap.org/relation/3312247",
-    "note": "Retain cached signed heading and anchor. The precinct includes open courts; never replace its complete polygon with a building. Real cross-site terrain and roof alignment need review before activation. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "preview",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=14.393,50.087,14.409,50.094",
+    "note": "Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

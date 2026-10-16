@@ -10,22 +10,22 @@
     "latitude": 42.023611111,
     "longitude": 21.418611111
   },
-  "visualBrief": "Bent54-arch water conduit with53 square piers,42 distinct upper relief openings, mixed rounded stone and brick courses, individual radial brick rings and soffits, open water channel, broken cap courses and two end ramps.",
+  "visualBrief": "Medium-fi Skopje arcade:54main openings along both mapped bends,53interior piers,42upper relief openings, radial brick arch ribbons, open water trough and two reconstructed end ramps. Original detailed masonry master remains separately reproducible.",
   "size": [
-    370.2501220703125,
-    7.662181854248047,
-    54.22904682159424
+    370.18138122558594,
+    7.609932526946068,
+    54.03599452972412
   ],
   "actualBounds": {
     "min": [
-      -186.1348419189453,
-      0,
-      -43.717071533203125
+      -186.11785888671875,
+      -0.049932584166526794,
+      -43.59648895263672
     ],
     "max": [
-      184.1152801513672,
-      7.662181854248047,
-      10.511975288391113
+      184.0635223388672,
+      7.559999942779541,
+      10.439505577087402
     ]
   },
   "nativeAxes": {
@@ -46,7 +46,10 @@
       6.5,
       6.7
     ],
-    "mappedCenterlineMeters": 350.7702675689996
+    "mappedCenterlineMeters": 350.7702675689996,
+    "originalMasterHash": "sha256:c0b1d1d5f930c07cd294ea0a60344090680cdfab8a7ac90865ba07a31371cb00",
+    "originalMasterRecipe": "packages/worldgen/scripts/skopje-aqueduct-model.mjs#buildSkopjeAqueduct",
+    "reviewScope": "Original2224784-triangle/185039096-byte master reproduced exactly; independent medium-fi geometry uses shared stone/brick surfaces."
   },
   "reconstruction": {
     "rampLengthMeters": 17.514866215500206,
@@ -74,7 +77,7 @@
     ],
     "source": "https://www.openstreetmap.org/way/180360206",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:b746c0a628afa64cbcfbbec925c4fc025520c3ea3c037fb5db7b513a5c6e07e4",
+    "mapGeometryHash": "sha256:4307bfc2e3a7f5cdf8b92df10accf4e6b292a4bf4bda0e5515a856bb90080f8d",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "elevationMode": "terrain-contact",
@@ -83,7 +86,77 @@
       42.02235405
     ],
     "heading": 1.815170225813572,
-    "notes": "Exact Wikidata identity. Narrow mapped outline locates the conduit rather than the full2.2m-wide pier bases. Approach lengths and actual terrain must be reviewed before geographic approval."
+    "notes": "The single inspected picture confirms the single-tier stone arcade, radial brick arches, upper relief openings and narrow open conduit. Retained mapped350.7703m bent channel line and standard PMTiles named aqueduct POIs establish location and the north/northwest native+X frame. The narrow outline is the conduit, not the full2.2m piers. The retained385.8m source length includes reconstructed17.5149m end ramps. Standard PMTiles centre274.8112m is an approximate working base; surrounding field samples vary several metres and do not resolve each footing. A bounded2m contact corridor follows the mapped bends and source1m rise, blending back to raw field by8m. Viewer ground opening remains within the arcade. Exact present conservation repairs and footing precision are not certified.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The single inspected picture confirms the single-tier stone arcade, radial brick arches, upper relief openings and narrow open conduit. Retained mapped350.7703m bent channel line and standard PMTiles named aqueduct POIs establish location and the north/northwest native+X frame. The narrow outline is the conduit, not the full2.2m piers. The retained385.8m source length includes reconstructed17.5149m end ramps. Standard PMTiles centre274.8112m is an approximate working base; surrounding field samples vary several metres and do not resolve each footing. A bounded2m contact corridor follows the mapped bends and source1m rise, blending back to raw field by8m. Viewer ground opening remains within the arcade. Exact present conservation repairs and footing precision are not certified.",
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -168.47679139758458,
+          1.3687609726513612
+        ],
+        [
+          -92.7202074726324,
+          -14.908609689337851
+        ],
+        [
+          -1.5567475953215593,
+          -32.5683610858586
+        ],
+        [
+          30.510063588021033,
+          -41.07043103461095
+        ],
+        [
+          133.30924667337447,
+          -21.597732448553096
+        ],
+        [
+          168.00275642613323,
+          1.1704581790755282
+        ],
+        [
+          169.5390215738668,
+          -1.1704581790755282
+        ],
+        [
+          134.3788253266255,
+          -24.244919551446905
+        ],
+        [
+          30.406770411978968,
+          -43.939788965389056
+        ],
+        [
+          -2.1825124046784405,
+          -35.2991929141414
+        ],
+        [
+          -93.2806145273676,
+          -17.65210231066215
+        ],
+        [
+          -169.06498660241544,
+          -1.3687609726513612
+        ]
+      ],
+      "basis": "Narrow mapped arcade opening for coarse ground; bounded visualization contact correction, not a survey."
+    },
+    "bounds": [
+      21.418165796187846,
+      42.02053483989126,
+      21.420092934820502,
+      42.02407980116924
+    ],
+    "terrainReference": {
+      "anchor": [
+        21.419381625,
+        42.02235405
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate base from the standard PMTiles centre sample; bounded arcade placement shares this reference."
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -109,13 +182,150 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Bent54-arch single-tier aqueduct with42upper relief openings, mixed stone/brick and an open channel.",
+    "exclusions": "Exact present conservation patch inventory, surveyed per-pier ground and surrounding scenery."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 2.5,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/skopje-aqueduct-browser-model.mjs",
+    "export": "buildSkopjeAqueductCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/skopje-aqueduct-browser-model.mjs",
+    "export": "buildSkopjeAqueductSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSkopjeAqueductDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "clay_fired",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildSkopjeAqueductStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "clay_fired",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSkopjeAqueductCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "clay_fired",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-aqueduct-skyline",
+      "position": [
+        125,
+        70,
+        240
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        -22
+      ],
+      "fov": 60,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-aqueduct-district",
+      "position": [
+        125,
+        70,
+        240
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        -22
+      ],
+      "fov": 60,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-aqueduct-street",
+      "position": [
+        125,
+        70,
+        240
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        -22
+      ],
+      "fov": 60,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-aqueduct-closeup",
+      "position": [
+        125,
+        70,
+        240
+      ],
+      "lookAt": [
+        0,
+        3.5,
+        -22
+      ],
+      "fov": 60,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
-    "Conservation work continued after the dated photo set; exact2026 stone repairs require further confirmation.",
-    "Unknown relief-opening stations and ramp lengths are reconstruction assumptions explicitly recorded in spec.json.",
-    "Original geometry from visual and dimensional evidence, not a laser scan or measured stone-by-stone survey.",
-    "Actual local ground contact and placement remain pending."
+    "Picture and standard viewer PMTiles approximate exterior/placement scope; no bespoke surveys, conservation-plan research or local-data campaigns.",
+    "Detailed original master is preserved by its unchanged recipe/map inputs and exact reproduced hash. Compact medium-fi source replaces individual rubble/brick geometry with the shared raw limestone and fired-clay graphs.",
+    "Skyline retains all54 main openings with angular vaults, merges reliefs and channel rims; closer models restore42 upper openings, rounded vaults, arch ribbons and open trough. Exact broken cap courses, stone/brick patchwork, graffiti and repairs are simplified.",
+    "Mapped350.7703m channel and385.8m overall reconstruction remain distinct; ramp lengths and relief stations are retained assumptions. PMTiles field/contact blending and narrow ground opening are approximate, not per-pier survey. Footprint replacement off; physical-device timing remains pending."
   ],
   "qaCameras": [
     {
@@ -236,10 +446,10 @@
   },
   "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
   "mesh": {
-    "triangles": 2224784,
-    "vertices": 4398324,
+    "triangles": 17040,
+    "vertices": 51120,
     "materials": 2,
-    "bytes": 185039096,
-    "sha256": "sha256:c0b1d1d5f930c07cd294ea0a60344090680cdfab8a7ac90865ba07a31371cb00"
+    "bytes": 2046808,
+    "sha256": "sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b"
   }
 }

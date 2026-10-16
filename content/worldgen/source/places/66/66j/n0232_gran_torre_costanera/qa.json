@@ -1,10 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0232_gran_torre_costanera",
-  "captureReportHash": "sha256:abcfefcb846ab2966eafd93dd56d4fe2a096c09cfbe615929847fd9d3960703a",
+  "reviewedOn": "2026-10-10",
+  "inputHash": "sha256:6cbe2db0da9e3158aba3ffd3c952769dedbe963e001e7c39cc7bd2df14c7e2da",
+  "sourceHash": "sha256:6d23d9efb2515c9efa2bf14b8d5cf7a8de5c59a5927d54bb2a9f27cb9e80ef78",
+  "runtimeHash": "sha256:91ce7181b89e9f546b3b3b126d49d32b2c9e5f10c9e3bf81b0b2989980989781",
+  "captureReportHash": "sha256:616e26dd9be68bec8956e6a433fda4159c784cee866cd37c42732a559dc64662",
   "visualReview": {
     "status": "passed",
-    "scope": "Current render integrity only; maximum exterior fidelity and geographic fit remain pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -20,13 +23,18 @@
       "shots/entrance-canopy.png",
       "shots/entrance-doors.png",
       "shots/roof-plan.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/whole-reviewed-costanera.png",
+      "shots/northwest-entrance-opening.png",
+      "shots/open-crown-corner-slots.png",
+      "shots/viewing-deck-framing.png",
+      "shots/mapped-tower-plan.png"
     ],
-    "notes": "Inspected all 15 portable frames. Four folded tapering glass walls, recessed corners, projecting clear crown walls and diagonal lattice, observatory floor, rod-supported entrance canopy and attached doors render. Corrected a framing member extending below zero and an observatory camera inside the core before final captures. Facade dimensions and entrance details remain reconstructions."
+    "notes": "Actually inspected all 79 current images, 20 portable /20 shared /39 medium-fi, including four turntables, folded-wall and bay views, recessed corners, exterior/interior crown lattice, observatory, canopy, eight illustrative door leaves, roof plan, far silhouette and new whole/frontage/open-corner views. Tapered fourfold tower, deep vertical recesses, four separate glass fins and exposed diagonal X lattice remain present. Crown top stays genuinely open with lower corner screens stopping below upper fins; viewing floor, railing and small core/equipment volumes remain visible. Rod-supported canopy projects from the lobby, and clear leaves show the generic lobby behind them. No inspected principal mass is missing. Fine frit/frame lines alias, and portable whole views show moire/shadow sampling patterns on narrow facade strips. Geographic shared whole camera crops the crown slightly, but four other complete turntables and dedicated crown/whole medium views cover it. These are reconstruction views, not surveyed floor plans."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a48e62f154e58d9c56fc9e07b0ab22a0382c8eecb17544dacf495f8bde86e03b",
+    "captureReportHash": "sha256:852888fe4175f93bc44f57901f846cdc268e793f9880ecbcd70f228b62d48550",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -42,79 +50,271 @@
       "shots/shared/entrance-doors.png",
       "shots/shared/roof-plan.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/whole-reviewed-costanera.png",
+      "shots/shared/northwest-entrance-opening.png",
+      "shots/shared/open-crown-corner-slots.png",
+      "shots/shared/viewing-deck-framing.png",
+      "shots/shared/mapped-tower-plan.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 15 world-viewer frames, including the flat-terrain geographic fixture, and verified their hashes. Five canonical metal/concrete/wood/stone graphs each load once; glazing uses local PBR. No embedded images. Viewer unload leaves zero live model geometries. The map-outline fixture demonstrates rendering and ground contact at an assumed flat datum, not approval of actual site fit."
+    "notes": "Three canonical reusable graphs supply stainless metal frames/lattice/canopy, plain concrete slabs and lobby core, and wood viewing floor. Opaque blue glazing, 52-percent clear lobby/crown/door glazing and recess tint yield six near groups with a single BLEND group. Actual shared images show subtle surface pattern, subdued silver frames, clear crown screens and warm wood floor. Source/import/four derivatives contain zero embedded images, so no photograph or unique bitmap texture ships per tower. Graph reads are once each and unloading disposes all live model geometry. Skyline merges to one opaque draw and applies stainless/concrete/wood means to the corresponding tint; district has five groups. Original master retains its original five shared graphs, including granite core and painted metal, and eight groups."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:fbb0a906d147dfcbd0ed3575ca7c1803c83830246aa0d274360b52459277b0fd",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/folded-wall.png",
+      "medium-fi/facade-bays.png",
+      "medium-fi/recessed-corner.png",
+      "medium-fi/crown-exterior.png",
+      "medium-fi/crown-lattice.png",
+      "medium-fi/observatory.png",
+      "medium-fi/entrance-canopy.png",
+      "medium-fi/entrance-doors.png",
+      "medium-fi/roof-plan.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-reviewed-costanera.png",
+      "medium-fi/northwest-entrance-opening.png",
+      "medium-fi/open-crown-corner-slots.png",
+      "medium-fi/viewing-deck-framing.png",
+      "medium-fi/mapped-tower-plan.png",
+      "medium-fi/whole-costanera-skyline.png",
+      "medium-fi/whole-costanera-district.png",
+      "medium-fi/whole-costanera-street.png",
+      "medium-fi/whole-costanera-closeup.png",
+      "medium-fi/northwest-entrance-opening.png",
+      "medium-fi/open-crown-corner-slots.png",
+      "medium-fi/viewing-deck-framing.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected all 39 noon/late economy/high, silhouette, feature, explicit whole-level and transition views. Close and street preserve every facade floor band with thin flat transoms; close vertical strips follow roughly original 1.48 m bay rhythm and street coarsens them to about 5.9 m, both segmented only at major taper datums. District groups four floor rows, preserving ground/upper datums and broad horizontal rhythm; skyline omits facade subdivisions. All levels retain folded taper, recessed corners, four open crown fins, lower corner closure and diagonal lattice; skyline coarsens each main X to one tall row and uses opaque screens, so its crown is visibly denser than near clear glazing. Street/close recover clear lobby doors, rods, viewing rail and roof equipment. Automatic context cameras crop the upper tower; dedicated whole-level images show the complete silhouette at every level. Fine grids/frit and narrow shadows alias, but sampled high images do not show a missing wall or ground gap. Synthetic cottages and flat geographic floor do not certify actual plaza or street grade."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:9c251004a13741a37df8be48e933e83fd4316bc4d58acfc70137f066fd885c4b",
-    "notes": "Exact Q1542408 match to OSM way 1179710949 supplies the anchor and an undirected footprint axis. Native -Z canopy side is provisional. The owner floor plan north arrow does not independently verify the entrance direction. Preview registration is not geographic approval: signed yaw, footprint fit and actual terrain contact remain unapproved."
+    "status": "passed",
+    "placementHash": "sha256:90d8985c56d053973a58951ad40d2ca7db92d86e5de3ed7294152a39011393ad",
+    "mapFrameHash": "sha256:3f007f0171040b187cf7f27fe105aa6c03ec92342706a52b902a9578a1feba43",
+    "notes": "Fresh exact Q1542408 tower way 1179710949, address 2457 Avenida Andrés Bello, supplies the individual 300 m/64-level tower footprint, unchanged from the cached outline within 0.002 m rounding. Keep anchor [-70.606792403,-33.416929353] and heading +0.938147971775: native +X northeast bearing 36.25 degrees and -Z northwest bearing 306.25 degrees. The actually inspected owner floor-60 north arrow and connectivity page-4 north-up map corroborate tower axes and tower northwest of the mall, with Andrés Bello/Mapocho on its northwest side and Nueva Tobalaba northeast. Owner address and independent street access, architect rod-supported ground photo and owner aerial cover support a northwest office-frontage reconstruction; the eight model leaves, centered canopy span and precise offsets are illustrative rather than a north-annotated entrance survey. The additional mapped entrance node 13042181363 is southeast near the tower edge; it is not labelled as the exclusive office entrance and is not silently substituted for the Andrés Bello frontage. The fourfold tower/crown body is rotation-symmetric; the authored northwest canopy is an explicitly approximate frontage, not a claim of sole entry. Source outline and envelope ridge fit are sampled separately, with up to roughly 2 m corner/edge simplification. Mall, adjacent towers, underground levels and actual plaza grade are outside this individual asset. Actually inspected the north-up placement image: folded lower mass sits against the magenta exact tower ring, with minor reconstructed corner/edge deviations and the canopy projecting northwest outside the building outline. No surrounding mall or neighboring tower is merged into this model. Owner floor-60 and connectivity north arrows establish geographic context; the centered canopy and eight leaves are an explicitly approximate northwest office frontage. The unlabelled southeast mapped entrance point is retained as separate evidence, not claimed to locate the sole main office door."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh primary architect page, architect crown-night/skydeck/ground-level/exterior pixels, owner floor-60 PDF pixels, north-up owner connectivity pages 3/4 and owner tower brochure cover/context/interior pages 1/2/11/12/19 were inspected. Published 300 m tower tip and owner floor-60 249.60 m datum are separate, as are above-ground 64 mapped/architect-of-record levels and current owner 62-floor marketing. Floor plan is explicitly illustrative. The original granTorreCostaneraStudy.encodeAssembly remains byte-reconstitutable: 1959180 bytes, hash sha256:88a6c0bc5bc218fb7a4a933637b782f5ce976a37cb49c9ba646421a3f534c340, 83912 expanded triangles /23066 stored triangles in four parts and ten placements. The reviewed flattened source and four authored levels retain the original folded taper, recessed corners, separate open upper glass fins and exposed diagonal lattice, two working observatory floors, exposed viewing floor, service core and rod-supported northwest entrance canopy. Facade glass and darker spandrel occupy adjacent regions instead of overlapping coplanar panels. Close adds flat full-height mullion strips segmented at taper datums, repeated floor transoms and crown frit; street coarsens vertical spacing and frit; district groups floors; skyline keeps folded silhouette/open corner gaps/coarse diagonal crown framing in one opaque draw. Three canonical graphs (stainless metal, concrete and wood) are shared, with opaque glass, 52-percent clear glass and recess palette: six near groups and no embedded images. Original granite lobby core becomes shared concrete; invisible office fitout and facade bolts are not authored. Ground floor and 253.7/261.8 m viewing datums, 282.7 m lower corner closure, intermediate taper, bay counts, rod/member dimensions, small rooftop equipment and centered canopy 22.4 m width/32.9 m front are working reconstructions. Owner floor 60 is 249.60 m with 4.10 m slab interval; operator floor labels 61/62 and marketed 300 m are not measured floor elevations. Architect-of-record/OSM 64 levels and current owner 62-floor marketing remain distinct. Primary floor plan explicitly says illustrative. Canonical references are not copied as textures. Phone/laptop dense-scene measurements remain pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Architect exterior/crown/observatory/entrance photos and owner floor plans. Intermediate dimensions, bay counts, floor datums, structural members and entrance extent are inferred, not a measured survey. Geographic fit and maximum exterior fidelity are pending. Cached map axis is undirected and the entrance side is not approved. Upper-floor drawings are marked illustrative. Envelope taper, corner depth, canopy dimensions, floor divisions and crown levels are working reconstructions. Do not equate the marketed 300 m observatory height with the owner drawing floor-60 datum. Floor 61/62 heights in this model are provisional. The surrounding mall and neighboring towers are separate structures. Plaza boundaries, planting, connecting walkways and actual terrain remain unauthored. Glazing uses local PBR color and alpha; steel, stone, concrete and wood use canonical shared graphs. No copied photographic textures or downloaded meshes."
+    "notes": "Architect exterior/crown/observatory/entrance photos and owner floor plans. Intermediate dimensions, bay counts, floor datums, structural members and entrance extent are inferred, not a measured survey. Geographic fit and maximum exterior fidelity are pending. Cached map axis is undirected and the entrance side is not approved. Upper-floor drawings are marked illustrative. Envelope taper, corner depth, canopy dimensions, floor divisions and crown levels are working reconstructions. Do not equate the marketed 300 m observatory height with the owner drawing floor-60 datum. Floor 61/62 heights in this model are provisional. The surrounding mall and neighboring towers are separate structures. Plaza boundaries, planting, connecting walkways and actual terrain remain unauthored. Glazing uses local PBR color and alpha; steel, stone, concrete and wood use canonical shared graphs. No copied photographic textures or downloaded meshes.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 24
-    },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 24
-    },
-    "validatorLimitations": "EXT_mesh_gpu_instancing is unsupported by the validator and reported as information. Independent transform/count/bounds checks and Molen renders cover instancing; other information concerns unused fallback attributes.",
-    "expandedTriangles": 702432,
-    "uniqueMeshTriangles": 177840,
-    "uniquePositionVertices": 356016,
-    "uniqueMeshes": 4,
-    "instances": 10,
-    "materials": 8,
-    "sharedGraphs": 5,
-    "embeddedImages": 0
-  },
-  "runtimeLodReview": {
-    "status": "passed",
-    "scope": "Visual integrity and local byte/layout checks; physical-device measurements pending.",
-    "notes": "Inspected the master and all four runtime levels side by side. An original 40 KB authored skyline preserves the tapered outline and four open crown walls. District, street and closeup are 2.33, 3.29 and 7.33 MB; the detailed master is 14.96 MB. Detailed triangle targets remain advisory and district/street exceed them to preserve large surfaces. Initial skyline and district downloads each fit the 3 MB phone target; device frame time is not measured.",
-    "levels": [
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/66/66j/n0232_gran_torre_costanera/models/source.glb",
+        "hash": "sha256:6d23d9efb2515c9efa2bf14b8d5cf7a8de5c59a5927d54bb2a9f27cb9e80ef78",
+        "bytes": 1200508,
+        "triangles": 14106,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -25.744815826416016,
+          0,
+          -32.931434631347656
+        ],
+        "max": [
+          25.744815826416016,
+          300.0018005371094,
+          25.744815826416016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/66/66j/n0232_gran_torre_costanera/model.glb",
+        "hash": "sha256:91ce7181b89e9f546b3b3b126d49d32b2c9e5f10c9e3bf81b0b2989980989781",
+        "bytes": 1199992,
+        "triangles": 14106,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -25.744815826416016,
+          0,
+          -32.931434631347656
+        ],
+        "max": [
+          25.744815826416016,
+          300.0018005371094,
+          25.744815826416016
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
       {
         "name": "skyline",
-        "hash": "sha256:feff0cad94e7358a627cf7ce5d9851d711a1fa64557c27f7590285cc1f7deda9",
-        "bytes": 40160,
-        "triangles": 496,
+        "path": "content/worldgen/assets/places/66/66j/n0232_gran_torre_costanera/model.skyline.glb",
+        "hash": "sha256:4f169eefa903bc6bcceef60b65331b3ef238de0321d3ebbfe98eda0dbfd8d409",
+        "bytes": 79080,
+        "triangles": 994,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -25.700000762939453,
+          0,
+          -32.619998931884766
+        ],
+        "max": [
+          25.700000762939453,
+          300,
+          25.700000762939453
+        ],
         "errors": 0,
         "warnings": 0
       },
       {
         "name": "district",
-        "hash": "sha256:fa39bc59ea6f449fcf091ea25c03659d70e463e141e56e03175efbea2bf64b10",
-        "bytes": 2330604,
-        "triangles": 22688,
+        "path": "content/worldgen/assets/places/66/66j/n0232_gran_torre_costanera/model.district.glb",
+        "hash": "sha256:91400e4257e4c3057639503b9e20ce72ff7516aa77b7529fa094b13873b898f5",
+        "bytes": 287784,
+        "triangles": 3666,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -25.7348575592041,
+          0,
+          -32.619998931884766
+        ],
+        "max": [
+          25.7348575592041,
+          300.0010681152344,
+          25.7348575592041
+        ],
         "errors": 0,
         "warnings": 0
       },
       {
         "name": "street",
-        "hash": "sha256:49b1e4846949b0c5e4c0bcc4f9654231f8bcd8b6ea4d8ae6503c135108d8a035",
-        "bytes": 3293048,
-        "triangles": 31998,
+        "path": "content/worldgen/assets/places/66/66j/n0232_gran_torre_costanera/model.street.glb",
+        "hash": "sha256:1cd5cdac9246f2dd87f055b802b628068de2a1f528ae62c74d04161832c4fa4f",
+        "bytes": 949904,
+        "triangles": 12326,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -25.744815826416016,
+          0,
+          -32.931434631347656
+        ],
+        "max": [
+          25.744815826416016,
+          300.0018005371094,
+          25.744815826416016
+        ],
         "errors": 0,
         "warnings": 0
       },
       {
         "name": "closeup",
-        "hash": "sha256:290130ba7590875dd0354bc6072af0daecae4c4810a88d8be2a631a73ce2d55b",
-        "bytes": 7332336,
-        "triangles": 68111,
+        "path": "content/worldgen/assets/places/66/66j/n0232_gran_torre_costanera/model.closeup.glb",
+        "hash": "sha256:c1e2b277201e93d75b688f36835bb558bf88cea03b83d19ad9650d01ca0f6856",
+        "bytes": 1085868,
+        "triangles": 14106,
+        "materials": 6,
+        "images": 0,
+        "min": [
+          -25.744815826416016,
+          0,
+          -32.931434631347656
+        ],
+        "max": [
+          25.744815826416016,
+          300.0018005371094,
+          25.744815826416016
+        ],
         "errors": 0,
         "warnings": 0
       }
-    ]
-  }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/costanera-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: exact unchanged original 1959180-byte instanced recipe hash, current flattened source/import hashes and generator check, independent full-precision reprojection of the exact-QID tower ring and 0.002 m cached rounding agreement. Four-sided facade rays at three heights test envelope displacement and outward winding; diagonal rays distinguish closed lower crown corner from genuinely open upper slot; downward ray checks open crown without a solid top cap and the 261.8 m floor. Crown height and projected canopy 5.15 m plane survive all levels. Near doorway rays check clear exterior winding and absence of an opaque pane blocking the opening. All four runtime levels rebuild byte-identically, stay inside triangle/download/draw limits and separate POSITION/NORMAL into independent 12-byte GPU streams. Six independent Khronos validations report zero errors/warnings and zero images; strict medium-fi findings are empty. These are sampled checks, not exhaustive survey or topology certification."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:848e3f58d596e29d9c7c00b512c4dffc5d85df02b88a5072e33419617e32b446",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:4f169eefa903bc6bcceef60b65331b3ef238de0321d3ebbfe98eda0dbfd8d409",
+        "bytes": 79080,
+        "gzipBytes": 14708,
+        "triangles": 994,
+        "cpuBytes": 77676,
+        "gpuBytes": 77676,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:91400e4257e4c3057639503b9e20ce72ff7516aa77b7529fa094b13873b898f5",
+        "bytes": 287784,
+        "gzipBytes": 49852,
+        "triangles": 3666,
+        "cpuBytes": 281844,
+        "gpuBytes": 281844,
+        "errorMeters": 0.75,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:1cd5cdac9246f2dd87f055b802b628068de2a1f528ae62c74d04161832c4fa4f",
+        "bytes": 949904,
+        "gzipBytes": 201469,
+        "triangles": 12326,
+        "cpuBytes": 942780,
+        "gpuBytes": 942780,
+        "errorMeters": 0.3,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:c1e2b277201e93d75b688f36835bb558bf88cea03b83d19ad9650d01ca0f6856",
+        "bytes": 1085868,
+        "gzipBytes": 237080,
+        "triangles": 14106,
+        "cpuBytes": 1078740,
+        "gpuBytes": 1078740,
+        "errorMeters": 0.15,
+        "drawCalls": 6
+      }
+    ],
+    "initialBytes": 366864,
+    "notes": "skyline: 994 triangles /79080 bytes /1 groups; district: 3666 triangles /287784 bytes /5 groups; street: 12326 triangles /949904 bytes /6 groups; closeup: 14106 triangles /1085868 bytes /6 groups. Initial skyline/district total 366864 bytes, within 3 MB phone/6 MB laptop targets. Reviewed source 1200508 bytes /14106 triangles; import 1199992 bytes. Original 83912 expanded-triangle master is preserved in its unchanged recipe and reproduced in the focused test. Physical laptop/phone and dense-city timings remain unmeasured."
+  },
+  "limitations": [
+    "The original granTorreCostaneraStudy.encodeAssembly remains byte-reconstitutable: 1959180 bytes, hash sha256:88a6c0bc5bc218fb7a4a933637b782f5ce976a37cb49c9ba646421a3f534c340, 83912 expanded triangles /23066 stored triangles in four parts and ten placements. The reviewed flattened source and four authored levels retain the original folded taper, recessed corners, separate open upper glass fins and exposed diagonal lattice, two working observatory floors, exposed viewing floor, service core and rod-supported northwest entrance canopy. Facade glass and darker spandrel occupy adjacent regions instead of overlapping coplanar panels. Close adds flat full-height mullion strips segmented at taper datums, repeated floor transoms and crown frit; street coarsens vertical spacing and frit; district groups floors; skyline keeps folded silhouette/open corner gaps/coarse diagonal crown framing in one opaque draw. Three canonical graphs (stainless metal, concrete and wood) are shared, with opaque glass, 52-percent clear glass and recess palette: six near groups and no embedded images. Original granite lobby core becomes shared concrete; invisible office fitout and facade bolts are not authored. Ground floor and 253.7/261.8 m viewing datums, 282.7 m lower corner closure, intermediate taper, bay counts, rod/member dimensions, small rooftop equipment and centered canopy 22.4 m width/32.9 m front are working reconstructions. Owner floor 60 is 249.60 m with 4.10 m slab interval; operator floor labels 61/62 and marketed 300 m are not measured floor elevations. Architect-of-record/OSM 64 levels and current owner 62-floor marketing remain distinct. Primary floor plan explicitly says illustrative. Canonical references are not copied as textures. Phone/laptop dense-scene measurements remain pending."
+  ]
 }

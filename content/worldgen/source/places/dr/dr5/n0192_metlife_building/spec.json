@@ -30,9 +30,9 @@
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along the mapped building long axis",
-    "front": "+Z",
-    "origin": "Ground-level center of exact-QID mapped footprint frame"
+    "longitudinal": "+X north-northeast",
+    "front": "+X toward45thStreet entrance",
+    "origin": "Original mapped whole-building frame at reconstructed street grade"
   },
   "sourceFacts": {
     "architecturalHeightMeters": 246.3,
@@ -47,11 +47,30 @@
     ],
     "firstPrecastTowerFloor": 10,
     "renewedNorthEntry": "MdeAS 2022 renovation: travertine arcade columns, bronze frames and large glazing",
-    "terrace": "Current owner brochure describes an eighth-floor open-air Skyline Terrace and Lounge"
+    "terrace": "Current owner brochure describes an eighth-floor open-air Skyline Terrace and Lounge",
+    "originalMasterHash": "sha256:167aa3da726b558e0397c02c34a9671852f4ea38493b53f55925ee55055e865e",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-metlife-model.mjs#buildMetlife",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "stone_travertine": [
+        0.911101,
+        0.911101,
+        0.911101
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
   },
   "reconstruction": {
     "plan": "Independent mapped twelve-point tower ring is cleaned only at near-collinear vertices to retain its long octagonal shape. The much wider full ground podium, setback eighth/ninth-floor block and four separate support columns retain their own footprints.",
-    "facade": "Individual recessed blue-gray windows have projecting triangular cast fins, thick precast spandrels, dark transoms and fine construction seams. Mechanical levels have actual setback glass and outer columns, not painted stripes.",
+    "facade": "Continuous inset blue-grey glazing is divided by merged precast spandrels and vertical piers. Continuous triangular fins preserve the cast projection without per-floor end caps. Fine seal gaps/transoms are omitted; two mechanical levels have real setback glazing and outer columns.",
     "crown": "Physical vertical fins stand before a recessed louver screen; original white polygonal MetLife lettering faces the broad north/south walls. Flat roof and modest cornice retain the architectural height; no active helipad is depicted.",
     "entry": "Current north-side colonnade is recessed behind travertine-clad piers, with bronze-framed tall glazing, three revolving doors and soffit lights. The separate podium terrace has glass guards and simple planter beds."
   },
@@ -66,7 +85,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed north arcade and tower placement",
     "anchor": [
       -73.976657641,
       40.753506014
@@ -77,14 +96,24 @@
     "source": "https://www.openstreetmap.org/way/137564642",
     "groundModelY": 0,
     "featureIds": [
-      "way/137564642"
+      "way/137564642",
+      "way/137564641",
+      "way/137565295",
+      "way/1487962789",
+      "way/1487962790",
+      "way/1487962791",
+      "way/1487962792",
+      "way/1487962793"
     ],
     "wikidataId": "Q464482",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:36d2e685084eff6cf4228b62b7906df04009d0b8e2d853de6ff3d509168178a2",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact-QID map frame preserves the narrower tower across the larger podium. Native+X points toward the north 45th Street entrance, -X toward Grand Central Terminal, +Z toward east Depew Place and -Z toward Vanderbilt Avenue. The independently mapped entrance and four elevated support columns retain their signed positions. GroundY0 is the street entry datum; adjoining terminal and street grade are excluded."
+    "orientationConfidence": "whole and seven independent parts plus mapped north entrance",
+    "notes": "Fresh2026-10-10 OSM exact-Q464482 whole way137564642 and seven source-local map-parts retain the octagonal shaft137564641, broad30m podium1487962793, setback38m block137565295 and four separate columns1487962789â€“92. All seven part geometries match independent original map-parts; whole ring matches original independent georeferencing outline within3mm. Mapped entrance11507279903 near native[56.676,-.412] fixes the north frontage sign. Retain heading1.062997418385: +X north-northeast toward45thStreet, -X south-southwest toward GrandCentral, +Z east-southeast towardDepewPlace and -Z west-northwest towardVanderbilt. Common anchor[-73.976657641,40.753506014] remains; Y0 is reconstructed street entry. Mapped246m is rounded; published246.3m crown retained. Lower30/38m levels, two mechanical-recess heights and internal door offsets are reconstructions. Accept2m main-envelope/1degree allowance; no automatic footprint replacement. Separate GrandCentralTerminal and real terrain/adjacent street grades excluded.",
+    "evidence": "Fresh2026-10-10 OSM exact-Q464482 whole way137564642 and seven source-local map-parts retain the octagonal shaft137564641, broad30m podium1487962793, setback38m block137565295 and four separate columns1487962789â€“92. All seven part geometries match independent original map-parts; whole ring matches original independent georeferencing outline within3mm. Mapped entrance11507279903 near native[56.676,-.412] fixes the north frontage sign. Retain heading1.062997418385: +X north-northeast toward45thStreet, -X south-southwest toward GrandCentral, +Z east-southeast towardDepewPlace and -Z west-northwest towardVanderbilt. Common anchor[-73.976657641,40.753506014] remains; Y0 is reconstructed street entry. Mapped246m is rounded; published246.3m crown retained. Lower30/38m levels, two mechanical-recess heights and internal door offsets are reconstructions. Accept2m main-envelope/1degree allowance; no automatic footprint replacement. Separate GrandCentralTerminal and real terrain/adjacent street grades excluded.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -120,11 +149,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Facade module pitch, recess-floor heights, precast fin section, wordmark outlines, terrace furniture and entrance details are reconstructed from the current owner, restoration engineer and architect photographs; no original facade shop drawing is claimed. The mapped lower30/38m elevations are approximate. The wordmark is original polygonal geometry; exact font outlines, rooftop small plant, tenant displays and interiors are excluded."
+    "Original437075triangles/52320792byte per-cell detailed master remains exactly reproducible through unchanged buildMetlife recipe. Reviewed source merges repeating precast spandrels, vertical piers and triangular fins around continuous inset glazing instead of independent framed window boxes. It retains all original major facade floor datums, two genuinely recessed mechanical levels, separate support-column footprints, crown screen/fins and original polygonal north/south lettering, north arcade/soffit, three revolving doors and podium terrace. Fine cell seam gaps/transoms and per-cell glass tint variation are removed; all original detail remains available through unchanged master recipe. Skyline aggregates facade ribbons/piers and uses flat original letter faces, coarse arcade/door rings and shared graph colour means. District restores sampled vertical piers and dark recesses; street restores each facade datum/pier, continuous0.33m triangular shaft fins and extruded signage while flattening spandrel/pier return faces; close-up retains continuous triangular fins and finer entry/terrace grids. Concrete, travertine and coated-metal canonical graphs supply four near draw groups including one opaque glass group; no embedded images. Original door transparency becomes tinted opaque panels; no interior transparency/fit-out claim. Exact panel pitch, recess elevations, fin dimensions, signage outline and entrance/terrace details remain photo reconstructions. No surveyed grade or physical-device performance claim. Skyline omits revolving-door hardware, tiny fixtures and the outer mechanical-recess columns, retaining the inset dark belts and their floor/ceiling caps; only one pair of spandrels is sampled per shaft zone. Skyline arcade columns use a coarser spacing. Street strips use flat front faces; their triangular cast fins still have three actual side faces and both end caps. Far glazing sits2cm behind the facade strips instead of24.5cm, preventing coplanar overlap while approximating the facade depth. Per-level errors describe finite tested broad surfaces, excluding omitted slender columns/fins and entrance hardware, not a global Hausdorff bound."
   ],
   "qaCameras": [
     {
@@ -282,6 +310,284 @@
         122,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-200park",
+      "position": [
+        395,
+        225,
+        480
+      ],
+      "lookAt": [
+        -5,
+        119,
+        0
+      ]
+    },
+    {
+      "name": "north-arcade-from-street",
+      "position": [
+        75,
+        10,
+        16
+      ],
+      "lookAt": [
+        52,
+        5,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/metlife-runtime-model.mjs",
+    "export": "buildMetlifeReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/metlife-runtime-model.mjs",
+    "export": "buildMetlifeSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMetlifeDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "travertine": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foliage": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildMetlifeStreet",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "travertine": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foliage": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMetlifeCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "travertine": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "foliage": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-200park-skyline",
+      "position": [
+        395,
+        225,
+        480
+      ],
+      "lookAt": [
+        -5,
+        119,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-200park-district",
+      "position": [
+        395,
+        225,
+        480
+      ],
+      "lookAt": [
+        -5,
+        119,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-200park-street",
+      "position": [
+        395,
+        225,
+        480
+      ],
+      "lookAt": [
+        -5,
+        119,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-200park-closeup",
+      "position": [
+        395,
+        225,
+        480
+      ],
+      "lookAt": [
+        -5,
+        119,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-mechanical-recess",
+      "position": [
+        58,
+        91,
+        -17
+      ],
+      "lookAt": [
+        9,
+        86,
+        -2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-north-revolving-doors",
+      "position": [
+        64,
+        5,
+        -6
+      ],
+      "lookAt": [
+        52,
+        2.4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-continuous-precast-fins",
+      "position": [
+        40,
+        131,
+        20
+      ],
+      "lookAt": [
+        9,
+        124,
+        8
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-north-wordmark",
+      "position": [
+        87,
+        247,
+        24
+      ],
+      "lookAt": [
+        9,
+        239,
+        0
+      ],
+      "reviewLod": "district"
     }
   ],
   "importOptions": {
@@ -289,10 +595,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 437075,
-    "vertices": 1307565,
-    "materials": 6,
-    "bytes": 52320792,
-    "sha256": "sha256:167aa3da726b558e0397c02c34a9671852f4ea38493b53f55925ee55055e865e"
+    "triangles": 30667,
+    "vertices": 88917,
+    "materials": 4,
+    "bytes": 3571840,
+    "sha256": "sha256:2c0bbc6601eff8d6ad06210a87c69ad1de9c2300646d4eb5271ab807eedcb79a"
   }
 }

@@ -1,0 +1,180 @@
+{
+  "planId": "anne_frank_house",
+  "id": "anne_frank_house",
+  "assetId": "molen.worldgen.structure.anne_frank_house",
+  "title": "Anne Frank House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 4.884278476238251,
+    "latitude": 52.3752692308521
+  },
+  "size": [
+    6.300000160932541,
+    18.760000228881836,
+    25.424999237060547
+  ],
+  "actualBounds": {
+    "min": [
+      -0.46000000834465027,
+      -1,
+      -7.625
+    ],
+    "max": [
+      5.840000152587891,
+      17.760000228881836,
+      17.799999237060547
+    ]
+  },
+  "visualBrief": "Prinsengracht 263 only: three-bay black storefront and brick upper facade, white cornice and hoist, slate front-house roof, narrow connecting section and transverse red-tiled annex roof.",
+  "nativeAxes": {
+    "x": "across principal front elevation",
+    "y": "up",
+    "z": "outward from principal front elevation"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Amsterdam_(NL),_Anne-Frank-Huis_--_2015_--_7185.jpg",
+    "https://commons.wikimedia.org/wiki/File:AnneFrankHouseAmsterdamtheNetherlands.jpg"
+  ],
+  "stories": [
+    {
+      "id": "anne-frank-house-wp",
+      "url": "https://qualla.com/anne-frank-house/"
+    }
+  ],
+  "referenceInputHash": "c30d22506fb8bf6dd016373a799d5640e29dc501b3d6c1be512a037d722bedf9",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-anne-frank-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-anne-frank-house.mjs",
+    "level": "skyline",
+    "export": "anneSkyline",
+    "errorMeters": 0.5
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "reviewed-source-frame",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Front threshold at signed local [2.69,17.25] on independently sampled host terrain; foundation extends to -1 m.",
+    "anchor": [
+      4.884278476238251,
+      52.3752692308521
+    ],
+    "heading": -2.0943951023931953,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        4.884038863574615,
+        52.375325783058926
+      ],
+      "modelHeight": 0,
+      "basis": "Canal-side front threshold; original unmodified host terrain is sampled at this local coordinate."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184638705301"
+    ],
+    "source": "https://build.protomaps.com/20261008.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:445271b69fe933e49262b9c220fec29df37380357daace8421729f957b70b276",
+    "notes": "The 5.88 by 24.1 m generalized envelope covers the front house and annex. Photo-derived partition: front z=3.3..16.7, connecting section z=-0.1..3.3, annex z=-7.4..-0.1. The rear roof ridge is transverse to the front-house ridge. These partitions are interpretive, not cadastral or measured. Modern museum and adjoining houses excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior, not a measured reconstruction. Facade follows local Qualla photos; the hidden courtyard/annex arrangement follows the museum historical cutaway and the local model photograph.",
+    "The zoom-15 map supplies a generalized 5.88 by 24.1 m envelope. Front/connector/annex partition and window/roof dimensions are estimates; small modern alterations and interiors are omitted.",
+    "Adjacent 261, 265 and the modern museum block are excluded. The former draft rear polygon was a neighboring property and has been removed.",
+    "Ground contact is reviewed against independently preserved coarse host-terrain samples; this is not elevation survey data. Reference images remain in Qualla and are not embedded in the asset."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        2.69000007212162,
+        12.194000148773194,
+        55.93749809265137
+      ],
+      "lookAt": [
+        2.69000007212162,
+        5.866000080108642,
+        5.087499618530273
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        2.69000007212162,
+        15.00800018310547,
+        -45.76249885559082
+      ],
+      "lookAt": [
+        2.69000007212162,
+        5.866000080108642,
+        5.087499618530273
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2448,
+    "vertices": 7344,
+    "materials": 5,
+    "bytes": 296932,
+    "sha256": "sha256:b8eb6ce7debe12d118c078792fd841d56753bd0aa0592a7235e7f8d9d9a9be70"
+  }
+}

@@ -1,0 +1,1235 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0020_mahatma_gandhi_setu",
+  "sourceHash": "sha256:4fcf0afa95418b2a752ee25f518b0a4d44b72fc963748e68bfa2fb6d20a95540",
+  "runtimeHash": "sha256:326eb4752a9fd300e4e7f160beadd0837305a8d70157fe1bc26aaf68363d8fa3",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:5f93142937116449363c2baf3b477e8fc8ac7abde7c4cfaa261cc70132b70913",
+      "bytes": 100364,
+      "gzipBytes": 17645,
+      "triangles": 964,
+      "cpuBytes": 98952,
+      "gpuBytes": 98952,
+      "errorMeters": 10,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:682915c64bbde3c104d01d22542f0012a4932b1222bc2316e333778d5454d5ef",
+      "bytes": 365760,
+      "gzipBytes": 47095,
+      "triangles": 3808,
+      "cpuBytes": 361968,
+      "gpuBytes": 361968,
+      "errorMeters": 5,
+      "drawCalls": 3
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:a9185b9267bcc9cbf5d468fd85c5bc85f863aad5f25152638f0f6902fde48466",
+      "bytes": 1364464,
+      "gzipBytes": 247683,
+      "triangles": 15792,
+      "cpuBytes": 1360656,
+      "gpuBytes": 1360656,
+      "errorMeters": 2,
+      "drawCalls": 3
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:a7bab663177d026417cd2f9cfecad67ba26996719b2d52167a4a079f68b2bf5c",
+      "bytes": 6107312,
+      "gzipBytes": 1102810,
+      "triangles": 63836,
+      "cpuBytes": 6102408,
+      "gpuBytes": 6102408,
+      "errorMeters": 0.7,
+      "drawCalls": 4
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-water.terrain.json",
+      "hash": "sha256:cf500628857b6eb47b9a077ff2fb8396989e20ea2fa624f110b3445afa352d89"
+    },
+    "heightmap": {
+      "path": "terrain-water.height.png",
+      "hash": "sha256:911469338822aae4cae618ad4b67ab5e500baa8d0fed82d49b699ef1330ad00a"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-river",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            10.126317570340802,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            7000,
+            0.06,
+            7000
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#8b8774",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:007db0436e4e0fec4ae3a96ac55dd30441410f0ae709571033a822d277908683",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          536.7397,
+          1660
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:30b538d122e485065424c46a85980f034f77809c39bd23ebdcc239d9a21c381a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          536.7397,
+          1660
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f752ce757b6791b094cfff25aac32dbe60f984b823a4b4aeedccbdf458e5fe67",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          536.7397,
+          1660
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:91eb171a263066d283e63fcf5825ad86ec4463fb9d90b51651f23b9f7a47061b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          960,
+          536.7397,
+          1660
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:e6118ef347b9ff918b51033d0a3c348a1f15169fb78915d2ae2f6084e3a0eae4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 48698,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:93008aedf1c077e4ce9fcd05f507df4bcefa0227c9091e624e737d91b2efef71",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 48698,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:2ef2e2cf653eb8a3a056aeb8acc81e066e7f22ec43f6f1fc0be2d1647154bdde",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 10,
+        "triangles": 48698,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:e8e1339384850a00c6bd655f202715a00b31c37bb5b2993cabde4f5304c19e58",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 48698,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:c2a6163398c94a3d4b6739e9278805c9c8f68439df714d1e3ae65cfb0a684d2b",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 45854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2016.7397,
+          6720
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:0c664f83e4994103da23847f47a8cfde0597daa8b8176ab52cfac2eeffad1d49",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2016.7397,
+          6720
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:d37bdcdef6e5a42f53ac669e062cfecdd5646112494ff59ca33e4c7a4e794870",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 45854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2016.7397,
+          6720
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:c97b33ef524ed0803065e86acc0b1797f2f4ac283af013b5b665a82482f2d8d2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2016.7397,
+          6720
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:a6a751c446507390a1f043bff0bb3163fce54242700f8d45a34c5fc48c5833b0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 41298,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3880,
+          2016.7397,
+          6720
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/full-crossing.png",
+      "hash": "sha256:9a65d4ee6caa52f45a5a9992f39afc7d42cd931ee869bf91789240e474d52b3e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          0,
+          1900,
+          6700
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/river-spans.png",
+      "hash": "sha256:5a005e273f4a11a0c5121ae59eed743dc5c2e5435297bf6f3d44f6be236c8f4b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 108724,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          -2350,
+          58,
+          240
+        ],
+        "lookAt": [
+          -2320,
+          21,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pier-and-bearings.png",
+      "hash": "sha256:db8fd2fb88ba6322c1cf1b604c814f15274346e3ee33e514db85cb34f43bbede",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 108724,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          -2326.7675,
+          15,
+          46
+        ],
+        "lookAt": [
+          -2360.7675,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/steel-web.png",
+      "hash": "sha256:43e7166fb0b16523956f126fd63c17feddaf71eedbc6373ea78626cc30b04f56",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 108724,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          -2303.7675,
+          28,
+          26
+        ],
+        "lookAt": [
+          -2303.7675,
+          28,
+          10.4
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roof-bracing.png",
+      "hash": "sha256:bea1a9609c4a1798b2dccf41a42457a703e5c5abae362e12639e71b0d3697404",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          -2320.7675,
+          39,
+          25
+        ],
+        "lookAt": [
+          -2306.7675,
+          32.9,
+          5.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/roadway.png",
+      "hash": "sha256:578f320e317c81172662d15d3ec25f1e075a26f0e484f6e2c55920717ad28239",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          -2346.7675,
+          25.8,
+          5.8
+        ],
+        "lookAt": [
+          -2260.7675,
+          25.6,
+          5.8
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/soffit-floorbeams.png",
+      "hash": "sha256:c28facb4325e67b864fd6bd34c93d82b71ce3e9cb5e2acecc6be14001ba09810",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          -2315.7675,
+          16,
+          4
+        ],
+        "lookAt": [
+          -2306.7675,
+          22.7,
+          6
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/end-pony-span.png",
+      "hash": "sha256:19fc4687f400c91c03e6d85e604470f68d89074880ce402a059909b87602fc5e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 108724,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          2747.4925000000003,
+          33,
+          85
+        ],
+        "lookAt": [
+          2754.4925000000003,
+          23,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/floodplain-piers.png",
+      "hash": "sha256:602b1fa250bbcf9a0cfe211d877ef95e788337c95496e0722445a832e6b8f70e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1000,
+          28,
+          180
+        ],
+        "lookAt": [
+          1000,
+          19,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gandhi-skyline.png",
+      "hash": "sha256:fd347ed1099e1211931ba427fddba420a540eedaef881cc3b772e1b7ed4d5b25",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3200,
+          1700,
+          4200
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gandhi-district.png",
+      "hash": "sha256:d448da44681da20ade413032abff4c6d219b61b89ea3f0f12640defed3ba2f9c",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 48698,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3200,
+          1700,
+          4200
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gandhi-street.png",
+      "hash": "sha256:dd030c1858ed9919cbf9e8edbabcb738c3217fdd3ad3e08cf0ef9253b1950f87",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60682,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3200,
+          1700,
+          4200
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-gandhi-closeup.png",
+      "hash": "sha256:1240761aec096608de84b1cb7f89f3d803a14f4247aa36a99c716d4b80cd22bb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          3200,
+          1700,
+          4200
+        ],
+        "lookAt": [
+          0,
+          20,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:d280119ce7c9943b39c2226cb845a4c928582530bc43d0ccd0043f929c44de58",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45854,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:93008aedf1c077e4ce9fcd05f507df4bcefa0227c9091e624e737d91b2efef71",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 48698,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5e605e5e2774a872ab065b85831d742c7e0f61ff3aab29fa7fc08a79352696af",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 60682,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d8aaf16c2ca1035543c806571100ab983d24f5b6b3e8025aee93b6a227c6d331",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 108726,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/terrain-water.height.png"
+        },
+        "position": [
+          1940,
+          1256.7397,
+          3360
+        ],
+        "lookAt": [
+          0,
+          236.7397,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

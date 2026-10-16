@@ -1,0 +1,840 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.hollyhock_house",
+  "sourceHash": "sha256:76c0bd1d88b51510ec0164131eb41f9b5cd0109a7839d48e7e5991d4246a7d8e",
+  "runtimeHash": "sha256:49b23eee1de1ca14ad13df4a070e63869ff5e488668868a802c9f53b0d8da260",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:5efd2193051df20b3f381f5432e25245275918009aaf2e4f1591bb3059db2e5e",
+      "bytes": 66016,
+      "gzipBytes": 9966,
+      "triangles": 836,
+      "cpuBytes": 64596,
+      "gpuBytes": 64596,
+      "errorMeters": 0.35,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:d5246110e964956a63a03859d495f64845a0314ff50ea27966590030cae6bcf1",
+      "bytes": 295952,
+      "gzipBytes": 52299,
+      "triangles": 3802,
+      "cpuBytes": 288780,
+      "gpuBytes": 288780,
+      "errorMeters": 0.15,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:60d996922d9d63079277492110ecdb2d3d08d92ac111da711bc9bd24b043f308",
+      "bytes": 1080624,
+      "gzipBytes": 198222,
+      "triangles": 13938,
+      "cpuBytes": 1073412,
+      "gpuBytes": 1073412,
+      "errorMeters": 0.05,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:79daaa4d3969dfbf90fd3631e141f91916920461773a638f2f2d0e1523862685",
+      "bytes": 3482052,
+      "gzipBytes": 575598,
+      "triangles": 28990,
+      "cpuBytes": 3478800,
+      "gpuBytes": 3478800,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:0a1432958483142253e919066dee648e200f8798ac73d2e65700dc3c65ffc31a"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:962ef50ffef75482f0b64252fb5d27d12e4944c35bafceef6d8290ab8b95115d"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:d873cdcff8e8c83acdb521afcd4596fa22a185bc5103438f6ddc6b8ad74f984f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          45.005,
+          29.2,
+          78.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:3816b42b041b36d0e4f4ab64a69e1f69f8c751e745ec9d77649b3d75a58f1ba2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          45.005,
+          29.2,
+          78.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:f14cd670a7ac5a820171c03d5fccb50319f657232d5a5ff4441631061c6cec32",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          45.005,
+          29.2,
+          78.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:2cc18faab7070883ee570d399b9d2419212b152d20236c253dfa5936de04c9a5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          45.005,
+          29.2,
+          78.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:db1f700ee081af9feec2c736139a8a1753050c07c295c0259c01bec6c519de38",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18236,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:0ece1f4673c02329e0c186ec6fcaaf666727029f0ada4564d5721742b4932b3e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18236,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:5deb09b8dff8e76e896c83c84b291f18dbf0f5fdcd5815df99a513c61cdbd26a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18236,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d44ff53979ad75932d8d79e8d948c029f5c1aab71f8af699b8bbcd1ef9cd01b5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18236,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:89de3e614f00b7d439611d15bc0026f1d7c2f1b33072e8a52a7e51f8089c0002",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15270,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          191.005,
+          103.2,
+          331.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:7fa229b3e021d143efe02ed97ead2f10ef97426986a35a7bfe3c88fb08fbf90a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15270,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          191.005,
+          103.2,
+          331.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:3aad182041084b16d1b3f87b5dc9df6da14960046b4f95b3ce9821adf722c5d0",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15270,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          191.005,
+          103.2,
+          331.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:fec0eb7c16cd12cab7b60f57a74997402238ed75bee5f7fb945ff1ed6dfe37c4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15270,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          191.005,
+          103.2,
+          331.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:1e9cf8f551274210070b02e70118083e01fddba7370b39ff154d083e6f4b317e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9030,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          191.005,
+          103.2,
+          331.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:746e6ee7a2216d46b8d5f192561f44d1ee2ca4878abd887fa1f3cf6a78e42d36",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          -70,
+          19,
+          44
+        ],
+        "lookAt": [
+          -5,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:f871969bcc1b6b0e6089e185e738f781e1cd9e8720b66d62b12d28ee702343b8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          65,
+          25,
+          -45
+        ],
+        "lookAt": [
+          2,
+          3,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:8dad602174eb2de1e6e82feea441fbbba4e9d4260e3fc914d9b6fd92f01bead7",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15270,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:0ece1f4673c02329e0c186ec6fcaaf666727029f0ada4564d5721742b4932b3e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18236,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:52f65858a2b0062be7112842dc1aa24335077c3d7b18d808067da6b808b430c8",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 28372,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:4257d5886c3941498e4c9d32088d0f205d56afa4d1fffae051c4582f57ee93b2",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 43424,
+        "groundY": -24,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollyhock_house/terrain-review.height.png"
+        },
+        "position": [
+          94.005,
+          65.2,
+          163.7
+        ],
+        "lookAt": [
+          -2.995,
+          14.2,
+          -4.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.membrane": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:d91490631436416c8e5e212852628bdf3adda7d5891e2dea73b1f91208d7d62e",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:cc17e9693b3288fcc5e64b3d5cc50a42788fa7c8d26e886ea7bf11b92f81ce6c"
+  }
+}

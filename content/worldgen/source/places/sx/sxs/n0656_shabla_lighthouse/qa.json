@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0656_shabla_lighthouse",
-  "inputHash": "sha256:a21b011bd2fe766f8912867c83c96fb0e7fbbb357be1e9fec4212ece18b6c9bd",
-  "captureReportHash": "sha256:4d61e9b8f1754aa9e9f9fdc764dd3808e909522506586004e8e4aad72c8a7e90",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:58045a742086881f2ae35157f114e57cd6bc30e9fe1f755cfd79b4b08dd5696e",
+  "sourceHash": "sha256:16851288e86d80f1cf4e453aeccd8fca419c612c7d53768bfc036b13b188dfa4",
+  "runtimeHash": "sha256:82dc5efac6b377557129a9dc1bf2f81ad250a1e8156a3d20ef59e3a778180fb6",
+  "captureReportHash": "sha256:75a774ed0d10a10bccb2b57e52cf92315c65cbd5861f6dfed561adec5bb0dd94",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed exterior and portable materials.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -15,50 +17,16 @@
       "shots/near-lantern.png",
       "shots/near-octagon.png",
       "shots/near-base.png",
-      "shots/far-ensemble.png"
+      "shots/far-ensemble.png",
+      "shots/keeper-reverse.png",
+      "shots/lower-gallery.png",
+      "shots/base-overhead.png"
     ],
-    "notes": "All nine portable and nine shared frames inspected, with full-resolution gallery, octagon and square-base views. Recessed openings, eight faces, red-white bands, railings, service roof and entrance steps render without visible clipping or detached geometry."
+    "notes": "All twelve portable views inspected. The six broad red/white octagon bands, taper, projecting stone edges, real narrow recesses and arched lower aperture, square painted base, complete hipped keeper house, two chimneys, inland door/steps, small dark lantern and both open galleries are visible. The formerly missing square-base gallery rail is restored. Reverse house and overhead views show continuous walls and roof. Near-octagon and near-base camera crops deliberately isolate details; complete turntables and far ensemble show the entire32m silhouette."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:c7f13e93a5ede577865c86b1cbf1b40c99e9ba54535aabd9b2cecf6942c158ab",
-    "fixtureHash": "sha256:7a7f203867111f5939adde34be84be27bd20a4340f1710d830bef77bb75e784d",
-    "inputHash": "sha256:a21b011bd2fe766f8912867c83c96fb0e7fbbb357be1e9fec4212ece18b6c9bd",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.plaster_lime": {
-        "path": "materials/plaster_lime.matgraph.json",
-        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
-      },
-      "matgraph:molen.worldgen.material.stone_ashlar": {
-        "path": "materials/stone_ashlar.matgraph.json",
-        "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
-      },
-      "matgraph:molen.worldgen.material.stone_limestone": {
-        "path": "materials/stone_limestone.matgraph.json",
-        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
-      },
-      "matgraph:molen.worldgen.material.tile_ceramic": {
-        "path": "materials/tile_ceramic.matgraph.json",
-        "hash": "sha256:67f822c99e4585bf4c19fc42e5015f9a2a8ac056e8b581a6ee4b7caad394515e"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.stone_granite": {
-        "path": "materials/stone_granite.matgraph.json",
-        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
-      },
-      "matgraph:molen.worldgen.material.wood_plain": {
-        "path": "materials/wood_plain.matgraph.json",
-        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "captureReportHash": "sha256:65004d419d35c61265eb2094619848a98dbdf95e09b998e077c472b77c8666a0",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -68,19 +36,257 @@
       "shots/shared/near-octagon.png",
       "shots/shared/near-base.png",
       "shots/shared/far-ensemble.png",
+      "shots/shared/keeper-reverse.png",
+      "shots/shared/lower-gallery.png",
+      "shots/shared/base-overhead.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Painted coursed masonry, darker hardware, glass and lower plastered service house remain consistent at near and far ranges. Stone coursing crosses paint-band boundaries without abrupt scale changes."
+    "notes": "All twelve shared/geographic views inspected. Canonical plaster, ashlar, limestone, tiles, painted metal, granite and wood use metric repeats; the detailed master additionally retains its original concrete steps graph. Browser derivatives reuse granite on those tiny steps, reducing the eight graphs plus local dark glass to seven graphs plus glass/eight draws. North-up placement shows the keeper house south of the separately anchored tower, centered on the mapped service-house rectangle without XY stretch. The shared stone coursing and roof tiles are generalized; individual worn paint repairs and exact masonry are not photographic copies. Each graph is read once; unload disposes all model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:60ca6bbf6addcc112431a243c2211e2ab39c6909d45f10a974aef6a37f9f1b31",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-lantern.png",
+      "medium-fi/near-octagon.png",
+      "medium-fi/near-base.png",
+      "medium-fi/far-ensemble.png",
+      "medium-fi/keeper-reverse.png",
+      "medium-fi/lower-gallery.png",
+      "medium-fi/base-overhead.png",
+      "medium-fi/keeper-district.png",
+      "medium-fi/gallery-district.png",
+      "medium-fi/lantern-street.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All twenty-seven medium-fi views inspected across noon/late economy/high, targeted keeper/gallery/lantern details and four same-camera transitions. Skyline retains the complete square base, keeper roof/chimneys, red-white octagon, two open rail galleries and32m lantern tip; far openings are contrast panels rather than recesses. District retains real recessed apertures, arch frame and two galleries with fewer round subdivisions and pickets. Street/closeup preserve the corrected detailed exterior. No missing roof, cap or major silhouette observed. Synthetic Cotswold neighbors are palette/context fixtures, not actual Shabla buildings. The untextured silhouette frame intentionally checks geometry only."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:22bda939b1698a857a77504ce00139579f9ddd8f475b49f3e67a9fded98e1526",
-    "notes": "Exact-QID lighthouse node replaces the older catalog point 19m north. Attached mapped house establishes northward ensemble extent and heading; orthographic placement matches those mapped relationships. Terrain supplies ordinary ground contact."
+    "placementHash": "sha256:96204318a01fca9914f6fe0bc951a8a9cabe4e6236e52626f0af23a4b2ef9555",
+    "mapFrameHash": "sha256:5a70de3865d2cc16d32bbe234e8b6a5a7f1181921e5a6b6b092c71b5124fc760",
+    "notes": "Municipality page https://shabla.bg/directory/shablenski-far/ embeds data-latlong43.540340797833935,28.606973081938126. This replaces the exact-QID OSM identity node9031362149 at28.6069834,43.5401767, about18.3m south; a correct identity tag does not establish accurate point position. Way262498736 service-house centroid28.606992875,43.54025185 lies south of the municipal tower. Its wall axis plus inspected north-up aerial and July2026 west-side photo choose heading3.0942136535897933,180degrees from the former-.047379. Native+Z faces north about2.71degrees true, +X door/steps face inland west, and keeper house extends south. Photo camera GPS28.6060617,43.54008 corroborates the viewing side; azimuth312 conflicts with the subject direction and is explicitly rejected. Photo and aerial establish quadrant, not survey-grade bearings (+/-10degrees). House centering follows the mapped rectangle; scale remains photo proportional. Y0 is host terrain contact, separate from mapped focal height36m and tide datum. Footprint replacement remains disabled."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi reconstruction uses municipal32m height, official exterior photo and the inspected Panoramax image by Bogomil Shopov–Бого dated2026-07-23. The original7738-triangle master remains exactly reproducible via buildShablaMaster; buildShablaReviewedMaster repositions the keeper house and restores the photographed lower gallery. Tower plan, floor allocation, openings, rails and fittings are photo proportions. Shared procedural surfaces generalize paint wear. Detached station buildings, vegetation, shoreline, interiors and an operative navigation light are excluded. Legacy study visual brief and maximum-fidelity pending statements remain historical; the current review-scope, map-frame, sourceFacts/nativeAxes and this approval define the corrected south-house medium-fi scope."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed exterior in Molen shared material style.",
-    "notes": "The municipality photograph and published 32m height support the square base, eight-sided taper, six shaft bands, narrow recessed openings and small gallery/lantern. Cross-section dimensions and door placement remain photograph reconstruction; individual paint repairs are represented by the shared material surface."
-  }
+    "notes": "The municipality photograph and published 32m height support the square base, eight-sided taper, six shaft bands, narrow recessed openings and small gallery/lantern. Cross-section dimensions and door placement remain photograph reconstruction; individual paint repairs are represented by the shared material surface.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sx/sxs/n0656_shabla_lighthouse/models/source.glb",
+        "hash": "sha256:16851288e86d80f1cf4e453aeccd8fca419c612c7d53768bfc036b13b188dfa4",
+        "bytes": 679276,
+        "triangles": 8410,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -7.53434944152832,
+          0,
+          -15.934871673583984
+        ],
+        "max": [
+          5.199999809265137,
+          32,
+          4.389999866485596
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sx/sxs/n0656_shabla_lighthouse/model.glb",
+        "hash": "sha256:82dc5efac6b377557129a9dc1bf2f81ad250a1e8156a3d20ef59e3a778180fb6",
+        "bytes": 678504,
+        "triangles": 8410,
+        "materials": 9,
+        "images": 0,
+        "min": [
+          -7.53434944152832,
+          0,
+          -15.934871673583984
+        ],
+        "max": [
+          5.199999809265137,
+          32,
+          4.389999866485596
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sx/sxs/n0656_shabla_lighthouse/model.skyline.glb",
+        "hash": "sha256:5a669efaa09964f395199b51ad8ea59039277a3a4b1f2df4e04b25678eba9b6f",
+        "bytes": 67784,
+        "triangles": 888,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -7.53434944152832,
+          0,
+          -15.934871673583984
+        ],
+        "max": [
+          5.199999809265137,
+          32,
+          4.320000171661377
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sx/sxs/n0656_shabla_lighthouse/model.district.glb",
+        "hash": "sha256:59f7904a77a77a32f62d917c49b7b0cf4e0dfcd20ec2380127f6aaf636f6c0be",
+        "bytes": 235456,
+        "triangles": 3118,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -7.53434944152832,
+          0,
+          -15.934871673583984
+        ],
+        "max": [
+          5.199999809265137,
+          32,
+          4.389999866485596
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sx/sxs/n0656_shabla_lighthouse/model.street.glb",
+        "hash": "sha256:43b2793f1ef6590da770a62442e46776487ac301f64695e9e98cd4878ed884e4",
+        "bytes": 580428,
+        "triangles": 8410,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -7.53434944152832,
+          0,
+          -15.934871673583984
+        ],
+        "max": [
+          5.199999809265137,
+          32,
+          4.389999866485596
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sx/sxs/n0656_shabla_lighthouse/model.closeup.glb",
+        "hash": "sha256:43b2793f1ef6590da770a62442e46776487ac301f64695e9e98cd4878ed884e4",
+        "bytes": 580428,
+        "triangles": 8410,
+        "materials": 8,
+        "images": 0,
+        "min": [
+          -7.53434944152832,
+          0,
+          -15.934871673583984
+        ],
+        "max": [
+          5.199999809265137,
+          32,
+          4.389999866485596
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": "Four focused tests pass: one-sided rays inspect real recessed shaft aperture backs at district/street/closeup; every level keeps an open lower gallery, top rail, complete keeper roof and32m tip; the original7738-triangle recipe reproduces its exact source SHA256; current municipal anchor and180-degree signed house arrangement are checked independently of the old identity node; all four browser files regenerate identical bytes under strict triangle/draw/download budgets with seven shared graphs and no images.",
+    "notes": "Six GLBs passed Khronos validation with zero errors, zero warnings and no embedded images. Corrected source/import have8410triangles. Skyline/district/street/closeup are888/3118/8410/8410triangles with1/8/8/8draws. The original master remains7738triangles and its exact original hash is independently verified. Current gallery decks, open rail gap, top rail, aperture backs, keeper roof and tip pass one-sided geometry rays. The old9.9m-error reduction skyline and4546-triangle/nine-draw district are replaced by authored derivatives."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:e011e9cc5b28f4e862919d47e07333872db9c9b659408ae88b002edb684940fe",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5a669efaa09964f395199b51ad8ea59039277a3a4b1f2df4e04b25678eba9b6f",
+        "bytes": 67784,
+        "gzipBytes": 11442,
+        "triangles": 888,
+        "cpuBytes": 66384,
+        "gpuBytes": 66384,
+        "errorMeters": 0.28,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:59f7904a77a77a32f62d917c49b7b0cf4e0dfcd20ec2380127f6aaf636f6c0be",
+        "bytes": 235456,
+        "gzipBytes": 39188,
+        "triangles": 3118,
+        "cpuBytes": 225852,
+        "gpuBytes": 225852,
+        "errorMeters": 0.22,
+        "drawCalls": 8
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:43b2793f1ef6590da770a62442e46776487ac301f64695e9e98cd4878ed884e4",
+        "bytes": 580428,
+        "gzipBytes": 103433,
+        "triangles": 8410,
+        "cpuBytes": 570804,
+        "gpuBytes": 570804,
+        "errorMeters": 0,
+        "drawCalls": 8
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:43b2793f1ef6590da770a62442e46776487ac301f64695e9e98cd4878ed884e4",
+        "bytes": 580428,
+        "gzipBytes": 103433,
+        "triangles": 8410,
+        "cpuBytes": 570804,
+        "gpuBytes": 570804,
+        "errorMeters": 0,
+        "drawCalls": 8
+      }
+    ],
+    "initialBytes": 303240,
+    "notes": "Initial skyline plus district is 303240 bytes. Street/closeup are 580428/580428 bytes. Seven reused256-square canonical browser graphs, metric UVs and separate GPU attribute streams remain; far colors bake their measured graph means into a single draw. Far allowances .28/.22m describe regular faceting and local detail simplification, not a measured whole-mesh Hausdorff bound. Physical phone/laptop timings remain pending."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Paint wear and individual repairs are represented by shared masonry; the official image has no precise capture date. Tower plan is photograph-scaled against32m height; neighboring detached station houses remain separate map features."
+  ]
 }

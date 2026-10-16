@@ -16,15 +16,12 @@ Source facts and measured references are recorded in spec.json. References: [1](
 
 Geometry is authored in `packages/worldgen/scripts/heritage-tower-models.mjs`. Shared material graphs with metric repeat UV0 and original vertex tints; GLB PBR fallback remains self-contained. No per-model texture duplication. No third-party mesh or photograph is embedded.
 
-83,212 triangles; 166,200 vertices; 3 material groups; 6,984,084 source bytes. Source hash: `sha256:97114a556ff77b2889762573d3005b343e42a2e096200e99d2a8c3971fd99889`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
+85,366 triangles; 170,508 vertices; 3 material groups; 7,165,020 source bytes. Source hash: `sha256:2ed5b01856b931eec9876813ceb9633672b0e23f68b93c4a2f1157b29578d480`. Geometry validation checks finite Float32 coordinates, indices, triangle area and winding before export.
 
 Regenerate with `node packages/worldgen/scripts/generate-heritage-towers.mjs N0562`; add `--check` for reproducibility. The generator refuses to overwrite a master whose hash differs from source.json. Import uses `--no-optimize` to preserve facade recesses.
 
 ## Remaining detail and review
 
-- Rib count, slit positions and buttress nose curvature are estimates from the library exterior photograph and OSM, not measured conservation geometry.
-- Interior museum floors, the well, adjoining lower defensive buildings, inscriptions and individual damaged blocks are not reconstructed.
-- A uniform Y=0 base requires terrain fitting to the sloping rock. Exterior dimensions do not establish a surveyed vertical datum.
-- Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending.
+- Complete static medium-fi tower exterior. Original detailed heritage recipe remains byte-reproducible. Published 16.5 m cylinder, 31 m north-side height envelope, smooth lower 12 m, upper raised masonry courses, western arched doorway, eight narrow slit indications, circular open roof parapet and asymmetric rounded seaside buttress remain. The reviewed roof restores an inset buttress terrace and closed parapet instead of the draft solid top slab; a small sloping stairhead is proportionally interpreted from the reserve illustration and satellite roof context, not a measured current fitting. Forty-three course positions and slit heights are photographic estimates, not a block survey. Skyline/district average course groups into broad low-contrast tonal zones; street/closeup preserve individual physical raised bands. The original inscription panel preserves published dimensions without invented text. Museum interior, well, buried foundations and separately mapped adjoining low defensive buildings are separate scope. No private bitmap is embedded; two canonical shared material graphs supply metric limestone and painted metal. Ground0 is the lowest exterior base, not the roof, and the reported three-metre grade difference requires real terrain fitting. Flat fixtures cannot certify slope or foundation contact. Cached exact-QID OSM outline and actual north-up satellite establish the directed eastern/southeastern arm; projected roof displacement prevents surveyed placement. Native footprint is retained and replacement disabled.
 
 Named near/far cameras are included for lit visual review. A valid export is not maximum-fidelity certification.

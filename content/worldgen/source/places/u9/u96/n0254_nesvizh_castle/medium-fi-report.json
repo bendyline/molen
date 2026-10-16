@@ -1,0 +1,1413 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0254_nesvizh_castle",
+  "sourceHash": "sha256:37818a259aa66f8895ecef0e369094c9a4d2da06c0fd832c2c64582c0a4fb3b3",
+  "runtimeHash": "sha256:80e7560d0a596f5a529b1aa9df1a9ce72f300bbab829ec763b1ed50d71dcccce",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:dff718be38b505804fa085932bacaa177a22428526897a35e93ff82545282e17",
+      "bytes": 95224,
+      "gzipBytes": 19530,
+      "triangles": 998,
+      "cpuBytes": 93792,
+      "gpuBytes": 93792,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:ce9c8c89cc3b14622f41bf22928b7c439bc2d20e10c4c99cfaa383755b1210e3",
+      "bytes": 224840,
+      "gzipBytes": 71793,
+      "triangles": 2825,
+      "cpuBytes": 217548,
+      "gpuBytes": 217548,
+      "errorMeters": 0.9,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:96f2d1489b74381b5c1ba0afa8c9ae6bedb1345f9897b4e37032390a779a7cbf",
+      "bytes": 662780,
+      "gzipBytes": 183815,
+      "triangles": 9859,
+      "cpuBytes": 655464,
+      "gpuBytes": 655464,
+      "errorMeters": 0.4,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:3d64bc37a6083041150b845fc1ff85d0a39b9c0c8e14464c47631e679931a0d1",
+      "bytes": 2532820,
+      "gzipBytes": 621682,
+      "triangles": 34364,
+      "cpuBytes": 2524268,
+      "gpuBytes": 2524268,
+      "errorMeters": 0.2,
+      "drawCalls": 7
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:5f184a54b7ef4554cc8545fad1af1d7ce4c9b4aa17ff9af7c90b2ed72a99c615"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:349e1f05c9ca0831c98988e6375d230fa329ebb34874ffa27b34d9313547860a"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:467c7b3fdeae1a9011dbe0da6e2afbb4850515c583e7573fe63758a999eb10f5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          130.0713,
+          91.0168,
+          252.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:e8de1f11ebd41745422393b62797ffc5185cfdc712fccdcbe4801eff1340098f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          130.0713,
+          91.0168,
+          252.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:ee0cc207dbbb7e8802bb61fc10915e1b14a1a30aad89a1f6be222a1406838e2d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          130.0713,
+          91.0168,
+          252.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:77bb1ad5ec51c3398cb2cb2d0db9fe0701b6753fa0985a3f5fe8a06e2cd8444e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          130.0713,
+          91.0168,
+          252.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:b3635d1963cd0c91cf19c41d04d83da5dba8cf567bead269cef5e0be0f21f78d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 42859,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:ea74d3a7fec92a170d8068af53a7254995a477f9b2d71e1581f47dd565c754a6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42859,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:e6e6fb74d298b2fc097671fc0ffe41715aa4656d14c461378ff87c0cf85c4322",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 42859,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:141b6cdebe0ef81b0341e0688c18cf7c032cd05233addaa8416623f849b40b88",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42859,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:ca2c2363b132e0bbe9a3f713d81038facd9383dda8a95d8bd33c76de63432faa",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 41032,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          568.0713,
+          313.0168,
+          1011.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:905f0020f7533cca86720b128ea3d0c001c76780a50cd6c8c22cb95175af90b9",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41032,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          568.0713,
+          313.0168,
+          1011.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:ab992576a35a2bc7c8eb92ca1bfba5744ba4b8889c4e1b962f5baab4b133d134",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 41032,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          568.0713,
+          313.0168,
+          1011.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:d0af4fbc7c74e70d84dc38015c48a2a8350af7b69e840a4dff7291e31a654bbf",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41032,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          568.0713,
+          313.0168,
+          1011.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3fc9e8283bd415413f56b77022ed763e62a49293ee1f81a4b1e76a0ce0e77167",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 34792,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          568.0713,
+          313.0168,
+          1011.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/mapped-six-sided-courtyard.png",
+      "hash": "sha256:94165b3e2832c302b33fa96ffe7cf37050745c52e56b48d88624672b96093e6f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          320,
+          0.2
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-gate-and-arch-bridge.png",
+      "hash": "sha256:f3223dd44e1b17d5b6d8f0c2c99338ea8dc4935e586f07acfc149f6f7e3c20c7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -146,
+          19,
+          24
+        ],
+        "lookAt": [
+          -72,
+          13,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gate-tower-crown.png",
+      "hash": "sha256:5e6b9d1eb178c7cb90d5e08e1022a52b3ac818a2538269c9c168125d75158e30",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -81,
+          33,
+          34
+        ],
+        "lookAt": [
+          -56,
+          22,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/palace-central-risalit.png",
+      "hash": "sha256:ab1e2877101c6d0810cd0aaa9f7975534edc2eec615de79064cb63ec62b54e1e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -24,
+          15,
+          -2
+        ],
+        "lookAt": [
+          23,
+          13,
+          -2
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/southern-wing-and-tower.png",
+      "hash": "sha256:7b01c29eb2c859625cc564b95a9ece4d844a113d3bb7e78af94dc67c63d6afd8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -20,
+          37,
+          89
+        ],
+        "lookAt": [
+          0,
+          18,
+          29
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/palace-tower-crown.png",
+      "hash": "sha256:de99f709c667d84886f0e8f5e35e1242a20466aa1882176fbe7f721b4ed08ad0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          34,
+          43,
+          57
+        ],
+        "lookAt": [
+          10,
+          30,
+          30
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/northern-court-gallery.png",
+      "hash": "sha256:7cb7f46ae54fb33bfe4ac8dc23930cb184dde595425a0faad1f5e73231e3f1cf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -12,
+          20,
+          10
+        ],
+        "lookAt": [
+          -16,
+          12,
+          -31
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-palace-and-service-wing.png",
+      "hash": "sha256:ec587adaccceeece17ec678898f78aff5e556d5d1b5261d16eb32ba2b8c9ea0c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          128,
+          40,
+          -2
+        ],
+        "lookAt": [
+          41,
+          14,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/earth-bastions-and-moat-edge.png",
+      "hash": "sha256:e9d59a58cac8f5ab437ac9675d000a711835fe004b9343a7d5044cb81b04db40",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -136,
+          23,
+          -118
+        ],
+        "lookAt": [
+          -55,
+          8,
+          -36
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/fitted-open-west-entrance.png",
+      "hash": "sha256:b5218dd2c399eb3267de269a0a47f78c0898a49d780e5052767a89b481626736",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -127,
+          8.5806,
+          5
+        ],
+        "lookAt": [
+          -67,
+          4.5806000000000004,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/three-arches-clear-vaults.png",
+      "hash": "sha256:3d1fd843a7d93371766a574677902614ebbfadda40e5d01ad2aaf3f692631f74",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 74270,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -101,
+          0.5806,
+          26
+        ],
+        "lookAt": [
+          -101,
+          -0.11939999999999995,
+          1.3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/bounded-bank-and-outer-toe.png",
+      "hash": "sha256:c045ad48e1febdd60fee70a65095b5a53ac509087b60bfd9e61975ff67c953bc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -130,
+          22.5806,
+          -108
+        ],
+        "lookAt": [
+          -66,
+          3.5806,
+          -51
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nesvizh-skyline.png",
+      "hash": "sha256:2c76a257a1d23fdc240f92a0d616701199c654178fffda1cd07902b51a2c878e",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41032,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -265,
+          190,
+          205
+        ],
+        "lookAt": [
+          -5,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nesvizh-district.png",
+      "hash": "sha256:15d752a5841b5e71ac2c6edac3b86e4394e36de2387e8e431237f729e19cb85a",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42859,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -265,
+          190,
+          205
+        ],
+        "lookAt": [
+          -5,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nesvizh-street.png",
+      "hash": "sha256:eb607c200ad34d817081b1b1914f0330eb7497aaecb9e930162a7e8f27edbd5f",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 49893,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -265,
+          190,
+          205
+        ],
+        "lookAt": [
+          -5,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-nesvizh-closeup.png",
+      "hash": "sha256:85f041f381111bf1cb6849fd57723d17e5b479f3334ee33eea6f2cb51212699b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          -265,
+          190,
+          205
+        ],
+        "lookAt": [
+          -5,
+          8,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:26acb0279164345ab4cbe61c26f1ba6fefc7a305891e1722fe523951ad412f0b",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 41032,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:ea74d3a7fec92a170d8068af53a7254995a477f9b2d71e1581f47dd565c754a6",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 42859,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:3b185d34f5c94c545eb68cafeaf52f2a1cd83d26cc02e3494298ec293a863fd7",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 49893,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:3565f604ba71c2a20fa0842b7c64d3d21a0a687bedf23e742796c2ee35b56785",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 13,
+        "triangles": 74398,
+        "groundY": -16,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u9/u96/n0254_nesvizh_castle/terrain-review.height.png"
+        },
+        "position": [
+          277.0713,
+          199.0168,
+          507.0933
+        ],
+        "lookAt": [
+          -13.9287,
+          46.0168,
+          3.0933
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 3,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

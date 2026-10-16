@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Eight independently mapped sloped glass facades, open corner gaps, differentiated 235–309.6 m tips, exposed steel crown, detailed panel grids and the separate 70/74 m eastern podium wings.
+Compact Shard exterior preserves all eight independently mapped facade planes, their unequal tips, recessed enclosure, exposed crown steel and eastern podium. Coarser tiers merge panel grids; original detailed master remains reproducible.
 
 ## Evidence and reconstruction
 
@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-269,299 triangles; 578,981 vertices; 3 material groups; 24,077,148 bytes. Native bounds: -43.493, 0.000, -30.671 to 43.457, 309.652, 30.671. Source hash: `sha256:80e65f53174a440d80c1fd18300e6685d3cb820c97dd69d5e8208438851c60d9`.
+63,187 triangles; 189,561 vertices; 3 material groups; 7,584,676 bytes. Native bounds: -43.493, 0.000, -30.671 to 43.457, 309.652, 30.671. Source hash: `sha256:317d512e8713443ea728ac58c94e329424504c928f1b7f0c1a14b3272b769cef`.
 
 {"up":"+Y","longitudinal":"+X along the cached mapped building frame","front":"+Z toward the long southern edge in that frame","origin":"Exact-QID outer-envelope rectangle center at ground level; eight independently mapped facade planes retain their individual peaks"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+One inspected operator aerial exterior photograph confirms the pointed glass pyramid, separated facade edges and visibly open steel crown. Preserve original309.6m top control, eight independently mapped sloping planes with unequal tips, shifted occupied center and70/74m eastern podium wings. Existing exact-QID outer frame and facade parts establish the signed orientation; standard viewer PMTiles confirms the London Bridge road/building context. Off-footprint PMTiles point[-60,0]4.2538m sets approximate terrain contact; center3.0748m remains coarse. Raw heights are separate from a bounded preview contact correction. Exact glass bay schedule, tip fabrication, steel sections and entrances remain approximations. Separate station blocks and interiors excluded.
 
 ## Reproduce
 
@@ -30,8 +30,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0141` (
 
 ## Pending work
 
-- Facade lean directions, eight tips and podium dimensions follow attributed detailed map parts; panel sizes, steel member sections and seals are reconstructed within those envelopes.
-- Occupied-floor glass uses opaque PBR glazing; the open crown uses double-sided alpha glazing so its internal frame remains visible. Offices, winter gardens, hotel interiors, signage and building services are outside this exterior asset.
-- The mapped building outline includes the eastern podium. The native origin retains its map frame; the occupied center and individual shard peaks are independently offset.
+- One inspected operator aerial exterior photograph confirms the pointed glass pyramid, separated facade edges and visibly open steel crown. Preserve original309.6m top control, eight independently mapped sloping planes with unequal tips, shifted occupied center and70/74m eastern podium wings. Existing exact-QID outer frame and facade parts establish the signed orientation; standard viewer PMTiles confirms the London Bridge road/building context. Off-footprint PMTiles point[-60,0]4.2538m sets approximate terrain contact; center3.0748m remains coarse. Raw heights are separate from a bounded preview contact correction. Exact glass bay schedule, tip fabrication, steel sections and entrances remain approximations. Separate station blocks and interiors excluded.
+- Shared painted-metal graph and reusable opaque/translucent glass PBR; no photographic images. Far tiers keep separated tips and podium while coarsening glass bays and exposed bracing. Physical-device timings pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

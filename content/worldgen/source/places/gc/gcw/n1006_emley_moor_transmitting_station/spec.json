@@ -19,18 +19,18 @@
     "min": [
       -12.1899995803833,
       0,
-      -12.1899995803833
+      -13.79561996459961
     ],
     "max": [
-      13.79561996459961,
+      13.675000190734863,
       319,
-      13.675000190734863
+      12.1899995803833
     ]
   },
   "nativeAxes": {
     "up": "+Y",
-    "front": "+Z is the provisional main entrance, with the lower GPO platform stack on +X; compass orientation awaits site review",
-    "origin": "Center of the mapped tower footprint, Y=0 at ground contact"
+    "front": "+X approximately east-facing entrance",
+    "origin": "Native +X east,+Z south and +Y up; heading0. mb21 dated2014 survey explicitly locates eight-tier crossed rack on north and two trough antennas on west; September2023 close-up corroborates their configuration. Arup1972 Fig4 north arrow locates four GPO platforms on north. Entrance approximately east is inferred from ground photo with north platforms to its right, uncertainty20degrees; no exact door bearing is claimed."
   },
   "scaleBasis": "Arup original sections set concrete dimensions and cabin rhythm; dated February/September 2023 photographs set the current antenna envelope and mounting details. The mapped circular footprint supplies a center but its 17.6 m diameter conflicts with the published 24.38 m base; it is not a sizing source.",
   "geographicProposal": {
@@ -44,7 +44,12 @@
     "source": "https://www.openstreetmap.org/way/476925020",
     "evidence": "Named communication tower inside the exact-QID Emley Moor station parcel. Mean ring center; the circular outline cannot supply entrance azimuth.",
     "limitations": "Named tower identity must be bound separately from the QID site polygon. Site entrance and platform azimuth, dated antenna dimensions and terrain fit remain pending.",
-    "notes": "Named communication tower inside the exact-QID Emley Moor station parcel. Mean ring center; the circular outline cannot supply entrance azimuth. Named tower identity must be bound separately from the QID site polygon. Site entrance and platform azimuth, dated antenna dimensions and terrain fit remain pending."
+    "notes": "Native +X east,+Z south and +Y up; heading0. mb21 dated2014 survey explicitly locates eight-tier crossed rack on north and two trough antennas on west; September2023 close-up corroborates their configuration. Arup1972 Fig4 north arrow locates four GPO platforms on north. Entrance approximately east is inferred from ground photo with north platforms to its right, uncertainty20degrees; no exact door bearing is claimed. Arup1972 sets concrete274.32m,24.38m base/6.4m top and20-bay turret. The mapped17.6m ring is a position control, not a sizing survey. The modern319m modeled antenna envelope is photo-proportioned from February/September2023, not a verified measured current height; owner2023 still quotes historical330.4m. Segment heights, turret external7.05m radius, service-door phases, minor antenna inventory/cage details and entrance east bearing are reconstructed. Lower gallery uses2011 and upper arrays2023 references; detached station buildings, ducts/fences, hidden internals and operating radio equipment excluded. Host terrain supplies ground height; no footprint replacement. Original master is preserved separately.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:d4bb98c38eb31a307fa617f22b46fa9492c03cebc74750ddbe302b7de8f50312",
+    "mapGeometryLicense": "OSM ODbL1.0; publications/photographs research only, not embedded.",
+    "attribution": "© OpenStreetMap contributors; Arup; mb21 contributors; Arqiva."
   },
   "sourceFacts": {
     "concreteHeightMeters": 274.32,
@@ -57,7 +62,7 @@
       1.8,
       1.8
     ],
-    "reportedPost2021HeightMeters": 319,
+    "modeledModernEnvelopeMeters": 319,
     "originalLowerRadomeDiameterMeters": 3.66,
     "originalUpperRadomeDiameterMeters": 1.52,
     "originalMastHeightsMeters": [
@@ -68,7 +73,15 @@
       0.533,
       0.35
     ],
-    "heightConflict": "Arqiva 2023 and Historic England retain about 330.4 m; the dated photographic survey reports 319 m after the 2021 antenna rebuild. Current model follows its visibly shortened top, with approximate segment heights."
+    "heightConflict": "Modern319m is a photo-proportioned modeled envelope, not a height reported in the cited mb21 page. Arqiva2023 retains historical330.4m.",
+    "reportedPost2021HeightMeters": null,
+    "originalMasterHash": "sha256:b1cb61affc9a55e2f6397b813995390039669a57e6aeb7f82f0046f814676709",
+    "platformBearingDegrees": 0,
+    "crossedRackBearingDegrees": 0,
+    "troughBearingDegrees": 270,
+    "entranceEstimatedBearingDegrees": 90,
+    "entranceBearingUncertaintyDegrees": 20,
+    "basis": "Arup1972 sets concrete274.32m,24.38m base/6.4m top and20-bay turret. The mapped17.6m ring is a position control, not a sizing survey. The modern319m modeled antenna envelope is photo-proportioned from February/September2023, not a verified measured current height; owner2023 still quotes historical330.4m. Segment heights, turret external7.05m radius, service-door phases, minor antenna inventory/cage details and entrance east bearing are reconstructed. Lower gallery uses2011 and upper arrays2023 references; detached station buildings, ducts/fences, hidden internals and operating radio equipment excluded. Host terrain supplies ground height; no footprint replacement. Original master is preserved separately."
   },
   "referencePages": [
     "https://www.arup.com/globalassets/downloads/arup-journal/the-arup-journal-1972-issue-1.pdf",
@@ -113,13 +126,9 @@
     }
   ],
   "limitations": [
-    "The modern radome transition heights are scaled estimates from dated 2023 photographs, not fabrication dimensions. Both historical and current-height claims remain explicit.",
-    "Turret external radius/height, equipment positions, lift-joint rhythm, doors and platforms are detailed reconstructions. Exact current antenna inventory and compass phases remain pending.",
-    "The lower antenna gallery and small entrance cage follow 2011 photos; the upper array follows 2023 photos. Current ground equipment, independent station buildings, fences and cable ducts need coordinated site review.",
-    "Map ring is smaller than the engineering base. Geographic approval requires resolving its envelope and validating site azimuth and ground datum.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Arup1972 sets concrete274.32m,24.38m base/6.4m top and20-bay turret. The mapped17.6m ring is a position control, not a sizing survey. The modern319m modeled antenna envelope is photo-proportioned from February/September2023, not a verified measured current height; owner2023 still quotes historical330.4m. Segment heights, turret external7.05m radius, service-door phases, minor antenna inventory/cage details and entrance east bearing are reconstructed. Lower gallery uses2011 and upper arrays2023 references; detached station buildings, ducts/fences, hidden internals and operating radio equipment excluded. Host terrain supplies ground height; no footprint replacement. Original master is preserved separately."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -240,6 +249,263 @@
         158,
         0
       ]
+    },
+    {
+      "name": "north-platform-control",
+      "position": [
+        26,
+        40,
+        -40
+      ],
+      "lookAt": [
+        0,
+        36,
+        -9
+      ]
+    },
+    {
+      "name": "east-entrance",
+      "position": [
+        40,
+        9,
+        8
+      ],
+      "lookAt": [
+        12,
+        2,
+        0
+      ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Individual tapered concrete broadcasting tower, 20-bay glazed turret, four lower cantilever platforms, antenna mounting rings and modern shortened two-stage radome. True shaft-door recesses, cabin windows, panel frames, safety rails, ladders and obstruction lights use shared procedural surfaces.",
+    "master": "Exact original source remains callable through emleyMoor.build; reviewed source rotates north platforms and approximately east entrance without moving upper array frame.",
+    "browser": "Whole tapered concrete shaft,20-bay cabin, upper galleries, four north platforms, lower antenna ring and current two-stage radome retained. Shaft sampling, safety rails, lift seams and small dishes decrease with distance.",
+    "exclusions": "Arup1972 sets concrete274.32m,24.38m base/6.4m top and20-bay turret. The mapped17.6m ring is a position control, not a sizing survey. The modern319m modeled antenna envelope is photo-proportioned from February/September2023, not a verified measured current height; owner2023 still quotes historical330.4m. Segment heights, turret external7.05m radius, service-door phases, minor antenna inventory/cage details and entrance east bearing are reconstructed. Lower gallery uses2011 and upper arrays2023 references; detached station buildings, ducts/fences, hidden internals and operating radio equipment excluded. Host terrain supplies ground height; no footprint replacement. Original master is preserved separately."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/emley-moor-detail-model.mjs",
+    "export": "buildEmleyReviewed"
+  },
+  "mesh": {
+    "triangles": 271836,
+    "vertices": 516290,
+    "groups": 4,
+    "bytes": 21851308,
+    "sha256": "sha256:13b243d97ccaf74044cb251b0cf0b987281939dc0e3639b85b771864e5f3b630",
+    "min": [
+      -12.1899995803833,
+      0,
+      -13.79561996459961
+    ],
+    "max": [
+      13.675000190734863,
+      319,
+      12.1899995803833
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/emley-moor-browser-model.mjs",
+    "export": "buildEmleySkyline",
+    "errorMeters": 0.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEmleyDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "buildEmleyStreet",
+        "errorMeters": 0.18,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEmleyCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.91
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.65
+          },
+          "copper": {
+            "graph": "metal_copper",
+            "slot": "roof",
+            "roughness": 0.76
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.22
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "north-platform-district",
+      "position": [
+        26,
+        40,
+        -40
+      ],
+      "lookAt": [
+        0,
+        36,
+        -9
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "east-entry-street",
+      "position": [
+        26,
+        8,
+        8
+      ],
+      "lookAt": [
+        12,
+        2,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-skyline",
+      "position": [
+        340,
+        168,
+        440
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-district",
+      "position": [
+        340,
+        168,
+        440
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-street",
+      "position": [
+        340,
+        168,
+        440
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-closeup",
+      "position": [
+        340,
+        168,
+        440
+      ],
+      "lookAt": [
+        0,
+        157,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "upper-array-district",
+      "position": [
+        24,
+        268,
+        -36
+      ],
+      "lookAt": [
+        0,
+        262,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "upper-array-street",
+      "position": [
+        24,
+        268,
+        -36
+      ],
+      "lookAt": [
+        0,
+        262,
+        0
+      ],
+      "reviewLod": "street"
     }
   ]
 }

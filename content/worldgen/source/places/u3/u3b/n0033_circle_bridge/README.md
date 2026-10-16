@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Five staggered cream decks, white trumpet-shaped supports and tapered masts, ring-supported stainless stays, tomato-red diamond rails and Guariuba handrails; original closed-state Copenhagen exterior.
+Compact Cirkelbroen closed exterior with analytically clipped circular decks, flared supports, five unequal white masts, stay rings/cables, red rail and shared wood caps. Original detailed master remains reproducible.
 
 ## Evidence
 
@@ -15,17 +15,13 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-166522 triangles; 12745196 bytes; 4 material groups. SHA256: sha256:15417d6bfa6e0d93de9fbf5a08dafcd1dfcfeb3c48d521765b3458f8bde37257.
+50474 triangles; 6059816 bytes; 4 material groups. SHA256: sha256:ed5f2c6834c3334577af9e7a79fbc12bfc903ae8bef17bd84c21814ad0748f61.
 
-Shared surfaces (concrete_plain, metal_painted, wood_plain, metal_stainless) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
+Shared surfaces (concrete_plain, metal_painted, metal_stainless, wood_plain) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
 Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=N0033; append --check to verify. Import and capture through the standard next-1000 scripts. Geometry validation does not substitute for current-frame visual review.
 
 ## Reconstruction limits
 
-- The2012 engineering presentation is a design-stage reference.2015 photos/material fact sheet control visible appearance; as-built shop drawings were not available.
-- Individual mast heights, circle-edge offsets,118-stay distribution and small hardware are proportional reconstructions. Maximum fidelity remains pending measured as-built confirmation.
-- Sea-level Y0 and2.8m deck datum are provisional. The2.25m published navigation clearance is not a uniform underside height; real quay and water-level fit require site validation.
-- The bridge is closed and static. Internal hydraulics, concealed ribs and buried piles are outside this exterior asset; submerged pontoon dimensions are approximate.
-- Only short shore connection stubs are included. The20–23m granite-clad quay ramps, adjacent buildings and harbor furniture belong to site context.
-- Shared concrete grain approximates the non-slip Matacryl coating; no proprietary product texture or photograph is embedded. Lights are modeled in unlit daytime state.
+- One actually inspected designer-gallery overview establishes the five staggered cream circular decks, white masts and circular stay rings, red rails and wood caps. Retain authored platform centers/radii and analytic exposed arcs; source is the closed state. Standard viewer PMTiles confirms the Christianshavn canal crossing and northeast direction. Retain approximate harbor origin0m; centerDEM0.9918m includes bridge imprint, no water-stage or quay-threshold survey. The bounded complete outline removes map road/ground only under the successfully loaded crossing. Source-local bed and shore contacts are picture-based preview corrections with raw samples preserved. Long quay ramps, opening mechanism/animation and surrounding buildings remain separate.
+- Four canonical shared graphs reused. Skyline uses filled rail ribbons and representative stays. District restores cap/rail posts and mast rings; street/closeup restore woven rail impressions and increasingly dense stays. Closeup keeps118stay positions; bolts, pivots and light fittings simplified. Exact Matacryl coating and Guariuba species use shared concrete/wood approximations. Physical-device timings remain unmeasured.

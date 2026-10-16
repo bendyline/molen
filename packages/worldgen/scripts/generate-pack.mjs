@@ -15,6 +15,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { architecturalMaterialCatalog } from './architectural-material-catalog.mjs';
+import { bridgePatternDescriptions, bridgePatternGraphs } from './bridge-pattern-materials.mjs';
 import { formatJson } from './format-json.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -1297,6 +1298,11 @@ const MATERIALS = {
     ),
   },
 };
+for (const [name, graph] of Object.entries(bridgePatternGraphs))
+  MATERIALS[name] = {
+    ...graph,
+    doc: bridgePatternDescriptions[name],
+  };
 
 function materialDocument(entry) {
   // A physical response travels with the shared material instead of depending on a wall/roof slot.
@@ -1536,10 +1542,19 @@ function sidecar(id, buffers, glb) {
 
 // ------------------------------------------------------------------ emit
 
+// GLBs are build outputs (pnpm assets:build / assets:fetch) whose bytes follow float formatting,
+// so --check skips them and compares sidecars without the fields derived from their bytes.
+const withoutGlbBytes = (text) =>
+  text
+    .replaceAll('\r\n', '\n')
+    .replace(/"hash": ?"sha256:[0-9a-f]{64}"/g, '"hash": ""')
+    .replace(/"sizeBytes": ?\d+/g, '"sizeBytes": 0');
+
 let stale = 0;
 async function emit(relativePath, bytes) {
   const destination = resolve(packDir, relativePath);
   if (check) {
+    if (relativePath.endsWith('.glb')) return;
     let current;
     try {
       current = await readFile(destination);
@@ -1551,8 +1566,7 @@ async function emit(relativePath, bytes) {
     const same =
       current.equals(bytes) ||
       (relativePath.endsWith('.json') &&
-        current.toString('utf8').replaceAll('\r\n', '\n') ===
-          bytes.toString('utf8').replaceAll('\r\n', '\n'));
+        withoutGlbBytes(current.toString('utf8')) === withoutGlbBytes(bytes.toString('utf8')));
     if (!same) {
       stale++;
       console.error(`stale: content/worldgen/${relativePath}`);

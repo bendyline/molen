@@ -1,0 +1,307 @@
+{
+  "planId": "jefferson_memorial",
+  "id": "jefferson_memorial",
+  "assetId": "molen.worldgen.structure.jefferson_memorial",
+  "title": "Jefferson Memorial",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.03655391931534,
+    "latitude": 38.88138293998067
+  },
+  "size": [
+    90.39462280273438,
+    34.78499984741211,
+    96.9000015258789
+  ],
+  "actualBounds": {
+    "min": [
+      -45.19731140136719,
+      -1,
+      -45.20000076293945
+    ],
+    "max": [
+      45.19731140136719,
+      33.78499984741211,
+      51.70000076293945
+    ]
+  },
+  "visualBrief": "Circular marble memorial with 26 outer Ionic columns, eight-column north pedimented portico and four axial inner openings, stepped dome, circular stairs and bronze standing silhouette.",
+  "nativeAxes": {
+    "x": "west",
+    "y": "up",
+    "z": "north toward the main portico and Tidal Basin"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Thomas-jefferson-memorial-front-view.jpg",
+    "https://commons.wikimedia.org/wiki/File:JeffersonMemorialNorth.jpg"
+  ],
+  "stories": [
+    {
+      "id": "jefferson-memorial-wp",
+      "url": "https://qualla.com/jefferson-memorial/"
+    }
+  ],
+  "referenceInputHash": "912b29ea671eeb07e02af6cdcacb7a36f3441ebf2587d22d1a110aacd09e589d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-jefferson-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-jefferson-memorial.mjs",
+    "level": "skyline",
+    "export": "jeffersonSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "trim",
+        "graph": "stone_granite",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "grass": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 1,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "jeffersonDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "grass": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "jeffersonStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "trim",
+            "graph": "stone_granite",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "grass": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "North approach [0,52] at the mapped main stair flight; independent terrain unchanged.",
+    "anchor": [
+      -77.03655391931534,
+      38.88138293998067
+    ],
+    "heading": 3.141592653589793,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.03655391931534,
+        38.88185006179166
+      ],
+      "modelHeight": 0,
+      "basis": "North approach at the bottom of the mapped main stair flight; immediate raised terrace included, distant Tidal Basin approach and gardens excluded."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184620549514",
+      "buildings/35184620549613",
+      "buildings/35184620549598",
+      "buildings/35184620549521",
+      "buildings/35184620549534",
+      "buildings/35184620549555",
+      "buildings/35184620549524",
+      "buildings/35184620549618",
+      "buildings/35184620549530",
+      "buildings/35184620549586",
+      "buildings/35184438507744",
+      "buildings/35184620549528",
+      "buildings/35184620549527",
+      "buildings/35184620549531",
+      "buildings/35184620549602",
+      "buildings/35184620549547",
+      "buildings/35184620549599",
+      "buildings/35184620549542",
+      "buildings/35184620549606",
+      "buildings/35184620549543",
+      "buildings/35184620549520",
+      "buildings/35184620549536",
+      "buildings/35184620549532",
+      "buildings/35184620549579",
+      "buildings/35184620549540",
+      "buildings/35184620549535",
+      "buildings/35184620549541",
+      "buildings/35184620549574",
+      "buildings/35184620549539",
+      "buildings/35184620549564",
+      "buildings/35184620549526",
+      "buildings/35184620549537",
+      "buildings/35184620549525",
+      "buildings/35184620549550",
+      "buildings/35184620549583",
+      "buildings/35184620549569",
+      "buildings/35184620549577",
+      "buildings/35184620549559",
+      "buildings/35184620549588",
+      "buildings/35184620549538",
+      "buildings/35184620549585",
+      "buildings/35184620549523",
+      "buildings/35184620549533",
+      "buildings/35184620549529",
+      "buildings/35184620549522",
+      "buildings/35184620549622",
+      "buildings/35184620549611",
+      "buildings/35184620549609"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a377aeda757bc4df52ab7c1fe291371daac6b8a4001cb544095af218a1d47e3d",
+    "notes": "Map controls position and envelope, not column count or heights. The mapped front has seven columns; the photographs and NPS documentation establish eight plus four side columns. Twenty-six outer and sixteen inner columns are modeled. HABS measured heights take precedence over rounded/conflicting public statistics."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from individually inspected Qualla photographs and HABS 1994 measured north elevation and longitudinal section; not a survey or photogrammetric reconstruction.",
+    "NPS establishes 26 outer, 12 portico and 16 inner columns. Map part counts and public rounded heights conflict; measured HABS proportions control the model. Fine volutes, dome masonry and hidden pier openings are simplified.",
+    "Main circular steps, north stair flight and immediate raised supporting terrace included; wider gardens, Tidal Basin, distant approachway, undercroft and modern accessibility equipment excluded. Vertical stair levels are approximate relative to the independent terrain contact.",
+    "Standing statue and pediment relief are original simplified silhouettes, not portrait-quality sculptures. Inscriptions, exact coffer pattern and detailed interiors are excluded; no photo pixels are embedded.",
+    "Independent terrain is preserved unchanged and foundation extends beneath it. Another host DEM can change exact ground contact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        22,
+        140
+      ],
+      "lookAt": [
+        0,
+        15,
+        5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        90,
+        55,
+        -110
+      ],
+      "lookAt": [
+        0,
+        14,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63310,
+    "vertices": 189930,
+    "materials": 4,
+    "bytes": 7599988,
+    "sha256": "sha256:1937e8d85a72d89a7b5205d8555dc2998328b30059cbeab01665c97e40d94fe1"
+  }
+}

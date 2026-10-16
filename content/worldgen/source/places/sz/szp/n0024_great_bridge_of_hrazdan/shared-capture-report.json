@@ -1,27 +1,24 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0024_great_bridge_of_hrazdan",
-  "inputHash": "sha256:20520722333c581174dd3816dd1e2e51b5b35faa6bd0ee2caac0259cd7c681d9",
-  "fixtureHash": "sha256:5ca7b41b8ec6372a507ffc2bc8aec323e810596f3b37867aec0e64c576383cd5",
-  "footprintEvidenceHash": "sha256:71a5548e6180673795093cd7b08bb2ca9e542f71d86f51aab27b5ff0f37174b5",
+  "inputHash": "sha256:6d5bd91c5d825c414d474b17aae48dc853b384eadc8581b4a9688493d8cfab55",
+  "sourceHash": "sha256:503be133db247da8ef5fc5d728155b1d9241a38b246e5a929c0520dca29a757f",
+  "runtimeHash": "sha256:9a288b9c37df89b5c5a7648da998bbbbeb89d549e01ff1ef2d3187a44308f941",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "footprintEvidenceHash": "sha256:6fe0ae1beecac72ec4732d3a84467475e327c3ff5bc65dda6323c13032249624",
   "reflectionMode": "sky-pmrem",
-  "placementHash": "sha256:db08a6cdcc8f4ef06ca50197b447d4725138afce916ee9ddc67526140879fac7",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:ed06d1874d49d3be4b1d4f44c121367a3e9c12cffcb4f76f0f1881dbd2df7843",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_basalt_raw": {
       "path": "materials/stone_basalt_raw.matgraph.json",
       "hash": "sha256:4a0e752aa8330a06238149d39fe4ddf6398c3e9f7c17e41a4438f40136baed10"
     },
-    "matgraph:molen.worldgen.material.stone_granite": {
-      "path": "materials/stone_granite.matgraph.json",
-      "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
-    },
     "matgraph:molen.worldgen.material.metal_painted": {
       "path": "materials/metal_painted.matgraph.json",
       "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-    },
-    "matgraph:molen.worldgen.material.metal_stainless": {
-      "path": "materials/metal_stainless.matgraph.json",
-      "hash": "sha256:6804ba9953e040491f85ca3df60c3bbd8fa467d732f00a28612b60e0e04a88f3"
     },
     "matgraph:molen.worldgen.material.concrete_plain": {
       "path": "materials/concrete_plain.matgraph.json",
@@ -31,7 +28,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:3c00fdef9d26d327aeb78850dd4fd77384b2d2fbefb14c37f0ab8264ce458920",
+      "hash": "sha256:a589b180fdd3d69dcb44c73f45429c9bc22a471e140b6c8a74bb6e3ed6ca7255",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -41,60 +38,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:3d2a43cdceb599652cbbfea21ffcc3ed6533ea54c5ad4bee22cb623ae2c2cbf3",
+      "hash": "sha256:fce0cfebb0ae5f1afec76dc083fe869ea28b2d37dd0f53d549594ca6ee874b83",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -104,60 +120,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:42f6983a138ff27f1ad1a6de3abf82c9f722983228612eb62ff6265df21a72b2",
+      "hash": "sha256:d9cc9e436ad8938417c5e5dea10d2a5a7a63683b294b8ac22a30f3ba7a154b14",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -167,60 +202,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:4d0be2efc8ed8deb06f6b4b01eab117130d7dbe20ba808a2441dda89e207fd2b",
+      "hash": "sha256:6ceda31547f665b7e6b524dfbfb28715c267469ff6bb55651f07d9bfb30679c5",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -230,60 +284,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/downstream-elevation.png",
-      "hash": "sha256:ad70729c65f8d181d0b1ff485550f97f5f1b8242636a52c75e1f18fecd45987d",
+      "hash": "sha256:db21c8019b54479691599c79ff7cabc7f1bb7d3d5159bc58dff44f8fb3382976",
       "camera": {
         "name": "downstream-elevation",
         "position": [
@@ -303,60 +376,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/paired-vaults.png",
-      "hash": "sha256:9ac22a2b7b8fe08680eed69771dc9eedd7994f1c3267b750459dca6d53cb9294",
+      "hash": "sha256:8bcaa0b9e9f29aa2360fab2aa913a9b6059768b1454992ab06d35482848090f8",
       "camera": {
         "name": "paired-vaults",
         "position": [
@@ -376,60 +468,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/arch-soffit.png",
-      "hash": "sha256:5937e4a23c75667b4c9c709631a704d41b0c0723ed7ba1b3cb64ae569508634e",
+      "hash": "sha256:c176db33dd22871ab0b63f51cda2936b9d82c146ad977e53cfe057cc81c51462",
       "camera": {
         "name": "arch-soffit",
         "position": [
@@ -449,60 +560,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/open-spandrels.png",
-      "hash": "sha256:e0710c3ad95cc5b7053e53609b46600a52386df67f469b6c7ae0838e3ba58a8a",
+      "hash": "sha256:0c47ee70368afc1fef2efaf50f1031b5e77ca41ddb91e672a7f9caccb3076bc9",
       "camera": {
         "name": "open-spandrels",
         "position": [
@@ -522,60 +652,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/transverse-portal.png",
-      "hash": "sha256:2d9340051fb0db58269d25f51b9b0fa11ef7a32f8e04d3b9e412bdf1dadcf66d",
+      "hash": "sha256:be74b23051edca53f88090d8d3b92356c0b337727613ac0eed3b413ac096e516",
       "camera": {
         "name": "transverse-portal",
         "position": [
@@ -595,60 +744,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/masonry-courses.png",
-      "hash": "sha256:f746455fd1576d2491df73637894990ca8ff16543d80c398f10c0ba9bbdfc2a5",
+      "hash": "sha256:68613f132a560950e001ac04c3318232c3dfae7c43c2641ea77c92bfad1f9b49",
       "camera": {
         "name": "masonry-courses",
         "position": [
@@ -668,60 +836,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/rosette-railing.png",
-      "hash": "sha256:593f3ade8750bd00e7927086f6728f60f696e0d20970acc2e73debfc1ad57e74",
+      "hash": "sha256:603ff2df9437f6706e5622f79aa2bdd75e3a481ffe419c4897374af376a1c753",
       "camera": {
         "name": "rosette-railing",
         "position": [
@@ -741,60 +928,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/cast-iron-post.png",
-      "hash": "sha256:ef31c85c45f75c3b85a8f90967923aff1860ea313955cbdac6a2fc7815da10d7",
+      "hash": "sha256:456a829f9c56efa34e3e527a03093267c9f49e9fc5fe00c9b9a3961e8a8016d8",
       "camera": {
         "name": "cast-iron-post",
         "position": [
@@ -814,60 +1020,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/street-lamp.png",
-      "hash": "sha256:68029736aa895981c5f3ddde3a72fc8d158e6399d07591fbd3aa842f23e472ba",
+      "hash": "sha256:fffe24a6566e8ae34f191d173ef8cecbc34b3e8bb88e10f6e405388d6d14d874",
       "camera": {
         "name": "street-lamp",
         "position": [
@@ -887,60 +1112,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/road-deck.png",
-      "hash": "sha256:6e6e223aed659ed11a7dffa70844421ae4605e39f0b4e53fe8eb78f9c84a4e11",
+      "hash": "sha256:c08094fe472912363c6fabaa69f9e4fbf6e82f4169d8b719b842fed7dce67d01",
       "camera": {
         "name": "road-deck",
         "position": [
@@ -960,60 +1204,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/approach-access-arch.png",
-      "hash": "sha256:593abae98051e433fbb474b3f5ed65360223db5a593eb3fd1ea1a92560ffd93c",
+      "hash": "sha256:4edda3507c8c0984bcbac4b0af134aa0d94a896228ec987445b4ff8c59e4fa4d",
       "camera": {
         "name": "approach-access-arch",
         "position": [
@@ -1033,60 +1296,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/maintenance-path.png",
-      "hash": "sha256:4c462cfd0b7f6b5fe30850bebfa672567cfa20eaed8464827905571cad7dedc1",
+      "hash": "sha256:c40c14ffaf5281ed80165efeec4e2509b2cf2fd8ccb9ff68bd6fca246ae3ab94",
       "camera": {
         "name": "maintenance-path",
         "position": [
@@ -1106,60 +1388,79 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 8,
-        "renderedTriangles": 3082668
+        "draws": 6,
+        "renderedTriangles": 31732
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:2fb2b31ebb5487844843e0a5e3ce7bb33e39f43205a5ac1cf5fb2e2eda8044e6",
+      "hash": "sha256:d7f1410dd87214b80a388ad21f6eca6f77bf65a1061e628d2c49bed74a460bd2",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1169,55 +1470,74 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0024",
         "position": [
+          -152.2106720721349,
           0,
-          0,
-          0
+          -152.2106720721349
         ],
-        "heading": 0.65548472696,
-        "meshes": 7,
-        "triangles": 3082666,
+        "heading": 0,
+        "meshes": 5,
+        "triangles": 31722,
         "bounds": {
           "min": [
-            -116.01088701696335,
+            -115.79795234557241,
             0,
-            -93.41321332239009
+            -93.21708076354116
           ],
           "max": [
-            116.01088701696335,
-            67,
-            93.41321332239009
+            115.79796440247446,
+            65.69999694824219,
+            93.21707756165415
           ]
         },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -115.79795270270992,
+            0,
+            -93.21708129461399
+          ],
+          "max": [
+            115.79795270270992,
+            65.69999694824219,
+            93.21708129461399
+          ]
+        },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "4de447cc-fbc9-4fe7-af1f-2aa618af40bd",
-          "worldgen:matgraph:molen.worldgen.material.stone_granite": "fc36293b-2d4f-4896-9d40-27d95c3c945c",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d39f4e6d-2e9e-4dc6-a76f-bf73755072b4",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "1085bad9-2012-4e90-8941-be4f1610a7cd",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "fc4d7501-1a68-4324-91a2-2625907052ce"
+          "worldgen:matgraph:molen.worldgen.material.stone_basalt_raw": "ad005629-9dc0-4e6c-95be-0519e4fa07db",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "69e9e336-742c-4903-8e46-dd01566f46c4",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "edbc3472-b7ce-4b10-a645-ff2603bcda72"
         },
         "loads": [
           "molen.worldgen.structure.n0024_great_bridge_of_hrazdan"
         ],
         "selectionBounds": [
-          44.48092123229888,
-          40.19042375568902,
-          44.48393172370112,
-          40.19272344281631
+          44.480636521282804,
+          40.190206263485365,
+          44.4842164347172,
+          40.19294092694784
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0024",
+            "coordinate": [
+              44.481028094349746,
+              40.19075226552396
+            ],
+            "height": 58.3
+          }
         ],
         "visibleStructures": [
           "next1000.n0024"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_basalt_raw": 1,
-          "molen.worldgen.material.stone_granite": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 3082668
+        "draws": 7,
+        "renderedTriangles": 31732
       }
     }
   ],
@@ -1227,9 +1547,16 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:757100bc920d81a59c23aa7699796dfa082f3b239bc8a94c87a5c915082b4285",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c"
+  }
 }

@@ -1,0 +1,285 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Three pale shafts and inclined buttresses with eleven pale/ruby spheres and a segmented communications mast.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
+  },
+  "brief": "Budgeted Oriental Pearl exterior preserves three shafts, three buttresses, all eleven spheres, observation belts and communications mast. Small buttress-joint spheres receive a picture-led correction; original detailed master stays independent.",
+  "sourceFacts": {
+    "totalHeightMeters": 468,
+    "spheres": 11,
+    "supportingColumns": 3,
+    "inclinedButtresses": 3,
+    "smallHotelSpheres": 5,
+    "publicLowObservationMeters": 90,
+    "publicUpperObservationMeters": [
+      259,
+      263
+    ],
+    "principalSphereSupportLevelsReportedByDesigner": [
+      112,
+      295,
+      350
+    ],
+    "originalMasterHash": "sha256:e74b5dbc52f7a581dd7f6fa759360bdf9c2e3f630baff2ebaa172f30fbc96120",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-models.mjs#signatureTowers[N0144].build",
+    "reviewScope": "Original288124-triangle24940700-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/pearl-browser-model.mjs",
+    "export": "buildPearlCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      121.49526040874795,
+      31.241892490134386
+    ],
+    "heading": -0.3839563789705781,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/40778038",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/40778038"
+    ],
+    "wikidataId": "Q223207",
+    "mapGeometrySource": "content/earth/structures/georeferencing.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "mapFrameTowerCenterXZ": [
+      0.031188044279445118,
+      14.585075203327284
+    ],
+    "notes": "Inspected skyline and close exterior pictures confirm the three concrete shafts, inclined supports, ruby/pale principal spheres and triangulated shells. The close picture shows three small pale joint spheres partway up the inclined supports; browser derivatives move them from the old entry-foot positions to approximate42m support-joint locations with4.4m radii. Original detailed source remains reproducible. Retain468m height, eleven spheres, authored main sphere heights and the corrected mapped center/alternating shaft-brace phase. Standard viewer PMTiles confirms the tower and plaza context. Off-footprint PMTiles point[-80,0]11.7337m sets approximate ground contact; center34.2199m contains coarse urban imprint. Bounded preview contacts preserve raw samples separately. Exact joint-sphere positions, shell fabrication, hotel pearl layout, shaft connections, maintenance equipment and entrance thresholds remain approximations; wider exhibition complex excluded.",
+    "mapPartsDocument": "map-evidence.json",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected skyline and close exterior pictures confirm the three concrete shafts, inclined supports, ruby/pale principal spheres and triangulated shells. The close picture shows three small pale joint spheres partway up the inclined supports; browser derivatives move them from the old entry-foot positions to approximate42m support-joint locations with4.4m radii. Original detailed source remains reproducible. Retain468m height, eleven spheres, authored main sphere heights and the corrected mapped center/alternating shaft-brace phase. Standard viewer PMTiles confirms the tower and plaza context. Off-footprint PMTiles point[-80,0]11.7337m sets approximate ground contact; center34.2199m contains coarse urban imprint. Bounded preview contacts preserve raw samples separately. Exact joint-sphere positions, shell fabrication, hotel pearl layout, shaft connections, maintenance equipment and entrance thresholds remain approximations; wider exhibition complex excluded.",
+    "terrainReference": {
+      "anchor": [
+        121.49448106542108,
+        31.242161691298282
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    },
+    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c"
+  },
+  "geographicNote": "Inspected skyline and close exterior pictures confirm the three concrete shafts, inclined supports, ruby/pale principal spheres and triangulated shells. The close picture shows three small pale joint spheres partway up the inclined supports; browser derivatives move them from the old entry-foot positions to approximate42m support-joint locations with4.4m radii. Original detailed source remains reproducible. Retain468m height, eleven spheres, authored main sphere heights and the corrected mapped center/alternating shaft-brace phase. Standard viewer PMTiles confirms the tower and plaza context. Off-footprint PMTiles point[-80,0]11.7337m sets approximate ground contact; center34.2199m contains coarse urban imprint. Bounded preview contacts preserve raw samples separately. Exact joint-sphere positions, shell fabrication, hotel pearl layout, shaft connections, maintenance equipment and entrance thresholds remain approximations; wider exhibition complex excluded.",
+  "camera": {
+    "position": [
+      320,
+      300,
+      680
+    ],
+    "lookAt": [
+      0,
+      233,
+      0
+    ],
+    "fov": 44
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/pearl-browser-model.mjs",
+    "export": "buildPearlSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPearlDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "pink": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildPearlStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "pink": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPearlCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "pink": {
+            "slot": "wall",
+            "graph": "metal_painted",
+            "roughness": 0.55,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0144-skyline",
+      "position": [
+        320,
+        300,
+        680
+      ],
+      "lookAt": [
+        0,
+        233,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0144-district",
+      "position": [
+        320,
+        300,
+        680
+      ],
+      "lookAt": [
+        0,
+        233,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0144-street",
+      "position": [
+        320,
+        300,
+        680
+      ],
+      "lookAt": [
+        0,
+        233,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0144-closeup",
+      "position": [
+        320,
+        300,
+        680
+      ],
+      "lookAt": [
+        0,
+        233,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "Inspected skyline and close exterior pictures confirm the three concrete shafts, inclined supports, ruby/pale principal spheres and triangulated shells. The close picture shows three small pale joint spheres partway up the inclined supports; browser derivatives move them from the old entry-foot positions to approximate42m support-joint locations with4.4m radii. Original detailed source remains reproducible. Retain468m height, eleven spheres, authored main sphere heights and the corrected mapped center/alternating shaft-brace phase. Standard viewer PMTiles confirms the tower and plaza context. Off-footprint terrain point and bounded preview contacts provide approximate fit, not survey accuracy. Exact joint-sphere positions, shell fabrication, hotel pearl layout, shaft connections, maintenance equipment and entrance thresholds remain approximations; wider exhibition complex excluded.",
+    "Canonical granite/concrete/painted-metal graphs reused across semantic slots; glass uses opaque PBR and no copied photography. Far tiers merge sphere panels and omit shaft rings and maintenance equipment; closeup adds inset triangular joints, observation rims and representative mast details. Physical-device timings pending."
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ]
+}

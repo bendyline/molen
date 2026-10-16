@@ -1,0 +1,211 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "White tapered cast-iron tower, raised staggered plate joints, quadrantal pedimented windows, bracketed gallery, glazed lantern and current red dome.",
+    "epoch": "Current exterior photos, authority aid645 record updated2026-09-01.",
+    "master": "Original61870-triangle platework recipe retained; current source scales height from42.6m to45.2m using the explicit source-local builder. Historical unscaled master remains reproducible.",
+    "exclusions": "Detached station buildings, fence, optics display, interior stair, exact fitting dimensions, engineering ground contact."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/tahkuna-current-model.mjs",
+    "export": "buildTahkunaCurrent"
+  },
+  "sourceFacts": {
+    "heightMeters": 45.2,
+    "baseDiameterApproxMeters": 8.95,
+    "topShaftDiameterApproxMeters": 4,
+    "year": 1875,
+    "basis": "Current national navigation aid645 record explicitly gives45.2m above ground; municipal/history42.6m is retained as conflicting earlier publication. Adopt current authority dimension;46.6m light height above chart zero is separate. Diameter and small fittings are photo-proportioned.",
+    "priorPublishedHeightMeters": 42.6
+  },
+  "size": [
+    9.3,
+    45.2,
+    10
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tahkuna-current-model.mjs",
+    "export": "buildTahkunaSkyline",
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTahkunaDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildTahkunaStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "current-whole-tower",
+      "position": [
+        42,
+        30,
+        58
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "current-lantern",
+      "position": [
+        8,
+        44.563380281690144,
+        10
+      ],
+      "lookAt": [
+        0,
+        41.38028169014085,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "near-lantern-district",
+      "position": [
+        8,
+        44.563380281690144,
+        10
+      ],
+      "lookAt": [
+        0,
+        41.38028169014085,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "near-lantern-street",
+      "position": [
+        8,
+        44.563380281690144,
+        10
+      ],
+      "lookAt": [
+        0,
+        41.38028169014085,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "near-plates-district",
+      "position": [
+        10,
+        20.15962441314554,
+        12
+      ],
+      "lookAt": [
+        0,
+        19.098591549295776,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "near-plates-street",
+      "position": [
+        10,
+        20.15962441314554,
+        12
+      ],
+      "lookAt": [
+        0,
+        19.098591549295776,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "near-entry-district",
+      "position": [
+        9,
+        5.305164319248826,
+        12
+      ],
+      "lookAt": [
+        0,
+        2.1220657276995305,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "near-entry-street",
+      "position": [
+        9,
+        5.305164319248826,
+        12
+      ],
+      "lookAt": [
+        0,
+        2.1220657276995305,
+        2
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

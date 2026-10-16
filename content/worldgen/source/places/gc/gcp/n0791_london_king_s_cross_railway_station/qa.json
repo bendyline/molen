@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0791_london_king_s_cross_railway_station",
-  "inputHash": "sha256:ffd9e6798f48fd36f8f933ac051cecccd4ee6ade206feb815652d8d5989468d5",
-  "captureReportHash": "sha256:55f430bbc99d36beda156bea993af0f9c9ad8758a7902cbf7663494508f423be",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:a2023aacfbcc573aa42009820ffe32a62f71714af255dbef9ff6c24e2b2a541c",
+  "sourceHash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
+  "runtimeHash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
+  "captureReportHash": "sha256:18d69a98963362c8d8840b5400d56d6ba989e6939b85fcf1d527f85ff3bd2667",
   "visualReview": {
     "status": "passed",
-    "scope": "Current portable geometry presentation; maximum architectural fidelity remains pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -22,11 +24,11 @@
       "shots/northern-sheds.png",
       "shots/far-station.png"
     ],
-    "notes": "Inspected all 27 final portable/shared frames in the labeled contact sheet and full-size southern front, eastern facade and concourse funnel views. The six-part assembly retains the train sheds, clock front, ranges and concourse. Corrected inward-facing range windows, blank southern range ends, facade gaps, missing rear arch faces, overly dense funnel members and the suburban shed boundary. Unique mesh resources contain 132146 triangles; 192 mesh nodes instantiate 540926 triangles. No private bitmap textures are present. This approves source presentation only; the historic facade distinctions, concourse glazing/steel topology and site fit remain unfinished."
+    "notes": "Inspected14 portable views: twin barrel sheds, southern twin-arch clock facade, eastern/western ranges, tapered suburban shed, western semicircular concourse and branching funnel are complete. Detailed master byte hash is unchanged; source component assembly preserves192 repeated instances."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:f268163692146d9c46359d6d927f1c6f484703c741d2e049ab6bda0d524a5179",
+    "captureReportHash": "sha256:4cc13ca01c83615f3ff95ff8b72bc72731259c3df81c0f1cc442b7e0bc4dcace",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -40,18 +42,310 @@
       "shots/shared/eastern-range.png",
       "shots/shared/shed-interior.png",
       "shots/shared/northern-sheds.png",
-      "shots/shared/far-station.png"
+      "shots/shared/far-station.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Six canonical material graphs load once each; full instantiated geometry reaches the viewer, and unload releases geometry. PBR fallback remains available. Brick, metal, stone, slate, concrete and wood are shared. The source has no bitmap textures. This is an isolated asset fixture, not site approval."
+    "notes": "Inspected14 shared-surface/placement views. Shared brick, limestone, metal, slate and concrete/wood surfaces bind coherently. North-up PMTiles overlay confirms southern front and western concourse: envelope approximately164x256m compared with source165.4x250.1m. Bounded floor opening, cache sharing and unload restoration pass; surrounding grade uses PMTiles previews."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:b85c30fab2463ada9e344d2e87ea8726177952fffc3e3870ce7428330f5c8049",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/southern-front.png",
+      "medium-fi/clock-face.png",
+      "medium-fi/western-concourse.png",
+      "medium-fi/concourse-funnel.png",
+      "medium-fi/roof-assembly.png",
+      "medium-fi/eastern-range.png",
+      "medium-fi/shed-interior.png",
+      "medium-fi/northern-sheds.png",
+      "medium-fi/far-station.png",
+      "medium-fi/whole-kings-cross-skyline.png",
+      "medium-fi/whole-kings-cross-district.png",
+      "medium-fi/whole-kings-cross-street.png",
+      "medium-fi/whole-kings-cross-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all30 final browser views across lighting/quality modes, silhouette, near details and four matched levels. New skyline retains double barrels, clock mass, separate ranges and concourse. Closer reductions preserve funnel/roof/range architecture and material ranks; fine clock hands/ticks, sash bars and thin shed members reduce or disappear. Native ground floors remain seated against bounded PMTiles fitting ground."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": null,
-    "notes": "Inspected a native-axis overlay against the exact-QID OSM combined footprint. East/main-shed bounds align approximately; the suburban extension now follows the tapered boundary. The mapped curved outline fits a roughly 61 m radius while the engineering roof extent is 69 m. These may describe different envelopes. Separate roof/wall footprints, facade axis sign, datum and current site conditions remain to be resolved; no placement activated."
+    "status": "passed",
+    "placementHash": "sha256:0b24a521e89415247063398b03123b5387207e0e1b244fdb01422112a19a2a5d",
+    "mapFrameHash": "sha256:e572100e9f375327e1ec282a43517f3cccd8b64bd889e677c6d07cd3feb4a995",
+    "notes": "The inspected aerial picture identifies the western semicircular concourse beside the long train sheds. Standard viewer PMTiles retains a combined building envelope approximately164m across and256m long; source bounds are165.4x250.1m. Retained heading places native+Z at the southern clock facade and the concourse to the west. Working PMTiles datum16.271386566468557m sets approximate floor contact. A bounded inset opening only under the authored covered floor avoids coarse urban terrain through platforms/concourse; surrounding raw PMTiles remain. Member footprints, exact entry thresholds and signed bearing are approximate visualization, not surveys."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior reconstruction from inspected aerial picture and standard PMTiles. Combined footprint and picture determine approximate anchor, scale and signed heading; no member-footprint surveys or exact thresholds. Detailed source keeps clock ticks and facade modules; browser reductions simplify those, glazing, diagrid and rail/platform furniture. Adjacent hotel, underground spaces and trains excluded. Inset floor opening is reversible and raw surroundings remain; footprint replacement stays off. No engineering certification or physical-device timing claimed."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Primary engineering sections, plan, roof diagram and photographs inspected. Distinct Western Range facades and bomb gap, parcels atrium, booking hall, Roman clock numerals, lettering, glazing, exact roof meridian and diagrid, mezzanine, escalators, canopies and current geographic fit remain unfinished. This candidate is not counted complete."
+    "notes": "Primary engineering sections, plan, roof diagram and photographs inspected. Distinct Western Range facades and bomb gap, parcels atrium, booking hall, Roman clock numerals, lettering, glazing, exact roof meridian and diagrid, mezzanine, escalators, canopies and current geographic fit remain unfinished. This candidate is not counted complete.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcp/n0791_london_king_s_cross_railway_station/models/source.glb",
+        "hash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
+        "bytes": 10838624,
+        "triangles": 132146,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -84.10997009277344,
+          -0.029398368671536446,
+          -122.04499816894531
+        ],
+        "max": [
+          81.05000305175781,
+          36,
+          128.00144958496094
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.glb",
+        "hash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
+        "bytes": 10835044,
+        "triangles": 132146,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -84.10997009277344,
+          -0.029398368671536446,
+          -122.04499816894531
+        ],
+        "max": [
+          81.05000305175781,
+          36,
+          128.00144958496094
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.skyline.glb",
+        "hash": "sha256:3120f687112ac3f919934d81a5a36adccdb2f3de34c4fef472689317605db1b1",
+        "bytes": 67100,
+        "triangles": 676,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -84,
+          -0.03999999910593033,
+          -122
+        ],
+        "max": [
+          80.80000305175781,
+          36,
+          124.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.district.glb",
+        "hash": "sha256:a9ca9d24dc87ebb118bd9f70dc43d03f5b54fa5430d27dc08f58224418cf9f02",
+        "bytes": 406504,
+        "triangles": 3940,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -84.10997009277344,
+          0,
+          -122
+        ],
+        "max": [
+          81.05000305175781,
+          36,
+          128
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.street.glb",
+        "hash": "sha256:959e07313cdd14025006bdb4974300b7db4c95347c8bc27f5a159695acd4ac85",
+        "bytes": 1712828,
+        "triangles": 15789,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -84.10997009277344,
+          -0.02933940850198269,
+          -122.08999633789062
+        ],
+        "max": [
+          81.05000305175781,
+          36,
+          128
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.closeup.glb",
+        "hash": "sha256:057bf0f0011137ed271ef5901e1af7f4dc2eb1cb8e676348647a7b13db32a843",
+        "bytes": 6335552,
+        "triangles": 63954,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -84.10997009277344,
+          -0.029398368671536446,
+          -122.08999633789062
+        ],
+        "max": [
+          81.30000305175781,
+          36,
+          128
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors/warnings/images. Browser triangles676/3940/15789/63954 satisfy strict ceilings. Initial skyline+district473604bytes. Source master132146stored mesh triangles/540926instance-rendered triangles is unchanged; source/runtime hashes and separate GPU streams verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:ba7549c64de094676a74c215b2060dc2ffbce831b16889a8532a5fe909eed1ec",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:3120f687112ac3f919934d81a5a36adccdb2f3de34c4fef472689317605db1b1",
+        "bytes": 67100,
+        "gzipBytes": 14847,
+        "triangles": 676,
+        "cpuBytes": 65724,
+        "gpuBytes": 65724,
+        "errorMeters": 4,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:a9ca9d24dc87ebb118bd9f70dc43d03f5b54fa5430d27dc08f58224418cf9f02",
+        "bytes": 406504,
+        "gzipBytes": 83967,
+        "triangles": 3940,
+        "cpuBytes": 398188,
+        "gpuBytes": 398188,
+        "errorMeters": 3.597555871949316,
+        "drawCalls": 7
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:959e07313cdd14025006bdb4974300b7db4c95347c8bc27f5a159695acd4ac85",
+        "bytes": 1712828,
+        "gzipBytes": 302963,
+        "triangles": 15789,
+        "cpuBytes": 1704444,
+        "gpuBytes": 1704444,
+        "errorMeters": 0.9885730590252928,
+        "drawCalls": 7
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:057bf0f0011137ed271ef5901e1af7f4dc2eb1cb8e676348647a7b13db32a843",
+        "bytes": 6335552,
+        "gzipBytes": 994416,
+        "triangles": 63954,
+        "cpuBytes": 6327080,
+        "gpuBytes": 6327080,
+        "errorMeters": 0.7642722194755378,
+        "drawCalls": 7
+      }
+    ],
+    "initialBytes": 473604,
+    "notes": "skyline: 676 triangles, 67100 bytes, 1 draws; district: 3940 triangles, 406504 bytes, 7 draws; street: 15789 triangles, 1712828 bytes, 7 draws; closeup: 63954 triangles, 6335552 bytes, 7 draws. Initial skyline+district 473604 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate picture/standard PMTiles placement and exterior fit. Bespoke surveys and prior precise member-elevation research holds are superseded by the approved medium-fi scope.",
+    "Detailed original source assembly/hash/recipe preserved; skyline is separately authored and closer levels use bounded reductions.",
+    "The twin roof/clock facade, western concourse/funnel and distinct range/shed volumes carry identity. Clock ticks stand for numerals; facade modules, diagrid pattern, glazing and platforms are interpretations rather than exact restoration inventories.",
+    "Shared procedural textures; no duplicated embedded images. Underground spaces, adjacent hotel/trains and exact station furniture/sign lettering are excluded. Reversible inset floor cutout leaves raw surrounding terrain; footprint replacement off; physical-device timing unmeasured."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:724c8f6552f2fdc8833f4a33899a9d05e3a225c6e5a762e238a664ea8fbc3b80",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:09b2d8af9a9d7e46f16c8f0d0db9a7b992ba1b0adc42b921b9f43819867cce81",
+    "previousSharedCaptureReportHash": "sha256:858058fafcbbd718ff2ea578ae23062f1fd76c95268bb1a28b1b0aa8e5452255",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/kings-cross-browser-model.mjs",
+        "beforeHash": "sha256:3958e88901c0d71250b5313a5e1b6543ddbb12aacc5214e6afc5750a5259b845",
+        "afterHash": "sha256:acf7b80e96ac8c20e250720705e69ee2a816e627d0b9bad8834475a8254663a6",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/gc/gcp/n0791_london_king_s_cross_railway_station/models/source.glb",
+        "hash": "sha256:243fb45927fe51ccf98c6d1dc18ad7acd1bab563e0010b03cb187f115ccddac5",
+        "bytes": 10838624
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.glb",
+        "hash": "sha256:06588a21dde09525905c09c60bccc0acafbeaef6e54ad1411cf4633edbab433a",
+        "bytes": 10835044
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.skyline.glb",
+        "hash": "sha256:3120f687112ac3f919934d81a5a36adccdb2f3de34c4fef472689317605db1b1",
+        "bytes": 67100
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.district.glb",
+        "hash": "sha256:a9ca9d24dc87ebb118bd9f70dc43d03f5b54fa5430d27dc08f58224418cf9f02",
+        "bytes": 406504
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.street.glb",
+        "hash": "sha256:959e07313cdd14025006bdb4974300b7db4c95347c8bc27f5a159695acd4ac85",
+        "bytes": 1712828
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcp/n0791_london_king_s_cross_railway_station/model.closeup.glb",
+        "hash": "sha256:057bf0f0011137ed271ef5901e1af7f4dc2eb1cb8e676348647a7b13db32a843",
+        "bytes": 6335552
+      }
+    ],
+    "retainedInspectedImageCount": 58
   }
 }

@@ -78,7 +78,7 @@ export function clipTerrainSemanticLine(
 }
 
 /** Sutherland–Hodgman clip of a ring against an axis-aligned box. */
-function clipRing(ring: TerrainSemanticRing, box: Box): TerrainSemanticRing {
+export function clipTerrainSemanticRing(ring: TerrainSemanticRing, box: Box): TerrainSemanticRing {
   let points = ring;
   const edges: Array<[axis: 0 | 1, limit: number, keepAbove: boolean]> = [
     [0, box[0], true],
@@ -123,10 +123,10 @@ function clipPolygon(
   polygon: TerrainSemanticPolygon,
   box: Box,
 ): TerrainSemanticPolygon | undefined {
-  const outer = clipRing(polygon.outer, box);
+  const outer = clipTerrainSemanticRing(polygon.outer, box);
   if (outer.length < 3 || ringArea(outer) < MIN_AREA) return undefined;
   const holes = (polygon.holes ?? [])
-    .map((hole) => clipRing(hole, box))
+    .map((hole) => clipTerrainSemanticRing(hole, box))
     .filter((hole) => hole.length >= 3 && ringArea(hole) >= MIN_AREA);
   return holes.length > 0 ? { outer, holes } : { outer };
 }

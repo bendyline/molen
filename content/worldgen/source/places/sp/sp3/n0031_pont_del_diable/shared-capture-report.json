@@ -1,12 +1,16 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0031_pont_del_diable",
-  "inputHash": "sha256:ca03fe4ae2adfdb815f95d9133a98f5f51c0a6f3bf1ec327e3114b6276b4ce67",
-  "fixtureHash": "sha256:1fdd7e5e99dbdd7f25f2c656a2f6d782fada208969740897011b66b32f5ffe44",
-  "footprintEvidenceHash": "sha256:40a43e43e2b94995118346616b9f96a42427c3254a57a89546c808d468364430",
-  "reflectionMode": "none",
-  "clippingMode": "legacy",
-  "placementHash": "sha256:6e0359d6cf43bd87b54d1192cf0549001dda01e843cb47865939639cb8ef8bfe",
+  "inputHash": "sha256:e84f29e359573c3422f49d13495cc8f32da2ba454031234898e0319268aaf662",
+  "sourceHash": "sha256:daae1b1614f4ceb5e8801ac2bdc3ce472d0aeadca0529019a9b48ed5e09c717b",
+  "runtimeHash": "sha256:cbf8697640c3f6572af0c199fdd02da59a33c2c6b60297488f8aa0ff52ba9538",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "footprintEvidenceHash": "sha256:3709b9b703df9b3b1aa3afb9cadcb5a368e783ae084cee7abedfbb0430348414",
+  "reflectionMode": "sky-pmrem",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:5dd6116c412467a21ff509778d10cfb2f3943f515c51209022b00e1cbdacba76",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.stone_limestone_raw": {
       "path": "materials/stone_limestone_raw.matgraph.json",
@@ -28,7 +32,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:f60eb420e5872fb125d6467698be1cd33606e6c80ff22a3e6e3209fc8c0c7273",
+      "hash": "sha256:22cbf2adfe4eebaf224b55c75d65334888682ae62d4432f23dfa0223c0a9dfd7",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -38,30 +42,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -76,17 +93,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -94,12 +111,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:af92e13b01a424314f1bbe4fd214a59b38ba082343080a5e39fc1c0ddb8a4830",
+      "hash": "sha256:a2abd4049a97186ef9aa3ec129cd742a024cf2717ee7fa9a68af7e4915871e48",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -109,30 +126,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -147,17 +177,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -165,12 +195,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:4bb7784b7a8bd0f33efdc4d333172275641edc7feadf9617c8442fa84f8009c5",
+      "hash": "sha256:4f35995c108882e9d6425471d8698e6b1a5f5489fa5c9d4b823b7f89606db400",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -180,30 +210,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -218,17 +261,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -236,12 +279,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:2e593b9b59a82bd4390c00755397104b6aa400f06c2a2df9844541194bab0fd2",
+      "hash": "sha256:51410388302d64e3321d929f4184423c33ccc97475a9d1d871cea0c1c14f18ea",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -251,30 +294,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -289,17 +345,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -307,12 +363,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/south-elevation.png",
-      "hash": "sha256:7152df49cfbd0aa7b083de3c19b9902a22dd06c06356e5d31b9b8b9b0d911574",
+      "hash": "sha256:8cb58dc89bf4393031ee3c0c021254ede7400668c27b9dd547eb693ff91d0d12",
       "camera": {
         "name": "south-elevation",
         "position": [
@@ -332,30 +388,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -370,17 +439,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -388,12 +457,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/north-elevation.png",
-      "hash": "sha256:51598f88471d8d20fe0504d4e5fb7e9d3333565a2648f7b7cce6282c3733d21d",
+      "hash": "sha256:f35e5a24209b326b016e0d9261f3a2aec2caac180a566afdfa8be8c6d971c750",
       "camera": {
         "name": "north-elevation",
         "position": [
@@ -413,30 +482,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -451,17 +533,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -469,12 +551,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/deck-plan.png",
-      "hash": "sha256:e01d4fe6eff45d688abac18d15f73a471e94b7e3c764a2e8e9a6938840707793",
+      "hash": "sha256:7207f6da2f26bc993c998a0de4ffcd3abc7bf3cc792f26d2bc5c47526749c1e7",
       "camera": {
         "name": "deck-plan",
         "position": [
@@ -494,30 +576,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -532,17 +627,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -550,12 +645,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/west-ashlar.png",
-      "hash": "sha256:2c60b409b4145a1a75e21fba9b3d4369e8c339f0c1ef53847ef2550aa112e14f",
+      "hash": "sha256:e3afb6e4e2cb559f707ba8a269988c0eae21e081a81dfacc36ba43e1d8daf332",
       "camera": {
         "name": "west-ashlar",
         "position": [
@@ -575,30 +670,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -613,30 +721,30 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 5,
-        "renderedTriangles": 369098
+        "draws": 4,
+        "renderedTriangles": 53646
       }
     },
     {
       "path": "shots/shared/main-intrados.png",
-      "hash": "sha256:5c1e1d564c32fe207ba945ce64e8f35d5ae5752684849fdad03ea0d32f5806c3",
+      "hash": "sha256:1f08bfe70a42ee10f7826af3391fc5de03925daa1663a4ca4203ec3b70dbf26b",
       "camera": {
         "name": "main-intrados",
         "position": [
@@ -656,30 +764,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -694,30 +815,30 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 5,
-        "renderedTriangles": 369098
+        "draws": 4,
+        "renderedTriangles": 53646
       }
     },
     {
       "path": "shots/shared/pier-cutwater.png",
-      "hash": "sha256:283ea598ab0fbf23ad44d313ac550344df07d9bccdcf14256c9ddf1cc84caf67",
+      "hash": "sha256:93af1fe8a4abab13fe008821c84332481ab0f7dc09ca43c6c14297a8cad0beaa",
       "camera": {
         "name": "pier-cutwater",
         "position": [
@@ -737,30 +858,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -775,30 +909,30 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 5,
-        "renderedTriangles": 369098
+        "draws": 4,
+        "renderedTriangles": 53646
       }
     },
     {
       "path": "shots/shared/summit-passage.png",
-      "hash": "sha256:89b9bfa96bc50858e31d10b7886bc3da7edea5fd52adc4bc136b56f2cc19cfb0",
+      "hash": "sha256:5c32ab637841e84f808c0cd8895bfcfb4021f1f48e974b79660954f016da04b7",
       "camera": {
         "name": "summit-passage",
         "position": [
@@ -818,30 +952,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -856,17 +1003,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -874,12 +1021,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/shelter-roof.png",
-      "hash": "sha256:ca1ace7ad8623dc2de3569c921322e969d0967276896ae45c01fc948838aa813",
+      "hash": "sha256:f392c80df9b8857411de5283fedb03b306268f98b01ec40da49c39da1cca7888",
       "camera": {
         "name": "shelter-roof",
         "position": [
@@ -899,30 +1046,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -937,30 +1097,30 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 5,
-        "renderedTriangles": 369098
+        "draws": 4,
+        "renderedTriangles": 53646
       }
     },
     {
       "path": "shots/shared/east-small-arch.png",
-      "hash": "sha256:0a129774b314e3ee216289abdc4bae5288829bc0ab742344f6767877e7a9f513",
+      "hash": "sha256:26b3e44db823aac07b494cf73701b1d070fa93515a821c848459a46509e6d6c8",
       "camera": {
         "name": "east-small-arch",
         "position": [
@@ -980,30 +1140,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -1018,30 +1191,30 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
           "molen.worldgen.material.metal_copper": 1,
           "molen.worldgen.material.metal_painted": 1
         },
-        "draws": 5,
-        "renderedTriangles": 369098
+        "draws": 4,
+        "renderedTriangles": 53646
       }
     },
     {
       "path": "shots/shared/roman-gateway.png",
-      "hash": "sha256:7c6eb80335bd95c35dcbf785150020e074e4816305ff6cbe7920a8f5d98dd965",
+      "hash": "sha256:397a8ee6ad26530f5b566ba25a93e7f9b9798ec34a53bbd664829ee47232ee0a",
       "camera": {
         "name": "roman-gateway",
         "position": [
@@ -1061,30 +1234,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -1099,17 +1285,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -1117,12 +1303,12 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     },
     {
       "path": "shots/shared/gateway-crown.png",
-      "hash": "sha256:4a2876ce0a77a08de2cf188d829b1fae2dd91fdb5cc9227ef288be575f2ed81b",
+      "hash": "sha256:feb6ab536bbca5d48fb8507995d9cdf40e809fb3576b1a9b53c1b18b6364cf7c",
       "camera": {
         "name": "gateway-crown",
         "position": [
@@ -1142,30 +1328,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -1180,17 +1379,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -1198,12 +1397,106 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 5,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
+      }
+    },
+    {
+      "path": "shots/shared/east-small-arch-above-bank.png",
+      "hash": "sha256:03f209d411e8bee3961878b169b475bc6285a077334942747edcb1177dee930c",
+      "camera": {
+        "name": "east-small-arch-above-bank",
+        "position": [
+          46.2,
+          18,
+          17
+        ],
+        "lookAt": [
+          46.2,
+          11.5,
+          -1
+        ],
+        "fov": 52
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0031_pont_del_diable",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0031",
+        "position": [
+          -128,
+          0,
+          -128
+        ],
+        "heading": 0,
+        "meshes": 4,
+        "triangles": 54116,
+        "bounds": {
+          "min": [
+            -62.693199157714844,
+            -1.2000000476837158,
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
+          ],
+          "max": [
+            68.9828508855598,
+            29.389999389648438,
+            7.54023657809521
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0031_pont_del_diable"
+        ],
+        "selectionBounds": [
+          1.9360151809165387,
+          41.47380639623752,
+          1.9390845190834611,
+          41.47610608336482
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0031",
+            "coordinate": [
+              1.9368092201542357,
+              41.47490860018533
+            ],
+            "height": 14.91
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0031"
+        ],
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
+        "surfaceReads": {
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.stone_sandstone_raw": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "draws": 4,
+        "renderedTriangles": 53646
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:675454d4d003ff9771d7caa6eb67a7dbceb300fa862412fe5103743a182a9b74",
+      "hash": "sha256:f3de709908b4315482fa801fdfca0ed204a29cd052bd17ff8ad142b67c934e6b",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1213,30 +1506,43 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0031",
         "position": [
+          -128,
           0,
-          0,
-          0
+          -128
         ],
-        "heading": 0.0856587964906058,
+        "heading": 0,
         "meshes": 4,
-        "triangles": 369096,
+        "triangles": 54116,
         "bounds": {
           "min": [
-            -62.85959889959535,
+            -62.693199157714844,
             -1.2000000476837158,
-            -11.874449070506671
+            -11.555625915527344
+          ],
+          "max": [
+            68.98284912109375,
+            29.389999389648438,
+            7.5402374267578125
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
+          "min": [
+            -62.69319619473354,
+            -1.2000000476837158,
+            -11.555622170518555
           ],
           "max": [
             68.9828508855598,
             29.389999389648438,
-            9.020114595124852
+            7.54023657809521
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "544f0c10-3d85-4397-816c-26f1eb81b3fc",
-          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "861aa088-906f-4e8b-b938-a5ca6d7b2e07",
-          "worldgen:matgraph:molen.worldgen.material.metal_copper": "abf74195-403e-427a-81a6-26186a43667d",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "d37b7a5a-7e24-4131-a65b-e08c7f59c91b"
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "5c04dbb8-97c3-4229-b419-88ff4b5fc40a",
+          "worldgen:matgraph:molen.worldgen.material.stone_sandstone_raw": "5321fb2e-3b0b-4812-a032-5a8cd0e6e116",
+          "worldgen:matgraph:molen.worldgen.material.metal_copper": "e424c450-8bc5-4af3-8a1b-20091197505c",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3565c1cf-27c0-40ad-9769-89c9789a3908"
         },
         "loads": [
           "molen.worldgen.structure.n0031_pont_del_diable"
@@ -1251,17 +1557,17 @@
           {
             "placementId": "next1000.n0031",
             "coordinate": [
-              1.936803,
-              41.4749082
+              1.9368092201542357,
+              41.47490860018533
             ],
-            "height": 14.933
+            "height": 14.91
           }
         ],
         "visibleStructures": [
           "next1000.n0031"
         ],
-        "groundCutoutActive": false,
-        "groundCoversCutoutProbe": null,
+        "groundCutoutActive": true,
+        "groundCoversCutoutProbe": false,
         "surfaceReads": {
           "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.stone_sandstone_raw": 1,
@@ -1269,7 +1575,7 @@
           "molen.worldgen.material.metal_painted": 1
         },
         "draws": 6,
-        "renderedTriangles": 369098
+        "renderedTriangles": 54126
       }
     }
   ],
@@ -1279,26 +1585,10 @@
     "groundRestored": true
   },
   "groundLifecycle": {
-    "applicable": false,
-    "unchanged": true
+    "applicable": true,
+    "hiddenRestored": true,
+    "visibleOpen": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "specMetadataReconciliation": {
-    "kind": "non-render-metadata",
-    "date": "2026-10-02",
-    "previousSpecHash": "sha256:1ae632fe5f0ce55c25f71faf125b50b156f83ed124301fd48ee763b141a69391",
-    "previousCaptureReportHash": "sha256:dc056ed4b00a8d6638d14ef8294768c8aa2033cd4b2a40ce1a7b36536075a823",
-    "reviewedSpecRevision": null,
-    "reviewedSpecPath": "content/worldgen/source/places/sp/sp3/n0031_pont_del_diable/spec.json",
-    "reviewedSpecRecovery": "Exact recorded hash reconstructed by reversing only the metadata edits listed below.",
-    "changes": [
-      {
-        "path": "geographicProposal.mapGeometryHash",
-        "previous": "sha256:40a43e43e2b94995118346616b9f96a42427c3254a57a89546c808d468364430",
-        "current": "sha256:309bd4de01337ad215666251c3fa95be56cd9247972080799dbf261274688d44"
-      }
-    ],
-    "verification": "The exact previously reviewed spec was recovered by its hash. Only map-evidence digests (whole-catalog metadata or verified LF/CRLF normalization), a corrected copyright character, and reversible RGB alignment statistics may differ. Candidate map data, placement, runtime bytes, all captured images and all material graphs remain unchanged. No render was replaced and no fidelity/geographic approval was added."
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

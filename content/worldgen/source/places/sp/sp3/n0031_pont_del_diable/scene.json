@@ -31,37 +31,6 @@
       }
     },
     {
-      "id": "ground",
-      "components": {
-        "transform": {
-          "pos": [
-            0,
-            -0.15,
-            0
-          ],
-          "rot": [
-            0,
-            0,
-            0,
-            1
-          ],
-          "scale": [
-            151.22087631225585,
-            0.2,
-            100
-          ]
-        },
-        "renderable": {
-          "kind": "primitive",
-          "ref": "box",
-          "materialRef": "palette:#53777c",
-          "shadows": {
-            "receive": true
-          }
-        }
-      }
-    },
-    {
       "id": "environment",
       "components": {
         "environment": {
@@ -86,23 +55,58 @@
           "shadows": "high"
         }
       }
+    },
+    {
+      "id": "review-llobregat",
+      "components": {
+        "transform": {
+          "pos": [
+            10,
+            0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            59,
+            0.06,
+            200
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#607f86",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
     }
   ],
   "camera": {
     "mode": "fixed",
     "position": [
-      98,
-      66,
-      112
+      115,
+      68,
+      105
     ],
     "lookAt": [
       0,
       12,
       0
     ],
-    "fov": 45
+    "fov": 47
   },
   "physics": {
     "engine": "none"
+  },
+  "terrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
   }
 }

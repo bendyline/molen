@@ -1,0 +1,447 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#e8ddbd",
+      "stone": "#c4b9a0",
+      "pale": "#f0e7ce",
+      "roof": "#657077",
+      "wood": "#927559",
+      "glass": "#4d6178",
+      "paving": "#bdb7a7"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "stone": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "slate": [
+        0.59493,
+        0.632794,
+        0.653753
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ],
+      "metal": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "paving": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 7,
+    "identityFeatures": [
+      "U-shaped pale summit castle with slate roofs and round turrets",
+      "Fourteen distinct access gates along the winding fortified approach",
+      "Open summit court,raised gallery and separate spired church"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "West-facing main front; all map bearings baked into native +X east/+Z south",
+    "longitudinal": "Summit long wing runs approximately NNE/SSW; authoring plan axis is not facade approval",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactCastleWay": 122050909,
+    "mappedAccessGateCount": 14,
+    "operatorDocumentedAccessGateCount": 14,
+    "documentedCentralFrontWindowBays": 7,
+    "primarySurveyedArchitecturalDimensionsVerified": false,
+    "originalMasterHash": "sha256:37f211ed679641aa23464aedd69cf306fbdf79339cc5d76b680d5ec35fbadfc5",
+    "originalMasterRecipe": "packages/worldgen/scripts/hochosterwitz-castle-model.mjs#buildHochosterwitzRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate exterior and hillside fit from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Fourteen mapped gate masses/openings, church, summit and walls are interpreted; individual ornamental/archaeological detail, interiors and collision excluded.",
+    "Five common graphs plus explicit glass color slot, zero embedded images. Host terrain supplies the hill; vegetation, water simulation and terrain cutouts excluded.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      14.452350896,
+      46.755908856
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture supports pale summit wings, dark slate roofs, round turrets, entry tower and descending walls/gates. Retained east/south map geometry sets approximate location, scale and orientation. Standard viewer PMTiles supply the hill; the derivative translates the old611.9699m first-gate study datum to the703.9600882109237m anchor datum, uses one retained PMTiles sampler for walls/routes at every level and raises reconstructed gate/summit floors only enough to clear coarse ground. No terrain mesh is embedded in the architecture. Anchor 14.452350896,46.755908856; heading 0; standard PMTiles datum 703.9600882109237m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture supports pale summit wings, dark slate roofs, round turrets, entry tower and descending walls/gates. Retained east/south map geometry sets approximate location, scale and orientation. Standard viewer PMTiles supply the hill; the derivative translates the old611.9699m first-gate study datum to the703.9600882109237m anchor datum, uses one retained PMTiles sampler for walls/routes at every level and raises reconstructed gate/summit floors only enough to clear coarse ground. No terrain mesh is embedded in the architecture. Anchor 14.452350896,46.755908856; heading 0; standard PMTiles datum 703.9600882109237m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        14.452350896,
+        46.755908856
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture supports pale summit wings, dark slate roofs, round turrets, entry tower and descending walls/gates. Retained east/south map geometry sets approximate location, scale and orientation. Standard viewer PMTiles supply the hill; the derivative translates the old611.9699m first-gate study datum to the703.9600882109237m anchor datum, uses one retained PMTiles sampler for walls/routes at every level and raises reconstructed gate/summit floors only enough to clear coarse ground. No terrain mesh is embedded in the architecture. Anchor 14.452350896,46.755908856; heading 0; standard PMTiles datum 703.9600882109237m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hochosterwitz-runtime-model.mjs",
+    "export": "buildHochosterwitzReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.2
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hochosterwitz-runtime-model.mjs",
+    "export": "buildHochosterwitzReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHochosterwitzReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildHochosterwitzReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHochosterwitzReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hochosterwitz-skyline",
+      "position": [
+        275,
+        180,
+        260
+      ],
+      "lookAt": [
+        0,
+        -18,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hochosterwitz-district",
+      "position": [
+        275,
+        180,
+        260
+      ],
+      "lookAt": [
+        0,
+        -18,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hochosterwitz-street",
+      "position": [
+        275,
+        180,
+        260
+      ],
+      "lookAt": [
+        0,
+        -18,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hochosterwitz-closeup",
+      "position": [
+        275,
+        180,
+        260
+      ],
+      "lookAt": [
+        0,
+        -18,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -92,
+    "scale": 4.8,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "camera": {
+    "position": [
+      275,
+      180,
+      260
+    ],
+    "lookAt": [
+      0,
+      -18,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "summit-west-front": {
+      "position": [
+        -112.657904245793,
+        23.009811789076366,
+        -54.1589938140078
+      ],
+      "lookAt": [
+        -9.01263233966344,
+        11.009811789076366,
+        -4.332719505120624
+      ]
+    },
+    "open-summit-court": {
+      "position": [
+        16.083860879625316,
+        8.009811789076366,
+        -1.1442985645618782
+      ],
+      "lookAt": [
+        -0.6068686152231586,
+        11.009811789076366,
+        -10.277728858257408
+      ]
+    },
+    "south-gallery": {
+      "position": [
+        -39.86101944710974,
+        31.009811789076366,
+        82.91621752490364
+      ],
+      "lookAt": [
+        -11.230351380371404,
+        12.009811789076366,
+        25.668642501569693
+      ]
+    },
+    "gate-approach": {
+      "position": [
+        220,
+        68.00981178907637,
+        -200
+      ],
+      "lookAt": [
+        0,
+        -44.990188210923634,
+        -68
+      ]
+    },
+    "church-and-upper-gates": {
+      "position": [
+        -180,
+        46.009811789076366,
+        50
+      ],
+      "lookAt": [
+        -70,
+        -5.990188210923634,
+        -8
+      ]
+    },
+    "mapped-plan": {
+      "position": [
+        -20,
+        228.00981178907637,
+        -30
+      ],
+      "lookAt": [
+        -20,
+        -51.990188210923634,
+        -30
+      ]
+    }
+  }
+}

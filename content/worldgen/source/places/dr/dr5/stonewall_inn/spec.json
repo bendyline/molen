@@ -1,0 +1,333 @@
+{
+  "planId": "stonewall_inn",
+  "id": "stonewall_inn",
+  "assetId": "molen.worldgen.structure.stonewall_inn",
+  "title": "Stonewall Inn",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.00212794542313,
+    "latitude": 40.73391432195926
+  },
+  "size": [
+    18.887849807739258,
+    10.93999981880188,
+    29.809636116027832
+  ],
+  "actualBounds": {
+    "min": [
+      -8.98644733428955,
+      -2.200000047683716,
+      -14.87963581085205
+    ],
+    "max": [
+      9.901402473449707,
+      8.739999771118164,
+      14.930000305175781
+    ]
+  },
+  "visualBrief": "Both former stable buildings at 51–53 Christopher Street: brick storefront arches, contrasting stucco upper facades, three/four casement bays, curved iron baskets, stepped parapets and current visitor-center entrance.",
+  "nativeAxes": {
+    "x": "east-northeast along Christopher Street, 53 toward 51",
+    "y": "up",
+    "z": "south-southeast toward Christopher Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Stonewall_Inn_5_pride_weekend_2016.jpg",
+    "https://commons.wikimedia.org/wiki/File:Stonewall_Inn,_NYC_(May_2014)_-_2.JPG"
+  ],
+  "stories": [
+    {
+      "id": "stonewall-inn-wp",
+      "url": "https://qualla.com/stonewall-inn/"
+    }
+  ],
+  "referenceInputHash": "3fb0dee627adc1cfff0118e1dc5befd2a41efe682125f297f2b9b03869050d6b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-stonewall-inn.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-stonewall-inn.mjs",
+    "level": "skyline",
+    "export": "stonewallSkyline",
+    "errorMeters": 0.35,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "flag": {
+        "slot": "trim",
+        "localRef": "palette:#fefefe",
+        "roughness": 0.95,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "stonewallDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "flag": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "stonewallStreet",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "flag": {
+            "slot": "trim",
+            "localRef": "palette:#fefefe",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Christopher Street sidewalk [-1.8,15.1], independent terrain unchanged.",
+    "anchor": [
+      -74.00212794542313,
+      40.73391432195926
+    ],
+    "heading": 0.191648856603142,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.00211479619819,
+        40.733778080477805
+      ],
+      "modelHeight": 0,
+      "basis": "Christopher Street sidewalk at the commercial entrance of 53."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184621752837",
+      "buildings/35184621752836"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9bf5e7daa5c3f81d9a4c2a7321ef5e4682a0b16a55f7d8084523704e887996ee",
+    "notes": "Two stories at both 53 and 51; 51 has a one-story rear wing. Map heights of 6 and 7.4 m are coarse controls. Photographic facade proportions and tall parapets guide authored heights; rear upper-story termination and roof equipment positions are conservative estimates."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior of 51–53 Christopher Street, using individually inspected local 2014/2016 photos, official city designation photo/map and current NPS visitor-center photograph. No exact 1969 reconstruction.",
+    "Both individual mapped footprints are retained; taller neighboring buildings, interiors, crowds and temporary banners are excluded.",
+    "Vertical dimensions and hidden rear/roof details are approximations. The 51 rear-wing upper-story termination, skylight spacing and equipment positions are interpreted from limited evidence.",
+    "Small pride flags, window baskets, lanterns and storefront lettering are simplified original geometry. The red sign is colored geometry, not a physically simulated neon tube. No photo pixels or official visitor-center logos are embedded.",
+    "Map heights are coarse controls, with parapets interpreted from facade photographs. Independent terrain is unchanged; exact contact can differ with another host DEM."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        6,
+        40
+      ],
+      "lookAt": [
+        0,
+        3.6,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -22,
+        20,
+        -34
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7733,
+    "vertices": 23199,
+    "materials": 7,
+    "bytes": 931956,
+    "sha256": "sha256:115729d6a60055925a94babd2ca29844ad7f81ca31f08d4c616cd090ca79c541"
+  }
+}

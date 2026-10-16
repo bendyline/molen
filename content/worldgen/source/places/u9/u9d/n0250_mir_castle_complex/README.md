@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-255,892 triangles; 593,826 vertices; 10 material groups; 24,453,976 bytes. Native bounds: -40.100, -0.055, -67.071 to 40.100, 31.750, 38.400. Source hash: `sha256:f309ea5ba68616121c06e1529e32274ebbabb6ae386a14da3e273f40bb32ecee`.
+41,975 triangles; 93,435 vertices; 8 material groups; 3,872,036 bytes. Native bounds: -52.000, -9.717, -81.239 to 73.409, 32.125, 38.140. Source hash: `sha256:53fbd7653173288d0f0ab75edc827eb64af374bb6f68a88fd30d94222ccf079f`.
 
-{"up":"+Y","longitudinal":"+X east-southeast, 12.866 degrees south of east","front":"+Z south-southwest; entrance on west/-X","origin":"Mapped castle anchor, provisional local courtyard level"}
+{"up":"+Y","longitudinal":"+X east-southeast, 12.866 degrees south of east","front":"+Z south-southwest; entrance on west/-X","origin":"Retained signed castle anchor; Y0 decoded 175.0822 m numeric working datum."}
 
-Draft placement until restored tower height datum, bridge contact and facing are checked on terrain.
+Fresh exact-Q209643 relation 1579104 v31 and retained component polygons agree within 0.683 mm. Native +X east-southeast at 102.866 degrees, +Z south-southwest at 192.866 degrees; west gate, differently colored corner towers, north/east palace wings and north bridge sign heading -0.224560956675. Retained Terrarium numeric terrain forms a 4225-value 4 m native grid. Y0 is decoded 175.0822 m anchor working datum, not surveyed regional/ellipsoidal elevation. Reconstructed court floor 0.375 m above anchor uses highest sample inside occupied rectangle plus 0.25 m. One rigid translation preserves relative facade/roof heights. Occupied mapped feet and bridge piers extend four meters below retained grade. Northern path/steps and narrow west gate connector meet retained ground; approach elevations, embankment widths and vertical survey remain approximate. No whole-precinct terrain replacement or cutout.
 
 ## Reproduce
 
@@ -30,13 +30,17 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0250` (
 
 ## Pending work
 
-- Maximum fidelity pending: facade proportions, blind-niche patterns, window counts, roof dormers and ridge/chimney positions are photographic interpretations rather than measured restoration drawings.
-- The castle and northern arched bridge are modeled. The separate chapel-crypt, guardhouse, park, moat, earth ramparts and later palace remains of the wider complex still need authored geometry.
-- Map tower roof heights of 30/31 m differ from the ICOMOS evaluation’s 22–26 m tower dimensions. Height datum and roof inclusion need resolution before geographic completion.
-- Bridge arch count follows the museum view; pier geometry, deck elevation and contact with the approach embankment remain provisional. A narrow castle contact plinth is not a surveyed terrain model.
-- Eight reusable procedural material graphs provide brick, lime plaster, granite, raw limestone, sandstone, timber, ceramic tile and painted metal. Glass is local PBR color; no embedded photographs.
+- Original 255892-triangle / 24453976-byte master is independently reproducible at sha256:f309ea5ba68616121c06e1529e32274ebbabb6ae386a14da3e273f40bb32ecee from mir-castle-model.mjs#mirStudy.build.
+- Fresh exact-Q209643 relation 1579104 v31 and retained component polygons agree within 0.683 mm. Native +X east-southeast at 102.866 degrees, +Z south-southwest at 192.866 degrees; west gate, differently colored corner towers, north/east palace wings and north bridge sign heading -0.224560956675. Retained Terrarium numeric terrain forms a 4225-value 4 m native grid. Y0 is decoded 175.0822 m anchor working datum, not surveyed regional/ellipsoidal elevation. Reconstructed court floor 0.375 m above anchor uses highest sample inside occupied rectangle plus 0.25 m. One rigid translation preserves relative facade/roof heights. Occupied mapped feet and bridge piers extend four meters below retained grade. Northern path/steps and narrow west gate connector meet retained ground; approach elevations, embankment widths and vertical survey remain approximate. No whole-precinct terrain replacement or cutout.
+- Retained coarse terrain does not resolve narrow castle foundations, the northern embankment or paved west forecourt. Numeric source resolution, vertical datum, vintage and under-building contamination are unverified.
+- Architectural courtyard floor uses highest sample inside the mapped occupied rectangle plus 0.25 m; one rigid translation preserves relative building proportions. Buried mapped feet and four bridge piers meet this product.
+- The narrow northern path/steps and west gate connector are reconstructed civil surfaces tied to mapped lines and retained grade. Their elevations, earth banks and exact width are not a survey; the surrounding park, moat and ramparts remain host terrain.
+- ICOMOS 2000 tower heights 22–26 m and mapped roof heights 30/31 m have unresolved roof/datum scope. Body/eave heights of the interpretation and photographed proportions remain explicit rather than presented as measured restoration values.
+- Accepted exterior scope is the five-tower castle, open courtyard, L-shaped palace, wall walks, north four-arched bridge and mapped civil connectors. Chapel-crypt, watchman house, palace annex/ruins, park, lake/moat, earth ramparts and massacre memorial of the wider UNESCO complex are separate structures not supplied here.
+- Seven canonical graphs provide granite, brick, plaster, timber, ceramic tile, painted metal and rammed earth. Carved and sandstone details share existing slots with component tints. Opaque PBR glass/recess uses no image. Skyline bakes the common linear means. Fine fieldstone placement, facade niches, window/dormer counts and roof curves remain approximations.
+- Northern embankment and west forecourt are not resolved by coarse terrain. Narrow mapped civil connections include bounded interpreted earth support, not a measured landscape replacement. Physical phone/laptop timings remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

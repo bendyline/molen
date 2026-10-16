@@ -1,0 +1,51 @@
+{
+  "format": "molen/structure-supplementary-reference-review@1",
+  "reviewedOn": "2026-10-15",
+  "status": "inspected",
+  "references": [
+    {
+      "path": "_m/u/3/3/6/liebermann-villa-wp/liebermann-villa-z12.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liebermann_Villa_z12.jpg",
+      "artist": "Zyance",
+      "license": "CC BY-SA 3.0",
+      "dateCreated": "2008-06",
+      "sha256": "7a4f705916cb25233bd3406e5cad791824f402dee9d618f6b931f76dffede7a7",
+      "inspection": "Individually inspected full terrace photograph: central pediment and circular window, three upper openings with low iron guards, pale pilaster strips, loggia, mint shutters and stone terrace.",
+      "use": "Geometry reference only; no photo pixels embedded."
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://liebermann-villa.de/museum/villa-garten/",
+      "title": "Liebermann Villa: Villa and Garden",
+      "facts": "Museum identifies two large shell-limestone columns on the street facade and a pedimented central projection toward the lake. Lake garden is terraced."
+    }
+  ],
+  "notes": "All eighteen local reference candidates browsed in two contact sheets; historical painting, plaques, sculpture and interior murals are not used as current exterior geometry.",
+  "terrainComparison": {
+    "previousTerrarium": {
+      "modelDatumElevationMeters": 36.3756,
+      "sourcePixelGroundSpacing": 2.9129541416277984,
+      "sources": [
+        {
+          "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/15/17582/10759.png",
+          "sha256": "sha256:5502022fb7ccd8fb9c49bc93d686e02c2222ae7b031f3a32abeecf2d887d2594",
+          "zoom": 15,
+          "x": 17582,
+          "y": 10759
+        },
+        {
+          "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/15/17582/10760.png",
+          "sha256": "sha256:a757dfc714c0246c65d68c0c736393e36373b24304835dbb3a0f76eeb92d6d02",
+          "zoom": 15,
+          "x": 17582,
+          "y": 10760
+        }
+      ],
+      "method": "Unmodified Terrarium pixels bilinearly sampled at pixel centers in the signed local model frame. Heights are not flattened or fitted to the building."
+    },
+    "replacement": "Berlin ATKIS DGM1 bare-earth elevation; exact download URLs and ZIP hashes retained in terrain-grid.json. Finer terrain resolves the ground around the villa and its raised terrace. DGM1 is sampled unchanged.",
+    "horizontalConversion": "pyproj Transformer EPSG:4326 to EPSG:25833, always_xy; source XYZ cells at half-meter centers.",
+    "officialDocumentation": "https://gdi.berlin.de/data/dgm1/docs/dgm1.pdf"
+  }
+}

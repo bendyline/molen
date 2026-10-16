@@ -1,0 +1,273 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "glass": {
+      "slot": "window",
+      "graph": "window_grid",
+      "roughness": 0.3,
+      "metallic": 0.2
+    },
+    "steel": {
+      "slot": "trim",
+      "graph": "metal_stainless_polished",
+      "roughness": 0.09,
+      "metallic": 1
+    },
+    "frame": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.6,
+      "metallic": 0.2
+    },
+    "concrete": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.6,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/crystal-cathedral-model.mjs",
+    "export": "buildCrystalCathedralSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCrystalCathedralDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.09,
+            "metallic": 1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.2
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildCrystalCathedralStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.09,
+            "metallic": 1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.2
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCrystalCathedralCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "glass": {
+            "slot": "window",
+            "graph": "window_grid",
+            "roughness": 0.3,
+            "metallic": 0.2
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless_polished",
+            "roughness": 0.09,
+            "metallic": 1
+          },
+          "frame": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.2
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.6,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -135,
+      101,
+      -138
+    ],
+    "lookAt": [
+      -5,
+      28,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-crystal-cathedral-skyline",
+      "position": [
+        -158,
+        117,
+        -157
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-crystal-cathedral-district",
+      "position": [
+        -158,
+        117,
+        -157
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-crystal-cathedral-street",
+      "position": [
+        -158,
+        117,
+        -157
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-crystal-cathedral-closeup",
+      "position": [
+        -158,
+        117,
+        -157
+      ],
+      "lookAt": [
+        -5,
+        28,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization;current acceptance and terrain limits recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "ReviewedY=0 attachment convention and foundations crossing that plane;exact host terrain contact unverified.Standard viewer DEM datum39.853387m;estimated floor0.8m,raw main/spire perimeter-0.09..0.37m. Coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain;entrance landing/canopy bases are approximate. No preview flattening or host DEM change. Runtime base clipping,exact plaza/street/door joins,absolute altitude and walking remain unverified. Other campus buildings,water basins,gardens/trees and roads remain host content;no road replacement.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -117.898898516,
+        33.787396967
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum39.853387m;estimated floor0.8m,raw main/spire perimeter-0.09..0.37m. Coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain;entrance landing/canopy bases are approximate. No preview flattening or host DEM change. Runtime base clipping,exact plaza/street/door joins,absolute altitude and walking remain unverified. Other campus buildings,water basins,gardens/trees and roads remain host content;no road replacement."
+    },
+    "bounds": [
+      -117.906,
+      33.782,
+      -117.892,
+      33.794
+    ],
+    "notes": "Standard viewer DEM datum39.853387m;estimated floor0.8m,raw main/spire perimeter-0.09..0.37m. Coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain;entrance landing/canopy bases are approximate. No preview flattening or host DEM change. Runtime base clipping,exact plaza/street/door joins,absolute altitude and walking remain unverified. Other campus buildings,water basins,gardens/trees and roads remain host content;no road replacement."
+  },
+  "geographicNote": "Standard viewer DEM datum39.853387m;estimated floor0.8m,raw main/spire perimeter-0.09..0.37m. Coarse urban DEM is not a floor survey. Footings crossY=0 and extend below raw terrain;entrance landing/canopy bases are approximate. No preview flattening or host DEM change. Runtime base clipping,exact plaza/street/door joins,absolute altitude and walking remain unverified. Other campus buildings,water basins,gardens/trees and roads remain host content;no road replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

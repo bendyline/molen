@@ -1,0 +1,345 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.75,
+      "metallic": 0.3
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.68,
+      "metallic": 0.25
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/thessaloniki-sophia-model.mjs",
+    "export": "buildThessSophiaSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildThessSophiaDistrict",
+        "errorMeters": 0.55,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildThessSophiaStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildThessSophiaCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.75,
+            "metallic": 0.3
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.68,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -70,
+      48,
+      68
+    ],
+    "lookAt": [
+      0,
+      9,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-thess-sophia-skyline",
+      "position": [
+        -70,
+        48,
+        68
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-thess-sophia-district",
+      "position": [
+        -70,
+        48,
+        68
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-thess-sophia-street",
+      "position": [
+        -70,
+        48,
+        68
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-thess-sophia-closeup",
+      "position": [
+        -70,
+        48,
+        68
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum24.401000m; display datum offset0.4m, perimeter terrain-2.40..1.69m. Foundations follow terrain; west entries use local DEM+0.22m and short estimated steps. The source does not flatten terrain or certify the sunken courtyard/retaining edges, absolute altitude, thresholds, cut/fill, interiors or walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        22.947015043,
+        40.632780936
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum24.401000m; display datum offset0.4m, perimeter terrain-2.40..1.69m. Foundations follow terrain; west entries use local DEM+0.22m and short estimated steps. The source does not flatten terrain or certify the sunken courtyard/retaining edges, absolute altitude, thresholds, cut/fill, interiors or walking."
+    },
+    "bounds": [
+      22.9462,
+      40.6323,
+      22.9478,
+      40.6333
+    ],
+    "notes": "Standard DEM datum24.401000m; display datum offset0.4m, perimeter terrain-2.40..1.69m. Foundations follow terrain; west entries use local DEM+0.22m and short estimated steps. The source does not flatten terrain or certify the sunken courtyard/retaining edges, absolute altitude, thresholds, cut/fill, interiors or walking."
+  },
+  "geographicNote": "Standard DEM datum24.401000m; display datum offset0.4m, perimeter terrain-2.40..1.69m. Foundations follow terrain; west entries use local DEM+0.22m and short estimated steps. The source does not flatten terrain or certify the sunken courtyard/retaining edges, absolute altitude, thresholds, cut/fill, interiors or walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

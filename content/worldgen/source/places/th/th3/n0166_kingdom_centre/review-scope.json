@@ -1,0 +1,348 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kingdom-runtime-model.mjs",
+    "export": "buildKingdomReviewedMaster"
+  },
+  "brief": "Complete elliptical blue-grey tower with open inverted arch, curved crossbridge and both sloping-roof podium wings.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-northeast",
+    "front": "+Z south-southeast; four doors not surveyed",
+    "origin": "Mapped ground-contact podium center"
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+    "scale": 3
+  },
+  "sourceFacts": {
+    "architects": [
+      "Ellerbe Becket",
+      "Omrania"
+    ],
+    "structuralEngineer": "Arup",
+    "heightMeters": 302.3,
+    "concreteStructureHeightMeters": 180,
+    "podiumLevels": 3,
+    "skybridgePublishedLengthFeet": 200,
+    "occupiedHeightMeters": 290.4,
+    "observatoryHeightMeters": 290.4,
+    "floors": 41,
+    "originalMasterHash": "sha256:ac11062b72fdbda9b34a1cc85d3fe611eb8e011bded9c49e895b5e0488c26e5a",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[N0166].build",
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
+  },
+  "reconstruction": {
+    "tower": "Exact signed elliptical shaft and independent crown end/skybridge map parts; continuous catenary reconstructed from the205 m opening datum",
+    "podium": "Exact mapped ground plan with three-storey facade; fine roof equipment and landscaping simplified",
+    "heightDatum": "Published302 m Arup height and302.3 m catalog architectural height override the inconsistent OSM bridge min_height302 plus height4",
+    "podiumRoofs": "Clipped independently mapped east/west lobes with pale faceted sloping roofs, approximate27m top"
+  },
+  "limitations": [
+    "Preserved217710-triangle/21120500byte original master is reproducible from unchanged global recipe. Reviewed exterior retains exact mapped elliptical tower, independently curved skybridge/end piers and full spreading shopping/conference podium.302.3m top published byCVU,302m engineer and300m architect rounded; CVU41floors/290.4m observatory retained as published facts, not imposed on detailed facade grid. Catenary205m center/2.1shape parameter and skybridge296.5–302.3m floors are reconstructed; bridge200feet architect length describes observation walkway, not exact full map envelope. Tower glazing is drawn once with full-length strips, aggregate rows and opaque PBR. Added pale faceted sloping roofs on both separately clipped mapped podium wings, reconstructed27m apex and15.75m eaves follow architect aerial and street photographs; not surveyed roof dimensions. Podium levels remain three physical facade bands despite four-level map tag. Exact doors, branded lettering, interior trusses, basement, rooftop recreation equipment/pool and night lighting excluded. No copied photograph used as texture; canonical256px granite/paintedmetal graphs shared, zero embedded images. Original speculative roof planters removed rather than intersecting new roof. Terrain slope and physical device performance unmeasured."
+  ],
+  "surfaceOverrides": {
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "cladding": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": 0.439272294515,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API2026-10-10 confirms five unchanged independent parts: exactQ656743 full podium264745917, exactQ656743 elliptical tower264745922, two narrow end piers264745924/925 and independently curved skybridge984443070. Native+X east-northeast faces shopping wing and-X west-southwest faces conference/hotel wing; native+Z south-southeast. Unequal eastern and western mapped podium lobes fix signed phase. Completed architect aerial photograph corroborates symmetrical-looking wings and independent garden/corridor recesses. Four tower entrances are described by architect; individual door bearings unsurveyed. GroundY0contact, terrain slope unmeasured; accepted plan2m/1degree and footprint replacement disabled. Published302.3m architectural top overrides inconsistent map bridge min_height302 plus4m.",
+    "evidence": "Fresh public OSM API2026-10-10 confirms five unchanged independent parts: exactQ656743 full podium264745917, exactQ656743 elliptical tower264745922, two narrow end piers264745924/925 and independently curved skybridge984443070. Native+X east-northeast faces shopping wing and-X west-southwest faces conference/hotel wing; native+Z south-southeast. Unequal eastern and western mapped podium lobes fix signed phase. Completed architect aerial photograph corroborates symmetrical-looking wings and independent garden/corridor recesses. Four tower entrances are described by architect; individual door bearings unsurveyed. GroundY0contact, terrain slope unmeasured; accepted plan2m/1degree and footprint replacement disabled. Published302.3m architectural top overrides inconsistent map bridge min_height302 plus4m.",
+    "replaceFootprint": false
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kingdom-runtime-model.mjs",
+    "export": "buildKingdomSkyline",
+    "errorMeters": 1.7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKingdomDistrict",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildKingdomStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKingdomCloseup",
+        "errorMeters": 0.01,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-complex",
+      "position": [
+        440,
+        240,
+        510
+      ],
+      "lookAt": [
+        0,
+        128,
+        0
+      ]
+    },
+    {
+      "name": "east-shopping-roof",
+      "position": [
+        236,
+        61,
+        183
+      ],
+      "lookAt": [
+        94,
+        21,
+        0
+      ]
+    },
+    {
+      "name": "west-event-roof",
+      "position": [
+        -240,
+        71,
+        -166
+      ],
+      "lookAt": [
+        -101,
+        22,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-complex-skyline",
+      "position": [
+        440,
+        240,
+        510
+      ],
+      "lookAt": [
+        0,
+        128,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-complex-district",
+      "position": [
+        440,
+        240,
+        510
+      ],
+      "lookAt": [
+        0,
+        128,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-complex-street",
+      "position": [
+        440,
+        240,
+        510
+      ],
+      "lookAt": [
+        0,
+        128,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-complex-closeup",
+      "position": [
+        440,
+        240,
+        510
+      ],
+      "lookAt": [
+        0,
+        128,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "street-curved-glazing",
+      "position": [
+        60,
+        113,
+        94
+      ],
+      "lookAt": [
+        0,
+        94,
+        3
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "district-opening",
+      "position": [
+        88,
+        260,
+        173
+      ],
+      "lookAt": [
+        0,
+        251,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "close-skybridge",
+      "position": [
+        80,
+        320,
+        99
+      ],
+      "lookAt": [
+        0,
+        294,
+        2
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-podium-roofs",
+      "position": [
+        242,
+        69,
+        271
+      ],
+      "lookAt": [
+        0,
+        12,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

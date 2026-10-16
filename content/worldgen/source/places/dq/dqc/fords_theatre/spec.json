@@ -1,0 +1,200 @@
+{
+  "planId": "fords_theatre",
+  "id": "fords_theatre",
+  "assetId": "molen.worldgen.structure.fords_theatre",
+  "title": "Ford's Theatre",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -77.02564403414726,
+    "latitude": 38.89663279206502
+  },
+  "size": [
+    33.540300369262695,
+    24.100000381469727,
+    35.47920036315918
+  ],
+  "actualBounds": {
+    "min": [
+      -16.825000762939453,
+      -1.25,
+      -16.98150062561035
+    ],
+    "max": [
+      16.715299606323242,
+      22.850000381469727,
+      18.497699737548828
+    ]
+  },
+  "visualBrief": "Red-brick theatre with five-bay white stone arcade, two tiers of tall arched windows, raised central pediment and slate gable.",
+  "nativeAxes": {
+    "x": "across principal front elevation",
+    "y": "up",
+    "z": "outward from principal front elevation"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Ford%27s_Theatre,_Washington_DC.jpg",
+    "https://commons.wikimedia.org/wiki/File:Ford%27s_Theatre_2016.jpg"
+  ],
+  "stories": [
+    {
+      "id": "ford-s-theatre-wp",
+      "url": "https://qualla.com/ford-s-theatre/"
+    },
+    {
+      "id": "fords-theatre-wk",
+      "url": "https://qualla.com/fords-theatre/"
+    }
+  ],
+  "referenceInputHash": "9f57e75ed2302d07d07bd67971d8430f617ff7125332027d42ee6b0778faaad7",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-fords-theatre.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-fords-theatre.mjs",
+    "level": "skyline",
+    "export": "fordsSkyline",
+    "errorMeters": 0.5,
+    "caps": {
+      "district": {
+        "triangles": 4000,
+        "errorMeters": 0.3,
+        "prune": true
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "authored-exterior-see-current-qa",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Reviewed front terrain reference at model Y0 and foundation down to -1.25 m; preserved Terrarium footprint samples span -0.773 to 0.376 m relative to this reference. Current source-terrain captures show visible steps and no floating foundations.",
+    "anchor": [
+      -77.02564403414726,
+      38.89663279206502
+    ],
+    "heading": -1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -77.02584948639901,
+        38.89667662965036
+      ],
+      "modelHeight": 0,
+      "basis": "Front ground reference in the signed local map frame; separately preserved terrain-grid.json."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184524221730"
+    ],
+    "source": "https://build.protomaps.com/20261008.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:86ed1d94dd51aa5330f49d279983f89d033c01a8078cb24b940f4efca4840646",
+    "notes": "The mapped envelope includes a 23.23 m theatre rectangle and approximately 10 m lower south frontage with shorter depth. Partition at the mapped rear step is a photographic/map interpretation, not a surveyed party wall. Source model includes both masses and preserves the rear step; it omits other adjoining buildings and interiors. HABS DC-82 side/rear elevations guide sparse service openings and three roof ventilators; current facade follows 2014/2016 local Qualla photos."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Current five-bay theatre and lower south Star Saloon wing, original medium-fi exterior geometry. No interiors, neighboring taller buildings or borrowed meshes.",
+    "Generalized Protomaps ensemble partition and facade proportions are estimates. Qualla 2014/2016 photographs control the visible front; historical HABS side/rear drawings guide otherwise unseen ventilation and service form.",
+    "Terrarium host samples supply ground evidence, not a survey. The foundation extends 1.25 m below the street reference; terrain-contact placement samples the declared front reference point. Dataset resolution and vertical accuracy remain host-dependent.",
+    "Fine carved window ornament and small hardware are simplified; archival rear openings/roof vents are interpreted where current photographs do not show them. Photographs and drawings are not embedded or redistributed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -0.05485057830810547,
+        15.665000247955323,
+        71.7165002822876
+      ],
+      "lookAt": [
+        -0.05485057830810547,
+        7.560000133514404,
+        0.7580995559692383
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -0.05485057830810547,
+        19.280000305175783,
+        -70.20030117034912
+      ],
+      "lookAt": [
+        -0.05485057830810547,
+        7.560000133514404,
+        0.7580995559692383
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8034,
+    "vertices": 24102,
+    "materials": 6,
+    "bytes": 967740,
+    "sha256": "sha256:293914866bc196ee8ed97d3f7892fbc5db56a836773d84e668a0f1c03a8bd083"
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0268_hohensalzburg_fortress",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:a8211f911370e814d0ae77a238a8942cae092c6858f4c56480a0d1a1ca4da3af",
+  "sourceHash": "sha256:a87d74e043874076ac8396386b3d10cd0c903eae4d45ca103e87d9e5a5a8a86e",
+  "runtimeHash": "sha256:bf9302b445b7ff5dddea262767e332f821ec7e946c5d5024751cfc737be3a195",
+  "captureReportHash": "sha256:a7fc12074538133822df0f8e56fda9aca29bc236f23442024f367e11da0f4ced",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/north-palace-and-bastions.png",
+      "shots/south-courts-and-ranges.png",
+      "shots/west-hasengraben.png",
+      "shots/east-chapel-and-outworks.png",
+      "shots/chapel-courtyard.png",
+      "shots/compound-plan.png"
+    ],
+    "notes": "Inspected49 final images:11 portable,11 shared-loader/placement and27 medium-fi views. White high palace, eight shallow parallel roofs, green Krautturm lantern, chapel spire, open courts and stepped perimeter bastions retain the character observed in the actual courtyard and aerial pictures. PMTiles ground replaces the draft's unseated vertical datum. Palace/range footprints remain approximate inside the mapped precinct; details and individual roof/fire-wall shapes are simplified."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c359d6b3af2db087565ab4e4033abe06776878c9694690f9e0ed1bf766377a21",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/north-palace-and-bastions.png",
+      "shots/shared/south-courts-and-ranges.png",
+      "shots/shared/west-hasengraben.png",
+      "shots/shared/east-chapel-and-outworks.png",
+      "shots/shared/chapel-courtyard.png",
+      "shots/shared/compound-plan.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All11 shared-loader images inspected. Common lime plaster, limestone, slate and oxidized copper graphs provide reusable texture detail; glass uses local opaque PBR. Every graph loads once and model unload releases geometry. Skyline bakes actual shared linear means in one draw; detailed levels use five draws. No bitmap images are embedded in the six GLBs."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:df23e6addfbefecaadd3add3200f4bd97a33f7575fa00deac66a895f560e2e83",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/north-palace-and-bastions.png",
+      "medium-fi/south-courts-and-ranges.png",
+      "medium-fi/west-hasengraben.png",
+      "medium-fi/east-chapel-and-outworks.png",
+      "medium-fi/chapel-courtyard.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/whole-hohensalzburg-skyline.png",
+      "medium-fi/whole-hohensalzburg-district.png",
+      "medium-fi/whole-hohensalzburg-street.png",
+      "medium-fi/whole-hohensalzburg-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All27 final lighting/detail-level comparison images inspected. Skyline retains the eight roof ridges, white palace, green lantern, chapel and irregular terraced perimeter; district adds sparse windows and battlements; street and close-up add window surrounds, buttresses, dormers and cistern detail.855/3327/4743/5419 triangles meet the four budgets. Synthetic neighboring houses are diagnostic. Coarse PMTiles ground shows foundation contact and hides lower retaining walls; it does not resolve narrow passages."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:bf1112091bb0f92eab8bbd30eaa203594374e7ba20a3eb8e88e3aa4b0d310cc4",
+    "mapFrameHash": "sha256:4849dbc79efc6fd2109a3ae05d2d8b665b1443f9757efb0ce13dcd8bb442d124",
+    "notes": "Appearance checked against courtyard and aerial pictures; placement uses standard viewer Protomaps/Mapzen PMTiles. Anchor 13.04787405,47.7952134 and heading 0.255395266735 retain the signed east-northeast palace/chapel frame. Y0 is the PMTiles sample at the site anchor, 540.3154652179358m. Main court is reconstructed5m above this coarse working ground; foundations extend below the hillside. Gate height is adjusted to PMTiles at the west approach. Individual wings and terrace floors remain approximate."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted bounded medium-fi exterior using two inspected reference pictures and standard viewer PMTiles for fit. Source preserves the detailed original recipe. Reconstructed court and terrace floors, wing positions, windows, roof pitches and secondary towers are approximate. Foundation skirts extend below the standard coarse hillside, and west entrance height follows the working PMTiles sample. Coarse terrain can still intersect approaches; no surveyed thresholds, navigable paths, artificial mountain, interiors, distant ramparts or forest are claimed. Physical laptop/phone timing and continuous-motion shimmer remain pending."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed against docs-src/guide/medium-fi.md. The5419-triangle source master and four authored levels preserve fortress-specific roof rhythm, white high palace, green lantern and tiered defenses. Five merged groups, four shared256² graphs, no unique textures. sRGB palettes decode to linear and skyline applies the shared-texture mean. Detailed interiors, masonry joints and distant ramparts are omitted. Appearance approval is separate from map/terrain approval.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u2/u23/n0268_hohensalzburg_fortress/models/source.glb",
+        "hash": "sha256:a87d74e043874076ac8396386b3d10cd0c903eae4d45ca103e87d9e5a5a8a86e",
+        "bytes": 653520,
+        "triangles": 5419,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          -56.8994140625,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          35,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.glb",
+        "hash": "sha256:bf9302b445b7ff5dddea262767e332f821ec7e946c5d5024751cfc737be3a195",
+        "bytes": 653020,
+        "triangles": 5419,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          -56.8994140625,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          35,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.skyline.glb",
+        "hash": "sha256:a5b57403fa7c4ed7a7b02ecbeb42d87283f2362f7c94420cdb7dcc9d51e5cd6f",
+        "bytes": 87104,
+        "triangles": 855,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -133,
+          -56.8994140625,
+          -72
+        ],
+        "max": [
+          130.84542846679688,
+          35,
+          85
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.district.glb",
+        "hash": "sha256:31c9384cdaadcdb3fd76489f4bef1f625f296d70b4c3ca6c0ff9c74a5fed706b",
+        "bytes": 284248,
+        "triangles": 3327,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          -56.8994140625,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          35,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.street.glb",
+        "hash": "sha256:0d1f1a9036a572e7169e67eaf727e21586a207e28350ffcf0e748124f6be0fc5",
+        "bytes": 397436,
+        "triangles": 4743,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          -56.8994140625,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          35,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u2/u23/n0268_hohensalzburg_fortress/model.closeup.glb",
+        "hash": "sha256:4e622a1dd3fd23c9d0d418a1af0252460db8f82fa6421b5ec30d6a594794c9f9",
+        "bytes": 446924,
+        "triangles": 5419,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -133.6270294189453,
+          -56.8994140625,
+          -72
+        ],
+        "max": [
+          131.10000610351562,
+          35,
+          85.6080093383789
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Changed master and all authored levels pass finite-attribute, normal/winding and Float32 degeneracy validation. Six GLBs have zero Khronos errors/warnings/images. Source/runtime hashes and shared graphs match current files; targeted browser cache and unload checks pass. Original hohensalzburg-fortress-model.mjs remains unchanged and available as the detailed source. No full repository rebuild, npm audit or bespoke terrain research was performed."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:0751fc48b36b212801756067368e4032291961438ee4ef522432936b4db8d478",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:a5b57403fa7c4ed7a7b02ecbeb42d87283f2362f7c94420cdb7dcc9d51e5cd6f",
+        "bytes": 87104,
+        "gzipBytes": 13987,
+        "triangles": 855,
+        "cpuBytes": 85736,
+        "gpuBytes": 85736,
+        "errorMeters": 2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:31c9384cdaadcdb3fd76489f4bef1f625f296d70b4c3ca6c0ff9c74a5fed706b",
+        "bytes": 284248,
+        "gzipBytes": 60025,
+        "triangles": 3327,
+        "cpuBytes": 278228,
+        "gpuBytes": 278228,
+        "errorMeters": 1,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:0d1f1a9036a572e7169e67eaf727e21586a207e28350ffcf0e748124f6be0fc5",
+        "bytes": 397436,
+        "gzipBytes": 84858,
+        "triangles": 4743,
+        "cpuBytes": 391412,
+        "gpuBytes": 391412,
+        "errorMeters": 0.5,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:4e622a1dd3fd23c9d0d418a1af0252460db8f82fa6421b5ec30d6a594794c9f9",
+        "bytes": 446924,
+        "gzipBytes": 97562,
+        "triangles": 5419,
+        "cpuBytes": 440900,
+        "gpuBytes": 440900,
+        "errorMeters": 0.2,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 371352,
+    "notes": "skyline: 855 triangles, 87104 bytes, 1 draws; district: 3327 triangles, 284248 bytes, 5 draws; street: 4743 triangles, 397436 bytes, 5 draws; closeup: 5419 triangles, 446924 bytes, 5 draws. Initial skyline+district371352 bytes, below3MB phone and6MB laptop limits; separate POSITION/NORMAL streams."
+  },
+  "limitations": [
+    "Picture and PMTiles exterior fit, not surveyed geometry or thresholds.",
+    "Original detailed source recipe is preserved unchanged; reviewed derivative shifts the architecture to the working terrain datum and extends bounded foundations.",
+    "The current eight palace roof ridges, white walls, green lantern and chapel spire supply identity. Window rhythm, secondary towers, roof shapes and internal terrace divisions remain approximate.",
+    "No artificial mountain, interiors, distant outerworks or vegetation. Coarse terrain can intersect narrow approaches; no navigable paths are claimed.",
+    "Four shared material graphs and local opaque glass; no embedded bitmap textures. Physical-device timing and continuous-motion shimmer remain pending."
+  ]
+}

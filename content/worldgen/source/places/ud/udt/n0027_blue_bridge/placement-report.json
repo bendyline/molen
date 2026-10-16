@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0027_blue_bridge",
-  "inputHash": "sha256:1920b25094574a3f4e3404d8232381e3a82140dd2df2674966f7ec798eedc6ec",
-  "placementHash": "sha256:dd5010c735c5ade00162e404ea969b485d80b52913912c1e468071975c81fb09",
+  "inputHash": "sha256:f54b08084b2901123a4baaf09ed49f4eba4d9fb7252389411f9c9ed88c7bb8d1",
+  "placementHash": "sha256:0179fbd9e79d3159d9cc334d79e589aa8cd7aa651c313afa9a64406841154b00",
   "entry": {
     "id": "next1000.n0027",
     "title": "Blue Bridge",
@@ -12,18 +12,80 @@
       59.931663492
     ],
     "heading": -1.1348311311998964,
-    "datum": "sea-level",
+    "datum": "terrain",
     "elevation": 0,
     "orientation": "fixed",
     "mapIdentity": {
       "wikidata": "Q2618925",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -7.85,
+          -47.7
+        ],
+        [
+          7.85,
+          -47.7
+        ],
+        [
+          7.85,
+          47.7
+        ],
+        [
+          -7.85,
+          47.7
+        ]
+      ],
+      "basis": "Known canal opening under the broad bridge removes coarse bridge imprint; visual correction, no excavation survey."
+    },
+    "terrainReference": {
+      "anchor": [
+        30.308773042496988,
+        59.93182634989128
+      ],
+      "modelHeight": 3.25,
+      "basis": "Approximate western PMTiles road contact."
+    },
+    "bounds": [
+      30.30777297571967,
+      59.93127358277492,
+      30.310075960280333,
+      59.932053401225076
+    ],
+    "replaceRoads": {
+      "length": 29.4,
+      "width": 95.4,
+      "outline": [
+        [
+          -14.7,
+          -47.7
+        ],
+        [
+          14.7,
+          -47.7
+        ],
+        [
+          14.7,
+          47.7
+        ],
+        [
+          -14.7,
+          47.7
+        ]
+      ],
+      "deckHeights": [
+        3.25,
+        3.25
+      ],
+      "includeConnectedApproaches": true
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/relation/3299061",
-    "note": "Mapped longest axis follows the Moika; model +X is the short crossing axis, rotated90degrees toward the southeast. Upstream ribbed cast face is negativeZ. Provisional water datum and quay contacts require terrain review. Preview places the authored base at the recorded absolute sea-level elevation; local tide and terrain resolution remain host-dependent."
+    "note": "Two inspected street pictures establish blue quatrefoil/circle cast railing, plain inner rail, lantern context and plaza pavement. Existing vault dimensions are retained from the source. Standard viewer PMTiles Moika crossing and square confirm the short southeast crossing axis and broad downstream width. Retain29.4m crossing,95.4m cornice width and113.85m splayed-quay extent; nominal97.3m width is a separate definition. West/east road samples18.9794/19.0298m differ0.05m; source endpoint3.25m gives approximatebase15.7294m. Urban terrain includes bridge/roof imprint, so the source normal-water reference remains approximate. Narrow canal opening and bounded preview contacts remove that imprint; exact water stage/quay levels and parking layout are unverified. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

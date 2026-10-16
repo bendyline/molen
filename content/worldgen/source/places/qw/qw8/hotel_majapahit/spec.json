@@ -1,0 +1,286 @@
+{
+  "planId": "hotel_majapahit",
+  "id": "hotel_majapahit",
+  "assetId": "molen.worldgen.structure.hotel_majapahit",
+  "title": "Hotel Majapahit",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 112.7401,
+    "latitude": -7.25975
+  },
+  "size": [
+    93.46878433227539,
+    22.100000381469727,
+    174.93399810791016
+  ],
+  "actualBounds": {
+    "min": [
+      -45.5,
+      -5,
+      -74.5
+    ],
+    "max": [
+      47.96878433227539,
+      17.100000381469727,
+      100.43399810791016
+    ]
+  },
+  "visualBrief": "Cream Art Deco entrance with twin glazed beacons, stepped parapets and projecting canopy; red hipped-roof courtyard wings with open arcades and a pedimented classical crosswing.",
+  "nativeAxes": {
+    "x": "southeast across main wings",
+    "y": "up",
+    "z": "southwest toward Jalan Tunjungan"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HotelMajapahit.jpg",
+    "https://commons.wikimedia.org/wiki/File:2016_Majapahit_hotel_2.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-majapahit-wp",
+      "url": "https://qualla.com/hotel-majapahit/"
+    }
+  ],
+  "referenceInputHash": "84dddb9a8eafda316cb1feb952cb17b730adb204b3f7d1329f7516795bfdc852",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hotel-majapahit.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hotel-majapahit.mjs",
+    "level": "skyline",
+    "export": "majapahitSkyline",
+    "errorMeters": 1.2,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "majapahitDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "majapahitStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Jalan Tunjungan entrance approach [-7,80]; independent terrain evidence.",
+    "anchor": [
+      112.7401,
+      -7.25975
+    ],
+    "heading": -0.7380960723288366,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        112.73956563437285,
+        -7.260239309345094
+      ],
+      "modelHeight": 0,
+      "basis": "Street approach outside main entrance canopy."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776564802391"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:aba93126e592e4a60330bccfc85b2ae9967acdb51d650364557b2b147727f888",
+    "notes": "Original mapped rings preserve combined historic hotel and later eastern service extension. Model scope explicitly cuts the extension east of x=33.34 near z=-36.5..-11.7. Front canopy and street frontage are oblique to the main courtyard axes. Three garden spaces remain open."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on individually inspected Qualla entrance, courtyard and classical crosswing photographs; interiors excluded.",
+    "Mapped compound and official aerial view control layout; heights, gallery depths, window spacing, roof joins and hidden elevations remain photographic estimates.",
+    "Later eastern pool/service wing excluded by an explicit scope cut. Simplified original relief; no photo textures or exact crests/lettering copied.",
+    "Independent coarse Terrarium ground remains unmodified; local foundations and host terrain compatibility are approximate."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -65,
+        30,
+        182
+      ],
+      "lookAt": [
+        -7,
+        8,
+        63
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        110,
+        100,
+        -170
+      ],
+      "lookAt": [
+        -5,
+        6,
+        -30
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 50045,
+    "vertices": 150135,
+    "materials": 5,
+    "bytes": 6008584,
+    "sha256": "sha256:2294d609457f9a47bdb801af508a5de2bdf82e181312bd58f4b7b1043f8b4670"
+  }
+}

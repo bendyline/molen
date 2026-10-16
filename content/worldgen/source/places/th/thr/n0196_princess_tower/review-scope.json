@@ -1,0 +1,402 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Individually modeled Dubai residential tower with inset bowed balconies, cream window piers, checkerboard upper glazing, raised keyhole-and-pediment crowns, two pointed ornamental rings and a striped dome with flared spire.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longAxis": "+X northeast",
+    "shortAxis": "+Z southeast",
+    "front": "Native-X southwest reconstructed arrival frontage; exact doorway bearing remains approximate."
+  },
+  "sourceFacts": {
+    "architect": "Eng. Adnan Saffarini Office",
+    "completed": 2012,
+    "architecturalHeightMeters": 413.4,
+    "tipHeightMeters": 414,
+    "highestOccupiedFloorMeters": 356.9,
+    "floorsAboveGround": 101,
+    "basements": 6,
+    "apartments": 763,
+    "crownSupplier": "Techno Steel:1,100+ tonnes of structural/architectural steel and floor decking",
+    "domeRoofMeters": 392,
+    "domeDatumSource": "The Skyscraper Museum, original TEN TOPS exhibition research",
+    "originalMasterHash": "sha256:83b8e50ee2e2f7110242fabd8837a8589666ff9a8efc3124533426cc43d59676",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-princess-model.mjs#buildPrincess",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    }
+  },
+  "reconstruction": {
+    "shaft": "Individual inset bowed slabs/guards and glass panes retain the original floor rhythm; continuous cream piers/spandrels and flat framing replace tiny joint beams and repeated cell shells.",
+    "crown": "Two glazed/slit tiers retain pointed petal rings and closed striped dome/flared spire with bounded finite sampling; temporary construction gaps and raised tiny seam tubes are excluded.",
+    "base": "Six reconstructed podium courses, parking louvers and approximate southwest arrival frontage. Picture/PMTiles placement accepted for world-viewer use; exact doorway compass bearing is not claimed."
+  },
+  "limitations": [
+    "Owner-directed picture/standard viewer PMTiles approximate fit. Retain exact-Q19492 shaft anchor[55.14677179,25.088646041] and heading0.775615371979: native+X northeast,+Z southeast. Existing40.003x37.744m rectangular shaft and414m tip remain. Inspected upper exterior picture confirms checkerboard upper glazing, keyhole pediments, two pointed rings and striped dome/spire. PMTiles supplies street/building context and approximate off-footprint[-70,0] ground; bounded local contact correction is separate from raw elevation. Southwest/native-X arrival frontage remains a reconstruction; exact doorway bearing and neighboring-tower identifications are not claimed. Accept this mapped shaft orientation for world-viewer placement with no footprint suppression, rather than waiting for surveyed doorway evidence. Curb thresholds, podium levels and fine crown dimensions remain approximate.",
+    "Unchanged original buildPrincess recipe preserves699554triangles/61924732bytes. Reviewed source retains the40.003x37.744m mapped rectangular shaft, four recessed bowed balcony stacks with individual slabs and translucent guards,74lower balcony datums,16upper checkerboard courses, six-course podium, provisional entrance/doors and pediment, four keyhole-and-pediment crown reliefs/medallions, two circular glazed/slit tiers with separate pointed ornamental petal rings, closed alternating reflective/dark dome to392m, flared collar and414m tip. Repeated2cm panel-joint beams, duplicated pane-cell shells, tiny balcony rail tubes and dome seam tubes are omitted. Windows retain separate inset panes, flat cream piers/spandrels, sparse flat mullions ; tiny recess-return shells are omitted. Four-segment balcony bows retain their curvature with flat fascia strips; near omits tiny handrail strips. Petal curvature and dome use fewer finite samples; near preserves48petals per reconstructed ring. Two shared concrete/painted-metal graphs serve the shaft/base and crown/rails with rebalanced vertex tints, plus opaque vision and translucent guard palette groups, four near draw groups. Skyline has a continuous abstract shaft and eight-sided crown; district uses four-course cream bands, continuous recessed bowed glass, sparse upper courses and12petals; street preserves all74bowed balcony tiers, continuous flanking window banks and24petals; near preserves74lower/16uppercourses and48petals. Glass guards are translucent at street/near; tiny rail tubes are omitted. Source height414m follows contractor/KONE; original413.4m architectural/356.9m occupied values are retained as legacy dimensional facts and museum rounds occupied floor358m. ACC107floors includes101above+6basements in KONE, not107aboveground. Balcony pitches/bow, upper checkerboard phase, keyhole relief, petal/slit/gore count, intermediate crown datums, podium and entry hardware remain photo reconstructions. KONE PDF is unavailable to fresh web fetch; actual cached printed10â€“13 and crown-fabricator printed page pixels supply the primary photographic evidence. Physical-device/dense-city timings, global geometric error bounds and surveyed curb/door fit remain unmeasured."
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "foundation": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "localRef": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "geographic": {
+    "heading": 0.775615371979,
+    "reviewStatus": "reviewed-approximation",
+    "orientationConfidence": "Retained mapped shaft frame; doorway compass bearing remains approximate.",
+    "notes": "Owner-directed picture/standard viewer PMTiles approximate fit. Retain exact-Q19492 shaft anchor[55.14677179,25.088646041] and heading0.775615371979: native+X northeast,+Z southeast. Existing40.003x37.744m rectangular shaft and414m tip remain. Inspected upper exterior picture confirms checkerboard upper glazing, keyhole pediments, two pointed rings and striped dome/spire. PMTiles supplies street/building context and approximate off-footprint[-70,0] ground; bounded local contact correction is separate from raw elevation. Southwest/native-X arrival frontage remains a reconstruction; exact doorway bearing and neighboring-tower identifications are not claimed. Accept this mapped shaft orientation for world-viewer placement with no footprint suppression, rather than waiting for surveyed doorway evidence. Curb thresholds, podium levels and fine crown dimensions remain approximate.",
+    "evidence": "Owner-directed picture/standard viewer PMTiles approximate fit. Retain exact-Q19492 shaft anchor[55.14677179,25.088646041] and heading0.775615371979: native+X northeast,+Z southeast. Existing40.003x37.744m rectangular shaft and414m tip remain. Inspected upper exterior picture confirms checkerboard upper glazing, keyhole pediments, two pointed rings and striped dome/spire. PMTiles supplies street/building context and approximate off-footprint[-70,0] ground; bounded local contact correction is separate from raw elevation. Southwest/native-X arrival frontage remains a reconstruction; exact doorway bearing and neighboring-tower identifications are not claimed. Accept this mapped shaft orientation for world-viewer placement with no footprint suppression, rather than waiting for surveyed doorway evidence. Curb thresholds, podium levels and fine crown dimensions remain approximate.",
+    "replaceFootprint": false,
+    "status": "preview-proposal",
+    "anchor": [
+      55.14677179,
+      25.088646041
+    ],
+    "mapGeometrySource": "map-frame.json",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Owner-directed picture/standard viewer PMTiles approximate fit. Retain exact-Q19492 shaft anchor[55.14677179,25.088646041] and heading0.775615371979: native+X northeast,+Z southeast. Existing40.003x37.744m rectangular shaft and414m tip remain. Inspected upper exterior picture confirms checkerboard upper glazing, keyhole pediments, two pointed rings and striped dome/spire. PMTiles supplies street/building context and approximate off-footprint[-70,0] ground; bounded local contact correction is separate from raw elevation. Southwest/native-X arrival frontage remains a reconstruction; exact doorway bearing and neighboring-tower identifications are not claimed. Accept this mapped shaft orientation for world-viewer placement with no footprint suppression, rather than waiting for surveyed doorway evidence. Curb thresholds, podium levels and fine crown dimensions remain approximate.",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        55.14627604608274,
+        25.088205768680417
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate standard viewer PMTiles off-footprint ground."
+    }
+  },
+  "geographicNote": "Owner-directed picture/standard viewer PMTiles approximate fit. Retain exact-Q19492 shaft anchor[55.14677179,25.088646041] and heading0.775615371979: native+X northeast,+Z southeast. Existing40.003x37.744m rectangular shaft and414m tip remain. Inspected upper exterior picture confirms checkerboard upper glazing, keyhole pediments, two pointed rings and striped dome/spire. PMTiles supplies street/building context and approximate off-footprint[-70,0] ground; bounded local contact correction is separate from raw elevation. Southwest/native-X arrival frontage remains a reconstruction; exact doorway bearing and neighboring-tower identifications are not claimed. Accept this mapped shaft orientation for world-viewer placement with no footprint suppression, rather than waiting for surveyed doorway evidence. Curb thresholds, podium levels and fine crown dimensions remain approximate.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "georeferencing-baseline.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/princess-runtime-model.mjs",
+    "export": "buildPrincessReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/princess-runtime-model.mjs",
+    "export": "buildPrincessSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPrincessDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildPrincessStreet",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPrincessCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-princess",
+      "position": [
+        640,
+        255,
+        570
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-princess-skyline",
+      "position": [
+        640,
+        255,
+        570
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-princess-district",
+      "position": [
+        640,
+        255,
+        570
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-princess-street",
+      "position": [
+        640,
+        255,
+        570
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-princess-closeup",
+      "position": [
+        640,
+        255,
+        570
+      ],
+      "lookAt": [
+        0,
+        207,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-petal-dome",
+      "position": [
+        70,
+        386,
+        42
+      ],
+      "lookAt": [
+        0,
+        377,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-bowed-balconies",
+      "position": [
+        53,
+        124,
+        26
+      ],
+      "lookAt": [
+        18,
+        120,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-southwest-entry",
+      "position": [
+        -43,
+        10,
+        15
+      ],
+      "lookAt": [
+        -20,
+        4,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  }
+}

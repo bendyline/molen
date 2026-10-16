@@ -1,0 +1,218 @@
+{
+  "planId": "KSI_R01",
+  "id": "KSI_R01",
+  "assetId": "molen.worldgen.structure.old_ksiaz_ruins",
+  "title": "Old Książ ruins",
+  "category": "castle-ruin",
+  "wikidataId": "Q9386558",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "old-ksiaz",
+    "identity": {
+      "type": "way",
+      "id": 239074431
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.294967956854013,
+    "latitude": 50.83783402844668
+  },
+  "size": [
+    41.59712600708008,
+    10.399999618530273,
+    39.244773864746094
+  ],
+  "actualBounds": {
+    "min": [
+      -20.693700790405273,
+      0,
+      -19.629423141479492
+    ],
+    "max": [
+      20.903425216674805,
+      10.399999618530273,
+      19.6153507232666
+    ]
+  },
+  "visualBrief": "Roofless romantic ruin with its own mapped masonry traces, broken high facade, real pointed openings, lower rectangular windows, dressed-stone arched portal and low open courtyard walls.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along longest mapped envelope edge",
+    "longitudinal": "+Z perpendicular to that edge",
+    "origin": "Own site envelope center; Y0 estimated lowest local retaining wall contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#d7c7a8",
+      "brick": "#c58d70",
+      "portal": "#cbd1ce"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/239074431",
+    "mappedTags": {
+      "alt_name": "Zamek Stary Książ",
+      "castle_type": "stately",
+      "heritage": "2",
+      "heritage:operator": "nid",
+      "historic": "castle",
+      "name": "Stary Książ",
+      "name:de": "Alte Burg",
+      "ref:nid": "A/5214/621",
+      "ref:otar": "K01.30.10.SP71RR",
+      "ruins": "yes",
+      "start_date": "1797",
+      "tourism": "attraction",
+      "wikidata": "Q9386558",
+      "wikipedia": "pl:Zamek Stary Książ"
+    },
+    "independentWikidataIdKnown": true,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Independent Stary Książ ruin, own way/239074431, Q9386558 and NID A/5214/621. Surviving appearance follows primary 2014 photographs and an interior panorama; wall associations and heights are proposed."
+  },
+  "reconstruction": {
+    "basis": "Own attributed envelope and four mapped castle-wall polylines, primary 2014 exterior/side photographs and an interior panorama.",
+    "scope": "Roofless surviving masonry and open courtyards. No restored roofs, historical rooms, surrounding trees or cliff reconstruction.",
+    "registration": "Map axis/anchor only. Real terrain and photographic wall association require geographic review."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://www.ksiaz.walbrzych.pl/turystyka/zamek",
+    "https://commons.wikimedia.org/wiki/File:Old_Ksi%C4%85%C5%BC_Castle_02.JPG",
+    "https://commons.wikimedia.org/wiki/File:Stary_Ksi%C4%85%C5%BC_8.jpg",
+    "https://www.openstreetmap.org/way/239074431"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.294967956854013,
+      50.83783402844668
+    ],
+    "heading": -2.765752011307667,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/239074431"
+    ],
+    "source": "https://www.openstreetmap.org/way/239074431",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:06d5f11d072e83f31d11c6413338a4ba95b5f9ca16d0b7590263db3afbfea34b",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own named ruin envelope and four separately mapped surviving wall traces. Envelope is not a solid building footprint. Heights, breaks, wall thickness, openings and photographic facade associations are proposed. Terrain/contact review is pending."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_drywall",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Own attributed site envelope and four wall traces. Surviving wall heights, openings and broken profiles are photographic interpretations; there is no roof.",
+    "Mapped independent Q9386558 identifies the ruin. Photographic wall association and actual terrain fit remain unreviewed.",
+    "References show 2014 surviving walls and a 2012 interior panorama; current restoration state is unconfirmed.",
+    "No unique textures, copied photos, reconstructed roofs or historic interior rooms. Open courtyards remain open. Terrain/facade fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "portal-and-broken-high-wall",
+      "position": [
+        42,
+        23,
+        -38
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "pointed-windows-and-open-court",
+      "position": [
+        -35,
+        26,
+        -40
+      ],
+      "lookAt": [
+        -4,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "roofless-wall-traces",
+      "position": [
+        4,
+        105,
+        4
+      ],
+      "lookAt": [
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "lower-courtyards-and-returns",
+      "position": [
+        36,
+        23,
+        40
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 2264,
+    "vertices": 6792,
+    "materials": 3,
+    "bytes": 274080,
+    "sha256": "sha256:49ef03d30f3f36ea4460a0d4d00fc41c0263523c652d116eb03eeddbc848dcc2"
+  }
+}

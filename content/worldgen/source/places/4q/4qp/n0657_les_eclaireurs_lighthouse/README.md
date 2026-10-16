@@ -6,7 +6,7 @@ Small isolated rough-masonry lighthouse with a red-white-red taper, low recessed
 
 ## Identity and evidence
 
-Exact catalog identity **Q3378140**. Source facts: `{"heightMeters":11,"baseDiameterApproxMeters":3,"year":1920,"basis":"Provincial tourism publishes11m height. National Argentina tourism photograph supplies the three bands, door, gallery, lantern and small inclined panels. Base diameter and component dimensions are photograph-scaled; mapped exact-QID node8127284556 fixes position."}`. The source specification keeps published dimensions separate from reconstructed details.
+Exact catalog identity **Q3378140**. Source facts: `{"heightMeters":11,"baseDiameterApproxMeters":3,"year":1920,"basis":"Provincial tourism publishes11m height. National Argentina tourism photograph supplies the three bands, door, gallery, lantern and small inclined panels. Base diameter and component dimensions are photograph-scaled; mapped exact-QID node8127284556 fixes position.","originalMasterHash":"sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074","originalMasterRecipe":"packages/worldgen/scripts/eclaireurs-browser-model.mjs#buildEclaireursMaster"}`. The source specification keeps published dimensions separate from reconstructed details.
 
 - https://tierradelfuego.tur.ar/es/actividades/s/7
 - https://turismoushuaia.com/actividad/faro-les-eclaireurs/
@@ -20,11 +20,11 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 8,320 triangles, 15,728 vertices, 4 surface groups; 668,840 source bytes. SHA-256: `sha256:738d6fada7a6d09478850bb02aa34b5013a70907662f19fd4865b9ceceddd074`. Actual bounds: -1.530, 0.000, -1.530 to 1.530, 11.000, 1.523 m.
 
-Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
+Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.plaster_lime` (2 × 2 m), `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.wood_plain` (2 × 0.25 m). Model-native axes: {"up":"+Y","front":"+Z doorway approximately south; exact door/panel compass phase is not claimed.","origin":"Mapped lighthouse anchor; Y0 standard viewer PMTiles zero datum."}.
 
 ## Placement proposal
 
-Mapped exact-QID node fixes the island tower position. Circular exterior has no footprint heading; small entry is reconstructed on southern face, gallery panels on northern face. Host terrain provides the rocky islet;23m light elevation is not used as structure height. Proposed anchor -68.0832452, -54.8715452 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
+The inspected picture supports the red/white/red tapered tower, low door, open black gallery/lantern and bounded rock under its base. Retained mapped node supplies location. Heading0 is an explicitly approximate south-facing doorway and north-facing panels, not a measured bearing. Standard viewer PMTiles are zero at this very small islet and do not resolve its rock. Browser tiers therefore include a bounded roughly10m rock footing rising1.1m above that datum and retain the11m tower height. This is an approximate visual footing, not the complete island or a surveyed tide/focal-height datum. Proposed anchor -68.0832452, -54.8715452 (longitude, latitude), heading 0 radians. Elevation policy: **terrain-contact**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.
 
 ## Limitations and review
 

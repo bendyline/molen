@@ -1,0 +1,313 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0306_gediminas_tower",
+  "inputHash": "sha256:1eae035927b3696e03331567f3324436b45ca700156e056b3205c55788dc315f",
+  "sourceHash": "sha256:191eaf6a39378e9388528d1b706552113233fef590a989abb18ce0c756c34d3b",
+  "runtimeHash": "sha256:844d3404fdc1d0fe0a699a6eba492f73ed79b1733622eaa3bb1eee2595ed67c4",
+  "captureReportHash": "sha256:93dbba19edc2aa3c179381663e54915e917445bb198abd92d0387d37345e2eb3",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/northeast-courtyard-entrance.png",
+      "shots/south-brick-storeys.png",
+      "shots/northwest-foundation.png",
+      "shots/arched-upper-windows.png",
+      "shots/open-terrace-and-flag.png",
+      "shots/mapped-octagon-overhead.png"
+    ],
+    "notes": "Inspected11 portable frames: three mapped octagonal storeys/setbacks, arched facade openings, northeast doorway, irregular stone cladding, open parapet terrace, small glazed roof access and Lithuanian flag are present. The observed terrace stays open at18.65m beneath20m parapets. Door surround was initially below ground; clamped it aboveY0. Current original exterior visualization, not a reconstruction of the historical fourth storey or telegraph house."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ae6e56f67a016c39cd72e5f34550b1334a229cc34419af07f70e8d3afba3c67c",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/northeast-courtyard-entrance.png",
+      "shots/shared/south-brick-storeys.png",
+      "shots/shared/northwest-foundation.png",
+      "shots/shared/arched-upper-windows.png",
+      "shots/shared/open-terrace-and-flag.png",
+      "shots/shared/mapped-octagon-overhead.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected11 shared runtime/geographic frames, including the full-size north-up footprint overlay. Five existing256-square brick, stone, painted-metal, gravel and timber graphs use metric repeats/linear tints. Glazing and the yellow/green/red flag use local flat colors. Seven near material groups and one skyline group; no embedded/new texture, unique image or downloaded mesh. Every graph reads once; only the local target asset loads; unload releases all model geometry and restores ground."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0c0cc8661f197d224b66e29741ef09d2dfe4484b0fc7930d326d83ec9bffc788",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/northeast-courtyard-entrance.png",
+      "medium-fi/south-brick-storeys.png",
+      "medium-fi/northwest-foundation.png",
+      "medium-fi/arched-upper-windows.png",
+      "medium-fi/open-terrace-and-flag.png",
+      "medium-fi/mapped-octagon-overhead.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected23 Earth-rig views under neutral tone mapping/exposure1:12 distance/time/mode combinations, untextured silhouette, six architectural cameras and four forced levels. Octagonal brick silhouette, two setbacks, open terrace and tricolor remain coherent beside northern-style houses. Moved synthetic neighbors out of the two detail cameras and re-inspected the cleared doorway/foundation views. Far graph-mean colors hold brick/stone/deck brightness; small surrounds, rail details and deeper reveals drop locally. Synthetic neighbors are a style fixture, not actual Vilnius geography."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:40f5827b572a145ff5cfa0c0b7c11831531a938ad60c33c6d5e3003a5d5ac9cf",
+    "mapGeometryHash": "sha256:b4f6567b7a8cf5bee9d3f783c5464ca57e08803a882c1cab5f0e077ed3d0a8c6",
+    "coordinateRoundTripErrorMeters": 0.0005729820842407931,
+    "mapCoordinateSamples": 27,
+    "captureReportHash": "sha256:ae6e56f67a016c39cd72e5f34550b1334a229cc34419af07f70e8d3afba3c67c",
+    "inspectedFrames": [
+      "shots/shared/placement.png"
+    ],
+    "notes": "Verified nativeEast/South heading0 against the three separately mapped octagons and inspected the north-up actual-WGS84 ground-outline overlay.27 attributed controls round trip within0.573mm. Actual world-viewer semantic placement places the requested model at the exact tower anchor/heading and samples its declared terrain reference. The broader same-QID Upper Castle node30m away is rejected;20m matching radius targets the tower. Geographic selection loads no distant asset; release disposes resources. The geographic fixture is flat terrain: this approves horizontal registration and host-ground attachment logic, not a survey or visual check of the real rocky hill micrograde."
+  },
+  "fidelityReview": {
+    "status": "passed",
+    "target": "medium-fi",
+    "notes": "Current exterior medium-fi reconstruction reviewed against National Museum of Lithuania history and official GoVilnius/LithuaniaTravel exterior/aerial photos. Three actual mapped octagonal footprints,6/12m floor setbacks,20m mapped total, arched rhythm, northeast courtyard door, stone ground cladding, open brick parapet, small glazed roof access and centered25m flagpole match the selected current tower scope. Museum distinguishes the current tower from its historic fourth storey/telegraph house. OSM dimensions and local sections are mapper/photo estimates, not primary survey. Wider palace/curtain ruins, natural hill, funicular, interior exhibits/stairs and walkable collision certification remain separate or excluded. Static flag direction is illustrative. Physical-device measurements and local hill grading remain limitations of this exterior visualization."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u9/u99/n0306_gediminas_tower/models/source.glb",
+        "hash": "sha256:191eaf6a39378e9388528d1b706552113233fef590a989abb18ce0c756c34d3b",
+        "bytes": 303052,
+        "triangles": 2492,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.glb",
+        "hash": "sha256:844d3404fdc1d0fe0a699a6eba492f73ed79b1733622eaa3bb1eee2595ed67c4",
+        "bytes": 302424,
+        "triangles": 2492,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.skyline.glb",
+        "hash": "sha256:31b6ed2e077b92710e0ee6f50bcfd7a258639ce78be53d6202839518c0817995",
+        "bytes": 46580,
+        "triangles": 510,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -6.881855487823486,
+          0,
+          -7.020739555358887
+        ],
+        "max": [
+          6.9708075523376465,
+          25,
+          6.989701747894287
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.district.glb",
+        "hash": "sha256:a014af8e1fe3bd8400aec3298d7c02e3a7c36f73301f32673f621e7348bf22be",
+        "bytes": 152484,
+        "triangles": 1520,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.street.glb",
+        "hash": "sha256:5eeb5acffbb9547f5d55081c2a631ac12d1d9bee5b8503b78c500c106427b724",
+        "bytes": 253996,
+        "triangles": 2468,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.closeup.glb",
+        "hash": "sha256:14a295bced58d9bd0c520b72bd048961dc952c0adf2e30b35137db8f5da5ee1e",
+        "bytes": 256304,
+        "triangles": 2492,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "notes": "Six current GLBs pass with zero errors/warnings/images. Seven focused tests pass: deterministic four-level budgets/shared graphs/GPU layouts; exact tower identity/three unchanged octagons; open terrace-floor coverage;24 real facade cuts/recessed panes; eight open parapet gaps; tricolor/pole point; ground contact/lower outline. Source/import, LOD hashes and strict medium-fi audit pass. Portable scene validates and simulates30ticks with hash sha256:ea48320999da6f94b039a59a35f97d12eda1654811599f5e2664bb5b403d058f. Exterior static collision only, no interior navigation certification."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "levels": [
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.skyline.glb",
+        "hash": "sha256:31b6ed2e077b92710e0ee6f50bcfd7a258639ce78be53d6202839518c0817995",
+        "bytes": 46580,
+        "triangles": 510,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -6.881855487823486,
+          0,
+          -7.020739555358887
+        ],
+        "max": [
+          6.9708075523376465,
+          25,
+          6.989701747894287
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.district.glb",
+        "hash": "sha256:a014af8e1fe3bd8400aec3298d7c02e3a7c36f73301f32673f621e7348bf22be",
+        "bytes": 152484,
+        "triangles": 1520,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.street.glb",
+        "hash": "sha256:5eeb5acffbb9547f5d55081c2a631ac12d1d9bee5b8503b78c500c106427b724",
+        "bytes": 253996,
+        "triangles": 2468,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u9/u99/n0306_gediminas_tower/model.closeup.glb",
+        "hash": "sha256:14a295bced58d9bd0c520b72bd048961dc952c0adf2e30b35137db8f5da5ee1e",
+        "bytes": 256304,
+        "triangles": 2492,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -6.927115440368652,
+          0,
+          -7.0654096603393555
+        ],
+        "max": [
+          7.015822887420654,
+          25,
+          7.034177303314209
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "initialDownloadBytes": 199064,
+    "notes": "510/1520/2468/2492triangles; material groups1/7/7/7. Initial199064bytes and closeup256304bytes before shared material cache. Actual mapped octagons and setbacks survive all levels; skyline retains flag/terrace/window rhythm with flat graph-mean colors. Asset fits phone/laptop initial-download budgets; physical-device benchmark and continuous-motion timing are not certified here."
+  }
+}

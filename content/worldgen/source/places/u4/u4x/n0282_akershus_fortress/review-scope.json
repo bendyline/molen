@@ -1,0 +1,469 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "brick": "#c18e73",
+      "red": "#ae735b",
+      "stone": "#b4b19d",
+      "roof": "#606b71",
+      "tile": "#b27d5e",
+      "metal": "#8c9993",
+      "cream": "#e8d4a7",
+      "trim": "#e3d9be",
+      "glass": "#4d6178",
+      "timber": "#a49379",
+      "lawn": "#8aa065",
+      "paving": "#b4afa3",
+      "water": "#286d83",
+      "clock": "#3b3e42",
+      "gold": "#c6a45c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8,
+    "materialBudgetReason": "Six shared architectural graphs plus untextured glazing and terraced ground;parts merged by material.",
+    "identityFeatures": [
+      "Two broad-capped clock spires above a long open-court castle",
+      "Mixed stone/brick wings with stepped gables and dark roofs",
+      "Low polygonal ramparts,bastions and tiered supporting buildings"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z south toward Munk Tower and Prince Carl bastion",
+    "lateral": "+X east toward Kongens gate",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "relation/13931023 exactQ644464 castle only",
+    "mappedCastlePlanMeters": [
+      117.171,
+      53.677
+    ],
+    "mappedCourtyardHoles": 1,
+    "measuredTowerHeight": null,
+    "wholeFortressMetricSurvey": false,
+    "originalMasterHash": "sha256:2bf55c8d8b685797faa0746dcad681a58a4f83d85a9b1ac9dafcdcd562f81130",
+    "originalMasterRecipe": "packages/worldgen/scripts/akershus-fortress-model.mjs#buildAkershusRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current inner-fortress exterior from inspected picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Original detailed architectural/terrace study master and recipe preserved; derivative fits working datum and bounded stone foundations while omitting broad lower terrain/pond surfaces.",
+    "Two clock spires, stepped gables, open castle court, lower towers, stone bastions and selected low museums/magazines/barracks retain identity. Fine openings, names-to-tower assignment and elevations reconstructed.",
+    "Only the castle/court are map-derived; broader inner-fortress layout is approximate and footprint replacement remains off.",
+    "Host supplies lower terrain. Study pond depressions, modern military administrative parcels, full harbor/quay, trees, artillery, memorials, demolished defenses and interiors excluded.",
+    "Six common material graphs and local glass/upper terrace color slots; eight merged groups justified by the mixed precinct. Zero embedded images. Physical-device timing pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      10.736251164,
+      59.906686713
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms two clock spires, open castle court, stepped gables and mixed stone/brick wings. Standard viewer PMTiles and the retained castle footprint establish approximate coastal location and east/south orientation. A reconstructed8m datum reduction places the original12m court at4m above the PMTiles anchor sample; bounded stone terrace/foundation bottoms extend to coarse ground. Broad invented lower lawn terrain and study pond surfaces are omitted so host terrain supplies the lower precinct. Wider building/bastion layout remains approximate. Anchor 10.736251164,59.906686713; heading 0; standard PMTiles datum 21.632957278541383m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture confirms two clock spires, open castle court, stepped gables and mixed stone/brick wings. Standard viewer PMTiles and the retained castle footprint establish approximate coastal location and east/south orientation. A reconstructed8m datum reduction places the original12m court at4m above the PMTiles anchor sample; bounded stone terrace/foundation bottoms extend to coarse ground. Broad invented lower lawn terrain and study pond surfaces are omitted so host terrain supplies the lower precinct. Wider building/bastion layout remains approximate. Anchor 10.736251164,59.906686713; heading 0; standard PMTiles datum 21.632957278541383m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        10.736251164,
+        59.906686713
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture confirms two clock spires, open castle court, stepped gables and mixed stone/brick wings. Standard viewer PMTiles and the retained castle footprint establish approximate coastal location and east/south orientation. A reconstructed8m datum reduction places the original12m court at4m above the PMTiles anchor sample; bounded stone terrace/foundation bottoms extend to coarse ground. Broad invented lower lawn terrain and study pond surfaces are omitted so host terrain supplies the lower precinct. Wider building/bastion layout remains approximate. Anchor 10.736251164,59.906686713; heading 0; standard PMTiles datum 21.632957278541383m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/akershus-runtime-model.mjs",
+    "export": "buildAkershusReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "patina": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.62,
+      "metallic": 0.5
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "foliage": {
+      "slot": "wall",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.94,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/akershus-runtime-model.mjs",
+    "export": "buildAkershusReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAkershusReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAkershusReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAkershusReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.5
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "foliage": {
+            "slot": "wall",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-akershus-skyline",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-akershus-district",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-akershus-street",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-akershus-closeup",
+      "position": [
+        360,
+        230,
+        370
+      ],
+      "lookAt": [
+        5,
+        8,
+        -95
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -32,
+    "scale": 2.4,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "qaCameraOverrides": {
+    "castle-two-clock-spires": {
+      "position": [
+        -165,
+        61,
+        105
+      ],
+      "lookAt": [
+        -3,
+        22,
+        0
+      ]
+    },
+    "open-court-and-roof-hierarchy": {
+      "position": [
+        0,
+        172,
+        0
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    "northern-entry-vault": {
+      "position": [
+        -3.5,
+        9,
+        -69
+      ],
+      "lookAt": [
+        -3.5,
+        8,
+        -30
+      ]
+    },
+    "stepped-gables-and-clock-lantern": {
+      "position": [
+        -45,
+        37,
+        -70
+      ],
+      "lookAt": [
+        -13,
+        25,
+        -28
+      ]
+    },
+    "resistance-museum-guardhouse": {
+      "position": [
+        -140,
+        39,
+        -172
+      ],
+      "lookAt": [
+        -38,
+        7,
+        -115
+      ]
+    },
+    "northern-magazine-bastions": {
+      "position": [
+        50,
+        77,
+        -389
+      ],
+      "lookAt": [
+        14,
+        2,
+        -245
+      ]
+    }
+  }
+}

@@ -1,0 +1,371 @@
+{
+  "fidelityTarget": "medium-fi",
+  "size": [
+    124,
+    7.3,
+    120
+  ],
+  "surfaces": {
+    "sarsen": {
+      "graph": "stone_sandstone_raw",
+      "slot": "wall",
+      "roughness": 0.94
+    },
+    "blue": {
+      "graph": "stone_basalt_raw",
+      "slot": "wall",
+      "roughness": 0.95
+    },
+    "grass": {
+      "slot": "foundation",
+      "localRef": "palette:#ffffff",
+      "roughness": 1
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/stonehenge-detail-model.mjs",
+    "export": "buildStonehengeReviewed"
+  },
+  "sourceFacts": {
+    "originalMasterHash": "sha256:856860b20b42e20571f8a1a7ac622bcb57166d5bd530edc9e60e4c8eed88e2c8",
+    "reviewScope": "Complete static medium-fi interpretation of the current surviving Stonehenge ensemble: seventeen outer sarsen uprights including the short fragment, six surviving outer lintels, three complete inner trilithons, two isolated inner uprights, fallen sarsen fragments, visible bluestones and stumps, a mostly obscured Altar Stone, Heel Stone, Slaughter Stone, both surviving Station Stones and low bank/ditch earthwork surface. Missing ancient stones and lintels are not reconstructed. Layout and condition were read from the current English Heritage2015 plan; above-ground profiles, heights, local tilts, fragmentation and joint dimensions are authored photographic interpretations, not survey meshes or exact stone-number identification. The first draft recipe remains unchanged and independently reproducible. Four browser levels retain every authored stone and the bank; chamfering and surface tessellation increase toward closeup. A shared sandstone graph stands in for sarsen silicified sandstone, and common raw basalt stands in for mixed bluestone geology. Lichen, carvings, graffiti and particular mineral grains are not copied. Plan controls and raw OSM stone outlines disagree locally because generalized aerial top outlines are not ground surveys; four distinct outlying stones constrain a rigid fit with no scale change. Registration tolerance5m/2\u00c2\u00b0 acknowledges this. Bank height and ditch depth are relative interpretations; the runtime host supplies absolute terrain and its slope may occlude or expose the setting. Below-ground sockets, buried fragments, excavation markers, fences, access paths, full Avenue, visitor center and the wider World Heritage Site are outside the exposed stone-and-earthwork asset. Physical phone/laptop timing is unmeasured.",
+    "survivingOuterUprights": 17,
+    "survivingOuterLintels": 6,
+    "completeInnerTrilithons": 3,
+    "brokenInnerGroups": 2,
+    "placementControls": 4,
+    "earthworkLodError": "Skyline12-segment earthwork has at most1.967m radial chord sag; use2.1m whole-asset derivative bound. District32segments at most.278m; street96segments.031m. Stone profile omission is bounded separately within those conservative totals."
+  },
+  "appearance": {
+    "identity": "Current incomplete stone circle with three complete horseshoe trilithons, two broken groups, individually irregular sarsens, bluestones, fallen fragments, four outlying stones and low earthwork enclosure.",
+    "master": "Original current ensemble interpretation; earlier schematic draft remains exactly reproducible.",
+    "browser": "All exposed authored stones and low earthwork at every level; two canonical256px shared stone graphs.",
+    "exclusions": "Complete static medium-fi interpretation of the current surviving Stonehenge ensemble: seventeen outer sarsen uprights including the short fragment, six surviving outer lintels, three complete inner trilithons, two isolated inner uprights, fallen sarsen fragments, visible bluestones and stumps, a mostly obscured Altar Stone, Heel Stone, Slaughter Stone, both surviving Station Stones and low bank/ditch earthwork surface. Missing ancient stones and lintels are not reconstructed. Layout and condition were read from the current English Heritage2015 plan; above-ground profiles, heights, local tilts, fragmentation and joint dimensions are authored photographic interpretations, not survey meshes or exact stone-number identification. The first draft recipe remains unchanged and independently reproducible. Four browser levels retain every authored stone and the bank; chamfering and surface tessellation increase toward closeup. A shared sandstone graph stands in for sarsen silicified sandstone, and common raw basalt stands in for mixed bluestone geology. Lichen, carvings, graffiti and particular mineral grains are not copied. Plan controls and raw OSM stone outlines disagree locally because generalized aerial top outlines are not ground surveys; four distinct outlying stones constrain a rigid fit with no scale change. Registration tolerance5m/2\u00c2\u00b0 acknowledges this. Bank height and ditch depth are relative interpretations; the runtime host supplies absolute terrain and its slope may occlude or expose the setting. Below-ground sockets, buried fragments, excavation markers, fences, access paths, full Avenue, visitor center and the wider World Heritage Site are outside the exposed stone-and-earthwork asset. Physical phone/laptop timing is unmeasured."
+  },
+  "nativeAxes": {
+    "front": "Native+X east,+Z south; Heel Stone northeast resolves signed pose.",
+    "origin": "GroundY0 at the current stone contact plane. Center of the principal stone circle; no scaling to whole-bank polygon."
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.craftsman",
+    "scale": 1.5
+  },
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "anchor": [
+      -1.8262310128,
+      51.1788579596
+    ],
+    "heading": 0.013739514043,
+    "orientationConfidence": "footprint-directed",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/37118074",
+    "notes": "English Heritage2015 current-site plan pixels and its25m scale/north arrow were actually inspected, separately from its ancient-phase reconstructions. Four fresh attributed OSM stone outlines identify Heel96, Slaughter95, Station91 and Station93 (way/133262440, way/133262443, way/377365047, way/377367000). Their centers rigidly fit the authored positions without scale change: anchor[-1.8262310128,51.1788579596],heading0.013739514043rad,maximum1.127m residual. Native+X points almost east and+Z almost south; the Heel Stone is east and north of the ring, resolving the sign. Whole earthwork identity is way37118074 Q39671 and is not used to stretch the32m stone ring into a120m building. Five-meter/two-degree registration is an accepted reconstruction, not a survey.",
+    "evidence": "English Heritage2015 current-site plan pixels and its25m scale/north arrow were actually inspected, separately from its ancient-phase reconstructions. Four fresh attributed OSM stone outlines identify Heel96, Slaughter95, Station91 and Station93 (way/133262440, way/133262443, way/377365047, way/377367000). Their centers rigidly fit the authored positions without scale change: anchor[-1.8262310128,51.1788579596],heading0.013739514043rad,maximum1.127m residual. Native+X points almost east and+Z almost south; the Heel Stone is east and north of the ring, resolving the sign. Whole earthwork identity is way37118074 Q39671 and is not used to stretch the32m stone ring into a120m building. Five-meter/two-degree registration is an accepted reconstruction, not a survey.",
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/37118074"
+    ],
+    "wikidataId": "Q39671",
+    "mapGeometrySource": "map-frame.json"
+  },
+  "limitations": [
+    "Complete static medium-fi interpretation of the current surviving Stonehenge ensemble: seventeen outer sarsen uprights including the short fragment, six surviving outer lintels, three complete inner trilithons, two isolated inner uprights, fallen sarsen fragments, visible bluestones and stumps, a mostly obscured Altar Stone, Heel Stone, Slaughter Stone, both surviving Station Stones and low bank/ditch earthwork surface. Missing ancient stones and lintels are not reconstructed. Layout and condition were read from the current English Heritage2015 plan; above-ground profiles, heights, local tilts, fragmentation and joint dimensions are authored photographic interpretations, not survey meshes or exact stone-number identification. The first draft recipe remains unchanged and independently reproducible. Four browser levels retain every authored stone and the bank; chamfering and surface tessellation increase toward closeup. A shared sandstone graph stands in for sarsen silicified sandstone, and common raw basalt stands in for mixed bluestone geology. Lichen, carvings, graffiti and particular mineral grains are not copied. Plan controls and raw OSM stone outlines disagree locally because generalized aerial top outlines are not ground surveys; four distinct outlying stones constrain a rigid fit with no scale change. Registration tolerance5m/2\u00c2\u00b0 acknowledges this. Bank height and ditch depth are relative interpretations; the runtime host supplies absolute terrain and its slope may occlude or expose the setting. Below-ground sockets, buried fragments, excavation markers, fences, access paths, full Avenue, visitor center and the wider World Heritage Site are outside the exposed stone-and-earthwork asset. Physical phone/laptop timing is unmeasured."
+  ],
+  "referencePages": [
+    "https://www.english-heritage.org.uk/visit/places/stonehenge/history-and-stories/history/description/",
+    "https://www.english-heritage.org.uk/siteassets/home/visit/places-to-visit/stonehenge/history/stonehenge-phased-plan.pdf",
+    "https://historicengland.org.uk/research/results/reports/32-2012",
+    "https://isprs-archives.copernicus.org/articles/XL-5-W2/125/2013/",
+    "https://www.openstreetmap.org/way/37118074"
+  ],
+  "qaCameras": [
+    {
+      "name": "circle-east",
+      "position": [
+        35,
+        9,
+        10
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ]
+    },
+    {
+      "name": "circle-west",
+      "position": [
+        -36,
+        9,
+        -6
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ]
+    },
+    {
+      "name": "north-entrance",
+      "position": [
+        30,
+        9,
+        -30
+      ],
+      "lookAt": [
+        0,
+        2.7,
+        0
+      ]
+    },
+    {
+      "name": "south-trilithon",
+      "position": [
+        6,
+        7,
+        18
+      ],
+      "lookAt": [
+        2,
+        3.5,
+        7
+      ]
+    },
+    {
+      "name": "west-trilithon",
+      "position": [
+        -17,
+        5,
+        -5
+      ],
+      "lookAt": [
+        -6,
+        3.4,
+        -2
+      ]
+    },
+    {
+      "name": "broken-groups",
+      "position": [
+        -18,
+        10,
+        14
+      ],
+      "lookAt": [
+        -2,
+        3.2,
+        0
+      ]
+    },
+    {
+      "name": "fallen-and-altar",
+      "position": [
+        4,
+        12,
+        9
+      ],
+      "lookAt": [
+        -2,
+        0.8,
+        1
+      ]
+    },
+    {
+      "name": "lintel-joints",
+      "position": [
+        18,
+        8,
+        -12
+      ],
+      "lookAt": [
+        10,
+        4,
+        -8
+      ]
+    },
+    {
+      "name": "heel-stone",
+      "position": [
+        72,
+        6,
+        -39
+      ],
+      "lookAt": [
+        62.8,
+        2.3,
+        -49.3
+      ]
+    },
+    {
+      "name": "station-stones",
+      "position": [
+        -66,
+        18,
+        43
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "whole-earthwork",
+      "position": [
+        90,
+        120,
+        100
+      ],
+      "lookAt": [
+        6,
+        0,
+        -5
+      ]
+    }
+  ],
+  "previewCamera": {
+    "position": [
+      46,
+      19,
+      64
+    ],
+    "lookAt": [
+      0,
+      2.5,
+      0
+    ],
+    "fov": 38
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/stonehenge-detail-model.mjs",
+    "export": "buildStonehengeSkyline",
+    "errorMeters": 2.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildStonehengeDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "sarsen": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "blue": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "street": {
+        "export": "buildStonehengeStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "sarsen": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "blue": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildStonehengeCloseup",
+        "errorMeters": 0,
+        "surfaces": {
+          "sarsen": {
+            "graph": "stone_sandstone_raw",
+            "slot": "wall",
+            "roughness": 0.94
+          },
+          "blue": {
+            "graph": "stone_basalt_raw",
+            "slot": "wall",
+            "roughness": 0.95
+          },
+          "grass": {
+            "slot": "foundation",
+            "localRef": "palette:#ffffff",
+            "roughness": 1
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "district-ring",
+      "position": [
+        35,
+        10,
+        24
+      ],
+      "lookAt": [
+        0,
+        2.5,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-trilithons",
+      "position": [
+        23,
+        6,
+        19
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-fallen-groups",
+      "position": [
+        7,
+        11,
+        13
+      ],
+      "lookAt": [
+        -1,
+        1,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-heel",
+      "position": [
+        71,
+        6,
+        -39
+      ],
+      "lookAt": [
+        62.8,
+        2.3,
+        -49.3
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

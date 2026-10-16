@@ -4,12 +4,15 @@ import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
+import { createArchitecturalSurfaceAuthoring } from './architectural-surface-authoring.mjs';
 import { validateAuthoredMesh } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { buildNormandie, normandieStudy } from './pont-de-normandie-model.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
 import { box, colors, gable, prism, profile } from './structure-mesh.mjs';
+import { readOptionalJson } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 
 const root = resolve(fileURLToPath(new URL('.', import.meta.url)), '../../..');
@@ -158,7 +161,7 @@ function sceneFor(spec) {
   const [w, h, d] = spec.size;
   const tall = h > w * 1.5;
   const far = tall ? h * 1.75 : Math.max(w * 1.15, h * 1.5, 42);
-  return {
+  const scene = {
     format: 'molen/scene@3',
     name: `${spec.title} asset preview`,
     seed: spec.id,
@@ -217,6 +220,12 @@ function sceneFor(spec) {
           },
     physics: { engine: 'none' },
   };
+  if (spec.previewCamera) Object.assign(scene.camera, spec.previewCamera);
+  if (spec.previewGround === false)
+    scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
+  if (spec.previewTerrain) scene.terrain = spec.previewTerrain;
+  if (spec.previewEntities) scene.entities.push(...structuredClone(spec.previewEntities));
+  return scene;
 }
 
 async function emit(path, bytes) {
@@ -240,6 +249,11 @@ for (const study of studies) {
   if (!candidate) throw new Error(`${study.id}: missing catalog candidate`);
   const key = `${study.id.toLowerCase()}_${study.key}`;
   const assetId = `molen.worldgen.structure.${key}`;
+  const dir = structureSourceDirectory(key);
+  const priorSource = await readOptionalJson(resolve(dir, 'source.json'));
+  const scope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (scope && scope.fidelityTarget !== 'medium-fi')
+    throw new Error(`${study.id}: reviewed source must declare medium-fi`);
   const spec = {
     planId: study.id,
     id: study.id,
@@ -279,20 +293,75 @@ for (const study of studies) {
         }
       : {}),
   };
+  if (scope)
+    Object.assign(spec, {
+      ...scope,
+      wikidataId: candidate.wikidataId,
+      visualBrief: scope.appearance.identity,
+      referencePages: [...new Set([...study.refs, ...scope.referencePages])],
+      reviewStatus: 'medium-fi; current hash-bound acceptance is recorded in qa.json',
+      importOptions: { optimize: false },
+    });
+  const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
+  if (scope && mapFrame) {
+    if (
+      mapFrame.heading !== spec.geographicProposal.heading ||
+      !mapFrame.anchor.every((v, i) => v === spec.geographicProposal.anchor[i])
+    )
+      throw new Error(`${study.id}: signed map controls disagree with reviewed placement`);
+    Object.assign(spec.geographicProposal, {
+      mapGeometrySource: 'map-frame.json',
+      mapGeometryHash: hashEvidenceText(await readFile(resolve(dir, 'map-frame.json'))),
+      mapGeometryLicense: mapFrame.license,
+      attribution: mapFrame.attribution,
+    });
+  }
   const out = new MeshBufferBuilder();
-  builders[study.id](out);
+  let build = builders[study.id],
+    authoring;
+  if (scope?.sourceGeometry) {
+    const { module, export: name } = scope.sourceGeometry;
+    if (!/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(module))
+      throw new Error(`${study.id}: invalid reviewed source module`);
+    build = (await import(pathToFileURL(resolve(root, module)).href))[name];
+    if (typeof build !== 'function') throw new Error(`${study.id}: missing source export`);
+    authoring = createArchitecturalSurfaceAuthoring(scope.surfaces);
+  }
+  build(authoring ? authoring.wrap(out) : out);
   const mesh = out.finalize();
-  if (study.id === 'N0002') validateAuthoredMesh(mesh, study.id);
+  if (study.id === 'N0002' || scope) validateAuthoredMesh(mesh, study.id);
   if (mesh.triangleCount < 100) throw new Error(`${study.id}: mesh too small`);
   const glb = Buffer.from(
     encodeGlb(
       mesh,
-      mesh.groups.map((group) => materials[group.slot] ?? { name: group.slot }),
+      authoring
+        ? authoring.materials(mesh.groups)
+        : mesh.groups.map((group) => materials[group.slot] ?? { name: group.slot }),
       `molen ${study.id}`,
     ),
   );
   const sha256 = `sha256:${createHash('sha256').update(glb).digest('hex')}`;
-  const dir = structureSourceDirectory(key);
+  if (scope) {
+    const min = [Infinity, Infinity, Infinity],
+      max = [-Infinity, -Infinity, -Infinity];
+    mesh.positions.forEach((n, i) => {
+      min[i % 3] = Math.min(min[i % 3], n);
+      max[i % 3] = Math.max(max[i % 3], n);
+    });
+    spec.mesh = {
+      triangles: mesh.triangleCount,
+      vertices: mesh.vertexCount,
+      groups: mesh.groups.length,
+      bytes: glb.length,
+      sha256,
+      min,
+      max,
+    };
+    spec.actualBounds = { min, max };
+    spec.sharedSurfaces = mesh.groups
+      .filter((g) => g.materialRef.startsWith('matgraph:'))
+      .map((g) => ({ ref: g.materialRef, slot: g.slot, uv: 'repeats' }));
+  }
   // The source manifest pins the generator baseline, independent of later runtime imports.
   // Do not silently replace an artist's edited master when updating generator details.
   try {
@@ -313,7 +382,20 @@ for (const study of studies) {
       throw error;
     })
   )
-    .filter((name) => ['import-report.json', 'capture-report.json', 'qa.json'].includes(name))
+    .filter((name) =>
+      [
+        'import-report.json',
+        'capture-report.json',
+        'qa.json',
+        'shared-capture-report.json',
+        'medium-fi-report.json',
+        'placement-report.json',
+        'map-frame.json',
+        'reference-metadata.json',
+        'review-scope.json',
+        'QA-REVIEW.md',
+      ].includes(name),
+    )
     .sort();
   const source = {
     format: 'molen/source-bundle@1',
@@ -334,12 +416,22 @@ for (const study of studies) {
       scripts: [],
       textures: [],
       sounds: [],
-      documents: ['README.md', 'preview.png', ...optionalReports],
+      documents: [
+        ...new Set([
+          'README.md',
+          'preview.png',
+          ...optionalReports,
+          ...(scope?.sourceDocuments ?? []),
+          ...(scope ? (priorSource?.files?.documents ?? []) : []),
+        ]),
+      ],
     },
   };
   let readme = `# ${candidate.title} — ${study.id}\n\n![Lit Molen preview](preview.png)\n\nOriginal stylized geometry generated by \`packages/worldgen/scripts/generate-next-1000-models.mjs\`. ${study.brief}.\n\nWorking dimensions: ${study.size.join(' × ')} meters (X × Y × Z). ${spec.scaleBasis} +Y is up; origin is at ground or bridge datum. Asset ID: \`${assetId}\`.\n\nReference pages: ${study.refs.map((url) => `[source](${url})`).join(', ')}. [Catalog identity](${candidate.source}). Coordinates are reference points, not verified placement anchors. No third-party mesh or bitmap texture is included.\n\nThe editable master is \`models/source.glb\`; \`source.json\` pins its hash. The imported runtime GLB and sidecar live under \`content/worldgen/${structureAssetSidecarPath(assetId).replace(/\/asset\.json$/, '')}\`. Regenerate with \`node packages/worldgen/scripts/generate-next-1000-models.mjs\`, import with \`node packages/worldgen/scripts/import-next-1000-models.mjs\`, and verify with both scripts' \`--check\` mode and \`node scripts/check-source-bundles.mjs\`.\n\nThis is a visual study. Surveyed placement, facade detail, LOD and static collision refinement are pending.\n`;
   if (study.id === 'N0002')
     readme += `\n## Construction evidence and remaining review\n\n${study.nativeAxes.origin}. The authored +X direction is south; the north approach is longer. The operator technical sheet, pages 15–24, supplies pylon levels and section drawings, 184 stays, the 21.2 m steel box section, 624 m central steel section, 26 approach piers, and 6% maximum approach grade. The public overall width is 23.6 m including aerodynamic edges. Geometry includes separate stays, anchor sleeves, clevis plates, bolts, cross ties, expansion joints, road markings, pedestrian margins, rail posts, blue aerofoil cornices, pylon recesses and formwork joints. No reference illustrations are redistributed.\n\n${study.limitations.map((line) => `- ${line}`).join('\n')}\n\nImport with \`--no-optimize\`: ${spec.importReason}\n`;
+  if (scope)
+    readme = `# ${candidate.title} — ${study.id}\n\n![Current lit preview](preview.png)\n\n${scope.sourceFacts.reviewScope}\n\nSource geometry: \`${scope.sourceGeometry.module}\`. The original draft builder remains unchanged in \`generate-next-1000-models.mjs\`; its exact historical bytes are tested independently. All current models and four browser levels are rebuilt from checked-in recipes. No copied survey mesh, private image or embedded texture.\n\nShared surfaces: ${spec.sharedSurfaces.map((s) => s.ref).join(', ')}. Signed placement, references and accepted limits live in \`map-frame.json\`, \`reference-metadata.json\`, \`review-scope.json\` and [QA review](QA-REVIEW.md).\n\nRebuild only this item with \`node packages/worldgen/scripts/generate-next-1000-models.mjs --ids=${study.id}\`; import using the same ID and regenerate its browser levels. GLBs are build outputs.\n`;
   await emit(resolve(dir, 'models/source.glb'), glb);
   await emit(resolve(dir, 'spec.json'), Buffer.from(`${JSON.stringify(spec, null, 2)}\n`));
   await emit(

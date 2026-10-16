@@ -1,11 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0239_windsor_castle",
-  "inputHash": "sha256:41e65d9de4126df4861b2ad07cc1635b0846027cd6af4b09abc9dde1b89dc975",
-  "fixtureHash": "sha256:e5ff1076d5144e8414aa682b08e5f97a67a4c5fc8ecd23613bf7b5c4b20eae36",
+  "inputHash": "sha256:257bcbb59561ec6230e6f2896768dbbba341fc191136231919523a5a0559102a",
+  "sourceHash": "sha256:144217f616ca908575cec6b9e5c8b103400e1abc8970f24da0a8d3f12ec51d4d",
+  "runtimeHash": "sha256:d5cde7338da52316b5ebac1e7b8e4b029dede14fa101e1573946deac97ebd582",
+  "reviewGroundY": null,
+  "fixtureHash": "sha256:6855e79a37513d57cbc576f4ac4fe10a5240498f28407b6f1ac28c39864548d0",
+  "footprintEvidenceHash": "sha256:1396f1df137aa0410fbc3f10638143b21bb577935fe14e246b9f7450f89c058b",
   "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
-  "placementHash": null,
+  "clippingMode": "legacy",
+  "placementHash": "sha256:cec79af6bc73d7700f74609ccf77895e11d006008c84a0dce8516e636bc7d495",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
       "path": "materials/brick.matgraph.json",
@@ -14,10 +18,6 @@
     "matgraph:molen.worldgen.material.stone_limestone": {
       "path": "materials/stone_limestone.matgraph.json",
       "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
-    },
-    "matgraph:molen.worldgen.material.stone_limestone_raw": {
-      "path": "materials/stone_limestone_raw.matgraph.json",
-      "hash": "sha256:161db68297258e06dffbf475b4d81f282e67f2ec64a6a7d04d77933205d3215b"
     },
     "matgraph:molen.worldgen.material.slate": {
       "path": "materials/slate.matgraph.json",
@@ -30,256 +30,308 @@
     "matgraph:molen.worldgen.material.wood_plain": {
       "path": "materials/wood_plain.matgraph.json",
       "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
-    },
-    "matgraph:molen.worldgen.material.stone_limestone_weathered": {
-      "path": "materials/stone_limestone_weathered.matgraph.json",
-      "hash": "sha256:6ab8dd8c12980ee8c94bee2b015cdbbf4933a760794f2daf3f664de224e6132f"
     }
   },
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:af1b655a7da74b0d8a860c7cbdd8819803cc34156a3a416668336fb3155c4a65",
+      "hash": "sha256:a43f93ac014691c01812386a9f8019a13cede776e79976a5b5fa5ff4250a4dc1",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:ff6e778634e2a42c83df87c6cf7183b0853b7a5636a4ee8034bae9b9309b1d85",
+      "hash": "sha256:43a80612104821e94351e7e9da384072a8655dcd0313390e411d805abb80a5d0",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:14f750bb5a671a0734630332671e8e55d94a48e74f16791467d97187a8a482a0",
+      "hash": "sha256:8035bbf7ed89948fbe7d9720d26657600a985357688e23797dd8a2fb4cfc4f20",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:12a0524d022ed1173b5f3a39818afbe611ef7507d8ab87d0244284e39292ac2c",
+      "hash": "sha256:292ccfe5dd9658e6f52b234f4c3b5b5b26abbedfa967fa2b5cc954bbee013db1",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/upper-ward-south.png",
-      "hash": "sha256:fc99c98997b64239e582cc783a39bc4cb2d524c59efc4c8b8655558cee772b1e",
+      "hash": "sha256:7af1b52d55da84e1b2f204e2f296146deca011665cfe12dea73ca9e0299d3b1a",
       "camera": {
         "name": "upper-ward-south",
         "position": [
@@ -295,60 +347,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/upper-quadrangle.png",
-      "hash": "sha256:a46c09f6ed362fcec505ca62e38baf9a559aabc616fea3ffb19629bc5bf734e6",
+      "hash": "sha256:af9603f8fea2ccba749e4caa295094c7e1fab7c0ad8b14d85b72aed5d6eb5d0c",
       "camera": {
         "name": "upper-quadrangle",
         "position": [
@@ -364,60 +430,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/north-state-apartments.png",
-      "hash": "sha256:b0af59ce1313d9df16094f88278849b381cc31b08be954434f9b0b7ded6dc7db",
+      "hash": "sha256:c2a8604a100b00a415e89765b4307bebac61b7b5292e58438786d3fc9235622e",
       "camera": {
         "name": "north-state-apartments",
         "position": [
@@ -433,60 +513,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/round-tower-crown.png",
-      "hash": "sha256:efee339191d97601828aed2e6248065dd9080cb72c2ccf4426a8a70c80e96900",
+      "hash": "sha256:9ceac0ed99895ba987bc653350500a6791521b4ef6136c47ea495ff5fb296b4e",
       "camera": {
         "name": "round-tower-crown",
         "position": [
@@ -502,60 +596,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/chapel-south.png",
-      "hash": "sha256:9f5e907b68be85604ddb1e14a7331ef172a02e27cb118cf98c7f8ab7e2c4ab66",
+      "hash": "sha256:39e19a4ca399175c44436c506372df41788dcc981eb768ccb57742683e9913b4",
       "camera": {
         "name": "chapel-south",
         "position": [
@@ -571,60 +679,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/chapel-west-window.png",
-      "hash": "sha256:d5114e7ef7ace2b83f1c1d6ff23a0514b6f1d3f1f2486b775181c97822f52a40",
+      "hash": "sha256:f3cbd693ed766f23399f27c81a5076d750603ff23f4cdc06ce652870b90133fe",
       "camera": {
         "name": "chapel-west-window",
         "position": [
@@ -640,60 +762,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/horseshoe-cloister.png",
-      "hash": "sha256:c52305cc7a7bcdaba57dacd731497d51219841d089882b574d7aeba2967546b4",
+      "hash": "sha256:9fba432ba3544526942643f45318a9395c26526e8a04054ad40495c5d3ad5501",
       "camera": {
         "name": "horseshoe-cloister",
         "position": [
@@ -709,60 +845,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/henry-viii-gate.png",
-      "hash": "sha256:40d94db3c687e1000c76828dcee9dba1df4375b24b8201339a8fd964b1282613",
+      "hash": "sha256:3ea9ab2f6ac8cf73bef832142a4cd5385e3ee6745ecac9729b52a2148e94ec6b",
       "camera": {
         "name": "henry-viii-gate",
         "position": [
@@ -778,60 +928,74 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
       }
     },
     {
       "path": "shots/shared/wards-and-open-courts.png",
-      "hash": "sha256:392510d0a13303c287fe0f52df8aa41b7ad114ca9715842ef95bc7ccae8566e9",
+      "hash": "sha256:7c19609e9b508f83223e24aae5f7842f74d14c69e7f89b0d23f0bd58258d10a5",
       "camera": {
         "name": "wards-and-open-courts",
         "position": [
@@ -847,55 +1011,641 @@
       },
       "state": {
         "asset": "molen.worldgen.structure.n0239_windsor_castle",
-        "mode": "asset-review",
-        "placementId": null,
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
         "position": [
           0,
           0,
           0
         ],
-        "heading": 0,
-        "meshes": 8,
-        "triangles": 385417,
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
         "bounds": {
           "min": [
-            -291.41259765625,
-            0,
-            -99.34272003173828
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
           ],
           "max": [
-            291.17718505859375,
-            52,
-            99.6865234375
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "72f6a356-a237-49f8-87e6-05d897da4aae",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "004bccf5-4ffa-4de9-b0fe-37708a079b5e",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_raw": "035ed8b5-55e7-475a-a127-57a31d5ceadd",
-          "worldgen:matgraph:molen.worldgen.material.slate": "6c947a09-7b90-4a4a-86db-b66e8f0896d2",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "3c1749c6-bfcd-4f85-bb85-321ed3001779",
-          "worldgen:matgraph:molen.worldgen.material.wood_plain": "b2b59de7-8c5e-49ef-8f95-292d7b1e5962",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone_weathered": "745e7bb4-7112-4396-9f6b-4227b9608bd1"
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
         },
         "loads": [
           "molen.worldgen.structure.n0239_windsor_castle"
         ],
-        "terrainSamples": [],
-        "visibleStructures": [],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stone_limestone": 1,
-          "molen.worldgen.material.stone_limestone_raw": 1,
           "molen.worldgen.material.slate": 1,
           "molen.worldgen.material.metal_painted": 1,
-          "molen.worldgen.material.wood_plain": 1,
-          "molen.worldgen.material.stone_limestone_weathered": 1
+          "molen.worldgen.material.wood_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 385419
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/whole-reviewed-windsor.png",
+      "hash": "sha256:2c5ab53da16a844382ef1042dbd8cb66286cf82e32e84cf4f0888b379a23386c",
+      "camera": {
+        "name": "whole-reviewed-windsor",
+        "position": [
+          -300,
+          290,
+          620
+        ],
+        "lookAt": [
+          -25,
+          35,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/signed-occupied-plan.png",
+      "hash": "sha256:31130d62fcaffb11b5f5fe088f52edd7911079befb9a1487e0b4555f66bfc841",
+      "camera": {
+        "name": "signed-occupied-plan",
+        "position": [
+          0,
+          690,
+          0.1
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/corrected-upper-quadrangle.png",
+      "hash": "sha256:182eb81dd12a6d30cf975bb4cd75d1719187b2edf60d87ba8efb5f5744c9d681",
+      "camera": {
+        "name": "corrected-upper-quadrangle",
+        "position": [
+          60,
+          24,
+          0
+        ],
+        "lookAt": [
+          92,
+          30,
+          56
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/corrected-round-tower.png",
+      "hash": "sha256:bd7b3898c96e765809c7f7ea180eac07832611ab63b1a75a8f653afe8b67b0e0",
+      "camera": {
+        "name": "corrected-round-tower",
+        "position": [
+          -77,
+          67,
+          68
+        ],
+        "lookAt": [
+          -16,
+          44,
+          -10
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/open-cloister-passage.png",
+      "hash": "sha256:e51cc01b7d265ee91fc3c8257543665ff17cc4ef5fe83408d1d03fd819760c33",
+      "camera": {
+        "name": "open-cloister-passage",
+        "position": [
+          -220,
+          5.5,
+          60
+        ],
+        "lookAt": [
+          -229,
+          4.2,
+          35
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/cloister-court-and-chapel.png",
+      "hash": "sha256:92530254b7a9d7082b259ccb55482bcc10d499ad0579cf2b35a163751e87656e",
+      "camera": {
+        "name": "cloister-court-and-chapel",
+        "position": [
+          -265,
+          20,
+          72
+        ],
+        "lookAt": [
+          -245,
+          8.5,
+          35
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 7,
+        "renderedTriangles": 63033
+      }
+    },
+    {
+      "path": "shots/shared/placement.png",
+      "hash": "sha256:e8c839688d06a4348e12304108f1f051156df8d08ae9705313b446678b6e207e",
+      "camera": {
+        "name": "placement",
+        "placement": true
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.n0239_windsor_castle",
+        "mode": "geographic-flat-terrain",
+        "placementId": "next1000.n0239",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": 0.052063510228,
+        "meshes": 6,
+        "triangles": 63031,
+        "bounds": {
+          "min": [
+            -296.13114949837876,
+            -11.673288345336914,
+            -114.17946892073792
+          ],
+          "max": [
+            295.79599291804186,
+            65.25274658203125,
+            114.68758920332067
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "0bd8496e-d1a0-47da-b86b-2d66d8e349f2",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "671f1439-a161-4029-beb1-ddc5352a164c",
+          "worldgen:matgraph:molen.worldgen.material.slate": "51b7f218-4f80-4e2e-928f-e07e8770c617",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "ba402fb6-19a0-4108-86a7-be049d810807",
+          "worldgen:matgraph:molen.worldgen.material.wood_plain": "9527357b-7b92-4611-9799-bfc2ca5767ed"
+        },
+        "loads": [
+          "molen.worldgen.structure.n0239_windsor_castle"
+        ],
+        "selectionBounds": [
+          -0.6059862562764258,
+          51.48269231293962,
+          -0.6022933757235743,
+          51.484992000067045
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0239",
+            "coordinate": [
+              -0.606913193,
+              51.482978564
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "next1000.n0239"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 63033
       }
     }
   ],

@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0016_dyavolski_most",
-  "inputHash": "sha256:c49610c1537287d92ab70f9f8fe880e991833327bd7ddd40ce69d8083953c449",
-  "placementHash": "sha256:2634514864abeb88b8ca1ccfffce0f09d693a876e5c79184fcfcfcd86f200746",
+  "inputHash": "sha256:1943d6b927da039e730fea2a395c02b56d04930f8149b2b1893624f4a23bd1e3",
+  "placementHash": "sha256:d7e53a3e6e885b3bfdb386ad3fa464544a15c09f3587ede30953e9b0969b87b0",
   "entry": {
     "id": "next1000.n0016",
     "title": "Dyavolski Most (Devil’s Bridge)",
@@ -19,11 +19,32 @@
       "wikidata": "Q2458142",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -32.85,
+          -1.8
+        ],
+        [
+          32.85,
+          -1.8
+        ],
+        [
+          32.85,
+          3.3
+        ],
+        [
+          -32.85,
+          3.3
+        ]
+      ],
+      "basis": "Bounded bridge-only opening prevents coarse gorge terrain burying the arches; approximate contact visualization."
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/58478181",
-    "note": "The exact mapped59.092m path sets position and signed axis. The65.7m engineering extent includes reconstructed approaches beyond the map path endpoints; no stretch is applied. Riverbed and bedrock-bank vertical fit remains pending. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "The inspected picture confirms three unequal major vaults, four relief openings, upstream pointed cutwaters, humped cobbled walkway and very low stone edges. Retained mapped59.092m pedestrian axis and the current PMTiles named bridge agree with the centre and south/southeast-facing native+X. The original65.7m reconstructed approaches remain unstretched. Standard PMTiles centre444.0231m is the approximate working base; approach samples differ about20m because coarse gorge terrain does not resolve bridge contacts. The preview grades only a bounded under-bridge/approach corridor to the existing footing profile and retains raw terrain outside it. Viewer ground opening is bounded to the bridge itself. Exact river/tide levels and bank contacts remain approximate, without bespoke survey research. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

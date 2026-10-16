@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0249_alamut_castle",
-  "inputHash": "sha256:ecb78a06a25de545e8d636afbc40e63a4ad24a98a1818a66eede57a4da14b513",
-  "placementHash": "sha256:44d6e65156418f3b54628b11780c81a457903e5f785921cc990255a3c38818a8",
+  "inputHash": "sha256:68b1756f1d2fa44cb27e51d2601ed11b5e4a0645585e7584466f1f4a3417ad7b",
+  "placementHash": "sha256:e237f02dc9a122f1757bc99e1a7b6e68e07ed493caa7b440528df9241c0af668",
   "entry": {
     "id": "next1000.n0249",
     "title": "Alamut Castle",
@@ -20,10 +20,18 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        50.586098381,
+        36.44473323
+      ],
+      "modelHeight": 0,
+      "basis": "Retained Terrarium grid center relative to decoded working anchor datum."
+    },
     "minLevel": 13,
-    "status": "draft",
+    "status": "preview",
     "source": "https://www.openstreetmap.org/way/590499418",
-    "note": "Do not extrude the upper-castle boundary as a solid building. Ruin chambers and cisterns remain open. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "note": "Fresh exact-Q4706020 way 590499418 v3 and all retained component/stair/ruin coordinates match within 0.662 mm. Native +X points southeast at 135.629 degrees and +Z southwest at 225.629 degrees. Northwest cistern/cell ridge, southeast excavation/gate and approach plus Willey north arrow sign the direction. Retained public Terrarium numeric heights form a 16641-value 4 m native grid over a 512 m window. Y0 is decoded 2098.7457 m anchor working datum, not a surveyed regional/ellipsoidal datum. Architectural bodies receive one rigid -25.47 m shift; retained sloping plateau intercept becomes 12.53 m above anchor. This translation is constrained by retained terrain at ruin bases, cut-reservoir floors and interpreted incoming stair route with 0.25 m allowance. It is not an archaeological elevation survey. Local cliff shell and occupied ledge feet extend 4 m below sampled terrain; all five reservoir floors remain above the retained host ground. No whole-precinct terrain cutout/replacement. The host supplies the rest of the mountain. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

@@ -18,7 +18,7 @@ Original geometry and shared procedural materials. Official photographs are rese
 
 51,662 triangles, 100,012 vertices, 3 surface groups; 4,222,728 source bytes. SHA-256: `sha256:39b43354e60b3b8915cf8aa2bc99355b57d1b74bc6f6831d41aa426f2d905b5c`. Actual bounds: -4.120, 0.000, -4.120 to 4.120, 53.000, 4.120 m.
 
-Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"+Z","origin":"Authored main tower center at local base level; attached ensembles are offset from this origin."}.
+Shared canonical material graphs with metric UV repeats in extras.molenSurface; portable glTF PBR factors and vertex colors remain. Dark recesses/lantern panels retain local fallback materials. Shared references: `matgraph:molen.worldgen.material.metal_painted` (2 × 2 m), `matgraph:molen.worldgen.material.concrete_plain` (2 × 2 m). Model-native axes: {"up":"+Y","front":"-Z","origin":"Tower center at local ground contact Y=0. Entrance faces-Z toward the mapped northwest access endpoint; the sparse window rank faces+Z."}.
 
 ## Placement proposal
 

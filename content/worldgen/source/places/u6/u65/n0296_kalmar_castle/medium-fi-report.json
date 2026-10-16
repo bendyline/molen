@@ -1,0 +1,1241 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0296_kalmar_castle",
+  "sourceHash": "sha256:a7d9df6d5d7142e1dd2fe4ddd91e5abece7591f899f71585833b50aa01ee5960",
+  "runtimeHash": "sha256:b887a739fd8297b2084a184dea786255000aba7863fcef8164dceb2427a21f5d",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:db4d25012a66b83905b5a8e3b02c7301db8c6dfd98db872f8e73ecc0e53073e1",
+      "bytes": 103484,
+      "gzipBytes": 20920,
+      "triangles": 990,
+      "cpuBytes": 102060,
+      "gpuBytes": 102060,
+      "errorMeters": 1,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:c40a36c8bdd33e4dd034f1e3881fb747fb3856ce9e57aff5a62cb7edbe5773cf",
+      "bytes": 296568,
+      "gzipBytes": 89436,
+      "triangles": 3197,
+      "cpuBytes": 286956,
+      "gpuBytes": 286956,
+      "errorMeters": 0.7,
+      "drawCalls": 8
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:d07b5ed40feb349c09ad916f3afd7030de83f509f199ff98a9d1d17ef2fcdce4",
+      "bytes": 647776,
+      "gzipBytes": 193839,
+      "triangles": 7100,
+      "cpuBytes": 638120,
+      "gpuBytes": 638120,
+      "errorMeters": 0.3,
+      "drawCalls": 8
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:e8b4141a5faf3a538f7ad7a000a4fd8681c63e374c237271f7b7df9e66f986d9",
+      "bytes": 877036,
+      "gzipBytes": 251590,
+      "triangles": 9633,
+      "cpuBytes": 867376,
+      "gpuBytes": 867376,
+      "errorMeters": 0.1,
+      "drawCalls": 8
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:88f6b89e3a40d8183dabf12b8115bacbb59efd2b60e6aae2296ba6a2e4a1168f"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:978857ae6045690553e10593abca69e52b347f393da62ff00b495ba8b95973f9"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ccf282bc55f545da0b9deb0083cd5fa368c09644defa36c905084a321768e436",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          207.53760000000003,
+          136.9875,
+          358.53850000000006
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:628f01fa5955007a0a242616f4d1e73eed230dad43cf95d17bab6582950680c5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          207.53760000000003,
+          136.9875,
+          358.53850000000006
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:55e003e81ea795213e9408aa18fa2ccb41e851b13cca65344216cd95ac6282a8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          207.53760000000003,
+          136.9875,
+          358.53850000000006
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:714890f2e6e255aa674634e8c9ffca93df5f52f6de6070849b1320d54763047f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          207.53760000000003,
+          136.9875,
+          358.53850000000006
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:71ba1fd121dbbb072b37a327d6ffddedfe613e7ee56577f1bb5a95b293d8a8c9",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 60235,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:182614cbe6a8057a135afc33b850ac49dc79dac38c5fadfb18a79767e0480eed",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60235,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:7edebf77d1312f339a02a40caef979cfa7f31ba328b7e4711adf4d94e9343f0c",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 14,
+        "triangles": 60235,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c8df35c153243ed42edfeba786c2cb086c3000ac3b6aea5125ea7b7fccf0997f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60235,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:7d9e9b0b47ab69dff76f4319aa1dc87a429de5967812c95281b7c61d6aa9d8fd",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58028,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          849.9376,
+          462.58750000000003,
+          1471.7385000000002
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:4f729657b4d80f61685155d7e9ea27ce6b18c79a41303221a99fc156b75f8a1d",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58028,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          849.9376,
+          462.58750000000003,
+          1471.7385000000002
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:c8d687151d215212da9f706258ea80315d4877c88b176d995efa5286cf2c9d2a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 58028,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          849.9376,
+          462.58750000000003,
+          1471.7385000000002
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:1bdaa645f7bef86d690a606526e3f60cce8a5912199af6ed2424441a0e14736f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58028,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          849.9376,
+          462.58750000000003,
+          1471.7385000000002
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:0b5fcbb7a3a2ed448be2a78aefc329fa0688b2caa710b689864839f33a198133",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 53472,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          849.9376,
+          462.58750000000003,
+          1471.7385000000002
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/western-kuretornet.png",
+      "hash": "sha256:b9b0647a5d748970844c07639aec820ebb405020ac150d85d14bec2934c907d4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          -65.51823667536213,
+          29.5,
+          -62.09960276001153
+        ],
+        "lookAt": [
+          -18.017153993225016,
+          28.5,
+          -15.886540277367375
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/old-gate-passage.png",
+      "hash": "sha256:59461f5466e3a07110d3ca88da67189c2e415fb27d364245e278bcf609743d21",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          -29.818734522120497,
+          6.8,
+          -26.73654935662602
+        ],
+        "lookAt": [
+          -2.398129799094802,
+          6.8,
+          -16.101210310616203
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/open-courtyard-plan.png",
+      "hash": "sha256:6d9e64add3f2f045fd8d99069811895e15d49b510679f3a02d77ae4f014b0ed2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          3.88473341520596,
+          165.5,
+          3.1478319988179546
+        ],
+        "lookAt": [
+          3.88473341520596,
+          5.5,
+          3.1478319988179546
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/court-well-and-portals.png",
+      "hash": "sha256:80d73d069408a3bdee71c3afb0d69626bd74756545854538f2b3863fcab1850c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          -9.001355146621062,
+          10.5,
+          15.873739494032229
+        ],
+        "lookAt": [
+          12.511237461965445,
+          9.5,
+          -2.7329356323031924
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/sea-renaissance-gables.png",
+      "hash": "sha256:0f722be50268981e7705c0e6ab01fae5a7f32431a986a16918981fc65da6bbea",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          80.02550835324277,
+          28.5,
+          64.84533917564987
+        ],
+        "lookAt": [
+          26.71094778995573,
+          18.5,
+          24.21828375757166
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/four-copper-helmets.png",
+      "hash": "sha256:185acc21945424f68e8d43e0a21500edd171166630e0303fab8a500d52570c87",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          -10.78107641263967,
+          64.5,
+          100.66662004549883
+        ],
+        "lookAt": [
+          0,
+          25.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/western-timber-approach.png",
+      "hash": "sha256:a2f2596abf2a1723d1ffefa5f15600a2964d207af7a2e28b2668b7c7515663c5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          -110.71408087504598,
+          12.5,
+          -52.38694776367275
+        ],
+        "lookAt": [
+          -53.16718028000944,
+          6.5,
+          -39.22054233527343
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kalmar-skyline.png",
+      "hash": "sha256:fca3493cd68d9b4741b550e0136803db3be4076fed18ac3b7e9af3b693974db6",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58028,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          270,
+          190,
+          250
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kalmar-district.png",
+      "hash": "sha256:69372be1352f7c0be5303bcde6d01aa4a7d4aa5ddf976c31c6116794aa3e7fbc",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60235,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          270,
+          190,
+          250
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kalmar-street.png",
+      "hash": "sha256:3b05acad3b1fa340becc3ba5b4eb3027b631869b78190b0f2b63e3672b4ac678",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 64138,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          270,
+          190,
+          250
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-kalmar-closeup.png",
+      "hash": "sha256:d21785c660f711e3f53259c61cb055ce11e962e0f86162ac4d10f7984646cdf1",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          270,
+          190,
+          250
+        ],
+        "lookAt": [
+          0,
+          15,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:1608a0256c1313491ac16a2e449852d008a23be2d428739e1a2a325d3025ee00",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 58028,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:182614cbe6a8057a135afc33b850ac49dc79dac38c5fadfb18a79767e0480eed",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 60235,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:886c88116d26932ceafece7e85ed265306f50839a77b8b742f4b49ec0368ec6a",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 64138,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:c8738b28bf6ec5cad161bdf80d6fdabb3668b645233df3ae3754b7220142c8cd",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 14,
+        "triangles": 66671,
+        "groundY": -7,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u6/u65/n0296_kalmar_castle/terrain-review.height.png"
+        },
+        "position": [
+          423.1376,
+          295.3875,
+          732.5385
+        ],
+        "lookAt": [
+          -3.6624,
+          70.98750000000001,
+          -6.6615
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_drywall": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.metal_copper": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.gravel": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 4.4,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

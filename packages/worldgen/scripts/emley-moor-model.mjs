@@ -402,13 +402,13 @@ export const emleyMoor = {
     originalTurretFloorMeters: 263.6,
     turretRadialBays: 20,
     windowSizeMeters: [1.8, 1.8],
-    reportedPost2021HeightMeters: 319,
+    modeledModernEnvelopeMeters: 319,
     originalLowerRadomeDiameterMeters: 3.66,
     originalUpperRadomeDiameterMeters: 1.52,
     originalMastHeightsMeters: [30.48, 25.6],
     originalWallThicknessMeters: [0.533, 0.35],
     heightConflict:
-      'Arqiva 2023 and Historic England retain about 330.4 m; the dated photographic survey reports 319 m after the 2021 antenna rebuild. Current model follows its visibly shortened top, with approximate segment heights.',
+      'Arqiva 2023 and Historic England retain about 330.4 m. The modeled 319 m modern envelope is photo-proportioned from the dated 2023 survey, not a measured height reported by that survey.',
   },
   scaleBasis:
     'Arup original sections set concrete dimensions and cabin rhythm; dated February/September 2023 photographs set the current antenna envelope and mounting details. The mapped circular footprint supplies a center but its 17.6 m diameter conflicts with the published 24.38 m base; it is not a sizing source.',

@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0255_buda_castle",
-  "inputHash": "sha256:2ad7521407c03d92cc471b33d39953ee248b1bcf3c256d39f91390d8081de90d",
-  "placementHash": "sha256:f25a96189b1d37be779cae3419634144e26e390ab2fb93b8f19839d3a6233c7b",
+  "inputHash": "sha256:3423ce2e39cb7189c6dd86d82abf11293e7f9678df0fa1dd1e71fc9ccf80571c",
+  "placementHash": "sha256:2c7083466116f26d4fdcb42607436c002289fb2d6230895e7bad3a38135e2a0f",
   "entry": {
     "id": "next1000.n0255",
     "title": "Buda Castle",
@@ -20,10 +20,25 @@
       "maxDistance": 80
     },
     "replaceFootprint": false,
+    "appearance": {
+      "kind": "historical",
+      "currentWorldEligible": false,
+      "representedDate": "2021",
+      "validFrom": "2021-08-20",
+      "validUntil": "2022-01-01"
+    },
+    "terrainReference": {
+      "anchor": [
+        19.039308745,
+        47.495824657
+      ],
+      "modelHeight": 0,
+      "basis": "Retained numeric anchor working datum; historical terrain unverified."
+    },
     "minLevel": 13,
-    "status": "draft",
-    "source": "https://www.openstreetmap.org/relation/6486918",
-    "note": "Open Lions Court, A-F palace wings and immediate terraces only. Do not replace the entire castle hill or treat planned 2022+ reconstruction as completed architecture. Draft is discoverable but never rendered; resolve the recorded placement uncertainty before activation."
+    "status": "historical",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=19.033308745,47.491824657,19.045308745,47.499824657",
+    "note": "Fresh Q46313 palace relation6486918 v33 matches saved outline within0.000592 m. This checks stable horizontal registration, not current exterior state. Native +X southeast bearing138.909404 degrees; +Z southwest228.909404 degrees. Danube/Pest frontage -Z, north A/B pavilions -X, restored South Range +X and library/Lions Court +Z sign heading -0.853630134323 at [19.039308745,47.495824657]. Official programme PDF actual 2021 panorama/north pavilion/restored South Range photographs inspected; 1935/1945/1905 photographs and future north-wing designs are separate. Historical-only appearance interval2021-08-20 inclusive to2022-01-01 exclusive follows South Range opening and conservatively excludes2022 A/B reconstruction; explicit viewingDate2021-10-01 used for placement QA. Numeric terrain16641 values on4 m grid, anchor datum152.564 m. Highest occupied palace/court/immediate terrace sample plus0.25 m selects floor3.5393 m; rigid -0.4607 m shift preserves source proportions. Immediate terrace feet reach four meters below retained ground; paired eastern stairs fit lowest tread to sampled ground. Lions Court remains roofless and restored South Range portal is truly open at all tiers. Broader Castle Hill remains host terrain; no cut or whole-hill replacement. Historical placement requires an explicit viewingDate within the recorded appearance interval; excluded from the default current world."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

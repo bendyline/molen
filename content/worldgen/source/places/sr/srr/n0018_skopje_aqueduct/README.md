@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Bent54-arch water conduit with53 square piers,42 distinct upper relief openings, mixed rounded stone and brick courses, individual radial brick rings and soffits, open water channel, broken cap courses and two end ramps.
+Medium-fi Skopje arcade:54main openings along both mapped bends,53interior piers,42upper relief openings, radial brick arch ribbons, open water trough and two reconstructed end ramps. Original detailed masonry master remains separately reproducible.
 
 ## Evidence
 
@@ -19,7 +19,7 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-2224784 triangles; 185039096 bytes; 2 material groups. SHA256: sha256:c0b1d1d5f930c07cd294ea0a60344090680cdfab8a7ac90865ba07a31371cb00.
+17040 triangles; 2046808 bytes; 2 material groups. SHA256: sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b.
 
 Shared surfaces (stone_limestone_raw, clay_fired) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
@@ -27,7 +27,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 ## Reconstruction limits
 
-- Conservation work continued after the dated photo set; exact2026 stone repairs require further confirmation.
-- Unknown relief-opening stations and ramp lengths are reconstruction assumptions explicitly recorded in spec.json.
-- Original geometry from visual and dimensional evidence, not a laser scan or measured stone-by-stone survey.
-- Actual local ground contact and placement remain pending.
+- Picture and standard viewer PMTiles approximate exterior/placement scope; no bespoke surveys, conservation-plan research or local-data campaigns.
+- Detailed original master is preserved by its unchanged recipe/map inputs and exact reproduced hash. Compact medium-fi source replaces individual rubble/brick geometry with the shared raw limestone and fired-clay graphs.
+- Skyline retains all54 main openings with angular vaults, merges reliefs and channel rims; closer models restore42 upper openings, rounded vaults, arch ribbons and open trough. Exact broken cap courses, stone/brick patchwork, graffiti and repairs are simplified.
+- Mapped350.7703m channel and385.8m overall reconstruction remain distinct; ramp lengths and relief stations are retained assumptions. PMTiles field/contact blending and narrow ground opening are approximate, not per-pier survey. Footprint replacement off; physical-device timing remains pending.

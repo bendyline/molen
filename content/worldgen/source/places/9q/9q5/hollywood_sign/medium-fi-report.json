@@ -1,0 +1,802 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.hollywood_sign",
+  "sourceHash": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d",
+  "runtimeHash": "sha256:4f93ecdff3e87818fd9e7bd1d5b2c9c17bb81319e60d0612b811dd5daf3b5faf",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:289aae42875482f2bad99231d4ff594790e2ddb27e83b1ac2e72c8e4541e22f5",
+      "bytes": 64192,
+      "gzipBytes": 13022,
+      "triangles": 884,
+      "cpuBytes": 62760,
+      "gpuBytes": 62760,
+      "errorMeters": 0.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:c87b50e96748ccdb5e8769a69f182e98434140dba244474a73440118b28dc2e1",
+      "bytes": 116028,
+      "gzipBytes": 26783,
+      "triangles": 1532,
+      "cpuBytes": 113304,
+      "gpuBytes": 113304,
+      "errorMeters": 0.2,
+      "drawCalls": 2
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:2fd2666959c8c425a397f4f304b647866a5f8ece81bba941605e5edceacdcb9b",
+      "bytes": 394028,
+      "gzipBytes": 85541,
+      "triangles": 5096,
+      "cpuBytes": 391296,
+      "gpuBytes": 391296,
+      "errorMeters": 0.08,
+      "drawCalls": 2
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:d9d07b4a1bef63fecf29bf6d0376e38c43a123ae85cff898320b1864ce025678",
+      "bytes": 1656040,
+      "gzipBytes": 273564,
+      "triangles": 13784,
+      "cpuBytes": 1654080,
+      "gpuBytes": 1654080,
+      "errorMeters": 0,
+      "drawCalls": 2
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:d1fa7cff914751be1f4dcd3ded7227acbbbc3f9a683dbc0187421c05bc893c4f"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:cf068fbdad46d07f53d27bf4a34c8013ec54f894f44492c7d56c2642f08abe69"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:99a14e4770545cec7e27aacd60c5e626157ea2712d3d21f6384c5a69890cbe52",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          80.65580000000001,
+          47.5345,
+          130.86110000000002
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:f180245ae9a282f5a72592b83171dcee061974601037ffeaa32eba2982c70da8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          80.65580000000001,
+          47.5345,
+          130.86110000000002
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:288e856c3863d544cb1e1b851aebfdcb8968111b7b134dac9af552f5743820fa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          80.65580000000001,
+          47.5345,
+          130.86110000000002
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:1987d15aea4ed680f578f764f34d7c569264c1c1be844f3f0862adb9180743de",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          80.65580000000001,
+          47.5345,
+          130.86110000000002
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:187a63d4ed77182f8adc6ce8407108cdc87f052f21e3d78bd332b54388bef32e",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 15966,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:e45b94e2987634ae97e9985f1ddc009fe69fb6a7b8f79c8f4ea1c0f8d69f6cff",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 15966,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:09bce36be7ef3649b944fdcc37eeca699c4bbc614d9a20d553d76f586b79dc07",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 15966,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c8dc878eea35c426f5a75e43b5207afa7b626737debd4a71ba581c11146921ac",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 15966,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:f07fc6c57d4eb164b71b6088bf89e8df969980af56b51f7be425822fa9d4e2b1",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15318,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          314.2558,
+          165.9345,
+          535.6611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:36ac87e56f3ebcfaf53cd8ea61fabf4adfe1f98bd0e02e514fb68f57ee796bc9",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15318,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          314.2558,
+          165.9345,
+          535.6611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:2919f3d09d0e3b10b31a0cb0a5d66c9fa9d058d0aa57e3d193a01ea942c0cb9c",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15318,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          314.2558,
+          165.9345,
+          535.6611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:8a71c88e7f3d93dd00d3d3f0c959ec06d39c547a4644a0a73b63381a29b99844",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15318,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          314.2558,
+          165.9345,
+          535.6611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:6f4994329371010623d152fa9d3df3561c88eca5069a664eb35dbdc9abe0f9a2",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9078,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          314.2558,
+          165.9345,
+          535.6611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:8ed050950a7080aaeeb7c829b8cc45e2ba730bbd0d3c9e63dc01fca0d9ae2800",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          2,
+          14,
+          155
+        ],
+        "lookAt": [
+          2,
+          3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:c885931df8d59a9f6ee9d2e93fa6f1cd00bcf54b0ddc67d44406c9c394b26d35",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          -12,
+          85,
+          -110
+        ],
+        "lookAt": [
+          2,
+          4,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:870b5e529f4f744f3e379ba4f4e2b7ac2a3dd7eaa05d770217efe2e0c248de91",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15318,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:e45b94e2987634ae97e9985f1ddc009fe69fb6a7b8f79c8f4ea1c0f8d69f6cff",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 15966,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:bfa421ead19d2566d623e90a0d1419a1d255cd02c59a944cbe77a0e76503ca6e",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 19530,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:d07c7ba41882eba940462ae80bed5c218cf6d02df41db4e65cad670f96caac04",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 28218,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          159.0558,
+          105.1345,
+          266.8611
+        ],
+        "lookAt": [
+          3.8558,
+          23.5345,
+          -1.9389
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:987ae8f079f5e0aa7891a8dd90882ed64042f63b647851ef7261acf7906ecc9d",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:d5c7670a1535c7d149fa03ae2c58715c0b114e5cbf2b52aa1ec197c4fbafac32"
+  }
+}

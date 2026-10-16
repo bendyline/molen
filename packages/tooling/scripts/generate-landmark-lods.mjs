@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { buildModelLandmarkLods as buildLandmarkLods } from './authored-landmark-lods.mjs';
+import { buildModelLandmarkLods as buildLandmarkLods } from './source-runtime-lods.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const one = process.argv.find((arg) => arg.startsWith('--one='))?.slice(6);

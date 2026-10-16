@@ -1,0 +1,246 @@
+{
+  "planId": "KSI_P01",
+  "id": "KSI_P01",
+  "assetId": "molen.worldgen.structure.ksiaz_hochberg_mausoleum",
+  "title": "Hochberg mausoleum at Książ",
+  "category": "historic-pavilion",
+  "wikidataId": "Q30083059",
+  "quality": "detailed",
+  "sitePart": {
+    "candidateId": "N0291",
+    "componentKey": "mausoleum",
+    "identity": {
+      "type": "way",
+      "id": 266177054
+    }
+  },
+  "referenceCoordinate": {
+    "longitude": 16.299901025436213,
+    "latitude": 50.83960695886693
+  },
+  "size": [
+    14.270050048828125,
+    10.600000381469727,
+    14.274699687957764
+  ],
+  "actualBounds": {
+    "min": [
+      -7.1350250244140625,
+      0,
+      -7.121699810028076
+    ],
+    "max": [
+      7.1350250244140625,
+      10.600000381469727,
+      7.1529998779296875
+    ]
+  },
+  "visualBrief": "Stepped octagonal cream-and-apricot pavilion with four circular windows, red mansard roof, sandstone surrounds and a roof cross.",
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along longest mapped edge in source vertex order",
+    "longitudinal": "+Z perpendicular to mapped edge",
+    "origin": "Own mapped envelope center; Y0 estimated local terrain contact"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "cream": "#f1e5c7",
+      "panel": "#e8b584",
+      "stone": "#dbccb0",
+      "roof": "#be7756",
+      "rubble": "#d0c3aa",
+      "brick": "#ce8e72",
+      "slate": "#798184",
+      "timber": "#af946b",
+      "metal": "#738276",
+      "glass": "#536c7c"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 8
+  },
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "sourceFacts": {
+    "mapFeature": "https://www.openstreetmap.org/way/266177054",
+    "mappedTags": {
+      "building": "chapel",
+      "description": "Kaplica rodowa Hochbergów",
+      "fee": "yes",
+      "historic": "yes",
+      "name": "Mauzoleum Hochbergów",
+      "opening_hours": "Mo-Fr 09:00-17:00; Sa-Su 09:00-18:00",
+      "start_date": "1734",
+      "wikidata": "Q30083059",
+      "wikipedia": "pl:Mauzoleum Hochbergów w Wałbrzychu"
+    },
+    "independentWikidataIdKnown": true,
+    "roofAndDatumSurveyed": false,
+    "parentSite": "N0291",
+    "primaryDescription": "Independent mapped chapel/pavilion in the official castle park ensemble. Exterior forms follow the primary conservation report and a post-restoration southeast photograph."
+  },
+  "reconstruction": {
+    "basis": "Own attributed map footprint and linked primary photographs; source interpretation rather than surveyed dimensions.",
+    "scope": "Independent exterior component of N0291; full castle and park remains incomplete.",
+    "registration": "Own map-derived axis and anchor; photograph-facing and vertical terrain fit must be checked before activation."
+  },
+  "referencePages": [
+    "https://eli.gov.pl/api/acts/DU/2025/1089/text.pdf",
+    "https://www.bip.ksiaz.walbrzych.pl/wp-content/upLoads/2013/06/Za%C5%82%C4%85cznik-nr-10-Projekt-Budowlany-Mauzoleum-elewacja.pdf",
+    "https://commons.wikimedia.org/wiki/File:Walbrzych_Hochberg_mausoleum_SE_2019.jpg",
+    "https://www.ksiaz.walbrzych.pl/turystyka/zwiedzanie/dzienne",
+    "https://www.openstreetmap.org/way/266177054"
+  ],
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "pending",
+  "reviewStatus": "source-geometry;captures pending",
+  "geographicProposal": {
+    "status": "research-only",
+    "anchor": [
+      16.299901025436213,
+      50.83960695886693
+    ],
+    "heading": -0.5193161031623388,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "featureIds": [
+      "way/266177054"
+    ],
+    "source": "https://www.openstreetmap.org/way/266177054",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:7353f0a281138367a0a85f4795f6223736129f5d27e35a3c55ce5a4bd572f432",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Own mapped ring and longest-edge axes; body/roof heights, unseen facades and ground datum estimated. Inactive until facade/terrain fit reviewed. Independent identity is used only when mapped."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "sourceLicense": "Original authored geometry under repository license. Mapped outline © OpenStreetMap contributors,ODbL-1.0;linked research photographs are not redistributed.",
+  "limitations": [
+    "Exterior component only; the full N0291 site remains incomplete.",
+    "Footprint is attributed map geometry. Heights, openings, roof profiles and details are photographic interpretations.",
+    "Entry facade is a northwest proposal; subterranean crypt, vault and interior are not authored.",
+    "No unique textures, copied photographs, signage or interior. Terrain/facade fit, streaming and physical-device timing remain pending."
+  ],
+  "qaCameras": [
+    {
+      "name": "southeast-oculus",
+      "position": [
+        19,
+        10,
+        20
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "entry-and-recessed-bay",
+      "position": [
+        -19,
+        10,
+        -20
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "roof-and-footprint",
+      "position": [
+        0,
+        35,
+        5
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "window-and-cornice",
+      "position": [
+        20,
+        8,
+        0
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 1343,
+    "vertices": 4029,
+    "materials": 7,
+    "bytes": 165288,
+    "sha256": "sha256:b96a38d38923c538ac87b07dbb8d3041e19235f8df7c9de8b23ea84b2a06161e"
+  }
+}

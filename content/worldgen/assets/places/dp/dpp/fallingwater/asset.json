@@ -1,0 +1,179 @@
+{
+  "format": "molen/asset@1",
+  "id": "molen.worldgen.structure.fallingwater",
+  "kind": "model",
+  "files": {
+    "main": "model.glb",
+    "variants": {
+      "skyline": "model.skyline.glb",
+      "district": "model.district.glb",
+      "street": "model.street.glb",
+      "closeup": "model.closeup.glb"
+    }
+  },
+  "hash": "sha256:3c54367737c5aee629409a7995fcd87c7e43a6e2a3300f93e4b5010aa0a7756d",
+  "sourceHash": "sha256:b5ee038ccda5d8b530d65730bb332eab3cd712446ee21afb82c6c808835f5687",
+  "bounds": {
+    "aabb": {
+      "min": [
+        -26,
+        -13.3,
+        -40.9779
+      ],
+      "max": [
+        20,
+        13.05,
+        30
+      ]
+    },
+    "sphere": {
+      "center": [
+        -3,
+        -0.125,
+        -5.489
+      ],
+      "radius": 41.098
+    }
+  },
+  "stats": {
+    "triangles": 8096,
+    "vertices": 24288,
+    "meshes": 1,
+    "primitives": 4,
+    "materials": 4,
+    "textures": 0,
+    "animations": 0,
+    "sizeBytes": 973856
+  },
+  "nodes": [
+    {
+      "name": "worldgen",
+      "triangles": 8096
+    }
+  ],
+  "nodesTruncated": false,
+  "animations": [],
+  "materials": [
+    {
+      "name": "concrete_plain",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "metal_painted",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "stone_sandstone",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    },
+    {
+      "name": "window",
+      "slots": [
+        "baseColor"
+      ],
+      "doubleSided": false,
+      "alphaMode": "OPAQUE"
+    }
+  ],
+  "collision": {
+    "hulls": [
+      {
+        "node": "worldgen",
+        "points": [
+          -26,
+          -13.3,
+          -40.9779,
+          -26,
+          -13.3,
+          30,
+          -26,
+          13.05,
+          -40.9779,
+          -26,
+          13.05,
+          30,
+          20,
+          -13.3,
+          -40.9779,
+          20,
+          -13.3,
+          30,
+          20,
+          13.05,
+          -40.9779,
+          20,
+          13.05,
+          30
+        ]
+      }
+    ]
+  },
+  "extensionsUsed": [],
+  "runtimeLods": {
+    "recipe": 1,
+    "recipeHash": "sha256:64052e2ea3af1431f421c949961d129a527b430a5b5da7af04193529e4564a33",
+    "masterHash": "sha256:3c54367737c5aee629409a7995fcd87c7e43a6e2a3300f93e4b5010aa0a7756d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:c0195a6d49ece1af994e9d7eed93111163544e376fdc0df5d07c4492c5d6b4c3",
+        "bytes": 57848,
+        "gzipBytes": 11785,
+        "triangles": 758,
+        "cpuBytes": 56460,
+        "gpuBytes": 56460,
+        "errorMeters": 1.1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:2fab4461381d858ed6fdc85827556b999de645c8dc87965f4195ae9338332a5a",
+        "bytes": 301304,
+        "gzipBytes": 54552,
+        "triangles": 3860,
+        "cpuBytes": 296328,
+        "gpuBytes": 296328,
+        "errorMeters": 0.3,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:48d70df34334ba1b76156304f383385a551c6503df35773cd3ec2b10e019b4db",
+        "bytes": 621852,
+        "gzipBytes": 112246,
+        "triangles": 8096,
+        "cpuBytes": 616872,
+        "gpuBytes": 616872,
+        "errorMeters": 0.15,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:1fd4d9d1a271910a5aa44266b14c66862301cb51f079786c645bcdbb8aecb26d",
+        "bytes": 974104,
+        "gzipBytes": 164710,
+        "triangles": 8096,
+        "cpuBytes": 971520,
+        "gpuBytes": 971520,
+        "errorMeters": 0,
+        "drawCalls": 4
+      }
+    ]
+  }
+}

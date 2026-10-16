@@ -84,6 +84,43 @@ describe('rasters', () => {
 });
 
 describe('scatter sampling', () => {
+  it('adds independent forms without losing coverage or species under a tight model budget', () => {
+    const varied = structuredClone(doc);
+    for (const rule of varied.rules)
+      for (const p of rule.populations)
+        p.variants = ['', '.wide', '.narrow'].map((suffix) => ({
+          model: `${p.model}${suffix}`,
+          weight: 1,
+        }));
+    const run = (document: ScatterDoc, maxPropModels: number) =>
+      samplePlacements({
+        request: request([0, 0, 200, 200]),
+        doc: document,
+        pack: identity,
+        ground: FLAT_GROUND,
+        budget: { ...budget, maxPropModels },
+        tier: 0,
+      });
+    const instances = (sets: PlacementSet[]) =>
+      sets
+        .flatMap((set) =>
+          Array.from({ length: set.count }, (_, i) =>
+            [...set.data.slice(i * PLACEMENT_STRIDE, (i + 1) * PLACEMENT_STRIDE)].join(','),
+          ),
+        )
+        .sort();
+    for (const cap of [1, 2, 3, 8]) {
+      const baseline = run(doc, cap),
+        expanded = run(varied, cap);
+      expect(instances(expanded)).toEqual(instances(baseline));
+      expect(expanded.length).toBeLessThanOrEqual(cap);
+      expect(new Set(expanded.map((s) => s.modelRef.replace(/\.(wide|narrow)$/, '')))).toEqual(
+        new Set(baseline.map((s) => s.modelRef)),
+      );
+      expect(expanded).toEqual(run(varied, cap));
+    }
+    expect(run(varied, 8).some((s) => /\.(wide|narrow)$/.test(s.modelRef))).toBe(true);
+  });
   it('uses owner seeds without breaking shared cells, tile ownership, or nested thinning', () => {
     const polygon = { label: 'forest', ring: rect(0, 0, 400, 400), seed: 1234, density: 0.7 };
     const req = request([0, 0, 400, 400], { polygons: [polygon] });
@@ -269,6 +306,7 @@ describe('scatter sampling', () => {
       ],
     };
     const req = request([0, 0, 200, 200]);
+    const visited = new Set<string>();
     const run = (scatter: ScatterDoc, extra: Partial<typeof budget> & Record<string, number>) =>
       samplePlacements({
         request: req,
@@ -277,6 +315,10 @@ describe('scatter sampling', () => {
         ground: FLAT_GROUND,
         budget: { ...budget, maxInstances: 300, maxPropModels: 1, ...extra },
         tier: 0,
+        acceptsRule: (rule) => {
+          visited.add(rule.id);
+          return true;
+        },
       });
     const canopy = run(doc, {});
     const both = run(covered, { maxGroundCoverInstances: 500, maxGroundCoverModels: 2 });
@@ -287,7 +329,9 @@ describe('scatter sampling', () => {
     );
     expect(tufts.reduce((sum, set) => sum + set.count, 0)).toBe(500);
     // Without a ground cover budget the layer is simply absent.
+    visited.clear();
     expect(positions(run(covered, {}))).toEqual(positions(canopy));
+    expect(visited.has('cover')).toBe(false);
     expect(
       run(covered, { maxGroundCoverInstances: 500, maxGroundCoverModels: 0 }).some(
         (set) => set.modelRef === 'builtin:groundcover.tuft',
@@ -320,6 +364,62 @@ describe('scatter sampling', () => {
       pack,
     });
     expect(again.hash).toBe(output.hash);
+  });
+
+  it('reserves brush independently and keeps multi-scale patches continuous across tile boundaries', () => {
+    const brush: ScatterDoc = {
+      ...doc,
+      rules: [
+        ...doc.rules,
+        {
+          id: 'brush',
+          classes: ['forest'],
+          layer: 'understory',
+          densityPerHectare: 2200,
+          minSpacing: 0.35,
+          clustering: {
+            scale: 48,
+            threshold: 0.2,
+            contrast: 2,
+            seedOffset: 7,
+            sharedSeed: 71,
+            detailScale: 5,
+          },
+          populations: [
+            {
+              model: 'builtin:shrub',
+              weight: 1,
+              scale: { min: 0.7, max: 1.2 },
+              yaw: 'random',
+              align: 'up',
+            },
+          ],
+        },
+      ],
+    };
+    const run = (bounds: [number, number, number, number], enabled = true, cap = 10000) =>
+      samplePlacements({
+        request: request(bounds),
+        doc: brush,
+        pack: identity,
+        ground: FLAT_GROUND,
+        budget: { ...budget, maxUnderstoryInstances: enabled ? cap : 0, maxUnderstoryModels: 1 },
+        tier: 0,
+      });
+    const full = run([0, 0, 200, 200]);
+    const shrubs = (sets: PlacementSet[]) => sets.filter((s) => s.modelRef === 'builtin:shrub');
+    const trees = (sets: PlacementSet[]) => sets.filter((s) => s.modelRef !== 'builtin:shrub');
+    expect(positions(trees(full))).toEqual(positions(run([0, 0, 200, 200], false)));
+    expect(positions(full)).toEqual(positions(run([0, 0, 200, 200])));
+    expect(positions(shrubs(full))).toEqual(
+      positions([...shrubs(run([0, 0, 100, 200])), ...shrubs(run([100, 0, 200, 200]))]),
+    );
+    expect(shrubs(full).reduce((n, s) => n + s.count, 0)).toBeGreaterThan(100);
+    const capped = run([0, 0, 200, 200], true, 40);
+    expect(shrubs(capped).reduce((n, s) => n + s.count, 0)).toBe(40);
+    expect(positions(trees(capped))).toEqual(positions(trees(full)));
+    const all = new Set(positions(shrubs(full)));
+    for (const pos of positions(shrubs(capped))) expect(all.has(pos)).toBe(true);
   });
 });
 

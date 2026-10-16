@@ -1,0 +1,296 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roofstone": {
+      "slot": "roof",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.29,
+      "metallic": 0.03
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/sibenik-cathedral-model.mjs",
+    "export": "buildSibenikSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSibenikDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roofstone": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "buildSibenikStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roofstone": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildSibenikCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roofstone": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -85,
+      62,
+      -73
+    ],
+    "lookAt": [
+      0,
+      16,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-sibenik-skyline",
+      "position": [
+        -85,
+        62,
+        -73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-sibenik-district",
+      "position": [
+        -85,
+        62,
+        -73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-sibenik-street",
+      "position": [
+        -85,
+        62,
+        -73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-sibenik-closeup",
+      "position": [
+        -85,
+        62,
+        -73
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate exterior and standard terrain fit; exact thresholds, all architectural heights and inferred profiles remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        15.889109058,
+        43.735647879
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewerDEM datum8.650114m; estimated level floor1.4m clears sampled footprint peak1.091m/perimeter-0.89..1.09m. Foundations descend to retained coarse terrain. Native−Z is uphill square/northern portal; exact plaza/stair/apse thresholds remain approximate, with no bespoke surveyed or certified walking claim."
+    },
+    "bounds": [
+      15.8887,
+      43.7353,
+      15.8895,
+      43.736
+    ],
+    "notes": "Standard viewerDEM datum8.650114m; estimated level floor1.4m clears sampled footprint peak1.091m/perimeter-0.89..1.09m. Foundations descend to retained coarse terrain. Native−Z is uphill square/northern portal; exact plaza/stair/apse thresholds remain approximate, with no bespoke surveyed or certified walking claim.",
+    "groundContactBasis": "Standard viewerDEM datum8.650114m; estimated level floor1.4m clears sampled footprint peak1.091m/perimeter-0.89..1.09m. Foundations descend to retained coarse terrain. Native−Z is uphill square/northern portal; exact plaza/stair/apse thresholds remain approximate, with no bespoke surveyed or certified walking claim."
+  },
+  "geographicNote": "Standard viewerDEM datum8.650114m; estimated level floor1.4m clears sampled footprint peak1.091m/perimeter-0.89..1.09m. Foundations descend to retained coarse terrain. Native−Z is uphill square/northern portal; exact plaza/stair/apse thresholds remain approximate, with no bespoke surveyed or certified walking claim.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

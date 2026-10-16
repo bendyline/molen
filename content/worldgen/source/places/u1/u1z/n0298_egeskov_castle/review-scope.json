@@ -1,0 +1,488 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#d29b80",
+      "roof": "#ba805c",
+      "stone": "#c3b49a",
+      "trim": "#e8d5b4",
+      "copper": "#9ac4b6",
+      "glass": "#4d6178",
+      "paving": "#b7b0a1",
+      "dark": "#73664f",
+      "clock": "#547b97",
+      "gold": "#ccb77d"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "brick": [
+        0.620345,
+        0.549823,
+        0.504963
+      ],
+      "stone": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "plaster": [
+        0.856015,
+        0.827728,
+        0.727643
+      ],
+      "patina": [
+        0.635757,
+        0.680369,
+        0.617469
+      ],
+      "tile": [
+        0.559267,
+        0.552465,
+        0.529503
+      ],
+      "aggregate": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 7,
+    "identityFeatures": [
+      "Two parallel red roofs and four tall stepped gables",
+      "Two round corner towers with flared copper spires",
+      "Square west stair/clock tower and current low gate wing"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "front": "West stair tower and portal; native +X east/+Z south with plan rotation baked",
+    "longitudinal": "+Z approximately south along twin longhouses",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "exactCastleWay": 96858366,
+    "longhouses": 2,
+    "mainGables": 4,
+    "roundTowers": 2,
+    "squareStairTowers": 1,
+    "physicalPassages": 2,
+    "numericVerticalHeightVerified": false,
+    "originalMasterHash": "sha256:bf3387f77e0e719b436a4455a8e96a126c6ebaced229ae156f812cd9d232ca24",
+    "originalMasterRecipe": "packages/worldgen/scripts/egeskov-castle-model.mjs#buildEgeskovRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate exterior and fit from inspected aerial picture and standard viewer PMTiles; no bespoke survey or exact thresholds.",
+    "Detailed original master/hash/recipe preserved. Apertures, ornament and restoration details are interpreted; interiors and collision excluded.",
+    "Six common graphs plus explicit glass color slot; zero embedded images. No duplicate lake/landscape geometry or water simulation; approximate shore/bridge fit only.",
+    "Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      10.49020274,
+      55.176204696
+    ],
+    "heading": 0,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture supports twin steep tiled roofs, elaborate stepped brick gables, copper-capped circular corner towers, separate gatehouse and bridges. Retained east/south mapped coordinates set approximate footprint and orientation. Standard viewer PMTiles supply coarse placement ground; reconstructed foundation and access paths are raised1m with toes extending below it, and the east bridge slopes toward its sampled shore endpoint. Actual lake waterline is supplied by host water data and is not surveyed here. Anchor 10.49020274,55.176204696; heading 0; standard PMTiles datum 63.09605669230223m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture supports twin steep tiled roofs, elaborate stepped brick gables, copper-capped circular corner towers, separate gatehouse and bridges. Retained east/south mapped coordinates set approximate footprint and orientation. Standard viewer PMTiles supply coarse placement ground; reconstructed foundation and access paths are raised1m with toes extending below it, and the east bridge slopes toward its sampled shore endpoint. Actual lake waterline is supplied by host water data and is not surveyed here. Anchor 10.49020274,55.176204696; heading 0; standard PMTiles datum 63.09605669230223m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        10.49020274,
+        55.176204696
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture supports twin steep tiled roofs, elaborate stepped brick gables, copper-capped circular corner towers, separate gatehouse and bridges. Retained east/south mapped coordinates set approximate footprint and orientation. Standard viewer PMTiles supply coarse placement ground; reconstructed foundation and access paths are raised1m with toes extending below it, and the east bridge slopes toward its sampled shore endpoint. Actual lake waterline is supplied by host water data and is not surveyed here. Anchor 10.49020274,55.176204696; heading 0; standard PMTiles datum 63.09605669230223m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/egeskov-runtime-model.mjs",
+    "export": "buildEgeskovReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "patina": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.8,
+      "metallic": 0.05
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "aggregate": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/egeskov-runtime-model.mjs",
+    "export": "buildEgeskovReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEgeskovReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildEgeskovReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEgeskovReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "patina": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.05
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-egeskov-skyline",
+      "position": [
+        160,
+        100,
+        130
+      ],
+      "lookAt": [
+        -15,
+        12,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-egeskov-district",
+      "position": [
+        160,
+        100,
+        130
+      ],
+      "lookAt": [
+        -15,
+        12,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-egeskov-street",
+      "position": [
+        160,
+        100,
+        130
+      ],
+      "lookAt": [
+        -15,
+        12,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-egeskov-closeup",
+      "position": [
+        160,
+        100,
+        130
+      ],
+      "lookAt": [
+        -15,
+        12,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 2.6,
+    "neighborStyle": "molen.worldgen.catalog.german_fachwerk"
+  },
+  "camera": {
+    "position": [
+      160,
+      100,
+      130
+    ],
+    "lookAt": [
+      -15,
+      12,
+      0
+    ]
+  },
+  "qaCameraOverrides": {
+    "twin-gables-south": {
+      "position": [
+        18,
+        25,
+        67
+      ],
+      "lookAt": [
+        1,
+        18,
+        17
+      ]
+    },
+    "copper-spires-east": {
+      "position": [
+        70,
+        36,
+        23
+      ],
+      "lookAt": [
+        11,
+        22,
+        0
+      ]
+    },
+    "west-clock-and-portal": {
+      "position": [
+        -65,
+        25,
+        -4
+      ],
+      "lookAt": [
+        -12,
+        17,
+        -1
+      ]
+    },
+    "gatehouse-arch": {
+      "position": [
+        -27,
+        10,
+        55
+      ],
+      "lookAt": [
+        -34,
+        8,
+        31
+      ]
+    },
+    "parallel-roof-plan": {
+      "position": [
+        10,
+        81,
+        5
+      ],
+      "lookAt": [
+        0,
+        17,
+        0
+      ]
+    },
+    "east-footbridge": {
+      "position": [
+        38,
+        13,
+        21
+      ],
+      "lookAt": [
+        28,
+        4,
+        1
+      ]
+    },
+    "west-entrance-approach": {
+      "position": [
+        -47,
+        17,
+        16
+      ],
+      "lookAt": [
+        -24,
+        5,
+        -1
+      ]
+    }
+  }
+}

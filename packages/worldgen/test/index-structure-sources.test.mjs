@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   resolvePlaceSourceLocation,
+  sourceBundleReportsModel,
   structureSourceCandidateId,
 } from '../scripts/index-structure-sources.mjs';
 import { encodeSourceGeohash } from '../scripts/structure-source-paths.mjs';
@@ -15,6 +16,25 @@ const pathFor = (anchor) => {
   return `content/worldgen/source/places/${cell.slice(0, 2)}/${cell}/${key}`;
 };
 const unlocated = `content/worldgen/source/places/unlocated/${key}`;
+
+describe('model coverage across local cache changes', () => {
+  it('retains pinned generated models without treating unbuilt or unrelated declarations as coverage', () => {
+    const assetId = 'molen.worldgen.structure.test';
+    const model = { assetId, path: 'models/source.glb', sha256: `sha256:${'a'.repeat(64)}` };
+    const source = { id: assetId, files: { models: [model] } };
+    expect(sourceBundleReportsModel(source, assetId)).toBe(true);
+    expect(sourceBundleReportsModel(undefined, assetId)).toBe(false);
+    expect(sourceBundleReportsModel({ ...source, files: { models: [] } }, assetId)).toBe(false);
+    for (const change of [{ sha256: undefined }, { path: 'planned.glb' }, { assetId: 'another' }])
+      expect(
+        sourceBundleReportsModel(
+          { ...source, files: { models: [{ ...model, ...change }] } },
+          assetId,
+        ),
+      ).toBe(false);
+    expect(sourceBundleReportsModel({ ...source, id: 'another' }, assetId)).toBe(false);
+  });
+});
 
 describe('new structure source registration', () => {
   it('selects the first supporting anchor inside the actual authored cell', () => {

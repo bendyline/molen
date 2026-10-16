@@ -10,10 +10,15 @@
     "latitude": 22.303391666,
     "longitude": 114.160169444
   },
-  "visualBrief": "KPF’s484 m glazed tower with re-entrant corners, a gently tapered silver facade, continuous fine projecting vertical fins, mechanical bands, and separately mapped splayed glass canopies and long northern entrance atrium.",
+  "visualBrief": "Budgeted ICC preserves tower, corners and all mapped glass-splay strips; distance tiers merge facade grids and roof mullions.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
     151.26200485229492,
-    484.00006103515625,
+    484.0001220703125,
     69.67219924926758
   ],
   "actualBounds": {
@@ -24,7 +29,7 @@
     ],
     "max": [
       100.29617309570312,
-      484.00006103515625,
+      484.0001220703125,
       34.722171783447266
     ]
   },
@@ -37,7 +42,14 @@
   "sourceFacts": {
     "heightMeters": 484,
     "marketedStories": 118,
-    "form": "Re-entrant corners, three sheltered canopies and north-side atrium"
+    "form": "Re-entrant corners, three sheltered canopies and north-side atrium",
+    "originalMasterHash": "sha256:3a7c593be32c1d563caae502825891a5a5e57e5bc5f791093c683afce07db69b",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-next-models.mjs#skylineNext[N0154].build",
+    "reviewScope": "Original121424-triangle14407700-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail."
+  },
+  "appearance": {
+    "identity": "Silver glass tower with re-entrant corners, gentle taper and mapped splayed entrance canopies.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
   },
   "reconstruction": {
     "frame": "Exact-QID tower plus ten mapped glass-splay strips1047822855–1047822864; surveyed atrium extension fixes the otherwise ambiguous square phase",
@@ -51,7 +63,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       114.160226147,
       22.303378859
@@ -65,11 +77,21 @@
       "way/25590249"
     ],
     "wikidataId": "Q317034",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ce48479fd7a9eba72ced428ff377e2a1b9bd9a1acf10b7fc257f1976b0971bbc",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Signed tower frame plus ten individually mapped entrance/canopy strips resolve facade orientation and the long north atrium. Canopies extend outside the main tower footprint, intentionally preserving source part geometry. Lower site podium connections remain reconstructed; groundY0."
+    "notes": "Existing484m authored tower retains its exact-QID re-entrant footprint and signed mapped north atrium/canopy strips. One inspected exterior picture supports silver horizontal bands, re-entrant corners and splayed glass entrance roof. Standard viewer PMTiles checks tower/road placement; off-footprint[-80,0] supplies approximate terrain contact and a bounded local rectangular correction covers the tower/canopies. Raw elevations remain separately retained. Heights, subtle taper, pane schedule and podium connections stay reconstructed; surrounding Elements complex excluded. No surveyed fit claimed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Existing484m authored tower retains its exact-QID re-entrant footprint and signed mapped north atrium/canopy strips. One inspected exterior picture supports silver horizontal bands, re-entrant corners and splayed glass entrance roof. Standard viewer PMTiles checks tower/road placement; off-footprint[-80,0] supplies approximate terrain contact and a bounded local rectangular correction covers the tower/canopies. Raw elevations remain separately retained. Heights, subtle taper, pane schedule and podium connections stay reconstructed; surrounding Elements complex excluded. No surveyed fit claimed.",
+    "terrainReference": {
+      "anchor": [
+        114.15970417804597,
+        22.30284664645061
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -105,11 +127,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Subtle facade taper and pane schedule are reconstructed. The tower-area podium has a local ground-contact base; the surrounding Elements complex is excluded. Static daylight facade omits programmable light-show content."
+    "Existing484m authored tower retains its exact-QID re-entrant footprint and signed mapped north atrium/canopy strips. One inspected exterior picture supports silver horizontal bands, re-entrant corners and splayed glass entrance roof. Standard viewer PMTiles checks tower/road placement; off-footprint[-80,0] supplies approximate terrain contact and a bounded local rectangular correction covers the tower/canopies. Raw elevations remain separately retained. Heights, subtle taper, pane schedule and podium connections stay reconstructed; surrounding Elements complex excluded. No surveyed fit claimed.",
+    "Shared granite/concrete/painted-metal graphs plus opaque glass PBR. Photograph crops upper crown; existing authored484m controls retained. Canopy contacts/podium connections approximate. Physical-device timing pending."
   ],
   "qaCameras": [
     {
@@ -178,15 +200,179 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/icc-browser-model.mjs",
+    "export": "buildIccCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/icc-browser-model.mjs",
+    "export": "buildIccSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildIccDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildIccStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildIccCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0154-skyline",
+      "position": [
+        720,
+        470,
+        1120
+      ],
+      "lookAt": [
+        24,
+        240,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0154-district",
+      "position": [
+        720,
+        470,
+        1120
+      ],
+      "lookAt": [
+        24,
+        240,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0154-street",
+      "position": [
+        720,
+        470,
+        1120
+      ],
+      "lookAt": [
+        24,
+        240,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0154-closeup",
+      "position": [
+        720,
+        470,
+        1120
+      ],
+      "lookAt": [
+        24,
+        240,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 121424,
-    "vertices": 359660,
+    "triangles": 52196,
+    "vertices": 156588,
     "materials": 4,
-    "bytes": 14407700,
-    "sha256": "sha256:3a7c593be32c1d563caae502825891a5a5e57e5bc5f791093c683afce07db69b"
+    "bytes": 6266364,
+    "sha256": "sha256:5598637cbc93daab23ccad35d6670e38db2a5b3753bdb8ef85fb831841f94a6a"
   }
 }

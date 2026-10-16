@@ -1,0 +1,248 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "basalt": {
+      "slot": "wall",
+      "graph": "stone_basalt",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "limestone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "gravel",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "recess": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.7,
+      "metallic": 0.15
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/margat-castle-model.mjs",
+    "export": "buildMargatSkyline",
+    "errorMeters": 5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMargatDistrict",
+        "errorMeters": 2.5,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        }
+      },
+      "street": {
+        "export": "buildMargatStreet",
+        "errorMeters": 1,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMargatCloseup",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "basalt": {
+            "slot": "wall",
+            "graph": "stone_basalt",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "limestone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "gravel",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-margat-skyline",
+      "position": [
+        -225,
+        145,
+        280
+      ],
+      "lookAt": [
+        0,
+        5,
+        -8
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-margat-district",
+      "position": [
+        -225,
+        145,
+        280
+      ],
+      "lookAt": [
+        0,
+        5,
+        -8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-margat-street",
+      "position": [
+        -225,
+        145,
+        280
+      ],
+      "lookAt": [
+        0,
+        5,
+        -8
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-margat-closeup",
+      "position": [
+        -225,
+        145,
+        280
+      ],
+      "lookAt": [
+        0,
+        5,
+        -8
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected PMTiles terrain preview, ward, gate approach and all exterior sides on 2026-10-12. Native Y=0 is the named-point terrain datum (354.02029067906426 m); wall foundations descend to the retained standard PMTiles height grid. Terrace floors and stair elevations are reconstructed visualization levels, not surveyed thresholds.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        35.94962865114212,
+        35.15100353726311
+      ],
+      "modelHeight": 0,
+      "basis": "Named Qal`at al Marqab PMTiles point sets native Y=0 at 354.02029067906426 m in the retained standard viewer height grid; coarse hillside placement and reconstructed floors are approximate."
+    },
+    "notes": "Named PMTiles point anchors the castle and five building outlines retain native east/south positions. Foundations descend to coarse PMTiles terrain; terrace levels, outer curtains, gateway and battlement profiles are picture-led approximations. Wider northern settlement and buried/lost remains are excluded."
+  },
+  "geographicNote": "PMTiles north-up compound placement; approximate exterior walls and court levels, not a surveyed or traversable castle.",
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "surface-means.json",
+    "review-scope.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

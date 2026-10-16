@@ -1,10 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0166_kingdom_centre",
-  "captureReportHash": "sha256:d5ff3a1cd6ac571bad6997e463de18fe3c5944237faa8f4268e27649e80c8193",
+  "reviewedOn": "2026-10-10",
+  "inputHash": "sha256:56948a927b63221c91e6cd8d73f48c9a3006b7795ec8d77801bc5519bef21bd3",
+  "sourceHash": "sha256:e941d6d0fa344a4f9631145ed04be03d814d45e05b065f2b971784b2f14b1e34",
+  "runtimeHash": "sha256:ea1de69ae3132086a4eff77d11f339a2fd21ffd36a9fe799247f94687fc252ce",
+  "captureReportHash": "sha256:6213b489519e495f0a447c12c140bfd2ef480ea546654f3ccf68fb82ff775ffc",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed exterior in every portable captured view.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -15,68 +18,16 @@
       "shots/skybridge.png",
       "shots/curved-glazing.png",
       "shots/podium-wings.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/whole-reviewed-complex.png",
+      "shots/east-shopping-roof.png",
+      "shots/west-event-roof.png"
     ],
-    "inspectedFrameHashes": [
-      {
-        "path": "preview.png",
-        "hash": "sha256:bd88c794119f0bdfae89ebfb4b57d6929de2ba2c6532c2f944fbbd1cf97f2b1d"
-      },
-      {
-        "path": "shots/turntable/angle_0.png",
-        "hash": "sha256:24a0211ba27ac2c9bb12a1156bdfe2c740f38605f44ac8f6b3b9a82ecd79b7c9"
-      },
-      {
-        "path": "shots/turntable/angle_1.png",
-        "hash": "sha256:b00310f3c846711d45282b6c5cc42e8e56e341747087d59bca332f503ba5619e"
-      },
-      {
-        "path": "shots/turntable/angle_2.png",
-        "hash": "sha256:99fc47d7678b4305fd9dea9ab1cb6ff98bacdea33c838d298a75df4ef31ae583"
-      },
-      {
-        "path": "shots/turntable/angle_3.png",
-        "hash": "sha256:bd1dcc31d84d8d6b4772b6898ff178cbd0fb4cba74ddab3d4c151774e897bc8e"
-      },
-      {
-        "path": "shots/catenary-opening.png",
-        "hash": "sha256:3abcd9829d6346d7e107a6d6cb15cc6260773241ec096b6ecf93e01ea56edf86"
-      },
-      {
-        "path": "shots/skybridge.png",
-        "hash": "sha256:8fa91bb5927511cfe9bffb7138e765d23e12f6b8ee1d5a233b3577eec4449edc"
-      },
-      {
-        "path": "shots/curved-glazing.png",
-        "hash": "sha256:ae8b63b6d36230aa5932b65f2fd1649c8662a09de6adcf7e52d3a59e4503ba45"
-      },
-      {
-        "path": "shots/podium-wings.png",
-        "hash": "sha256:88a01c270125aab7f87c929d26ec1493e9cde88f18959af47d7758a4a61b37e5"
-      },
-      {
-        "path": "shots/far-silhouette.png",
-        "hash": "sha256:9d84ec71cf1aead1d3d6fcf038b227a8a6f99abd085e4fc0b3390d2c24a70ed9"
-      }
-    ],
-    "notes": "All twenty current frames inspected after clipping correction. Curved opening boundaries are now closed and continuous, the inner roof and suspended skybridge are intact, and the elliptical shaft meets its mapped podium without a ground gap."
+    "notes": "Actually inspected all 59 final images: 13 portable, 13 shared, 33 medium-fi. Whole turntables retain the elliptical blue-grey tower, open inverted arch, curved crossbridge and both spreading podium wings. Added pale sloping roofs now have visible upward-facing planes; an earlier render revealed inward faces, corrected by triangulating each concave wing and clipping its triangles to four roof planes. Both wing notches and curved outer fronts remain complete. Crown cameras show the clear through-opening, metal inner roof and connected bridge ends; framing intentionally crops the lower shaft. Whole views include the complete complex. North-up overlay matches the full asymmetric podium outline. No missing structural volume observed."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:32ac380d4f0a07b0cc98f1b83c73dce1fa370ef5f096e5b70032009169cbf141",
-    "fixtureHash": "sha256:5e50bd0a6aed4485b81606c836567c2c09c8642a6d466d548d2f2f24516ad17b",
-    "placementHash": "sha256:892b22dde15a2c52816892e19c8cfb28453dc4146a406bcd03396afcd5afc0a4",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.stone_granite": {
-        "path": "materials/stone_granite.matgraph.json",
-        "hash": "sha256:41dc9bf776d564da27f4e162d2f544616c077349d50ff6f2e69b9d5672f4e3b3"
-      },
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      }
-    },
+    "captureReportHash": "sha256:4dc631668294321c1e56e144cdd1875869deed43fe05ec423b563fe5bbae1542",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -87,62 +38,264 @@
       "shots/shared/curved-glazing.png",
       "shots/shared/podium-wings.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/whole-reviewed-complex.png",
+      "shots/shared/east-shopping-roof.png",
+      "shots/shared/west-event-roof.png",
       "shots/shared/placement.png"
     ],
-    "inspectedFrameHashes": [
-      {
-        "path": "shots/shared/angle-0.png",
-        "hash": "sha256:3042f7081aa6f811d913d850347053c9d52f1df935bf888ddf9bcb4b22d04a65"
-      },
-      {
-        "path": "shots/shared/angle-1.png",
-        "hash": "sha256:db32f431d4a121134d9f9849f2b425086e6c4265b0ca536e93c2d31c8059b090"
-      },
-      {
-        "path": "shots/shared/angle-2.png",
-        "hash": "sha256:9a89085288af8f8c1e0484358944652f0dbbe16a64d06b2eb4f9131ad2d021a4"
-      },
-      {
-        "path": "shots/shared/angle-3.png",
-        "hash": "sha256:edfa67462796334d8572d5d0b5bb7cd10c8f534e388f1862beccc84de889cc92"
-      },
-      {
-        "path": "shots/shared/catenary-opening.png",
-        "hash": "sha256:21c750188e2588be6e295a90394d8689d68db5de58115a5ee31ed493cbac2cae"
-      },
-      {
-        "path": "shots/shared/skybridge.png",
-        "hash": "sha256:a20a62fe06e446a4d7fae1f8d48e186abf3c851564eee2739f88b504fc49e1c8"
-      },
-      {
-        "path": "shots/shared/curved-glazing.png",
-        "hash": "sha256:1ff5a89ceef28cae0e42f945f2ebbf15e33d878de800459cd37036f2ee8b0e54"
-      },
-      {
-        "path": "shots/shared/podium-wings.png",
-        "hash": "sha256:d8738f2019e6c78933bd10080d38c7d36d9facfe08d3bac40b5741e50d011e89"
-      },
-      {
-        "path": "shots/shared/far-silhouette.png",
-        "hash": "sha256:0f0279f1f36e95a5c1bfec04d8e3611525f1f2840f6996ea30ec35271b4cbfb9"
-      },
-      {
-        "path": "shots/shared/placement.png",
-        "hash": "sha256:1c4413291abe6d814b471b16d1c6e154ef85e93fd027a17cf0d982226bce161d"
-      }
+    "notes": "Two canonical 256px graphs, stone_granite and metal_painted, bind the foundation/podium bands and metal roofs/frames. Opaque blue-grey glass stays a palette material; four near material groups. Each shared graph is read once in the viewer fixture. Unloading disposes all model geometry. All six GLBs contain zero embedded images. Skyline merges measured linear graph means into a single palette group. The roofs stay pale and the curtain wall stays blue-grey across the levels; no copied reference photographs are used as textures."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:7e6cc885f93a60b43b964ab7c5d72ce95aa384fde28c514acbb65d868f2c6c48",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/catenary-opening.png",
+      "medium-fi/skybridge.png",
+      "medium-fi/curved-glazing.png",
+      "medium-fi/podium-wings.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-reviewed-complex.png",
+      "medium-fi/east-shopping-roof.png",
+      "medium-fi/west-event-roof.png",
+      "medium-fi/whole-complex-skyline.png",
+      "medium-fi/whole-complex-district.png",
+      "medium-fi/whole-complex-street.png",
+      "medium-fi/whole-complex-closeup.png",
+      "medium-fi/street-curved-glazing.png",
+      "medium-fi/district-opening.png",
+      "medium-fi/close-skybridge.png",
+      "medium-fi/close-podium-roofs.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
     ],
-    "notes": "All shared angle, detail, far and orthographic placement frames inspected. Shared metric surfaces preserve source tint and geometry without visible stretched UVs or material binding failures."
+    "notes": "Actually inspected economy/high noon and late-afternoon context, texture-free silhouette, eight feature cameras, eight explicit LOD cameras and four transitions. Elliptical shaft, real arch opening, independently curved bridge and both complete raised podium roofs survive all four levels. District inner arch is deliberately faceted; skyline omits curtain-wall strips. Source/closeup facade intervals are 1.8m/4.5m, street 3.6m/9m, district 12m/24m; curved roof uses 64/48/24/16 slices. Three podium bands remain at every level. Texture-free silhouette is recognizable; context cottages are synthetic, not actual Riyadh neighbors. Static captures show level changes, not measured animation or physical-device performance."
   },
   "geographicReview": {
     "status": "passed",
-    "placementHash": "sha256:892b22dde15a2c52816892e19c8cfb28453dc4146a406bcd03396afcd5afc0a4",
-    "scope": "Mapped anchor, signed plan orientation, metric footprint and ground datum.",
-    "notes": "Exact signed tower, independently mapped end piers and skybridge establish the crown axis. The full three-storey podium matches the orthographic footprint. Published302.3 m architectural top overrides inconsistent skybridge map heights; ground datum isY0."
+    "placementHash": "sha256:21650862ceb6dfae09fd6e4f26f00ecb52f428281cbd95114eb1a67ab6a92159",
+    "mapFrameHash": "sha256:f0e7bafbc9769330e5b6e9838cd20fb63e5fb9c75686880620d5b8b6a164abd6",
+    "notes": "Fresh public OSM API2026-10-10 confirms five unchanged independent parts: exactQ656743 full podium264745917, exactQ656743 elliptical tower264745922, two narrow end piers264745924/925 and independently curved skybridge984443070. Native+X east-northeast faces shopping wing and-X west-southwest faces conference/hotel wing; native+Z south-southeast. Unequal eastern and western mapped podium lobes fix signed phase. Completed architect aerial photograph corroborates symmetrical-looking wings and independent garden/corridor recesses. Four tower entrances are described by architect; individual door bearings unsurveyed. GroundY0contact, terrain slope unmeasured; accepted plan2m/1degree and footprint replacement disabled. Published302.3m architectural top overrides inconsistent map bridge min_height302 plus4m. Actually inspected the current north-up overlay and complete east/west wing views against the daylight architect aerial. This supports signed footprint relationship and distinguishes unequal shopping/conference lobes. Exact entrances and roof dimensions are reconstructed, not surveyed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "The original 217710-triangle, 21120500-byte master reproduces exact ac11062b72fdbda9b34a1cc85d3fe611eb8e011bded9c49e895b5e0488c26e5a from the preserved global recipe. Read the engineer project narrative and actually inspected both daylight photographs. Read the complete architect account and actually inspected six official image files, including the daylight whole aerial with both raised podium roofs and one paired dusk image; night/event illumination is not modeled. Read CVU 302.3m, 41 floors, 290.4m observatory and 2002 completion. Preserved217710-triangle/21120500byte original master is reproducible from unchanged global recipe. Reviewed exterior retains exact mapped elliptical tower, independently curved skybridge/end piers and full spreading shopping/conference podium.302.3m top published byCVU,302m engineer and300m architect rounded; CVU41floors/290.4m observatory retained as published facts, not imposed on detailed facade grid. Catenary205m center/2.1shape parameter and skybridge296.5–302.3m floors are reconstructed; bridge200feet architect length describes observation walkway, not exact full map envelope. Tower glazing is drawn once with full-length strips, aggregate rows and opaque PBR. Added pale faceted sloping roofs on both separately clipped mapped podium wings, reconstructed27m apex and15.75m eaves follow architect aerial and street photographs; not surveyed roof dimensions. Podium levels remain three physical facade bands despite four-level map tag. Exact doors, branded lettering, interior trusses, basement, rooftop recreation equipment/pool and night lighting excluded. No copied photograph used as texture; canonical256px granite/paintedmetal graphs shared, zero embedded images. Original speculative roof planters removed rather than intersecting new roof. Terrain slope and physical device performance unmeasured."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed exterior world-viewer representation with stated reconstruction limits.",
-    "notes": "Detailed distinctive exterior accepted for world-viewer use: elliptical mirrored shaft, curved through-opening, matching metal upper arch and glass bridge, with full mapped podium. Catenary parameters and individual facade schedules are reconstructed from architect and engineer references."
-  }
+    "notes": "Detailed distinctive exterior accepted for world-viewer use: elliptical mirrored shaft, curved through-opening, matching metal upper arch and glass bridge, with full mapped podium. Catenary parameters and individual facade schedules are reconstructed from architect and engineer references.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/th/th3/n0166_kingdom_centre/models/source.glb",
+        "hash": "sha256:e941d6d0fa344a4f9631145ed04be03d814d45e05b065f2b971784b2f14b1e34",
+        "bytes": 1996456,
+        "triangles": 16667,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -140.05706787109375,
+          0,
+          -137.49862670898438
+        ],
+        "max": [
+          140.05690002441406,
+          302.3013916015625,
+          137.4981231689453
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/th/th3/n0166_kingdom_centre/model.glb",
+        "hash": "sha256:ea1de69ae3132086a4eff77d11f339a2fd21ffd36a9fe799247f94687fc252ce",
+        "bytes": 1996032,
+        "triangles": 16667,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -140.05706787109375,
+          0,
+          -137.49862670898438
+        ],
+        "max": [
+          140.05690002441406,
+          302.3013916015625,
+          137.4981231689453
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/th/th3/n0166_kingdom_centre/model.skyline.glb",
+        "hash": "sha256:5c32bcd36633551289b89a17296de28924a80632db96bec210f5b2fbcf19fa3e",
+        "bytes": 95616,
+        "triangles": 976,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -140.0469512939453,
+          0,
+          -137.4938507080078
+        ],
+        "max": [
+          140.0467987060547,
+          302.29998779296875,
+          137.4934844970703
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/th/th3/n0166_kingdom_centre/model.district.glb",
+        "hash": "sha256:4df4a3e79e04c328e9b69b3330f433e77e2acc0981d49fcd14a46330389adc28",
+        "bytes": 181496,
+        "triangles": 2200,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -140.05706787109375,
+          0,
+          -137.49862670898438
+        ],
+        "max": [
+          140.05690002441406,
+          302.29998779296875,
+          137.4981231689453
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/th/th3/n0166_kingdom_centre/model.street.glb",
+        "hash": "sha256:367000ba47d5d09582b075d356efb179d293700e9384813c44b8fe43a1fd0721",
+        "bytes": 431196,
+        "triangles": 6004,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -140.05706787109375,
+          0,
+          -137.49862670898438
+        ],
+        "max": [
+          140.05690002441406,
+          302.30145263671875,
+          137.4981231689453
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/th/th3/n0166_kingdom_centre/model.closeup.glb",
+        "hash": "sha256:da661b57bff6c6a4c3a773de1e8bb8163e765e33bd5392c6cdc15b134194496d",
+        "bytes": 1030544,
+        "triangles": 16667,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -140.05706787109375,
+          0,
+          -137.49862670898438
+        ],
+        "max": [
+          140.05690002441406,
+          302.3013916015625,
+          137.4981231689453
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/kingdom-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: exact original reconstruction, current source/runtime hashes and five independent signed mapped parts; closed elliptical shaft from 12 azimuths at three heights, unobstructed arch from both sides, skybridge top/underside, inner arch roof, both 27m podium peaks and upward-facing concave roof triangles across every level; deterministic rebuilding, budgets, zero images and separate 12-byte POSITION/NORMAL GPU streams. All six GLBs pass Khronos with zero errors and warnings. Strict medium-fi, LOD and source-generation --check pass. No dependency audit or repository-wide suite."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:25bea088034ff10903319883a4fe961344585e9d70508101a14e8a98612dc401",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5c32bcd36633551289b89a17296de28924a80632db96bec210f5b2fbcf19fa3e",
+        "bytes": 95616,
+        "gzipBytes": 16272,
+        "triangles": 976,
+        "cpuBytes": 94200,
+        "gpuBytes": 94200,
+        "errorMeters": 1.7,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:4df4a3e79e04c328e9b69b3330f433e77e2acc0981d49fcd14a46330389adc28",
+        "bytes": 181496,
+        "gzipBytes": 45245,
+        "triangles": 2200,
+        "cpuBytes": 176500,
+        "gpuBytes": 176500,
+        "errorMeters": 1.1,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:367000ba47d5d09582b075d356efb179d293700e9384813c44b8fe43a1fd0721",
+        "bytes": 431196,
+        "gzipBytes": 99688,
+        "triangles": 6004,
+        "cpuBytes": 426192,
+        "gpuBytes": 426192,
+        "errorMeters": 0.45,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:da661b57bff6c6a4c3a773de1e8bb8163e765e33bd5392c6cdc15b134194496d",
+        "bytes": 1030544,
+        "gzipBytes": 226766,
+        "triangles": 16667,
+        "cpuBytes": 1025528,
+        "gpuBytes": 1025528,
+        "errorMeters": 0.01,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 277112,
+    "notes": "Skyline 976 triangles / 95616 bytes / one draw; district 2200 / 181496 / four; street 6004 / 431196 / four; closeup 16667 / 1030544 / four. Initial download is 277112 bytes, below the 3MB phone and 6MB laptop targets. Reviewed source is 1996456 bytes versus the preserved 21.12MB original. Error allowances 1.7/1.1/.45/.01m describe representative curve simplification, not measured maximum facade error. Physical phone/laptop and dense downtown frame/memory scenarios remain unmeasured."
+  },
+  "limitations": [
+    "Preserved217710-triangle/21120500byte original master is reproducible from unchanged global recipe. Reviewed exterior retains exact mapped elliptical tower, independently curved skybridge/end piers and full spreading shopping/conference podium.302.3m top published byCVU,302m engineer and300m architect rounded; CVU41floors/290.4m observatory retained as published facts, not imposed on detailed facade grid. Catenary205m center/2.1shape parameter and skybridge296.5–302.3m floors are reconstructed; bridge200feet architect length describes observation walkway, not exact full map envelope. Tower glazing is drawn once with full-length strips, aggregate rows and opaque PBR. Added pale faceted sloping roofs on both separately clipped mapped podium wings, reconstructed27m apex and15.75m eaves follow architect aerial and street photographs; not surveyed roof dimensions. Podium levels remain three physical facade bands despite four-level map tag. Exact doors, branded lettering, interior trusses, basement, rooftop recreation equipment/pool and night lighting excluded. No copied photograph used as texture; canonical256px granite/paintedmetal graphs shared, zero embedded images. Original speculative roof planters removed rather than intersecting new roof. Terrain slope and physical device performance unmeasured."
+  ]
 }

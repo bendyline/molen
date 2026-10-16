@@ -1,3 +1,4 @@
+import type { TerrainAgricultureSource } from './agriculture-grid';
 import type { TerrainLayer } from './descriptor-types';
 import type { TerrainPyramidTileAddress } from './pyramid-types';
 import type { TerrainSemanticTile } from './semantic-types';
@@ -101,6 +102,7 @@ export interface TerrainPackageDescriptor {
     };
   };
   models?: { index: string };
+  agriculture?: TerrainAgricultureSource;
   preset?: '1gb' | '5gb' | '20gb';
   attribution: TerrainPackageAttribution[];
   provenance: {

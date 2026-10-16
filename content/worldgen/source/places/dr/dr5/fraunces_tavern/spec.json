@@ -1,0 +1,314 @@
+{
+  "planId": "fraunces_tavern",
+  "id": "fraunces_tavern",
+  "assetId": "molen.worldgen.structure.fraunces_tavern",
+  "title": "Fraunces Tavern",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -74.0113440155983,
+    "latitude": 40.7033953341352
+  },
+  "size": [
+    22.30862522125244,
+    18.47999918460846,
+    15.313643455505371
+  ],
+  "actualBounds": {
+    "min": [
+      -11.985740661621094,
+      -0.6000000238418579,
+      -6.771672248840332
+    ],
+    "max": [
+      10.322884559631348,
+      17.8799991607666,
+      8.541971206665039
+    ]
+  },
+  "visualBrief": "Restored three-story corner tavern with red Pearl Street and buff Broad Street brick, twelve-over-twelve sash, columned entry, paneled cornice, attic dormers, truncated roof platform and balustrade.",
+  "nativeAxes": {
+    "x": "west-southwest along Pearl Street toward Broad Street",
+    "y": "up",
+    "z": "north-northwest toward Pearl Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fraunces_Tavern_001.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fraunces_Tavern_Pearl_Street.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fraunces-tavern-wp",
+      "url": "https://qualla.com/fraunces-tavern/"
+    }
+  ],
+  "referenceInputHash": "69452d51ba7c66801b21779acbec2559672cf1cd41251affe15be2adab720666",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-fraunces-tavern.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-fraunces-tavern.mjs",
+    "level": "skyline",
+    "export": "frauncesSkyline",
+    "errorMeters": 0.45,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "frauncesDistrict",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "frauncesStreet",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Pearl Street sidewalk [-1.1145,7.5] outside central columned entrance; independent terrain unchanged.",
+    "anchor": [
+      -74.0113440155983,
+      40.7033953341352
+    ],
+    "heading": -2.8614848932764874,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -74.011355893387,
+        40.70346284946205
+      ],
+      "modelHeight": 0,
+      "basis": "Pearl Street sidewalk outside the central columned entrance portico."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184650142421/corner-block-scope"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1468e8ffdb8a60644ac4196493eb7f4ee4d8809afa08fb3ddea23cf704af183b",
+    "notes": "The mapped 14.6 m height is treated as an approximate roof/balustrade control; chimneys rise above it. Three stories and attic, twelve-over-twelve sash, red jack arches, paneled cornice, truncated roof platform and balustrade follow the official description and photographs. The narrow mapped connection continuing south is outside this individual building scope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior of the restored 54 Pearl Street corner building, informed by individually inspected Qualla 2010/2014 photographs and supplemental details plus official city architectural descriptions. Not a survey or exact 1783 reconstruction.",
+    "101 Broad Street, 58 Pearl Street, other museum buildings, interiors and the narrow mapped rear connector are excluded. Scope clipping is an explicit authoring boundary.",
+    "Mapped 14.6 m height is only an approximate roof/balustrade control; chimneys rise above it. Vertical dimensions, hidden roof surfaces and service-side windows remain interpretations.",
+    "Twelve-over-twelve sash, jack arches, paneled cornice and roof balusters are simplified geometry. The standard shared brick surface approximates the photographed Flemish bond without the pronounced repeat seam of the current Flemish graph. Sign portrait and lettering, flags, interior details and photograph pixels are not reproduced.",
+    "Independent terrain remains unchanged with foundation below the sidewalk datum. Exact contact can differ with another host DEM."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        14,
+        10,
+        40
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -28,
+        23,
+        -31
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19895,
+    "vertices": 59685,
+    "materials": 6,
+    "bytes": 2391080,
+    "sha256": "sha256:6d1be3fd4b2d1723eacde09deaf801c3c3b7db6c853a8dd344a7e98590bb7c15"
+  }
+}

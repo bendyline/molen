@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Paired broad concrete arch vaults, open spandrel posts, basalt-faced transverse pier portals, approach access arches, deck girders and open cast-iron rosette railings.
+Compact Kievyan paired-vault bridge with basalt transverse portals, approach access arches, deck and recognizable rosette railings. Original detailed master independently preserved.
 
 ## Evidence
 
@@ -19,15 +19,13 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-3082666 triangles; 272015896 bytes; 7 material groups. SHA256: sha256:1aa78429090f6e58cce6a7c4c8efdd33248139e18090873c2ae6b6003ee0e5f8.
+31722 triangles; 3809808 bytes; 5 material groups. SHA256: sha256:503be133db247da8ef5fc5d728155b1d9241a38b246e5a929c0520dca29a757f.
 
-Shared surfaces (concrete_plain, metal_painted, stone_basalt_raw, stone_granite, metal_stainless) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
+Shared surfaces (concrete_plain, stone_basalt_raw, metal_painted) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
 Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=N0024; append --check to verify. Import and capture through the standard next-1000 scripts. Geometry validation does not substitute for current-frame visual review.
 
 ## Reconstruction limits
 
-- No survey drawing found for internal member dimensions. Arch profile, transverse vault widths and pier spacing require further primary drawing confirmation.
-- Owner totals364m and351m disagree; exposed map outline272.304m is modeled without stretching the arch to those totals. Approach extent remains under review.
-- Current2026 owner repair footage documents rail pattern and joint work, but does not establish final completed roadway or lighting changes.
-- Terrain elevation and full bank contacts need actual gorge terrain review; flat capture is not geographic approval.
+- One inspected river-level picture confirms the paired broad concrete vaults, open spandrel posts and stone-faced portal supports. Standard viewer PMTiles named Kievyan road confirms northeast axis and retained272.304m exposed outline; differing351/364m owner totals include longer approaches and are not used to stretch this source. Western road1029.9605m at native[-150,0] gives approximatebase971.6605m against modelroad58.3m. The opposite road sample differs11m in coarse gorge terrain. Retain the authored level deck and photo-based115m arch; exact vertical curve/bank joins remain uncertain. Narrow live ground opening and a16m preview contact corridor blended to raw by60m remove coarse bridge terrain imprint. This is approximate exterior visualization, not a gorge or foundation survey.
+- Original detailed master and map geometry retained. Compact source uses shared basalt/concrete/painted metal; individual masonry joints, cast tooling, cap edges, deck girders and maintenance rails are simplified. Skyline merges the paired vaults; street/closeup restore both vaults and rosette impressions. Physical-device timings remain unmeasured.

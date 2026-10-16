@@ -659,6 +659,23 @@ export function buildMontsoreauSkyline(out) {
   // Preserve silhouette and empty court while omitting subpixel openings and brackets.
   buildMontsoreauRuntime(out, 'skyline');
 }
+// Shared primitives allow a separately reviewed plan without changing the original master.
+export const montsoreauMeshHelpers = {
+  rectangle,
+  roof,
+  face,
+  triangle,
+  frame,
+  cornice,
+  dormer,
+  squareTower,
+  polygonStair,
+  near,
+  stone,
+  trim,
+  slate,
+  glass,
+};
 export const montsoreauStudy = {
   id: 'N0236',
   key: 'chateau_de_montsoreau',

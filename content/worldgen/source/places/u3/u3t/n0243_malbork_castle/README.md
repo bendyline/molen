@@ -21,11 +21,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-516,537 triangles; 1,059,079 vertices; 7 material groups; 44,329,516 bytes. Native bounds: -138.089, 0.000, -86.486 to 446.399, 46.000, 187.029. Source hash: `sha256:7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193`.
+57,078 triangles; 128,140 vertices; 7 material groups; 5,302,204 bytes. Native bounds: -138.089, -13.438, -86.622 to 446.728, 58.500, 187.106. Source hash: `sha256:18af4066b3ef5de40890dfc92f1af0843e661f48a564d37bb4be46c4d836a62a`.
 
-{"up":"+Y","longitudinal":"+X from High Castle toward Lower Castle","front":"+Z toward eastern fortifications","origin":"Cached exact-QID map anchor at provisional local ground"}
+{"up":"+Y","longitudinal":"+X from High Castle toward Lower Castle","front":"+Z toward eastern fortifications","origin":"Exact-Q71279 component frame;Y0 reconstructed High-court working floor19m."}
 
-Draft geographic placement only. Site elevations, the tower datum and eastern fortifications require additional verification; no footprint replacement.
+Fresh exact-Q71279 relation6436433 and103 individual cached features agree within0.7mm. Native+X40.89deg follows High-to-Lower Castle toward the north-east;+Z130.89deg faces eastern defenses. Precinct replacement is disabled. Retained GUGiK public2m bare-earth Float32 crop resampled into6660-value6m native grid establishes relative contact. ModelY0 is a reconstructed19m High-court working floor in advertisedPL-EVRF2007-NH; actual viewer placement subtracts the matching bare-earth grid height at[-28,33],not a nominal floor. Separate working levels:Middle15.2m,entry14.3m,Dansker8.6m,Palace9.6m and Lower ranges roughly8–12m. Public0.5m surface crop informs approximate keep crown68.5m and pole77.5m absolute; owner nearly70m description has no datum. No survey precision or exact acquisition vintage is asserted. Model supplies grounded masonry and a narrow moat bridge without a second castle hill; host must supply fine terrain.
 
 ## Reproduce
 
@@ -33,14 +33,14 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0243` (
 
 ## Pending work
 
-- Maximum fidelity pending: this is an individual exterior reconstruction, not a surveyed as-built model. Vertical dimensions, irregular roof junctions and exact fenestration require further comparison.
-- The museum ticket site describes the tower as nearly 70 m without a datum. The current 46 m ground-relative keep is provisional; do not treat it as a verified measured height.
-- The church Madonna mosaic and figurative sculpture are not reproduced. Their recess is preserved. Exact tracery, gate decoration, decorative gables and rooftop dormers need further work.
-- Lower Castle is represented by selected existing mapped structures and eastern walls; ruins, archaeological foundations, contemporary ticket facilities and complete outer earthworks are not included.
-- No interiors, moat excavation, landscape, temporary works or photographic textures. The High Castle courtyard and Middle Castle court remain open.
-- Shared brick, ceramic tile, timber, limestone, granite and painted-metal surfaces; local PBR glazing. Fine brick bonds and roof seams stay in the source master.
+- Original detailed516537-triangle/44329516-byte master remains exactly reproducible atsha256:7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193 from malbork-castle-model.mjs#malborkStudy.build. Reviewed independent source corrects levels,foundations,well primitive and gate-to-moat-bridge continuity.
+- Fresh exact-Q71279 relation6436433 and103 individual cached features agree within0.7mm. Native+X40.89deg follows High-to-Lower Castle toward the north-east;+Z130.89deg faces eastern defenses. Precinct replacement is disabled. Retained GUGiK public2m bare-earth Float32 crop resampled into6660-value6m native grid establishes relative contact. ModelY0 is a reconstructed19m High-court working floor in advertisedPL-EVRF2007-NH; actual viewer placement subtracts the matching bare-earth grid height at[-28,33],not a nominal floor. Separate working levels:Middle15.2m,entry14.3m,Dansker8.6m,Palace9.6m and Lower ranges roughly8–12m. Public0.5m surface crop informs approximate keep crown68.5m and pole77.5m absolute; owner nearly70m description has no datum. No survey precision or exact acquisition vintage is asserted. Model supplies grounded masonry and a narrow moat bridge without a second castle hill; host must supply fine terrain.
+- Six common brick,ceramic tile,granite,limestone,timber and painted-metal graphs plus opaque PBR glass. Skyline bakes common graph linear means into one draw. No copied photography or embedded bitmaps.
+- Exterior medium-fi reconstruction. Floor levels,roof junctions,bay counts,tracery,gables,dormers and gate decoration are approximations. Madonna mosaic and figurative sculpture are omitted with their recess preserved. No interiors,archaeological ruins,complete outer earthworks or landscape.
+- Bare-earth interpolation beneath occupied roofs does not establish floor elevations. Public composite data exact vintage/vertical accuracy is not asserted. Pole and crown working heights are estimated from the retained surface crop,not a surveyed tower height. Physical laptop/phone dense-view timings remain pending.
+- Source and medium-fi preview use retained relative terrain; shared geographic stage lowers only its isolated review plane to-16.4m so it cannot hide the lower ranges. Model placement remains unchanged. Preview terrain outside the bounded evidence clamps to grid edges and is not additional geographic evidence.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

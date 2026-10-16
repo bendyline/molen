@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_sandstone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.78,
+      "metallic": 0.3
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.3,
+      "metallic": 0.02
+    },
+    "metal": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.55,
+      "metallic": 0.45
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/st-giles-cathedral-model.mjs",
+    "export": "buildGilesSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGilesDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.3
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      },
+      "street": {
+        "export": "buildGilesStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.3
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGilesCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.78,
+            "metallic": 0.3
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.55,
+            "metallic": 0.45
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -100,
+      69,
+      95
+    ],
+    "lookAt": [
+      0,
+      22,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-giles-skyline",
+      "position": [
+        -100,
+        69,
+        95
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-giles-district",
+      "position": [
+        -100,
+        69,
+        95
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-giles-street",
+      "position": [
+        -100,
+        69,
+        95
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-giles-closeup",
+      "position": [
+        -100,
+        69,
+        95
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Pictures and retained axis agree; current render inspection pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 94.402203m; estimated common architectural floor 1.16m above it, with terrain-following foundations. Raw perimeter terrain spans -1.91..0.91m. West steps approximate a short street transition. Exact thresholds, absolute altitude, terrain cut/fill and certified walking are unverified; no terrain flattening or bespoke survey.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -3.190858255,
+        55.949465243
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 94.402203m; estimated common architectural floor 1.16m above it, with terrain-following foundations. Raw perimeter terrain spans -1.91..0.91m. West steps approximate a short street transition. Exact thresholds, absolute altitude, terrain cut/fill and certified walking are unverified; no terrain flattening or bespoke survey."
+    },
+    "bounds": [
+      -3.1916,
+      55.9491,
+      -3.1901,
+      55.94985
+    ],
+    "notes": "Standard DEM datum 94.402203m; estimated common architectural floor 1.16m above it, with terrain-following foundations. Raw perimeter terrain spans -1.91..0.91m. West steps approximate a short street transition. Exact thresholds, absolute altitude, terrain cut/fill and certified walking are unverified; no terrain flattening or bespoke survey."
+  },
+  "geographicNote": "Standard DEM datum 94.402203m; estimated common architectural floor 1.16m above it, with terrain-following foundations. Raw perimeter terrain spans -1.91..0.91m. West steps approximate a short street transition. Exact thresholds, absolute altitude, terrain cut/fill and certified walking are unverified; no terrain flattening or bespoke survey.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

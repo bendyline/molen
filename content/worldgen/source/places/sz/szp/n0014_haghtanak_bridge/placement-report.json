@@ -1,8 +1,8 @@
 {
   "format": "molen/structure-placement-report@1",
   "assetId": "molen.worldgen.structure.n0014_haghtanak_bridge",
-  "inputHash": "sha256:e6924dc73b907a4a42981282d59936f748fb4ac06ab2dd0f3d5d20f71ff5b4be",
-  "placementHash": "sha256:9f5c0bb3b003ea86e4cb5d2bda90abb34943416735a5f75544b6a9285ed88a5c",
+  "inputHash": "sha256:cfa7741fb58443b8afa302e62bd0de791a77d246d7b85eb989d056d0038a23be",
+  "placementHash": "sha256:5b2d1bcc58027548907a5481808285624e716421585a0579ec38283fa0b4b19e",
   "entry": {
     "id": "next1000.n0014",
     "title": "Haghtanak (Victory) Bridge",
@@ -19,11 +19,73 @@
       "wikidata": "Q2471370",
       "maxDistance": 80
     },
-    "replaceFootprint": true,
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -71,
+          -18
+        ],
+        [
+          71,
+          -18
+        ],
+        [
+          71,
+          18
+        ],
+        [
+          -71,
+          18
+        ]
+      ],
+      "basis": "Bounded under-bridge opening for coarse PMTiles gorge terrain; approximate visualization, no surveyed canyon."
+    },
+    "terrainReference": {
+      "anchor": [
+        44.498904684103884,
+        40.175441679155625
+      ],
+      "modelHeight": 34,
+      "basis": "Standard PMTiles western approach road contact; no surveyed datum."
+    },
+    "bounds": [
+      44.49865778671113,
+      40.17399788944946,
+      44.50083881328887,
+      40.17563411055054
+    ],
+    "replaceRoads": {
+      "length": 200,
+      "width": 30,
+      "outline": [
+        [
+          -100,
+          -15
+        ],
+        [
+          100,
+          -15
+        ],
+        [
+          100,
+          15
+        ],
+        [
+          -100,
+          15
+        ]
+      ],
+      "deckHeights": [
+        34,
+        34
+      ],
+      "includeConnectedApproaches": true
+    },
     "minLevel": 13,
     "status": "preview",
     "source": "https://www.openstreetmap.org/way/1164537616",
-    "note": "Named paired roadways, Armenian Wikipedia-linked bridge perimeter and city inventory establish identity and heading. Native lowest foundations use host gorge terrain; bank-contact heights require actual local terrain review. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
+    "note": "Inspected pictures confirm three main basalt arches, open spandrels, lattice iron railings and globe lamps. The retained mapped190×30m bridge outline and current standard viewer PMTiles named Victory Bridge roads establish the centre and southeast-facing native+X. Approximate nativebase929.3304m uses the western approach PMTiles sample963.3304m at road modelY34; the opposite approach differs1.4m. Coarse central terrain is about22m above that inferred base and does not resolve the lower gorge. A bounded ground opening below the interior bridge preserves visible vaults while the original PMTiles surroundings remain; this is an approximate visualization, not a surveyed canyon or road endpoint certification. The preview grades only a bounded under-bridge corridor to the inferred gorge base; raw terrain-review and pmtiles-fit samples remain preserved and this is not source bathymetry. Preview uses the host terrain sample at the authored base; ground slope, facade azimuth and final site fit remain review items."
   },
   "review": "Explicit authoring proposal; registration is not geographic or maximum-fidelity approval."
 }

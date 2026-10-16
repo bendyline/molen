@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-KL Tower’s parabolically tapered ribbed concrete shaft, rose muqarnas transition, widening bands of observation glazing, open sky deck, white stepped roof, transmitter galleries and red-white antenna above its mapped star-shaped lobby.
+Complete parabolic ribbed KL Tower with rose scalloped soffit, triangular framed observation glazing, open skydeck/two glass boxes, three transmitter galleries and421m antenna above exact mapped star lobby.
 
 ## Evidence and reconstruction
 
@@ -19,9 +19,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-91,444 triangles; 162,876 vertices; 7 material groups; 6,964,988 bytes. Native bounds: -29.924, 0.000, -29.885 to 29.922, 421.000, 29.882. Source hash: `sha256:d1f77e4dc4ef65c02170b840409c81707d17029e1124fcbb602719c0990298c0`.
+60,832 triangles; 116,328 vertices; 6 material groups; 4,921,560 bytes. Native bounds: -29.924, 0.000, -29.885 to 29.922, 421.000, 29.882. Source hash: `sha256:1dd774694cd6fb2d46bacc216fe507f5fa0a62f576614ce25d43f5501632ec77`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X east/southeast in mapped star frame","front":"+Z southwest arrival sector; exact doorway unverified","origin":"Ground-contact star-plan center; independent shaft center retained"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -31,7 +31,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0161` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Muqarnas cells, steel antenna bracing, individual glass bands and suspended transparent sky boxes with stairs, I beams and ties are explicit. Exact antenna equipment, box bearings within their verified ENE/SSW sectors, support dimensions and ornament pattern remain reconstructed; nearby pedestrian mall and forest are excluded.
+- Complete medium-fi tower comprises mapped star lobby, parabolic ribbed shaft, rose scalloped muqarnas soffit, five widening observation bands with triangular exterior frames, open sky deck and two suspended glass boxes, stepped roof, three transmitter galleries and open lattice/red-white antenna to421m. Original91444-triangle detailed recipe remains unchanged and reproducible. CIDB construction publication supplies24.5m ground diameter,13.6m upper diameter at261.6m,317.16m concrete end and86m antenna; observation276m/skydeck300m from current official tourism/operator information. Ring datums, exact facade/soffit pattern, roof profile, rib counts, skybox supports and fine equipment are reconstructed from primary construction and first-hand photographs. Box outward bearings64/196degrees carry6degree uncertainty and are not surveyed landmark centerlines. Ground lobby glazing is original reconstruction; exact tower door position is unverified, independent off-footprint main-entry node provides only southwest arrival-sector context. Separate parking complex, low pedestrian mall, rainforest, interior and basement are outside tower bundle. No copied photographs used as textures. Shared painted-metal rose finish approximates actual painted soffit. Glazing uses opaque PBR for office head and alpha PBR for skybox/guard; exact reflections, panel joints, nighttime lights and signs omitted. Actual hillside grade and physical-device performance unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

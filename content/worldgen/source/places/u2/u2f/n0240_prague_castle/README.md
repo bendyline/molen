@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Mapped castle complex with open second and third courtyards, St Vitus Cathedral and its unequal Gothic and Baroque towers, St George Basilica, royal palace ranges, Rosenberg and Lobkowicz palaces, Powder and Black towers and the small Golden Lane houses.
+Mapped castle complex with open second and third courtyards, St Vitus Cathedral and its unequal Gothic and Baroque towers, St George Basilica, royal palace ranges, Rosenberg and Lobkowicz palaces, Powder and Black towers and the small Golden Lane houses. Individually mapped Daliborka is restored.
 
 ## Evidence and reconstruction
 
@@ -22,11 +22,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-567,918 triangles; 1,142,800 vertices; 10 material groups; 47,961,476 bytes. Native bounds: -279.925, -0.080, -92.091 to 279.465, 99.300, 92.054. Source hash: `sha256:80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0`.
+63,809 triangles; 134,637 vertices; 8 material groups; 5,617,324 bytes. Native bounds: -279.231, -28.963, -91.804 to 279.226, 99.300, 91.805. Source hash: `sha256:4aefcfad8be943fa5be66dceb79bcee6ab530fdb5723789c59bbf40fe77d9bb9`.
 
-{"up":"+Y","longitudinal":"+X from western palace toward the eastern gate","front":"+Z toward the southern gardens","origin":"Cached OSM precinct center; provisional base datum"}
+{"up":"+Y","longitudinal":"+X from western palace toward the eastern gate","front":"+Z toward the southern gardens","origin":"Signed original map frame;Y0 Third Courtyard terrain reference. Relative Bpv grade, no forced absolute runtime elevation."}
 
-Draft geographic registration; original mapped meter frame retained. Cross-site heights and terrain contact must be checked before enabling automatic footprint replacement.
+Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.
 
 ## Reproduce
 
@@ -34,13 +34,14 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0240` (
 
 ## Pending work
 
-- Maximum exterior fidelity remains pending. Reconstructed exterior is not surveyed as-built geometry; smaller elevations, roof valleys, facade bay spacing and ground levels need verification.
-- Cathedral rose tracery, buttresses, portal carvings, saints, heraldic lion and Golden Gate mosaic are incomplete. Geometry indicates architectural form without claiming individually reproduced sculpture.
-- Golden Lane colors and roof profiles are approximate; its small houses and northern gallery use mapped plan positions. Daliborka and north-facing defensive details need additional source coverage.
-- No interiors, gardens, terrain hill, temporary scaffolding or copied photographs. Palace courtyard holes remain empty and require host terrain.
-- Canonical shared limestone, raw limestone, lime plaster, ceramic tile, slate, copper, painted metal, wood and granite graphs are reused; glazing is local PBR.
+- Original detailed source master47961476bytes/567918triangles remains exactly reproducible atsha256:80beee517c6a4c2b3e50ceea71e4e24d6270c97381b6f2b3d11533180f662ff0 from prague-castle-model.mjs#pragueStudy.build. A separate reviewed runtime source repairs grade/roof edges and supplies four authored browser levels.
+- Exact-Q193369 precinct relation3312247 establishes identity;299 individually retained occupied relations/ways preserve courtyard holes. Fresh coordinates match all298 original cached parts within0.0027m. Native+X bearing109.242deg points toward the eastern gate,+Z199.242deg toward southern gardens. Daliborka is separately registered by exact-Q3506740 relation3367848; White Tower/Black Tower identities remain distinct. Public Czech DMR5G bare-earth data establishes relative grade from the Third Courtyard reference[-114,29],256.749m Bpv. The eastern gate drops about13.4m in this photographic working reconstruction; adjacent retained open ground drops11.45m north of the gate and20.38m on the southern slope. Castle ranges use declared smooth/quarter-specific floor reconstructions rather than per-pixel roof warping; foundations extend into retained terrain. Under-building ground is not a floor survey. Whole-precinct replacement remains disabled. High-resolution host terrain is required for full contact; no absolute Bpv elevation is imposed at runtime.
+- Seven common lime plaster, limestone, wood, ceramic tile, slate, copper and painted-metal graphs plus opaque PBR glazing are shared. Carved/weathered stone and the small granite obelisk deliberately share limestone grain with component vertex tint; no model copies photographic textures. Skyline bakes common-graph linear means into one draw.
+- Exterior shapes, palace floor bands, roof pitches/valleys, façade bays, sculptural traces, house colors and lower defensive elevations are reconstructed medium-fi approximations. No interiors, copied photographs, exact saints/heraldic lion/Golden Gate mosaic, terrain hill or visitor furniture. Fine artwork is omitted. Daliborka20m total and Powder35m total follow map tags; architectural heights are not an as-built survey.
+- The bare-earth source is a publicF32 raster exported from2m DMR5G intoEPSG4326 and resampled onto a6m native grid. Values under buildings are ground interpolation. Acquisition date at this castle is unknown; source metadata spans2010–2025. Terrain fixture heights are relative verification evidence; physical laptop/phone timings remain unmeasured.
+- Skyline keeps court holes within0.45m, replaces some minor roof ridges by terracotta caps, omits hidden undersides and simplifies the tiny cross arms. District retains mapped court holes and major wings/churches/defensive houses; some ancillary bodies are deferred to street/close. Declared skyline7.5m and district5.5m reconstruction tolerances include outer-outline/roof clipping. These are recipe tolerances, not a surveyed accuracy guarantee.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

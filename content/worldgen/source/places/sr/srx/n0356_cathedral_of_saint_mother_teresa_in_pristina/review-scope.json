@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_granite",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    },
+    "metal": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.72,
+      "metallic": 0.35
+    },
+    "clock": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.88,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/pristina-cathedral-model.mjs",
+    "export": "buildPristinaSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPristinaDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildPristinaStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPristinaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.35
+          },
+          "clock": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      145,
+      103,
+      142
+    ],
+    "lookAt": [
+      0,
+      28,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-pristina-skyline",
+      "position": [
+        145,
+        103,
+        142
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-pristina-district",
+      "position": [
+        145,
+        103,
+        142
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-pristina-street",
+      "position": [
+        145,
+        103,
+        142
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-pristina-closeup",
+      "position": [
+        145,
+        103,
+        142
+      ],
+      "lookAt": [
+        0,
+        28,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Pictures and retained axis agree; current model render review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 585.753036m; estimated common church floor 1.8m clears sampled church/tower peak 1.433m. Foundations and low platform edge follow coarse terrain; front stairs are an estimated transition, not surveyed steps. Raw5m platform height retained but interpreted at common floor. Exact court/street/door thresholds, absolute altitude and certified walking unverified.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        21.159371609,
+        42.656365443
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 585.753036m; estimated common church floor 1.8m clears sampled church/tower peak 1.433m. Foundations and low platform edge follow coarse terrain; front stairs are an estimated transition, not surveyed steps. Raw5m platform height retained but interpreted at common floor. Exact court/street/door thresholds, absolute altitude and certified walking unverified."
+    },
+    "bounds": [
+      21.1585,
+      42.6558,
+      21.1602,
+      42.6572
+    ],
+    "notes": "Standard DEM datum 585.753036m; estimated common church floor 1.8m clears sampled church/tower peak 1.433m. Foundations and low platform edge follow coarse terrain; front stairs are an estimated transition, not surveyed steps. Raw5m platform height retained but interpreted at common floor. Exact court/street/door thresholds, absolute altitude and certified walking unverified."
+  },
+  "geographicNote": "Standard DEM datum 585.753036m; estimated common church floor 1.8m clears sampled church/tower peak 1.433m. Foundations and low platform edge follow coarse terrain; front stairs are an estimated transition, not surveyed steps. Raw5m platform height retained but interpreted at common floor. Exact court/street/door thresholds, absolute altitude and certified walking unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

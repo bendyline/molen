@@ -1,0 +1,341 @@
+{
+  "planId": "ritz_london",
+  "id": "ritz_london",
+  "assetId": "molen.worldgen.structure.ritz_london",
+  "title": "The Ritz Hotel, London",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.14151513576507568,
+    "latitude": 51.50700931620103
+  },
+  "size": [
+    78.59867858886719,
+    40.100000858306885,
+    43.39500045776367
+  ],
+  "actualBounds": {
+    "min": [
+      -35.77878952026367,
+      -2.4000000953674316,
+      -18.735000610351562
+    ],
+    "max": [
+      42.819889068603516,
+      37.70000076293945,
+      24.65999984741211
+    ]
+  },
+  "visualBrief": "Historic main hotel: open fifteen-axis Piccadilly arcade, stone facades, three mansard pavilions, copper roof ribs, five-bay Green Park end and lower Arlington entrance with canopy.",
+  "nativeAxes": {
+    "x": "southwest along Piccadilly toward Green Park",
+    "y": "up",
+    "z": "northwest toward Piccadilly"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fa%C3%A7ade_Ritz_Londres.jpg",
+    "https://commons.wikimedia.org/wiki/File:2017_The_Ritz_London.jpg"
+  ],
+  "stories": [
+    {
+      "id": "the-ritz-hotel-london-wp",
+      "url": "https://qualla.com/the-ritz-hotel-london/"
+    }
+  ],
+  "referenceInputHash": "32f527d3b67d8ebe5709f89231ecec913ddb5b0c7523bb03dc688f5d705b2142",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ritz-london.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ritz-london.mjs",
+    "level": "skyline",
+    "export": "ritzSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "membrane": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_copper",
+        "roughness": 0.65,
+        "metallic": 0.45
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "ritzDistrict",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.65,
+            "metallic": 0.45
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "ritzStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "membrane": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.65,
+            "metallic": 0.45
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Piccadilly sidewalk [0,24.8], independent terrain unchanged.",
+    "anchor": [
+      -0.14151513576507568,
+      51.50700931620103
+    ],
+    "heading": -2.4996485399285313,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.14172944649290783,
+        51.50718774904355
+      ],
+      "modelHeight": 0,
+      "basis": "Piccadilly sidewalk at the center arcade."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184398795638"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:4c5c3097af612ccbbf191504f13baa293cf4bee3136e0faf20773fc74954ca10",
+    "notes": "The map has no measured height. Original elevations and photographed window/storey proportions control approximate heights. The upper main block has a rear courtyard recess above the lower public rooms; the original Arlington entrance wing is lower. Later approved roof/Arlington extension changes are outside this dated model scope."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior of the historic main Ritz hotel, based on individually inspected local 2015–2017 photographs, original plans/elevations and Purcell 2021 condition survey. Later 22 Arlington extension and William Kent House are excluded.",
+    "Dated model scope does not claim to reproduce all current roof/construction changes. No temporary scaffolding, crowds, Christmas decorations or interiors.",
+    "Footprint is mapped; vertical dimensions, upper court geometry, rear windows, equipment and fine sculptural profiles are approximations. Main arcade remains open and rear court is not filled to full height.",
+    "Original simplified ironwork, stone balustrades and roof ornament; no copied photograph textures, hotel crest or exact lettering.",
+    "Independent terrain is unchanged. Deep foundation accommodates the rearward slope; exact contact can differ on another host DEM."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        26,
+        140
+      ],
+      "lookAt": [
+        0,
+        17,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -83,
+        65,
+        -102
+      ],
+      "lookAt": [
+        0,
+        14,
+        3
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54267,
+    "vertices": 162801,
+    "materials": 7,
+    "bytes": 6516212,
+    "sha256": "sha256:2cfffb531492dd64b2cff8710749e22438c76cafa82671b569f49e4366a44d27"
+  }
+}

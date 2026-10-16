@@ -21,7 +21,8 @@
       6
     ],
     "year": 1915,
-    "basis": "Kystverket2020 conservation planpp19–22 contains original1913 cast-plate/section drawings and cardinally labeled photographs; p28 dimensions machinery house10.4x6m and p29 shows horn/tanks. Official lighthouse list and museum give16.1m tower. Exact-QID node31289203, tower172893413 and mapped main entrance7453360612 establish position and azimuth."
+    "originalMasterHash": "sha256:70d8b60beafca96b1e923d2a7db8c3454ac967f11942912eb583f32b7261daba",
+    "basis": "Kystverket2020 conservation planpp19–22 and27–29:1913cast-plate details, current cardinally labeled exterior,10.4x6m machinery-house plan, north vestibule, south tanks and west roof horn. Exact-QID node and mapped main entrance independently sign tower yaw; attached-house polygon corroborates its south position and separate wall yaw."
   },
   "referencePages": [
     "https://www.kystverket.no/globalassets/om-kystverket/kystkultur/fyr/sorost/lindesnes-fyrstasjon_forvaltningsplan_14.-oktober-2020_red_sec_kort.pdf",
@@ -36,11 +37,16 @@
       7.0466733,
       57.9824978
     ],
-    "heading": -3.064754643641,
+    "heading": -3.0647546436407804,
     "elevationMode": "terrain-contact",
     "status": "preview-proposal",
-    "source": "https://www.openstreetmap.org/node/7453360612",
-    "notes": "Exact-QID node is the tower center. Measured vector to mapped main entrance fixes authored+Z north-slightly-west. Machinery house is independently rotated0.157rad to its mapped walls and extends south. Host terrain supplies the coastal rock contact."
+    "source": "https://www.kystverket.no/globalassets/om-kystverket/kystkultur/fyr/sorost/lindesnes-fyrstasjon_forvaltningsplan_14.-oktober-2020_red_sec_kort.pdf",
+    "notes": "+Y up; +Z doorway and stair toward mapped main entrance, bearing355.598degrees true. White machine house extends south(-Z); long walls have independent local yaw0.157rad, west roof horn at+X and paired tanks at-Z. Cardinally labeled operator2020 photos and plan independently choose the entrance, house, horn and tank quadrants. Map coordinates and entrance point establish identity and signed frame, not a survey. Circular tower diameter approximately6.3m agrees with original1913drawing and current OSM outline. Published10.4x6m house is retained despite approximately10.8x7m mapped outer rectangle including cladding/porch. House center/yaw match mapping to about0.2m/0.012degrees. North-side vestibule dimensions and all small fittings are photo/plan proportions. Structureheight16.1m is separate from lightfocalheight66.1m; base uses host terrain rather than a surveyed mean-sea-level offset. Natural headland and detached buildings excluded; footprint replacement stays off.",
+    "replaceFootprint": false,
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:e04100c79475138b8e5751877d3818d40ed55027f7bb5f8d378ec828b5be6090",
+    "mapGeometryLicense": "OSM map evidence ODbL1.0; Kystverket research illustrations retain their rights, not embedded.",
+    "attribution": "© OpenStreetMap contributors; Kystverket2020 conservation plan."
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -99,17 +105,204 @@
         7,
         -3
       ]
+    },
+    {
+      "name": "north-vestibule",
+      "position": [
+        -13,
+        5,
+        4
+      ],
+      "lookAt": [
+        -5,
+        1.8,
+        -3.6
+      ]
+    },
+    {
+      "name": "south-tanks-horn",
+      "position": [
+        -8,
+        5,
+        -22
+      ],
+      "lookAt": [
+        -1,
+        3.5,
+        -8
+      ]
+    },
+    {
+      "name": "gallery-bracket",
+      "position": [
+        5,
+        8.4,
+        6.5
+      ],
+      "lookAt": [
+        0,
+        8.4,
+        1.8
+      ]
     }
   ],
   "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
   "nativeAxes": {
     "up": "+Y",
     "front": "+Z",
-    "origin": "Authored main tower center at local base level; attached ensembles are offset from this origin."
+    "origin": "Tower concrete foot center,Y0host terrain contact; +Z doorway/steps toward mapped north-slightly-west entrance. House extends-Z south, with independently rotated E-W long walls and north-side vestibule."
   },
   "assetId": "molen.worldgen.structure.n0660_lindesnes_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "appearance": {
+    "identity": "White cast-iron taper, real pedimented openings, north stair, pierced gallery brackets, open red lower gallery, tall red watchroom/lantern, cleaning cage and four antenna posts; white machinery house with slate roof, north vestibule, west horn and paired south tanks.",
+    "master": "Original57082-triangle master remains reproducible in isolated export. Reviewed exterior adds the omitted machinery-house north vestibule shown on operator plan and photographs.",
+    "browser": "Separate regular-subdivision street/district recipes retain apertures, gallery brackets, roof, machinery-house vestibule, hollow horn, tanks and full height. Distant single-draw geometry will retain overall ensemble.",
+    "exclusions": "Dimensions other than published towerheight and10.4x6mhouse plan are photograph/drawing proportions. Tank/horn mounts, bracket and cleaning-cage spacing, window allocation and cladding/weathering are generalized. Interior optic/stairs, rocky headland, separate keeper houses, weather mast and old beacon ruin excluded. Map coordinates and entrance point establish identity and signed frame, not a survey. Circular tower diameter approximately6.3m agrees with original1913drawing and current OSM outline. Published10.4x6m house is retained despite approximately10.8x7m mapped outer rectangle including cladding/porch. House center/yaw match mapping to about0.2m/0.012degrees. North-side vestibule dimensions and all small fittings are photo/plan proportions. Structureheight16.1m is separate from lightfocalheight66.1m; base uses host terrain rather than a surveyed mean-sea-level offset. Natural headland and detached buildings excluded; footprint replacement stays off."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/lindesnes-detail-model.mjs",
+    "export": "buildLindesnesReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lindesnes-browser-model.mjs",
+    "export": "buildLindesnesSkyline",
+    "errorMeters": 0.45,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLindesnesDistrict",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "lap": {
+            "graph": "wood_painted_lap",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildLindesnesStreet",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "lap": {
+            "graph": "wood_painted_lap",
+            "slot": "wall",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "slate": {
+            "graph": "slate",
+            "slot": "roof",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "house-district",
+      "position": [
+        -13,
+        7,
+        -21
+      ],
+      "lookAt": [
+        -1,
+        3,
+        -8
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "gallery-street",
+      "position": [
+        5,
+        9,
+        7
+      ],
+      "lookAt": [
+        0,
+        8.4,
+        1.8
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -7.0864787101745605,
@@ -121,6 +314,13 @@
       16.100000381469727,
       6.041143894195557
     ]
+  },
+  "mesh": {
+    "triangles": 57234,
+    "vertices": 103456,
+    "materials": 7,
+    "bytes": 4415424,
+    "sha256": "sha256:8d6880739b5d22d5ad1a612e7f80e67e10105ec9ceb89d2c84781cbe6484b5d1"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

@@ -1,0 +1,318 @@
+{
+  "planId": "winchester_mystery_house",
+  "id": "winchester_mystery_house",
+  "assetId": "molen.worldgen.structure.winchester_mystery_house",
+  "title": "Winchester Mystery House",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -121.9511,
+    "latitude": 37.3184
+  },
+  "size": [
+    46.066720962524414,
+    17.099999248981476,
+    72.01957321166992
+  ],
+  "actualBounds": {
+    "min": [
+      -29.646787643432617,
+      -0.800000011920929,
+      -35.26957321166992
+    ],
+    "max": [
+      16.419933319091797,
+      16.299999237060547,
+      36.75
+    ]
+  },
+  "visualBrief": "Surviving mansion core with irregular red roofs, east cross-gables, open veranda, two round turrets, suspended door, roof towers, skylights and braced bell frame.",
+  "nativeAxes": {
+    "x": "north along the east facade",
+    "y": "up",
+    "z": "east toward the front garden"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Winchester_House_Front.jpg",
+    "https://commons.wikimedia.org/wiki/File:Red_Roofs_of_Winchester_Mystery_House_002.jpg"
+  ],
+  "stories": [
+    {
+      "id": "winchester-mystery-house-wk",
+      "url": "https://qualla.com/winchester-mystery-house/"
+    },
+    {
+      "id": "winchester-mystery-house-wp",
+      "url": "https://qualla.com/#list/9q9k/winchester-mystery-house-wp"
+    }
+  ],
+  "referenceInputHash": "508ee21b9ce98ff16de27d09073ff122ce77796b0e0a019ef82d4a0036207483",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-winchester-mystery-house.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-winchester-mystery-house.mjs",
+    "level": "skyline",
+    "export": "winchesterSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "shingle": {
+        "slot": "wall",
+        "graph": "wood_painted_shingle",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "shingle_cedar",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "winchesterDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "wall",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "winchesterStreet",
+        "errorMeters": 0.13,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "shingle": {
+            "slot": "wall",
+            "graph": "wood_painted_shingle",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "shingle_cedar",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Front garden contact [-8,38] outside the veranda; independent terrain remains unchanged.",
+    "anchor": [
+      -121.9511,
+      37.3184
+    ],
+    "heading": 1.5707963267948966,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -121.95067076910311,
+        37.318328135106
+      ],
+      "modelHeight": 0,
+      "basis": "Front garden approach outside the east veranda."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776571867606"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9c288a0b3b5caadadadbecbededccdcd44417c3d1df3a1a734b0d7d769d69613",
+    "notes": "The original combined estate rings are preserved. Model scope cuts the narrow north/south connections, retaining the mansion core, its two turrets and small open western light court. Roof segmentation and wing heights are photographic interpretations; footprint replacement remains off."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_shingle",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.shingle_cedar",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.75
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi mansion-core exterior based on individually inspected Qualla 2002–2019 images, museum 2018 aerial, rear view and 2023 estate map. It is not a measured survey.",
+    "Map data combines the mansion with connected estate buildings. Recorded editorial north/south cuts exclude stables, greenhouses, visitor buildings and their connecting wings; the full original footprint is preserved as evidence.",
+    "Main gables, turrets, veranda, suspended door and roof features follow inspected references. Individual hidden roof intersections, upper-floor positions, window spacing and ornament are approximate; no interior layout is reconstructed.",
+    "Scalloped shingles, stained glass and turned woodwork are original simplified cues. No reference-image pixels are embedded. Demolished seven-story tower, furnishings, gardens and vegetation are excluded.",
+    "Independent coarse terrain is preserved, with foundation extending below the reviewed contact datum. Another host DEM may produce different exact ground contact."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -7,
+        8,
+        85
+      ],
+      "lookAt": [
+        -7,
+        6,
+        24
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -65,
+        50,
+        -75
+      ],
+      "lookAt": [
+        -3,
+        5,
+        2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 23918,
+    "vertices": 71754,
+    "materials": 6,
+    "bytes": 2873896,
+    "sha256": "sha256:80bfae3b5f7cd0369e9afc04b0349f81af71ad266868689ba1fcc0f1c1e0dc8f"
+  }
+}

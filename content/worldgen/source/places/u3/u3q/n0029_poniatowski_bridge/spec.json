@@ -10,22 +10,22 @@
     "latitude": 52.23601,
     "longitude": 21.04141
   },
-  "visualBrief": "The present eight-span Warsaw river crossing: four N-truss outer spans and four rebuilt arch spans, seven ribs across, short central pier caps and four tall surviving stone pylons, eight distinct heraldic benches, four Renaissance bank towers and curved stairs, red fascia, ornate iron railings and twin tram tracks with overhead wires.",
+  "visualBrief": "Independent compact river bridge: mixed steel spans, seven cutwater piers, tall pylons, heraldic bench impressions, four Renaissance towers and curved stairs, iron rail, tram tracks and wires. Original detailed master preserved.",
   "size": [
-    531.1310729980469,
-    33.279998779296875,
-    54.89176559448242
+    531.0510559082031,
+    33.630001068115234,
+    54.8908805847168
   ],
   "actualBounds": {
     "min": [
-      -265.2669982910156,
+      -265.22698974609375,
       0,
-      -27.42510986328125
+      -27.424667358398438
     ],
     "max": [
-      265.86407470703125,
-      33.279998779296875,
-      27.466655731201172
+      265.8240661621094,
+      33.630001068115234,
+      27.46621322631836
     ]
   },
   "nativeAxes": {
@@ -57,7 +57,10 @@
     "bankTowers": 4,
     "survivingHeraldicBenches": 8,
     "openingYear": 1914,
-    "reconstructionYear": 1946
+    "reconstructionYear": 1946,
+    "originalMasterHash": "sha256:4e0c2325ac81067d951c5152835728ad267a33c3b268c4782ae345842eeff84e",
+    "originalMasterRecipe": "packages/worldgen/scripts/poniatowski-bridge-model.mjs#buildPoniatowski",
+    "reviewScope": "Original3326408-triangle282164988-byte master reproduced exactly. Independent browser source preserves silhouette and controls, simplifies dense rail casting, masonry and sculpture."
   },
   "reconstruction": {
     "mappedDeckLengthMeters": 503.74,
@@ -151,7 +154,7 @@
     ],
     "source": "https://www.openstreetmap.org/way/368095449",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:99795a916388bb2fe9defc2771784de290391abbb63da63aaecacffc03b737c6",
+    "mapGeometryHash": "sha256:2394b668417721137ce9b9f92ca5ec6e26c837c826bcbc559c6f5a32130b83f1",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "anchor": [
@@ -160,12 +163,12 @@
     ],
     "heading": 0.32341305173509954,
     "elevationMode": "sea-level",
-    "elevationMeters": 77,
+    "elevationMeters": 74.00625851005316,
     "bounds": [
-      21.03480237428841,
-      52.23344331863606,
-      21.047698715434045,
-      52.238509903999955
+      21.037193134028843,
+      52.2348792052499,
+      21.045307955693612,
+      52.237074161973055
     ],
     "replaceRoads": {
       "length": 503.74,
@@ -189,16 +192,50 @@
         ]
       ],
       "deckHeights": [
-        18.549999999999997,
-        17.480000000000004
-      ]
+        18.55,
+        17.48
+      ],
+      "includeConnectedApproaches": true
     },
-    "notes": "Directed current road axis and seven mapped pier footprints. The asymmetric road grade and bank bases follow independently preserved GUGiK NMPT/NMT in PL-EVRF2007-NH. Model origin 77.0 m is a declared river-adjacent reconstruction, about 0.17 m below sampled modeled water, not a measured underwater foundation. Host terrain must use this datum or convert elevations explicitly. The exact native deck polygon replaces only successfully loaded, covered bridge-road fragments; native endpoint heights join surrounding approaches while lower riverbank roads remain independent. The separate western approach viaduct is not included in this asset. Current terrain and road-context image review is required."
+    "notes": "Inspected current upstream bridge picture: four rebuilt central arches, outer N-trusses, red fascia, tall stone pylons and lower central caps. Retained directed OSM controls place the503.74m river deck, seven piers, four bank towers and curved stairs at their existing positions; published506.13m is a separate nominal definition. Standard viewer PMTiles confirms the Vistula crossing and bank context. Use coarse river-center74.0063m as approximate runtime origin; original77m engineering reconstruction and its native road profile remain preserved without a asserted datum conversion. Bounded river opening and source-local water/bank contacts remove coarse DEM imprint. Road deck levels and stair contacts are approximate; separate701m western approach, exact heraldry/casting, bathymetry and survey joins are excluded.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected current upstream bridge picture: four rebuilt central arches, outer N-trusses, red fascia, tall stone pylons and lower central caps. Retained directed OSM controls place the503.74m river deck, seven piers, four bank towers and curved stairs at their existing positions; published506.13m is a separate nominal definition. Standard viewer PMTiles confirms the Vistula crossing and bank context. Use coarse river-center74.0063m as approximate runtime origin; original77m engineering reconstruction and its native road profile remain preserved without a asserted datum conversion. Bounded river opening and source-local water/bank contacts remove coarse DEM imprint. Road deck levels and stair contacts are approximate; separate701m western approach, exact heraldry/casting, bathymetry and survey joins are excluded.",
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -251.87,
+          -12.4
+        ],
+        [
+          251.87,
+          -12.4
+        ],
+        [
+          251.87,
+          12.4
+        ],
+        [
+          -251.87,
+          12.4
+        ]
+      ],
+      "basis": "Bounded covered bridge strip removes DEM imprint below the complete mixed-span deck; approximate visual fit."
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
   "materialMethod": "Canonical shared material graphs with metric UV repeats and per-component vertex tints; separate transparent glazing; no model-specific bitmap textures.",
   "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
     {
       "ref": "matgraph:molen.worldgen.material.metal_painted",
       "slot": "trim",
@@ -218,15 +255,6 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.concrete_plain",
-      "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
-    {
       "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
       "slot": "wall",
       "uv": "repeats",
@@ -237,13 +265,202 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Present mixed arch/N-truss river crossing with red fascia and Renaissance bank towers.",
+    "exclusions": "Separate western approach viaduct, exact heraldic sculpting, cadastral and fabrication detail."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/poniatowski-browser-model.mjs",
+    "export": "buildPoniatowskiCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/poniatowski-browser-model.mjs",
+    "export": "buildPoniatowskiSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPoniatowskiDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildPoniatowskiStreet",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPoniatowskiCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.63,
+            "metallic": 0.35
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rawlimestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-poniatowski-skyline",
+      "position": [
+        370,
+        145,
+        310
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-poniatowski-district",
+      "position": [
+        370,
+        145,
+        310
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-poniatowski-street",
+      "position": [
+        370,
+        145,
+        310
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-poniatowski-closeup",
+      "position": [
+        370,
+        145,
+        310
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
-    "GUGiK NMT/NMPT fixes current road and bank elevations; bearings hidden beneath the deck remain photograph-based. Runtime terrain and approach captures are required before geographic approval.",
-    "The separate 701m western approach viaduct lies outside this river-bridge asset.",
-    "Current steel section thicknesses, connection schedules and tower elevations are photograph-based reconstructions, not fabrication or conservation survey dimensions.",
-    "Detailed reliefs depict the eight surviving heraldic subjects; carving depths and stair sections are original photographic reconstructions, not scans."
+    "Inspected current upstream bridge picture: four rebuilt central arches, outer N-trusses, red fascia, tall stone pylons and lower central caps. Retained directed OSM controls place the503.74m river deck, seven piers, four bank towers and curved stairs at their existing positions; published506.13m is a separate nominal definition. Standard viewer PMTiles confirms the Vistula crossing and bank context. Use coarse river-center74.0063m as approximate runtime origin; original77m engineering reconstruction and its native road profile remain preserved without a asserted datum conversion. Bounded river opening and source-local water/bank contacts remove coarse DEM imprint. Road deck levels and stair contacts are approximate; separate701m western approach, exact heraldry/casting, bathymetry and survey joins are excluded.",
+    "Four shared material graphs reused; silhouette level bakes their means. Closer levels restore seven ribs, ornate rail impressions, windows, crown crests, stairs and shield benches. Exact emblems, curls, individual stone joints and rivets remain in the original master. No new bespoke terrain research. Physical-device timings unmeasured."
   ],
   "qaCameras": [
     {
@@ -473,10 +690,10 @@
   },
   "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
   "mesh": {
-    "triangles": 3326408,
-    "vertices": 6729012,
-    "materials": 6,
-    "bytes": 282164988,
-    "sha256": "sha256:4e0c2325ac81067d951c5152835728ad267a33c3b268c4782ae345842eeff84e"
+    "triangles": 63380,
+    "vertices": 190140,
+    "materials": 5,
+    "bytes": 7608880,
+    "sha256": "sha256:8d08cd0f4c7e56683b6d545d0840c29ea3b86fe2cf2cd71e481cb15eeaf2191c"
   }
 }

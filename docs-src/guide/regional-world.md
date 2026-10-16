@@ -1,0 +1,387 @@
+# Regional plants, wildlife, ground, and ordinary buildings
+
+Earth content has three independent regional channels. Ecological geography selects vegetation
+and ground palettes. Architectural geography selects building recipes. Wildlife combines ecology,
+native-country limits, and mapped habitat. They share composable content packs and bounded
+quality settings; plants/buildings use deterministic tile generation, while animals use a
+separate deterministic population and movement loop.
+Mapped land cover, building use, footprints, and measurements remain the local evidence.
+
+## Content and downloads
+
+| Pack | Regional content | Role |
+| --- | --- | --- |
+| `molen.ecology` | Ecological atlas, plant presets, habitat profiles | `ecology-atlas`, `regional-catalog` |
+| `molen.wildlife` | Procedural animals, habitat populations, attributed native-country limits | `wildlife-ranges`, `regional-catalog` |
+| `molen.earth` | Architectural region outlines | `atlas` |
+| `molen.worldgen.default` | Architectural profiles, archstyles, shared materials | `regional-catalog`, `stylepack` |
+
+`openPacksFromIndex` includes ecology and wildlife among the default Earth pack IDs. Hosts still supply the
+index URL and opened packs; the kernel never fetches data. `loadEarthContent` discovers regional
+catalogs across those packs, validates references, and passes plain documents to the worker.
+An architecture-only catalog works without an ecological atlas. A catalog scoped to a different
+style pack is omitted, so a custom style pack can retain the ecological content.
+
+The ecological atlas and catalog total about 169 KB gzip (173 KB as a content pack). Its 264 procedural plant presets need no
+GLB downloads. The architectural atlas is about 313 KB gzip; ordinary regional recipes are small
+JSON files using the default pack's shared material graphs. Authored landmark GLBs continue to
+use the existing geographically sharded, lazy model archives.
+
+## Geographic evidence
+
+The ecological atlas derives from [RESOLVE Ecoregions 2017](https://developers.google.com/earth-engine/datasets/catalog/RESOLVE_ECOREGIONS_2017)
+under CC-BY-4.0. It uses a quarter-degree grid with run-length encoded rows. Metadata retains 847
+source entries, including rock and ice; 843 appear in the reduced grid. Small islands use
+intersecting land polygons when a cell center misses land. Four very small source regions fall
+below this resolution. This describes potential habitat, not current vegetation or species
+observations. Actual local land cover controls whether a plant can be placed.
+
+Architectural envelopes derive from [Natural Earth 1:50m country outlines](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/),
+which are [public domain](https://www.naturalearthdata.com/about/terms-of-use/). Exterior rings are
+simplified at 0.02 degrees and coordinates rounded to 0.001 degrees. The shipped atlas groups 241
+country/territory features into 53 broad envelopes, retaining the Pacific Northwest and US
+Southwest subregions. Exact containment wins; an optional nearest-outline fallback fills
+otherwise unclassified coastal gaps within 2.5 km in local world coordinates. These envelopes
+are visual priors, not building-style surveys or a political boundary service.
+
+Ecological lookup uses a separate grid, so a national border does not move a forest. Each plant
+candidate and each building centroid resolves its own profile. Ground meshes sample regional
+palettes at vertices, and worker-generated surfaces use the same samples. Uncovered ecological
+cells are visible in generation diagnostics and do not receive invented wild vegetation.
+
+Bare and distant terrain receives the same ecological ground palette before detailed map
+surfaces arrive. `createRegionalGroundColor` supplies the terrain stream's optional
+`surfaceColor` callback; it runs before upload for both worker-prepared and local meshes and
+returns linear RGB. An explicit host `style.ground` palette takes precedence in `mountEarthView`.
+Nature-reserve, national-park and protected-area designations retain their protection metadata,
+but do not paint over the physical habitat beneath them. With no mapped physical cover, sparse
+open-ground planting remains a prior, rather than inferred forest or a wildlife-presence claim.
+
+## Composable catalogs
+
+`molen/regional-catalog@1` contains `profiles`, `scatters`, optional `plants`, `animals`, `populations`, and exact-version
+`requires`. The `overrides` list names items intentionally replaced from required catalogs.
+Load order has no effect. Missing dependencies, accidental ID collisions, unused overrides,
+missing references, and equal-priority overlapping profiles in the same channel are errors.
+
+A profile matches any listed value within a dimension and all specified dimensions together:
+`biomes`, `realms`, `ecoregions`, and architectural atlas `regions`. Higher `priority` wins
+independently for `scatter`, `buildings`, and `wildlife`. A botanical module can refine the vegetation without
+changing buildings; a city architecture module can refine buildings without rearranging plants.
+Architecture catalogs may name `stylePack`, matching the resolved style pack's `name` identity
+(the default is `molen-worldgen-default`, distinct from its content-pack ID).
+
+Use the registered schemas through `molen schema get regional-catalog` and
+`molen schema get ecology-atlas`. The low-level API accepts already-loaded data:
+
+```ts
+import {
+  createRegionalEnvironment,
+  createRegionalLibrary,
+} from '@bendyline/molen-worldgen-earth/kernel';
+
+// Validate dependencies and architectural references against the host's resolved pack.
+const library = createRegionalLibrary(catalogs, pack);
+const environment = createRegionalEnvironment(
+  { atlas: ecologicalAtlas, catalogs: [...library.catalogs] },
+  metersPerUnit,
+  architecturalRegionResolver,
+);
+const selection = environment.at(worldX, worldZ);
+```
+
+Pass this environment to the Earth tile adapter/renderer; pass its `docs` to the corresponding
+worker bridge. The worker and renderer must use the same documents. `ModelLibrary` accepts the
+environment's `library.plants` as its fourth constructor argument (including any derived seasonal
+variants). Geometry is cached separately by preset
+and LOD, and released when its last consumer drops it. Content hashes include regional documents;
+placement seeds stay tied to individual scatter IDs/versions rather than unrelated catalogs.
+
+## Plant and building selection
+
+The plant families cover broadleaf, conifer, palm, cactus, succulent, bamboo, banana, grass, fern, reed,
+mangrove, deadwood, shrub, thicket, forb, vine, mat, and fallen-wood silhouettes. Habitats combine canopy, understory, ground cover, open land,
+parks, orchards, and wetlands. Regional refinements keep American cacti out of Old World wild
+desert profiles and avoid applying Australian eucalyptus profiles to New Zealand.
+
+Each of the 78 plant forms has a base, spreading, and slender preset, available in
+every applicable habitat and crop rule. Optional `shapeSeed` varies branch/frond arrangements,
+crown contours and stem profiles independently of the placement seed. Dimensions, crown height,
+trunk lean and restrained foliage tones also vary; these are visual forms, not additional taxa.
+All 19 procedural families share the existing near/medium/far triangle limits.
+
+### Brush and ground coverage
+
+Shrubs and thickets have multiple stems and foliage at several heights. Grass and reed `patch`
+recipes contain five tussocks with seed heads; fern colonies contain three overlapping plants.
+Herb patches, trailing ground vines, low moss/litter mats, fallen trunks and small trees fill the
+space below the canopy. Humid tropical `climber` recipes add vines around their own generated
+trunk and hanging from their branches. They do not attach to arbitrary mapped trees or buildings.
+
+Natural forest, wood, scrub and heath receive an `understory` scatter layer. Open grassland and
+savanna receive sparser brush. Cultivated polygons, parks, gardens and residential land do not
+receive wild overgrowth from these rules. Explicit wetland labels permit sedge patches; desert
+profiles retain sparse dry forms and never acquire humid forest plants.
+
+The optional clustering `sharedSeed` coordinates broad patches across vegetation layers while
+keeping each rule's placements independent. `detailScale` adds smaller clumps and gaps inside
+those patches. These are deterministic visual density fields, not a simulation of individual
+plants competing for sunlight or measured local occupancy. Low vegetation uses smaller path and
+building clearances than trees; road surfaces, buildings and water remain excluded.
+
+Earth tiles reserve `maxUnderstoryInstances` / `maxUnderstoryModels` separately from canopy and
+groundcover. At the finest level, Economy allows 450 brush instances/two models, Balanced
+1,600/three, and High 2,400/four. One coarser level retains 80/250/400 instances respectively;
+coarser levels omit brush. Existing groundcover instance caps stay at 0/5,000/8,000, with
+0/five/seven model slots. Economy keeps simplified shrub masses while omitting fine blades and
+litter. These are per-tile limits, not whole-scene frame-rate guarantees.
+
+The brush milestone's 234 recipes produce 324 appearances including deciduous seasons. All geometry
+is generated and shared by recipe and LOD; the brush expansion adds about 25 KB to the compressed
+ecology pack and no GLB downloads. Reproduce comparison captures with
+`node content/ecology/source/preview-regions.mjs --brush` and
+`node content/ecology/source/preview-diversity.mjs --brush` in the engine repository.
+
+Scatter populations can supply weighted `variants: [{ model, weight }]`. The parent `model`
+is their interchangeable fallback and its `weight` still controls species proportions. Variant
+selection uses an independent random stream, keeping positions, density, crop rows and ordinary
+quality thinning intact. A tile reserves a base form for each retained species before admitting
+extra variants into spare model slots. Unretained forms use that base instead of disappearing;
+Economy and distant views therefore show fewer forms without increasing draw limits. Variant
+recipes must be suitable for the same habitat and placement-scale bounds as their parent.
+
+Mapped trees preserve source `species`, `genus`, `leafType`, `height`, and `crownDiameter` when
+available. Exact species names take precedence over genus names; preset `taxa` names match
+case-insensitively. These choose a representative silhouette, not a botanically exact specimen.
+Observed trees may be planted outside their native habitat. Unknown trees use compatible local
+park-tree populations, with the legacy measured broadleaf/conifer form as a fallback. Crown
+width and height scale independently to source measurements.
+
+Observed land-cover `crop`, `trees`, and `irrigated` tags survive semantic decoding. Supported
+crop tags select olive, date palm, coconut, oil palm, coffee, tea, banana, rubber, and grapevine
+forms. Untyped orchards use a regional fruit-tree prior. `rows` on a scatter rule specifies
+between-row `spacing`, along-row `interval`, `angle` in degrees, and bounded `jitter`. Rows share
+the global placement grid across tile boundaries and retain nested quality subsets; density can
+thin the grid but cannot overfill it. The default row bearing is an inferred presentation choice,
+not a surveyed field orientation. Crops are confined to mapped cultivated polygons or explicit
+crop tags; bare desert does not imply an irrigated oasis.
+
+Scatter rules may require `nearWater: { maxDistance, classes? }`. This gates placement against
+mapped water at the exclusion raster's resolution; it does not infer groundwater or tides.
+Water polygons preserve dry island holes. Mangroves in an ecological coastal envelope require
+nearby mapped water for generic forest/scrub, or mapped wetland/mangrove land cover. Riparian
+populations use mapped river/lake proximity and gentler slopes. Missing water data can therefore
+underpopulate a real habitat instead of planting wetland trees far inland.
+
+## Seasonal appearance
+
+`mountEarthView` and `createEarthWorldgen` accept `vegetationMonth: 1..12`. The equivalent low-level
+setting lives in `RegionalEnvironmentDocs` and is passed unchanged to workers and cache keys.
+Omitting it keeps neutral leaf-on appearance. The World Explorer freezes the current UTC month
+for its mount; `?month=1..12` selects a repeatable month and `?month=0` disables the seasonal cycle.
+
+Only presets with explicit deciduous `phenology` change. Derived spring and autumn colors and
+bare winter branching keep the same mature dimensions, instance positions, individual variation,
+and placement seeds. The coarse calendar reverses the southern hemisphere and extends dormancy
+at high latitudes. Tropical locations stay leaf-on; evergreen plants do not become bare. This
+does not infer local weather, snow, tropical wet/dry seasons, crop harvest dates, or climate change.
+Remount with another month to change appearance.
+
+The ordinary architectural catalog supplies 273 recipes across 13 construction families and seven
+uses: detached homes, attached homes, apartments, commercial, civic, industrial, and farm
+buildings. Mapped use wins over neighborhood inference. Taller measured residential buildings
+select compatible apartment recipes; source footprint, height, and levels still control the
+generated geometry. Named precedents from the 120-entry structure library remain available
+explicitly. Without evidence of age, the ordinary catalog does not randomly assign an iconic
+historic building type to an untyped home.
+Each family/use has three weighted recipes: base, compact facade, and open facade. Stable building
+identity selects their window/bay rhythm, roof weighting, eaves, parapets and supported facade
+details. The facade names do not resize the mapped building. Explicit original recipe IDs remain
+available, and identity-free selection keeps the base recipe.
+
+Near-detail ordinary facades include a bounded single, double, or service entrance. The inferred
+entrance fits an eligible exterior wall, reserves a ground-floor window bay, and yields to known
+structural openings, open ground floors, and raised buildings. It is a visual entrance; it does
+not create a traversable opening or claim a surveyed door position. Industrial and farm recipes
+also include high windows and larger service doors.
+
+## Agricultural land use
+
+All 36 habitat profiles supply an independent `agriculture` channel, refined by ten worldwide
+agricultural overrides (including the Corn Belt, Cerrado/Pampas and Indus/Gangetic plains). It activates only on
+mapped or retrieved farmland, cropland, orchards, vineyards, plantations and pasture. Climate
+alone never turns natural habitat into a farm. Ordinary farmland receives agricultural
+appearance from the ecology pack without another download.
+
+The 22 crop recipes cover maize, soybean, small cereals, rice, cotton, sugarcane, sunflower,
+rapeseed, root vegetables, sorghum; olive, fruit, date, coconut, oil-palm, coffee, tea, banana,
+rubber and grape cultivation; and pasture/fallow surfaces. Ten annual forms each have three
+procedural variants. The complete catalog now has 264 plant recipes and 474 appearances with
+crop stages and deciduous seasons. Several source tags share a visual recipe: wheat, barley
+and rye use the small-cereal model. Preserve the source `crop` tag when presenting observations;
+`cultivation.crop` identifies a rendering recipe.
+
+Selection uses explicit `crop`/`trees` tags first, then a sufficiently confident retrieved crop,
+then a deterministic regional mixture. Iowa's temperate mixture favors maize and soybeans;
+Mediterranean profiles include olives and vines, Asian profiles include rice, and tropical
+profiles include cane and plantation forms. These mixtures are authored visual priors, not
+acreage statistics or a claim about this year's crop. The current Protomaps basemap collapses
+some agricultural classes to farmland and does not generally retain crop tags, so inference
+remains important even where field outlines are mapped.
+
+The pure `prepareAgricultureTile` adapter derives matching surface and scatter parameters in
+workers and the renderer. It retains holes, rejects roads/buildings/water and steep slopes,
+reserves headlands, aligns plants to world-anchored rows, and excludes competing wild brush
+inside cultivated fields. Known field identifiers retain their variation across clipping;
+a supplied full-field anchor also stabilizes regional selection. Unnamed polygons are divided
+on a fixed projected grid, clipped to agricultural land. These visual divisions are not surveyed
+parcels. Derived `cultivation` metadata records recipe, `mapped`/`classified`/`inferred` evidence,
+source, observation year where known, growth stage and row angle.
+
+Near views instance bounded plant patches and orchard trees. Distant views retain soil/crop
+bands through an antialiased procedural shader without downloading textures or drawing each
+plant. Agriculture has a separate instance/model budget: finest-level Economy 500/2, Balanced
+3,500/5 and High 6,500/8. Annual patches disappear at medium detail; Economy uses their surface
+patterns. Both WebGL and node-material paths consume the same field attributes, including
+worker-built landcover. Custom ground materials must opt into `{ agriculture: true }` and use
+landcover geometry's attributes; use a separate material for bare elevation meshes.
+
+An explicit vegetation month selects sown, growing, mature, ripe or stubble appearances; the
+default is mature. Coarse authored calendars shift six months in the southern hemisphere.
+Tropical crops stay mature without a source calendar. Retrieved sowing/harvest months are
+absolute calendar months and override that shift. This is illustrative growth, not a crop
+rotation, weather, irrigation or multiple-cropping simulation. Mapped barns, sheds, stables
+and generic buildings inside mapped farmyards select the regional farm architecture. A field
+never invents a building footprint.
+
+### Optional global retrieval
+
+A terrain package may declare a compact `agriculture` source:
+
+```json
+{
+  "urlTemplate": "https://your-host.example/agriculture/worldcover-2021-v1/{z}/{x}/{y}.json",
+  "level": 10,
+  "source": "esa-worldcover-2021-v200",
+  "year": 2021,
+  "maxTileBytes": 131072
+}
+```
+
+This is a hosting example, not a deployed release. Earth View and World Explorer consume it
+automatically for geospatial XYZ packages, after overzooming and joining semantic archives.
+They share up to 32 parent-grid requests between visual layers, bound uncompressed responses,
+validate coordinates/provenance and retain the basemap on missing or failed requests. Hydrology
+does not request agricultural data. Add the source's license and attribution to the terrain
+package; large source rasters stay outside ecology content packs.
+
+`molen/agriculture-grid@1` uses a small palette and row-major `[count, paletteIndex]` runs.
+Index zero is unknown/non-crop; a positive entry without a crop supplies only agricultural
+extent. Optional crop, source confidence, irrigation and calendar information refine appearance.
+Cells supplement missing land use; mapped surfaces and explicit crops take precedence.
+Area-weighted majority observations refine untagged farmland while retaining mapped outlines.
+At most 256 additional polygons are admitted per semantic tile.
+
+The sibling Qualla repository's `pipeline/agriculture/` compiler reads range-addressable
+[ESA WorldCover 2021 v200](https://esa-worldcover.org/en/data-access) COG windows and reduces
+cropland class 40 to conservative sampled-majority cells. Its default is 64×64 cells per level-10
+tile: about 612 projected meters per cell, with smaller ground distances toward the poles.
+It supports every continent and bounded resumable shards. Source URLs, recipe/payload hashes,
+year, attribution and exact covered tile inventory accompany each dataset. A partial shard
+is never advertised as global coverage.
+
+Optional categorical COG adapters support global
+[WorldCereal 2021 products](https://esa-worldcereal.org/en/products/global-maps), including maize
+and spring/winter cereals, and regional refinements. WorldCereal's cereal class is not a specific
+wheat observation. Raw classification rasters are required; colored map previews are unsuitable.
+The checked six-continent WorldCover sample is historical extent data, not crop-type evidence.
+Production hosting and larger geographic builds are separate Qualla release operations.
+
+`preview-agriculture.mjs` captures controlled six-region farm compositions, growth stages,
+inference, near/far views and shader paths. `preview-diversity.mjs --agriculture` builds real GLB
+review assets and exercises public import, inspection, simulation and capture APIs. Fixtures
+are labeled separately from observations; inspect live terrain before claiming local accuracy.
+
+## Wildlife and habitat sound
+
+The optional `molen.wildlife` pack adds an independent `wildlife` profile channel, `animals`, and
+`populations` to regional catalogs. It depends on `molen.ecology.regional@1`; opening packs in a
+different order does not change selection. Earth and World Explorer load it by default when it
+is in the host's pack index. `ambient: { wildlife: false }` disables animals in `mountEarthView`;
+World Explorer accepts `?wildlife=0`. Frozen captures retain the existing ambient opt-in rule.
+
+The catalog has 90 recipes: three adult body/coat forms for each of 21 named mammal taxa and nine
+functional bird, reptile, fish, and insect groups. These are modest visual variations, not claims
+about sex, age or subspecies. Each trio shares habitat/range/season gates and divides the previous
+visual density equally; total expected abundance and population caps stay unchanged. Mammal country membership comes from Mammal Diversity Database v2.5 under
+CC BY 4.0. A quarter-degree Natural Earth map-unit grid preserves overseas territory distinctions.
+The range document compresses to about 30 KB; the recipe catalog adds about 6 KB (40 KB as a content pack). No animal GLBs
+are downloaded. Source hashes, transformations, licenses, and limitations ship in the pack.
+
+Country membership is a coarse limit, not within-country occupancy. Named taxa require an
+attributed range plus compatible biome/realm and actual mapped land cover. Recent introduced
+populations and uncertain country memberships are omitted. Large/rare mammals also require
+explicit mapped conservation habitat, and water-dependent animals require mapped nearby water.
+An uncovered range cell cannot authorize a named mammal. Unnamed functional groups deliberately
+make no precise species claim. These choices and visual densities are authored priors, not a census.
+
+Wildlife reads the finest displayed land-cover and human-feature tiles. Unknown terrain, built
+areas, roads, buildings, water inappropriate to the animal, and steep slopes reject placement.
+Island/courtyard holes remain usable. Swimming animals share the rendered water datum; flight
+uses a bounded clearance. The 20 Hz kernel uses stable world-grid candidates, independent seeds,
+plain restorable state, bounded wandering, and path substeps. Population, distance and pose caps
+follow Earth quality. Models share recipe geometry, use one opaque skinned draw per animal, and
+dispose with the terrain stream. Tiny animals disappear at short distances.
+
+An explicit vegetation month also suppresses the generic insect/lizard groups in the coarse
+cold season and changes the arctic-fox coat. It does not simulate migration or actual weather.
+Existing generic birdsong and cricket recordings are gated by regional habitat and season, then
+by weather, daylight and height above ground. They are not recordings of the named visual taxa.
+Hosts composing their own view can supply `EarthAudioFrame.regionalAmbience` or use
+`EarthWildlife.ambience`; omission preserves the legacy generic soundscape.
+
+## Authoring and verification in this repository
+
+The authoring source is in `content/ecology/source/`. Run `build-catalog.mjs` for plants/habitats
+and `build-architecture.mjs` for regional archstyles and bindings; both support `--check`.
+`packages/worldgen-earth/scripts/generate-structure-atlas.mjs` derives the runtime architectural
+atlas from the checked-in reduced country data and geographic assignments.
+
+Large upstream geography stays outside runtime packs. The Python converters under
+`packages/worldgen-earth/scripts/` accept an explicitly supplied source ZIP and use the pinned
+authoring requirements there. Source URLs, hashes, licenses, and reduction methods travel with
+the data or its notice. Regeneration does not require downloading the upstream datasets during
+ordinary builds.
+
+`content/wildlife/source/build-catalog.mjs` builds the animal recipes and supports `--check`.
+`build-wildlife-ranges.py` takes explicit, checksum-pinned MDD CSV, metadata CSV and Natural Earth
+map-unit ZIP inputs. `content/wildlife/source/preview-animals.mjs` imports, inspects and captures
+procedural bind poses through the public asset pipeline; it does not verify live animation.
+
+`preview-plants.mjs`, `preview-regions.mjs`, and `preview-architecture.mjs` produce local review
+artifacts. Landscape fixtures exercise the real scatter adapter but bake placements for portable
+capture; they do not measure live instancing performance. Review real streamed locations as well
+as fixtures, including camera movement, terrain slopes, boundaries, and quality changes. Follow
+the [medium-fi style guide](medium-fi.md) for geometry, color, and LOD budgets.
+
+`preview-live-viewer.mjs` accepts a local terrain package and geographic camera position, captures
+the streamed Explorer in fixed daylight, and records loading failures, draw/geometry counts,
+wildlife counts, and measured frame intervals. `profile-live-tile.mjs` separates scatter and
+building CPU costs on real decoded map tiles. `preview-mounted-viewer.mjs` exercises the public
+`mountEarthView` API through orbit, walking, driving and flight. Browser measurements describe
+the reviewing machine; they are not portable device performance guarantees. The reusable terrain
+extract builder accepts an explicit source release, bounds, package name and snapshot date, so
+these small local QA extracts retain their own provenance.
+
+`content/wildlife/source/preview-motion.mjs` captures changing skinned poses from the actual
+wildlife renderer and deterministic movement system. It complements the static asset previews.
+After completing those captures, `content/ecology/source/build-review-gallery.mjs` assembles a
+searchable local gallery at `.artifacts/regional-world/review.html`, with separate live terrain,
+controlled landscapes, building families, wildlife poses, and public API camera modes. It retains
+the known visual limitations beside the evidence rather than treating successful capture as
+art approval.
+
+Fine habitat transitions, richer wildlife behavior/body variation, and detailed city/rural
+architectural overrides need finer evidence and additional authored content. The repository's
+`content/ecology/coverage-plan.json` records implementation, acceptance evidence, and these
+remaining fidelity limits.

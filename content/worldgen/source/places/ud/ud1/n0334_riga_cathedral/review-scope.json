@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.64,
+      "metallic": 0.27
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "bronze": {
+      "slot": "trim",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.68,
+      "metallic": 0.5
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.05
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/riga-cathedral-model.mjs",
+    "export": "buildRigaSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildRigaDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.64,
+            "metallic": 0.27
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "buildRigaStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.64,
+            "metallic": 0.27
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildRigaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.64,
+            "metallic": 0.27
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.68,
+            "metallic": 0.5
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -138,
+      112,
+      -152
+    ],
+    "lookAt": [
+      -4,
+      34,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-riga-skyline",
+      "position": [
+        -138,
+        112,
+        -152
+      ],
+      "lookAt": [
+        -4,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-riga-district",
+      "position": [
+        -138,
+        112,
+        -152
+      ],
+      "lookAt": [
+        -4,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-riga-street",
+      "position": [
+        -138,
+        112,
+        -152
+      ],
+      "lookAt": [
+        -4,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-riga-closeup",
+      "position": [
+        -138,
+        112,
+        -152
+      ],
+      "lookAt": [
+        -4,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate exterior and standard terrain fit; exact thresholds and low eastern nominal heights remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        24.104849705,
+        56.949090248
+      ],
+      "modelHeight": 0,
+      "basis": "Individual cathedral exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows14.348894m standardDEM;1.6m estimated floor clears coarse perimeter−0.23..1.07m. Foundation/plaza/doorstep joins remain approximate; no surveyed floors or certified pedestrian collision."
+    },
+    "bounds": [
+      24.1036,
+      56.9485,
+      24.1062,
+      56.9497
+    ],
+    "notes": "Individual cathedral exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows14.348894m standardDEM;1.6m estimated floor clears coarse perimeter−0.23..1.07m. Foundation/plaza/doorstep joins remain approximate; no surveyed floors or certified pedestrian collision.",
+    "groundContactBasis": "Individual cathedral exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows14.348894m standardDEM;1.6m estimated floor clears coarse perimeter−0.23..1.07m. Foundation/plaza/doorstep joins remain approximate; no surveyed floors or certified pedestrian collision."
+  },
+  "geographicNote": "Individual cathedral exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows14.348894m standardDEM;1.6m estimated floor clears coarse perimeter−0.23..1.07m. Foundation/plaza/doorstep joins remain approximate; no surveyed floors or certified pedestrian collision.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

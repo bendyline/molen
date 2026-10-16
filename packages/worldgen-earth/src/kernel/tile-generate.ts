@@ -30,6 +30,7 @@ export interface WorldgenTileOutput extends WorldgenBatchOutput {
   generationMs?: number;
   regionId?: string;
   scatterId?: string;
+  regional?: SemanticBatch['regional'];
   skippedByOwnership: number;
   clippedPieces: number;
 }
@@ -51,6 +52,7 @@ function finish(batch: SemanticBatch, output: WorldgenBatchOutput): WorldgenTile
     ...output,
     ...(batch.regionId !== undefined ? { regionId: batch.regionId } : {}),
     ...(batch.scatterId !== undefined ? { scatterId: batch.scatterId } : {}),
+    ...(batch.regional !== undefined ? { regional: batch.regional } : {}),
     skippedByOwnership: batch.skippedByOwnership,
     clippedPieces: batch.clippedPieces,
   };

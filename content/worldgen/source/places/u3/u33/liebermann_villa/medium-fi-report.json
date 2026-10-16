@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.liebermann_villa",
+  "sourceHash": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716",
+  "runtimeHash": "sha256:0e8fa4a39300df97a98cff72b8e3cd1d91083f4c5fccc1860ac72877a0a4af4e",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:c184ba9173ea7d35291125a8cdb2816f20ef913b14ebd678350d42cefcd423af",
+      "bytes": 72096,
+      "gzipBytes": 11557,
+      "triangles": 915,
+      "cpuBytes": 70688,
+      "gpuBytes": 70688,
+      "errorMeters": 0.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:f7a60a9351c5a79c067e275d8154617fdbfb3149c51c2de0c62f04a8e2cf5d64",
+      "bytes": 112352,
+      "gzipBytes": 25140,
+      "triangles": 1549,
+      "cpuBytes": 106244,
+      "gpuBytes": 106244,
+      "errorMeters": 0.22,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:f17c07c9d3c84b39c1dc6b211bd55c0238e1b86295ef71843cef6ab3150413c0",
+      "bytes": 437404,
+      "gzipBytes": 89386,
+      "triangles": 6349,
+      "cpuBytes": 430064,
+      "gpuBytes": 430064,
+      "errorMeters": 0.08,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:7c13978ab58aaa36be6d89f1e38e2afda15982b9826f3867fe8d2514423ebddc",
+      "bytes": 2747668,
+      "gzipBytes": 479297,
+      "triangles": 22869,
+      "cpuBytes": 2744280,
+      "gpuBytes": 2744280,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:459622267322f987d7de3690c84ec7aaaaf774b9633f36c8b57ebbbd2a3a5a78"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:6e0f12177083599712036182a101a43b137c87213f6f7f2924670e811509a370"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:e7c7597bce0b73bbe9e63410015b6a16767fb6fcb0d699259bc1caae39a19552",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          32.86,
+          81.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:fa09e56507563de3b06f5ef752ce41179d7c599a1697da908bc94e45b69ff82e",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          32.86,
+          81.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:74235cae4806f8ef6ddb5e0fb5dfed275afd6291b3f04bc2751e09bd790899ae",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          32.86,
+          81.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:15beada71cc17651918947ed7f3a77256e44907d71aaee5c978c76ada946a508",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          48,
+          32.86,
+          81.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:aa7c834578fabda6fbf2ee2a8349996da27dfd5b8938c15717757ba0f99f9e57",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 15983,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:88ef810eeda319529584942978c63d2ca0549a46459e7e9efe456e54570b82ac",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 15983,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:6ea32e3372467d08dbaa52b24635e60453c67ada40cb165d5d418ee68ca110ac",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 15983,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:da9921b978eb699032146358e4b6ff44594bc17c04b2ad061844d0561df179d5",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 15983,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:45863dcd492f1fb9c1bf7ae596a2f71a11d9d1eca4f065666472f8d13d0a2db9",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15349,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          106.86,
+          334.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:b99f5fcb8d4c6f78cc5e913f9cc17fa56d89d03b1e0579969fb222ea1c82c009",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15349,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          106.86,
+          334.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:b294efea85048753476526104426615da36c127731311c6f2f211e45f59503fc",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15349,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          106.86,
+          334.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:4176c03eaaa1be8bea41ef2c3ea40c7871f1376503f0858187ed740a1bf7aa66",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15349,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          106.86,
+          334.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:3a1e1fc3f6b2132b3cf205738fb11d10bfb99d1281496d937bfc5973baa5e3d3",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9109,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          194,
+          106.86,
+          334.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:08df6a3e22bfacd41e7c062e8b8fa2baf33e3537e64d14b1e04a44400958ebcc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          8,
+          42
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:f316e98f920d2b469072bf075841b9000bd78f949a5982bfebf090be1a8e0642",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          -26,
+          18,
+          -38
+        ],
+        "lookAt": [
+          0,
+          5,
+          -3
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:5d8a4fcda3f0cc614023af338efd5ba2d43066e31025a3b9bce8ad5fd8645871",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15349,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:88ef810eeda319529584942978c63d2ca0549a46459e7e9efe456e54570b82ac",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 15983,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:4d2018b5bc2a3ae0853cdbba9b3445c21b60ea50d4e383dfdab6f5a05c1629f6",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 20783,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:60d0a8a471ae8281eed95dad12e0769dc51aaa2774fdc008c0463fb9e9f9adeb",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 37303,
+        "groundY": -4,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u3/u33/liebermann_villa/terrain-review.height.png"
+        },
+        "position": [
+          97,
+          68.86,
+          166.1975
+        ],
+        "lookAt": [
+          0,
+          17.86,
+          -1.8025
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.wood_painted_lap": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:414b73b6552315b94cadbca5b1518dd378bd35ff1777e7e0a9041a0cec2cc7fe",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:73a26a94cb6b742b7bea1bec3cdcf2cb8c101cd94e0b09513708a10cf3e4fd08"
+  }
+}

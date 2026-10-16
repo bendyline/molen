@@ -1,0 +1,288 @@
+{
+  "planId": "palace_hotel",
+  "id": "palace_hotel",
+  "assetId": "molen.worldgen.structure.palace_hotel",
+  "title": "Palace Hotel, San Francisco",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -122.40194455,
+    "latitude": 37.78796904
+  },
+  "size": [
+    83.79840469360352,
+    51.79999923706055,
+    103.54840087890625
+  ],
+  "actualBounds": {
+    "min": [
+      -43.415000915527344,
+      -5,
+      -51.42499923706055
+    ],
+    "max": [
+      40.38340377807617,
+      46.79999923706055,
+      52.1234016418457
+    ]
+  },
+  "visualBrief": "Cream-brick 1909 Renaissance Revival hotel with eight storeys, rounded Market corners, terracotta cornices, triple curved entrance canopies, roof lightwell and open-frame THE PALACE sign.",
+  "nativeAxes": {
+    "x": "southwest along Market Street toward Annie Street",
+    "y": "up",
+    "z": "northwest toward Market Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Palace_Hotel_from_across_Market_on_Montgomery_St.JPG",
+    "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Franciso01.jpg"
+  ],
+  "stories": [
+    {
+      "id": "palace-hotel-san-francisco-wp",
+      "url": "https://qualla.com/palace-hotel-san-francisco/"
+    }
+  ],
+  "referenceInputHash": "f038865c82117f668bb43ba0e81736ebdb84a646750119b663a1be5f037d558d",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-palace-hotel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-palace-hotel.mjs",
+    "level": "skyline",
+    "export": "palaceSkyline",
+    "errorMeters": 1.1,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.35
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "palaceDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "palaceStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "New Montgomery sidewalk [-41,0], immediately outside the central three-arch entrance.",
+    "anchor": [
+      -122.40194455,
+      37.78796904
+    ],
+    "heading": -2.35619449,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -122.40161500658307,
+        37.788229472788665
+      ],
+      "modelHeight": 0,
+      "basis": "New Montgomery sidewalk immediately outside the central three-arch entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776561626181",
+      "buildings/35185612907666",
+      "buildings/35185612907664"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f3e58c027b9ee3c23906c5944bf62d00b352064435727fee21f04b611b315b89",
+    "notes": "Mapped outer shell and parts retained. Main roof/parapet heights follow existing-building labels in city report, not the coarse map height. Lower court roofs and attached pool annex are included as exterior volumes; no interiors. Proposed antennas in the report are not modeled."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on five individually inspected local Qualla photographs and the city landmark report roof plan, four elevations and aerial.",
+    "Existing city roof/parapet labels control principal heights; low-roof heights, floor spacing, hidden joins and fine terracotta ornament remain interpretations. Coarse map part heights conflict with the city elevations and are retained as evidence only.",
+    "Surviving 1909 exterior and attached lower pool/court roofs included. No 1875 reconstruction, interiors or proposed telecommunications equipment. Later rooftop changes are unverified.",
+    "Independent terrain remains unflattened; footprint suppression stays disabled. No photo pixels copied."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -116,
+        51,
+        133
+      ],
+      "lookAt": [
+        -5,
+        21,
+        8
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        128,
+        91,
+        -148
+      ],
+      "lookAt": [
+        0,
+        18,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 58133,
+    "vertices": 174399,
+    "materials": 5,
+    "bytes": 6979204,
+    "sha256": "sha256:f60c9517012a62678fbb12dd7e180095d0d2b75ef048c5183c5a519bf77ff6f9"
+  }
+}

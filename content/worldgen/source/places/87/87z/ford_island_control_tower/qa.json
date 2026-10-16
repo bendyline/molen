@@ -1,0 +1,167 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.ford_island_control_tower",
+  "reviewedOn": "2026-10-14",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:49b25816ef7c75ce9e5afd51865f2ea4379e90674cb9ef327fd7b6b5ea643af4",
+  "sourceHash": "sha256:6d99a3f58fdb06068940d93d5ef63808033770e851195d64ad92fae857cb41d1",
+  "runtimeHash": "sha256:5c9d8b2f3da3db49a8d0815fe0cf9a8dbde7786f27bad7e1bc86e5565ff74ee1",
+  "captureReportHash": "sha256:6d7e864796714428b428a274c143f3b4f3a5c22bea31a40f4ddc77cdbb172790",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/back.png"
+    ],
+    "notes": "Inspected all seven final portable views and the full front frame against the local Qualla museum aerial and inspected supplemental museum front/Warren LeMay side photographs. Restored orange/white shaft, rectangular elevator spine, left spiral stair, three circular balconies and octagonal upper cab remain distinct. Attached two-storey operations block retains two garage bays, horizontal canopies, rounded front bay, outside end stair and separate small aerological cab. Fine tread counts and hidden elevations are generalized."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d3df1e5c7d2f933345acc55b7a05bd93b90893b48e168ad6cb40f5e429c0bb57",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all seven final shared views including the north-up placement overlay. Painted metal and plain concrete retain metric UVs; glazing stays portable. Model main frontage and two separate cab outlines agree with generalized map controls. Source/runtime transform, reference-point sampling, unload and material-graph reads pass. Flat shared fixture tests materials/transforms; independent preserved terrain validates ground contact."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:93f03bb838de0ae3793e35d43d055682dc4fd1affd8431a36316f07ae693e8bc",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all nineteen final medium-fi frames across lights, quality modes, front/back, silhouette and forced levels. Initial street framing cut off the operations block; final context scale 1.6 includes the entire structure. Orange/white rhythm, upper cabin and attached operations remain legible. Skyline omits tiny stair and balcony railings; district retains a simplified spiral ribbon. Synthetic neighboring buildings are a style fixture, not Ford Island. No physical-device performance claim."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:207da3802d6aa3cce20b9937ba7ea9648b476703a52a185d63c53af55256b562",
+    "mapGeometryHash": "sha256:c42d9e842b894176f6666840c9b42a53ef72ee4672d1cdfe680ab9ef8ef5852f",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:a56b1f3c5602e422ad39bc288dceff7f5bec94c505a4ebaf3cd8e24a30e40c20",
+      "descriptorHash": "sha256:de1ac6d588fc4cae10c9f49c74c7ca8368a5f7d526343e78e807452b6e36e788",
+      "heightfieldHash": "sha256:730cea0823069278b02c9e8d68fa5ad98a95ea5ead8d5c0510f9dfd02de35b3a",
+      "modelDatumElevationMeters": 3.9986,
+      "sourcePixelGroundSpacing": 4.449144054786839,
+      "footprintRelativeRangeMeters": [
+        -0.005436062888397153,
+        0.0013999999999998458
+      ],
+      "maxPngEncodingErrorMeters": 0.00003052368164047081
+    },
+    "notes": "Tower polygon 35184729299344, small aerological cab 35185639524528 and operations frontage 35184564459484 establish placement. Anchor [-157.96147719025612,21.36059366963048], heading -2.1183586883302734; +X southwest, +Z northwest toward airstrip. Front entrance [-3.25,21] defines datum 3.9986 m. Unmodified terrain spans -0.005436..0.0014 m across mapped control vertices; foundation closes to -0.7 m. Rear connecting block is inferred from the side photo and absent from map outline. Footprint suppression remains off."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Restored Ford Island control/water tower, attached operations building and small aerological cab; hangars, aircraft and interiors excluded.",
+    "notes": "Accepted original medium-fi restored control tower with connected operations block and small aerological cab. Local Qualla aerial supplies site context only; inspected museum front and Warren LeMay 2022 side photograph supply architectural evidence. Supplementary review records attribution and URLs. Published 158 ft and 168 ft descriptions are inconsistent; approximately 48.2 m shaft transition and 51.2 m upper deck are an interpretation, not a survey. Hidden windows, detailed rail/tread counts, equipment, interiors and neighboring hangars are excluded or simplified. Photography is not redistributed."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:1a45d264ed8f1d135387e27faac9b3b9b39d60306e024261ca1944104ff74738",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:7f3e2e4ceb82a4bbb79ea3e4e727d7397c986ba83b9549cb635159f575847dc0",
+        "bytes": 70444,
+        "gzipBytes": 11295,
+        "triangles": 992,
+        "cpuBytes": 69024,
+        "gpuBytes": 69024,
+        "errorMeters": 1.2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:e8939460d66cc3cb9c552766e58e60e2c8061473cf6d2b6ed4134663682d124d",
+        "bytes": 243328,
+        "gzipBytes": 44548,
+        "triangles": 3338,
+        "cpuBytes": 239556,
+        "gpuBytes": 239556,
+        "errorMeters": 0.35,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:69d8262abd9ace959e3b87e5e74686f7dbf4fc2febe301e9639b7dbc4c86cd6b",
+        "bytes": 1059204,
+        "gzipBytes": 203553,
+        "triangles": 13878,
+        "cpuBytes": 1055412,
+        "gpuBytes": 1055412,
+        "errorMeters": 0.15,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:731debd7998a3860e808a6202bec9bd8a1698a735b8804238c39cb427a07084d",
+        "bytes": 2002144,
+        "gzipBytes": 335035,
+        "triangles": 16666,
+        "cpuBytes": 1999920,
+        "gpuBytes": 1999920,
+        "errorMeters": 0,
+        "drawCalls": 3
+      }
+    ],
+    "notes": "All four current hash-bound levels pass strict budgets and were visually inspected: skyline 992, district 3338, street 13878, closeup 16666 triangles. Skyline/district/street are authored. The initial skyline exceeded 1000 by four triangles; small canopy/parapet simplification brought it under budget while retaining the antenna. Error limits are declared authoring budgets, not independent mesh-distance measurements."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 16666,
+    "sourceMaterials": 3,
+    "runtimeLodsVerified": 4,
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+  },
+  "limitations": [
+    "Original medium-fi restored exterior, using inspected local Qualla aerial for site context and museum/Warren LeMay supplemental front and side photographs for architectural evidence; not a measured survey.",
+    "Museum sources describe 158 ft tower height and 168 ft observation access differently. The recipe approximates a 48.2 m shaft/tank transition and 51.2 m upper deck; individual levels, cabin roof and antenna heights are estimates.",
+    "Orange/white restored exterior represents the modern tower, not the incomplete camouflage-era 1941 structure. Spiral tread count, hidden rear windows, rail subdivisions, doors and rooftop equipment are simplified.",
+    "Includes the attached operations building and small aerological cab. Hangars, museum aircraft, interiors, vegetation and other site structures are excluded.",
+    "Reference photographs are viewed for research and are not embedded or redistributed. Generalized map geometry and host terrain require review when using another elevation dataset."
+  ],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:a2ea2e827b92b7c2039e2167510390f1b591bde01f042cab685113e721398acf",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  }
+}

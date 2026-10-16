@@ -10,22 +10,27 @@
     "latitude": 54.883333333,
     "longitude": 24.85
   },
-  "visualBrief": "Five individually positioned surviving hillfort earthworks, mapped pedestrian paths and timber stairs, plus the separate modern three-yard museum reconstruction with twelve mapped wooden buildings and board fencing.",
+  "visualBrief": "Approximate PMTiles-fitted Kernave landscape: five separate hillfort earthworks, draped paths/stairs and sloping modern three-yard timber reconstruction with twelve mapped buildings.",
+  "mediumFiContext": {
+    "groundY": -50,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
-    803,
-    36.00058364868164,
-    772
+    880,
+    76.90546035766602,
+    840
   ],
   "actualBounds": {
     "min": [
-      -338,
-      0,
-      -247
+      -380,
+      -34.92658996582031,
+      -280
     ],
     "max": [
-      465,
-      36.00058364868164,
-      525
+      500,
+      41.9788703918457,
+      560
     ]
   },
   "nativeAxes": {
@@ -39,11 +44,20 @@
     "modernReconstructedYards": 3,
     "mappedReconstructionBuildings": 12,
     "surveyedTerrain": false,
-    "identity": "Q215315 is the town; map-parts.json identifies five independent hillfort nodes and the modern open-air exhibit."
+    "identity": "Q215315 is the town; map-parts.json identifies five independent hillfort nodes and the modern open-air exhibit.",
+    "originalMasterHash": "sha256:b9709daddae6b379c702d47d39c6bb990a5616df8f27fa3fd5dd0c2d197d59fa",
+    "originalMasterRecipe": "packages/worldgen/scripts/kernave-landscape-model.mjs#kernaveStudy.build",
+    "reviewScope": "Original140410-triangle15354172-byte master reproduced exactly; original recipe preserved. Independent browser derivatives fit approximate standard PMTiles terrain.",
+    "terrainFit": "PMTiles broad landscape plus residual authored knoll relief; coarse Gaussian hill component removed before adding residual to avoid doubling the entire original hill height. This visual approximation does not certify crown elevations.",
+    "accessFit": "Paths, stair support datums, fence vertices and cabin base contacts sample the corresponding rendered tier surface (its exact triangle interpolation), not a finer analytic surface."
+  },
+  "appearance": {
+    "identity": "Current archaeological earthworks and modern timber craft yards; no standing medieval castle.",
+    "exclusions": "Town churches, wider reserve vegetation, buried remains and neighboring modern buildings."
   },
   "reconstruction": {
     "basis": "Vengalis and Velius (2019) hilltop dimensions and surviving bank descriptions; OSM component positions, paths, stair lines and building/fence geometry; official museum aerial views.",
-    "datum": "Relative landscape model. Hill slope heights are not absolute elevations. Museum terrace at 30 m is an interpretation awaiting terrain survey.",
+    "datum": "PMTiles anchor contact and approximate fitted terrain; sloping museum replaces flat30m terrace. Hill crown shapes and access stairs remain interpretations.",
     "state": "Current archaeological landscape, not an imagined intact medieval castle."
   },
   "referencePages": [
@@ -54,8 +68,8 @@
     "https://www.openstreetmap.org/node/1690273888"
   ],
   "geographicProposal": {
-    "status": "research-only",
-    "reviewStatus": "Composite archaeological site; surveyed elevations, terrain blending and local fit pending",
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       24.8517,
       54.8824
@@ -75,11 +89,48 @@
     ],
     "wikidataId": "Q215315",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:ae5432db574e1d9fc1b4982c8ea982c486fe8836338007e27358470655f15b1d",
+    "mapGeometryHash": "sha256:38d557808e804f179e1b9dd91a6499392d55080346f53af24fc6568e1eeb1f9b",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "replaceFootprint": false,
-    "notes": "Do not flatten or replace map buildings. Five hillforts and a separate modern museum reconstruction occupy distinct positions. Source landscape patches are not a surveyed terrain replacement."
+    "notes": "Owner-directed picture/standard viewer PMTiles approximate fit. Five separate surviving hillforts retain original horizontal map positions and interpreted crown shapes; native+X east,+Z south, anchor[24.8517,54.8824], heading0. PMTiles supplies low-frequency numeric terrain at this anchor (87.4426m), while authored hillforms add residual relief above the broad PMTiles field, fading to its boundaries. Exact crown elevations remain approximate. The museum now uses sloping PMTiles ground instead of an assumed30m flat terrace; cabins retain level floors and shallow foundations, fences/trails follow approximate ground. A continuous880x840m source surface joins previously separate patches; native ground-cutout metadata prevents underlying viewer terrain covering the reconstruction. Two inspected pictures support surviving knolls and three sloping timber craft yards. No surveyed elevation, precise erosion, certified stair rise or exact terrace level is claimed. No ancient standing fortress or neighboring town buildings are invented.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Owner-directed picture/standard viewer PMTiles approximate fit. Five separate surviving hillforts retain original horizontal map positions and interpreted crown shapes; native+X east,+Z south, anchor[24.8517,54.8824], heading0. PMTiles supplies low-frequency numeric terrain at this anchor (87.4426m), while authored hillforms add residual relief above the broad PMTiles field, fading to its boundaries. Exact crown elevations remain approximate. The museum now uses sloping PMTiles ground instead of an assumed30m flat terrace; cabins retain level floors and shallow foundations, fences/trails follow approximate ground. A continuous880x840m source surface joins previously separate patches; native ground-cutout metadata prevents underlying viewer terrain covering the reconstruction. Two inspected pictures support surviving knolls and three sloping timber craft yards. No surveyed elevation, precise erosion, certified stair rise or exact terrace level is claimed. No ancient standing fortress or neighboring town buildings are invented.",
+    "bounds": [
+      24.845765955225737,
+      54.87736943440891,
+      24.85950795365035,
+      54.88491528279554
+    ],
+    "groundCutout": {
+      "outline": [
+        [
+          -380,
+          -280
+        ],
+        [
+          500,
+          -280
+        ],
+        [
+          500,
+          560
+        ],
+        [
+          -380,
+          560
+        ]
+      ],
+      "basis": "Continuous PMTiles-fitted authored landscape replaces local viewer ground visually within its native880x840m rectangle; no map building replacement."
+    },
+    "terrainReference": {
+      "anchor": [
+        24.8517,
+        54.8824
+      ],
+      "modelHeight": 0,
+      "basis": "Relative PMTiles landscape datum at the retained working anchor; sampled87.4426m, approximate standard viewer fit."
+    }
   },
   "scaleBasis": "Meters from geographic map positions and published hill dimensions. East/south axes. Relative elevations, slope contours and wood-building heights remain interpretations.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -107,15 +158,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Maximum fidelity pending: earthwork contours are interpreted from documented top dimensions and aerial views; no elevation raster or surveyed mesh is bundled. Terrace datum, erosion scars and inter-hill gullies require measured terrain.",
-    "Q215315 names the town. This source depicts five surviving hillforts and the separate modern open-air reconstruction; it must not be matched as a single castle footprint.",
-    "The three museum yards retain twelve mapped building envelopes and mapped wooden fences. Wall heights, doors, roof pitches, individual boards and log details are approximate. A minor annex is represented within its main roof envelope.",
-    "Published current banks are included. Ancient palisades, towers and buried settlement remains are not reconstructed above ground. Old church remains, chapels, modern museum, wider reserve vegetation and river terrain still need separate site coverage.",
-    "Grass uses vertex color; timber and gravel use existing reusable procedural surface graphs. No model-specific bitmap textures. Landscape patch edges remain visible in standalone review and need host-terrain blending before activation.",
-    "Mapped stairs retain their horizontal routes; step rises/counts derive from the interpreted terrain and are not a certified reconstruction of visitor access."
+    "Owner-directed picture/standard viewer PMTiles approximate fit. Five separate surviving hillforts retain original horizontal map positions and interpreted crown shapes; native+X east,+Z south, anchor[24.8517,54.8824], heading0. PMTiles supplies low-frequency numeric terrain at this anchor (87.4426m), while authored hillforms add residual relief above the broad PMTiles field, fading to its boundaries. Exact crown elevations remain approximate. The museum now uses sloping PMTiles ground instead of an assumed30m flat terrace; cabins retain level floors and shallow foundations, fences/trails follow approximate ground. A continuous880x840m source surface joins previously separate patches; native ground-cutout metadata prevents underlying viewer terrain covering the reconstruction. Two inspected pictures support surviving knolls and three sloping timber craft yards. No surveyed elevation, precise erosion, certified stair rise or exact terrace level is claimed. No ancient standing fortress or neighboring town buildings are invented.",
+    "Shared timber/gravel graphs plus grass/recess PBR vertex tint, zero copied imagery. Far tiers coarsen continuous terrain and wood detailing; closer tiers restore boards, logs and stairs. Exact hilltop contours and terrain error bounds remain approximate; physical-device timing pending."
   ],
   "qaCameras": [
     {
@@ -236,15 +283,175 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/kernave-pmtiles-model.mjs",
+    "export": "buildKernaveFitCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kernave-pmtiles-model.mjs",
+    "export": "buildKernaveFitSkyline",
+    "errorMeters": 8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKernaveFitDistrict",
+        "errorMeters": 4,
+        "surfaces": {
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "localRef": "palette:#fffffe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildKernaveFitStreet",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "localRef": "palette:#fffffe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKernaveFitCloseup",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "aggregate": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "localRef": "palette:#fffffe",
+            "roughness": 1,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-kernave-skyline",
+      "position": [
+        -1000,
+        800,
+        1280
+      ],
+      "lookAt": [
+        55,
+        0,
+        140
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-kernave-district",
+      "position": [
+        -1000,
+        800,
+        1280
+      ],
+      "lookAt": [
+        55,
+        0,
+        140
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-kernave-street",
+      "position": [
+        -1000,
+        800,
+        1280
+      ],
+      "lookAt": [
+        55,
+        0,
+        140
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-kernave-closeup",
+      "position": [
+        -1000,
+        800,
+        1280
+      ],
+      "lookAt": [
+        55,
+        0,
+        140
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 140410,
-    "vertices": 379638,
-    "materials": 3,
-    "bytes": 15354172,
-    "sha256": "sha256:b9709daddae6b379c702d47d39c6bb990a5616df8f27fa3fd5dd0c2d197d59fa"
+    "triangles": 44368,
+    "vertices": 133104,
+    "materials": 4,
+    "bytes": 5326800,
+    "sha256": "sha256:644c60e0d9d99d93fb51ae177f25026eb867270298f6051709b71ad0107ca93a"
   }
 }

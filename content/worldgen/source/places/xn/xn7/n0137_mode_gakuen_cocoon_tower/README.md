@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-A bulging, tapered three-faced glass cocoon, modeled with individual floor panels, three atrium seams, broad curving white meridians, and the finer crossing aluminum web wrapping its full height.
+Budgeted Cocoon Tower exterior: curved threefold glass skin, sharper pictured crown, three atrium seams and wrapping white web. Detailed source master independently preserved.
 
 ## Evidence and reconstruction
 
@@ -16,11 +16,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-173,844 triangles; 397,896 vertices; 3 material groups; 16,412,772 bytes. Native bounds: -27.498, 0.000, -25.087 to 25.286, 203.650, 25.087. Source hash: `sha256:050622be8aa53681f120bcf6f18a84bd8248a5a80ce31a9db569f1ca72eeee41`.
+59,070 triangles; 177,210 vertices; 3 material groups; 7,090,780 bytes. Native bounds: -27.499, 0.000, -24.975 to 25.246, 203.650, 24.975. Source hash: `sha256:1d83de725cd3ba013e6dcf5db5ffd1c2ecfad72250bb60eba430fef6a6d3ce1f`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+One inspected architect exterior picture confirms the bulging/tapered cocoon, three-face glass and white wrapping web. Browser crown narrows to a tip in response to the picture; original blunt-crown master remains independently reproducible. Retain203.65m authored height, existing52.584×47.427m mapped envelope, exact-QID anchor and long axis. Standard viewer PMTiles confirms the Shinjuku tower/road context. Threefold facade phase and local entrances remain approximate. PMTiles off-footprint point[0,40]43.8772m sets approximate terrain contact; center69.1239m contains building imprint. Bounded preview contact removes that imprint while raw samples remain available. Separate egg-shaped hall, exact panel/strand counts, basement and threshold surveys are excluded.
 
 ## Reproduce
 
@@ -28,7 +28,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0137` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Curved cross-section, exact diagonal strand layout and entrance dimensions are reconstructed from the architect exterior. No false exact strand count or structural fabrication claim.
+- One inspected architect exterior picture confirms the bulging/tapered cocoon, three-face glass and white wrapping web. Browser crown narrows to a tip in response to the picture; original blunt-crown master remains independently reproducible. Retain203.65m authored height, existing52.584×47.427m mapped envelope, exact-QID anchor and long axis. Standard viewer PMTiles confirms the Shinjuku tower/road context. Threefold facade phase and local entrances remain approximate. PMTiles off-footprint point[0,40]43.8772m sets approximate terrain contact; center69.1239m contains building imprint. Bounded preview contact removes that imprint while raw samples remain available. Separate egg-shaped hall, exact panel/strand counts, basement and threshold surveys are excluded.
+- Shared concrete and painted-metal graphs reused; glazing uses reusable opaque PBR parameters without photographic textures. Skyline merges web into broad bands; closer tiers add representative crossing strands and panel frames. Exact floor divisions, aluminum routing and doorway details are approximations. Physical-device timings unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

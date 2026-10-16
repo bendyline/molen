@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-A three-stage asymmetric glass tower rising from the western end of the mapped station/department-store podium, with projecting facade fins, horizontal metal courses, terrace gardens and an open sky court inside the glazed observation crown.
+Abeno Harukas compact exterior preserves the western Tower-Kan perimeter, three stepped glass stages, the full mapped station/mall podium and an open sky court inside the observation gallery. Detailed original master independently preserved.
 
 ## Evidence and reconstruction
 
@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-22,049 triangles; 47,879 vertices; 4 material groups; 1,991,040 bytes. Native bounds: -137.561, 0.000, -44.068 to 137.561, 300.000, 44.068. Source hash: `sha256:e2d883fc14586ea8ef47235bd3608836a01e7eaeeefd55a256231191a2265384`.
+22,049 triangles; 66,147 vertices; 4 material groups; 2,648,688 bytes. Native bounds: -137.561, 0.000, -44.068 to 137.561, 300.000, 44.068. Source hash: `sha256:4f3463d01ac625a7e246cc6e1f0ba7ce7d3cec3581223563f53cf9a04f039011`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Center of whole mapped podium ground datum; main tower is at nativeX about -89 m"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate.
 
 ## Reproduce
 
@@ -31,7 +31,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0139` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Ground tower perimeter is independently mapped; upper tier setbacks and facade fins remain reconstructed from exterior references. Individual planting and service units are simplified.
+- Two inspected exterior pictures show the western offset tower, three stepped glass stages, broad station podium and rooftop gallery. Preserve the original 300m height, mapped 274.821×87.837m podium and separate Tower-Kan perimeter. PMTiles confirms the station/mall location and surrounding roads; native +X follows the long station axis and the tower stays around nativeX−89m. Upper stages and sky court retain the original exterior reconstruction. Off-podium PMTiles point[0,80]25.2447m sets approximate ground contact; center37.7806m has coarse urban roof imprint. Bounded rectangular preview contacts cover the entire podium and retain raw samples separately. Exact fins, planting, service equipment, station thresholds and gallery court dimensions remain approximate.
+- Three canonical granite/concrete/painted-metal graphs reused; glass uses opaque PBR parameters without copied textures. Low tiers merge facade bays and omit fins, railings and service equipment. Street preserves the gallery bracing and fins; closeup adds terrace planting and podium equipment. Physical-device timings unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

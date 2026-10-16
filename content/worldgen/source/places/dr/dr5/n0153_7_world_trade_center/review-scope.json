@@ -1,0 +1,92 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.brownstone",
+    "scale": 3
+  },
+  "appearance": {
+    "identity": "Current2006 oblique pale glass tower, concave floor spandrels, podium steel scrim, ground lobby and offset mapped roof plant.",
+    "epoch": "Current2006 building; owner identifies52floors and741ft; map snapshot2026-09-27.",
+    "master": "Original4832-triangle detail recipe retained; current master adds a continuous support curb beneath the offset roof plant. Original detailed geometry and shared surfaces are preserved.",
+    "exclusions": "Individual micro-prism orientations, LED art, lobby interior, exact facade hardware and sidewalk survey."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/seven-wtc-runtime-model.mjs",
+    "export": "buildSevenWtcSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildSevenWtcDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "steel-scrim-district",
+      "position": [
+        -68,
+        24,
+        97
+      ],
+      "lookAt": [
+        -8,
+        17,
+        24
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "roof-plant-district",
+      "position": [
+        78,
+        265,
+        118
+      ],
+      "lookAt": [
+        6,
+        223,
+        0
+      ],
+      "reviewLod": "district"
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/seven-wtc-runtime-model.mjs",
+    "export": "buildSevenWtcCurrent"
+  }
+}

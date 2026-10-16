@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The 1,545 m Korean suspension crossing with inclined chamfered concrete H towers, twin streamlined box decks, open wind slot, cable bands and paired hangers, unequal rock/gravity anchorages and permanent maintenance hardware.
+Compact Yi Sun-sin crossing: inclined H tower legs/crossbeams, twin aerodynamic deck boxes, wind slot, cables and representative hangers, unequal anchorages and simple rail/light fittings. Original detailed recipe preserved.
 
 ## Evidence
 
@@ -21,15 +21,14 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-1331812 triangles; 99412424 bytes; 5 material groups. SHA256: sha256:b09eae200f884d6443d31bdb85514245a2a161e590ab5a4405749bcf1e4579b9.
+51996 triangles; 6242620 bytes; 5 material groups. SHA256: sha256:aaa1c873609792124ed80e62d7299461bde5e04e2e27c9f4083c322ba1a1b05e.
 
-Shared surfaces (metal_painted, concrete_plain, metal_stainless) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
+Shared surfaces (concrete_plain, metal_painted, metal_stainless) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
 Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs --ids=N0025; append --check to verify. Import and capture through the standard next-1000 scripts. Geometry validation does not substitute for current-frame visual review.
 
 ## Reconstruction limits
 
-- Exact as-built deck section and road vertical curve remain under review; published 25.7 m, 26.97 m and 29.1 m widths must not be treated as identical definitions.
-- Tower ground positions were checked against aerial foundation pads, not displaced tower tops; expected horizontal uncertainty is several metres.
-- Saddle housings, hanger pitch, pier sections, lamps and anchorage exterior proportions are photographic reconstructions.
-- The mainland approach viaduct beyond the 2260 m suspension deck is separate from this asset; the viewer must supply its adjoining elevated road.
+- One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model.
+- Skyline merges twin boxes and end-pier legs; low tiers use two-sided suspension ribbons. District/street/closeup restore wind slot and closer levels cylindrical cables, paired closeup hangers, sockets, bands, simple rails and sparse lights. Fine formwork courses, exact cable shrouds, foundation rails, inspection fixtures and bolts are omitted; original master remains independently reproducible.
+- Shared concrete/stainless/painted metal are reused, with flat road and marking materials. Physical-device timings remain unmeasured.

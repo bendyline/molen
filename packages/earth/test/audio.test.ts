@@ -42,6 +42,30 @@ const renderer = {
 };
 
 describe('createEarthAudio', () => {
+  it('gates generic bird ambience by regional habitat without requiring a species recording', async () => {
+    const audio = await createEarthAudio(packs, renderer, { onWarning: () => {} });
+    if (!audio) throw new Error('no audio');
+    const frame = {
+      mode: 'walk',
+      position: [0, 2, 0] as [number, number, number],
+      heightAboveGround: 2,
+    };
+    audio.update({ ...frame, nowMs: 0, regionalAmbience: { birds: 0, insects: 0 } });
+    expect(
+      audio.layer.director.voices().find((voice) => voice.sound === 'ambience.birds'),
+    ).toBeUndefined();
+    for (let nowMs = 250; nowMs <= 30000; nowMs += 250)
+      audio.update({ ...frame, nowMs, regionalAmbience: { birds: 1, insects: 0 } });
+    expect(
+      audio.layer.director.voices().find((voice) => voice.sound === 'ambience.birds')?.gain,
+    ).toBeGreaterThan(0.65);
+    for (let nowMs = 30250; nowMs <= 60000; nowMs += 250)
+      audio.update({ ...frame, nowMs, regionalAmbience: { birds: 0, insects: 0 } });
+    expect(
+      audio.layer.director.voices().find((voice) => voice.sound === 'ambience.birds')?.gain ?? 0,
+    ).toBeLessThan(0.01);
+    audio.dispose();
+  });
   it('is silent without a sound bank', async () => {
     const empty = { ...packs, provided: () => [] };
     expect(await createEarthAudio(empty, renderer)).toBeUndefined();

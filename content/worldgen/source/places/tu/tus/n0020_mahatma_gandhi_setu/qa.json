@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0020_mahatma_gandhi_setu",
-  "inputHash": "sha256:b1a0b32f7c26a2965b131d0e1ab3de3d9fb7b162528bf6b2d1ff060c56474d32",
-  "captureReportHash": "sha256:1daea36e7f198cf9a4398cad4a014ad9cf78dd83fa5478d7978d447cd92b1d84",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:7270445fed806c965671c952f8e479c8594ef18d9007661580aab55dd0ce5918",
+  "sourceHash": "sha256:4fcf0afa95418b2a752ee25f518b0a4d44b72fc963748e68bfa2fb6d20a95540",
+  "runtimeHash": "sha256:326eb4752a9fd300e4e7f160beadd0837305a8d70157fe1bc26aaf68363d8fa3",
+  "captureReportHash": "sha256:349973de2be982b7d5ac29f5346277ae016098c587c19d15abe032859c716e15",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -21,11 +24,11 @@
       "shots/end-pony-span.png",
       "shots/floodplain-piers.png"
     ],
-    "notes": "All 14 current portable frames inspected after correcting the capture far plane for the 5.579km crossing. Completed contractor photographs corrected the first draft to staggered Warren nodes, inclined end posts and short modified pier heads. Overview framing necessarily makes the long narrow crossing small; nine additional cameras inspect its webs, roadway, roof, bearings, floor beams, river piers and end spans."
+    "notes": "Inspected all14 final source views: full crossing, four isolated turntables, river spans, pier heads/bearings, steel web, roof bracing, road, soffit beams, pony end span and floodplain piers. Both parallel steel roadways and repeated Warren panels remain complete. Full-length framing makes this very long narrow crossing small; close views establish the cross-section. The inspected replacement-stage aerial supports the steel palette and layout, while its still-concrete opposite flank is explicitly recorded."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:657bee4028f040db681c61f3939be97a09af735a84ad33e6a30ac5e504de7af7",
+    "captureReportHash": "sha256:260a925ad84be1893484bd804bb864c8fd8f4ffa25735cac13ece9a3c1fa9740",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -42,16 +45,307 @@
       "shots/shared/floodplain-piers.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All 14 current shared-material frames inspected. Canonical painted metal and plain concrete remain consistent across both decks. Open source-local road alignments display without an artificial closing chord. Runtime placement orientation matches the directed source frame; unload passes."
+    "notes": "Inspected all14 shared viewer images, including north-up mapped placement. Two canonical painted-metal and concrete graphs are reused without embedded images; road and markings use flat local materials. Bounded selection, full geometry, terrain reference, road replacement, graph cache and unload checks passed. This harness uses a flat geographic stage; separate source/browser views use the PMTiles river fixture."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:da5155844b97bd8d35cdab03340235de3f43ce0717717f5ab656b3b81cef093a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/full-crossing.png",
+      "medium-fi/river-spans.png",
+      "medium-fi/pier-and-bearings.png",
+      "medium-fi/steel-web.png",
+      "medium-fi/roof-bracing.png",
+      "medium-fi/roadway.png",
+      "medium-fi/soffit-floorbeams.png",
+      "medium-fi/end-pony-span.png",
+      "medium-fi/floodplain-piers.png",
+      "medium-fi/whole-gandhi-skyline.png",
+      "medium-fi/whole-gandhi-district.png",
+      "medium-fi/whole-gandhi-street.png",
+      "medium-fi/whole-gandhi-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all30 final browser light and LOD images. Skyline keeps the full crossing and simplified outer trusses; district restores twin decks and outer walks, street restores four truss faces, and closeup restores16representative main-span bays and roof/floor crosses. All four levels remain continuous across the full crossing. Individual I-section flanges, fasteners, gussets and dense hardware are simplified."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:10f6e8d503a563c3615b0a6f761813b70cc6878fa36ad5a64da58b2ac0ddf92d",
-    "notes": "Mapped road axes include a longer southern concrete approach than the replaced steel crossing. Current source separates the steel span extent using the northern terminus and published span schedule. Exact southern abutment and riverbed/floodplain vertical fit remain unresolved."
+    "status": "passed",
+    "placementHash": "sha256:2ad49986996986f81bba7960392c8a865be1527f6151e637256b342de1908370",
+    "mapFrameHash": "sha256:f0de5bb3a09f9139786a8650f9a0e31ffd931163238bd9547b63e054c5ab01e7",
+    "notes": "The inspected aerial image shows pale through-truss steel, roof crosses, roadway and the paired crossing layout during replacement, with the opposite concrete flank still present in that picture. Current twin-steel state is retained from the existing2022 authored facts; the picture does not newly certify completion. Standard viewer PMTiles NH22/NH31 bridge roads and retained steel-span controls confirm the north/northeast axis, midpoint and5578.985m straight steel extent; longer curved southern concrete approach is excluded. Northern PMTiles road reference57.2162m at modeldeckY23.280217570340803 gives approximatebase33.9359824296592m. The mapped river preview uses an explicit approximate44.0223m surface, while raw terrain/water samples remain retained. Exact flood stage, foundation depths and endpoint joins are not surveyed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior and approximate picture/PMTiles placement. The5578.985m straight steel extent excludes the curved southern concrete approach and later neighboring bridge. Northern mapped-road contact gives approximatebase33.936m; preview river surface44.0223m is a visualization approximation with raw samples retained. Exact flood stage, individual foundation depths and endpoint joins are unverified. The intermediate picture does not certify current completion; existing2022 twin-steel facts remain separately attributed. Footprint replacement off; physical laptop/phone timing remains pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Current exterior is 999,896 triangles with true I-sections, gussets, bolts, floor beams, bearings, walkways and lamps. Reviewed against Afcons completed aerial, UMI2022 presentation page28, Dextra engineering article, and mapped aerial ends. Precise truss panel interpretation, pier geometry and levels still require stronger engineering evidence; do not count as complete."
+    "notes": "Current exterior is 999,896 triangles with true I-sections, gussets, bolts, floor beams, bearings, walkways and lamps. Reviewed against Afcons completed aerial, UMI2022 presentation page28, Dextra engineering article, and mapped aerial ends. Precise truss panel interpretation, pier geometry and levels still require stronger engineering evidence; do not count as complete.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/models/source.glb",
+        "hash": "sha256:4fcf0afa95418b2a752ee25f518b0a4d44b72fc963748e68bfa2fb6d20a95540",
+        "bytes": 7662976,
+        "triangles": 63836,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2791.392578125,
+          0,
+          -12.25
+        ],
+        "max": [
+          2791.392578125,
+          33.479488372802734,
+          12.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.glb",
+        "hash": "sha256:326eb4752a9fd300e4e7f160beadd0837305a8d70157fe1bc26aaf68363d8fa3",
+        "bytes": 7662544,
+        "triangles": 63836,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2791.392578125,
+          0,
+          -12.25
+        ],
+        "max": [
+          2791.392578125,
+          33.479488372802734,
+          12.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.skyline.glb",
+        "hash": "sha256:5f93142937116449363c2baf3b477e8fc8ac7abde7c4cfaa261cc70132b70913",
+        "bytes": 100364,
+        "triangles": 964,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -2789.5341796875,
+          0,
+          -10.399999618530273
+        ],
+        "max": [
+          2789.5341796875,
+          33.31652069091797,
+          10.399999618530273
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.district.glb",
+        "hash": "sha256:682915c64bbde3c104d01d22542f0012a4932b1222bc2316e333778d5454d5ef",
+        "bytes": 365760,
+        "triangles": 3808,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -2791.392578125,
+          0,
+          -12.25
+        ],
+        "max": [
+          2791.392578125,
+          33.479488372802734,
+          12.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.street.glb",
+        "hash": "sha256:a9185b9267bcc9cbf5d468fd85c5bc85f863aad5f25152638f0f6902fde48466",
+        "bytes": 1364464,
+        "triangles": 15792,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -2791.392578125,
+          0,
+          -12.25
+        ],
+        "max": [
+          2791.392578125,
+          33.479488372802734,
+          12.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.closeup.glb",
+        "hash": "sha256:a7bab663177d026417cd2f9cfecad67ba26996719b2d52167a4a079f68b2bf5c",
+        "bytes": 6107312,
+        "triangles": 63836,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -2791.392578125,
+          0,
+          -12.25
+        ],
+        "max": [
+          2791.392578125,
+          33.479488372802734,
+          12.25
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original999896-triangle,81075924-byte detailed master reproduced exactly at sha256:e5ba65ad47b961e2fc7168ee1ae4ba880f2622cb05fb922377937566a8a12b0e before creating the independent63836-triangle compact source. Original detailed recipe and geometric map controls are preserved. Browser levels964/3808/15792/63836 satisfy1k/4k/16k/64k; initial skyline+district466124bytes. Source/runtime/LOD hashes and shared graph bindings are current."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:f9f1d950ba519315cec95d8bc78fc96c88561b029a69a6ec45a4cc5c19b63494",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:5f93142937116449363c2baf3b477e8fc8ac7abde7c4cfaa261cc70132b70913",
+        "bytes": 100364,
+        "gzipBytes": 17645,
+        "triangles": 964,
+        "cpuBytes": 98952,
+        "gpuBytes": 98952,
+        "errorMeters": 10,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:682915c64bbde3c104d01d22542f0012a4932b1222bc2316e333778d5454d5ef",
+        "bytes": 365760,
+        "gzipBytes": 47095,
+        "triangles": 3808,
+        "cpuBytes": 361968,
+        "gpuBytes": 361968,
+        "errorMeters": 5,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:a9185b9267bcc9cbf5d468fd85c5bc85f863aad5f25152638f0f6902fde48466",
+        "bytes": 1364464,
+        "gzipBytes": 247683,
+        "triangles": 15792,
+        "cpuBytes": 1360656,
+        "gpuBytes": 1360656,
+        "errorMeters": 2,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:a7bab663177d026417cd2f9cfecad67ba26996719b2d52167a4a079f68b2bf5c",
+        "bytes": 6107312,
+        "gzipBytes": 1102810,
+        "triangles": 63836,
+        "cpuBytes": 6102408,
+        "gpuBytes": 6102408,
+        "errorMeters": 0.7,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 466124,
+    "notes": "skyline: 964 triangles, 100364 bytes, 1 draws; district: 3808 triangles, 365760 bytes, 3 draws; street: 15792 triangles, 1364464 bytes, 3 draws; closeup: 63836 triangles, 6107312 bytes, 4 draws. Initial skyline+district 466124 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Picture and standard viewer PMTiles approximate fit; no bespoke bridge survey, engineering drawing or datum research.",
+    "Original detailed master remains reproduced by its unchanged recipe and geometric map controls; compact source simplifies I-section profiles, bolts/gussets, bearings, floor/roof bracing and fittings into readable beams and shared metal/concrete materials.",
+    "Skyline merges paired piers/decks and representative outer trusses; district/street omit many truss panels and inner fine members, while closeup retains16main Warren bays. Road/paint markings are local flat materials; shared graphs are reused.",
+    "Reference aerial picture is an intermediate replacement state; existing twin-steel source facts are retained separately. River surface and northern-road contact use coarse PMTiles; exact flood stage, submerged foundations, approach joins and physical-device timing remain unmeasured. Footprint replacement off."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:325390216c1c066266bd2c13886946402c4a749f1ec87b93bda750fb463f2b59",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:acae5a7f8ea241c737611d9bac4475b19b8594f8b335fb91483c43dc1d20a0c3",
+    "previousSharedCaptureReportHash": "sha256:82ce5e0033da724551b776b9cfa2ea2b899ec079c8f6526d339580581b8d1395",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/gandhi-setu-browser-model.mjs",
+        "beforeHash": "sha256:e666030e989e799378485c28ee3ea6aee93fbda0def18f83d921c586b8c993f8",
+        "afterHash": "sha256:b145471f96cdb2687268b36978e8bdfba3035d7efb4a15cf092097536b24cf2e",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/tu/tus/n0020_mahatma_gandhi_setu/models/source.glb",
+        "hash": "sha256:4fcf0afa95418b2a752ee25f518b0a4d44b72fc963748e68bfa2fb6d20a95540",
+        "bytes": 7662976
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.glb",
+        "hash": "sha256:326eb4752a9fd300e4e7f160beadd0837305a8d70157fe1bc26aaf68363d8fa3",
+        "bytes": 7662544
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.skyline.glb",
+        "hash": "sha256:5f93142937116449363c2baf3b477e8fc8ac7abde7c4cfaa261cc70132b70913",
+        "bytes": 100364
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.district.glb",
+        "hash": "sha256:682915c64bbde3c104d01d22542f0012a4932b1222bc2316e333778d5454d5ef",
+        "bytes": 365760
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.street.glb",
+        "hash": "sha256:a9185b9267bcc9cbf5d468fd85c5bc85f863aad5f25152638f0f6902fde48466",
+        "bytes": 1364464
+      },
+      {
+        "path": "content/worldgen/assets/places/tu/tus/n0020_mahatma_gandhi_setu/model.closeup.glb",
+        "hash": "sha256:a7bab663177d026417cd2f9cfecad67ba26996719b2d52167a4a079f68b2bf5c",
+        "bytes": 6107312
+      }
+    ],
+    "retainedInspectedImageCount": 58
   }
 }

@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0005_severn_bridge",
-  "inputHash": "sha256:f95c97c79bfc4c6ca91c881251971351c0d02aacd969ce97d429a8e69b0b91e0",
-  "captureReportHash": "sha256:f82b9758c01f420b2a02ba012db9921904d7fb398345e12a4a6c805632ae155d",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:00734072eef1b3baa760d18d3e9cb5f938f448022e6db5c570116da524bebc37",
+  "sourceHash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
+  "runtimeHash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
+  "captureReportHash": "sha256:dfe348b039c0f3feca20771e53ff0266a7185b815b81d9dc585fd7c09d012a20",
   "visualReview": {
     "status": "passed",
-    "scope": "Static exterior rendering and geometry integrity at the ten captured views.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,17 +18,328 @@
       "shots/near-deck.png",
       "shots/near-hangers.png",
       "shots/under-deck.png",
-      "shots/far-crossing.png"
+      "shots/far-crossing.png",
+      "shots/west-anchorage.png",
+      "shots/east-anchorage.png"
     ],
-    "notes": "Inspected fresh preview, four turntables, near tower/deck/hangers, under-deck and full crossing. Resolved coplanar pier-band stippling and four lower hanger sockets intersecting tower legs. Parapets, cable clamps and socket hardware remain visible in close views; distant 50 mm hangers are subpixel and alias. Whole-crossing and end-on turntables establish completeness only, not fine detail acceptance."
+    "notes": "Inspected all12 final source views: PMTiles shoreline overview, four object turntables, white portal tower, dual road/footways, inclined hanger fittings, shallow deck underside, full crossing and both cable anchorages. The suspension silhouette matches the two inspected reference pictures; separate approach structures are outside scope."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:daf89ffa177bb3a6474c45a21ee8fcd33e420e5ac8443b0f95e5ee9ed4d54b4d",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/near-tower.png",
+      "shots/shared/near-deck.png",
+      "shots/shared/near-hangers.png",
+      "shots/shared/under-deck.png",
+      "shots/shared/far-crossing.png",
+      "shots/shared/west-anchorage.png",
+      "shots/shared/east-anchorage.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all12 shared-viewer views, including the cached mapped-road placement overlay. Shared painted-metal and concrete graphs bind without embedded images; near cable/rail hardware and road tints remain visible. Bounded geographic selection, locality, cache reuse and unload checks passed. This harness uses flat terrain; source/medium views separately show the PMTiles shore/water fixture."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:966e2736a05681da47f6dd070a1d9ed0ab7346b8388654ac61034e048ba6e288",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-tower.png",
+      "medium-fi/near-deck.png",
+      "medium-fi/near-hangers.png",
+      "medium-fi/under-deck.png",
+      "medium-fi/far-crossing.png",
+      "medium-fi/west-anchorage.png",
+      "medium-fi/east-anchorage.png",
+      "medium-fi/whole-severn-skyline.png",
+      "medium-fi/whole-severn-district.png",
+      "medium-fi/whole-severn-street.png",
+      "medium-fi/whole-severn-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all28 medium-fi lighting and browser-level views. Skyline preserves the paired portals, sagging main cables and representative inclined hangers; district adds paired cable/hanger structure, street and closeup retain the thin deck and finer rail/socket impressions. Closer reductions simplify or unevenly retain fine cable clamps and markings, accepted for the browser levels; the source retains them."
   },
   "geographicReview": {
-    "status": "pending",
-    "notes": "Original M48 identity is confirmed. Horizontal endpoint/axis and road fit need site review. Published tower and roadway heights use incompatible or incompletely specified datums; Y=0 is an unresolved local water reference and must not be treated as checked terrain or sea-level elevation."
+    "status": "passed",
+    "placementHash": "sha256:161c4be53cf7d59ef4200f8369037945de8f497007ee87424010c2207f3d144c",
+    "mapFrameHash": "sha256:4483f1de6aafc2d0839ff680efac7288016b0c6457e2a6c877df74204737d953",
+    "notes": "Two inspected pictures confirm white portal towers, paired inclined hangers, continuous suspension cables and a thin deck. Standard viewer PMTiles named M48 bridge roads and tower-adjacent path offsets establish the main-span midpoint and east/southeast Aust-facing native+X. Mapped tower spacing986.5m matches the retained987.5m source within about1m. The named road includes a separate eastern approach, which remains outside this1637.5m suspension/anchorage asset. LocalY0 is deliberately accepted as an approximate global sea plane; no tidal or engineering datum certification. PMTiles water masks and raw terrain provide the surrounding review fixture; physical road endpoints remain approximate."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior and approximate PMTiles bridge placement. Mapped path-offset tower spacing986.5m agrees with987.5m source. Authored localY0 is explicitly an approximate global sea plane, without tidal/datum certification. Separate Aust/Beachley/Wye approach bridges, real traffic, interiors and precise endpoint joins are excluded. Preview mapped water is not bathymetry; physical laptop/phone timing remains unmeasured."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Detailed original exterior reconstruction, not survey-grade maximum fidelity. Resolve primary hanger-count discrepancy, final section dimensions and vertical profile, common vertical datum, modern replacement hanger dimensions, texture/weathering treatment, adaptive cable visibility and collision/LOD work before full acceptance."
+    "notes": "Detailed original exterior reconstruction, not survey-grade maximum fidelity. Resolve primary hanger-count discrepancy, final section dimensions and vertical profile, common vertical datum, modern replacement hanger dimensions, texture/weathering treatment, adaptive cable visibility and collision/LOD work before full acceptance.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcn/n0005_severn_bridge/models/source.glb",
+        "hash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
+        "bytes": 24002716,
+        "triangles": 308648,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -818.75,
+          0,
+          -20
+        ],
+        "max": [
+          818.75,
+          135.38446044921875,
+          20
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.glb",
+        "hash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
+        "bytes": 24002348,
+        "triangles": 308648,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -818.75,
+          0,
+          -20
+        ],
+        "max": [
+          818.75,
+          135.38446044921875,
+          20
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.skyline.glb",
+        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631",
+        "bytes": 69232,
+        "triangles": 832,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -818.75,
+          0,
+          -20
+        ],
+        "max": [
+          818.75,
+          136,
+          20
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.district.glb",
+        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa",
+        "bytes": 293700,
+        "triangles": 3280,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -818.75,
+          0,
+          -20
+        ],
+        "max": [
+          818.75,
+          136,
+          20
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.street.glb",
+        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d",
+        "bytes": 1762388,
+        "triangles": 15943,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -818.75,
+          0,
+          -20
+        ],
+        "max": [
+          818.75,
+          135.38446044921875,
+          20
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.closeup.glb",
+        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc",
+        "bytes": 7135712,
+        "triangles": 63117,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -818.75,
+          0,
+          -20
+        ],
+        "max": [
+          818.75,
+          135.3723907470703,
+          20
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original308648-triangle,24003148-byte master was reproduced exactly at sha256:41a39bb8d560fad968924a5f1cd2dc687f8af781a35c039da0be20e415d29450. Shared-material source geometry retains the same count and bounds. Browser levels832/3280/15943/63117 satisfy1k/4k/16k/64k limits; initial download362932bytes. Current source/runtime/LOD hashes and material/placement bindings verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d5b5ad840771f1d115754535e8e0deb0b54d9eb0400c7a7d5a7365e6fb1ad75d",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631",
+        "bytes": 69232,
+        "gzipBytes": 14110,
+        "triangles": 832,
+        "cpuBytes": 67884,
+        "gpuBytes": 67884,
+        "errorMeters": 5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa",
+        "bytes": 293700,
+        "gzipBytes": 55428,
+        "triangles": 3280,
+        "cpuBytes": 289932,
+        "gpuBytes": 289932,
+        "errorMeters": 3,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d",
+        "bytes": 1762388,
+        "gzipBytes": 446941,
+        "triangles": 15943,
+        "cpuBytes": 1758572,
+        "gpuBytes": 1758572,
+        "errorMeters": 3.8930726279175323,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc",
+        "bytes": 7135712,
+        "gzipBytes": 1629560,
+        "triangles": 63117,
+        "cpuBytes": 7131864,
+        "gpuBytes": 7131864,
+        "errorMeters": 1.4022253925281785,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 362932,
+    "notes": "skyline: 832 triangles, 69232 bytes, 1 draws; district: 3280 triangles, 293700 bytes, 3 draws; street: 15943 triangles, 1762388 bytes, 3 draws; closeup: 63117 triangles, 7135712 bytes, 3 draws. Initial skyline+district 362932 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Pictures and standard viewer PMTiles determine approximate fit; the working sea plane is not a certified vertical/tidal datum.",
+    "Original detailed geometry is preserved and byte-reproduced; shared graphs supply reusable painted steel and concrete grain. Road material uses a dark aggregate approximation.",
+    "Skyline uses representative suspension/hanger ribbons; district reconstructs broader cables. Street/closeup reductions simplify rails, fittings and narrow markings; source retains all authored geometry.",
+    "Separate approach bridges are excluded. Connected road fitting is requested, but exact host endpoint joins and tides are not surveyed. Mapped-water preview is not bathymetry. Footprint replacement off; physical-device timings remain pending."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:ad64b6c2d1ea927b61579a2f4d1dcdc01fdbe2bd70927744bde7836fb289b6b3",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:5a2f58fbea611c5716766fc11a0b5c8ea09a1d73202a139c9ca9f9cd832d06b9",
+    "previousSharedCaptureReportHash": "sha256:8c3c259ef255923cad5275a80d804b94d3638ed08992a0440e9cab3d2a18bb36",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/severn-browser-model.mjs",
+        "beforeHash": "sha256:e25e31c0f7677b7d4fe40c5c060b3cfbfd1e946ac67e0477f4fc8e70001956cb",
+        "afterHash": "sha256:6446ae93d1da1e8c739978e02620155c4626cd62eb99b91c542aabfc7241b2dc",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/gc/gcn/n0005_severn_bridge/models/source.glb",
+        "hash": "sha256:c5099a00c42b801456ed90d6d9e96acddf6078ceb9d5a4d679e0e9618e4f41a0",
+        "bytes": 24002716
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.glb",
+        "hash": "sha256:2400e825e952a9d57dbf5c20374b35c41c9022343ebf8fb8105ff0f841c837e9",
+        "bytes": 24002348
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.skyline.glb",
+        "hash": "sha256:483fa8241b85494363022c52b5f9b12b185ebdc03613eb29a29f0e9efce64631",
+        "bytes": 69232
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.district.glb",
+        "hash": "sha256:900cfd87cbf1990b331092ff25960e81243aa01a07c468a35d0b619474bf8cfa",
+        "bytes": 293700
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.street.glb",
+        "hash": "sha256:7fe449f193202ee7ded94a78ca739ed82c83edb263892e43ba31e9c911afd52d",
+        "bytes": 1762388
+      },
+      {
+        "path": "content/worldgen/assets/places/gc/gcn/n0005_severn_bridge/model.closeup.glb",
+        "hash": "sha256:d3ae789e7bcefb6d9ba95fb08b39360e1bf67c2f9b1b61c582cd0f20d287aecc",
+        "bytes": 7135712
+      }
+    ],
+    "retainedInspectedImageCount": 52
   }
 }

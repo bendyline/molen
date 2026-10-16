@@ -1,0 +1,348 @@
+{
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Two pale concrete H towers, twin aerodynamic decks, long suspension sag and unequal north/south anchorages.",
+    "exclusions": "Long approach viaduct, individual fasteners, inspections and tides."
+  },
+  "brief": "Compact Yi Sun-sin crossing: inclined H tower legs/crossbeams, twin aerodynamic deck boxes, wind slot, cables and representative hangers, unequal anchorages and simple rail/light fittings. Original detailed recipe preserved.",
+  "sourceFacts": {
+    "spansMeters": [
+      357.5,
+      1545,
+      357.5
+    ],
+    "deckLengthMeters": 2260,
+    "anchorSpacingMeters": 2545,
+    "ownerWidthMeters": 25.7,
+    "publishedAerodynamicWidthMeters": 29.1,
+    "boxDepthMeters": 3,
+    "contractorPylonHeightMeters": 272.7,
+    "crossbeamLevelsMeters": [
+      164,
+      255
+    ],
+    "cableSagRatio": "1/9",
+    "openingDate": "2013-02-08",
+    "originalMasterHash": "sha256:b09eae200f884d6443d31bdb85514245a2a161e590ab5a4405749bcf1e4579b9",
+    "originalMasterRecipe": "packages/worldgen/scripts/yi-sun-sin-bridge-model.mjs#buildYiSunSin",
+    "reviewScope": "Original1331812-triangle/99412424-byte master reproduced exactly; independent51996-triangle compact source uses shared graphs."
+  },
+  "reconstruction": {
+    "cableDiameterMeters": 0.68,
+    "hangerPitchMeters": 18,
+    "deckCenterRoadElevationMeters": 88.05,
+    "deckEndRoadElevationMeters": 63.05,
+    "notes": "Retained original photo-based tower/deck/anchorage proportions; current picture and PMTiles establish approximate exterior fit. Exact section definitions and road vertical curve are reconstruction limits, not a bespoke-research gate."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/yi-sun-sin-browser-model.mjs",
+    "export": "buildYiSunSinCloseup"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "wikidataId": "Q498235",
+    "featureIds": [
+      "way/643846203"
+    ],
+    "source": "https://www.openstreetmap.org/way/643846203",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9302b49b927ddf68929b3d473529f9700b1730dd344f59e598de210f385a6c06",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "anchor": [
+      127.7049660249937,
+      34.90595
+    ],
+    "heading": 1.5657951,
+    "elevationMode": "sea-level",
+    "elevationMeters": 0,
+    "notes": "One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model.",
+    "replaceFootprint": false,
+    "bounds": [
+      127.70390678432011,
+      34.89390868234034,
+      127.70602526566728,
+      34.917991317659656
+    ],
+    "replaceRoads": {
+      "length": 2260,
+      "width": 29.1,
+      "outline": [
+        [
+          -1130,
+          -14.55
+        ],
+        [
+          1130,
+          -14.55
+        ],
+        [
+          1130,
+          14.55
+        ],
+        [
+          -1130,
+          14.55
+        ]
+      ],
+      "deckHeights": [
+        63.05,
+        63.05
+      ],
+      "includeConnectedApproaches": true
+    }
+  },
+  "geographicNote": "One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model.",
+  "camera": {
+    "position": [
+      1450,
+      590,
+      1520
+    ],
+    "lookAt": [
+      0,
+      115,
+      0
+    ],
+    "fov": 45
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-water.terrain.json",
+    "heightmap": "terrain-water.height.png"
+  },
+  "previewEntities": [
+    {
+      "id": "review-bay",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0.3,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            2800,
+            0.06,
+            2800
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#608b94",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 15,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/yi-sun-sin-browser-model.mjs",
+    "export": "buildYiSunSinSkyline",
+    "errorMeters": 10,
+    "authoredLevels": {
+      "district": {
+        "export": "buildYiSunSinDistrict",
+        "errorMeters": 5,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildYiSunSinStreet",
+        "errorMeters": 2,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildYiSunSinCloseup",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "steel": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.35
+          },
+          "road": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "marking": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.87,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-yi-sun-sin-skyline",
+      "position": [
+        1450,
+        590,
+        1520
+      ],
+      "lookAt": [
+        0,
+        115,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-yi-sun-sin-district",
+      "position": [
+        1450,
+        590,
+        1520
+      ],
+      "lookAt": [
+        0,
+        115,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-yi-sun-sin-street",
+      "position": [
+        1450,
+        590,
+        1520
+      ],
+      "lookAt": [
+        0,
+        115,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-yi-sun-sin-closeup",
+      "position": [
+        1450,
+        590,
+        1520
+      ],
+      "lookAt": [
+        0,
+        115,
+        0
+      ],
+      "fov": 45,
+      "reviewLod": "closeup"
+    }
+  ],
+  "limitations": [
+    "One inspected VisitKorea picture confirms the tall inclined H towers, suspension line, narrow twin roadway and shoreline context. Standard viewer PMTiles paired bridge roads and bay agree with the retained near-north/south foundation-centred frame. Retain2260m suspended deck,1545m central span and2545m cable anchorage spacing; longer3794.742m map approach extent is separate. Source sea-level0m agrees with coarse mapped bay samples. Deck height/vertical curve, foundation pads, tides and terminal joins remain approximate; adjoining mainland/Myodo approach roads are supplied by the viewer and are outside this model.",
+    "Skyline merges twin boxes and end-pier legs; low tiers use two-sided suspension ribbons. District/street/closeup restore wind slot and closer levels cylindrical cables, paired closeup hangers, sockets, bands, simple rails and sparse lights. Fine formwork courses, exact cable shrouds, foundation rails, inspection fixtures and bolts are omitted; original master remains independently reproducible.",
+    "Shared concrete/stainless/painted metal are reused, with flat road and marking materials. Physical-device timings remain unmeasured."
+  ],
+  "sourceDocuments": [
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-water.terrain.json",
+    "terrain-water.height.png"
+  ]
+}

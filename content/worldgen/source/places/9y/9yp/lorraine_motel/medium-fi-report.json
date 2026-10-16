@@ -1,0 +1,840 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.lorraine_motel",
+  "sourceHash": "sha256:335d4371be8987e8b7605d6229017c563b1e1bdbf063b5af0739d743df9fc8b1",
+  "runtimeHash": "sha256:e1a2abc446b3f82bcc49461c25ef92fddc4c3d63499d22d3d9801054214ed432",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:f7288b5f6b298f4fd0f892f47f81ccd9d0ed242a076dd125b75df3f27e211bb9",
+      "bytes": 56416,
+      "gzipBytes": 10034,
+      "triangles": 738,
+      "cpuBytes": 55008,
+      "gpuBytes": 55008,
+      "errorMeters": 0.5,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:694fe52c8da697c9b48e553a2050634f1667c00e0d3aece3fa05519d9a4a962d",
+      "bytes": 365408,
+      "gzipBytes": 65880,
+      "triangles": 3975,
+      "cpuBytes": 359336,
+      "gpuBytes": 359336,
+      "errorMeters": 0.3498595732098271,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:6a80c579978e9fc6d085eea0e1e2754a9ef22d86b2a017ab7062b285631a6f78",
+      "bytes": 909440,
+      "gzipBytes": 129880,
+      "triangles": 7554,
+      "cpuBytes": 906480,
+      "gpuBytes": 906480,
+      "errorMeters": 0,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:6a80c579978e9fc6d085eea0e1e2754a9ef22d86b2a017ab7062b285631a6f78",
+      "bytes": 909440,
+      "gzipBytes": 129880,
+      "triangles": 7554,
+      "cpuBytes": 906480,
+      "gpuBytes": 906480,
+      "errorMeters": 0,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:1351a7f32217ada0cac153679ee80dcd4416f732e6352a2f8b85f0ef5e49ee91"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:3f03dbe3dfec714ccf55fdfbf3c17d2071a775ee698619afb473f9a960295c84"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:269c11c64c0999d05677ad41a918342c16de978daa7d8775b9e5b45d60b43ac6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          37.4868,
+          29.9,
+          91.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:325fd769eb6646cd6556e09f6143825f9a161d9e7b0e959f869ba969c64bef83",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          37.4868,
+          29.9,
+          91.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:7664e730f71b081e245e622c39dfd0f2179921ea6ef18aba720034002b26ea80",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          37.4868,
+          29.9,
+          91.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:d746bfd651b1e40e9632fea7240efada248c5860d8f33a12228440863480690a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          37.4868,
+          29.9,
+          91.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:1c32a6ffece34bbb0c16cb92c1956dc3a07c362ea267bacf3dbc3b8d59457d83",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 18409,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:4f34c918540ce6671940bd376836464a668ba08257f492c5c13a518f8f987aaf",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18409,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:8b1ba2e46909c81b93372f50d4b8a5d854cd8cc551c17e0a282dc455eb18c9e4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 18409,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:178a17fca73a58fb3c969e288a536c3a04611d6c5a22ed8af1550ed6a5e7bc74",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18409,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:61de07153b3e8beae1e7a9eead1f15e62a714b218c0263f8573f762640da535e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15172,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          183.4868,
+          103.9,
+          344.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:0b21023a86649e1d3b0dc6e629f912c03b4351d7070b16a6b1b9c2865eeca8f9",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15172,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          183.4868,
+          103.9,
+          344.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:22f9fd50f886b23c6b9cfd7b2027969d0ae003696a637380208cf68be6afab11",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15172,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          183.4868,
+          103.9,
+          344.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:2e374f1828e201c8430838a04428a89897973788e650e65cb7d3f97685a1692a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15172,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          183.4868,
+          103.9,
+          344.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:fd56764a8551e19698fe0018a7ed71f44461cbdedc9d8146fff86809d9e75776",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 8932,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          183.4868,
+          103.9,
+          344.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:900169ce6d58ec3e181894b0e15034060c474b92af350351b7078315250ca6b5",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          -10.513187408447266,
+          10.010000216960908,
+          119.3570613861084
+        ],
+        "lookAt": [
+          -10.513187408447266,
+          2.7300001502037046,
+          8.724573850631714
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:1fd055b746ffee9508bcf292dd163b1bb7076d417a6f0ee756e834e3a7284305",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          -10.513187408447266,
+          12.32000026702881,
+          -101.90791368484497
+        ],
+        "lookAt": [
+          -10.513187408447266,
+          2.7300001502037046,
+          8.724573850631714
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:6ae3257eb02953e84b317d3e172b4f35137275bf4b6ebdb0a3ac557e7dd10a38",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15172,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:4f34c918540ce6671940bd376836464a668ba08257f492c5c13a518f8f987aaf",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 18409,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:2b2d15d8dbc771527e4fb4648a092d036e52b990e9428db7f785bab26a19ffe1",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:758669d26d92423380198ae4deeb361060ecf785e6aac5e5d4aeab3f8c331b06",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 21988,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9y/9yp/lorraine_motel/terrain-review.height.png"
+        },
+        "position": [
+          86.4868,
+          65.9,
+          176.7246
+        ],
+        "lookAt": [
+          -10.5132,
+          14.9,
+          8.7246
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:1bcd506bc2aa102c1ec766ebc87ad68e1810146572e4e6b49179ce156d4c4e30",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:91a3774175a7e7e1a86c1da7d3364b66b0ade1a889c530dac41990e8c9de150c"
+  }
+}

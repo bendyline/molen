@@ -1,0 +1,333 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#e0d9c8",
+      "trim": "#eee7d8",
+      "roof": "#66717a",
+      "glass": "#4d6178"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 3,
+    "identityFeatures": [
+      "Two ivory angled crenellated wings joined by a recessed stair hall",
+      "Square sea-side clock tower with four corner turrets",
+      "Mixed paired/triple round-headed windows and projecting sea-side window bay"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X almost east,0.478 degrees north of east",
+    "front": "-Z landward parterre; +Z sea terrace; square clock tower at southwest(-X,+Z)",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/361092895 exact Q165069",
+    "mappedBuildingPlanMeters": [
+      60.48,
+      33.574
+    ],
+    "publishedTowerHeightAboveSeaMeters": 35,
+    "towerStoreys": 7,
+    "towerInternalFloorAreaApproxSquareMeters": 25,
+    "clockFaces": 4,
+    "originalMasterHash": "sha256:293f7a85a18c1adfebe199f966807d004023cfac4b6a5074768d47d0c0f0532d",
+    "originalMasterRecipe": "packages/worldgen/scripts/miramare-castle-model.mjs#buildMiramareRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior based on inspected picture and standard viewer PMTiles; no bespoke survey or precise terrace/sea elevation conversion.",
+    "Original detailed architectural master/recipe preserved; independent derivative fits working datum and bounded foundation bottoms.",
+    "Angled ivory wings, southwest four-turret clock tower, paired/triple arched windows, recessed hall and bay preserve identity. Fine stone carving and openings are reconstructed.",
+    "Castle building footprint only. Park, Castelletto, terrace retaining walls, jetty, full coastal cliff and interiors excluded. No artificial terrain cutout.",
+    "Two shared material graphs and local opaque glass; zero embedded images. Physical-device timing pending."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      13.712453245,
+      45.702528846
+    ],
+    "heading": 0.008338727695,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected aerial picture confirms the ivory angled crenellated wings, recessed entrance, sea-side bay and southwest square clock tower with four corner turrets. Standard viewer PMTiles and the retained building outline set approximate coastal location and signed orientation. Coarse inland ground rises above the anchor sample; a reconstructed7.2m working rise clears it, with bounded castle foundations extending below the sampled slope. This is approximate fit, not a surveyed sea/terrace datum. Anchor 13.712453245,45.702528846; heading 0.008338727695; standard PMTiles datum 3.7358245453613077m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "The inspected aerial picture confirms the ivory angled crenellated wings, recessed entrance, sea-side bay and southwest square clock tower with four corner turrets. Standard viewer PMTiles and the retained building outline set approximate coastal location and signed orientation. Coarse inland ground rises above the anchor sample; a reconstructed7.2m working rise clears it, with bounded castle foundations extending below the sampled slope. This is approximate fit, not a surveyed sea/terrace datum. Anchor 13.712453245,45.702528846; heading 0.008338727695; standard PMTiles datum 3.7358245453613077m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        13.712453245,
+        45.702528846
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "The inspected aerial picture confirms the ivory angled crenellated wings, recessed entrance, sea-side bay and southwest square clock tower with four corner turrets. Standard viewer PMTiles and the retained building outline set approximate coastal location and signed orientation. Coarse inland ground rises above the anchor sample; a reconstructed7.2m working rise clears it, with bounded castle foundations extending below the sampled slope. This is approximate fit, not a surveyed sea/terrace datum. Anchor 13.712453245,45.702528846; heading 0.008338727695; standard PMTiles datum 3.7358245453613077m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/miramare-runtime-model.mjs",
+    "export": "buildMiramareReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/miramare-runtime-model.mjs",
+    "export": "buildMiramareReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMiramareReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildMiramareReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMiramareReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-miramare-skyline",
+      "position": [
+        80,
+        58,
+        68
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-miramare-district",
+      "position": [
+        80,
+        58,
+        68
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-miramare-street",
+      "position": [
+        80,
+        58,
+        68
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-miramare-closeup",
+      "position": [
+        80,
+        58,
+        68
+      ],
+      "lookAt": [
+        0,
+        21,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -3,
+    "scale": 0.7,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo"
+  },
+  "qaCameraOverrides": {
+    "southwest-clock-tower": {
+      "position": [
+        -53,
+        37.2,
+        47
+      ],
+      "lookAt": [
+        -22,
+        24.2,
+        8
+      ]
+    },
+    "landward-two-wings": {
+      "position": [
+        34,
+        36.2,
+        -65
+      ],
+      "lookAt": [
+        0,
+        17.2,
+        -3
+      ]
+    },
+    "recessed-stair-entrance": {
+      "position": [
+        13,
+        27.2,
+        -34
+      ],
+      "lookAt": [
+        3,
+        16.2,
+        -7
+      ]
+    },
+    "sea-side-window-bay": {
+      "position": [
+        -12,
+        25.2,
+        46
+      ],
+      "lookAt": [
+        -11,
+        17.2,
+        12
+      ]
+    },
+    "angled-east-wing": {
+      "position": [
+        53,
+        35.2,
+        23
+      ],
+      "lookAt": [
+        17,
+        17.2,
+        -1
+      ]
+    },
+    "mapped-building-plan": {
+      "position": [
+        0,
+        114.2,
+        1
+      ],
+      "lookAt": [
+        0,
+        7.2,
+        0
+      ]
+    }
+  }
+}

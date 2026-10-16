@@ -1,0 +1,372 @@
+{
+  "fidelityTarget": "medium-fi",
+  "brief": "H-plan palace with a through passage, repeated projecting bow windows, three-level green mansards, central bays and circular balconies, pointed tower arches, layered cornices, ribbed crown and glazed lighthouse.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+Z toward Hipólito Yrigoyen",
+    "front": "Native-Z toward Avenida de Mayo north of the model; native+Z toward Hipólito Yrigoyen.",
+    "origin": "Approximate PMTiles named-place center at terrain contact; exact cadastral parcel remains unverified."
+  },
+  "sourceFacts": {
+    "plotWidthMeters": 30.88,
+    "plotDepthMeters": 44.21,
+    "passageWidthMeters": 7.5,
+    "passageHeightMeters": 13.5,
+    "ownerOverallHeightMeters": 100,
+    "municipalDomeHeightMeters": 86,
+    "ownerDomeHeightMeters": 90,
+    "nationalHeritageOverallHeightMeters": 103,
+    "cadastralParcel": "012-039-004",
+    "entrances": [
+      "Avenida de Mayo 1370",
+      "Hipólito Yrigoyen 1373"
+    ],
+    "originalMasterHash": "sha256:5c42c7f8fb940c395cbbe2cb43631798ebe12e94090792c8b941e980c87046d8",
+    "originalMasterRecipe": "packages/worldgen/scripts/barolo-palace-model.mjs#baroloPalaceStudy.encodeAssembly"
+  },
+  "reconstruction": {
+    "basis": "Original geometry reconstructed from owner front, mansard, tower and lantern photographs; municipal heritage book photo plates and H-plan description; rear photograph by Elsapucai; aerial photograph linked by El Ojo del Arte. Intermediate elevations, light-court dimensions, tower offset, mouldings and decorative motifs are approximate.",
+    "bodyRoofMeters": 40.1,
+    "mansardTopMeters": 52.4,
+    "towerCenterXZ": [
+      0,
+      -14
+    ],
+    "overallHeightChoiceMeters": 100,
+    "base": "Existing30.88x44.21m H-plan and through-passage retained; source dimensions are not stretched to the contradictory60m OSM envelope. Approximate location from named PMTiles point and streets; no footprint suppression."
+  },
+  "limitations": [
+    "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations."
+  ],
+  "surfaceOverrides": {
+    "concrete": {
+      "graph": "concrete_plain",
+      "slot": "wall",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "marble": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "ref": "palette:#feffff",
+      "localRef": "palette:#feffff",
+      "opacity": 0.52,
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/barolo-runtime-model.mjs",
+    "export": "buildBaroloCloseup"
+  },
+  "sourceDocuments": [
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "terrain-fit.terrain.json",
+    "terrain-fit.height.png"
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/barolo-runtime-model.mjs",
+    "export": "buildBaroloReviewedSkyline",
+    "errorMeters": 7,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBaroloDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildBaroloStreet",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-palacio",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ]
+    },
+    {
+      "name": "open-passage-street",
+      "position": [
+        0,
+        5,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        25
+      ]
+    },
+    {
+      "name": "open-h-plan-courts",
+      "position": [
+        55,
+        74,
+        35
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-barolo-skyline",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-barolo-district",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-barolo-street",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-barolo-closeup",
+      "position": [
+        -85,
+        65,
+        -135
+      ],
+      "lookAt": [
+        0,
+        45,
+        -6
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-passage-street",
+      "position": [
+        0,
+        5,
+        -35
+      ],
+      "lookAt": [
+        0,
+        5,
+        25
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-h-plan-courts",
+      "position": [
+        55,
+        74,
+        35
+      ],
+      "lookAt": [
+        0,
+        25,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mapFrame": "map-frame.json",
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "reviewed-approximation",
+    "anchor": [
+      -58.38572525,
+      -34.60965975
+    ],
+    "heading": 0.086139560133,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "source": "https://www.openstreetmap.org/way/1386044833",
+    "groundModelY": 0,
+    "featureIds": [
+      "way/1386044833"
+    ],
+    "wikidataId": "Q571763",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "notes": "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations.",
+    "orientationConfidence": "Approximate street-facing sign from PMTiles Avenida de Mayo north and Hipólito Yrigoyen south; parcel extent remains uncertain.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations.",
+    "evidence": "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations.",
+    "replaceFootprint": false,
+    "terrainReference": {
+      "anchor": [
+        -58.38648643868545,
+        -34.60971384937733
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate standard viewer PMTiles off-footprint ground."
+    }
+  },
+  "geographicNote": "Owner-directed picture/standard viewer PMTiles approximate fit. PMTiles named Palacio Barolo point[-58.38572770357132,-34.60966313520602] agrees within about0.5m with retained anchor[-58.38572525,-34.60965975]. Retain heading0.086139560133: native-Z faces Avenida de Mayo to the north, native+Z Hipólito Yrigoyen to the south. Existing100m tower,30.88x44.21m H-plan and7.5x13.5m through passage remain. Inspected aerial front picture supports tower, green mansards, bow windows and crowned lantern. The underlying60m mapped envelope contradicts the source width; accept approximate center/street fit, do not stretch source or suppress neighboring map buildings. Exact parcel sides, party walls, tower-to-parcel offset, doorway thresholds and elevations remain uncertain. Approximate PMTiles[-70,0] ground and bounded preview correction are separate from raw elevations.",
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-fit.terrain.json",
+    "heightmap": "terrain-fit.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "groundY": 0,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  }
+}

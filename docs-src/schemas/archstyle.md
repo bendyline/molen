@@ -1249,6 +1249,36 @@ How to turn any outline into a styled building: massing, roof grammar, facade rh
         "details": {
           "type": "object",
           "properties": {
+            "entrance": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "number",
+                  "minimum": 0.7,
+                  "maximum": 8
+                },
+                "height": {
+                  "type": "number",
+                  "minimum": 1.8,
+                  "maximum": 6
+                },
+                "style": {
+                  "type": "string",
+                  "enum": [
+                    "single",
+                    "double",
+                    "service"
+                  ]
+                }
+              },
+              "required": [
+                "width",
+                "height",
+                "style"
+              ],
+              "additionalProperties": false,
+              "description": "A fitted visual entrance on the longest eligible exterior edge; omitted when structural ground openings exist."
+            },
             "shutters": {
               "type": "boolean",
               "description": "Paired louvered shutters beside punched windows."

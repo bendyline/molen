@@ -1,0 +1,70 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "Restored pale limestone drum, red-brown riveted iron bottle tower, two galleries and glazed lantern with copper-brown roof, attached east-southeast service wing.",
+    "epoch": "First-stage restoration photograph and operator report May2024; later restoration is not asserted.",
+    "master": "Retain original47546-triangle exterior, narrow ironwork and mapped wing plan.",
+    "browser": "Four separate medium-fi levels, canonical limestone/ashlar/granite/painted-metal surfaces, local lantern glazing and no embedded reference images.",
+    "exclusions": "Interiors, fabrication/rivet-count accuracy, detached keeper buildings, surveyed island slopes and future restoration stages."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/keri-skyline-model.mjs",
+    "export": "buildKeriSkyline",
+    "errorMeters": 1,
+    "caps": {
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.06,
+        "prune": true
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "near-ironwork-street",
+      "position": [
+        8,
+        23,
+        11
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "near-lantern-street",
+      "position": [
+        7,
+        29,
+        9
+      ],
+      "lookAt": [
+        0,
+        27.5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "near-masonry-street",
+      "position": [
+        29,
+        10,
+        22
+      ],
+      "lookAt": [
+        10,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

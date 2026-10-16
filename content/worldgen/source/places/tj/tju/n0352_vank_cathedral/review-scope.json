@@ -1,0 +1,344 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "blue": {
+      "slot": "trim",
+      "graph": "tile_ceramic",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "metal": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.84,
+      "metallic": 0.08
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    },
+    "court": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.97,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/vank-cathedral-model.mjs",
+    "export": "buildVankSkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVankDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildVankStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildVankCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "blue": {
+            "slot": "trim",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          },
+          "court": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -108,
+      82,
+      103
+    ],
+    "lookAt": [
+      5,
+      10,
+      -14
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-vank-skyline",
+      "position": [
+        -108,
+        82,
+        103
+      ],
+      "lookAt": [
+        5,
+        10,
+        -14
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-vank-district",
+      "position": [
+        -108,
+        82,
+        103
+      ],
+      "lookAt": [
+        5,
+        10,
+        -14
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-vank-street",
+      "position": [
+        -108,
+        82,
+        103
+      ],
+      "lookAt": [
+        5,
+        10,
+        -14
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-vank-closeup",
+      "position": [
+        -108,
+        82,
+        103
+      ],
+      "lookAt": [
+        5,
+        10,
+        -14
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.mexican_patio",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/picture orientation prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 1583.040460m;estimated common floor 0.6m clears sampled compound peak 0.205m and building perimeter -3.27..0.07m. Foundations follow coarse terrain. Exact courtyard/gate thresholds,absolute altitude and certified walking unverified;no independent survey.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        51.65575,
+        32.634888888
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 1583.040460m;estimated common floor 0.6m clears sampled compound peak 0.205m and building perimeter -3.27..0.07m. Foundations follow coarse terrain. Exact courtyard/gate thresholds,absolute altitude and certified walking unverified;no independent survey."
+    },
+    "bounds": [
+      51.65525,
+      32.63445,
+      51.65635,
+      32.63542
+    ],
+    "notes": "Standard DEM datum 1583.040460m;estimated common floor 0.6m clears sampled compound peak 0.205m and building perimeter -3.27..0.07m. Foundations follow coarse terrain. Exact courtyard/gate thresholds,absolute altitude and certified walking unverified;no independent survey."
+  },
+  "geographicNote": "Standard DEM datum 1583.040460m;estimated common floor 0.6m clears sampled compound peak 0.205m and building perimeter -3.27..0.07m. Foundations follow coarse terrain. Exact courtyard/gate thresholds,absolute altitude and certified walking unverified;no independent survey.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

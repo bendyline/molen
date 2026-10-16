@@ -1,0 +1,412 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "brick": {
+      "slot": "wall",
+      "graph": "brick",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "roughness": 0.24,
+      "metallic": 0.05,
+      "localRef": "palette:#ffffff"
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hever-castle-model.mjs",
+    "export": "buildHeverSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHeverDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.05,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "buildHeverStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.05,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHeverCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.05,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-hever-skyline",
+      "position": [
+        53,
+        38,
+        69
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-hever-district",
+      "position": [
+        53,
+        38,
+        69
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-hever-street",
+      "position": [
+        53,
+        38,
+        69
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-hever-closeup",
+      "position": [
+        53,
+        38,
+        69
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewEntities": [
+    {
+      "id": "review-moat-0",
+      "components": {
+        "transform": {
+          "pos": [
+            -21.00593093377307,
+            0.22,
+            9.36754320009018
+          ],
+          "rot": [
+            0,
+            0.20820501321215215,
+            0,
+            0.9780852071641445
+          ],
+          "scale": [
+            7,
+            0.02,
+            52
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#286d83",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "review-moat-1",
+      "components": {
+        "transform": {
+          "pos": [
+            21.00593093377307,
+            0.22,
+            -9.36754320009018
+          ],
+          "rot": [
+            0,
+            0.20820501321215215,
+            0,
+            0.9780852071641445
+          ],
+          "scale": [
+            7,
+            0.02,
+            52
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#286d83",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "review-moat-2",
+      "components": {
+        "transform": {
+          "pos": [
+            -9.36754320009018,
+            0.22,
+            -21.00593093377307
+          ],
+          "rot": [
+            0,
+            0.20820501321215215,
+            0,
+            0.9780852071641445
+          ],
+          "scale": [
+            40,
+            0.02,
+            7
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#286d83",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "review-moat-3",
+      "components": {
+        "transform": {
+          "pos": [
+            9.36754320009018,
+            0.22,
+            21.00593093377307
+          ],
+          "rot": [
+            0,
+            0.20820501321215215,
+            0,
+            0.9780852071641445
+          ],
+          "scale": [
+            40,
+            0.02,
+            7
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#286d83",
+          "shadows": {
+            "cast": false,
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "current source plan and approximate terrain contact visually reviewed; shared-material and tier review pending",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        0.11387050151824951,
+        51.18690251546805
+      ],
+      "modelHeight": 0,
+      "basis": "Native datum is the retained standard viewer terrain at the mapped compound center. Stone footings follow the near-level coarse terrain."
+    },
+    "bounds": [
+      0.11287050151824951,
+      51.18620251546805,
+      0.11487050151824951,
+      51.18760251546805
+    ],
+    "notes": "Mapped castle envelope, courtyard hole and entrance crossing control horizontal fit. Heights, roof sections, window cadence and exact bank contact are picture-led estimates; the separate northwest hotel stays outside this asset.",
+    "groundContactBasis": "Current source gate, range, rear and top-down renders inspected against retained standard viewer terrain. Footings follow the terrain minus 0.32 m; native datum Y=0 samples the mapped castle center. The court floor is Y=0.27 m. Entrance terrain rises from 0.177 to 0.340 m relative to the datum; the 0.34 m bridge deck approximately joins it. Coarse terrain does not resolve the narrow moat banks."
+  },
+  "geographicNote": "The named Hever Castle PMTiles point and same-ID building polygon control the envelope and open courtyard. Native east/south axes already contain the mapped facade rotation; placement heading 0 avoids a second rotation. The separate northwest hotel stays procedural. Heights, window rhythm, exact banks and moat water remain approximate.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

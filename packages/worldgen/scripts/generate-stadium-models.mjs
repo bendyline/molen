@@ -4,7 +4,7 @@ import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { allianzStudy } from './allianz-arena-model.mjs';
 import { createArchitecturalSurfaceAuthoring } from './architectural-surface-authoring.mjs';
@@ -16,6 +16,7 @@ import { brasiliaStudy } from './brasilia-stadium-model.mjs';
 import { capeTownStudy } from './cape-town-stadium-model.mjs';
 import { cruyffStudy } from './cruyff-arena-model.mjs';
 import { embedGraphFallbacks } from './embed-graph-fallbacks.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { fnbStudy } from './fnb-stadium-model.mjs';
 import { hampdenStudy } from './hampden-model.mjs';
 import { khalifaStudy } from './khalifa-stadium-model.mjs';
@@ -33,6 +34,7 @@ import { stadeFranceStudy } from './stade-france-model.mjs';
 import { stadiumStudies } from './stadium-models.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { readOptionalJson } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 import { velodromeStudy } from './velodrome-model.mjs';
 import { volgogradStudy } from './volgograd-stadium-model.mjs';
@@ -199,13 +201,55 @@ async function emit(path, bytes) {
 }
 for (const id of selected ?? [])
   if (!studies.some((study) => study.id === id)) throw new Error(`Unknown stadium id ${id}`);
-for (const asset of studies.filter((study) => !selected || selected.includes(study.id))) {
+for (const originalAsset of studies.filter((study) => !selected || selected.includes(study.id))) {
+  const asset = { ...originalAsset };
   if (candidates.find((candidate) => candidate.id === asset.id)?.wikidataId !== asset.wikidataId)
     throw new Error(`${asset.id}: catalog identity changed`);
   const key = `${asset.id.toLowerCase()}_${asset.key}`,
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key),
     modelPath = resolve(dir, 'models/source.glb');
+  const priorSource = await readOptionalJson(resolve(dir, 'source.json'));
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
+  if (reviewScope) {
+    if (reviewScope.fidelityTarget !== 'medium-fi')
+      throw new Error(`${asset.id}: review scope must declare medium-fi`);
+    for (const field of [
+      'fidelityTarget',
+      'appearance',
+      'mediumFiContext',
+      'runtimeLodOverlay',
+      'qaLodCameras',
+      'sourceGeometry',
+      'limitations',
+    ])
+      if (reviewScope[field] !== undefined) asset[field] = reviewScope[field];
+    asset.nativeAxes = { ...asset.nativeAxes, ...(reviewScope.nativeAxes ?? {}) };
+    asset.sourceFacts = { ...asset.sourceFacts, ...(reviewScope.sourceFacts ?? {}) };
+    asset.geographicProposal = { ...asset.geographicProposal, ...(reviewScope.geographic ?? {}) };
+    asset.qaCameras = [
+      ...asset.qaCameras.map((camera) => ({
+        ...camera,
+        ...(reviewScope.qaCameraOverrides?.[camera.name] ?? {}),
+      })),
+      ...(reviewScope.qaCameras ?? []),
+    ];
+  }
+  if (mapFrame) {
+    if (
+      !mapFrame.anchor?.every((value, i) => value === asset.geographicProposal.anchor[i]) ||
+      mapFrame.heading !== asset.geographicProposal.heading
+    )
+      throw new Error(`${asset.id}: map frame disagrees with placement`);
+    asset.geographicProposal = {
+      ...asset.geographicProposal,
+      mapGeometrySource: 'map-frame.json',
+      mapGeometryHash: hashEvidenceText(await readFile(resolve(dir, 'map-frame.json'))),
+      mapGeometryLicense: mapFrame.license,
+      attribution: mapFrame.attribution,
+    };
+  }
   try {
     const source = JSON.parse(await readFile(resolve(dir, 'source.json'), 'utf8'));
     if (hash(await readFile(modelPath)) !== source.files.models[0].sha256)
@@ -216,12 +260,27 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     if (error.code !== 'ENOENT') throw error;
   }
   const out = new MeshBufferBuilder();
-  const authoring = createArchitecturalSurfaceAuthoring(surfaces, {
-    metricTriangleUv: asset.metricTriangleUv,
-    defaultLocalName: 'lantern-glass-and-dark-recess',
-    legacyAlphaFields: true,
-  });
-  asset.build(authoring.wrap(out));
+  const authoring = createArchitecturalSurfaceAuthoring(
+    { ...surfaces, ...(reviewScope?.surfaceOverrides ?? {}) },
+    {
+      metricTriangleUv: asset.metricTriangleUv,
+      defaultLocalName: 'lantern-glass-and-dark-recess',
+      legacyAlphaFields: true,
+    },
+  );
+  let buildModel = asset.build;
+  if (reviewScope?.sourceGeometry) {
+    const definition = reviewScope.sourceGeometry;
+    if (
+      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(definition.module) ||
+      typeof definition.export !== 'string'
+    )
+      throw new Error(`${asset.id}: invalid source geometry override`);
+    buildModel = (await import(pathToFileURL(resolve(definition.module)).href))[definition.export];
+    if (typeof buildModel !== 'function')
+      throw new Error(`${asset.id}: missing source geometry export`);
+  }
+  buildModel(authoring.wrap(out));
   const mesh = out.finalize();
   smoothMeshNormals(mesh, asset.smoothNormalSlots ?? ['trim', 'foundation'], 32);
   if (asset.normalAt)
@@ -262,6 +321,19 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     category: 'stadium',
     quality: 'detailed',
     actualBounds: { min, max },
+    ...(reviewScope
+      ? {
+          mesh: {
+            triangles: mesh.triangleCount,
+            vertices: mesh.vertexCount,
+            materials: mesh.groups.length,
+            bytes: glb.length,
+            sha256: hash(glb),
+            min,
+            max,
+          },
+        }
+      : {}),
     geometrySource:
       'Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.',
     sourceLicense:
@@ -307,7 +379,7 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
           renderable: {
             kind: 'primitive',
             ref: 'box',
-            materialRef: asset.id === 'N0643' ? 'palette:#4c6e77' : 'palette:#858878',
+            materialRef: 'palette:#858878',
             shadows: { receive: true },
           },
         },
@@ -335,6 +407,11 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     },
     physics: { engine: 'none' },
   };
+  if (reviewScope?.previewGround === false)
+    scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
+  if (reviewScope?.previewTerrain) scene.terrain = reviewScope.previewTerrain;
+  if (reviewScope?.previewEntities) scene.entities.push(...reviewScope.previewEntities);
+  if (reviewScope?.camera) Object.assign(scene.camera, reviewScope.camera);
   const optional = (
     await readdir(dir).catch((error) => {
       if (error.code === 'ENOENT') return [];
@@ -372,7 +449,15 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
       scripts: [],
       textures: [],
       sounds: [],
-      documents: ['README.md', 'preview.png', ...optional],
+      documents: [
+        ...new Set([
+          'README.md',
+          'preview.png',
+          ...optional,
+          ...(reviewScope?.sourceDocuments ?? []),
+          ...(reviewScope ? (priorSource?.files.documents ?? []) : []),
+        ]),
+      ],
     },
   };
   const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(asset.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(asset.nativeAxes)}.\n\n## Placement proposal\n\n${asset.geographicProposal.notes} Proposed anchor ${asset.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${asset.geographicProposal.heading} radians. Elevation policy: **${asset.geographicProposal.elevationMode}**. See qa.json for the geographic review status and scope; this placement proposal does not claim surveyed site accuracy. Native ground and pitch datums follow the individual geographic proposal; depressed bowls require their declared terrain cutout.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\n${asset.portableReviewBasis ?? 'Portable review uses a flat ground contact fixture.'}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. The hash-bound qa.json and capture reports record the scope and status of rendering, shared-material, exterior-fidelity and geographic reviews.\n\nRegenerate with \`node packages/worldgen/scripts/generate-stadium-models.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are registered by the imports and study list in \`packages/worldgen/scripts/generate-stadium-models.mjs\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;

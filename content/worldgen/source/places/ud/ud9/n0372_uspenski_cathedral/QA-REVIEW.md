@@ -1,0 +1,57 @@
+# N0372 — Uspenski Cathedral review
+
+Reviewed2026-10-15 against current source/runtime bytes. Accepted for the medium-fi exterior and approximate geographic/terrain scope.
+
+![Molen summary preview](preview.png)
+
+## Built result
+
+Inspected all11 current portable/source-terrain views. Individually authored Uspenski Cathedral: red-brick cross church, three round eastern apses, low corner roofs, tall polygonal brick drum with round-headed fields, tiered green copper helmet and gold onion/cross to44m. Four medium roof turrets reach27m, eight smaller corner tips23m; lower south bell/vestibule tower22m connects through a low copper-roofed link. Western projecting gabled porch has open front/side arches, two grey granite columns, raised wood door and steps. Extended small masonry shafts to ground and medium shafts into arm roofs, omitted one window buried by an adjoining roof, capped base ledges and used matching wall/cap outlines at stepped joins. Low corridor uses a continuous approximate rectangle and longitudinal hip. Current views show closed ledges and seated towers. Ornament, glass artwork and hidden rooms remain simplified or excluded.
+
+Medium-fi exterior from three inspected Commons entrance/exterior photographs dated2019,2022 and2025 plus current standard viewer PMTiles/DEM. No bespoke surveys, drawings or archive research. Principal individual brick massing, mapped whole heights, roof groups, gold tips, round arcades, east apses and open west porch are represented. Exact ornamental brick courses/carvings/sculpture/inscriptions, stained-glass artwork, roof furniture/joints, hidden rooms/interiors and surveyed hill/plaza paving/steps/thresholds remain excluded or approximate. Low corridor rectangle simplifies sub-metre footprint steps while raw controls stay unchanged. Raised thresholds and terrain contact are visualization estimates, not certified walking. Physical laptop/phone timing pending.
+
+## Shared materials and placement
+
+Inspected all11 current shared/geographic frames. Four existing cached256-square brick, granite, copper and plain wood graphs serve six merged groups. Linear brick/green/gold tints, metric UVs and flat architectural normals. Gold caps/crosses and closed glazing use local geometric PBR colors; no embedded images, bespoke facade maps or baked shadows. Each graph reads once. Unload disposes geometry, leaves zero live model geometries and restores ground. Signed top placement agrees with the mapped east apses, west porch and southern low tower. Detail crops intentionally exclude other sections; whole frames retain the full44m tip. Flat diagnostic ground can hide below-datum footings; source-terrain views show approximate contact.
+
+Exact-QID OSM way15242921/Q1355001 matches current main35184387331753. Anchor[24.959961931,60.168458719], heading0.04995819636175475rad follows the northern central-core edge, signed by western separate layer1 open porch, eastern apses and lower southern bell/vestibule tower. All52 raw controls retain exact plans/tags after rigid rotation without rescale. Exact-QID way15242921/Q1355001 matches main35184387331753. All52 current controls retain raw plans/tags: main,50 church parts and separate layer1 western porch35185635043709. Main height is absent; all min_height values remain absent. Heights are whole envelopes, not stacked solids: central core23m, drum/copper helmet39m and tip44m; arms21m; four medium roof turrets25m with27m tips; eight smaller shafts/copper pyramids22m with23m tips; corner roofs14.7m; main apse16m/side apses8.8m; south link7.7m; low bell base10.4m/upper16.4m/copper cone20.5m/tip22m; west porch7.5m. There is no retained Wikidata height fact. Picture estimates subdivide these into base5.2m, main eaves16.4m/gable ridges21m/core23m, corner eaves12.2m/hips14.7m, apse eaves12m/roofs16m and side eaves6.4m/roofs8.8m, link eaves5.9m/roof7.7m, central drum16.4..31.8m (lower portion intersects roofs; exposed above approximately23m)/copper helmet31.8..39m/gold onion39..42.5m/cross44m. Medium turret brick16.4..24m (lower portion intersects arm roofs)/copper collar25m/gold/cross27m; small masonry shafts from local footings to20m/copper pyramid22m/gold/cross23m. Low bell wall to16.4m/cone20.5m/tip22m; porch eaves5.7m/ridge7.5m. The three low corridor parts meet at one quantized point; their local bounding rectangle joins the low roof, with sub-metre simplification of its stepped edges. Exposed base ledges are capped. Raw controls rotate rigidly without rescale; Boolean inputs round0.1mm. Exact fenestration, hidden roof joins, carvings, brick courses and doorway steps remain picture estimates. All336 current viewer footprint checks cover52 controls while preserving three neighboring buildings and a west approach patch across six outputs. Standard viewer DEM datum 33.868569m; display floor0.4m, mapped perimeter terrain -2.26..0.45m. Side footings follow coarse viewer terrain. Raised main west porch/wood threshold and south low tower steps are visual estimates, not surveyed joins. Exact hill rock/plaza grading, cut-fill, ramps/steps/thresholds, absolute altitude and walking remain unverified. No global flattening or road replacement.
+
+Inspected all27 current Earth-lighting frames: Economy/High, noon/late, three distances, silhouette, six detail crops, four matched whole-model LODs and four transitions. Skyline keeps the cross church, stepped roofs, central drum/helmet/gold tip, four medium/eight smaller roof tips, apses, lower south tower/link and western porch. District adds shared surfaces and flat round fields; minor crosses merge into solid gold tips below useful pixel size. Street opens facade/porch recesses with closed glass/wood and larger mullions/pilasters; tiny nested surrounds/bars are omitted. Closeup/master refine nested brick arches, columns, gold profiles and crosses. All matched whole-model frames include the entire church and44m tip. Synthetic cottage context and ground bands are fixtures; exact hill/plaza/urban grading is not established by them.
+
+## Browser budgets
+
+| Level | Triangles | Bytes | Draws |
+| --- | ---: | ---: | ---: |
+| skyline | 885 | 95020 | 1 |
+| district | 3541 | 374340 | 6 |
+| street | 15207 | 1478976 | 6 |
+| closeup | 27987 | 2825460 | 6 |
+
+Initial skyline plus district: **469360bytes** of geometry. Master: **3362072bytes / 27987triangles**. Four cached shared256² graphs, zero embedded images. Bytes exclude graph definitions/texture generation. Split POSITION/NORMAL streams with equal CPU/GPU totals. Physical device timing pending.
+
+## Verification
+
+- Targeted byte reproduction; current source/import/LOD/input/review hashes and source/recipe inventory/schema match.
+- Six Khronos validations: zero errors/warnings/images; four browser budgets pass.
+- All52 raw map controls/tags/absent values, signed frame, current whole heights, estimated subdivisions, Boolean partitions/base caps and standard DEM match.
+- **1822 geometry probes** and **336 actual viewer footprint checks** pass.
+- Shared graph read-once/unload and hash-bound geographic/medium-fi reviews pass.
+- Scene validation and30-tick simulation: sha256:cfb0609579e2f87b2aa7a7c5335002bc89a2f390135999019609f95e8e8569b5.
+- Inspected **49 current frames**:11portable,11shared/placement,27medium-fi. Cameras/paths/hashes retained; bulk images ignored.
+
+Source hash:sha256:80f9b66982151fcf81cbbbd12441f5374e45dc9bb292fdb3bc4fda98668ed535. Runtime hash:sha256:27709aa3be4d6739736ab8a7e9508a93ade92c53d9585dae09dcc92cf73673ea. Input hash:sha256:caa4a1ffaf1b84cdd9d4770ff26b861855c3e3a9387da54397eae22d12c4be30.
+
+Commands: targeted generate/import/LOD/register-landmark-previews --ids=N0372; generate-additional-landmarks.mjs --ids=N0372 --check; capture-next-1000-models.mjs --ids=N0372 --reflections --antialias --fit-shadows; capture-landmark-library.mjs --ids=N0372 --reflections --adaptive-clipping --bounded-placement; capture-medium-fi.mjs --ids=n0372_uspenski_cathedral --reflections; molen validate; molen sim run --ticks30 --hash. Routine full source checkpoint covers N0360–N0379.
+
+## Authoring correction retained
+
+Whole component heights do not define the lower wall joins. Roof turrets must extend into supporting roofs/walls. When a raw lower footprint steps back to an upper outline, cap its exposed difference and use matching render outlines at that joint. Simplifying only the wall while retaining a raw cap can leave visible slivers. Keep roof faces independent from wall-opening masks. These corrections are in the source recipe and current renders.
+
+## Limits
+
+- Exact-QID way15242921/Q1355001 matches main35184387331753. All52 current controls retain raw plans/tags: main,50 church parts and separate layer1 western porch35185635043709. Main height is absent; all min_height values remain absent. Heights are whole envelopes, not stacked solids: central core23m, drum/copper helmet39m and tip44m; arms21m; four medium roof turrets25m with27m tips; eight smaller shafts/copper pyramids22m with23m tips; corner roofs14.7m; main apse16m/side apses8.8m; south link7.7m; low bell base10.4m/upper16.4m/copper cone20.5m/tip22m; west porch7.5m. There is no retained Wikidata height fact. Picture estimates subdivide these into base5.2m, main eaves16.4m/gable ridges21m/core23m, corner eaves12.2m/hips14.7m, apse eaves12m/roofs16m and side eaves6.4m/roofs8.8m, link eaves5.9m/roof7.7m, central drum16.4..31.8m (lower portion intersects roofs; exposed above approximately23m)/copper helmet31.8..39m/gold onion39..42.5m/cross44m. Medium turret brick16.4..24m (lower portion intersects arm roofs)/copper collar25m/gold/cross27m; small masonry shafts from local footings to20m/copper pyramid22m/gold/cross23m. Low bell wall to16.4m/cone20.5m/tip22m; porch eaves5.7m/ridge7.5m. The three low corridor parts meet at one quantized point; their local bounding rectangle joins the low roof, with sub-metre simplification of its stepped edges. Exposed base ledges are capped. Raw controls rotate rigidly without rescale; Boolean inputs round0.1mm. Exact fenestration, hidden roof joins, carvings, brick courses and doorway steps remain picture estimates.
+- Standard viewer DEM datum 33.868569m; display floor0.4m, mapped perimeter terrain -2.26..0.45m. Side footings follow coarse viewer terrain. Raised main west porch/wood threshold and south low tower steps are visual estimates, not surveyed joins. Exact hill rock/plaza grading, cut-fill, ramps/steps/thresholds, absolute altitude and walking remain unverified. No global flattening or road replacement.
+- Medium-fi exterior from three inspected2019/2022/2025 entrance/exterior pictures and standard viewer PMTiles/DEM only. Flat faceted architecture, stylized brick relief, green copper profiles, gold caps/crosses and geometric closed glazing preserve principal features. Exact ornamental brick/sculpture/inscriptions, stained glass, roof joints/furniture, hidden room/interior plans, surveyed hill/plaza paving/doorway levels and certified walking excluded or approximate. Physical laptop/phone timings pending.
+- Skyline keeps mapped massing, high drum/helmet, roof turrets, apses, lower tower and porch. District adds cached surfaces and flat round fields. Street opens wall/porch recesses with closed glazing/wood and coarse mullions/pilasters. Closeup/master refine arch surrounds, columns, gold profiles and crosses. Synthetic cottage context is a review fixture.
+
+Readiness accepts this exterior scope. The1,000-candidate goal remains incomplete.

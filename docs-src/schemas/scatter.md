@@ -291,6 +291,73 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
             "minimum": 0,
             "description": "Minimum spacing hint in meters."
           },
+          "rows": {
+            "type": "object",
+            "properties": {
+              "headland": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 30
+              },
+              "spacing": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 100,
+                "description": "Distance between cultivation rows, meters."
+              },
+              "interval": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 100,
+                "description": "Distance between plants along a row, meters."
+              },
+              "angle": {
+                "default": 0,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 180,
+                "description": "Grid rotation in degrees from world X."
+              },
+              "jitter": {
+                "default": 0.04,
+                "type": "number",
+                "minimum": 0,
+                "maximum": 0.2,
+                "description": "Fractional cell jitter; 0 gives exact rows."
+              }
+            },
+            "required": [
+              "spacing",
+              "interval"
+            ],
+            "additionalProperties": false,
+            "description": "Optional world-anchored cultivation grid. Density may thin it, but cannot overfill it."
+          },
+          "nearWater": {
+            "type": "object",
+            "properties": {
+              "maxDistance": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 500,
+                "description": "Maximum horizontal distance from mapped water edges, meters."
+              },
+              "classes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Optional water labels; omitted accepts any mapped water."
+              }
+            },
+            "required": [
+              "maxDistance"
+            ],
+            "additionalProperties": false,
+            "description": "Require mapped water nearby, at the exclusion raster resolution. Water itself remains excluded."
+          },
           "clustering": {
             "type": "object",
             "properties": {
@@ -318,6 +385,17 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
                 "minimum": -9007199254740991,
                 "maximum": 9007199254740991,
                 "description": "Decorrelates rules sharing a class."
+              },
+              "sharedSeed": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991,
+                "description": "Shared density field across layers; does not change placement seeds."
+              },
+              "detailScale": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "description": "Wavelength of smaller clumps inside density patches, meters."
               }
             },
             "required": [
@@ -331,9 +409,11 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
             "type": "string",
             "enum": [
               "canopy",
-              "groundcover"
+              "understory",
+              "groundcover",
+              "agriculture"
             ],
-            "description": "Budget pool: canopy (trees, shrubs, rocks) shares the batch instance and model caps; groundcover (knee-high near detail such as tussocks and ferns) has its own, so it never thins the canopy."
+            "description": "Budget pool: canopy uses the batch instance and model caps; understory (shrubs and thickets) and groundcover (low patches) have independent caps and never thin canopy trees."
           },
           "slopeMax": {
             "type": "number",
@@ -391,6 +471,31 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
                   "maximum": 1000,
                   "description": "Relative weight among sibling entries; 0 disables the entry."
                 },
+                "variants": {
+                  "minItems": 1,
+                  "maxItems": 16,
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "model": {
+                        "type": "string",
+                        "pattern": "^(builtin:[a-z][a-z0-9_.]*|[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+)$"
+                      },
+                      "weight": {
+                        "type": "number",
+                        "exclusiveMinimum": 0,
+                        "maximum": 1000
+                      }
+                    },
+                    "required": [
+                      "model",
+                      "weight"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Interchangeable model forms sampled independently of species. Unretained forms fall back to model under the model budget; all must share habitat and scale bounds."
+                },
                 "scale": {
                   "type": "object",
                   "properties": {
@@ -432,9 +537,10 @@ Label-keyed deterministic prop placement (density, clustering, slope and clearan
                   "type": "string",
                   "enum": [
                     "random",
-                    "none"
+                    "none",
+                    "rows"
                   ],
-                  "description": "Random heading or fixed."
+                  "description": "Random, fixed, or aligned with cultivation rows."
                 },
                 "align": {
                   "default": "up",

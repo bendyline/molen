@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.79,
+      "metallic": 0.08
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.28,
+      "metallic": 0.05
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/nidaros-cathedral-model.mjs",
+    "export": "buildNidarosSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildNidarosDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.08
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.05
+          }
+        }
+      },
+      "street": {
+        "export": "buildNidarosStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.08
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.05
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildNidarosCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.79,
+            "metallic": 0.08
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.05
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -146,
+      103,
+      -139
+    ],
+    "lookAt": [
+      -1,
+      29,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-nidaros-skyline",
+      "position": [
+        -146,
+        103,
+        -139
+      ],
+      "lookAt": [
+        -1,
+        29,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-nidaros-district",
+      "position": [
+        -146,
+        103,
+        -139
+      ],
+      "lookAt": [
+        -1,
+        29,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-nidaros-street",
+      "position": [
+        -146,
+        103,
+        -139
+      ],
+      "lookAt": [
+        -1,
+        29,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-nidaros-closeup",
+      "position": [
+        -146,
+        103,
+        -139
+      ],
+      "lookAt": [
+        -1,
+        29,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate exterior and standard terrain fit; exact thresholds, nominal heights and inferred architectural profiles remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        10.396908972,
+        63.426918341
+      ],
+      "modelHeight": 0,
+      "basis": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows13.866477m standardDEM; estimated floor0.5m clears coarse perimeter-0.74..0.23m. Foundation/plaza/step joins remain approximate; no surveyed thresholds or certified walking surfaces."
+    },
+    "bounds": [
+      10.3954,
+      63.4264,
+      10.3983,
+      63.4274
+    ],
+    "notes": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows13.866477m standardDEM; estimated floor0.5m clears coarse perimeter-0.74..0.23m. Foundation/plaza/step joins remain approximate; no surveyed thresholds or certified walking surfaces.",
+    "groundContactBasis": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows13.866477m standardDEM; estimated floor0.5m clears coarse perimeter-0.74..0.23m. Foundation/plaza/step joins remain approximate; no surveyed thresholds or certified walking surfaces."
+  },
+  "geographicNote": "Individual exterior from two useful pictures and standard viewer PMTiles/DEM. NativeY0 follows13.866477m standardDEM; estimated floor0.5m clears coarse perimeter-0.74..0.23m. Foundation/plaza/step joins remain approximate; no surveyed thresholds or certified walking surfaces.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

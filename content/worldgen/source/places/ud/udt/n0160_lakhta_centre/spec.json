@@ -11,6 +11,10 @@
     "longitude": 30.17814
   },
   "visualBrief": "The462 m five-petal glass flame with a continuous90-degree helical sweep, widening lower profile, tapering upper observation/spire section, individually framed parallelogram glazing and ten fine spiral arrises.",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 6
+  },
   "size": [
     73.08051300048828,
     462,
@@ -42,6 +46,12 @@
     "facadeModules": 16505,
     "finalSteelTipMeters": 13
   },
+  "appearance": {
+    "identity": "Completed five-petal glass tower with broadened lower body, continuous helical sweep and separate metal tip.",
+    "epoch": "Completed main tower exterior, designer2011-2018 project and attributed map snapshot2026-09-27.",
+    "master": "Original15202-triangle source recipe preserved exactly.",
+    "exclusions": "Adjacent low wings/arch, pane sag, exact floor envelopes, interiors and surveyed plaza."
+  },
   "reconstruction": {
     "plan": "Signed exact-QID five-pointed mapped footprint; independent upper star parts establish core location and twist handedness",
     "profile": "Shape-preserving cubic taper and lower bulge reconstructed through published geometry and mapped upper envelopes; continuous tangents replace artificial linear-section knuckles"
@@ -68,8 +78,8 @@
       "relation/18102137"
     ],
     "wikidataId": "Q4255374",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:19913cd6210f54f55cc2c51e49958337f31fc88625963ccde04ad1891db68b1e",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
     "notes": "Exact signed five-petal ground outline and independently mapped upper stars determine core and clockwise-to-counterclockwise convention; rotation proceeds counterclockwise in geographic east/north space. Tower baseY0. Adjacent wings are excluded."
@@ -99,7 +109,7 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
     "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
@@ -170,6 +180,42 @@
         221,
         3
       ]
+    }
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/lakhta-skyline-model.mjs",
+    "export": "buildLakhtaSkyline",
+    "errorMeters": 1
+  },
+  "qaLodCameras": [
+    {
+      "name": "five-petal-crown-district",
+      "position": [
+        89,
+        432,
+        115
+      ],
+      "lookAt": [
+        0,
+        393,
+        4
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "spire-district",
+      "position": [
+        40,
+        470,
+        61
+      ],
+      "lookAt": [
+        0,
+        442,
+        4
+      ],
+      "reviewLod": "district"
     }
   ],
   "importOptions": {

@@ -1,0 +1,251 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "scale": 2.5
+  },
+  "brief": "Mapped chamfered white ceramic Art Deco tower with projecting outlook band, preserved upper-core outline, faceted glazed beacon, flag mast and northwest-facing historic entrance.",
+  "sourceFacts": {
+    "heightMeters": 161.22,
+    "floors": 35,
+    "beaconHeightMeters": 11.7,
+    "flagMastMeters": 9,
+    "completion": 1947,
+    "publishedWindowCount": 1119
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X along the mapped long axis",
+    "front": "-Z toward Rua João Brícola",
+    "origin": "Ground-level center of exact-QID mapped footprint"
+  },
+  "reconstruction": {
+    "lowerBandMeters": [
+      16.57,
+      91,
+      107.14
+    ],
+    "upperCore": "Dated mapped part425691323, chamfered plan independently checked against operator21/25/26floor plans",
+    "upperRoofMeters": 140.52,
+    "beaconTopMeters": 152.22,
+    "entranceNativeXZ": [
+      4.159,
+      -8.293
+    ],
+    "detail": "Sideward tier extents/heights, cornice depth and lantern radius profile reconstructed from operator photographs."
+  },
+  "limitations": [
+    "Exterior reconstruction from operator dimensions, dated photos/plans and attributed OSM perimeter/upper part. Exact1119window correspondence, minor rooftop fixtures and interiors are excluded.",
+    "Shared5cm mosaic approximates smaller ceramic pieces; no photographs or separate baked texture copies. Setback heights and projecting outlook band are reconstructed. Convex collision is exterior only.",
+    "The datum for adjoining streets and podium has not been surveyed. Host terrain supplies nativeY0; mapped address entrance faces -Z."
+  ],
+  "surfaceOverrides": {
+    "cladding": {
+      "graph": "tile_mosaic",
+      "slot": "wall",
+      "roughness": 0.32,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "canvas": {
+      "graph": "fabric_canvas",
+      "slot": "roof",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "glass": {
+      "localRef": "palette:#ffffff",
+      "slot": "window",
+      "roughness": 0.2,
+      "metallic": 0.28,
+      "ref": "palette:#ffffff"
+    },
+    "recess": {
+      "localRef": "palette:#ffffff",
+      "slot": "wall",
+      "roughness": 0.88,
+      "metallic": 0,
+      "ref": "palette:#ffffff"
+    }
+  },
+  "camera": {
+    "position": [
+      -95,
+      110,
+      -190
+    ],
+    "lookAt": [
+      1.7,
+      79,
+      0
+    ],
+    "fov": 44
+  },
+  "appearance": {
+    "identity": "White ceramic Art Deco tower with broad front outlook band, chamfered upper body and faceted glazed lantern.",
+    "epoch": "Restored Farol Santander exterior; operator2023aerial and2025manual.",
+    "master": "Historical32360triangle recipe retained unchanged. Current exterior is reconstructed as an independent source master.",
+    "materials": "Canonical tile_mosaic approximates ceramic pastilhas; fixedcentral0.6m repeat gives5cm pieces. Canonicalmetal/fabric and local opaque glazing are shared across browser levels."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/altino-arantes-current-model.mjs",
+    "export": "buildAltinoCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/altino-arantes-current-model.mjs",
+    "export": "buildAltinoSkyline",
+    "errorMeters": 1.3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAltinoDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "cladding": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.32,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "roof",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAltinoStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "cladding": {
+            "graph": "tile_mosaic",
+            "slot": "wall",
+            "roughness": 0.32,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "canvas": {
+            "graph": "fabric_canvas",
+            "slot": "roof",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "localRef": "palette:#ffffff",
+            "slot": "wall",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "street-front",
+      "position": [
+        27,
+        80,
+        -65
+      ],
+      "lookAt": [
+        1.7,
+        80,
+        -3
+      ]
+    },
+    {
+      "name": "correct-entrance",
+      "position": [
+        21,
+        12,
+        -42
+      ],
+      "lookAt": [
+        4.159,
+        6,
+        -8.3
+      ]
+    },
+    {
+      "name": "faceted-beacon",
+      "position": [
+        24,
+        151,
+        -32
+      ],
+      "lookAt": [
+        1.7,
+        146,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "district-front",
+      "position": [
+        -65,
+        120,
+        -145
+      ],
+      "lookAt": [
+        1.7,
+        90,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-beacon",
+      "position": [
+        24,
+        151,
+        -32
+      ],
+      "lookAt": [
+        1.7,
+        146,
+        0
+      ],
+      "reviewLod": "street"
+    }
+  ]
+}

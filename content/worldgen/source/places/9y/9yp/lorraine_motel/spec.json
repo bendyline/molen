@@ -1,0 +1,188 @@
+{
+  "planId": "lorraine_motel",
+  "id": "lorraine_motel",
+  "assetId": "molen.worldgen.structure.lorraine_motel",
+  "title": "Lorraine Motel",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -90.0576444863638,
+    "latitude": 35.13434551668101
+  },
+  "size": [
+    64.02637481689453,
+    15.40000033378601,
+    29.185850620269775
+  ],
+  "actualBounds": {
+    "min": [
+      -42.52637481689453,
+      -3.799999952316284,
+      -5.868351459503174
+    ],
+    "max": [
+      21.5,
+      11.600000381469727,
+      23.3174991607666
+    ]
+  },
+  "visualBrief": "Preserved courtyard-facing motel frontage, angled connecting bays and short return, mint doors, cream curtains, balcony panels, room 306 wreath, exterior stairs and freestanding Googie sign.",
+  "nativeAxes": {
+    "x": "across principal front elevation",
+    "y": "up",
+    "z": "outward from principal front elevation"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Lorraine_Motel,_Memphis,_TN,_US.jpg",
+    "https://commons.wikimedia.org/wiki/File:Lorraine_Motel,_Memphis,_Tennessee.jpg"
+  ],
+  "stories": [
+    {
+      "id": "lorraine-motel-wk",
+      "url": "https://qualla.com/lorraine-motel/"
+    }
+  ],
+  "referenceInputHash": "09c0a5402bae45b8ae8d36521352d279b6e3844316ff4749aaa0393140962a40",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-lorraine-motel.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-lorraine-motel.mjs",
+    "level": "skyline",
+    "export": "lorraineSkyline",
+    "errorMeters": 0.5,
+    "caps": {
+      "district": {
+        "triangles": 4000,
+        "errorMeters": 0.25,
+        "prune": true
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Signed front platform reference [0,8], source terrain retained independently; rear closure foundations extend to -3.8 m for coarse host-terrain relief and frontage platforms to -1.2 m.",
+    "anchor": [
+      -90.0576444863638,
+      35.13434551668101
+    ],
+    "heading": -1.8617022040158195,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -90.05772866958597,
+        35.13436612898133
+      ],
+      "modelHeight": 0,
+      "basis": "Front platform reference on independently preserved host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184467221497",
+      "buildings/35185917602225"
+    ],
+    "source": "https://build.protomaps.com/20261008.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:70cad445a4b11c31ac0e151dbe25ca62b41c0de7a6d1b4f688a05535a39d4dc2",
+    "notes": "The 42.567 m long frontage follows the two map vertices at the preserved balcony edge. Angled connecting bays and the short return follow the remaining balcony polyline. Modern museum volumes behind the motel are excluded; rear closure depth is interpreted from photographs, not the entire combined museum envelope. Sign position is estimated inside the courtyard from local Qualla photographs."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi preserved motel exterior and sign; modern museum envelope, interiors, historic cars and neighboring buildings are outside scope.",
+    "Protomaps frontage and separate balcony polygon control location and alignment. Room widths, wall depths, roof heights and sign position are photographic estimates. The museum donor map is schematic and is not used as geodetic coordinates.",
+    "Hidden rear is a simplified attachment surface. Fine sign typography, room numbers, flowers and hardware are simplified. Photos remain local Qualla references and are not embedded.",
+    "Independent coarse host terrain is retained for contact review; it is not a survey. No footprint suppression is requested for the combined museum polygon."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -10.513187408447266,
+        10.010000216960908,
+        119.3570613861084
+      ],
+      "lookAt": [
+        -10.513187408447266,
+        2.7300001502037046,
+        8.724573850631714
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -10.513187408447266,
+        12.32000026702881,
+        -101.90791368484497
+      ],
+      "lookAt": [
+        -10.513187408447266,
+        2.7300001502037046,
+        8.724573850631714
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 7554,
+    "vertices": 22662,
+    "materials": 5,
+    "bytes": 909668,
+    "sha256": "sha256:335d4371be8987e8b7605d6229017c563b1e1bdbf063b5af0739d743df9fc8b1"
+  }
+}

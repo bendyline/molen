@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-KPF’s484 m glazed tower with re-entrant corners, a gently tapered silver facade, continuous fine projecting vertical fins, mechanical bands, and separately mapped splayed glass canopies and long northern entrance atrium.
+Budgeted ICC preserves tower, corners and all mapped glass-splay strips; distance tiers merge facade grids and roof mullions.
 
 ## Evidence and reconstruction
 
@@ -17,11 +17,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-121,424 triangles; 359,660 vertices; 4 material groups; 14,407,700 bytes. Native bounds: -50.966, 0.000, -34.950 to 100.296, 484.000, 34.722. Source hash: `sha256:3a7c593be32c1d563caae502825891a5a5e57e5bc5f791093c683afce07db69b`.
+52,196 triangles; 156,588 vertices; 4 material groups; 6,266,364 bytes. Native bounds: -50.966, 0.000, -34.950 to 100.296, 484.000, 34.722. Source hash: `sha256:5598637cbc93daab23ccad35d6670e38db2a5b3753bdb8ef85fb831841f94a6a`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Existing484m authored tower retains its exact-QID re-entrant footprint and signed mapped north atrium/canopy strips. One inspected exterior picture supports silver horizontal bands, re-entrant corners and splayed glass entrance roof. Standard viewer PMTiles checks tower/road placement; off-footprint[-80,0] supplies approximate terrain contact and a bounded local rectangular correction covers the tower/canopies. Raw elevations remain separately retained. Heights, subtle taper, pane schedule and podium connections stay reconstructed; surrounding Elements complex excluded. No surveyed fit claimed.
 
 ## Reproduce
 
@@ -29,7 +29,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0154` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Subtle facade taper and pane schedule are reconstructed. The tower-area podium has a local ground-contact base; the surrounding Elements complex is excluded. Static daylight facade omits programmable light-show content.
+- Existing484m authored tower retains its exact-QID re-entrant footprint and signed mapped north atrium/canopy strips. One inspected exterior picture supports silver horizontal bands, re-entrant corners and splayed glass entrance roof. Standard viewer PMTiles checks tower/road placement; off-footprint[-80,0] supplies approximate terrain contact and a bounded local rectangular correction covers the tower/canopies. Raw elevations remain separately retained. Heights, subtle taper, pane schedule and podium connections stay reconstructed; surrounding Elements complex excluded. No surveyed fit claimed.
+- Shared granite/concrete/painted-metal graphs plus opaque glass PBR. Photograph crops upper crown; existing authored484m controls retained. Canopy contacts/podium connections approximate. Physical-device timing pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0602_aljaz_tower",
-  "inputHash": "sha256:bd5be5a5293f0a3bde43a3322bda3dc9d7b515a295f46734d2f8e8d61cb3cd8b",
-  "captureReportHash": "sha256:c12d1e34dcb3259b566defab7d01d0287689f3b8f0b66810deb77547d93d7f43",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:c25f33e5fa57a205a59a50f3912889d78feb57be82fef5560d1b5d637858d398",
+  "sourceHash": "sha256:2b9cf37d0cbfe226d43fd2f80e9e0560ed36e6209147c3bbd4dc807766502c39",
+  "runtimeHash": "sha256:db6f78ce2aaa94fe9431b40382e0fd41aa077e9c40d60d1a835efb7d4167b01e",
+  "captureReportHash": "sha256:a9fec141a4f2c1ebea774ef443629870b5fbbff9a8e8e795cae66765c5c89e43",
   "visualReview": {
     "status": "passed",
-    "scope": "Complete detailed world-viewer exterior reconstruction",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -18,14 +20,11 @@
       "shots/rear-window-seams.png",
       "shots/far-silhouette.png"
     ],
-    "notes": [
-      "Inspected all 10 final portable frames. The 1.25 m cylinder, shallow cap, eight offset viewing windows, raised curved door, two hinge barrels, latch, rivet seams, readable ALJAŽEV STOLP label, three Y anchors and guy ropes are intact.",
-      "The corrected cut 1895 flag now presents its reverse from the doorway, matching both the 2018 restoration and 2025 authority photographs. The polygonal letter/stencil simplification is original geometry, not a copied image."
-    ]
+    "notes": "Inspected all10 final portable views against the exterior picture. Pale cylindrical shelter, dark conical cap, raised closed doorway, readable plaque, small recessed windows, cut1895 flag, rivets, hinges, Y anchors and guy ropes are intact. Closed door is the explicit static presentation."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:cc482b8699d3940edd86ddee8d2b1955dd5f8072a6a0e8faf5f0606408f189e3",
+    "captureReportHash": "sha256:72fdfed1b90fc8b88f7b2a139ad37d6bf5a7728db095a6030e604f9253d58eaf",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -35,24 +34,260 @@
       "shots/shared/roof-and-stencil-flag.png",
       "shots/shared/anchors-and-turnbuckles.png",
       "shots/shared/rear-window-seams.png",
-      "shots/shared/far-silhouette.png"
+      "shots/shared/far-silhouette.png",
+      "shots/shared/placement.png"
     ],
-    "notes": [
-      "Inspected all nine current sky-PMREM shared frames. Painted pale-gray metal, darker roof and supports, small recessed panes and black inscription remain distinct. Close cameras preserve rivet, cable, hinge and cut-flag detail.",
-      "The asset-review loader and unload assertions passed. There is deliberately no geographic placement frame while doorway bearing remains unresolved."
-    ]
+    "notes": "Inspected all10 final shared-material views. The common painted-metal graph is reused with explicit pane/shadow colors. Cache reuse and unload passed. Retained mapped circle aligns position and diameter; heading0 is an explicit approximate south-facing doorway, not a measured bearing. The flat shared fixture checks materials and alignment, not summit rock."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:11f2ff0d497ee799efaf8f9067f61c8596b022264606617713ec188d791a69b6",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/door-label-and-rivets.png",
+      "medium-fi/roof-and-stencil-flag.png",
+      "medium-fi/anchors-and-turnbuckles.png",
+      "medium-fi/rear-window-seams.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/district-pane-and-flag.png",
+      "medium-fi/street-plaque-and-cut-date.png",
+      "medium-fi/street-anchor-contact.png",
+      "medium-fi/whole-aljaz-skyline.png",
+      "medium-fi/whole-aljaz-district.png",
+      "medium-fi/whole-aljaz-street.png",
+      "medium-fi/whole-aljaz-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all29 final medium-fi views across light, quality, identity, silhouette and four matched levels. Shelter silhouette and contact plane remain consistent on retained coarse PMTiles terrain. District simplifies plaque/flag; near levels retain cut lettering/date and external fittings. Actual rocky summit micro-relief is outside this model."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:a3ae7c0975486054a5b6bfb80c895c20ead6d2669477042ae33da1e2ec36b7b6",
-    "notes": [
-      "The exact-QID mapped circular outline fixes the cylinder anchor, but an axis computed from that circle cannot establish doorway direction. The 2018 restoration report says its original rotation was preserved without publishing an azimuth.",
-      "The catalog remains draft/orientation-review. No automatic north-facing placement or geographic fit approval is claimed."
-    ]
+    "status": "passed",
+    "placementHash": "sha256:6afc3546fe6428302f4b85a7398f91a4b56406d100414e82371f7b53ba15fe4c",
+    "mapFrameHash": "sha256:ff68fb88ad8fd2149c38d76f1bed50d8f9c13639aa3a767a8a9d7ca079e55d17",
+    "notes": "The inspected exterior picture supports the pale cylindrical shelter, dark conical roof, raised doorway, plaque, cut1895 flag and metal anchors/guy ropes. The retained mapped circle supplies location and diameter. Heading0 places the model doorway approximately south; this is an explicit approximate facing choice, not a measured doorway bearing. Standard viewer PMTiles provide the summit working datum 2777.579296317931m. The small original shell/anchor contact plane uses modelY0; coarse summit slope and actual rock details are approximate."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Approximate current exterior, facing and summit fit from inspected picture and standard viewer PMTiles. The round map outline cannot establish doorway bearing; heading0 is openly approximate. Fittings, closed-door presentation and rock contacts are reconstructed. No exact survey, published summit-altitude substitution, interior/collision or physical-device timing claim; footprint replacement remains off."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
-    "notes": "Finished detailed exterior of the restored shelter, based on published heritage-authority diameter, body and overall heights, the original eight-window account and current 2025 conservation photographs. The external shell, roof, door fittings, label, dated flag, original Y anchors and cable hardware are modeled. The natural summit rock, visitor interior and newly painted internal panorama are separate from the exterior asset. Rivet pitch, exact cable endpoints and small metal fitting sizes are photographic reconstructions rather than fabrication drawings."
-  }
+    "notes": "Finished detailed exterior of the restored shelter, based on published heritage-authority diameter, body and overall heights, the original eight-window account and current 2025 conservation photographs. The external shell, roof, door fittings, label, dated flag, original Y anchors and cable hardware are modeled. The natural summit rock, visitor interior and newly painted internal panorama are separate from the exterior asset. Rivet pitch, exact cable endpoints and small metal fitting sizes are photographic reconstructions rather than fabrication drawings.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u2/u21/n0602_aljaz_tower/models/source.glb",
+        "hash": "sha256:2b9cf37d0cbfe226d43fd2f80e9e0560ed36e6209147c3bbd4dc807766502c39",
+        "bytes": 2018068,
+        "triangles": 23236,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -1.935292363166809,
+          0,
+          -2.2326624393463135
+        ],
+        "max": [
+          1.935292363166809,
+          2.9000000953674316,
+          1.119362235069275
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u2/u21/n0602_aljaz_tower/model.glb",
+        "hash": "sha256:db6f78ce2aaa94fe9431b40382e0fd41aa077e9c40d60d1a835efb7d4167b01e",
+        "bytes": 2017752,
+        "triangles": 23236,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -1.935292363166809,
+          0,
+          -2.2326624393463135
+        ],
+        "max": [
+          1.935292363166809,
+          2.9000000953674316,
+          1.119362235069275
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u2/u21/n0602_aljaz_tower/model.skyline.glb",
+        "hash": "sha256:edac5386e7377c01bbd8db0cfd78463b393a0abea7b167914fe86e7c11450661",
+        "bytes": 22720,
+        "triangles": 288,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -1.9358481168746948,
+          0,
+          -2.233015298843384
+        ],
+        "max": [
+          1.9358481168746948,
+          2.9000000953674316,
+          1.119971752166748
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u2/u21/n0602_aljaz_tower/model.district.glb",
+        "hash": "sha256:baaa48946508e6e16a9928f9ed5c96d5d8b815e6f8a532907cd9a4289f0c059e",
+        "bytes": 227472,
+        "triangles": 3184,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -1.935292363166809,
+          0,
+          -2.2326624393463135
+        ],
+        "max": [
+          1.935292363166809,
+          2.9000000953674316,
+          1.119362235069275
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u2/u21/n0602_aljaz_tower/model.street.glb",
+        "hash": "sha256:2b5f8ed89041334c2c82874f1bacc9582ee3461ab79fed65426eccd00610fe7a",
+        "bytes": 1012748,
+        "triangles": 13256,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -1.935292363166809,
+          0,
+          -2.2326624393463135
+        ],
+        "max": [
+          1.935292363166809,
+          2.9000000953674316,
+          1.119362235069275
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u2/u21/n0602_aljaz_tower/model.closeup.glb",
+        "hash": "sha256:1883a7dc7b5a70ea24d73c93f9b452d67ca479983140202828bf0a83d299d590",
+        "bytes": 2018000,
+        "triangles": 23236,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -1.935292363166809,
+          0,
+          -2.2326624393463135
+        ],
+        "max": [
+          1.935292363166809,
+          2.9000000953674316,
+          1.119362235069275
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validated with zero errors, zero warnings and zero embedded images. Original23236-triangle detailed master remains byte-for-byte unchanged. Levels contain288/3184/13256/23236 triangles; initial skyline+district download totals250192 bytes. Separate POSITION/NORMAL streams retained."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:0a5568a30c13dea6bb48521ef0efd6023f6cc025fe4ce9a2c9703bb882ff3820",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:edac5386e7377c01bbd8db0cfd78463b393a0abea7b167914fe86e7c11450661",
+        "bytes": 22720,
+        "gzipBytes": 5085,
+        "triangles": 288,
+        "cpuBytes": 21312,
+        "gpuBytes": 21312,
+        "errorMeters": 0.08,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:baaa48946508e6e16a9928f9ed5c96d5d8b815e6f8a532907cd9a4289f0c059e",
+        "bytes": 227472,
+        "gzipBytes": 46470,
+        "triangles": 3184,
+        "cpuBytes": 224880,
+        "gpuBytes": 224880,
+        "errorMeters": 0.018,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:2b5f8ed89041334c2c82874f1bacc9582ee3461ab79fed65426eccd00610fe7a",
+        "bytes": 1012748,
+        "gzipBytes": 191343,
+        "triangles": 13256,
+        "cpuBytes": 1010136,
+        "gpuBytes": 1010136,
+        "errorMeters": 0.002,
+        "drawCalls": 2
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:1883a7dc7b5a70ea24d73c93f9b452d67ca479983140202828bf0a83d299d590",
+        "bytes": 2018000,
+        "gzipBytes": 292442,
+        "triangles": 23236,
+        "cpuBytes": 2016192,
+        "gpuBytes": 2016192,
+        "errorMeters": 0,
+        "drawCalls": 2
+      }
+    ],
+    "initialBytes": 250192,
+    "notes": "skyline: 288 triangles, 22720 bytes, 1 draws; district: 3184 triangles, 227472 bytes, 2 draws; street: 13256 triangles, 1012748 bytes, 2 draws; closeup: 23236 triangles, 2018000 bytes, 2 draws. Initial skyline+district 250192 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Approximate facing and summit fit from the inspected picture and standard viewer PMTiles; no bespoke bearing or exact rock survey. The circular mapped outline fixes location and diameter but cannot establish entrance bearing.",
+    "Original detailed master/hash/recipe preserved; small fittings and closed-door presentation are photographic reconstruction.",
+    "Shared painted-metal graph plus local pane/shadow colors; no embedded image. Natural rock and surrounding mountain are host terrain.",
+    "Four budgeted browser levels retained; interiors/collision and physical-device timings excluded. Footprint replacement remains off."
+  ]
 }

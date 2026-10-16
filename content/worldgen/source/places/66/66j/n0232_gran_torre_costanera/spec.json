@@ -12,33 +12,27 @@
   },
   "visualBrief": "Four folded and tapering blue glass walls; deep recessed corner strips; four projecting clear crown screens with exposed diagonal steel lattice; enclosed and open observatory levels; repeated curtain-wall bays; rod-supported glass entrance canopy and doors.",
   "size": [
-    51.44382095336914,
-    300.02825927734375,
-    58.65334510803223
+    51.48963165283203,
+    300.0018005371094,
+    58.67625045776367
   ],
   "actualBounds": {
     "min": [
-      -25.72191047668457,
+      -25.744815826416016,
       0,
       -32.931434631347656
     ],
     "max": [
-      25.72191047668457,
-      300.02825927734375,
-      25.72191047668457
+      25.744815826416016,
+      300.0018005371094,
+      25.744815826416016
     ]
-  },
-  "assembly": {
-    "uniqueMeshes": 4,
-    "meshInstances": 10,
-    "storedTriangles": 23066,
-    "method": "Repeated facade geometry uses EXT_mesh_gpu_instancing; canonical shared surfaces contain no embedded bitmap copies."
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along one mapped facade axis",
-    "front": "-Z toward the provisional entrance side",
-    "origin": "Centered tower footprint at local pavement datum"
+    "longitudinal": "+X northeast along signed tower axis",
+    "front": "-Z northwest Andrés Bello reconstructed office frontage",
+    "origin": "Centered exact tower footprint at approximate pavement"
   },
   "sourceFacts": {
     "architecturalHeightMeters": 300,
@@ -50,7 +44,9 @@
     "observatoryFloorLabels": [
       61,
       62
-    ]
+    ],
+    "originalMasterHash": "sha256:88a6c0bc5bc218fb7a4a933637b782f5ce976a37cb49c9ba646421a3f534c340",
+    "originalMasterRecipe": "packages/worldgen/scripts/gran-torre-costanera-model.mjs#granTorreCostaneraStudy.encodeAssembly"
   },
   "reconstruction": {
     "sectionEnvelope": [
@@ -184,7 +180,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "signed medium-fi mapped tower and primary north-up context; approximate northwest frontage",
     "anchor": [
       -70.606792403,
       -33.416929353
@@ -192,32 +188,27 @@
     "heading": 0.938147971775,
     "ground": "terrain",
     "elevationMode": "terrain-contact",
-    "source": "https://www.openstreetmap.org/way/1179710949",
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=-70.6081,-33.4182,-70.6053,-33.4156",
     "groundModelY": 0,
     "featureIds": [
-      "way/1179710949"
+      "way/1179710949",
+      "node/13042181363"
     ],
     "wikidataId": "Q1542408",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3f007f0171040b187cf7f27fe105aa6c03ec92342706a52b902a9578a1feba43",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact Q1542408 match to OSM way 1179710949 supplies an undirected footprint axis. Native -Z canopy side is provisional; the north arrow in the owner plan requires signed entrance confirmation. No mall complex is substituted for this individually identified tower."
+    "orientationConfidence": "exact-QID outline; primary plans corroborate axes; northwest canopy is contextual reconstruction",
+    "notes": "Fresh exact Q1542408 tower way 1179710949, address 2457 Avenida Andrés Bello, supplies the individual 300 m/64-level tower footprint, unchanged from the cached outline within 0.002 m rounding. Keep anchor [-70.606792403,-33.416929353] and heading +0.938147971775: native +X northeast bearing 36.25 degrees and -Z northwest bearing 306.25 degrees. The actually inspected owner floor-60 north arrow and connectivity page-4 north-up map corroborate tower axes and tower northwest of the mall, with Andrés Bello/Mapocho on its northwest side and Nueva Tobalaba northeast. Owner address and independent street access, architect rod-supported ground photo and owner aerial cover support a northwest office-frontage reconstruction; the eight model leaves, centered canopy span and precise offsets are illustrative rather than a north-annotated entrance survey. The additional mapped entrance node 13042181363 is southeast near the tower edge; it is not labelled as the exclusive office entrance and is not silently substituted for the Andrés Bello frontage. The fourfold tower/crown body is rotation-symmetric; the authored northwest canopy is an explicitly approximate frontage, not a claim of sole entry. Source outline and envelope ridge fit are sampled separately, with up to roughly 2 m corner/edge simplification. Mall, adjacent towers, underground levels and actual plaza grade are outside this individual asset.",
+    "evidence": "Fresh exact Q1542408 tower way 1179710949, address 2457 Avenida Andrés Bello, supplies the individual 300 m/64-level tower footprint, unchanged from the cached outline within 0.002 m rounding. Keep anchor [-70.606792403,-33.416929353] and heading +0.938147971775: native +X northeast bearing 36.25 degrees and -Z northwest bearing 306.25 degrees. The actually inspected owner floor-60 north arrow and connectivity page-4 north-up map corroborate tower axes and tower northwest of the mall, with Andrés Bello/Mapocho on its northwest side and Nueva Tobalaba northeast. Owner address and independent street access, architect rod-supported ground photo and owner aerial cover support a northwest office-frontage reconstruction; the eight model leaves, centered canopy span and precise offsets are illustrative rather than a north-annotated entrance survey. The additional mapped entrance node 13042181363 is southeast near the tower edge; it is not labelled as the exclusive office entrance and is not silently substituted for the Andrés Bello frontage. The fourfold tower/crown body is rotation-symmetric; the authored northwest canopy is an explicitly approximate frontage, not a claim of sole entry. Source outline and envelope ridge fit are sampled separately, with up to roughly 2 m corner/edge simplification. Mall, adjacent towers, underground levels and actual plaza grade are outside this individual asset.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
   "sourceLicense": "Original reconstruction under repository license. Map-derived plan evidence: © OpenStreetMap contributors, ODbL-1.0. Reference publications are linked, not redistributed.",
   "materialMethod": "Canonical shared material graphs bound through molenSurface extras with metric coordinates divided by central repeat meters. Vertex colors provide component tint. Glass retains opaque metallic-roughness PBR; no bitmap texture copies per model.",
   "sharedSurfaces": [
-    {
-      "ref": "matgraph:molen.worldgen.material.metal_painted",
-      "slot": "trim",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
-    },
     {
       "ref": "matgraph:molen.worldgen.material.metal_stainless",
       "slot": "trim",
@@ -244,26 +235,13 @@
         2,
         0.25
       ]
-    },
-    {
-      "ref": "matgraph:molen.worldgen.material.stone_granite",
-      "slot": "foundation",
-      "uv": "repeats",
-      "repeatMeters": [
-        2,
-        2
-      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Geographic fit and maximum exterior fidelity are pending. Cached map axis is undirected and the entrance side is not approved.",
-    "Upper-floor drawings are marked illustrative. Envelope taper, corner depth, canopy dimensions, floor divisions and crown levels are working reconstructions.",
-    "Do not equate the marketed 300 m observatory height with the owner drawing floor-60 datum. Floor 61/62 heights in this model are provisional.",
-    "The surrounding mall and neighboring towers are separate structures. Plaza boundaries, planting, connecting walkways and actual terrain remain unauthored.",
-    "Glazing uses local PBR color and alpha; steel, stone, concrete and wood use canonical shared graphs. No copied photographic textures or downloaded meshes."
+    "The original granTorreCostaneraStudy.encodeAssembly remains byte-reconstitutable: 1959180 bytes, hash sha256:88a6c0bc5bc218fb7a4a933637b782f5ce976a37cb49c9ba646421a3f534c340, 83912 expanded triangles /23066 stored triangles in four parts and ten placements. The reviewed flattened source and four authored levels retain the original folded taper, recessed corners, separate open upper glass fins and exposed diagonal lattice, two working observatory floors, exposed viewing floor, service core and rod-supported northwest entrance canopy. Facade glass and darker spandrel occupy adjacent regions instead of overlapping coplanar panels. Close adds flat full-height mullion strips segmented at taper datums, repeated floor transoms and crown frit; street coarsens vertical spacing and frit; district groups floors; skyline keeps folded silhouette/open corner gaps/coarse diagonal crown framing in one opaque draw. Three canonical graphs (stainless metal, concrete and wood) are shared, with opaque glass, 52-percent clear glass and recess palette: six near groups and no embedded images. Original granite lobby core becomes shared concrete; invisible office fitout and facade bolts are not authored. Ground floor and 253.7/261.8 m viewing datums, 282.7 m lower corner closure, intermediate taper, bay counts, rod/member dimensions, small rooftop equipment and centered canopy 22.4 m width/32.9 m front are working reconstructions. Owner floor 60 is 249.60 m with 4.10 m slab interval; operator floor labels 61/62 and marketed 300 m are not measured floor elevations. Architect-of-record/OSM 64 levels and current owner 62-floor marketing remain distinct. Primary floor plan explicitly says illustrative. Canonical references are not copied as textures. Phone/laptop dense-scene measurements remain pending."
   ],
   "qaCameras": [
     {
@@ -395,6 +373,363 @@
         145,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-costanera",
+      "position": [
+        -280,
+        190,
+        -345
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ]
+    },
+    {
+      "name": "northwest-entrance-opening",
+      "position": [
+        -8,
+        3,
+        -38
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -25
+      ]
+    },
+    {
+      "name": "open-crown-corner-slots",
+      "position": [
+        -52,
+        308,
+        -53
+      ],
+      "lookAt": [
+        0,
+        282,
+        0
+      ]
+    },
+    {
+      "name": "viewing-deck-framing",
+      "position": [
+        10,
+        264,
+        -10
+      ],
+      "lookAt": [
+        -12,
+        277,
+        -18
+      ]
+    },
+    {
+      "name": "mapped-tower-plan",
+      "position": [
+        0,
+        425,
+        0.1
+      ],
+      "lookAt": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/costanera-runtime-model.mjs",
+    "export": "buildCostaneraCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/costanera-runtime-model.mjs",
+    "export": "buildCostaneraReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCostaneraDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCostaneraStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCostaneraCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "ref": "palette:#feffff",
+            "localRef": "palette:#feffff",
+            "opacity": 0.52,
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          },
+          "recess": {
+            "slot": "wall",
+            "ref": "palette:#fffffe",
+            "localRef": "palette:#fffffe",
+            "roughness": 0.88,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-costanera-skyline",
+      "position": [
+        -280,
+        190,
+        -345
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-costanera-district",
+      "position": [
+        -280,
+        190,
+        -345
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-costanera-street",
+      "position": [
+        -280,
+        190,
+        -345
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-costanera-closeup",
+      "position": [
+        -280,
+        190,
+        -345
+      ],
+      "lookAt": [
+        0,
+        145,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "northwest-entrance-opening",
+      "position": [
+        -8,
+        3,
+        -38
+      ],
+      "lookAt": [
+        0,
+        1.8,
+        -25
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "open-crown-corner-slots",
+      "position": [
+        -52,
+        308,
+        -53
+      ],
+      "lookAt": [
+        0,
+        282,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "viewing-deck-framing",
+      "position": [
+        10,
+        264,
+        -10
+      ],
+      "lookAt": [
+        -12,
+        277,
+        -18
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -402,10 +737,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 83912,
-    "vertices": 168160,
-    "materials": 8,
-    "bytes": 1959180,
-    "sha256": "sha256:88a6c0bc5bc218fb7a4a933637b782f5ce976a37cb49c9ba646421a3f534c340"
+    "triangles": 14106,
+    "vertices": 28548,
+    "materials": 6,
+    "bytes": 1200508,
+    "sha256": "sha256:6d23d9efb2515c9efa2bf14b8d5cf7a8de5c59a5927d54bb2a9f27cb9e80ef78"
   }
 }

@@ -84,6 +84,9 @@ export type {
 } from './kernel/landmark-types';
 export type { BuilderMark } from './kernel/mesh-buffers';
 export { MeshBufferBuilder } from './kernel/mesh-buffers';
+export { type PlantSeason, seasonalPlantId, seasonalPlantPresets } from './kernel/plant-seasons';
+export type { PlantPreset } from './kernel/plant-types';
+export { plantPresetSchema } from './kernel/plant-types';
 export type { Wing } from './kernel/rectangles';
 export type { BuildingMetrics, SelectionWhen, StyleRule, StyleSelection } from './kernel/rules';
 export {
@@ -94,7 +97,9 @@ export {
   whenIssues,
   whenSchema,
 } from './kernel/rules';
-export { validateScatter } from './kernel/scatter-schema';
+export type { ScatterBudget, ScatterSampleInput } from './kernel/scatter';
+export { samplePlacements, samplePlacementsSteps } from './kernel/scatter';
+export { scatterSchema, validateScatter } from './kernel/scatter-schema';
 export type {
   ScatterAltitude,
   ScatterAvoid,

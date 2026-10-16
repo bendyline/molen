@@ -1,0 +1,362 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Kaohsiung’s two-pronged tower with its real through-aperture, raised pink podium and ground passage, pale projecting glazed panels, main elevated shaft, curved Chinese crown lines, layered hip roof and ringed white antenna.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X south-southeast long podium axis",
+    "front": "+Z west-southwest harbor-facing broad face",
+    "origin": "Ground-level mapped podium frame at street entry"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 347.5,
+    "tipHeightMeters": 378,
+    "occupiedHeightMeters": 341,
+    "storeys": 85,
+    "basementStoreys": 5,
+    "completionYear": 1997,
+    "architect": "C.Y.Lee & Partners with HOK",
+    "engineer": "Evergreen Consulting Engineering; T.Y.Lin International",
+    "mappedPodiumMeters": 50,
+    "mappedApertureSillMeters": 70,
+    "mappedApertureSoffitMeters": 145,
+    "mappedProngEnvelopeMeters": 190,
+    "architectPageHeightMeters": 408,
+    "architectPageCompletionYear": 1999,
+    "originalMasterHash": "sha256:c2377f19a1f512fb6d47a05be2bcc4f9ac068bfcfcf2fe001bae27fa723a655e",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-world-models.mjs#skylineWorld[N0179].build",
+    "surfaceMeans": {
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ]
+    }
+  },
+  "reconstruction": {
+    "massing": "Exact-QID rectangular podium and six independently mapped parts establish the two lower legs, central70m sill, elevated145m main shaft and separate hip roof and mast. The middle is genuinely open from the aperture sill to the transfer soffit, with no full-height central extrusion.",
+    "facade": "Six original architect photographs establish dark teal primary glazing, paler projecting lower rectangles, pink relief frames, horizontal service bands, repeated narrow panes and framed upper-shaft panels. The podium retains horizontal ribbon windows and a central ground passage.",
+    "crown": "Upturned/scalloped parapet edges, layered green hip roof and white ringed antenna are reconstructed from the architect’s harbor and elevated photographs.347.5m architectural roof and378m antenna tip remain separate measurements."
+  },
+  "limitations": [
+    "Original 108530-triangle, 11094712-byte detailed master remains exactly reproducible from unchanged world-tower recipe. Reviewed source/four levels preserve signed mapped podium, both prongs, low central sill and genuinely open 70–145 m aperture, separate 13.1 m ground passage, elevated main shaft, pale projecting panel rectangles, scalloped crown profiles, layered hip roof to 347.5 m and ringed antenna to 378 m. Continuous opaque facade backings with long mullion/spandrel strips replace independent bays. Skyline averages glazing/trim, omits podium ribbons/projection frames and reduces crown/antenna samples; district aggregates sixteen pane/floor pitches and omits podium piers, panel brackets and hip seams; street aggregates three pitches. Near levels retain pink relief frames, roof plant, underside transfer beams and finer hip roof seams. The hardcoded prong cutoff is replaced by separately mapped shaft edges, closing thin vertical join gaps; prong roofs/crowns use the same mapped corners. Original capped roof, antenna and sill piers remain closed; continuous scallop top strips replace thick segmented coping. Three canonical shared 256 px graphs, four near draw groups, opaque glass and zero images; tinted granite is an approximate stone-like exterior/foundation binding, not proof of actual stone species. CTBUH measured heights/completion 1997 differ from architect page height 408 m/completion 1999; both are documented, CTBUH adopted. Exact pane schedule, scallop thickness, projection depth, tunnel width and roof equipment inventory are reconstructions. Tenant lettering, interiors, moving equipment and animated night illumination are excluded. Finite-probe 1.5/.75/.3/.1 m allowances exclude omitted thin mullions, roof seams and antenna collars. No physical-device or surveyed grade claim."
+  ],
+  "surfaceOverrides": {
+    "foundation": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "cladding": {
+      "graph": "stone_granite",
+      "slot": "wall",
+      "roughness": 0.8,
+      "metallic": 0
+    },
+    "metal": {
+      "graph": "metal_painted",
+      "slot": "trim",
+      "roughness": 0.48,
+      "metallic": 0.24
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": -1.245554419864,
+    "reviewStatus": "reviewed medium-fi signed placement",
+    "orientationConfidence": "mapped independent prongs/antenna and architect harbor views",
+    "notes": "Fresh OSM API on 2026-10-10 confirms exact Q337631 podium 34170948 and six unchanged separately retained parts: north/south prongs, central sill, elevated shaft, hip roof and antenna. Heading -1.245554419864 retained: native +X south-southeast along prong separation, +Z west-southwest toward the harbor. Native +X follows the long podium axis. Independent antenna 345038767 and asymmetric mapped prongs corroborate signed frame; architect harbor and aerial photos establish both open aperture and raised podium. Ground Y=0 is street entry; 13.1 m ground passage and 70–145 m upper aperture are photo/map reconstructions. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Surrounding towers, street canopy stalls and local grade are separate context.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms exact Q337631 podium 34170948 and six unchanged separately retained parts: north/south prongs, central sill, elevated shaft, hip roof and antenna. Heading -1.245554419864 retained: native +X south-southeast along prong separation, +Z west-southwest toward the harbor. Native +X follows the long podium axis. Independent antenna 345038767 and asymmetric mapped prongs corroborate signed frame; architect harbor and aerial photos establish both open aperture and raised podium. Ground Y=0 is street entry; 13.1 m ground passage and 70–145 m upper aperture are photo/map reconstructions. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Surrounding towers, street canopy stalls and local grade are separate context.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh OSM API on 2026-10-10 confirms exact Q337631 podium 34170948 and six unchanged separately retained parts: north/south prongs, central sill, elevated shaft, hip roof and antenna. Heading -1.245554419864 retained: native +X south-southeast along prong separation, +Z west-southwest toward the harbor. Native +X follows the long podium axis. Independent antenna 345038767 and asymmetric mapped prongs corroborate signed frame; architect harbor and aerial photos establish both open aperture and raised podium. Ground Y=0 is street entry; 13.1 m ground passage and 70–145 m upper aperture are photo/map reconstructions. Accept 2 m footprint / 1 degree reconstruction allowance; automatic replacement disabled. Surrounding towers, street canopy stalls and local grade are separate context.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/tuntex-runtime-model.mjs",
+    "export": "buildTuntexReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tuntex-runtime-model.mjs",
+    "export": "buildTuntexSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTuntexDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildTuntexStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTuntexCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        355,
+        235,
+        555
+      ],
+      "lookAt": [
+        0,
+        182,
+        0
+      ]
+    },
+    {
+      "name": "above-pagoda-roof",
+      "position": [
+        69,
+        390,
+        92
+      ],
+      "lookAt": [
+        0,
+        340,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        355,
+        235,
+        555
+      ],
+      "lookAt": [
+        0,
+        182,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        355,
+        235,
+        555
+      ],
+      "lookAt": [
+        0,
+        182,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        355,
+        235,
+        555
+      ],
+      "lookAt": [
+        0,
+        182,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        355,
+        235,
+        555
+      ],
+      "lookAt": [
+        0,
+        182,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-open-aperture",
+      "position": [
+        0,
+        122,
+        -155
+      ],
+      "lookAt": [
+        0,
+        114,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-open-passage",
+      "position": [
+        0,
+        7,
+        79
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-layered-roof",
+      "position": [
+        69,
+        390,
+        92
+      ],
+      "lookAt": [
+        0,
+        340,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-projecting-glass",
+      "position": [
+        68,
+        121,
+        -96
+      ],
+      "lookAt": [
+        35,
+        112,
+        -34
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

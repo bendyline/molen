@@ -1,11 +1,16 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.n0022_dragon_river_bridge",
-  "inputHash": "sha256:6511bb31116bec4e2734262d415d5c444bab72d767c9e1c7e10e5549265d82aa",
-  "fixtureHash": "sha256:36e8975a19939e4721614f21f41c2e7865a16cadc727ced17c51433c6e5fb126",
-  "footprintEvidenceHash": "sha256:a512c84137629f19d886615cfb1e0d4d9356235def344d81d649386146a77f7b",
+  "inputHash": "sha256:a111d3d5103907e60d4db4a06a4fd5d1d45de6eacffff0f7c53f03d77f7b1f81",
+  "sourceHash": "sha256:d110464e83d269d2287402f92834213967c7262885b3b03c7687314ea51a8c4f",
+  "runtimeHash": "sha256:512d4871786a82a899f003fbe2cb480a455c7f7b1b61d104abbdd1d3736ea196",
+  "reviewGroundY": 0,
+  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "footprintEvidenceHash": "sha256:5956bf9844d8593b4bfb8d392fde0624166100f8e1777314c0b198f18c3b4abe",
   "reflectionMode": "sky-pmrem",
-  "placementHash": "sha256:0a469844779dc221cb07efaf131457416404bfa6d8554d3721718daac3e55eed",
+  "clippingMode": "bounds",
+  "reviewBoundedPlacement": true,
+  "placementHash": "sha256:c62ff8be5bf9107e585c122d8afbf799f84a7c27123ecc9ade165c71affa8ca3",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.clay_fired": {
       "path": "materials/clay_fired.matgraph.json",
@@ -27,7 +32,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:1bb36019e9c4231e8e30102312645f589e67968f46ad58d1a87143ea80098c4c",
+      "hash": "sha256:b5136575dfc53b39f74892efe62be2f6d5c2c63ee697a2ef75c02d13d49ab9f8",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -37,14 +42,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -52,24 +69,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -83,12 +111,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:dcbb6a477c802a43a66a91b2f6f98efcd4fa015c8cd6b83dab0b7efc0f471a7c",
+      "hash": "sha256:be8bc5df9817433bd3da23505b74e9ff373e2ddab6573beb5e0a5307c3a75559",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -98,14 +126,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -113,24 +153,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -144,12 +195,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:26421912df50e3fb2071838bd7dd8f2357bf57f05362b89135adb08c606dc691",
+      "hash": "sha256:94e965309940f34c23fd87d5bd588489a5169284483cdbfde544954d27a3f21a",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -159,14 +210,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -174,24 +237,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -205,12 +279,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:d6bd62ea95b4966bd7f01bbfc039b99198d3d1e17c33770aefaead933f3f69f6",
+      "hash": "sha256:0dd4f1968fc575446a3d36ab34a7575bc7d39e364390cc8e25926aea709259ac",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -220,14 +294,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -235,24 +321,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -266,12 +363,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/south-elevation.png",
-      "hash": "sha256:d1d546bfaec096ab914420f5fd3fcb3b1c1b9bcd14021ec0aeb4c796b75cc50a",
+      "hash": "sha256:351bff801b18e15a15f0d8c59ae7f242030401a67dd9dabcf8cc67b807558e76",
       "camera": {
         "name": "south-elevation",
         "position": [
@@ -290,14 +387,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -305,24 +414,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -336,12 +456,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/north-elevation.png",
-      "hash": "sha256:312ead9729dba3891aa95da51c68f6a0af3635c30cd3fe5cde9a4d0292538a05",
+      "hash": "sha256:78ba1cb9c0117b6fa8c9acd01d4b0e0eafc11af75bd62f39f08f10c4cce4b865",
       "camera": {
         "name": "north-elevation",
         "position": [
@@ -360,14 +480,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -375,24 +507,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -406,12 +549,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/main-arch.png",
-      "hash": "sha256:bdfbe882e6bfacbb1e2258dc644611d08757a1bcf4bc3c9c163e0332d7358ba2",
+      "hash": "sha256:0404dde31f3e9b15c5fd1cc2da49d0ca813b228220e7817f61f35cda8e199582",
       "camera": {
         "name": "main-arch",
         "position": [
@@ -430,14 +573,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -445,24 +600,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -475,13 +641,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/horseshoe-and-hangers.png",
-      "hash": "sha256:e14c29837a2dc0a3bd41ca1a1e67520f07b9c563a47dd2a9b5a0a591c190f692",
+      "hash": "sha256:eebdc3f499a8ad0bacb5b276644b95249b5fd73bcecc4afa7739f7454374d662",
       "camera": {
         "name": "horseshoe-and-hangers",
         "position": [
@@ -500,14 +666,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -515,24 +693,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -545,13 +734,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/dorsal-scales.png",
-      "hash": "sha256:161b237a356433783ab74b3cebfdbb61674308d9066969c8a61cc6dd34d5a7e0",
+      "hash": "sha256:ccd4dd1f3ae52568747b0ef55197131bfaecd7846e8eef711a9e426b778b0389",
       "camera": {
         "name": "dorsal-scales",
         "position": [
@@ -570,14 +759,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -585,24 +786,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -615,13 +827,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/head-south.png",
-      "hash": "sha256:52fc3d7420dc5711d89af7c2434b83b93bf93e7d513c27d268877aedba26b5ba",
+      "hash": "sha256:89b2318df6488883fa7e5af64dcbb8da625130c0464505553e2d8767448e2ed5",
       "camera": {
         "name": "head-south",
         "position": [
@@ -640,14 +852,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -655,24 +879,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -686,12 +921,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/head-front.png",
-      "hash": "sha256:4330556fa2838b57cc4063908b68aa95095509d6d93e1e2acdc5664cd0fdfb48",
+      "hash": "sha256:6f84ab32eb9f4f05bb9183fd0653b05f4249b6e9b05baf464b4f374641980942",
       "camera": {
         "name": "head-front",
         "position": [
@@ -710,14 +945,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -725,24 +972,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -756,12 +1014,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/head-rear.png",
-      "hash": "sha256:c7a9030501dd8f508d4c0db427128dfb013891bb427bd9d84efbe2ecbb229012",
+      "hash": "sha256:f2e4a11e5f0b938741297573bdd31f38ab395b7ca5e25b238baa50f7b56412a6",
       "camera": {
         "name": "head-rear",
         "position": [
@@ -780,14 +1038,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -795,24 +1065,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -826,12 +1107,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/tail.png",
-      "hash": "sha256:2193da51ab461dcda11fd958516c53f61841e9eb2102cff07ecff3d646a67cb6",
+      "hash": "sha256:ac2055b135b83f8ad762e2a31879a6c6433114db9398a04ba23f89036c24b8f6",
       "camera": {
         "name": "tail",
         "position": [
@@ -850,14 +1131,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -865,24 +1158,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -895,13 +1199,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/lower-arch.png",
-      "hash": "sha256:56ee5261b05b23c638ab37c2ded89b40d1eb3bde3b1a856250f8caed3b82e816",
+      "hash": "sha256:714bbdd61157c7ceababf36f692c87bd9bc50a952cd01986567a42a053e81a3e",
       "camera": {
         "name": "lower-arch",
         "position": [
@@ -920,14 +1224,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -935,24 +1251,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -965,13 +1292,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/box-and-wings.png",
-      "hash": "sha256:3eee3baef0a2663ec5352f522f98cf8e7477fd11e390d85eaaa467a0a4f9e1b8",
+      "hash": "sha256:68c89182ea74a8a0c9417ac48ce9b362c1a77c0c11e52f53e34dc16919a82676",
       "camera": {
         "name": "box-and-wings",
         "position": [
@@ -990,14 +1317,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -1005,24 +1344,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -1035,13 +1385,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/sidewalk-and-lights.png",
-      "hash": "sha256:ca67068c916d87096beec0df1e0e2882cc9145bf5688df1bcfc9df41bc8f16e3",
+      "hash": "sha256:3aac38defb1e93e75b9459ed928f67f8b4a463610ef881f4b2f9479cd08c8523",
       "camera": {
         "name": "sidewalk-and-lights",
         "position": [
@@ -1060,14 +1410,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -1075,24 +1437,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -1106,12 +1479,12 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 9,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     },
     {
       "path": "shots/shared/east-approaches.png",
-      "hash": "sha256:90fad2f0506b0a807d004108c7333bc6af9df2843130e0fb471658bc3d517332",
+      "hash": "sha256:130d15da54476ca920c6be98f090b6ef4c5a96728600ee1198ea032d1a971a25",
       "camera": {
         "name": "east-approaches",
         "position": [
@@ -1130,14 +1503,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -1145,24 +1530,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -1175,13 +1571,13 @@
           "molen.worldgen.material.metal_stainless": 1,
           "molen.worldgen.material.concrete_plain": 1
         },
-        "draws": 9,
-        "renderedTriangles": 819722
+        "draws": 7,
+        "renderedTriangles": 53118
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:aa09b13e236178b803263bbf238dffa51886e9ea8808f9059d65ecfb6d7ed0a8",
+      "hash": "sha256:5d2b64e4ebd4a818b4ebd471cc64d405e1bdcdd3fa4ff7bc1d3708aa6a52174a",
       "camera": {
         "name": "placement",
         "placement": true
@@ -1191,14 +1587,26 @@
         "mode": "geographic-flat-terrain",
         "placementId": "next1000.n0022",
         "position": [
+          -354.17576744779944,
           0,
-          0,
-          0
+          -354.17576744779944
         ],
-        "heading": 0.034547704043,
+        "heading": 0,
         "meshes": 7,
-        "triangles": 817800,
+        "triangles": 54172,
         "bounds": {
+          "min": [
+            -334.64823105558753,
+            0,
+            -30.28236534819007
+          ],
+          "max": [
+            334.64820716157556,
+            44.7009391784668,
+            30.282362435013056
+          ]
+        },
+        "expectedBoundedPlacementBounds": {
           "min": [
             -334.64823145928455,
             0,
@@ -1206,24 +1614,35 @@
           ],
           "max": [
             334.64823145928455,
-            45.51670837402344,
+            44.7009391784668,
             30.282358144184965
           ]
         },
+        "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.clay_fired": "3d382b62-a39d-4292-b731-b70f1d4228cb",
-          "worldgen:matgraph:molen.worldgen.material.metal_painted": "117dd4ab-c6a7-4765-b0e8-1645cd533af3",
-          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "f765bd38-b20f-4ff8-8c8d-f4b3a5549359",
-          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "d3dc7dbe-05e5-410f-9b48-29e733103864"
+          "worldgen:matgraph:molen.worldgen.material.clay_fired": "975769c8-e3d7-466c-b8df-cda72c4c722a",
+          "worldgen:matgraph:molen.worldgen.material.metal_painted": "de1c9939-7401-496b-9816-db9f25d5247a",
+          "worldgen:matgraph:molen.worldgen.material.metal_stainless": "33668b2b-e2f3-4237-961b-7c626d44681b",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "334f485c-a862-4538-8046-c4b2b5c6ce1d"
         },
         "loads": [
           "molen.worldgen.structure.n0022_dragon_river_bridge"
         ],
         "selectionBounds": [
-          108.22634347938968,
-          16.060001838177172,
-          108.228736576364,
-          16.062301525304374
+          108.22422918038677,
+          16.0579700445801,
+          108.2308508753669,
+          16.064333274680376
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "next1000.n0022",
+            "coordinate": [
+              108.2241767433691,
+              16.06103998225592
+            ],
+            "height": 7.2
+          }
         ],
         "visibleStructures": [
           "next1000.n0022"
@@ -1237,7 +1656,7 @@
           "molen.worldgen.material.concrete_plain": 1
         },
         "draws": 10,
-        "renderedTriangles": 819722
+        "renderedTriangles": 55230
       }
     }
   ],

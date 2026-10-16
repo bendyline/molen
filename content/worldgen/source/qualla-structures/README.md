@@ -1,0 +1,324 @@
+# Qualla-driven structure backlog
+
+Start with [BACKLOG.md](BACKLOG.md): a complete set of linked category lists, a reviewed
+starting batch, and counts for new models, existing planned work, existing models needing
+review, and existing coverage. This inventory is **authoring metadata**, excluded from the
+runtime pack by `source/**`. The scanner does not add models or placements; model work is
+tracked separately in the [fixed first 100](batches/QUALLA-001.md).
+
+## What qualifies
+
+A specific physical building or fixed structure qualifies when it is the subject of a Qualla
+story, or an essential, explicitly identified setting in that story. Architectural fame is
+not required: hotels, houses, factories, shops and prisons matter alongside palaces and towers.
+Target recognizable, accurately proportioned exteriors within Molen's
+[medium-fi standard](../../../../docs-src/guide/medium-fi.md), with research before modeling.
+
+An event coordinate does not justify a nearby arbitrary building. The attack on Pearl Harbor
+and murder of Ennis Cosby are explicitly recorded as non-structure stories. Separately,
+Qualla's Pearl Harbor Aviation Museum story identifies Hangar 37 and the Ford Island control
+tower; those are real, individually scoped targets. The Robben Island story similarly yields
+a prison and a lighthouse, each needing its own researched anchor.
+
+The default target is the surviving exterior. Ruins, demolished buildings, unbuilt projects,
+multi-site institutions, campuses and broad historic districts require a scope/era decision.
+Do not reconstruct a vanished building in the modern Earth view by accident. A place name,
+an institution name, a mention in a flight-context paragraph, and a physical building are
+different things. Gardens, landscapes, event sites and whole cities can still contain useful
+targets, but those must be identified separately.
+
+## Files and scan meaning
+
+| File | Purpose |
+| --- | --- |
+| [BACKLOG.md](BACKLOG.md), `lists/*.md` | Human-readable structure lists with Qualla links |
+| [structures.jsonl](structures.jsonl) | One record per target: stable ID, scope, category, reference point, stories and current Molen matches |
+| [review.jsonl](review.jsonl) | Unresolved story scope/identity, with summary, link, reason and possible existing matches |
+| `scan/<geohash2>.jsonl` | Persistent per-source-record `building3dScan` marker, semantic content hash and result, including exclusions |
+| [decisions.json](decisions.json) | Hand-edited editorial decisions; never overwritten by the scanner |
+| [scan-summary.json](scan-summary.json) | Corpus, algorithm, decisions and catalog fingerprints; counts and duplicate-ID conflicts |
+| [OTHER-DEVICE.md](OTHER-DEVICE.md), `workAssignment` in each target | Next-1,000 ownership, kept separate from readiness and excluded from local production |
+| [classify.mjs](classify.mjs), [scan.mjs](scan.mjs) | Offline triage and reproducible aggregation |
+| [sync-qualla.mjs](sync-qualla.mjs) | Refresh durable `molen3d` model links in Qualla's per-story curation catalog |
+
+**Scanned is not editorially reviewed.** Every source record receives a marker; its review
+state is `automated-only`, `editorial`, `stale-editorial-decision`, or `not-scanned`.
+The initial pass reads every story's title, summary, narrative sections, flight context,
+categories and location. Its deterministic rules discover candidates and preserve uncertain
+subjects for further review. Neither the automatic inclusions nor automatic exclusions are a
+claim of exhaustive semantic coverage. The review queue is real remaining work, not completed
+triage hidden behind a boolean.
+
+The corpus is the locally merged `_c/art/**/*.json`, not every raw import or unapproved catalog
+entry. Its record count can differ from Qualla's last build manifest and unique story-ID count.
+Duplicate IDs at different paths are retained and routed to review, not silently overwritten.
+`scan-summary.json` lists those conflicts. Removed source records become inactive tombstones
+in the ledger and leave the current queues.
+
+Qualla public links use its `schemas/CanonicalUrl.ts` ID/suffix policy and
+`_c/idx/slug-exceptions.json`, rather than the sometimes different `article.slug`. The scanner
+also verifies the article ID and tile embedded in local `r/<slug>/index.html` pages. If a slug
+belongs to a different story, it uses Qualla's exact `#list/<tile>/<article-id>` route instead.
+This matters for collisions such as the two different Fort Meade locations. Source paths are
+relative to the Qualla checkout. Links have not all been requested from the live website.
+
+## Existing Molen work
+
+The scanner reconciles these registries on **every run**, even when story triage is cached:
+
+1. `content/worldgen/source/structure-index.json`: named source bundles, stable asset IDs and
+   actual source paths. Reusable recipes are kept separate.
+2. `content/worldgen/source/next-1000/candidates.json` and `collections.json`: planned targets
+   and individually named collection members, including those without a model.
+3. `content/worldgen/project.json` and `stylepack.json`: imported runtime registrations.
+4. `content/earth/structures/placements.json`: geographic placement IDs, statuses and notes.
+5. `content/earth/structures/readiness.json`: current reported readiness, fidelity and blockers.
+
+The source index retains `hasModel` for a hash-pinned source-model declaration even when the
+ignored GLB is not cached on this machine. Refreshing a local index must not forget existing
+model coverage. This flag reports authored model presence, not verified local bytes or readiness.
+
+This covers the World Explorer's original named models and the ongoing next-1,000 work.
+**Every next-1,000 candidate and collection member is owned by a separate device**, per the
+owner's instruction. Keep its Qualla coverage visible and sync model links as that work arrives,
+but do not generate, refine or duplicate it in this local workstream, regardless of its current
+planned/imported/ready status. Possible matches are held out of local production until identity
+is resolved. `workAssignment.owner` records this independently from the readiness status below.
+The 120 procedural styles, generic signs and reusable buildings are **not** accurate replicas
+of Qualla places and never satisfy a named target. A reusable lock placed at Ballard Locks,
+for example, does not establish an accurate Ballard Locks model.
+
+| Work status | Meaning |
+| --- | --- |
+| `new` | No nearby name match in the inspected catalog; research before reserving a new asset ID |
+| `existing-planned` | Existing candidate identity; continue that work instead of adding a duplicate |
+| `identity-review` | Possible/ambiguous existing match or missing coordinates; reconcile first |
+| `existing-model-review` | Registered model exists, but this scan cannot establish ready geometry and an active placement |
+| `existing-ready` | Current readiness ledger says ready and has an active placement; retained as coverage |
+
+Matching is deliberately conservative: exact normalized names plus nearby reference points,
+or an explicit editorial Molen identity. A partial name match is only a suggestion. Catalog
+presence alone is not approval. This scanner does not rerender, remeasure or independently
+recertify the model's fidelity. Original preview models may still need substantial improvement.
+
+`QS-…` IDs derive from Qualla source identities, not build status. A target keeps its ID when
+an existing candidate becomes imported or ready. WP/WK stories with the same source stem and
+nearby points share a target. Stories with the same exact existing Molen identity share a work
+item, retaining other source IDs in `aliasIds`. Other identical names within 250 m are marked
+`identity-review` with `possibleDuplicateIds`. More unusual aliases require an explicit shared
+`identity` in editorial decisions; proximity alone never merges different buildings. Additional
+aliases may change the displayed representative ID, but the other source IDs remain in
+`aliasIds`. Cross-story alias deduplication remains part of review, so automatic candidate counts
+are not a final count of unique physical buildings.
+
+## Reproduce, resume, review
+
+Run from the Molen repository. These scan commands read Qualla; they do not modify its catalog or
+generated content. No model generation, asset downloads, engine build or network is required.
+
+```sh
+node content/worldgen/source/qualla-structures/scan.mjs --qualla ../qualla-internal
+node content/worldgen/source/qualla-structures/scan.mjs --qualla ../qualla-internal --check
+node --test content/worldgen/source/qualla-structures/scan.test.mjs
+```
+
+`--check` requires byte-identical outputs and writes nothing. `--limit 500` caps new/changed
+classifications for a bounded pass; subsequent runs reuse completed checkpoints and process
+the remainder. `--out /tmp/qualla-structures` produces an isolated pass (put a copy of the
+editorial `decisions.json` there if those decisions should apply). Each geographic ledger file
+is replaced atomically. Unchanged files are not rewritten. There are no volatile run timestamps
+in generated data.
+
+The content fingerprint covers relevant text, categories, coordinates, source references,
+duplicate declarations and the original catalog title. Media, directional-neighbor updates
+and unrelated curation notes do not invalidate an assessment. Algorithm changes invalidate
+cached triage. Catalog changes refresh matches and work statuses without requiring story text
+changes. Source-hash changes invalidate editorial decisions: their text is preserved, and the
+story returns to review until someone reconsiders the decision and updates its hash.
+
+To review a story, find its ledger record, read the source article, and add a decision keyed by
+article ID. Copy its current `contentHash`; record who reviewed it, the date, the disposition
+(`structure`, `no-structure` or `review`) and an explanation. A structure decision needs named
+`targets`. Existing examples in [decisions.json](decisions.json) cover all three outcomes,
+multiple buildings from one story, and existing catalog identities.
+
+Each target has `name`, `category`, `scope` and optional `priority` (`P1` is the reviewed starting
+batch, `P2` is ordinary automatic discovery). Use `molenId` for an existing asset/candidate ID.
+Use a distinct explicit `identity` for **each** target in a multi-structure story; reuse that
+identity in other stories about the same building. `rejectMolenIds` records reviewed false
+matches (13 Kensington Palace Gardens is not Kensington Palace). If coordinates have not been independently
+researched, retain the story reference and describe the missing anchor in `scope`. These
+reference points are never copied into runtime placements by the scanner.
+
+Before building, resolve identity/aliases, confirm survival and intended era, research the
+footprint and distinguishing features, then use the existing
+[structure authoring workflow](../AUTHORING.md). Track model implementation in the established
+Molen source/candidate/readiness catalogs; refresh this backlog to pick up progress. Completion
+belongs to the model's evidence and readiness review, not to an article's scanned flag.
+
+## Remembering model coverage in Qualla
+
+Qualla's durable `catalog/<geohash4>.json` entries carry a typed `molen3d` annotation.
+This lives with the story's curation state, survives article regeneration, and does not edit
+generated `_c/art` files. A story can link to several models, and several stories can link to
+one model. This records coverage of the **named linked structures**, not a promise that every
+structure mentioned in a story has been modeled.
+
+Each link records the stable asset and candidate IDs, backlog target ID, source-bundle path
+relative to Molen, story content hash, match basis, placement IDs and reported readiness:
+
+- `needs-review`: an unambiguous registered model with a reported source model exists, but
+  Molen does not report ready coverage with an active placement.
+- `ready`: Molen's readiness ledger reports ready and names an active placement. The annotation
+  also retains fidelity, blockers and placement status; a `preview` remains a preview.
+- `unlinked`: a previously remembered link no longer qualifies in the current complete scan.
+  Its last-known state and IDs remain for reconciliation, but it is **not current coverage**.
+
+The annotation is a catalog snapshot, not a new visual certification or a claim that models
+are published to a live site. Missing annotations mean **not currently linked**, not proof
+that no model exists. Planned candidates and ambiguous identities never count as models.
+The automatic matching basis stays visible; editorial identity review is separate.
+
+After each meaningful model batch, refresh the backlog and synchronize the annotations:
+
+```sh
+node content/worldgen/source/qualla-structures/scan.mjs --qualla ../qualla-internal
+node content/worldgen/source/qualla-structures/sync-qualla.mjs --qualla ../qualla-internal
+node content/worldgen/source/qualla-structures/sync-qualla.mjs --qualla ../qualla-internal --write
+node content/worldgen/source/qualla-structures/sync-qualla.mjs --qualla ../qualla-internal --check
+node --test content/worldgen/source/qualla-structures/*.test.mjs
+```
+
+The default sync is a read-only dry run; `--check` fails if annotations need updates. Both
+require the full backlog to pass its freshness check against current stories and registries.
+`--write` uses Qualla's installed `tsx` loader and `CatalogManager.mutateEntry` for locked,
+atomic updates. It changes only `molen3d` and the catalog's normal `updatedAt`; current
+approval, review, tags and notes survive. Missing/moved/duplicate catalog entries and
+unrecognized annotation owners fail closed. Interrupted runs resume by comparing each
+annotation; identical reruns do not rewrite files or timestamps. Concurrent edits to the
+same model annotation cause a retry rather than an overwrite.
+
+To annotate a completed model immediately, add `--ids=story-id,another-story-id` to both
+`--write` and `--check`. These are Qualla article IDs, not structure IDs. The entire backlog
+must still be fresh; only the named articles are reconciled, so unrelated links are never
+retired by a scoped run. Missing, moved or duplicate selected entries still fail closed.
+An article-scoped check does not certify synchronization of the rest of the catalog.
+
+Do not edit managed model links by hand. Resolve identities in `decisions.json`, update the
+Molen catalogs, and rerun scan/sync. Qualla's annotation does not enter the story semantic
+hash, so syncing coverage never causes a rescan loop.
+
+## First 100 and reference evidence
+
+[Batch 001](batches/QUALLA-001.md) is a fixed selection of 100 physical targets, with story
+links, reviewed exterior scopes and reserved identities. Its editable manifest is
+[batches/qualla-001.json](batches/qualla-001.json). Keep completed targets in this manifest;
+do not silently refill it whenever a new model is imported. Record any intentional replacement
+and its reason. All next-1,000 work belongs to the other device. Kensington Palace (`N0904`)
+was removed from local slot 19 and replaced by Liebermann Villa; its original entry and
+accepted reference evidence remain in `deferredEntries` and `references/`. The manifest's
+`replacementHistory` records the change. The distinct 13 Kensington Palace Gardens remains local.
+
+Before resolving any images, preparation checks the complete local batch against the current
+next-1,000 candidate/member IDs, asset IDs, existing matches and exact names at nearby
+coordinates. It rejects overlaps even if the full story scan predates a new reservation.
+Refresh the scan before authoring to reconcile aliases and possible matches too.
+
+`prepare-batch.mjs` reads the local Qualla image corpus and records one evidence file per
+structure in `references/`. It resolves original paths through media metadata, retains the
+source page, photographer, license and date where available, and deduplicates copies of the
+same photograph. Filename ranking produces suggestions only. A reviewer must inspect the
+actual pixels to establish that the image depicts the correct building and useful exterior.
+Usually one or two useful views plus the standard viewer map controls are sufficient to start;
+request more evidence for a specific unresolved feature, not a blanket photography campaign.
+An accepted set is permission to start authoring, not certification of every unseen elevation.
+
+```sh
+node content/worldgen/source/qualla-structures/prepare-batch.mjs --qualla ../qualla-internal
+node content/worldgen/source/qualla-structures/prepare-batch.mjs --qualla ../qualla-internal --check
+```
+
+Set `references` to selected Qualla-relative originals and `referenceSelection` to `manual`.
+Use `needs-replacement` with an empty list to prevent rejected suggestions from returning.
+`referenceFolders` can point to explicitly inspected canonical media folders when merged
+article links are stale. After viewing the images, record the evidence file's `inputHash`,
+reviewer, date, decision and observations in `batches/reference-reviews.json`. An `accepted`
+review requires at least one selected image; insufficient evidence remains `needs-reference`.
+Changed selected bytes, attribution, story text, scope, era or reference notes invalidate
+acceptance. Changed model-registration status refreshes the report without invalidating the
+photographic review. Unchanged runs write no files.
+
+The first five pilot source bundles contain individual recipes, an attributed `map-frame.json`,
+a selected-reference snapshot, model specifications and a reproducible GLB. The source map
+controls were extracted from the standard Protomaps 20261008 archive at zoom 15, merging
+pieces split across tile boundaries before selection. These are generalized controls rather
+than a survey. Coordinates, headings and known scope discrepancies remain explicit. The
+original photographs stay in Qualla and are not redistributed in model packs.
+
+The [pilot review](batches/PILOT-REVIEW.md) records the remaining work. The first five are complete. For a targeted example, build, import and check
+these models by their ordinary structure IDs:
+
+```sh
+node packages/worldgen/scripts/generate-authored-places.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex
+node packages/worldgen/scripts/generate-authored-places.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --check
+node packages/worldgen/scripts/import-next-1000-models.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex
+node packages/tooling/scripts/generate-landmark-lods.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --concurrency=2
+node packages/tooling/scripts/check-medium-fi.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --strict
+node packages/worldgen/scripts/capture-next-1000-models.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --reflections --antialias --fit-shadows
+node examples/world-explorer/test/visual/capture-landmark-library.mjs --ids=lorraine_motel,fords_theatre,anne_frank_house,brandenburg_gate,watergate_complex --reflections --adaptive-clipping
+```
+
+Inspect current images and bind observations in each bundle's `qa.json` to its input and capture
+hashes. A model remains a draft until photographic fidelity, shared materials, detail levels,
+footprint, heading and real terrain contact pass. Geographic proposals do not activate models
+or suppress existing map buildings. After a meaningful batch, refresh the structure and
+authoring indexes, scan the stories again, and synchronize Qualla as documented above.
+
+The reference workflow, scan/resume behavior and catalog synchronization have isolated tests:
+`node --test content/worldgen/source/qualla-structures/*.test.mjs`.
+
+## Completing the fixed local 100
+
+The active production goal is the fixed `batches/qualla-001.json` inventory, with the five
+pilots completed before starting the remaining 95. [Completion progress](batches/PROGRESS.md)
+is generated by `progress.mjs` from current source, runtime, reference, capture and placement
+evidence. A draft or imported GLB never counts as complete. Every next-1,000 candidate and
+collection member remains assigned to the other device, including already imported entries.
+
+Each recipe is independent so later model edits do not invalidate earlier completions.
+Shared geometry helpers are fingerprinted in generated specs. Keep source-local Qualla
+references, map controls and declared limitations beside each model. For a selected existing
+source bundle, `node examples/world-explorer/scripts/build-qualla-terrain-evidence.mjs
+--ids=QS-...` preserves unmodified public host-terrain samples; `--offline` reuses its ignored
+cache. The saved numeric grid and PNG16 heightfield are source inputs. This is a terrain
+compatibility review, not surveyed building elevations.
+
+After fixing geometry, regenerate/import only that model and its four runtime detail levels.
+Inspect portable, shared-material/placement and medium-fi context/transition images. Record
+manual findings in source-local `qa.json`; run `progress.mjs` to validate the evidence before
+marking the batch entry `completed`. Then run `scan.mjs` and `sync-qualla.mjs --write` to update
+the linked Qualla curation entries. `progress.mjs --check` and `sync-qualla.mjs --check` verify
+idempotence. Rejected or stale evidence leaves explicit blockers in the completion ledger.
+
+`batches/readiness.json` is the local batch's readiness export; the scanner also reads the
+separate next-1,000 ledger. Neither process transfers model ownership. Capture archives remain
+local/ignored, and story annotations record catalog readiness rather than claiming a new
+independent editorial certification.
+
+## Ordinary structure identities
+
+The work batch is **Qualla compat**. Structures use ordinary names in the shared geographic
+catalog: `places/gc/gcq/chatsworth_house`, `molen.worldgen.structure.chatsworth_house`,
+`chatsworth_house` for targeted model commands, and `structure-chatsworth-house.mjs` for its
+recipe. The same convention applies to all 100 reserved `sourceKey` / `modelIdentity` values.
+No batch prefix belongs in a source/runtime folder, asset ID, placement ID, recipe or scene
+name. `QS-…` remains an article-backlog target ID only, separate from model identity.
+Qualla story links, image provenance and batch bookkeeping remain explicit metadata.
+
+The [identity migration](batches/naming-migration.json) records the old/new mapping and
+byte-identical source/runtime/detail-level verification. Prior inspected capture pixels were
+retained after verifying unchanged render inputs; reports explicitly identify this as a
+metadata rename, not new visual inspection. The naming change does not approve Majapahit’s
+unresolved terrain fit. Use `migrate-model-names.mjs --write` once (or resume it) to update
+existing Qualla annotations through locked, idempotent catalog transactions, followed by the
+normal scan/sync workflow.

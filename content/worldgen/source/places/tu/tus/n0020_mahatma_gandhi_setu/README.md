@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-Current twin steel through-truss decks, individually modeled I-section Warren diagonals with staggered chord nodes and inclined end posts, roof cross-bracing, gusset plates and bolt heads, retained concrete shafts and short modified heads, bearings, floor beams, outer walkways, railings, lights and shorter half-through end spans.
+Compact Gandhi Setu: twin through-truss decks,16representative Warren bays in each main closeup span, crossed roof bracing, concrete pier heads, outer walks, sparse lights/markings and shorter pony spans. Original detailed I-sections and hardware remain independently reproducible.
 
 ## Evidence
 
@@ -18,7 +18,7 @@ Published dimensions and reconstruction assumptions are separated in spec.json. 
 
 ## Source
 
-999896 triangles; 81075924 bytes; 4 material groups. SHA256: sha256:e5ba65ad47b961e2fc7168ee1ae4ba880f2622cb05fb922377937566a8a12b0e.
+63836 triangles; 7662976 bytes; 4 material groups. SHA256: sha256:4fcf0afa95418b2a752ee25f518b0a4d44b72fc963748e68bfa2fb6d20a95540.
 
 Shared surfaces (concrete_plain, metal_painted) are loaded through the central library; any transparent materials use local PBR parameters. Axis and provisional vertical datum are in spec.json.
 
@@ -26,6 +26,7 @@ Regenerate with node packages/worldgen/scripts/generate-researched-bridges.mjs -
 
 ## Reconstruction limits
 
-- This source models the2022 replacement steel crossing; the separate southern curved concrete approach and later parallel extradosed bridge are outside this asset.
-- Riverbed and floodplain foundation levels, detailed panel count and member sizes require further review.
-- Moving traffic, temporary construction rigs and maintenance scaffolds are excluded.
+- Picture and standard viewer PMTiles approximate fit; no bespoke bridge survey, engineering drawing or datum research.
+- Original detailed master remains reproduced by its unchanged recipe and geometric map controls; compact source simplifies I-section profiles, bolts/gussets, bearings, floor/roof bracing and fittings into readable beams and shared metal/concrete materials.
+- Skyline merges paired piers/decks and representative outer trusses; district/street omit many truss panels and inner fine members, while closeup retains16main Warren bays. Road/paint markings are local flat materials; shared graphs are reused.
+- Reference aerial picture is an intermediate replacement state; existing twin-steel source facts are retained separately. River surface and northern-road contact use coarse PMTiles; exact flood stage, submerged foundations, approach joins and physical-device timing remain unmeasured. Footprint replacement off.

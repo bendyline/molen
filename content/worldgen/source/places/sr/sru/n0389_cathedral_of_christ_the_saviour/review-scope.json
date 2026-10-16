@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_marble",
+      "roughness": 0.65,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.7,
+      "metallic": 0.22
+    },
+    "spire": {
+      "slot": "roof",
+      "graph": "metal_bronze_cast",
+      "roughness": 0.59,
+      "metallic": 0.65
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.84,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.03
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.65,
+      "metallic": 0.2
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/banja-cathedral-model.mjs",
+    "export": "buildBanjaCathedralSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBanjaCathedralDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.22
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.59,
+            "metallic": 0.65
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "buildBanjaCathedralStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.22
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.59,
+            "metallic": 0.65
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.2
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBanjaCathedralCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.7,
+            "metallic": 0.22
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.59,
+            "metallic": 0.65
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.03
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.65,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      51,
+      39,
+      -59
+    ],
+    "lookAt": [
+      -3,
+      18,
+      0
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-banja-cathedral-skyline",
+      "position": [
+        64,
+        48,
+        -72
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-banja-cathedral-district",
+      "position": [
+        64,
+        48,
+        -72
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-banja-cathedral-street",
+      "position": [
+        64,
+        48,
+        -72
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-banja-cathedral-closeup",
+      "position": [
+        64,
+        48,
+        -72
+      ],
+      "lookAt": [
+        -3,
+        18,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization;current acceptance and limits recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "ReviewedY=0 attachment convention,not exact host-DEM contact.Standard viewer DEM datum166.450042m;estimated floor0.8m,raw whole/tower perimeter-0.23..0.19m. Footings crossY=0 and extend below raw samples;porch and side landings/steps approximate. No preview flattening,host DEM change or road replacement. Exact plaza/street/door contact,base clipping,absolute altitude and walking remain unverified. Other city buildings/roads/trees/street furniture remain host content.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        17.191717162,
+        44.772231084
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer DEM datum166.450042m;estimated floor0.8m,raw whole/tower perimeter-0.23..0.19m. Footings crossY=0 and extend below raw samples;porch and side landings/steps approximate. No preview flattening,host DEM change or road replacement. Exact plaza/street/door contact,base clipping,absolute altitude and walking remain unverified. Other city buildings/roads/trees/street furniture remain host content."
+    },
+    "bounds": [
+      17.184,
+      44.766,
+      17.2,
+      44.778
+    ],
+    "notes": "Standard viewer DEM datum166.450042m;estimated floor0.8m,raw whole/tower perimeter-0.23..0.19m. Footings crossY=0 and extend below raw samples;porch and side landings/steps approximate. No preview flattening,host DEM change or road replacement. Exact plaza/street/door contact,base clipping,absolute altitude and walking remain unverified. Other city buildings/roads/trees/street furniture remain host content."
+  },
+  "geographicNote": "Standard viewer DEM datum166.450042m;estimated floor0.8m,raw whole/tower perimeter-0.23..0.19m. Footings crossY=0 and extend below raw samples;porch and side landings/steps approximate. No preview flattening,host DEM change or road replacement. Exact plaza/street/door contact,base clipping,absolute altitude and walking remain unverified. Other city buildings/roads/trees/street furniture remain host content.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

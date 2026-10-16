@@ -1,0 +1,287 @@
+{
+  "planId": "hotel_chelsea",
+  "id": "hotel_chelsea",
+  "assetId": "molen.worldgen.structure.hotel_chelsea",
+  "title": "Hotel Chelsea",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.99687349796295,
+    "latitude": 40.74432061253444
+  },
+  "size": [
+    53.900001525878906,
+    53.14999997615814,
+    35.05000114440918
+  ],
+  "actualBounds": {
+    "min": [
+      -26.950000762939453,
+      -0.6499999761581421,
+      -16.700000762939453
+    ],
+    "max": [
+      26.950000762939453,
+      52.5,
+      18.350000381469727
+    ]
+  },
+  "visualBrief": "Restored red-brick West 23rd Street exterior with eight varied iron balcony tiers, three projecting sections, pointed end gables, four dormers, four massive chimneys and tall central roof.",
+  "nativeAxes": {
+    "x": "west-northwest along West 23rd Street",
+    "y": "up",
+    "z": "north-northeast toward West 23rd Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chelsea_Manhattan_Aug_2025_102.jpg",
+    "https://commons.wikimedia.org/wiki/File:Hotel_Chelsea_2010.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hotel-chelsea-wp",
+      "url": "https://qualla.com/hotel-chelsea/"
+    }
+  ],
+  "referenceInputHash": "4b5bfb45d112fa8e323aa3e3d670284032ba4e5dfbcf6e8cad00ccfe7bc68884",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hotel-chelsea.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hotel-chelsea.mjs",
+    "level": "skyline",
+    "export": "chelseaSkyline",
+    "errorMeters": 1,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.6,
+        "metallic": 0.35
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chelseaDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "chelseaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Sidewalk [0,15] immediately in front of central West 23rd Street entrance, using independent terrain unchanged.",
+    "anchor": [
+      -73.99687349796295,
+      40.74432061253444
+    ],
+    "heading": 2.633658028998456,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.99678699497123,
+        40.74443834756607
+      ],
+      "modelHeight": 0,
+      "basis": "Sidewalk immediately in front of the central West 23rd Street entrance."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184636739474"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a669b1d5f5915929a7d609e0a357b607034170b30cef8f5b7e286dd7f7778a00",
+    "notes": "Mapped height 52.5 m is a coarse upper roof control, not an independently surveyed elevation. Photographs establish intermediate cornices, balcony tiers, gables, dormers and massive chimneys. Hidden rear roofs and openings remain conservative interpretations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from individually inspected Qualla 2025 and 2010 facade photographs, 2011 ironwork detail and the official NYC landmark report. Not a survey or photogrammetric reconstruction.",
+    "Mapped height 52.5 m provides a coarse upper roof control. Intermediate levels, roof slopes, rear/service openings and exact balcony panel spacing remain photographic approximations.",
+    "2025 restored finishes take precedence over older white windows, air conditioners and shop signage. Flower-and-leaf ironwork is original simplified geometry; no photo pixels are embedded.",
+    "The hotel parcel only; adjacent buildings, interiors and precise rooftop spa/garden fit-out are excluded. Hidden roof service enclosure and side/rear openings are conservative interpretations.",
+    "Independent terrain is preserved unchanged, with foundation below the central sidewalk datum. Exact contact with another host DEM remains uncertain."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        30,
+        120
+      ],
+      "lookAt": [
+        0,
+        25,
+        2
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -72,
+        64,
+        -105
+      ],
+      "lookAt": [
+        0,
+        25,
+        -2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 43677,
+    "vertices": 131031,
+    "materials": 5,
+    "bytes": 5244456,
+    "sha256": "sha256:7619de4f17d6dcde2fb569f4cb22d4200a1db4c8040b4f7c6ffd30cccdf796d6"
+  }
+}

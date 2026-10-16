@@ -16,14 +16,9 @@ const ledger = JSON.parse(
   await readFile(resolve(root, 'content/earth/structures/readiness.json'), 'utf8'),
 );
 const readiness = new Map(ledger.candidates.map((entry) => [entry.candidateId, entry]));
-const previewPath = (asset, shared) =>
-  relative(
-    dir,
-    structureSourcePath(
-      asset.split('.').at(-1),
-      shared ? 'shots/shared/angle-0.png' : 'preview.png',
-    ),
-  ).replaceAll('\\', '/');
+// The catalog travels with source; bulk shared-material captures stay local.
+const previewPath = (asset) =>
+  relative(dir, structureSourcePath(asset.split('.').at(-1), 'preview.png')).replaceAll('\\', '/');
 const reusable = (
   await Promise.all(
     (
@@ -71,13 +66,11 @@ const data = JSON.stringify(
                 id: member.candidateId,
                 title: member.title,
                 quality: member.model.quality,
-                preview: previewPath(member.asset, member.sharedSurfaceQa.hashBoundReviewPassed),
+                preview: previewPath(member.asset),
               })),
           }
         : null,
-      preview: modelRef
-        ? previewPath(modelRef, readiness.get(id)?.sharedSurfaceQa?.hashBoundReviewPassed)
-        : null,
+      preview: modelRef ? previewPath(modelRef) : null,
     }),
   ),
 ).replaceAll('<', '\\u003c');
@@ -109,7 +102,7 @@ const html = `<!doctype html>
   .coord { color: #a9bdc9; font-variant-numeric: tabular-nums; }
 </style>
 <header><h1>Next 1,000 significant structure candidates</h1>
-<p>1,000 named candidates across 14 structure classes. ${ledger.counts.runtimeModels} imported models · ${ledger.counts.visualReviews} visually reviewed · ${ledger.counts.sharedSurfaceReviews} shared-material reviews · ${ledger.counts.previewPlacements} world-viewer previews · ${ledger.counts.ready} maximum-fidelity completions. Reference coordinates and mapped axes are research evidence.</p>
+<p>1,000 named candidates across 14 structure classes. ${ledger.counts.runtimeModels} imported models · ${ledger.counts.visualReviews} visually reviewed · ${ledger.counts.sharedSurfaceReviews} shared-material reviews · ${ledger.counts.previewPlacements} world-viewer previews · ${ledger.counts.ready} completed candidates. Reference coordinates and mapped axes are research evidence.</p>
 <div class="controls"><input id="search" type="search" placeholder="Search title or ID" aria-label="Search candidates"><select id="category" aria-label="Category"><option value="">All categories</option></select><select id="status" aria-label="Status"><option value="">All statuses</option><option value="modeled">Modeled</option><option value="in-progress">Collection in progress</option><option value="candidate">Candidate</option></select><span id="count"></span></div></header>
 <main><h2>Authored models</h2><div class="cards" id="cards"></div><h2>Reusable map structures</h2><div class="cards" id="reusable"></div><h2>Candidate inventory</h2>
 <table><thead><tr><th>ID</th><th>Structure</th><th>Class</th><th>Visibility score</th><th>Model / review</th><th>Placement evidence</th><th>Reference point</th></tr></thead><tbody id="rows"></tbody></table></main>

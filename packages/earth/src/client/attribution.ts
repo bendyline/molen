@@ -3,6 +3,7 @@
 // package's attribution records into short, ordered credits a host can render as text or links.
 
 import type { TerrainPackageAttribution } from '@bendyline/molen-terrain/kernel';
+import type { RegionalEnvironmentDocs } from '@bendyline/molen-worldgen-earth/kernel';
 
 export interface EarthCredit {
   /** The party to credit: the attribution text up to its first ';'. */
@@ -39,4 +40,29 @@ export function earthCredits(attribution: readonly TerrainPackageAttribution[]):
 /** One line of plain-text credits, e.g. for a canvas overlay or an accessible label. */
 export function formatEarthCredits(credits: readonly EarthCredit[]): string {
   return credits.map((credit) => credit.label).join(' · ');
+}
+
+/** Runtime regional data carries its own provenance, including when supplied by a host pack. */
+export function regionalEarthAttribution(
+  environment: RegionalEnvironmentDocs | undefined,
+): TerrainPackageAttribution[] {
+  const sources = [
+    ...(environment?.atlas !== undefined ? [environment.atlas.source] : []),
+    ...(environment?.wildlifeRanges?.sources ?? []),
+  ];
+  return [
+    ...new Map(
+      sources.map((source) => [
+        source.url,
+        {
+          text: `${source.title}; ${source.interpretation}`,
+          license: source.license,
+          sourceUrl: source.url,
+          ...(source.license === 'CC-BY-4.0'
+            ? { licenseUrl: 'https://creativecommons.org/licenses/by/4.0/' }
+            : {}),
+        },
+      ]),
+    ).values(),
+  ];
 }

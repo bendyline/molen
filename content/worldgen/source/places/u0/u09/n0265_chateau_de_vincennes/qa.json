@@ -1,0 +1,364 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.n0265_chateau_de_vincennes",
+  "reviewedOn": "2026-10-11",
+  "inputHash": "sha256:3bd8c807b74afe56188790f384ce41fdd017ebb3f3cb4b15c34b5aa876057042",
+  "sourceHash": "sha256:73a2d7991dabc05b226c3a265cc4edbaf64009ee1c5287a610f77e342a44669a",
+  "runtimeHash": "sha256:71063d0bcd6872fbe7b277d71ba9025891db3b14d73f41ecd08abdbbdf640151",
+  "captureReportHash": "sha256:9f897c4b135febfc2b0a644a9855483d09ff3d8465b3e3b3ac1ed7b79e69333d",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/keep-and-chatelet.png",
+      "shots/chapel-west-rose.png",
+      "shots/royal-court.png",
+      "shots/tour-du-village.png",
+      "shots/compound-plan.png",
+      "shots/keep-west-and-covered-walk.png"
+    ],
+    "notes": "Actually inspected all104 final rendered images:11 portable,11 shared surfaces,27 lighting/LOD and55 normal-placement ground views. Tall four-round-turret keep, covered chemise, separate chatelet, chapel rose and buttresses, Village gate, reduced perimeter towers and paired royal pavilions remain legible. Official CMN photographs and visitor-guide plan/axonometric were inspected. Four gate centers remain open across tiers. Keep bridge now reaches the main court; three bridge approaches have sloped decks, continuous parapets and exterior-visible arch spandrels. Actual final side views confirm the previously missing outward arch faces and deck-support wedge are filled. The coarse moat ground still rises beneath the arches; no walkable underpass is claimed. Chapel door is a closed colored panel; window/rose tracery and masonry batters are approximate."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:d828168a7847e5cc0d4b64fdfa94b1a7b7024bba0ecc3a29910d7558c4383ae8",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/keep-and-chatelet.png",
+      "shots/shared/chapel-west-rose.png",
+      "shots/shared/royal-court.png",
+      "shots/shared/tour-du-village.png",
+      "shots/shared/compound-plan.png",
+      "shots/shared/keep-west-and-covered-walk.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All11 final shared-material images actually inspected. Reusable limestone, slate and ceramic tile graphs supply visible masonry courses and roofs. Local opaque PBR supplies glass, static flags and trim colors. Skyline bakes actual common linear means into one draw. Production graph reads show each common graph loaded once; six GLBs contain no embedded images or copied photographic textures. Flat-ground shared views expose buried foundations and do not prove terrain fit."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:e680dd0571b8216daf2063c196209b419e67799bfb92544d75f67b3df0177c30",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/keep-and-chatelet.png",
+      "medium-fi/chapel-west-rose.png",
+      "medium-fi/royal-court.png",
+      "medium-fi/tour-du-village.png",
+      "medium-fi/compound-plan.png",
+      "medium-fi/keep-west-and-covered-walk.png",
+      "medium-fi/whole-vincennes-skyline.png",
+      "medium-fi/whole-vincennes-district.png",
+      "medium-fi/whole-vincennes-street.png",
+      "medium-fi/whole-vincennes-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All27 final style/LOD images actually inspected at noon/late light and economy/high settings, matched compound tiers and transitions.997-triangle skyline retains keep/chemise, chapel, roof ranges and gate/bridge silhouettes while omitting minor service hut, chapel annex, windows and ornament.3738-triangle district restores volumes and sparse openings;11818 street/12434 closeup restore frames, buttresses and coarse rose. Strict medium-fi audit has zero findings. Four tiers meet1000/4000/16000/64000 triangle budgets with1/5/5/5 draws. Diagnostic ground and synthetic neighboring houses do not reconstruct Vincennes surroundings."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:e7d5e193c8bae105f7b5b1df81262303a689e42dbb1c5085b7e53bac5e7a7b77",
+    "mapFrameHash": "sha256:a334dfda01a316e9df6d921be758b68b2775682f4168d1b204630f0817e32b06",
+    "notes": "Fresh way23032971 v26/Q663673 and14 stable IGN CLEABS plans agree within0.000687m rounding. Anchor[2.435779375,48.842783541], heading1.438616485431: +X NNE7.573347 degrees toward Tour du Village, +Z ESE97.573347 degrees across court toward Sainte-Chapelle. Keep west and Bois gate south sign frame. Retained actual Float32 RGE ALTI1m crop, working datum53.6499m, main/inner keep court0.8777m, chapel1.5419m and bounded foundations-12.5086m. Open courtyard controls set working floors; the crop interpolates moat heights across the raised keep court, so under-building cells are not floor observations. Published50m keep relative height retained; older BD TOPO absolute base/roof elevations disagree with this DTM and are not placement controls. Three bounded bridges meet sampled outside ground with reconstructed slopes. Two-meter diagnostic grid, uncertain current bridge/floor levels and acquisition date are recorded; no survey-accuracy claim, full-site slab, terrain cutout or navigable interior."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted bounded reconstructed present-day exterior. Original source recipe and indexed map geometry remain unchanged and reproduce hash592f1d5e9c9b8943b3abe4f766ad797cff9cb5a18a0edc4d259167bd114b894f. Independent derivative retains published relative50m keep height and corrected gate/bridge geometry. Fresh exact-QID OSM perimeter and14 stable IGN component plans agree within0.000687m rounding. Retained RGE ALTI Float321m raster is resampled to a2m fitting grid; this is not survey accuracy. DTM interpolation places raised keep-court cells near moat heights, so reconstructed keep floor uses open main-court controls. Older BD TOPO absolute base/roof values disagree by several meters and do not control placement. Acquisition date, current floor/bridge levels, masonry batters, tower and roof details, chapel tracery, flags and entrance levels remain approximate. Moat ground heaves beneath coarse bridge arches; no underpass or exact moat-bottom reconstruction. No full-site slab, terrain cutout, vanished nine40m towers, surrounding city, vegetation or interiors. Physical laptop/phone timings and continuous-motion shimmer remain unmeasured."
+  },
+  "legacyFidelityScope": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Reviewed to docs-src/guide/medium-fi.md. Source itself has 12218 triangles, five merged groups and three shared graphs. Four individually authored levels meet triangle and download budgets. Colors decode from sRGB; skyline compensates for shared surface mean. Coarse rose/tracery, window rhythm and buttresses replace sculpted microdetail. No per-stone meshes, baked lighting or private/embedded images. This approves asset appearance, not terrain fit.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u0/u09/n0265_chateau_de_vincennes/models/source.glb",
+        "hash": "sha256:73a2d7991dabc05b226c3a265cc4edbaf64009ee1c5287a610f77e342a44669a",
+        "bytes": 1250544,
+        "triangles": 12434,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -199,
+          -17.768299102783203,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59.87770080566406,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.glb",
+        "hash": "sha256:71063d0bcd6872fbe7b277d71ba9025891db3b14d73f41ecd08abdbbdf640151",
+        "bytes": 1250044,
+        "triangles": 12434,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -199,
+          -17.768299102783203,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59.87770080566406,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.skyline.glb",
+        "hash": "sha256:538e421f6837b1def0da7a2af7611f805c5634b097603ac1e66594a36e39b6fe",
+        "bytes": 84596,
+        "triangles": 997,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -199,
+          -17.768299102783203,
+          -105.73204803466797
+        ],
+        "max": [
+          202,
+          59.87770080566406,
+          111.5
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.district.glb",
+        "hash": "sha256:aa930637ee936ca352cd7a6ae9c30eda27c5260284e8f78492683a119e4968c1",
+        "bytes": 274688,
+        "triangles": 3738,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -199,
+          -17.768299102783203,
+          -105.73204803466797
+        ],
+        "max": [
+          202,
+          59.87770080566406,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.street.glb",
+        "hash": "sha256:d2ca12a3efb6d56baea00e4c5dfed78ed5efff0b776ed6a9aa3e860600f43fa0",
+        "bytes": 849436,
+        "triangles": 11818,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -199,
+          -17.768299102783203,
+          -105.94985961914062
+        ],
+        "max": [
+          202,
+          59.87770080566406,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u0/u09/n0265_chateau_de_vincennes/model.closeup.glb",
+        "hash": "sha256:3e638459894c1077710e4bf1233a958cb4c7ee7228e115138012b6fa4fa04af9",
+        "bytes": 892880,
+        "triangles": 12434,
+        "materials": 5,
+        "images": 0,
+        "min": [
+          -199,
+          -17.768299102783203,
+          -105.96961212158203
+        ],
+        "max": [
+          202,
+          59.87770080566406,
+          114
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node_modules/.bin/vitest.cmd run test/vincennes-runtime-lods.test.mjs",
+      "passed": 3
+    },
+    "notes": "Three focused tests pass: exact original12218-triangle/1225900-byte reproduction and current source/runtime/map/ground hashes; raised roofless keep court, mast, four gate voids, outward foundation/bridge fascia/arch-spandrel rays and parapet/deck contact across every tier; byte-identical four-tier rebuild within triangle/draw/download limits and separate12-byte POSITION/NORMAL streams. Six GLBs have zero Khronos errors/warnings/images. Five normal-placement states sample the signed anchor once; three outside-ground probes agree with rendered triangles within0.0151m expected fixture offset. Five unloads release model geometry and preserve host ground. No exhaustive manifold or navigable-interior assertion."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:c91538e14a85aad86f8a7ccc2eba32b40218f63c8682cd752ad9b9574d2c805b",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:538e421f6837b1def0da7a2af7611f805c5634b097603ac1e66594a36e39b6fe",
+        "bytes": 84596,
+        "gzipBytes": 13153,
+        "triangles": 997,
+        "cpuBytes": 83204,
+        "gpuBytes": 83204,
+        "errorMeters": 2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:aa930637ee936ca352cd7a6ae9c30eda27c5260284e8f78492683a119e4968c1",
+        "bytes": 274688,
+        "gzipBytes": 63051,
+        "triangles": 3738,
+        "cpuBytes": 268676,
+        "gpuBytes": 268676,
+        "errorMeters": 1,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:d2ca12a3efb6d56baea00e4c5dfed78ed5efff0b776ed6a9aa3e860600f43fa0",
+        "bytes": 849436,
+        "gzipBytes": 178480,
+        "triangles": 11818,
+        "cpuBytes": 843400,
+        "gpuBytes": 843400,
+        "errorMeters": 0.5,
+        "drawCalls": 5
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:3e638459894c1077710e4bf1233a958cb4c7ee7228e115138012b6fa4fa04af9",
+        "bytes": 892880,
+        "gzipBytes": 189538,
+        "triangles": 12434,
+        "cpuBytes": 886840,
+        "gpuBytes": 886840,
+        "errorMeters": 0.2,
+        "drawCalls": 5
+      }
+    ],
+    "initialBytes": 359284,
+    "notes": "skyline: 997triangles/84596bytes/1draws; district: 3738triangles/274688bytes/5draws; street: 11818triangles/849436bytes/5draws; closeup: 12434triangles/892880bytes/5draws. Initial skyline+district 359284bytes, below phone3MB/laptop6MB limits. Detailed derivative 1250544bytes; original1225900-byte master preserved. Physical-device measurements pending."
+  },
+  "limitations": [
+    "Original12218-triangle/1225900-byte source reproduces at sha256:592f1d5e9c9b8943b3abe4f766ad797cff9cb5a18a0edc4d259167bd114b894f from unchanged vincennes-castle-model.mjs#buildVincennesRuntime and unchanged indexed IGN plan geometry.",
+    "Fresh way23032971 v26/Q663673 and14 stable IGN CLEABS plans agree within0.000687m rounding. Anchor[2.435779375,48.842783541], heading1.438616485431: +X NNE7.573347 degrees toward Tour du Village, +Z ESE97.573347 degrees across court toward Sainte-Chapelle. Keep west and Bois gate south sign frame. Retained actual Float32 RGE ALTI1m crop, working datum53.6499m, main/inner keep court0.8777m, chapel1.5419m and bounded foundations-12.5086m. Open courtyard controls set working floors; the crop interpolates moat heights across the raised keep court, so under-building cells are not floor observations. Published50m keep relative height retained; older BD TOPO absolute base/roof elevations disagree with this DTM and are not placement controls. Three bounded bridges meet sampled outside ground with reconstructed slopes. Two-meter diagnostic grid, uncertain current bridge/floor levels and acquisition date are recorded; no survey-accuracy claim, full-site slab, terrain cutout or navigable interior.",
+    "The DTM interpolates moat-height ground across the keep court and lower heights into some building footprints. The raised keep court and bounded foundations are reconstructed using open main-court controls, not a claim of surveyed floor levels.",
+    "Older BD TOPO base/roof altitude fields disagree with this working DTM by up to several meters. Published relative keep height is retained; incompatible absolute roof fields do not control placement. Acquisition date and exact current entrance/bridge grades remain unverified.",
+    "One-meter source and two-meter diagnostic sampling are not survey accuracy. Bounded foundations fill only architecture and the reconstructed inner court. No full-site slab or terrain cutout.",
+    "Bridge slopes and masonry batters are bounded exterior reconstructions; no walkable interiors or exact present-day structural survey.",
+    "Accepted reconstructed present-day exterior: tall four-round-turret keep and separate covered chemise, chapel single level with west rose and buttresses, Tour du Village, reduced perimeter towers, paired royal pavilions and ancillary ranges. Historical nine40m towers are not restored. Three gate arches and bridge under-spans are exterior voids; interiors and access permissions are not modeled.",
+    "Original low tiers blocked public gate centers and truncated the keep approach bridge. Reviewed tiers retain keep chatelet, royal portico and Village/Bois gate voids. Keep approach extends to main court and all three bridges have bounded grade transitions. Detailed source bridge supports are preserved only in original master.",
+    "Skyline omits minor service hut and chapel annex and uses coarse turret/canopy silhouettes. District restores building volumes and sparse openings; street and close-up restore rose, buttress, frame and roof detail. Door elevations, historical stair/bridge dimensions, masonry batters, flags, windows and roofs remain approximate.",
+    "Three common graphs supply limestone, slate and ceramic tile. Local opaque PBR supplies glass and static flag/trim colors. Skyline bakes actual common linear means into one draw. No embedded or per-model copied bitmap textures. Physical laptop/phone timings and continuous-motion shimmer remain pending."
+  ],
+  "terrainReview": {
+    "status": "passed",
+    "report": "shots/grade/report.json",
+    "captureReportHash": "sha256:6f2610b0cbb8d1d17e5decc317ee460c080d79763b6ad1ea921ad4f90f5776b9",
+    "fixtureHash": "sha256:266e402c54bbf3930529d120d193346c52ba2c2dd0d64d557ec866929e52836b",
+    "gradeHash": "sha256:2b2ea7d09e756193f681f8c184b0761cc56c5c8530dad459109469eb0379c301",
+    "inspectedFrames": [
+      "shots/grade/master-keep-bridge-span.png",
+      "shots/grade/master-village-bridge-span.png",
+      "shots/grade/master-bois-bridge-span.png",
+      "shots/grade/master-whole-compound.png",
+      "shots/grade/master-keep-and-chatelet.png",
+      "shots/grade/master-chapel-west.png",
+      "shots/grade/master-royal-court.png",
+      "shots/grade/master-village-gate.png",
+      "shots/grade/master-compound-plan.png",
+      "shots/grade/master-keep-west-moat.png",
+      "shots/grade/master-bois-gate.png",
+      "shots/grade/skyline-keep-bridge-span.png",
+      "shots/grade/skyline-village-bridge-span.png",
+      "shots/grade/skyline-bois-bridge-span.png",
+      "shots/grade/skyline-whole-compound.png",
+      "shots/grade/skyline-keep-and-chatelet.png",
+      "shots/grade/skyline-chapel-west.png",
+      "shots/grade/skyline-royal-court.png",
+      "shots/grade/skyline-village-gate.png",
+      "shots/grade/skyline-compound-plan.png",
+      "shots/grade/skyline-keep-west-moat.png",
+      "shots/grade/skyline-bois-gate.png",
+      "shots/grade/district-keep-bridge-span.png",
+      "shots/grade/district-village-bridge-span.png",
+      "shots/grade/district-bois-bridge-span.png",
+      "shots/grade/district-whole-compound.png",
+      "shots/grade/district-keep-and-chatelet.png",
+      "shots/grade/district-chapel-west.png",
+      "shots/grade/district-royal-court.png",
+      "shots/grade/district-village-gate.png",
+      "shots/grade/district-compound-plan.png",
+      "shots/grade/district-keep-west-moat.png",
+      "shots/grade/district-bois-gate.png",
+      "shots/grade/street-keep-bridge-span.png",
+      "shots/grade/street-village-bridge-span.png",
+      "shots/grade/street-bois-bridge-span.png",
+      "shots/grade/street-whole-compound.png",
+      "shots/grade/street-keep-and-chatelet.png",
+      "shots/grade/street-chapel-west.png",
+      "shots/grade/street-royal-court.png",
+      "shots/grade/street-village-gate.png",
+      "shots/grade/street-compound-plan.png",
+      "shots/grade/street-keep-west-moat.png",
+      "shots/grade/street-bois-gate.png",
+      "shots/grade/closeup-keep-bridge-span.png",
+      "shots/grade/closeup-village-bridge-span.png",
+      "shots/grade/closeup-bois-bridge-span.png",
+      "shots/grade/closeup-whole-compound.png",
+      "shots/grade/closeup-keep-and-chatelet.png",
+      "shots/grade/closeup-chapel-west.png",
+      "shots/grade/closeup-royal-court.png",
+      "shots/grade/closeup-village-gate.png",
+      "shots/grade/closeup-compound-plan.png",
+      "shots/grade/closeup-keep-west-moat.png",
+      "shots/grade/closeup-bois-gate.png"
+    ],
+    "notes": "All55 final normal-placement image pixels actually inspected: master/four tiers at whole compound, keep/chatelet, chapel west, royal court, Village gate, plan, keep west moat, Bois gate and three bridge side views. Each state samples signed anchor once; three outside-ground probes agree with rendered triangles within0.0151m fixture offset, three outward foundation contacts and four gate voids pass per state. Raised inner court is bounded and roofless. Corrected winding closes exterior arch spandrels and sloped deck/support gaps in the inspected side views. Coarse retained terrain still rises inside under-arches; no navigable underpass or exact moat-bottom claim. Bounded foundations remain buried; surrounding host ground is unchanged. Five unloads release geometry and preserve ground. Current surveyed levels and acquisition date are unknown."
+  }
+}

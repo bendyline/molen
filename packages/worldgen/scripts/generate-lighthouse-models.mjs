@@ -4,10 +4,11 @@ import './install-deterministic-math.mjs';
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { encodeGlb, MeshBufferBuilder } from '../dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from './architectural-surface-authoring.mjs';
 import { smoothMeshNormals, validateAuthoredMesh } from './authored-structure-mesh.mjs';
+import { hashEvidenceText } from './evidence-text-hash.mjs';
 import { lighthouseAmericasStudies } from './lighthouse-americas-models.mjs';
 import { lighthouseAtlanticStudies } from './lighthouse-atlantic-models.mjs';
 import { lighthouseBalticIronStudies } from './lighthouse-baltic-iron-models.mjs';
@@ -30,6 +31,7 @@ import { lighthouseSwedishStudies } from './lighthouse-swedish-models.mjs';
 import { roterSandStudies } from './roter-sand-model.mjs';
 import { MATERIAL_REPEAT_METERS } from './standard-materials.mjs';
 import { structureAssetSidecarPath } from './structure-asset-paths.mjs';
+import { readOptionalJson } from './structure-model-files.mjs';
 import { structureSourceDirectory } from './structure-source-paths.mjs';
 import { wisloujscieStudies } from './wisloujscie-model.mjs';
 
@@ -128,6 +130,18 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     assetId = `molen.worldgen.structure.${key}`,
     dir = structureSourceDirectory(key),
     modelPath = resolve(dir, 'models/source.glb');
+  const priorSource = await readOptionalJson(resolve(dir, 'source.json'));
+  const reviewScope = await readOptionalJson(resolve(dir, 'review-scope.json'));
+  if (reviewScope && reviewScope.fidelityTarget !== 'medium-fi')
+    throw new Error(`${asset.id}: review scope must declare the current medium-fi standard`);
+  const mapFrame = await readOptionalJson(resolve(dir, 'map-frame.json'));
+  const reviewedProposal = { ...asset.geographicProposal, ...(reviewScope?.geographic ?? {}) };
+  if (
+    mapFrame &&
+    (!mapFrame.anchor?.every((n, i) => n === reviewedProposal.anchor[i]) ||
+      mapFrame.heading !== reviewedProposal.heading)
+  )
+    throw new Error(`${asset.id}: local map controls disagree with recipe placement`);
   try {
     const source = JSON.parse(await readFile(resolve(dir, 'source.json'), 'utf8'));
     if (hash(await readFile(modelPath)) !== source.files.models[0].sha256)
@@ -143,7 +157,18 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     defaultLocalName: 'lantern-glass-and-dark-recess',
     legacyAlphaFields: true,
   });
-  asset.build(authoring.wrap(out));
+  let build = asset.build;
+  if (reviewScope?.sourceGeometry) {
+    const definition = reviewScope.sourceGeometry;
+    if (
+      !/^packages\/worldgen\/scripts\/[a-z0-9-]+\.mjs$/.test(definition.module) ||
+      typeof definition.export !== 'string'
+    )
+      throw new Error(`${asset.id}: invalid source geometry override`);
+    build = (await import(pathToFileURL(resolve(root, definition.module)).href))[definition.export];
+    if (typeof build !== 'function') throw new Error(`${asset.id}: missing source geometry export`);
+  }
+  build(authoring.wrap(out));
   const mesh = out.finalize();
   smoothMeshNormals(mesh, asset.smoothNormalSlots ?? ['trim', 'foundation'], 32);
   if (asset.normalAt)
@@ -168,14 +193,52 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
   }
   const materials = authoring.materials(mesh.groups);
   const glb = Buffer.from(encodeGlb(mesh, materials, `Molen original ${asset.title}`));
-  const { build, normalAt, ...data } = asset;
+  const { build: originalBuild, normalAt, ...data } = asset;
+  void originalBuild;
   void normalAt;
+  const geographicProposal = reviewedProposal;
   const spec = {
     ...data,
+    geographicProposal,
     assetId,
     category: 'lighthouse',
     quality: 'detailed',
+    ...(reviewScope
+      ? {
+          fidelityTarget: reviewScope.fidelityTarget,
+          mediumFiContext: reviewScope.mediumFiContext,
+          appearance: reviewScope.appearance,
+          ...(reviewScope.limitations ? { limitations: reviewScope.limitations } : {}),
+          ...(reviewScope.sourceGeometry ? { sourceGeometry: reviewScope.sourceGeometry } : {}),
+          ...(reviewScope.sourceFacts ? { sourceFacts: reviewScope.sourceFacts } : {}),
+          ...(reviewScope.size ? { size: reviewScope.size } : {}),
+          ...(reviewScope.nativeAxes ? { nativeAxes: reviewScope.nativeAxes } : {}),
+          ...(reviewScope.runtimeLodOverlay
+            ? { runtimeLodOverlay: reviewScope.runtimeLodOverlay }
+            : {}),
+          qaCameras: [...data.qaCameras, ...(reviewScope.qaCameras ?? [])],
+          ...(reviewScope.qaLodCameras ? { qaLodCameras: reviewScope.qaLodCameras } : {}),
+        }
+      : {}),
+    ...(mapFrame
+      ? {
+          geographicProposal: {
+            ...geographicProposal,
+            mapGeometrySource: 'map-frame.json',
+            mapGeometryHash: hashEvidenceText(await readFile(resolve(dir, 'map-frame.json'))),
+            mapGeometryLicense: mapFrame.license,
+            attribution: mapFrame.attribution,
+          },
+        }
+      : {}),
     actualBounds: { min, max },
+    mesh: {
+      triangles: mesh.triangleCount,
+      vertices: mesh.vertexCount,
+      materials: mesh.groups.length,
+      bytes: glb.length,
+      sha256: hash(glb),
+    },
     geometrySource:
       'Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.',
     sourceLicense:
@@ -249,6 +312,11 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
     },
     physics: { engine: 'none' },
   };
+  if (reviewScope?.previewEntities) scene.entities.push(...reviewScope.previewEntities);
+  if (reviewScope?.previewGround === false)
+    scene.entities = scene.entities.filter((entity) => entity.id !== 'ground');
+  if (reviewScope?.previewTerrain) scene.terrain = reviewScope.previewTerrain;
+  if (reviewScope?.camera) Object.assign(scene.camera, reviewScope.camera);
   const optional = (
     await readdir(dir).catch((error) => {
       if (error.code === 'ENOENT') return [];
@@ -288,7 +356,16 @@ for (const asset of studies.filter((study) => !selected || selected.includes(stu
       documents: ['README.md', 'preview.png', ...optional],
     },
   };
-  const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(asset.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(asset.nativeAxes)}.\n\n## Placement proposal\n\n${asset.geographicProposal.notes} Proposed anchor ${asset.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${asset.geographicProposal.heading} radians. Elevation policy: **${asset.geographicProposal.elevationMode}**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in \`qa.json\` and the readiness ledger; source generation alone does not approve a model.\n\nRegenerate with \`node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are in \`packages/worldgen/scripts/${studySources.get(asset)}\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;
+  source.files.documents = [
+    ...new Set([
+      ...source.files.documents,
+      ...(priorSource?.files?.documents ?? []),
+      ...(mapFrame ? ['map-frame.json'] : []),
+      ...(reviewScope ? ['review-scope.json'] : []),
+      ...(reviewScope?.sourceDocuments ?? []),
+    ]),
+  ];
+  const readme = `# ${asset.title} — ${asset.id}\n\n![Lit Molen preview](preview.png)\n\n${asset.visualBrief}\n\n## Identity and evidence\n\nExact catalog identity **${asset.wikidataId}**. Source facts: \`${JSON.stringify(spec.sourceFacts)}\`. The source specification keeps published dimensions separate from reconstructed details.\n\n${asset.referencePages.map((url) => `- ${url}`).join('\n')}\n\n${asset.referenceRights}\n\n## Authored geometry and materials\n\n${mesh.triangleCount.toLocaleString('en-US')} triangles, ${mesh.vertexCount.toLocaleString('en-US')} vertices, ${mesh.groups.length} surface groups; ${glb.length.toLocaleString('en-US')} source bytes. SHA-256: \`${hash(glb)}\`. Actual bounds: ${min.map((n) => n.toFixed(3)).join(', ')} to ${max.map((n) => n.toFixed(3)).join(', ')} m.\n\n${spec.materialMethod} Shared references: ${spec.sharedSurfaces.map((surface) => `\`${surface.ref}\` (${surface.repeatMeters.join(' × ')} m)`).join(', ')}. Model-native axes: ${JSON.stringify(spec.nativeAxes)}.\n\n## Placement proposal\n\n${spec.geographicProposal.notes} Proposed anchor ${spec.geographicProposal.anchor.join(', ')} (longitude, latitude), heading ${spec.geographicProposal.heading} radians. Elevation policy: **${spec.geographicProposal.elevationMode}**. This is a reviewable proposal, not a completed site-fit certification. Ground models require terrain contact; offshore models also require water-datum and base-height checks.\n\n## Limitations and review\n\n${asset.limitations.map((note) => `- ${note}`).join('\n')}\n\nNear/far fixtures are in \`spec.qaCameras\`. Float32 finite geometry, triangle degeneracy and winding are checked by the generator. Current rendering, shared-material, maximum-fidelity and geographic review results are recorded in \`qa.json\` and the readiness ledger; source generation alone does not approve a model.\n\nRegenerate with \`node packages/worldgen/scripts/generate-lighthouse-models.mjs --ids=${asset.id}\`; add \`--check\` for reproducibility. Editable component recipes are in \`packages/worldgen/scripts/${studySources.get(asset)}\`. The generator protects artist-edited master hashes and preserves import/capture/shared-capture/QA documents.\n`;
   await emit(modelPath, glb);
   for (const [name, value] of [
     ['spec.json', spec],

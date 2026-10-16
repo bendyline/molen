@@ -1,8 +1,11 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0018_skopje_aqueduct",
-  "inputHash": "sha256:b1fe0827977fba66466ffb69485fc088e08aa2004ea42a01bed58dab71efb6c9",
-  "captureReportHash": "sha256:cc2d23da25f07c0c15338c78abe53507d463fcd12ab693e36a38fe78576fbecc",
+  "reviewedOn": "2026-10-12",
+  "inputHash": "sha256:5bf1dbd66c7f71894b506e512e564216d3c0abbb3631164d0fc808b34075dbda",
+  "sourceHash": "sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b",
+  "runtimeHash": "sha256:f4fa4ae3710aaa4adf8fd0ad351216470a35100f99f57b4c1a06bfe309b16381",
+  "captureReportHash": "sha256:3a9fd0d38184a54b965185380511e710e6729aa0355d500079d0bad29c002283",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -20,11 +23,11 @@
       "shots/water-conduit.png",
       "shots/north-ramp.png"
     ],
-    "notes": "All13 current portable frames inspected. Full arcade and four turns, piers and brick vaults, middle bend, varied rubble/courses, real relief openings and open channel. Corrected overlaps between rubble and radial brick rings, stone/brick returns and camera framing. The directed bend now uses intersecting offset segments rather than a folding tangent approximation; Float32 mesh validation passes."
+    "notes": "Inspected all13 final source images: field/contact overview, four isolated turntables, whole bent arcade, southern arches, middle bend, stone/brick surfaces, upper relief openings, soffits, open water trough and north ramp. All54 main openings and both mapped bends remain visible; the nearer views show42upper openings and brick arch ribbons. The single inspected picture supports this single-tier form, material palette and narrow channel. Exact conservation patchwork is not reconstructed in the compact source."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5a316ae3955c730d07a44cd8a54f83bab69e1578c8ab647c1f2d7716cb989307",
+    "captureReportHash": "sha256:432db1c90a85545922687d01d3604e0476dc965b246c46b351ac8390a4a63ed6",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -40,16 +43,306 @@
       "shots/shared/north-ramp.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All13 current shared-surface frames inspected, including full-resolution bend and water-conduit. Two canonical raw limestone/fired clay graphs retain original vertex tints. Exact identity and signed bent centerline registered as a preview; load/unload passes."
+    "notes": "Inspected all13 shared-viewer images, including the retained mapped bent-line plan overlay. Raw limestone and fired-clay graph bindings reuse the shared library without embedded images. Bounded selection, independently transformed full geometry, approximate centre-terrain reference, narrow arcade ground opening/restoration, graph cache and unload checks passed. The geographic harness is flat; source/browser views separately use the PMTiles field/contact fixture."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:80b4f5cb0103f85c056008d3b13f5e411e66294b55b75d71a16b88387c9bcde0",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/whole-bent-arcade.png",
+      "medium-fi/southern-arches.png",
+      "medium-fi/middle-bend.png",
+      "medium-fi/rubble-and-brick.png",
+      "medium-fi/relief-openings.png",
+      "medium-fi/brick-soffit.png",
+      "medium-fi/water-conduit.png",
+      "medium-fi/north-ramp.png",
+      "medium-fi/whole-aqueduct-skyline.png",
+      "medium-fi/whole-aqueduct-district.png",
+      "medium-fi/whole-aqueduct-street.png",
+      "medium-fi/whole-aqueduct-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all29 final lighting/LOD views. Skyline preserves54 angular main openings and the mapped bends; district restores42reliefs and the open trough, street/closeup add smoother vaults and brick rings. The narrow reconstructed contact corridor meets the existing one-metre source rise and blends into raw surroundings. Models retain the full arcade, with clearly recorded loss of individual rubble, radial brick joints and damaged cap-course detail."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:a2c220ab841881d76b043d9c6036ee04bbdc5e59a6a7e1c6cdcc88d638b8d8c3",
-    "notes": "Horizontal bent aqueduct matches exact way180360206; thin map boundary describes water conduit, not full piers. Actual terrain grade and two inferred end ramps still need ground-contact review."
+    "status": "passed",
+    "placementHash": "sha256:144f300c6830ddeeda2838b8cbc24845ac2034811bbb320fd17c706bed60497d",
+    "mapFrameHash": "sha256:4307bfc2e3a7f5cdf8b92df10accf4e6b292a4bf4bda0e5515a856bb90080f8d",
+    "notes": "The single inspected picture confirms the single-tier stone arcade, radial brick arches, upper relief openings and narrow open conduit. Retained mapped350.7703m bent channel line and standard PMTiles named aqueduct POIs establish location and the north/northwest native+X frame. The narrow outline is the conduit, not the full2.2m piers. The retained385.8m source length includes reconstructed17.5149m end ramps. Standard PMTiles centre274.8112m is an approximate working base; surrounding field samples vary several metres and do not resolve each footing. A bounded2m contact corridor follows the mapped bends and source1m rise, blending back to raw field by8m. Viewer ground opening remains within the arcade. Exact present conservation repairs and footing precision are not certified."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Accepted medium-fi exterior and approximate picture/PMTiles fit. Retained350.7703m bent mapped channel is distinct from385.8m reconstruction including17.5149m end ramps. The approximate workingbase274.8112m comes from standard PMTiles; several-metre field variation does not establish exact per-pier contacts. Bounded contact blending and arcade-only opening are visualization corrections. Relief stations/ramp lengths remain source assumptions, and exact current repair inventory, broken rims, graffiti and individual masonry are simplified. Footprint replacement off; physical laptop/phone timing remains pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "2,224,784-triangle researched first detailed model;54 main arches,53 piers,42 relief openings, wrapped stone/brick masonry and open conduit. Published385.8m overall length exceeds350.77m mapped centerline: two17.5m ramp lengths are an explicit interpretation. Current relief-station/repair pattern and ramp evidence need further review. March2026 conservation-center program continues restoration; current completion is not inferred from a budget allocation."
+    "notes": "2,224,784-triangle researched first detailed model;54 main arches,53 piers,42 relief openings, wrapped stone/brick masonry and open conduit. Published385.8m overall length exceeds350.77m mapped centerline: two17.5m ramp lengths are an explicit interpretation. Current relief-station/repair pattern and ramp evidence need further review. March2026 conservation-center program continues restoration; current completion is not inferred from a budget allocation.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sr/srr/n0018_skopje_aqueduct/models/source.glb",
+        "hash": "sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b",
+        "bytes": 2046808,
+        "triangles": 17040,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -186.11785888671875,
+          -0.049932584166526794,
+          -43.59648895263672
+        ],
+        "max": [
+          184.0635223388672,
+          7.559999942779541,
+          10.439505577087402
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.glb",
+        "hash": "sha256:f4fa4ae3710aaa4adf8fd0ad351216470a35100f99f57b4c1a06bfe309b16381",
+        "bytes": 2046520,
+        "triangles": 17040,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -186.11785888671875,
+          -0.049932584166526794,
+          -43.59648895263672
+        ],
+        "max": [
+          184.0635223388672,
+          7.559999942779541,
+          10.439505577087402
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.skyline.glb",
+        "hash": "sha256:31f6c068f70247d552d0a3a26114dddce3366a2c1b4b4473db945f6c8e285600",
+        "bytes": 94892,
+        "triangles": 924,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -186.11785888671875,
+          -0.049932584166526794,
+          -43.581119537353516
+        ],
+        "max": [
+          184.0635223388672,
+          7.119999885559082,
+          10.439505577087402
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.district.glb",
+        "hash": "sha256:91ab9708d4410753f56ae543172b6a7320037596b35ebb84e2ec7fe11cb115c3",
+        "bytes": 354996,
+        "triangles": 3388,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -186.11785888671875,
+          -0.049932584166526794,
+          -43.581119537353516
+        ],
+        "max": [
+          184.0635223388672,
+          7.559999942779541,
+          10.439505577087402
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.street.glb",
+        "hash": "sha256:2914d3446ae4b24446bcd67111726ad321d906cff20516b421dd86cb392f7caa",
+        "bytes": 991756,
+        "triangles": 9348,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -186.11785888671875,
+          -0.049932584166526794,
+          -43.59648895263672
+        ],
+        "max": [
+          184.0635223388672,
+          7.559999942779541,
+          10.439505577087402
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.closeup.glb",
+        "hash": "sha256:8988511c58338e2a7bcfbed2c64cdaad0a27052dc49f0fa044cdb386a045f6e9",
+        "bytes": 1822068,
+        "triangles": 17040,
+        "materials": 2,
+        "images": 0,
+        "min": [
+          -186.11785888671875,
+          -0.049932584166526794,
+          -43.59648895263672
+        ],
+        "max": [
+          184.0635223388672,
+          7.559999942779541,
+          10.439505577087402
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "Selected mesh checks, six GLB validation and targeted browser captures",
+      "passed": true
+    },
+    "notes": "Six GLBs validate with zero errors, zero warnings and zero embedded images. Original2224784-triangle,185039096-byte detailed master reproduced exactly at sha256:c0b1d1d5f930c07cd294ea0a60344090680cdfab8a7ac90865ba07a31371cb00 before creating the independent17040-triangle compact source. Original recipe/map inputs remain unchanged. Browser levels924/3388/9348/17040 satisfy1k/4k/16k/64k; initial skyline+district449888bytes. Current source/runtime/LOD hashes, shared graph bindings and bounded placement verified."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:6bdd752f87cb9944496f7563ed14ece409823b314798911af53a4699361890a6",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:31f6c068f70247d552d0a3a26114dddce3366a2c1b4b4473db945f6c8e285600",
+        "bytes": 94892,
+        "gzipBytes": 26163,
+        "triangles": 924,
+        "cpuBytes": 93456,
+        "gpuBytes": 93456,
+        "errorMeters": 2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:91ab9708d4410753f56ae543172b6a7320037596b35ebb84e2ec7fe11cb115c3",
+        "bytes": 354996,
+        "gzipBytes": 110488,
+        "triangles": 3388,
+        "cpuBytes": 352248,
+        "gpuBytes": 352248,
+        "errorMeters": 0.7,
+        "drawCalls": 2
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:2914d3446ae4b24446bcd67111726ad321d906cff20516b421dd86cb392f7caa",
+        "bytes": 991756,
+        "gzipBytes": 321848,
+        "triangles": 9348,
+        "cpuBytes": 988992,
+        "gpuBytes": 988992,
+        "errorMeters": 0.3,
+        "drawCalls": 2
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:8988511c58338e2a7bcfbed2c64cdaad0a27052dc49f0fa044cdb386a045f6e9",
+        "bytes": 1822068,
+        "gzipBytes": 633671,
+        "triangles": 17040,
+        "cpuBytes": 1819296,
+        "gpuBytes": 1819296,
+        "errorMeters": 0.12,
+        "drawCalls": 2
+      }
+    ],
+    "initialBytes": 449888,
+    "notes": "skyline: 924 triangles, 94892 bytes, 1 draws; district: 3388 triangles, 354996 bytes, 2 draws; street: 9348 triangles, 991756 bytes, 2 draws; closeup: 17040 triangles, 1822068 bytes, 2 draws. Initial skyline+district 449888 bytes, below3MB phone/6MB laptop limits. Separate POSITION/NORMAL streams; physical-device timings remain unmeasured."
+  },
+  "limitations": [
+    "Picture and standard viewer PMTiles approximate exterior/placement scope; no bespoke surveys, conservation-plan research or local-data campaigns.",
+    "Detailed original master is preserved by its unchanged recipe/map inputs and exact reproduced hash. Compact medium-fi source replaces individual rubble/brick geometry with the shared raw limestone and fired-clay graphs.",
+    "Skyline retains all54 main openings with angular vaults, merges reliefs and channel rims; closer models restore42 upper openings, rounded vaults, arch ribbons and open trough. Exact broken cap courses, stone/brick patchwork, graffiti and repairs are simplified.",
+    "Mapped350.7703m channel and385.8m overall reconstruction remain distinct; ramp lengths and relief stations are retained assumptions. PMTiles field/contact blending and narrow ground opening are approximate, not per-pier survey. Footprint replacement off; physical-device timing remains pending."
+  ],
+  "inputReconciliation": {
+    "reconciledOn": "2026-10-13",
+    "previousInputHash": "sha256:141c75d50fa57413d42d98bab3134f153c42094d3a96ce6c5bb820392731c774",
+    "basis": "Original inspected frames retained. Current source differs only by the listed formatting/import-order, discarded forEach callback return or README changes. A clean source rebuild reproduced all six reviewed GLBs byte for byte; image, shared graph, placement and four-LOD review bindings remain unchanged.",
+    "buildRelease": "assets-16f966c72052fd6c",
+    "previousCaptureReportHash": "sha256:60e63f61293cea984503310e3b0524f9b3f8052f92563585bfae9a378be6bd22",
+    "previousSharedCaptureReportHash": "sha256:b72dc818aef9e4e5a02d2ef5a861b439130c565ab9c8aa0c89fc9a78dbfaa7e1",
+    "changedRecipes": [
+      {
+        "path": "packages/worldgen/scripts/skopje-aqueduct-browser-model.mjs",
+        "beforeHash": "sha256:9e3440f15d1b3a6a27979180f7691f38ee0a8cc1a8a876891788f5a1186fe82e",
+        "afterHash": "sha256:b7366469838adea62732d19f68af3569ca482f0b264221ba9fe3a1eeef5ee492",
+        "change": "formatting-or-bound-import-order"
+      }
+    ],
+    "unchangedOutputs": [
+      {
+        "path": "content/worldgen/source/places/sr/srr/n0018_skopje_aqueduct/models/source.glb",
+        "hash": "sha256:53a9d143d2f3baffe6b47aa28b0c3f335767a0e18ab08e38a352ad91d709bd7b",
+        "bytes": 2046808
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.glb",
+        "hash": "sha256:f4fa4ae3710aaa4adf8fd0ad351216470a35100f99f57b4c1a06bfe309b16381",
+        "bytes": 2046520
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.skyline.glb",
+        "hash": "sha256:31f6c068f70247d552d0a3a26114dddce3366a2c1b4b4473db945f6c8e285600",
+        "bytes": 94892
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.district.glb",
+        "hash": "sha256:91ab9708d4410753f56ae543172b6a7320037596b35ebb84e2ec7fe11cb115c3",
+        "bytes": 354996
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.street.glb",
+        "hash": "sha256:2914d3446ae4b24446bcd67111726ad321d906cff20516b421dd86cb392f7caa",
+        "bytes": 991756
+      },
+      {
+        "path": "content/worldgen/assets/places/sr/srr/n0018_skopje_aqueduct/model.closeup.glb",
+        "hash": "sha256:8988511c58338e2a7bcfbed2c64cdaad0a27052dc49f0fa044cdb386a045f6e9",
+        "bytes": 1822068
+      }
+    ],
+    "retainedInspectedImageCount": 55
   }
 }

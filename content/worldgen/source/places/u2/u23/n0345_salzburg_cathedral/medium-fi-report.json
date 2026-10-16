@@ -1,0 +1,1146 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0345_salzburg_cathedral",
+  "sourceHash": "sha256:452227c5249e8dc5aa2a4e4d875b56bc21f3b91c01f246a03637d3bb9dc4eaa2",
+  "runtimeHash": "sha256:f07894565f38404b7e92a7d49aa9b7b37db0d564c63e11944e8fc4142cb380c6",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 9870,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:68053d0ebd29e4fd538f466773abf96eecb2b378d245b9f2e7838d739906f51f",
+      "bytes": 94900,
+      "gzipBytes": 17799,
+      "triangles": 926,
+      "cpuBytes": 93468,
+      "gpuBytes": 93468,
+      "errorMeters": 1.25,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:7d1a09407c0490e726ef131a9d0067f587b782122f72b5373452692e0bea20e4",
+      "bytes": 291352,
+      "gzipBytes": 76072,
+      "triangles": 3401,
+      "cpuBytes": 285156,
+      "gpuBytes": 285156,
+      "errorMeters": 0.5,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:da007ac60df49901ac6abc0798f5a497215fa930f7e72d51e743f0a4021cd4d5",
+      "bytes": 1343320,
+      "gzipBytes": 407211,
+      "triangles": 14682,
+      "cpuBytes": 1337084,
+      "gpuBytes": 1337084,
+      "errorMeters": 0.15,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:16942718953e7e405b080bcb0040c52c91742e017c8e0023dee5de07fcb7b107",
+      "bytes": 2023688,
+      "gzipBytes": 619416,
+      "triangles": 21774,
+      "cpuBytes": 2017448,
+      "gpuBytes": 2017448,
+      "errorMeters": 0.06,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:b16a5f12ae9a673c7e08d3cc8e784c1d3b868e06f224ba02db95eb49434e887b"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:06aa544ef8c1185a78debde99905c4f5a428da454bb807c59465d2d85ef91e53"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:861c56db3f7f63a44f46294f253b852d3fe47e9cc4be04dbb2f6adb230f62f3a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          49.511900000000004,
+          66.8119,
+          87.11720000000001
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:9be5072f189582df1b6a2895d1f3917bd2a7a1b4b054dca7ea1e5a9493b24174",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          49.511900000000004,
+          66.8119,
+          87.11720000000001
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:8411904ff8facd507d5664be2e0204157b649238167f107557055c430f4cb769",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          49.511900000000004,
+          66.8119,
+          87.11720000000001
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:68d1d12f11778c571767c6c64813f81a5e2f6e5d6cc076f9e647261074e87820",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          49.511900000000004,
+          66.8119,
+          87.11720000000001
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:f84da57df763aa515fd26a73b63f570bd9b1bde3245cb3ed4278bc6a35e0cc5d",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 34073,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:31889da247e29d24a5a9326eabeed4f9984877e573ba85f0ae90d50b477c1ec2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 34073,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:c2546e6372728e3bafa2edfdff504159f2a3f7df17f5bb20fc3947e1bfa55642",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 34073,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:d0ac97844d3fb767dfab17bf702eb82910ae2c1684161d315f62258eb0fe0261",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 34073,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:c87000196688df708bfffd47c682508a6dac66bd84b6f128c59ead13ff051881",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31598,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          202.8119,
+          144.5119,
+          352.7672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:f3e557f54e10be90e203882984407b60db3d7217a73cd5f0ddde294ce10b1247",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31598,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          202.8119,
+          144.5119,
+          352.7672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:f7dd27c8a148ae4fcd69a818cca1189028a4608d368f68b73b38868cb0b2bb14",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 31598,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          202.8119,
+          144.5119,
+          352.7672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:6a81ea59a0638b29c962e0d231aa9e4b35967f6323575ef307939c76b8cb71a5",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31598,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          202.8119,
+          144.5119,
+          352.7672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:521c3d16110cbc6a9f8a5856ce117b6c0c7bd590629ee6e890e9125aed4166ca",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 21728,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          202.8119,
+          144.5119,
+          352.7672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/twin-tower-front-and-three-portals.png",
+      "hash": "sha256:897204c4e2899bbf0fb395b0a8de7897428520faccf93ead7bee05ef82dfebac",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -126,
+          45,
+          18
+        ],
+        "lookAt": [
+          -47,
+          31,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/deep-portals-and-lower-figures.png",
+      "hash": "sha256:22ec790124c5da5339204aaf5ba4d8d5f21f498f4d3277c10c7784aba78c5b48",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -76,
+          12,
+          14
+        ],
+        "lookAt": [
+          -49,
+          7,
+          1
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/clock-stages-open-belfries-and-copper-cupolas.png",
+      "hash": "sha256:e7b2cc8ead61e49c3ef156c51cc0571a96e2f7fcd351137eb623a35bb4228c15",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -90,
+          69,
+          53
+        ],
+        "lookAt": [
+          -44,
+          52,
+          20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/octagonal-drum-dome-and-lantern.png",
+      "hash": "sha256:a482faf967311c5193181ae3763babf1645dce3d9f0b5c6a59f9f822d098205d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 52419,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -11,
+          87,
+          65
+        ],
+        "lookAt": [
+          16.5,
+          58,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/rounded-transverse-arm-and-aisle-roofs.png",
+      "hash": "sha256:f009cb873539026f8d61fff80e7ac336090a609bf04d45791c6e052b74ba227b",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          16,
+          41,
+          100
+        ],
+        "lookAt": [
+          12,
+          23,
+          20
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/eastern-rounded-sanctuary-and-roof-joins.png",
+      "hash": "sha256:787dcaa16a49761ec20ef1c86744198fbcb0b5eb18953d06ea8212d0dc7ee6d2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          102,
+          48,
+          -36
+        ],
+        "lookAt": [
+          33,
+          24,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-salzburg-skyline.png",
+      "hash": "sha256:492fdb78ae9a7a9be7eb02f671502e76a7de2e23f3eabde8c84417121215d1f8",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31598,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -147,
+          103,
+          133
+        ],
+        "lookAt": [
+          0,
+          31,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-salzburg-district.png",
+      "hash": "sha256:8ea02c2501593b71e81ee5e7d9da4f29913b88059a7f95801956dbf88e92e03f",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 34073,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -147,
+          103,
+          133
+        ],
+        "lookAt": [
+          0,
+          31,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-salzburg-street.png",
+      "hash": "sha256:0e6ebf77d9eb34f9a96edf204f3a5b8a244269dda3cc572b0b823a1b1f6121e2",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45354,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -147,
+          103,
+          133
+        ],
+        "lookAt": [
+          0,
+          31,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-salzburg-closeup.png",
+      "hash": "sha256:96ce6133e3c8098036dc6b85c12e816dae14605cdd043ede260f403e194341aa",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          -147,
+          103,
+          133
+        ],
+        "lookAt": [
+          0,
+          31,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:af8777ef612e911d11a67d4455a669381a56672fcf6716e4d2171d7eefa16426",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 31598,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:31889da247e29d24a5a9326eabeed4f9984877e573ba85f0ae90d50b477c1ec2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 34073,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:83c104e7d2585775cd1e79541ad249347944bc6cb6849b1aec836d55e3052b07",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 45354,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:0556d9ebe04615fcb0df663a3f93d6b493e8f21389f53f0b88716340ba0a5cd3",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 52446,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/u2/u23/n0345_salzburg_cathedral/terrain-review.height.png"
+        },
+        "position": [
+          100.96190000000001,
+          104.6119,
+          176.3672
+        ],
+        "lookAt": [
+          -0.8881,
+          51.061899999999994,
+          -0.0328
+        ],
+        "graphReads": {
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.tile_ceramic": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_limestone_weathered": 1,
+          "molen.worldgen.material.metal_standing_seam": 1,
+          "molen.worldgen.material.stone_limestone_raw": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+        "contextScale": 1.05,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

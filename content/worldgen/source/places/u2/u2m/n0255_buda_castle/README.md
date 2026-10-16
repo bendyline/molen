@@ -19,11 +19,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-394,698 triangles; 803,772 vertices; 9 material groups; 33,677,224 bytes. Native bounds: -174.000, 0.000, -94.200 to 175.019, 62.000, 78.200. Source hash: `sha256:96d12a760a6a61c59e37040aad4a25a1b9188ed8719d89b445c1b211ed56fffa`.
+57,385 triangles; 128,179 vertices; 7 material groups; 5,307,316 bytes. Native bounds: -174.000, -19.390, -94.200 to 175.019, 61.539, 78.200. Source hash: `sha256:1d97816eb981d0488e6cf01589b58b5f70463bda674568a5abc5d6e3c227883e`.
 
-{"up":"+Y","longitudinal":"+X 48.909 degrees south of east","front":"Danube frontage toward native -Z; north A pavilion toward -X","origin":"Exact palace map anchor; provisional local terrace base"}
+{"up":"+Y","longitudinal":"+X 48.909 degrees south of east","front":"Danube frontage toward native -Z; north A pavilion toward -X","origin":"Signed palace anchor; Y0 decoded152.564 m working datum."}
 
-Exact mapped palace anchor and signed frame; current construction-state alignment and terrain fit remain pending.
+Fresh Q46313 palace relation6486918 v33 matches saved outline within0.000592 m. This checks stable horizontal registration, not current exterior state. Native +X southeast bearing138.909404 degrees; +Z southwest228.909404 degrees. Danube/Pest frontage -Z, north A/B pavilions -X, restored South Range +X and library/Lions Court +Z sign heading -0.853630134323 at [19.039308745,47.495824657]. Official programme PDF actual 2021 panorama/north pavilion/restored South Range photographs inspected; 1935/1945/1905 photographs and future north-wing designs are separate. Historical-only appearance interval2021-08-20 inclusive to2022-01-01 exclusive follows South Range opening and conservatively excludes2022 A/B reconstruction; explicit viewingDate2021-10-01 used for placement QA. Numeric terrain16641 values on4 m grid, anchor datum152.564 m. Highest occupied palace/court/immediate terrace sample plus0.25 m selects floor3.5393 m; rigid -0.4607 m shift preserves source proportions. Immediate terrace feet reach four meters below retained ground; paired eastern stairs fit lowest tread to sampled ground. Lions Court remains roofless and restored South Range portal is truly open at all tiers. Broader Castle Hill remains host terrain; no cut or whole-hill replacement.
 
 ## Reproduce
 
@@ -31,13 +31,17 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0255` (
 
 ## Pending work
 
-- Maximum exterior fidelity remains pending: exact window rhythms, sculptural works, heraldry, roof junctions and library/A-wing roof details require additional bespoke reference work. Architectural ornament is modeled; figurative statues are not substituted with generic objects.
-- The temporal reference is 2021. North-wing A/B reconstruction began in 2022; this asset is not a claim about the current construction site or a completed future restoration.
-- Heights, dome profile and terrace elevations are inferred. In-world terrain fit and facade orientation review remain pending; replaceFootprint=false.
-- Palace interiors, separate Guardhouse, Riding Hall, Mace/Karakash towers, Castle Garden Bazaar and whole Castle Hill terrain are outside this palace exterior asset.
-- Master and four independent LODs share central stone, copper, wood and metal surface graphs without embedded images. Physical laptop/phone approval remains pending.
+- Original394698-triangle /33677224-byte master reproduces at sha256:96d12a760a6a61c59e37040aad4a25a1b9188ed8719d89b445c1b211ed56fffa from unchanged buda-castle-model.mjs#budaStudy.build and map-parts.json.
+- Fresh Q46313 palace relation6486918 v33 matches saved outline within0.000592 m. This checks stable horizontal registration, not current exterior state. Native +X southeast bearing138.909404 degrees; +Z southwest228.909404 degrees. Danube/Pest frontage -Z, north A/B pavilions -X, restored South Range +X and library/Lions Court +Z sign heading -0.853630134323 at [19.039308745,47.495824657]. Official programme PDF actual 2021 panorama/north pavilion/restored South Range photographs inspected; 1935/1945/1905 photographs and future north-wing designs are separate. Historical-only appearance interval2021-08-20 inclusive to2022-01-01 exclusive follows South Range opening and conservatively excludes2022 A/B reconstruction; explicit viewingDate2021-10-01 used for placement QA. Numeric terrain16641 values on4 m grid, anchor datum152.564 m. Highest occupied palace/court/immediate terrace sample plus0.25 m selects floor3.5393 m; rigid -0.4607 m shift preserves source proportions. Immediate terrace feet reach four meters below retained ground; paired eastern stairs fit lowest tread to sampled ground. Lions Court remains roofless and restored South Range portal is truly open at all tiers. Broader Castle Hill remains host terrain; no cut or whole-hill replacement.
+- Coarse terrain cannot resolve precise palace terraces, under-building ground, cellar levels or historic2021 terrain. Pixel ground spacing is a sample interval, not surveyed resolution. Native vertical datum/vintage/under-building contamination remain unverified.
+- Highest occupied palace/court/immediate terrace sample plus0.25 m selects one rigid palace/court floor. Bounded immediate palace terraces are interpreted level platforms; skirts descend four meters below retained ground. Broad Castle Hill is solely host terrain, no cut or whole-hill replacement.
+- Temporal policy permits only2021-08-20 through2021-12-31 via explicit historical viewingDate. That conservative interval follows restored South Range opening20Aug2021 and excludes the year of A/B works begun2022; it is not a measured daily construction chronology. Current footprint checks registration only.
+- Paired eastern stairs interpolate their lowest tread to retained ground and last tread to palace terrace; their proportions and exact historic grade are interpreted. Lions Court remains roofless and South Range portal remains open. Separate Guardhouse/Riding Hall/towers/Bazaar/interiors/figurative sculpture are excluded.
+- Accepted medium-fi dated exterior includes six linked palace wings, stepped Danube frontage/two taller pavilions, ribbed circular postwar dome, roofless Lions Court, library wing, restored South Range with open entrance/paired columns, and bounded immediate stone terraces/stairs. Exact architectural and figurative ornament is interpreted or excluded. War/Peace statues, equestrian monuments, fountains, interior halls, separate Riding Hall/Guardhouse/towers/Bazaar and whole Castle Hill are outside this asset.
+- Six common graphs supply granite, two limestone treatments, wood, painted metal and copper. Finial shares metal, glass stays local/opaque. Ordinary roof seams use shared copper surface detail; major dome ribs remain geometry. No embedded images. Skyline uses baked common linear material means.
+- Precise bay counts, dome/drum profile, roof junctions, ornate capitals/cartouches, terrace walls and historic2021 terrain are reconstructed, not measured. Large immediate retaining faces reflect coarse terrain. Current construction condition or future completion is not claimed. Physical laptop/phone timings pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

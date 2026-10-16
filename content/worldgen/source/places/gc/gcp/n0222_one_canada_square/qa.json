@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0222_one_canada_square",
-  "inputHash": "sha256:59fa4527a92060f5d26dda0c4d0e71d5630ec75605bf4e36a49447a49a890e5e",
-  "captureReportHash": "sha256:9252dc0f74bbf4216dd9479fc52c8fe08956e1a1a09090a1681cefafa180895f",
+  "reviewedOn": "2026-10-10",
+  "inputHash": "sha256:b8429d73ae478092a6cb7b3c27ec482afb26b2e9fafd305d11bdafe47849601b",
+  "sourceHash": "sha256:dcfe23812cbfefb417ac9d6a400cf551cf7fa16c703e56161524a3830700ca21",
+  "runtimeHash": "sha256:9786e031d68df230e93eb672c32d22c96d0fe0bc8594f67468d918171ddb07eb",
+  "captureReportHash": "sha256:4c6504f892d361af2a8e7d6a7f0bf75b48ddf262b141777e9d3e02e7b9bdfa91",
   "visualReview": {
     "status": "passed",
-    "scope": "Exterior render integrity; maximum fidelity remains pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -23,13 +25,14 @@
       "shots/west-entrance.png",
       "shots/revolving-door.png",
       "shots/roof-and-plan.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/whole-reviewed-canada.png"
     ],
-    "notes": "Inspected all 17 current portable views. Closed the projecting lobby roof and returns before final capture, tightened overview framing, and used the existing sky-reflection option for physically metallic surfaces. Individual punched windows, stepped corners, terrace, folded pyramid louvres and four-wing entrance doors render. Fine roof slats show aliasing at distant viewpoints; this is retained for future LOD work."
+    "notes": "Actually inspected all 73 final images: 18 portable, 18 shared and 37 medium-fi. Opposed whole views retain the stepped stainless shaft, four narrower glazed upper floors, west terrace, closed pyramid and asymmetric glazed base. Close views show closed rectangular master window reveals, curved bullnose side panels, open revolving approaches with four rotor leaves, and the nine entrances across four elevations. The terrace paving and rail remain present. No principal mass or section was seen missing. Fine louvre lines alias in distant views; reflections and glass transparency are renderer approximations."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:8ca393d489c1cb439e8710eda6ad9ae7c9d10243ccdb2ddb0427bdac3aea8b57",
+    "captureReportHash": "sha256:ac237459208d6e98c0a8d549060b3c7894e97e22d896aa7590fd922d74c07b77",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -47,34 +50,265 @@
       "shots/shared/revolving-door.png",
       "shots/shared/roof-and-plan.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/whole-reviewed-canada.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 17 current viewer frames, including full-resolution entrance, window-detail and north-up placement images. Four canonical graphs each load once; no embedded images. Unloading leaves zero live model geometries. The fixture uses flat terrain and cannot establish actual street contact."
+    "notes": "Two canonical 256-square graphs, stone_marble and metal_stainless, provide metric shared stone and metal surfaces alongside opaque and 52 percent BLEND clear palette glass, for four near material groups. Actual shared renders retain light stainless, subdued blue glass, marble lobby depth and curved entrances. Tinted marble approximates granite without literal granite grain. Six final GLBs contain no embedded images. Each graph was read once; unload disposed all model geometry. Skyline bakes measured linear surface means (marble 0.916082784859; stainless [0.818960257808,0.822888570085,0.822888570085]) into one palette draw. The unchanged original recipe preserves its original separate material graphs."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:cf436472e2882d319a9ecfa2a1dee8b4a6e62ac5463ccef2db8ecc6967bc5bc5",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/pyramid-louvres.png",
+      "medium-fi/upper-four-levels.png",
+      "medium-fi/west-terrace.png",
+      "medium-fi/punched-window-detail.png",
+      "medium-fi/stepped-corner.png",
+      "medium-fi/north-entrance.png",
+      "medium-fi/east-entrance.png",
+      "medium-fi/south-entrance.png",
+      "medium-fi/west-entrance.png",
+      "medium-fi/revolving-door.png",
+      "medium-fi/roof-and-plan.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-reviewed-canada.png",
+      "medium-fi/whole-canada-skyline.png",
+      "medium-fi/whole-canada-district.png",
+      "medium-fi/whole-canada-street.png",
+      "medium-fi/whole-canada-closeup.png",
+      "medium-fi/district-pyramid.png",
+      "medium-fi/street-west-terrace.png",
+      "medium-fi/close-north-entrances.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected all 37 final medium-fi frames: noon and late light in economy and high modes, silhouette, feature views, whole views, seven explicit LOD views and four transitions. Skyline keeps the corner steps, upper floors, terrace, pyramid and coarse open entrance drums while omitting punched window rhythm and fine fins. District adds sparse windows, clear lobby and coarse crown bands. Street restores every fourth office row, one metre plant louvres and the original seventeen upper mullion positions with folded strips. Close-up restores every office row using connected sloped surrounds and a 0.14 m recess. The sloped surrounds read more faceted than the rectangular master reveals; paired pane subdivisions and small transoms remain in the preserved original recipe. Facade rhythm and crown bands visibly change at transitions; principal shapes remain. Default context cameras crop the tall upper tower, which is inspected separately in whole and crown views. Cottages and flat ground are synthetic context."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:3118702bd20297fc81996caccb3d7cf52bdd1f8b37c7ca918a049f2889e920fd",
-    "notes": "Exact Q503477 match to OSM way 5986754. Lower envelope follows the retained footprint; the tower is offset X=-2.65 m within it, and west terrace faces west. Heading -0.172600059102 and anchor [-0.019514156,51.50493389] are map-derived. Signed current facade fit, canopy extents and real pavement datum still require verification."
+    "status": "passed",
+    "placementHash": "sha256:64f51e2b8d7ed52bf4c6e2543705e3d00f38e2a27889c1231dad72bdbf6b309b",
+    "mapFrameHash": "sha256:656dd2360fccf635d09c65b6d903fbdbae4c60f6b2277b0f7f519fab40cd9c22",
+    "notes": "The fresh raw OSM way 5986754, tagged Q503477, matches the independently preserved ground outline within 0.002 m rounding. Anchor [-0.019514156, 51.50493389] and heading -0.172600059102 remain fixed. Native +X points ESE at bearing 99.889 degrees toward the asymmetric east entrance projection; +Z points SSW at 189.889 degrees. The shaft centre X=-2.65 m aligns its 57.912 m width with the mapped west and east wall lines, distinct from the 63.145 by 59.259 m base. Owner north-annotated level 35 and 47 plans were actually inspected: two equal inward corner steps, a 154 square metre west terrace and square upper plate independently establish the signed direction. Model Y0 approximates the local apron. Architect 235 m versus registry 236 m is explicitly unresolved, not a surveyed adjustment. The primary supplier confirms nine drums and seven bullnose panels; exact N2/E3/S2/W2 distribution is reconstructed. No footprint replacement. The final north-up placement overlay was actually inspected: the asymmetric base follows the mapped ground perimeter and the independent upper shaft remains correctly offset toward the west. This is a medium-fi reconstruction; precise door spacing and real apron grade have not been surveyed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh architect, owner brochure, structural engineer, entrance supplier and technical registry records were read. The completed architect facade and whole-tower photographs were actually inspected in the browser. Retained owner north-annotated level 35 and 47 plan pages and supplier entrance photograph were actually inspected locally. These support the two corner steps, narrower upper floors, west terrace, stainless finish, nine revolving drums and seven bullnose panels. Published 3 m column centres versus reconstructed 3.048 m facade modules, internal 56.9/49.8 m plans versus external 57.912/51.2 m geometry, and architect 235 m versus registry 236 m remain explicitly distinct. The unchanged original oneCanadaSquareStudy.build recipe reproduces its 964,326 triangles and 80,565,028 bytes. The separate reviewed master and four browser levels preserve the asymmetric base, nine open revolving entrances, seven curved bullnose panels, four rotor leaves per drum, two inward steps at each corner, 57.912 m shaft, 41 physical office intervals from 20.5 to 189.01 m, four narrower upper floors, west terrace, closed pyramid, and 235 m beacon. The reviewed master has closed rectangular 0.205 m window reveals. Browser close-up uses connected sloped surrounds and a 0.14 m glass recess; street uses a 0.12 m recess and every fourth office row with solid infill; district has sparse windows on closed steel; skyline omits punched window rhythm. The original recipe preserves paired glazing, transoms, fine joint returns, and hardware. Near drums use 16 sides, 12 curved sector samples, six bullnose samples and 16 by four foot rims. Far levels preserve entrances and leaves while reducing hardware. Street preserves the original seventeen upper mullion positions using folded strips with at most 0.25 m local projection change, and one metre plant louvre pitch. Stainless and marble graphs plus opaque and 52 percent clear palette glass produce four near groups; tinted marble approximates granite. Dimensions, office datum, pyramid proportions and exact entrance allocation remain reconstructions from plans and photographs rather than an as-built survey. The architect 235 m and registry 236 m height discrepancy remains an unresolved datum convention. Hidden interiors, station connection, adjacent retail pavilions, branding and marketing terrace furniture are excluded. Physical device and dense city timings remain pending."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Published 1.8 x 2.75 m windows, typical 4.11 m storeys and 4.71 m level 50 are used directly. The recipe distinguishes 56.9/49.8 m internal dimensions from reconstructed external plans. Lower-floor datum, nine-door distribution, pyramid dimensions/louvre profile, current entrance elevations and roof equipment are not fully measured. The architect’s 235 m and council’s 236 m height datums remain unresolved. Do not count this model as completed."
+    "notes": "Published 1.8 x 2.75 m windows, typical 4.11 m storeys and 4.71 m level 50 are used directly. The recipe distinguishes 56.9/49.8 m internal dimensions from reconstructed external plans. Lower-floor datum, nine-door distribution, pyramid dimensions/louvre profile, current entrance elevations and roof equipment are not fully measured. The architect’s 235 m and council’s 236 m height datums remain unresolved. Do not count this model as completed.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/gc/gcp/n0222_one_canada_square/models/source.glb",
+        "hash": "sha256:dcfe23812cbfefb417ac9d6a400cf551cf7fa16c703e56161524a3830700ca21",
+        "bytes": 6562968,
+        "triangles": 78882,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -32.56999969482422,
+          0,
+          -30.6299991607666
+        ],
+        "max": [
+          32.56999969482422,
+          235,
+          30.6299991607666
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/gc/gcp/n0222_one_canada_square/model.glb",
+        "hash": "sha256:9786e031d68df230e93eb672c32d22c96d0fe0bc8594f67468d918171ddb07eb",
+        "bytes": 6562588,
+        "triangles": 78882,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -32.56999969482422,
+          0,
+          -30.6299991607666
+        ],
+        "max": [
+          32.56999969482422,
+          235,
+          30.6299991607666
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/gc/gcp/n0222_one_canada_square/model.skyline.glb",
+        "hash": "sha256:ad3a622388d1c9565a4563e1feb9a157b2286da309c01be3418a493e3428a2a0",
+        "bytes": 78596,
+        "triangles": 998,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -32.56999969482422,
+          0,
+          -30.6299991607666
+        ],
+        "max": [
+          32.56999969482422,
+          235,
+          30.6299991607666
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/gc/gcp/n0222_one_canada_square/model.district.glb",
+        "hash": "sha256:fcf37f6840bd6d4e8127f036769ccbdbd7473f488a980e3656993a5563e093d6",
+        "bytes": 279284,
+        "triangles": 3616,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -32.56999969482422,
+          0,
+          -30.6299991607666
+        ],
+        "max": [
+          32.56999969482422,
+          235,
+          30.6299991607666
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/gc/gcp/n0222_one_canada_square/model.street.glb",
+        "hash": "sha256:e82fd0a81ce1a9daa8d7e41fd36dedcf307bc710df9d991437d4acad74355246",
+        "bytes": 1205588,
+        "triangles": 15880,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -32.56999969482422,
+          0,
+          -30.6299991607666
+        ],
+        "max": [
+          32.56999969482422,
+          235,
+          30.6299991607666
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/gc/gcp/n0222_one_canada_square/model.closeup.glb",
+        "hash": "sha256:2d8109d01b04bd6fa087021938bf98dee483ba54fdd73ad4579500b4cd031a91",
+        "bytes": 4325888,
+        "triangles": 53954,
+        "materials": 4,
+        "images": 0,
+        "min": [
+          -32.56999969482422,
+          0,
+          -30.6299991607666
+        ],
+        "max": [
+          32.56999969482422,
+          235,
+          30.6299991607666
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/canada-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
     },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0
-    },
-    "triangles": 964326,
-    "uniquePositionVertices": 1916364,
-    "materials": 7,
-    "sharedGraphs": 4,
-    "embeddedImages": 0
-  }
+    "notes": "Three focused tests pass. The unchanged oneCanadaSquareStudy.build exactly reproduces its 964326 triangles, 80565028 bytes and hash 14c413cae5e3836d384e695f2591c202663ad918600403622ad13f8b62147f0f. Preserved original frame matches fresh Q503477 way 5986754 raw coordinates within 0.002 m projection rounding. Source/import hashes agree. Five heights times sixteen rays per level hit outward closed facade surfaces within the 1/0.75/0.3/0.15 m normal projected limits against the reviewed master; these limited samples do not certify every surface. Separate probes verify two inward corner steps, west terrace top 189.11 m, closed pyramid, lobby paving 0.23 m and 235 m full height. The street test found missing upper mullion positions and they were restored before final captures. All four LODs rebuild byte-identically, fit 1000/4000/16000/64000 triangle and four draw budgets, and use separate 12-byte POSITION/NORMAL streams. Six independent Khronos validations report zero errors, warnings or images. Strict medium-fi, derivative fingerprint and source generator checks pass."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:0d055a862dc1ca1070921eae2899a8f10b8764a177d9fa1538c5ce240b73651e",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:ad3a622388d1c9565a4563e1feb9a157b2286da309c01be3418a493e3428a2a0",
+        "bytes": 78596,
+        "gzipBytes": 12956,
+        "triangles": 998,
+        "cpuBytes": 77196,
+        "gpuBytes": 77196,
+        "errorMeters": 1,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:fcf37f6840bd6d4e8127f036769ccbdbd7473f488a980e3656993a5563e093d6",
+        "bytes": 279284,
+        "gzipBytes": 50122,
+        "triangles": 3616,
+        "cpuBytes": 274344,
+        "gpuBytes": 274344,
+        "errorMeters": 0.75,
+        "drawCalls": 4
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:e82fd0a81ce1a9daa8d7e41fd36dedcf307bc710df9d991437d4acad74355246",
+        "bytes": 1205588,
+        "gzipBytes": 238172,
+        "triangles": 15880,
+        "cpuBytes": 1200624,
+        "gpuBytes": 1200624,
+        "errorMeters": 0.3,
+        "drawCalls": 4
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:2d8109d01b04bd6fa087021938bf98dee483ba54fdd73ad4579500b4cd031a91",
+        "bytes": 4325888,
+        "gzipBytes": 800147,
+        "triangles": 53954,
+        "cpuBytes": 4320900,
+        "gpuBytes": 4320900,
+        "errorMeters": 0.15,
+        "drawCalls": 4
+      }
+    ],
+    "initialBytes": 357880,
+    "notes": "skyline: 998 triangles / 78596 bytes / 1 groups; district: 3616 triangles / 279284 bytes / 4 groups; street: 15880 triangles / 1205588 bytes / 4 groups; closeup: 53954 triangles / 4325888 bytes / 4 groups. Initial skyline plus district: 357880 bytes, within 3 MB phone and 6 MB laptop targets. Reviewed source: 6562968 bytes; detailed import: 6562588 bytes. The original 80565028 byte master remains reproducible from its unchanged recipe. Physical device and dense city timing measurements remain pending."
+  },
+  "limitations": [
+    "The unchanged original oneCanadaSquareStudy.build recipe reproduces its 964,326 triangles and 80,565,028 bytes. The separate reviewed master and four browser levels preserve the asymmetric base, nine open revolving entrances, seven curved bullnose panels, four rotor leaves per drum, two inward steps at each corner, 57.912 m shaft, 41 physical office intervals from 20.5 to 189.01 m, four narrower upper floors, west terrace, closed pyramid, and 235 m beacon. The reviewed master has closed rectangular 0.205 m window reveals. Browser close-up uses connected sloped surrounds and a 0.14 m glass recess; street uses a 0.12 m recess and every fourth office row with solid infill; district has sparse windows on closed steel; skyline omits punched window rhythm. The original recipe preserves paired glazing, transoms, fine joint returns, and hardware. Near drums use 16 sides, 12 curved sector samples, six bullnose samples and 16 by four foot rims. Far levels preserve entrances and leaves while reducing hardware. Street preserves the original seventeen upper mullion positions using folded strips with at most 0.25 m local projection change, and one metre plant louvre pitch. Stainless and marble graphs plus opaque and 52 percent clear palette glass produce four near groups; tinted marble approximates granite. Dimensions, office datum, pyramid proportions and exact entrance allocation remain reconstructions from plans and photographs rather than an as-built survey. The architect 235 m and registry 236 m height discrepancy remains an unresolved datum convention. Hidden interiors, station connection, adjacent retail pavilions, branding and marketing terrace furniture are excluded. Physical device and dense city timings remain pending."
+  ]
 }

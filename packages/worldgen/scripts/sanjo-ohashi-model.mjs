@@ -2,6 +2,12 @@
 import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { box, quad, tube } from './structure-mesh.mjs';
 
+export {
+  buildSanjoRuntime,
+  buildSanjoSkyline,
+  sanjoRuntimeSurfaces,
+} from './sanjo-ohashi-runtime.mjs';
+
 const length = 73.3,
   half = length / 2,
   width = 16.7;
@@ -555,6 +561,19 @@ export const sanjoOhashiStudy = {
   title: 'Sanjō Ōhashi Bridge',
   wikidataId: 'Q3087620',
   build: buildSanjoOhashi,
+  fidelityTarget: 'medium-fi',
+  appearance: {
+    standard: 'docs-src/guide/medium-fi.md',
+    runtimeRecipe: 'packages/worldgen/scripts/sanjo-ohashi-runtime.mjs',
+    identityFeatures: [
+      'Nine-span steel deck and eight multi-column pier frames',
+      'Pale hinoki railings with fourteen retained patinated bronze giboshi',
+      'Fine checker sidewalks and open asanoha-pattern roadway barriers',
+    ],
+    sourceMaster:
+      'Detailed geometry retained; browser derivatives replace subpixel repeat geometry with reusable analytic shared surfaces.',
+  },
+  mediumFiContext: { scale: '1', neighborStyle: 'molen.worldgen.catalog.kyoto_machiya' },
   brief:
     'Present steel nine-span bridge with the completed2024 hinoki railings, fourteen retained bronze giboshi, timber girder covers, circular stone shoes and multi-column frames, renewed silver-gray checker paving and modeled asanoha-pattern pedestrian barriers.',
   refs: [

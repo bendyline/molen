@@ -42,7 +42,11 @@
     "groundModelY": 0,
     "status": "preview-proposal",
     "source": "https://nma.transpordiamet.ee/aton/2849/",
-    "notes": "Navigation authority exact coordinate fixes tower center, within one meter of exact-QID OSMnode3369832511. Native+Z faces north toward the keeper-house access; the north entry is reconstructed from the photographed closed sea-facing elevations and landward approach. Oil-store footprint is mapped in actual east/south offsets, resolving ensemble rotation; its roof and openings follow the municipal aerial. The broader OSMtower circle includes the stone/plinth skirt and is not used to stretch the shaft."
+    "notes": "Aid 840 fixes the authority center and 28.3 m height. The mapped oil-store rectangle resolves the signed ensemble rotation at heading PI, matching the original west/south offset and 0.191 rad store rotation. Main north entry remains an explicitly landward-access reconstruction. The offset broader mapped tower ring does not stretch the photo-proportioned shaft. Both source floors Y=0 contact the common host ground; no surveyed site elevation is asserted.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0823418a51869c436c48fa99f4929ffc80c604a92ec6de5f6365002f1f8d9e65",
+    "mapGeometryLicense": "ODbL 1.0",
+    "attribution": "© OpenStreetMap contributors"
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -151,6 +155,271 @@
   "assetId": "molen.worldgen.structure.n0671_kihnu_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "White tapered iron tower with red diamond ports, pierced octagonal gallery, red Greek-key drum and red domed lantern; adjacent stone oil store.",
+    "epoch": "Restored exterior shown in the operator record and 2024 Brand Estonia close photograph.",
+    "master": "Preserve and reproduce the original 126985-triangle master, including true circular ports, gallery piercings, dome rivets and visible optical assembly.",
+    "browser": "Authored far levels keep the real taper, 24 port positions, octagonal gallery, domed lantern and mapped oil store. District uses flat port marks and reduced graphic strokes; street/closeup resample the original component recipe, preserving true apertures, optic and regular curved surfaces with fewer subdivisions.",
+    "exclusions": "Surveyed dimensions of fine fittings, operational optics, interior rooms, detached keeper dwellings and surveyed shoreline terrain."
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/kihnu-browser-model.mjs",
+    "export": "buildKihnuSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildKihnuDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildKihnuStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildKihnuCloseup",
+        "errorMeters": 0.04,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "rubble": {
+            "graph": "stone",
+            "slot": "wall",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "brick": {
+            "graph": "brick",
+            "slot": "wall",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "granite": {
+            "graph": "stone_granite",
+            "slot": "trim",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          },
+          "glassClear": {
+            "slot": "window",
+            "localRef": "palette:#efffff",
+            "name": "clear-lantern-glass",
+            "roughness": 0.16,
+            "metallic": 0.04,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.22
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "ports-street",
+      "position": [
+        5.5,
+        11.1,
+        7.2
+      ],
+      "lookAt": [
+        0,
+        11.1,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "gallery-street",
+      "position": [
+        5.2,
+        22.5,
+        6.3
+      ],
+      "lookAt": [
+        0,
+        22.7,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "lantern-closeup",
+      "position": [
+        4.1,
+        26.3,
+        5.3
+      ],
+      "lookAt": [
+        0,
+        25.1,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "lantern-district",
+      "position": [
+        4.1,
+        26.3,
+        5.3
+      ],
+      "lookAt": [
+        0,
+        25.1,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "oil-store-district",
+      "position": [
+        10,
+        6,
+        -3
+      ],
+      "lookAt": [
+        2.6,
+        1.7,
+        -11.7
+      ],
+      "reviewLod": "district"
+    }
+  ],
   "actualBounds": {
     "min": [
       -3.1500000953674316,
@@ -162,6 +431,13 @@
       28.323999404907227,
       3.517291784286499
     ]
+  },
+  "mesh": {
+    "triangles": 126985,
+    "vertices": 245221,
+    "materials": 8,
+    "bytes": 10356316,
+    "sha256": "sha256:4ceae166fa2c056daed36a401c8f7df008c1a2f618c56a1fa6d5c1aa8bec3d5d"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

@@ -529,14 +529,19 @@ function previewScene(name, spec) {
   };
 }
 
+// GLBs are build outputs (pnpm assets:build / assets:fetch) whose bytes follow float formatting,
+// so --check skips them and compares source.json without the model sha256 pin.
+const unpinned = (bytes) =>
+  bytes
+    .toString('utf8')
+    .replaceAll('\r\n', '\n')
+    .replace(/"sha256": ?"sha256:[0-9a-f]{64}"/g, '"sha256": ""');
+
 async function emit(path, bytes, textFile = false) {
   if (check) {
+    if (path.endsWith('.glb')) return;
     const previous = await readFile(path);
-    const same =
-      previous.equals(bytes) ||
-      (textFile &&
-        previous.toString('utf8').replaceAll('\r\n', '\n') ===
-          bytes.toString('utf8').replaceAll('\r\n', '\n'));
+    const same = previous.equals(bytes) || (textFile && unpinned(previous) === unpinned(bytes));
     if (!same) throw new Error(`${path}: generated source is stale`);
   } else {
     await mkdir(resolve(path, '..'), { recursive: true });

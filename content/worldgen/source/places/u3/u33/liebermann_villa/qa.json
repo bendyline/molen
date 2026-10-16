@@ -1,0 +1,167 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.liebermann_villa",
+  "reviewedOn": "2026-10-15",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:8c57f959b89ce822a12b81b37b242973a615f9c4013e670cc9a58c9b5dca2e93",
+  "sourceHash": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716",
+  "runtimeHash": "sha256:0e8fa4a39300df97a98cff72b8e3cd1d91083f4c5fccc1860ac72877a0a4af4e",
+  "captureReportHash": "sha256:3eaf74c2c288bfe9cfbc08e5a895feb9da219cc5d602cd7ee45375e1ddd5a815",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/back.png"
+    ],
+    "notes": "Inspected all seven current portable views and the full shared front view against individually inspected local street and lake photographs. The two Ionic street columns, eyebrow dormer, lake pediment and open southwest loggia match the distinct elevations. Corrected dormer roof normals and the front door panel."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ba4cc880d35ee46a7d9b3f54355b6e91c3445090586297a408b1f0900298d478",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all seven current shared-material views including the north-up placement overlay. Lime plaster, limestone, flat roof tiles, painted wood and metal retain metric-scale bindings; glass remains separate. Flat shared ground is a material fixture; independent Berlin terrain is in the portable scene."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2c9c9ff81b86db5e79cd82bea6c3e0dba36b99791c51c44635db29b87668f7e9",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all nineteen final lighting, quality and forced-detail frames. Skyline retains the columned frontage, dormer and major openings; district retains shutter color. Finer levels restore louvers, frames, balusters and iron guards. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:284c25780fe40f355e84e3ff616518b6a157104f8fa6335a46a576c783488a28",
+    "mapGeometryHash": "sha256:a24541ddb53baf6e52ff05dd07896ae3079afac69ecc4aa349a467faaec3e657",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:8e09573d05fe04227b4a5ef83a6cce3227686b60fd3c06e4e3d79b4f23f064d6",
+      "descriptorHash": "sha256:459622267322f987d7de3690c84ec7aaaaf774b9633f36c8b57ebbbd2a3a5a78",
+      "heightfieldHash": "sha256:6e0f12177083599712036182a101a43b137c87213f6f7f2924670e811509a370",
+      "modelDatumElevationMeters": 33.905,
+      "sourcePixelGroundSpacing": 1,
+      "footprintRelativeRangeMeters": [
+        -0.21684461563596358,
+        0.17411208485719243
+      ],
+      "maxPngEncodingErrorMeters": 0.00005358428955304362
+    },
+    "notes": "Mapped villa rectangle controls roughly 19.45 by 14.29 m; separate garden house and adjacent Hamspohn villa are excluded. Anchor [13.16488802433014,52.4287717083313], heading -2.156201909528956; +X southwest and +Z northwest toward the street. Independent Berlin DGM1 heights are sampled unchanged into a 2 m review grid. Datum 33.905 m at street approach [0,10]; foundation -1.2 m. Photo-derived upper terrace is included, wider gardens excluded. Footprint suppression remains off; other host DEMs can differ."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Restored Liebermann Villa exterior and upper terrace; separate garden house, wider gardens and interiors excluded.",
+    "notes": "Original medium-fi restored villa exterior from individually inspected 2014 street and lake photographs and 2008 terrace detail. Official museum description confirms the columns and pediment face different directions. Roof height and curvature, fine capitals, hidden side openings and terrace depth are estimates. Garden house, wider gardens, furniture, vegetation and interiors are excluded. No photo pixels are embedded."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:5ca622db57f48399c981ee025739ae4089bd26902f7b454729f83b4d50c52b41",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:c184ba9173ea7d35291125a8cdb2816f20ef913b14ebd678350d42cefcd423af",
+        "bytes": 72096,
+        "gzipBytes": 11557,
+        "triangles": 915,
+        "cpuBytes": 70688,
+        "gpuBytes": 70688,
+        "errorMeters": 0.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:f7a60a9351c5a79c067e275d8154617fdbfb3149c51c2de0c62f04a8e2cf5d64",
+        "bytes": 112352,
+        "gzipBytes": 25140,
+        "triangles": 1549,
+        "cpuBytes": 106244,
+        "gpuBytes": 106244,
+        "errorMeters": 0.22,
+        "drawCalls": 5
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:f17c07c9d3c84b39c1dc6b211bd55c0238e1b86295ef71843cef6ab3150413c0",
+        "bytes": 437404,
+        "gzipBytes": 89386,
+        "triangles": 6349,
+        "cpuBytes": 430064,
+        "gpuBytes": 430064,
+        "errorMeters": 0.08,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:7c13978ab58aaa36be6d89f1e38e2afda15982b9826f3867fe8d2514423ebddc",
+        "bytes": 2747668,
+        "gzipBytes": 479297,
+        "triangles": 22869,
+        "cpuBytes": 2744280,
+        "gpuBytes": 2744280,
+        "errorMeters": 0,
+        "drawCalls": 6
+      }
+    ],
+    "notes": "All four current levels were visually inspected and pass budgets: 915 skyline, 1549 district, 6349 street and 22869 closeup triangles. Major openings, columns, roof shape, lake pediment and terrace remain at distance; trim and fine metalwork return progressively. Error values are authoring budgets, not measured mesh deviations."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 22869,
+    "sourceMaterials": 6,
+    "runtimeLodsVerified": 4,
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+  },
+  "limitations": [
+    "Original medium-fi restored villa exterior from individually inspected Qualla street and lake photographs; not a measured survey.",
+    "Mapped rectangle controls main building width and depth. Roof height, curved dormer, terrace depth, hidden side openings and Ionic capitals are photographic approximations.",
+    "Street columns, lake pediment and southwest open loggia are distinct. Wider garden, separate garden house, interiors, furniture and vegetation are excluded.",
+    "No reference-image pixels are embedded. Shared materials and original simplified geometry represent tile, shutters, iron guards and limestone.",
+    "Independent terrain remains unchanged; another host DEM can change exact foundation contact."
+  ],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:414b73b6552315b94cadbca5b1518dd378bd35ff1777e7e0a9041a0cec2cc7fe",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  }
+}

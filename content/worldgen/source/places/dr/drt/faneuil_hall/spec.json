@@ -1,0 +1,269 @@
+{
+  "planId": "faneuil_hall",
+  "id": "faneuil_hall",
+  "assetId": "molen.worldgen.structure.faneuil_hall",
+  "title": "Faneuil Hall",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -71.05623431503773,
+    "latitude": 42.36003337249992
+  },
+  "size": [
+    25.649999618530273,
+    37.27070236206055,
+    32.25
+  ],
+  "actualBounds": {
+    "min": [
+      -12.824999809265137,
+      -0.75,
+      -16.125
+    ],
+    "max": [
+      12.824999809265137,
+      36.52070236206055,
+      16.125
+    ]
+  },
+  "visualBrief": "Three-storey seven-bay brick gables, long arcaded side elevations, white cornices and pilasters, slate gable roof and east-end open cupola with a gilded grasshopper weather vane.",
+  "nativeAxes": {
+    "x": "north-northwest across the gable",
+    "y": "up",
+    "z": "east-northeast along the ridge toward the cupola and Quincy Market"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Faneuil_Hall_(54960642851).jpg",
+    "https://commons.wikimedia.org/wiki/File:Faneuil_Hall,_Boston_(493567)_(11061765625).jpg"
+  ],
+  "stories": [
+    {
+      "id": "faneuil-hall-wp",
+      "url": "https://qualla.com/faneuil-hall/"
+    }
+  ],
+  "referenceInputHash": "f60d7889b737e7b057fd9d8460b9230efc62fe77aa0b600f2b05a077b7f7cf60",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-faneuil-hall.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-faneuil-hall.mjs",
+    "level": "skyline",
+    "export": "faneuilSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "faneuilDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "faneuilStreet",
+        "errorMeters": 0.14,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "East entrance [0,15.9] defines the 5.5784 m host datum. Preserved terrain spans -0.012635..0.171418 m across mapped hall/cupola vertices. Foundation closes to -0.75 m; exact historic paving datum is not surveyed.",
+    "anchor": [
+      -71.05623431503773,
+      42.36003337249992
+    ],
+    "heading": 1.7056862578319953,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -71.05604277473797,
+        42.36005258065442
+      ],
+      "modelHeight": 0,
+      "basis": "East gable entrance reference, sampled independently from host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184401640534",
+      "buildings/35184612459110",
+      "buildings/35184612459142"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:69cb788a83ee53c1a347594b1196a3d46dc0fe097561789a5ea072eab179d74c",
+    "notes": "Seven-bay brick gables, long side elevations, white cornices, slate roof and east-end cupola. Fine ornament, unseen roof details and interior are simplified."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior from inspected local Qualla photographs and generalized hall/cupola footprints; not a measured architectural survey.",
+    "Facade bay rhythm, arched fanlights, pilasters, cornices, gables, open lantern and grasshopper silhouette are retained. Fine Corinthian ornament, pane counts, access ramps, plaques and hidden roof service details are simplified.",
+    "Only historic Faneuil Hall is included. Quincy Market, neighboring market buildings, plaza furniture and interiors are excluded.",
+    "Height estimates and entrance datum are photographic/map interpretations. Other host elevation datasets may require a new placement review.",
+    "Reference photography remains in Qualla; no photos are embedded or redistributed in the runtime pack."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        24.225956535339357,
+        72.03105354309082
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        0,
+        29.81656188964844,
+        -72.03105354309082
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 17196,
+    "vertices": 51588,
+    "materials": 5,
+    "bytes": 2066704,
+    "sha256": "sha256:c2c981aa687ac43396c802c28caf6b666d915aa0079b4355812fc7400bd11237"
+  }
+}

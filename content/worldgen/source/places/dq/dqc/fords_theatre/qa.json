@@ -1,0 +1,166 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.fords_theatre",
+  "reviewedOn": "2026-10-14",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:dd3eee55a7dcf882cc90a749e13d4b589d7fc54e616fbe6ff473d70ac0efc014",
+  "sourceHash": "sha256:293914866bc196ee8ed97d3f7892fbc5db56a836773d84e668a0f1c03a8bd083",
+  "runtimeHash": "sha256:c0184d981fa26df9adb65c362cd196541cd0e3bfb21163683dd579057d99c700",
+  "captureReportHash": "sha256:73e2fc6cc4845a040f3717810a73de326863ccb36ba838fa7fb49abfd6f1a7fa",
+  "visualReview": {
+    "status": "passed",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/back.png"
+    ],
+    "notes": "Inspected all seven final portable frames and full-size front preview. Five arched entrances with paneled doors/steps, ten hooded windows, projecting cornice/pediment, ridge vents and the lower south wing remain distinct. Corrected the source-terrain PNG encoding and verified the final ground view; entrance steps are visible, foundations meet the sampled slope. Side party walls are intentionally plain; sparse rear service openings are documented interpretations."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0a1a1922908904c708db923500888171b9dbc18ab30e5ca8e2f0caff21d59370",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Inspected all seven final shared-viewer images including north-up placement. Five shared material graphs use metric UVs and linear vertex colors; portable glass is separate. Ground transform, fixed west-facing frontage, terrain reference sampling and unload assertions pass. The magenta map envelope aligns with main theatre and lower south wing; this flat fixture proves transforms, while separate terrain captures prove the declared local ground fit."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:ab5b9b0cc7ee06cc2607ff8ab1d9581b09d2c6d9693a28b67e984d62f3689df6",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Inspected all nineteen final frames: twelve distance/light/mode combinations, front/back, silhouette and four forced runtime detail levels. Rejected the initial automatically reduced skyline for warped color/roof boundaries; the final authored skyline preserves solid theatre/wing massing, roof/pediment and three vents. District/street/closeup preserve facade rhythm. Current source terrain appears in these context views; surrounding houses are synthetic style context, not Washington buildings. No physical device frame-rate claim."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:15d8e1574c97b3574b3076ebf5fe3c132374abeec20ef01d4f6f5b4637a52f92",
+    "mapGeometryHash": "sha256:86ed1d94dd51aa5330f49d279983f89d033c01a8078cb24b940f4efca4840646",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:54d81bdce70019888eb8ad87e2ca8bcd03aaa353601746049a6f4c9c16e4f724",
+      "descriptorHash": "sha256:d9d5c84212841f910f3e0477981582bf3549b63c5e9d5854942c7715d466d523",
+      "heightfieldHash": "sha256:b270f9db9c1c2b77e13c41d4138ae4afc672d36266565d8d976c6ff0afed3762",
+      "modelDatumElevationMeters": 8.3888,
+      "sourcePixelGroundSpacing": 3.7180883961048923,
+      "footprintRelativeRangeMeters": [
+        -0.773,
+        0.376
+      ],
+      "maxPngEncodingErrorMeters": 0.000069
+    },
+    "notes": "Reviewed the west-facing 10th Street facade against two local Qualla photos, generalized named theatre polygon/POI and HABS plan/elevations. The 33.23 m combined mapped frontage is divided into the 23.23 m theatre and lower roughly 10 m south wing; these partitions/heights remain medium-fi estimates, not survey dimensions. Heading -pi/2 gives +X south and +Z west. North-up overlay fits the envelope and rear step. Preserved 4225 Terrarium samples use a street reference of 8.3888 m composite MSL; runtime samples that front reference on the host terrain. Foundations extend to -1.25 m below it and cover the observed -0.773..0.376 m footprint range. Terrain resolution/datum remain host-dependent; footprint suppression stays off."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Current exterior theatre and lower south frontage; no interiors or adjoining taller buildings.",
+    "notes": "Accepted original medium-fi representation of the five-bay theatre and lower three-bay south/Star Saloon frontage from inspected 2014/2016 Qualla photographs. Main and lower massing, white arcade, paneled doors and entrance steps, two tiers of ten shallow-arched hooded windows, pilasters, cornice, pediment and ventilated pitched roof are represented. Generalized map controls supply scale/plan; HABS DC-82 supplies interpreted rear/roof form where current photos do not show it. Fine carved ornament, hidden party walls, service equipment and exact architectural dimensions are outside this stylized exterior scope. No reference image or drawing is redistributed or used as a texture."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:6a6373beff1785fc943d0cae9065370b204d0fd29616eb194c344a802259b7c6",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:06d2d9e0ab6f4f001487446d34be36d0ec2485b9ad20da6466037da61c55796e",
+        "bytes": 33640,
+        "gzipBytes": 4970,
+        "triangles": 409,
+        "cpuBytes": 32228,
+        "gpuBytes": 32228,
+        "errorMeters": 0.5,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:118a366422650fa2940027158de540f1b09baeb7d410ee936fcbc6c8230f20b3",
+        "bytes": 362832,
+        "gzipBytes": 56074,
+        "triangles": 3652,
+        "cpuBytes": 355564,
+        "gpuBytes": 355564,
+        "errorMeters": 0.47096509630755656,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:6af35fbf48f43798f00ff6906fe7160f25c1863b6633f6d58aa92dc78287e706",
+        "bytes": 967440,
+        "gzipBytes": 149755,
+        "triangles": 8034,
+        "cpuBytes": 964080,
+        "gpuBytes": 964080,
+        "errorMeters": 0,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:6af35fbf48f43798f00ff6906fe7160f25c1863b6633f6d58aa92dc78287e706",
+        "bytes": 967440,
+        "gzipBytes": 149755,
+        "triangles": 8034,
+        "cpuBytes": 964080,
+        "gpuBytes": 964080,
+        "errorMeters": 0,
+        "drawCalls": 6
+      }
+    ],
+    "notes": "Four current levels pass hashes, bounds and triangle/material/download budgets; all were visually inspected. Deliberate skyline retains closed massing without the rejected reducer artifacts."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 8034,
+    "sourceMaterials": 6,
+    "runtimeLodsVerified": 4,
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Targeted generator --check, normal importer verification, current-LOD checker and strict medium-fi budget audit passed. Terrain PNG decode round-trips 4225 source samples within 0.000069 m. This record does not claim an independent Khronos-validator run."
+  },
+  "limitations": [
+    "Current five-bay theatre and lower south Star Saloon wing, original medium-fi exterior geometry. No interiors, neighboring taller buildings or borrowed meshes.",
+    "Generalized Protomaps ensemble partition and facade proportions are estimates. Qualla 2014/2016 photographs control the visible front; historical HABS side/rear drawings guide otherwise unseen ventilation and service form.",
+    "Terrarium host samples supply ground evidence, not a survey. The foundation extends 1.25 m below the street reference; terrain-contact placement samples the declared front reference point. Dataset resolution and vertical accuracy remain host-dependent.",
+    "Fine carved window ornament and small hardware are simplified; archival rear openings/roof vents are interpreted where current photographs do not show them. Photographs and drawings are not embedded or redistributed."
+  ],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:d3a8e7ab3f6a134388ad4b7ca4c8ddd005cd654a6ed47c04f3aa5313d480e5d9",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  }
+}

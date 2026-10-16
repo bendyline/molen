@@ -1,0 +1,360 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "Shenzhen’s stainless-clad North Tower, tapering double-notched square sections, paired supercolumns, recessed braced corners, fine pointed facade piers, folded eastern canopy and genuinely open four-legged crown below its small glass pyramid.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east",
+    "front": "+X east Yitian Road entry",
+    "origin": "Mapped North Tower envelope at reconstructed open-air entrance grade"
+  },
+  "sourceFacts": {
+    "architecturalHeightMeters": 599.1,
+    "occupiedHeightMeters": 555.6,
+    "observatoryHeightMeters": 562.2,
+    "aboveGroundStoreys": 115,
+    "basements": 5,
+    "completionYear": 2017,
+    "architect": "Kohn Pedersen Fox Associates",
+    "engineer": "Thornton Tomasetti with CCDI",
+    "supercolumns": 8,
+    "exteriorBeltTrusses": 7,
+    "steelGrade": "Outokumpu Supra316L",
+    "facadeFinish": "Deco Linen",
+    "architectRoundedHeightMeters": 600,
+    "engineerCompletionYear": 2016,
+    "originalMasterHash": "sha256:2447ecffcfefa2e88845c8ab4fb3b8b8ec2dfb61b7186b6f6eddb07c131d88d2",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-pingan-model.mjs#buildPingAn",
+    "surfaceMeans": {
+      "metal_stainless": [
+        0.81896,
+        0.822889,
+        0.822889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
+  },
+  "reconstruction": {
+    "massing": "The exact-QID double-notched plan plus54 separately mapped facade/crown patches constrain lower narrowing, disappearing corner projections and upper taper. Their skillion tags encode sloped facade surfaces rather than solid occupied roof volumes. Completed KPF photographs establish the final599.1m design without the abandoned tall spire.",
+    "facade": "Eight broad stainless column casings frame the recessed corner bays. Four broad glazed faces retain repeated pointed vertical piers, pane seals and horizontal floor courses; corner louvres and large diagonal bands remain physical geometry. The shared stainless surface approximates the supplied embossed linen finish at world-viewer scale.",
+    "crown": "A glazed sloping roof closes the upper occupied volume, then four separate stainless legs continue around large open apertures. The small square cap starts near590m and converges to599.1m, following the completed architect close aerial and mapped roof patches.",
+    "entry": "The eastern Yitian Road facade uses the architect’s completed street photograph: splayed braces, low folded canopy, dark granite feet and three round revolving door enclosures. Fine dimensions and door offsets are photograph reconstructions."
+  },
+  "limitations": [
+    "Original245790-triangle/28274144-byte master remains byte-reproducible from unchanged recipe. Reviewed source uses full backing glass/steel faces, merged pointed pier spans, continuous facade seals and sparse physical steel joints/louvres instead of repeated framed pane islands. Double-notched taper, eight supercolumn casings, seven mechanical-band intervals, recessed diagonal strips, sloping glazed roof, four separate open crown legs, small pyramid, eastern folded canopy, splayed braces and three revolving doors retained. Skyline omits separate piers, braces, joints, louvres and fine tip/entry frames, averaging shared steel/stone colours into one group. District restores sampled piers and coarse recessed braces; street restores all nine face piers, aggregate seams/louvres and roof/door grids; close-up restores fine seams/louvres and32-sided doors within64000triangles. Original fine repeat density is preserved through original recipe, not every small master component in reviewed source. Canonical stainless and granite graphs approximate Deco Linen steel and dark stone; coated canopy/recess shares steel/glazing respectively to keep three near draws. Zero embedded images. Individual dimensions/roof datums/door offsets are reconstructions; finite along-ray1.5/.75/.3/.1m comparisons exclude intentionally omitted narrow seams/louvres/piers/braces, not a global surface-distance bound. Physical-device performance and surveyed grade unmeasured."
+  ],
+  "surfaceOverrides": {
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "metal": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "stone": {
+      "graph": "stone_granite",
+      "slot": "foundation",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "recess": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    }
+  },
+  "geographic": {
+    "heading": 0.0005397205,
+    "reviewStatus": "reviewed medium-fi signed North Tower placement",
+    "orientationConfidence": "mapped exact identity/54 patches plus east Yitian Road entry",
+    "notes": "Fresh OSM API2026-10-10 confirms Q1077308 whole535860513 and54 facade/crown patches unchanged from independently saved2026-09-28 map-parts. Signed heading0.0005397205 keeps +X east toward separately mapped Yitian Road996752254 and the completed architect entrance photograph; +Z south. Double-notched lower plan, sloped facade patches and9.1m upper cap support the North Tower reconstruction; skillion tags are surface slopes, not occupied roof solids. SourceY0 is reconstructed open-air entrance grade, not surveyed elevation. Current CVU599.1m tip/555.6m occupied/562.2m observatory override architect/engineer rounded600m. Ground envelope reconstruction allowance2m/1degree excludes projecting folded entry canopy; no automatic footprint replacement. Separate retail podium, South Tower, landscape, moving equipment and interiors excluded.",
+    "evidence": "Fresh OSM API2026-10-10 confirms Q1077308 whole535860513 and54 facade/crown patches unchanged from independently saved2026-09-28 map-parts. Signed heading0.0005397205 keeps +X east toward separately mapped Yitian Road996752254 and the completed architect entrance photograph; +Z south. Double-notched lower plan, sloped facade patches and9.1m upper cap support the North Tower reconstruction; skillion tags are surface slopes, not occupied roof solids. SourceY0 is reconstructed open-air entrance grade, not surveyed elevation. Current CVU599.1m tip/555.6m occupied/562.2m observatory override architect/engineer rounded600m. Ground envelope reconstruction allowance2m/1degree excludes projecting folded entry canopy; no automatic footprint replacement. Separate retail podium, South Tower, landscape, moving equipment and interiors excluded.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "Fresh OSM API2026-10-10 confirms Q1077308 whole535860513 and54 facade/crown patches unchanged from independently saved2026-09-28 map-parts. Signed heading0.0005397205 keeps +X east toward separately mapped Yitian Road996752254 and the completed architect entrance photograph; +Z south. Double-notched lower plan, sloped facade patches and9.1m upper cap support the North Tower reconstruction; skillion tags are surface slopes, not occupied roof solids. SourceY0 is reconstructed open-air entrance grade, not surveyed elevation. Current CVU599.1m tip/555.6m occupied/562.2m observatory override architect/engineer rounded600m. Ground envelope reconstruction allowance2m/1degree excludes projecting folded entry canopy; no automatic footprint replacement. Separate retail podium, South Tower, landscape, moving equipment and interiors excluded.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "georeferencing-baseline.json",
+    "map-parts.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/pingan-runtime-model.mjs",
+    "export": "buildPingAnReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/pingan-runtime-model.mjs",
+    "export": "buildPingAnSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildPingAnDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildPingAnStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildPingAnCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "foundation",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-north-tower",
+      "position": [
+        680,
+        380,
+        730
+      ],
+      "lookAt": [
+        0,
+        288,
+        0
+      ]
+    },
+    {
+      "name": "east-front-and-folded-entry",
+      "position": [
+        74,
+        10,
+        -18
+      ],
+      "lookAt": [
+        39,
+        4,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-north-tower-skyline",
+      "position": [
+        680,
+        380,
+        730
+      ],
+      "lookAt": [
+        0,
+        288,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-north-tower-district",
+      "position": [
+        680,
+        380,
+        730
+      ],
+      "lookAt": [
+        0,
+        288,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-north-tower-street",
+      "position": [
+        680,
+        380,
+        730
+      ],
+      "lookAt": [
+        0,
+        288,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-north-tower-closeup",
+      "position": [
+        680,
+        380,
+        730
+      ],
+      "lookAt": [
+        0,
+        288,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-open-crown",
+      "position": [
+        61,
+        583,
+        66
+      ],
+      "lookAt": [
+        0,
+        577,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-folded-canopy",
+      "position": [
+        81,
+        11,
+        21
+      ],
+      "lookAt": [
+        40,
+        5,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-revolving-doors",
+      "position": [
+        52,
+        4,
+        -14
+      ],
+      "lookAt": [
+        40,
+        2,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-roof-and-open-legs",
+      "position": [
+        27,
+        589,
+        44
+      ],
+      "lookAt": [
+        0,
+        573,
+        0
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

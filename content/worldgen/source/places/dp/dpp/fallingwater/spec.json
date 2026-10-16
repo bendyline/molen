@@ -1,0 +1,263 @@
+{
+  "planId": "fallingwater",
+  "id": "fallingwater",
+  "assetId": "molen.worldgen.structure.fallingwater",
+  "title": "Fallingwater",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -79.46797142922878,
+    "latitude": 39.90623279586258
+  },
+  "size": [
+    46,
+    26.350000381469727,
+    70.97793579101562
+  ],
+  "actualBounds": {
+    "min": [
+      -26,
+      -13.300000190734863,
+      -40.977935791015625
+    ],
+    "max": [
+      20,
+      13.050000190734863,
+      30
+    ]
+  },
+  "visualBrief": "Crossed buff concrete cantilevers, stratified sandstone core, red window frames and hanging stream stair above Bear Run, with an uphill guest wing and covered curved connection.",
+  "nativeAxes": {
+    "x": "northeast along the main terrace frontage and upstream Bear Run",
+    "y": "up",
+    "z": "southeast from the house toward the stream"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Fallingwater_2007.jpg",
+    "https://commons.wikimedia.org/wiki/File:Fallingwater_-_DSC05600.JPG"
+  ],
+  "stories": [
+    {
+      "id": "fallingwater-wp",
+      "url": "https://qualla.com/fallingwater/"
+    }
+  ],
+  "referenceInputHash": "34c9105f6ac6825bde3b170edd652e10188bf5b95baebe17b6128560bcedd09a",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-fallingwater.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-fallingwater.mjs",
+    "level": "skyline",
+    "export": "fallingwaterSkyline",
+    "errorMeters": 1.1,
+    "authoredLevels": {
+      "district": {
+        "export": "fallingwaterDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "fallingwaterStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.6,
+            "metallic": 0.35
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Landward main-house junction [4,-8.2] defines the 406.5873 m host datum. Unmodified terrain spans -10.645391..9.725998 m across the three envelopes. Guest floor 10.1 m and authored rock ledges are visual interpretations checked separately against coarse host relief.",
+    "anchor": [
+      -79.46797142922878,
+      39.90623279586258
+    ],
+    "heading": 0.7853981633974483,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -79.46800620779985,
+        39.90631029049724
+      ],
+      "modelHeight": 0,
+      "basis": "Landward main-house entrance/covered-walk junction, sampled independently from host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184726816959",
+      "buildings/35184726816961",
+      "buildings/35184726816960"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f69f909bf31bc21948a35cc6474988f4ec1a222e2df3d011c629fb7fa0fee4e3",
+    "notes": "Stepped cantilever terraces, stone core and stream-side stairs from two inspected originals. The supplementary plan resolves crossing terrace axes. Uphill guest-wing mass and covered link follow the map; fine hidden details remain interpretations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior based on two inspected Qualla originals, supplementary local layout images and generalized main-house/covered-walk/guest-wing map controls; not a measured architectural survey.",
+    "Crossing terrace axes, stone core, red glazing, hanging stair and clear underside are modeled. Exact room plans, hidden facades, guest-wing openings, structural repairs and roof drains are simplified interpretations.",
+    "The short static stream, cascade and rock ledges illustrate the house-waterfall relationship. They are not a hydrologic simulation, exact geological reconstruction or current water-level claim. Surrounding terrain is preserved rather than flattened.",
+    "Covered connection and guest wing follow mapped outlines at approximate relative elevations. Coarse terrain is not a surveyed floor datum; other host elevation datasets may require new placement review.",
+    "No interior furnishings, sculpture replica, surrounding forest or external image textures are included. Local reference photography remains outside runtime packs."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        7,
+        55
+      ],
+      "lookAt": [
+        1,
+        0,
+        3
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -32,
+        26,
+        -66
+      ],
+      "lookAt": [
+        1,
+        5,
+        -15
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 8096,
+    "vertices": 24288,
+    "materials": 4,
+    "bytes": 974264,
+    "sha256": "sha256:b5ee038ccda5d8b530d65730bb332eab3cd712446ee21afb82c6c808835f5687"
+  }
+}

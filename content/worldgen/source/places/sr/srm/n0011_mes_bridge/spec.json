@@ -13,19 +13,19 @@
   "visualBrief": "Thirteen unequal stone arches with a21.5m main vault, raised pointed flood openings, the distinctive bent western approach, humped cobbled walkway, paired radial arch bands, low rough-stone parapets and edge-set step courses.",
   "size": [
     124.73816299438477,
-    12.868141174316406,
-    12.80165147781372
+    15.221884727478027,
+    20.45920181274414
   ],
   "actualBounds": {
     "min": [
       -62.37716293334961,
-      0,
-      -6.395328044891357
+      -2.353743553161621,
+      -10.184202194213867
     ],
     "max": [
       62.361000061035156,
       12.868141174316406,
-      6.406323432922363
+      10.274999618530273
     ]
   },
   "nativeAxes": {
@@ -41,7 +41,16 @@
     "publishedMainRibMeters": 1.08,
     "publishedBendDegrees": 14,
     "construction": "1768; extended in a later phase",
-    "referenceElevation": "IKTK heritage sign photographed2025; dated2025north/south aerial photographs establish signed sides"
+    "referenceElevation": "IKTK heritage sign photographed2025; dated2025north/south aerial photographs establish signed sides",
+    "groundReference": {
+      "provider": "ASIG National Geoportal",
+      "dataset": "MDT2015-2017 public3D terrain",
+      "referenceCoordinate": [
+        19.57450452530542,
+        42.11438275561773
+      ],
+      "modelHeight": 8.05
+    }
   },
   "reconstruction": {
     "arches": [
@@ -295,7 +304,12 @@
       -62.361,
       62.361
     ],
-    "basis": "Arch stations photo-scaled from IKTK sign elevation, with unequal opening sills following the exposed rock bed. Centerline from exact mapped identity; footprint reconstructed at published width. Main clear span and arch count are published, minor dimensions and stone courses are original exterior interpretation."
+    "basis": "Arch stations photo-scaled from IKTK sign elevation, with unequal opening sills following the exposed rock bed. Centerline from exact mapped identity; footprint reconstructed at published width. Main clear span and arch count are published, minor dimensions and stone courses are original exterior interpretation.",
+    "outerApproachDeckModelY": [
+      10.922779,
+      6.093903
+    ],
+    "bankSurface": "Photo-scaled original bridge support tops, faceted shoulders to source-local ASIG relative terrain; no surveyed rock shapes."
   },
   "referencePages": [
     "https://akt.gov.al/atraksionet/ura-e-mesit/",
@@ -326,7 +340,95 @@
       42.114460151
     ],
     "heading": 0.108927584258,
-    "notes": "Bent exact centerline establishes position/axis. GroundY0 is the main-vault riverbed support reference; rising support bases require local rocky banks, so a flat test plane cannot certify terrain contact throughout the bridge."
+    "notes": "Exact mappedQ856285 centerline and signed+X ENE/+Z SSE retained. The host samples the western historic-body bank reference19.57450452530542,42.11438275561773 at modelHeight8.05; it does not use the mid-channel anchor height. Public ASIG2015-2017 adaptive terrain provides relative outer-approach controls and bank shoulder contacts; rock/support tops remain photo-scaled reconstruction. Explicit ground opening prevents coarse terrain from filling the arches; host Kir water stays independent. No absolute vertical datum is assumed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Exact mappedQ856285 centerline and signed+X ENE/+Z SSE retained. The host samples the western historic-body bank reference19.57450452530542,42.11438275561773 at modelHeight8.05; it does not use the mid-channel anchor height. Public ASIG2015-2017 adaptive terrain provides relative outer-approach controls and bank shoulder contacts; rock/support tops remain photo-scaled reconstruction. Explicit ground opening prevents coarse terrain from filling the arches; host Kir water stays independent. No absolute vertical datum is assumed.",
+    "replaceFootprint": false,
+    "terrainReference": {
+      "modelHeight": 8.05,
+      "basis": "Mapped western historic-body approach; host ground sample minus reconstructed deck modelHeight8.05 defines the native base. ASIG relative controls inform outer ramps and rock shoulders; vertical datum is not assumed.",
+      "anchor": [
+        19.57450452530542,
+        42.11438275561773
+      ]
+    },
+    "groundCutout": {
+      "outline": [
+        [
+          -62.361,
+          1.1749999999999998
+        ],
+        [
+          -21.506,
+          -8.175
+        ],
+        [
+          -13.047,
+          -7.665
+        ],
+        [
+          -6.359,
+          -6.989
+        ],
+        [
+          1.463,
+          -6.2010000000000005
+        ],
+        [
+          22.147,
+          -4.219
+        ],
+        [
+          43.134,
+          -1.745
+        ],
+        [
+          53.944,
+          -0.2490000000000001
+        ],
+        [
+          62.361,
+          1.1749999999999998
+        ],
+        [
+          62.361,
+          8.175
+        ],
+        [
+          53.944,
+          6.7509999999999994
+        ],
+        [
+          43.134,
+          5.255
+        ],
+        [
+          22.147,
+          2.781
+        ],
+        [
+          1.463,
+          0.7989999999999999
+        ],
+        [
+          -6.359,
+          0.01100000000000012
+        ],
+        [
+          -13.047,
+          -0.665
+        ],
+        [
+          -21.506,
+          -1.1749999999999998
+        ],
+        [
+          -62.361,
+          8.175
+        ]
+      ],
+      "basis": "Native original bent bridge and reconstructed rock-bank contact apron; clear coarse terrain through the thirteen openings. Independent river-water layer remains visible."
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -352,13 +454,138 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "Original linear COLOR_0 retained",
+    "paletteSrgb": {
+      "stone": "#c7c6be",
+      "arch": "#d8d7cb",
+      "paving": "#c7c2ad"
+    },
+    "materialBudget": 3,
+    "identityFeatures": [
+      "Thirteen unequal open stone arches including three raised pointed relief windows",
+      "21.5m main vault with paired stone bands",
+      "Humped cobbled walkway and bent western approach"
+    ],
+    "referenceState": "Original restored exterior from2017/2025 photographs; reconstructed rocky banks and public2015-2017 terrain contact controls."
+  },
+  "mediumFiContext": {
+    "scale": "1.8",
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/mes-bridge-current-model.mjs",
+    "export": "buildMesCurrent"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/mes-bridge-current-model.mjs",
+    "level": "skyline",
+    "export": "buildMesSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMesDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "roughstone": {
+            "graph": "stone_drywall",
+            "slot": "foundation",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMesStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "roughstone": {
+            "graph": "stone_drywall",
+            "slot": "foundation",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMesCloseup",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "roughstone": {
+            "graph": "stone_drywall",
+            "slot": "foundation",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "stone": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "paving": {
+            "graph": "stone_drywall",
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "skyline-openings",
+      "position": [
+        0,
+        10,
+        75
+      ],
+      "lookAt": [
+        0,
+        7,
+        0
+      ],
+      "reviewLod": "skyline",
+      "fov": 55
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
     "Original detailed exterior reconstruction; no survey-quality minor arch ordinates or hidden foundations are claimed.",
     "OSM maps124.721m walkway including bank approaches; the heritage authority108m historic body is kept separately. Published3.4m width provides a reconstructed transverse outline.",
-    "Exposed support bases follow photo-scaled river rocks; terrain fit remains dependent on the host rocky-bank surface. River water and rock scenery, the adjacent concrete road bridge, vegetation and houses are not embedded.",
-    "Photographs and printed plan were inspected for shape; no external meshes, image textures or copyrighted sign artwork are embedded."
+    "Photographs and printed plan were inspected for shape; no external meshes, image textures or copyrighted sign artwork are embedded.",
+    "Current rock/support tops use the original photo-scaled profile. Outer ramp controls and shoulder contacts use simplified ASIG terrain; neither the2m resampled grid nor the triangle mesh establishes2m survey accuracy.",
+    "The public ASIG tileset does not state its vertical datum or redistribution license. Raw terrain tiles remain private research; sampled observations carry ASIG attribution. Relative host terrain contact avoids an assumed absolute vertical datum.",
+    "The finite source terrain/water fixture is research context. Its bridge corridor uses the runtime opening plus a two-metre raster guard. A separate rectangular riverbed carve is reconstructed for this finite fixture; the raw terrain observations remain unchanged. Kir water level and bathymetry are reconstructed, not seasonal measurements.",
+    "The original334084triangle/30021728byte master remains reproducible from the retained recipe, hashf0ac311a7395e85cddfa1ab2cc2e472ca53c734260d5e1387bcc2ab2883a896c. Current detailed source adds bank contact repairs; browser levels replace individual microstones/cobbles with shared256-square surfaces.",
+    "Fine inscriptions, exact rock shapes, nearby modern concrete bridge, houses, vegetation and walkable navigation certification are excluded. Physical-device timings remain pending."
   ],
   "qaCameras": [
     {
@@ -458,6 +685,34 @@
         -2.4
       ],
       "fov": 46
+    },
+    {
+      "name": "west-bank-contact",
+      "position": [
+        -80,
+        19,
+        26
+      ],
+      "lookAt": [
+        -56,
+        8.8,
+        2.5
+      ],
+      "fov": 48
+    },
+    {
+      "name": "east-bank-contact",
+      "position": [
+        78,
+        13,
+        22
+      ],
+      "lookAt": [
+        57,
+        6.2,
+        4
+      ],
+      "fov": 48
     }
   ],
   "importOptions": {
@@ -465,10 +720,10 @@
   },
   "importReason": "Preserve thin cables, rail frames and hardware across the full crossing; whole-object quantization loses these details.",
   "mesh": {
-    "triangles": 334084,
-    "vertices": 722520,
+    "triangles": 334264,
+    "vertices": 723060,
     "materials": 2,
-    "bytes": 30021728,
-    "sha256": "sha256:f0ac311a7395e85cddfa1ab2cc2e472ca53c734260d5e1387bcc2ab2883a896c"
+    "bytes": 30043348,
+    "sha256": "sha256:48e9c29ae3338def6507e8e4f5691732b20cbabfbfd9f1e4a9c7d0d74936550d"
   }
 }

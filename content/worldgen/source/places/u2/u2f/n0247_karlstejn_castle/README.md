@@ -20,11 +20,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-556,934 triangles; 1,115,998 vertices; 9 material groups; 46,864,188 bytes. Native bounds: -75.400, 0.000, -72.442 to 76.233, 75.000, 71.962. Source hash: `sha256:2094e82b6eb86b1ab78993df6cc09a84d5a65e8fd2f108cb34bf698c82150b85`.
+57,524 triangles; 117,124 vertices; 7 material groups; 4,910,988 bytes. Native bounds: -75.400, -38.299, -72.425 to 76.233, 87.891, 71.902. Source hash: `sha256:d499036d2457d914fb3877bffc6d39b5e8552241c2bb8fbe8dfc5ea3d46bfff5`.
 
-{"up":"+Y","longitudinal":"+X 19.49 degrees north of east","front":"+Z south-southeast","origin":"OSM precinct anchor, provisional lowest architectural contact"}
+{"up":"+Y","longitudinal":"+X 19.49 degrees north of east","front":"+Z south-southeast","origin":"Retained exact-Q266698 frame;Y0 reconstructed300mBpv working datum."}
 
-Draft until terrain levels and fitted individual footprints are verified in the world viewer.
+Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.
 
 ## Reproduce
 
@@ -32,14 +32,14 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0247` (
 
 ## Pending work
 
-- Maximum fidelity remains pending. Individual roof silhouettes and mapped component positions are authored, but measured elevations, window layouts on obscured faces and nineteenth-century restoration details need refinement.
-- Official 60 m Great Tower height differs from OSM 53 m. The seven-meter exposed-base interpretation and stepped terrace elevations are provisional, not a survey.
-- The Burgrave roof junctions, palace loggia, gatehouse portals, wall crenellation spacing, dormers and chimney positions use photograph-derived proportions. Interior artworks and rooms are outside this exterior asset.
-- Covered bridges are separate raised structures with visible space beneath. Their deck elevations, support details and stairs require on-site dimensions.
-- Shared plaster, wood, slate and stone graphs avoid embedded images. Shingle relief, masonry joints and wood boards are procedural details; existing stone surfaces need material-specific weathering.
-- Foundation terraces are local contact geometry, not the full castle hill. Approach terrain, surrounding forest and buildings beyond the precinct are excluded.
+- Original detailed556934-triangle/46864188-byte master remains exactly reproducible atsha256:2094e82b6eb86b1ab78993df6cc09a84d5a65e8fd2f108cb34bf698c82150b85 from karlstejn-castle-model.mjs#karlstejnStudy.build. Independent medium-fi model removes the provisional filled terraces and adapts components to retained numeric grade.
+- Fresh exact-Q266698 OSM relation6706848 v27 and35 retained component ways confirm the signed frame. Native+X points70.510 degrees clockwise from north,+Z160.510 degrees. Great Tower northeast,Marian Tower below it,Imperial Palace south and Burgrave/Well southwest resolve the direction. Retained ČÚZK DMR5G2m Float32 raster in EPSG5514/Bpv and10201-value4m native grid provides relative grade. ModelY0 is the reconstructed300mBpv working datum; placement subtracts actual sampled anchor height,not a nominal floor. Component working floors use highest mapped perimeter sample plus0.25m and remain architectural estimates. Great Tower retains a60m base-to-main-roof span plus small finials,with no seven-meter court-datum explanation. Occupied foundations extend4m under grade; open courts and geological hillside remain host terrain,with no whole-enclosure replacement or cutout. Covered passages are independently elevated. Real host terrain vintage and architectural survey precision remain unverified.
+- The DMR5G bare-earth service describes2009–2013 acquisition. Under buildings it interpolates; working floor estimates and steep perimeter foundation exposure require surveyed architectural elevations. The raster retains Bpv heights; no conversion to ellipsoidal heights is asserted.
+- Published1889 plan guides component topology,not the restored current facade. Original window rhythms,roof silhouettes,hoarding and restored detailing remain photograph-guided approximations. Interior chapels,artworks,visitor fixtures and surrounding village/forest are excluded.
+- Six shared granite,limestone,lime plaster,timber,painted metal and slate graphs; carved stone shares tinted limestone and recesses share tinted plaster. Glass uses local opaque PBR. No photographic or per-model embedded image textures.
+- Covered passage deck heights,sloping stairs,well court and wall profiles remain reconstructions. Terrain owns the open courts. Fine railings/scaffolding and exact historic crenellations are simplified. Physical laptop/phone timings remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.
 
 ## Additional geographic data
 

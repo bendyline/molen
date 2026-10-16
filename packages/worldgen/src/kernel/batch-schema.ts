@@ -113,7 +113,9 @@ const scatterRequest = z.strictObject({
     .array(
       z.strictObject({
         ring: ring.optional(),
+        holes: z.array(ring).optional(),
         polyline: z.array(point).min(2).optional(),
+        label: z.string().min(1).optional(),
         width: z.number().nonnegative().describe('Polyline width, meters.').optional(),
         radius: z.number().nonnegative().describe('Clearance around the shape, meters.'),
         kind: z.enum(['roads', 'buildings', 'water']).optional(),

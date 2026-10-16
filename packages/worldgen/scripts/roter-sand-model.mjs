@@ -468,10 +468,10 @@ export const roterSandStudies = [
         'Exact-identity OSM node 635484478 agrees within 0.1 m with the 2019 engineering report WGS84 coordinate 53°51′11.4″ N / 8°04′55.81″ E; the older DSD 2010 and candidate coordinates are about 207 m north. Survey compass directions fix bay orientation. GMG III-9 places historic low water at NN -2.05 m; sea-level preview assumes the viewer zero approximates NN, with tidal/water-datum review pending. Owner’s 2026 chronology describes a future relocation, not a completed move.',
     },
     limitations: [
-      'Initial detailed offshore exterior study of the 2018–2019 surveyed appearance; not yet approved for maximum fidelity or geographic activation.',
-      'Plinth plan, seam/rivet spacing, small fittings, porthole positions and battery cupboard are reconstructed within published principal dimensions; not a fabrication survey.',
-      'Shaft portholes use recessed-looking disks; their wall apertures, bay-wall intersections and gallery junctions need close-up refinement. Hidden interiors, underwater foundations, exact corrosion patterns and working lamp optics are not modeled.',
-      'Offshore anchor and compass orientation are evidence-backed; viewer NN/sea-level equivalence, tides, footprint fit and any later relocation still require geographic review.',
+      'Medium-fi exterior of the 2018–2019 surveyed offshore appearance. The original detailed master remains separately reproducible; review-scope.json selects the refined exterior and four browser derivatives.',
+      'Caisson arcs, exposed bay joins and principal dimensions follow the rounded engineering facts. Seam/rivet spacing, porthole allocation, small fittings and battery cupboard remain reconstructions, not a fabrication survey.',
+      'Street/close-up/master levels have real recessed circular apertures. District/skyline windows become marks; far rail and curve subdivisions reduce while retaining the complete tower. Hidden interiors, underwater foundations, exact corrosion and working lamp optics are omitted.',
+      'Exact offshore identity and compass directions are survey-backed. Viewer water zero approximates historical NN; elevation -2.05 m is explicit, with no tidal or geodetic conversion. The owner’s 2026 plan describes a future relocation, not a documented completed move.',
     ],
     qaCameras: [
       { name: 'service-bays', position: [12, 25, 17], lookAt: [0, 23.7, 0] },

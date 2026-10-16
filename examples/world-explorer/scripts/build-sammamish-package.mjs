@@ -263,6 +263,13 @@ if (overviewMaxLevel < minLevel || overviewMaxLevel >= elevationMaxLevel) {
 }
 const vectorUrl = argument('--vector-url', defaultVectorUrl);
 const elevationTemplate = argument('--elevation-template', defaultElevationTemplate);
+const packageName = argument('--name', 'Seattle, Bellevue, and Sammamish, Washington');
+const packageVersion = argument('--version', '2026-09-25');
+const vectorRelease = argument('--vector-release', `${packageVersion} daily archive`);
+const elevationRelease = argument(
+  '--elevation-release',
+  'AWS open-data snapshot accessed 2026-08-30',
+);
 
 await mkdir(outputDirectory, { recursive: true });
 const vectorPath = resolve(outputDirectory, 'world.pmtiles');
@@ -311,7 +318,7 @@ const elevationArchive = writePmtilesArchive(elevation.entries, {
     Math.min(elevationMaxLevel, minLevel + 2),
   ],
   metadata: {
-    name: 'Seattle–Bellevue–Sammamish elevation',
+    name: `${packageName} elevation`,
     type: 'baselayer',
     format: 'png',
     bounds: coverageBounds.join(','),
@@ -345,7 +352,7 @@ const sourceLock = {
   },
   features: {
     id: 'protomaps-basemap',
-    release: '2026-09-25 daily archive',
+    release: vectorRelease,
     url: vectorUrl,
     profile: 'protomaps-basemap@1',
     maxLevel,
@@ -437,8 +444,8 @@ const files = await Promise.all(
 );
 const manifest = {
   format: 'molen/terrain-package@1',
-  name: 'Seattle, Bellevue, and Sammamish, Washington',
-  version: '2026-09-25',
+  name: packageName,
+  version: packageVersion,
   coordinateSpace: {
     kind: 'geospatial',
     crs: 'EPSG:3857',
@@ -506,11 +513,11 @@ const manifest = {
     },
   ],
   provenance: {
-    compiler: 'world-explorer-seattle-region-fixture',
+    compiler: 'world-explorer-region-fixture',
     compilerVersion: '1',
     sources: [
-      { id: 'mapzen-terrain-tiles', release: 'AWS open-data snapshot accessed 2026-08-30' },
-      { id: 'protomaps-basemap', release: '2026-09-25 daily archive' },
+      { id: 'mapzen-terrain-tiles', release: elevationRelease },
+      { id: 'protomaps-basemap', release: vectorRelease },
     ],
   },
   files,

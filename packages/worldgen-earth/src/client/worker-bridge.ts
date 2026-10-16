@@ -14,6 +14,7 @@ import {
 } from '@bendyline/molen-worldgen/kernel';
 import type { PlacesContentDocs } from '../kernel/places';
 import type { RegionAtlasDoc } from '../kernel/region-atlas-types';
+import type { RegionalEnvironmentDocs } from '../kernel/regional-environment';
 import type { TileGeometry } from '../kernel/semantic-adapter';
 import type { WorldgenTileOutput } from '../kernel/tile-generate';
 import type {
@@ -55,6 +56,7 @@ export interface WorkerLike {
 export interface WorldgenWorkerBridgeOptions {
   pack: ResolvedStylePack;
   atlas?: RegionAtlasDoc;
+  environment?: RegionalEnvironmentDocs;
   metersPerUnit: number;
   /**
    * Places content documents to generate with (none when omitted). Give the renderer the
@@ -107,6 +109,7 @@ export function createWorldgenWorkerBridge(
     kind: 'configure',
     pack: options.pack,
     ...(options.atlas !== undefined ? { atlas: options.atlas } : {}),
+    ...(options.environment !== undefined ? { environment: options.environment } : {}),
     metersPerUnit: options.metersPerUnit,
     ...(options.places !== undefined ? { places: options.places } : {}),
   };

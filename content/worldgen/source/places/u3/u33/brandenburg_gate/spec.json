@@ -1,0 +1,181 @@
+{
+  "planId": "brandenburg_gate",
+  "id": "brandenburg_gate",
+  "assetId": "molen.worldgen.structure.brandenburg_gate",
+  "title": "Brandenburg Gate",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.377722222222,
+    "latitude": 52.516272222222
+  },
+  "size": [
+    67.0999984741211,
+    28.600000381469727,
+    31.101250648498535
+  ],
+  "actualBounds": {
+    "min": [
+      -33.599998474121094,
+      -2.5,
+      -8.199999809265137
+    ],
+    "max": [
+      33.5,
+      26.100000381469727,
+      22.9012508392334
+    ]
+  },
+  "visualBrief": "Five open passages and paired fluted Doric columns, level sandstone attic with central relief panel, projecting pedimented guardhouses, copper roofs and east-facing four-horse quadriga.",
+  "nativeAxes": {
+    "x": "across principal front elevation",
+    "y": "up",
+    "z": "outward from principal front elevation"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Berlin-Brandenburg_Gate_overview.jpg",
+    "https://commons.wikimedia.org/wiki/File:00_2486_Quadriga_-_Brandenburger_Tor_(Berlin).jpg"
+  ],
+  "stories": [
+    {
+      "id": "brandenburg-gate-wp",
+      "url": "https://qualla.com/brandenburg-gate/"
+    }
+  ],
+  "referenceInputHash": "1c79b048d147d085cebc6f07556e538729e235d0e3668c63d753226525d784e6",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-brandenburg-gate.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-brandenburg-gate.mjs",
+    "level": "skyline",
+    "export": "brandenburgSkyline",
+    "errorMeters": 0.6,
+    "caps": {
+      "district": {
+        "triangles": 4000,
+        "errorMeters": 0.3,
+        "prune": true
+      },
+      "street": {
+        "triangles": 16000,
+        "errorMeters": 0.16,
+        "prune": true
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Central east passage reference [0.43,5.3] on independent host-terrain samples; individual piers and guardhouses extend to -2.5 m across the coarse source relief without a slab blocking the passages.",
+    "anchor": [
+      13.377722222222,
+      52.516272222222
+    ],
+    "heading": 1.684242728174528,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.377799238477305,
+        52.51628144979055
+      ],
+      "modelHeight": 0,
+      "basis": "Central east passage threshold on independently preserved host terrain."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184890160623",
+      "buildings/35185594384349",
+      "buildings/35185534495803",
+      "buildings/35185534495802",
+      "buildings/35185594384350",
+      "buildings/35185594384347",
+      "buildings/35185594384348"
+    ],
+    "source": "https://build.protomaps.com/20261008.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a17b4e5c3626803e543388d78820ec75761922f5a7eab9ec5c37901ef359ae21",
+    "notes": "Main gate uses mapped 34 by 13 m envelope with projecting cornices. Both guardhouse cores project to the east beneath pedimented copper roofs, joined behind by side colonnades. Qualla photographs control sandstone proportions, Doric columns, attic relief rhythm and original simplified quadriga. Fine relief and hidden details are interpretations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior; dimensions follow generalized Protomaps controls and photographic estimates, not a measured architectural survey.",
+    "Doric fluting, triglyph rhythm, shallow relief figures, chariot, four horses, wings and eagle/wreath emblem are simplified original geometry. Fine carved figures, reins and facial anatomy are not exact replicas.",
+    "Guardhouse cores, projecting porticoes and connecting colonnades are included; interiors, adjacent city blocks and freestanding street furniture are omitted.",
+    "Warm smooth shared mineral material represents cut sandstone without false small masonry courses across the carved columns.",
+    "Local Qualla references are inspected but not embedded or redistributed. Terrain/contact evidence is coarse host data, not surveyed ground levels."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -0.049999237060546875,
+        18.590000247955324,
+        123.55124855041504
+      ],
+      "lookAt": [
+        -0.049999237060546875,
+        8.260000133514405,
+        7.350625514984131
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -0.049999237060546875,
+        22.880000305175784,
+        -108.84999752044678
+      ],
+      "lookAt": [
+        -0.049999237060546875,
+        8.260000133514405,
+        7.350625514984131
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 20448,
+    "vertices": 61344,
+    "materials": 3,
+    "bytes": 2456068,
+    "sha256": "sha256:d84942a49a54992e85e61015ff04305e1e050eaf79c9d0e8fb2c610a90a3fd2c"
+  }
+}

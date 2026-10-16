@@ -10,29 +10,29 @@
     "latitude": 41.898889,
     "longitude": -87.623056
   },
-  "visualBrief": "Chicago’s tapering dark-bronze trussed tube with individually framed windows, projecting perimeter columns, continuous large diagonal diamonds, mapped roof plant and twin red-white broadcast masts.",
+  "visualBrief": "Chicago tapering dark bronze trussed tube, crossing lower diagonals and closed crown, pale retail base, mapped roof plant, unequal white-and-grey broadcast arrays and resting south TILT.",
   "size": [
-    84.3475456237793,
-    456.8999938964844,
-    54.69568061828613
+    84.01837539672852,
+    456.9039611816406,
+    54.47498321533203
   ],
   "actualBounds": {
     "min": [
-      -42.17053985595703,
+      -42.01158142089844,
       0,
-      -27.34840965270996
+      -27.24183464050293
     ],
     "max": [
-      42.177005767822266,
-      456.8999938964844,
-      27.347270965576172
+      42.00679397583008,
+      456.9039611816406,
+      27.2331485748291
     ]
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along the mapped building long axis",
-    "front": "+Z",
-    "origin": "Ground-level center of exact-QID mapped footprint frame"
+    "longitudinal": "+X east/slightly north",
+    "front": "+Z south/slightly east; TILT facade",
+    "origin": "Exact-QID mapped ground-contact footprint frame"
   },
   "sourceFacts": {
     "architecturalHeightMeters": 343.7,
@@ -48,12 +48,44 @@
     ],
     "floors": 100,
     "architect": "Bruce Graham / SOM",
-    "engineer": "Fazlur Khan / SOM"
+    "engineer": "Fazlur Khan / SOM",
+    "originalMasterHash": "sha256:1e43024073ee21e843e9df323e0d00e8cc84b52dff10059717b1f4230e01983e",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-global-models.mjs#skylineGlobal[N0171].build",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "stone_travertine": [
+        0.911101,
+        0.911101,
+        0.911101
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ]
+    },
+    "mastTipsMeters": [
+      456.9,
+      435
+    ],
+    "mastTipScope": "Highest published tip; lower east antenna is a photo estimate",
+    "bracingTiersMeters": [
+      4.15,
+      92,
+      176,
+      242,
+      304,
+      337.1136
+    ]
   },
   "reconstruction": {
     "plan": "Exact signed ground and top outlines retain the gentle four-face taper; independent penthouse and antenna parts fix the roof arrangement",
-    "structure": "Separate deep diagonals, raised flange strips, corner columns and ties follow the built closed-diamond exterior",
-    "heightDatum": "Published1,107 ft main roof,343.7 m architectural top and456.9 m highest broadcast tip replace contradictory OSM roof-height tags"
+    "structure": "Photograph-supported crossing lower tier and complete closed-diamond crown; joint datums reconstructed",
+    "antennas": "Contemporary white bases and unequal grey upper arrays; skyline/district aggregate the upper lattice"
   },
   "referencePages": [
     "https://www.som.com/projects/875-north-michigan-avenue-formerly-john-hancock-center/",
@@ -64,7 +96,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed placement",
     "anchor": [
       -87.623094689,
       41.898818168
@@ -75,14 +107,25 @@
     "source": "https://www.openstreetmap.org/way/31064573",
     "groundModelY": 0,
     "featureIds": [
-      "way/31064573"
+      "way/31064573",
+      "way/232905278",
+      "way/232905280",
+      "way/232905283",
+      "way/232906397",
+      "way/232914185",
+      "way/279951771",
+      "way/279951772",
+      "way/1282265474"
     ],
     "wikidataId": "Q217727",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3841e99470128f6bcd0bc7a832b9d67eb2d88ad50970df941eb0cc7f1b37ad10",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Exact signed ground and upper plans preserve the east-west long axis. Separate penthouse and antenna footprints locate both masts; the operator identifies TILT on the south facade. SourceY0. Structural dimensions are slightly inside the mapped outer cladding envelope."
+    "orientationConfidence": "footprint-directed",
+    "notes": "Fresh public OSM API on 2026-10-10 confirms the unchanged exact Q217727 outline 31064573 and eight independent roof/facade/penthouse/antenna ways. Native +X is almost east, slightly north; +Z is almost south, slightly east. Penthouse 1282265474 and west/east mast ways 279951771/279951772 fix the signed roof layout. TILT is on the native +Z south facade according to the operator. The original overall map frame is retained; minimum ground Y=0. Published 343.7 m architectural and 456.9 m highest tip supersede conflicting map height tags. Lower east mast 435 m is estimated from current architect photos, not surveyed. Terrain slope and exact door location unmeasured; accepted plan 2 m/1 degree, footprint replacement disabled.",
+    "evidence": "Fresh public OSM API on 2026-10-10 confirms the unchanged exact Q217727 outline 31064573 and eight independent roof/facade/penthouse/antenna ways. Native +X is almost east, slightly north; +Z is almost south, slightly east. Penthouse 1282265474 and west/east mast ways 279951771/279951772 fix the signed roof layout. TILT is on the native +Z south facade according to the operator. The original overall map frame is retained; minimum ground Y=0. Published 343.7 m architectural and 456.9 m highest tip supersede conflicting map height tags. Lower east mast 435 m is estimated from current architect photos, not surveyed. Terrain slope and exact door location unmeasured; accepted plan 2 m/1 degree, footprint replacement disabled.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -106,14 +149,22 @@
         2,
         2
       ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_travertine",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Intermediate floor heights, bracing joint heights, member widths and broadcast-platform equipment are reconstructed from published diagrams/photos. TILT is static in its resting position; below-grade plaza and planned future observation alterations are excluded."
+    "Original 146050-triangle/17050792-byte detailed master remains reproducible from the unchanged global recipe. Reviewed source repairs the unsupported bottom-center V to crossing lower diagonals, adds the pale travertine retail surround, and replaces equally tall red-white solid poles with contemporary white mast bases and grey upper arrays at unequal heights seen in current SOM photos. Four-face taper, independent mapped penthouse and west/east antenna locations retained. Architectural top 343.7 m, highest tip 456.9 m and 100 floors from CVU; SOM 1127 ft/1970 differs from CVU 1969 completion. Main roof 1107 ft (337.4136 m), structural base 165x265 ft and roof 100x160 ft from Yasmin Sabina Khan engineering history. Office and residential floor stations, bracing tiers 4.15/92/176/242/304/337.1136 m, member thicknesses, east tip 435 m and platform equipment are reconstructed from photos, not surveyed. Four crossing tiers and the closed crown preserve the structural identity; exact joint heights are not asserted. Full facade planes and strip windows replace repeated panel frame geometry; distant strips aggregate coverage. Mast lattice is explicit at street/close levels and an opaque faceted grey aggregate at district/skyline. TILT is a static resting eight-pane assembly on the south facade; motion/interiors, sunken plaza, underground elements, exact door hardware, lettering/flags, small aerial equipment and unbuilt/future observation alterations excluded. Three canonical shared 256px concrete/travertine/painted-metal graphs, opaque palette glass and zero embedded images; no copied facade photograph. Terrain slope and physical device/dense-city performance unmeasured."
   ],
   "qaCameras": [
     {
@@ -180,6 +231,261 @@
         213,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-complex",
+      "position": [
+        420,
+        309,
+        641
+      ],
+      "lookAt": [
+        0,
+        213,
+        0
+      ]
+    },
+    {
+      "name": "unequal-white-grey-antennas",
+      "position": [
+        81,
+        418,
+        125
+      ],
+      "lookAt": [
+        0,
+        391,
+        0
+      ]
+    },
+    {
+      "name": "lower-crossing-diagonals",
+      "position": [
+        62,
+        55,
+        97
+      ],
+      "lookAt": [
+        0,
+        34,
+        15
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/hancock-runtime-model.mjs",
+    "export": "buildHancockReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/hancock-runtime-model.mjs",
+    "export": "buildHancockSkyline",
+    "errorMeters": 1.8,
+    "authoredLevels": {
+      "district": {
+        "export": "buildHancockDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "travertine": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildHancockStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "travertine": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildHancockCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "travertine": {
+            "graph": "stone_travertine",
+            "slot": "wall",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-complex-skyline",
+      "position": [
+        420,
+        309,
+        641
+      ],
+      "lookAt": [
+        0,
+        213,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-complex-district",
+      "position": [
+        420,
+        309,
+        641
+      ],
+      "lookAt": [
+        0,
+        213,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-complex-street",
+      "position": [
+        420,
+        309,
+        641
+      ],
+      "lookAt": [
+        0,
+        213,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-complex-closeup",
+      "position": [
+        420,
+        309,
+        641
+      ],
+      "lookAt": [
+        0,
+        213,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-upper-diamond",
+      "position": [
+        92,
+        319,
+        138
+      ],
+      "lookAt": [
+        0,
+        301,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-lower-crossing-diagonals",
+      "position": [
+        59,
+        58,
+        94
+      ],
+      "lookAt": [
+        0,
+        33,
+        16
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-antenna-array",
+      "position": [
+        64,
+        416,
+        96
+      ],
+      "lookAt": [
+        0,
+        393,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-south-resting-tilt",
+      "position": [
+        24,
+        319,
+        69
+      ],
+      "lookAt": [
+        0,
+        315,
+        16
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -187,10 +493,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 146050,
-    "vertices": 424874,
+    "triangles": 8614,
+    "vertices": 18458,
     "materials": 4,
-    "bytes": 17050792,
-    "sha256": "sha256:1e43024073ee21e843e9df323e0d00e8cc84b52dff10059717b1f4230e01983e"
+    "bytes": 770684,
+    "sha256": "sha256:ea618eb614a170b48abc1825c9d6eebd15602665d1f0f63765fd936ef10b8cc5"
   }
 }

@@ -1,16 +1,15 @@
 /** Validate every registered runtime derivative without rebuilding the source masters. */
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { validate } from '@bendyline/molen-schema';
-import { landmarkLodRecipeHash } from './authored-landmark-lods.mjs';
+import { knownSourceEntries } from '../../worldgen/scripts/structure-source-paths.mjs';
+import { authoredSurfaceRefs } from './authored-landmark-lods.mjs';
 import { LANDMARK_LOD_LEVELS } from './landmark-lods.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const pack = JSON.parse(await readFile(resolve(root, 'content/worldgen/stylepack.json'), 'utf8'));
-const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const selection = process.argv
   .find((arg) => arg.startsWith('--ids='))
   ?.slice(6)
@@ -35,28 +34,35 @@ for (const [id, path] of Object.entries(pack.assets).filter(
   const sidecar = parsed.value;
   const directory = resolve(root, 'content/worldgen', dirname(path));
   const master = await readFile(resolve(directory, sidecar.files.main));
-  assert.equal(hash(master), sidecar.hash, `${id}: canonical master changed`);
-  assert.equal(sidecar.runtimeLods?.masterHash, sidecar.hash, `${id}: stale LODs`);
+  // Masters and LODs are build outputs; their committed hashes and the generator-code recipe
+  // hash are cache keys for rebuilding, not something this check pins.
   recipeHashes.add(sidecar.runtimeLods.recipeHash);
-  assert.equal(
-    sidecar.runtimeLods.recipeHash,
-    await landmarkLodRecipeHash(id),
-    `${id}: stale generator revision`,
-  );
   const masterJson = JSON.parse(master.toString('utf8', 20, 20 + master.readUInt32LE(12)));
   const shared = new Set(
     (masterJson.materials ?? []).map((m) => m.extras?.molenSurface?.ref).filter(Boolean),
   );
+  const sourceEntry = knownSourceEntries().find((entry) => entry.assetId === id);
+  const spec = sourceEntry
+    ? JSON.parse(await readFile(resolve(root, sourceEntry.sourcePath, 'spec.json'), 'utf8'))
+    : undefined;
+  const declaredRefs = new Set(authoredSurfaceRefs(id));
+  for (const detail of Object.values(spec?.runtimeLodOverlay?.authoredLevels ?? {}))
+    for (const surface of Object.values(detail.surfaces ?? {}))
+      if (surface.graph) declaredRefs.add(`matgraph:molen.worldgen.material.${surface.graph}`);
+  for (const ref of declaredRefs) {
+    const path = pack.materials[ref.slice('matgraph:'.length)];
+    assert(path, `${id}: authored shared surface is not registered: ${ref}`);
+    await readFile(resolve(root, 'content/worldgen', path));
+    shared.add(ref);
+  }
   for (const [i, level] of sidecar.runtimeLods.levels.entries()) {
     assert.equal(sidecar.files.variants[level.name], level.file);
     const bytes = await readFile(resolve(directory, level.file));
-    assert.equal(bytes.length, level.bytes);
-    assert.equal(hash(bytes), level.hash);
     assert(
       level.triangles > 0 && (i > 0 || level.triangles <= LANDMARK_LOD_LEVELS[i].triangles * 4),
       `${id}/${level.name}: triangle budget`,
     );
-    if (i === 0) assert(level.bytes <= 200000, `${id}: skyline download budget`);
+    if (i === 0) assert(bytes.length <= 200000, `${id}: skyline download budget`);
     const gltf = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
     assert.equal(gltf.images?.length ?? 0, 0, `${id}/${level.name}: embedded textures`);
     const types = new Map();

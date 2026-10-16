@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.84,
+      "metallic": 0.08
+    },
+    "gold": {
+      "slot": "trim",
+      "graph": "metal_copper",
+      "roughness": 0.5,
+      "metallic": 0.55
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/bratislava-st-martin-model.mjs",
+    "export": "buildBratislavaSkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildBratislavaDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildBratislavaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildBratislavaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.84,
+            "metallic": 0.08
+          },
+          "gold": {
+            "slot": "trim",
+            "graph": "metal_copper",
+            "roughness": 0.5,
+            "metallic": 0.55
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -130,
+      94,
+      115
+    ],
+    "lookAt": [
+      0,
+      33,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-bratislava-skyline",
+      "position": [
+        -130,
+        94,
+        115
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-bratislava-district",
+      "position": [
+        -130,
+        94,
+        115
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-bratislava-street",
+      "position": [
+        -130,
+        94,
+        115
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-bratislava-closeup",
+      "position": [
+        -130,
+        94,
+        115
+      ],
+      "lookAt": [
+        0,
+        33,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 155.384861m;estimated floor 4.4m clears sampled footprint peak 4.005m and perimeter -4.81..4.01m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        17.10506053,
+        48.142001435
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 155.384861m;estimated floor 4.4m clears sampled footprint peak 4.005m and perimeter -4.81..4.01m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+    },
+    "bounds": [
+      17.1042,
+      48.1415,
+      17.1059,
+      48.1426
+    ],
+    "notes": "Standard DEM datum 155.384861m;estimated floor 4.4m clears sampled footprint peak 4.005m and perimeter -4.81..4.01m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+  },
+  "geographicNote": "Standard DEM datum 155.384861m;estimated floor 4.4m clears sampled footprint peak 4.005m and perimeter -4.81..4.01m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

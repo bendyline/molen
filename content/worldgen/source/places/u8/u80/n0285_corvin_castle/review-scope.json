@@ -1,0 +1,451 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "stone": "#b6b09d",
+      "trim": "#d2c5aa",
+      "roof": "#9d6050",
+      "roofPattern": "#a48c67",
+      "slate": "#636369",
+      "wood": "#9c7b55",
+      "recess": "#4d6178",
+      "paving": "#aaa59a",
+      "rock": "#a8a694"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "materialBudget": 6,
+    "identityFeatures": [
+      "Steep square gate roof with flared skirt beside patterned round tower",
+      "Four projecting palace oriels and varied red Gothic roofline",
+      "Long entrance bridge and detached square Neboisa tower joined by open arched gallery"
+    ],
+    "kind": "current",
+    "currentWorldEligible": true
+  },
+  "nativeAxes": {
+    "up": "+Y",
+    "lateral": "+X along cached long axis, toward main northern end",
+    "longitudinal": "+Z across courtyard; bridge projects toward -Z",
+    "origin": "Site anchor; Y0 standard PMTiles working datum."
+  },
+  "sourceFacts": {
+    "mapIdentity": "way/1327914056 exactQ126576",
+    "mappedEnvelopeMeters": [
+      125.819,
+      61.936
+    ],
+    "reportedGateHeightMeters": 22,
+    "gateHeightInterpretation": "Body estimate;primary definition unclear,roof14m estimated separately",
+    "paintedTowerHeightMeters": 30,
+    "smallTowerDiameterMeters": 6,
+    "neboisaGalleryMeters": [
+      35.5,
+      2.4,
+      15
+    ],
+    "courtYEstimate": 9,
+    "originalMasterHash": "sha256:4a40af1bb4f94a1349e8c0ccb4c02633956382953d69733285d014fb60b676d3",
+    "originalMasterRecipe": "packages/worldgen/scripts/corvin-castle-model.mjs#buildCorvinRuntime"
+  },
+  "reconstruction": {
+    "basis": "Inspected reference pictures and standard viewer PMTiles.",
+    "scope": "Bounded approximate current exterior."
+  },
+  "limitations": [
+    "Approximate current exterior from one inspected picture and standard viewer PMTiles, without survey accuracy or exact doorway/threshold fit.",
+    "Detailed original architectural master and recipe preserved; derivative reconstructs bounded foundations, a level court and bridge approach.",
+    "Roof pattern, openings, stone plinth and bridge gradient approximate. No interiors, trees, terrain cutouts or exact stream bank/water levels.",
+    "Five shared graphs plus an explicit dark glass slot; zero embedded images. Footprint replacement remains off; physical-device timing unmeasured."
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "anchor": [
+      22.888262641,
+      45.749130243
+    ],
+    "heading": 0.984834753738,
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Inspected aerial picture confirms steep red gate roof, patterned round tower, projecting palace oriels, long entrance bridge and detached Neboisa tower/gallery. Retained mapped envelope and standard viewer PMTiles set approximate location, scale and bridge-facing orientation. The working court remains above coarse ground on a bounded reconstructed plinth; bridge deck descends toward the PMTiles approach and pier bottoms extend below terrain. Anchor 22.888262641,45.749130243; heading 0.984834753738; standard PMTiles datum 255.94852799688616m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "reviewStatus": "Picture and PMTiles visual fit",
+    "notes": "Inspected aerial picture confirms steep red gate roof, patterned round tower, projecting palace oriels, long entrance bridge and detached Neboisa tower/gallery. Retained mapped envelope and standard viewer PMTiles set approximate location, scale and bridge-facing orientation. The working court remains above coarse ground on a bounded reconstructed plinth; bridge deck descends toward the PMTiles approach and pier bottoms extend below terrain. Anchor 22.888262641,45.749130243; heading 0.984834753738; standard PMTiles datum 255.94852799688616m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+    "terrainReference": {
+      "anchor": [
+        22.888262641,
+        45.749130243
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles sample; reconstructed floors."
+    }
+  },
+  "geographicNote": "Inspected aerial picture confirms steep red gate roof, patterned round tower, projecting palace oriels, long entrance bridge and detached Neboisa tower/gallery. Retained mapped envelope and standard viewer PMTiles set approximate location, scale and bridge-facing orientation. The working court remains above coarse ground on a bounded reconstructed plinth; bridge deck descends toward the PMTiles approach and pier bottoms extend below terrain. Anchor 22.888262641,45.749130243; heading 0.984834753738; standard PMTiles datum 255.94852799688616m. Floors are reconstructed and foundations extend below the coarse sampled ground.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "pmtiles-fit.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/corvin-runtime-model.mjs",
+    "export": "buildCorvinReviewedMaster"
+  },
+  "surfaceOverrides": {
+    "limestone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "slate": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "foliage": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "ref": "palette:#ffffff",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.8,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/corvin-runtime-model.mjs",
+    "export": "buildCorvinReviewedSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCorvinReviewedDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildCorvinReviewedStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCorvinReviewedCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "limestone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "slate": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "foliage": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "ref": "palette:#ffffff",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-corvin-skyline",
+      "position": [
+        155,
+        105,
+        155
+      ],
+      "lookAt": [
+        0,
+        17,
+        -22
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-corvin-district",
+      "position": [
+        155,
+        105,
+        155
+      ],
+      "lookAt": [
+        0,
+        17,
+        -22
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-corvin-street",
+      "position": [
+        155,
+        105,
+        155
+      ],
+      "lookAt": [
+        0,
+        17,
+        -22
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-corvin-closeup",
+      "position": [
+        155,
+        105,
+        155
+      ],
+      "lookAt": [
+        0,
+        17,
+        -22
+      ],
+      "reviewLod": "closeup"
+    }
+  ],
+  "mediumFiContext": {
+    "groundY": -22,
+    "scale": 1.75,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace"
+  },
+  "camera": {
+    "position": [
+      155,
+      105,
+      155
+    ],
+    "lookAt": [
+      0,
+      17,
+      -22
+    ]
+  },
+  "qaCameraOverrides": {
+    "bridge-gate-and-painted-tower": {
+      "position": [
+        104,
+        52.8,
+        -125
+      ],
+      "lookAt": [
+        31,
+        24.8,
+        -20
+      ]
+    },
+    "gothic-palace-four-oriels": {
+      "position": [
+        -16,
+        38.8,
+        -79
+      ],
+      "lookAt": [
+        5,
+        24.8,
+        -23
+      ]
+    },
+    "neboisa-open-gallery": {
+      "position": [
+        -95,
+        37.8,
+        -63
+      ],
+      "lookAt": [
+        -35,
+        16.8,
+        -21
+      ]
+    },
+    "courtyard-two-level-loggia": {
+      "position": [
+        8,
+        29.8,
+        8
+      ],
+      "lookAt": [
+        4,
+        15.8,
+        -14
+      ]
+    },
+    "chapel-and-white-tower": {
+      "position": [
+        52,
+        55.8,
+        90
+      ],
+      "lookAt": [
+        10,
+        24.8,
+        18
+      ]
+    },
+    "roofline-and-open-court": {
+      "position": [
+        60,
+        93.8,
+        72
+      ],
+      "lookAt": [
+        12,
+        21.8,
+        0
+      ]
+    }
+  }
+}

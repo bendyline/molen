@@ -1,0 +1,399 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.86,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "foundation",
+      "graph": "stone_sandstone",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "spire": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.82,
+      "metallic": 0.04
+    },
+    "metal": {
+      "slot": "trim",
+      "graph": "metal_painted",
+      "roughness": 0.75,
+      "metallic": 0.08
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.3,
+      "metallic": 0.12
+    },
+    "lawn": {
+      "slot": "wall",
+      "localRef": "palette:#ffffff",
+      "roughness": 1,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/moritzburg-castle-model.mjs",
+    "export": "buildMoritzburgSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMoritzburgDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.82,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildMoritzburgStreet",
+        "errorMeters": 0.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.82,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMoritzburgCloseup",
+        "errorMeters": 0.08,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.82,
+            "metallic": 0.04
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.08
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          },
+          "lawn": {
+            "slot": "wall",
+            "localRef": "palette:#ffffff",
+            "roughness": 1,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      266,
+      178,
+      -213
+    ],
+    "lookAt": [
+      1,
+      8,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-moritzburg-skyline",
+      "position": [
+        266,
+        178,
+        -213
+      ],
+      "lookAt": [
+        1,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-moritzburg-district",
+      "position": [
+        266,
+        178,
+        -213
+      ],
+      "lookAt": [
+        1,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-moritzburg-street",
+      "position": [
+        266,
+        178,
+        -213
+      ],
+      "lookAt": [
+        1,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-moritzburg-closeup",
+      "position": [
+        266,
+        178,
+        -213
+      ],
+      "lookAt": [
+        1,
+        8,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Exterior and source-terrain fit inspected; corrected current geographic/shared views pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        13.679486578,
+        51.167560353
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 equals standard viewer DEM172.5507m at castle anchor. Flat islandY0.6m, terraceY5m, stairs and short bridges are approximate attachments; no survey or water-level guarantee."
+    },
+    "bounds": [
+      13.6778,
+      51.16625,
+      13.6812,
+      51.1688
+    ],
+    "notes": "Signed low main plan and current component/island polygons establish approximate fit; west chapel, east projecting range and south town bridge distinguish facing. NativeX follows N/S bridge axis to meet viewer suppression convention.0.8m low part is not palace height.",
+    "replaceRoads": {
+      "length": 266.8920010305177,
+      "width": 16,
+      "outline": [
+        [
+          -129.60794360150027,
+          -0.7959579744366096
+        ],
+        [
+          -123.3237410806224,
+          -0.7959579744366096
+        ],
+        [
+          -123.3237410806224,
+          3.1840420255633903
+        ],
+        [
+          127.25042569514851,
+          0.5901996685431983
+        ],
+        [
+          127.25042569514851,
+          -3.3898003314568017
+        ],
+        [
+          137.28405742901745,
+          -3.3898003314568017
+        ],
+        [
+          137.28405742901745,
+          4.610199668543198
+        ],
+        [
+          127.25042569514851,
+          4.610199668543198
+        ],
+        [
+          127.25042569514851,
+          0.6301996685431983
+        ],
+        [
+          -123.3237410806224,
+          3.2240420255633904
+        ],
+        [
+          -123.3237410806224,
+          7.204042025563391
+        ],
+        [
+          -129.60794360150027,
+          7.204042025563391
+        ]
+      ]
+    },
+    "groundContactBasis": "Source-terrain and isolated views inspected. NativeY0 follows retained standard viewer DEM at anchor; islandY0.6, terraceY5 and descending axial ramps are approximate attachments. Foundation skirts follow coarse DEM with0.15m overlap; no surveyed water-level or terrain-carving claim."
+  },
+  "geographicNote": "Retained exact-QID low main plan and current PMTiles components, island park and two bridge segments control approximate plan/scale. Facade, roof profiles, terrace levels and water/DEM joins remain exterior-picture estimates; no surveyed fidelity claimed. © OpenStreetMap contributors, ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png",
+    "road-fit-report.json"
+  ]
+}

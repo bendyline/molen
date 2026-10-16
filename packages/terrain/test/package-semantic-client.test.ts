@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   createProfiledTerrainPackageSemanticLayers,
   createTerrainPackageSemanticLayers,
@@ -67,6 +67,93 @@ const archive: TerrainTileArchive = {
 };
 
 describe('terrain package semantic layer wiring', () => {
+  it('adds retrieval after separate map joins, shares downloads and leaves water independent', async () => {
+    const pkg = descriptor();
+    pkg.coordinateSpace = {
+      kind: 'geospatial',
+      crs: 'EPSG:3857',
+      ellipsoid: 'WGS84',
+      bounds: [-180, -85, 180, 85],
+    };
+    pkg.agriculture = {
+      level: 8,
+      source: 'fixture',
+      year: 2021,
+      urlTemplate: 'https://test.invalid/{z}/{x}/{y}.json',
+    };
+    if (pkg.landcover) pkg.landcover.source = { kind: 'pmtiles', path: 'land.pmtiles' };
+    const localArchive: TerrainTileArchive = {
+      ...archive,
+      async getZxy() {
+        return { data: new Uint8Array([1]).buffer };
+      },
+    };
+    const download = vi.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          format: 'molen/agriculture-grid@1',
+          level: 8,
+          x: 0,
+          z: 0,
+          resolution: 1,
+          source: 'fixture',
+          year: 2021,
+          palette: [{}, {}],
+          runs: [1, 1],
+        }),
+      ),
+    );
+    const observed: string[][] = [];
+    const renderer = {
+      createTile(tile: ReturnType<typeof createEmptyTerrainSemanticTile>) {
+        observed.push(tile.landcover.map((f) => f.class));
+        return undefined;
+      },
+    };
+    try {
+      const opened = await createTerrainPackageSemanticLayers(pkg, {
+        landcoverArchive: localArchive,
+        featuresArchive: { ...localArchive },
+        decoder: {
+          decode(_data, context) {
+            const tile = createEmptyTerrainSemanticTile();
+            if (context.content === 'landcover')
+              tile.landcover = [
+                {
+                  class: 'forest',
+                  polygons: [
+                    {
+                      outer: [
+                        [0, 0],
+                        [1, 0],
+                        [1, 1],
+                        [0, 1],
+                      ],
+                    },
+                  ],
+                },
+              ];
+            return tile;
+          },
+        },
+        landcoverLayer: { renderer },
+        featuresLayer: { renderer },
+        waterLayer: { renderer },
+      });
+      const context = {
+        address: { level: 8, x: 0, z: 0 },
+        signal: new AbortController().signal,
+      } as TerrainPyramidTileLayerContext;
+      await opened.layers.find((layer) => layer.category === 'hydrology')?.createTile(context);
+      expect(download).not.toHaveBeenCalled();
+      for (const category of ['human-feature', 'classification'])
+        await opened.layers.find((layer) => layer.category === category)?.createTile(context);
+      expect(download).toHaveBeenCalledTimes(1);
+      expect(observed).toEqual([[], ['farmland', 'forest'], ['farmland', 'forest']]);
+    } finally {
+      download.mockRestore();
+    }
+  });
   it('joins separate sidecars for Human surfaces and mapped trees in classification', async () => {
     const pkg = descriptor();
     if (pkg.landcover) pkg.landcover.source = { kind: 'pmtiles', path: 'land.pmtiles' };

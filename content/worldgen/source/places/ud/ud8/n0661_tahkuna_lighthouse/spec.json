@@ -5,7 +5,7 @@
   "wikidataId": "Q3361471",
   "size": [
     9.3,
-    42.6,
+    45.2,
     10
   ],
   "smoothNormalSlots": [
@@ -14,11 +14,12 @@
   ],
   "visualBrief": "White cast-iron taper with the distinctive staggered grid of raised joint-cover battens, four narrow window columns with little pediments, curved bracketed gallery, white plate watchroom, cylindrical glazed lantern with an external cleaning cage, and the current red ribbed dome.",
   "sourceFacts": {
-    "heightMeters": 42.6,
+    "heightMeters": 45.2,
     "baseDiameterApproxMeters": 8.95,
     "topShaftDiameterApproxMeters": 4,
     "year": 1875,
-    "basis": "Municipal destination and Lighthouse Society identify42.6m tower height. Current museum aerial and Society close photograph govern the red dome, cast-iron grid, pedimented openings and gallery arrangement. Diameter is photo-scaled, consistent with the2015 Estonian Post anniversary description reproduced by the philatelic society. Museum sea-height wording and Society live light-height table differ; those values are not substituted for tower height."
+    "basis": "Current national navigation aid645 record explicitly gives45.2m above ground; municipal/history42.6m is retained as conflicting earlier publication. Adopt current authority dimension;46.6m light height above chart zero is separate. Diameter and small fittings are photo-proportioned.",
+    "priorPublishedHeightMeters": 42.6
   },
   "referencePages": [
     "https://hiiumaa.ee/objekt/tahkuna-tuletorn/",
@@ -38,7 +39,11 @@
     "elevationMode": "terrain-contact",
     "status": "preview-proposal",
     "source": "https://www.openstreetmap.org/node/3380792473",
-    "notes": "Exact-QID mapped lighthouse node fixes tower center. Circular shaft and four approximately quadrantal window columns make silhouette invariant under heading. Main entry/window column is reconstructed toward the southern station approach; its precise small angle is not a mapped entrance measurement."
+    "notes": "Exact-QID mapped lighthouse node fixes tower center. Circular shaft and four approximately quadrantal window columns make silhouette invariant under heading. Main entry/window column is reconstructed toward the southern station approach; its precise small angle is not a mapped entrance measurement.",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f075a52f5e1e518ccc53430af17cedbbecf8ad2be21a1942d5e568925aa5d30f",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors. Original reconstructed circular envelope under repository license."
   },
   "limitations": [
     "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
@@ -97,6 +102,32 @@
         20,
         0
       ]
+    },
+    {
+      "name": "current-whole-tower",
+      "position": [
+        42,
+        30,
+        58
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "current-lantern",
+      "position": [
+        8,
+        44.563380281690144,
+        10
+      ],
+      "lookAt": [
+        0,
+        41.38028169014085,
+        0
+      ]
     }
   ],
   "referenceRights": "Original geometry and shared procedural materials. Official photographs are research references only; no reference imagery or third-party mesh is embedded or redistributed.",
@@ -108,6 +139,174 @@
   "assetId": "molen.worldgen.structure.n0661_tahkuna_lighthouse",
   "category": "lighthouse",
   "quality": "detailed",
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage"
+  },
+  "appearance": {
+    "identity": "White tapered cast-iron tower, raised staggered plate joints, quadrantal pedimented windows, bracketed gallery, glazed lantern and current red dome.",
+    "epoch": "Current exterior photos, authority aid645 record updated2026-09-01.",
+    "master": "Original61870-triangle platework recipe retained; current source scales height from42.6m to45.2m using the explicit source-local builder. Historical unscaled master remains reproducible.",
+    "exclusions": "Detached station buildings, fence, optics display, interior stair, exact fitting dimensions, engineering ground contact."
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/tahkuna-current-model.mjs",
+    "export": "buildTahkunaCurrent"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tahkuna-current-model.mjs",
+    "export": "buildTahkunaSkyline",
+    "errorMeters": 0.9,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTahkunaDistrict",
+        "errorMeters": 0.9,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      },
+      "street": {
+        "export": "buildTahkunaStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.62,
+            "metallic": 0
+          },
+          "concrete": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "graph": "wood_plain",
+            "slot": "trim",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "localRef": "palette:#ffffff",
+            "slot": "window",
+            "roughness": 0.24,
+            "metallic": 0.14
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "near-lantern-district",
+      "position": [
+        8,
+        44.563380281690144,
+        10
+      ],
+      "lookAt": [
+        0,
+        41.38028169014085,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "near-lantern-street",
+      "position": [
+        8,
+        44.563380281690144,
+        10
+      ],
+      "lookAt": [
+        0,
+        41.38028169014085,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "near-plates-district",
+      "position": [
+        10,
+        20.15962441314554,
+        12
+      ],
+      "lookAt": [
+        0,
+        19.098591549295776,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "near-plates-street",
+      "position": [
+        10,
+        20.15962441314554,
+        12
+      ],
+      "lookAt": [
+        0,
+        19.098591549295776,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "near-entry-district",
+      "position": [
+        9,
+        5.305164319248826,
+        12
+      ],
+      "lookAt": [
+        0,
+        2.1220657276995305,
+        2
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "near-entry-street",
+      "position": [
+        9,
+        5.305164319248826,
+        12
+      ],
+      "lookAt": [
+        0,
+        2.1220657276995305,
+        2
+      ],
+      "reviewLod": "street"
+    }
+  ],
   "actualBounds": {
     "min": [
       -4.650000095367432,
@@ -116,9 +315,16 @@
     ],
     "max": [
       4.650000095367432,
-      42.599998474121094,
+      45.20000076293945,
       5.059999942779541
     ]
+  },
+  "mesh": {
+    "triangles": 61870,
+    "vertices": 119700,
+    "materials": 4,
+    "bytes": 5054460,
+    "sha256": "sha256:0ef22f29db5e27805ed465f71042930e6c5a3d1ed8122629e95cc00bbba4e8e0"
   },
   "geometrySource": "Original component-authored exterior mesh using cited dimensional evidence and separately described photo/map reconstructions. No downloaded mesh, texture or reference image is embedded.",
   "sourceLicense": "Original geometry under the repository license. Cited sources retain their own rights; OSM-derived axes/footprint evidence © OpenStreetMap contributors, ODbL 1.0.",

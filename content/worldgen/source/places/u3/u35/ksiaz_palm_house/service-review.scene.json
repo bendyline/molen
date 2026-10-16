@@ -1,0 +1,212 @@
+{
+  "format": "molen/scene@3",
+  "name": "Lubiechów Palm House and service buildings — flat-ground registration review",
+  "seed": "KSI_L01",
+  "tickRate": 30,
+  "entities": [
+    {
+      "id": "ground",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.15,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            440,
+            0.2,
+            420
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#8aa065",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "environment",
+      "components": {
+        "environment": {
+          "ambient": {
+            "sky": "#c4dcec",
+            "ground": "#7a7258",
+            "intensity": 2
+          },
+          "sun": {
+            "direction": [
+              -8,
+              14,
+              9
+            ],
+            "color": "#fff1d8",
+            "intensity": 3.5,
+            "castShadow": true
+          },
+          "background": "#c4dcec",
+          "toneMapping": "neutral",
+          "exposure": 1,
+          "shadows": "high"
+        }
+      }
+    },
+    {
+      "id": "ksiaz_palm_house",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.ksiaz_palm_house",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ksiaz_palm_administration",
+      "components": {
+        "transform": {
+          "pos": [
+            -162.81432594163797,
+            0,
+            37.84412775040358
+          ],
+          "rot": [
+            0,
+            0.009509356506195868,
+            0,
+            0.999954785047223
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.ksiaz_palm_administration",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ksiaz_palm_utility",
+      "components": {
+        "transform": {
+          "pos": [
+            -163.25253808555786,
+            0,
+            76.0646413969484
+          ],
+          "rot": [
+            0,
+            0.09563162868932273,
+            0,
+            0.995416792903469
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.ksiaz_palm_utility",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ksiaz_palm_residence",
+      "components": {
+        "transform": {
+          "pos": [
+            -172.5637032156667,
+            0,
+            117.09792688766568
+          ],
+          "rot": [
+            0,
+            -0.07580209516609336,
+            0,
+            0.9971228822810309
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.ksiaz_palm_residence",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ksiaz_palm_boiler_range",
+      "components": {
+        "transform": {
+          "pos": [
+            -0.20103719282545407,
+            0,
+            -34.2219480660514
+          ],
+          "rot": [
+            0,
+            -1.1360042189573181e-7,
+            0,
+            0.9999999999999936
+          ]
+        },
+        "renderable": {
+          "kind": "gltf",
+          "ref": "molen.worldgen.structure.ksiaz_palm_boiler_range",
+          "shadows": {
+            "cast": true,
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "camera": {
+    "mode": "fixed",
+    "position": [
+      170,
+      175,
+      235
+    ],
+    "lookAt": [
+      -51,
+      4,
+      26
+    ],
+    "fov": 46
+  },
+  "physics": {
+    "engine": "none"
+  }
+}

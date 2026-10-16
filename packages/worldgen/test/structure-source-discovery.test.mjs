@@ -2,7 +2,11 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { afterEach, beforeEach, expect, it } from 'vitest';
-import { checkSourceRegistry } from '../scripts/structure-model-files.mjs';
+import {
+  authoredPlaceEntries,
+  checkSourceRegistry,
+  modelInputHash,
+} from '../scripts/structure-model-files.mjs';
 
 let dir;
 beforeEach(async () => {
@@ -39,4 +43,28 @@ it('rejects missing registered bundles while retaining research-only registered 
   await mkdir(join(dir, sourcePath), { recursive: true });
   await writeFile(join(dir, sourcePath, 'map-frame.json'), '{}');
   await expect(checkSourceRegistry(options)).resolves.toBeUndefined();
+});
+
+it('includes explicitly selected auxiliary components without sweeping in other site bundles', () => {
+  const core = { candidateId: 'N0291', collection: 'next-1000' },
+    gate = { candidateId: 'KSI_A01', collection: 'site-structures' },
+    legacy = { candidateId: 'A02', collection: 'site-structures' };
+  expect(authoredPlaceEntries([core, gate, legacy])).toEqual([core]);
+  expect(authoredPlaceEntries([core, gate, legacy], ['KSI_A01'])).toEqual([core, gate]);
+});
+
+it('keeps model input hashes stable when captures change but invalidates edited geometry controls', async () => {
+  const spec = { title: 'Fixture', mesh: { sha256: 'built-a' }, actualBounds: { min: [0, 0, 0] } };
+  await writeFile(join(dir, 'spec.json'), JSON.stringify(spec));
+  await writeFile(join(dir, 'geometry.json'), JSON.stringify({ width: 12 }));
+  const id = 'molen.worldgen.structure.input_hash_fixture',
+    before = await modelInputHash(dir, id);
+  await writeFile(join(dir, 'medium-fi-report.json'), JSON.stringify({ frames: ['first'] }));
+  await writeFile(join(dir, 'capture-report.json'), JSON.stringify({ frames: ['first'] }));
+  await writeFile(join(dir, 'shared-capture-report.json'), JSON.stringify({ frames: ['first'] }));
+  expect(await modelInputHash(dir, id)).toBe(before);
+  await writeFile(join(dir, 'medium-fi-report.json'), JSON.stringify({ frames: ['second'] }));
+  expect(await modelInputHash(dir, id)).toBe(before);
+  await writeFile(join(dir, 'geometry.json'), JSON.stringify({ width: 14 }));
+  expect(await modelInputHash(dir, id)).not.toBe(before);
 });

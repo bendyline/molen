@@ -10,22 +10,27 @@
     "latitude": 51.514444444,
     "longitude": -0.080277777
   },
-  "visualBrief": "The curved Gherkin envelope with six dark helical light-well bands, triangular glass subdivisions, external diagonal lattice, narrowed ground colonnade, circular revolving entrance pavilions and rounded glazed crown.",
+  "visualBrief": "Budgeted curved skin retains the full silhouette, spiral tint bands and lower entrance pods; detail tiers restore facade lines and structural diagonals.",
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments"
+  },
   "size": [
-    56.83108901977539,
-    180.03189086914062,
-    56.823612213134766
+    57.045475006103516,
+    180.13437838107347,
+    57.03742980957031
   ],
   "actualBounds": {
     "min": [
-      -28.415544509887695,
-      0,
-      -28.411806106567383
+      -28.522737503051758,
+      -0.10531038790941238,
+      -28.518714904785156
     ],
     "max": [
-      28.415544509887695,
-      180.03189086914062,
-      28.411806106567383
+      28.522737503051758,
+      180.02906799316406,
+      28.518714904785156
     ]
   },
   "nativeAxes": {
@@ -37,7 +42,15 @@
   "sourceFacts": {
     "heightMeters": 180,
     "floors": 41,
-    "spirallingLightWells": 6
+    "spirallingLightWells": 6,
+    "originalMasterHash": "sha256:d66c621ed711c1ad27ccd810b2ef9fc4e80819c53376ef1c734a962466c75a0b",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-expansion-models.mjs#skylineExpansion[N0149].build",
+    "reviewScope": "Original94364-triangle9048116-byte source reproduced exactly; detailed original recipe preserved. Independent browser derivatives retain the distinguishing exterior with tiered detail.",
+    "pictureLedAdjustment": "Lower exterior supports use paired opposing diagonals to approximate the X-braced entrance visible in the inspected picture; member size remains reconstructed. Continuous spiral phase rotates the skin rings; this keeps dark bands connected at every tier."
+  },
+  "appearance": {
+    "identity": "Rounded glass Gherkin with six dark spiral bands, triangular lattice and tapered crown.",
+    "exclusions": "Interiors, underground works and neighboring city blocks."
   },
   "reconstruction": {
     "maximumDiameterMeters": 56.6,
@@ -52,7 +65,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed-approximation",
     "anchor": [
       -0.080332487,
       51.51447512
@@ -66,11 +79,21 @@
       "way/4959489"
     ],
     "wikidataId": "Q191161",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:486350b64c64f94bcc7ea463bbd9be36600707ca23a41617257a4cc456c8456d",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "The exact-QID circular envelope defines the center and 56.6 m maximum diameter. Rotational facade phase is provisional within six-fold symmetry; mapped height180 and primary engineering source override the inconsistent250 m Wikidata fact."
+    "notes": "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+    "terrainReference": {
+      "anchor": [
+        -0.08116043562967883,
+        51.51411465281223
+      ],
+      "modelHeight": 0,
+      "basis": "Approximate off-footprint PMTiles ground contact; coarse urban elevation may include building imprint."
+    }
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -97,11 +120,11 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Exact longitudinal curvature, facade twist phase and revolving entrance dimensions are reconstructed; the source 180 m envelope has precedence over erroneous aggregated height metadata."
+    "Retain180m height,56.6m widest diameter and the authored circular ground envelope from existing exact-QID controls. Inspected exterior pictures support the rounded tapered crown, six dark spiral bands and silver diagrid. Standard viewer PMTiles supplies approximate street/building fit; rotational facade phase remains approximate within sixfold symmetry. Off-footprint[-70,0] sets approximate ground contact, raw PMTiles heights stay separate from bounded radius40m preview correction. Door locations, member sections, glass colors and facade phase remain reconstructed.",
+    "Shared granite/painted-metal graphs and opaque glass PBR; no copied picture textures. Curved facade and spiral phase approximate. Far tiers merge facade grids; closer tiers retain diagrid. Physical-device timing pending."
   ],
   "qaCameras": [
     {
@@ -170,15 +193,161 @@
       ]
     }
   ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/gherkin-browser-model.mjs",
+    "export": "buildGherkinCloseup"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/gherkin-browser-model.mjs",
+    "export": "buildGherkinSkyline",
+    "errorMeters": 3,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGherkinDistrict",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      },
+      "street": {
+        "export": "buildGherkinStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGherkinCloseup",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_granite",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.4,
+            "metallic": 0.35
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.15,
+            "metallic": 0.25
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-n0149-skyline",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-n0149-district",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-n0149-street",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-n0149-closeup",
+      "position": [
+        220,
+        125,
+        270
+      ],
+      "lookAt": [
+        0,
+        72,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "importOptions": {
     "optimize": false
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 94364,
-    "vertices": 219816,
+    "triangles": 50732,
+    "vertices": 152196,
     "materials": 3,
-    "bytes": 9048116,
-    "sha256": "sha256:d66c621ed711c1ad27ccd810b2ef9fc4e80819c53376ef1c734a962466c75a0b"
+    "bytes": 6090228,
+    "sha256": "sha256:5e124fd1e7d1ce6554f91a4eb20fb5035fc8fa0788bd5aa2b6984971fda0b16f"
   }
 }

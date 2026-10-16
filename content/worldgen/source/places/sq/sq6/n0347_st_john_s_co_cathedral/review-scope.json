@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.97,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.86,
+      "metallic": 0.08
+    },
+    "pyramid": {
+      "slot": "roof",
+      "graph": "plaster_lime",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "bell": {
+      "slot": "trim",
+      "graph": "metal_standing_seam",
+      "roughness": 0.72,
+      "metallic": 0.3
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.02
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/valletta-st-john-model.mjs",
+    "export": "buildVallettaSkyline",
+    "errorMeters": 1.25,
+    "authoredLevels": {
+      "district": {
+        "export": "buildVallettaDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "pyramid": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      },
+      "street": {
+        "export": "buildVallettaStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "pyramid": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildVallettaCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.86,
+            "metallic": 0.08
+          },
+          "pyramid": {
+            "slot": "roof",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "bell": {
+            "slot": "trim",
+            "graph": "metal_standing_seam",
+            "roughness": 0.72,
+            "metallic": 0.3
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.02
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -104,
+      65,
+      92
+    ],
+    "lookAt": [
+      0,
+      19,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-valletta-skyline",
+      "position": [
+        -104,
+        65,
+        92
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-valletta-district",
+      "position": [
+        -104,
+        65,
+        92
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-valletta-street",
+      "position": [
+        -104,
+        65,
+        92
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-valletta-closeup",
+      "position": [
+        -104,
+        65,
+        92
+      ],
+      "lookAt": [
+        0,
+        19,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.05,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 55.671413m;estimated floor 2.4m clears sampled footprint peak 1.969m and perimeter 0.33..1.93m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        14.51262315,
+        35.8976958
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 55.671413m;estimated floor 2.4m clears sampled footprint peak 1.969m and perimeter 0.33..1.93m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+    },
+    "bounds": [
+      14.512,
+      35.8971,
+      14.5133,
+      35.8983
+    ],
+    "notes": "Standard DEM datum 55.671413m;estimated floor 2.4m clears sampled footprint peak 1.969m and perimeter 0.33..1.93m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking."
+  },
+  "geographicNote": "Standard DEM datum 55.671413m;estimated floor 2.4m clears sampled footprint peak 1.969m and perimeter 0.33..1.93m. Foundation follows coarse terrain. Exact plaza/portal thresholds remain approximate;no independent survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

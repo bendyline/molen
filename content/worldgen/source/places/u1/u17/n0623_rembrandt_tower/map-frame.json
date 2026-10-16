@@ -187,7 +187,7 @@
     "outputHorizontalCRS": "EPSG:4326",
     "library": "pyproj 3.7.2",
     "operation": "Inverse of RD New + Amersfoort to WGS 84 (4) + axis order change (2D)",
-    "accuracyMeters": 1.0,
+    "accuracyMeters": 1,
     "centerRD": [
       122963.24628413179,
       484231.64823105664
@@ -208,11 +208,36 @@
   "licenseUrl": "https://docs.3dbag.nl/en/copyright/",
   "dataUrl": "https://api.3dbag.nl/collections/pand/items/NL.IMBAG.Pand.0363100012113758",
   "dataSha256": "sha256:de3db7110f7de3c09d64cfb8eb4f537915ea79bb6bf17c4329d7633b0f59ee9f",
-  "basis": "Footprint center and native axes derive from the public BAG ground polygon. Arcam identifies the entrance toward the southern square; current entrance photographs and terrain integration remain to verify. Geometry is retained as attributed evidence; the procedural exterior is reconstructed independently.",
+  "basis": "Native+X east-northeast follows the retained BAG rear edge; native+Z south-southeast faces Amstelplein entrance. Arcam explicitly describes the southern canopy/entrance. Inspected north-up satellite shows canopy at that side; November2020 panorama from52.3447836,4.9175248 looking337.11degrees shows the projecting glazed canopy and five columns. Retained RD-to-WGS84 operation accuracy1m; heading0.3589785079857852rad is a mapped/photo reconstruction with approximately3degree uncertainty, not surveyed azimuth.",
   "limitations": [
     "RD-to-WGS84 operation has stated1m horizontal accuracy; the local meter frame is approximate at this site.",
     "3DBAG2023 LiDAR mesh has val3dity104/203 quality flags and1.10m RMSE; roof boundaries are not fabrication drawings.",
     "The reference ground elevation is a BAG estimate, not a measured facade sidewalk datum. Runtime uses terrain contact."
   ],
-  "geometryLabel": "3DBAG outline (© 3DBAG by tudelft3d and 3DGI)"
+  "geometryLabel": "3DBAG outline (© 3DBAG by tudelft3d and 3DGI)",
+  "coordinateSpace": "model-local-xz",
+  "mappedIdentity": {
+    "candidateId": "N0623",
+    "wikidataId": "Q2361620",
+    "featureIds": [
+      "way/44451577"
+    ]
+  },
+  "orientationControl": {
+    "status": "reviewed-reconstruction",
+    "reviewedOn": "2026-10-09",
+    "headingRadians": 0.3589785079857852,
+    "uncertaintyDegrees": 3,
+    "basis": "Native+X east-northeast follows the retained BAG rear edge; native+Z south-southeast faces Amstelplein entrance. Arcam explicitly describes the southern canopy/entrance. Inspected north-up satellite shows canopy at that side; November2020 panorama from52.3447836,4.9175248 looking337.11degrees shows the projecting glazed canopy and five columns. Retained RD-to-WGS84 operation accuracy1m; heading0.3589785079857852rad is a mapped/photo reconstruction with approximately3degree uncertainty, not surveyed azimuth.",
+    "referencePages": [
+      "https://www.zzdp.nl/nl/project/de-omval",
+      "https://arcam.nl/architectuur-gids/rembrandttoren/",
+      "https://www.rembrandttower.nl/nl/",
+      "https://repository.tudelft.nl/file/File_22b7fccf-7ca6-4d29-aa2d-6d47cf923d6c",
+      "https://api.3dbag.nl/collections/pand/items/NL.IMBAG.Pand.0363100012113758",
+      "https://docs.3dbag.nl/en/copyright/",
+      "https://www.openstreetmap.org/way/44451577"
+    ]
+  },
+  "limits": "Static medium-fi exterior preserves the original641134-triangle detailed draft and supplies a separately reviewed canopy/column source correction plus four complete browser levels. Published135m roof and150m tip are retained. 3DBAG2023 horizontal roof datums are approximate (1.10mRMSE and104/203 flags), not fabrication drawings. Thirty-five/36floor conventions and3.4mtypical versus3.49minterpolated shaft pitch remain unresolved. Granite joints, window returns, canopy dimensions, beacon and parked crane are reconstructed. Four corner crown towers use three proportional intervals rather than treating Arcam four-storey description as a measured floor plan. Hidden interiors, basement, neighboring towers, landscape, lighting animations and street furniture are excluded. Local host pavement fitting is required; terrain-contact preview is not a sidewalk survey and footprint replacement is disabled."
 }

@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The Fifth Avenue bronze-glass tower with its exact distinctive sawtooth shaft, five sequential planted lower terraces, dark horizontal bronze spandrels, gold storefront transoms and bronze entrance canopy.
+Complete Fifth Avenue bronze-glass sawtooth tower, six setback roofs, five planted upper terraces and mapped recessed entrance.
 
 ## Evidence and reconstruction
 
@@ -17,7 +17,7 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-19,067 triangles; 53,387 vertices; 5 material groups; 2,153,904 bytes. Native bounds: -27.400, 0.000, -17.848 to 26.352, 202.400, 17.848. Source hash: `sha256:c534470f26e47b0f2ea1ad40540fd82626bf3ff1d7139d297a493d32eb3ba93e`.
+19,198 triangles; 53,678 vertices; 5 material groups; 2,165,952 bytes. Native bounds: -27.400, 0.000, -17.848 to 26.352, 202.400, 17.848. Source hash: `sha256:00de91b3b671c742e55befb7994aa16fa356ccb6374486cf68953017f9e09fdb`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
 
@@ -29,7 +29,6 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0152` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Terrace planting and storefront bays are reconstructed. Building height202.4 m and58 physical stories follow CTBUH; the owner markets68 floors. Fine storefront signage and tenant interiors are omitted.
+- Whole medium-fi exterior preserves the seven mapped footprints,202.4m sawtooth shaft, six stepped roofs and five upper planted terraces. Original19067-triangle recipe remains reproducible in Git. Reviewed source moves its five previously floating planters onto their corresponding mapped roof strips and replaces repeated storefront slabs at the independently mapped main entry with an original recessed bronze/gold portal. Entrance dimensions, glazing panels, concave spandrels, planting species and exact present hardware are reconstructed. CTBUH202.4m/58physical floors differs from owner marketing68; completion dates differ across owner1983/1984 and CTBUH1982 and are left attributed rather than invented into geometry. Owner brochure2019 plans and exterior photographs establish entrance/sawtooth identity, not a current hardware survey. Skyline keeps full silhouette with graph-mean colors; district simplifies vertical bars and combines spandrel rows; street keeps full bay strips; closeup keeps original concave spandrels and planted forms. Zero embedded images; canonical shared surfaces only. Interiors, branding, separate adjoining East57th public terrace, street clock and temporary security barriers are outside this exterior asset. Ground grade, night rendering and physical-device timing remain unmeasured.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

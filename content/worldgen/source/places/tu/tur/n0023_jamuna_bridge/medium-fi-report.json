@@ -1,0 +1,1341 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0023_jamuna_bridge",
+  "sourceHash": "sha256:a3e86afbb0da5e4bfae5b35f6e554be03c4b6b03f428b62ecfdeeadda91f1879",
+  "runtimeHash": "sha256:a3c896dffb22fb2821062adfb4cace0f354e9a7abc73dd4e86f59f71f485d5b8",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 4556,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:5b32540488e450d7d3a81e1bf854c83c499e5413156398680f09c66d3012bda3",
+      "bytes": 93876,
+      "gzipBytes": 20767,
+      "triangles": 866,
+      "cpuBytes": 92460,
+      "gpuBytes": 92460,
+      "errorMeters": 8,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:fdaa4e1db6eda3e4898aecd78b0c72d1fe87345d1b0bf0ee01587731c883a6d5",
+      "bytes": 357700,
+      "gzipBytes": 111401,
+      "triangles": 3668,
+      "cpuBytes": 352740,
+      "gpuBytes": 352740,
+      "errorMeters": 5,
+      "drawCalls": 4
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:b8e819081a95b7aa343ba43933da6dfd2e65507165186f74004448f55d37d514",
+      "bytes": 1485868,
+      "gzipBytes": 468244,
+      "triangles": 14828,
+      "cpuBytes": 1479756,
+      "gpuBytes": 1479756,
+      "errorMeters": 2,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:9e0dc1a2e6bbccc999afbf77511b78f8b69bae8c8084e5c6abac5f9086eb755f",
+      "bytes": 6195268,
+      "gzipBytes": 1943191,
+      "triangles": 60188,
+      "cpuBytes": 6189132,
+      "gpuBytes": 6189132,
+      "errorMeters": 0.8,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-fit.terrain.json",
+      "hash": "sha256:b173dca6247268996bad3c63a2375fc30499b97fffc068ef8b0c2bc3a4c4f419"
+    },
+    "heightmap": {
+      "path": "terrain-fit.height.png",
+      "hash": "sha256:d2bd10d9892b8ca0a2f34b4136f890d073c6c8d0a5a8699e6c62fd7010bdb5e1"
+    }
+  },
+  "fixtureEntities": [
+    {
+      "id": "review-river",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            0.4001484852012746,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            7000,
+            0.06,
+            7000
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#858776",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:5940356f7dcd0aa4a92cfae00428efc666b900e876b3db39319d9e1c7b58aea3",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          959.9972,
+          546.2825,
+          1657.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:6c93ed1871c3499d5f28dc30823e27dfe849e41afd0394515cb65aaaee3152dd",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          959.9972,
+          546.2825,
+          1657.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:fb9a52052e73549d5f2339dcc7ccff3727fb353088b2ce5223d8f4d8e04bf37c",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          959.9972,
+          546.2825,
+          1657.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:6098c02da6ab80c3ecd84b95bc7f5aba712faa39b372fc02046c4d23c43777cf",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          959.9972,
+          546.2825,
+          1657.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:50f02355ca7a4bf83fc43b0d5d9e203d46edcc37e15913fff73d35205bf80e9b",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 48558,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:fc4c4d624154fc61e0a0d85fdd8383cb84ef07147115972a5e35facace760667",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48558,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:e9bc77a5a2b53cb136d1609ea438372502eb27997671ba925947e0ea1e835d8f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 48558,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:da87da014d101b18616371035c0201e69573ec2ee8fa9323441b356b1db729b8",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48558,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:a048e719cb944e6c1fbe5d99548c5b6bacfe241f4ccf790882b3df576ac49c1e",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 45756,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          3879.9972,
+          2026.2825,
+          6717.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:0bda93b2c6330177fcefd80da1c55545a341f20ffa3d7febf8e81c044b647df4",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45756,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          3879.9972,
+          2026.2825,
+          6717.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:9247d400f84f24a82fe768fa982df8158bb56db0263f995d099cb9b967bc8718",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 8,
+        "triangles": 45756,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          3879.9972,
+          2026.2825,
+          6717.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:620a7f646166692568c66540fce10a355220d59d20b57f953f7d33aec657d267",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45756,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          3879.9972,
+          2026.2825,
+          6717.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:7b96df2e14740abedba0661a76d9ee807a8de52dcff16ba4695b706c70917584",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 4,
+        "triangles": 41200,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          3879.9972,
+          2026.2825,
+          6717.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/south-elevation.png",
+      "hash": "sha256:ff718fd51cb37092d1634dcff04e089cb945c6ebb7bdd81c8a32a05be99f0e7d",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          210,
+          3900
+        ],
+        "lookAt": [
+          0,
+          18,
+          -90
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/plan-curve.png",
+      "hash": "sha256:cf457955c4dc1f74a1a78c977c935e548da1d0b3e24f5d3a54815dc9817e81da",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          0,
+          4200,
+          1
+        ],
+        "lookAt": [
+          0,
+          0,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/typical-span.png",
+      "hash": "sha256:bd2d1a2b23a2180e97dac49e440dbaeb0b4bbe63c1cccad6a659092c9e5f0269",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -119.14240257747677,
+          32.31962956657587,
+          -42.936619920888916
+        ],
+        "lookAt": [
+          -100.0655916780251,
+          20.491617754566576,
+          -133.12018854045346
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/box-soffit.png",
+      "hash": "sha256:b169b70539fcfda5a6a4e97c977cf911e0d520da06c1ef0dcefcfe9e4a7572c2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -94.91062950938067,
+          10.103166273496335,
+          -114.16268889979438
+        ],
+        "lookAt": [
+          -72.06636786415305,
+          17.499266643967314,
+          -133.3278187881515
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/pier-bearing.png",
+      "hash": "sha256:6bcb83ca4a06b26eaa26d79abc2afa3e7f42dc1319475323130de373dfc7cfd8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -49.68833315352611,
+          16.21357891555857,
+          -118.4466581030847
+        ],
+        "lookAt": [
+          -49.75418678624749,
+          14.50357891555857,
+          -133.44651354569032
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/north-pylon.png",
+      "hash": "sha256:3fcd67767461ac87f9c84986da79ef73ee9df0671bb466982e2b90347c12f5f8",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          49.783848499387624,
+          40.453578915558566,
+          -175.47112028905212
+        ],
+        "lookAt": [
+          49.659412530194885,
+          37.25357891555857,
+          -143.4713622323161
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/insulator-arms.png",
+      "hash": "sha256:171a041272dff026bf66cd07f147a3844e11ab390a2355f3d2b60fbc6355163f",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          38.000138201669174,
+          46.930206603759416,
+          -156.5110985073352
+        ],
+        "lookAt": [
+          49.660579117406066,
+          44.24607891555857,
+          -143.77135996409743
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/road-deck.png",
+      "hash": "sha256:735eb76623a11d8d6c21e5c482a544f238cdc11e29b6f10bc5b98f6f9c5919be",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -80.03853231596561,
+          24.182335362922608,
+          -129.27525610128578
+        ],
+        "lookAt": [
+          -45.06272832939716,
+          24.229283845299733,
+          -132.46618554673478
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/gas-suspension.png",
+      "hash": "sha256:b8e713685c8575c85ebe58637f38b12216b3bb80c97a2b21338d0415c8517ce4",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -111.92137625199578,
+          20.197577311328313,
+          -118.0118990458941
+        ],
+        "lookAt": [
+          -100.0072363594193,
+          21.106617754566575,
+          -126.32043893794798
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/west-approach.png",
+      "hash": "sha256:06897d80d790c2aef585ee774426c84111ad46d8031630c291aa3a4c2d1dc704",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 105076,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -2449.7674913432,
+          26.540032603198604,
+          172.82194630947924
+        ],
+        "lookAt": [
+          -2442.8194725122557,
+          8.896200353509053,
+          118.2479472443083
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/east-approach.png",
+      "hash": "sha256:20f2bb215319098cf0fd70ab3379a6a1a3f1dd1d67ef8f5d6f388986fcd801f7",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 105076,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          2449.7871600228577,
+          26.540032603198604,
+          171.59308298685755
+        ],
+        "lookAt": [
+          2442.811766524252,
+          8.896200353509053,
+          117.0225760698413
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-jamuna-skyline.png",
+      "hash": "sha256:758cf27d88575c79cd53760172c2ac7988c34f5df0b33f0e46c15bee48e111f1",
+      "state": {
+        "level": "skyline",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45756,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -1700,
+          1100,
+          3500
+        ],
+        "lookAt": [
+          0,
+          18,
+          -80
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-jamuna-district.png",
+      "hash": "sha256:fd8ed31f38c29da0b2a20020dd605a2f6cf9e1984719ab676e4b38f1dfdbc484",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48558,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -1700,
+          1100,
+          3500
+        ],
+        "lookAt": [
+          0,
+          18,
+          -80
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-jamuna-street.png",
+      "hash": "sha256:5cf405c8ad172343e23690d9a12611f1f39100d1c7b897c1dd53f3a5eddb0af6",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59718,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -1700,
+          1100,
+          3500
+        ],
+        "lookAt": [
+          0,
+          18,
+          -80
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/whole-jamuna-closeup.png",
+      "hash": "sha256:a1823075d39c5d775f78086209d21602136ae0e7be44272213b8d985e257e1bb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          -1700,
+          1100,
+          3500
+        ],
+        "lookAt": [
+          0,
+          18,
+          -80
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:78361aad803c7338090826bafbcaf5a5ae516337952cf4d6a342503bb8dd1489",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 45756,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:fc4c4d624154fc61e0a0d85fdd8383cb84ef07147115972a5e35facace760667",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 48558,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5ef68b33d00af55791b17771fe24f05e1786fb19c4055bab33ed1c2ce1aa7678",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 59718,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:72743c84ea9dfc85a67eb86206c0754ce99d36869cae07b6728b910f3f9772d0",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 105078,
+        "groundY": -11,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.terrain.json",
+          "heightmap": "content/worldgen/source/places/tu/tur/n0023_jamuna_bridge/terrain-fit.height.png"
+        },
+        "position": [
+          1939.9972,
+          1266.2825,
+          3357.2945
+        ],
+        "lookAt": [
+          -0.0028,
+          246.2825,
+          -2.7055
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_flemish": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.metal_stainless": 1,
+          "molen.worldgen.material.concrete_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.english_terrace",
+        "contextScale": 20,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": []
+}

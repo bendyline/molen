@@ -1,0 +1,991 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.n0646_eddystone_lighthouse",
+  "sourceHash": "sha256:2c3719ce88618358e4a74722c1ea2db13fc3505454356ea677da7c3cc6221c14",
+  "runtimeHash": "sha256:8392d878c60d751cdacede1b0790281fde523603177160a1058013a31d952c19",
+  "fixtureHash": "sha256:f55930ad1e6f65444be9b7980501d0eef3dc3c6d3706028226a99cf0509c2cb6",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 5312,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:f8a130fbbe904bf234790c57015a8f9527baca362448ff9e098836d81dda2cc7",
+      "bytes": 75516,
+      "gzipBytes": 15289,
+      "triangles": 998,
+      "cpuBytes": 74100,
+      "gpuBytes": 74100,
+      "errorMeters": 0.6,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:d1ec3e8bf215b9031c6b854b85f71be248fd24b510873683a492fb7a79b600a4",
+      "bytes": 279632,
+      "gzipBytes": 50745,
+      "triangles": 3710,
+      "cpuBytes": 273468,
+      "gpuBytes": 273468,
+      "errorMeters": 0.18,
+      "drawCalls": 5
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:976a92521dbdbba37b574499dd9d8e4160968e6c3c32022e29a8866352aab1d4",
+      "bytes": 1019240,
+      "gzipBytes": 184442,
+      "triangles": 13694,
+      "cpuBytes": 1013052,
+      "gpuBytes": 1013052,
+      "errorMeters": 0.025,
+      "drawCalls": 5
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:69ea3122cf4e900c6330d7babe87abc5af7ae59d49749aba3a5f7b63b3f89fb4",
+      "bytes": 1929636,
+      "gzipBytes": 327141,
+      "triangles": 24268,
+      "cpuBytes": 1926624,
+      "gpuBytes": 1926624,
+      "errorMeters": 0,
+      "drawCalls": 5
+    }
+  ],
+  "terrainFixture": {},
+  "fixtureEntities": [
+    {
+      "id": "review-water",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.05,
+            0
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            100,
+            0.1,
+            100
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#4c6e77",
+          "shadows": {
+            "receive": true
+          }
+        }
+      }
+    }
+  ],
+  "context": "Synthetic procedural neighbors at review Y=0; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:90edbaef418dd615f155b4e372c4c81d32791828e5968c58b8b455aeb90d9d91",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:96c48cfcc53c18df9a00b977621ab13013ee2aa30478443cb3fe8bc2c0f82b93",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:bacb9872ebc7220839e48f809e0956cba7b4bd905e4efc2bf94feca9de2dbd18",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:3504b968d8bba3ccd483e96b90f13f6c33c8c3164f017de79ada34f4c98042cc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          48,
+          26,
+          83
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:78253f9f32983afd18237faf093c0c90929343b56b403a3cd877057b2f94b39a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 9036,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:b46dfb8d9e11f84969de7479c38ce24420c516d2ff2f9326c6e79aef8d3339e3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 9036,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:9365657f20ea26432751063b69795a9de093e3fc926e4e00f0c95ec29d702bef",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 11,
+        "triangles": 9036,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:aff70b04e9ac2fc01e81e9d3963c021d73d64cec9318fdfe406ecf0751cc3b7f",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 9036,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:af220e2a74aad47f190ef0823de9dca22f5a4391dc4dbed0c0381ad8e8c86781",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 6324,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:d759f489039722491137427262e528abb592b0de13a07547cca8f488c821f79a",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 6324,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:aa11204987140c3599778c67ee779054c45057b8d22beb6dbd4f860a7cffe036",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 6324,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:9768b8da0eb1cecdaf93ebb2539f5ca37bd7737db0a3f1e0afd5ce3925496bee",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 6324,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:4d2e027b542c974d357baab2b5488a89acc614132ba6d5abc4c570dddbd95746",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 1012,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          194,
+          100,
+          336
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-helideck.png",
+      "hash": "sha256:cf37b10db9b5066d8b6f93217d39b5fb821c8d3d585b456c3d498b4818f035e0",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          14,
+          49,
+          17
+        ],
+        "lookAt": [
+          0,
+          45.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-deck-top.png",
+      "hash": "sha256:18de38a3d26b8b4aa0d41399ba2eff503316934331bd8c2b7acaab5a890c3b6a",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          13,
+          59,
+          15
+        ],
+        "lookAt": [
+          0,
+          48.3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-windows.png",
+      "hash": "sha256:d32b1b5af16aa56f9139991f324687bad92b4da14d16dad223b31aa55e9944bc",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          12,
+          29,
+          17
+        ],
+        "lookAt": [
+          0,
+          28,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/near-foundation.png",
+      "hash": "sha256:4be46243cdff4fd13c3b8fea2a48565642d496548bf3a6c9a285ccf11fa7b5cb",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          18,
+          9,
+          24
+        ],
+        "lookAt": [
+          0,
+          6,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/far-silhouette.png",
+      "hash": "sha256:a895aad72ba5312496330971654d8e01d44419ee9093d2e8708870ce925fc6a6",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          55,
+          36,
+          74
+        ],
+        "lookAt": [
+          0,
+          25,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/deck-district.png",
+      "hash": "sha256:321a94e3121677ab161c7a91bf11cf8754bf00e65bf3dceb3ae4966426fbdad4",
+      "state": {
+        "level": "district",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 9000,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          13,
+          59,
+          15
+        ],
+        "lookAt": [
+          0,
+          48.3,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/windows-street.png",
+      "hash": "sha256:8980448fc9f6b9f5d3d379cb23c3df6bc7b7d5f1317760b487c2535dfeba607d",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 19020,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          12,
+          29,
+          17
+        ],
+        "lookAt": [
+          0,
+          28,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/cage-street.png",
+      "hash": "sha256:02ceba0673a117aedb7b46f7b9a2fcf9416b71c619eaee1f3a3b84304ec4d074",
+      "state": {
+        "level": "street",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 19020,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          14,
+          49,
+          17
+        ],
+        "lookAt": [
+          0,
+          45.5,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:30119e4d1b46f6ff35593018b33dcef69c87144ebb585942c2378e7f1613069f",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 6324,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:b46dfb8d9e11f84969de7479c38ce24420c516d2ff2f9326c6e79aef8d3339e3",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 9036,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:16426bf15e8707b2ef7d4422615e055840f8c3321ff09617b9501ebdca25273b",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 19020,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:5d69baa7f1a9a3cf6f53f23fde5fd7f8336cffd48b5ce08e74872485866ab367",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 11,
+        "triangles": 29594,
+        "groundY": 0,
+        "terrainFixture": null,
+        "position": [
+          97,
+          62,
+          168
+        ],
+        "lookAt": [
+          0,
+          11,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.stone_limestone": 1,
+          "molen.worldgen.material.slate": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_ashlar": 1,
+          "molen.worldgen.material.metal_painted": 1,
+          "molen.worldgen.material.stone_granite": 1,
+          "molen.worldgen.material.wood_plain": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.cotswold_cottage",
+        "contextScale": 1
+      }
+    }
+  ],
+  "errors": []
+}

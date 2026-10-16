@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-The seven-tower complex includes a mapped stepped podium, warm stone hotel facades, six lower towers with tensioned roof tents and glass lanterns, plus the cardinal clock tower with four differently proportioned dials, V supports, a faceted glass jewel, gold spire and closed solid crescent.
+Compact Abraj complex retains the mapped podium and six surrounding towers, cardinally aligned offset clock tower, four dials, V supports, glass jewel, gold spire and solid crescent. Original detailed master remains reproducible; browser levels simplify repeated facades and ornaments.
 
 ## Evidence and reconstruction
 
@@ -18,11 +18,11 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-260,178 triangles; 618,688 vertices; 6 material groups; 25,398,552 bytes. Native bounds: -173.868, 0.000, -114.011 to 173.875, 601.000, 114.106. Source hash: `sha256:59969e64e806e43740f8944f12b72ad0ca2bac7108d1120aed8afc6ecd161a2c`.
+63,274 triangles; 189,822 vertices; 6 material groups; 7,596,512 bytes. Native bounds: -174.170, 0.000, -114.195 to 174.184, 601.000, 114.431. Source hash: `sha256:ac5a34e3d1894ecb3f0e75342de0e1af0deff72c9c66336b13905c0e271eb00b`.
 
 {"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Mapped whole-complex frame; clock shaft offset to exact-QID building:part center, faces cardinal directions"}
 
-The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
+Inspected a contractor clock-construction photograph and a completed lower-tower/tent photograph. They establish the large gold-edged dial, warm ribbed hotel facades and pale tensioned roof tents; they do not certify the completed crescent or exact whole-complex crown. Preserve original601m source height,23m crescent and existing mapped seven-tower/podium layout. Main clock shaft remains separately offset at[39.82553895,21.41812445] and internally aligned cardinally; six named lower parts retain their plans and authored heights. Standard viewer PMTiles confirms the Great Mosque/complex context. Off-podium PMTiles point[0,140]328.125m sets approximate ground contact; center333.3364m and nearby hills are coarse. Rectangular preview contact correction covers the complex, with raw terrain kept separately. Exact tent sag, clock typography, calligraphy, mosaic ornament, entrances and thresholds remain approximate or omitted. Existing601/607m datum disagreement remains documented; no new survey is claimed.
 
 ## Reproduce
 
@@ -30,7 +30,7 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0142` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Clock numerals use original geometric strokes at the manufacturer-described approximate7 m height; exact typographic outlines remain reconstructed. Arabic calligraphy and fine Islamic mosaic motifs are omitted. Roof tents are reconstructed within mapped tower plans. OSM records279 m for the two taller side towers while an older architect roof description says up to250 m; mapped heights are retained. Conflicting601/607 m main-tower datums are documented;601 m is used.
+- Inspected a contractor clock-construction photograph and a completed lower-tower/tent photograph. They establish the large gold-edged dial, warm ribbed hotel facades and pale tensioned roof tents; they do not certify the completed crescent or exact whole-complex crown. Preserve original601m source height,23m crescent and existing mapped seven-tower/podium layout. Main clock shaft remains separately offset at[39.82553895,21.41812445] and internally aligned cardinally; six named lower parts retain their plans and authored heights. Standard viewer PMTiles confirms the Great Mosque/complex context. Off-podium PMTiles point[0,140]328.125m sets approximate ground contact; center333.3364m and nearby hills are coarse. Rectangular preview contact correction covers the complex, with raw terrain kept separately. Exact tent sag, clock typography, calligraphy, mosaic ornament, entrances and thresholds remain approximate or omitted. Existing601/607m datum disagreement remains documented; no new survey is claimed.
+- Three common granite/painted-metal/canvas graphs reused across semantic slots, with opaque glass/dial PBR and no copied photographs. Low tiers merge small perimeter edges and facade grids, omit railings and minute ticks, and retain all towers and major crown forms. Closeup includes representative original geometric numeral strokes. Physical-device timings pending.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

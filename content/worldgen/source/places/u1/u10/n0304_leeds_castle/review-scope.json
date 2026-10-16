@@ -1,0 +1,447 @@
+{
+  "format": "molen/structure-review-scope@1",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "paletteSrgb": {
+      "wall": "#d3d5cc",
+      "stone": "#e0d9bd",
+      "roof": "#736256",
+      "wood": "#998565",
+      "glass": "#4d6178",
+      "paving": "#bbb3a2",
+      "lawn": "#86a36a"
+    },
+    "colorEncoding": "sRGB decoded to linear COLOR_0",
+    "flatSurfaceMeansLinear": {
+      "masonry": [
+        0.684938,
+        0.602377,
+        0.467682
+      ],
+      "stone": [
+        0.886354,
+        0.886354,
+        0.886354
+      ],
+      "tile": [
+        0.75445,
+        0.677231,
+        0.592195
+      ],
+      "wood": [
+        0.825128,
+        0.825128,
+        0.825128
+      ],
+      "paving": [
+        0.689355,
+        0.675093,
+        0.630521
+      ]
+    },
+    "materialBudget": 7,
+    "identityFeatures": [
+      "D-shaped Gloriette with open courtyard and raised bell turret",
+      "Rectangular New Castle with octagonal corner and taller front gate turrets",
+      "Two islands and covered bridge with two actual pointed water arches"
+    ],
+    "referenceState": "Current restored exterior without temporary scaffolding; measured2022 DTM context, reconstructed level courtyard and moat attachment."
+  },
+  "mediumFiContext": {
+    "groundY": "56.28",
+    "scale": "2.6",
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/leeds-castle-current-model.mjs",
+    "export": "buildLeedsCurrent"
+  },
+  "surfaceOverrides": {
+    "masonry": {
+      "slot": "wall",
+      "graph": "stone_sandstone",
+      "roughness": 0.96,
+      "metallic": 0
+    },
+    "stone": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_flat",
+      "roughness": 0.85,
+      "metallic": 0
+    },
+    "wood": {
+      "slot": "trim",
+      "graph": "wood_plain",
+      "roughness": 0.82,
+      "metallic": 0
+    },
+    "paving": {
+      "slot": "foundation",
+      "graph": "gravel",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "roughness": 0.2,
+      "metallic": 0.28,
+      "localRef": "palette:#ffffff"
+    },
+    "lawn": {
+      "slot": "wall",
+      "roughness": 0.98,
+      "metallic": 0,
+      "localRef": "palette:#ffffff"
+    }
+  },
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "previewEntities": [
+    {
+      "id": "review-lake",
+      "components": {
+        "transform": {
+          "pos": [
+            0,
+            -0.04,
+            -40
+          ],
+          "rot": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "scale": [
+            384,
+            0.06,
+            384
+          ]
+        },
+        "renderable": {
+          "kind": "primitive",
+          "ref": "box",
+          "materialRef": "palette:#527a85",
+          "shadows": {
+            "cast": false,
+            "receive": false
+          }
+        }
+      }
+    }
+  ],
+  "sourceDocuments": [
+    "map-frame.json",
+    "reference-metadata.json",
+    "surface-means.json",
+    "terrain-grid.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ],
+  "geographic": {
+    "status": "preview-proposal",
+    "replaceFootprint": false,
+    "elevationMode": "sea-level",
+    "elevationMeters": 56.28,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native +X East,+Z South and heading0 retain attributed castle relation6941053, component footprints, island and approach. Absolute base56.28m ODN uses the public Environment Agency DTM flat lake surface; current uniform bailey62.28m sits near the mapped path median62.245m. Floor, arch sections and current water level remain declared reconstruction. Host water/terrain must match ODN; no tidal sea-level assumption.",
+    "notes": "Native +X East,+Z South and heading0 retain attributed castle relation6941053, component footprints, island and approach. Absolute base56.28m ODN uses the public Environment Agency DTM flat lake surface; current uniform bailey62.28m sits near the mapped path median62.245m. Floor, arch sections and current water level remain declared reconstruction. Host water/terrain must match ODN; no tidal sea-level assumption.",
+    "groundCutout": {
+      "outline": [
+        [
+          -95.867,
+          49.416
+        ],
+        [
+          -78.781,
+          20.195
+        ],
+        [
+          -41.601,
+          -16.385
+        ],
+        [
+          28.448,
+          -81.963
+        ],
+        [
+          32.587,
+          -84.167
+        ],
+        [
+          36.886,
+          -86.26
+        ],
+        [
+          42.732,
+          -84.991
+        ],
+        [
+          48.906,
+          -80.694
+        ],
+        [
+          50.174,
+          -73.803
+        ],
+        [
+          55.839,
+          -17.164
+        ],
+        [
+          55.658,
+          -11.564
+        ],
+        [
+          54.648,
+          -6.154
+        ],
+        [
+          45.387,
+          17.935
+        ],
+        [
+          31.814,
+          47.891
+        ],
+        [
+          28.49,
+          52.032
+        ],
+        [
+          23.264,
+          55.25
+        ],
+        [
+          -2.894,
+          64.79
+        ],
+        [
+          -8.914,
+          66.704
+        ],
+        [
+          -38.89,
+          73.038
+        ],
+        [
+          -47.091,
+          74.419
+        ],
+        [
+          -52.47,
+          72.905
+        ]
+      ],
+      "basis": "Convex mapped castle/island/entrance envelope removes coarse host terrain beneath the authored island floor and connecting arches. Host lake polygons remain independent; detailed castle surface substitutes for removed ground while visible, restored on eviction."
+    },
+    "reviewStatus": "Current medium-fi exterior and horizontal traces inspected; absolute ODN attachment follows public DTM control with reconstructed floor and explicit host compatibility."
+  },
+  "geographicNote": "Native +X East,+Z South and heading0 retain attributed castle relation6941053, component footprints, island and approach. Absolute base56.28m ODN uses the public Environment Agency DTM flat lake surface; current uniform bailey62.28m sits near the mapped path median62.245m. Floor, arch sections and current water level remain declared reconstruction. Host water/terrain must match ODN; no tidal sea-level assumption.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "Native +X east,+Z south; original NE/SW authoring-axis rotation is baked into vertices, runtime heading0.",
+    "origin": "Original horizontal exact-QID anchor. Local Y0=56.28m ODN LiDAR flat lake surface; reconstructed6m bailey above moat; signed East/South native axes and runtime heading0."
+  },
+  "sourceFacts": {
+    "exactCastleRelation": 6941053,
+    "publishedDimensions": {
+      "primaryNumericArchitecturalHeightVerified": false,
+      "source": "https://historicengland.org.uk/listing/the-list/list-entry/1039919",
+      "architecturalControls": [
+        "Two islands; smaller D-shaped Gloriette has a small courtyard",
+        "Two-storey covered Gloriette bridge over two pointed arches",
+        "New Castle has octagonal corner and central gateway turrets",
+        "Maiden Tower and southwest gatehouse have two principal storeys; Maiden lower south storey",
+        "Low watergate has two vaulted passages to the moat"
+      ],
+      "precision": "Attributed architectural facts; no new survey and no claimed numeric heights"
+    },
+    "groundReference": {
+      "verticalDatum": "ODN",
+      "lakeMeters": 56.28,
+      "baileyPathMedianMeters": 62.245,
+      "source": "https://www.data.gov.uk/dataset/01b3ee39-da3f-47b6-83da-dc98e73a461f/lidar-composite-dtm-2022-1m"
+    },
+    "reconstructedFloor": {
+      "metersODN": 62.28,
+      "localY": 6,
+      "basis": "Level62.28m plane near LiDAR path median62.245m. Original4.4m above-moat estimate replaced by6m; original roof/window dimensions remain photographic estimates. Gloriette level is reconstructed with adjoining building, not measured from DTM under removed buildings."
+    },
+    "mappedApproachWay": 94361177
+  },
+  "limitations": [
+    "Current medium-fi exterior uses attributed current map traces, Historic England architectural descriptions and operator photos. Numeric roof/window/turret sections and arch dimensions remain photographic reconstruction; no surveyed architectural heights.",
+    "Public2022 composite DTM supplies flat lake56.28m ODN and mapped bailey path61.562–62.762m, median62.245m. Uniform62.28m castle floor is reconstructed. DTM building removal makes the Gloriette court too low; it is not used as a measured floor.",
+    "Original4.4m rise master is preserved. The current6m floor derivative stretches subfloor masonry and arches and raises upper architecture1.6m without changing horizontal footprints. Convex ground cutout prevents host terrain poking through the island/castle; matched ODN water and terrain are required.",
+    "Source4m review grid samples the public1m DTM using a2m nominal-accuracy horizontal transform. Terrain under the convex architectural/island envelope is sunk below water with6m grid padding, water cells lowered0.35m and an opaque flat review lake inserted. Raw heights remain in terrain-grid.json. Fixture is not current water survey, bathymetry or host-terrain certification.",
+    "Gloriette courtyard, covered-bridge/bath water arches and mapped gate route are open geometry. Window panes are stylized opaque blue-grey. Convex collision is not a walkthrough navigation mesh.",
+    "Fairfax Courtyard, detached service buildings, parkland, trees, fine tracery/heraldry/interiors, temporary2023scaffolding and full outer barbican archaeology are excluded. The model includes only the nearby mapped fragment.",
+    "Five existing shared256-square sandstone, raw limestone, flat clay tile, wood and gravel graphs; flat opaque glass/lawn, metric UVs and linear tints. No embedded/new photo texture or downloaded building mesh. Operator photographs remain private research.",
+    "Physical phone/laptop timing, downtown memory and seasonal water-level fluctuations remain unmeasured.",
+    "Mapped connecting footpath94361177 joins the entrance bridge to the outer approach. Width3m and final two level controls are reconstructed; first two heights sample the public DTM. Full barbican archaeology remains excluded."
+  ],
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/leeds-castle-current-model.mjs",
+    "export": "buildLeedsCurrentSkyline",
+    "errorMeters": 2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildLeedsCurrentDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28,
+            "localRef": "palette:#ffffff"
+          },
+          "lawn": {
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "buildLeedsCurrentStreet",
+        "errorMeters": 0,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28,
+            "localRef": "palette:#ffffff"
+          },
+          "lawn": {
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildLeedsCurrent",
+        "errorMeters": 0,
+        "surfaces": {
+          "masonry": {
+            "slot": "wall",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.82,
+            "metallic": 0
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "gravel",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.2,
+            "metallic": 0.28,
+            "localRef": "palette:#ffffff"
+          },
+          "lawn": {
+            "slot": "wall",
+            "roughness": 0.98,
+            "metallic": 0,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  }
+}

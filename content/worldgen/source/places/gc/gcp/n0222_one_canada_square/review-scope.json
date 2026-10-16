@@ -1,0 +1,490 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "brief": "One Canada Square: a linen-finish stainless tower with two inward steps at each corner, individually recessed paired windows, four narrower glazed upper storeys, west terrace, folded-louvre pyramid and four entrance elevations with revolving doors.",
+  "nativeAxes": {
+    "up": "+Y",
+    "longitudinal": "+X east-southeast along local street grid",
+    "front": "+Z south-southwest",
+    "origin": "Mapped lower-envelope center; upper tower center is X=-2.65 m; Y0 is terrain contact."
+  },
+  "sourceFacts": {
+    "architectTipHeightMeters": 235,
+    "councilTipHeightMeters": 236,
+    "completed": 1991,
+    "typicalFloorIntervalMeters": 4.11,
+    "level50FloorIntervalMeters": 4.71,
+    "punchedWindowMeters": [
+      1.8,
+      2.75
+    ],
+    "level35InternalDimensionMeters": 56.9,
+    "level47InternalDimensionMeters": 49.8,
+    "revolvingDoors": 9,
+    "bullnoseRevolvingDoors": 7,
+    "originalMasterHash": "sha256:14c413cae5e3836d384e695f2591c202663ad918600403622ad13f8b62147f0f",
+    "originalMasterRecipe": "packages/worldgen/scripts/one-canada-square-model.mjs#oneCanadaSquareStudy.build",
+    "sharedSurfaceMeansLinear": {
+      "stone_marble": [
+        0.916082784859,
+        0.916082784859,
+        0.916082784859
+      ],
+      "metal_stainless": [
+        0.818960257808,
+        0.822888570085,
+        0.822888570085
+      ]
+    }
+  },
+  "reconstruction": {
+    "centerXZ": [
+      -2.65,
+      0
+    ],
+    "outerShaftDimensionMeters": 57.912,
+    "outerUpperDimensionMeters": 51.2,
+    "facadeModuleMeters": 3.048,
+    "officeBase": 20.5,
+    "lowerLabels": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "terraceY": 189.01000000000002,
+    "upperFloors": [
+      189.01000000000002,
+      193.12000000000003,
+      197.23000000000002,
+      201.34000000000003,
+      206.05
+    ],
+    "roofY": 206.05,
+    "pyramidEave": 210.05,
+    "pyramidApex": 234.5,
+    "pyramidBaseMeters": 44.8,
+    "entranceAllocation": {
+      "north": 2,
+      "east": 3,
+      "south": 2,
+      "west": 2
+    },
+    "basis": "External 19-module shaft width reconciles the 56.9 m internal plan with the mapped west/east wall lines. The nominal 3 m engineering module is reconstructed as 3.048 m. Lower office datum, roof dimensions, ground-floor heights and door allocation are inferred, not measured.",
+    "materials": "Linen-finish steel uses the canonical stainless graph. Original geometry supplies joints, mullions, reveals, bullnoses and louvres; no photograph textures."
+  },
+  "limitations": [
+    "The unchanged original oneCanadaSquareStudy.build recipe reproduces its 964,326 triangles and 80,565,028 bytes. The separate reviewed master and four browser levels preserve the asymmetric base, nine open revolving entrances, seven curved bullnose panels, four rotor leaves per drum, two inward steps at each corner, 57.912 m shaft, 41 physical office intervals from 20.5 to 189.01 m, four narrower upper floors, west terrace, closed pyramid, and 235 m beacon. The reviewed master has closed rectangular 0.205 m window reveals. Browser close-up uses connected sloped surrounds and a 0.14 m glass recess; street uses a 0.12 m recess and every fourth office row with solid infill; district has sparse windows on closed steel; skyline omits punched window rhythm. The original recipe preserves paired glazing, transoms, fine joint returns, and hardware. Near drums use 16 sides, 12 curved sector samples, six bullnose samples and 16 by four foot rims. Far levels preserve entrances and leaves while reducing hardware. Street preserves the original seventeen upper mullion positions using folded strips with at most 0.25 m local projection change, and one metre plant louvre pitch. Stainless and marble graphs plus opaque and 52 percent clear palette glass produce four near groups; tinted marble approximates granite. Dimensions, office datum, pyramid proportions and exact entrance allocation remain reconstructions from plans and photographs rather than an as-built survey. The architect 235 m and registry 236 m height discrepancy remains an unresolved datum convention. Hidden interiors, station connection, adjacent retail pavilions, branding and marketing terrace furniture are excluded. Physical device and dense city timings remain pending."
+  ],
+  "surfaceOverrides": {
+    "stone": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "marble": {
+      "graph": "stone_marble",
+      "slot": "wall",
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "stainless": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "metal": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "recess": {
+      "graph": "metal_stainless",
+      "slot": "trim",
+      "roughness": 0.3,
+      "metallic": 1
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "ref": "palette:#ffffff",
+      "roughness": 0.2,
+      "metallic": 0.28
+    },
+    "clear_glass": {
+      "slot": "window",
+      "localRef": "palette:#feffff",
+      "ref": "palette:#feffff",
+      "roughness": 0.12,
+      "metallic": 0.05,
+      "opacity": 0.52,
+      "alphaMode": "BLEND",
+      "baseColorFactor": [
+        1,
+        1,
+        1,
+        0.52
+      ],
+      "doubleSided": true
+    }
+  },
+  "geographic": {
+    "heading": -0.172600059102,
+    "reviewStatus": "signed medium-fi asymmetriceastprojection/westterrace andnorthannotatedownerplans",
+    "orientationConfidence": "independent rawQID footprint/asymmetricbase andprimaryfloorplans",
+    "notes": "The fresh raw OSM way 5986754, tagged Q503477, matches the independently preserved ground outline within 0.002 m rounding. Anchor [-0.019514156, 51.50493389] and heading -0.172600059102 remain fixed. Native +X points ESE at bearing 99.889 degrees toward the asymmetric east entrance projection; +Z points SSW at 189.889 degrees. The shaft centre X=-2.65 m aligns its 57.912 m width with the mapped west and east wall lines, distinct from the 63.145 by 59.259 m base. Owner north-annotated level 35 and 47 plans were actually inspected: two equal inward corner steps, a 154 square metre west terrace and square upper plate independently establish the signed direction. Model Y0 approximates the local apron. Architect 235 m versus registry 236 m is explicitly unresolved, not a surveyed adjustment. The primary supplier confirms nine drums and seven bullnose panels; exact N2/E3/S2/W2 distribution is reconstructed. No footprint replacement.",
+    "evidence": "The fresh raw OSM way 5986754, tagged Q503477, matches the independently preserved ground outline within 0.002 m rounding. Anchor [-0.019514156, 51.50493389] and heading -0.172600059102 remain fixed. Native +X points ESE at bearing 99.889 degrees toward the asymmetric east entrance projection; +Z points SSW at 189.889 degrees. The shaft centre X=-2.65 m aligns its 57.912 m width with the mapped west and east wall lines, distinct from the 63.145 by 59.259 m base. Owner north-annotated level 35 and 47 plans were actually inspected: two equal inward corner steps, a 154 square metre west terrace and square upper plate independently establish the signed direction. Model Y0 approximates the local apron. Architect 235 m versus registry 236 m is explicitly unresolved, not a surveyed adjustment. The primary supplier confirms nine drums and seven bullnose panels; exact N2/E3/S2/W2 distribution is reconstructed. No footprint replacement.",
+    "replaceFootprint": false
+  },
+  "geographicNote": "The fresh raw OSM way 5986754, tagged Q503477, matches the independently preserved ground outline within 0.002 m rounding. Anchor [-0.019514156, 51.50493389] and heading -0.172600059102 remain fixed. Native +X points ESE at bearing 99.889 degrees toward the asymmetric east entrance projection; +Z points SSW at 189.889 degrees. The shaft centre X=-2.65 m aligns its 57.912 m width with the mapped west and east wall lines, distinct from the 63.145 by 59.259 m base. Owner north-annotated level 35 and 47 plans were actually inspected: two equal inward corner steps, a 154 square metre west terrace and square upper plate independently establish the signed direction. Model Y0 approximates the local apron. Architect 235 m versus registry 236 m is explicitly unresolved, not a surveyed adjustment. The primary supplier confirms nine drums and seven bullnose panels; exact N2/E3/S2/W2 distribution is reconstructed. No footprint replacement.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "review-scope.json",
+    "reference-metadata.json",
+    "georeferencing-baseline.json"
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/canada-runtime-model.mjs",
+    "export": "buildCanadaReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/canada-runtime-model.mjs",
+    "export": "buildCanadaSkyline",
+    "errorMeters": 1,
+    "authoredLevels": {
+      "district": {
+        "export": "buildCanadaDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "recess": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "ref": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "buildCanadaStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "recess": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "ref": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildCanadaCloseup",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "stone": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "marble": {
+            "graph": "stone_marble",
+            "slot": "wall",
+            "roughness": 0.78,
+            "metallic": 0
+          },
+          "stainless": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "metal": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "recess": {
+            "graph": "metal_stainless",
+            "slot": "trim",
+            "roughness": 0.3,
+            "metallic": 1
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "ref": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "clear_glass": {
+            "slot": "window",
+            "localRef": "palette:#feffff",
+            "ref": "palette:#feffff",
+            "roughness": 0.12,
+            "metallic": 0.05,
+            "opacity": 0.52,
+            "alphaMode": "BLEND",
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.52
+            ],
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "qaCameras": [
+    {
+      "name": "whole-reviewed-canada",
+      "position": [
+        -465,
+        180,
+        535
+      ],
+      "lookAt": [
+        -2.65,
+        117,
+        0
+      ]
+    }
+  ],
+  "qaLodCameras": [
+    {
+      "name": "whole-canada-skyline",
+      "position": [
+        -465,
+        180,
+        535
+      ],
+      "lookAt": [
+        -2.65,
+        117,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-canada-district",
+      "position": [
+        -465,
+        180,
+        535
+      ],
+      "lookAt": [
+        -2.65,
+        117,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-canada-street",
+      "position": [
+        -465,
+        180,
+        535
+      ],
+      "lookAt": [
+        -2.65,
+        117,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-canada-closeup",
+      "position": [
+        -465,
+        180,
+        535
+      ],
+      "lookAt": [
+        -2.65,
+        117,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-pyramid",
+      "position": [
+        50,
+        250,
+        55
+      ],
+      "lookAt": [
+        -2.65,
+        219,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-west-terrace",
+      "position": [
+        -55,
+        208,
+        25
+      ],
+      "lookAt": [
+        -29,
+        190,
+        4
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-north-entrances",
+      "position": [
+        -2.65,
+        6,
+        -45
+      ],
+      "lookAt": [
+        -2.65,
+        3,
+        -29.6
+      ],
+      "reviewLod": "closeup"
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_glazed",
+      "roughness": 0.64,
+      "metallic": 0
+    },
+    "copper": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.82,
+      "metallic": 0.1
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.29,
+      "metallic": 0.03
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/matthias-church-model.mjs",
+    "export": "buildMatthiasSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildMatthiasDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.64,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.1
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "buildMatthiasStreet",
+        "errorMeters": 0.17,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.64,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.1
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildMatthiasCloseup",
+        "errorMeters": 0.07,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.64,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.82,
+            "metallic": 0.1
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.29,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -108,
+      87,
+      109
+    ],
+    "lookAt": [
+      0,
+      32,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-matthias-skyline",
+      "position": [
+        -108,
+        87,
+        109
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-matthias-district",
+      "position": [
+        -108,
+        87,
+        109
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-matthias-street",
+      "position": [
+        -108,
+        87,
+        109
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-matthias-closeup",
+      "position": [
+        -108,
+        87,
+        109
+      ],
+      "lookAt": [
+        0,
+        32,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate exterior and standard terrain fit; exact thresholds, all architectural heights and inferred profiles remain unverified.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        19.034289841,
+        47.502003671
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewerDEM datum172.285905m; estimated level floor1.3m clears sampled footprint peak0.901m and perimeter-4.56..0.84m. Foundations follow retained coarse terrain. Tower/roof-stage roles, entry landings, plaza joins and all thresholds remain approximate; no independent surveyed floor or certified walking surfaces."
+    },
+    "bounds": [
+      19.0335,
+      47.5015,
+      19.0351,
+      47.5025
+    ],
+    "notes": "Standard viewerDEM datum172.285905m; estimated level floor1.3m clears sampled footprint peak0.901m and perimeter-4.56..0.84m. Foundations follow retained coarse terrain. Tower/roof-stage roles, entry landings, plaza joins and all thresholds remain approximate; no independent surveyed floor or certified walking surfaces.",
+    "groundContactBasis": "Standard viewerDEM datum172.285905m; estimated level floor1.3m clears sampled footprint peak0.901m and perimeter-4.56..0.84m. Foundations follow retained coarse terrain. Tower/roof-stage roles, entry landings, plaza joins and all thresholds remain approximate; no independent surveyed floor or certified walking surfaces."
+  },
+  "geographicNote": "Standard viewerDEM datum172.285905m; estimated level floor1.3m clears sampled footprint peak0.901m and perimeter-4.56..0.84m. Foundations follow retained coarse terrain. Tower/roof-stage roles, entry landings, plaza joins and all thresholds remain approximate; no independent surveyed floor or certified walking surfaces.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

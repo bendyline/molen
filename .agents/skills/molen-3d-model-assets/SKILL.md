@@ -37,6 +37,14 @@ Do not substitute concept art or a screenshot for model geometry.
 8. Report final paths, the texture-generation prompt and method, model/texture statistics, hashes,
    exact checks run, warnings, and remaining limitations.
 
+For work on this repository, keep bulk captures in ignored `shots/`, `medium-fi/` or
+`.artifacts/`. Retain one or two small summary previews and concise hash/command/review reports
+alongside the authored source inputs. Source textures and heightmaps remain required inputs.
+Actually inspect current renders; do not make routine builds or tests depend on a screenshot
+archive. Normal model work does not publish captures or update `review-lock.json`. The detailed
+policy is in `content/ASSET-PACKS.md` under "Model review images"; `pnpm source:check` enforces
+that bulk captures stay out of Git.
+
 Prefer the CLI/MCP operations over source inspection. If a durable generator would need imports
 from another package's private `node_modules`, record that as missing authoring infrastructure
 instead of presenting the dependency as a stable public workflow.

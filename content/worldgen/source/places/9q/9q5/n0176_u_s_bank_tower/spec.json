@@ -10,29 +10,29 @@
     "latitude": 34.050961,
     "longitude": -118.254353
   },
-  "visualBrief": "The Los Angeles granite-and-glass tower with mapped concentric and orthogonal setbacks, individually modeled projecting triangular window bays, broad terrace belts, a sixteen-fold stone/glass crown, circular helipad and renewed glazed lobby.",
+  "visualBrief": "Los Angeles granite-and-glass tower with mapped concentric/orthogonal setbacks, triangular window bays, folded stone/glass crown, landing roof and renovated lobby.",
   "size": [
-    60.43842315673828,
+    60.44042205810547,
     310.29998779296875,
-    49.26317024230957
+    49.26716995239258
   ],
   "actualBounds": {
     "min": [
       -30.497241973876953,
       0,
-      -24.64885139465332
+      -24.65085220336914
     ],
     "max": [
-      29.941181182861328,
+      29.943180084228516,
       310.29998779296875,
-      24.61431884765625
+      24.616317749023438
     ]
   },
   "nativeAxes": {
     "up": "+Y",
-    "longitudinal": "+X along the mapped building long axis",
-    "front": "+Z",
-    "origin": "Ground-level center of exact-QID mapped footprint frame"
+    "longitudinal": "+X northeast",
+    "front": "+Z southeast",
+    "origin": "Ground-level mapped center at lower Fifth Street entrance datum"
   },
   "sourceFacts": {
     "heightMeters": 310.3,
@@ -46,7 +46,26 @@
       60,
       68,
       72
-    ]
+    ],
+    "originalMasterHash": "sha256:bb5c2ee768b3f391562f8f76d42347f08e9ba19a00e9ff4607361fe75113994e",
+    "originalMasterRecipe": "packages/worldgen/scripts/signature-tower-world-models.mjs#skylineWorld[N0176].build",
+    "surfaceMeans": {
+      "concrete_plain": [
+        0.710816,
+        0.710816,
+        0.681928
+      ],
+      "metal_painted": [
+        0.908889,
+        0.908889,
+        0.908889
+      ],
+      "stone_granite": [
+        0.701109,
+        0.701109,
+        0.701109
+      ]
+    }
   },
   "reconstruction": {
     "massing": "Exact-QID whole outline and eleven independent mapped tower parts determine the signed overlapping circular/orthogonal volumes. Architect structural isometric corroborates setback sequence.",
@@ -61,7 +80,7 @@
   ],
   "geographicProposal": {
     "status": "preview-proposal",
-    "reviewStatus": "orientation-approximation; real-world visual fit pending",
+    "reviewStatus": "reviewed medium-fi signed placement",
     "anchor": [
       -118.254420677,
       34.051065544
@@ -72,14 +91,28 @@
     "source": "https://www.openstreetmap.org/way/23973401",
     "groundModelY": 0,
     "featureIds": [
-      "way/23973401"
+      "way/23973401",
+      "way/495115500",
+      "way/901405051",
+      "way/901405052",
+      "way/901405053",
+      "way/901405054",
+      "way/901405055",
+      "way/901405056",
+      "way/901405057",
+      "way/901405058",
+      "way/901405059",
+      "way/901405060"
     ],
     "wikidataId": "Q57900",
-    "mapGeometrySource": "content/earth/structures/georeferencing.json",
-    "mapGeometryHash": "sha256:76f60558d8c33776be7db84090c4a5e3b043a0c29aefb92ef78aef2378fe899c",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:afeee4dda8eab66d25c5ba28d032e5c95572c8cddf2ab0497d4166b61b1ab5fd",
     "mapGeometryLicense": "ODbL-1.0",
     "attribution": "© OpenStreetMap contributors",
-    "notes": "Signed mapped whole outline and all eleven adjoining tower parts retain the different setback directions, including the long eastern/western curves. Fifth Street entrance is on the southwest side toward the library. GroundY0 is the lower Fifth Street entry; surrounding Bunker Hill Steps and uphill terrain remain separate site context."
+    "orientationConfidence": "mapped setbacks with Fifth Street/library evidence",
+    "notes": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q57900 whole outline 23973401 and eleven independent mapped tower parts. Signed heading 1.086317737338 retained: native +X northeast, +Z southeast. Lower Fifth Street entrance faces southwest on -X toward the library. Different circular and orthogonal setbacks retain their mapped signs; crown is centered on mapped highest part 495115500. Ground Y=0 is lower entry datum. Approximate mapped stages at 195/225/250/280/295 m support the architect isometric setback sequence; they are not surveyed floor sections. Accept 2 m footprint / 1 degree reconstruction allowance, automatic replacement disabled. Hill steps, terrain slope and exact doorway thresholds are unmeasured.",
+    "evidence": "Fresh OSM API on 2026-10-10 confirms unchanged exact Q57900 whole outline 23973401 and eleven independent mapped tower parts. Signed heading 1.086317737338 retained: native +X northeast, +Z southeast. Lower Fifth Street entrance faces southwest on -X toward the library. Different circular and orthogonal setbacks retain their mapped signs; crown is centered on mapped highest part 495115500. Ground Y=0 is lower entry datum. Approximate mapped stages at 195/225/250/280/295 m support the architect isometric setback sequence; they are not surveyed floor sections. Accept 2 m footprint / 1 degree reconstruction allowance, automatic replacement disabled. Hill steps, terrain slope and exact doorway thresholds are unmeasured.",
+    "replaceFootprint": false
   },
   "scaleBasis": "Published owner/architect/contractor heights and distinguishing construction systems; map footprint for local orientation, with reconstructed details declared separately.",
   "geometrySource": "Original deterministic exterior geometry; no downloaded meshes or copied photographic textures. Footprint-derived registration includes separately attributed OpenStreetMap evidence.",
@@ -96,8 +129,8 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.metal_painted",
-      "slot": "trim",
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -105,8 +138,8 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stone_granite",
-      "slot": "wall",
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -115,11 +148,10 @@
     }
   ],
   "reviewStatus": "source-geometry; near/far and shared-material captures pending",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
   "fidelityStatus": "pending",
   "limitations": [
-    "Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.",
-    "Individual granite panel pitch, triangular window projection and entrance canopy are reconstructed from primary photographs. Tenant lettering, current rooftop branding and rooftop service furniture are omitted. Separate Bunker Hill stairs/landscape are outside the tower footprint; interior spaces are not modeled."
+    "Original 130716-triangle, 15408960-byte master remains exactly reproducible from the unchanged world-tower recipe. Reviewed source and four browser levels preserve eleven mapped circular/orthogonal volumes, all setbacks, sixteen folded crown bays, glazed collar, closed circular landing roof and renewed ground lobby. Street/close-up retain reconstructed projecting triangular window profiles and long granite bands/piers; district flattens window projections and aggregates floors, skyline averages stone/glass coverage. Published 310.3 m tip and owner 30 ft (9.144 m) lobby follow current primary descriptions. Individual setback heights are approximate map data; architect isometric corroborates the ordering rather than survey dimensions. Owner/CVU count 72 stories while architect calls it 73; CVU completion 1990 differs from owner 1989. Crown phase/radii, bay spacing/projection, rail and canopy details remain reconstructions. Entrance canopy repair includes upward-facing opaque surfaces so it is visible from above; no interior transparency layer. Three shared 256 px graphs, zero embedded images. Tenant/roof lettering, flagpole and service furniture, interiors, separate Bunker Hill Steps/plaza landscape, parking and local sloped terrain are excluded. Native shaft allowances 1.5 / 0.75 / 0.3 / 0.1 m exclude omitted fine joints/reveals and distant canopy. No physical-device performance or surveyed grade claim. Close-up compresses the original 0.13 m window inset to 0.025 m, retaining the projecting bay peak and vertical reveals. Horizontal reveals merge into a continuous backing; street omits the shallow vertical reveals and aggregates three floor rows. These fine recess simplifications do not remove the main folded bay profile."
   ],
   "qaCameras": [
     {
@@ -199,6 +231,266 @@
         149,
         0
       ]
+    },
+    {
+      "name": "whole-reviewed-tower",
+      "position": [
+        280,
+        235,
+        480
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ]
+    },
+    {
+      "name": "crown-collar-return",
+      "position": [
+        -44,
+        330,
+        52
+      ],
+      "lookAt": [
+        0,
+        302,
+        0
+      ]
+    }
+  ],
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/us-bank-runtime-model.mjs",
+    "export": "buildUsBankReviewedMaster"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/us-bank-runtime-model.mjs",
+    "export": "buildUsBankSkyline",
+    "errorMeters": 1.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildUsBankDistrict",
+        "errorMeters": 0.75,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "street": {
+        "export": "buildUsBankStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildUsBankCloseup",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "foundation": {
+            "graph": "concrete_plain",
+            "slot": "foundation",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "cladding": {
+            "graph": "stone_granite",
+            "slot": "wall",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "metal": {
+            "graph": "metal_painted",
+            "slot": "trim",
+            "roughness": 0.48,
+            "metallic": 0.24
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.2,
+            "metallic": 0.28
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tower-skyline",
+      "position": [
+        280,
+        235,
+        480
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tower-district",
+      "position": [
+        280,
+        235,
+        480
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tower-street",
+      "position": [
+        280,
+        235,
+        480
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tower-closeup",
+      "position": [
+        280,
+        235,
+        480
+      ],
+      "lookAt": [
+        0,
+        143,
+        0
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "district-mapped-setbacks",
+      "position": [
+        111,
+        267,
+        162
+      ],
+      "lookAt": [
+        0,
+        232,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "street-projected-granite-bays",
+      "position": [
+        54,
+        120,
+        51
+      ],
+      "lookAt": [
+        18,
+        110,
+        11
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "close-renewed-lobby",
+      "position": [
+        -67,
+        18,
+        -4
+      ],
+      "lookAt": [
+        -23,
+        6,
+        -2
+      ],
+      "reviewLod": "closeup"
+    },
+    {
+      "name": "close-folded-crown-roof",
+      "position": [
+        39,
+        341,
+        48
+      ],
+      "lookAt": [
+        0,
+        305,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ],
   "importOptions": {
@@ -206,10 +498,10 @@
   },
   "importReason": "Preserve thin facade frames, panel joints and crown/antenna details until a measured LOD chain is authored.",
   "mesh": {
-    "triangles": 130716,
-    "vertices": 384366,
-    "materials": 5,
-    "bytes": 15408960,
-    "sha256": "sha256:bb5c2ee768b3f391562f8f76d42347f08e9ba19a00e9ff4607361fe75113994e"
+    "triangles": 39679,
+    "vertices": 118023,
+    "materials": 4,
+    "bytes": 4727812,
+    "sha256": "sha256:c8b0e3c500e25ca582fb537bdea1c1bac96c999156840976c27f15cb4ef4a29a"
   }
 }

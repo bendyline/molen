@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0644_jeddah_light",
-  "inputHash": "sha256:050943cf58c84d3d26085c1a0014e53bf967e4c62368b39bb20961b3b4b56f6b",
-  "captureReportHash": "sha256:bd88f04350292c4df0aa34c3c389acc495207dd6373541487a6c49e883fe3cee",
+  "reviewedOn": "2026-10-09",
+  "inputHash": "sha256:f446a88092c697443d28a191e3f538101406386144af62e8773e31f430f0303e",
+  "sourceHash": "sha256:7f417fc648085c6af7dd032c21c8741afc749557040fbc4e682e30227d7598cf",
+  "runtimeHash": "sha256:bd0162354bb7c069e524a8318e60ae27d6156d3343191e40510ff7304f0b6ae4",
+  "captureReportHash": "sha256:7d6e9649e15aa64e44ef3c97390ed739d6e6c78f0d63e75c173534d56361f1e6",
   "visualReview": {
     "status": "passed",
-    "scope": "Detailed exterior geometry and portable materials.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -15,26 +17,15 @@
       "shots/near-capsule.png",
       "shots/near-crown.png",
       "shots/near-base.png",
-      "shots/far-silhouette.png"
+      "shots/far-silhouette.png",
+      "shots/whole-tower-skyline.png",
+      "shots/whole-tower-district.png"
     ],
-    "notes": "All 18 current frames inspected, including full resolution shared capsule. Analytic profile normals remove the earlier bowed panel shading; tall and small arched panes, dark lower capsule cladding, ribs, control floors and flared base remain continuous and coherent."
+    "notes": "All11 current portable master frames inspected. Pale shaft, two-axis flared base, bronze lower capsule, small arcade belt, sixteen large arched panes and stacked flat control crown are connected. Cited NGA172Sector6p118 and original2003 photographer image consulted. Detailed master is byte-identical; photo-proportioned dimensions remain estimates."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "capturePath": "shared-capture-report.json",
-    "captureReportHash": "sha256:f7c9eae316d001cf2e3cdf997f3e61a93b7c9601091b9ec0d36a70cd42967397",
-    "fixtureHash": "sha256:5e50bd0a6aed4485b81606c836567c2c09c8642a6d466d548d2f2f24516ad17b",
-    "inputHash": "sha256:050943cf58c84d3d26085c1a0014e53bf967e4c62368b39bb20961b3b4b56f6b",
-    "materialGraphs": {
-      "matgraph:molen.worldgen.material.metal_painted": {
-        "path": "materials/metal_painted.matgraph.json",
-        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
-      },
-      "matgraph:molen.worldgen.material.concrete_plain": {
-        "path": "materials/concrete_plain.matgraph.json",
-        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
-      }
-    },
+    "captureReportHash": "sha256:1fe37abf4a979d97b19271e2e5aee1d01dde84b7b5f8eb67482d8d7de5149fb2",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -44,19 +35,259 @@
       "shots/shared/near-crown.png",
       "shots/shared/near-base.png",
       "shots/shared/far-silhouette.png",
+      "shots/shared/whole-tower-skyline.png",
+      "shots/shared/whole-tower-district.png",
       "shots/shared/placement.png"
     ],
-    "notes": "All 18 current frames inspected, including full resolution shared capsule. Analytic profile normals remove the earlier bowed panel shading; tall and small arched panes, dark lower capsule cladding, ribs, control floors and flared base remain continuous and coherent."
+    "notes": "All11 current shared master frames inspected, including the signed north-up OSM overlay. Both canonical painted-metal/concrete graphs read once, no embedded images. Capsule surface normals remain continuous in shared master rendering; metric repeats retain pale/body versus bronze/glazing contrast. Geographic flat stage checks transformation and material behavior, not surveyed absolute heights. Unload releases every model geometry."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:aaf9277ffaa65e50d2309e3c3294911523c2bd9c3129e02e2f7e3e566cfcb21a",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/near-capsule.png",
+      "medium-fi/near-crown.png",
+      "medium-fi/near-base.png",
+      "medium-fi/far-silhouette.png",
+      "medium-fi/whole-tower-skyline.png",
+      "medium-fi/whole-tower-district.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All23 Earth-lighting/quality/distance views inspected. Added whole-tower skyline/district cameras show capsule/crown beyond the standard base-focused views. Replaced brown-shaft/narrow-capsule automatic skyline with deliberately pale756-triangle profile. District retains major arched panes, near levels retain smaller lights/ribs; skyline intentionally omits them. Faceted curves and simplified flared plan meet medium-fi. Neighbors are synthetic scale context, not Jeddah buildings."
   },
   "geographicReview": {
     "status": "passed",
     "placementHash": "sha256:e5e999bac4423ac2e6b1deecfb2bde5eb479182021a2297fb25da5a58dd373c0",
-    "notes": "Mapped elongated base axis at heading 0.18326 and tower center agree with the north-up footprint review; terrain contact is appropriate on the port apron."
+    "mapFrameHash": "sha256:ffb52421da7fe5fc1a241fd3f00f6132cc11adcc4ca546bebfd475c590259973",
+    "notes": "Named OSMway265419490 and opposite base parts265419493/494 were freshly retrieved from the officialAPI. Preserved geographic vertices, versions, tags and signed projected geometry bind the unchanged39.149702,21.468607 anchor and.18326rad heading. +Z169.5°/+X79.5°; roof bearings349.5°/169.5° independently confirm wing axis. Map/native envelope differs≤1.03m, round-trip test passes, inspected north-up overlay agrees. The base retains a continuous simplified flared envelope rather than every mapped indent. Terrain-contact on the port apron relies on host elevation; absolute datum/local slope and terminal ground fit are not surveyed."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Fresh current-standard exterior review: pale slender tower, elongated base, bronze lower spherical capsule, arched upper openings and flat stacked control rooms. Height131.4m is catalog evidence, not independently measured by NGA. Capsule radii, small arches and glazing colors remain photo-proportioned. Interiors, optics, transient port structures and fabrication tolerances are excluded. Historical maximum-detail scope is recorded separately; no approval is silently transferred."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "passed",
     "scope": "Detailed exterior in Molen shared material style.",
-    "notes": "Detailed 131.4 m exterior in Molen shared material style, matched to the cited primary NGA photograph and mapped base. Capsule radii and control-floor subdivisions are photo-proportioned; no claim of engineering measurements or interior replication."
-  }
+    "notes": "Detailed 131.4 m exterior in Molen shared material style, matched to the cited primary NGA photograph and mapped base. Capsule radii and control-floor subdivisions are photo-proportioned; no claim of engineering measurements or interior replication.",
+    "reviewBinding": "Historical record only; prior input/capture binding replaced by this fresh medium-fi inspection."
+  },
+  "geometryValidation": {
+    "validator": "Khronos glTF Validator",
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/sg/sgg/n0644_jeddah_light/models/source.glb",
+        "hash": "sha256:7f417fc648085c6af7dd032c21c8741afc749557040fbc4e682e30227d7598cf",
+        "bytes": 8658592,
+        "triangles": 87188,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -28.261030197143555,
+          0,
+          -41.26142883300781
+        ],
+        "max": [
+          28.261030197143555,
+          131.39999389648438,
+          41.26142883300781
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/sg/sgg/n0644_jeddah_light/model.glb",
+        "hash": "sha256:bd0162354bb7c069e524a8318e60ae27d6156d3343191e40510ff7304f0b6ae4",
+        "bytes": 8658236,
+        "triangles": 87188,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -28.261030197143555,
+          0,
+          -41.26142883300781
+        ],
+        "max": [
+          28.261030197143555,
+          131.39999389648438,
+          41.26142883300781
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/sg/sgg/n0644_jeddah_light/model.skyline.glb",
+        "hash": "sha256:423ddfda5af3d6de7cb0a9147f2de3b71e3590ec73adb0bf728145c4422a79ad",
+        "bytes": 55200,
+        "triangles": 756,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -28.200000762939453,
+          0,
+          -41.20000076293945
+        ],
+        "max": [
+          28.200000762939453,
+          131.39999389648438,
+          41.20000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/sg/sgg/n0644_jeddah_light/model.district.glb",
+        "hash": "sha256:b4bbcdf2d52d5d269ddb54140016af249beb46e8204beb6d20a4b13a007a91c8",
+        "bytes": 405952,
+        "triangles": 3632,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -28.200000762939453,
+          0,
+          -41.20000076293945
+        ],
+        "max": [
+          28.200000762939453,
+          130.14999389648438,
+          41.20000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/sg/sgg/n0644_jeddah_light/model.street.glb",
+        "hash": "sha256:2b85b5425b2525406b2b31a6ed254b536323ef0cba4c2c248571403d0ec6ce3c",
+        "bytes": 1768048,
+        "triangles": 15939,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -28.200000762939453,
+          0,
+          -41.20000076293945
+        ],
+        "max": [
+          28.200000762939453,
+          131.39999389648438,
+          41.20000076293945
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/sg/sgg/n0644_jeddah_light/model.closeup.glb",
+        "hash": "sha256:9d38adedd14bb152395f8eafb7ebb7c355ef97b183695493303027dd3f185be8",
+        "bytes": 6414360,
+        "triangles": 63957,
+        "materials": 3,
+        "images": 0,
+        "min": [
+          -28.261030197143555,
+          0,
+          -41.26142883300781
+        ],
+        "max": [
+          28.261030197143555,
+          131.39999389648438,
+          41.26142883300781
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": [
+      "pale shaft and independent bronze skyline capsule",
+      "outward skyline shaft winding",
+      "attributed OSM outline round-trip and signed south wing",
+      "unrelated recipe fingerprints unchanged",
+      "all four cached derivatives and preserved master bytes"
+    ],
+    "notes": "Six GLBs have zero errors/warnings, no images. Five focused tests, selected source/import/placement/LOD and strict medium-fi checks pass. Source-local skyline overlays are regenerated through the registered runtime-LOD source build; no master edit. Collision hull is not an interior traversal model."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:b42faba370b1abff6275f304d1ae68c007a560b72ea23212a12fb74b7f82a1d6",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:423ddfda5af3d6de7cb0a9147f2de3b71e3590ec73adb0bf728145c4422a79ad",
+        "bytes": 55200,
+        "gzipBytes": 10510,
+        "triangles": 756,
+        "cpuBytes": 53784,
+        "gpuBytes": 53784,
+        "errorMeters": 2,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:b4bbcdf2d52d5d269ddb54140016af249beb46e8204beb6d20a4b13a007a91c8",
+        "bytes": 405952,
+        "gzipBytes": 90950,
+        "triangles": 3632,
+        "cpuBytes": 402136,
+        "gpuBytes": 402136,
+        "errorMeters": 0.34768706369883945,
+        "drawCalls": 3
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:2b85b5425b2525406b2b31a6ed254b536323ef0cba4c2c248571403d0ec6ce3c",
+        "bytes": 1768048,
+        "gzipBytes": 352596,
+        "triangles": 15939,
+        "cpuBytes": 1764200,
+        "gpuBytes": 1764200,
+        "errorMeters": 0.18537817055228914,
+        "drawCalls": 3
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:9d38adedd14bb152395f8eafb7ebb7c355ef97b183695493303027dd3f185be8",
+        "bytes": 6414360,
+        "gzipBytes": 1286738,
+        "triangles": 63957,
+        "cpuBytes": 6410504,
+        "gpuBytes": 6410504,
+        "errorMeters": 0.04996741329254491,
+        "drawCalls": 3
+      }
+    ],
+    "initialBytes": 461152,
+    "notes": "756/3632/15939/63957triangles and1/3/3/3draws. Initial461152bytes meets3MB phone/6MB laptop budgets. Closeup6414360bytes. Separate GPU attribute layouts verified. Physical laptop/phone performance and shared first-bake cost remain unmeasured; central256²graphs are reused rather than embedded per-model textures.",
+    "fingerprintReconciliation": "Optional authored-detail plumbing changed overlay fingerprint; all four inspected derivative hashes, bytes and statistics remain unchanged."
+  },
+  "limitations": [
+    "The modeled exterior follows the cited published facts and inspected photographs. Unpublished dimensions and local fittings are explicitly photo-proportioned; no claim of engineering survey accuracy is made.",
+    "Portable PBR and shared metric surfaces are provided. Surface weathering, material color under local lighting and fine facade relief require close render review before maximum-detail acceptance.",
+    "Intermediate capsule radii, arch subdivisions and glazing colors are photo-proportioned to the published total height, with mapped base size. The continuous base envelope is retained without fabricated entrance canopies. Surrounding terminal, port pavement and transient roof equipment are separate site features."
+  ]
 }

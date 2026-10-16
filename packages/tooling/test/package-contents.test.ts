@@ -52,8 +52,10 @@ describe('package content gate', () => {
     writeFileSync(join(dir, 'package/dist/index.mjs'), 'export {};\n');
     writeFileSync(join(dir, 'package/dist/model.glb'), Buffer.alloc(700));
     const archive = join(dir, 'example.tgz');
-    // COPYFILE_DISABLE keeps macOS tar from adding AppleDouble `._*` twins.
-    execFileSync('tar', ['-czf', archive, '-C', dir, 'package'], {
+    // COPYFILE_DISABLE keeps macOS tar from adding AppleDouble `._*` twins. Relative paths keep
+    // GNU tar (Git for Windows) from reading a `C:\` archive as a remote `host:path`.
+    execFileSync('tar', ['-czf', 'example.tgz', 'package'], {
+      cwd: dir,
       env: { ...process.env, COPYFILE_DISABLE: '1' },
     });
     const entries = gate.tarballEntries(archive);

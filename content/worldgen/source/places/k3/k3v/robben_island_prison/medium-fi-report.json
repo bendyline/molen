@@ -1,0 +1,859 @@
+{
+  "format": "molen/medium-fi-review@1",
+  "assetId": "molen.worldgen.structure.robben_island_prison",
+  "sourceHash": "sha256:b92ec0729bf31c833168bea630d2b4e845b472373102c64b3714ec174fd5fcb2",
+  "runtimeHash": "sha256:153275e73e8ccea8ac8a28cc20095be2a10c5d3c76cbca757e78235af5ef3ab5",
+  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "rig": {
+    "palette": {
+      "dayZenith": "#2f7fd3",
+      "dayHorizon": "#c4dcec",
+      "twilight": "#f78753",
+      "nightZenith": "#020510",
+      "nightHorizon": "#121c32",
+      "ground": "#7a7258",
+      "sun": "#fff1d8",
+      "moon": "#dae5f5"
+    },
+    "lighting": {
+      "sunIntensity": 3.5,
+      "dayAmbient": 2,
+      "nightAmbient": 0.05
+    },
+    "toneMapping": "neutral",
+    "exposure": 1
+  },
+  "neighborTriangles": 6240,
+  "runtimeLods": [
+    {
+      "name": "skyline",
+      "file": "model.skyline.glb",
+      "hash": "sha256:1d13498973517f1ca2196765db44cca9dfa1b6d6792bf74214ac80153ff23843",
+      "bytes": 74372,
+      "gzipBytes": 12825,
+      "triangles": 912,
+      "cpuBytes": 72936,
+      "gpuBytes": 72936,
+      "errorMeters": 2,
+      "drawCalls": 1
+    },
+    {
+      "name": "district",
+      "file": "model.district.glb",
+      "hash": "sha256:e6442cb7b805fbd31feb3f58db651ace8fdca91aad788eb053054773999f31d0",
+      "bytes": 292084,
+      "gzipBytes": 52925,
+      "triangles": 3688,
+      "cpuBytes": 284712,
+      "gpuBytes": 284712,
+      "errorMeters": 0.65,
+      "drawCalls": 6
+    },
+    {
+      "name": "street",
+      "file": "model.street.glb",
+      "hash": "sha256:bc62d78696d9da8d1ee8f4b8d077abf30d6e21d6ff1221acc94b6dbd09fa8963",
+      "bytes": 1228832,
+      "gzipBytes": 241845,
+      "triangles": 15756,
+      "cpuBytes": 1221408,
+      "gpuBytes": 1221408,
+      "errorMeters": 0.2,
+      "drawCalls": 6
+    },
+    {
+      "name": "closeup",
+      "file": "model.closeup.glb",
+      "hash": "sha256:7d10c3df0b7f0082603d04ab6dabedb269f083745bad5f8520c60e2c056ca6d8",
+      "bytes": 7597028,
+      "gzipBytes": 1411929,
+      "triangles": 63280,
+      "cpuBytes": 7593600,
+      "gpuBytes": 7593600,
+      "errorMeters": 0,
+      "drawCalls": 6
+    }
+  ],
+  "terrainFixture": {
+    "descriptor": {
+      "path": "terrain-review.terrain.json",
+      "hash": "sha256:4578545683583fdc9df22b01e44d1417e6fd59f63042071ed5b28c3703070d02"
+    },
+    "heightmap": {
+      "path": "terrain-review.height.png",
+      "hash": "sha256:5e04e34794605057a2fbabe7f680b0df679ffe1749a2f72ae2bad24d3d301cd5"
+    }
+  },
+  "fixtureEntities": [],
+  "context": "Source-local research hill with synthetic neighbors outside its bounds; not evidence of geographic fit.",
+  "status": "captures-pending-inspection",
+  "frames": [
+    {
+      "path": "medium-fi/street-noon-economy.png",
+      "hash": "sha256:ac8f2002544681731fd533beb9dff365d8d845afea1236503c389a4f6fdadb45",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          72.14499999999998,
+          42.9717,
+          140.345
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-noon-high.png",
+      "hash": "sha256:53b19096497c25345333e0ec095b4941654867595fed0de12fc3f415f3a343a2",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          72.14499999999998,
+          42.9717,
+          140.345
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-economy.png",
+      "hash": "sha256:4b8a0d818f89bb0dc037568d559e99f7135cfceeba0a3168342c6c7eb4b42951",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          72.14499999999998,
+          42.9717,
+          140.345
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/street-late-high.png",
+      "hash": "sha256:e30c1f67a8176de087cfc4c974f761ea0d298a5239322fde7ecc2b47b738ab32",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          72.14499999999998,
+          42.9717,
+          140.345
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-economy.png",
+      "hash": "sha256:8ce33f3bbd43043195bd66511de63da8f7708568a1e3990c0217bdf4e2cb16d2",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18122,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-noon-high.png",
+      "hash": "sha256:d0d7c26cfeffb09afdb03885dffcb7100efd93ccf9c9b17c8712030db08c2cd7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18122,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-economy.png",
+      "hash": "sha256:86ef3351d24e0f27c55e3ca5ccc212a29646510d69ffcef0348e1e30e2293f0a",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 12,
+        "triangles": 18122,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/block-late-high.png",
+      "hash": "sha256:c0f22768f964aa1e251c806ea784339661c9c032543e828f91e86ee3d406b7e4",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18122,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-economy.png",
+      "hash": "sha256:6d23af82216f136016f56534d283c58be31bfcc90cd370193d2cc03a95974f46",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15346,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          276.54499999999996,
+          146.5717,
+          494.54499999999996
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-noon-high.png",
+      "hash": "sha256:d148bb8ad4b0b13d554cd4d06ae93e4df0ab71a13af929f6f714c5df3fd7fe5f",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15346,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          276.54499999999996,
+          146.5717,
+          494.54499999999996
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-economy.png",
+      "hash": "sha256:5b6d9afd5a0130098e57cbf87e1e453abfdf99a4319c9e373220698dcc7a6734",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "economy",
+        "drawCalls": 7,
+        "triangles": 15346,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          276.54499999999996,
+          146.5717,
+          494.54499999999996
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/skyline-late-high.png",
+      "hash": "sha256:32d0859e1909ae5e62a2e77abe50019094b71f2581056210f85041fc42c8ee55",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "late",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15346,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          276.54499999999996,
+          146.5717,
+          494.54499999999996
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/silhouette.png",
+      "hash": "sha256:1a3fb31e837db77c940a2bfa9f82f29ae8aac77cbfb7027a6a4a33b2fb069b69",
+      "state": {
+        "level": "skyline",
+        "distance": "skyline",
+        "time": "noon",
+        "mode": "economy",
+        "drawCalls": 3,
+        "triangles": 9106,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          276.54499999999996,
+          146.5717,
+          494.54499999999996
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/front.png",
+      "hash": "sha256:63264fdfa8eef696b2050699e15190df08a226eee11beb4d591a0d3614e24353",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          -30,
+          30,
+          250
+        ],
+        "lookAt": [
+          -30,
+          3,
+          110
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:ae3f8311c04b07027ca2bcb13d06f849f4d5212a198762db462fe3ee57df5f32",
+      "state": {
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          -220,
+          120,
+          -240
+        ],
+        "lookAt": [
+          0,
+          0,
+          10
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-skyline.png",
+      "hash": "sha256:22e531e6dba8b1910495e8fac16252ecd5cd067b3998a1eca5e3829c9819a14f",
+      "state": {
+        "level": "skyline",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 7,
+        "triangles": 15346,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-district.png",
+      "hash": "sha256:d0d7c26cfeffb09afdb03885dffcb7100efd93ccf9c9b17c8712030db08c2cd7",
+      "state": {
+        "level": "district",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 18122,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-street.png",
+      "hash": "sha256:5ff97ac6414bf78708b2587f036f7c226e632a90d84a1b4611837ab914036bd5",
+      "state": {
+        "level": "street",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 30190,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    },
+    {
+      "path": "medium-fi/transition-closeup.png",
+      "hash": "sha256:b0bf5cdd9ba5de10cfc0aea77100bdaea055b4f42f9b835090a8449eb9df85a9",
+      "state": {
+        "level": "closeup",
+        "distance": "block",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 12,
+        "triangles": 77714,
+        "groundY": -3,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/k3/k3v/robben_island_prison/terrain-review.height.png"
+        },
+        "position": [
+          140.74499999999998,
+          93.3717,
+          259.34499999999997
+        ],
+        "lookAt": [
+          4.945,
+          21.9717,
+          24.145
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.plaster_lime": 1,
+          "molen.worldgen.material.stone_basalt": 1,
+          "molen.worldgen.material.metal_corrugated": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.4,
+        "reflections": "sky-pmrem"
+      }
+    }
+  ],
+  "errors": [],
+  "identityMigration": {
+    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
+    "previousInputHash": "sha256:9bf8756a56bebbc4288451f22dbe75426b42eafb04bfc66df1966dcf9003bde4",
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "previousReportHash": "sha256:9e8be997e88f77a2ad069ac6130c1c8f2dd2fd5dacb4d0ee23023615f4f59c30"
+  }
+}

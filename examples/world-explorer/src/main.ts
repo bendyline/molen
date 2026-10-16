@@ -22,11 +22,13 @@ import {
   createEarthFog,
   createEarthSky,
   createEarthWorldgen,
+  createRegionalGroundColor,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
   EarthAmbient,
   type EarthAudio,
   EarthVehicles,
+  EarthWildlife,
   type EarthWorldgen,
   earthMemoryBudget,
   earthPerformanceTier,
@@ -34,6 +36,7 @@ import {
   earthQualityLevel,
   earthShadowFocus,
   observeSemanticTiles,
+  regionalEarthAttribution,
   SemanticTileBuffer,
   updateEarthFog,
 } from '@bendyline/molen-earth/client';
@@ -457,6 +460,15 @@ async function loadWorldgen(options: {
   const materialStore =
     params.get('materialCache') !== '0' ? createIndexedDbMaterialStore() : undefined;
   const worldgen = createEarthWorldgen({
+    // Freeze the host calendar for this mount; ?month=1..12 makes seasonal previews repeatable.
+    // ?month=0 selects neutral leaf-on appearance.
+    ...(params.get('month') !== '0'
+      ? {
+          vegetationMonth: params.has('month')
+            ? Number(params.get('month'))
+            : new Date().getUTCMonth() + 1,
+        }
+      : {}),
     content: options.content,
     assets: options.assets,
     surfaceRenderer: options.surfaceRenderer,
@@ -764,6 +776,9 @@ async function main(): Promise<void> {
     params.get('ground') === 'flat'
       ? undefined
       : await createTerrainGroundMaterialAsync({}, viewer.renderer.backend);
+  const fieldMaterial = groundMaterial
+    ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
+    : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
   const semanticDemo = loaded.synthetic;
@@ -796,7 +811,7 @@ async function main(): Promise<void> {
         metersPerUnit,
         quality,
         worker: useWorker,
-        ...(groundMaterial ? { groundMaterial } : {}),
+        ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
         lodPolicy,
         surfaceRenderer,
       });
@@ -822,11 +837,21 @@ async function main(): Promise<void> {
     ? params.get('ambient') !== '0'
     : !params.has('freeze');
   const ambientTiles = ambientWanted ? new SemanticTileBuffer() : undefined;
+  const wildlifeWanted =
+    ambientWanted &&
+    params.get('wildlife') !== '0' &&
+    (worldgen?.environment?.library.animals.size ?? 0) > 0;
+  const wildlifeCover = wildlifeWanted ? new SemanticTileBuffer() : undefined;
+  const wildlifeFeatures = wildlifeWanted ? new SemanticTileBuffer() : undefined;
+  let wildlife: EarthWildlife | undefined;
   let ambient: EarthAmbient | undefined;
   const observeRoads = (
     renderer: WorldgenSemanticRenderers['humanFeatures'],
-  ): WorldgenSemanticRenderers['humanFeatures'] =>
-    ambientTiles !== undefined ? observeSemanticTiles(renderer, ambientTiles) : renderer;
+  ): WorldgenSemanticRenderers['humanFeatures'] => {
+    const observed =
+      wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
+    return ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed;
+  };
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
       const opened = await createProfiledTerrainPackageSemanticLayers(loaded.descriptor, {
@@ -852,7 +877,12 @@ async function main(): Promise<void> {
         },
         ...(worldgen !== undefined
           ? {
-              landcoverLayer: { renderer: worldgen.classification },
+              landcoverLayer: {
+                renderer:
+                  wildlifeCover !== undefined
+                    ? observeSemanticTiles(worldgen.classification, wildlifeCover)
+                    : worldgen.classification,
+              },
               featuresLayer: { renderer: observeRoads(worldgen.humanFeatures) },
             }
           : {
@@ -922,7 +952,11 @@ async function main(): Promise<void> {
     }
   }
   qualitySelect.value = automaticQuality ? 'auto' : quality;
-  for (const attribution of loaded.descriptor.attribution) {
+  const allAttribution = [
+    ...loaded.descriptor.attribution,
+    ...regionalEarthAttribution(content.worldgen?.environment),
+  ];
+  for (const attribution of allAttribution) {
     const item = document.createElement('li');
     item.textContent = `${attribution.text} · ${attribution.license}`;
     attributionList.append(item);
@@ -932,16 +966,16 @@ async function main(): Promise<void> {
   // is written source-first ("© OpenStreetMap contributors; Protomaps Basemap"), so the head up to
   // the first ';' is the party to credit; the full strings stay in the HUD's attribution list.
   const credit = document.getElementById('credit') as HTMLParagraphElement;
-  if (!loaded.synthetic && loaded.descriptor.attribution.length > 0) {
+  if (!loaded.synthetic && allAttribution.length > 0) {
     const isOsm = (text: string): boolean => text.includes('OpenStreetMap');
-    const entries = [...loaded.descriptor.attribution].sort(
+    const entries = [...allAttribution].sort(
       (left, right) => Number(isOsm(right.text)) - Number(isOsm(left.text)),
     );
     credit.replaceChildren();
     for (const [index, entry] of entries.entries()) {
       if (index > 0) credit.append(' · ');
       const head = (entry.text.split(';')[0] ?? entry.text).trim();
-      if (!isOsm(entry.text)) {
+      if (!isOsm(entry.text) && entry.sourceUrl === undefined) {
         credit.append(head);
         continue;
       }
@@ -990,8 +1024,10 @@ async function main(): Promise<void> {
           },
         });
   const shadowsWanted = params.get('shadows') !== '0';
+  const regionalGroundColor = createRegionalGroundColor(worldgen?.environment);
   const pyramidEarth: TerrainPackagePyramidStream | undefined = adaptive
     ? await createTerrainPackagePyramidStream(loaded.descriptor, {
+        ...(regionalGroundColor !== undefined ? { surfaceColor: regionalGroundColor } : {}),
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         ...(loaded.archive !== undefined ? { archive: loaded.archive } : {}),
         ...pyramidBudget,
@@ -1133,6 +1169,10 @@ async function main(): Promise<void> {
           .shadows
       : 'off';
     ambient?.setBudget(
+      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
+        .ambient,
+    );
+    wildlife?.setBudget(
       earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
         .ambient,
     );
@@ -1294,6 +1334,26 @@ async function main(): Promise<void> {
     );
     ambientTiles.attach(ambient);
   }
+  if (
+    wildlifeCover !== undefined &&
+    wildlifeFeatures !== undefined &&
+    worldgen?.environment !== undefined
+  ) {
+    wildlife = new EarthWildlife(
+      worldgen.environment,
+      stream.object,
+      (object) => {
+        void viewer.renderer.prepareObject(object);
+      },
+      loaded.descriptor.surface?.seaLevel ?? 0,
+    );
+    wildlife.setBudget(
+      earthPerformanceTier(automaticQuality ? performanceLevel : earthQualityLevel(quality))
+        .ambient,
+    );
+    wildlifeCover.attach(wildlife.landcover);
+    wildlifeFeatures.attach(wildlife.features);
+  }
   let visitingAircraft: AircraftKind | undefined;
   // Sound loads beside everything else; the explorer runs silent until (or unless) it arrives.
   let audio: EarthAudio | undefined;
@@ -1328,6 +1388,9 @@ async function main(): Promise<void> {
     if (!event.persisted) {
       audio?.dispose();
       ambient?.dispose();
+      wildlifeCover?.detach();
+      wildlifeFeatures?.detach();
+      wildlife?.dispose();
       flight.dispose();
       vehicles.dispose();
     }
@@ -1435,6 +1498,7 @@ async function main(): Promise<void> {
       }
       if (event.code === 'KeyL' && !event.repeat && ambient !== undefined) {
         ambient.setEnabled(!ambient.isEnabled);
+        wildlife?.setEnabled(ambient.isEnabled);
       }
       if (event.code === 'KeyV' && !event.repeat && vehicles.mountedId) {
         vehicles.view = vehicles.view === 'cockpit' ? 'chase' : 'cockpit';
@@ -1638,6 +1702,7 @@ async function main(): Promise<void> {
       ambient.render(camera.pos, dt);
       graphics.record('ambient-render', performance.now() - ambientStarted);
     }
+    wildlife?.update(params.has('freeze') ? 0 : dt, camera.pos);
     const flightCamera = flight.cameraPose(vehicles.view, vehicles.lookYaw, vehicles.lookPitch);
     const vehicleCamera = flightCamera ?? vehicles.cameraPose();
     if (vehicleCamera) {
@@ -1838,6 +1903,7 @@ async function main(): Promise<void> {
       [waterOrigin[0], waterOrigin[2]],
     );
     if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
+    if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,
@@ -1870,6 +1936,7 @@ async function main(): Promise<void> {
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
     const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
     audio?.update({
+      ...(wildlife !== undefined ? { regionalAmbience: wildlife.ambience(camera.pos) } : {}),
       nowMs: now,
       ...(audioGround !== undefined ? { heightAboveGround: camera.pos[1] - audioGround } : {}),
       position: [camera.pos[0], camera.pos[1], camera.pos[2]],
@@ -1968,6 +2035,10 @@ async function main(): Promise<void> {
       navigationStatus.dataset.ambientPedestrians = String(ambientStats?.pedestrians ?? 0);
       navigationStatus.dataset.ambientTrains = String(ambientStats?.trains ?? 0);
       navigationStatus.dataset.ambientAircraft = String(ambientStats?.aircraft ?? 0);
+      const wildlifeStats = wildlife?.stats();
+      navigationStatus.dataset.wildlifeAnimals = String(wildlifeStats?.animals ?? 0);
+      navigationStatus.dataset.wildlifeCandidates = String(wildlifeStats?.candidates ?? 0);
+      navigationStatus.dataset.wildlifeTriangles = String(wildlifeStats?.triangles ?? 0);
       navigationStatus.dataset.state = flight.mountedKind
         ? 'piloting'
         : vehicles.mountedId
@@ -2026,6 +2097,11 @@ async function main(): Promise<void> {
           ? [`layer error: ${lastLayerError}`]
           : []),
         worldgenSummary,
+        ...(wildlifeStats === undefined
+          ? []
+          : [
+              `wildlife ${wildlifeStats.animals} visible · ${wildlifeStats.candidates} active · ${wildlifeStats.triangles} triangles`,
+            ]),
         ...(landmarkStats
           ? [
               `landmarks ${landmarkStats.assets} assets · ${landmarkStats.loading} loading · ${(landmarkStats.gpuBytes / 1_000_000).toFixed(1)} MB geometry · ${((landmarkStats.sharedTextureBytes ?? 0) / 1_000_000).toFixed(1)} MB shared textures`,

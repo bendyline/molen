@@ -15,7 +15,7 @@ const outDir = resolve(root, 'public/packs');
 // JavaScript is 90% of this build (13 minutes on a CI runner); a test run only reads them locally.
 const compression = process.env.MOLEN_PACK_COMPRESSION === 'store' ? 'store' : undefined;
 
-for (const name of ['entities', 'earth', 'sky', 'sounds']) {
+for (const name of ['entities', 'earth', 'ecology', 'wildlife', 'sky', 'sounds']) {
   const built = await buildPack(resolve(content, name), { outDir, compression });
   console.log(`${built.manifest.id}: ${built.file} (${Math.round(built.size / 1024)} KB)`);
 }

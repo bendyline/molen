@@ -1,0 +1,296 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "concrete_plain",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "concrete_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_standing_seam",
+      "roughness": 0.83,
+      "metallic": 0.08
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.27,
+      "metallic": 0.03
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/concepcion-cathedral-model.mjs",
+    "export": "buildConcepcionSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildConcepcionDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "buildConcepcionStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildConcepcionCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_standing_seam",
+            "roughness": 0.83,
+            "metallic": 0.08
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.27,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      96,
+      55,
+      79
+    ],
+    "lookAt": [
+      0,
+      14,
+      1
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-concepcion-skyline",
+      "position": [
+        96,
+        55,
+        79
+      ],
+      "lookAt": [
+        0,
+        14,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-concepcion-district",
+      "position": [
+        96,
+        55,
+        79
+      ],
+      "lookAt": [
+        0,
+        14,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-concepcion-street",
+      "position": [
+        96,
+        55,
+        79
+      ],
+      "lookAt": [
+        0,
+        14,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-concepcion-closeup",
+      "position": [
+        96,
+        55,
+        79
+      ],
+      "lookAt": [
+        0,
+        14,
+        1
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.modern_apartments",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Approximate map/terrain controls prepared;current model review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "StandardDEM datum34.659053m;estimated floor0.7m clears sampled footprint peak0.360m and perimeter-2.02..0.34m. Foundations follow coarse terrain;exact plaza/stair thresholds and all inferred roof/opening heights remain approximate. No independent survey or certified walking.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -73.051421657,
+        -36.827564714
+      ],
+      "modelHeight": 0,
+      "basis": "StandardDEM datum34.659053m;estimated floor0.7m clears sampled footprint peak0.360m and perimeter-2.02..0.34m. Foundations follow coarse terrain;exact plaza/stair thresholds and all inferred roof/opening heights remain approximate. No independent survey or certified walking."
+    },
+    "bounds": [
+      -73.0523,
+      -36.8282,
+      -73.0505,
+      -36.8269
+    ],
+    "notes": "StandardDEM datum34.659053m;estimated floor0.7m clears sampled footprint peak0.360m and perimeter-2.02..0.34m. Foundations follow coarse terrain;exact plaza/stair thresholds and all inferred roof/opening heights remain approximate. No independent survey or certified walking."
+  },
+  "geographicNote": "StandardDEM datum34.659053m;estimated floor0.7m clears sampled footprint peak0.360m and perimeter-2.02..0.34m. Foundations follow coarse terrain;exact plaza/stair thresholds and all inferred roof/opening heights remain approximate. No independent survey or certified walking.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

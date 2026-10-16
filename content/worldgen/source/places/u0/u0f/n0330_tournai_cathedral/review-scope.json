@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone",
+      "roughness": 0.93,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "slate",
+      "roughness": 0.88,
+      "metallic": 0
+    },
+    "tile": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.87,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.95,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.28,
+      "metallic": 0.05
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/tournai-cathedral-model.mjs",
+    "export": "buildTournaiSkyline",
+    "errorMeters": 4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildTournaiDistrict",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.05
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildTournaiStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.05
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildTournaiCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.28,
+            "metallic": 0.05
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -135,
+      115,
+      155
+    ],
+    "lookAt": [
+      0,
+      34,
+      0
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-tournai-skyline",
+      "position": [
+        -135,
+        115,
+        155
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-tournai-district",
+      "position": [
+        -135,
+        115,
+        155
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-tournai-street",
+      "position": [
+        -135,
+        115,
+        155
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-tournai-closeup",
+      "position": [
+        -135,
+        115,
+        155
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.english_terrace",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Native terrain renders inspected: signed west nave/east choir fit and coherent estimated1.5m common floor. Skirts/embedding and exact doorstep/plaza levels remain approximate; final hash-bound visual review pending.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        3.388899716,
+        50.606503655
+      ],
+      "modelHeight": 0,
+      "basis": "NativeY0 follows standardDEM27.636844m. Estimated1.5m floor against coarse perimeter−2.22..3.25m yields approximate skirts/embedding; precise plaza/doorstep levels unverified."
+    },
+    "bounds": [
+      3.3875,
+      50.6053,
+      3.3906,
+      50.6075
+    ],
+    "notes": "Current main/55 parts and two elevated photographs resolve west nave/east choir and signed facing. Nominal heights retained; profiles, ornament and terrain joins approximate.",
+    "groundContactBasis": "Current source-terrain whole/side/belfry views inspected. NativeY0 follows the retained standard DEM27.636844m. Estimated1.5m common floor against coarse perimeter−2.22..3.25m yields approximate foundations and partial embedding. Signed west nave/east choir and nominal tower/roof heights match; exact plaza levels and doorstep joins remain exterior estimates."
+  },
+  "geographicNote": "Two inspected elevated photographs and standard viewer PMTiles/DEM guide this individual cathedral exterior. Exact west portal design, sculpture/tracery, interiors and ground joins remain approximate. ©OpenStreetMap contributors,ODbL-1.0.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

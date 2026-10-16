@@ -2,7 +2,7 @@
 
 Every GLB in this repository is a build output of checked-in source, except five small authored
 masters. Git holds the generators, their specs, shared materials and textures, sidecars and
-review evidence. `asset-lock.json` pins the exact bytes the source builds to, on any machine. The
+review reports. Full-size review captures stay local (see below). Asset inputs name the reproducible model bundle. The
 Assets workflow builds them from a clean checkout, requires those bytes, and publishes them as a
 GitHub release that `pnpm assets:fetch` downloads as a cache. Building and fetching produce
 identical files.
@@ -33,11 +33,46 @@ committed before its release exists.
 
 ## Get the GLBs
 
+### Model review images
+
+Render and inspect the changed model in Molen before recording visual acceptance. Keep the
+turntables, detail shots, lighting variants and medium-fi contact sheets in ignored `shots/`,
+`medium-fi/` or `.artifacts/` directories. These are disposable local review outputs: a clean
+checkout, model build and ordinary CI must work without them or a review-image download.
+
+Keep these durable artifacts in Git:
+
+- Model recipes, specs, source textures, heightmaps and other required authored inputs.
+- Concise review reports with the source/model hashes, render commands and camera settings,
+  what was actually inspected, the decision and remaining limitations.
+- One or two curated small summary previews per model, normally `preview.png` beside its
+  source bundle. Prefer a web-sized image, roughly 1024 pixels on the long edge; do not promote
+  an entire capture set. Source textures are separate assets, not review screenshots.
+
+Reports and older `source.json` inventories may retain local capture paths and hashes. Their
+absence does not invalidate the source bundle or trigger a download. Required source files,
+reports and summary previews are still checked. Missing images also do not establish a new
+visual approval: re-render and inspect the affected model when performing a new visual review.
+
+`.gitignore` excludes bulk captures and `pnpm source:check` fails if capture images have been
+staged or tracked in Git, even when force-added. It runs in both CI and `pnpm verify`. Model
+tests should validate geometry, source/runtime hashes, materials and budgets; render tests
+should generate the views they exercise. A small explicit golden fixture is a deliberate test
+asset, not an archive of every model review.
+
+The previously published archive and `review-lock.json` remain an **optional historical
+recovery** facility. `pnpm reviews:fetch --prefix content/worldgen/source/places/gc/` retrieves
+only the relevant archived captures. Neither `assets:fetch` nor `assets:build` fetches reviews.
+Normal model work does not update this lock, pack captures or publish a review release. New
+captures remain local; any separate archive publication requires the owner's explicit request.
+
+### Restore model assets
+
 In the engine repository, with Node 22.13 or newer:
 
 ```sh
 pnpm install --frozen-lockfile
-pnpm assets:fetch     # download the release the lock names, or build from source if it is not published
+pnpm assets:fetch     # download the bundle named by asset inputs, or build from source
 pnpm build
 ```
 
@@ -89,6 +124,8 @@ For an individual structure, generate and import only its ID. For example:
 node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0228
 # Only when a new source bundle was added:
 node packages/worldgen/scripts/index-structure-sources.mjs
+# When a source bundle or model recipe was added, before import and review captures:
+node packages/worldgen/scripts/index-structure-authoring.mjs
 node packages/worldgen/scripts/import-next-1000-models.mjs --ids=N0228
 node packages/tooling/scripts/generate-landmark-lods.mjs --ids=N0228
 ```
@@ -98,8 +135,77 @@ hashes. During geometry iteration, inspect the silhouette and affected detail vi
 model's geometry is stable, capture and inspect its complete required portable/shared-material
 review set. Re-render when geometry, materials, placement or capture behavior changes; do not
 re-render unchanged models. Placement changes additionally require a geographic fit review.
+Register new recipes before the final captures: review input hashes include the recipe files
+listed in the authoring index, so adding that registration later invalidates those reviews.
+
+For the current structure backlog, use reference pictures for appearance and standard viewer
+PMTiles for location, orientation, footprint and terrain fit. The owner explicitly requested
+this scope on 2026-10-11. Do not research separate surveys, cadastral records, local LiDAR or
+signed doorway sources for each artifact. Record approximate exterior fit honestly and inspect
+the affected renders. Exact thresholds and navigable interiors are outside this review scope.
+The owner reiterated this on2026-10-12: normally inspect one or two useful pictures, reuse
+existing source facts, and decide fit from the standard PMTiles. Additional bespoke evidence
+is not a completion gate for this backlog. Record unresolved precision as a limitation and
+continue with a reasonable visualization fit; do not start a new research campaign per model.
+
+Structure bundles can keep per-model review scope in `review-scope.json` and attributed
+signed map controls in `map-frame.json`; the source generator preserves these documents.
+Use `qaCameraOverrides`, keyed by existing camera name with `position` and `lookAt`, to move
+review cameras when a derivative changes the working floor. This preserves the original
+architectural recipe and avoids adding duplicate cameras through `qaCameras`.
+When a mapped point fixes location but pictures and PMTiles cannot establish exact facing,
+record the chosen facing as approximate. Set `geographic.orientationPolicy` to
+`"approximate-visualization"` and the source frame's `orientationControl.status` to
+`"reviewed-approximation"`, with the chosen heading, review date, picture references and
+honest angular uncertainty (up to 180 degrees). Current placement QA must still pass.
+Retain the mapped point; do not fabricate a footprint or describe the choice as a measured bearing.
+A skyline that automatic reduction cannot represent can declare `runtimeLodOverlay` in
+that review scope: `level: "skyline"`, a `packages/worldgen/scripts/*.mjs` module, its exported
+builder and a conservative `errorMeters`. The registered runtime-LOD generator rebuilds
+that silhouette from source and retains the three ordinary derivatives. The authoring
+index includes the declared module. Its fingerprint changes only the affected model's
+overlay; unrelated recipe fingerprints stay unchanged. See Jeddah Light's source bundle
+and `jeddah-skyline-model.mjs` for an example. Master bytes remain separate.
+
+When near automatic reductions fail, `authoredLevels` can declare district, street or
+closeup exports from the same source module, an explicit semantic `surfaces` mapping
+and conservative `errorMeters`. The builder preserves shared metric surfaces and
+separate GPU streams and rejects triangle overages. Tahkuna provides district/street
+examples. An optional `sourceGeometry` module/export keeps a current
+source reconstruction separate from a retained original recipe; its declared facts
+and dimensions are preserved in the review scope and authoring index.
+
+For signature-tower and castle recipes, a scope can also select `surfaceOverrides`,
+`geographic`, `previewGround`, `previewTerrain`, `previewEntities` and `sourceDocuments`. Preserve the original
+recipe and measured controls; use a separate current leaf for architectural or ground repairs.
+Turku Castle demonstrates an attributed height grid, reconstructed court levels and a source
+terrain fixture. Declare measured and reconstructed elevations separately, including the datum
+the host must supply. A review fixture does not establish the host's terrain accuracy.
+Heritage-tower and lighthouse scopes also accept `previewGround`, `previewTerrain`,
+`camera` and `sourceDocuments` for retaining standard PMTiles review fixtures.
+Leeds Castle pairs its attributed terrain with a source-local palette box for lake water;
+the medium-fi fixture accepts these explicit boxes without running scene scripts. Set
+`mediumFiContext.groundY` to the absolute base datum for geographic placement captures.
+
+An optional `caps` object can request a small additional district, street or closeup
+reduction with `triangles`, absolute `errorMeters` and optional `prune`. Every material
+group is retained, accumulated error includes pruning allowance, and failure to meet
+the strict 4000/16000/64000 ceilings stops generation. Inspect affected details again;
+do not accept nominal triangle overages. Keri Lighthouse provides a street-cap example.
+
+Tall or asymmetric models should add explicit whole-model cameras to their scope.
+An optional `reviewLod` on a QA camera chooses the derivative in the medium-fi fixture;
+portable and shared source captures still show the detailed master. `qaLodCameras` adds
+browser-only detail cameras for changed derivatives without altering source review views.
 
 Refresh the catalog, galleries and aggregate texture inventory once per meaningful batch.
+For Qualla-linked structures, also refresh the [story backlog and Qualla model annotations](worldgen/source/qualla-structures/README.md#remembering-model-coverage-in-qualla)
+after the source, registration, placement and readiness catalogs are current. The explicit
+scan/sync step remembers model IDs in the sibling Qualla curation catalog, including models
+that still need review; an asset build alone does not update story coverage.
+For the Qualla workstream, every next-1,000 candidate and collection member is reserved for
+production on a separate device. Retain coverage links, but exclude these models from local
+authoring and refinement; the Qualla batch preparation check enforces this ownership rule.
 After the selected generators and imports have run, a local lock checkpoint can use
 `pnpm assets:build --no-generate --update-lock`: this reuses current source GLBs, imports only
 stale runtime models, and hashes the inventory without running every generator. Review that

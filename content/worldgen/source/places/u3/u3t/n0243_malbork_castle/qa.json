@@ -1,11 +1,13 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.n0243_malbork_castle",
-  "inputHash": "sha256:9572b14180fd3d74e40fb41075718a19fcdf7a581b24f46e98c42f7e942de4fd",
-  "captureReportHash": "sha256:fd90c7c9fccb13211ce6b500669f7d2de93159dd5c82f7f898e2d8a047e31359",
+  "reviewedOn": "2026-10-11",
+  "inputHash": "sha256:9420b6e0d61bc01a8a4075db8d5eb2a01b1d451099d422b0bb70f74ba0b8a199",
+  "sourceHash": "sha256:18af4066b3ef5de40890dfc92f1af0843e661f48a564d37bb4be46c4d836a62a",
+  "runtimeHash": "sha256:6e450d7e7f98da4920d4d4331736395ab4e276d74046624aa3a866fd99ae38c5",
+  "captureReportHash": "sha256:7ea6b0e5a4ff287854d64b5f68bb71a879535e348f85224cc4d423ea3aa196ac",
   "visualReview": {
     "status": "passed",
-    "scope": "Current render integrity only; architectural fidelity and geographic fit remain pending.",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -20,13 +22,14 @@
       "shots/north-gate-and-bridge.png",
       "shots/lower-castle-karwan.png",
       "shots/lower-castle-ranges.png",
-      "shots/all-three-castles-plan.png"
+      "shots/all-three-castles-plan.png",
+      "shots/signed-occupied-plan.png"
     ],
-    "notes": "Inspected all 14 final portable views. Corrected below-ground cloister arches, windows crossing courtyard offsets, reversed gate-spandrel normals and bridge-end railings. Open courts, raised Dansker gallery, the Middle Castle entry, palace and named Lower Castle structures are present. Turntables establish full extent; targeted cameras inspect architectural details. Heights, roof junctions and omitted ornament remain provisional."
+    "notes": "Actually inspected all96 final images:15 portable,15 shared-material,31 medium-fi and35 retained-terrain views. Distinct High Castle,open cloister court,crenellated keep,church,Dansker and elevated passage,U-shaped Middle Castle,Grand Masters Palace,Lower Castle Karwan,St Lawrence and service ranges remain recognizable. Museum tower photograph and river/courtyard photographs establish stepped ranges,steep tile roofs,keep parapet and pointed gate. Reviewed geometry independently grounds each range,corrects keep crown and pole,well primitive and several formerly floating gate roofs. The Middle gate and sloping narrow moat bridge are continuous. The cloister now has full-depth jambs,front/rear spandrels and pointed soffits; its bays follow four principal court corners to avoid overlapping sliver arches from mapped recesses. Earlier thin arch outlines and pier gaps were rejected. Gallery rear walls remain occupied-range masonry. Original high camera crops lower arcades; the dedicated lower grade camera covers them. Wide turntables are small because they cover the full584m complex; feature cameras cover architectural details."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a8bed9c07ae3054ca733e5206731b9300d7a3dd128e2bcbbea5f8924f9fb96b8",
+    "captureReportHash": "sha256:28912771f80c275555853bb6d531e3faacb28f2ea21db85eab37b15979b00303",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -40,144 +43,310 @@
       "shots/shared/north-gate-and-bridge.png",
       "shots/shared/lower-castle-karwan.png",
       "shots/shared/lower-castle-ranges.png",
-      "shots/shared/all-three-castles-plan.png"
+      "shots/shared/all-three-castles-plan.png",
+      "shots/shared/signed-occupied-plan.png",
+      "shots/shared/placement.png"
     ],
-    "notes": "Inspected all 13 final shared-material views. Six canonical material graphs each load once, glazing remains local PBR, and unloading leaves zero live model geometries. These studio captures do not establish geographic fit."
+    "notes": "Six canonical brick,ceramic tile,granite,raw limestone,timber and painted-metal graphs provide shared metric surface detail; opaque PBR glass is the seventh near material. All6GLBs have0embedded images. Skyline bakes graph linear means into vertex colors and one draw. Shared fixture reads each referenced graph once and unload leaves0model geometries. No copied photography,per-model bitmap duplicates,individually modeled bricks or roof tiles are used. Shared isolated floor is lowered to avoid burying lower ranges; it is not evidence of actual ground fit."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:0fe0acccaf6ec8cb5e96171071ced2cb559e249b5de735dfb1cb2ee40fc51c6c",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/high-castle-cloister.png",
+      "medium-fi/high-castle-and-dansker.png",
+      "medium-fi/middle-castle-courtyard.png",
+      "medium-fi/grand-masters-palace.png",
+      "medium-fi/church-and-keep.png",
+      "medium-fi/north-gate-and-bridge.png",
+      "medium-fi/lower-castle-karwan.png",
+      "medium-fi/lower-castle-ranges.png",
+      "medium-fi/all-three-castles-plan.png",
+      "medium-fi/signed-occupied-plan.png",
+      "medium-fi/whole-malbork-skyline.png",
+      "medium-fi/whole-malbork-district.png",
+      "medium-fi/whole-malbork-street.png",
+      "medium-fi/whole-malbork-closeup.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected31 final images: noon/late light,economy/high settings,feature cameras,whole-model four-level comparison and transitions. Closeup/street retain paired Gothic openings,cloister masonry depth,keep crenels,grouped gables,chimneys,Palace detail,moat bridge and true entry. Street groups secondary window bays more sparsely to stay under16000triangles. District retains mapped occupied roof ranges and grouped facade openings. Skyline preserves the three-part silhouette,open courts and Middle entry at998triangles; minor walls,gables,tracery and cloisters are omitted at this far-view level. Source/medium previews use retained terrain rather than a flatY0floor that buried lower buildings. Dedicated grade views establish production placement contact separately from synthetic context."
   },
   "geographicReview": {
-    "status": "pending",
-    "placementHash": "sha256:3ecfebdef09db8f939958e3d56113616ab256285886d74d0b1e3b3579ebfdafe",
-    "notes": "Exact Q71279 relation/6436433 identifies the main castle; named Lower Castle components extend beyond it. Anchor [19.027655287,54.03991349], heading 0.857051662697. Ground datum, keep height, terrain fit and complete outer fortifications remain pending. Draft placement with replaceFootprint=false; the component envelope must never become a solid replacement footprint."
+    "status": "passed",
+    "placementHash": "sha256:e7f2d2b80a2fa1b03761c61a5548b0da1b21be8338f7b1e588c59ca8e1e7c745",
+    "mapFrameHash": "sha256:61b2937fbceaccea6e5ea9d9bcf205a304a5333d85b05c3889746ad2c07a8967",
+    "notes": "Fresh exact-Q71279 relation6436433 and103 individual cached features agree within0.7mm. Native+X40.89deg follows High-to-Lower Castle toward the north-east;+Z130.89deg faces eastern defenses. Precinct replacement is disabled. Retained GUGiK public2m bare-earth Float32 crop resampled into6660-value6m native grid establishes relative contact. ModelY0 is a reconstructed19m High-court working floor in advertisedPL-EVRF2007-NH; actual viewer placement subtracts the matching bare-earth grid height at[-28,33],not a nominal floor. Separate working levels:Middle15.2m,entry14.3m,Dansker8.6m,Palace9.6m and Lower ranges roughly8–12m. Public0.5m surface crop informs approximate keep crown68.5m and pole77.5m absolute; owner nearly70m description has no datum. No survey precision or exact acquisition vintage is asserted. Model supplies grounded masonry and a narrow moat bridge without a second castle hill; host must supply fine terrain. Fresh exact-Q71279 relation6436433 agrees with103 cached features within0.7mm;57 occupied IDs distinguish masonry from precinct boundaries. Native+X40.89degrees points High-to-Lower Castle north-east;+Z130.89degrees points toward eastern defenses. Whole precinct replacement is disabled. The terrain reference subtracts the actual retained-grid interpolant -0.7849167m at Highcourt[-28,33],not its reconstructed floor0. Viewer placement remains relative; exact host vertical datum or tile vintage is not asserted."
   },
   "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "notes": "Exterior medium-fi reconstruction with accepted estimates for working floors,roof junctions,bay counts,tracery,dormers and gate decoration. The High Castle entrance interior/vault is not reconstructed; the open Middle,outer and Lower passages are explicit geometry. Madonna mosaic,figurative sculpture,inscriptions,archaeological ruins,complete outer earthworks and interior navigation are omitted. Bare-earth under roofs cannot establish occupied floor elevations. Keep crown/pole estimates from a public surface crop are not a surveyed height. Common textures intentionally simplify photographic weathering. Physical laptop/phone dense-view timings remain unmeasured."
+  },
+  "legacyFidelityScope": {
     "target": "maximum",
     "status": "pending",
-    "notes": "Maximum fidelity pending: this is an individual exterior reconstruction, not a surveyed as-built model. Vertical dimensions, irregular roof junctions and exact fenestration require further comparison. The museum ticket site describes the tower as nearly 70 m without a datum. The current 46 m ground-relative keep is provisional; do not treat it as a verified measured height. The church Madonna mosaic and figurative sculpture are not reproduced. Their recess is preserved. Exact tracery, gate decoration, decorative gables and rooftop dormers need further work. Lower Castle is represented by selected existing mapped structures and eastern walls; ruins, archaeological foundations, contemporary ticket facilities and complete outer earthworks are not included. No interiors, moat excavation, landscape, temporary works or photographic textures. The High Castle courtyard and Middle Castle court remain open. Shared brick, ceramic tile, timber, limestone, granite and painted-metal surfaces; local PBR glazing. Fine brick bonds and roof seams stay in the source master."
+    "notes": "Maximum fidelity pending: this is an individual exterior reconstruction, not a surveyed as-built model. Vertical dimensions, irregular roof junctions and exact fenestration require further comparison. The museum ticket site describes the tower as nearly 70 m without a datum. The current 46 m ground-relative keep is provisional; do not treat it as a verified measured height. The church Madonna mosaic and figurative sculpture are not reproduced. Their recess is preserved. Exact tracery, gate decoration, decorative gables and rooftop dormers need further work. Lower Castle is represented by selected existing mapped structures and eastern walls; ruins, archaeological foundations, contemporary ticket facilities and complete outer earthworks are not included. No interiors, moat excavation, landscape, temporary works or photographic textures. The High Castle courtyard and Middle Castle court remain open. Shared brick, ceramic tile, timber, limestone, granite and painted-metal surfaces; local PBR glazing. Fine brick bonds and roof seams stay in the source master.",
+    "reviewBinding": "Historical record only; current approval is the newly inspected medium-fi scope."
   },
   "geometryValidation": {
     "validator": "Khronos glTF Validator",
-    "source": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 7
+    "results": [
+      {
+        "name": "source",
+        "path": "content/worldgen/source/places/u3/u3t/n0243_malbork_castle/models/source.glb",
+        "hash": "sha256:18af4066b3ef5de40890dfc92f1af0843e661f48a564d37bb4be46c4d836a62a",
+        "bytes": 5302204,
+        "triangles": 57078,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -138.0894775390625,
+          -13.438087463378906,
+          -86.6220932006836
+        ],
+        "max": [
+          446.7280578613281,
+          58.5,
+          187.10552978515625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "runtime",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.glb",
+        "hash": "sha256:6e450d7e7f98da4920d4d4331736395ab4e276d74046624aa3a866fd99ae38c5",
+        "bytes": 5301568,
+        "triangles": 57078,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -138.0894775390625,
+          -13.438087463378906,
+          -86.6220932006836
+        ],
+        "max": [
+          446.7280578613281,
+          58.5,
+          187.10552978515625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "skyline",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.skyline.glb",
+        "hash": "sha256:96fd9da582d21fa0a4d4a1cef05d58d5152e486e63c454e1f12ab4806bbb0464",
+        "bytes": 82000,
+        "triangles": 998,
+        "materials": 1,
+        "images": 0,
+        "min": [
+          -96.48164367675781,
+          -12.560604095458984,
+          -86.42406463623047
+        ],
+        "max": [
+          446.2882080078125,
+          58.5,
+          126.41213989257812
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "district",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.district.glb",
+        "hash": "sha256:f31a83ebc944cd0321e83f644fc058abc9f565c6877a7057e083376a7f3d43c4",
+        "bytes": 239920,
+        "triangles": 3197,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -132.22854614257812,
+          -13.185266494750977,
+          -87.06714630126953
+        ],
+        "max": [
+          446.2882080078125,
+          58.5,
+          186.67279052734375
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "street",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.street.glb",
+        "hash": "sha256:2741f15425da828c3b12eda3c3a393a3600f699efbd42b20b77579f097126780",
+        "bytes": 1245512,
+        "triangles": 15915,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -138.0894775390625,
+          -13.438087463378906,
+          -86.6220932006836
+        ],
+        "max": [
+          446.7280578613281,
+          58.5,
+          187.10552978515625
+        ],
+        "errors": 0,
+        "warnings": 0
+      },
+      {
+        "name": "closeup",
+        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.closeup.glb",
+        "hash": "sha256:c68b754e8b229d44984336bd0d84a7dff806310d806d23530329689a20bfa475",
+        "bytes": 4587792,
+        "triangles": 57078,
+        "materials": 7,
+        "images": 0,
+        "min": [
+          -138.0894775390625,
+          -13.438087463378906,
+          -86.6220932006836
+        ],
+        "max": [
+          446.7280578613281,
+          58.5,
+          187.10552978515625
+        ],
+        "errors": 0,
+        "warnings": 0
+      }
+    ],
+    "tests": {
+      "command": "node node_modules/vitest/vitest.mjs run test/malbork-runtime-lods.test.mjs --maxWorkers=1",
+      "passed": 3
     },
-    "runtime": {
-      "errors": 0,
-      "warnings": 0,
-      "infos": 7
-    },
-    "validatorLimitations": "Unused-UV information reflects procedural material graphs resolved by Molen. Geometry validation does not certify architectural accuracy.",
-    "triangles": 516537,
-    "vertices": 1059079,
-    "materials": 7,
-    "sharedGraphs": 6,
-    "embeddedImages": 0
+    "notes": "Three focused tests pass. The original516537-triangle/44329516-byte detailed source master exactly reproduces sha256:7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193. Reviewed source/import hashes,signed103-feature frame,6660 finite terrain values,retained DTM/DSM crop hashes and relative placement reference agree. Rays preserve both open courts,true Middle passage and sloping bridge at all browser levels. Near-level rays distinguish open gallery depth from its solid front spandrels. Derivatives rebuild byte-identically within1000/4000/16000/64000triangles,8draws and3MBinitial download. POSITION and NORMAL use separate12-byte streams. SixGLBs pass Khronos with0errors/0warnings/0images;strict medium-fi findings are empty. Terrain fixture samples four mapped foundation sets and bridge floors. These are sampled checks,not exhaustive manifold or as-built certification."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "scope": "Authored LOD comparison and automated triangle/download/layout/determinism checks; physical phone and laptop measurements pending.",
-    "notes": "964 / 3170 / 15350 / 51343 triangles. Skyline plus district totals 311824 bytes; street 1035396 bytes; close-up 3672768 bytes. The separate detailed source master is 44329516 bytes. Skyline retains principal wards and towers but omits curtain walls and minor outbuildings. Phone and laptop hardware measurements remain pending.",
+    "recipeHash": "sha256:79723d02bf33bde246361dda7681dc6312d6c3a1710656c20f7c9d08536f6a32",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.skyline.glb",
-        "hash": "sha256:d9cb33f1af3392e67f520653bbee45a6a04936ab421bca31eb93120e39c76abd",
-        "bytes": 78648,
-        "triangles": 964,
-        "vertices": 1985,
-        "materials": 1,
-        "sharedGraphs": 0,
-        "images": 0,
-        "min": [
-          -96.48164367675781,
-          0,
-          -86.42406463623047
-        ],
-        "max": [
-          446.52239990234375,
-          46,
-          126.41213989257812
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 1
+        "hash": "sha256:96fd9da582d21fa0a4d4a1cef05d58d5152e486e63c454e1f12ab4806bbb0464",
+        "bytes": 82000,
+        "gzipBytes": 16937,
+        "triangles": 998,
+        "cpuBytes": 80580,
+        "gpuBytes": 80580,
+        "errorMeters": 8,
+        "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.district.glb",
-        "hash": "sha256:4838f1041142d16d296c9450962d96885e420ebb32d8a3643757d036ea22b68c",
-        "bytes": 233176,
-        "triangles": 3170,
-        "vertices": 5778,
-        "materials": 5,
-        "sharedGraphs": 4,
-        "images": 0,
-        "min": [
-          -132.22854614257812,
-          0,
-          -87.06714630126953
-        ],
-        "max": [
-          446.52239990234375,
-          46,
-          187.02908325195312
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 5
+        "hash": "sha256:f31a83ebc944cd0321e83f644fc058abc9f565c6877a7057e083376a7f3d43c4",
+        "bytes": 239920,
+        "gzipBytes": 78230,
+        "triangles": 3197,
+        "cpuBytes": 231440,
+        "gpuBytes": 231440,
+        "errorMeters": 3,
+        "drawCalls": 7
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.street.glb",
-        "hash": "sha256:2426d8d3cdb07104c6b89e48efad8bc10d249fbaece2471f79300b668820d154",
-        "bytes": 1035396,
-        "triangles": 15350,
-        "vertices": 25999,
-        "materials": 6,
-        "sharedGraphs": 5,
-        "images": 0,
-        "min": [
-          -138.0894775390625,
-          0,
-          -86.4861831665039
-        ],
-        "max": [
-          446.399169921875,
-          46,
-          187.02908325195312
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 6
+        "hash": "sha256:2741f15425da828c3b12eda3c3a393a3600f699efbd42b20b77579f097126780",
+        "bytes": 1245512,
+        "gzipBytes": 331171,
+        "triangles": 15915,
+        "cpuBytes": 1236980,
+        "gpuBytes": 1236980,
+        "errorMeters": 1,
+        "drawCalls": 7
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "path": "content/worldgen/assets/places/u3/u3t/n0243_malbork_castle/model.closeup.glb",
-        "hash": "sha256:2299b6f48f0d1f585dfc75fbea31d70ec5d13fd5e142e212e727cd149e3e41ca",
-        "bytes": 3672768,
-        "triangles": 51343,
-        "vertices": 93226,
-        "materials": 7,
-        "sharedGraphs": 6,
-        "images": 0,
-        "min": [
-          -138.0894775390625,
-          0,
-          -86.4861831665039
-        ],
-        "max": [
-          446.399169921875,
-          46,
-          187.02908325195312
-        ],
-        "errors": 0,
-        "warnings": 0,
-        "infos": 7
+        "hash": "sha256:c68b754e8b229d44984336bd0d84a7dff806310d806d23530329689a20bfa475",
+        "bytes": 4587792,
+        "gzipBytes": 1456210,
+        "triangles": 57078,
+        "cpuBytes": 4579204,
+        "gpuBytes": 4579204,
+        "errorMeters": 0.3,
+        "drawCalls": 7
       }
-    ]
+    ],
+    "initialBytes": 321920,
+    "notes": "skyline:998triangles/82000bytes/1draws; district:3197triangles/239920bytes/7draws; street:15915triangles/1245512bytes/7draws; closeup:57078triangles/4587792bytes/7draws. Initial skyline+district321920bytes. Reviewed source5302204bytes/import5301568bytes. Original44.3MBmaster remains independently reproducible. Physical device measurements remain pending."
+  },
+  "limitations": [
+    "Original detailed516537-triangle/44329516-byte master remains exactly reproducible atsha256:7edaf912ea66d093c514a74df624f5802008ee0b261c05a1f1b0217653515193 from malbork-castle-model.mjs#malborkStudy.build. Reviewed independent source corrects levels,foundations,well primitive and gate-to-moat-bridge continuity.",
+    "Fresh exact-Q71279 relation6436433 and103 individual cached features agree within0.7mm. Native+X40.89deg follows High-to-Lower Castle toward the north-east;+Z130.89deg faces eastern defenses. Precinct replacement is disabled. Retained GUGiK public2m bare-earth Float32 crop resampled into6660-value6m native grid establishes relative contact. ModelY0 is a reconstructed19m High-court working floor in advertisedPL-EVRF2007-NH; actual viewer placement subtracts the matching bare-earth grid height at[-28,33],not a nominal floor. Separate working levels:Middle15.2m,entry14.3m,Dansker8.6m,Palace9.6m and Lower ranges roughly8–12m. Public0.5m surface crop informs approximate keep crown68.5m and pole77.5m absolute; owner nearly70m description has no datum. No survey precision or exact acquisition vintage is asserted. Model supplies grounded masonry and a narrow moat bridge without a second castle hill; host must supply fine terrain.",
+    "Six common brick,ceramic tile,granite,limestone,timber and painted-metal graphs plus opaque PBR glass. Skyline bakes common graph linear means into one draw. No copied photography or embedded bitmaps.",
+    "Exterior medium-fi reconstruction. Floor levels,roof junctions,bay counts,tracery,gables,dormers and gate decoration are approximations. Madonna mosaic and figurative sculpture are omitted with their recess preserved. No interiors,archaeological ruins,complete outer earthworks or landscape.",
+    "Bare-earth interpolation beneath occupied roofs does not establish floor elevations. Public composite data exact vintage/vertical accuracy is not asserted. Pole and crown working heights are estimated from the retained surface crop,not a surveyed tower height. Physical laptop/phone dense-view timings remain pending.",
+    "Source and medium-fi preview use retained relative terrain; shared geographic stage lowers only its isolated review plane to-16.4m so it cannot hide the lower ranges. Model placement remains unchanged. Preview terrain outside the bounded evidence clamps to grid edges and is not additional geographic evidence."
+  ],
+  "terrainReview": {
+    "status": "passed",
+    "report": "shots/grade/report.json",
+    "captureReportHash": "sha256:bba79f978e9b3954410d89e876c86eaf30dab1ba8bd728e67393fd586641f6d4",
+    "fixtureHash": "sha256:74e8a7f4d4d6f874a4e1c51d2dce407ddf63162f49a5b4c81be7aeaf46d2549d",
+    "gradeHash": "sha256:ca243dd8df3eebcfcc981650bc79becbcd85b012157f3c1749f609944dde9171",
+    "inspectedFrames": [
+      "shots/grade/master-three-castles-overview.png",
+      "shots/grade/master-high-castle-cloister.png",
+      "shots/grade/master-dansker-and-riverside.png",
+      "shots/grade/master-palace-and-middle-castle.png",
+      "shots/grade/master-middle-gate-through-moat.png",
+      "shots/grade/master-lower-castle-karwan.png",
+      "shots/grade/master-buttermilk-and-northern-range.png",
+      "shots/grade/skyline-three-castles-overview.png",
+      "shots/grade/skyline-high-castle-cloister.png",
+      "shots/grade/skyline-dansker-and-riverside.png",
+      "shots/grade/skyline-palace-and-middle-castle.png",
+      "shots/grade/skyline-middle-gate-through-moat.png",
+      "shots/grade/skyline-lower-castle-karwan.png",
+      "shots/grade/skyline-buttermilk-and-northern-range.png",
+      "shots/grade/district-three-castles-overview.png",
+      "shots/grade/district-high-castle-cloister.png",
+      "shots/grade/district-dansker-and-riverside.png",
+      "shots/grade/district-palace-and-middle-castle.png",
+      "shots/grade/district-middle-gate-through-moat.png",
+      "shots/grade/district-lower-castle-karwan.png",
+      "shots/grade/district-buttermilk-and-northern-range.png",
+      "shots/grade/street-three-castles-overview.png",
+      "shots/grade/street-high-castle-cloister.png",
+      "shots/grade/street-dansker-and-riverside.png",
+      "shots/grade/street-palace-and-middle-castle.png",
+      "shots/grade/street-middle-gate-through-moat.png",
+      "shots/grade/street-lower-castle-karwan.png",
+      "shots/grade/street-buttermilk-and-northern-range.png",
+      "shots/grade/closeup-three-castles-overview.png",
+      "shots/grade/closeup-high-castle-cloister.png",
+      "shots/grade/closeup-dansker-and-riverside.png",
+      "shots/grade/closeup-palace-and-middle-castle.png",
+      "shots/grade/closeup-middle-gate-through-moat.png",
+      "shots/grade/closeup-lower-castle-karwan.png",
+      "shots/grade/closeup-buttermilk-and-northern-range.png"
+    ],
+    "notes": "Actually inspected35 final terrain images:seven cameras across source master and four browser levels. Public GUGiK WCS retains exact Float32 bare-earth2m crop and bounded0.5m surface crop;the native6m grid contains6660 values. CRS conversion uses EPSG2180 service advertised easting,northing with always_xy. ModelY0 is a working19m Highcourt floor in advertisedPL-EVRF2007-NH;runtime reference subtracts actual local grid bare earth -0.7849167m. Working relative floors include Middle-3.8m,entry-4.7m,Dansker-10.4m,Palace-9.4m and Lower ranges around-7..-10m. Foundations extend beneath local slopes and defensive walls follow local relief without a second castle hill or whole-precinct excavation. Narrow3-section entry/bridge caps follow mapped centerline and working grades;floor probes are within3cm and clear the terrain. Public surface crop informs approximate keep crown68.5m and pole77.5m absolute,not surveyed ground-relative heights. Three actual grid-vertex probes show.015m clearance. Four mapped occupied-wall ray sets test foundation contact;five unload cycles restore terrain and leave0model geometries. Source/medium terrain preview resamples the retained grid to4m and clamps outside its bounded extent for display only;no evidence outside the crop is asserted. National terrain reuse is publicly allowed with attribution;no inventedCCBYlicense or exact acquisition vintage/vertical accuracy is claimed. Host terrain must supply comparable local detail."
   }
 }

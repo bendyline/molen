@@ -1,0 +1,321 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "wall": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "spire": {
+      "slot": "wall",
+      "graph": "stone_ashlar",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "metal_copper",
+      "roughness": 0.8,
+      "metallic": 0.35
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.9,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.4,
+      "metallic": 0.02
+    },
+    "accent": {
+      "slot": "trim",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.72,
+      "metallic": 0.12
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/glasgow-cathedral-model.mjs",
+    "export": "buildGlasgowCathedralSkyline",
+    "errorMeters": 1.4,
+    "authoredLevels": {
+      "district": {
+        "export": "buildGlasgowCathedralDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "buildGlasgowCathedralStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildGlasgowCathedralCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "spire": {
+            "slot": "wall",
+            "graph": "stone_ashlar",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.8,
+            "metallic": 0.35
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "accent": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.72,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      -120,
+      78,
+      110
+    ],
+    "lookAt": [
+      0,
+      22,
+      -2
+    ],
+    "fov": 44
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-glasgow-cathedral-skyline",
+      "position": [
+        -175,
+        125,
+        170
+      ],
+      "lookAt": [
+        0,
+        25,
+        -2
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-glasgow-cathedral-district",
+      "position": [
+        -175,
+        125,
+        170
+      ],
+      "lookAt": [
+        0,
+        25,
+        -2
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-glasgow-cathedral-street",
+      "position": [
+        -175,
+        125,
+        170
+      ],
+      "lookAt": [
+        0,
+        25,
+        -2
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-glasgow-cathedral-closeup",
+      "position": [
+        -175,
+        125,
+        170
+      ],
+      "lookAt": [
+        0,
+        25,
+        -2
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.3,
+    "neighborStyle": "molen.worldgen.catalog.swedish_cottage",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "orientationPolicy": "approximate-visualization",
+    "reviewStatus": "Picture/standard-map exterior visualization; current acceptance is recorded separately in QA.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Standard DEM datum 36.618234m; display datum offset 0.4m, mapped perimeter terrain -2.33..3.05m. Foundations follow terrain. Western/northern entry thresholds use local DEM +0.22m; east lower-window bases use local terrain clearance. Coarse viewer terrain does not certify absolute altitude, crypt floor levels, retaining terraces, cemetery/step joins, paving, thresholds, cut/fill, interiors or walking. No global terrain flattening.",
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        -4.23454771,
+        55.86297441
+      ],
+      "modelHeight": 0,
+      "basis": "Standard DEM datum 36.618234m; display datum offset 0.4m, mapped perimeter terrain -2.33..3.05m. Foundations follow terrain. Western/northern entry thresholds use local DEM +0.22m; east lower-window bases use local terrain clearance. Coarse viewer terrain does not certify absolute altitude, crypt floor levels, retaining terraces, cemetery/step joins, paving, thresholds, cut/fill, interiors or walking. No global terrain flattening."
+    },
+    "bounds": [
+      -4.242,
+      55.859,
+      -4.227,
+      55.867
+    ],
+    "notes": "Standard DEM datum 36.618234m; display datum offset 0.4m, mapped perimeter terrain -2.33..3.05m. Foundations follow terrain. Western/northern entry thresholds use local DEM +0.22m; east lower-window bases use local terrain clearance. Coarse viewer terrain does not certify absolute altitude, crypt floor levels, retaining terraces, cemetery/step joins, paving, thresholds, cut/fill, interiors or walking. No global terrain flattening."
+  },
+  "geographicNote": "Standard DEM datum 36.618234m; display datum offset 0.4m, mapped perimeter terrain -2.33..3.05m. Foundations follow terrain. Western/northern entry thresholds use local DEM +0.22m; east lower-window bases use local terrain clearance. Coarse viewer terrain does not certify absolute altitude, crypt floor levels, retaining terraces, cemetery/step joins, paving, thresholds, cut/fill, interiors or walking. No global terrain flattening.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

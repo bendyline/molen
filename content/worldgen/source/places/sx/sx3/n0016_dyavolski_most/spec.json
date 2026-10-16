@@ -50,7 +50,10 @@
       56,
       65.7
     ],
-    "mappedPathLengthMeters": 59.092
+    "mappedPathLengthMeters": 59.092,
+    "originalMasterHash": "sha256:680c05c0da168a676a954b82224d077cdfa36ecb309e265781efd17f345059a7",
+    "originalMasterRecipe": "packages/worldgen/scripts/dyavolski-most-model.mjs#buildDyavolski",
+    "reviewScope": "Original detailed source preserved; picture and standard PMTiles approximate visualization review."
   },
   "reconstruction": {
     "bodyLengthMeters": 65.7,
@@ -87,7 +90,31 @@
     ],
     "heading": -1.300070647748,
     "elevationMode": "terrain-contact",
-    "notes": "The exact mapped59.092m path sets position and signed axis. The65.7m engineering extent includes reconstructed approaches beyond the map path endpoints; no stretch is applied. Riverbed and bedrock-bank vertical fit remains pending."
+    "notes": "The inspected picture confirms three unequal major vaults, four relief openings, upstream pointed cutwaters, humped cobbled walkway and very low stone edges. Retained mapped59.092m pedestrian axis and the current PMTiles named bridge agree with the centre and south/southeast-facing native+X. The original65.7m reconstructed approaches remain unstretched. Standard PMTiles centre444.0231m is the approximate working base; approach samples differ about20m because coarse gorge terrain does not resolve bridge contacts. The preview grades only a bounded under-bridge/approach corridor to the existing footing profile and retains raw terrain outside it. Viewer ground opening is bounded to the bridge itself. Exact river/tide levels and bank contacts remain approximate, without bespoke survey research.",
+    "groundContactReviewed": true,
+    "groundContactBasis": "The inspected picture confirms three unequal major vaults, four relief openings, upstream pointed cutwaters, humped cobbled walkway and very low stone edges. Retained mapped59.092m pedestrian axis and the current PMTiles named bridge agree with the centre and south/southeast-facing native+X. The original65.7m reconstructed approaches remain unstretched. Standard PMTiles centre444.0231m is the approximate working base; approach samples differ about20m because coarse gorge terrain does not resolve bridge contacts. The preview grades only a bounded under-bridge/approach corridor to the existing footing profile and retains raw terrain outside it. Viewer ground opening is bounded to the bridge itself. Exact river/tide levels and bank contacts remain approximate, without bespoke survey research.",
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -32.85,
+          -1.8
+        ],
+        [
+          32.85,
+          -1.8
+        ],
+        [
+          32.85,
+          3.3
+        ],
+        [
+          -32.85,
+          3.3
+        ]
+      ],
+      "basis": "Bounded bridge-only opening prevents coarse gorge terrain burying the arches; approximate contact visualization."
+    }
   },
   "geometrySource": "Original deterministic exterior geometry. No downloaded meshes or embedded photographs.",
   "sourceLicense": "Repository license for original geometry; map-derived plan © OpenStreetMap contributors ODbL-1.0; reference publications retain their own rights.",
@@ -104,13 +131,129 @@
     }
   ],
   "reviewStatus": "source-geometry; current renders and geographic fit require review",
-  "fidelityTarget": "maximum",
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Seven open stone vaults, unequal main span, humped cobbled walkway and low stone edge.",
+    "exclusions": "Exact bank/riverbed survey, vegetation, shelters and interiors."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 1.5,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/dyavolski-browser-model.mjs",
+    "export": "buildDyavolskiSkyline",
+    "errorMeters": 1.5,
+    "caps": {},
+    "authoredLevels": {
+      "district": {
+        "export": "buildDyavolskiDistrict",
+        "errorMeters": 0.6,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildDyavolskiStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildDyavolskiCloseup",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.95,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-devils-skyline",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-devils-district",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-devils-street",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-devils-closeup",
+      "position": [
+        32,
+        25,
+        49
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ],
+      "fov": 44,
+      "reviewLod": "closeup"
+    }
+  ],
   "fidelityStatus": "pending",
   "limitations": [
-    "Tourism documents state56m length; engineering publications state65.7m, and the mapped path is59.092m. The engineering extent is retained and the disagreement remains explicit.",
-    "The original stone-by-stone model is reconstructed from photos and a published elevation, not a scan or measured current survey.",
-    "The original low stone edge is retained. Surrounding bedrock, trees and modern visitor shelters are terrain/scenery, not embedded into the bridge model.",
-    "Actual riverbed and both approach terrain elevations need review before geographic approval."
+    "Owner picture/PMTiles approximate placement scope; no bespoke survey or source research.",
+    "Original stone-by-stone master remains unchanged and byte-reproduced; one shared granite graph retains metric texture/roughness and vertex tint variations, with zero embedded images.",
+    "All four browser levels use stable independent seven-opening arch bodies; metric shared weathered-stone texture replaces individually modeled stones. Source retains the original granite graph and masonry master. Published56/65.7m vs59.092m map length disagreement stays explicit.",
+    "Coarse PMTiles gorge/approach terrain differs about20m across the crossing. Bounded contact fixture and ground opening prevent obvious burial; exact riverbed, bank fit and modern scenery are unverified approximations. Footprint replacement off; physical-device timing remains pending."
   ],
   "qaCameras": [
     {

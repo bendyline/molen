@@ -31,7 +31,7 @@
   "nativeAxes": {
     "up": "+Y",
     "front": "Native (-X,+Z) shaft corner carries the lift. At heading 23 degrees, that corner faces published azimuth 202 degrees; +Y is up.",
-    "origin": "Main 325 m tower center; Y=0 is provisional base slab underside, not a surveyed site datum."
+    "origin": "Main mapped tower center; Y0 standard viewer PMTiles working datum."
   },
   "scaleBasis": "MPI publishes a 3×3 m cross section, 325 m frame, 331 m tip and 1500 steps. The 2025 field report/drawing fixes the 321 m platform; the 2026 RoLi paper fixes the 202-degree lift corner, rail spacing and six guy heights. Bolted angles, stairs, top platform and instruments follow inspected operator photographs. Flange dimensions, paint-band boundaries, individual tread distribution and guy anchor radii are proportional reconstruction requiring further confirmation.",
   "geographicProposal": {
@@ -42,11 +42,29 @@
     "heading": 0.40142572795869574,
     "source": "https://www.openstreetmap.org/node/3215117056",
     "orientationConfidence": "documented-lift-corner",
-    "evidence": "Exact-QID OSM tower node identifies the main structure, approximately 6 m from the published 2015 coordinate. Native (-X,+Z) corner has bearing 225 degrees before placement; heading 23 degrees produces the independently published lift-corner bearing 202 degrees.",
-    "limitations": "The foundation position, guy-anchor distances and ground heights require site validation. Study anchor radii 75/150/225 m are provisional; do not treat their blocks as surveyed. This asset currently covers the main tall tower. The two separate 80/81 m companion towers and laboratory compound remain required site work.",
+    "evidence": "Two inspected pictures support the slender red/white square lattice shaft, top platform/outriggers and paired guy cables. Retained tower node and heading23 degrees provide approximate location/facing. Standard viewer PMTiles working datum 134.05314223787755m supplies ground. Browser derivatives place the main slab at modelY.35 and each approximate guy block/cable endpoint on the same sampled grid. The preserved detailed master remains an archival instanced geometry source; the four browser derivatives supply terrain-fitted display. This round covers the main tall tower, not separate companion towers or the laboratory compound.",
+    "limitations": "Guy radii/topology and exact compound location remain approximate. Separate companion towers/laboratory are outside this main-tower asset.",
     "status": "preview-proposal",
     "elevationMode": "terrain-contact",
-    "notes": "Exact-QID OSM tower node identifies the main structure, approximately 6 m from the published 2015 coordinate. Native (-X,+Z) corner has bearing 225 degrees before placement; heading 23 degrees produces the independently published lift-corner bearing 202 degrees. The foundation position, guy-anchor distances and ground heights require site validation. Study anchor radii 75/150/225 m are provisional; do not treat their blocks as surveyed. This asset currently covers the main tall tower. The two separate 80/81 m companion towers and laboratory compound remain required site work."
+    "notes": "Two inspected pictures support the slender red/white square lattice shaft, top platform/outriggers and paired guy cables. Retained tower node and heading23 degrees provide approximate location/facing. Standard viewer PMTiles working datum 134.05314223787755m supplies ground. Browser derivatives place the main slab at modelY.35 and each approximate guy block/cable endpoint on the same sampled grid. The preserved detailed master remains an archival instanced geometry source; the four browser derivatives supply terrain-fitted display. This round covers the main tall tower, not separate companion towers or the laboratory compound.",
+    "ground": "terrain",
+    "groundModelY": 0,
+    "replaceFootprint": false,
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two inspected pictures support the slender red/white square lattice shaft, top platform/outriggers and paired guy cables. Retained tower node and heading23 degrees provide approximate location/facing. Standard viewer PMTiles working datum 134.05314223787755m supplies ground. Browser derivatives place the main slab at modelY.35 and each approximate guy block/cable endpoint on the same sampled grid. The preserved detailed master remains an archival instanced geometry source; the four browser derivatives supply terrain-fitted display. This round covers the main tall tower, not separate companion towers or the laboratory compound.",
+    "reviewStatus": "Pictures and PMTiles approximate main-tower fit",
+    "terrainReference": {
+      "anchor": [
+        -59.0056354,
+        -2.1458835
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewer PMTiles datum; reconstructed slab and guy block floors."
+    },
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:0ee860dd8be4aa7ea6da396d6148eda88fcec3bab7f539054f4b378775fae602",
+    "mapGeometryLicense": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors"
   },
   "sourceFacts": {
     "shaftWidthMeters": 3,
@@ -67,7 +85,9 @@
     "bracketSpacingMeters": 3,
     "powerRailSectionMeters": 4,
     "powerRailOffsetMeters": 0.128,
-    "roliHomeMeters": 8.3
+    "roliHomeMeters": 8.3,
+    "originalMasterRecipe": "packages/worldgen/scripts/atto-tower-model.mjs#attoTower",
+    "originalMasterHash": "sha256:adb9523540d2773eb0d2b48be67b8d3cea0d24d7e0f0b283d9d5e0de6e91e134"
   },
   "referencePages": [
     "https://www.mpg.de/9365148/ATTO-Factsheet-Aug2015en.pdf",
@@ -111,13 +131,13 @@
     }
   ],
   "limitations": [
-    "Guy anchors, sag, paired cable topology, full foundation arrangement and terrain contacts need independent measured site evidence. Present anchor radii 75/150/225 m are provisional geometric reconstruction, not certified placement.",
-    "Main lattice/stair flange sizes, intermediate landings, paint-band limits and detailed bolt pattern are proportioned from photographs. Published 1500 treads are distributed as 107 flights of 14 plus two entrance treads; the exact real landing/tread schedule remains unresolved.",
-    "The RoLi carriage uses published equipment vocabulary with proportional housing dimensions. It is static at the documented home height. The complete present instrument inventory, inlet routing and rescue equipment still need confirmation.",
-    "The smaller 80 m walk-up and 81 m triangular towers, laboratory containers and ancillary facility structures are not yet authored. Completion of the observatory candidate remains pending these scope and site checks.",
-    "Near/far visual QA, shared-material inspection and maximum-fidelity approval remain pending."
+    "Approximate main tall-tower exterior and PMTiles fit from two inspected pictures; no bespoke survey or full compound claim.",
+    "Original detailed master and repeated mesh instances preserved. Independent browser tiers reduce brace/stair/instrument detail by view distance.",
+    "Guy radii75/150/225m and paired topology are interpreted retained controls; new browser blocks and cable endpoints meet one coarse PMTiles field. Exact anchors, sag, restoration details and equipment inventory are approximate.",
+    "Three shared painted-metal/stainless/concrete graphs; zero embedded images. Forest and natural ground remain host content.",
+    "Separate80/81m companion towers and laboratory are outside this main-tower asset; interiors, collision and physical-device timing excluded. Footprint replacement remains off."
   ],
-  "reviewStatus": "source-geometry; visual verification required",
+  "reviewStatus": "medium-fi; current hash-bound visual acceptance recorded in qa.json",
   "importOptions": {
     "optimize": false
   },
@@ -238,6 +258,173 @@
         145,
         0
       ]
+    }
+  ],
+  "fidelityTarget": "medium-fi",
+  "appearance": {
+    "identity": "Red/white square lattice tower,321m platform,331m tip, external lift/instrument carriage and paired six-level guy system.",
+    "master": "Original detailed instanced source master preserved byte-for-byte.",
+    "browser": "Independent skyline, district, street and closeup derivatives with progressively denser braces, flight/tread impressions, rail and instrument details.",
+    "exclusions": "Exact guy topology/anchor survey, instruments and companion/laboratory compound are not claimed."
+  },
+  "mediumFiContext": {
+    "groundY": 0,
+    "scale": 6.8,
+    "neighborStyle": "molen.worldgen.catalog.cotswold_cottage"
+  },
+  "mesh": {
+    "triangles": 737916,
+    "vertices": 1334976,
+    "groups": 4,
+    "bytes": 13746540,
+    "sha256": "sha256:adb9523540d2773eb0d2b48be67b8d3cea0d24d7e0f0b283d9d5e0de6e91e134",
+    "min": [
+      -159.7990264892578,
+      0,
+      -159.7990264892578
+    ],
+    "max": [
+      159.7990264892578,
+      331,
+      159.7990264892578
+    ]
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/atto-browser-model.mjs",
+    "export": "buildAttoSkyline",
+    "errorMeters": 0.5,
+    "authoredLevels": {
+      "district": {
+        "export": "buildAttoDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "stainless": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "buildAttoStreet",
+        "errorMeters": 0.12,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "stainless": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildAttoCloseup",
+        "errorMeters": 0.05,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0
+          },
+          "stainless": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.31,
+            "metallic": 1
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-atto-skyline",
+      "position": [
+        285,
+        205,
+        480
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-atto-district",
+      "position": [
+        285,
+        205,
+        480
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-atto-street",
+      "position": [
+        285,
+        205,
+        480
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-atto-closeup",
+      "position": [
+        285,
+        205,
+        480
+      ],
+      "lookAt": [
+        0,
+        158,
+        0
+      ],
+      "reviewLod": "closeup"
     }
   ]
 }

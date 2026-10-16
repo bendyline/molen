@@ -2,7 +2,7 @@
 
 ![Molen preview](preview.png)
 
-A white Art Deco stepped tower with individual recessed windows, projecting vertical pilasters, setback cornices and balustrades, cylindrical lighthouse crown, nine-meter flag mast and static São Paulo state flag.
+Mapped chamfered white ceramic Art Deco tower with projecting outlook band, preserved upper-core outline, faceted glazed beacon, flag mast and northwest-facing historic entrance.
 
 ## Evidence and reconstruction
 
@@ -15,9 +15,9 @@ No third-party geometry, photograph or bitmap texture is embedded. Shared surfac
 
 ## Model and axes
 
-32,360 triangles; 76,250 vertices; 5 material groups; 3,136,488 bytes. Native bounds: -23.343, 0.000, -8.293 to 23.343, 161.220, 8.880. Source hash: `sha256:59e9b6766fd379d5be20cb10f89ecc14dcdda6f7289e48ed95e9e5c0ad7a1943`.
+26,760 triangles; 63,838 vertices; 5 material groups; 2,622,452 bytes. Native bounds: -23.343, 0.000, -8.730 to 23.343, 161.220, 8.293. Source hash: `sha256:b546065d2344187367749493b1a3e437824663df64b60b60f1c51cf678b081c8`.
 
-{"up":"+Y","longitudinal":"+X along the mapped building long axis","front":"+Z","origin":"Ground-level center of exact-QID mapped footprint frame"}
+{"up":"+Y","longitudinal":"+X along the mapped long axis","front":"-Z toward Rua João Brícola","origin":"Ground-level center of exact-QID mapped footprint"}
 
 The geographic proposal uses exact-QID OpenStreetMap evidence. Map-derived orientation and estimated architectural details require real-site visual review; preview eligibility is distinct from geographic/fidelity approval. Map attribution: © OpenStreetMap contributors, ODbL-1.0.
 
@@ -27,7 +27,8 @@ Run `node packages/worldgen/scripts/generate-signature-towers.mjs --ids=N0148` (
 
 ## Pending work
 
-- Exterior geometry uses published overall dimensions and map evidence; panel subdivision, connection dimensions and local entrance details are reconstructed. Glazing uses opaque PBR with explicit geometry; no copied facade photograph is embedded.
-- Upper setbacks, facade bay spacing and entrance dimensions are reconstructed; the state-flag canton is simplified geometric cloth. The operator161.22 m total includes the mast.
+- Exterior reconstruction from operator dimensions, dated photos/plans and attributed OSM perimeter/upper part. Exact1119window correspondence, minor rooftop fixtures and interiors are excluded.
+- Shared5cm mosaic approximates smaller ceramic pieces; no photographs or separate baked texture copies. Setback heights and projecting outlook band are reconstructed. Convex collision is exterior only.
+- The datum for adjoining streets and podium has not been surveyed. Host terrain supplies nativeY0; mapped address entrance faces -Z.
 
-This bundle contains source geometry, not a claim of maximum-fidelity completion. Hash-bound visual acceptance is recorded separately after capture inspection.
+This bundle follows the medium-fi standard. Medium-fi appearance and geographic fit are reviewed separately. Hash-bound visual acceptance is recorded separately after capture inspection.

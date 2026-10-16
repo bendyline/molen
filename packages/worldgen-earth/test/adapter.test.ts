@@ -14,6 +14,7 @@ import { buildingLabels, contextLabelAt, landcoverLabel } from '../src/kernel/la
 import { createRegionResolver } from '../src/kernel/region';
 import {
   OPEN_GROUND_LABEL,
+  scatterRequestFromTile,
   semanticTileToBatch,
   type TileGeometry,
 } from '../src/kernel/semantic-adapter';
@@ -25,6 +26,30 @@ const atlas = await loadDefaultAtlas();
 const pack = await loadDefaultPack();
 const metersPerUnit = webMercatorScaleAtLatitude(47.6);
 const regions = createRegionResolver(atlas, { metersPerUnit });
+
+it('preserves physical habitat beneath nature reserve and national park designations', () => {
+  const tile = createEmptyTerrainSemanticTile();
+  const polygon = {
+    outer: [
+      [0, 0],
+      [1, 0],
+      [1, 1],
+      [0, 1],
+    ] as [number, number][],
+  };
+  tile.landcover.push({ class: 'scrub', polygons: [polygon] });
+  tile.landcover.push({ class: 'nature_reserve', polygons: [polygon] });
+  tile.landcover.push({ class: 'national_park', polygons: [polygon] });
+  const request = scatterRequestFromTile(
+    tile,
+    geometryAt(-111.1, 32.2),
+    { roads: 2, buildings: 2, water: 1 },
+    1,
+  );
+  expect(request.polygons.map((polygon) => polygon.label)).toEqual(['open_ground', 'scrub']);
+  expect(contextLabelAt([0.5, 0.5], tile.landcover)).toBe('scrub');
+  expect(tile.landcover).toHaveLength(3); // Protection evidence stays on the source for wildlife.
+});
 
 function geometryAt(lon: number, lat: number, size = 1600): TileGeometry {
   const [x, z] = wgs84ToWebMercator(lon, lat);

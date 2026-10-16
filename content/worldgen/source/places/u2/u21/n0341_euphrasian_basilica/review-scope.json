@@ -1,0 +1,320 @@
+{
+  "fidelityTarget": "medium-fi",
+  "mapFrame": "map-frame.json",
+  "surfaceOverrides": {
+    "stone": {
+      "slot": "wall",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "plaster": {
+      "slot": "wall",
+      "graph": "plaster_lime",
+      "roughness": 0.94,
+      "metallic": 0
+    },
+    "trim": {
+      "slot": "trim",
+      "graph": "stone_limestone_raw",
+      "roughness": 0.91,
+      "metallic": 0
+    },
+    "roof": {
+      "slot": "roof",
+      "graph": "tile_ceramic",
+      "roughness": 0.89,
+      "metallic": 0
+    },
+    "foundation": {
+      "slot": "foundation",
+      "graph": "stone_limestone_weathered",
+      "roughness": 0.98,
+      "metallic": 0
+    },
+    "door": {
+      "slot": "door",
+      "graph": "wood_plain",
+      "roughness": 0.92,
+      "metallic": 0
+    },
+    "glass": {
+      "slot": "window",
+      "localRef": "palette:#ffffff",
+      "roughness": 0.3,
+      "metallic": 0.03
+    }
+  },
+  "runtimeLodOverlay": {
+    "level": "skyline",
+    "module": "packages/worldgen/scripts/euphrasian-basilica-model.mjs",
+    "export": "buildEuphrasianSkyline",
+    "errorMeters": 1.2,
+    "authoredLevels": {
+      "district": {
+        "export": "buildEuphrasianDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.03
+          }
+        }
+      },
+      "street": {
+        "export": "buildEuphrasianStreet",
+        "errorMeters": 0.16,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.03
+          }
+        }
+      },
+      "closeup": {
+        "export": "buildEuphrasianCloseup",
+        "errorMeters": 0.06,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.98,
+            "metallic": 0
+          },
+          "door": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.03
+          }
+        }
+      }
+    }
+  },
+  "camera": {
+    "position": [
+      94,
+      68,
+      -106
+    ],
+    "lookAt": [
+      -18,
+      18,
+      -12
+    ],
+    "fov": 43
+  },
+  "qaLodCameras": [
+    {
+      "name": "whole-euphrasian-skyline",
+      "position": [
+        94,
+        68,
+        -106
+      ],
+      "lookAt": [
+        -18,
+        18,
+        -12
+      ],
+      "fov": 43,
+      "reviewLod": "skyline"
+    },
+    {
+      "name": "whole-euphrasian-district",
+      "position": [
+        94,
+        68,
+        -106
+      ],
+      "lookAt": [
+        -18,
+        18,
+        -12
+      ],
+      "fov": 43,
+      "reviewLod": "district"
+    },
+    {
+      "name": "whole-euphrasian-street",
+      "position": [
+        94,
+        68,
+        -106
+      ],
+      "lookAt": [
+        -18,
+        18,
+        -12
+      ],
+      "fov": 43,
+      "reviewLod": "street"
+    },
+    {
+      "name": "whole-euphrasian-closeup",
+      "position": [
+        94,
+        68,
+        -106
+      ],
+      "lookAt": [
+        -18,
+        18,
+        -12
+      ],
+      "fov": 43,
+      "reviewLod": "closeup"
+    }
+  ],
+  "previewGround": false,
+  "previewTerrain": {
+    "descriptor": "terrain-review.terrain.json",
+    "heightmap": "terrain-review.height.png"
+  },
+  "mediumFiContext": {
+    "scale": 1.1,
+    "neighborStyle": "molen.worldgen.catalog.italian_palazzo",
+    "groundY": 0
+  },
+  "geographic": {
+    "status": "preview-proposal",
+    "reviewStatus": "Reviewed approximate rigid map frame and standard DEM contact; current visual review pending. All architectural heights and thresholds remain picture-led estimates.",
+    "elevationMode": "terrain-contact",
+    "elevationMeters": 0,
+    "groundModelY": 0,
+    "groundContactReviewed": true,
+    "replaceFootprint": true,
+    "terrainReference": {
+      "anchor": [
+        13.593562757,
+        45.228540434
+      ],
+      "modelHeight": 0,
+      "basis": "Standard viewerDEM datum2.562043m; estimated level floor1.0m clears sampled footprint peak0.682m and perimeter-1.94..0.68m. Foundations follow coarse terrain. No independent floor/height survey; exact courtyard thresholds,stairs and terrain/town joins unverified."
+    },
+    "bounds": [
+      13.5926,
+      45.2282,
+      13.5942,
+      45.2292
+    ],
+    "notes": "Standard viewerDEM datum2.562043m; estimated level floor1.0m clears sampled footprint peak0.682m and perimeter-1.94..0.68m. Foundations follow coarse terrain. No independent floor/height survey; exact courtyard thresholds,stairs and terrain/town joins unverified.",
+    "groundContactBasis": "Standard viewerDEM datum2.562043m; estimated level floor1.0m clears sampled footprint peak0.682m and perimeter-1.94..0.68m. Foundations follow coarse terrain. No independent floor/height survey; exact courtyard thresholds,stairs and terrain/town joins unverified."
+  },
+  "geographicNote": "Standard viewerDEM datum2.562043m; estimated level floor1.0m clears sampled footprint peak0.682m and perimeter-1.94..0.68m. Foundations follow coarse terrain. No independent floor/height survey; exact courtyard thresholds,stairs and terrain/town joins unverified.",
+  "sourceDocuments": [
+    "map-frame.json",
+    "pmtiles-fit.json",
+    "reference-metadata.json",
+    "review-scope.json",
+    "surface-means.json",
+    "terrain-review.terrain.json",
+    "terrain-review.height.png"
+  ]
+}

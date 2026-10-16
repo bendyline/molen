@@ -128,6 +128,47 @@ Installable tiled-world package: coordinate space, elevation, optional semantic 
       "minLength": 1,
       "description": "Package name."
     },
+    "agriculture": {
+      "type": "object",
+      "properties": {
+        "urlTemplate": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Versioned agricultural JSON tile URL, relative to this package or absolute; {z}/{x}/{y} placeholders."
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Single stored XYZ level; finer views use the corresponding parent grid."
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Pinned dataset identity, checked against every tile."
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2200,
+          "description": "Observation year, not the current growing season."
+        },
+        "maxTileBytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 1048576,
+          "description": "Uncompressed download bound; default 131072 bytes."
+        }
+      },
+      "required": [
+        "urlTemplate",
+        "level",
+        "source",
+        "year"
+      ],
+      "additionalProperties": false,
+      "description": "Optional global or regional agricultural retrieval dataset; missing tiles retain basemap/fallback crops. Include its license in attribution."
+    },
     "version": {
       "type": "string",
       "minLength": 1,
