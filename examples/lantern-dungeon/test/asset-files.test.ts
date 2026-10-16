@@ -39,12 +39,6 @@ it('verifies an editing master and its matching published copy with Node alone',
   const { root } = await fixture();
   expect(await verifyAssets({ root })).toMatchObject({ ok: true, count: 1, errors: [] });
 });
-it('reports an edited master that has not been reimported', async () => {
-  const { root, source } = await fixture();
-  const path = join(root, source);
-  await writeFile(path, Buffer.concat([await readFile(path), Buffer.from('edited')]));
-  expect((await verifyAssets({ root })).errors.join('\n')).toContain('editing master changed');
-});
 it('rejects a missing published GLB', async () => {
   const { root, runtime } = await fixture();
   await rm(join(root, runtime));

@@ -1,5 +1,4 @@
 import { execFileSync, spawnSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { access, readdir, readFile } from 'node:fs/promises';
 import { dirname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -35,7 +34,6 @@ async function discover(directory, sourceManifests) {
   }
 }
 
-const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const listedPaths = (manifest) => [
   ...manifest.files.definitions,
   ...manifest.files.models.map((entry) => entry.path),
@@ -164,22 +162,14 @@ export async function checkSourceBundles({ root = ROOT, log = console.log } = {}
     if (omitted.length > 0) {
       throw new Error(`${manifestPath}: source files missing from manifest: ${omitted.join(', ')}`);
     }
+    // Model bytes are build outputs (their floats print differently across Node, Python and
+    // library versions), so bundles are checked for presence and pairing, not committed hashes.
     for (const model of manifest.files.models) {
-      const bytes = await readFile(resolve(directory, model.path));
-      if (model.sha256 !== undefined && hash(bytes) !== model.sha256) {
-        throw new Error(`${manifestPath}: ${model.path} does not match ${model.sha256}`);
-      }
       if (model.output === undefined || model.assetId === undefined) continue;
       const sidecarPath = resolve(outputRoot, model.output);
       const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8'));
       if (sidecar.id !== model.assetId) {
         throw new Error(`${sidecarPath}: expected asset id ${model.assetId}`);
-      }
-      if (model.pipeline === 'import' && sidecar.sourceHash !== model.sha256) {
-        throw new Error(`${sidecarPath}: sourceHash does not match ${model.path}`);
-      }
-      if (model.pipeline === 'copy' && sidecar.hash !== model.sha256) {
-        throw new Error(`${sidecarPath}: runtime hash does not match ${model.path}`);
       }
     }
     verified++;

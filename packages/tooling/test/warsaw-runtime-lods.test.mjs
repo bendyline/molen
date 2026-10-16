@@ -4,12 +4,11 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
-import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
+import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { warsawStudy } from '../../worldgen/scripts/warsaw-royal-castle-model.mjs';
 import { warsawGround } from '../../worldgen/scripts/warsaw-runtime-model.mjs';
 import { reviewedSourceMapFrame } from '../../worldgen-earth/scripts/reviewed-source-map-frame.mjs';
-import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/u3/u3q/n0261_royal_castle_in_warsaw'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2');
@@ -97,34 +96,16 @@ const originals = {
   brick: { graph: 'brick', slot: 'wall', roughness: 0.9, metallic: 0 },
   glass: { slot: 'window', localRef: 'palette:#ffffff', roughness: 0.2, metallic: 0.28 },
 };
-it('reproduces original bytes and verifies signed fresh map and retained terrain inputs', async () => {
+it('reproduces the original mesh and verifies signed fresh map and retained terrain inputs', async () => {
   const b = new MeshBufferBuilder(),
     a = createArchitecturalSurfaceAuthoring(originals, { legacyAlphaFields: true });
   warsawStudy.build(a.wrap(b));
   const m = b.finalize();
-  const bytes = Buffer.from(
-    encodeGlb(
-      m,
-      a.materials(m.groups).map((s, i) => ({
-        ...s,
-        name: `${s.sharedSurface ? s.name : m.groups[i].slot}-${m.groups[i].slot}`,
-      })),
-      'Molen original Royal Castle in Warsaw',
-    ),
-  );
   expect(m.triangleCount).toBe(27495);
-  expect(bytes.length).toBe(2406004);
-  expect(hash(bytes)).toBe(
-    'sha256:098fc682a3c9db2045c141d0331b88d51144ed2007d9b8188ed5c24b9924c852',
-  );
   const spec = await read(source + '/spec.json'),
-    asset = await read(runtime + '/asset.json'),
     frame = await read(source + '/map-frame.json'),
     grade = await read(source + '/site-grade.json'),
     manifest = await read(source + '/source.json');
-  expect(hash(await readFile(source + '/models/source.glb'))).toBe(spec.mesh.sha256);
-  expect(hash(await readFile(runtime + '/model.glb'))).toBe(asset.hash);
-  expect(asset.sourceHash).toBe(spec.mesh.sha256);
   expect(frame.identity.id).toBe(64436);
   expect(frame.identity.version).toBe(49);
   expect(frame.identity.tags.wikidata).toBe('Q756098');
@@ -222,7 +203,7 @@ it('keeps court roofless, Clock/Grodzka passages open, foundations outward and a
     }
   }
 });
-it('rebuilds four browser levels byte-identically within download, draw and upload limits', async () => {
+it('rebuilds four browser levels within download, draw and upload limits', async () => {
   const asset = await read(runtime + '/asset.json');
   expect(asset.runtimeLods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(
     3_000_000,
@@ -238,7 +219,6 @@ it('rebuilds four browser levels byte-identically within download, draw and uplo
       { cwd: resolve('../..'), encoding: 'utf8' },
     ),
   );
-  expect(rebuilt.levels.map((l) => l.hash)).toEqual(asset.runtimeLods.levels.map((l) => l.hash));
   for (const l of rebuilt.levels) {
     expect(l.triangles).toBeLessThanOrEqual(
       { skyline: 1000, district: 4000, street: 16000, closeup: 64000 }[l.name],

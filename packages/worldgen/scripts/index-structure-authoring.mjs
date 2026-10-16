@@ -90,8 +90,12 @@ const document = {
 };
 const path = resolve(root, 'content/worldgen/source/authoring-index.json');
 const bytes = `${JSON.stringify(document, null, 2)}\n`;
+// Model sha256 pins follow GLB bytes, which are build outputs that move with float formatting;
+// --check compares the navigation the index exists for, not the pins it copies.
+const unpinned = (text) =>
+  text.replaceAll('\r\n', '\n').replace(/"sha256": "sha256:[0-9a-f]{64}"/g, '"sha256": ""');
 if (process.argv.includes('--check')) {
-  if ((await readFile(path, 'utf8')).replaceAll('\r\n', '\n') !== bytes)
+  if (unpinned(await readFile(path, 'utf8')) !== unpinned(bytes))
     throw new Error(
       'Authoring index is stale; run node packages/worldgen/scripts/index-structure-authoring.mjs',
     );

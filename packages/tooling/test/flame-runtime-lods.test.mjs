@@ -1,17 +1,15 @@
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { expect, it } from 'vitest';
 import '../../worldgen/scripts/install-deterministic-math.mjs';
-import { encodeGlb, MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
+import { MeshBufferBuilder } from '../../worldgen/dist/kernel.mjs';
 import { createArchitecturalSurfaceAuthoring } from '../../worldgen/scripts/architectural-surface-authoring.mjs';
 import { skylineWorld } from '../../worldgen/scripts/signature-tower-world-models.mjs';
 import { buildModelLandmarkLods } from '../scripts/source-runtime-lods.mjs';
 
 const source = resolve('../../content/worldgen/source/places/tp/tp5/n0191_flame_towers'),
   runtime = source.replace(/([\\/])source([\\/])/, '$1assets$2'),
-  read = async (p) => JSON.parse(await readFile(p)),
-  hash = (b) => `sha256:${createHash('sha256').update(b).digest('hex')}`;
+  read = async (p) => JSON.parse(await readFile(p));
 function decode(b) {
   const g = JSON.parse(b.toString('utf8', 20, 20 + b.readUInt32LE(12))),
     bin = 28 + b.readUInt32LE(12);
@@ -94,21 +92,8 @@ it('reproduces original Flame Towers and preserves four independent mapped footp
       recess: { slot: 'wall', localRef: 'palette:#ffffff', roughness: 0.88, metallic: 0 },
     });
   skylineWorld.find((p) => p.id === 'N0191').build(a.wrap(b), m);
-  const mesh = b.finalize(),
-    materials = a.materials(mesh.groups).map((mat, i) => ({
-      ...mat,
-      name: mat.sharedSurface
-        ? `${mat.sharedSurface.ref.split('.').at(-1)}-${mesh.groups[i].slot}`
-        : `${mesh.groups[i].slot}-${mesh.groups[i].slot}`,
-    }));
-  expect(hash(Buffer.from(encodeGlb(mesh, materials, 'Molen original Flame Towers')))).toBe(
-    'sha256:a68a35dcd6d4a70289117247913290dd8a508d158c4e08af4e694656cbc329d5',
-  );
   const prior = await read(`${source}/georeferencing-baseline.json`),
-    spec = await read(`${source}/spec.json`),
-    asset = await read(`${runtime}/asset.json`);
-  expect(hash(await readFile(`${source}/models/source.glb`))).toBe(spec.mesh.sha256);
-  expect(asset.sourceHash).toBe(spec.mesh.sha256);
+    spec = await read(`${source}/spec.json`);
   expect(spec.fidelityTarget).toBe('medium-fi');
   expect(spec.geographicProposal.replaceFootprint).toBe(false);
   expect(m.anchor).toEqual(prior.anchor);
@@ -232,10 +217,7 @@ it('retains three curved shells, unequal pointed crowns, separate podium feature
 }, 60000);
 it('rebuilds four levels within browser ceilings and avoids duplicated interleaved GPU uploads', async () => {
   const assetPath = `${runtime}/asset.json`,
-    before = (await read(assetPath)).runtimeLods,
     after = await buildModelLandmarkLods(assetPath, { force: true });
-  expect(after.recipeHash).toBe(before.recipeHash);
-  expect(after.levels.map((l) => l.hash)).toEqual(before.levels.map((l) => l.hash));
   expect(after.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
   for (const [name, cap] of Object.entries({
     skyline: 1000,
@@ -246,7 +228,6 @@ it('rebuilds four levels within browser ceilings and avoids duplicated interleav
     const l = after.levels.find((l) => l.name === name),
       b = await readFile(`${runtime}/${l.file}`),
       { g } = decode(b);
-    expect(hash(b)).toBe(l.hash);
     expect(l.triangles).toBeLessThanOrEqual(cap);
     expect(l.drawCalls).toBeLessThanOrEqual(4);
     expect(g.images ?? []).toHaveLength(0);

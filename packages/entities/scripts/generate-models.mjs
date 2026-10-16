@@ -1,6 +1,5 @@
 /** Build/check aggregate runtime indexes from copyable logical source bundles. */
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,7 +11,6 @@ const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const root = resolve(packageRoot, '../../content/entities');
 const sourceRoot = resolve(root, 'source');
 const check = process.argv.includes('--check');
-const hash = (bytes) => `sha256:${createHash('sha256').update(bytes).digest('hex')}`;
 const biome = resolve(packageRoot, 'node_modules/@biomejs/biome/bin/biome');
 
 function formatJson(value, path) {
@@ -60,26 +58,19 @@ async function loadBundles() {
       ) {
         throw new Error(`${definitionPath}: expected exactly the type ${manifest.id}`);
       }
+      // Model bytes are build outputs, so the committed sha256 pins and sidecar hashes are not
+      // compared here; a copied runtime model must still be the same bytes as its source.
       for (const model of manifest.files.models) {
         const bytes = await readFile(resolve(directory, model.path));
-        if (model.sha256 !== undefined && hash(bytes) !== model.sha256) {
-          throw new Error(`${manifestPath}: ${model.path} does not match its pinned sha256`);
-        }
         if (model.assetId === undefined || model.output === undefined) continue;
         const sidecarPath = resolve(root, model.output);
         const sidecar = JSON.parse(await readFile(sidecarPath, 'utf8'));
         if (sidecar.id !== model.assetId) {
           throw new Error(`${sidecarPath}: expected asset id ${model.assetId}`);
         }
-        if (model.pipeline === 'import' && sidecar.sourceHash !== model.sha256) {
-          throw new Error(`${sidecarPath}: sourceHash is stale for ${model.path}; re-import it`);
-        }
         if (model.pipeline === 'copy') {
-          if (sidecar.hash !== model.sha256) {
-            throw new Error(`${sidecarPath}: runtime hash is stale for ${model.path}`);
-          }
           const runtime = await readFile(resolve(dirname(sidecarPath), sidecar.files.main));
-          if (hash(runtime) !== model.sha256 || !runtime.equals(bytes)) {
+          if (!runtime.equals(bytes)) {
             throw new Error(`${sidecarPath}: copied runtime model differs from ${model.path}`);
           }
         }

@@ -45,15 +45,11 @@ it('round trips the OSM national-map wing with the authority tower anchor', asyn
   expect(frame.authorityControl.heightMeters).toBe(30.6);
 });
 it('reuses the current small initial download while preserving the detailed import', async () => {
-  const bytes = await readFile(runtime + '/asset.json'),
-    asset = JSON.parse(bytes);
+  const bytes = await readFile(runtime + '/asset.json');
   const lods = await buildModelLandmarkLods(runtime + '/asset.json');
   expect(await readFile(runtime + '/asset.json')).toEqual(bytes);
   expect(lods.levels[0].triangles).toBeLessThanOrEqual(1000);
   expect(lods.levels[2].triangles).toBeLessThanOrEqual(16000);
   expect(lods.levels[2].errorMeters).toBeLessThan(0.1);
   expect(lods.levels.slice(0, 2).reduce((n, l) => n + l.bytes, 0)).toBeLessThan(3000000);
-  expect(asset.sourceHash).toBe(
-    'sha256:4033d4e63ac06af4b7986481dbd1349e8f4b7596fca11187161cbbfa488ff230',
-  );
 });

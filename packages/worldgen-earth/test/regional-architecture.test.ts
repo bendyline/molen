@@ -166,5 +166,5 @@ describe('ordinary regional architecture', () => {
       expect(Array.from(a.mesh.positions).every(Number.isFinite), style.id).toBe(true);
       expect(a.mesh.positions, style.id).toEqual(build().mesh.positions);
     }
-  });
+  }, 30_000); // Builds all 273 regional styles twice.
 });

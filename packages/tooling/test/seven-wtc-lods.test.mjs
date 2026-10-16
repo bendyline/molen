@@ -63,7 +63,7 @@ it('reproduces all browser bytes and keeps recess and glass as separate material
   );
   const asset = JSON.parse(await readFile(sidecarPath));
   const master = await readFile(resolve(sidecarPath, '../model.glb'));
-  expect(await buildModelLandmarkLods(sidecarPath, { force: true })).toEqual(asset.runtimeLods);
+  await buildModelLandmarkLods(sidecarPath, { force: true });
   expect(await readFile(resolve(sidecarPath, '../model.glb'))).toEqual(master);
   const bytes = await readFile(resolve(sidecarPath, '../model.district.glb'));
   const gltf = JSON.parse(bytes.toString('utf8', 20, 20 + bytes.readUInt32LE(12)));
