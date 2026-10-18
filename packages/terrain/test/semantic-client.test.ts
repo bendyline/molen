@@ -142,8 +142,12 @@ describe('normalized semantic mesh adapter', () => {
         instances.push(child as THREE.InstancedMesh);
       }
     });
-    expect(instances).toHaveLength(2);
-    expect(instances.map((instance) => instance.count)).toEqual([8, 8]);
+    // Trees, plus the utility poles strung along the primary road's sidewalk.
+    const fixtures = instances.filter((instance) => instance.name === 'surface:street-fixtures');
+    expect(fixtures).toHaveLength(1);
+    const trees = instances.filter((instance) => !fixtures.includes(instance));
+    expect(trees).toHaveLength(2);
+    expect(trees.map((instance) => instance.count)).toEqual([8, 8]);
     expect(object.getObjectByName('semantic:landcover')).toBeInstanceOf(THREE.Mesh);
     expect(object.getObjectByName('semantic:water')).toBeInstanceOf(THREE.Mesh);
     expect(object.getObjectByName('semantic:waterways')).toBeInstanceOf(THREE.Mesh);

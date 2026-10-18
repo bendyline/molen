@@ -42,7 +42,13 @@ export type MatNode =
   | (NodeCommon & { type: 'checker'; params: { scale: number } })
   | (NodeCommon & {
       type: 'bricks';
-      params: { rows: number; cols: number; mortarWidth: number; offset: number };
+      params: {
+        rows: number;
+        cols: number;
+        mortarWidth: number;
+        offset: number;
+        output: 'mask' | 'random' | 'row';
+      };
     })
   | (NodeCommon & { type: 'ramp'; params: { stops: RampStop[] } })
   | (NodeCommon & {

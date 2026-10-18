@@ -190,6 +190,30 @@ describe('adaptive architectural details', () => {
     }
   });
 
+  it('shutters the structural windows of an interior-backed house in the trim dark tone', () => {
+    const shuttered = (kind: 'door' | 'window', edge = 0): MeshBuffers =>
+      details(
+        EDGE,
+        {
+          ...INPUT,
+          details: { shutters: true },
+          structuralOpenings: [{ edge, start: 6, end: 7.6, bottom: 0.95, top: 2.3, kind }],
+        },
+        [],
+      );
+    const mesh = shuttered('window');
+    soundMesh(mesh);
+    const x = mesh.positions.filter((_, i) => i % 3 === 0);
+    // One leaf each side of the opening, clear of it.
+    expect(Math.min(...x)).toBeLessThan(6);
+    expect(Math.max(...x)).toBeGreaterThan(7.6);
+    expect(x.every((value) => value <= 5.861 || value >= 7.739)).toBe(true);
+    // Vertex colors are bytes: the trim's red channel, darkened.
+    expect(mesh.colors[0]).toBe(Math.round(0.3 * 0.42 * 255));
+    expect(shuttered('door').vertexCount).toBe(0);
+    expect(shuttered('window', 1).vertexCount).toBe(0);
+  });
+
   it('omits ground verandas on raised parts and projections into courtyard holes', () => {
     const verandaOnly: FacadeInput = {
       ...INPUT,

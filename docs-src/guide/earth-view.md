@@ -57,14 +57,19 @@ Pass `reflections: false` for the legacy light-only appearance. A host-assigned
 `view.viewer.renderer.scene.environment` takes precedence if you supply your own HDR environment.
 
 Without a `style`, the view uses the shared medium-fi look: a strong warm sun over a sky fill,
-Khronos PBR Neutral tone mapping, and haze in the sky's horizon color. Its values are exported as
+ACES filmic tone mapping, and haze in the sky's horizon color. Its values are exported as
 `EARTH_SKY_PALETTE`, `EARTH_LIGHTING`, `EARTH_TONE_MAPPING`, `EARTH_EXPOSURE` and
 `EARTH_WATER_COLOR`, so a host that builds its own viewer can match it. `earthHazeColor` converts
 a sky color into the fog color for the backend. Terrain and landcover share one ground material
 from `createTerrainGroundMaterialAsync` (`@bendyline/molen-terrain/client`) with world-space
 variation; a custom host passes it to the terrain stream's `material` and to `createEarthWorldgen`
-as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. The
-[medium-fi style guide](medium-fi.md) explains the look and the rules models follow inside it.
+as `groundMaterial`, and calls `setTerrainGroundOrigin` with the world origin each frame. Roads,
+sidewalks and lots take `createTerrainPavementMaterialAsync` through the surface renderer's
+`setMaterial`, with the same origin call. Trees, shrubs and props take
+`createScatterMaterialAsync` (`@bendyline/molen-worldgen/client`) as `createEarthWorldgen`'s
+`modelMaterial`, and generated buildings `createBuildingWeatheringAsync` as its
+`buildingDecorator`. The [medium-fi style guide](medium-fi.md) explains the look and the rules
+models follow inside it.
 
 `style` sets the look: `sky.sunElevation` and `sky.sunAzimuth` (degrees; the azimuth is a
 compass bearing, 0 north and clockwise) place the sun, and unless `environment.sun.direction` is
@@ -78,7 +83,9 @@ neutral olive.
 Buildings, trees and landmarks cast sun shadows onto everything around what the camera frames:
 the orbit target (sized to the view), or a little ahead of the walker, car or aircraft. The
 shadow map follows that focus in whole texels, so edges hold still as it moves. Adaptive quality
-turns shadows off at its two lowest levels; `shadows: false` turns them off entirely.
+turns shadows off at its two lowest levels; `shadows: false` turns them off entirely. Only layer
+parts taller than `EARTH_SHADOW_CASTER_HEIGHT` (3.5 m) cast: shrubs, brambles and saplings stay
+out of the shadow pass, where their shadows would mostly fall inside the canopy's.
 
 `touchJoystickContainer` adds an on-screen movement stick while walking, driving or flying. By default it
 appears only on touch devices; pass `touchJoystick: 'always'` to show it everywhere.

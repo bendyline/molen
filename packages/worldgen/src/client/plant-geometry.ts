@@ -8,21 +8,59 @@ type Point = [number, number, number];
 type Detail = boolean | 'distant';
 const TAU = Math.PI * 2;
 
+/** Share of a foliage normal taken from its volume's rounded surface rather than its facet. */
+const FOLIAGE_BEND = 0.65;
+
 class PlantMesh {
   constructor(private readonly seed = 0) {}
   readonly positions: number[] = [];
   readonly colors: number[] = [];
   private readonly colorCache = new Map<string, THREE.Color>();
+  /** Foliage vertex ranges, each shaded as one rounded volume (an ellipsoid) over its facets. */
+  private readonly volumes: {
+    start: number;
+    end: number;
+    center: Point;
+    size: Point;
+    bend: number;
+  }[] = [];
 
-  triangle(a: Point, b: Point, c: Point, hex: string, shade = 1): void {
+  get vertexCount(): number {
+    return this.positions.length / 3;
+  }
+
+  /** Shade everything appended since `start` as a soft mass of foliage centered on `center`. */
+  /**
+   * Bend the normals of vertices from `start` on toward an ellipsoid. Volumes apply in order, so
+   * a lobe can keep a little of its own roundness under the canopy registered after it.
+   */
+  volume(start: number, center: Point, size: Point, bend = FOLIAGE_BEND): void {
+    if (this.vertexCount > start)
+      this.volumes.push({ start, end: this.vertexCount, center, size, bend });
+  }
+
+  /** The canopy a set of lobes belongs to: the vertex range of every lobe crown built since. */
+  canopy(ranges: readonly [number, number][], center: Point, size: Point, bend: number): void {
+    for (const [start, end] of ranges) this.volumes.push({ start, end, center, size, bend });
+  }
+
+  /** One triangle; `shade` is one value for the face or one per vertex. */
+  triangle(
+    a: Point,
+    b: Point,
+    c: Point,
+    hex: string,
+    shade: number | readonly [number, number, number] = 1,
+  ): void {
     let color = this.colorCache.get(hex);
     if (color === undefined) {
       color = new THREE.Color(hex);
       this.colorCache.set(hex, color);
     }
-    for (const point of [a, b, c]) {
+    for (const [i, point] of [a, b, c].entries()) {
+      const k = typeof shade === 'number' ? shade : (shade[i] as number);
       this.positions.push(...point);
-      this.colors.push(color.r * shade, color.g * shade, color.b * shade);
+      this.colors.push(color.r * k, color.g * k, color.b * k);
     }
   }
 
@@ -62,7 +100,8 @@ class PlantMesh {
           b = lower[(side + 1) % sides] as Point;
         const c = upper[side] as Point,
           d = upper[(side + 1) % sides] as Point;
-        const shade = 0.78 + (0.2 * ring) / (rings.length - 1) + 0.02 * (side % 2);
+        // One shade per ring band: alternating shades per side striped a cone into facets.
+        const shade = 0.78 + (0.2 * ring) / (rings.length - 1);
         this.triangle(a, b, c, hex, shade);
         this.triangle(b, d, c, hex, shade);
       }
@@ -82,7 +121,16 @@ class PlantMesh {
   }
 
   /** A closed irregular crown; tip rings have one vertex, so no degenerate triangles. */
-  crown(center: Point, size: Point, hex: string, sides: number, phase: number): void {
+  crown(
+    center: Point,
+    size: Point,
+    hex: string,
+    sides: number,
+    phase: number,
+    bend = FOLIAGE_BEND,
+    tone = 1,
+  ): [number, number] {
+    const start = this.vertexCount;
     if (this.seed) phase += unit01(this.seed, 41) * TAU;
     const profiles =
       sides >= 8
@@ -95,10 +143,18 @@ class PlantMesh {
             [0.32, 0.85],
             [0.68, 0.9],
           ];
-    const rings = profiles.map(([y = 0, radius = 0]) =>
+    // Close up the outline also ripples ring by ring, so a crown reads as clustered foliage
+    // rather than a lathe-turned solid; near lobes get a lumpy, irregular outline the same way.
+    const ripple = sides >= 10 ? 0.08 : 0;
+    const lumps = sides >= 6 ? 0.13 : 0;
+    const rings = profiles.map(([y = 0, radius = 0], ring) =>
       Array.from({ length: sides }, (_, i): Point => {
         const angle = (i * TAU) / sides;
-        const r = radius * (1 + 0.12 * Math.sin(angle * 3 + phase));
+        const r =
+          radius *
+          (1 + 0.12 * Math.sin(angle * 3 + phase)) *
+          (1 + ripple * Math.sin(angle * 2 + ring * 2.1 + phase * 1.7)) *
+          (1 + lumps * Math.sin(i * 2.7 + ring * 4.3 + phase * 5.1));
         return [
           center[0] + Math.cos(angle) * size[0] * r,
           center[1] + (y - 0.5) * size[1],
@@ -108,24 +164,39 @@ class PlantMesh {
     );
     const bottom: Point = [center[0], center[1] - size[1] / 2, center[2]];
     const top: Point = [center[0] + size[0] * 0.06, center[1] + size[1] / 2, center[2]];
+    // Shade runs smoothly from the crown's shaded underside to its sunlit top, ring by ring, so
+    // a lobe reads as one soft puff rather than banded facets.
+    const ringShade = (j: number): number => (0.8 + (0.17 * (j + 1)) / (rings.length + 1)) * tone;
+    const low = 0.72 * tone,
+      high = tone;
     for (let i = 0; i < sides; i++) {
       const next = (i + 1) % sides;
+      const first = ringShade(0);
       this.triangle(
         bottom,
         (rings[0] as Point[])[i] as Point,
         (rings[0] as Point[])[next] as Point,
         hex,
-        0.76,
+        [low, first, first],
       );
       for (let j = 1; j < rings.length; j++) {
         const a = rings[j - 1] as Point[],
           b = rings[j] as Point[];
-        this.triangle(a[i] as Point, b[i] as Point, a[next] as Point, hex, 0.81 + j * 0.055);
-        this.triangle(a[next] as Point, b[i] as Point, b[next] as Point, hex, 0.84 + j * 0.045);
+        const below = ringShade(j - 1),
+          above = ringShade(j);
+        this.triangle(a[i] as Point, b[i] as Point, a[next] as Point, hex, [below, above, below]);
+        this.triangle(a[next] as Point, b[i] as Point, b[next] as Point, hex, [
+          below,
+          above,
+          above,
+        ]);
       }
       const last = rings[rings.length - 1] as Point[];
-      this.triangle(last[i] as Point, top, last[next] as Point, hex);
+      const lastShade = ringShade(rings.length - 1);
+      this.triangle(last[i] as Point, top, last[next] as Point, hex, [lastShade, high, lastShade]);
     }
+    this.volume(start, center, [size[0], size[1] / 2, size[2]], bend);
+    return [start, this.vertexCount];
   }
 
   /** Closed four-sided frond, thick enough to read from below without alpha or two-sided cards. */
@@ -239,6 +310,27 @@ class PlantMesh {
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(this.positions, 3));
     geometry.setAttribute('color', new THREE.Float32BufferAttribute(this.colors, 3));
     geometry.computeVertexNormals();
+    // Foliage facets catch the sun like cut gems; bend their normals toward the rounded volume
+    // they belong to, so a crown shades as one soft mass with a hint of its facets left.
+    const normal = geometry.getAttribute('normal') as THREE.BufferAttribute;
+    const facet = new THREE.Vector3();
+    const round = new THREE.Vector3();
+    for (const { start, end, center, size, bend } of this.volumes)
+      for (let i = start; i < end; i++) {
+        round
+          .set(
+            ((this.positions[i * 3] ?? 0) - center[0]) / (size[0] * size[0] || 1),
+            ((this.positions[i * 3 + 1] ?? 0) - center[1]) / (size[1] * size[1] || 1),
+            ((this.positions[i * 3 + 2] ?? 0) - center[2]) / (size[2] * size[2] || 1),
+          )
+          .normalize();
+        facet
+          .fromBufferAttribute(normal, i)
+          .multiplyScalar(1 - bend)
+          .addScaledVector(round, bend)
+          .normalize();
+        normal.setXYZ(i, facet.x, facet.y, facet.z);
+      }
     geometry.computeBoundingBox();
     geometry.computeBoundingSphere();
     return geometry;
@@ -260,6 +352,9 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
     medium = detail === true;
   const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat', 'crop'].includes(p.family);
   if (ground && detail !== false) return mesh.finish();
+  // Understory shrubs project to a pixel or two by the distance their far level would take
+  // over, yet drew one batch per species in every distant batch; the ground color carries them.
+  if (far && h < 2.5) return mesh.finish();
   const trunkTop: Point = [p.lean * h, base, 0];
   const trunk = (top = trunkTop, radius = p.stemRadius): void => {
     mesh.tube(
@@ -565,23 +660,33 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
           [base, r],
           [h, 0.005],
         ]
-      : [
-          [base, r * 0.7],
+      : // Stacked, drooping bough tiers: each skirt flares out over the narrower top of the
+        // one below, so the tree reads as a fir or cedar rather than a smooth cone. The medium
+        // tree keeps all but the small top skirt.
+        [
+          [base, r * 0.55],
           [base + (h - base) * 0.08, r],
-          [base + (h - base) * 0.25, r * 0.72],
-          [base + (h - base) * 0.34, r * 0.78],
-          [base + (h - base) * 0.55, r * 0.46],
-          [base + (h - base) * 0.65, r * 0.5],
-          [base + (h - base) * 0.82, r * 0.24],
+          [base + (h - base) * 0.22, r * 0.62],
+          [base + (h - base) * 0.27, r * 0.84],
+          [base + (h - base) * 0.43, r * 0.48],
+          [base + (h - base) * 0.48, r * 0.66],
+          [base + (h - base) * 0.63, r * 0.34],
+          [base + (h - base) * 0.68, r * 0.48],
+          [base + (h - base) * 0.82, r * 0.2],
+          ...(medium ? [] : [[base + (h - base) * 0.86, r * 0.28]]),
           [h, 0.005],
         ];
+    const start = mesh.vertexCount;
     mesh.tube(
       profile.map(([y = 0]): Point => [p.lean * y, y, 0]),
       profile.map(([, radius = 0]) => radius),
-      far ? 5 : medium ? 6 : 10,
+      far ? 5 : medium ? 6 : 14,
       p.foliage,
       far ? 0 : 0.12,
     );
+    // Centered low in the cone, so its upper boughs face the sky and its skirt the ground.
+    const middle = base + (h - base) * 0.3;
+    mesh.volume(start, [p.lean * middle, middle, 0], [r, (h - base) * 0.7, r]);
   } else {
     const canopyHeight = h - base;
     if (far)
@@ -594,30 +699,56 @@ export function createPlantGeometry(p: PlantPreset, detail: Detail = false): THR
       );
     else {
       trunk();
-      const lobes = medium ? 3 : p.climber ? 4 : 5;
-      for (let i = 0; i < lobes; i++) {
-        const angle = angleFor(i * 2.4, i),
-          x = p.lean * h + Math.cos(angle) * r * 0.42,
-          z = Math.sin(angle) * r * 0.42;
-        const y = base + vary(canopyHeight * (0.45 + (i % 3) * 0.09), 0.15, i);
-        const branchBase = base * (0.55 + (i % 3) * 0.06);
-        mesh.tube(
-          [
-            [p.lean * h * 0.3, branchBase, 0],
+      // Mangroves spend their medium budget on prop roots, so they keep three lobes there.
+      // Many small leaf clusters spread over the canopy's shell, plus a few inside, rather than
+      // a handful of big lobes: the silhouette reads as clumped foliage instead of balls on
+      // sticks. Their normals bend mostly toward the shared canopy, so it shades as one mass.
+      const clusters = medium ? (p.family === 'mangrove' ? 3 : 5) : p.climber ? 14 : 20;
+      const limbs = medium ? 2 : 5;
+      const ranges: [number, number][] = [];
+      for (let i = 0; i < clusters; i++) {
+        // A golden-angle spiral from the crown top down its sides, the last cluster at the core.
+        const t = clusters > 1 ? i / (clusters - 1) : 0;
+        const core = i === clusters - 1;
+        const height = core ? 0.5 : 0.92 - 0.6 * t;
+        const shell = core
+          ? 0
+          : Math.sin(Math.PI * Math.min(0.95, 0.22 + 0.78 * t)) * (medium ? 0.62 : 0.7);
+        const angle = angleFor(i * 2.39996, i),
+          x = p.lean * h + Math.cos(angle) * r * shell,
+          z = Math.sin(angle) * r * shell;
+        const y = base + vary(canopyHeight * height, 0.08, i);
+        const size = core ? 0.62 : (medium ? 0.5 : 0.3) + 0.08 * ((i * 0.43) % 1);
+        if (i < limbs) {
+          const branchBase = base * (0.55 + (i % 3) * 0.06);
+          mesh.tube(
+            [
+              [p.lean * h * 0.3, branchBase, 0],
+              [x * 0.8, base + (y - base) * 0.7, z * 0.8],
+            ],
+            [p.stemRadius * 0.48, p.stemRadius * 0.18],
+            medium ? 3 : 4,
+            p.bark,
+          );
+        }
+        // Each cluster catches the light a little differently, and the core sits in the
+        // crown's own shade, so the canopy reads as clumps of leaves rather than one swatch.
+        const tone =
+          (core ? 0.9 : 1) * (0.86 + 0.22 * (seed ? unit01(seed, 70 + i) : (i * 0.618) % 1));
+        ranges.push(
+          mesh.crown(
             [x, y, z],
-          ],
-          [p.stemRadius * 0.48, p.stemRadius * 0.18],
-          medium ? 3 : 4,
-          p.bark,
-        );
-        mesh.crown(
-          [x, y, z],
-          [r * 0.64, canopyHeight * 0.85, r * 0.62],
-          p.foliage,
-          medium ? 5 : 8,
-          i,
+            [r * size, canopyHeight * size * 0.95, r * size * 0.97],
+            p.foliage,
+            medium ? 5 : 6,
+            i,
+            0.7,
+            tone,
+          ),
         );
       }
+      const middle = base + canopyHeight * 0.55;
+      mesh.canopy(ranges, [p.lean * h, middle, 0], [r, canopyHeight * 0.6, r], 0.55);
       if (p.family === 'mangrove')
         for (let i = 0; i < (medium ? 3 : 5); i++) {
           const angle = angleFor(i * 2.4, i);

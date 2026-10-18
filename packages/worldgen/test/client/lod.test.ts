@@ -115,4 +115,59 @@ describe('camera-distance instance LOD', () => {
     disposeWorldgenObject(root);
     library.dispose();
   });
+
+  it('switches one instanced mesh between shared level geometries, by the view camera only', async () => {
+    const library = new ModelLibrary();
+    const ref = 'builtin:tree.deciduous.oak';
+    const models = [
+      await library.prepare(ref),
+      await library.prepare(ref, true),
+      await library.prepare(ref, 'distant'),
+    ] as const;
+    const set: PlacementSet = {
+      setId: 'forest',
+      modelRef: ref,
+      count: 2,
+      data: new Float32Array([10, 5, 10, 0, 1, 1, 1, 1, 1, 1, 30, 5, 10, 0, 1, 1, 1, 1, 1, 1]),
+    };
+    const policy = { viewportHeight: 900, maxPixelError: 2 };
+    const root = createInstancedPlacementLod(set, models, {
+      cellSize: Number.POSITIVE_INFINITY,
+      screenSpace: policy,
+    });
+    const lod = root.children[0] as THREE.LOD;
+    // One mesh, so WebGPU builds one node program for the set instead of one per level.
+    const meshes: THREE.InstancedMesh[] = [];
+    root.traverse((o) => {
+      if ((o as THREE.InstancedMesh).isInstancedMesh) meshes.push(o as THREE.InstancedMesh);
+    });
+    expect(meshes).toHaveLength(1);
+    const mesh = meshes[0] as THREE.InstancedMesh;
+    mesh.castShadow = true;
+    root.updateMatrixWorld(true);
+    const camera = new THREE.PerspectiveCamera(60, 16 / 9, 0.1, 100_000);
+    camera.position.copy(lod.position).add(new THREE.Vector3(0, 10, 0));
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(mesh.geometry).toBe(models[0].geometry);
+    expect(lod.getCurrentLevel()).toBe(0);
+    camera.position.x += 50_000;
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(mesh.geometry).toBe(models[2].geometry);
+    expect(mesh.castShadow).toBe(false);
+    // A shadow pass's orthographic camera does not reselect while the view camera is active.
+    const shadow = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+    shadow.position.copy(lod.position);
+    shadow.updateMatrixWorld();
+    lod.update(shadow);
+    expect(mesh.geometry).toBe(models[2].geometry);
+    camera.position.copy(lod.position);
+    camera.updateMatrixWorld();
+    lod.update(camera);
+    expect(mesh.geometry).toBe(models[0].geometry);
+    expect(mesh.castShadow).toBe(true);
+    disposeWorldgenObject(root);
+    library.dispose();
+  });
 });

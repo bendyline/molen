@@ -22,10 +22,29 @@ export const architectureFamilies = [
     roof: 'shingle_asphalt',
     pitch: [27, 38],
     eaves: [0.45, 0.8],
-    colors: ['#d8d5ca', '#a9c399', '#9fbccf', '#c7b6a0'],
-    roofColors: ['#64676b', '#716d64'],
+    // Pacific Northwest and American suburbs: off-white, sage, slate blue, tan, butter and grey
+    // siding, with the odd white, deep slate, muted barn-red or dark sage house, under charcoal,
+    // weathered grey, brown and cedar asphalt.
+    colors: [
+      '#d8d5ca',
+      '#a9c399',
+      '#9fbccf',
+      '#c7b6a0',
+      '#e4e1d6',
+      '#e1d4a6',
+      '#b9bdb9',
+      '#f0eee6',
+      '#7d8c99',
+      '#9a6a5c',
+      '#7f8f7c',
+    ],
+    roofColors: ['#64676b', '#716d64', '#5a5e63', '#7b7c78', '#6a5d52', '#76665a'],
     bay: 3.1,
     window: 1.4,
+    // Shuttered windows and the odd dormer and chimney. No veranda: the kernel wraps one around
+    // every wall, and lots here sit close enough to the street to put its posts on the sidewalk.
+    shutters: true,
+    dormers: true,
   },
   {
     id: 'northern',

@@ -4,6 +4,7 @@ import type { VehiclePlacement } from '@bendyline/molen-schema';
 import * as THREE from 'three';
 import { Heightfield } from './heightfield';
 import type { TerrainLandcoverWorker } from './landcover-worker';
+import { TERRAIN_PAVEMENT } from './linear-features';
 import type { TerrainPyramidTileLayerContext } from './pyramid-stream';
 import type { TerrainSemanticTile } from './semantic-types';
 import {
@@ -35,9 +36,11 @@ interface Request {
 interface MeshData {
   name: string;
   castShadow: boolean;
+  pavement?: boolean;
   positions?: Float32Array;
   normals?: Float32Array;
   colors?: Float32Array;
+  surfaceDetail?: Float32Array;
   matrices?: Float32Array;
   instanceColors?: Float32Array;
   /** Precompute culling bounds off-thread; avoid walking large buffers on first render. */
@@ -105,6 +108,12 @@ export function installTerrainSurfaceWorker(
               data.normals.buffer as ArrayBuffer,
               data.colors.buffer as ArrayBuffer,
             );
+            const detail = mesh.geometry.getAttribute('surfaceDetail');
+            if (detail) {
+              data.surfaceDetail = detail.array as Float32Array;
+              transfer.push(data.surfaceDetail.buffer as ArrayBuffer);
+            }
+            if (mesh.userData[TERRAIN_PAVEMENT] === true) data.pavement = true;
           }
           data.sphere = [sphere.center.x, sphere.center.y, sphere.center.z, sphere.radius];
           return data;
@@ -233,9 +242,15 @@ export function createTerrainSurfaceWorkerBridge(
             new THREE.BufferAttribute(data.normals as Float32Array, 3),
           );
           geometry.setAttribute('color', new THREE.BufferAttribute(data.colors as Float32Array, 3));
+          if (data.surfaceDetail)
+            geometry.setAttribute(
+              'surfaceDetail',
+              new THREE.BufferAttribute(data.surfaceDetail, 4),
+            );
           geometry.boundingSphere = sphere;
           mesh = new THREE.Mesh(geometry, material);
           mesh.userData.terrainOwnedGeometry = true;
+          if (data.pavement) mesh.userData[TERRAIN_PAVEMENT] = true;
         }
         mesh.name = data.name;
         mesh.castShadow = data.castShadow;

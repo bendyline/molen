@@ -21,10 +21,13 @@ export {
 export {
   createTerrainGroundMaterial,
   createTerrainGroundMaterialAsync,
+  createTerrainPavementMaterial,
+  createTerrainPavementMaterialAsync,
   isTerrainGroundMaterial,
   setTerrainGroundOrigin,
   type TerrainGroundMaterial,
   type TerrainGroundMaterialOptions,
+  type TerrainPavementMaterialOptions,
 } from './ground-material';
 export {
   createTerrainLandcoverWorkerBridge,
@@ -36,11 +39,14 @@ export {
   createTerrainLinearObject,
   joinTerrainLines,
   sampleTerrainLine,
+  TERRAIN_PAVEMENT,
+  TERRAIN_SURFACE_KIND,
   type TerrainLineBand,
   type TerrainLinePath,
   type TerrainLineProfile,
   type TerrainLineRepeater,
   type TerrainLineSample,
+  type TerrainSurfaceKind,
   terrainLinePath,
 } from './linear-features';
 export type { ChunkGeometry, ChunkMeshOptions } from './mesh';
@@ -112,6 +118,7 @@ export type {
 export {
   createTerrainPyramidStream,
   selectTerrainPyramidTiles,
+  TERRAIN_COVERS_GROUND,
   type TerrainPyramidBudget,
   type TerrainPyramidHeightSource,
   type TerrainPyramidSelection,

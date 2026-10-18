@@ -84,7 +84,14 @@ for (const family of architectureFamilies) {
     style.doc =
       'Broad construction prior for an ordinary mapped building. Source outline, height, levels and use take precedence. This does not infer historical age or a surveyed architectural identity.';
     style.applicability = { classes: classes[type] };
-    style.props = [];
+    // Chimneys on houses and rooftop units on commercial blocks, as authored; sheds stay bare.
+    style.props = shed ? [] : structuredClone(source.props ?? []);
+    // Low shops and civic blocks carry a full-size rooftop unit for about every 150 m² of roof,
+    // so a flat roof seen from above reads as working plant rather than a blank membrane.
+    if (type === 'commercial' || type === 'civic')
+      for (const prop of style.props)
+        if (prop.id === 'hvac')
+          Object.assign(prop, { count: range(2, 14), perAreaM2: 150, scale: range(1.1, 1.7) });
     style.facade.details = {};
     style.facade.details.entrance = shed
       ? { width: type === 'industrial' ? 3.4 : 2.8, height: 3.1, style: 'service' }
@@ -115,7 +122,17 @@ for (const family of architectureFamilies) {
     style.palettes.regional_wall = palette(family.colors);
     style.palettes.regional_roof = palette(family.roofColors);
     style.palettes.regional_trim = palette(['#dcd8cc', '#8c918c']);
-    style.roof.features = undefined;
+    style.roof.features =
+      family.dormers && home
+        ? {
+            dormers: {
+              probability: 0.3,
+              perRidgeMeters: 5,
+              style: 'gable',
+              when: { areaMin: 110 },
+            },
+          }
+        : undefined;
     if (home || type === 'farm') {
       style.roof.overhang = range(...family.eaves);
       style.roof.perWing = true;
@@ -138,6 +155,8 @@ for (const family of architectureFamilies) {
       style.roof.choices = [structuredClone(flat)];
       style.roof.overhang = range(0, 0.12);
       style.materials.roof.choices = material('membrane');
+      // A 6 m repeat holds 1 m rolls, seams a camera above the street can still resolve.
+      style.materials.roof.uvScale = [6, 6];
       style.palettes.regional_roof = palette(['#a9aaa0', '#bab8a9']);
     }
     style.facade.bays.width = range(shed ? 5.5 : family.bay, shed ? 7 : family.bay + 0.25);

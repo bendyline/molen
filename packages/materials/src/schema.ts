@@ -381,7 +381,11 @@ const node = z.discriminatedUnion('type', [
   }),
   z.strictObject({
     ...nodeBase,
-    type: z.literal('bricks').describe('Brick/mortar mask (1 = brick, 0 = mortar).'),
+    type: z
+      .literal('bricks')
+      .describe(
+        'Running-bond bricks: a brick/mortar mask, a per-brick random value or the position within a row.',
+      ),
     params: z
       .strictObject({
         rows: z.int().positive().max(4096).describe('Brick rows across V (default 8).').default(8),
@@ -405,6 +409,12 @@ const node = z.discriminatedUnion('type', [
             'Horizontal shift of alternate rows as a fraction of a brick, 0..1 (default 0.5).',
           )
           .default(0.5),
+        output: z
+          .enum(['mask', 'random', 'row'])
+          .describe(
+            'mask (default): 1 on a brick, 0 on mortar. random: a stable 0..1 value per brick (0 on mortar), for per-tile tone variation. row: position within the row, 0 at its top (v) edge to 1 at its bottom, for course shading and normals.',
+          )
+          .default('mask'),
       })
       .describe('Node parameters.'),
   }),

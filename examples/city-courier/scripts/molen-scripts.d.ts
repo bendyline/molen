@@ -612,6 +612,7 @@ type MolenEnvironmentData = {
       moonIntensity?: number;
       dayAmbient?: number;
       nightAmbient?: number;
+      skyLightSaturation?: number;
       castShadow?: boolean;
     };
     stars?: {
@@ -656,6 +657,7 @@ type MolenEnvironmentData = {
       moonIntensity?: number;
       dayAmbient?: number;
       nightAmbient?: number;
+      skyLightSaturation?: number;
       castShadow?: boolean;
     };
     stars?: {

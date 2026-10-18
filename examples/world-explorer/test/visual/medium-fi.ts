@@ -260,9 +260,8 @@ scene.add(silhouette);
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
 renderer.setSize(innerWidth, innerHeight);
 renderer.setPixelRatio(1);
-if (EARTH_TONE_MAPPING !== 'neutral')
-  throw new Error('Update fixture for changed Earth tone mapping');
-renderer.toneMapping = THREE.NeutralToneMapping;
+if (EARTH_TONE_MAPPING !== 'aces') throw new Error('Update fixture for changed Earth tone mapping');
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = EARTH_EXPOSURE;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.append(renderer.domElement);

@@ -56,6 +56,13 @@ const common = {
         .nonnegative()
         .optional()
         .describe('Nighttime hemisphere intensity, default 0.025.'),
+      skyLightSaturation: number
+        .min(0)
+        .max(1)
+        .optional()
+        .describe(
+          'Saturation of the light the sky casts (fill and reflections) relative to the dome colors: 1 (default) lights with the dome palette, lower values toward its luminance. A saturated zenith otherwise tints every surface in shade blue.',
+        ),
       castShadow: z
         .boolean()
         .optional()
@@ -182,6 +189,7 @@ export interface SkyAppearance {
     moonIntensity?: number;
     dayAmbient?: number;
     nightAmbient?: number;
+    skyLightSaturation?: number;
     castShadow?: boolean;
   };
   stars?: { enabled?: boolean; magnitudeLimit?: number; intensity?: number; size?: number };

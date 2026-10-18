@@ -313,18 +313,27 @@ export class SkyVisual {
     // hemisphere (π), as in reflectionStateFromLights. Unscaled palette radiance made the sky
     // light about three times `dayAmbient`, a flat blue fill that washed out sunlit contrast.
     const radiance = this.ambientLight.intensity / Math.PI;
+    // The dome keeps its art-directed colors; the light it casts can be less saturated, since a
+    // deep zenith blue would otherwise tint every face in shade (most of all roofs) navy.
+    const saturation = Math.max(0, Math.min(1, light?.skyLightSaturation ?? 1));
+    const cast = (color: THREE.Color): THREE.Color => {
+      const luminance = color.r * 0.2126 + color.g * 0.7152 + color.b * 0.0722;
+      return color.setRGB(
+        luminance + (color.r - luminance) * saturation,
+        luminance + (color.g - luminance) * saturation,
+        luminance + (color.b - luminance) * saturation,
+      );
+    };
     this.currentReflections = {
       zenith: rgb(
-        this.palette.nightZenith
-          .clone()
-          .lerp(this.palette.dayZenith, daylight)
-          .multiplyScalar(radiance),
+        cast(
+          this.palette.nightZenith.clone().lerp(this.palette.dayZenith, daylight),
+        ).multiplyScalar(radiance),
       ),
       horizon: rgb(
-        this.palette.nightHorizon
-          .clone()
-          .lerp(this.palette.dayHorizon, daylight)
-          .multiplyScalar(radiance),
+        cast(
+          this.palette.nightHorizon.clone().lerp(this.palette.dayHorizon, daylight),
+        ).multiplyScalar(radiance),
       ),
       ground: rgb(this.palette.ground.clone().multiplyScalar((0.08 + daylight * 0.92) * radiance)),
       twilight: rgb(this.palette.twilight.clone().multiplyScalar(radiance)),

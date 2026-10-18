@@ -210,7 +210,8 @@ export class EarthAmbient implements SemanticTileObserver {
   constructor(options: EarthAmbientOptions) {
     this.ownsWorld = options.world === undefined;
     this.root = options.parent;
-    this.world = options.world ?? new World({ tickRate: 60, seed: 'earth-ambient' });
+    this.world =
+      options.world ?? new World({ tickRate: 60, seed: 'earth-ambient', devFreeze: false });
     const settings = options.settings;
     const density = Math.max(0, Math.min(1, settings.density ?? 0.6));
     const classes: AmbientKind[] = [];
@@ -355,7 +356,7 @@ export class EarthAmbient implements SemanticTileObserver {
   update(dt: number): void {
     if (!this.ownsWorld || this.disposed) return;
     const step = 1 / this.world.tickRate;
-    this.accumulator = Math.min(this.accumulator + dt, step * 6);
+    this.accumulator = Math.min(this.accumulator + dt, step * 3);
     while (this.accumulator >= step) {
       this.world.step();
       this.accumulator -= step;

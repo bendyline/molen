@@ -2,7 +2,7 @@
 import { dmath } from '@bendyline/molen-kernel/determinism';
 import type { FacadeInput } from './facade';
 import { type MeshBufferBuilder, normalize3 } from './mesh-buffers';
-import type { Vec2, Vec3 } from './types';
+import type { RGB, Vec2, Vec3 } from './types';
 
 export interface FacadeDetailEdge {
   a: Vec2;
@@ -206,41 +206,59 @@ export function buildFacadeDetails(
       }
     }
   }
+  // Painted the dark tone of the trim, like the fallback entrance door, so they read on pale siding.
+  const painted = {
+    ...trim,
+    color: [trim.color[0] * 0.42, trim.color[1] * 0.42, trim.color[2] * 0.42] as RGB,
+  };
+  const shutters = (s0: number, s1: number, y0: number, y1: number): void => {
+    const width = Math.min((s1 - s0) * 0.35, (input.bayWidth - (s1 - s0)) * 0.36, 0.55);
+    for (const [a, b] of [
+      [s0 - width - 0.14, s0 - 0.14],
+      [s1 + 0.14, s1 + width + 0.14],
+    ]) {
+      if (
+        a === undefined ||
+        b === undefined ||
+        width < 0.13 ||
+        a < corner ||
+        b > edge.length - corner ||
+        blocked(a, b, y0, y1)
+      )
+        continue;
+      box(a, b, y0, y1, 0.025, 0.12, painted);
+      for (let row = 1; row < 4; row++) {
+        const y = y0 + ((y1 - y0) * row) / 4;
+        quad(
+          [
+            point(a + 0.03, y, 0.145),
+            point(b - 0.03, y, 0.145),
+            point(b - 0.03, y + 0.025, 0.145),
+            point(a + 0.03, y + 0.025, 0.145),
+          ],
+          edge.normal,
+          b - a,
+          0.025,
+          painted,
+        );
+      }
+    }
+  };
+  if (details.shutters && input.windows?.style === 'punched')
+    // Interior-backed houses replace the punched grid with structural windows; frame those too.
+    for (const o of input.structuralOpenings ?? [])
+      if (
+        o.kind === 'window' &&
+        o.edge === edge.key &&
+        o.start !== undefined &&
+        o.end !== undefined
+      )
+        shutters(o.start, o.end, o.bottom, o.top);
   let balconies = 0;
   for (const window of windows.slice(0, 40)) {
     const { s0, s1, y0, y1 } = window;
-    if (details.shutters && !window.storefront && input.windows?.style === 'punched') {
-      const width = Math.min((s1 - s0) * 0.35, (input.bayWidth - (s1 - s0)) * 0.36, 0.55);
-      for (const [a, b] of [
-        [s0 - width - 0.14, s0 - 0.14],
-        [s1 + 0.14, s1 + width + 0.14],
-      ]) {
-        if (
-          a === undefined ||
-          b === undefined ||
-          width < 0.13 ||
-          a < corner ||
-          b > edge.length - corner ||
-          blocked(a, b, y0, y1)
-        )
-          continue;
-        box(a, b, y0, y1, 0.025, 0.12);
-        for (let row = 1; row < 4; row++) {
-          const y = y0 + ((y1 - y0) * row) / 4;
-          quad(
-            [
-              point(a + 0.03, y, 0.145),
-              point(b - 0.03, y, 0.145),
-              point(b - 0.03, y + 0.025, 0.145),
-              point(a + 0.03, y + 0.025, 0.145),
-            ],
-            edge.normal,
-            b - a,
-            0.025,
-          );
-        }
-      }
-    }
+    if (details.shutters && !window.storefront && input.windows?.style === 'punched')
+      shutters(s0, s1, y0, y1);
     if (
       details.awnings &&
       y1 + 0.25 < edge.top &&

@@ -250,7 +250,9 @@ levels are empty, so the clumps fade out about 400 meters away instead of shimme
 adapter labels land that no map polygon covers `open_ground` (the `OPEN_GROUND_LABEL` export), as a
 tile-wide polygon that every mapped polygon paints over, so verges and unmapped meadows can carry
 ground cover too. The default packs place it in meadows, parks, yards, forest floors and open
-ground, on the finest tile level only, and not at Economy quality.
+ground, on the finest tile level only, and not at Economy quality. In temperate and wet habitats
+the regional catalog's `open_trees` rule also plants a few clustered groves of park trees on open
+ground (14 per hectare before clustering), so unmapped institutional lawns and verges are not bare.
 
 A population's optional `widthScale: { min: 0.8, max: 1.25 }` multiplies X/Z independently of
 its uniform `scale`, allowing tall narrow trees, broad bushy trees, and spreading shrubs in the

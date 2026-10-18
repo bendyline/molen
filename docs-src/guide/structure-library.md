@@ -92,7 +92,10 @@ priors and do not identify the architecture of an individual mapped building.
 `facade.details` adds shutters, balconies, timber framing or pilasters, awnings and verandas.
 Details use the actual facade rhythm, a bounded perimeter allocation, and the existing
 `facade-bands` tier flag. Structural openings, clipped edges and courtyard constraints take
-precedence. Dormers use `roof.features.dormers` on eligible pitched wings. Simplified budget
+precedence. Shutters, painted the dark tone of the trim, flank punched windows and, on houses with
+walkable interiors, the structural window openings that replace them. A veranda wraps every
+qualifying wall, so families whose lots sit close to the street leave it out. Dormers use
+`roof.features.dormers` on eligible pitched wings. Simplified budget
 representations omit ornament while retaining their footprint, primary roof and measured envelope.
 
 The [standard material catalog](https://github.com/bendyline/molen/blob/main/content/worldgen/materials/README.md)

@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import * as THREE from 'three';
 import { describe, expect, it } from 'vitest';
 import { ModelLibrary } from '../src/client/instanced-models';
 import { createPlantGeometry } from '../src/client/plant-geometry';
@@ -51,7 +52,7 @@ describe('regional procedural plants', () => {
         const ground = ['grass', 'fern', 'reed', 'forb', 'vine', 'mat', 'crop'].includes(p.family);
         counts.push(positions.count / 3);
         expect(positions.count / 3, `${p.id}/${detail}`).toBeLessThanOrEqual(
-          detail === 'distant' ? 64 : detail ? 140 : 450,
+          detail === 'distant' ? 64 : detail ? 140 : 640,
         );
         expect([...positions.array].every(Number.isFinite), p.id).toBe(true);
         expect([...normals.array].every(Number.isFinite), p.id).toBe(true);
@@ -60,7 +61,8 @@ describe('regional procedural plants', () => {
             Math.hypot(normals.getX(i), normals.getY(i), normals.getZ(i)),
             `${p.id}: degenerate face`,
           ).toBeGreaterThan(0.99);
-        if (ground && detail !== false) {
+        // Ground cover draws near only; understory shrubs have no distant level.
+        if ((ground && detail !== false) || (detail === 'distant' && p.height < 2.5)) {
           expect(positions.count).toBe(0);
           g.dispose();
           continue;
@@ -113,5 +115,73 @@ describe('regional procedural plants', () => {
     library.release(p.id);
     expect(library.get(p.id)).toBeUndefined();
     library.dispose();
+  });
+  it('shades crowns as rounded masses: facets meeting at a vertex nearly agree', () => {
+    // Every vertex shared by two or more foliage facets: the spread of their normals there.
+    const agreement = (family: string): number => {
+      const p = catalog.plants.find((plant) => plant.family === family && !plant.leafless);
+      if (!p) throw new Error(`no ${family} plant`);
+      const geometry = createPlantGeometry({ ...p, shapeSeed: 0 }, 'distant');
+      const position = geometry.getAttribute('position');
+      const normal = geometry.getAttribute('normal');
+      const byPoint = new Map<string, number[]>();
+      for (let i = 0; i < position.count; i++) {
+        const key = [position.getX(i), position.getY(i), position.getZ(i)]
+          .map((v) => v.toFixed(4))
+          .join();
+        byPoint.set(key, [...(byPoint.get(key) ?? []), i]);
+      }
+      let worst = 1;
+      for (const indices of byPoint.values())
+        for (const a of indices)
+          for (const b of indices)
+            worst = Math.min(
+              worst,
+              normal.getX(a) * normal.getX(b) +
+                normal.getY(a) * normal.getY(b) +
+                normal.getZ(a) * normal.getZ(b),
+            );
+      geometry.dispose();
+      return worst;
+    };
+    // A five-sided crown's flat facets meet at 72 degrees; bent toward the volume they stay
+    // within about 40.
+    expect(agreement('broadleaf')).toBeGreaterThan(0.75);
+    expect(agreement('conifer')).toBeGreaterThan(0.75);
+  });
+  it('shades leaf clusters smoothly: every facet meeting at a crown vertex gives it one color', () => {
+    const p = catalog.plants.find((plant) => plant.family === 'broadleaf' && !plant.leafless);
+    if (!p) throw new Error('no broadleaf plant');
+    const geometry = createPlantGeometry({ ...p, shapeSeed: 0 });
+    const position = geometry.getAttribute('position');
+    const color = geometry.getAttribute('color');
+    // Foliage vertices are the foliage color scaled by their shade; bark tubes are left out.
+    const leaf = new THREE.Color(p.foliage);
+    const foliage = (i: number): boolean => {
+      const k = color.getX(i) / leaf.r;
+      return (
+        Math.abs(color.getY(i) - k * leaf.g) < 1e-4 && Math.abs(color.getZ(i) - k * leaf.b) < 1e-4
+      );
+    };
+    const byPoint = new Map<string, number[]>();
+    for (let i = 0; i < position.count; i++) {
+      if (!foliage(i)) continue;
+      const key = [position.getX(i), position.getY(i), position.getZ(i)]
+        .map((v) => v.toFixed(5))
+        .join();
+      byPoint.set(key, [...(byPoint.get(key) ?? []), i]);
+    }
+    let shared = 0,
+      spread = 0;
+    for (const indices of byPoint.values()) {
+      if (indices.length < 2) continue;
+      shared++;
+      const values = indices.map((i) => color.getX(i) + color.getY(i) + color.getZ(i));
+      spread = Math.max(spread, Math.max(...values) - Math.min(...values));
+    }
+    geometry.dispose();
+    expect(shared).toBeGreaterThan(50);
+    // Flat bands put two shades on every ring vertex; a gradient gives each vertex one.
+    expect(spread).toBeLessThan(1e-6);
   });
 });

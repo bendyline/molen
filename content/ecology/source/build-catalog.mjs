@@ -368,7 +368,9 @@ const population = (name, weight = 1) => {
     widthScale: { min: 0.85, max: 1.15 },
     yaw: 'random',
     align: 'up',
-    tint: { hue: 0.018, saturation: 0.06, lightness: 0.12 },
+    // Enough per-plant drift that a stand is not one swatch: autumn crowns range yellow to
+    // russet, conifers yellow- to blue-green, and some trees stand in deeper shade.
+    tint: { hue: 0.05, saturation: 0.12, lightness: 0.16 },
   };
 };
 const populations = (names) =>
@@ -428,6 +430,7 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     orchard = ['fruit_tree'],
     wetland = ['reeds'],
     grasslandTrees = 0,
+    openTrees = surface === desert || surface === dry || surface === cold ? 0 : 14,
     groundDensity = surface === desert ? 110 : surface === dry ? 2200 : 4200,
   } = settings;
   const brush = brushComposition(
@@ -465,8 +468,18 @@ function habitat(name, title, match, trees, shrubs, cover, settings = {}) {
     ...(mangrove ? { nearWater: { maxDistance: 250 } } : {}),
   });
   add('park', ['park', 'garden', 'cemetery'], parkTrees, 19, 'canopy', { notClasses: knownCrops });
-  add('home_canopy', ['home_canopy'], parkTrees, 70);
+  // Yards are planted lot by lot, not in forest-scale stands: denser than a park, with clustering
+  // fine enough to vary between neighbours instead of blanking whole blocks. Only regions whose
+  // atlas sets a tree fill factor infer yards at all.
+  add('home_canopy', ['home_canopy'], parkTrees, 140, 'canopy', {
+    clustering: { scale: 55, threshold: 0.12, contrast: 2.2, seedOffset: 11 },
+  });
   add('open', ['open_ground'], shrubs, openDensity);
+  // In temperate and wet habitats, unmapped ground (verges, institutional lawns, rough lots) keeps
+  // a few groves of the park trees, broken up by clustering so most of it still reads as open.
+  add('open_trees', ['open_ground'], parkTrees, openTrees, 'canopy', {
+    clustering: { scale: 70, threshold: 0.22, contrast: 2.4, seedOffset: 13 },
+  });
   add('orchard', ['orchard'], orchard, 156.25, 'canopy', {
     rows: { spacing: 8, interval: 8, angle: 0, jitter: 0.04 },
     clustering: undefined,

@@ -11,6 +11,7 @@ import type { LandmarkDefinitions } from '../kernel/landmark-types';
 import type { PlantPreset } from '../kernel/plant-types';
 import { packedColorAttribute } from './color-attribute';
 import { createPlantGeometry } from './plant-geometry';
+import { createScatterMaterial, setScatterCanopy } from './scatter-material';
 import { createVegetationGeometry } from './vegetation';
 
 export interface PreparedModel {
@@ -176,7 +177,8 @@ export class ModelLibrary {
   private readonly prepared = new Map<string, PreparedModel>();
   private readonly pending = new Map<string, Promise<PreparedModel>>();
   private readonly references = new Map<string, number>();
-  private readonly material: THREE.MeshStandardMaterial;
+  private readonly material: THREE.Material;
+  private readonly ownsMaterial: boolean;
 
   constructor(
     private readonly loadModel: ModelLoader | undefined = undefined,
@@ -186,9 +188,15 @@ export class ModelLibrary {
     private readonly disposeLoadedScene = false,
     /** Pack-authored recipes share the same instancing path and have three independent LODs. */
     private readonly plants: Readonly<Record<string, PlantPreset>> = {},
+    /**
+     * Material for every prepared model, owned by the caller; usually
+     * `createScatterMaterialAsync` for the renderer's backend. Default: the WebGL scatter
+     * material, which other backends draw as a plain vertex-color material.
+     */
+    material?: THREE.Material,
   ) {
-    this.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92 });
-    this.material.name = 'worldgen:models';
+    this.ownsMaterial = material === undefined;
+    this.material = material ?? createScatterMaterial();
   }
 
   private key(ref: string, coarse: boolean | 'distant'): string {
@@ -259,6 +267,7 @@ export class ModelLibrary {
     const plant = this.plants[ref];
     if (plant !== undefined) {
       const geometry = createPlantGeometry(plant, coarse);
+      setScatterCanopy(geometry, true);
       return {
         ref,
         geometry,
@@ -271,6 +280,7 @@ export class ModelLibrary {
       const geometry = builtinGeometry(ref.slice('builtin:'.length), coarse, this.landmarks);
       if (geometry === undefined) throw new Error(`unknown builtin model "${ref}"`);
       geometry.computeBoundingBox();
+      setScatterCanopy(geometry, /^(tree|shrub|bush|hedge)/.test(ref.slice('builtin:'.length)));
       return {
         ref,
         geometry,
@@ -306,6 +316,7 @@ export class ModelLibrary {
       }
     }
     if (geometry === undefined) throw new Error(`model "${ref}" has no mesh geometry`);
+    setScatterCanopy(geometry, false);
     return {
       ref,
       geometry,
@@ -320,6 +331,6 @@ export class ModelLibrary {
     this.references.clear();
     for (const model of this.prepared.values()) model.geometry.dispose();
     this.prepared.clear();
-    this.material.dispose();
+    if (this.ownsMaterial) this.material.dispose();
   }
 }

@@ -82,6 +82,62 @@ budgets can call the stream's `refreshMemoryUsage()` after a new revision finish
 Disposing the controller
 also disposes its generator; do not share that generator between separately owned controllers.
 
+## Pavement material
+
+By default the surfaces draw in a plain vertex-color material. For textured asphalt, concrete and
+paint, give the controller the pavement material for the renderer's backend once the renderer
+exists; resident tiles switch in place and later tiles use it too:
+
+```ts
+import {
+  createTerrainPavementMaterialAsync,
+  setTerrainGroundOrigin,
+} from '@bendyline/molen-terrain/client';
+
+const pavement = await createTerrainPavementMaterialAsync({}, renderer.backend);
+surfaces.setMaterial(pavement);
+// Each frame, or whenever the floating origin moves, keep the pattern on the ground:
+setTerrainGroundOrigin(pavement, [worldOrigin[0], worldOrigin[2]]);
+```
+
+The material reads a `surfaceDetail` attribute the surface builder writes on every road, sidewalk,
+curb, marking and lot: meters along the band, meters across it from its edge, the surface kind
+and band width, and a road's lane width. Roads get asphalt aggregate, blotchy wear, polished wheel
+tracks and an oil line in each lane, grit in the gutters, storm-drain grates, manhole covers and
+the odd darker repaired section; asphalt and concrete both get hairline cracks; lots get oil
+stains; sidewalks and footways get 1.5 m saw-cut slabs and curbs 3 m ones, each slab its own
+tone; plazas and pedestrian areas get a half-meter paver grid; markings wear through to the
+asphalt. Detail fades to the plain swatch with distance, so it never shimmers.
+`setMaterial(undefined)` restores the plain material. Your own geometry can opt in with
+`TerrainSurfaceMeshBuilder.surfaceSince(start, TERRAIN_SURFACE_KIND.road, …)`, or a
+`surface` (and `lanes`) on a `TerrainLineBand`.
+
+Edges that meet bare ground fray into it rather than ending on a ruled line: the lawn side of a
+sidewalk, both sides of a footpath, dirt road or track bed, a road's shoulder, and a narrow fringe
+traced around each lot and plaza (skipped where a road or building meets it). The material
+discards a ragged margin so the ground shows through, with a little dirt just inside. Cast paving
+keeps its formed edge and only grass blades creep up to 3 cm over it; loose surfaces (dirt,
+gravel, shoulders) break up to 0.1 m deep, a gentle waviness with blade-scale tufts rather than
+blob islands. With multisampling the
+ragged edge is antialiased through alpha to coverage. The margin shrinks away as its noise falls
+below a pixel, leaving the band's own antialiased edge, and it also closes up within the last few
+meters of the camera, where its cells would grow to dozens of pixels and read as torn paper. A band opts in with `fray: 'outer' | 'inner' | 'both'` on its `TerrainLineBand` (outer is the edge
+away from the line); bridge decks keep their edges whole.
+
+Curbs are a step, not a stripe: a 15 cm vertical face drops from the curb's road-side edge to the
+asphalt, split finer than the ground grid so it follows the draped ground, and jointed like the curb top.
+Any draped band can have one with `riser` (meters) on its `TerrainLineBand`.
+
+Styles with streetlights also furnish their blocks: utility poles every 38 m on one side of each
+street with sidewalks, set back behind the sidewalk with a crossarm and a pair of sagging lines
+between neighbors, and a hydrant at the other curb about every 100 m. Residential streets that
+run through residential land also get a mailbox on a post behind the sidewalk every 22–30 m on
+both sides (arched top, a door facing the curb and a red flag), about a third of them with a pair
+of wheeled bins beside it. Poles and hydrants (1,200 boxes) and mailboxes and bins (2,400) have
+per-tile budgets of their own, enough to furnish every street of a dense suburban tile.
+Placement is fixed per road, skips junctions, buildings and other roads, and draws in the same
+instanced box batch as the lights (`streetFurniture` in the surface stats).
+
 `TERRAIN_SURFACE_STYLES` provides immutable presets. Pass a custom `TerrainSurfaceStyle` to
 change colors, inferred road widths, sidewalk width, and defaults for each detail class:
 

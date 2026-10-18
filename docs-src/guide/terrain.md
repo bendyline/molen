@@ -368,6 +368,11 @@ water and road surfaces are marked) and water with `userData.shadowReceiver = fa
 adaptive tiles. Its optional inclusive `minLevel`/`maxLevel` bounds keep expensive decoration off
 coarse fallback and horizon tiles. Layer objects become visible only with their selected surface,
 remain cached briefly across LOD transitions, and are disposed with their resident height tile.
+A layer object that drapes its whole tile with opaque ground (landcover over a full-tile
+background, as the regional worldgen classification layer builds) can set
+`userData[TERRAIN_COVERS_GROUND] = true`. While it is displayed, the stream stops drawing that
+tile's bare surface, which it would hide anyway: the surface keeps `visible` for the stream's own
+bookkeeping but leaves every render layer, so no camera or shadow pass draws it.
 
 Optional package sidecars cross a normalized boundary before reaching those layers. Call
 `openTerrainPackageSemantics(packageDoc, { decoder, baseUrl })` to open and header-check declared

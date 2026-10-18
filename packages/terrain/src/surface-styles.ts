@@ -32,10 +32,10 @@ export interface TerrainSurfaceStyle {
 const MODERN: Readonly<TerrainSurfaceStyle> = Object.freeze({
   id: 'modern',
   label: 'Modern traffic',
-  road: '#41484d',
-  parking: '#535b61',
+  road: '#56595b',
+  parking: '#636668',
   dirt: '#a18a64',
-  path: '#c0b18f',
+  path: '#bab3a3',
   plaza: '#afa89b',
   shoulder: '#918974',
   sidewalk: '#c6c4b9',

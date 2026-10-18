@@ -5,7 +5,11 @@ import {
 import type { HeightSampler, Vec3 } from '@bendyline/molen-worldgen/kernel';
 import { describe, expect, it } from 'vitest';
 import { createInThreadWorldgenGenerator } from '../src/client/generators';
-import { createWorldgenWorkerBridge, type WorkerLike } from '../src/client/worker-bridge';
+import {
+  createWorldgenWorkerBridge,
+  createWorldgenWorkerPool,
+  type WorkerLike,
+} from '../src/client/worker-bridge';
 import { ECOLOGY_ATLAS_EXAMPLE } from '../src/kernel/ecology-atlas-schema';
 import { createRegionResolver } from '../src/kernel/region';
 import {
@@ -243,6 +247,31 @@ describe('worldgen worker protocol', () => {
     expect(direct?.records.every((r) => Boolean(r.interior) === interiors)).toBe(true);
     expect(viaWorker?.buildings?.positions.length).toBe(direct?.buildings?.positions.length);
     bridge.dispose();
+  });
+
+  it('spreads tiles across a pool of workers with identical output', async () => {
+    const request = {
+      tile: tile(),
+      geom,
+      ground,
+      resolution: 65,
+      features: { buildings: true, scatter: true },
+    };
+    const direct = await createInThreadWorldgenGenerator(pack, { atlas }).generate(
+      request,
+      new AbortController().signal,
+    );
+    const workers = [fakeWorker(), fakeWorker(), fakeWorker()];
+    const pool = createWorldgenWorkerPool(workers, { pack, atlas, metersPerUnit: 1 });
+    const outputs = await Promise.all(
+      [0, 1, 2].map(() => pool.generate(request, new AbortController().signal)),
+    );
+    for (const output of outputs) expect(output?.hash).toBe(direct?.hash);
+    // Three tiles in flight at once went to three different workers.
+    for (const worker of workers)
+      expect(worker.results.filter((r) => r.kind === 'result')).toHaveLength(1);
+    pool.dispose();
+    expect(() => createWorldgenWorkerPool([], { pack, atlas, metersPerUnit: 1 })).toThrow();
   });
 
   it('cancels between steps and reports an unconfigured worker', async () => {

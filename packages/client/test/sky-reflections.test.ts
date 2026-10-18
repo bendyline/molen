@@ -33,6 +33,26 @@ describe('shared sky reflections', () => {
     sky.dispose();
   });
 
+  it('casts less saturated skylight than the dome when asked, keeping its brightness', () => {
+    const saturated = new SkyVisual({ mode: 'custom', sunBody: { direction: [0, 1, 0] } });
+    const muted = new SkyVisual({
+      mode: 'custom',
+      sunBody: { direction: [0, 1, 0] },
+      lighting: { skyLightSaturation: 0.2 },
+    });
+    saturated.update(0);
+    muted.update(0);
+    const spread = (rgb: readonly number[]): number => Math.max(...rgb) - Math.min(...rgb);
+    const luminance = (rgb: readonly number[]): number =>
+      (rgb[0] as number) * 0.2126 + (rgb[1] as number) * 0.7152 + (rgb[2] as number) * 0.0722;
+    const a = saturated.reflectionState.zenith;
+    const b = muted.reflectionState.zenith;
+    expect(spread(b)).toBeLessThan(spread(a) * 0.3);
+    expect(luminance(b)).toBeCloseTo(luminance(a), 6);
+    saturated.dispose();
+    muted.dispose();
+  });
+
   it('reuses the same input and output for unchanged frames and refreshes on weather changes', () => {
     const { reflections, sky, filter, output, scene } = setup();
     const source = reflections.texture;

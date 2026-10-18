@@ -23,6 +23,7 @@ import {
   createEarthSky,
   createEarthWorldgen,
   createRegionalGroundColor,
+  EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_WATER_COLOR,
   EARTH_WATER_CONDITIONS,
   EarthAmbient,
@@ -48,6 +49,7 @@ import {
   createTerrainGroundMaterialAsync,
   createTerrainPackagePyramidStream,
   createTerrainPackageStream,
+  createTerrainPavementMaterialAsync,
   createTerrainSemanticPyramidLayer,
   createTerrainWaterMaterialAsync,
   sampleTerrainTunnel,
@@ -73,7 +75,12 @@ import {
   webMercatorToWgs84,
   wgs84ToWebMercator,
 } from '@bendyline/molen-terrain/kernel';
-import type { ScreenSpaceLodPolicy } from '@bendyline/molen-worldgen/client';
+import {
+  type BuildingMaterialDecorator,
+  createBuildingWeatheringAsync,
+  createScatterMaterialAsync,
+  type ScreenSpaceLodPolicy,
+} from '@bendyline/molen-worldgen/client';
 import type { WorldgenSemanticRenderers } from '@bendyline/molen-worldgen-earth/client';
 import type { PlacesContent } from '@bendyline/molen-worldgen-earth/kernel';
 import * as THREE from 'three';
@@ -450,10 +457,14 @@ async function loadWorldgen(options: {
   surfaceRenderer: TerrainSurfaceRenderer;
   metersPerUnit: number;
   quality: TerrainQualityPreset;
+  /** Compact scene for renderers without the WebGPU path's draw optimizations (WebGL). */
+  compact: boolean;
   lodPolicy: ScreenSpaceLodPolicy;
   /** Generate tiles in a Worker by default; `?worker=0` enables in-thread diagnostics. */
   worker: boolean;
   groundMaterial?: THREE.Material;
+  modelMaterial?: THREE.Material;
+  buildingDecorator?: BuildingMaterialDecorator;
 }): Promise<ExplorerWorldgen> {
   const params = new URLSearchParams(location.search);
   // Baked building materials persist across visits; ?materialCache=0 bakes every time.
@@ -474,6 +485,7 @@ async function loadWorldgen(options: {
     surfaceRenderer: options.surfaceRenderer,
     metersPerUnit: options.metersPerUnit,
     quality: options.quality,
+    compact: options.compact,
     lodPolicy: options.lodPolicy,
     ...(options.prepareObject ? { prepareObject: options.prepareObject } : {}),
     // Shared texture work starts after the first camera frame; buildings gain textures as it finishes.
@@ -496,6 +508,8 @@ async function loadWorldgen(options: {
       : {},
     ...(materialStore !== undefined ? { materialStore } : {}),
     ...(options.groundMaterial ? { groundMaterial: options.groundMaterial } : {}),
+    ...(options.modelMaterial ? { modelMaterial: options.modelMaterial } : {}),
+    ...(options.buildingDecorator ? { buildingDecorator: options.buildingDecorator } : {}),
     propLod: params.get('propLod') !== '0',
     interiors: params.get('interiors') !== '0',
     onMaterialBakeTiming: (ms) => options.telemetry.record('material-bake', ms),
@@ -759,6 +773,9 @@ async function main(): Promise<void> {
     },
   });
   startupStage('renderer');
+  // Ambient occlusion (WebGPU): creases, corners and the ground at building and tree bases darken
+  // a little. `?ao=0` turns it off for comparison.
+  viewer.renderer.setAmbientOcclusion(params.get('ao') !== '0');
   const waterMaterial = await createTerrainWaterMaterialAsync(
     {
       color: EARTH_WATER_COLOR,
@@ -778,6 +795,20 @@ async function main(): Promise<void> {
       : await createTerrainGroundMaterialAsync({}, viewer.renderer.backend);
   const fieldMaterial = groundMaterial
     ? await createTerrainGroundMaterialAsync({ agriculture: true }, viewer.renderer.backend)
+    : undefined;
+  // Roads, sidewalks, markings and lots: asphalt wear, concrete slabs and worn paint from the
+  // bands' own coordinates. `?ground=flat` keeps the plain vertex colors here too.
+  const pavementMaterial = groundMaterial
+    ? await createTerrainPavementMaterialAsync({}, viewer.renderer.backend)
+    : undefined;
+  surfaceRenderer.setMaterial(pavementMaterial);
+  // Trees, shrubs and props: leaf speckle and crown occlusion (also off with `?ground=flat`).
+  const scatterMaterial = groundMaterial
+    ? await createScatterMaterialAsync(viewer.renderer.backend)
+    : undefined;
+  // Buildings: facade tone drift, rain streaks and weathered roofs (also off with `?ground=flat`).
+  const buildingDecorator = groundMaterial
+    ? await createBuildingWeatheringAsync(viewer.renderer.backend)
     : undefined;
   performanceStatus.dataset.backend = viewer.renderer.backend;
   performanceStatus.dataset.fallbackReason = viewer.renderer.fallbackReason ?? '';
@@ -810,8 +841,12 @@ async function main(): Promise<void> {
         assets: content.assets,
         metersPerUnit,
         quality,
+        // WebGL pays full price for every building and plant draw, so it keeps a compact scene.
+        compact: viewer.renderer.backend === 'webgl',
         worker: useWorker,
         ...(fieldMaterial ? { groundMaterial: fieldMaterial } : {}),
+        ...(scatterMaterial ? { modelMaterial: scatterMaterial } : {}),
+        ...(buildingDecorator ? { buildingDecorator } : {}),
         lodPolicy,
         surfaceRenderer,
       });
@@ -1055,6 +1090,7 @@ async function main(): Promise<void> {
         ...(groundMaterial ? { material: groundMaterial } : {}),
         // Ground, roads and buildings receive sun shadows; tall layer parts cast them.
         shadows: shadowsWanted,
+        shadowCasterHeight: EARTH_SHADOW_CASTER_HEIGHT,
         layers: adaptiveLayers,
         onParentFallback: () => {
           parentFallbacks++;
@@ -1904,6 +1940,8 @@ async function main(): Promise<void> {
     );
     if (groundMaterial) setTerrainGroundOrigin(groundMaterial, [waterOrigin[0], waterOrigin[2]]);
     if (fieldMaterial) setTerrainGroundOrigin(fieldMaterial, [waterOrigin[0], waterOrigin[2]]);
+    if (pavementMaterial)
+      setTerrainGroundOrigin(pavementMaterial, [waterOrigin[0], waterOrigin[2]]);
     const skyLocation = webMercatorToWgs84(
       camera.pos[0] / metersPerUnit,
       camera.pos[2] / metersPerUnit,

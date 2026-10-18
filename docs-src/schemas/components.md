@@ -1832,6 +1832,12 @@ Required: none
                   "type": "number",
                   "minimum": 0
                 },
+                "skyLightSaturation": {
+                  "description": "Saturation of the light the sky casts (fill and reflections) relative to the dome colors: 1 (default) lights with the dome palette, lower values toward its luminance. A saturated zenith otherwise tints every surface in shade blue.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",
                   "type": "boolean"
@@ -2046,6 +2052,12 @@ Required: none
                   "description": "Nighttime hemisphere intensity, default 0.025.",
                   "type": "number",
                   "minimum": 0
+                },
+                "skyLightSaturation": {
+                  "description": "Saturation of the light the sky casts (fill and reflections) relative to the dome colors: 1 (default) lights with the dome palette, lower values toward its luminance. A saturated zenith otherwise tints every surface in shade blue.",
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
                 },
                 "castShadow": {
                   "description": "Sun shadows; also requires environment.shadows. Default true.",

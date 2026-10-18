@@ -67,6 +67,7 @@ function byLevel(table: readonly number[], levelBelowMax: number): number {
 export function worldgenTileBudgetForQuality(
   quality: WorldgenQualityPreset,
   levelBelowMax: number,
+  options: { compactBuildings?: boolean } = {},
 ): WorldgenBudgets {
   const finest = levelBelowMax <= 0;
   const maxInstances = byLevel(SCATTER_INSTANCES[quality], levelBelowMax);
@@ -99,7 +100,18 @@ export function worldgenTileBudgetForQuality(
     case 'high':
       return {
         maxBuildings: finest ? 6000 : 40_000,
-        maxBuildingVertices: finest ? 420_000 : 140_000,
+        // Houses with shutters, dormers and chimneys run about twice the vertices of a plain box;
+        // this keeps a dense suburban block fully detailed near the camera. Compact keeps about
+        // half, for renderers that pay full price for every building in both the shadow and
+        // main passes (WebGL), where the larger budget costs a quarter of the frame rate.
+        maxBuildingVertices:
+          options.compactBuildings === true
+            ? finest
+              ? 420_000
+              : 140_000
+            : finest
+              ? 850_000
+              : 200_000,
         detailedCount: finest ? 900 : 1200,
         ...scatter,
         // The shared default library must fit alongside the reserved flat slot materials.

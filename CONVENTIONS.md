@@ -46,10 +46,10 @@ Conventions for working in the Molen monorepo. Start at [AGENTS.md](AGENTS.md).
 
 ## Build & test
 
-- Repository builds and regression checks use the exact Node version in `.node-version`, shared
-  by CI and Release. Native fractional powers differ between Node 22 and 24, enough to change
-  figure animation phases by about 1e-15 and invalidate a pinned hash. Root build/test entry
-  points check the version first. Published packages still support Node ≥22.13; the packed-install
+- Repository builds and regression checks use the Node major in `.node-version`; CI and Release
+  install its exact version. Native fractional powers differ between Node 22 and 24, enough to
+  change figure animation phases by about 1e-15 and invalidate a pinned hash. Root build/test entry
+  points check the major first. Published packages still support Node ≥22.13; the packed-install
   CI job tests Node 22 independently of the regression fixtures.
 - `pnpm build` compiles and bundles; it does not execute unit or browser assertions.
   `pnpm verify` adds the headless checks, while `pnpm all` includes the browser golden tests.

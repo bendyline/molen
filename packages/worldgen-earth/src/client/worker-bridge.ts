@@ -160,3 +160,32 @@ export function createWorldgenWorkerBridge(
     },
   };
 }
+
+/**
+ * Several identically configured workers behind one generator: each tile goes to the worker with
+ * the fewest tiles in flight. Generation is deterministic per tile, so which worker builds it
+ * does not change the output; a city's first view no longer waits on one worker's queue.
+ */
+export function createWorldgenWorkerPool(
+  workers: readonly WorkerLike[],
+  options: WorldgenWorkerBridgeOptions,
+): WorldgenGenerator {
+  if (workers.length === 0) throw new Error('A worldgen worker pool needs at least one worker');
+  const members = workers.map((worker) => ({
+    bridge: createWorldgenWorkerBridge(worker, options),
+    busy: 0,
+  }));
+  return {
+    generate(request, signal) {
+      let target = members[0] as (typeof members)[number];
+      for (const member of members) if (member.busy < target.busy) target = member;
+      target.busy++;
+      return target.bridge.generate(request, signal).finally(() => {
+        target.busy--;
+      });
+    },
+    dispose(): void {
+      for (const member of members) member.bridge.dispose();
+    },
+  };
+}

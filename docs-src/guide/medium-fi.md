@@ -52,11 +52,11 @@ exported from `@bendyline/molen-earth/client` as `EARTH_SKY_PALETTE`, `EARTH_LIG
 
 | Element | Value | What it means for an asset |
 | --- | --- | --- |
-| Sun | Warm white `#fff1d8`, intensity 3.5 | Sunlit horizontal faces render near their authored color |
-| Sky fill | `dayAmbient` 2 from the sky dome, warm ground bounce `#7a7258` | Faces in shade sit at roughly a third of lit faces, cool-tinted |
-| Tone mapping | Khronos PBR Neutral, exposure 1 | Authored colors keep their hue and saturation below the highlights |
+| Sun | Warm white `#fff1d8`, intensity 4.4 | Sunlit horizontal faces render near their authored color |
+| Sky fill | `dayAmbient` 2 from the sky dome at `skyLightSaturation` 0.18, warm ground bounce `#9a8f70` | Faces in shade sit well under half of lit faces, gently cool rather than blue, so slopes and darks read with photographic contrast |
+| Tone mapping | ACES filmic, exposure 1.05 | Authored colors keep their hue with a little mid-tone contrast; shade reads cool grey, not navy |
 | Cast shadows | On from the Medium tier up, in a shadow map that follows the camera | Do not bake shadows or ambient occlusion into colors or textures |
-| Sky | Saturated zenith `#2f7fd3` over a pale horizon `#c4dcec` | Large pure-white surfaces outshine it; prefer off-whites and creams |
+| Sky | Saturated zenith `#2a6cc4` over a pale horizon `#b2cde4`, both lifted by ACES on screen | Large pure-white surfaces outshine it; prefer off-whites and creams |
 | Haze | The sky's own horizon color, from about 2 km | Distant ground dissolves into the horizon; do not add a fog color of your own |
 | Water | `#286d83` with a soft sky reflection | Lakes and bays read clearly blue, never grey |
 
@@ -105,7 +105,7 @@ where real buildings have it. Avoid both grey-on-grey and candy color.
 | Lawn and residential ground | 45–55% | 25–35% | lawn `#8aa065`, grass `#7fa258`, park `#6c9a55` |
 | Paved and commercial ground | 60–70% | 5–12% | paving `#aaa59a` |
 | Forest floor and conifers | 30–40% | 25–35% | forest `#3c6a3f`, fir `#3e7052` |
-| Asphalt | 25–32% | 0–10% | road `#41484d`, with markings `#eee9d4` and `#e8bd57` |
+| Asphalt | 25–36% | 0–10% | road `#56595b` (near neutral and not too dark: a bluer gray turns navy in shade, a darker one crushes to black), with markings `#eee9d4` and `#e8bd57` |
 | Identity and wayfinding accents | 35–60% | 55–90% | signal red `#b81d18`, chrome yellow `#e7b52a` |
 
 Palette rules:
@@ -179,11 +179,17 @@ Geometry rules:
   lists repeat sizes and intended use.
 - Textures are 256² seamless and low contrast, with true physical repeats: a 2 m facade holds
   2 m of brick courses, not two giant bricks.
+- Roof coverings show their structure from the street and the air: the shared asphalt shingle
+  varies its tone tab by tab, shades the narrow band under each course and carries a stepped
+  course normal; the flat-roof membrane shows its lapped roll seams. Keep that structure in a
+  new roof graph, with the same near-white average.
 - A material graph that will be tinted averages near white (sRGB 0.85 or above), so palettes
   keep their meaning.
 - Never bake directional light, shadows, ambient occlusion or dirt gradients into base color.
-- Glass is a dark blue-grey pane with a modest reflection, not a mirror. Identity lettering is
-  geometry or vertex color, not a texture per business.
+- Glass is a dark blue-grey pane with a modest reflection, not a mirror: the shared window graphs
+  give frames a satin roughness and panes a smooth one, so the sky reflects in the pane and
+  brightens it toward grazing angles. Identity lettering is geometry or vertex color, not a
+  texture per business.
 - Photographs from research are evidence, not textures, and never ship inside a model.
 
 ## Procedural buildings that fit any footprint
@@ -255,20 +261,38 @@ Further rules:
 ## Ground
 
 Large map polygons (a lawn, a meadow, a forest floor) are one color edge to edge, so the ground
-gets variation from two cheap sources rather than from per-polygon textures:
+gets variation from cheap sources rather than from per-polygon textures:
 
 - **The ground shader.** `createTerrainGroundMaterialAsync` from `@bendyline/molen-terrain/client`
   multiplies terrain and landcover vertex colors by world-space value noise: broad 64 m mottling,
-  16 m patches, 4 m clumps and 1 m grain, plus straw-colored dry areas and darker lush ones on
-  green ground only, so paving, sand and rock keep their hue. Finer layers fade out before they
-  fall below a pixel. It costs no geometry, texture or upload. The Earth view uses it by default;
-  the World Explorer's `?ground=flat` turns it off for comparison.
+  16 m patches, 4 m and 2 m clumps, 1 m grain, half-meter grain and, within a few meters of a
+  street-level camera, blade-scale grain about 9 cm across, plus
+  straw-colored dry areas, darker lush ones, a gentle drift between yellower and bluer greens
+  and the odd speck of bare soil, on green ground only, so paving, sand and rock keep their hue.
+  Green ground also loses a twelfth of its saturation, so sunlit turf reads as grass, not lime.
+  The same noise raises a few centimeters of relief that catches the sun. Finer layers fade out
+  before they fall below a pixel. It costs no geometry, texture or upload. The Earth view uses
+  it by default; the World Explorer's `?ground=flat` turns it off for comparison.
+- **Soft class boundaries.** Neighboring land classes interpenetrate over about 9 m along a
+  ragged, noise-driven edge instead of meeting along a straight polygon edge, broken into
+  half-meter tufts and then blade-scale specks close to the camera; mapped fields keep their
+  crisp edges. Landcover meshes carry the pair of classes and the blend weight per vertex.
 - **Ground cover.** Knee-high tussocks, ferns, small shrubs and stones from scatter rules on the
   `groundcover` layer (see [worldgen](worldgen.md)). They draw near the camera only, under 70
   triangles each, from their own budget so they never thin the trees, and not at Economy quality.
 
 New ground palettes stay inside the lawn and forest bands in the palette table: the shader
-already brightens and darkens them by about ±12% and tints dry patches toward straw.
+already brightens and darkens them by about ±10% and tints dry patches toward straw.
+
+Roads, sidewalks, markings and lots use the companion `createTerrainPavementMaterialAsync`:
+asphalt aggregate, polished wheel tracks, an oil line, gutter grit and the odd repaired section on
+roads, oil stains in lots, saw-cut slabs on sidewalks and curbs, a paver grid on plazas, and
+markings worn through to the asphalt. It reads coordinates the surface builder stores along each
+band, so the detail follows the road instead of the world grid. Where paving meets bare ground (a
+sidewalk's lawn side, a footpath, a shoulder, the rim of a lot) its edge frays into the ground
+instead of ending on a ruled line: grass blades over cast paving, a wavier 10 cm edge on dirt
+and gravel. See
+[surface rendering](surface-rendering.md).
 
 ## Vehicles, aircraft, trees and figures
 
@@ -278,8 +302,32 @@ already brightens and darkens them by about ±12% and tints dry patches toward s
 - **Vehicles are chunky but true.** Wheel arches, glasshouse and stance carry the type. Paint is
   one shared material with per-instance color from a palette of real car colors. Glass is one
   dark material.
-- **Trees are faceted.** Use 6–12-sided conifers and icosahedral crowns with flat shading, a
-  slightly darker base, and varied heights. Never use alpha-card foliage.
+- **Trees are faceted.** Use conifers of 5–14 sides by detail level and icosahedral crowns with
+  flat shading, a slightly darker base, and varied heights. Generated conifers stack drooping bough tiers, each
+  skirt flaring over the narrower top of the one below, so they read as firs and cedars rather
+  than smooth cones. Never use alpha-card foliage. The shared scatter
+  material (`createScatterMaterialAsync` from `@bendyline/molen-worldgen/client`) adds the rest
+  in the shader: leaf speckle and clumps, irregular bough tiers, and occlusion from the base of
+  the crown to a lighter tip, read from a per-vertex `canopy` height the model library writes.
+  Generated crowns bend their foliage normals toward the crown's rounded volume, so a crown
+  shades as one soft mass with a hint of its facets. A broadleaf crown is built from many small
+  leaf clusters spread over its shell (twenty small, lumpy clusters up close, five at medium
+  distance), so its outline reads as clumped foliage rather than a few balls on sticks. Each
+  cluster shades smoothly from its underside to its top rather than in flat bands, catches the
+  light a little differently from its neighbors, and the core cluster sits in the crown's shade. Each scattered plant drifts a little in hue,
+  warmth and shade, so an autumn stand ranges from yellow to russet rather than one swatch.
+- **Generated buildings weather in the shader.** The shared facade and roof textures repeat on
+  every house, so `createBuildingWeatheringAsync` (`@bendyline/molen-worldgen/client`, passed as
+  a material set's `decorate`) drifts each stretch of wall and roof a little in tone, runs faint
+  rain streaks down walls and lays weathered patches with a touch of lichen on roofs. Do not bake
+  that grime into the shared textures; authored landmark models carry their own.
+- **Houses carry their own details.** North American homes have dark shutters, the odd dormer
+  and a chimney, all in the shared trim and roof materials, so they cost vertices but no draws.
+  The High tier's finest tiles budget 850,000 building vertices so a dense suburban block stays
+  fully detailed near the camera instead of dropping to simplified stand-ins. On WebGL, which
+  draws every building at full cost in both the shadow and main passes, the Earth view keeps
+  the compact 420,000 (`compactBuildings`). The regional shop
+  and civic styles put a full-size rooftop unit on about every 150 m² of flat roof (2–14 a roof).
 - **Figures stay stylized.** Mitten hands, disc eyes and block shoes keep them out of the uncanny
   valley; see [figures](figures.md).
 

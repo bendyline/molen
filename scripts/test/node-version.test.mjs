@@ -5,9 +5,11 @@ import { checkNodeVersion } from '../check-node-version.mjs';
 
 const read = (path) => readFileSync(new URL(`../../${path}`, import.meta.url), 'utf8');
 
-test('accepts the pinned runtime and rejects a different Node/V8 before regression tests', () => {
-  assert.doesNotThrow(() => checkNodeVersion('24.18.0', '24.18.0'));
-  for (const actual of ['22.23.3', '24.19.0']) {
+test('accepts the pinned Node major and rejects a different Node/V8 before regression tests', () => {
+  for (const actual of ['24.18.0', '24.21.0', 'v24.0.0']) {
+    assert.doesNotThrow(() => checkNodeVersion(actual, '24.18.0'), actual);
+  }
+  for (const actual of ['22.23.3', '23.11.0', '25.0.0']) {
     assert.throws(
       () => checkNodeVersion(actual, '24.18.0'),
       /Pinned simulation hashes.*native math/,

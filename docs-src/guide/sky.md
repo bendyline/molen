@@ -85,7 +85,9 @@ These are client calculations using native floating-point math, outside the kern
 
 When enabled, sky lighting replaces `environment.ambient` and `environment.sun`. Configure
 `sky.lighting.sunIntensity`, `moonIntensity`, `dayAmbient`, `nightAmbient` and `castShadow`
-instead. Sunlight fades around the horizon; moonlight depends on altitude, phase and darkness.
+instead. `skyLightSaturation` (0–1, default 1) sets how saturated the light the sky casts is
+relative to the dome palette; below 1 it moves toward the palette's luminance, so a deep blue
+zenith does not tint every surface in shade blue. The Earth view uses 0.3. Sunlight fades around the horizon; moonlight depends on altitude, phase and darkness.
 Only the Sun casts a sky shadow in phase 1. Shadows also require `environment.shadows` and
 scene geometry that casts/receives shadows; their local frustum follows the camera.
 `renderer.setShadowQuality('off' | 'low' | 'medium' | 'high')` turns sun shadows on or off at a
@@ -96,6 +98,19 @@ shadow-map texels so edges do not shimmer; `setShadowFocus(undefined)` restores 
 `sun.visible`/`moon.visible` control the disks independently of lighting. Use the corresponding
 light intensity to disable illumination. `sun.size` and `moon.size` are visual multipliers;
 the default 1 preserves real angular size. Larger values help stylized scenes and small displays.
+
+## Ambient occlusion
+
+`renderer.setAmbientOcclusion(true, { radius, strength })` adds screen-space ambient occlusion
+(three's GTAO) on the WebGPU backend; on WebGL it does nothing. Creases, corners, window recesses
+and the ground around building and tree bases darken where indirect light would not reach. The
+frame then draws into an offscreen multisampled target exactly as it would to the canvas (the sky
+scene, then the world, which also writes view normals); occlusion is computed from that target's
+depth and normals at half resolution, denoised, and multiplied into the image, with tone mapping
+applied once at the end. `radius` (default 3 m) is the world-space reach and
+`strength` (0–1, default 0.85) the share applied, since the multiply also dims direct light.
+Frames draw directly while the pipeline compiles. The World Explorer turns it on; `?ao=0` turns
+it off for comparison.
 
 ## Reflections
 

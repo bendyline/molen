@@ -1,10 +1,11 @@
 import { createHash } from 'node:crypto';
-import type * as THREE from 'three';
+import * as THREE from 'three';
 import { describe, expect, it, vi } from 'vitest';
 import { Heightfield } from '../src/heightfield';
 import {
   createTerrainLinearObject,
   sampleTerrainLine,
+  TERRAIN_PAVEMENT,
   terrainLinePath,
 } from '../src/linear-features';
 import { pointInPolygon } from '../src/polygon';
@@ -303,6 +304,16 @@ describe('surface styles', () => {
         ) / 2;
     }
     expect(area).toBeCloseTo(110 * 110 - 26 * 26, 1);
+    // A narrow fringe of the lot's surface frays into the ground around its edges.
+    const edges = object.getObjectByName('surface:edges') as THREE.Mesh;
+    const detail = edges.geometry.getAttribute('surfaceDetail');
+    let fringe = 0;
+    for (let i = 0; i < detail.count; i++)
+      if (Math.floor(detail.getZ(i) / 128 + 0.001) === 5) {
+        fringe++;
+        expect([1, 2]).toContain(detail.getW(i));
+      }
+    expect(fringe).toBeGreaterThan(0);
     for (let i = 0; i < p.count; i++) {
       expect(p.getX(i)).toBeGreaterThanOrEqual(0);
       expect(p.getX(i)).toBeLessThanOrEqual(200);
@@ -399,6 +410,101 @@ describe('surface styles', () => {
     expect(stats(createTerrainSurfaceObject(tile, context())).junctions).toBe(0);
   });
 
+  it('lines a residential block with utility poles and hydrants beside the road, not on it', () => {
+    const tile = fixture();
+    tile.landcover = [];
+    tile.buildings = [];
+    tile.transportation = [
+      {
+        class: 'residential',
+        lines: [
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+        ],
+      },
+    ];
+    const object = createTerrainSurfaceObject(tile, context());
+    expect(stats(object).streetFurniture).toBeGreaterThan(4);
+    const boxes = object.getObjectByName('surface:street-fixtures') as THREE.InstancedMesh;
+    const matrix = new THREE.Matrix4();
+    const position = new THREE.Vector3();
+    const quaternion = new THREE.Quaternion();
+    const scale = new THREE.Vector3();
+    let poles = 0;
+    for (let i = 0; i < boxes.count; i++) {
+      boxes.getMatrixAt(i, matrix);
+      matrix.decompose(position, quaternion, scale);
+      if (scale.y < 8) continue;
+      poles++;
+      // Behind the sidewalk, clear of the carriageway.
+      expect(Math.abs(position.z - 100)).toBeGreaterThan(4);
+    }
+    expect(poles).toBeGreaterThan(2);
+    const plain = createTerrainSurfaceObject(tile, context(), {
+      details: { streetlights: false },
+    });
+    expect(stats(plain).streetFurniture).toBe(0);
+  });
+
+  it('puts mailboxes and bins behind the sidewalks of residential streets in residential land', () => {
+    const tile = fixture();
+    tile.buildings = [];
+    tile.transportation = [
+      {
+        class: 'minor_road',
+        subclass: 'residential',
+        lines: [
+          [
+            [0, 0.5],
+            [1, 0.5],
+          ],
+        ],
+      },
+    ];
+    const posts = (object: THREE.Object3D): number[] => {
+      const boxes = object.getObjectByName('surface:street-fixtures') as
+        | THREE.InstancedMesh
+        | undefined;
+      const matrix = new THREE.Matrix4();
+      const position = new THREE.Vector3();
+      const quaternion = new THREE.Quaternion();
+      const scale = new THREE.Vector3();
+      const found: number[] = [];
+      for (let i = 0; i < (boxes?.count ?? 0); i++) {
+        boxes?.getMatrixAt(i, matrix);
+        matrix.decompose(position, quaternion, scale);
+        // A mailbox post: about a meter tall and a few centimeters across.
+        if (Math.abs(scale.y - 1.04) < 0.01 && scale.x < 0.1) found.push(position.z);
+      }
+      return found;
+    };
+    tile.landcover = [];
+    expect(posts(createTerrainSurfaceObject(tile, context()))).toHaveLength(0);
+    tile.landcover = [
+      {
+        class: 'residential',
+        polygons: [
+          {
+            outer: [
+              [0, 0],
+              [1, 0],
+              [1, 1],
+              [0, 1],
+            ],
+          },
+        ],
+      },
+    ];
+    const found = posts(createTerrainSurfaceObject(tile, context()));
+    expect(found.length).toBeGreaterThan(4);
+    // On both sides, behind the sidewalk and clear of the carriageway.
+    expect(found.some((z) => z < 100)).toBe(true);
+    expect(found.some((z) => z > 100)).toBe(true);
+    for (const z of found) expect(Math.abs(z - 100)).toBeGreaterThan(4);
+  });
+
   it('suppresses modern details in 1910, honors explicit widths, and supports custom treatments', () => {
     const tile = fixture();
     const old = createTerrainSurfaceObject(tile, context(), { style: '1910' });
@@ -447,6 +553,45 @@ describe('surface styles', () => {
     expect(controller.stats().tiles).toBe(0);
     await controller.setOptions({ style: '1910' });
     controller.dispose();
+  });
+
+  it('dresses pavement in a host material on resident and later tiles, and restores it', async () => {
+    const controller = createTerrainSurfaceRenderer();
+    const options = {
+      surfaceRenderer: controller,
+      renderBuildings: false,
+      renderLandcover: false,
+      renderWater: false,
+    };
+    const first = createTerrainSemanticObject(fixture(), context(), options);
+    const pavement = new THREE.MeshStandardMaterial({ name: 'pavement' });
+    const meshes = (object: THREE.Object3D): THREE.Mesh[] => {
+      const found: THREE.Mesh[] = [];
+      object.traverse((o) => {
+        if ((o as THREE.Mesh).isMesh && o.userData[TERRAIN_PAVEMENT] === true)
+          found.push(o as THREE.Mesh);
+      });
+      return found;
+    };
+    const plain = meshes(first)[0]?.material;
+    expect(meshes(first).length).toBeGreaterThan(0);
+    // Every pavement mesh carries the band coordinates the material reads.
+    for (const mesh of meshes(first))
+      expect(mesh.geometry.getAttribute('surfaceDetail')?.itemSize).toBe(4);
+    controller.setMaterial(pavement);
+    for (const mesh of meshes(first)) expect(mesh.material).toBe(pavement);
+    const second = createTerrainSemanticObject(fixture(), context(), options);
+    for (const mesh of meshes(second)) expect(mesh.material).toBe(pavement);
+    // Fixtures and parked cars keep their own materials.
+    expect(
+      (second.getObjectByName('surface:street-fixtures') as THREE.Mesh | undefined)?.material,
+    ).not.toBe(pavement);
+    controller.setMaterial(undefined);
+    for (const mesh of meshes(first)) expect(mesh.material).toBe(plain);
+    disposeTerrainSemanticObject(first);
+    disposeTerrainSemanticObject(second);
+    controller.dispose();
+    pavement.dispose();
   });
 
   it('validates budgets and road metadata at the public boundary', () => {

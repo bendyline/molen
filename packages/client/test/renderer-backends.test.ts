@@ -646,6 +646,16 @@ describe('renderer backend selection', () => {
     renderer.dispose();
   });
 
+  it('keeps ambient occlusion to the WebGPU backend and draws WebGL frames directly', () => {
+    const renderer = new Renderer();
+    expect(renderer.backend).toBe('webgl');
+    renderer.setAmbientOcclusion(true, { radius: 2 });
+    expect(() => renderer.render()).not.toThrow();
+    renderer.setAmbientOcclusion(false);
+    renderer.dispose();
+    expect(() => renderer.setAmbientOcclusion(true)).toThrow(/disposed/);
+  });
+
   it('never tears a WebGPU shadow map down once it exists, fading it out instead', async () => {
     // three r184's WebGPU shadow node keeps sampling a disposed depth texture after being turned
     // off and on or resized, so every submit fails; the map must keep its size and stay on.

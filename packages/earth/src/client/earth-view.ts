@@ -55,6 +55,7 @@ import {
   createProfiledTerrainPackageSemanticLayers,
   createTerrainGroundMaterialAsync,
   createTerrainPackagePyramidStream,
+  createTerrainPavementMaterialAsync,
   createTerrainSurfaceRenderer,
   createTerrainSurfaceWorkerBridge,
   createTerrainWaterMaterialAsync,
@@ -78,10 +79,11 @@ import {
   wgs84ToWorld,
   worldToWgs84,
 } from '@bendyline/molen-terrain/kernel';
-import type {
-  ScreenSpaceLodPolicy,
-  StructureStreamingOptions,
-  StructureStreamingStats,
+import {
+  createScatterMaterialAsync,
+  type ScreenSpaceLodPolicy,
+  type StructureStreamingOptions,
+  type StructureStreamingStats,
 } from '@bendyline/molen-worldgen/client';
 import type { StructureTerrainSampler } from '@bendyline/molen-worldgen-earth/client';
 import { isStructureViewingDate } from '@bendyline/molen-worldgen-earth/kernel';
@@ -120,6 +122,7 @@ import { EarthDioramaDirector, type EarthDioramaOptions, type EarthDioramas } fr
 import {
   EARTH_EXPOSURE,
   EARTH_LIGHTING,
+  EARTH_SHADOW_CASTER_HEIGHT,
   EARTH_SKY_PALETTE,
   EARTH_TONE_MAPPING,
   EARTH_WATER_COLOR,
@@ -921,6 +924,12 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       renderer.backend,
     );
     disposers.push(() => fieldMaterial.dispose());
+    // Roads, sidewalks, markings and lots: asphalt, concrete slabs and worn paint.
+    const pavementMaterial = await createTerrainPavementMaterialAsync({}, renderer.backend);
+    disposers.push(() => pavementMaterial.dispose());
+    // Trees, shrubs and props: leaf speckle and crown occlusion.
+    const scatterMaterial = await createScatterMaterialAsync(renderer.backend);
+    disposers.push(() => scatterMaterial.dispose());
     void content?.stars().then(
       (stars) => {
         if (!disposed) renderer.setStarCatalog(stars);
@@ -1010,6 +1019,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
           },
           surfaceWorker,
         );
+        surface.setMaterial(pavementMaterial);
         parts.push(() => surface.dispose());
         const worldgen =
           content?.worldgen !== undefined
@@ -1022,6 +1032,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                   ? { landcoverColors: options.style.landcover }
                   : {}),
                 groundMaterial: fieldMaterial,
+                modelMaterial: scatterMaterial,
                 ...(options.sampleStructureTerrain
                   ? { sampleStructureTerrain: options.sampleStructureTerrain }
                   : {}),
@@ -1030,6 +1041,9 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
                 surfaceRenderer: surface,
                 metersPerUnit,
                 quality: quality(),
+                // WebGL pays full price for every building and plant draw; the WebGPU path
+                // affords High's full scene, WebGL keeps a compact one.
+                compact: renderer.backend === 'webgl',
                 lodPolicy,
                 ...(options.landmarkStreaming !== undefined
                   ? { landmarkStreaming: options.landmarkStreaming }
@@ -1173,6 +1187,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
             createTileGroup: () => renderer.createRenderGroup(),
             morphMilliseconds: 180,
             shadows: shadowsOn,
+            shadowCasterHeight: EARTH_SHADOW_CASTER_HEIGHT,
             layers,
             initialView: {
               position: view.position,
@@ -1232,10 +1247,10 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
         }
         // One world for everything that moves: cars, aircraft and ambient life. The frame loop
         // steps it once (stepWorld); each piece applies its inputs before and poses models after.
-        const world = new World({ tickRate: 60, seed: 'earth' });
+        const world = new World({ tickRate: 60, seed: 'earth', devFreeze: false });
         let accumulator = 0;
         const stepWorld = (dt: number): void => {
-          accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 6);
+          accumulator = Math.min(accumulator + Math.min(0.1, Math.max(0, dt)), world.dt * 3);
           while (accumulator >= world.dt) {
             world.step();
             accumulator -= world.dt;
@@ -3016,6 +3031,7 @@ export async function mountEarthView(options: EarthViewOptions): Promise<EarthVi
       ]);
       setTerrainGroundOrigin(groundMaterial, [origin[0], origin[2]]);
       setTerrainGroundOrigin(fieldMaterial, [origin[0], origin[2]]);
+      setTerrainGroundOrigin(pavementMaterial, [origin[0], origin[2]]);
       const timing = gpuTimer?.begin() === true;
       viewer.renderFrame();
       if (timing) gpuTimer?.end();

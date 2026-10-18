@@ -306,7 +306,9 @@ export function terrainPyramidBudgetForQuality(
         maxSelectedTiles: 128,
         maxSurfaceTileResolution: 129,
         maxConcurrentLoads: 8,
-        maxConcurrentLayerLoads: 4,
+        // High builds the most layer work per tile; eight in flight keep a host's worker pools
+        // (worldgen, land cover, surfaces) busy rather than queued behind one another.
+        maxConcurrentLayerLoads: 8,
         maxResidentTiles: 320,
       };
   }
@@ -706,6 +708,13 @@ interface WantedTile {
   distance: number;
   inView: boolean;
 }
+
+/**
+ * `userData` flag for a tile layer object that drapes its whole tile with opaque ground (for
+ * example landcover over a full-tile background). While that object is displayed, the stream
+ * does not draw the tile's bare terrain surface, which it would hide completely.
+ */
+export const TERRAIN_COVERS_GROUND: 'terrainCoversGround' = 'terrainCoversGround';
 
 interface ResidentTile {
   morph?: SurfaceHeightMorph;
@@ -1930,11 +1939,19 @@ class ScreenSpaceTerrainPyramidStream implements TerrainPyramidStream {
     }
 
     for (const [key, tile] of this.resident) {
+      let covered = false;
       for (const [id, object] of tile.layers) {
         const visible = this.displayedLayers.get(id)?.has(key) === true;
         if (object.visible !== visible) this.cutoutsDirty = true;
         object.visible = visible;
+        if (visible && object.userData[TERRAIN_COVERS_GROUND] === true) covered = true;
       }
+      // A displayed layer that drapes the whole tile (full landcover) hides the bare surface
+      // beneath it: skip drawing it rather than shading it under the cover. Render layers, not
+      // `visible`, so the stream's own display state stays untouched.
+      const surface = tile.surface;
+      surface.userData.terrainLayerMask ??= surface.layers.mask;
+      surface.layers.mask = covered ? 0 : (surface.userData.terrainLayerMask as number);
       // A warm tile can contain hundreds of LOD groups. Hide its root too, so renderer
       // traversal and WebGPU command inspection stop before visiting that cached subtree.
       const retained = this.visiblyRetains(key);

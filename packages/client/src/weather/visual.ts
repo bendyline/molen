@@ -122,6 +122,9 @@ export class WeatherVisual {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.magFilter = THREE.LinearFilter;
     texture.minFilter = THREE.LinearMipmapLinearFilter;
+    // The deck is seen at grazing angles toward the horizon; without anisotropic filtering its
+    // mips smear clouds into streaks along the view.
+    texture.anisotropy = 16;
     texture.generateMipmaps = true;
     texture.colorSpace = THREE.LinearSRGBColorSpace;
     this.cloudTexture = texture;

@@ -22,6 +22,7 @@ import {
   type SkyReflectionFilter,
   SkyReflections,
 } from './sky-reflections';
+import type { AmbientOcclusionOptions, WebGpuAmbientOcclusion } from './webgpu-ambient-occlusion';
 import { createWebGpuFrameTimer } from './webgpu-frame-timer';
 import type { WebGpuSceneOptimizer } from './webgpu-scene-optimizer';
 
@@ -243,6 +244,9 @@ export class Renderer {
   private readonly optimizer: WebGpuSceneOptimizer | undefined;
   private activeSky: SkyVisual | undefined;
   private readonly reflections: SkyReflections | undefined;
+  private occlusionOptions: AmbientOcclusionOptions | undefined;
+  private occlusion: { camera: THREE.Camera; pass: WebGpuAmbientOcclusion } | undefined;
+  private occlusionLoad: Promise<void> | undefined;
   /** Sun lights whose WebGPU shadow map exists and must not be torn down; see setShadowQuality. */
   private readonly webgpuShadowLights = new WeakSet<THREE.DirectionalLight>();
   // WebGPU's getClearColor expects an alpha field; both backends accept this RGB scratch color.
@@ -1114,8 +1118,23 @@ export class Renderer {
     this.hideReflectedAmbient(reflectedAmbient);
     const baseFog = this.scene.fog;
     if (weather) this.scene.fog = weather.fogFor(baseFog, sky?.frame);
+    const occlusion = this.currentOcclusion();
     try {
-      if (sky) {
+      if (occlusion) {
+        if (sky) {
+          sky.update(this.environmentTimeOverride ?? this.environmentSeconds);
+          sky.prepareCamera(this.camera);
+        }
+        this.applyShadowFocus();
+        const autoReset = this.three.info.autoReset;
+        this.three.info.reset();
+        this.three.info.autoReset = false;
+        try {
+          this.optimized(() => occlusion.render(sky));
+        } finally {
+          this.three.info.autoReset = autoReset;
+        }
+      } else if (sky) {
         sky.update(this.environmentTimeOverride ?? this.environmentSeconds);
         sky.prepareCamera(this.camera);
         this.applyShadowFocus();
@@ -1167,19 +1186,60 @@ export class Renderer {
   }
 
   private renderScene(): void {
+    this.optimized(() => this.three.render(this.scene, this.camera));
+  }
+
+  private optimized(draw: () => void): void {
     if (this.optimizer === undefined) {
-      this.three.render(this.scene, this.camera);
+      draw();
       return;
     }
     this.optimizer.prepare(this.scene, this.camera);
     const autoUpdate = this.scene.matrixWorldAutoUpdate;
     this.scene.matrixWorldAutoUpdate = false;
     try {
-      this.three.render(this.scene, this.camera);
+      draw();
       this.optimizer.finish();
     } finally {
       this.scene.matrixWorldAutoUpdate = autoUpdate;
     }
+  }
+
+  /**
+   * Screen-space ambient occlusion on the WebGPU backend (a no-op on WebGL): creases, corners and
+   * the ground around buildings and trees darken a little, as indirect light cannot reach them.
+   * The frame then renders through a node pipeline; frames draw directly while it compiles.
+   */
+  setAmbientOcclusion(enabled: boolean, options: AmbientOcclusionOptions = {}): void {
+    if (this.disposed) throw new Error('Renderer has been disposed');
+    this.occlusion?.pass.dispose();
+    this.occlusion = undefined;
+    this.occlusionOptions = enabled && this.backend === 'webgpu' ? { ...options } : undefined;
+  }
+
+  /** The occlusion pass for the current camera, building one in the background when needed. */
+  private currentOcclusion(): WebGpuAmbientOcclusion | undefined {
+    const options = this.occlusionOptions;
+    if (options === undefined) return undefined;
+    if (this.occlusion !== undefined && this.occlusion.camera !== this.camera) {
+      this.occlusion.pass.dispose();
+      this.occlusion = undefined;
+    }
+    if (this.occlusion === undefined && this.occlusionLoad === undefined) {
+      const camera = this.camera;
+      this.occlusionLoad = import('./webgpu-ambient-occlusion')
+        .then(({ createWebGpuAmbientOcclusion }) =>
+          createWebGpuAmbientOcclusion(this.three as WebGPURenderer, this.scene, camera, options),
+        )
+        .then((pass) => {
+          if (this.disposed || this.occlusionOptions !== options) pass.dispose();
+          else this.occlusion = { camera, pass };
+        })
+        .finally(() => {
+          this.occlusionLoad = undefined;
+        });
+    }
+    return this.occlusion?.camera === this.camera ? this.occlusion.pass : undefined;
   }
 
   /** Use for independent terrain/content chunks. WebGPU caches eligible opaque draw commands. */
@@ -1213,6 +1273,9 @@ export class Renderer {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.occlusionOptions = undefined;
+    this.occlusion?.pass.dispose();
+    this.occlusion = undefined;
     this.activeSky?.dispose();
     this.activeSky = undefined;
     this.activeWeather?.dispose();

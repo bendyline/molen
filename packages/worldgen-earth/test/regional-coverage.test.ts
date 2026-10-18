@@ -299,4 +299,18 @@ describe('shipped global ecological coverage', () => {
     }
     expect(library.select({}).scatter).toBeUndefined();
   });
+
+  it('plants clustered groves on open ground in temperate and wet habitats, never in deserts', () => {
+    const groves = (lon: number, lat: number) => {
+      const ecoregion = geography.at(lon, lat);
+      if (ecoregion === undefined) throw new Error(`No geography at ${lon}, ${lat}`);
+      return library.select({ ecoregion }).scatter?.rules.find((r) => r.id === 'open_trees');
+    };
+    const seattle = groves(-122.33, 47.6);
+    expect(seattle?.classes).toEqual(['open_ground']);
+    expect(seattle?.layer).toBe('canopy');
+    expect(seattle?.clustering).toBeDefined();
+    expect(groves(-111.05, 32.25)).toBeUndefined();
+    expect(groves(12, 24)).toBeUndefined();
+  });
 });
