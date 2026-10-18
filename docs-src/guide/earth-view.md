@@ -881,9 +881,13 @@ These regional forms are visual priors, not surveyed attributes of individual bu
 
 ## Sound
 
-With the `molen.sounds` pack in `content`, the view plays the Earth soundscape: rain and wind
-from the weather, birds by day and crickets at night, traffic near streets, footsteps while
-walking, and an engine on the car or aircraft you board. Birds, crickets and traffic come from
+With the `molen.sounds` pack in `content`, the view plays 100 contextual sounds: 88 recorded
+ambience beds and 12 walking surfaces, alongside vehicle engines and music. Rain and wind
+follow weather, morning birds and warm-night crickets/frogs follow the rendered sky clock,
+and broad regional palettes follow geographic location. Surf fades away from mapped ocean
+shores; rivers and traffic follow nearby watercourses and streets. Enclosed cockpits smoothly
+reduce outdoor ambience to 18%; open boats and exterior cameras retain outside sound.
+Mapped ground materials, rain and snow select walking sounds. Birds, crickets and traffic come from
 the ground, so they fade as the view rises above the terrain and are gone a few hundred meters
 up. Traffic also fades with distance from the nearest street. Sound starts on the first click or
 key press. The `audioready` event fires once it has loaded, and then `view.audio` sets volume,
@@ -895,9 +899,15 @@ view.on('audioready', () => view.audio?.setMuted(localStorage.getItem('muted') =
 ```
 
 Pass `audio: false` to keep the view silent, or `audio: { environment }` to replace the rules.
-The default rules are exported as `EARTH_AUDIO_ENVIRONMENT`, and `createEarthAudio` builds the
-same soundscape for a host that composes its own view. See [Sound and music](audio.md) for the
-rule format.
+The legacy/default rules are exported as `EARTH_AUDIO_ENVIRONMENT`; `createEarthAudio` extends
+them using bank tags `earth:category:*` and `earth:region:*` unless given a custom environment.
+A composing host passes `location`, `solarHour`, `terrain`, and `inVehicle` to `update`.
+`EarthAudioTerrain.observer` can wrap water, landcover and features renderers with
+`observeSemanticTiles`; sample it at about 4 Hz for coast/river/street distances and ground
+material. `surface` overrides the mapped walking material, and `indoors` attenuates outdoor
+ambience for a host that detects interiors. Missing mapped data uses conservative fallbacks;
+lakes do not produce surf, and wildlife rendering density does not mute regional ambience.
+See [Sound and music](audio.md) for the rule format.
 
 The composing pieces are exported too, for hosts that build their own view: `createEarthWorldgen`,
 `EarthVehicles`, `EarthAmbient` with `observeSemanticTiles`, `createEarthSky`/`createEarthFog`,

@@ -4,7 +4,7 @@
 // sounds.soundbank.json and NOTICE.md. Needs ffmpeg/ffprobe with libmp3lame and a prior
 // `node content/sounds/tools/fetch.mjs`. Unchanged recipes are skipped; --force rebuilds all.
 //
-//   node content/sounds/tools/build.mjs [--force]
+//   node content/sounds/tools/build.mjs [sound-id…] [--force]
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -15,6 +15,10 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const cache = join(root, '.cache');
 const force = process.argv.includes('--force');
+const only = new Set(process.argv.slice(2).filter((arg) => !arg.startsWith('--')));
+const previous = existsSync(join(root, 'sounds.soundbank.json'))
+  ? JSON.parse(readFileSync(join(root, 'sounds.soundbank.json'), 'utf8'))
+  : undefined;
 const sources = JSON.parse(readFileSync(join(root, 'sources.json'), 'utf8'));
 const stampsPath = join(cache, 'build-stamps.json');
 const stamps = existsSync(stampsPath) ? JSON.parse(readFileSync(stampsPath, 'utf8')) : {};
@@ -82,6 +86,9 @@ function encode(sound, clip, src, dest) {
   const channels = sound.channels ?? (sound.kind === 'oneshot' ? 1 : 2);
   const bitrate = channels === 1 ? '64k' : '96k';
   const { input, filters } = shape(sound, clip);
+  const padding = clip.loopPadding ?? 0;
+  if (padding && (sound.kind !== 'loop' || !clip.crossfade || !clip.duration))
+    throw new Error('loopPadding requires a crossfaded loop with an explicit duration');
   const pre = filters.length > 0 ? `${filters.join(',')},` : '';
   const base = [...input, '-i', src];
   let norm;
@@ -102,10 +109,16 @@ function encode(sound, clip, src, dest) {
     norm = `loudnorm=I=${target}:TP=-2:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true`;
   }
   mkdirSync(dirname(dest), { recursive: true });
+  // Encode a short guard on both sides of the loop. Playback repeats the middle period, so
+  // MP3 encoder edge transients stay outside it. A 5 ms boundary ramp removes residual DC /
+  // resampler discontinuities left by normalization without an audible pause between beds.
+  const guard = padding
+    ? `,afade=t=in:d=0.005,afade=t=out:st=${clip.duration - 0.005}:d=0.005,aloop=loop=2:size=${Math.round(clip.duration * 44100)},atrim=start=${clip.duration - padding}:end=${2 * clip.duration + padding},asetpts=PTS-STARTPTS`
+    : '';
   run([
     ...base,
     '-filter_complex',
-    `${pre}${norm},aresample=44100`,
+    `${pre}${norm},aresample=44100${guard}`,
     '-ac',
     String(channels),
     '-codec:a',
@@ -130,7 +143,7 @@ function findSource(originId, file) {
     for (const name of readdirSync(d)) {
       const p = join(d, name);
       if (statSync(p).isDirectory()) stack.push(p);
-      else if (p.endsWith(`/${file}`)) return p;
+      else if (p.replaceAll('\\', '/').endsWith(`/${file}`)) return p;
     }
   }
   throw new Error(`${originId}/${file} not found in .cache — run tools/fetch.mjs first`);
@@ -145,6 +158,15 @@ const bank = {
 };
 const used = {};
 for (const [id, sound] of Object.entries(sources.sounds)) {
+  for (const clip of sound.clips) {
+    used[clip.origin] ??= new Set();
+    used[clip.origin].add(id);
+  }
+  if (only.size > 0 && !only.has(id)) {
+    if (!previous?.sounds[id]) throw new Error(`Unbuilt sound ${id}; include it in this build`);
+    bank.sounds[id] = previous.sounds[id];
+    continue;
+  }
   const clips = [];
   let first;
   for (const [i, clip] of sound.clips.entries()) {
@@ -155,7 +177,7 @@ for (const [id, sound] of Object.entries(sources.sounds)) {
     const recipe = JSON.stringify({
       sound: { ...sound, clips: undefined, description: undefined, tags: undefined },
       clip,
-      v: 3,
+      v: 4,
     });
     if (force || stamps[rel] !== recipe || !existsSync(dest)) {
       encode(sound, clip, findSource(clip.origin, clip.file), dest);
@@ -187,8 +209,10 @@ for (const [id, sound] of Object.entries(sources.sounds)) {
     ...(loop
       ? {
           loop: true,
-          loopStart: LOOP_MARGIN_S,
-          loopEnd: Math.round((duration - LOOP_MARGIN_S) * 1000) / 1000,
+          loopStart: first.clip.loopPadding ?? LOOP_MARGIN_S,
+          loopEnd: first.clip.loopPadding
+            ? first.clip.loopPadding + first.clip.duration
+            : Math.round((duration - LOOP_MARGIN_S) * 1000) / 1000,
         }
       : {}),
     ...(sound.gain !== undefined ? { gain: sound.gain } : {}),

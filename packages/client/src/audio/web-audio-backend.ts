@@ -11,6 +11,8 @@ export interface WebAudioBackendOptions {
   context?: AudioContext;
   /** Drop a one-shot whose clip is still decoding this many seconds after it was requested. */
   staleOneShotS?: number;
+  /** Retain up to this many decoded PCM bytes; playing/fading clips are never evicted (default 96 MiB). */
+  maxDecodedBytes?: number;
   onError?: (message: string) => void;
 }
 
@@ -32,8 +34,12 @@ export class WebAudioBackend implements AudioBackend {
   private readonly staleS: number;
   private readonly onError: ((message: string) => void) | undefined;
   private readonly master: GainNode;
+  private readonly limiter: DynamicsCompressorNode;
   private readonly buses = new Map<string, GainNode>();
   private readonly buffers = new Map<string, Promise<AudioBuffer | null>>();
+  private readonly bufferSizes = new Map<string, number>();
+  private readonly maxDecodedBytes: number;
+  private decodedBytes = 0;
   private readonly voices = new Map<string, Voice>();
   private decoded = 0;
   private pending = 0;
@@ -43,10 +49,19 @@ export class WebAudioBackend implements AudioBackend {
   constructor(opts: WebAudioBackendOptions) {
     this.provider = opts.provider;
     this.staleS = opts.staleOneShotS ?? 0.35;
+    this.maxDecodedBytes = Math.max(0, opts.maxDecodedBytes ?? 96 * 1024 * 1024);
     this.onError = opts.onError;
     this.context = opts.context ?? new AudioContext({ latencyHint: 'interactive' });
     this.master = this.context.createGain();
-    this.master.connect(this.context.destination);
+    // Gentle safety ceiling for overlapping engines, impacts and ambience crossfades.
+    this.limiter = this.context.createDynamicsCompressor();
+    this.limiter.threshold.value = -3;
+    this.limiter.knee.value = 3;
+    this.limiter.ratio.value = 12;
+    this.limiter.attack.value = 0.003;
+    this.limiter.release.value = 0.2;
+    this.master.connect(this.limiter);
+    this.limiter.connect(this.context.destination);
     for (const bus of AUDIO_BUSES) this.bus(bus);
   }
 
@@ -109,6 +124,10 @@ export class WebAudioBackend implements AudioBackend {
     if (this.disposed) return;
     for (const id of [...this.voices.keys()]) this.stop(id, 0);
     this.disposed = true;
+    this.buffers.clear();
+    this.bufferSizes.clear();
+    this.decodedBytes = 0;
+    this.limiter.disconnect();
     this.context.close().catch(() => {});
   }
 
@@ -127,6 +146,11 @@ export class WebAudioBackend implements AudioBackend {
 
   private load(ref: string): Promise<AudioBuffer | null> {
     let p = this.buffers.get(ref);
+    if (p) {
+      // Map order is least-recently-used first.
+      this.buffers.delete(ref);
+      this.buffers.set(ref, p);
+    }
     if (!p) {
       this.pending++;
       p = this.provider
@@ -134,6 +158,11 @@ export class WebAudioBackend implements AudioBackend {
         .then((bytes) => this.context.decodeAudioData(bytes.slice(0)))
         .then((buffer) => {
           this.decoded++;
+          if (!this.disposed) {
+            const bytes = buffer.length * buffer.numberOfChannels * 4;
+            this.bufferSizes.set(ref, bytes);
+            this.decodedBytes += bytes;
+          }
           return buffer;
         })
         .catch((error: unknown) => {
@@ -142,10 +171,24 @@ export class WebAudioBackend implements AudioBackend {
         })
         .finally(() => {
           this.pending--;
+          this.trimBuffers();
         });
       this.buffers.set(ref, p);
     }
     return p;
+  }
+
+  private trimBuffers(): void {
+    if (this.decodedBytes <= this.maxDecodedBytes) return;
+    const playing = new Set([...this.voices.values()].map((v) => v.cmd.ref));
+    for (const ref of this.buffers.keys()) {
+      const bytes = this.bufferSizes.get(ref);
+      if (bytes === undefined || playing.has(ref)) continue;
+      this.buffers.delete(ref);
+      this.bufferSizes.delete(ref);
+      this.decodedBytes -= bytes;
+      if (this.decodedBytes <= this.maxDecodedBytes) break;
+    }
   }
 
   private start(cmd: StartCommand): void {
@@ -262,6 +305,7 @@ export class WebAudioBackend implements AudioBackend {
     } catch {
       // already disconnected
     }
+    this.trimBuffers();
   }
 
   private setListener(p: AudioVec3, f: AudioVec3, u: AudioVec3): void {

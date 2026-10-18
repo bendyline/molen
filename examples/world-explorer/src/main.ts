@@ -28,6 +28,7 @@ import {
   EARTH_WATER_CONDITIONS,
   EarthAmbient,
   type EarthAudio,
+  EarthAudioTerrain,
   EarthVehicles,
   EarthWildlife,
   type EarthWorldgen,
@@ -872,6 +873,9 @@ async function main(): Promise<void> {
     ? params.get('ambient') !== '0'
     : !params.has('freeze');
   const ambientTiles = ambientWanted ? new SemanticTileBuffer() : undefined;
+  const audioTerrain = new EarthAudioTerrain();
+  let audioTerrainSample: ReturnType<EarthAudioTerrain['sample']> | undefined;
+  let audioTerrainAt = -Infinity;
   const wildlifeWanted =
     ambientWanted &&
     params.get('wildlife') !== '0' &&
@@ -885,7 +889,10 @@ async function main(): Promise<void> {
   ): WorldgenSemanticRenderers['humanFeatures'] => {
     const observed =
       wildlifeFeatures !== undefined ? observeSemanticTiles(renderer, wildlifeFeatures) : renderer;
-    return ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed;
+    return observeSemanticTiles(
+      ambientTiles !== undefined ? observeSemanticTiles(observed, ambientTiles) : observed,
+      audioTerrain.observer,
+    );
   };
   if (adaptive && !semanticDemo && declaredSemantics.length > 0) {
     try {
@@ -898,29 +905,48 @@ async function main(): Promise<void> {
         ...(loaded.baseUrl !== undefined ? { baseUrl: loaded.baseUrl } : {}),
         waterLayer: {
           visible: true,
-          mesh: {
-            materials: { water: waterMaterial },
-            waterOffset: 0.65,
-            // The elevation carries Puget Sound bathymetry. Without a sea level each bay polygon
-            // sits at its lower-quartile depth and shallower seabed shows through as ground, as
-            // mountEarthView avoids the same way.
-            ...(loaded.descriptor.coordinateSpace.kind === 'geospatial' ||
-            loaded.descriptor.surface?.seaLevel !== undefined
-              ? { seaLevel: loaded.descriptor.surface?.seaLevel ?? 0 }
-              : {}),
-          },
+          renderer: observeSemanticTiles(
+            createDefaultTerrainSemanticRenderer({
+              renderLandcover: false,
+              renderTransportation: false,
+              renderBuildings: false,
+              materials: { water: waterMaterial },
+              waterOffset: 0.65,
+              // The elevation carries Puget Sound bathymetry. Without a sea level each bay polygon
+              // sits at its lower-quartile depth and shallower seabed shows through as ground, as
+              // mountEarthView avoids the same way.
+              ...(loaded.descriptor.coordinateSpace.kind === 'geospatial' ||
+              loaded.descriptor.surface?.seaLevel !== undefined
+                ? { seaLevel: loaded.descriptor.surface?.seaLevel ?? 0 }
+                : {}),
+            }),
+            audioTerrain.observer,
+          ),
         },
         ...(worldgen !== undefined
           ? {
               landcoverLayer: {
                 renderer:
                   wildlifeCover !== undefined
-                    ? observeSemanticTiles(worldgen.classification, wildlifeCover)
-                    : worldgen.classification,
+                    ? observeSemanticTiles(
+                        observeSemanticTiles(worldgen.classification, wildlifeCover),
+                        audioTerrain.observer,
+                      )
+                    : observeSemanticTiles(worldgen.classification, audioTerrain.observer),
               },
               featuresLayer: { renderer: observeRoads(worldgen.humanFeatures) },
             }
           : {
+              landcoverLayer: {
+                renderer: observeSemanticTiles(
+                  createDefaultTerrainSemanticRenderer({
+                    renderWater: false,
+                    renderTransportation: false,
+                    renderBuildings: false,
+                  }),
+                  audioTerrain.observer,
+                ),
+              },
               featuresLayer: {
                 renderer: observeRoads(
                   createDefaultTerrainSemanticRenderer({
@@ -1427,6 +1453,7 @@ async function main(): Promise<void> {
       wildlifeCover?.detach();
       wildlifeFeatures?.detach();
       wildlife?.dispose();
+      audioTerrain.clear();
       flight.dispose();
       vehicles.dispose();
     }
@@ -1973,13 +2000,30 @@ async function main(): Promise<void> {
     const fog = viewer.renderer.scene.fog;
     if (fog instanceof THREE.Fog) updateEarthFog(fog, fogViewDistance, camera.pos[1]);
     const audioGround = audio ? sampleHeight(camera.pos[0], camera.pos[2]) : undefined;
+    if (audio && now - audioTerrainAt >= 250) {
+      audioTerrainSample = audioTerrain.sample(camera.pos[0], camera.pos[2]);
+      audioTerrainAt = now;
+    }
     audio?.update({
       ...(wildlife !== undefined ? { regionalAmbience: wildlife.ambience(camera.pos) } : {}),
       nowMs: now,
+      location: { latitude: skyLocation[1], longitude: skyLocation[0] },
+      ...(audioTerrainSample ? { terrain: audioTerrainSample } : {}),
+      ...(viewer.renderer.sky?.frame?.earth
+        ? {
+            solarHour:
+              (((viewer.renderer.sky.frame.earth.utcMs / 3600000 + skyLocation[0] / 15) % 24) +
+                24) %
+              24,
+          }
+        : {}),
       ...(audioGround !== undefined ? { heightAboveGround: camera.pos[1] - audioGround } : {}),
       position: [camera.pos[0], camera.pos[1], camera.pos[2]],
       forward: [viewDirection[0], viewDirection[1], viewDirection[2]],
       mode: flight.mountedKind ? 'pilot' : vehicles.mountedId ? 'drive' : navigation,
+      inVehicle:
+        vehicles.view === 'cockpit' &&
+        (!!flight.mountedKind || (!!vehicles.mountedId && !vehicles.isBoat(vehicles.mountedId))),
       ...(navigation === 'walk' && !vehicleCamera ? { grounded: walker.grounded } : {}),
       ...(viewer.renderer.weather ? { weather: viewer.renderer.weather.data } : {}),
     });
