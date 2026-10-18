@@ -67,7 +67,7 @@ export async function startExplorerAudio(
 
 /** A Sound section in the HUD: volume, mute and music, remembered per browser. */
 function mountSoundControls(layer: AudioLayer, settings: StoredSettings): () => void {
-  const hud = document.getElementById('hud');
+  const hud = document.getElementById('hud-body') ?? document.getElementById('hud');
   if (!hud) return () => {};
   const root = document.createElement('fieldset');
   root.id = 'sound-controls';

@@ -2252,8 +2252,37 @@ hud.addEventListener('keydown', (event) => {
   }
 });
 
+// On a wide viewport the panel folds down to its title bar. The narrow layout ignores this (its CSS
+// hides #hud-collapse and never hides #hud-body) because #hud-toggle already hides the whole panel.
+const HUD_COLLAPSED_KEY = 'molen.world-explorer.hud-collapsed';
+const hudCollapse = document.getElementById('hud-collapse') as HTMLButtonElement;
+const setControlsCollapsed = (collapsed: boolean): void => {
+  hud.toggleAttribute('data-collapsed', collapsed);
+  hudCollapse.setAttribute('aria-expanded', String(!collapsed));
+  const label = collapsed ? 'Expand controls' : 'Collapse controls';
+  hudCollapse.setAttribute('aria-label', label);
+  hudCollapse.title = label;
+};
+try {
+  setControlsCollapsed(localStorage.getItem(HUD_COLLAPSED_KEY) === '1');
+} catch {
+  // Private windows may refuse storage; the panel just starts expanded.
+}
+// The whole bar is the hit target, not just the chevron; the button stays the keyboard control.
+document.getElementById('hud-titlebar')?.addEventListener('click', () => {
+  if (!hudCollapse.checkVisibility()) return;
+  const collapsed = !hud.hasAttribute('data-collapsed');
+  setControlsCollapsed(collapsed);
+  try {
+    localStorage.setItem(HUD_COLLAPSED_KEY, collapsed ? '1' : '0');
+  } catch {
+    // The setting just does not persist.
+  }
+});
+
 void main().catch((error: unknown) => {
   setControlsOpen(true);
+  setControlsCollapsed(false);
   const source = document.getElementById('source') as HTMLParagraphElement;
   source.id = 'error';
   source.textContent = (error as Error).message;
