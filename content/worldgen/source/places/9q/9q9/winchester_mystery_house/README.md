@@ -9,7 +9,7 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 - [Winchester Mystery House](https://qualla.com/winchester-mystery-house/)
 - [Winchester Mystery House](https://qualla.com/#list/9q9k/winchester-mystery-house-wp)
 
-Original medium-fi mansion-core exterior based on individually inspected Qualla 2002–2019 images, museum 2018 aerial, rear view and 2023 estate map. It is not a measured survey.
+Surviving mansion-core exterior reviewed with the original public-domain1908Charltonpostcard, primaryHABS1981architectural facts and operator alteration history. Earlier attribution-only private images are excluded; this is not a measured survey.
 
 Map data combines the mansion with connected estate buildings. Recorded editorial north/south cuts exclude stables, greenhouses, visitor buildings and their connecting wings; the full original footprint is preserved as evidence.
 

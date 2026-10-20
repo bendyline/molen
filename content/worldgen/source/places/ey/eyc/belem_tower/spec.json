@@ -1,0 +1,447 @@
+{
+  "planId": "belem_tower",
+  "id": "belem_tower",
+  "assetId": "molen.worldgen.structure.belem_tower",
+  "title": "Belém Tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -9.215899854898453,
+    "latitude": 38.69172150278317
+  },
+  "size": [
+    42.9843111038208,
+    33.732398986816406,
+    78.98234176635742
+  ],
+  "actualBounds": {
+    "min": [
+      -14.776810646057129,
+      -6.188899993896484,
+      -42.032501220703125
+    ],
+    "max": [
+      28.207500457763672,
+      27.543498992919922,
+      36.9498405456543
+    ]
+  },
+  "visualBrief": "Pale Manueline square tower with recessed upper chapel, projecting machicolated roofwalk and Christ-cross shield merlons; fluted domed bartizans and beaded finials. Distinct north paired balconies and seven-arch south river loggia, royal shield and Madonna canopy. Native polygonal river bastion with16 recessed gunports, actual lower open court, pierced quatrefoil rails/pinnacles, tidal foundation and narrow L-shaped elevated steel/wood entrance bridge.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Toranj_sv._Vinka.jpg",
+    "https://commons.wikimedia.org/wiki/File:Toranj_sv._Vinka_u_Lisabonu.jpg"
+  ],
+  "stories": [
+    {
+      "id": "belem-tower-wp",
+      "url": "https://qualla.com/belem-tower/"
+    }
+  ],
+  "referenceInputHash": "sha256:632b6f766a4ba2b5a7a23d3d5acc8c5634c974f59fee864cf7627ca5059447b4",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-belem-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-belem-tower.mjs",
+    "level": "skyline",
+    "export": "belemTowerSkyline",
+    "errorMeters": 3.2,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "foundation": {
+        "slot": "foundation",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_marble",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "recess": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "localRef": "palette:#fffefd",
+        "roughness": 0.7,
+        "metallic": 0.2
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "belemTowerDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.7,
+            "metallic": 0.2
+          }
+        }
+      },
+      "street": {
+        "export": "belemTowerStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "foundation": {
+            "slot": "foundation",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_marble",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "recess": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "localRef": "palette:#fffefd",
+            "roughness": 0.7,
+            "metallic": 0.2
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.05,
+    "groundY": -6.14,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original frozen Terrarium field,2original raster tiles/66049samples. Provider-relative5.1389m dry north promenade contact controls Y=0; mapped building part heights referred to offshore provider0m sample. No source flattening or tidal/bathymetric/survey claim.",
+    "anchor": [
+      -9.215899854898453,
+      38.69172150278317
+    ],
+    "heading": -0.17467219908590714,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -9.21586096304564,
+        38.692265815451854
+      ],
+      "modelHeight": 0,
+      "basis": "Native dry curved promenade path vertex north of the tower, outside tower, tidal sand and open water. Freeze independent256m provider field before model geometry; no fitting, flattening or rooftop replacement. Derive water/shore vertical compatibility from this unchanged field and record its tidal/bathymetric limits."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -13.749952237264466,
+          28.694668971921963
+        ],
+        [
+          -14.006456004247111,
+          1.7617736141920513
+        ],
+        [
+          -8.79537950857886,
+          1.7887740087634532
+        ],
+        [
+          -8.970882085753189,
+          -8.592878388971563
+        ],
+        [
+          8.498374353685623,
+          -8.835881957933438
+        ],
+        [
+          8.417373165102422,
+          -5.271829639043316
+        ],
+        [
+          6.999852356725248,
+          -5.258329438882527
+        ],
+        [
+          6.986352158855088,
+          1.3702678636455559
+        ],
+        [
+          14.073956201374878,
+          1.3027668731325819
+        ],
+        [
+          14.370960563064987,
+          28.465165600767307
+        ],
+        [
+          5.70383333504883,
+          35.674271430158704
+        ],
+        [
+          -5.177326395200381,
+          35.70127182412541
+        ]
+      ],
+      "basis": "Exact mapped foundation outline only; continuous physical foundation supports all covered samples. Bridge remains open below the deck. Original shore/river terrain values retained and restored on model hide."
+    },
+    "featureIds": [
+      "buildings/35184396430185",
+      "buildings/35185759057838",
+      "buildings/35184396430185",
+      "buildings/52776577266815",
+      "buildings/52776578211912",
+      "buildings/52776578212173",
+      "buildings/35185759050920",
+      "buildings/35185838593790",
+      "buildings/52776578212031",
+      "buildings/35184490579137",
+      "buildings/35185759050921",
+      "buildings/52776578212030",
+      "buildings/35185838609599",
+      "buildings/35185759057840",
+      "buildings/35185838609598",
+      "buildings/35185759057839",
+      "buildings/35185838609600",
+      "roads/35184415562680"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:31a461e8c986246d37fa7173395b25f332b3afc11fd72ed0c8cba18a798e0364"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Native map is quantized; mapped height fields are relative building annotations, not surveyed architectural or tidal elevations.",
+    "Current article coordinate is south of the tower body; anchor derived from actual native tower polygon.",
+    "Approach bridge is a photo-directed approximate plan; native vector extract does not contain its complete route. No surveyed bridge dimensions or tidal elevations.",
+    "Foundation toe flares5.5percent below the native upper foundation edge; north podium and masonry courses follow photographic interpretation. Mapped29m body/30m parapet exclude interpreted bartizan domes/finials, extending to32.7m above provider-water control. Aperture heights, sculpture and ornament are conservative photographic interpretations, not measured drawings.",
+    "The bridge L-plan is constrained by the official aerial/entrance photos and mapped east landing; route, structural spans and widths are approximate. Endpoint meets unchanged source shore field. No engineered bridge, interiors, navigable collision or operating tide/water simulation.",
+    "Original Terrarium pixels may oversample coarser composite DEM;1m sampling is not survey resolution. Default coarse world terrain is not certified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "north-facade",
+      "position": [
+        0,
+        13,
+        -58
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "south-loggia",
+      "position": [
+        0,
+        17,
+        58
+      ],
+      "lookAt": [
+        0,
+        12,
+        6
+      ]
+    },
+    {
+      "name": "west-bastion",
+      "position": [
+        -48,
+        8,
+        17
+      ],
+      "lookAt": [
+        0,
+        1,
+        14
+      ]
+    },
+    {
+      "name": "open-court",
+      "position": [
+        -3,
+        22,
+        32
+      ],
+      "lookAt": [
+        0,
+        1.3,
+        16
+      ]
+    },
+    {
+      "name": "bartizan",
+      "position": [
+        -14,
+        12,
+        -17
+      ],
+      "lookAt": [
+        -7,
+        6,
+        -7
+      ]
+    },
+    {
+      "name": "roof-and-shields",
+      "position": [
+        -17,
+        31,
+        -17
+      ],
+      "lookAt": [
+        0,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "bridge-entry",
+      "position": [
+        37,
+        8,
+        -22
+      ],
+      "lookAt": [
+        13,
+        -0.5,
+        -3
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        2,
+        78,
+        5
+      ],
+      "lookAt": [
+        2,
+        0,
+        4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54259,
+    "vertices": 162777,
+    "materials": 6,
+    "bytes": 6514708,
+    "sha256": "sha256:7dc2a8c55ce485d3c559d921597f61a81483a9756c2af280897c64a6bfeeb634"
+  }
+}

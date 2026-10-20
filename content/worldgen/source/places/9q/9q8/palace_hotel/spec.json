@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Palace_Hotel_from_across_Market_on_Montgomery_St.JPG",
-    "https://commons.wikimedia.org/wiki/File:Palace_Hotel,_San_Franciso01.jpg"
+    "https://commons.wikimedia.org/wiki/File:PH_advert_1911.jpg",
+    "https://www.loc.gov/item/2013631873/"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/palace-hotel-san-francisco/"
     }
   ],
-  "referenceInputHash": "f038865c82117f668bb43ba0e81736ebdb84a646750119b663a1be5f037d558d",
+  "referenceInputHash": "sha256:e31e9be79c479c2a1dd2e8c17a6942f075689ef05a98e89f25f45eba9b9f44da",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-palace-hotel.mjs"
   },
@@ -241,7 +241,8 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior based on five individually inspected local Qualla photographs and the city landmark report roof plan, four elevations and aerial.",
+    "New actual entrance portals and physical curved double-door/transom framing use the exact native primary Highsmith entrance photograph under explicit photographer public-domain dedication, after a cleared Qualla imagery search. Earlier attribution/private report/satellite imagery is excluded as current construction control. Wider exterior review remains pending.",
+    "Three portals now cut into the actual close-level front wall, with stone jambs/arched soffits, recessed glazing and closed metal frames. Existing widths/heights/canopies retained; .72m recess, .14m frame depth and .65m transom spacing are medium-fi estimates. Exact gilded sculpture/face/monogram is not copied.",
     "Existing city roof/parapet labels control principal heights; low-roof heights, floor spacing, hidden joins and fine terracotta ornament remain interpretations. Coarse map part heights conflict with the city elevations and are retained as evidence only.",
     "Surviving 1909 exterior and attached lower pool/court roofs included. No 1875 reconstruction, interiors or proposed telecommunications equipment. Later rooftop changes are unverified.",
     "Independent terrain remains unflattened; footprint suppression stays disabled. No photo pixels copied."
@@ -273,16 +274,42 @@
         18,
         -4
       ]
+    },
+    {
+      "name": "entrance-portals",
+      "position": [
+        -56,
+        8,
+        12
+      ],
+      "lookAt": [
+        -39.46,
+        2.8,
+        0
+      ]
+    },
+    {
+      "name": "curved-door-frame",
+      "position": [
+        -44.5,
+        3,
+        1.5
+      ],
+      "lookAt": [
+        -38.74,
+        3.4,
+        0
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 58133,
-    "vertices": 174399,
+    "triangles": 59708,
+    "vertices": 179124,
     "materials": 5,
-    "bytes": 6979204,
-    "sha256": "sha256:f60c9517012a62678fbb12dd7e180095d0d2b75ef048c5183c5a519bf77ff6f9"
+    "bytes": 7168204,
+    "sha256": "sha256:3432c77639ad098f1defad875b7185c7f3a13deeed46b29e82e0d1dd2e4f5370"
   }
 }

@@ -1,0 +1,422 @@
+{
+  "planId": "washington_monument_baltimore",
+  "id": "washington_monument_baltimore",
+  "assetId": "molen.worldgen.structure.washington_monument_baltimore",
+  "title": "Washington Monument (Baltimore)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -76.61565497517586,
+    "latitude": 39.297523026346624
+  },
+  "size": [
+    29.799999237060547,
+    55.21999818086624,
+    29.799999237060547
+  ],
+  "actualBounds": {
+    "min": [
+      -14.899999618530273,
+      -0.800000011920929,
+      -14.899999618530273
+    ],
+    "max": [
+      14.899999618530273,
+      54.41999816894531,
+      14.899999618530273
+    ]
+  },
+  "visualBrief": "Baltimore unfluted marble column on square gallery and stepped terrace, four circular skylights, Doric capital/square lookout and round bell pedestal, carved draped Washington figure with commission gesture, four door/stair approaches and own circular diamond iron enclosure. Separate park sculptures, fountains, lawns, roads and buildings excluded.",
+  "nativeAxes": {
+    "x": "east slightly north along the south facade",
+    "y": "up",
+    "z": "south slightly east along the front approach"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Washington_Monument,_Baltimore,_MD.jpg",
+    "https://commons.wikimedia.org/wiki/File:Washington_Monument_with_Mount_Vernon_Place_United_Methodist_Church,_Baltimore,_MD.jpg"
+  ],
+  "stories": [
+    {
+      "id": "washington-monument-baltimore-wp",
+      "url": "https://qualla.com/washington-monument-baltimore/"
+    }
+  ],
+  "referenceInputHash": "sha256:cc047434b65a2f4e87652c5cd646dba00db4d4e4a475d77718173a2a86261878",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-washington-monument-baltimore.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-washington-monument-baltimore.mjs",
+    "level": "skyline",
+    "export": "washingtonMonumentBaltimoreSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_bronze_cast",
+        "roughness": 0.75,
+        "metallic": 0.45
+      },
+      "railStock": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "railSpear": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "railMedallion": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "railRosette": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "gateFasces": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "gateCrest": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.18
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "washingtonMonumentBaltimoreDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.45
+          },
+          "railStock": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "railSpear": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "railMedallion": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "railRosette": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "gateFasces": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "gateCrest": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "washingtonMonumentBaltimoreStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_bronze_cast",
+            "roughness": 0.75,
+            "metallic": 0.45
+          },
+          "railStock": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "railSpear": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "railMedallion": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "railRosette": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "gateFasces": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "gateCrest": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.18
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.85
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry south approach[0,16.2] gives datum29.993m in preserved unmodified Terrarium. Mapped gallery ground is about+.27..+.41m; own circular enclosure edge lies+.04..+.24m. Own curb/paving top+.55m and foundations to-.8m meet the native grade without unsupported footings. Current portable ground/contact and north-up preview reviewed; generic-footprint replacement disabled.",
+    "anchor": [
+      -76.61565497517586,
+      39.297523026346624
+    ],
+    "heading": 0.0323,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -76.61564890219151,
+        39.2973775758428
+      ],
+      "modelHeight": 0,
+      "basis": "Dry south approach immediately outside the monument circular enclosure; independent native host-ground reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184488631690",
+      "buildings/35184830261702"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:51fdbb79ea9f7cb71a9db8ab22c418be9c3c2f992838594e2678359320bcd981",
+    "notes": "Mapped gallery footprint about14.6m by15.5m and column about6m diameter; nominal overall height54.46m (178ft8in). Aerial controls own roughly30m circular enclosure and four stairs; do not substitute a square fence. Individual vertical dimensions, statue folds/face, skylights and carving remain estimated medium-fi details."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_bronze_cast",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        0.25,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Full fixed stone column/podium/statue silhouette/immediate railings retained. Current imagery is two exact Daderot own-photo PD-self originals after Qualla-first48paths. Actual immediate ironwork is rebuilt with diamond lattice, closed spear stocks, concentric open rosette medallions and bundled entrance piers. Earlier attribution/private/aerial controls are historical and excluded; broader whole-monument/roof/skylight/statue fidelity pending. Nominal54.46m height, roughly15m gallery and6m column diameter guide scale. Component heights, entasis, enclosure radius, carving/inscriptions and statue proportions remain estimates, not measured survey or conservation geometry.",
+    "Washington is a draped stone silhouette with uniform/gesture/folds, not a portrait scan. Hidden folds/limbs and head details are conservative authored approximations. The foreground equestrian statue in the night photograph is a separate park monument and excluded. No photographic pixels redistributed.",
+    "Only monument and immediate circular paved/iron enclosure and four approaches. Wider park monuments, fountains, landscaping, roads/buildings and temporary fixtures excluded. Current bounded independent Terrarium foundation/contact and signed placement reviewed as a preview. Coarse urban elevation and other host terrain compatibility remain limitations; footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        29,
+        84
+      ],
+      "lookAt": [
+        0,
+        26,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -10,
+        55,
+        17
+      ],
+      "lookAt": [
+        0,
+        49,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        51,
+        30,
+        -66
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -23,
+        14,
+        30
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "ironwork-medallions",
+      "position": [
+        -4.5,
+        2.2,
+        19
+      ],
+      "lookAt": [
+        -3.15,
+        1.28,
+        14
+      ]
+    },
+    {
+      "name": "ironwork-lattice",
+      "position": [
+        11.5,
+        2.4,
+        16.4
+      ],
+      "lookAt": [
+        8.8,
+        1.3,
+        11.4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 62548,
+    "vertices": 187644,
+    "materials": 4,
+    "bytes": 7508592,
+    "sha256": "sha256:c0eba833a1ac30e6934c77cec44c00276eca051367d54976a26351198c5e8b6c"
+  }
+}

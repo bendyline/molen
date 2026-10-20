@@ -1,0 +1,643 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.taipei_guest_house",
+  "reviewedOn": "2026-10-17",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:9a61c0f9c15c2a2dec5e67f928cf171dc856966f0ad26b06ca697927d079d35d",
+  "sourceHash": "sha256:4f055cc96494d868f36370486e0f2568449e9806332e4800b9f7f7a39fdbce12",
+  "runtimeHash": "sha256:72d1488068a2c7b6732e95ea77892175eb15a38954efdb3565882b9291c93622",
+  "captureReportHash": "sha256:2a8bcf20dcf3f8e9caf4d3bb48ead507fe39030d4a7094c0f7505d7371abd916",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:2a8bcf20dcf3f8e9caf4d3bb48ead507fe39030d4a7094c0f7505d7371abd916",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/front-detail.png",
+      "shots/back.png"
+    ],
+    "notes": "Actually inspected all8 current portable frames; front detail additionally inspected at full resolution. Started with cleared Qualla CC0 garden birdview and PD north facade, then independently verified creator-CC0 close roof and creator-PD-self southeast facade. Paired-column loggias, lower arcades, south three-arched pavilion/pediment, balustraded open canopy/steps, mansards/dormers, diagonal green corner roofs and lower rounded north bay/terrace agree at medium-fi. Heights, exact column/bay counts, fine ornament, roof joins and hidden west elevation remain estimates. Prior CC hero and uncertain Gongyuan Road building excluded entirely; no photo textures."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:10fd694587b69933bc84570f1d08cc35ec73b84dd3061d34d01345de35f8f7e0",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/front-detail.png",
+      "shots/shared/back.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "Actually inspected all8 current shared-material/placement frames; front detail additionally inspected at full resolution. Limestone, slate, copper, wood and painted-metal graphs bind to6 source materials; opaque glazing uses explicit palette. Corner patina and natural wood contrast with stone/slate. Mapped overlay retains main mansion/loggia/bay, with separate bungalow/connector/garden structures excluded. Flat fixture verifies material/transform/unload behavior; portable/native-ground views separately establish bounded contact. No image pixels enter runtime assets."
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:db23557b5370040ee2b1327592ea842a60ff8016b9476235c2a2ebc3cc05072d",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/front-detail.png",
+      "medium-fi/back.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "Actually inspected all20 current version2 frames: lighting, quality, street/block/skyline, silhouette, front/detail/back and four forced detail levels. Every frame identifies actual current asset/runtime/detail bytes. Open loggia/canopy and differentiated corner roofs remain legible; closer levels restore arcades, paired columns, window/arch trim, balusters, fluting and dormers. Skyline omits thin finials and fine divisions; its1.6m allowance now includes their approximately1.45m higher tips. Synthetic neighbors are style fixtures, not Taipei parcels."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:54a4e1602dd1bb3ac396e0a970e0c8c8cb23d92efc646851ae3b2f61aec3901a",
+    "mapGeometryHash": "sha256:d62583f826b6b8e9e25e510d8cee0fe094d6285a93f97e6a737c2137fe07096f",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:e0ed8bbc1b200df37e171780cf9832148643e40d850be0fa49e06ef6ef46ec78",
+      "descriptorHash": "sha256:0a4088207d7203e5ae7536335f47783829c6a4def4928eb25e560a25fb84f352",
+      "heightfieldHash": "sha256:49f692618432a8dba1a7a76a2554985f57d23594cb85b6a146756589f79dbaab",
+      "modelDatumElevationMeters": 15.1705,
+      "sourcePixelGroundSpacing": 4.3283037099064465,
+      "footprintRelativeRangeMeters": [
+        0.23202856972932828,
+        1.8294999999999995
+      ],
+      "maxPngEncodingErrorMeters": 0.0000842493057255922,
+      "originalTilesVerified": 1,
+      "nativeSamplesReproducedExactly": 16641
+    },
+    "notes": "Retained anchor[121.51674312,25.04008056], heading-.25,+X east-southeast,+Z south-southwest toward own entrance. Mapped mansion/loggia/bay retained; separate bungalow/connector/gardens excluded. All16641 heights reproduce exactly from saved native Terrarium tile; source spacing4.3283m is not native DEM accuracy. Datum15.1705m at dry forecourt[-1.8,26]; mapped ground+.23203..+1.8295m. Own2m entrance deck/eight steps,2.03m loggia floor and masonry rounded-bay terrace meet the retained ground. Scene/grid/descriptor/heightfield bytes and map numeric coordinates unchanged. No fitting/flattening/NoData fill. Urban/hidden foundations remain approximate; another host DEM and survey accuracy unverified. Footprint replacement disabled."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Main Western mansion, own south entrance/canopy/steps and north loggia/rounded bay/terrace. Separate Japanese-style bungalow, connector, gardens, service structures and interiors excluded.",
+    "notes": "Four public-domain originals actually inspected, with cleared Qualla garden birdview/north elevation first. Exact own-work creator-CC0 close roof and PD-self southeast photograph supply complementary public-domain coverage. Confirmed envelope, slate/green roof hierarchy, lower arcades, paired upper columns, south pavilion and rounded bay remain supported at medium-fi; geometry binaries unchanged. Earlier CC south hero and uncertain Gongyuan Road building are excluded. Heights, bay/column counts, dormer distribution, fine ornament, west elevation and roof joins remain original photographic interpretations, not a measured survey."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:19766be6d07c16c3339ee5a51bd7c976703cf4f1d1cd2dcab6f208966606e708",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:1eb515222079e6282391c1a45879c89a71b7aa1ad336ff15b6fe18025f3c50dd",
+        "bytes": 78980,
+        "gzipBytes": 13306,
+        "triangles": 984,
+        "cpuBytes": 77544,
+        "gpuBytes": 77544,
+        "errorMeters": 1.6,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:0977fa4bc6a358909daba59cf39b0bc63ccfa56531e3ec86ff22926201366374",
+        "bytes": 294180,
+        "gzipBytes": 58120,
+        "triangles": 3990,
+        "cpuBytes": 286816,
+        "gpuBytes": 286816,
+        "errorMeters": 0.25,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:b541e2a43c05ccd06b3bdc3f05693d6592aeb12de21300a847e54d4889fa38bf",
+        "bytes": 1052916,
+        "gzipBytes": 220128,
+        "triangles": 14640,
+        "cpuBytes": 1045516,
+        "gpuBytes": 1045516,
+        "errorMeters": 0.1,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:ebe7d8a09b565ffd30a53f0fe574d265c16899329c77ff975ab068ca3933e28e",
+        "bytes": 5248128,
+        "gzipBytes": 970498,
+        "triangles": 43706,
+        "cpuBytes": 5244720,
+        "gpuBytes": 5244720,
+        "errorMeters": 0,
+        "drawCalls": 6
+      }
+    ],
+    "notes": "Four raw and actual imported Float32 levels pass finite/nondegenerate/winding checks.984/3990/14640/43706triangles and1/6/6/6draws meet strict budgets. Seven independent open lower/upper/canopy paths, two patinated-corner-roof probes and four pavilion-envelope probes pass per level,52 total. Skyline omits thin corner finials whose tops are about1.45m higher; allowance is now1.6m. Error allowances remain authored approximations, not global mesh-distance certificates or physical-device tests."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceBundleSceneTerrainPlacementSchema": true,
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 43706,
+    "sourceMaterials": 6,
+    "runtimeLodsVerified": 4,
+    "openPassageChecks": [
+      {
+        "level": 0,
+        "name": "south-west ground arcade",
+        "a": [
+          -16.675,
+          4,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 0,
+        "name": "south-east ground arcade",
+        "a": [
+          15.425,
+          4,
+          14.5
+        ],
+        "b": [
+          15.425,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 0,
+        "name": "north ground arcade",
+        "a": [
+          -0.5,
+          4,
+          -19
+        ],
+        "b": [
+          -0.5,
+          4,
+          -11
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 0,
+        "name": "entrance canopy passage",
+        "a": [
+          -1.8,
+          4,
+          24
+        ],
+        "b": [
+          -1.8,
+          4,
+          16
+        ],
+        "intersections": 0
+      },
+      {
+        "name": "southwest upper loggia",
+        "a": [
+          -16.675,
+          9,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 0
+      },
+      {
+        "name": "southeast upper loggia",
+        "a": [
+          15.425,
+          9,
+          14.5
+        ],
+        "b": [
+          15.425,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 0
+      },
+      {
+        "name": "north upper loggia",
+        "a": [
+          -0.5,
+          9,
+          -19
+        ],
+        "b": [
+          -0.5,
+          9,
+          -11
+        ],
+        "intersections": 0,
+        "level": 0
+      },
+      {
+        "level": 1,
+        "name": "south-west ground arcade",
+        "a": [
+          -16.675,
+          4,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 1,
+        "name": "south-east ground arcade",
+        "a": [
+          15.425,
+          4,
+          14.5
+        ],
+        "b": [
+          15.425,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 1,
+        "name": "north ground arcade",
+        "a": [
+          -0.5,
+          4,
+          -19
+        ],
+        "b": [
+          -0.5,
+          4,
+          -11
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 1,
+        "name": "entrance canopy passage",
+        "a": [
+          -1.8,
+          4,
+          24
+        ],
+        "b": [
+          -1.8,
+          4,
+          16
+        ],
+        "intersections": 0
+      },
+      {
+        "name": "southwest upper loggia",
+        "a": [
+          -16.675,
+          9,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 1
+      },
+      {
+        "name": "southeast upper loggia",
+        "a": [
+          15.425,
+          9,
+          14.5
+        ],
+        "b": [
+          15.425,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 1
+      },
+      {
+        "name": "north upper loggia",
+        "a": [
+          -0.5,
+          9,
+          -19
+        ],
+        "b": [
+          -0.5,
+          9,
+          -11
+        ],
+        "intersections": 0,
+        "level": 1
+      },
+      {
+        "level": 2,
+        "name": "south-west ground arcade",
+        "a": [
+          -16.675,
+          4,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 2,
+        "name": "south-east ground arcade",
+        "a": [
+          15.425,
+          4,
+          14.5
+        ],
+        "b": [
+          15.425,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 2,
+        "name": "north ground arcade",
+        "a": [
+          -0.5,
+          4,
+          -19
+        ],
+        "b": [
+          -0.5,
+          4,
+          -11
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 2,
+        "name": "entrance canopy passage",
+        "a": [
+          -1.8,
+          4,
+          24
+        ],
+        "b": [
+          -1.8,
+          4,
+          16
+        ],
+        "intersections": 0
+      },
+      {
+        "name": "southwest upper loggia",
+        "a": [
+          -16.675,
+          9,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 2
+      },
+      {
+        "name": "southeast upper loggia",
+        "a": [
+          15.425,
+          9,
+          14.5
+        ],
+        "b": [
+          15.425,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 2
+      },
+      {
+        "name": "north upper loggia",
+        "a": [
+          -0.5,
+          9,
+          -19
+        ],
+        "b": [
+          -0.5,
+          9,
+          -11
+        ],
+        "intersections": 0,
+        "level": 2
+      },
+      {
+        "level": 3,
+        "name": "south-west ground arcade",
+        "a": [
+          -16.675,
+          4,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 3,
+        "name": "south-east ground arcade",
+        "a": [
+          15.425,
+          4,
+          14.5
+        ],
+        "b": [
+          15.425,
+          4,
+          8.5
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 3,
+        "name": "north ground arcade",
+        "a": [
+          -0.5,
+          4,
+          -19
+        ],
+        "b": [
+          -0.5,
+          4,
+          -11
+        ],
+        "intersections": 0
+      },
+      {
+        "level": 3,
+        "name": "entrance canopy passage",
+        "a": [
+          -1.8,
+          4,
+          24
+        ],
+        "b": [
+          -1.8,
+          4,
+          16
+        ],
+        "intersections": 0
+      },
+      {
+        "name": "southwest upper loggia",
+        "a": [
+          -16.675,
+          9,
+          13.8
+        ],
+        "b": [
+          -16.675,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 3
+      },
+      {
+        "name": "southeast upper loggia",
+        "a": [
+          15.425,
+          9,
+          14.5
+        ],
+        "b": [
+          15.425,
+          9,
+          8.5
+        ],
+        "intersections": 0,
+        "level": 3
+      },
+      {
+        "name": "north upper loggia",
+        "a": [
+          -0.5,
+          9,
+          -19
+        ],
+        "b": [
+          -0.5,
+          9,
+          -11
+        ],
+        "intersections": 0,
+        "level": 3
+      }
+    ],
+    "repeat30TickHash": "sha256:e19a9f541f418f15459313509484bc6ee682b8bdb0741785e908edf0655a2c42",
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "notes": "Exact scoped regeneration/import, strict budgets, four schemas, six runtime pack members and repeated30-tick states pass. All six source/runtime/detail binaries and four scene/ground files remain unchanged. All36 current frames actually inspected,20 with actual version2 identities.52 actual imported-mesh semantic probes and16641 independent native ground reproductions pass. Skyline allowance corrected for omitted finials. No full-batch rebuild, independent Khronos or survey claim.",
+    "semanticProbesTotal": 52,
+    "runtimePackFilesVerified": 6,
+    "defaultEarthQuery": "included-as-preview"
+  },
+  "referenceInspectionHashes": [
+    {
+      "path": "_m/w/s/q/q/taipei-guest-house-wp/taipei-guest-house-and-garden-.jpg",
+      "hash": "5dcf5497a16be13dc567b53447ed6b04a30398684be44f82d7155fce355f1313"
+    },
+    {
+      "path": "_m/w/s/q/q/taipei-guest-house-wp/taipei-guest-house-back.jpg",
+      "hash": "ecf7c2bc5fcfec185070308bfdf6aa6ee816dc3372d3ede0f48213c880e44a12"
+    },
+    {
+      "path": ".artifacts/reference-photos/creator-public-domain-0.jpg",
+      "hash": "sha256:b239f2d63cf43820bab8f61c4212a3d17c493b722e20b70829e17ae4fbb6e8af"
+    },
+    {
+      "path": ".artifacts/reference-photos/creator-public-domain-1.jpg",
+      "hash": "sha256:137ed830e5e4d228d42315c2ebccbb36f4a8a3b380291ee9ec6291fa436a9b0d"
+    }
+  ],
+  "limitations": [
+    "Original medium-fi exterior checked against two cleared published Qualla public-domain north/garden originals first, then exact creator-public-domain southeast and close roof originals. Heights, column counts, dormer distribution, fine ornament and unseen west wall are estimated rather than surveyed.",
+    "Earlier attribution-licensed south hero and uncertain Gongyuan Road building are excluded from current approval. Main mansion identity and major envelope follow mapped vectors and the four inspected public-domain originals.",
+    "Separate Japanese bungalow, connector, gardens, pool, garden pavilions, interiors, temporary items and fine lettering excluded. Source photographs are not redistributed.",
+    "Independent Terrarium ground remains unchanged; own entrance/loggia/terrace contact is reviewed only against this bounded source preview. Other host elevation fields remain unverified and generic-footprint replacement stays disabled. Fine capitals, stone ornament, copper profile and slate courses are simplified by distance. No physical-device performance or survey accuracy claimed."
+  ],
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-17",
+    "inputHash": "sha256:9a61c0f9c15c2a2dec5e67f928cf171dc856966f0ad26b06ca697927d079d35d",
+    "referenceInputHash": "100d9eb14fbdcbbdcb5b0be647fd6f25e249a884bbc67e3dc9a616fbccd71239",
+    "acceptedReferencePaths": [
+      "_m/w/s/q/q/taipei-guest-house-wp/taipei-guest-house-and-garden-.jpg",
+      "_m/w/s/q/q/taipei-guest-house-wp/taipei-guest-house-back.jpg"
+    ],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/creator-public-domain-0.jpg",
+      ".artifacts/reference-photos/creator-public-domain-1.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:9b4c741395ce40775e2da7e3091acdb83a19c89c3dd95812253ded8d04639128",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/w/s/q/q/taipei-guest-house-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Taipei_Guest_House_Front_Near_View.jpg",
+        "license": "CC BY-SA 3.0",
+        "reason": "Attribution/share-alike license; excluded from current photographic comparison."
+      },
+      {
+        "path": "_m/w/s/q/q/taipei-guest-house-wp/gongyuan-road-side-taipei-gues.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Gongyuan_Road_side,_Taipei_Guest_House_20190814.jpg",
+        "license": "CC BY-SA 4.0",
+        "reason": "Uncertain building identity and attribution license; excluded entirely from current approval."
+      }
+    ],
+    "notes": "All four public-domain originals actually inspected. Cleared published Qualla CC0 garden birdview and creator-PD north elevation were first. Two exact own-work originals with explicit creator CC0/PD-self releases, pinned primary revisions and native digests fill close-roof and southeast/south coverage. Earlier CC hero and uncertain Gongyuan Road structure are excluded. Historical copied exhibition photographs were not adopted on uploader grants. All36 current model frames inspected; no photographic pixels enter runtime packs."
+  }
+}

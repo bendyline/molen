@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.beethoven_house",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:1252df5ce7d7b1e1fdcb73ba9e249395bd0c629a750017c812447bb8ae92dd76",
-  "sourceHash": "sha256:102ca8b1df837c1bb710059a9fd74514953cded983ebd884cf227c4e811c5781",
-  "runtimeHash": "sha256:4eddd89b3023ebd67e2e626bb7262521c64f114d8103db13856bff4475effb00",
-  "captureReportHash": "sha256:e4cf141845372d4d808d650ad058e7dc06e55ec5682811041b74f38c0df0a313",
+  "inputHash": "sha256:f7689f235837d17f23b24ea3be8823f6042ffeaf71d7b8a23933d25808a58be4",
+  "sourceHash": "sha256:10b914973c73659b01bc8793bfcd6184810083e04aa5657a8ebf94db9e389682",
+  "runtimeHash": "sha256:101cca7bafc541611e09f6ebb7504b7db8335d9da0c4ddce07cf90a83ee018aa",
+  "captureReportHash": "sha256:a07b3c21a9dbf75af468df92aa1debce6e0527b77ad0e473195c3a9b595682ff",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:a07b3c21a9dbf75af468df92aa1debce6e0527b77ad0e473195c3a9b595682ff",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -18,11 +19,11 @@
       "shots/front.png",
       "shots/back.png"
     ],
-    "notes": "Inspected all seven current portable views against individually viewed local Qualla front, courtyard, garden and portal originals. Pink three-storey street front has grouped casements, green shutters with red panel borders, window baskets and the carved entrance. Yellow rear house and lower garden wing frame the small courtyard. Final roof review restored both rear dormers, their peaked caps, the small high vent and the partly obscured upper rear window."
+    "notes": "All seven fresh portable frames inspected against both complete 3500×4230 museum originals. Corrected hipped two-pitch garden roof, end dormer and end windows are visible; street portal, paired openings and twin curved dormers remain consistent. Independent source-ground fixture retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4e6278fd250f0be70f7f76939da9e33d2062fbb0e068071dc754c05aa7a3af89",
+    "captureReportHash": "sha256:851ffa872337ad79267cbcb157e2ce24e707b7e44079dd4261c06202f6b78968",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,11 +33,11 @@
       "shots/shared/back.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views including the footprint overlay. Stucco, sandstone, timber, slate and painted metal use five shared metric surfaces; glass remains local. Courtyard trellis, gate, paneled door and roof courses remain legible. Flat-ground views are material fixtures; portable captures retain independent ground."
+    "notes": "All seven fresh shared-material frames inspected, including mapped overlay. Slate/painted metal, stucco, timber and sandstone remain coherent; roof planes and end dormer remain legible. Unload assertion passes. Flat material fixture is distinct from geographic source ground."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:5e357bf5f8927eec4216467f78903ae34da971d38c7ee1ecd785b3abd60b3ca3",
+    "captureReportHash": "sha256:a680c7979b03cd748ec0c50a877d75cd6b2f86bb067da6fbbf86fb0be7223eac",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -58,7 +59,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline retains front house, lower wing and dormer silhouette; district restores window/shutter rhythms and portal; street and closeup add casement bars, shutter panels, roof courses, door ornament, trellis and gate. Synthetic neighbors are style fixtures. No physical-device performance measurement claimed."
+    "notes": "All nineteen fresh version2 lighting, quality, façade, silhouette and forced-detail frames inspected. Actual current runtime and four level hashes are bound. The corrected garden mansard is retained through distance levels; foreground window bars, portal relief and trellis simplify progressively. Synthetic neighbors are style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,83 +78,87 @@
       ],
       "maxPngEncodingErrorMeters": 0.00003825645447363968
     },
-    "notes": "Anchor [7.101225,50.736893], heading -pi/2: +X south, +Z west toward Bonngasse. Single mapped L-shaped Bonngasse 20 footprint aligns with front house and lower eastern garden wing. Neighboring museum properties remain excluded. Unmodified Terrarium ground datum 64.7853 m at street pavement [1.6,5.65]. Front doorway Y=0.12; courtyard Y=0.62 and rear-wing threshold Y=0.65 accommodate the small independent rise. No flattening; footprint replacement disabled."
+    "notes": "Anchor [7.101225,50.736893], heading -pi/2: +X south, +Z west toward Bonngasse. Single mapped L-shaped Bonngasse 20 footprint aligns with front house and lower eastern garden wing. Neighboring museum properties remain excluded. Unmodified Terrarium ground datum 64.7853 m at street pavement [1.6,5.65]. Front doorway Y=0.12; courtyard Y=0.62 and rear-wing threshold Y=0.65 accommodate the small independent rise. No flattening; footprint replacement disabled. Roof and garden-end elevation corrected on2026-10-19; all source ground/map/placement/scene fingerprints and original contact levels retained. The current source-ground preview and mapped shared-material overlay were inspected."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Bonngasse 20 front house, attached lower birthplace garden wing and paved courtyard; adjacent museum, research and concert buildings excluded.",
-    "notes": "Five individually inspected local Qualla originals, official Beethoven-Haus building history and aerial roof context establish the historic house and birthplace garden wing. Hidden party walls, dimensions and roof joins remain estimates. Door relief, window baskets, slate courses and trellis are simplified. No surveyed plan, interiors, sculpture, vegetation, lettering or photo pixels reproduced."
+    "scope": "Historic birthplace at Bonngasse 20 and its rear courtyard massing; do not merge the neighboring research-center buildings into the birthplace.",
+    "notes": "Exact Emil Koch photographs, Wien Museum inventories 58411/1 and 58411/2 (circa 1890), explicitly released CC0 for the offered object images, were individually inspected at the original 3500×4230 pixels. Street view confirms paired window groups, three storeys, carved portal and twin curved dormers. Garden view confirms the attached lower birthplace wing, hipped two-pitch mansard, end-wall windows and end dormer, courtyard openings and paving. Official Beethoven-Haus building history independently confirms the surviving birthplace/front-house identity and courtyard arrangement. Corrected the garden roof and end elevation rather than preserving the former generic gable. Full Bonngasse20 scope retained; Bonngasse18, research/concert buildings, interiors, sculpture and people excluded. Paint colours, dimensions, hidden party walls, roof joins, small ornament and obscured openings remain bounded medium-fi estimates; these monochrome photos do not establish present paint colours. No photograph pixels embedded. Native mapped footprint, independent terrain and placement unchanged."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:c176854b2a97c653ff081be9be99cf705b72738bf0706f63612a012fd676a02e",
+    "recipeHash": "sha256:e531b0df233ddeed7bbf120f5a69160a99bf87b1b2167d1d13d2bdd0c6c47352",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:6cef7a762853c7bd891d378f3cefb7d009078d450bd60966b068a1ebd77a2457",
-        "bytes": 14344,
-        "gzipBytes": 2849,
-        "triangles": 166,
-        "cpuBytes": 12948,
-        "gpuBytes": 12948,
+        "hash": "sha256:bf945b6c08a6a09ff5cae0306a36c9c703aa55a386d7948d6d52101d810960a4",
+        "bytes": 14700,
+        "gzipBytes": 2934,
+        "triangles": 171,
+        "cpuBytes": 13304,
+        "gpuBytes": 13304,
         "errorMeters": 0.18,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:16bfa9f86b1b8e94fc54a2d34583a8d0f0fa26b3fabfd86d89cb566689511af6",
-        "bytes": 178880,
-        "gzipBytes": 29471,
-        "triangles": 2196,
-        "cpuBytes": 171576,
-        "gpuBytes": 171576,
+        "hash": "sha256:6856df3811407130d1a8d090aacbc9f681e39fe0b466b416f6bf0d992b9d279a",
+        "bytes": 193664,
+        "gzipBytes": 32168,
+        "triangles": 2385,
+        "cpuBytes": 186356,
+        "gpuBytes": 186356,
         "errorMeters": 0.08,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:662a77d64c1b748957b2fa420a5e2949c6bfb993924b72a0a40523cf122b4349",
-        "bytes": 551896,
-        "gzipBytes": 97752,
-        "triangles": 6978,
-        "cpuBytes": 544572,
-        "gpuBytes": 544572,
+        "hash": "sha256:283191951dbeba1ab9d7f21a836d2d6eaa8d0b37c773f7935749df935ac59fd9",
+        "bytes": 597720,
+        "gzipBytes": 106255,
+        "triangles": 7565,
+        "cpuBytes": 590396,
+        "gpuBytes": 590396,
         "errorMeters": 0.03,
         "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:68595825c9190b9add93180b92a8bd3f1c80de3f7b0da1c6f75159de9da0c9f9",
-        "bytes": 904556,
-        "gzipBytes": 150802,
-        "triangles": 7510,
-        "cpuBytes": 901200,
-        "gpuBytes": 901200,
+        "hash": "sha256:ab9fdfe8baf65be77f786cea4ef661e4033be58d42df9fb9b6c4b1aea02dc405",
+        "bytes": 975716,
+        "gzipBytes": 164258,
+        "triangles": 8103,
+        "cpuBytes": 972360,
+        "gpuBytes": 972360,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "All four regenerated actual runtime levels were inspected and verified:171/2385/7565/8103triangles;1/6/6/6draws. Hipped garden roof retained at skyline, end/side dormers and windows restored at district and detailed at street/closeup. Error values remain authoring budgets, not measured mesh distances."
   },
   "geometryValidation": {
     "status": "passed",
     "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 7510,
+    "sourceTriangles": 8103,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "notes": "Targeted exact regeneration, normal import integrity, every actual runtime level digest, strict medium-fi geometry/material budgets and source/scene/terrain schemas pass. Two30tick simulations agree. Native mapped footprint, scene, terrain JSON/PNG and global placement fingerprints remain identical; architectural changes are above-ground roof/end-elevation work.",
+    "integration": {
+      "repeatTicks": 30,
+      "stateHash": "sha256:a1423c45fc89a5abe9822ef767b6c201ed874a36fd73ed870f49505e9b9e1396"
+    }
   },
   "limitations": [
-    "Original medium-fi exterior from five individually inspected local Qualla street/courtyard/garden/portal photographs, official museum building history and aerial roof context. Hidden party walls, exact dimensions, roof joins and small ornament are estimates; no surveyed plan used.",
+    "Original medium-fi exterior reviewed against Emil Koch street and garden photographs explicitly released CC0 by Wien Museum, official museum building history and native mapped footprint. Earlier attribution-only imagery and aerial photography are excluded from the current review. Paint colours, hidden party walls, exact dimensions, roof joins and small ornament are estimates; no surveyed plan used.",
     "Bonngasse 20 front building, connected lower birthplace garden wing and courtyard hardscape only. Bonngasse 18, research/concert buildings, sculpture, vegetation, interiors, people and photographic pixels excluded.",
     "Independent unmodified Terrarium ground retained. Urban elevation interpolation is not survey accuracy; host terrain may differ. Footprint replacement remains disabled.",
     "Shutter panels, door relief, dormer caps, trellis, slate courses and garden gate are simplified progressively at distance. No physical-device performance measurement claimed."
@@ -162,5 +167,67 @@
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:3d4ae7e4355fb5d63482b284a50e0064c1751d78353403919dc0eea95d83ea9e",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "status": "completed",
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:f7689f235837d17f23b24ea3be8823f6042ffeaf71d7b8a23933d25808a58be4",
+    "referenceInputHash": "sha256:198f2cb078e5d7d72830adc0c2dbb3ef95f06a1394c237ddc6b1b8d4c03f5b23",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/wien-425250-3243833.jpg",
+      ".artifacts/reference-photos/wien-425253-3243841.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:3b91328376af7589aa33d0ea019da37a019e0a3c4b9457ccf06e8377b69f48af",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/u/1/j/0/beethoven-house-wp/2013-08-27-beethoven-haus-bonn.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:2013-08-27_Beethoven-Haus,_Bonngasse_20,_Bonn_IMG_5191.jpg",
+        "reason": "Historical attribution-only photo excluded from the active public-domain review."
+      },
+      {
+        "path": "_m/u/1/j/0/beethoven-house-wp/beethoven-house.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Beethoven_house.jpg",
+        "reason": "Historical attribution-only photo excluded from the active public-domain review."
+      },
+      {
+        "path": "_m/u/1/j/0/beethoven-house-wp/hof-und-garten-des-bee.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bonn_Beethoven-Haus_court_and_garden.jpg",
+        "reason": "Historical attribution-only photo excluded from the active public-domain review."
+      },
+      {
+        "path": "_m/u/1/j/0/beethoven-house-wp/portal-des-beethoven-h.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Bonn_Beethoven-Haus_portal.jpg",
+        "reason": "Historical attribution-only photo excluded from the active public-domain review."
+      },
+      {
+        "path": "_m/u/1/j/0/beethoven-house-wp/beehs2.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:BEEHS2.jpg",
+        "reason": "Historical attribution-only photo excluded from the active public-domain review."
+      },
+      {
+        "url": "https://www.google.com/maps/@50.73691,7.10136,21z/data=!3m1!1e3",
+        "reason": "Historical aerial photograph excluded; native mapped footprint retained as non-photographic control."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Exact Emil Koch photographs, Wien Museum inventories 58411/1 and 58411/2 (circa 1890), explicitly released CC0 for the offered object images, were individually inspected at the original 3500×4230 pixels. Street view confirms paired window groups, three storeys, carved portal and twin curved dormers. Garden view confirms the attached lower birthplace wing, hipped two-pitch mansard, end-wall windows and end dormer, courtyard openings and paving. Official Beethoven-Haus building history independently confirms the surviving birthplace/front-house identity and courtyard arrangement. Corrected the garden roof and end elevation rather than preserving the former generic gable. Full Bonngasse20 scope retained; Bonngasse18, research/concert buildings, interiors, sculpture and people excluded. Paint colours, dimensions, hidden party walls, roof joins, small ornament and obscured openings remain bounded medium-fi estimates; these monochrome photos do not establish present paint colours. No photograph pixels embedded. Native mapped footprint, independent terrain and placement unchanged."
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:f7689f235837d17f23b24ea3be8823f6042ffeaf71d7b8a23933d25808a58be4",
+    "sourceHash": "sha256:10b914973c73659b01bc8793bfcd6184810083e04aa5657a8ebf94db9e389682",
+    "runtimeHash": "sha256:101cca7bafc541611e09f6ebb7504b7db8335d9da0c4ddce07cf90a83ee018aa",
+    "notes": "Exact Emil Koch photographs, Wien Museum inventories 58411/1 and 58411/2 (circa 1890), explicitly released CC0 for the offered object images, were individually inspected at the original 3500×4230 pixels. Street view confirms paired window groups, three storeys, carved portal and twin curved dormers. Garden view confirms the attached lower birthplace wing, hipped two-pitch mansard, end-wall windows and end dormer, courtyard openings and paving. Official Beethoven-Haus building history independently confirms the surviving birthplace/front-house identity and courtyard arrangement. Corrected the garden roof and end elevation rather than preserving the former generic gable. Full Bonngasse20 scope retained; Bonngasse18, research/concert buildings, interiors, sculpture and people excluded. Paint colours, dimensions, hidden party walls, roof joins, small ornament and obscured openings remain bounded medium-fi estimates; these monochrome photos do not establish present paint colours. No photograph pixels embedded. Native mapped footprint, independent terrain and placement unchanged.",
+    "newCaptures": 33,
+    "geometryChanged": true
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

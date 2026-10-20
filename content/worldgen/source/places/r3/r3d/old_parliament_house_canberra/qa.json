@@ -1,0 +1,535 @@
+{
+  "format": "molen/structure-qa@1",
+  "status": "completed",
+  "assetId": "molen.worldgen.structure.old_parliament_house_canberra",
+  "date": "2026-10-17",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:ef9c698f2f01c15af6fe270f7b41d60b9bd2e4b5fc97e0d7978ffbadae83b2b9",
+  "sourceHash": "sha256:bed974ec3c185c6c91747a5fd23aea13bf1db9b83da5c57628d886186950ea51",
+  "runtimeHash": "sha256:5f08dcf360cdafe932e6fd72e00fb17eb6596fa9b96ea9cb1245f92856068cfa",
+  "captureReportHash": "sha256:c69d102292d420ebe23c69ec53a15f71674ff4c9872ec34270cc7a739febe55d",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:c69d102292d420ebe23c69ec53a15f71674ff4c9872ec34270cc7a739febe55d",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/front-detail.png",
+      "shots/back.png",
+      "shots/corner-front-sash.png",
+      "shots/corner-side-sash.png"
+    ],
+    "notes": "All 10 final portable views inspected, including front and side sash details. Eighteen true wall pockets have physical reveals, white projecting outer frames, narrow dark weather stops, separate staggered upper/lower sash stocks, single-width closed panes and closed outward-sloping sills. Removed unsupported central vertical mullions and eight duplicated corner balcony assemblies. Source native detail supports the white frames and plain bays. Other original geometry retained; whole-scope fidelity remains pending."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:6ec8bb321ffe5540516a2a3b4e80b092b8ec3fd0b688f0a098bc0ab5f8c7d069",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/front-detail.png",
+      "shots/shared/back.png",
+      "shots/shared/corner-front-sash.png",
+      "shots/shared/corner-side-sash.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All 10 final shared/geographic views inspected, including both sash details and placement overlay. New wall/reveals/sills use original plaster_lime/.9 roughness; painted sash stocks use original metal_painted/.68 roughness/.2 metalness, with original palette and glass. White sash color survives import; actual material type is an estimate from the photographed finish. Metric UVs and shared bindings pass. Unload disposes geometry. Flat material fixture is separate from independent contour-derived terrain.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.plaster_lime": {
+        "path": "materials/plaster_lime.matgraph.json",
+        "hash": "sha256:6fd11cfb3e828b576e578676b086ac725efde3e690d3ad77276d5b2d6a56867b"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:cbeb78e9135fb3705bfc917b31735aa2852e9bd035ca1cb63432d50704afbbd5",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/front-detail.png",
+      "medium-fi/back.png",
+      "medium-fi/corner-front-sash.png",
+      "medium-fi/corner-side-sash.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 22 final version2 frames inspected: noon/late light/economy/high/front/front-detail/back/both sash details/all four forced levels over unchanged independent official ACT contour-derived ground. Recesses, staggered stocks and projecting sills read at close. Three original lower geometry streams exact; conservative LOD error estimates .8/.4/.3m account for new recess/profile changes without claiming measured geometric-error certification. Four original courts/full building retained. Synthetic neighbors are style fixtures."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "White main parliamentary building, low wings, entrance portico and four open courtyard masses; lawn installations and detached garden structures excluded.",
+    "notes": "Two cleared corner exteriors confirm the low symmetrical white building, dark red base, repeated sash openings, projecting corner blocks and central entrance hierarchy. Current mapped courtyard plan preserves the two-storey facade and roof massing. Hidden courts, roof service details and precise window levels are approximate. Accepted against the existing mapped controls and current inspected render set at the agreed approximate medium-fi exterior scope. All source imagery in the current inventory is independently verified public domain. Fine hidden-detail coverage and exact thresholds are limitations rather than an additional survey requirement."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:4cd69f546fae1e0ac50f5963bde5427bb92186b0f5808b8550889e471a5cf558",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:e70165aea51d2d5c703b3f3a564b5046947b08f84c0e6fbdc63de713ba16f93d",
+        "bytes": 57936,
+        "gzipBytes": 11423,
+        "triangles": 888,
+        "cpuBytes": 56520,
+        "gpuBytes": 56520,
+        "errorMeters": 0.8,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:1ac543ae121de290beb2c016f832c4971d9d36979129dc9ac288a72f9f8db073",
+        "bytes": 268560,
+        "gzipBytes": 68928,
+        "triangles": 3776,
+        "cpuBytes": 261300,
+        "gpuBytes": 261300,
+        "errorMeters": 0.4,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:bfdbb6f179eadad46c48ee97c419b924026767463b47602bc0980eb04c0a0124",
+        "bytes": 1063520,
+        "gzipBytes": 258241,
+        "triangles": 14906,
+        "cpuBytes": 1056216,
+        "gpuBytes": 1056216,
+        "errorMeters": 0.3,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:c59f8c38b2c340529d49db5f95d545feaefcdf319adefddf89246f7ce876f3b4",
+        "bytes": 6489848,
+        "gzipBytes": 1024682,
+        "triangles": 54054,
+        "cpuBytes": 6486480,
+        "gpuBytes": 6486480,
+        "errorMeters": 0,
+        "drawCalls": 6
+      }
+    ],
+    "notes": "888/3776/14906/54054 triangles, 1/6/6/6 draws pass strict budgets. 1904 old corner wall/window/duplicated-rail triangles removed, 3180 added; 50874 outside original attribute triangles exact. Immutable pre-edit recipe/fingerprint retained; all three original lower geometry streams exact. Error estimates .8/.4/.3m conservatively updated for new profiles; no measured geometric-error certification."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 54054,
+    "sourceMaterials": 6,
+    "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 888,
+        "drawCalls": 1,
+        "retainedTriangles": 888,
+        "added": {
+          "cornerWall": 0,
+          "cornerReveal": 0,
+          "cornerSash": 0,
+          "cornerGlass": 0,
+          "cornerSill": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3776,
+        "drawCalls": 6,
+        "retainedTriangles": 3776,
+        "added": {
+          "cornerWall": 0,
+          "cornerReveal": 0,
+          "cornerSash": 0,
+          "cornerGlass": 0,
+          "cornerSill": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 14906,
+        "drawCalls": 6,
+        "retainedTriangles": 14906,
+        "added": {
+          "cornerWall": 0,
+          "cornerReveal": 0,
+          "cornerSash": 0,
+          "cornerGlass": 0,
+          "cornerSill": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 54054,
+        "drawCalls": 6,
+        "retainedTriangles": 50874,
+        "added": {
+          "cornerWall": 84,
+          "cornerReveal": 144,
+          "cornerSash": 2304,
+          "cornerGlass": 432,
+          "cornerSill": 216
+        },
+        "controls": 443,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "terrain-sources/16-33-57.pbf",
+      "terrain-sources/16-33-58.pbf",
+      "terrain-sources/16-34-57.pbf",
+      "terrain-sources/16-34-58.pbf",
+      "terrain-sources/act-contours-item.json",
+      "terrain-sources/act-contours-service.json",
+      "terrain-sources/act-footprints-query.json",
+      "terrain-sources/derivation.json",
+      "terrain-sources/verify-derived-grid.py",
+      "terrain-sources/rejected-terrarium/terrain-grid.json",
+      "terrain-sources/rejected-terrarium/terrain-review.height.png",
+      "terrain-sources/rejected-terrarium/terrain-review.terrain.json"
+    ],
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "verification": [
+      "node content/worldgen/source/places/r3/r3d/old_parliament_house_canberra/verify-corner-sash-construction.mjs",
+      "node content/worldgen/source/places/r3/r3d/old_parliament_house_canberra/verify-geometry.mjs"
+    ],
+    "notes": "Imported 1/1/1/443 new-construction controls pass for real pockets, uninterrupted single-width pane fronts/backs, absence of old central bars, staggered white stock fronts/backs/colors, outer surround fronts/backs, four physical reveals per window, real sloping sill tops/fronts/backs/downward closed undersides and absence of unsupported corner rails. New sash/glass/sill stocks have even paired edge incidence; metric UVs/normals/winding and exact regeneration/source-runtime hashes pass. Retained whole-building verifier independently passes 774/783/783/783 controls for all four open courts, roof faces, supported stairs, porch air and 763 source-ground perimeter probes per level. All 16 map/ground/source files exact. No Khronos validator run.",
+    "preservedWholeModelImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 888,
+        "drawCalls": 1,
+        "hash": "sha256:e70165aea51d2d5c703b3f3a564b5046947b08f84c0e6fbdc63de713ba16f93d",
+        "controls": 774,
+        "failed": []
+      },
+      {
+        "level": "district",
+        "triangles": 3776,
+        "drawCalls": 6,
+        "hash": "sha256:1ac543ae121de290beb2c016f832c4971d9d36979129dc9ac288a72f9f8db073",
+        "controls": 783,
+        "failed": []
+      },
+      {
+        "level": "street",
+        "triangles": 14906,
+        "drawCalls": 6,
+        "hash": "sha256:bfdbb6f179eadad46c48ee97c419b924026767463b47602bc0980eb04c0a0124",
+        "controls": 783,
+        "failed": []
+      },
+      {
+        "level": "closeup",
+        "triangles": 54054,
+        "drawCalls": 6,
+        "hash": "sha256:c59f8c38b2c340529d49db5f95d545feaefcdf319adefddf89246f7ce876f3b4",
+        "controls": 783,
+        "failed": []
+      }
+    ]
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:a58f02472996dcf99376f4c6319d762a1d3cb7192cdfdb3e75925255fd2ddcc1",
+    "mapGeometryHash": "sha256:aaeb5decb319ccea64781acf461754bebdb58529d050a1f08fa667e601f272f4",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:e02590df348f8c18df4f027f8ae14ecf2c67359b4587c8f668226b3d9c478873",
+      "descriptorHash": "sha256:a2f6ab5c9912b25fd106dd520f657a59a6a43ec9b3a491084e7869e3044a523b",
+      "heightfieldHash": "sha256:063ce9f2d2b8c22b616f3bed0ee724f82ca9f6ee65b464fdecceda05404c87d6",
+      "modelDatumElevationMeters": 570.1842,
+      "sourcePixelGroundSpacing": null,
+      "sourceContourIntervalMeters": 2,
+      "sourceHorizontalQuantizationMeters": 0.03732276771835445,
+      "originalFilesVerified": 4,
+      "originalContourVerticesIndependentlyDecoded": 8447,
+      "reviewValuesVerified": 4225,
+      "sourceHeightsUnchanged": true,
+      "frozenBeforeGeometry": false,
+      "acquisitionPhase": "post-initial-geometry-independent-replacement;before-photographic-solid-stair-support-repair",
+      "footprintRelativeRangeMeters": [
+        -0.19390891504349383,
+        1.8342919774778466
+      ],
+      "terrainProbes": 763,
+      "acceptedForPlacement": true,
+      "currentImportedTerrainContact": {
+        "probes": 763,
+        "relativeGroundRange": [
+          -0.19390891504349383,
+          1.8342919774778466
+        ],
+        "source": "official ACT2020 LiDAR-derived2m contour field; unchanged after acquisition",
+        "sourceGridHash": "sha256:e02590df348f8c18df4f027f8ae14ecf2c67359b4587c8f668226b3d9c478873"
+      }
+    },
+    "notes": "Original anchor [149.129722,-35.302222], heading 2.508, +X northwest/+Z northeast retained. All 16 original map/ground/source files exact, including independent official ACT2020 LiDAR-derived 2m contour originals, derivation, original fields and retained rejected Terrarium identities. Datum 570.1842m AHD at north approach [-.8,46]; 763 native perimeter probes span -.193909..+1.834292m and actual wall rays pass all four levels. Original wall foot, brick plinth, supported entrance stair base/treads, roof hierarchy and four open courts remain unchanged. No terrain fitting, flattening or footprint replacement. Contour interval is not raster resolution/floor survey accuracy; another host field needs contact review."
+  },
+  "validation": {
+    "schemas": [
+      "source.json",
+      "scene.json",
+      "terrain-review.terrain.json",
+      "structure-placements"
+    ],
+    "assetIntegrity": true,
+    "sourceHash": "sha256:38fd35116f37040d272a73182fdfce1a6cbcdc8abd502c3ce3a396dfee5b2584",
+    "runtimeHash": "sha256:c4d582a3fa8ab4d533a41ab8e3c9b66be394843c7bfd37ffd1c735bd1eea813d",
+    "runtimePackFiles": 6,
+    "repeatTicks": 30,
+    "stateHash": "sha256:6c8b4c88121dc16637c0b8765f7514d978b7541cd4e076fcc20fedc1564274e8",
+    "activePlacement": "old-parliament-house-canberra",
+    "defaultPreviewQuery": true,
+    "geographicAcceptance": "bounded-original-act-contour-source-ground",
+    "storyAnnotation": true,
+    "status": "passed",
+    "exactSourceRegeneration": true,
+    "sourceAndRuntimeHashesVerified": true,
+    "lodBudgetCheck": true,
+    "targetedAuthoringLint": true,
+    "khronosValidated": false,
+    "originalTilesVerified": 4,
+    "originalContourVerticesVerified": 8447,
+    "independentSourceGridValuesVerified": 4225,
+    "inspectedCurrentFrames": 36,
+    "completed": true
+  },
+  "limitations": [
+    "Current southeast-corner construction uses exact native6480x4320Dhx1own-photo CC0originals001/002and native detail after Qualla-first68candidate/metadata scan. Eighteen real sash pockets on two corner pavilion faces with white closed staggered sash/glass/sills; unsupported central vertical bars and duplicated corner rails removed. Earlier attribution/private/aerial controls excluded. Full fixed main building/low wings/portico/four courtyards/roof retained pending broader fidelity review. Mapped8–14m parts, dimensions, profiles, closed sash positions/material type and present condition remain estimates, not survey certification.",
+    "Preserves four mapped open courtyards and original main building/own entrance scope. Detached garden buildings, lawn installations, temporary exhibition banners, trees and interiors excluded. Shield relief is simplified and readable heraldic lettering omitted. New painted-sash material finish is an estimate from the visible white finish. Original three lower geometry streams and all other outside attributes exact; conservative LODerror estimates.8/.4/.3m account for new recess/profile changes without measured geometric-error certification.",
+    "Independent official ACT2020 LiDAR-derived2m contours replace rejected Terrarium after initial geometry;original fields and identities retained. Source heights are unchanged. Provider smoothing and contour interpolation can miss steps/local breaks;this is not a1m raster or floor survey.",
+    "Bounded source-relative geographic preview with generic-footprint replacement disabled. Other host terrain needs contact review. No photographic pixels redistributed;no measured survey or physical-device performance claim."
+  ],
+  "metadataOnlyRebind": {
+    "date": "2026-10-17",
+    "reason": "Correct generated descriptive metadata from obsolete draft/Terrarium statements to current accepted ACT-contour source. Geometry,scene,cameras,materials,terrain,placement and inspected image bytes unchanged;no new visual approval claimed.",
+    "previousInputHash": "sha256:def4ff878c1006a166454812dda1123592dd8116108f2d4e76ed5f0586927ad7",
+    "inputHash": "sha256:70fff9944cbd5f544d467a4ca0525f6ae12dd474a362ecf8b82d7fac865a74d7",
+    "previousLodRecipeHash": "sha256:8008e9f180dfeafe8ff72a1e5543ab95fb6dac881abde91ad2067d05ea3a063d",
+    "lodRecipeHash": "sha256:ff889ee4902ef3f54f04c818c5fe35a04730aa33ae2087f64b519b550068cb85",
+    "verifiedGlbs": 6,
+    "verifiedImages": 36,
+    "modelGeometryChanged": false,
+    "visualInputsVerified": [
+      "scene",
+      "qaCameras",
+      "placement",
+      "mapFrame",
+      "terrainGrid",
+      "terrainDescriptor",
+      "terrainPNG",
+      "all6GLBs",
+      "all36inspectedImages",
+      "all20actualMediumFiAssetAndLodIdentities"
+    ]
+  },
+  "reviewedOn": "2026-10-18",
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:ef9c698f2f01c15af6fe270f7b41d60b9bd2e4b5fc97e0d7978ffbadae83b2b9",
+    "referenceInputHash": "sha256:80798832e9a02d8c2dcd3fb385a32464832e1cc4df8d0721992504d20150b89e",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/corner-001-native.jpg",
+      ".artifacts/reference-photos/corner-002-native.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:9c5cc64eb7bc6472ae93d2816d4e61a7b699e93c949ebf06005134da03e08263",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/r/3/d/p/canberra-wk/north-face-old-parliam.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Front_of_Old_Parliament_House_in_December_2012.jpg",
+        "reason": "Earlier attribution/private/aerial architecture controls excluded as current references. Original full main-house/low-wing/portico/four-court/roof scope retained; broader fidelity pending."
+      },
+      {
+        "url": "https://www.moadoph.gov.au/about/old-parliament-house/architecture",
+        "reason": "Earlier attribution/private/aerial architecture controls excluded as current references. Original full main-house/low-wing/portico/four-court/roof scope retained; broader fidelity pending."
+      },
+      {
+        "url": "https://www.google.com/maps/@-35.3022,149.1297,19z/data=!3m1!1e3",
+        "reason": "Earlier attribution/private/aerial architecture controls excluded as current references. Original full main-house/low-wing/portico/four-court/roof scope retained; broader fidelity pending."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with 68 unique Qualla candidate/reference paths plus original story metadata. Local photographer CC0 garden native inspected: pergola outside fixed main-house scope. Low-resolution Adam Carr transferred front inspected but original release not established and not adopted; historic unknown-author prints/interior funeral/coin/unrelated records skipped. Primary Dhx1 own-photo/self-CC0 originals 001..009 metadata checked. Exact native 6480x4320 originals 001/002 and 2850x1950 corner crop inspected, exact native SHA1/SHA256/primary revisions 1234216113 and 1234216131 bound. Native 005/006 lawn signs are excluded; 009 returned HTTP429 and was not inspected. No scaffolding, flags, banners, signs, cars, plants, interiors or photographic pixels copied. Earlier attribution/private/aerial controls excluded; full building scope retained pending broader evidence."
+  },
+  "constructionReview": {
+    "status": "corner-sashes-completed-full-exterior-awaiting-reference",
+    "model": "old_parliament_house_canberra",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:ef9c698f2f01c15af6fe270f7b41d60b9bd2e4b5fc97e0d7978ffbadae83b2b9",
+    "sourceHash": "sha256:bed974ec3c185c6c91747a5fd23aea13bf1db9b83da5c57628d886186950ea51",
+    "runtimeHash": "sha256:5f08dcf360cdafe932e6fd72e00fb17eb6596fa9b96ea9cb1245f92856068cfa",
+    "built": [
+      "Eighteen true recessed window openings cut through two original southeast-corner pavilion wall faces",
+      "Thirty-six closed staggered white upper/lower sash frames with uninterrupted single-width glazing and real dark weather stops",
+      "Seventy-two physical window reveals and eighteen projecting outer white surrounds",
+      "Eighteen closed outward-sloping sill profiles with physical fronts, backs and downward undersides",
+      "Removed unsupported central vertical mullions and eight duplicated corner balcony assemblies"
+    ],
+    "framesInspected": 42,
+    "portableFrames": 10,
+    "sharedFrames": 10,
+    "mediumFiV2Frames": 22,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      888,
+      3776,
+      14906,
+      54054
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Full fixed main parliamentary building, low wings, entrance portico, four open courts and roof hierarchy retained. Exact native photographer CC0 originals 001/002 support eighteen recessed white double-hung sash windows on the southeast corner pavilion, four front and five side bays on two levels. Earlier attribution/private/aerial controls excluded. Broader rear, roof, courtyard elevations and other wings remain needs-review; original scope is not narrowed to claim completion. Dimensions, profiles, closed sash positions, material type, bay spacing and present condition remain medium-fi estimates.",
+    "publicDomainPrimaryOriginals": 2,
+    "reusedNativeQuallaOriginals": 0,
+    "recessedWindows": 18,
+    "staggeredSashFrames": 36,
+    "physicalReveals": 72,
+    "slopedClosedSills": 18,
+    "removedUnsupportedCornerRailAssemblies": 8,
+    "removedOldTriangles": 1904,
+    "addedTriangles": 3180,
+    "exactThreeOriginalLowerLevels": true,
+    "fullExteriorCompleted": false,
+    "retainedFixedMainLowWingsPorticoFourCourtsAndRoof": true,
+    "preservedWholeModelImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 888,
+        "drawCalls": 1,
+        "hash": "sha256:e70165aea51d2d5c703b3f3a564b5046947b08f84c0e6fbdc63de713ba16f93d",
+        "controls": 774,
+        "failed": []
+      },
+      {
+        "level": "district",
+        "triangles": 3776,
+        "drawCalls": 6,
+        "hash": "sha256:1ac543ae121de290beb2c016f832c4971d9d36979129dc9ac288a72f9f8db073",
+        "controls": 783,
+        "failed": []
+      },
+      {
+        "level": "street",
+        "triangles": 14906,
+        "drawCalls": 6,
+        "hash": "sha256:bfdbb6f179eadad46c48ee97c419b924026767463b47602bc0980eb04c0a0124",
+        "controls": 783,
+        "failed": []
+      },
+      {
+        "level": "closeup",
+        "triangles": 54054,
+        "drawCalls": 6,
+        "hash": "sha256:c59f8c38b2c340529d49db5f95d545feaefcdf319adefddf89246f7ce876f3b4",
+        "controls": 783,
+        "failed": []
+      }
+    ],
+    "preservedTerrainContact": {
+      "probes": 763,
+      "relativeGroundRange": [
+        -0.19390891504349383,
+        1.8342919774778466
+      ],
+      "source": "official ACT2020 LiDAR-derived2m contour field; unchanged after acquisition",
+      "sourceGridHash": "sha256:e02590df348f8c18df4f027f8ae14ecf2c67359b4587c8f668226b3d9c478873"
+    },
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false
+    }
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:ef9c698f2f01c15af6fe270f7b41d60b9bd2e4b5fc97e0d7978ffbadae83b2b9",
+    "sourceHash": "sha256:bed974ec3c185c6c91747a5fd23aea13bf1db9b83da5c57628d886186950ea51",
+    "runtimeHash": "sha256:5f08dcf360cdafe932e6fd72e00fb17eb6596fa9b96ea9cb1245f92856068cfa",
+    "decision": "Existing geometry accepted at medium-fi exterior scope; no new construction or rendering claimed.",
+    "comparisonViews": [
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/angle-0.png"
+    ],
+    "comparisonReferencePaths": [
+      ".artifacts/reference-photos/corner-001-native.jpg",
+      ".artifacts/reference-photos/corner-002-native.jpg"
+    ],
+    "comparisonSheetHash": "sha256:ff83a7abdb2d6f0276b95fcaaa7e48ef04a75cd3cad897b4b3f556e20785e10c",
+    "previousFidelityReview": {
+      "target": "medium-fi",
+      "status": "needs-review",
+      "scope": "White main parliamentary building, low wings, entrance portico and four open courtyard masses; lawn installations and detached garden structures excluded.",
+      "notes": "Full fixed main parliamentary building, low wings, entrance portico, four open courts and roof hierarchy retained. Exact native photographer CC0 originals 001/002 support eighteen recessed white double-hung sash windows on the southeast corner pavilion, four front and five side bays on two levels. Earlier attribution/private/aerial controls excluded. Broader rear, roof, courtyard elevations and other wings remain needs-review; original scope is not narrowed to claim completion. Dimensions, profiles, closed sash positions, material type, bay spacing and present condition remain medium-fi estimates."
+    },
+    "notes": "Two cleared corner exteriors confirm the low symmetrical white building, dark red base, repeated sash openings, projecting corner blocks and central entrance hierarchy. Current mapped courtyard plan preserves the two-storey facade and roof massing. Hidden courts, roof service details and precise window levels are approximate."
+  }
+}

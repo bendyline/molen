@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.faneuil_hall",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:1b3e36bdc60b1eae49592a0942e7a7210e576b405604a2c9b63b51bfe682a00f",
-  "sourceHash": "sha256:c2c981aa687ac43396c802c28caf6b666d915aa0079b4355812fc7400bd11237",
-  "runtimeHash": "sha256:4f34e5317c1866dca13d7e6b1e98c36b08ff7b930b6a23b798bb9564761a1c52",
-  "captureReportHash": "sha256:798e33ceab4182b92610904aa555450c8be0b4309a50df98c4928be9a8d76e54",
+  "inputHash": "sha256:39c0346bb5a52630afa0ec5919379f787cc9eaec8943d87e7b83d826a363ad9d",
+  "sourceHash": "sha256:4c4966d5c65c050164d06651d2f72f8a516c24b7ab2b3859d0523f62bd28d674",
+  "runtimeHash": "sha256:f07a363f71c971e8e5b0a15b769624f757a7ee08c5a40b5e36a26a11980b584e",
+  "captureReportHash": "sha256:d7709784dd262a4cc9d12882f15e06938915580da6e4cb6c0af01490a681285d",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:d7709784dd262a4cc9d12882f15e06938915580da6e4cb6c0af01490a681285d",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/west-entrances.png",
+      "shots/east-entrance-detail.png"
     ],
-    "notes": "Inspected all seven final portable views against the two primary Qualla originals and supplemental eastern gable photograph. Three brick floors, seven-bay gables, nine-bay long sides, white pilasters/cornices, large fanlights and paired oculi, slate gable roof, east-end cupola and grasshopper remain identifiable. Rejected initial gable occlusion was corrected by separating the roof overhang from the gable plane. Open lantern arch spandrels were added before final captures."
+    "notes": "All nine current portable views inspected, including both new entrance close-ups. Six physical recesses have inward-facing arched reveals, thresholds, opaque paired doors and recessed fanlights. The thin head-band seam found in the first render was closed before these final captures. Existing body dimensions, roofs, cupola and ground retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:940fe2075ad428a4ac8aca547bdb0ab383ace35590e2fb84e9be85dc6967719a",
+    "captureReportHash": "sha256:3352b6e719677e472d3057189e0ca011848e7296cdce9cf1ceac92de9c537172",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/west-entrances.png",
+      "shots/shared/east-entrance-detail.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared views including the north-up placement overlay. Brick, plain concrete, slate and painted metal retain metric UVs; glazing stays portable. The mapped hall outline and separate east-end tower parts agree with the model. Source/runtime transform, reference-point sampling, resource unload and material-graph reads pass. Fine stone carving and physical gold reflectance are simplified."
+    "notes": "All nine current shared-material views inspected, including mapped footprint overlay and both entrance details. Recesses read with actual shadows and consistent stone/brick/metal bindings. Placement/transform and unload pass. Flat placement fixture tests mapped alignment, not independent ground accuracy.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.slate": {
+        "path": "materials/slate.matgraph.json",
+        "hash": "sha256:415a755f4462877200571fa4137b0c5b877310fdd3d4e6e986ff361bbcceebd1"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:778e8895d195e8401fcd8c6afa810374f7a764bec99d8469781484fcabf233b1",
+    "captureReportHash": "sha256:d9a4ebd6b904eaa3b44e02d2696f43783a10b193a7254cea915ae020cd6ffe59",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/west-entrances.png",
+      "medium-fi/east-entrance-detail.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final medium-fi views, including both lights/quality modes, front/back, silhouette and forced LODs. Open cupola posts now persist in skyline instead of the rejected dark closed lantern. Window rhythm and three floor bands retain legibility at block distance; small trim and grasshopper details simplify at distant levels. Synthetic neighboring blocks are a style test, not downtown Boston. No physical-device performance claim."
+    "notes": "All 21 current version-2 frames inspected across lights, quality modes, detail cameras and all four forced levels. Arched recesses survive distance simplification. Existing three-floor/bay rhythm, roof and open cupola remain. Context neighbors are synthetic style evidence."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,91 +102,2953 @@
       ],
       "maxPngEncodingErrorMeters": 0.00003063011169501806
     },
-    "notes": "Hall polygon 35184401640534 and cupola parts 35184612459110/35184612459142 establish the building and eastern tower. Anchor [-71.05623431503773,42.36003337249992], heading 1.7056862578319953, +X north-northwest and +Z east-northeast retain the east gable facing Quincy Market. Entrance reference [0,15.9] defines datum 5.5784 m. Unmodified terrain spans -0.012635..0.171418 m across control vertices; foundation reaches -0.75 m. Outline is generalized and the height estimates are not surveyed. Footprint suppression remains off."
+    "notes": "Original hall/cupola outlines, anchor [-71.05623431503773,42.36003337249992], heading 1.7056862578319953, +X north-northwest/+Z east-northeast retained. Map vectors independently locate the cupola toward Quincy Market. Original entrance reference [0,15.9], provider-relative datum 5.5784 m, source relief -0.012635..0.171418 m and -0.75 m foundation retained byte-for-byte. New recesses occupy existing facade volume. Source-native details and current mapped overlay inspected. Approximate source-relative exterior placement; not surveyed paving/floor levels or certification of another host field. No flattening, height fitting or new cutout."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Historic Faneuil Hall exterior, roof, cupola and simplified grasshopper weather vane; adjacent markets and interiors excluded.",
-    "notes": "Accepted original medium-fi historic Faneuil Hall exterior. The 2025 Ajay Suresh whole western gable/side view, Robert Linsdell lantern detail and supplemental Eric Kilby eastern gable establish the visible exterior. Main proportions, fanlights, white bands, roof/cupola relationship and insect weather-vane silhouette are retained. Detailed capitals, exact pane counts, access ramps, plaques, unseen roof services and interiors are omitted or simplified. Quincy Market is excluded. Reference photography is not redistributed."
+    "scope": "Historic hall exterior with six real gable entrance recesses, paired opaque doors, fanlights, thresholds and inward-facing curved reveals; market neighbors and interiors excluded.",
+    "notes": "Two exact NPS native originals with explicit public-domain grants replace attribution-licensed references after starting with the local Qualla corpus. Both originals show the west gable. Three western doorways, arched fanlights, pale reveals and thresholds control the new construction; three eastern doorways retain the existing conservative symmetry approximation. The 0.55 m recess depth, pane/panel counts, color, exact elevations, unseen sides and 2026 condition are estimates. Main frame, ground, roof, cupola, floor bands and mapped dimensions retained. No source pixels embedded and no navigable interior claimed."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:55e967b33545528cd6b3eff7517d38a904efb4227fe4a0bd4b4621ea3b33fdcc",
+    "recipeHash": "sha256:377635fefdbd796eeb966bfb7c966b566a3de6ed862c848ce94e11a4a6643947",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:9e9ab8a113beaec30948439ec3b255aecc9e2e2576b7dc3b61bfebab13eddd05",
-        "bytes": 64852,
-        "gzipBytes": 10595,
-        "triangles": 818,
-        "cpuBytes": 63444,
-        "gpuBytes": 63444,
+        "hash": "sha256:b15bf99d847d2c480b8feb4227729b9e97c75e9698973b938b3f01d5fc75d2c2",
+        "bytes": 76216,
+        "gzipBytes": 12478,
+        "triangles": 972,
+        "cpuBytes": 74808,
+        "gpuBytes": 74808,
         "errorMeters": 1.2,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:b9a94f6542914469ea8d3d507c83c2e578505278454fb8ea3c36295c19cc1d6a",
-        "bytes": 263024,
-        "gzipBytes": 52176,
-        "triangles": 3948,
-        "cpuBytes": 256968,
-        "gpuBytes": 256968,
+        "hash": "sha256:adc9ed51919e8550d7b8414524853a4cf84a0bf1f47c07310683372b27d3fc0b",
+        "bytes": 255384,
+        "gzipBytes": 52161,
+        "triangles": 3880,
+        "cpuBytes": 249360,
+        "gpuBytes": 249360,
         "errorMeters": 0.3,
         "drawCalls": 5
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:b099738c2ec328d65efbf1e96a808b4169ac891df148c57032f00936858b76bb",
-        "bytes": 986072,
-        "gzipBytes": 178275,
-        "triangles": 14532,
-        "cpuBytes": 979992,
-        "gpuBytes": 979992,
+        "hash": "sha256:c5dd78efb68021199e5b8eca7cb2491712d8ebaca444abd0f57015322913a14d",
+        "bytes": 1002152,
+        "gzipBytes": 180629,
+        "triangles": 14812,
+        "cpuBytes": 996072,
+        "gpuBytes": 996072,
         "errorMeters": 0.14,
         "drawCalls": 5
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:20cb7a76dd3e5c312f607b5d97f33f14b31b5baed53e13b9394e797ccd3b2e2f",
-        "bytes": 2066472,
-        "gzipBytes": 323327,
-        "triangles": 17196,
-        "cpuBytes": 2063520,
-        "gpuBytes": 2063520,
+        "hash": "sha256:4be02699a61f9d2845b1e5d3edc35d6afbe70c806f94331e1a74b99cba400256",
+        "bytes": 2100072,
+        "gzipBytes": 328033,
+        "triangles": 17476,
+        "cpuBytes": 2097120,
+        "gpuBytes": 2097120,
         "errorMeters": 0,
         "drawCalls": 5
       }
     ],
-    "notes": "All four current hash-bound levels pass strict budgets and were visually inspected. Counts: skyline 818, district 3948, street 14532, closeup 17196. Skyline/district/street are authored; district keeps the facade rhythm using shallow trim planes. Error limits are declared authoring budgets, not independent mesh-distance measurements."
+    "notes": "972/3880/14812/17476 triangles, 1/5/5/5 draws pass strict budgets. All four authored levels preserve real door recesses and thresholds. District simplifies shallow pilaster shafts to retain important entrance geometry within budget. Error bounds are authoring estimates, not an independent surface-distance certificate."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 17196,
+    "sourceTriangles": 17476,
     "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
+    "actualImportedEntranceChecks": [
+      {
+        "level": "skyline",
+        "triangles": 972,
+        "drawCalls": 1,
+        "controls": 96,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3880,
+        "drawCalls": 5,
+        "controls": 96,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": -15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": 15.21500015258789
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 14812,
+        "drawCalls": 5,
+        "controls": 96,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": 1
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 17476,
+        "drawCalls": 5,
+        "controls": 96,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.2,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": -15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": -1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": -1
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.2,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": -6.485714285714286
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.2,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 0
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.2,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "real air before recessed opaque door",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6
+          },
+          {
+            "name": "opaque leaves terminate exterior at fixed recess depth",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.6,
+            "z": 15.239999771118164
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": 0.15,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.1,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "physical threshold floor",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "z": -0.25,
+            "y": 0.11999999731779099
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": -0.4
+          },
+          {
+            "name": "actual fanlight recess air",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "glazing closes fanlight behind reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286,
+            "dx": 0.4
+          },
+          {
+            "name": "curved head has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "jamb has inward-facing physical reveal",
+            "pass": true,
+            "sign": 1,
+            "x": 6.485714285714286
+          },
+          {
+            "name": "brick pier closes wall between doors",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "continuous wall at entrance head seam",
+            "pass": true,
+            "sign": 1
+          },
+          {
+            "name": "retained roof",
+            "pass": true,
+            "sign": 1
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dr/drt/faneuil_hall/verify-entrance.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity, strict LOD/material budgets, source/imported Float32 normals/winding/UVs and six-entrance air/door/fanlight/floor/curved reveal/jamb controls pass. Two focused NPS source-policy tests pass; pure agency NPS Photo credit still requires exact ID, original URL/bytes and explicit public-domain grant. Private credit suffixes remain rejected."
   },
   "limitations": [
-    "Original medium-fi exterior from inspected local Qualla photographs and generalized hall/cupola footprints; not a measured architectural survey.",
+    "Original medium-fi exterior: Qualla corpus searched first; current entrance construction uses two inspected NPS originals with explicit public-domain grants. Generalized hall/cupola footprints and retained photographic proportions are not a measured survey.",
+    "The west gable doors, arched fanlights and white reveals are visible in the NPS originals. East gable entrance distribution is retained as a conservative symmetry approximation. Recess depth 0.55 m is estimated; opaque leaves terminate the exterior, with no navigable interior.",
     "Facade bay rhythm, arched fanlights, pilasters, cornices, gables, open lantern and grasshopper silhouette are retained. Fine Corinthian ornament, pane counts, access ramps, plaques and hidden roof service details are simplified.",
     "Only historic Faneuil Hall is included. Quincy Market, neighboring market buildings, plaza furniture and interiors are excluded.",
     "Height estimates and entrance datum are photographic/map interpretations. Other host elevation datasets may require a new placement review.",
-    "Reference photography remains in Qualla; no photos are embedded or redistributed in the runtime pack."
+    "Qualla corpus and exact supplemental NPS originals/rights are recorded with the source; no photographs are embedded or redistributed in the runtime pack."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:5fa37b41a28702f75d6ff14c2b15f41fe3851f61878bcd34a9e7aca47338a19b",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:39c0346bb5a52630afa0ec5919379f787cc9eaec8943d87e7b83d826a363ad9d",
+    "referenceInputHash": "f60d7889b737e7b057fd9d8460b9230efc62fe77aa0b600f2b05a077b7f7cf60",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/nps-east.jpg",
+      ".artifacts/reference-photos/nps-west.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:f0eff07ea3294618a2b8ed57d338c57c387be12a7afe51e633efbada13b49f5e",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/r/t/2/faneuil-hall-wp/boston-ma.jpg",
+        "reason": "Attribution-licensed prior reference excluded from current construction."
+      },
+      {
+        "path": "_m/d/r/t/2/faneuil-hall-wp/faneuil-hall-boston-ma.jpg",
+        "reason": "Attribution-licensed prior reference excluded from current construction."
+      },
+      {
+        "path": "_m/d/r/t/2/faneuil-hall-wp/faneuil-hall.jpg",
+        "reason": "Attribution-licensed prior supplemental photograph excluded."
+      },
+      {
+        "path": "_m/d/r/t/2/faneuil-hall-wp/faneuil-hall-loc-4a304.jpg",
+        "reason": "Historic appearance and obscured doors; exact underlying primary rights not bound."
+      },
+      {
+        "path": "_m/d/r/t/2/faneuil-hall-wp/faneuil-hall-market-place.jpg",
+        "reason": "Historic painting, not current photograph."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Local published Qualla media and all 41 candidate records searched first. Historic public-domain-labelled LOC photo and painting inspected but excluded: awnings/period changes obscure current entrances and exact underlying grants were not bound. Interiors/mosaic/plaque are irrelevant to exterior geometry. Former CC references excluded. Then two exact original NPS photographs with pure agency credit and explicit full public-domain grants were inspected individually; saved native bytes and primary snapshots bound."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "faneuil_hall",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:39c0346bb5a52630afa0ec5919379f787cc9eaec8943d87e7b83d826a363ad9d",
+    "sourceHash": "sha256:4c4966d5c65c050164d06651d2f72f8a516c24b7ab2b3859d0523f62bd28d674",
+    "runtimeHash": "sha256:f07a363f71c971e8e5b0a15b769624f757a7ee08c5a40b5e36a26a11980b584e",
+    "built": [
+      "Six real recessed entrances replacing opaque whole-block facade and door overlays",
+      "Inward-facing curved arched reveals and jambs",
+      "Physical stone thresholds with split projecting base",
+      "Opaque paired door leaves and recessed glazed fanlights"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      972,
+      3880,
+      14812,
+      17476
+    ],
+    "drawCalls": [
+      1,
+      5,
+      5,
+      5
+    ],
+    "limits": "Two exact NPS native originals with explicit public-domain grants replace attribution-licensed references after starting with the local Qualla corpus. Both originals show the west gable. Three western doorways, arched fanlights, pale reveals and thresholds control the new construction; three eastern doorways retain the existing conservative symmetry approximation. The 0.55 m recess depth, pane/panel counts, color, exact elevations, unseen sides and 2026 condition are estimates. Main frame, ground, roof, cupola, floor bands and mapped dimensions retained. No source pixels embedded and no navigable interior claimed.",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

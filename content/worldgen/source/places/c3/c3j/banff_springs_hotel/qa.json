@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.banff_springs_hotel",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:77aaebb141bcf435f2d3cec7737cf291e4b9d4a33d29a165f0ad9f02dcaa0195",
-  "sourceHash": "sha256:f2996b493d3f94d6b5044ec9ff58e530f7bc25055d21d5991ca0b8b35f6eaff5",
-  "runtimeHash": "sha256:3464c424bf1a137e2a539bcf305e51d98f9772403ba0f02428d1ce23268386e3",
-  "captureReportHash": "sha256:c2e0117d8e8879488c2c30242c57e9b988403e6ddc4749226b4e17bba6e399f3",
+  "inputHash": "sha256:a300231f20b5d785b3be7626dde11b3d9093a281a3e02922e095b6d1f45a4e5c",
+  "sourceHash": "sha256:d9c35832a9ff15c5aace339cd9e1a81da51a75f9b8d35c562a74779fd5369e7a",
+  "runtimeHash": "sha256:32e1b3c91ae15980008966ff21eb0daea534415d875fdea36ffdd5cfd5d0fab6",
+  "captureReportHash": "sha256:6dc0b604a4c408eed4bf6a463fa479fb8833ec84cff95e41363f3a80855fd40a",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:6dc0b604a4c408eed4bf6a463fa479fb8833ec84cff95e41363f3a80855fd40a",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/south-stairs.png",
+      "shots/stair-landings.png"
     ],
-    "notes": "Inspected all seven final portable views against three individually viewed Qualla originals, the hotel floor plan and Parks Canada architecture description. The central stepped tower, long guest wings, angled end pavilions, low public rooms and Rundle cross-wing remain distinct. Review corrected buried hip-roof dormers, floating ridge details, thin gable backs and disconnected public-room blocks."
+    "notes": "All9final portable views inspected, plus native south-stairs/stair-landings frames. Paired stone stairs have visible treads, solid sides, capped slopes and open turn landings. Original forecourt surface meets both first treads; no floating support or new pad. Original complete hotel, podiums, north pavilion, roofs and Rundle wing retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9341fe39fc984aad24c52674b1ab7f7d35d6ca98236073568da04c7d29f48613",
+    "captureReportHash": "sha256:68b478df02748c9672bdaa723d686a5fe7dd7b5677460e3cbbb2bc44c027038d",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,29 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/south-stairs.png",
+      "shots/shared/stair-landings.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views including the footprint overlay, plus the detailed front of the preceding geometry iteration. Stone wall, limestone trim and standing-seam roof use shared metric surfaces; glass remains local. Flat ground is a material fixture; portable views retain independent terrain."
+    "notes": "All9final shared-material views inspected, including both native detail cameras and mapped placement. Dark rough stone sides, pale limestone caps, windows and copper roofs remain distinct. Original placement hash/map envelope retained. Shared fixture is geographic flat terrain; source-native portable terrain carries ground context. Unload leaves zero live model geometries.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_drywall": {
+        "path": "materials/stone_drywall.matgraph.json",
+        "hash": "sha256:a3bd96f1a584b9da94425ad12ed716a17a528cd76d22ce4468cb18476a7a3619"
+      },
+      "matgraph:molen.worldgen.material.metal_standing_seam": {
+        "path": "materials/metal_standing_seam.matgraph.json",
+        "hash": "sha256:d6c852efae1a3f20609dcca277110e774af539a79579dbd73533118a9c64f51d"
+      },
+      "matgraph:molen.worldgen.material.stone_limestone": {
+        "path": "materials/stone_limestone.matgraph.json",
+        "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:1b894a514698c149f0a8ac2ce667953716719f0557d79f426d8f914151d4f4fd",
+    "captureReportHash": "sha256:3acf0367ee7b7d468319057146ce9dd876c9216f02ee50ee56ebcb6ef1c4db10",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +72,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/south-stairs.png",
+      "medium-fi/stair-landings.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail views. Skyline preserves the stepped tower and major roof masses; district restores openings; street and closeup restore dormers, gables, window frames and public-room masonry. All four levels remain within hard budgets. Synthetic neighbors are style fixtures; no physical-device performance measurement is claimed."
+    "notes": "All21final version2frames inspected: noon/late light, economy/high, front/back, two detail cameras, source ground and four forced levels. Paired stairs read at street/close; skyline/district remain exact. Overall tower/end-pavilion and roof silhouette retained. Synthetic neighbors are style context only."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +98,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00012243652349752665
     },
-    "notes": "Mapped combined outline is retained; geographic controls use only the main-hotel scope cut at the narrow southern connection. Actual anchor [-115.56183,51.164332], heading -1.08: +X south-southeast, +Z west-southwest toward Spray Avenue. This replaces the displaced story point. Independent unmodified Terrarium datum 1401.9301 m uses south entrance forecourt [59,33]; foundations extend to -3 m. Footprint suppression remains off."
+    "notes": "Original anchor[-115.56183,51.164332],heading-1.08 retained, +X south-southeast/+Z west-southwest toward SprayAve. Fixed main/Rundle envelope and mapped footprints unchanged. All four map/terrain inputs byte-identical. Original datum1401.9301m at forecourt[59,33],foundation-3m retained. Independent terrain under new nominal feet is approximately+0.046/+0.148m relative to original datum, below first0.18m tread. Current source-native frames show supported lower treads; no height fitting, flattening or new broad pads. Survey levels and another host DEM remain outside this review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Main Banff Springs stone hotel, central tower, guest wings, angled end pavilions, public-room podiums and Rundle cross-wing.",
-    "notes": "Three individually inspected local Qualla originals, Parks Canada architectural description, hotel floor plan and satellite roof context control the main hotel. The official eleven-storey tower and photographic proportions guide estimated heights. Roof intersections, hidden elevations, masonry courses and fine ornament remain interpretations. Later Gatehouse/conference and pool/spa additions, landscape terraces and interiors are excluded. No photo pixels copied."
+    "scope": "Main stone hotel, central tower, flanking guest wings, north and south end pavilions, public-room podiums and east Rundle cross-wing; later Gatehouse, conference complex, pool/spa additions, golf course and interiors excluded.",
+    "notes": "Fixed main stone hotel, central tower, guest wings, both end pavilions, public-room podiums and east Rundle cross-wing retained. Three exact native cleared Qualla CC0/PD-self photographs inspected, including native south stair detail. Replaced generic central stair with two mirrored branches, each two flights, turn landing, solid sloping stone parapets, physical pale caps and attached upper landing. Corrected lowest south bay windows to rectangular forms while retaining the higher arched row. Original skyline/district and all street/close attributes outside the south stair/lowest bay window region are exact. Map, terrain and placement unchanged. Twelve treads per flight,18cm rises,4.32m upper floor, plan angles, widths, cap profiles, overall heights, hidden elevations/roof joins, precise masonry and current condition remain medium-fi estimates. Dated2004/2007 references establish photographed exterior rather than survey accuracy. Later Gatehouse/conference/spa/golf facilities and interiors remain excluded; no scope reduction or terrain fitting."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:2edbab5baeba7d63865edaab060efa5ca972ca788c36e19197c0467d1877bf87",
+    "recipeHash": "sha256:ea69b770a4976285e18e10b2a8fc95b74a5ddf20390102f9d6c5318d7ba6ae4e",
     "levels": [
       {
         "name": "skyline",
@@ -116,44 +137,91 @@
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:53a8d858f44a8fb7b99e1c93fcfb7f99f7a570d64f5f4bd2de2f52166863a510",
-        "bytes": 1148372,
-        "gzipBytes": 231688,
-        "triangles": 14930,
-        "cpuBytes": 1143372,
-        "gpuBytes": 1143372,
+        "hash": "sha256:228b86459e86341fad440585063143fe37e99e8193919f3c4e4a633b31c8bd37",
+        "bytes": 1188740,
+        "gzipBytes": 243424,
+        "triangles": 15562,
+        "cpuBytes": 1183740,
+        "gpuBytes": 1183740,
         "errorMeters": 0.22,
         "drawCalls": 4
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:b45890e9020d2fb60553c9cbb47c599c1dd73ae7e7574b022c6a847219b6a997",
-        "bytes": 6653280,
-        "gzipBytes": 1113580,
-        "triangles": 55422,
-        "cpuBytes": 6650640,
-        "gpuBytes": 6650640,
+        "hash": "sha256:d7a7c7b54ae6f09c028242da0356eab9f588a1b89d5ecbec905afd788ce2de97",
+        "bytes": 6719520,
+        "gzipBytes": 1127660,
+        "triangles": 55974,
+        "cpuBytes": 6716880,
+        "gpuBytes": 6716880,
         "errorMeters": 0,
         "drawCalls": 4
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "958/3348/15562/55974triangles and1/4/4/4draws pass strict limits. Skyline/district exact; other original attributes outside bounded stair/lowest bay window region retained. Street adds632triangles and close552. New stair solids use the same closed geometry at street/close; lower levels retain original silhouette. Errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 55422,
+    "sourceTriangles": 55974,
     "sourceMaterials": 4,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 958,
+        "drawCalls": 1,
+        "addedTriangles": 0,
+        "retainedTriangles": 958,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3348,
+        "drawCalls": 4,
+        "addedTriangles": 0,
+        "retainedTriangles": 3348,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 15562,
+        "drawCalls": 4,
+        "addedTriangles": 632,
+        "retainedTriangles": 14744,
+        "controls": 123,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 55974,
+        "drawCalls": 4,
+        "addedTriangles": 552,
+        "retainedTriangles": 55020,
+        "controls": 123,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/c3/c3j/banff_springs_hotel/verify-south-stairs.mjs"
+    ],
+    "notes": "Imported1/1/123/123controls pass:48actual tread tops/closed risers per detailed level, sloping parapet sides, physical caps, turn/upper floors, open turn ports, removed central flight void and retained bay wall. Source and imported winding/normals/UVs/counts, runtime hashes, exact regeneration and strict material/LOD budgets pass. Immutable pre-edit baseline retained; map/terrain hashes unchanged."
   },
   "limitations": [
-    "Original medium-fi main-hotel exterior based on three individually inspected local Qualla photographs, the hotel floor plan, Parks Canada description and mapped roof context.",
+    "New south-pavilion paired two-stage stairs use three exact native cleared Qualla public-domain photographs, with a native2007stair detail. Previous attribution photographs, private plan and satellite imagery are excluded as current imagery controls. Main hotel/Rundle scope retained.",
+    "Each stair branch has two12-tread flights, solid side walls, pale caps, an open turn landing and an attached upper landing. Nominal18cm rises/4.32m upper floor, widths and inferred plan angles are authoring estimates; no survey dimensions or exact masonry profiles claimed.",
     "Heights, roof intersections, hidden elevations, masonry courses and detailed ornament are photographic interpretations, not measured architectural drawings.",
     "Main stone hotel and Rundle cross-wing included; later Gatehouse, conference buildings, pool/spa additions, landscape terraces and interiors excluded.",
     "Independent terrain is unflattened. Actual footprint placement supersedes the displaced story point; footprint suppression remains disabled."
@@ -161,6 +229,96 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:e38d2fab8ae8572686e2cbd27e73537f98087349dd712f3875663ec26f4cd4fc",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a300231f20b5d785b3be7626dde11b3d9093a281a3e02922e095b6d1f45a4e5c",
+    "referenceInputHash": "9aec739863503571b7df632b524c3c2905c539202bb98a85d5ab0d84a1c0541f",
+    "acceptedReferencePaths": [
+      "_m/c/3/j/g/banff-hot-springs-discovery-wk/banff-canada-banff-springs-hot.jpg",
+      "_m/c/3/j/g/banff-hot-springs-discovery-wk/banff-spring-hotel.jpg",
+      "_m/c/3/j/g/banff-hot-springs-discovery-wk/banff-canada-25-8168751497.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:7f2b16ad0605cd7d6d1c0451b8aed5f4720060ec0766e8d004258862663c1a95",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/c/3/j/g/banff-springs-hotel-ghost-wk/20130703-20-banff-springs-hote.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:20130703_20_Banff_Springs_Hotel_(12331775865).jpg",
+        "reason": "Prior attribution imagery excluded as current construction control."
+      },
+      {
+        "path": "_m/c/3/j/g/banff-springs-hotel-ghost-wk/banff-springs-hotel-4730481952.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Banff_Springs_hotel_(4730481952).jpg",
+        "reason": "Prior attribution imagery excluded as current construction control."
+      },
+      {
+        "path": "_m/c/3/j/g/banff-springs-hotel-ghost-wk/banff-springs-hotel-fall-2013--1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Banff_Springs_Hotel_-_Fall_2013-2_(banner_esVoy).jpg",
+        "reason": "Prior attribution imagery excluded as current construction control."
+      },
+      {
+        "url": "https://www.google.com/maps/@51.164332,-115.56183,18z/data=!3m1!1e3",
+        "reason": "Earlier satellite imagery excluded as current photo control; mapped geometry retained."
+      },
+      {
+        "url": "https://sec.esca.org/wp-content/uploads/2026/04/Fairmont-Banff-Springs-Map.pdf",
+        "reason": "Earlier hotel floor-plan imagery excluded as current photo control; inherited fixed scope retained."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with cleared Qualla images. Three exact native originals inspected; named CC0/PD-self grants and primary original hashes/dimensions verified. Canonical media originals and published story copies are byte-identical and preserve matching family/artist/license. Inventory proves those aliases without weakening grants. Earlier attribution images, private hotel plan and satellite imagery excluded as current controls. No copied image textures.2004/2007dates and inferred details documented."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "banff_springs_hotel",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a300231f20b5d785b3be7626dde11b3d9093a281a3e02922e095b6d1f45a4e5c",
+    "sourceHash": "sha256:d9c35832a9ff15c5aace339cd9e1a81da51a75f9b8d35c562a74779fd5369e7a",
+    "runtimeHash": "sha256:32e1b3c91ae15980008966ff21eb0daea534415d875fdea36ffdd5cfd5d0fab6",
+    "built": [
+      "Two mirrored two-stage south-pavilion stairs with48closed treads",
+      "Solid sloping stone parapets and physical pale caps",
+      "Open turn landings and attached upper landings",
+      "Rectangular lowest south projecting-bay windows"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      958,
+      3348,
+      15562,
+      55974
+    ],
+    "drawCalls": [
+      1,
+      4,
+      4,
+      4
+    ],
+    "limits": "Fixed main stone hotel, central tower, guest wings, both end pavilions, public-room podiums and east Rundle cross-wing retained. Three exact native cleared Qualla CC0/PD-self photographs inspected, including native south stair detail. Replaced generic central stair with two mirrored branches, each two flights, turn landing, solid sloping stone parapets, physical pale caps and attached upper landing. Corrected lowest south bay windows to rectangular forms while retaining the higher arched row. Original skyline/district and all street/close attributes outside the south stair/lowest bay window region are exact. Map, terrain and placement unchanged. Twelve treads per flight,18cm rises,4.32m upper floor, plan angles, widths, cap profiles, overall heights, hidden elevations/roof joins, precise masonry and current condition remain medium-fi estimates. Dated2004/2007 references establish photographed exterior rather than survey accuracy. Later Gatehouse/conference/spa/golf facilities and interiors remain excluded; no scope reduction or terrain fitting.",
+    "publicDomainPrimaryOriginals": 3,
+    "stairBranches": 2,
+    "stairFlights": 4,
+    "actualTreads": 48,
+    "exactOriginalSkylineAndDistrict": true,
+    "retainedFixedMainAndRundleScope": true,
+    "storyState": "ready",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

@@ -45,7 +45,12 @@ export interface StructurePlacement {
   /** Only a contained, nongeneralized mapped footprint may be replaced. */
   replaceFootprint?: boolean;
   /** Ground opening in native model X/Z metres; active only while this structure is visible. */
-  groundCutout?: { outline: [number, number][]; basis: string };
+  groundCutout?: {
+    outline: [number, number][];
+    /** Separate excavations; ground between outlines remains intact. At most 63 additional rings. */
+    additionalOutlines?: [number, number][][];
+    basis: string;
+  };
   /** Optional confirmed map identity used to refine orientation from a nearby feature. */
   mapIdentity?: { wikidata?: string; names?: string[]; maxDistance?: number };
   /** Fixed is the catalog heading; mapped follows a confirmed footprint or bridge axis. */
@@ -235,12 +240,14 @@ export function createStructureIndex(doc: StructureCatalogDoc): StructureIndex {
     if (
       entry.groundCutout &&
       (!entry.groundCutout.basis?.trim() ||
-        entry.groundCutout.outline.length < 3 ||
-        entry.groundCutout.outline.length > 512 ||
-        entry.groundCutout.outline.some(
-          (p) => p.length !== 2 || p.some((v) => !Number.isFinite(v)),
-        ) ||
-        !validGroundOutline(entry.groundCutout.outline))
+        (entry.groundCutout.additionalOutlines?.length ?? 0) > 63 ||
+        [entry.groundCutout.outline, ...(entry.groundCutout.additionalOutlines ?? [])].some(
+          (outline) =>
+            outline.length < 3 ||
+            outline.length > 512 ||
+            outline.some((p) => p.length !== 2 || p.some((v) => !Number.isFinite(v))) ||
+            !validGroundOutline(outline),
+        ))
     )
       throw new Error(`invalid ground cutout ${entry.id}`);
     if (!entry.asset || !entry.source || !['preview', 'draft', 'historical'].includes(entry.status))

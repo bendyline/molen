@@ -5,6 +5,8 @@ import { B, c, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
 const gold = rgb('c8b064');
+const entrance = { width: 1.9, floor: 0.12, shoulder: 3.1, top: 4.05, front: 0.215, back: -0.335 };
+const doorCenters = [-2, 0, 2].map((i) => (i * (24.5 - 1.8)) / 7);
 function facing(o, angle, tx = 0, tz = 0) {
   const co = Math.cos(angle),
     si = Math.sin(angle),
@@ -133,6 +135,120 @@ function oculus(o, x, y, z, detail) {
       );
     }
 }
+function entranceSegments(detail) {
+  return detail > 1 ? 12 : detail ? 4 : 2;
+}
+function entranceProfile(x, detail, z) {
+  const n = entranceSegments(detail),
+    r = entrance.width / 2;
+  return Array.from({ length: n + 1 }, (_, i) => {
+    const a = (i * Math.PI) / n;
+    return [x + Math.cos(a) * r, entrance.shoulder + Math.sin(a) * r, z];
+  });
+}
+function wallWithEntrances(o, detail) {
+  const { width, floor, top } = entrance;
+  let left = -12.25;
+  for (const x of doorCenters) {
+    const a = x - width / 2;
+    faceQuad(o, 'brick', (left + a) / 2, -0.75, 0, a - left, top + 0.76, c.redbrick);
+    faceQuad(o, 'brick', x, -0.75, 0, width, floor + 0.75, c.redbrick);
+    const arc = entranceProfile(x, detail, 0);
+    for (let i = 0; i < arc.length - 1; i++) {
+      const a = arc[i],
+        b = arc[i + 1];
+      // Triangles avoid degenerate spandrel quads at the crown of the arch.
+      o.addConvexPolygon(
+        'brick',
+        'palette:#ffffff',
+        [b, a, [a[0], top + 0.01, 0], [b[0], top + 0.01, 0]],
+        [0, 0, 1],
+        (p) => [p[0], p[1]],
+        c.redbrick,
+      );
+    }
+    left = x + width / 2;
+  }
+  faceQuad(o, 'brick', (left + 12.25) / 2, -0.75, 0, 12.25 - left, top + 0.76, c.redbrick);
+  faceQuad(o, 'brick', 0, top + 0.01, 0, 24.5, 18.4 - top - 0.01, c.redbrick);
+  // Projecting stone base is split around the door thresholds too.
+  left = -12.35;
+  for (const x of [...doorCenters, 13.3]) {
+    const right = Math.min(12.35, x - width / 2);
+    if (right > left) {
+      faceQuad(o, 'concrete', (left + right) / 2, -0.35, 0.1, right - left, 0.55, c.cream);
+      quad(
+        o,
+        'concrete',
+        [
+          [left, 0.2, 0.1],
+          [right, 0.2, 0.1],
+          [right, 0.2, -0.1],
+          [left, 0.2, -0.1],
+        ],
+        [0, 1, 0],
+        c.cream,
+      );
+    }
+    left = x + width / 2;
+  }
+}
+function recessedDoor(o, x, detail) {
+  const { width, floor, shoulder, front, back } = entrance,
+    r = width / 2;
+  for (const sign of [-1, 1]) {
+    const p = [
+      [x + sign * r, floor, front],
+      [x + sign * r, floor, back],
+      [x + sign * r, shoulder, back],
+      [x + sign * r, shoulder, front],
+    ];
+    if (sign > 0) p.reverse();
+    quad(o, 'concrete', p, [-sign, 0, 0], c.cream);
+  }
+  const arc = entranceProfile(x, detail, front);
+  for (let i = 0; i < arc.length - 1; i++) {
+    const a = arc[i],
+      b = arc[i + 1],
+      p = [a, [a[0], a[1], back], [b[0], b[1], back], b];
+    p.reverse();
+    quad(o, 'concrete', p, normalFor(...p), c.cream);
+  }
+  quad(
+    o,
+    'concrete',
+    [
+      [x - r, floor, front],
+      [x + r, floor, front],
+      [x + r, floor, back],
+      [x - r, floor, back],
+    ],
+    [0, 1, 0],
+    c.cream,
+  );
+  faceQuad(o, 'metal', x, floor, back, width, 2.75, c.dark);
+  // Upper glazing is behind the curved reveals, not a painted arch on a solid wall.
+  const fan = [
+    [x - r, floor + 2.75, back],
+    [x + r, floor + 2.75, back],
+    ...arc.map((p) => [p[0], p[1], back]),
+  ];
+  o.addConvexPolygon('glass', 'palette:#ffffff', fan, [0, 0, 1], (p) => [p[0], p[1]], c.glass);
+  if (detail) {
+    arch(o, x, floor, 0.18, width, entrance.top - floor, detail, { open: true });
+    faceQuad(o, 'concrete', x, floor + 2.75, back + 0.015, width, 0.1, c.white);
+    faceQuad(o, 'concrete', x, floor, back + 0.015, 0.075, 2.75, c.white);
+  }
+  if (detail > 1) {
+    for (const sign of [-1, 1])
+      for (const y of [0.35, 1.1, 1.85])
+        faceQuad(o, 'metal', x + sign * 0.45, y, back + 0.025, 0.65, 0.53, c.roof);
+    for (const dx of [-0.5, 0, 0.5]) {
+      const h = shoulder + Math.sqrt(r * r - dx * dx) - floor - 2.75;
+      faceQuad(o, 'concrete', x + dx, floor + 2.75, back + 0.02, 0.04, h, c.white);
+    }
+  }
+}
 function facade(o, w, bays, detail, gable) {
   const pitch = (w - 1.8) / bays;
   for (const [y, h, depth] of [
@@ -148,7 +264,8 @@ function facade(o, w, bays, detail, gable) {
   }
   for (let i = 0; i < bays; i++) {
     const x = (i - (bays - 1) / 2) * pitch;
-    arch(o, x, 0.25, 0.18, 1.9, 3.8, detail);
+    if (gable && [1, 3, 5].includes(i)) recessedDoor(o, x, detail);
+    else arch(o, x, 0.25, 0.18, 1.9, 3.8, detail);
     arch(o, x, 5.4, 0.18, 1.8, 4.65, detail);
     if (gable) arch(o, x, 12.0, 0.18, 1.8, 4.5, detail);
     else {
@@ -167,15 +284,6 @@ function facade(o, w, bays, detail, gable) {
       }
       arch(o, x, 16.55, 0.18, 1.8, 0.9, detail, { half: true });
     }
-    // Door/window alternation is visible on both gables; fanlights remain above the door panels.
-    if (detail && gable && [1, 3, 5].includes(i)) {
-      B(o, 'metal', x, 0.12, 0.22, 1.65, 2.75, 0.1, 'dark');
-      if (detail > 1)
-        for (const sign of [-1, 1])
-          for (const y of [0.35, 1.1, 1.85]) {
-            faceQuad(o, 'concrete', x + sign * 0.4, y, 0.28, 0.57, 0.53, c.roof);
-          }
-    }
   }
   if (detail)
     for (let i = 0; i <= bays; i++) {
@@ -186,7 +294,6 @@ function facade(o, w, bays, detail, gable) {
         [11.4, 6.5],
       ]) {
         if (detail === 1) {
-          faceQuad(o, 'brick', x, y, 0.24, 0.42, h, c.redbrick);
           faceQuad(o, 'concrete', x, y, 0.38, 0.63, 0.22, c.white);
           faceQuad(o, 'concrete', x, y + h - 0.2, 0.38, 0.66, 0.27, c.white);
         } else {
@@ -385,8 +492,54 @@ function cupola(o, detail) {
   }
 }
 function build(o, detail) {
-  B(o, 'brick', 0, -0.75, 0, 24.5, 19.15, 31.1, 'redbrick');
-  B(o, 'concrete', 0, -0.35, 0, 24.7, 0.55, 31.3, 'cream');
+  // Exterior shell: whole solid blocks would occlude the entrance recesses.
+  for (const sign of [-1, 1]) {
+    wallWithEntrances(facing(o, sign > 0 ? 0 : Math.PI, 0, sign * 15.55), detail);
+    faceQuad(
+      facing(o, (sign * Math.PI) / 2, sign * 12.25, 0),
+      'brick',
+      0,
+      -0.75,
+      0,
+      31.1,
+      19.15,
+      c.redbrick,
+    );
+    faceQuad(
+      facing(o, (sign * Math.PI) / 2, sign * 12.35, 0),
+      'concrete',
+      0,
+      -0.35,
+      0,
+      31.3,
+      0.55,
+      c.cream,
+    );
+  }
+  quad(
+    o,
+    'brick',
+    [
+      [-12.25, -0.75, -15.55],
+      [12.25, -0.75, -15.55],
+      [12.25, -0.75, 15.55],
+      [-12.25, -0.75, 15.55],
+    ],
+    [0, -1, 0],
+    c.redbrick,
+  );
+  quad(
+    o,
+    'brick',
+    [
+      [-12.25, 18.4, 15.55],
+      [12.25, 18.4, 15.55],
+      [12.25, 18.4, -15.55],
+      [-12.25, 18.4, -15.55],
+    ],
+    [0, 1, 0],
+    c.redbrick,
+  );
   for (const sign of [-1, 1]) {
     const p = [
       [sign * 12.6, 18.5, -15.85],
@@ -447,6 +600,12 @@ export const faneuilModel = {
     'Three-storey seven-bay brick gables, long arcaded side elevations, white cornices and pilasters, slate gable roof and east-end open cupola with a gilded grasshopper weather vane.',
   camera: [-45, 27, 57],
   lookAt: [0, 15, 0],
+  qaCameras: [
+    { name: 'front', position: [0, 24.225956535339357, 72.03105354309082], lookAt: [0, 15, 0] },
+    { name: 'back', position: [0, 29.81656188964844, -72.03105354309082], lookAt: [0, 15, 0] },
+    { name: 'west-entrances', position: [-9, 3.4, -26], lookAt: [0, 2.2, -15.5] },
+    { name: 'east-entrance-detail', position: [3.3, 2.9, 21], lookAt: [0, 2.1, 15.4] },
+  ],
   build: faneuil,
   quality: 'medium-fi-exterior',
   reviewStatus: 'review-in-qa.json',
@@ -464,10 +623,11 @@ export const faneuilModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from inspected local Qualla photographs and generalized hall/cupola footprints; not a measured architectural survey.',
+    'Original medium-fi exterior: Qualla corpus searched first; current entrance construction uses two inspected NPS originals with explicit public-domain grants. Generalized hall/cupola footprints and retained photographic proportions are not a measured survey.',
+    'The west gable doors, arched fanlights and white reveals are visible in the NPS originals. East gable entrance distribution is retained as a conservative symmetry approximation. Recess depth 0.55 m is estimated; opaque leaves terminate the exterior, with no navigable interior.',
     'Facade bay rhythm, arched fanlights, pilasters, cornices, gables, open lantern and grasshopper silhouette are retained. Fine Corinthian ornament, pane counts, access ramps, plaques and hidden roof service details are simplified.',
     'Only historic Faneuil Hall is included. Quincy Market, neighboring market buildings, plaza furniture and interiors are excluded.',
     'Height estimates and entrance datum are photographic/map interpretations. Other host elevation datasets may require a new placement review.',
-    'Reference photography remains in Qualla; no photos are embedded or redistributed in the runtime pack.',
+    'Qualla corpus and exact supplemental NPS originals/rights are recorded with the source; no photographs are embedded or redistributed in the runtime pack.',
   ],
 };

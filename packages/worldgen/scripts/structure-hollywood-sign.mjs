@@ -198,6 +198,16 @@ function spans(loops, x) {
     }
   return ys.sort((a, b) => a - b);
 }
+function outerSpanAtHeight(outer, y) {
+  const xs = [];
+  for (let i = 0; i < outer.length; i++) {
+    const a = outer[i],
+      b = outer[(i + 1) % outer.length];
+    if ((a[1] <= y && b[1] > y) || (b[1] <= y && a[1] > y))
+      xs.push(a[0] + ((b[0] - a[0]) * (y - a[1])) / (b[1] - a[1]));
+  }
+  return xs.length ? [Math.min(...xs), Math.max(...xs)] : null;
+}
 function terrainSampler(t) {
   return (x, z) => {
     const u = (x - t.origin[0]) / t.stepMeters,
@@ -244,7 +254,7 @@ function build(o, detail) {
       const x = width * fraction,
         z = -0.38,
         foot = ground(...at(x, z)) - 0.8,
-        top = bottom + height + 0.18;
+        top = Math.max(...spans(loops, x)) + 0.18;
       B(fo, 'concrete', x, foot, z, 0.65, 0.85, 0.75, concrete);
       if (detail > 1) {
         B(fo, 'metal', x, foot, z, 0.075, top - foot, 0.38, steel);
@@ -252,7 +262,7 @@ function build(o, detail) {
           B(fo, 'metal', x, foot, zz, 0.28, top - foot, 0.045, steel);
       } else B(fo, 'metal', x, foot, z, 0.25, top - foot, 0.4, steel);
       if (detail > 1) {
-        for (const yy of [bottom + 0.1, bottom + 4.55, bottom + 9.1]) {
+        for (const yy of [bottom + 0.1, bottom + 4.55, bottom + 9.1].filter((y) => y < top - 0.2)) {
           B(fo, 'metal', x, yy, z, 0.38, 0.38, 0.5, steel);
           if (detail > 2)
             for (const xx of [-0.12, 0.12])
@@ -261,37 +271,56 @@ function build(o, detail) {
       }
     }
     if (detail) {
-      for (let i = 0; i < 6; i++)
-        B(
-          fo,
-          'metal',
-          0,
-          bottom + 0.18 + (i * (height - 0.36)) / 5,
-          -0.2,
-          width,
-          0.16,
-          0.16,
-          steel,
-        );
+      for (let i = 0; i < 6; i++) {
+        const y = bottom + 0.18 + (i * (height - 0.36)) / 5,
+          extent = outerSpanAtHeight(loops[0], y);
+        if (extent)
+          B(
+            fo,
+            'metal',
+            (extent[0] + extent[1]) / 2,
+            y,
+            -0.2,
+            extent[1] - extent[0],
+            0.16,
+            0.16,
+            steel,
+          );
+      }
       if (detail > 1) {
-        beam(
-          fo,
-          'metal',
-          [-width * 0.39, bottom, -0.65],
-          [width * 0.39, bottom + height, -0.65],
-          0.07,
-          0.07,
-          steel,
-        );
-        beam(
-          fo,
-          'metal',
-          [width * 0.39, bottom, -0.66],
-          [-width * 0.39, bottom + height, -0.66],
-          0.07,
-          0.07,
-          steel,
-        );
+        if (f.name === 'L') {
+          const bays = [
+            [-width * 0.46, -width * 0.22, bottom + 0.2, bottom + height - 0.2],
+            [-width * 0.46, width * 0.46, bottom + 0.2, bottom + height * 0.2 - 0.2],
+          ];
+          for (const [left, right, low, high] of bays) {
+            beam(fo, 'metal', [left, low, -0.65], [right, high, -0.65], 0.07, 0.07, steel);
+            beam(fo, 'metal', [right, low, -0.66], [left, high, -0.66], 0.07, 0.07, steel);
+          }
+        } else {
+          const left = -width * 0.39,
+            right = width * 0.39,
+            l = spans(loops, left),
+            r = spans(loops, right);
+          beam(
+            fo,
+            'metal',
+            [left, l[0] + 0.12, -0.65],
+            [right, r.at(-1) - 0.12, -0.65],
+            0.07,
+            0.07,
+            steel,
+          );
+          beam(
+            fo,
+            'metal',
+            [right, r[0] + 0.12, -0.66],
+            [left, l.at(-1) - 0.12, -0.66],
+            0.07,
+            0.07,
+            steel,
+          );
+        }
       }
     }
     if (detail > 1) {
@@ -307,10 +336,11 @@ function build(o, detail) {
       // Rear access ladder on one main post, kept behind the sheet and ground anchored.
       const x = -width * 0.39,
         z = -0.78,
-        foot = ground(...at(x, z));
+        foot = ground(...at(x, z)),
+        top = Math.max(...spans(loops, x));
       for (const xx of [-0.2, 0.2])
-        B(fo, 'metal', x + xx, foot, z, 0.035, bottom + height - foot, 0.035, steel);
-      for (let y = foot + 0.25; y < bottom + height; y += 0.33)
+        B(fo, 'metal', x + xx, foot, z, 0.035, top - foot, 0.035, steel);
+      for (let y = foot + 0.25; y < top; y += 0.33)
         B(fo, 'metal', x, y, z, 0.43, 0.025, 0.04, steel);
     }
   }
@@ -341,6 +371,8 @@ export const hollywoodModel = {
   qaCameras: [
     { name: 'front', position: [2, 14, 155], lookAt: [2, 3, 0] },
     { name: 'back', position: [-12, 85, -110], lookAt: [2, 4, 0] },
+    { name: 'l-supports-rear', position: [-19, 32, -30], lookAt: [-19, 7, 2.5] },
+    { name: 'low-l-post-detail', position: [-6, 20, -16], lookAt: [-8, 5.3, 1.5] },
   ],
   build: hollywood,
   quality: 'medium-fi-exterior',
@@ -360,7 +392,8 @@ export const hollywoodModel = {
     },
   },
   limitations: [
-    'Original medium-fi current nine-letter steel sign based on inspected local Qualla front and rear photographs, individual OSM letter lines and independent terrain. Not an engineering survey.',
+    'Started with cleared Qualla imagery. Current support construction uses the exact inspected Blake Everett CC0 rear original; older attribution-licensed or additionally restricted imagery is excluded as a current control. Individual OSM letter lines and source ground retained. Not an engineering survey.',
+    'Post tops and girt lengths follow letter profiles. The L framework has separate tall-stem and low-foot braces instead of a full rectangle beyond the panel. Member sections, attachment details and hidden engineering remain approximate.',
     'Letter height is 13.716 m (45 ft). The Trust booklet reports 450 ft overall length, while mapped endpoints span about 105 m; mapped positions are retained and this discrepancy remains unresolved.',
     'First O and second L widths are adjusted from short mapped lines to match the photographic proportions; all centers and angles remain mapped. Corrugation, beam sections, joints and ladders are simplified.',
     'Photographic comparison sets approximate panel heights independently of USGS terrain-sampled feet. Native DEM resolution and vertical accuracy are unknown; exact ground contact remains host-terrain dependent.',

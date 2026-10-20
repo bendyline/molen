@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.fraunces_tavern",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:fe919329168f1571b8ad4a046f58fd37562683ca38d89b8d8fa1efe6c001f60a",
-  "sourceHash": "sha256:6d1be3fd4b2d1723eacde09deaf801c3c3b7db6c853a8dd344a7e98590bb7c15",
-  "runtimeHash": "sha256:bc4a0b38eb4b8fef80b393a92872e46a0ad93f2ec4d723c104059714287585e0",
-  "captureReportHash": "sha256:ef8c44c4ee130067dcd7914509c90d80ea3b94fba691dd49ee0e807b48d27aff",
+  "inputHash": "sha256:667bfd043eecc95505e41f8c73fcf1d9c3b605c61877ab7aeef664fb0760d8a3",
+  "sourceHash": "sha256:1e4e5434d8867b3d266912c54ca76013c20d1cd530c7d42a470c48651c32ad35",
+  "runtimeHash": "sha256:9e85887d2851d0b3ff5654e6087af213dcdbed805592cef5beecac97bf9e5717",
+  "captureReportHash": "sha256:dda48883c39e21b4b6749a312ced4ef4a217d68fc377439cef735ed92f49e3f3",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:dda48883c39e21b4b6749a312ced4ef4a217d68fc377439cef735ed92f49e3f3",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/entrance-rails.png",
+      "shots/stair-profile.png"
     ],
-    "notes": "Inspected all seven final portable views against individually viewed 2010 and 2014 local exterior photographs and supplemental brick/sign details. Three stories, red Pearl Street and buff Broad Street facades, sash windows, columned entry, attic dormers, tall chimneys and roof balustrade are represented. Review corrected overlapping foundation surfaces, dormer side winding and solid balcony side panels."
+    "notes": "All nine current portable frames inspected, including native entrance-rails and stair-profile details. New slim iron top rails descend along the existing stair flights and return level beside the landing; independent posts attach to original treads, with open space between. Original entrance, columns, existing steps, body, roof and ground retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:b2bae1768cbfd7a2c9335f638b7c38c645dca2b89a6af9da087a084e7799a4d6",
+    "captureReportHash": "sha256:4fc89858b9feb32eb79b11f612010673c89e29a7a04a95b0decfe82430a7c87e",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,37 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/entrance-rails.png",
+      "shots/shared/stair-profile.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views plus full entrance and rear views. Review replaced the prominently seamed Flemish graph with the standard shared brick surface; its running bond is an explicit medium-fi approximation. Foundation surfaces no longer overlap, and balcony sides have open rails. Brick, wood, stone, painted metal and roof tile have metric bindings; glass is local. Flat terrain here is a material fixture; independent terrain remains in the portable scene."
+    "notes": "All nine current shared-material frames inspected, including entrance/stair details and mapped overlay. Iron rails bind to painted metal, distinct from stone steps and wood columns; brick/tile/window surfaces retained. Original placement transform/hash and unload pass. Flat fixture demonstrates shared materials and transform; portable/native-ground views carry source context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.tile_flat": {
+        "path": "materials/tile_flat.matgraph.json",
+        "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4d8b14b9a40b649d44ba2aece0c28c2e8982e89367d89f6e9938410c9c5b826b",
+    "captureReportHash": "sha256:5c6798764472c09b5e626b48c17a740f9ad14c3ee8c075c3826c4f6e5f74879a",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +80,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/entrance-rails.png",
+      "medium-fi/stair-profile.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail frames. Skyline retains three chimneys, roof platform and entry; district adds windows and dormers; street and closeup preserve sash divisions, porch rails and balustrades. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All21current version-2 frames inspected across noon/late light, economy/high quality, source ground, front/back, both entrance details and four forced levels. Slim physical rails persist from district onward, with additional tread posts at street/close. Original skyline retained. Restored corner silhouette, dormers, parapet balustrade and chimney grouping remain legible. Synthetic neighbors provide style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +106,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00021360850334173342
     },
-    "notes": "Individual 54 Pearl Street corner block, with 101 Broad, 58 Pearl and narrow rear connector excluded. Anchor [-74.0113440155983,40.7033953341352], heading -2.8614848932764874: +X west-southwest and +Z north-northwest toward Pearl Street. Independent Terrarium terrain remains unchanged, datum 1.8442 m at sidewalk [-1.1145,7.5]. Foundation reaches -0.6 m. Mapped 14.6 m height is a coarse roof/balustrade control, with chimneys above. Footprint suppression remains off; another host DEM can differ."
+    "notes": "Original clipped54PearlStreet envelope and anchor[-74.0113440155983,40.7033953341352],heading-2.8614848932764874 retained. Original map and three terrain files byte-identical. Original Terrarium datum1.8442m at sidewalk[-1.1145,7.5],foundation-0.6m and source footprint-relative range about-0.118..0.201m retained. New rails attach to existing steps; no stair regrading, new pads or terrain fitting. Source-native heightfield retains tall adjacent off-footprint artifacts; surrounding terrain accuracy is not approved here. Other host DEMs and surveyed craft dimensions remain outside this bounded exterior review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Restored Fraunces Tavern corner building at 54 Pearl Street; neighboring museum buildings, rear connector and interiors excluded.",
-    "notes": "Individually inspected local 2010 corner and 2014 Pearl Street photographs, buff-brick detail and projecting sign. Official city descriptions and district map corroborate the three-story scope and roof details. Local caption calling the buff face south is corrected to west/Broad Street. Vertical dimensions, hidden roof surfaces, service openings, brick bond and fine profiles remain approximations. No exact 1783 reconstruction or copied sign artwork/photo pixels is claimed."
+    "scope": "Restored54PearlStreet corner tavern exterior within original scope, including portico/stairs and new handrails. Other museum buildings/connector, interiors and exact historical reconstruction excluded.",
+    "notes": "Cleared Qualla media checked first: selected modern exteriors need attribution; public-domain local exteriors predate the1907restoration and interior/art images do not establish this exterior. Used exact native2948x2261Jim Henderson2008own-work PD-self original after verifying primary creator grant, clean restrictions and native hashes. Full original/native entrance crop inspected. Two street elevations resolve red/buff masonry, sash rhythm, portico, cornice, dormers, balustrade/chimney grouping and missing slim iron stair rails. Built real descending handrails, vertical posts anchored in retained treads and level landing returns. Original steps/landing, columns, body, map/frame/ground and placement retained. Bar sizes/heights/post spacing/hidden connections are fixed photographic estimates, not exact craft profiles. Condition shown in2008does not establish present finish or later alterations. Existing hidden contact walls/roof/service openings remain conservative approximations; neighboring museum buildings/connector, interior rooms, sign portrait/lettering, street furniture/flags/cars/air conditioners excluded. No copied photo pixels, terrain fitting, civil survey or1783reconstruction claim."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:5eb31c8991cb279c34e55fe53dd6c28450ff093b425f4f5a1cac51a719b9fa4c",
+    "recipeHash": "sha256:d06f2350c97e9d89139839c92d47d853cdc63e1af9d527cbb0a5bbfd8be971b3",
     "levels": [
       {
         "name": "skyline",
@@ -104,64 +133,772 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:ca9b032be780e9716e42074ac3224d04f37c36461cda981060fa1a1630a6c0c1",
-        "bytes": 175564,
-        "gzipBytes": 40102,
-        "triangles": 2163,
-        "cpuBytes": 168248,
-        "gpuBytes": 168248,
+        "hash": "sha256:a01364cfc1776b348d1475f6a8fac83b9d2c425c5f9d9baa51e19691e51ece26",
+        "bytes": 184928,
+        "gzipBytes": 41792,
+        "triangles": 2283,
+        "cpuBytes": 177608,
+        "gpuBytes": 177608,
         "errorMeters": 0.2,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:e3ba5067ea63cd8dff1bebf5531d6cc2df011e387ab718e2086768598851182f",
-        "bytes": 710180,
-        "gzipBytes": 157442,
-        "triangles": 9013,
-        "cpuBytes": 702836,
-        "gpuBytes": 702836,
+        "hash": "sha256:86f449c75b3d9be3de647a107bb066f36e5ff91d4913aab584ae290ad4467d8e",
+        "bytes": 725156,
+        "gzipBytes": 160105,
+        "triangles": 9205,
+        "cpuBytes": 717812,
+        "gpuBytes": 717812,
         "errorMeters": 0.08,
         "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:d7841574ac5c239f07c66bb0e54814c9728c100fdab541e22390f8258c0e8be1",
-        "bytes": 2390780,
-        "gzipBytes": 462330,
-        "triangles": 19895,
-        "cpuBytes": 2387400,
-        "gpuBytes": 2387400,
+        "hash": "sha256:1bd526674207c6629ab74cdbc3b9f7dad26c51a23f7522aee64f4ae3dc99e405",
+        "bytes": 2413820,
+        "gzipBytes": 466737,
+        "triangles": 20087,
+        "cpuBytes": 2410440,
+        "gpuBytes": 2410440,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Simplified roof rails and sash divisions reduce distant detail while preserving the silhouette. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "646/2283/9205/20087triangles and1/6/6/6draws within strict budgets. Exact original skyline source attributes retained. District adds120triangles for main rails/landing returns and fewer supports; street/close add192triangles with six posts per side. All original source attributes outside small rail box retained. Declared geometric errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 19895,
+    "sourceTriangles": 20087,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 646,
+        "drawCalls": 1,
+        "controls": 8,
+        "failed": 0,
+        "addedTriangles": 0,
+        "retainedTriangles": 646,
+        "attributeHash": "sha256:dfc96bb989b04995a57f30f00bf4cc6ce20a21bb413e9b2388b455b90f5b5d95",
+        "controlResults": [
+          {
+            "name": "original surrounding source geometry attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:dfc96bb989b04995a57f30f00bf4cc6ce20a21bb413e9b2388b455b90f5b5d95",
+            "retainedTriangles": 646
+          },
+          {
+            "name": "only the expected closed handrail members added",
+            "pass": true,
+            "addedTriangles": 0
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 2.11,
+            "expectedY": 0.2,
+            "actualY": 0.20000000298023246
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.83,
+            "expectedY": 0.4,
+            "actualY": 0.40000000596046426
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.55,
+            "expectedY": 0.6,
+            "actualY": 0.6000000238418579
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.39,
+            "expectedY": 0.8,
+            "actualY": 0.800000011920929
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1,
+            "expectedY": 0.97,
+            "actualY": 0.9700000286102295
+          },
+          {
+            "name": "original portico remains open above stairs",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 2283,
+        "drawCalls": 6,
+        "controls": 22,
+        "failed": 0,
+        "addedTriangles": 120,
+        "retainedTriangles": 2063,
+        "attributeHash": "sha256:0ed5c99b2dfebaca2080f46ba0bdf5100ab1c0b95ca7870f639e474d50922d4b",
+        "controlResults": [
+          {
+            "name": "original surrounding source geometry attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:0ed5c99b2dfebaca2080f46ba0bdf5100ab1c0b95ca7870f639e474d50922d4b",
+            "retainedTriangles": 2063
+          },
+          {
+            "name": "only the expected closed handrail members added",
+            "pass": true,
+            "addedTriangles": 120
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 2.11,
+            "expectedY": 0.2,
+            "actualY": 0.20000000298023246
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.83,
+            "expectedY": 0.4,
+            "actualY": 0.40000000596046426
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.55,
+            "expectedY": 0.6,
+            "actualY": 0.6000000238418579
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.39,
+            "expectedY": 0.8,
+            "actualY": 0.800000011920929
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1,
+            "expectedY": 0.97,
+            "actualY": 0.9700000286102295
+          },
+          {
+            "name": "original portico remains open above stairs",
+            "pass": true
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.8,
+            "y": 1.3087628865979382
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.4,
+            "y": 1.6675257731958766
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 0.9,
+            "y": 1.82
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 2.11,
+            "baseY": 0.2
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.23,
+            "baseY": 0.97
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 0.7,
+            "baseY": 0.97
+          },
+          {
+            "name": "air remains between stair posts",
+            "pass": true,
+            "x": -1.43
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.8,
+            "y": 1.3087628865979382
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.4,
+            "y": 1.6675257731958766
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 0.9,
+            "y": 1.82
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 2.11,
+            "baseY": 0.2
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.23,
+            "baseY": 0.97
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 0.7,
+            "baseY": 0.97
+          },
+          {
+            "name": "air remains between stair posts",
+            "pass": true,
+            "x": 1.43
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 9205,
+        "drawCalls": 6,
+        "controls": 28,
+        "failed": 0,
+        "addedTriangles": 192,
+        "retainedTriangles": 8813,
+        "attributeHash": "sha256:2d6524afaf062942a8ebe4c7da61147cbf2cad8c3adb3adfd29b7bddab2c681a",
+        "controlResults": [
+          {
+            "name": "original surrounding source geometry attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:2d6524afaf062942a8ebe4c7da61147cbf2cad8c3adb3adfd29b7bddab2c681a",
+            "retainedTriangles": 8813
+          },
+          {
+            "name": "only the expected closed handrail members added",
+            "pass": true,
+            "addedTriangles": 192
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 2.11,
+            "expectedY": 0.2,
+            "actualY": 0.20000000298023246
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.83,
+            "expectedY": 0.4,
+            "actualY": 0.40000000596046426
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.55,
+            "expectedY": 0.6,
+            "actualY": 0.6000000238418579
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.39,
+            "expectedY": 0.8,
+            "actualY": 0.800000011920929
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1,
+            "expectedY": 0.97,
+            "actualY": 0.9700000286102295
+          },
+          {
+            "name": "original portico remains open above stairs",
+            "pass": true
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.8,
+            "y": 1.3087628865979382
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.4,
+            "y": 1.6675257731958766
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 0.9,
+            "y": 1.82
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 2.11,
+            "baseY": 0.2
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.83,
+            "baseY": 0.4
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.55,
+            "baseY": 0.6
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.39,
+            "baseY": 0.8
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.23,
+            "baseY": 0.97
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 0.7,
+            "baseY": 0.97
+          },
+          {
+            "name": "air remains between stair posts",
+            "pass": true,
+            "x": -1.43
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.8,
+            "y": 1.3087628865979382
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.4,
+            "y": 1.6675257731958766
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 0.9,
+            "y": 1.82
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 2.11,
+            "baseY": 0.2
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.83,
+            "baseY": 0.4
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.55,
+            "baseY": 0.6
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.39,
+            "baseY": 0.8
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.23,
+            "baseY": 0.97
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 0.7,
+            "baseY": 0.97
+          },
+          {
+            "name": "air remains between stair posts",
+            "pass": true,
+            "x": 1.43
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 20087,
+        "drawCalls": 6,
+        "controls": 28,
+        "failed": 0,
+        "addedTriangles": 192,
+        "retainedTriangles": 19695,
+        "attributeHash": "sha256:efc86e525c93a72dcbb849b9ebfc01661ff17fd0c3ba68481aaf472047c16485",
+        "controlResults": [
+          {
+            "name": "original surrounding source geometry attributes retained",
+            "pass": true,
+            "attributeHash": "sha256:efc86e525c93a72dcbb849b9ebfc01661ff17fd0c3ba68481aaf472047c16485",
+            "retainedTriangles": 19695
+          },
+          {
+            "name": "only the expected closed handrail members added",
+            "pass": true,
+            "addedTriangles": 192
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 2.11,
+            "expectedY": 0.2,
+            "actualY": 0.20000000298023246
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.83,
+            "expectedY": 0.4,
+            "actualY": 0.40000000596046426
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.55,
+            "expectedY": 0.6,
+            "actualY": 0.6000000238418579
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1.39,
+            "expectedY": 0.8,
+            "actualY": 0.800000011920929
+          },
+          {
+            "name": "original center tread and landing retained",
+            "pass": true,
+            "z": 1,
+            "expectedY": 0.97,
+            "actualY": 0.9700000286102295
+          },
+          {
+            "name": "original portico remains open above stairs",
+            "pass": true
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.8,
+            "y": 1.3087628865979382
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.4,
+            "y": 1.6675257731958766
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": -1.43,
+            "z": 0.9,
+            "y": 1.82
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 2.11,
+            "baseY": 0.2
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.83,
+            "baseY": 0.4
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.55,
+            "baseY": 0.6
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.39,
+            "baseY": 0.8
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 1.23,
+            "baseY": 0.97
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": -1.43,
+            "z": 0.7,
+            "baseY": 0.97
+          },
+          {
+            "name": "air remains between stair posts",
+            "pass": true,
+            "x": -1.43
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.8,
+            "y": 1.3087628865979382
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.4,
+            "y": 1.6675257731958766
+          },
+          {
+            "name": "solid descending handrail and level return",
+            "pass": true,
+            "x": 1.43,
+            "z": 0.9,
+            "y": 1.82
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 2.11,
+            "baseY": 0.2
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.83,
+            "baseY": 0.4
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.55,
+            "baseY": 0.6
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.39,
+            "baseY": 0.8
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 1.23,
+            "baseY": 0.97
+          },
+          {
+            "name": "physical stair post above its original tread",
+            "pass": true,
+            "x": 1.43,
+            "z": 0.7,
+            "baseY": 0.97
+          },
+          {
+            "name": "air remains between stair posts",
+            "pass": true,
+            "x": 1.43
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dr/dr5/fraunces_tavern/verify-stair-rails.mjs"
+    ],
+    "notes": "Selected generation/import/exact regeneration, source/runtime integrity, normals/winding/UVs and strict budgets pass. Actual imported8/22/28/28controls pass: exact original surrounding source fingerprints, correct added-member triangle counts, original four tread heights/landing, open portico, solid descending rails/returns, tread posts and air between posts. Original map/ground hashes unchanged. No unchanged completed model regenerated or blanket revalidated."
   },
   "limitations": [
-    "Original medium-fi exterior of the restored 54 Pearl Street corner building, informed by individually inspected Qualla 2010/2014 photographs and supplemental details plus official city architectural descriptions. Not a survey or exact 1783 reconstruction.",
+    "Current exterior/entrance construction uses an individually inspected native Jim Henderson 2008 own-work public-domain exterior, after checking cleared Qualla images first. Earlier attribution-licensed photos are excluded as current controls; official factual city architectural descriptions retained. Not a survey or exact 1783 reconstruction.",
     "101 Broad Street, 58 Pearl Street, other museum buildings, interiors and the narrow mapped rear connector are excluded. Scope clipping is an explicit authoring boundary.",
     "Mapped 14.6 m height is only an approximate roof/balustrade control; chimneys rise above it. Vertical dimensions, hidden roof surfaces and service-side windows remain interpretations.",
     "Twelve-over-twelve sash, jack arches, paneled cornice and roof balusters are simplified geometry. The standard shared brick surface approximates the photographed Flemish bond without the pronounced repeat seam of the current Flemish graph. Sign portrait and lettering, flags, interior details and photograph pixels are not reproduced.",
-    "Independent terrain remains unchanged with foundation below the sidewalk datum. Exact contact can differ with another host DEM."
+    "Independent terrain remains unchanged with foundation below the sidewalk datum. Exact contact can differ with another host DEM.",
+    "Added actual slim stair handrails, vertical posts and level landing returns. Original steps retained. Rail heights, sections, post spacing, concealed connections and current condition remain fixed photographic estimates; the 2008 image does not measure later alterations."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:644feb3c308af5e0bbd4d2a5c4a455229efcacac04ffe7d7da2ae731f1b4ea79",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:667bfd043eecc95505e41f8c73fcf1d9c3b605c61877ab7aeef664fb0760d8a3",
+    "referenceInputHash": "sha256:9eec52cbb9ff4dae7b69e7091eeaf3ab794db44379ea32b2c1b649ae3abb4fe3",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/frauncestavern-original.JPG"
+    ],
+    "imageryEvidenceHash": "sha256:0bad4cba9f7625325e04fe3c8cd2c309270bec4b5bb4c2c2f9a0f32e772d22c3",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/r/5/r/fraunces-tavern-wp/fraunces-tavern-001.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fraunces_Tavern_001.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded from current construction controls."
+      },
+      {
+        "path": "_m/d/r/5/r/fraunces-tavern-wp/fraunces-tavern-pearl-street.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fraunces_Tavern_Pearl_Street.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded from current construction controls."
+      },
+      {
+        "path": "_m/d/r/5/r/fraunces-tavern-wp/south-side-fraunces-ta.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fraunces_Tavern,_south_side.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded from current construction controls."
+      },
+      {
+        "path": "_m/d/r/5/r/fraunces-tavern-wp/detail-sign-corner-fra.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Fraunces_Tavern_sign_detail.jpg",
+        "reason": "Earlier attribution-licensed photograph excluded from current construction controls."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla corpus checked first; unsuitable old exterior/interior/art candidates not adopted. Exact native Jim Henderson own-work PD-self original selected from main Commons category after explicit primary creator release verification; native full/entrance crop inspected and native hashes bound.2008view resolves two visible elevations and entrance rails; current condition/hidden elevations remain estimates. Earlier attribution photos excluded from current controls; HABS candidates not used."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "fraunces_tavern",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:667bfd043eecc95505e41f8c73fcf1d9c3b605c61877ab7aeef664fb0760d8a3",
+    "sourceHash": "sha256:1e4e5434d8867b3d266912c54ca76013c20d1cd530c7d42a470c48651c32ad35",
+    "runtimeHash": "sha256:9e85887d2851d0b3ff5654e6087af213dcdbed805592cef5beecac97bf9e5717",
+    "built": [
+      "Two physical descending iron stair handrails",
+      "Level rail returns beside original landing",
+      "Twelve physical tread/landing posts at street and close detail",
+      "Simpler district rail supports retaining original skyline"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      646,
+      2283,
+      9205,
+      20087
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Cleared Qualla media checked first: selected modern exteriors need attribution; public-domain local exteriors predate the1907restoration and interior/art images do not establish this exterior. Used exact native2948x2261Jim Henderson2008own-work PD-self original after verifying primary creator grant, clean restrictions and native hashes. Full original/native entrance crop inspected. Two street elevations resolve red/buff masonry, sash rhythm, portico, cornice, dormers, balustrade/chimney grouping and missing slim iron stair rails. Built real descending handrails, vertical posts anchored in retained treads and level landing returns. Original steps/landing, columns, body, map/frame/ground and placement retained. Bar sizes/heights/post spacing/hidden connections are fixed photographic estimates, not exact craft profiles. Condition shown in2008does not establish present finish or later alterations. Existing hidden contact walls/roof/service openings remain conservative approximations; neighboring museum buildings/connector, interior rooms, sign portrait/lettering, street furniture/flags/cars/air conditioners excluded. No copied photo pixels, terrain fitting, civil survey or1783reconstruction claim.",
+    "publicDomainOriginals": 1,
+    "reusedNativeQuallaOriginals": 0,
+    "physicalRailSides": 2,
+    "closeRailPosts": 12,
+    "existingTreadsAndLandingRetained": 5,
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

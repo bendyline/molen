@@ -1,0 +1,401 @@
+{
+  "planId": "fort_zeelandia",
+  "id": "fort_zeelandia",
+  "assetId": "molen.worldgen.structure.fort_zeelandia",
+  "title": "Fort Zeelandia",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 120.16094416379929,
+    "latitude": 23.001577350566052
+  },
+  "size": [
+    142.7566318511963,
+    22.780000686645508,
+    101.51521301269531
+  ],
+  "actualBounds": {
+    "min": [
+      -117.37255096435547,
+      -3,
+      -72.21021270751953
+    ],
+    "max": [
+      25.38408088684082,
+      19.780000686645508,
+      29.30500030517578
+    ]
+  },
+  "visualBrief": "Current Anping Fort later three-tier battered brick platform with perforated railing and own broad stairs, gray double-eave tiled arcaded memorial hall and independently cardinal square white lookout with splayed glazed cabin/red pyramid roof. Separate ragged plaster/brick southern wall with real narrow gate and blind pockets/iron ties, low northern remnant and southwest broken wall remain distinct; no complete vanished Dutch fortress. Whole-model geographic/visual approval remains separate.",
+  "nativeAxes": {
+    "x": "east-northeast along native inner-platform north edge",
+    "y": "up from independent lower western courtyard datum",
+    "z": "south-southeast"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Anping_Fort.jpg"
+  ],
+  "stories": [
+    {
+      "id": "fort-zeelandia-taiwan-wp",
+      "url": "https://qualla.com/fort-zeelandia-taiwan/"
+    }
+  ],
+  "referenceInputHash": "sha256:f36af55321ca07f70a52e973978c50df82c95b6f4473cc69aa8a8a06bfd91d63",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-fort-zeelandia.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-fort-zeelandia.mjs",
+    "level": "skyline",
+    "export": "fortZeelandiaSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.08
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.32,
+        "metallic": 0.04
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "fortZeelandiaDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.04
+          }
+        }
+      },
+      "street": {
+        "export": "fortZeelandiaStreet",
+        "errorMeters": 0.22,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.08
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.04
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent original Terrarium tile preserved before geometry:66049 fixed1m samples over256m square,3.0m lower-west-court provider datum. Original field must not be fitted/flattened; output spacing is not survey accuracy. All four actual runtime levels verify wall embedding/caps, through gate, blind recesses and native platform/hall caps;570 own stair/veranda samples clear the held-fixed field. Geographic approval remains bounded by provider and wall-trace uncertainty.",
+    "anchor": [
+      120.16094416379929,
+      23.001577350566052
+    ],
+    "heading": 0.3789084094714444,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        120.16060671126456,
+        23.001675135106
+      ],
+      "modelHeight": 0,
+      "basis": "Lower western courtyard outside raised inner platform and tower; original independent Terrarium provider3.0m contact, frozen before geometry at local[-28.0993,-22.9041]."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184531646263",
+      "buildings/35184674684988",
+      "buildings/35184675705443",
+      "buildings/35184675705440",
+      "landuse/35185620822192"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9e75d5d639d4663b14b436fd6d65bae5024c1b3f42b53480812920783889704f",
+    "notes": "Native later inner-platform cap and memorial-hall plans retained; broad site root is not extruded. Square cardinal lookout comes from approximate official EMAP ground-footprint trace plus dated originals. Separate historic wall runs are interpreted from official aerial/posted guide/local originals with stated several-metre uncertainty; primary approx65.8m southern length retained. Native overlay shows later platform cap, not all walls, inferred terrace toe or roof eaves."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Native broad site/terrace root height5 must not be uniformly extruded into a complete fortress. Native inner platform is a cap outline, not a roof or surveyed batter toe.",
+    "No precise measured current tower height, platform step levels or individual bay dimensions have been verified. Historical fort dimensions cannot set present silhouette.",
+    "Independent ground must be frozen before geometry. Review output spacing is not survey accuracy; no fitting/flattening or universal host-terrain claim.",
+    "Surviving-wall traces are bounded aerial/guide/photo interpretations with3.5m southern,4.5m northern and5m southwest uncertainty; top heights, cap loss, buttresses and small openings are photographic estimates. No construction-survey claim.",
+    "Whole scope now includes separate surviving southern/northern/southwest wall runs. Axes are bounded aerial/guide interpretations with3.5/4.5/5m uncertainty; original cap loss, plaster patch patterns, buttresses, tie anchors and small openings are photographic estimates. Current visual/shared/context/geographic evidence and final approval are recorded separately in qa.json.",
+    "Tower ground outline uses approximate official EMAP square-footprint trace; actual red roof is displaced in aerial imagery and is not a measured ground correction. Cardinal tower is rotated independently of later platform. Terrace heights, tower shaft/cabin proportions, hall arcade bay counts and roof junctions are photographic estimates.",
+    "Original photographs only constrain authored geometry/palette; no photographic pixels or copied heraldry. Modern trees, vegetation, people, temporary scaffolding, adjacent former Customs House museum and city excluded.",
+    "Original independent ground remains byte-identical. Terrarium composite heights may interpolate building/vegetation; precise structural ground classification and compatibility with other host fields remain unverified."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "platform-front",
+      "position": [
+        2,
+        9,
+        72
+      ],
+      "lookAt": [
+        0,
+        6,
+        3
+      ]
+    },
+    {
+      "name": "western-steps",
+      "position": [
+        -52,
+        8,
+        9
+      ],
+      "lookAt": [
+        -16,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "hall-arcade",
+      "position": [
+        -14,
+        8,
+        25
+      ],
+      "lookAt": [
+        -2,
+        6.8,
+        8
+      ]
+    },
+    {
+      "name": "tower-cabin",
+      "position": [
+        15,
+        22,
+        14
+      ],
+      "lookAt": [
+        -6,
+        15,
+        -13
+      ]
+    },
+    {
+      "name": "north-and-roofs",
+      "position": [
+        35,
+        27,
+        -48
+      ],
+      "lookAt": [
+        1,
+        8,
+        -8
+      ]
+    },
+    {
+      "name": "overhead",
+      "position": [
+        -48,
+        130,
+        67
+      ],
+      "lookAt": [
+        -40,
+        3,
+        -20
+      ]
+    },
+    {
+      "name": "south-wall",
+      "position": [
+        -82,
+        5,
+        0
+      ],
+      "lookAt": [
+        -82,
+        3,
+        -18
+      ]
+    },
+    {
+      "name": "north-remnants",
+      "position": [
+        -30,
+        6,
+        -96
+      ],
+      "lookAt": [
+        -22,
+        1.7,
+        -71
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 39583,
+    "vertices": 118749,
+    "materials": 6,
+    "bytes": 4753652,
+    "sha256": "sha256:9edff0bfb69e4c61f33a74eaff13bd8231a3bb4e6b4b036c0ea8f8b180e8d8c2"
+  }
+}

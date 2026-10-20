@@ -1,0 +1,522 @@
+{
+  "planId": "grand_central_terminal",
+  "id": "grand_central_terminal",
+  "assetId": "molen.worldgen.structure.grand_central_terminal",
+  "title": "Grand Central Terminal",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.97723829176385,
+    "latitude": 40.75272671787554
+  },
+  "size": [
+    99.5,
+    47.1100013256073,
+    90
+  ],
+  "actualBounds": {
+    "min": [
+      -49.75,
+      -1.2999999523162842,
+      -44.20000076293945
+    ],
+    "max": [
+      49.75,
+      45.810001373291016,
+      45.79999923706055
+    ]
+  },
+  "visualBrief": "Own Beaux-Arts limestone terminal: three great arched gridded south windows, ten fluted columns, oval windows/garlands, granite retail entrances, attic/dentilled cornice/cartouches, Tiffany-style coloured exterior clock, original simplified Mercury/eagle/Hercules/Minerva group and bronze Vanderbilt figure, green copper front/side hips, raised light main-concourse roof and open internal area-way. Surrounding viaduct, towers, platforms and interiors excluded.",
+  "nativeAxes": {
+    "x": "east-southeast along42nd Street",
+    "y": "up",
+    "z": "south-southwest toward42nd Street"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2010630459/",
+    "https://commons.wikimedia.org/wiki/File:NYC_Grand_Central.JPG",
+    "https://commons.wikimedia.org/wiki/File:Park_Av_41St_bike_station_east_GCT_jeh.jpg"
+  ],
+  "stories": [
+    {
+      "id": "grand-central-terminal-wp",
+      "url": "https://qualla.com/grand-central-terminal/"
+    }
+  ],
+  "referenceInputHash": "sha256:4c5be63d0d81f19e96f240ca71467c1dbd6ac0ba92c3ceb0481cc66cf662be73",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-grand-central-terminal.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-grand-central-terminal.mjs",
+    "level": "skyline",
+    "export": "grandCentralTerminalSkyline",
+    "errorMeters": 2.1,
+    "surfaces": {
+      "clockContactStone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "clockStone": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "clockBrass": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3
+      },
+      "clockGlazing": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.1
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.89,
+        "metallic": 0
+      },
+      "sculpture": {
+        "slot": "trim",
+        "graph": "stone_limestone_raw",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "granite": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.85,
+        "metallic": 0.25
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "flat": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.72,
+        "metallic": 0.25
+      },
+      "bronze": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.3
+      },
+      "clock": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "grandCentralTerminalDistrict",
+        "errorMeters": 0.7,
+        "surfaces": {
+          "clockContactStone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "clockStone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "clockBrass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "clockGlazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "flat": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.3
+          },
+          "clock": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "grandCentralTerminalStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "clockContactStone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "clockStone": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "clockBrass": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "clockGlazing": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.89,
+            "metallic": 0
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "stone_limestone_raw",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "granite": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.85,
+            "metallic": 0.25
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "flat": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.72,
+            "metallic": 0.25
+          },
+          "bronze": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.3
+          },
+          "clock": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.1
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent native Terrarium datum16.7424m at dry south sidewalk[0,46.5]; own NYC footprint-.784..+1.151m lies above below-grade own base-1.3m. South storefront/central frontage and side closed entrances clear ground; lower granite base absorbs source slope. Geographic contact visually reviewed as bounded preview; public coarse urban DEM and threshold elevations remain approximate, host-dependent. Terrain unchanged; footprint replacement disabled.",
+    "anchor": [
+      -73.97723829176385,
+      40.75272671787554
+    ],
+    "heading": -0.504,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.97750458717172,
+        40.752360942725026
+      ],
+      "modelHeight": 0,
+      "basis": "Dry42nd Street sidewalk just outside own front facade. Avoids elevated viaduct and roof; independent DEM may not resolve street accurately."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184638036190"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:016cffd928af9b5036a90729c3aa8621e9f2e597ff1716dab1f0200da86fe3c0",
+    "notes": "Use own city polygon91.584x87.720m/85.807m south wall, not coarse121x104m OSM property envelope. Side/rear/roof elevations proportional estimates reconciled to operator section/aerial. Clock and three-figure sculpture included in~45.84m contextual max."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "New physical exterior clock is based only on exact native Highsmith2008photographer-public-domain detail after Qualla-first41paths. Blue field,12burgundy oval medallions,radial white Roman numerals,gold rings/spokes and raised hands built; exact craft,dial dimensions,ornament,time and current patina remain medium-fi estimates. Full fixed terminal exterior still awaits broader cleared public-domain coverage. Earlier image controls are historical and excluded.",
+    "Own envelope uses official NYC BIN1035381 polygon91.584x87.720m, south facade85.807m; this agrees historical301ft overall width and excludes broader mapped viaduct margins. Local2019/2012 photographs, primary operator2010 section and aerial control proportions. Facade/detail/roof heights, window profiles and original simplified sculptures remain estimates, not measured survey/scans.",
+    "Integral clock/sculpture group, bronze Vanderbilt, original monumental windows and own roof masses retained. Side/rear opening placements and hidden area-way equipment are approximate. Neighbouring MetLife/Hyatt/Graybar/One Vanderbilt, road viaduct/bridge, tracks/interiors, flags, shop signage/awnings and street furniture excluded. No reference photographic pixels or plan pages redistributed.",
+    "Native independent terrain retained unchanged; geographic activation requires current source contact review. Footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "exterior-clock",
+      "position": [
+        0.15,
+        38.5,
+        54
+      ],
+      "lookAt": [
+        0,
+        37.6,
+        45.08
+      ]
+    },
+    {
+      "name": "front",
+      "position": [
+        0,
+        33,
+        200
+      ],
+      "lookAt": [
+        0,
+        21,
+        10
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -23,
+        39,
+        88
+      ],
+      "lookAt": [
+        0,
+        36.5,
+        43.5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        110,
+        80,
+        -140
+      ],
+      "lookAt": [
+        0,
+        23,
+        -9
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -19,
+        12,
+        80
+      ],
+      "lookAt": [
+        0,
+        6,
+        43.5
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -65,
+        110,
+        30
+      ],
+      "lookAt": [
+        0,
+        27,
+        -1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63788,
+    "vertices": 191364,
+    "materials": 7,
+    "bytes": 7658756,
+    "sha256": "sha256:0870001693f49e8c64a70b0c3ddda6db8f6cf8ccb56e8374a1e7454124856a17"
+  }
+}

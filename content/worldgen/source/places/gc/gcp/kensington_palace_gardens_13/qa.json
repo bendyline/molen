@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.kensington_palace_gardens_13",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-19",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:8309a79c8e280d14be8e6602cbac720c58c58747424f3f9b85f1398292c86f06",
+  "inputHash": "sha256:c2a87868c95e8125043f67e3b4e763d868b4271e7178d254243c00a261374c86",
   "sourceHash": "sha256:6774e4e77b3e785aa8642a686ea79b271cb319d4fa857d4f6f88d0dd40443a63",
   "runtimeHash": "sha256:8ebdf9cbc447494316085c3532a552b3bd1fde76d68771f39c74f9846e3ab9f7",
-  "captureReportHash": "sha256:f98c1fa310c7bcd697b349479ce8b5c2544a517d82ca8533ffeb1478704be9e2",
+  "captureReportHash": "sha256:f2449dc3380147cb32952e920c017343d23ca3c51867f03a40829c5bc5cfd186",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:f2449dc3380147cb32952e920c017343d23ca3c51867f03a40829c5bc5cfd186",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -18,11 +19,11 @@
       "shots/front.png",
       "shots/back.png"
     ],
-    "notes": "Inspected all seven portable views and full shared front. The western entrance has a projecting chamfered three-storey bay, two-storey wings with paired shallow window projections, cream sash surrounds, patterned parapets and corner finials. The surviving flat roof replaces the removed bell turret. The mapped south appendage is a low conservatory. Secondary openings, chimneys, roof and conservatory glazing remain documented interpretations of obscured elevations."
+    "notes": "Seven existing portable views inspected and retained. Source/runtime/LOD bytes, scene, cameras and independent ground remain identical. Current comparison uses the original public-domain architect’s exterior/plan and primary Survey of London/statutory heritage text. Main wings, tower/oriel, parapets, sash rhythm and south conservatory agree at medium-fi scope; removed historical turret stays absent."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:c5cfe7742a2af04c5907d8c8bcceaa8c445ea1f239567aab83a2d5ade234d0b4",
+    "captureReportHash": "sha256:ba94339a10d2150d2329663e56ee6cfab2ee1423b2775dfee9072b552f68cdaf",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -32,11 +33,11 @@
       "shots/shared/back.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven shared-material views, including north-up map alignment. Buff masonry and pale mineral trim use shared graphs and metric UVs; dark glazing remains portable. The outline and west-facing entrance align with the signed map frame, and the independent terrain reference is sampled by the geographic fixture. Unload and fixed transform assertions pass. The shared flat fixture verifies placement; source/context views retain the coarse terrain."
+    "notes": "Seven existing shared-material views inspected and retained, including north-up native footprint overlay. Source/runtime/LOD bytes, materials, cameras, map and ground remain unchanged. Buff masonry, pale stone dressings, timber sash/door and opaque glazing preserve the described hierarchy. Flat material fixture is distinct from independent source ground."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:062d01f3e41f51d1ce95b0de4b44565ac42f3542c8ac483e166b6f7a309c5287",
+    "captureReportHash": "sha256:8678e4749fa150f918e90ab2b6af8e576f748e083fae16bd77f2cc352095a2cb",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -58,7 +59,7 @@
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen medium-fi frames: twelve light/distance/mode combinations, front/back, untextured silhouette and four forced levels. The deliberate distant recipes preserve the entrance tower, two-storey wings, south conservatory and front window rhythm; parapets and sash details simplify with distance. No missing main bodies or unstable colors observed. Automatic capped derivatives were rejected after losing a surface group; final district and street levels are explicitly authored. Context neighbors are synthetic style fixtures and no physical-device frame rate is claimed."
+    "notes": "Nineteen fresh version2 frames actually inspected: source-ground context, lighting/quality, façades, silhouette and four forced runtime levels. Each binds the actual current asset and detail hashes. Two-storey wings and taller entrance/oriel tower survive at skyline; sash frames, parapets and conservatory restore at district; tracery and small masonry/metal details resolve at street/closeup. Synthetic neighbors are style fixtures."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +78,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.000045950698851271454
     },
-    "notes": "Mapped building 35184430612503 identifies the residence independently of Kensington Palace. Anchor [-0.19057005687384387,51.507109984476585] and heading -1.2662857194627608 align +Z west-southwest toward the entrance street. Front reference [-1.35,13.2] defines the 27.931 m host datum. Preserved 65 by 65 Terrarium samples remain unflattened; footprint relief is -1.088107..1.290926 m and lower closures extend to -1.5 m. These coarse host heights are not surveyed pavement or entrance levels. Footprint suppression stays off."
+    "notes": "Mapped building 35184430612503 identifies the residence independently of Kensington Palace. Anchor [-0.19057005687384387,51.507109984476585] and heading -1.2662857194627608 align +Z west-southwest toward the entrance street. Front reference [-1.35,13.2] defines the 27.931 m host datum. Preserved 65 by 65 Terrarium samples remain unflattened; footprint relief is -1.088107..1.290926 m and lower closures extend to -1.5 m. These coarse host heights are not surveyed pavement or entrance levels. Footprint suppression stays off. Current2026-10-19 review retains these exact native map, Terrarium, scene and global placement hashes; current version2 source-ground captures and retained mapped overlay were inspected."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Surviving exterior of 13 Kensington Palace Gardens, including its south conservatory; separate from Kensington Palace.",
-    "notes": "Accepted original medium-fi surviving exterior based on the inspected 2014 Qualla photograph, article alteration history and current generalized map footprint. Principal shape, facade bay/window rhythm, buff masonry, cream trim and open parapet motif are represented. Fine stonework, exact tracery and hidden elevations are interpretations, not measured replicas. The pre-1924 bell turret is intentionally omitted. Gardens, flag, security fixtures and interior are outside scope. Reference photography is not embedded or redistributed."
+    "scope": "Model the named Gothic residence with its entrance tower, brick/stone facade and conservatory. It is a separate building from Kensington Palace.",
+    "notes": "Full surviving residence and south conservatory accepted at the agreed approximate medium-fi scope. Cleared Qualla media checked first; only the modern attribution-only facade and unrelated Kensington Palace map were published, so neither is active imagery. Two exact public-domain original illustrations from architect C.J.Richardson’s The Englishman’s House were individually inspected: complete exterior perspective p476 and ground plan p479. The primary Gutenberg catalog explicitly marks the book public domain in the USA and identifies Richardson1806–1871; the selected image links, catalog/book snapshots and exact bytes are bound. The drawings establish the sash-window wings, projecting central oriel/entry, open parapets, chimney rhythm and side conservatory. Primary Survey of London1973text independently describes the surviving buff-brick/Bath-stone body and1924alterations: bell turret removed, steps/wooden porch changed, conservatory windows changed and its sloping roof replaced by flat roof. That flat-roof statement applies to the conservatory, not a surveyed description of the entire main roof. Historic England1266971 independently identifies the symmetrical Gothic facade, diagonal buttresses, sash openings, central oriel and entrance canopy. Existing geometry agrees at medium-fi scope; historical turret is correctly omitted. No original scope removed or geometry rebuilt. Precise tracery, doorway/porch profiles, secondary openings, main-roof slopes/drainage, conservatory glazing subdivisions and current fixtures remain estimates. Original native footprint, heading, independent ground and source/runtime/four LOD bytes retained. Fourteen current portable/shared views inspected and retained; nineteen fresh current-identity detail/LOD frames inspected. No reference pixels embedded."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:c10b4d7a66fa54714b1984ec6f8d9d56b62a1b0dcbdb59529613a62f3ff79243",
+    "recipeHash": "sha256:892d4441dc6615f7abbd544e9a556caa9c3d8f5e3ae00db7435b633a243232ed",
     "levels": [
       {
         "name": "skyline",
@@ -138,7 +139,7 @@
         "drawCalls": 5
       }
     ],
-    "notes": "All four current hash-bound levels pass strict triangle/material/download budgets and were inspected: skyline 592, district 1908, street 13824 and closeup 44448 triangles. Skyline, district and street are explicitly authored. Distance versions use solid or diamond parapets before closeup quatrefoil motifs, while preserving the main silhouette. Declared authoring error budgets are not independent measured mesh distances."
+    "notes": "All four unchanged registered levels verified and inspected in fresh actual-runtime captures. Triangle counts 592/1908/13824/44448; draw calls 1/5/5/5. Error values remain authoring budgets, not measured mesh distances."
   },
   "geometryValidation": {
     "status": "passed",
@@ -150,17 +151,60 @@
     "runtimeLodsVerified": 4,
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass. Terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "notes": "Exact targeted regeneration, imported master integrity, four actual LOD digests, strict medium-fi budgets, source/scene/terrain schemas and repeated30tick state pass. All geometry, native map/ground and global placement bytes remain unchanged.",
+    "integration": {
+      "repeatTicks": 30,
+      "stateHash": "sha256:25e3a6527e9e2d9441bc5c1c9c2a8dc4601285b97067d1bed2e4aff364bd2f17"
+    }
   },
   "limitations": [
-    "Original medium-fi surviving exterior from a local 2014 Qualla facade photo and generalized map controls; no measured survey or interior.",
+    "Full surviving exterior reviewed with two original public-domain C.J.Richardson illustrations and independent primary Survey of London/heritage architectural descriptions. The earlier attribution-only photograph is excluded; no measured survey or interior.",
     "Buff masonry, white sash surrounds, entrance bay and open parapet rhythm are represented. Fine carvings, exact tracery and secondary elevation openings are simplified interpretations.",
-    "The former bell turret and earlier pitched roof are omitted following the article description of the 1924 alteration. The southern glazed conservatory and hidden roof/rear details are conservative interpretations.",
+    "The former bell turret is omitted following the primary1924alteration history. The documented sloping-to-flat roof change applies to the south conservatory. Exact main-roof slopes/drainage, conservatory glazing and hidden rear details remain medium-fi interpretations.",
     "Independent coarse terrain determines host contact. The ambassadorial flag, garden hedges, security fixtures, surrounding streets and interiors are omitted. Local reference photography is not embedded or redistributed."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:49233339e04ba2e7fd3185933941cac069c823d193e3985325356ce026f5e4ed",
     "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  },
+  "status": "completed",
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:c2a87868c95e8125043f67e3b4e763d868b4271e7178d254243c00a261374c86",
+    "referenceInputHash": "sha256:da060b71c29b654bdda4fdaddf772e42c26dd54613347c936ad3710aa354065f",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/exterior-476.jpg",
+      ".artifacts/reference-photos/ground-plan-479.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:1eca46da0e009d2adf931dc2267337e427b509b28c0890bf04cdf90fa7d504c2",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/g/c/p/v/13-kensington-palace-gardens-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Russian_Embassy_Residence_London_01926.JPG",
+        "reason": "Attribution-only2014photograph excluded from the active public-domain imagery review."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Full surviving residence and south conservatory accepted at the agreed approximate medium-fi scope. Cleared Qualla media checked first; only the modern attribution-only facade and unrelated Kensington Palace map were published, so neither is active imagery. Two exact public-domain original illustrations from architect C.J.Richardson’s The Englishman’s House were individually inspected: complete exterior perspective p476 and ground plan p479. The primary Gutenberg catalog explicitly marks the book public domain in the USA and identifies Richardson1806–1871; the selected image links, catalog/book snapshots and exact bytes are bound. The drawings establish the sash-window wings, projecting central oriel/entry, open parapets, chimney rhythm and side conservatory. Primary Survey of London1973text independently describes the surviving buff-brick/Bath-stone body and1924alterations: bell turret removed, steps/wooden porch changed, conservatory windows changed and its sloping roof replaced by flat roof. That flat-roof statement applies to the conservatory, not a surveyed description of the entire main roof. Historic England1266971 independently identifies the symmetrical Gothic facade, diagonal buttresses, sash openings, central oriel and entrance canopy. Existing geometry agrees at medium-fi scope; historical turret is correctly omitted. No original scope removed or geometry rebuilt. Precise tracery, doorway/porch profiles, secondary openings, main-roof slopes/drainage, conservatory glazing subdivisions and current fixtures remain estimates. Original native footprint, heading, independent ground and source/runtime/four LOD bytes retained. Fourteen current portable/shared views inspected and retained; nineteen fresh current-identity detail/LOD frames inspected. No reference pixels embedded."
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:c2a87868c95e8125043f67e3b4e763d868b4271e7178d254243c00a261374c86",
+    "sourceHash": "sha256:6774e4e77b3e785aa8642a686ea79b271cb319d4fa857d4f6f88d0dd40443a63",
+    "runtimeHash": "sha256:8ebdf9cbc447494316085c3532a552b3bd1fde76d68771f39c74f9846e3ab9f7",
+    "notes": "Full surviving residence and south conservatory accepted at the agreed approximate medium-fi scope. Cleared Qualla media checked first; only the modern attribution-only facade and unrelated Kensington Palace map were published, so neither is active imagery. Two exact public-domain original illustrations from architect C.J.Richardson’s The Englishman’s House were individually inspected: complete exterior perspective p476 and ground plan p479. The primary Gutenberg catalog explicitly marks the book public domain in the USA and identifies Richardson1806–1871; the selected image links, catalog/book snapshots and exact bytes are bound. The drawings establish the sash-window wings, projecting central oriel/entry, open parapets, chimney rhythm and side conservatory. Primary Survey of London1973text independently describes the surviving buff-brick/Bath-stone body and1924alterations: bell turret removed, steps/wooden porch changed, conservatory windows changed and its sloping roof replaced by flat roof. That flat-roof statement applies to the conservatory, not a surveyed description of the entire main roof. Historic England1266971 independently identifies the symmetrical Gothic facade, diagonal buttresses, sash openings, central oriel and entrance canopy. Existing geometry agrees at medium-fi scope; historical turret is correctly omitted. No original scope removed or geometry rebuilt. Precise tracery, doorway/porch profiles, secondary openings, main-roof slopes/drainage, conservatory glazing subdivisions and current fixtures remain estimates. Original native footprint, heading, independent ground and source/runtime/four LOD bytes retained. Fourteen current portable/shared views inspected and retained; nineteen fresh current-identity detail/LOD frames inspected. No reference pixels embedded.",
+    "newCaptures": 19,
+    "retainedFrames": 14,
+    "geometryChanged": false
+  },
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

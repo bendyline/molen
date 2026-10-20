@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.reichstag",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:bb91a53ce3dc1f4693ae80bd39d078fcdbca229192c14dfc6a0d1434682d1119",
-  "sourceHash": "sha256:5fa548651c3c7aa23bd696f892b6a918a60a7fd74e619510fd5c213e3128e508",
-  "runtimeHash": "sha256:f0751f5e5179e12fb66e10098ba7e9dbc2fbad3402e819929c01dd7adcbdd6b9",
-  "captureReportHash": "sha256:e074a3b04036f17ee3bc9820ac27ebe61ff080d150b736115dd136482101482a",
+  "inputHash": "sha256:bd8d5b76c89db640bf0673b3095b96b44e568ce3773afd9d868d8a39a7e53a88",
+  "sourceHash": "sha256:f6e70008b12ab8c526df17d6950a5b21a6b3be1465b128b4a02cc7f1858bf094",
+  "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+  "captureReportHash": "sha256:245dedbde532e3e852a11ec0feaba812f2dc7ad741c719184c9b4123d74e27a5",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:245dedbde532e3e852a11ec0feaba812f2dc7ad741c719184c9b4123d74e27a5",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/portico-ceiling.png",
+      "shots/entrance-frame.png"
     ],
-    "notes": "Inspected seven final portable views against the two individual Qualla west-front and northeast photographs. Verified the four square towers, open west colonnade, contrasting east entrance, two courtyard voids and ribbed transparent dome. Corrected occluded east windows, side wall offsets, missing corner arches, east attic shape and west stair approach."
+    "notes": "All nine current portable frames inspected, including the new ceiling and entrance-frame close-ups. Solid mullions sit forward of the opaque glass; actual beams/crossing ties leave shaded shallow coffers under the portico. Existing six-column arrangement, west staircase, four towers, two court voids and dome retained. Source-native forecourt/ground views inspected."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4efe04831fd1e861a7efb4daebab7ee520758b3693aa443945a8158a73083036",
+    "captureReportHash": "sha256:3a7172518f974360cd362a7cf3f52600f4817f445c42584dbec10b067965dbbb",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/portico-ceiling.png",
+      "shots/shared/entrance-frame.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected seven final shared-material views and the full northeast back view. Sandstone, ashlar, copper and painted metal remain bound at metric scale. Transparent dome uses a distinct local alpha material; ordinary windows remain opaque. The north-up placement overlay follows the mapped outline and tower controls. Flat shared ground is a material fixture, not the independently reviewed terrain."
+    "notes": "All nine current shared-material frames inspected, including both details and mapped placement overlay. Sandstone/ashlar, metal and copper bindings remain consistent with metric repeats; actual coffer depth and mullion shadow persist. Dome remains separate alpha material. Placement hash/transform and unload pass. Flat shared fixture establishes transform/material behavior; source-native captures carry independent ground context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.metal_copper": {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.stone_ashlar": {
+        "path": "materials/stone_ashlar.matgraph.json",
+        "hash": "sha256:f5692cbd995206b1475a803b027d181a664bd3a20df51db34667f205abce8093"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:77a6786ec9207a8ae5c636fe29ee711be8558362a2d3451be3193b255b584766",
+    "captureReportHash": "sha256:58bfaa114625b61c88db79eb711ffd104a2528a440bf0b96e60f2a549818c432",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/portico-ceiling.png",
+      "medium-fi/entrance-frame.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen final frames across light, quality, front/back and four forced levels. The dome and four towers remain legible at distance; medium-range opacity increases to preserve the glass shell silhouette. Closeup retains the finer ribs, ramps, window surrounds and simplified relief. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All 21 current version-2 frames inspected across noon/late light, economy/high quality, source-native ground, front/back, both detail cameras and all four forced levels. Distant dome/tower silhouette retained. District has physical mullions/coffers within3998 triangles; street/close retain finer geometry. Synthetic neighbors are style context and do not establish geographic alignment."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,83 +102,934 @@
       ],
       "maxPngEncodingErrorMeters": 0.00006891870499003971
     },
-    "notes": "Mapped historic outline, two courtyard voids and four corner towers establish the plan. Anchor [13.376111111111111,52.51861111111111], heading -pi/2; +X south and +Z west. Independent Berlin DGM1 replaces unsuitable coarse Terrarium relief. Forecourt contact [1.6,84] is 34.7814 m DHHN2016; the previous [1.6,64] was a raised stair landing. Source heights remain unchanged; model foundation extends to -1.6 m. Footprint suppression is off, and other host DEMs may differ."
+    "notes": "Original anchor [13.376111111111111,52.51861111111111], heading -pi/2, +X south/+Z west and source frame retained. All three original Berlin DGM1 terrain files remain byte-identical. Original forecourt reference [1.6,84], model datum34.7814m DHHN2016, foundation depth-1.6m and footprint relative range-1.04343..0.52002m unchanged. No fitting/flattening or placement change. Actual imported floor probes show continuous portico and upper landing at3.4m at every level; new coarse platform fills its previous gap. Source-native/overlay views inspected. Other host terrain and exact surveyed architectural levels remain outside this bounded review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Present Reichstag exterior, glass dome and visible dome internals; parliamentary rooms and surrounding landscape excluded.",
-    "notes": "Original medium-fi present Reichstag exterior from the inspected 2014 west and 2017 northeast local photographs plus Bundestag dome dimensions. Diameter 40 m, rise 23.5 m above approximately 24 m terrace; 24 ribs and 17 divisions at close range. Sculpture, inscriptions, roof and courtyard details and visible dome internals are simplified. Official top-opening dimensions conflict between 8 m and 10 m; model uses approximately 10 m. No parliamentary interior or reference pixels are embedded."
+    "scope": "Present mapped Reichstag exterior, four towers, two court voids, Foster dome and new physical west portico details. Hidden side/east architecture and fine sculpture remain generalized.",
+    "notes": "Started with cleared Qualla published/candidate metadata; modern selected west/northeast images require attribution and were excluded. Historic public-domain candidates do not control the present glass-dome exterior. Two exact native creator own-work CC0 photographs then inspected: Daderot 2014 west portico underside and Leonhard Lenz 2019 whole west front, including original-size crops. Primary revisions/releases, original SHA-1/SHA-256 and clean no-attribution/no-restrictions metadata bound. Built solid recessed-entrance vertical/horizontal mullions, a continuous rear soffit and actual portico beams/crossing ties with shallow coffer air. Added the missing coarse-level portico floor between the body and upper stair landing. Existing body, courtyard voids, towers, steps and close dome retained; district dome rings reduced from nine to eight to fit the detail budget. Original mapped frame, independent Berlin DGM1 ground and placement retained. Exact beam sections/depths, hidden joints, ornament, inscriptions, side/east/courtyard details and current condition remain conservative/inherited approximations. Only the west exterior is resolved by current photographs. Dome dimensions retain the previously recorded official basis and aperture discrepancy. Opaque entrance glass is an exterior boundary; no parliamentary rooms, navigation, survey or engineering certification and no embedded image pixels."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:04d6fab5f3c807bd114f8246e4d6ca2a93f0ed97a5e2e81ee5f6ac5916197ba8",
+    "recipeHash": "sha256:b229e824cb67162759440f44edf4b6d33765344d2bb6f271350b091864c24a2d",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:908184770e1f780aef3a2c68fb8ca13dae857c3f07854994157cdf6adb0c36f0",
-        "bytes": 52676,
-        "gzipBytes": 8657,
-        "triangles": 668,
-        "cpuBytes": 51312,
-        "gpuBytes": 51312,
+        "hash": "sha256:17d55d1d093c315ac9fb3c95a51fc12438029b0e75bc37f794ba2f19bd52058d",
+        "bytes": 53612,
+        "gzipBytes": 8773,
+        "triangles": 680,
+        "cpuBytes": 52248,
+        "gpuBytes": 52248,
         "errorMeters": 1.2,
         "drawCalls": 1
       },
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:4e12bcb426d04e7d37f4b099ce0b255446d480f2262e898559629218fada563d",
-        "bytes": 275368,
-        "gzipBytes": 65741,
-        "triangles": 3894,
-        "cpuBytes": 268020,
-        "gpuBytes": 268020,
+        "hash": "sha256:76108069df1e81f268813290ae68863c34e903bf548ff01ec94a48dcda416e95",
+        "bytes": 284764,
+        "gzipBytes": 66456,
+        "triangles": 3998,
+        "cpuBytes": 277428,
+        "gpuBytes": 277428,
         "errorMeters": 0.55,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:4116f0084aa254762da73a55a50dbb404f93cc2ce994485687315f2631d48e2f",
-        "bytes": 990992,
-        "gzipBytes": 247165,
-        "triangles": 14469,
-        "cpuBytes": 983612,
-        "gpuBytes": 983612,
+        "hash": "sha256:cc5373d63344d0e6248e385ac56d2733749c4fa3c0aac73ee2456b2eda61f1b5",
+        "bytes": 1007528,
+        "gzipBytes": 250264,
+        "triangles": 14681,
+        "cpuBytes": 1000148,
+        "gpuBytes": 1000148,
         "errorMeters": 0.25,
         "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:18a3abc9b5d72e89ee70bc4c5d47d354113694ea933b48d5d302b1e6f312602d",
-        "bytes": 4243328,
-        "gzipBytes": 752407,
-        "triangles": 35333,
-        "cpuBytes": 4239960,
-        "gpuBytes": 4239960,
+        "hash": "sha256:7665ed9c85183d50b03f772386c7ea5eef9357f2aba00eb4d6f2162dad71d433",
+        "bytes": 4268768,
+        "gzipBytes": 755264,
+        "triangles": 35545,
+        "cpuBytes": 4265400,
+        "gpuBytes": 4265400,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass geometry/draw budgets. Skyline keeps dome, towers and entrance silhouette; district restores facades and roof masses; street adds arches, column and dome framing; closeup adds capitals, relief, glazing subdivisions and finer ramps. Error values are authoring budgets, not measured mesh-to-mesh deviations."
+    "notes": "680/3998/14681/35545 triangles and1/6/6/6 draws pass strict budgets. District dome ring count reduced9to8 to accommodate actual portico construction; close24-rib/17-division shell retained. Physical portico floor exists across all four levels; frames/coffers retained district onward. Declared geometric errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 35333,
+    "sourceTriangles": 35545,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 680,
+        "drawCalls": 1,
+        "controls": 15,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": -4
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 7.2
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 62,
+            "y": 3.4000000953674316
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3998,
+        "drawCalls": 6,
+        "controls": 40,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": -4
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 7.2
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": -7.4,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": -7.4
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": -2.9,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": -2.9
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 1.6,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 6.1,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 6.1
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 10.6,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 10.6
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 10.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 15.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 20.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "opaque exterior glazing boundary behind frames",
+            "pass": true,
+            "z": 43.25
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": -6.800000000000001,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": -6.800000000000001
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": -1.1999999999999997,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": -1.1999999999999997
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": 4.4,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": 4.4
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": 10,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": 10
+          },
+          {
+            "name": "solid crossing ceiling tie underside",
+            "pass": true,
+            "y": 22.670000076293945
+          },
+          {
+            "name": "open coffer air between beams",
+            "pass": true
+          },
+          {
+            "name": "continuous rear ceiling closes coffer above",
+            "pass": true,
+            "y": 23.049999237060547
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 14681,
+        "drawCalls": 6,
+        "controls": 40,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": -4
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 7.2
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": -7.4,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": -7.4
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": -2.9,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": -2.9
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 1.6,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 6.1,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 6.1
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 10.6,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 10.6
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 10.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 15.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 20.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "opaque exterior glazing boundary behind frames",
+            "pass": true,
+            "z": 43.25
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": -6.800000000000001,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": -6.800000000000001
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": -1.1999999999999997,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": -1.1999999999999997
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": 4.4,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": 4.4
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": 10,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": 10
+          },
+          {
+            "name": "solid crossing ceiling tie underside",
+            "pass": true,
+            "y": 22.670000076293945
+          },
+          {
+            "name": "open coffer air between beams",
+            "pass": true
+          },
+          {
+            "name": "continuous rear ceiling closes coffer above",
+            "pass": true,
+            "y": 23.049999237060547
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 35545,
+        "drawCalls": 6,
+        "controls": 40,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": -4
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": -4,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 1.6,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "open approach between columns",
+            "pass": true,
+            "x": 7.2
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 47,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 50,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 55,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "continuous physical portico and upper stair landing",
+            "pass": true,
+            "x": 7.2,
+            "z": 62,
+            "y": 3.4000000953674316
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": -7.4,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": -7.4
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": -2.9,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": -2.9
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 1.6,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 1.6
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 6.1,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 6.1
+          },
+          {
+            "name": "solid vertical entrance frame front",
+            "pass": true,
+            "x": 10.6,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "vertical frame has inward side depth",
+            "pass": true,
+            "x": 10.6
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 10.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 15.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "solid horizontal entrance frame",
+            "pass": true,
+            "y": 20.07,
+            "z": 43.470001220703125
+          },
+          {
+            "name": "opaque exterior glazing boundary behind frames",
+            "pass": true,
+            "z": 43.25
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": -6.800000000000001,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": -6.800000000000001
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": -1.1999999999999997,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": -1.1999999999999997
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": 4.4,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": 4.4
+          },
+          {
+            "name": "solid primary ceiling beam underside",
+            "pass": true,
+            "x": 10,
+            "y": 22.549999237060547
+          },
+          {
+            "name": "primary beam side depth",
+            "pass": true,
+            "x": 10
+          },
+          {
+            "name": "solid crossing ceiling tie underside",
+            "pass": true,
+            "y": 22.670000076293945
+          },
+          {
+            "name": "open coffer air between beams",
+            "pass": true
+          },
+          {
+            "name": "continuous rear ceiling closes coffer above",
+            "pass": true,
+            "y": 23.049999237060547
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/u3/u33/reichstag/verify-portico.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration and asset integrity pass; source/imported normals/winding/UVs and strict LOD/material limits pass. Imported ray controls test open approach, continuous floor/landing, actual frame fronts and inward sides, opaque rear boundary, beam undersides/sides, crossing ties, empty coffer space and continuous rear soffit. 15coarse/40each other-level controls pass. Original frame/ground hashes retained; unchanged finished models not regenerated or blanket revalidated."
   },
   "limitations": [
-    "Original medium-fi present exterior, using individually inspected 2014 west-front and 2017 northeast Qualla photographs; not a survey or photogrammetric reconstruction.",
+    "Original medium-fi present exterior. Current construction controls are individually inspected native 2014 Daderot and 2019 Leonhard Lenz own-work CC0 west photographs, selected after checking cleared Qualla media. Earlier attribution-licensed views are excluded from current controls; hidden side/east architecture remains an inherited mapped approximation.",
+    "West entrance mullions and coffer beams are solid geometry. The photographs control their visible arrangement; member sections, ceiling depth, hidden joints and exact bay proportions are estimates. The opaque entrance glazing is an exterior boundary, with no parliamentary rooms modeled.",
     "Mapped outline, courtyard voids and tower positions are generalized. Roof terrace, courtyard facades, side details and ornament are conservative interpretations.",
     "Dome diameter 40 m and rise 23.5 m follow Bundestag figures; base is approximately 24 m above forecourt. Rounded published total heights differ slightly. Top opening modeled approximately 10 m; another official page says 8 m.",
     "The dome has 24 ribs and 17 horizontal divisions at close range, with four bottom glazing rows omitted. Internal ramps and reflector cone are simplified exterior-visible cues; parliamentary rooms are excluded.",
@@ -163,6 +1039,77 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:ec76d51c86bb7c968b328a0a13603df6593f516e901a61fc4cc59370f8c31525",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:bd8d5b76c89db640bf0673b3095b96b44e568ce3773afd9d868d8a39a7e53a88",
+    "referenceInputHash": "9a6b6b8fc167c5aa12a0cc46741a2d0dfb4908f5be324aa14fff2d4c36a3032d",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/west-portico-2014.jpg",
+      ".artifacts/reference-photos/west-front-2019.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:6fa8118326018f19afda6ceaa96c88b2f39eec5240273e5329ca6961cfbd3adf",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/u/3/3/d/reichstag-building-wp/west-facade-reichstag.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Reichstagsgeb%C3%A4ude_von_Westen_bei_Nacht.jpg",
+        "reason": "Earlier attribution-licensed image excluded as a current construction control."
+      },
+      {
+        "path": "_m/u/3/3/d/reichstag-building-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Reichstagsgeb%C3%A4ude,_Berlin-Mitte,_170402,_ako.jpg",
+        "reason": "Earlier attribution-licensed image excluded as a current construction control."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Cleared Qualla metadata first; earlier modern attribution-licensed images excluded and historic public-domain scenes unsuitable for current geometry. Two exact native own-work CC0 west originals individually inspected, including facade and underside crops. Exact creators, primary revisions/grants, no additional restrictions and original SHA-1/SHA-256 bound. Only active photographs inventoried; side/east details explicitly remain conservative inherited estimates."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "reichstag",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:bd8d5b76c89db640bf0673b3095b96b44e568ce3773afd9d868d8a39a7e53a88",
+    "sourceHash": "sha256:f6e70008b12ab8c526df17d6950a5b21a6b3be1465b128b4a02cc7f1858bf094",
+    "runtimeHash": "sha256:52a71b024ce5972dd5911c31c3c1dbbaee92606c27f92c2317b41a39832084ca",
+    "built": [
+      "Solid west entrance mullions with physical side depth",
+      "Continuous rear portico soffit",
+      "Solid primary ceiling beams and crossing ties leaving open coffers",
+      "Coarse-level portico floor joining the original upper stair landing"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      680,
+      3998,
+      14681,
+      35545
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Started with cleared Qualla published/candidate metadata; modern selected west/northeast images require attribution and were excluded. Historic public-domain candidates do not control the present glass-dome exterior. Two exact native creator own-work CC0 photographs then inspected: Daderot 2014 west portico underside and Leonhard Lenz 2019 whole west front, including original-size crops. Primary revisions/releases, original SHA-1/SHA-256 and clean no-attribution/no-restrictions metadata bound. Built solid recessed-entrance vertical/horizontal mullions, a continuous rear soffit and actual portico beams/crossing ties with shallow coffer air. Added the missing coarse-level portico floor between the body and upper stair landing. Existing body, courtyard voids, towers, steps and close dome retained; district dome rings reduced from nine to eight to fit the detail budget. Original mapped frame, independent Berlin DGM1 ground and placement retained. Exact beam sections/depths, hidden joints, ornament, inscriptions, side/east/courtyard details and current condition remain conservative/inherited approximations. Only the west exterior is resolved by current photographs. Dome dimensions retain the previously recorded official basis and aperture discrepancy. Opaque entrance glass is an exterior boundary; no parliamentary rooms, navigation, survey or engineering certification and no embedded image pixels.",
+    "publicDomainOriginals": 2,
+    "changedDetailLevels": 4,
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

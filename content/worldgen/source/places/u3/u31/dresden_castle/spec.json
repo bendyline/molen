@@ -1,0 +1,500 @@
+{
+  "planId": "dresden_castle",
+  "id": "dresden_castle",
+  "assetId": "molen.worldgen.structure.dresden_castle",
+  "title": "Dresden Castle",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 13.737045526504517,
+    "latitude": 51.053023782145104
+  },
+  "size": [
+    140.85048866271973,
+    102.2699966430664,
+    244.47702407836914
+  ],
+  "actualBounds": {
+    "min": [
+      -26.879549026489258,
+      -2,
+      -184.11459350585938
+    ],
+    "max": [
+      113.97093963623047,
+      100.2699966430664,
+      60.362430572509766
+    ]
+  },
+  "visualBrief": "Native reconstructed castle with three actual courtyard voids,100.27m Hausmann tower/39m platform, red-blue clocks below the platform, one main arched-window tier and small upper round lights in the dark octagonal drum, substantial rounded lead roof/open lantern/upper bulb/tall needle. Two dark west corner lantern towers, two green-copper south turrets and four pointed court stair towers. Ochre exterior/rusticated ground storey and original abstract black-white Great Court sgraffito, stepped/curved gables, red tiled roofs, small roof dormers and chimneys, three-tier Altan loggia and two-storey Small Court arcades under a raised double-curved transparent ETFE diamond net. Connected Georgenbau through-gateway and100m skewed Langer Gang/22 real open arches, upper gallery windows and abstract gold frieze. Four actual through-entry routes, closed wooden south entrance, court basin and two tournament columns. Own paving follows independent unchanged GeoSN DGM. Cathedral/covered church bridge, Zwinger, Johanneum, Taschenbergpalais, gardens, temporary works and interiors excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Dresden-Schloss02.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dresden-Schloss01.jpg",
+    "https://commons.wikimedia.org/wiki/File:Dresden-Frauenkirche-View.from.top.10-redux.JPG"
+  ],
+  "stories": [
+    {
+      "id": "dresden-castle-wp",
+      "url": "https://qualla.com/dresden-castle/"
+    }
+  ],
+  "referenceInputHash": "sha256:25079f7019434c66635f15264af224447fa7d17dfa40eff8b614df46fb657549",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-dresden-castle.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-dresden-castle.mjs",
+    "level": "skyline",
+    "export": "dresdenSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "lead": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.7,
+        "metallic": 0.4
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "inlay": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0.1
+      },
+      "canopy": {
+        "slot": "window",
+        "localRef": "palette:#f3ffff",
+        "roughness": 0.28,
+        "metallic": 0,
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          0.38
+        ],
+        "alphaMode": "BLEND",
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "dresdenDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "inlay": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#f3ffff",
+            "roughness": 0.28,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.38
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "dresdenStreet",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.7,
+            "metallic": 0.4
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "inlay": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0.1
+          },
+          "canopy": {
+            "slot": "window",
+            "localRef": "palette:#f3ffff",
+            "roughness": 0.28,
+            "metallic": 0,
+            "baseColorFactor": [
+              1,
+              1,
+              1,
+              0.38
+            ],
+            "alphaMode": "BLEND",
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.6,
+    "cameraYaw": 0,
+    "groundY": -2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent official GeoSN original1m DGM GeoTIFF acquired before geometry. Unchanged native cell-centre Float32 heights bilinearly sampled on2m review grid;50625 values,112.3239m DHHN2016 datum at dry Great Court[30,0]. Original TIFF/worldfile/metadata/epoch retained; coarse Terrarium baseline datum121.8257m rejected and preserved. Native own-outline ground−.988..+.712m; own walls continue to−2m. Terrain unchanged; compatible host required, footprint replacement disabled.",
+    "anchor": [
+      13.737045526504517,
+      51.053023782145104
+    ],
+    "heading": -1.6995682123321845,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        13.736990471959746,
+        51.05275652010285
+      ],
+      "modelHeight": 0,
+      "basis": "Dry central Great Courtyard, open to sky and separate from roof/interior returns. Independent original GeoSN ground controls this datum before geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776558139012",
+      "buildings/35184395146652",
+      "buildings/35184395146653",
+      "buildings/35185458132762",
+      "buildings/35184395076313",
+      "buildings/35184395146662",
+      "buildings/35184761840326",
+      "buildings/35184395146655",
+      "buildings/35184395146660",
+      "buildings/35184395146661",
+      "buildings/35184395146654",
+      "buildings/35184759394223",
+      "buildings/35184759213623",
+      "buildings/35184395146656",
+      "buildings/35184448284879",
+      "buildings/35184759394220",
+      "buildings/35184759213622",
+      "buildings/35184395076312",
+      "buildings/35184506131814",
+      "buildings/35184759676965",
+      "buildings/35184395146658",
+      "buildings/35184395147106",
+      "buildings/35184759676970",
+      "buildings/35184759676966",
+      "buildings/35184759676971",
+      "buildings/35184620750684",
+      "buildings/35184395146659",
+      "buildings/35184395147104",
+      "buildings/35184395146649",
+      "buildings/35185573171386"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:08fdd0b769944b4c9337504f2429a7ca168f3423029523aa3d75ff87394f8e85"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "All117 candidate contacts reviewed, plus12 selected local Furstenzug sibling contacts; eight positive full originals individually inspected. Two2025 Cathedral views were read for discrimination and rejected as castle geometry. Unrelated museums, churches, theatres, gardens, airport, food, interiors, historical schemes and1980 ruin do not control this exterior.",
+    "Scope retains main castle with three native court voids (Great Courtyard, covered Small Courtyard and southern Wirtschaftshof), Hausmann tower, Georgenbau through-gateway, connecting stable-court wings and Langer Gang/22-arch gallery. Adjacent cathedral/covered church bridge, Zwinger, Taschenbergpalais, Johanneum and other neighbors excluded.",
+    "Current2025 local courtyard/entry images and2008–2019 exterior references control surviving architecture. The2025 conservation report gives a planned end date only; no exact present-day paint/conservation completion claim. Temporary scaffolding, signs, market stalls, cars, people and vegetation omitted.",
+    "Owner100.27m tower and39m platform,22 arcade spans and approximately100m gallery are dimensional controls. Native own footprints and skewed connected wings retained; other heights/roof forms/bay rhythm/ornament/thresholds are proportional interpretations.",
+    "Original restrained geometric sgraffito, relief and gold frieze density may approximate decorated surfaces; do not reproduce literal historical paintings, procession figures, heraldry, monograms or inscriptions. No facade photographs as textures.",
+    "Independent source terrain must be preserved and verified before model geometry. Geographic preview requires compatible ground; no terrain flattening/fitting, surveyed engineering or exact interior reconstruction.",
+    "Roof ridges, dome rise, bay/window counts, intermediate heights, precise geometric ornament and thresholds are photo/map interpretations, not surveyed construction drawings. Original abstract decoration replaces literal paintings, procession figures and inscriptions. Lower service-court roof form is uncertain. Translucent ETFE is a simplified material proxy; interior engineering is not reconstructed. Native Langer Gang polygon is independently retained/checked but outside the single primary magenta placement overlay."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "west-front",
+      "position": [
+        30,
+        28,
+        143
+      ],
+      "lookAt": [
+        29,
+        24,
+        43
+      ]
+    },
+    {
+      "name": "great-court",
+      "position": [
+        37,
+        12,
+        19
+      ],
+      "lookAt": [
+        11,
+        18,
+        -3
+      ]
+    },
+    {
+      "name": "small-court",
+      "position": [
+        73,
+        11,
+        -13
+      ],
+      "lookAt": [
+        62,
+        18,
+        -8
+      ]
+    },
+    {
+      "name": "hausmann-lantern",
+      "position": [
+        26,
+        79,
+        32
+      ],
+      "lookAt": [
+        0,
+        75,
+        0
+      ]
+    },
+    {
+      "name": "hausmann-profile",
+      "position": [
+        66,
+        63,
+        -82
+      ],
+      "lookAt": [
+        0,
+        63,
+        0
+      ]
+    },
+    {
+      "name": "hausmann-clock",
+      "position": [
+        21,
+        32,
+        -29
+      ],
+      "lookAt": [
+        0,
+        31.5,
+        -3
+      ]
+    },
+    {
+      "name": "etfe-roof",
+      "position": [
+        119,
+        67,
+        29
+      ],
+      "lookAt": [
+        69,
+        32,
+        -14
+      ]
+    },
+    {
+      "name": "georgentor",
+      "position": [
+        -58,
+        11,
+        -69
+      ],
+      "lookAt": [
+        -6,
+        10,
+        -69
+      ]
+    },
+    {
+      "name": "long-arcade",
+      "position": [
+        76,
+        12,
+        -134
+      ],
+      "lookAt": [
+        14,
+        5,
+        -134
+      ]
+    },
+    {
+      "name": "furstenzug-frieze",
+      "position": [
+        -38,
+        13,
+        -139
+      ],
+      "lookAt": [
+        15,
+        6,
+        -137
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 61144,
+    "vertices": 183432,
+    "materials": 8,
+    "bytes": 7341548,
+    "sha256": "sha256:c6341b53aae32af7bc15cdc6159b7bfd5d0ab114bb7364808834fa4088c315d4"
+  }
+}

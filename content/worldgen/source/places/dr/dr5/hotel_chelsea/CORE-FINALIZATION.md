@@ -1,0 +1,9 @@
+# Hotel Chelsea — core exterior finalization
+
+Full Hotel Chelsea exterior accepted at the agreed approximate medium-fi scope. Started with the already-cleared Qualla Sterling Dudley4531x3052public-domain sign original. Added the exact uncropped2991x2217Berenice Abbott1936WPA original, with NYPL catalog identity482725and explicit PD-USGov-WPA provenance. This photograph resolves repeated open iron galleries, triangular supports, floral panel silhouettes, tall divided openings and the projecting faceted bay. The independent1966NYC landmark designation LP-0215 describes the eleven-storey brick facade, French-door balcony tiers, tall central pyramidal slate roof, enormous flanking chimneys, and projecting end wings with pointed openings in brick gables. Current geometry agrees with those defining features and the native mapped footprint. The full original hotel scope is retained; neither the partial photo nor this review certifies exact historic/current shopfront layouts, every balcony panel, measured roof pitches, chimney/dormer dimensions, hidden side/rear openings or modern rooftop fit-out. Those remain explicit medium-fi estimates. Source/runtime/four LODs, independent ground, placement and all39inspected render bytes are retained unchanged. No photo pixels embedded.
+
+Only the explicitly cleared public-domain/CC0 originals in imagery-evidence.json are active; Qualla imagery was checked first. Earlier imagery is explicitly excluded. The existing model, scene, mapped controls, terrain, runtime levels, camera setup and rendered image bytes remain exact. Existing inspected renders are retained and transparently rebound to the new reference review; this is not a new capture or construction.
+
+Source: sha256:6ad9f38f279a2a7d4c8e60dd1ae2177a188b2e95ecc4b008f4b8f353f78cd3bf
+
+Runtime: sha256:4dac0d49a264b88c7e2834128eed6c3418cd1e73f092f509979191b0be662120

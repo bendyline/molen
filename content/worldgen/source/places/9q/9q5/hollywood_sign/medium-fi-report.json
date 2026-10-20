@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.hollywood_sign",
-  "sourceHash": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d",
-  "runtimeHash": "sha256:4f93ecdff3e87818fd9e7bd1d5b2c9c17bb81319e60d0612b811dd5daf3b5faf",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.hollywood_sign",
+    "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e"
+  },
+  "sourceHash": "sha256:76c0eef97a3e60e01a847e73e92295a091495344e48d15f319d406a9e1fbcfc4",
+  "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+  "fixtureHash": "sha256:10fa6f88913799edc5a4d6d7a36839b9bbc033d413db70980003ffd0559addc5",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,9 +33,9 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:289aae42875482f2bad99231d4ff594790e2ddb27e83b1ac2e72c8e4541e22f5",
+      "hash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
       "bytes": 64192,
-      "gzipBytes": 13022,
+      "gzipBytes": 13031,
       "triangles": 884,
       "cpuBytes": 62760,
       "gpuBytes": 62760,
@@ -40,9 +45,9 @@
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:c87b50e96748ccdb5e8769a69f182e98434140dba244474a73440118b28dc2e1",
+      "hash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
       "bytes": 116028,
-      "gzipBytes": 26783,
+      "gzipBytes": 27877,
       "triangles": 1532,
       "cpuBytes": 113304,
       "gpuBytes": 113304,
@@ -52,24 +57,24 @@
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:2fd2666959c8c425a397f4f304b647866a5f8ece81bba941605e5edceacdcb9b",
-      "bytes": 394028,
-      "gzipBytes": 85541,
-      "triangles": 5096,
-      "cpuBytes": 391296,
-      "gpuBytes": 391296,
+      "hash": "sha256:023ef42e224d3824c649d578b283ce8761a30645bc93308f7ea2a92f22c93a04",
+      "bytes": 393092,
+      "gzipBytes": 87255,
+      "triangles": 5084,
+      "cpuBytes": 390360,
+      "gpuBytes": 390360,
       "errorMeters": 0.08,
       "drawCalls": 2
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:d9d07b4a1bef63fecf29bf6d0376e38c43a123ae85cff898320b1864ce025678",
-      "bytes": 1656040,
-      "gzipBytes": 273564,
-      "triangles": 13784,
-      "cpuBytes": 1654080,
-      "gpuBytes": 1654080,
+      "hash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
+      "bytes": 1622920,
+      "gzipBytes": 270806,
+      "triangles": 13508,
+      "cpuBytes": 1620960,
+      "gpuBytes": 1620960,
       "errorMeters": 0,
       "drawCalls": 2
     }
@@ -90,14 +95,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:99a14e4770545cec7e27aacd60c5e626157ea2712d3d21f6384c5a69890cbe52",
+      "hash": "sha256:2bf3e7ce1d87c3669ff988f6a0dd2e4e29fa0bb559275963d7da8f06922d9611",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -105,12 +113,12 @@
         },
         "position": [
           80.65580000000001,
-          47.5345,
+          47.444500000000005,
           130.86110000000002
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -122,19 +130,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:f180245ae9a282f5a72592b83171dcee061974601037ffeaa32eba2982c70da8",
+      "hash": "sha256:03d19d1c27840498da1cfc91be79eb10a79f496638ab9a2f81c826fa18bc49d5",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -142,12 +154,12 @@
         },
         "position": [
           80.65580000000001,
-          47.5345,
+          47.444500000000005,
           130.86110000000002
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -159,19 +171,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:288e856c3863d544cb1e1b851aebfdcb8968111b7b134dac9af552f5743820fa",
+      "hash": "sha256:e0ae28c9bd5789e4ef555e3c687f6755ec3894f309d4caa3c176bfb4a5e397bb",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -179,12 +195,12 @@
         },
         "position": [
           80.65580000000001,
-          47.5345,
+          47.444500000000005,
           130.86110000000002
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -196,19 +212,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:1987d15aea4ed680f578f764f34d7c569264c1c1be844f3f0862adb9180743de",
+      "hash": "sha256:d390386bced8ede21a4f9954976550b38d36156787e14e2b513e5e70861d80e9",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -216,12 +236,12 @@
         },
         "position": [
           80.65580000000001,
-          47.5345,
+          47.444500000000005,
           130.86110000000002
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -233,13 +253,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:187a63d4ed77182f8adc6ce8407108cdc87f052f21e3d78bd332b54388bef32e",
+      "hash": "sha256:f929b6b5978426282690392849cdb18309966cdc097225b7e8b6fdf46e443267",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -253,12 +277,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -270,13 +294,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:e45b94e2987634ae97e9985f1ddc009fe69fb6a7b8f79c8f4ea1c0f8d69f6cff",
+      "hash": "sha256:eb763496cf1846a1766f3be3c128ef6912ad5ff27775e58002183fe7eba19f3f",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -290,12 +318,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -307,13 +335,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:09bce36be7ef3649b944fdcc37eeca699c4bbc614d9a20d553d76f586b79dc07",
+      "hash": "sha256:d26c7d75e579342e278707a3ad747a3b7afe0a5c0fbd9d96c698ea2fe279854d",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -327,12 +359,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -344,13 +376,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:c8dc878eea35c426f5a75e43b5207afa7b626737debd4a71ba581c11146921ac",
+      "hash": "sha256:297b15d6c29abbc358957e7635e24614f9e02d4777c28dee404491d7c3752656",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
         "level": "district",
         "distance": "block",
         "time": "late",
@@ -364,12 +400,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -381,13 +417,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:f07fc6c57d4eb164b71b6088bf89e8df969980af56b51f7be425822fa9d4e2b1",
+      "hash": "sha256:3d32e92a93edacff6e5653cf13f7f52a3308c6d767c34e27399865a24cef8b93",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -401,12 +441,12 @@
         },
         "position": [
           314.2558,
-          165.9345,
+          165.8445,
           535.6611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -418,13 +458,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:36ac87e56f3ebcfaf53cd8ea61fabf4adfe1f98bd0e02e514fb68f57ee796bc9",
+      "hash": "sha256:6ee5acec3427e63a3a77dd62bf8c874fe7526647189f2c6e959f171315d3f74a",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -438,12 +482,12 @@
         },
         "position": [
           314.2558,
-          165.9345,
+          165.8445,
           535.6611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -455,13 +499,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:2919f3d09d0e3b10b31a0cb0a5d66c9fa9d058d0aa57e3d193a01ea942c0cb9c",
+      "hash": "sha256:ca9a4a07b95c4cf82d087f9df084b2c4cd47c00c162c9cf7b711ca61fecead3c",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -475,12 +523,12 @@
         },
         "position": [
           314.2558,
-          165.9345,
+          165.8445,
           535.6611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -492,13 +540,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:8a71c88e7f3d93dd00d3d3f0c959ec06d39c547a4644a0a73b63381a29b99844",
+      "hash": "sha256:d3a39cb08619cb47421447e1d0c727a716489aab615d6b6b3704c71cc6b4c967",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -512,12 +564,12 @@
         },
         "position": [
           314.2558,
-          165.9345,
+          165.8445,
           535.6611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -529,13 +581,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:6f4994329371010623d152fa9d3df3561c88eca5069a664eb35dbdc9abe0f9a2",
+      "hash": "sha256:e7c404a736ebeefa1575b3367e90e28d18ba679cd3296e4e2fa5446cc1c48d78",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -549,12 +605,12 @@
         },
         "position": [
           314.2558,
-          165.9345,
+          165.8445,
           535.6611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -566,19 +622,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:8ed050950a7080aaeeb7c829b8cc45e2ba730bbd0d3c9e63dc01fca0d9ae2800",
+      "hash": "sha256:e187a7d22f7115980bbde07aad8cb08503713ea646a9ec902caa82b0bf21bf76",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -603,19 +663,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/back.png",
-      "hash": "sha256:c885931df8d59a9f6ee9d2e93fa6f1cd00bcf54b0ddc67d44406c9c394b26d35",
+      "hash": "sha256:9e82a4008441af3dc35d3a22c70657c39fb1c8137df0056dc78f1df0339e4ea4",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -640,13 +704,99 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/l-supports-rear.png",
+      "hash": "sha256:0da2006f36a6492988758439c980f166c153e641118fb2cb018b0358f2124201",
+      "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 27942,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          -19,
+          32,
+          -30
+        ],
+        "lookAt": [
+          -19,
+          7,
+          2.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/low-l-post-detail.png",
+      "hash": "sha256:8e7ee4582af17942048b96e77270aa3b5b9f47beea9b4bb0e9b476b827e96092",
+      "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 8,
+        "triangles": 27942,
+        "groundY": -82,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.height.png"
+        },
+        "position": [
+          -6,
+          20,
+          -16
+        ],
+        "lookAt": [
+          -8,
+          5.3,
+          1.5
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.metal_painted": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1.6,
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:870b5e529f4f744f3e379ba4f4e2b7ac2a3dd7eaa05d770217efe2e0c248de91",
+      "hash": "sha256:59621e4438bd8b065bb2f32563c3a05fa900228b7e02a08d27f3056b2d31fb41",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -660,12 +810,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -677,13 +827,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:e45b94e2987634ae97e9985f1ddc009fe69fb6a7b8f79c8f4ea1c0f8d69f6cff",
+      "hash": "sha256:eb763496cf1846a1766f3be3c128ef6912ad5ff27775e58002183fe7eba19f3f",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
         "level": "district",
         "distance": "block",
         "time": "noon",
@@ -697,12 +851,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -714,19 +868,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:bfa421ead19d2566d623e90a0d1419a1d255cd02c59a944cbe77a0e76503ca6e",
+      "hash": "sha256:749303115f5b77b28538d5fcfff97b7cd842b149e1a0e6ec77908adf7ac06c62",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:023ef42e224d3824c649d578b283ce8761a30645bc93308f7ea2a92f22c93a04",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 19530,
+        "triangles": 19518,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -734,12 +892,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -751,19 +909,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:d07c7ba41882eba940462ae80bed5c218cf6d02df41db4e65cad670f96caac04",
+      "hash": "sha256:7b69f4ae71e977e8d6e60e282211603c3cd4e5dbd964fd35134c684500c36dd9",
       "state": {
+        "assetId": "molen.worldgen.structure.hollywood_sign",
+        "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+        "lodHash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 8,
-        "triangles": 28218,
+        "triangles": 27942,
         "groundY": -82,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/9q/9q5/hollywood_sign/terrain-review.terrain.json",
@@ -771,12 +933,12 @@
         },
         "position": [
           159.0558,
-          105.1345,
+          105.0445,
           266.8611
         ],
         "lookAt": [
           3.8558,
-          23.5345,
+          23.4445,
           -1.9389
         ],
         "graphReads": {
@@ -788,15 +950,10 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1.6,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:987ae8f079f5e0aa7891a8dd90882ed64042f63b647851ef7261acf7906ecc9d",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:d5c7670a1535c7d149fa03ae2c58715c0b114e5cbf2b52aa1ec197c4fbafac32"
-  }
+  "errors": []
 }

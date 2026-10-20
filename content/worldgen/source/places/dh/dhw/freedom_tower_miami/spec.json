@@ -1,0 +1,411 @@
+{
+  "planId": "freedom_tower_miami",
+  "id": "freedom_tower_miami",
+  "assetId": "molen.worldgen.structure.freedom_tower_miami",
+  "title": "Freedom Tower (Miami)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -80.18951207399368,
+    "latitude": 25.780299130489873
+  },
+  "size": [
+    38.54676055908203,
+    90.30000305175781,
+    57.50529956817627
+  ],
+  "actualBounds": {
+    "min": [
+      -19.644350051879883,
+      -4,
+      -47.205299377441406
+    ],
+    "max": [
+      18.90241050720215,
+      86.30000305175781,
+      10.300000190734863
+    ]
+  },
+  "visualBrief": "Historic Miami Mediterranean tower and attached plain west printing wing. Warm yellow stucco/pale cast-stone corner quoins and deep divided windows; nine plain three-column shaft levels. East portal has semicircular oak doors/fanlight, paired columns/capitals, broken scrolled pediment/original cartouche/abstract seated figures, iron balcony, glazed quatrefoils and large swept cornice/topwindow. Pierced base balconies/parapets/obelisks, raised front terrace/six entrance risers; rear plain divided casements/stepped central gable. Bracketed crown cornices, four real open roofed corner turrets, ornate square stage with arched/rectangular lights/roundels/cartouches, pierced balustrades/obelisks. Octagonal upper lantern with real cardinal arches/alternating blind niches and oculi, engaged columns/capitals, upper balcony/small windowed drum, paneled green copper dome/open beacon and original tall globe/cardinal-cross/ship vane. No neighboring campus/plaza/statue/interiors/scaffolds/photo textures.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Freedom_Tower,_Miami_(uncropped).jpg"
+  ],
+  "stories": [
+    {
+      "id": "freedom-tower-miami-wp",
+      "url": "https://qualla.com/freedom-tower-miami/"
+    }
+  ],
+  "referenceInputHash": "sha256:58fe8ad1f3550848a62e5f336e9de5504bea8abdeefe1f7ea7ab2e6bb9e82c39",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-freedom-tower-miami.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-freedom-tower-miami.mjs",
+    "level": "skyline",
+    "export": "freedomTowerMiamiSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.97,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.48,
+        "metallic": 0.06
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.3,
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.62,
+        "metallic": 0.55
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "freedomTowerMiamiDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.55
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "freedomTowerMiamiStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.97,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.48,
+            "metallic": 0.06
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.62,
+            "metallic": 0.55
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Four unchanged originalTerrarium tiles/2m reviewgrid/source4.302mpixels; dry east Biscayne approach[0,10.5]datum2.5325m. Buried-4mfooting/nominal.9144mentrance/sixrisers, groundunchanged. UrbanDEM/thresholdengineering/otherhosts remainapproximate.",
+    "anchor": [
+      -80.18951207399368,
+      25.780299130489873
+    ],
+    "heading": 1.5907936605611435,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -80.18940734647896,
+        25.780301016566142
+      ],
+      "modelHeight": 0,
+      "basis": "Dry east Biscayne entrance approach outside front facade/steps; independent urban ground before geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185477480535",
+      "buildings/35185477480536",
+      "buildings/35185921077864",
+      "buildings/35185477480537",
+      "buildings/35185477480538",
+      "buildings/35185477480539",
+      "buildings/35185921023648",
+      "buildings/35185921023649"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:ff4fd4a3b0f564e15f3ee36795512422e3fba3a1ad136a63698f479f49d174d5"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Exterior geometry interpreted from2007–2018local originals;2025owner/2026heritage records confirm restoration. Exact current restoration block finish/paint tone is not surveyed.",
+    "86.3mCTBUHnominal overall control differs fromQualla255ft(~77.7m), native84.5mwhole/83mvane;19ft(5.7912m)historical restored-vane control. Native component plans retained; intermediate heights, windows, portal/crown ornament and roof engineering are estimates.",
+    "NPS125ftfrontage and253/189ftproperty lines are parcel controls, not building dimensions. Rear native20/25/17mheights are generalized; rear stepped gable/roof heights interpreted from actual local rear photograph.",
+    "Historic tower/base and directly attached printing wing included. No neighboring college/newlibrary buildings, Metromover, plaza/palms/statue/streetfixtures, event banners/scaffolds, interiors/mural or photo textures.",
+    "Original simplified cartouches/foliate/cherub-like silhouettes, obelisks and ship vane; no literal fine sculpture, inscriptions or heraldry. No baked colored night lighting.",
+    "Independent terrain acquired before geometry without fitting/flattening. Raised entrance and steps follow historic nominal3ft and photographed form; host urban DEM and threshold engineering remain approximate. Footprint replacement disabled.",
+    "Original native component outlines remain in this evidence file. Authored shaft and square-crown facade planes use their local rectangular bounds; skew/generalization deviations are under about0.5m. The irregular base outline remains direct. This is an interpreted exterior, not a measured survey."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        36,
+        110
+      ],
+      "lookAt": [
+        0,
+        36,
+        0
+      ]
+    },
+    {
+      "name": "entry-detail",
+      "position": [
+        9,
+        7,
+        23
+      ],
+      "lookAt": [
+        0,
+        8,
+        6.7
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        30,
+        16,
+        34
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "shaft-detail",
+      "position": [
+        21,
+        39,
+        24
+      ],
+      "lookAt": [
+        0,
+        35,
+        0
+      ]
+    },
+    {
+      "name": "crown-detail",
+      "position": [
+        23,
+        64,
+        27
+      ],
+      "lookAt": [
+        0,
+        59,
+        0
+      ]
+    },
+    {
+      "name": "lantern-detail",
+      "position": [
+        14,
+        72,
+        17
+      ],
+      "lookAt": [
+        0,
+        69,
+        0.25
+      ]
+    },
+    {
+      "name": "dome-detail",
+      "position": [
+        13,
+        84,
+        15
+      ],
+      "lookAt": [
+        0,
+        78,
+        0.25
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -51,
+        31,
+        -85
+      ],
+      "lookAt": [
+        0,
+        18,
+        -24
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 48481,
+    "vertices": 145443,
+    "materials": 7,
+    "bytes": 5821652,
+    "sha256": "sha256:925a3efd3e12c919030468982d8d89fe710d29a22b2533a9200dcaf64f4b0e9d"
+  }
+}

@@ -1,0 +1,650 @@
+{
+  "planId": "saltburn_pier",
+  "id": "saltburn_pier",
+  "assetId": "molen.worldgen.structure.saltburn_pier",
+  "title": "Saltburn Pier",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.9706036001443863,
+    "latitude": 54.586384464112626
+  },
+  "size": [
+    222.8338222503662,
+    16.27999973297119,
+    27.81610870361328
+  ],
+  "actualBounds": {
+    "min": [
+      -13.702917098999023,
+      -8,
+      -13.939637184143066
+    ],
+    "max": [
+      209.1309051513672,
+      8.279999732971191,
+      13.876471519470215
+    ]
+  },
+  "visualBrief": "Surviving shortened timber pier on20 open triple iron trestles with flanged pipes/outward-raked outer feet/cross rods, grey board deck, black curved posts/four white rails/kickboards, two pairs of side viewing bays/benches and widened open head. Integral cream/burgundy three-gabled1925 entrance arcade with taller central roof, slate/perforated terracotta cresting, diagonal/diamond timber panels and three shallow front bays. No lost seaward shelter/length, cliff lift or neighboring shore buildings.",
+  "nativeAxes": {
+    "x": "north-northeast seaward along pier",
+    "y": "up",
+    "z": "east-southeast across pier"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(NHLE_Code_1387526)_(April_2016)_(1).jpg",
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(NHLE_Code_1387526)_(April_2016)_(2).jpg",
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(NHLE_Code_1387526)_(April_2016)_(3).jpg",
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(NHLE_Code_1387526)_(April_2016)_(4).jpg",
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(NHLE_Code_1387526)_(April_2016)_(5).jpg",
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Cliff_Lift_and_Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(April_2016)_(1).jpg",
+    "https://commons.wikimedia.org/wiki/File:Saltburn_Cliff_Lift_and_Saltburn_Pier,_Lower_Promenade,_Saltburn-by-the-Sea_(April_2016)_(2).jpg"
+  ],
+  "stories": [
+    {
+      "id": "saltburn-pier-wp",
+      "url": "https://qualla.com/saltburn-pier/"
+    }
+  ],
+  "referenceInputHash": "sha256:108d65bf1dfe6f3fbc5849a699a784755ab3fbd0e7255e0399a4017b483938c0",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-saltburn-pier.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-saltburn-pier.mjs",
+    "level": "skyline",
+    "export": "saltburnPierSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "strut": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.13,
+        "doubleSided": true
+      },
+      "entranceGlass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      },
+      "doorJoinery": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "castPost": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.13
+      },
+      "roundRail": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.07
+      },
+      "kickboard": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "haunch": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "slateCourse": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.83,
+        "metallic": 0.13,
+        "doubleSided": true
+      },
+      "paint": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.07,
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "clap": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "red": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "seam": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.87,
+        "metallic": 0.1,
+        "doubleSided": true
+      },
+      "crest": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.9,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.38,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "saltburnPierDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "strut": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "entranceGlass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "doorJoinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "castPost": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          },
+          "roundRail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.07
+          },
+          "kickboard": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "haunch": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slateCourse": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.07,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "clap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "seam": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "crest": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "saltburnPierStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "strut": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "entranceGlass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          },
+          "doorJoinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "castPost": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13
+          },
+          "roundRail": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.07
+          },
+          "kickboard": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "haunch": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "slateCourse": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.83,
+            "metallic": 0.13,
+            "doubleSided": true
+          },
+          "paint": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.07,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "clap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "red": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "seam": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.87,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "crest": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.9,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.38,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent native Terrarium ground and4 original tiles unchanged, dry promenade[-13.5,0] datum5.6524m. Local review8m grid has approximately.13m dry-contact interpolation difference. Fixed-8m iron supports extend below sampled pier/shore grade. Estimated plain entrance apron joins reference grade to deck.3m, with fixed below-grade edge closing the shore contact. Bounded preview only; tide/seabed, exact pavement slope and foundation embedment remain unverified; footprint replacement disabled.",
+    "anchor": [
+      -0.9706036001443863,
+      54.586384464112626
+    ],
+    "heading": 1.2206532039461173,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.970675389643525,
+        54.58627055044967
+      ],
+      "modelHeight": 0,
+      "basis": "Dry lower promenade immediately south of own entrance arcade, between its platform edge and separate lower cliff-lift station; clear of roof/raised deck/water."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "landuse/35184996178362",
+      "buildings/35184432843229"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dea95a663d4f56f6612a32b31d1119fc0c4e4c052afb8505f385b19d5501b23f",
+    "notes": "Shortened surviving pier and own three-gabled gateway. Original lost offshore length/end shelter not modeled; cliff lift and other buildings excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Plain entrance apron from dry promenade to front platform is a bounded authoring interpolation, not a surveyed pavement/ramp detail.8m source-grid interpolation has about.13m difference at the exact native dry reference. Ground is not altered to fit geometry.",
+    "Selected surviving exterior corroborated by seven exact named Ownwork/self-CC0April2016natives after Qualla-first local scan. Independent mapped dimensions/plan retained. New round white rails/solid kickboards/continuous curved cast posts,40shaped timber haunches andsix course-divided slate roof planes are original medium-fi interpretations. Fine profiles,roof weathering/counts,bench/crest details,station spacing and unmeasured heights remain proportional estimates,not scans or engineering drawings. Historical private/attribution-only controls excluded from current reference inventory.",
+    "Primary current pier length is about207m; map gives about201.5m open deck beyond arcade,216m including arcade and220.5m including front platform. Definitions/chainages differ; original outline retained without stretching to nominal dimensions.20 equally spaced transverse trestles remain estimates. Original story1250ft relates to an earlier length. No surviving end shelter is shown in inspected references.",
+    "Independent terrain remains unchanged. Coastal composite and8m review interpolation do not certify tide/seabed, vertical datum or embedment. Deck.3m/fixed support bottom-8m are bounded authoring poses. Geographic preview requires current separate review; footprint replacement disabled.",
+    "Includes integral own three-gabled entrance arcade; excludes cliff lift/stations/track, neighboring larger three-gabled venue/shops, beach/sea/water/boats, people/bins/life rings/flags/advertisements and interiors. Perforated ridge/diamond motifs and plain glyph marks are original simplified geometry. No photograph or drawing pixels embedded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -43,
+        14,
+        31
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -24,
+        6,
+        1
+      ],
+      "lookAt": [
+        -6,
+        2.7,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        39,
+        13,
+        -29
+      ],
+      "lookAt": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        35,
+        -1.3,
+        20
+      ],
+      "lookAt": [
+        35,
+        -3.1,
+        0
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -7,
+        27,
+        31
+      ],
+      "lookAt": [
+        0,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "deck-detail",
+      "position": [
+        121,
+        4,
+        8
+      ],
+      "lookAt": [
+        107,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "head-detail",
+      "position": [
+        229,
+        9,
+        24
+      ],
+      "lookAt": [
+        197,
+        -0.2,
+        0
+      ]
+    },
+    {
+      "name": "railing-detail",
+      "position": [
+        89,
+        2.3,
+        6
+      ],
+      "lookAt": [
+        90,
+        1,
+        2.7
+      ]
+    },
+    {
+      "name": "haunch-detail",
+      "position": [
+        42,
+        -1,
+        7
+      ],
+      "lookAt": [
+        40.9053,
+        -0.3,
+        2.1
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 60364,
+    "vertices": 181092,
+    "materials": 7,
+    "bytes": 7247832,
+    "sha256": "sha256:23f00f122c7432b61f00d3e504e564b00c0a1489131ffc54e647b8f450cfda2b"
+  }
+}

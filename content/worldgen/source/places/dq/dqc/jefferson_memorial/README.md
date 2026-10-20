@@ -8,9 +8,9 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Jefferson Memorial](https://qualla.com/jefferson-memorial/)
 
-Original medium-fi exterior from individually inspected Qualla photographs and HABS 1994 measured north elevation and longitudinal section; not a survey or photogrammetric reconstruction.
+Started with three cleared published Qualla CC0 aerials, supplemented by a verified creator-CC0 front photograph, explicit NPS public-domain cleaned-dome original and native original HABS1994 north elevation/longitudinal section. All native title blocks and drawing credits inspected; earlier attribution-licensed images excluded from current approval. Not a survey or photogrammetric reconstruction.
 
-NPS establishes 26 outer, 12 portico and 16 inner columns. Map part counts and public rounded heights conflict; measured HABS proportions control the model. Fine volutes, dome masonry and hidden pier openings are simplified.
+NPS text establishes26 outer,12 portico and16 inner columns. Map part counts are incomplete. The measured north elevation supplies12.519025m stylobate-to-architrave height; the longitudinal section supplies approximately29.16555m main-floor-to-dome height. The elevation chain instead totals29.708475m; this0.542925m original-source discrepancy is retained in survey-controls.json. Overall model proportions follow the section. Fine volutes, dome masonry and hidden pier openings are simplified.
 
 Main circular steps, north stair flight and immediate raised supporting terrace included; wider gardens, Tidal Basin, distant approachway, undercroft and modern accessibility equipment excluded. Vertical stair levels are approximate relative to the independent terrain contact.
 
@@ -18,4 +18,4 @@ Standing statue and pediment relief are original simplified silhouettes, not por
 
 Independent terrain is preserved unchanged and foundation extends beneath it. Another host DEM can change exact ground contact.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=jefferson_memorial`. Add `--check` to verify exact regeneration. 63310 triangles; 4 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=jefferson_memorial`. Add `--check` to verify exact regeneration. 63386 triangles; 4 materials; no embedded photographs.

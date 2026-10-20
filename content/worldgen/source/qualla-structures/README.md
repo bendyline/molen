@@ -4,7 +4,88 @@ Start with [BACKLOG.md](BACKLOG.md): a complete set of linked category lists, a 
 starting batch, and counts for new models, existing planned work, existing models needing
 review, and existing coverage. This inventory is **authoring metadata**, excluded from the
 runtime pack by `source/**`. The scanner does not add models or placements; model work is
-tracked separately in the [fixed first 100](batches/QUALLA-001.md).
+tracked in the completed [first 100](batches/QUALLA-001.md) and the active
+[next 300](batches/QUALLA-002.md).
+
+The core100 are complete, including the owner-accepted limitations recorded beside
+Hangar37, Humayun’s Tomb and the Taj Mahal Palace Hotel. Continue the next300;
+do not reopen unchanged completed models for a separate finalization pass.
+
+For the next batch, use `progress.mjs --batch=qualla-002` and
+`sync-completed.mjs --batch=qualla-002 --ids=<model> --write`. Each model is built,
+visually inspected, integrated, and story-linked in one authoring cycle. The
+separate readiness ledger preserves the completed core100 and makes later batches
+resumable. A broad quality/research campaign is not a prerequisite to continuing.
+
+## Imagery policy
+
+Use public-domain imagery, starting with images already cleared and published in
+Qualla. Exclude a source when its provenance, attribution, public-domain status or
+local identity is uncertain. Resolve source choices without asking the owner.
+CC0 public-domain dedications qualify; attribution and share-alike licenses do not.
+
+The batch records this rule as `qualla-public-domain-imagery@1`. Preparation,
+completion checks and bounded story synchronization enforce it. The check compares
+the exact local path in published Qualla article media with its original metadata,
+public-domain basis, attribution and fingerprint. A downloaded gallery file or an
+AI relevance score alone does not qualify. Candidate eligibility still requires
+visual inspection of the correct structure and era.
+
+After replacing references, record `qa.imageryReview` with the current policy,
+model input and reference input hashes, all accepted reference paths, excluded
+historical imagery and the actual fidelity review. Its scope is
+`all-model-reference-imagery`, including auxiliary photographs and aerial or plan
+images previously used outside the main selection. A legacy visual approval or
+an eligible main photograph does not complete this review.
+
+Fresh medium-fi captures must use version 2 and identify the actual current asset,
+runtime and detail-level bytes. Keep the complete per-model imagery inventory and
+rights proof in `imagery-evidence.json`, including any auxiliary plan. Inspect new
+renders after geometry changes before rebinding approval. Watergate and Brandenburg
+Gate include worked examples in their `PUBLIC-DOMAIN-REVIEW.md` documents.
+
+The complete imagery inventory is checked separately from the main Qualla
+selection. Every selected and auxiliary image must be accounted for, inspected
+and bound to its original bytes. Missing inventory, unaccounted plans or a changed
+rights record prevent completion.
+
+When Qualla's eligible images leave a necessary gap, the supporting-source check
+accepts NPGallery originals only with a saved primary record crediting NPS and
+explicitly granting full public-domain rights. It also accepts Commons originals
+with the photographer's explicit PD-self or CC0 release, matching author and exact
+native-file digest. A migrated Wikipedia creator grant also requires the exact
+named granting account, matching linked author, original upload link and explicit
+PD-user-w dedication in the pinned primary revision. A generic PD-user label is
+insufficient. Highsmith photographs require both the specific Library of
+Congress catalog record and the library's explicit record of her public-domain
+dedication; a bare "no known restrictions" advisory is insufficient. The inventory
+also accepts Nationaal Archief CC0 photographs mirrored on Commons when the exact
+primary archive record identifies the owner, object, photographer and date and
+explicitly says CC0. The pinned Commons revision must identify that same archive
+object, retain CC0 and match the native image digest. Original HABS measured
+surveys and Jack E. Boucher government photographs require the explicit primary
+collection grant, exact native TIFF/catalog identity and inspection of the
+original title block or photographic source credit. Older drawing catalogs may
+list an inspected, named delineator as a field-team member or project manager;
+record an explicit name/role match for every drawing credit in that case.
+Unrelated architects, transmitters or generic contributor credits do not qualify.
+Photographs also require
+the matching primary government photographer record. Privately sourced copies,
+unverified historical plans and a bare collection label do not qualify.
+The inventory must record
+the prior Qualla search. Store the original photo in the model's
+ignored `.artifacts/reference-photos/` cache and the hash-bound primary HTML record
+under `reference-rights/`. A missing cache must be restored from its recorded
+original URL and verified against its hash before approval can pass again. A
+generic public-domain label or an NPS-hosted third-party photograph is insufficient.
+Ford's Theatre, Lorraine Motel and Anne Frank House demonstrate these checks.
+No reference image is embedded in these models.
+
+Run `node content/worldgen/source/qualla-structures/audit-imagery.mjs` to refresh
+[the imagery audit and replacement queue](batches/PUBLIC-DOMAIN-IMAGERY.json).
+Existing technical validation and public-domain reference validation are counted
+separately in [progress](batches/PROGRESS.md). Previous reference and rendering
+reviews remain historical evidence; they do not waive the current imagery rule.
 
 ## What qualifies
 
@@ -238,6 +319,10 @@ node content/worldgen/source/qualla-structures/prepare-batch.mjs --qualla ../qua
 node content/worldgen/source/qualla-structures/prepare-batch.mjs --qualla ../qualla-internal --check
 ```
 
+During migration, add `--ids=watergate_complex,brandenburg_gate` to prepare only
+selected local models. This preserves other models' reference records while still
+checking the whole fixed batch against other-device reservations.
+
 Set `references` to selected Qualla-relative originals and `referenceSelection` to `manual`.
 Use `needs-replacement` with an empty list to prevent rejected suggestions from returning.
 `referenceFolders` can point to explicitly inspected canonical media folders when merged
@@ -286,6 +371,35 @@ evidence. A draft or imported GLB never counts as complete. Every next-1,000 can
 collection member remains assigned to the other device, including already imported entries.
 
 Each recipe is independent so later model edits do not invalidate earlier completions.
+Finish each model through story synchronization in the same authoring cycle. For subsequent
+batches, select eligible targets beyond the next-1,000 reservations with usable public-domain
+references before authoring: start with cleared Qualla images, reuse saved source decisions,
+and park uncertain sources after a bounded search without repeatedly reopening the same gap.
+Work in groups of 10–20 fully completed models rather than accumulating unfinished imports.
+Keep the fixed first-100 inventory intact while resolving its remaining blockers.
+
+For the next batch, maintain a queue of 10–20 targets whose usable public-domain references,
+building identity, scope and viable map/ground placement have been checked before construction.
+An article's inclusion in the backlog alone is not enough to start its model. Keep one model
+under construction at a time; preparing references for another target may proceed separately.
+If a target needs unresolved source research or ground data, record the exact gap and move it
+out of the production queue. Resume that research only when new evidence or a new approach
+is available. This does not remove any target from the fixed first 100.
+
+Set the acceptance brief before construction: correct scale, footprint, heading and ground
+contact; recognizable massing, roof and defining facade details; coherent shared materials;
+and working runtime detail levels. Apply the medium-fi standard at the intended viewing
+distances. Record reasonable approximations for unseen, non-defining details rather than
+requiring a photographic survey of every surface. A missing defining feature or an observed
+geometry, material or placement defect still requires a fix. Reuse stable geometry helpers
+and existing evidence infrastructure; avoid a new bespoke review system for each structure.
+
+Close construction, focused visual review, catalog readiness and story synchronization before
+starting the next model. Count completed, synchronized models as production throughput. Batch
+closure performs aggregate consistency and reproducibility checks only; it must not create a
+second queue of per-model artistic approvals. Additional renders or tests need a specific
+uncovered risk, changed rendered input or observed failure.
+
 Shared geometry helpers are fingerprinted in generated specs. Keep source-local Qualla
 references, map controls and declared limitations beside each model. For a selected existing
 source bundle, `node examples/world-explorer/scripts/build-qualla-terrain-evidence.mjs
@@ -296,9 +410,29 @@ compatibility review, not surveyed building elevations.
 After fixing geometry, regenerate/import only that model and its four runtime detail levels.
 Inspect portable, shared-material/placement and medium-fi context/transition images. Record
 manual findings in source-local `qa.json`; run `progress.mjs` to validate the evidence before
-marking the batch entry `completed`. Then run `scan.mjs` and `sync-qualla.mjs --write` to update
-the linked Qualla curation entries. `progress.mjs --check` and `sync-qualla.mjs --check` verify
-idempotence. Rejected or stale evidence leaves explicit blockers in the completion ledger.
+marking the batch entry `completed`. Update its story annotations through the bounded
+`sync-completed.mjs` path below, and check idempotence. Reserve the full `scan.mjs` and
+`sync-qualla.mjs` reconciliation for corpus updates. Rejected or stale evidence leaves explicit
+blockers in the completion ledger.
+
+Closed models retain their inspected evidence until a relevant rendered input changes, a
+supporting reference becomes invalid, or a concrete failure is found. Naming and metadata
+corrections do not by themselves justify another visual review. Batch closure checks catalog
+consistency and source reproducibility; it is not a second artistic review of every model.
+
+For an individual completed local model, use
+`node content/worldgen/source/qualla-structures/sync-completed.mjs --ids=stowe_house --write`,
+then repeat with `--check`. This explicitly selected completion path revalidates current
+source/runtime/capture/placement evidence and the selected original image bytes. It verifies
+story identity, semantic hash and catalog location, then adds or updates only the selected
+ready associations through Qualla's locked transaction. Other associations, curation and
+inactive history are preserved. No association is retired through this path. Changed stories,
+relocations, duplicates, conflicting annotation ownership and incomplete models fail closed.
+It can proceed when an unrelated catalog bundle is malformed, because only bundles containing
+a selected story identity are parsed; corruption in a relevant bundle still blocks that story.
+The full scanner and `sync-qualla.mjs` retain their corpus-wide freshness requirement and remain
+responsible for withdrawals and global reconciliation. A successful bounded completion sync
+does not certify that the complete corpus scan is current.
 
 `batches/readiness.json` is the local batch's readiness export; the scanner also reads the
 separate next-1,000 ledger. Neither process transfers model ownership. Capture archives remain

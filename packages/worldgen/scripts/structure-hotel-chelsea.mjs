@@ -1,4 +1,4 @@
-/** Hotel Chelsea: individually inspected local Qualla facade and ironwork photographs. */
+/** Hotel Chelsea: retained exterior; new blade lettering from cleared public-domain Qualla original. */
 import './install-deterministic-math.mjs';
 import fs from 'node:fs';
 import earcut from 'earcut';
@@ -364,18 +364,75 @@ const font = {
     [0.25, 0.5, 0.75, 0.5],
   ],
 };
+function signStroke(o, a, b, width, depth, color) {
+  const dx = b[0] - a[0],
+    dy = b[1] - a[1],
+    length = Math.hypot(dx, dy),
+    ox = (-dy / length) * width * 0.5,
+    oy = (dx / length) * width * 0.5,
+    front = [
+      [a[0] + ox, a[1] + oy, a[2] + depth],
+      [a[0] - ox, a[1] - oy, a[2] + depth],
+      [b[0] - ox, b[1] - oy, b[2] + depth],
+      [b[0] + ox, b[1] + oy, b[2] + depth],
+    ],
+    back = front.map(([x, y, z]) => [x, y, z - depth]);
+  quad(o, 'metal', front, [0, 0, 1], color);
+  quad(o, 'metal', [...back].reverse(), [0, 0, -1], color);
+  for (let i = 0; i < 4; i++) {
+    const j = (i + 1) % 4,
+      p = [back[i], back[j], front[j], front[i]];
+    quad(o, 'metal', p, normalFor(...p), color);
+  }
+}
+function ovalSignLetter(o, x, y, z, w, h, width, depth, color) {
+  const rx = w / 2,
+    ry = h / 2,
+    point = (a, inner, front) => [
+      x + rx + Math.cos(a) * (rx - (inner ? width : 0)),
+      y + ry + Math.sin(a) * (ry - (inner ? width : 0)),
+      z + (front ? depth : 0),
+    ];
+  for (let i = 0; i < 24; i++) {
+    const a = (i * Math.PI * 2) / 24,
+      b = ((i + 1) * Math.PI * 2) / 24;
+    for (const p of [
+      [point(a, false, true), point(b, false, true), point(b, true, true), point(a, true, true)],
+      [
+        point(a, true, false),
+        point(b, true, false),
+        point(b, false, false),
+        point(a, false, false),
+      ],
+      [
+        point(a, false, false),
+        point(b, false, false),
+        point(b, false, true),
+        point(a, false, true),
+      ],
+      [point(b, true, false), point(a, true, false), point(a, true, true), point(b, true, true)],
+    ])
+      quad(o, 'metal', p, normalFor(...p), color);
+  }
+}
 function letters(o, word, x, y, z, w, h, color) {
   const cw = w / word.length;
-  for (let i = 0; i < word.length; i++)
+  for (let i = 0; i < word.length; i++) {
+    const width = h > 1 ? 0.16 : 0.055;
+    if (word[i] === 'O') {
+      ovalSignLetter(o, x + i * cw, y, z, cw * 0.75, h, width, 0.045, color);
+      continue;
+    }
     for (const [a, b, c, d] of font[word[i]] ?? [])
-      line(
+      signStroke(
         o,
-        'metal',
         [x + i * cw + a * cw * 0.75, y + b * h, z],
         [x + i * cw + c * cw * 0.75, y + d * h, z],
-        0.065,
+        width,
+        0.045,
         color,
       );
+  }
 }
 function sign(o, d) {
   const t = facing(o, Math.PI / 2, 0, 17.05);
@@ -392,7 +449,7 @@ function sign(o, d) {
   }
   if (d > 0) for (const y of [14.4, 25.5]) B(t, 'metal', 0.8, y, 0, 4.2, 0.07, 0.1, iron);
 }
-function chelsea(o, frame, d = 3) {
+export function chelsea(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base)));
   // Mapped shell retains the three street projections and the separate rear projection.
   prism(o, [frame.geometry.outline], -0.65, 34.3, brick, 'brick');
@@ -628,6 +685,8 @@ export const chelseaModel = {
   qaCameras: [
     { name: 'front', position: [0, 30, 120], lookAt: [0, 25, 2] },
     { name: 'back', position: [-72, 64, -105], lookAt: [0, 25, -2] },
+    { name: 'blade-sign', position: [16, 21, 26], lookAt: [0, 19.5, 16] },
+    { name: 'oval-letter', position: [3.5, 22.2, 15.9], lookAt: [0, 22.175, 15.4] },
   ],
   build: chelsea,
   surfaces,
@@ -648,9 +707,10 @@ export const chelseaModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from individually inspected Qualla 2025 and 2010 facade photographs, 2011 ironwork detail and the official NYC landmark report. Not a survey or photogrammetric reconstruction.',
+    'Full medium-fi exterior reviewed against the cleared Qualla sign original, exact1936Abbott WPA balcony photograph and primary NYC landmark description of the roof, chimneys and end gables. No whole-building photographic survey claimed.',
+    'Earlier attribution-licensed facade/ironwork photographs are excluded from the active review. Retained architecture now compared with independent public-domain imagery and primary factual architectural descriptions.',
     'Mapped height 52.5 m provides a coarse upper roof control. Intermediate levels, roof slopes, rear/service openings and exact balcony panel spacing remain photographic approximations.',
-    '2025 restored finishes take precedence over older white windows, air conditioners and shop signage. Flower-and-leaf ironwork is original simplified geometry; no photo pixels are embedded.',
+    '2025 public-domain night view resolves vertically stacked cream HOTEL and a red horizontal CHELSEA footer. Original simplified letter outlines, sign dimensions, thickness, concealed mounts and unlit appearance remain estimates. No photo pixels or measured neon emission are embedded.',
     'The hotel parcel only; adjacent buildings, interiors and precise rooftop spa/garden fit-out are excluded. Hidden roof service enclosure and side/rear openings are conservative interpretations.',
     'Independent terrain is preserved unchanged, with foundation below the central sidewalk datum. Exact contact with another host DEM remains uncertain.',
   ],

@@ -1,0 +1,461 @@
+{
+  "planId": "sun_yat_sen_memorial_hall_taipei",
+  "id": "sun_yat_sen_memorial_hall_taipei",
+  "assetId": "molen.worldgen.structure.sun_yat_sen_memorial_hall_taipei",
+  "title": "Sun Yat-sen Memorial Hall, Taipei",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.56029284000397,
+    "latitude": 25.04001963802705
+  },
+  "size": [
+    117.19999694824219,
+    31.249826818704605,
+    117.39999771118164
+  ],
+  "actualBounds": {
+    "min": [
+      -58.599998474121094,
+      -0.4000000059604645,
+      -58.599998474121094
+    ],
+    "max": [
+      58.599998474121094,
+      30.84982681274414,
+      58.79999923706055
+    ]
+  },
+  "visualBrief": "Broad modern Chinese memorial hall: flat red central roof deck, four concave yellow glazed slopes, upcurled gray-edged corners, tall projecting south entrance dormer with gridded glazing, gray round perimeter columns, real recessed red walls and open colonnade, own masonry terrace and stairs. Park, fountain, gate piers, statues, trees, auditorium/interior and temporary construction excluded.",
+  "nativeAxes": {
+    "x": "east along south front",
+    "y": "up",
+    "z": "south toward forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sun_Yat-sen_Memorial_Hall_Taipei_June_2011.jpg"
+  ],
+  "stories": [
+    {
+      "id": "sun-yat-sen-memorial-hall-taipei-wp",
+      "url": "https://qualla.com/sun-yat-sen-memorial-hall-taipei/"
+    }
+  ],
+  "referenceInputHash": "sha256:af64b4ea7a850154802ba035ff0e0740411f7f609845b8b32096a49d9d944996",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-sun-yat-sen-memorial-hall-taipei.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-sun-yat-sen-memorial-hall-taipei.mjs",
+    "level": "skyline",
+    "export": "sunYatSenMemorialHallTaipeiSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.49,
+        "metallic": 0
+      },
+      "deck": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.32,
+        "metallic": 0.1
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sunYatSenMemorialHallTaipeiDistrict",
+        "errorMeters": 2,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.49,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.1
+          }
+        }
+      },
+      "street": {
+        "export": "sunYatSenMemorialHallTaipeiStreet",
+        "errorMeters": 1.1,
+        "surfaces": {
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.49,
+            "metallic": 0
+          },
+          "deck": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.1
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native signed eaves/parts and south orientation frozen before geometry. External dry forecourt[-25,64] datum7.9795m in retained published third-party NLSC-claimed2024 20mDTM derivative; no flattening or foundation fitting. Own terrace/steps are architectural estimates from official front/aerial. Original official raster and private conversion unavailable;17.3m pixels interpolated at1m, not survey accuracy. Source-relative bounded preview only.",
+    "anchor": [
+      121.56029284000397,
+      25.04001963802705
+    ],
+    "heading": -0.033626463740234605,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.56002377117323,
+        25.039452594220144
+      ],
+      "modelHeight": 0,
+      "basis": "Dry paved front-west forecourt beyond own terrace/stairs; offset from central fountain and selected before source ground or model geometry. Onsite map and official aerial distinguish fountain centre from dry paved strip."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          51.307148,
+          44.694233
+        ],
+        [
+          54.347321,
+          54.606833
+        ],
+        [
+          44.234633,
+          51.698949
+        ],
+        [
+          17.441096,
+          51.788244
+        ],
+        [
+          14.946616,
+          58.097616
+        ],
+        [
+          13.865152,
+          58.133995
+        ],
+        [
+          -14.820949,
+          58.286955
+        ],
+        [
+          -17.481617,
+          51.609654
+        ],
+        [
+          -44.275154,
+          51.698949
+        ],
+        [
+          -54.187754,
+          54.739122
+        ],
+        [
+          -51.279871,
+          44.626434
+        ],
+        [
+          -51.419601,
+          0.240905
+        ],
+        [
+          -51.307155,
+          -44.694451
+        ],
+        [
+          -54.347328,
+          -54.607051
+        ],
+        [
+          -44.23464,
+          -51.699168
+        ],
+        [
+          44.275147,
+          -51.699168
+        ],
+        [
+          54.187747,
+          -54.739341
+        ],
+        [
+          51.279863,
+          -44.626653
+        ],
+        [
+          51.307148,
+          44.694233
+        ]
+      ],
+      "basis": "Native main-building eaves polygon only, fully covered by independently authored continuous masonry terrace, hall and south entrance stairs in inspected official front/aerial. Original coarse source heights locally exceed the own terrace floor near the closed hall; remove covered terrain triangles under this architectural volume, preserving all source heights and original relief beyond the native perimeter. No park/fountain/plaza cutout, terrain flattening or fitted foundation. Floor and terrace dimensions preceded contact checks."
+    },
+    "featureIds": [
+      "buildings/35184561877024",
+      "buildings/35185677357671",
+      "buildings/35185677357666",
+      "buildings/35185677357672",
+      "buildings/35185677357665",
+      "buildings/35185677357670",
+      "buildings/35185677357667",
+      "buildings/35185677357668",
+      "buildings/35185677357669"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3329674dfc973b4deb27df9c65d364b3fed92852ee22b3c6417efcd7e4c870cc",
+    "notes": "Official100m square includes eaves; native outline spans roughly100m. Flat red central roof deck, four orange concave sweeping skirts/upcurled corners, thickgray edges and front entrance dormer. Eightnative14m parts help lower core footprint; details inferred from photos. Parkfountain,gatepiers,statues,treesandmodernDome excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    }
+  ],
+  "limitations": [
+    "Dated surviving exterior interpreted from inspected local originals and official illustrated front/aerial. No claim to represent temporary construction or current site access.",
+    "Official100m square and30.4mheight are approximate controls; quantized native curled eaves span about109m. Roof curves/tiles, column proportions, terrace/stairs and unseen returns are photographic estimates, not survey/photogrammetry.",
+    "Open outer colonnade only; auditorium, memorial statue, indoor galleries, signage, parks, fountain, trees and gate piers excluded.",
+    "Ground is a retained public third-party Terrarium reencoding attributed by publisher to2024NLSC20mDTM. Original official raster/private conversion pipeline unavailable. One-metre review interpolation is not one-metre accuracy. Native main footprint clips only covered ground beneath own masonry hall/terrace/entrance; source heights and exterior ground unchanged. Isolated portable stage reviews geometry; actual source-field medium-fi fixture reviews bounded contact. Another DEM requires independent review.",
+    "No photographic pixels redistributed; portable fallback and five shared architectural surfaces use authored geometry and local glazing."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "south-front",
+      "position": [
+        0,
+        36,
+        165
+      ],
+      "lookAt": [
+        0,
+        15,
+        15
+      ]
+    },
+    {
+      "name": "whole-roof",
+      "position": [
+        -115,
+        145,
+        125
+      ],
+      "lookAt": [
+        0,
+        16,
+        0
+      ]
+    },
+    {
+      "name": "curled-corner",
+      "position": [
+        72,
+        24,
+        75
+      ],
+      "lookAt": [
+        44,
+        15,
+        43
+      ]
+    },
+    {
+      "name": "open-west-colonnade",
+      "position": [
+        -49,
+        5,
+        25
+      ],
+      "lookAt": [
+        -48,
+        7,
+        -25
+      ]
+    },
+    {
+      "name": "north-return",
+      "position": [
+        -100,
+        36,
+        -108
+      ],
+      "lookAt": [
+        0,
+        13,
+        -20
+      ]
+    },
+    {
+      "name": "entrance-grid",
+      "position": [
+        20,
+        13,
+        86
+      ],
+      "lookAt": [
+        0,
+        15,
+        54
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 42748,
+    "vertices": 128244,
+    "materials": 6,
+    "bytes": 5133468,
+    "sha256": "sha256:09da275b59e66670137957afd7498584aef1af7ba71d343200cc53b792ec0b5e"
+  }
+}

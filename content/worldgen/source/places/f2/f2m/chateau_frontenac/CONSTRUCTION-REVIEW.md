@@ -1,0 +1,11 @@
+# Château Frontenac roof construction — 2026-10-18
+
+Built one octagonal copper-clad chimney with a closed cap and physical diamond seams, two rectangular vent shafts with louvered tapered hoods, and two five-bay louver banks. The banks contain120closed tilted blades, real front gaps, recessed dark backing, copper piers and sloped hoods. Removed four old central mid-tier dormers behind the banks. Actual close renders exposed dormer clashes; revised estimated stack centers occupy gaps between retained upper dormers.
+
+Started with cleared Qualla candidates. A wartime reception does not establish the current exterior; contemporary attribution images and private later plan/satellite imagery are excluded as current controls. Five exact native Wilfredor own-work CC0 exterior photographs from2020/2022/2024 used under explicit photographer releases, with primary revision IDs/native SHA1/dimensions bound. Full images and native chimney/east hooded-stack crops inspected. Initial category snapshot remains; targetedV2adds missing primary revision IDs. No photo pixels, fine sculpture or illumination scheme copied.
+
+All39FINALcurrent frames inspected after correcting clashes. Four levels986/3834/14994/49066triangles,1/4/4/4draws. Imported1/1/1/287controls pass for actual solids/gaps/backing/hoods, removed dormer panes/peaks and exact retained attributes. Normals/winding/UVs/hashes, exact regeneration and strict budgets pass.
+
+Three lower levels exact. All original source attributes outside bounded fittings/dormer regions retained. Immutable pre-edit baseline, map, terrain grid/descriptor/heightmap and placement unchanged. Original NRCan terrain/datum57.3337m at[-30,-45],foundations-4m and stepped southwest ranges retained; no new pads, height fitting or flattening. Source-ground context retains the slope/cliff.
+
+Full fixed hotel/tower/connected wings/copper roofs/principal retaining terraces remain included. Later service ranges remain represented by massing. Stack coordinates/heights/caps, louver counts/depths, exact roof joins/patina, hidden service elevations, carving and present condition remain medium-fi estimates. Mechanical interiors, whole promenade, kiosks and landscaping excluded as before.

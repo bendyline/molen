@@ -14,7 +14,9 @@ import {
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const json = async (p) => JSON.parse(await readFile(resolve(root, p), 'utf8'));
-const batch = await json('content/worldgen/source/qualla-structures/batches/qualla-001.json');
+const batchName = process.argv.find((a) => a.startsWith('--batch='))?.slice(8) ?? 'qualla-001';
+if (!/^qualla-\d{3}$/.test(batchName)) throw Error('Invalid batch name');
+const batch = await json(`content/worldgen/source/qualla-structures/batches/${batchName}.json`);
 const structures = (
   await readFile(
     resolve(root, 'content/worldgen/source/qualla-structures/structures.jsonl'),

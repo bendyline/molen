@@ -8,7 +8,9 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Pearl Harbor Aviation Museum](https://qualla.com/pearl-harbor-aviation-museum/)
 
-Original medium-fi restored exterior, using inspected local Qualla aerial for site context and museum/Warren LeMay supplemental front and side photographs for architectural evidence; not a measured survey.
+Qualla corpus searched first. New stair construction uses the inspected original 2013 Bernard Spragg photograph with the photographer’s explicit primary CC0 dedication. Prior private museum and attribution-licensed imagery is excluded; mapped operations/tower frame retained. Not a measured survey.
+
+Two physical switchback flights, intermediate landing, upper-storey landing, stringers, support posts and railings follow the public-domain photograph. Flight widths, tread counts and 0/2/4 m levels are photographic estimates. The 2013 reference does not certify every detail of the later restoration.
 
 Museum sources describe 158 ft tower height and 168 ft observation access differently. The recipe approximates a 48.2 m shaft/tank transition and 51.2 m upper deck; individual levels, cabin roof and antenna heights are estimates.
 
@@ -18,4 +20,4 @@ Includes the attached operations building and small aerological cab. Hangars, mu
 
 Reference photographs are viewed for research and are not embedded or redistributed. Generalized map geometry and host terrain require review when using another elevation dataset.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ford_island_control_tower`. Add `--check` to verify exact regeneration. 16666 triangles; 3 materials; no embedded photographs.
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=ford_island_control_tower`. Add `--check` to verify exact regeneration. 17458 triangles; 3 materials; no embedded photographs.

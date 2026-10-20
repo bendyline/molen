@@ -389,6 +389,149 @@ function tower(o, x, z, w, l, wallTop, rise, d, { tiers = 2, stone = false } = {
     for (const sx of [-1, 1])
       B(o, 'trim', x, wallTop + rise - 0.15, z + sx * (l / 2 - w * 0.42), 0.22, 0.9, 0.22, trim);
 }
+/** Closed extrusion of a Y/Z stair or parapet profile; UVs stay in meters. */
+function stairProfile(o, profile, width, slot, color) {
+  const area = profile.reduce((s, a, i) => {
+    const b = profile[(i + 1) % profile.length];
+    return s + a[0] * b[1] - b[0] * a[1];
+  }, 0);
+  if (area < 0) profile = [...profile].reverse();
+  const ids = earcut(profile.flat());
+  for (const [x, normal] of [
+    [-width / 2, [-1, 0, 0]],
+    [width / 2, [1, 0, 0]],
+  ])
+    for (let i = 0; i < ids.length; i += 3) {
+      const p = ids.slice(i, i + 3).map((j) => [x, ...profile[j]]);
+      o.addTriangle(
+        slot,
+        ref,
+        p,
+        normal,
+        p.map((v) => [v[2], v[1]]),
+        color,
+      );
+    }
+  for (let i = 0; i < profile.length; i++) {
+    const a = profile[i],
+      b = profile[(i + 1) % profile.length],
+      p = [
+        [-width / 2, ...a],
+        [-width / 2, ...b],
+        [width / 2, ...b],
+        [width / 2, ...a],
+      ],
+      normal = normalFor(p[0], p[1], p[2]),
+      len = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      uv = p.map((v) => [v[0], (v[1] * (b[0] - a[0]) + v[2] * (b[1] - a[1])) / len]);
+    o.addQuad(slot, ref, p, normal, uv, color);
+  }
+}
+function landingHull(points) {
+  const ps = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]),
+    cross = (a, b, c) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]),
+    low = [],
+    high = [];
+  for (const p of ps) {
+    while (low.length > 1 && cross(low.at(-2), low.at(-1), p) <= 0) low.pop();
+    low.push(p);
+  }
+  for (const p of ps.toReversed()) {
+    while (high.length > 1 && cross(high.at(-2), high.at(-1), p) <= 0) high.pop();
+    high.push(p);
+  }
+  return [...low.slice(0, -1), ...high.slice(0, -1)];
+}
+function southStairs(o) {
+  const c = JSON.parse(fs.readFileSync(new URL('stair-construction-controls.json', base))).stairs,
+    rise = c.stepsPerFlight * c.risePerStep,
+    direction = (a, b) => {
+      const n = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      return [(b[0] - a[0]) / n, (b[1] - a[1]) / n];
+    },
+    shift = (p, u, t) => [p[0] + u[0] * t, p[1] + u[1] * t],
+    across = (u) => [u[1], -u[0]],
+    framed = (a, b) => facing(o, Math.atan2(b[0] - a[0], b[1] - a[1]), a[0], a[1]);
+  function guard(f, x, z0, z1, y0, y1) {
+    const g = facing(f, 0, x, 0);
+    stairProfile(
+      g,
+      [
+        [c.foundationY, z0],
+        [y0 + c.wallHeight, z0],
+        [y1 + c.wallHeight, z1],
+        [c.foundationY, z1],
+      ],
+      c.wallThickness,
+      'wall',
+      wall,
+    );
+    stairProfile(
+      g,
+      [
+        [y0 + c.wallHeight, z0],
+        [y0 + c.wallHeight + c.capThickness, z0],
+        [y1 + c.wallHeight + c.capThickness, z1],
+        [y1 + c.wallHeight, z1],
+      ],
+      c.capWidth,
+      'trim',
+      trim,
+    );
+  }
+  function flight(a, b, y) {
+    const L = Math.hypot(b[0] - a[0], b[1] - a[1]),
+      f = framed(a, b),
+      p = [
+        [c.foundationY, 0],
+        [y + c.risePerStep, 0],
+      ];
+    for (let i = 0; i < c.stepsPerFlight; i++) {
+      p.push([y + (i + 1) * c.risePerStep, ((i + 1) * L) / c.stepsPerFlight]);
+      if (i < c.stepsPerFlight - 1)
+        p.push([y + (i + 2) * c.risePerStep, ((i + 1) * L) / c.stepsPerFlight]);
+    }
+    p.push([c.foundationY, L]);
+    stairProfile(f, p, c.width, 'wall', wall);
+    for (const s of [-1, 1]) guard(f, s * (c.width / 2 + c.wallThickness / 2), 0, L, y, y + rise);
+  }
+  for (const s of c.sides) {
+    const u = direction(s.foot, s.middle),
+      v = direction(s.middle, s.upper),
+      lowEnd = shift(s.middle, u, -c.turnSetback),
+      upperStart = shift(s.middle, v, c.turnSetback),
+      au = across(u),
+      av = across(v),
+      ports = [
+        ...[-1, 1].map((k) => shift(lowEnd, au, k * c.landingHalfWidth)),
+        ...[-1, 1].map((k) => shift(upperStart, av, k * c.landingHalfWidth)),
+        [s.middle[0], s.middle[1] - 0.6],
+        [s.middle[0], s.middle[1] + 0.6],
+      ],
+      mid = landingHull(ports);
+    flight(s.foot, lowEnd, 0);
+    flight(upperStart, s.upper, rise);
+    prism(o, [mid], c.foundationY, rise, wall, 'wall');
+    // Only the outer landing edge is guarded; both stair ports stay open.
+    const outer = facing(o, Math.PI / 2, s.middle[0], s.middle[1]);
+    B(outer, 'wall', 0, rise, 0, 1.2, c.wallHeight, c.wallThickness, wall);
+    B(outer, 'trim', 0, rise + c.wallHeight, 0, 1.2, c.capThickness, c.capWidth, trim);
+    const top = framed(s.upper, shift(s.upper, v, c.topLandingRun));
+    B(
+      top,
+      'wall',
+      0,
+      c.foundationY,
+      c.topLandingRun / 2,
+      c.landingHalfWidth * 2,
+      rise * 2 - c.foundationY,
+      c.topLandingRun,
+      wall,
+    );
+    for (const k of [-1, 1])
+      guard(top, k * (c.width / 2 + c.wallThickness / 2), 0, c.topLandingRun, rise * 2, rise * 2);
+  }
+}
 function angledEnd(o, x, z, a, d, north = false) {
   const q = facing(o, a, x, z),
     w = 22,
@@ -435,19 +578,22 @@ function angledEnd(o, x, z, a, d, north = false) {
         len = Math.hypot(a[0] - b[0], a[1] - b[1]);
       for (let y = 1.05; y < top - 8; y += 3.6) {
         if (len > 4)
-          for (const xx of [-1.25, 1.25]) win(u, xx, y, 0.035, 1.6, y < 6 ? 2.65 : 1.95, d, y < 6);
-        else if (len > 2) win(u, 0, y, 0.035, 1.25, y < 6 ? 2.65 : 1.95, d, y < 6);
+          for (const xx of [-1.25, 1.25])
+            win(u, xx, y, 0.035, 1.6, y < 6 ? 2.65 : 1.95, d, y < 6 && (north || d < 2 || y > 4));
+        else if (len > 2)
+          win(u, 0, y, 0.035, 1.25, y < 6 ? 2.65 : 1.95, d, y < 6 && (north || d < 2 || y > 4));
       }
     }
     if (d > 1)
       for (const xx of [-8, 0, 8])
         gable(q, xx, top - 0.2, l / 2 + 0.65, xx === 0 ? 7.2 : 4.1, xx === 0 ? 8 : 4.8, d);
-    if (d > 1) {
+    if (d > 1 && north) {
       const u = facing(q, 0);
       for (let i = 0; i < 12; i++)
         B(u, 'wall', 0, i * 0.18, l / 2 + 7 - i * 0.3, 4.3, 0.2, 5 - i * 0.3, wall);
       B(u, 'trim', 0, 2.16, l / 2 + 4.0, 4.7, 0.2, 2.2, trim);
     }
+    if (d > 1 && !north) southStairs(q);
   }
 }
 function podium(o, x, z, w, l, top, d, { round = false } = {}) {
@@ -648,6 +794,8 @@ export const banffModel = {
   qaCameras: [
     { name: 'front', position: [133, 69, 191], lookAt: [-8, 22, 8] },
     { name: 'back', position: [-142, 80, -180], lookAt: [-10, 24, -9] },
+    { name: 'south-stairs', position: [88, 14, 43], lookAt: [72, 2.8, 17] },
+    { name: 'stair-landings', position: [72, 8, 35], lookAt: [72, 2.5, 18] },
   ],
   build: banff,
   surfaces,
@@ -668,7 +816,8 @@ export const banffModel = {
     },
   },
   limitations: [
-    'Original medium-fi main-hotel exterior based on three individually inspected local Qualla photographs, the hotel floor plan, Parks Canada description and mapped roof context.',
+    'New south-pavilion paired two-stage stairs use three exact native cleared Qualla public-domain photographs, with a native2007stair detail. Previous attribution photographs, private plan and satellite imagery are excluded as current imagery controls. Main hotel/Rundle scope retained.',
+    'Each stair branch has two12-tread flights, solid side walls, pale caps, an open turn landing and an attached upper landing. Nominal18cm rises/4.32m upper floor, widths and inferred plan angles are authoring estimates; no survey dimensions or exact masonry profiles claimed.',
     'Heights, roof intersections, hidden elevations, masonry courses and detailed ornament are photographic interpretations, not measured architectural drawings.',
     'Main stone hotel and Rundle cross-wing included; later Gatehouse, conference buildings, pool/spa additions, landscape terraces and interiors excluded.',
     'Independent terrain is unflattened. Actual footprint placement supersedes the displaced story point; footprint suppression remains disabled.',

@@ -1,0 +1,389 @@
+{
+  "planId": "presidential_office_building_taipei",
+  "id": "presidential_office_building_taipei",
+  "assetId": "molen.worldgen.structure.presidential_office_building_taipei",
+  "title": "Presidential Office Building, Taipei",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.51197787374258,
+    "latitude": 25.03999640000729
+  },
+  "size": [
+    132.78606414794922,
+    64.34999999403954,
+    93.56849670410156
+  ],
+  "actualBounds": {
+    "min": [
+      -66.27665710449219,
+      -0.3499999940395355,
+      -46.918495178222656
+    ],
+    "max": [
+      66.50940704345703,
+      64,
+      46.650001525878906
+    ]
+  },
+  "visualBrief": "Surviving red-brick and pale aggregate presidential office: two open courtyards with white internal elevations, lower central hall with curved roof, approximately60m tall cruciform central shaft and ornate arched crown/pyramidal gray cap. Four green-hipped corner towers, paired flat guard towers and present flat entrance porches, differentiated deep arcades on east/south/west with north facade solid, perforated balustrades, raised vents and green metal wing roofs. Service/security annexes and precinct landscaping excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Presidential_Building,_Taiwan_(0747).JPG"
+  ],
+  "stories": [
+    {
+      "id": "presidential-office-building-taipei-wp",
+      "url": "https://qualla.com/presidential-office-building-taipei/"
+    }
+  ],
+  "referenceInputHash": "sha256:444bdaa91c999df072df1d56f5e6c00d9254cd6f97cba3ad1bae66a6bb9b52a3",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-presidential-office-building-taipei.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-presidential-office-building-taipei.mjs",
+    "level": "skyline",
+    "export": "presidentialOfficeBuildingTaipeiSkyline",
+    "errorMeters": 4.2,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.18
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.18
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.08
+      },
+      "flag": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.94,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "presidentialOfficeBuildingTaipeiDistrict",
+        "errorMeters": 4.2,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.08
+          },
+          "flag": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "presidentialOfficeBuildingTaipeiStreet",
+        "errorMeters": 0.65,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.08
+          },
+          "flag": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.94,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Native signed building frame and external dry forecourt[0,55] retained. Published third-party NLSC-claimed2024 20mDTM Terrarium tile independently decoded, datum5.1845m. It replaces rejected composite after geometry without changing walls/foundations. Bounded source preview only; original official raster and publisher encoding pipeline unavailable; no survey claim.",
+    "anchor": [
+      121.51197787374258,
+      25.03999640000729
+    ],
+    "heading": 1.4868030074760323,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.51252127611055,
+        25.03995495010921
+      ],
+      "modelHeight": 0,
+      "basis": "Dry front forecourt on entrance axis beyond native porch outline, chosen before independent source field and geometry. Not courtyard or roof."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185788652774",
+      "buildings/35185788652784",
+      "buildings/35185788652783",
+      "buildings/52776577512238",
+      "buildings/52776558340065",
+      "buildings/35185788652773",
+      "buildings/35184740671756",
+      "buildings/35185788652778",
+      "buildings/35185788652780",
+      "buildings/35185788652779",
+      "buildings/35185788652781",
+      "buildings/35185788652785",
+      "buildings/35185788652786",
+      "buildings/35185788652776",
+      "buildings/35185788652777"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9384d5cdbee7cbd12a774fe0792072a7bb314a6fd8a74945ab00ab43b68a03fc"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Bounded exterior preview; see current hash-bound QA. Geometry, hidden foundations and fine ornament are approximate, not surveyed.",
+    "Official approximately140m×85m overall plan and60m tower are approximate references. Native main outline is quantized; photo-directed roof levels, arcade bays and hidden foundations are not surveyed.",
+    "North exterior lacks portico per official description; central hall and courtyard chambers generalized. Interior rooms and security/service annexes omitted.",
+    "Original rejected composite is preserved separately. Replacement is an independently decoded published third-party reencoding claimed as2024NLSC20mDTM; original official raster and publisher conversion pipeline unavailable. Zoom13 pixels17.3m;1m review grid interpolates, not1m accuracy. Preview accepts only retained source relative ground; other DEMs require independent contact review.",
+    "Reference imagery remains local provenance; no photograph used as facade texture."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front-facade",
+      "position": [
+        0,
+        24,
+        165
+      ],
+      "lookAt": [
+        0,
+        28,
+        20
+      ]
+    },
+    {
+      "name": "two-open-courts",
+      "position": [
+        105,
+        115,
+        100
+      ],
+      "lookAt": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "south-arcade",
+      "position": [
+        -91,
+        16,
+        52
+      ],
+      "lookAt": [
+        -44,
+        11,
+        31
+      ]
+    },
+    {
+      "name": "north-no-portico",
+      "position": [
+        115,
+        42,
+        -30
+      ],
+      "lookAt": [
+        58,
+        15,
+        0
+      ]
+    },
+    {
+      "name": "central-crown",
+      "position": [
+        22,
+        54,
+        73
+      ],
+      "lookAt": [
+        0,
+        51,
+        32
+      ]
+    },
+    {
+      "name": "courtyard-and-hall",
+      "position": [
+        -30,
+        34,
+        12
+      ],
+      "lookAt": [
+        -20,
+        11,
+        -5
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 59007,
+    "vertices": 177021,
+    "materials": 7,
+    "bytes": 7084892,
+    "sha256": "sha256:1f7120eab1550bb5069f37c3cac21bf0e8b75637a0dce4b1d88d0310c6b8d479"
+  }
+}

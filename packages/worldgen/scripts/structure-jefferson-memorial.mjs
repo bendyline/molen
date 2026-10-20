@@ -31,7 +31,7 @@ function facing(o, a, x = 0, z = 0) {
     },
   };
 }
-function ring(o, slot, r0, r1, y0, y1, n, color, a0 = 0, a1 = Math.PI * 2) {
+function ring(o, slot, r0, r1, y0, y1, n, color, a0 = 0, a1 = Math.PI * 2, bottomCap = true) {
   const p = (r, y, a) => [Math.sin(a) * r, y, Math.cos(a) * r];
   for (let i = 0; i < n; i++) {
     const a = a0 + ((a1 - a0) * i) / n,
@@ -56,6 +56,7 @@ function ring(o, slot, r0, r1, y0, y1, n, color, a0 = 0, a1 = Math.PI * 2) {
       [y0, -1],
       [y1, 1],
     ]) {
+      if (ny < 0 && !bottomCap) continue;
       if (r0 > 0)
         quad(o, slot, [p(r0, y, a), p(r1, y, a), p(r1, y, b), p(r0, y, b)], [0, ny, 0], color);
       else
@@ -339,7 +340,8 @@ function memorial(o, _frame, d = 3) {
       p = (r, a) => [Math.sin(a) * r, 2.05, Math.cos(a) * r];
     quad(o, 'grass', [p(29, a), p(44.8, a), p(44.8, b), p(29, b)], [0, 1, 0], rgb('7a855f'));
   }
-  ring(o, 'marble', 44.8, 45.05, -1, 2.15, tn, white, a0, a1);
+  // The underside lies beneath the independently checked ground; omit its hidden cap.
+  ring(o, 'marble', 44.8, 45.05, -1, 2.15, tn, white, a0, a1, false);
   if (d > 0) ring(o, 'marble', 44.6, 45.2, 2.15, 2.3, tn, pale, a0, a1);
   for (const sign of [-1, 1]) {
     beam(o, 'marble', [sign * 34.32, 0.6, 28.8], [sign * 26.4, 0.6, 31.5], 0.45, 3.0, white);
@@ -360,13 +362,38 @@ function memorial(o, _frame, d = 3) {
     ring(o, 'granite', 0, r, -1, y, n, granite);
   }
   B(o, 'granite', 0, -1, 22.7, 31.8, floor + 1, 14.4, granite);
-  steps(o, 46.4, 51.6, 0, 2.05, 52, d);
-  B(o, 'granite', 0, -1, 39.7, 52, 3.05, 13.4, granite);
-  B(o, 'granite', 0, -1, 32.1, 52, 3.05, 1.8, granite);
+  // The native approach outline expands twice toward the basin; it is not a52m rectangle.
+  steps(facing(o, 0, -0.225, 0), 46.4, 51.6, 0, 2.05, 62.75, d);
+  B(o, 'granite', -0.35, -1, 44.1, 61.1, 3.05, 4.6, granite);
+  B(o, 'granite', -0.15, -1, d === 0 ? 36.5 : 37.4, 52.3, 3.05, d === 0 ? 10.6 : 8.8, granite);
+  if (d > 0) B(o, 'granite', 0, -1, 32.1, 52, 3.05, 1.8, granite);
   steps(o, 29.4, 31.2, 2.05, floor, 33.4, d);
-  for (const s of [-1, 1]) {
-    B(o, 'granite', s * 26.4, -1, 41.0, 1.1, 3.5, 21.4, granite);
-    B(o, 'granite', s * 26.4, 2.5, 41.0, 1.4, 0.2, 21.4, pale);
+  for (const [rear, middle, front] of [
+    [-26.1, -30.7, -31.5],
+    [25.8, 30.0, 31.0],
+  ]) {
+    const path =
+      d === 0
+        ? [
+            [rear, 30.3],
+            [rear, 41.8],
+            [front, 41.8],
+            [front, 51.7],
+          ]
+        : [
+            [rear, 30.3],
+            [rear, 41.8],
+            [middle, 41.8],
+            [middle, 46.0],
+            [front, 46.0],
+            [front, 51.7],
+          ];
+    for (let i = 1; i < path.length; i++) {
+      const a = path[i - 1],
+        b = path[i];
+      beam(o, 'granite', [a[0], 0.75, a[1]], [b[0], 0.75, b[1]], 1.1, 3.5, granite);
+      if (d > 0) beam(o, 'granite', [a[0], 2.6, a[1]], [b[0], 2.6, b[1]], 1.4, 0.2, pale);
+    }
   }
   // Four curved piers leave four broad axial openings, each with four inner columns.
   for (let k = 0; k < 4; k++) {
@@ -395,8 +422,9 @@ function memorial(o, _frame, d = 3) {
   }
   for (let i = 0; i < 8; i++) column(o, -13.2 + (i * 26.4) / 7, 28.2, 0, d);
   for (const x of [-13.2, 13.2]) for (const z of [23.9, 19.6]) column(o, x, z, 0, d);
-  // Peristyle entablature and annular roof avoid a solid disk blocking the chamber.
-  ring(o, 'marble', 17.8, 24.65, architrave, architrave + 2.55, n, white);
+  // The annular attic joins the inner chamber wall to the outer dome's springing.
+  // Its inward face closes the former sky slit without blocking the chamber below.
+  ring(o, 'marble', 15.4, 24.65, architrave, floor + 15.3, n, white);
   if (d > 0) {
     ring(o, 'marble', 24.1, 25.05, architrave + 2.55, architrave + 2.85, n, pale);
     ring(o, 'marble', 24.6, 24.9, architrave + 2.85, architrave + 3.5, n, white);
@@ -488,6 +516,8 @@ export const jeffersonModel = {
   lookAt: [0, 12, 7],
   qaCameras: [
     { name: 'front', position: [0, 22, 140], lookAt: [0, 15, 5] },
+    { name: 'portico-detail', position: [19, 19, 43], lookAt: [9, 15.5, 27] },
+    { name: 'chamber-detail', position: [0, 9, 12], lookAt: [0, 9, 0] },
     { name: 'back', position: [90, 55, -110], lookAt: [0, 14, 0] },
   ],
   build: memorial,
@@ -501,7 +531,7 @@ export const jeffersonModel = {
     module: 'packages/worldgen/scripts/structure-jefferson-memorial.mjs',
     level: 'skyline',
     export: 'jeffersonSkyline',
-    errorMeters: 0.8,
+    errorMeters: 2.6,
     surfaces,
     authoredLevels: {
       district: { export: 'jeffersonDistrict', errorMeters: 0.3, surfaces },
@@ -509,8 +539,8 @@ export const jeffersonModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from individually inspected Qualla photographs and HABS 1994 measured north elevation and longitudinal section; not a survey or photogrammetric reconstruction.',
-    'NPS establishes 26 outer, 12 portico and 16 inner columns. Map part counts and public rounded heights conflict; measured HABS proportions control the model. Fine volutes, dome masonry and hidden pier openings are simplified.',
+    'Started with three cleared published Qualla CC0 aerials, supplemented by a verified creator-CC0 front photograph, explicit NPS public-domain cleaned-dome original and native original HABS1994 north elevation/longitudinal section. All native title blocks and drawing credits inspected; earlier attribution-licensed images excluded from current approval. Not a survey or photogrammetric reconstruction.',
+    'NPS text establishes26 outer,12 portico and16 inner columns. Map part counts are incomplete. The measured north elevation supplies12.519025m stylobate-to-architrave height; the longitudinal section supplies approximately29.16555m main-floor-to-dome height. The elevation chain instead totals29.708475m; this0.542925m original-source discrepancy is retained in survey-controls.json. Overall model proportions follow the section. Fine volutes, dome masonry and hidden pier openings are simplified.',
     'Main circular steps, north stair flight and immediate raised supporting terrace included; wider gardens, Tidal Basin, distant approachway, undercroft and modern accessibility equipment excluded. Vertical stair levels are approximate relative to the independent terrain contact.',
     'Standing statue and pediment relief are original simplified silhouettes, not portrait-quality sculptures. Inscriptions, exact coffer pattern and detailed interiors are excluded; no photo pixels are embedded.',
     'Independent terrain is preserved unchanged and foundation extends beneath it. Another host DEM can change exact ground contact.',

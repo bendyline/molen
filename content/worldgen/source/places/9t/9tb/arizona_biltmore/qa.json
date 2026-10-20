@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.arizona_biltmore",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:57b74486a444b4973cf94b81f662f3ecac2192e4e55bc19050e562be6ed15655",
-  "sourceHash": "sha256:b14ec9c1a46027756d2955d626f7006155309120dbed98fbe5c6e91c87d0ceb4",
-  "runtimeHash": "sha256:a3fabc24465a0f83eefb6df63d5ff9856d37ae983ae2f030c47a7a4e6b601494",
-  "captureReportHash": "sha256:61c2aee89f2bd9c891c7c290a4f559296b5a331435beb26198cb83229e588859",
+  "inputHash": "sha256:9ccc91ff967887b7cfe8373b3d4dce5f2af03bd901be764ffbf57d62a9cb2977",
+  "sourceHash": "sha256:bfc4538ee4e32f086f83264498854e0a63fc3ddb285038ea806fb6680ca367ad",
+  "runtimeHash": "sha256:3e2909c6ae2308813880ec815af398e368db117f8e3aeb76b58e5951e83fa383",
+  "captureReportHash": "sha256:840666a04e32d6b0c2187566a487ac7c04c56cb5db068c10586ca79b8babf1eb",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:840666a04e32d6b0c2187566a487ac7c04c56cb5db068c10586ca79b8babf1eb",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/textile-relief.png",
+      "shots/textile-profile.png"
     ],
-    "notes": "Inspected all seven current portable views against the individual local south-front, tower, concrete-block and north-core photographs. Stepped core, tower fins, recessed open veranda, low Gold/Grand wings, octagonal Aztec Room and open entrance canopy are represented. Review corrected inward roof faces, hidden lower-wing glazing and an over-height slot on the smaller risalit."
+    "notes": "All nine current portable frames inspected, including native textile-relief and textile-profile closeups. Stepped ribs have real thickness and cast directional shadows; open troughs remain. Intruding black rafter ends removed from tower faces. Original canopy air, low wings, tower and source ground retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4f19659a2cc582f05d0b2239d380c4538b9d4501b57425a41f3eab0a8875596f",
+    "captureReportHash": "sha256:a44632efc84b8f8da46e8a85aac5a4d0183823ee9a6e8bf314ada2d2fc9e4ee9",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/textile-relief.png",
+      "shots/shared/textile-profile.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views and full rear view. Concrete, painted metal, copper and membrane use metric bindings; glass is local. Final review confirmed visible hipped roof surfaces and outward-facing courtyard windows. North-up overlay follows the clipped main-block envelope. Flat shared ground is a material fixture; independent sloped terrain is in the portable scene."
+    "notes": "All nine current shared-material views inspected, including masonry closeups and mapped overlay. New physical ribs bind to shared concrete; membrane and copper remain distinct. No isolated copper cubes protrude through tower faces. Original placement transform/hash and unload pass. Flat shared fixture establishes material and transform behavior; portable/native-ground views carry source context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.metal_copper": {
+        "path": "materials/metal_copper.matgraph.json",
+        "hash": "sha256:696ddbc9a7c4391a93130d01528aac9ca91945d00a02b7551b915f0bdaab1935"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:a31f51551dadbf4d68d4bb6e4ed7c3f92f45fe246f519130faffb2c0b3f10c96",
+    "captureReportHash": "sha256:d138b66d4f9245c6709a47541a3532dab71d1ddfa7f0025fdd43013aa4cf6e36",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/textile-relief.png",
+      "medium-fi/textile-profile.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail views. Distant levels retain the tower, veranda, Aztec roof, low wings and open canopy; closer levels add windows, roof seams, geometric block relief and balcony screens. Synthetic neighbors are style fixtures. No physical-device frame-rate measurement is claimed."
+    "notes": "All21current version-2 frames inspected: noon/late light, economy/high quality, source ground, front/back, both new detail views and four forced levels. Tower, canopy and mapped compound remain legible. Close range resolves physical stepped ribs; lower levels retain their intended simplification. Street and close rafters terminate within tower walls. Synthetic neighbors provide style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +102,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.00006891040800383053
     },
-    "notes": "Main-block envelope is clipped from the connected resort outline at the west conference center and northeast named wings using the official 2024 resort map. Anchor [-112.0229,33.5234], heading -0.2984988781512775; +X east-southeast and +Z south-southwest. Independent Terrarium heights remain unchanged, with datum 379.5739 m at south entrance [-19.5,60]. Foundation extends to -1 m; the model includes terrain rising roughly 2.7 m across its scope. Footprint suppression remains off; other host DEMs can differ."
+    "notes": "Original anchor[-112.0229,33.5234],heading-0.2984988781512775,+X east-southeast/+Z south-southwest retained. Original clipped mapped envelope, canopy and foundation retained; map and all three terrain files byte-identical. Original Terrarium datum379.5739m at south entrance[-19.5,60] retained; original relative footprint terrain range about0.006..2.748m and foundation down to-1m unchanged. No height fitting or new pads. Other host DEMs and exact survey levels remain outside this bounded construction review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Restored historic main hotel block, tower, veranda, Aztec/Gold/Grand rooms and immediate covered approaches; later named lodging wings, separate conference halls, cottages, villas and grounds excluded.",
-    "notes": "Original exterior uses individually inspected local Qualla photos, architect-published 1929 floor plans and construction description, and official current resort map. The published 18 by 13.5 inch concrete block module informs a simplified original relief motif. Heights, upper setbacks, rear roofs and exact window spacing are photographic approximations; no precise survey, exact mold reproduction, readable signage or interior fidelity is claimed. No photo pixels are embedded."
+    "scope": "Mapped main hotel exterior, entrance canopy, tower and existing connected wings within the original clipped scope. New work is72physical patterned concrete modules and veranda rafter intersections. Other resort wings, interiors and detailed landscape excluded.",
+    "notes": "Started with cleared Qualla candidates and reused three exact native Daderot public-domain originals: two wall details and the outdoor interior lawn. Primary own-work PD-self releases, named creator, native dimensions and hashes verified. Full originals and native architectural detail inspected. Built72three-rib stepped concrete modules with closed tops/four physical sides joining the original wall, leaving open troughs. Nominal18x13.5inch module guides the existing count; retained actual pitch0.45x0.345m is approximate. Folded-leaf motif is simplified, not an exact historic mold replica. New relief depths and present condition remain photographic estimates; references dated2009. Clipped copper veranda rafters into intersecting tower walls while retaining unblocked projections. Skyline/district geometry exact; all street non-copper geometry exact. Original mapped masses, canopy, source frame, three ground files and placement retained. Other elevations, roof details and partly obscured compound masses remain inherited estimates. No interiors, copied photo pixels, new foundations, terrain fitting or claim of surveyed dimensions."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:880533d9b1f9dd95e4fce5f28909237108294bd099c94323cf35ef4a9b935571",
+    "recipeHash": "sha256:15fb7201fe74702c738916c411cd7fd426a3d89ccc05833188f7f84a6e2ee908",
     "levels": [
       {
         "name": "skyline",
@@ -116,9 +141,9 @@
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:6298a5dc82f4b07566d719e7b3c11a1b2ebef9762fd06b9d3317950df2d6958b",
+        "hash": "sha256:3605971b4cf38e67a48d454eaaa35c30e2e517cb27292b00dccb5fb4096b17fb",
         "bytes": 1000692,
-        "gzipBytes": 177917,
+        "gzipBytes": 177894,
         "triangles": 12974,
         "cpuBytes": 994512,
         "gpuBytes": 994512,
@@ -128,40 +153,1956 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:ccc9bc65fd1d4142b35e3e940315b510d1a70d7ac7a2cd8a35fdd0787cad7fc4",
-        "bytes": 7224112,
-        "gzipBytes": 1465906,
-        "triangles": 60176,
-        "cpuBytes": 7221120,
-        "gpuBytes": 7221120,
+        "hash": "sha256:76a61c2ab29573a16615d62466878f0b576393b7806144bc6622433329b685c8",
+        "bytes": 7673392,
+        "gzipBytes": 1549798,
+        "triangles": 63920,
+        "cpuBytes": 7670400,
+        "gpuBytes": 7670400,
         "errorMeters": 0,
         "drawCalls": 5
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets: 928 skyline, 3152 district, 12974 street and 60176 closeup triangles. Major roof and massing distinctions survive at distance; glazing, block relief and veranda detail return progressively. Error values are authoring budgets, not measured mesh deviations."
+    "notes": "928/3152/12974/63920triangles and1/5/5/5draws pass strict budgets. Exact skyline/district full geometry attributes retained. Street changes only copper rafters; original non-copper attribute fingerprint retained. New72physical relief modules occur only close range, adding3456actual side triangles. Declared geometric errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 60176,
+    "sourceTriangles": 63920,
     "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 928,
+        "drawCalls": 1,
+        "controls": 5,
+        "failed": 0,
+        "physicalSideTriangles": 0,
+        "geometryAttributesHash": "sha256:dac55bd90562d1170ba71c5e71ee7c8c7d6b50f791562bcbee85b99df6a4250e",
+        "controlResults": [
+          {
+            "name": "exact original lower geometry attribute fingerprint retained",
+            "pass": true,
+            "expected": "sha256:dac55bd90562d1170ba71c5e71ee7c8c7d6b50f791562bcbee85b99df6a4250e"
+          },
+          {
+            "name": "all72modules have six solid strips with four physical side faces",
+            "pass": true,
+            "physicalSideTriangles": 0
+          },
+          {
+            "name": "retained open porte-cochere air",
+            "pass": true
+          },
+          {
+            "name": "retained solid entrance canopy underside",
+            "pass": true,
+            "y": 4.75
+          },
+          {
+            "name": "retained historic tower roof",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 3152,
+        "drawCalls": 5,
+        "controls": 5,
+        "failed": 0,
+        "physicalSideTriangles": 0,
+        "geometryAttributesHash": "sha256:838fad009d7bffcbafe702124e719d5bddf4589a95e047af845199ad777fbdd0",
+        "controlResults": [
+          {
+            "name": "exact original lower geometry attribute fingerprint retained",
+            "pass": true,
+            "expected": "sha256:838fad009d7bffcbafe702124e719d5bddf4589a95e047af845199ad777fbdd0"
+          },
+          {
+            "name": "all72modules have six solid strips with four physical side faces",
+            "pass": true,
+            "physicalSideTriangles": 0
+          },
+          {
+            "name": "retained open porte-cochere air",
+            "pass": true
+          },
+          {
+            "name": "retained solid entrance canopy underside",
+            "pass": true,
+            "y": 4.75
+          },
+          {
+            "name": "retained historic tower roof",
+            "pass": true
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 12974,
+        "drawCalls": 5,
+        "controls": 11,
+        "failed": 0,
+        "physicalSideTriangles": 0,
+        "geometryAttributesHash": "sha256:e99ebef607f3ca6988458db2d4cd8c266b76a5c6b2863a80103081398f92a25e",
+        "controlResults": [
+          {
+            "name": "all72modules have six solid strips with four physical side faces",
+            "pass": true,
+            "physicalSideTriangles": 0
+          },
+          {
+            "name": "retained open porte-cochere air",
+            "pass": true
+          },
+          {
+            "name": "retained solid entrance canopy underside",
+            "pass": true,
+            "y": 4.75
+          },
+          {
+            "name": "retained historic tower roof",
+            "pass": true
+          },
+          {
+            "name": "all original street non-copper geometry attributes retained",
+            "pass": true
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": -9.5
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": -7.8
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": -4.4
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": 24.5
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": 26.2
+          },
+          {
+            "name": "unblocked veranda rafter retains original projection",
+            "pass": true,
+            "z": 20.700000762939453
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 63920,
+        "drawCalls": 5,
+        "controls": 166,
+        "failed": 0,
+        "physicalSideTriangles": 3456,
+        "geometryAttributesHash": "sha256:bc080dd1d471fd04a93968c6efd4e3926f9a7a428552241c6e14e5c37c9af010",
+        "controlResults": [
+          {
+            "name": "all72modules have six solid strips with four physical side faces",
+            "pass": true,
+            "physicalSideTriangles": 3456
+          },
+          {
+            "name": "retained open porte-cochere air",
+            "pass": true
+          },
+          {
+            "name": "retained solid entrance canopy underside",
+            "pass": true,
+            "y": 4.75
+          },
+          {
+            "name": "retained historic tower roof",
+            "pass": true
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": -9.5
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": -7.8
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": -4.4
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": 24.5
+          },
+          {
+            "name": "copper rafters terminate within the solid tower walls",
+            "pass": true,
+            "x": 26.2
+          },
+          {
+            "name": "unblocked veranda rafter retains original projection",
+            "pass": true,
+            "z": 20.700000762939453
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000154873884
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.09000015844579
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.090000164147423
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000169444497
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.0900001885305
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000148104586
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              3,
+              0
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.09000015601687
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.09000011315456
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000016576586
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000144578294
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000191287128
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000081951906
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              3,
+              5
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000145729913
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000131442356
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000015119923
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000130010417
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000166479605
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000126053692
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              3,
+              11
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.09000016916139
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000153087974
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000015885019
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000148255886
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000127891628
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.09000018347734
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              5,
+              0
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000152445047
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.09000012565573
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.090000160468925
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.09000016311735
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000130645734
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000117326042
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              5,
+              5
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000142157947
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000143943893
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000014590182
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.0900001485504
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000105840733
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.09000016142639
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              5,
+              11
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.09000015387382
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000150301886
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000014972738
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000157673234
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000162345355
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000152238716
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              6,
+              0
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000181305882
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000149158893
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.090000161351373
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000142811984
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000090681883
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000149482055
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              6,
+              5
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.09000016301784
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000159445907
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.090000175918394
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.09000011691529
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.09000018439606
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.09000017428942
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              6,
+              11
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000150301886
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.09000015387382
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000014443014
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.09000016297047
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000152238716
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000162345355
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              8,
+              0
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.09000017773395
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.090000152730816
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000015605441
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000148108956
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.090000080574733
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000159589067
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              8,
+              5
+            ]
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 0,
+            "leg": -1,
+            "z": 20.090000159445907
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 0,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 0,
+            "leg": 1,
+            "z": 20.09000016301784
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 0,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 1,
+            "leg": -1,
+            "z": 20.09000017062145
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 1,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 1,
+            "leg": 1,
+            "z": 20.090000122212594
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 1,
+            "leg": 1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 2,
+            "leg": -1,
+            "z": 20.09000017428942
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 2,
+            "leg": -1
+          },
+          {
+            "name": "physical stepped rib top",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 2,
+            "leg": 1,
+            "z": 20.090000184396057
+          },
+          {
+            "name": "actual inward-facing rib side depth",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ],
+            "rib": 2,
+            "leg": 1
+          },
+          {
+            "name": "open trough ahead of underlying wall between stepped ribs",
+            "pass": true,
+            "tile": [
+              8,
+              11
+            ]
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/9t/9tb/arizona_biltmore/verify-relief.mjs"
+    ],
+    "notes": "Selected generation/import/exact regeneration, asset integrity, normals/winding/UVs and strict LOD/material limits pass. Actual imported controls5/5/11/166 pass: all3456new side triangles, representative rib top/side/trough probes, copper intersections/unblocked projections, original canopy void/soffit and tower roof. Immutable pre-edit lower geometry and street non-copper baselines retained. Original map/ground hashes unchanged. No unchanged completed model regenerated or blanket revalidated."
   },
   "limitations": [
-    "Original medium-fi main-block exterior from individually inspected Qualla photos, architect-published 1929 plans and official 2024 resort map. Not a survey or photogrammetric reconstruction.",
+    "Original medium-fi main-block exterior. Current relief construction uses exact native Daderot public-domain originals already cleared in Qualla, with explicit creator releases and original hashes bound. Earlier attribution-licensed views are excluded as current controls; inherited main-block massing, factual plan/map controls and hidden facade approximations retained. Not a surveyed reconstruction.",
     "Current restored main building only. Later East/Garden/Paradise/Valley/Ocatilla wings, separate conference halls, cottages, villas, pools and broader grounds are excluded. Connected boundary clipping is an explicit scope decision.",
     "Upper-room setbacks, heights, service-side roofs and exact window positions are photo-derived approximations. Original plans guide massing but do not claim that every 1929 interior survives.",
-    "Geometric textile-block relief uses the published 18 by 13.5 inch module with a simplified original stepped-leaf motif, not a replica of the exact mold. No photographic pixels, readable signage or interiors are embedded.",
+    "Geometric textile-block relief uses the published18by13.5inch module.72modules in one lower south-tower band now have three stepped angular ribs with real tops/sides joined to the underlying wall. The rest retains simplified original relief. Profiles, depth and exact mold/current condition remain estimates; no exact mold replica, photographic pixels, readable signage or interiors are embedded.",
+    "Veranda rafters are trimmed where they meet existing solid tower walls, removing isolated copper ends through the facade. These intersections remain an approximate exterior construction detail, not structural engineering.",
     "Independent terrain rises across the footprint and is not flattened; the foundation extends below the south approach datum. Another host DEM can change exact ground contact."
   ],
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:96c79cf5d8d56acb351ddd16abc2fa5b98f978a244590354aa88b80f442167ba",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:9ccc91ff967887b7cfe8373b3d4dce5f2af03bd901be764ffbf57d62a9cb2977",
+    "referenceInputHash": "5af6cba94f997a2009e9b938e61e6940791fed6328f0f4016798fa75bb29838f",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/interior-lawn.jpg",
+      ".artifacts/reference-photos/wall-detail-1.jpg",
+      ".artifacts/reference-photos/wall-detail-2.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:fc48c3d0df2d6a471239d82bae64a5b8ae66914f690441cddc61cfc806a67b2d",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/t/b/q/arizona-biltmore-hotel-wp/arizona-biltmore-south-facade.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Arizona_Biltmore_-_South_Facade.JPG",
+        "reason": "Earlier attribution-licensed modern exterior excluded as current construction control."
+      },
+      {
+        "path": "_m/9/t/b/q/arizona-biltmore-hotel-wp/arizona-biltmore-7.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Arizona_Biltmore-7.jpg",
+        "reason": "Earlier attribution-licensed modern exterior excluded as current construction control."
+      },
+      {
+        "path": "_m/9/t/b/q/arizona-biltmore-hotel-wp/spotlight-roof-arizona.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Phoenix-Building-Arizona_Biltmore_Hotel_Mystery_room_lookout_tower-1929-5.jpg",
+        "reason": "Historical supplemental imagery not selected as a current control. Current construction uses only the three inventoried native public-domain originals."
+      },
+      {
+        "path": "_m/9/t/b/q/arizona-biltmore-hotel-wp/arizona-biltmore-2.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Arizona_Biltmore-2.jpg",
+        "reason": "Historical supplemental imagery not selected as a current control. Current construction uses only the three inventoried native public-domain originals."
+      },
+      {
+        "path": "_m/9/t/b/q/arizona-biltmore-hotel-wp/arizona-biltmore-4.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Arizona_Biltmore-4.jpg",
+        "reason": "Historical supplemental imagery not selected as a current control. Current construction uses only the three inventoried native public-domain originals."
+      },
+      {
+        "path": "_m/9/t/b/q/arizona-biltmore-hotel-wp/arizona-biltmore-hotel-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Phoenix-Arizona_Biltmore_Hotel-1929.JPG",
+        "reason": "Historical supplemental imagery not selected as a current control. Current construction uses only the three inventoried native public-domain originals."
+      },
+      {
+        "path": ".artifacts/reference-photos/screen-1.jpg",
+        "reason": "Cleared public-domain interior screen view inspected/identified, but interior screen construction is outside this exterior detail change."
+      },
+      {
+        "path": ".artifacts/reference-photos/screen-2.jpg",
+        "reason": "Cleared public-domain interior screen view inspected/identified, but interior screen construction is outside this exterior detail change."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Cleared Qualla originals first: three exact native3264x2448Daderot images reused without photo download. Explicit primary PD-self creator grants, no restrictions and native hashes verified. Full originals/native detail inspected. Two interior screen photos excluded from exterior work; old attribution views excluded as current controls. Outdoor lawn partially obscures low compound; unobserved details remain estimates."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "arizona_biltmore",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:9ccc91ff967887b7cfe8373b3d4dce5f2af03bd901be764ffbf57d62a9cb2977",
+    "sourceHash": "sha256:bfc4538ee4e32f086f83264498854e0a63fc3ddb285038ea806fb6680ca367ad",
+    "runtimeHash": "sha256:3e2909c6ae2308813880ec815af398e368db117f8e3aeb76b58e5951e83fa383",
+    "built": [
+      "72physical three-rib stepped concrete modules",
+      "Closed rib tops and four side faces attached to original wall",
+      "Open troughs between ribs",
+      "Veranda rafters trimmed into solid tower walls"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      928,
+      3152,
+      12974,
+      63920
+    ],
+    "drawCalls": [
+      1,
+      5,
+      5,
+      5
+    ],
+    "limits": "Started with cleared Qualla candidates and reused three exact native Daderot public-domain originals: two wall details and the outdoor interior lawn. Primary own-work PD-self releases, named creator, native dimensions and hashes verified. Full originals and native architectural detail inspected. Built72three-rib stepped concrete modules with closed tops/four physical sides joining the original wall, leaving open troughs. Nominal18x13.5inch module guides the existing count; retained actual pitch0.45x0.345m is approximate. Folded-leaf motif is simplified, not an exact historic mold replica. New relief depths and present condition remain photographic estimates; references dated2009. Clipped copper veranda rafters into intersecting tower walls while retaining unblocked projections. Skyline/district geometry exact; all street non-copper geometry exact. Original mapped masses, canopy, source frame, three ground files and placement retained. Other elevations, roof details and partly obscured compound masses remain inherited estimates. No interiors, copied photo pixels, new foundations, terrain fitting or claim of surveyed dimensions.",
+    "publicDomainOriginals": 3,
+    "reusedNativeQuallaOriginals": 3,
+    "changedReliefModules": 72,
+    "physicalSideTriangles": 3456,
+    "exactOriginalLevels": [
+      "skyline",
+      "district"
+    ],
+    "streetNonCopperGeometryRetained": true,
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

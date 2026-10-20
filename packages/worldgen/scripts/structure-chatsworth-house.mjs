@@ -1,6 +1,7 @@
 /** Chatsworth: main courtyard house and connected north wing, orangery and belvedere. */
 import './install-deterministic-math.mjs';
 import earcut from 'earcut';
+import fs from 'node:fs';
 import { beam, loft, normalFor, radialRing } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
@@ -328,6 +329,205 @@ function ashlar(o, w, d, top = 4.7) {
         shadow,
       );
 }
+
+const southControls = JSON.parse(
+  fs.readFileSync(
+    new URL(
+      '../../../content/worldgen/source/places/gc/gcq/chatsworth_house/south-window-construction-controls.json',
+      import.meta.url,
+    ),
+  ),
+);
+function withoutFront(o, z) {
+  return {
+    addQuad: (s, r, p, n, u, c) =>
+      p.every((v) => Math.abs(v[2] - z) < 1e-7) ? undefined : o.addQuad(s, r, p, n, u, c),
+  };
+}
+/** Closed metric-UV construction, local to the two projected south end panels. */
+function southRecessedWindows(o, w, n) {
+  const c = southControls,
+    f = c.facade,
+    k = c.windows,
+    t = c.stone,
+    gold = rgb('b59a4f');
+  const Q = (slot, p, col) => {
+    const normal = normalFor(...p),
+      a = normal.map(Math.abs),
+      axis = a.indexOf(Math.max(...a));
+    const uv = p.map((v) => (axis === 0 ? [v[2], v[1]] : axis === 1 ? [v[0], v[2]] : [v[0], v[1]]));
+    o.addQuad(slot, ref, p, normal, uv, col);
+  };
+  const rect = (x0, y0, x1, y1) => [
+    [x0, y0],
+    [x1, y0],
+    [x1, y1],
+    [x0, y1],
+  ];
+  const flat = (slot, rings, z, sign, col) => {
+    const vertices = rings.flat(),
+      holes = [];
+    let cursor = rings[0].length;
+    for (const r of rings.slice(1)) {
+      holes.push(cursor);
+      cursor += r.length;
+    }
+    const ids = earcut(vertices.flat(), holes);
+    for (let i = 0; i < ids.length; i += 3) {
+      let p = ids.slice(i, i + 3).map((j) => [...vertices[j], z]);
+      if (normalFor(...p)[2] * sign < 0) p.reverse();
+      o.addTriangle(
+        slot,
+        ref,
+        p,
+        [0, 0, sign],
+        p.map((v) => [v[0], v[1]]),
+        col,
+      );
+    }
+  };
+  const solid = (slot, rings, back, front, col) => {
+    flat(slot, rings, back, -1, col);
+    flat(slot, rings, front, 1, col);
+    rings.forEach((ring, j) =>
+      ring.forEach((a, i) => {
+        const b = ring[(i + 1) % ring.length],
+          p = [
+            [...a, back],
+            [...b, back],
+            [...b, front],
+            [...a, front],
+          ];
+        if (j) p.reverse();
+        Q(slot, p, col);
+      }),
+    );
+  };
+  const box = (slot, x0, y0, x1, y1, back, front, col) =>
+    solid(slot, [rect(x0, y0, x1, y1)], back, front, col);
+  const locations = k.bays.flatMap((i) =>
+    k.rows.map((row) => ({ x: -w / 2 + ((i + 0.5) * w) / n, ...row })),
+  );
+  for (const sign of [-1, 1]) {
+    const x0 = sign * w * f.projectionCenterFraction - (w * f.projectionWidthFraction) / 2,
+      x1 = x0 + w * f.projectionWidthFraction;
+    const holes = locations
+      .filter((v) => v.x > x0 && v.x < x1)
+      .map((v) => rect(v.x - k.width / 2, v.bottom, v.x + k.width / 2, v.bottom + v.height));
+    flat(
+      'windowStone',
+      [rect(x0, f.projectionBottom, x1, f.projectionTop), ...holes],
+      f.projectionFrontZ,
+      1,
+      stone,
+    );
+  }
+  for (const v of locations) {
+    const x = v.x,
+      y = v.bottom,
+      top = y + v.height,
+      left = x - k.width / 2,
+      right = x + k.width / 2,
+      hole = rect(left, y, right, top),
+      pane = f.projectionFrontZ - k.recess;
+    for (let i = 0; i < 4; i++) {
+      const a = hole[i],
+        b = hole[(i + 1) % 4];
+      Q(
+        'windowStone',
+        [
+          [...a, f.projectionFrontZ],
+          [...b, f.projectionFrontZ],
+          [...b, pane - k.glassThickness],
+          [...a, pane - k.glassThickness],
+        ],
+        shadow,
+      );
+    }
+    box('windowGlass', left, y, right, top, pane - k.glassThickness, pane, glass);
+    const outer = [
+      [left - t.jambWidth, y - t.outerSill],
+      [right + t.jambWidth, y - t.outerSill],
+      [right + t.jambWidth, top - t.shoulderDrop],
+      [right + t.shoulderWidth, top - t.shoulderDrop],
+      [right + t.shoulderWidth, top + t.outerHead],
+      [left - t.shoulderWidth, top + t.outerHead],
+      [left - t.shoulderWidth, top - t.shoulderDrop],
+      [left - t.jambWidth, top - t.shoulderDrop],
+    ];
+    // One closed stepped architrave: join the relief ledge instead of
+    // intersecting two independent stocks with duplicated internal backs.
+    const trim = rect(left - t.trimWidth, y - t.trimWidth, right + t.trimWidth, top + t.trimWidth);
+    flat('windowStone', [outer, trim], t.baseFrontZ, 1, light);
+    flat('windowStone', [trim, hole], t.trimFrontZ, 1, stone);
+    flat('windowStone', [outer, hole], t.backZ, -1, light);
+    for (const [ring, back, front, inward] of [
+      [outer, t.backZ, t.baseFrontZ, false],
+      [hole, t.backZ, t.trimFrontZ, true],
+      [trim, t.baseFrontZ, t.trimFrontZ, false],
+    ])
+      ring.forEach((a, i) => {
+        const b = ring[(i + 1) % ring.length],
+          p = [
+            [...a, back],
+            [...b, back],
+            [...b, front],
+            [...a, front],
+          ];
+        if (inward) p.reverse();
+        Q('windowStone', p, light);
+      });
+    solid(
+      'windowStone',
+      [
+        [
+          [x - t.keystoneBottomWidth / 2, top + t.keystoneBottomOffset],
+          [x + t.keystoneBottomWidth / 2, top + t.keystoneBottomOffset],
+          [x + t.keystoneTopWidth / 2, top + t.keystoneBottomOffset + t.keystoneHeight],
+          [x - t.keystoneTopWidth / 2, top + t.keystoneBottomOffset + t.keystoneHeight],
+        ],
+      ],
+      t.keystoneBackZ,
+      t.keystoneFrontZ,
+      light,
+    );
+    // A single closed perimeter stock joins the four outer sash bars.
+    solid(
+      'windowWood',
+      [hole, rect(left + k.woodWidth, y + k.woodWidth, right - k.woodWidth, top - k.woodWidth)],
+      pane - 0.005,
+      pane + k.woodDepth,
+      gold,
+    );
+    for (let i = 1; i < k.columns; i++) {
+      const xx = left + k.woodWidth / 2 + (i * (k.width - k.woodWidth)) / k.columns;
+      box(
+        'windowWood',
+        xx - k.woodWidth / 2,
+        y,
+        xx + k.woodWidth / 2,
+        top,
+        pane - 0.005,
+        pane + k.woodDepth,
+        gold,
+      );
+    }
+    for (let i = 1; i < k.rowsCount; i++) {
+      const yy = y + k.woodWidth / 2 + (i * (v.height - k.woodWidth)) / k.rowsCount;
+      box(
+        'windowWood',
+        left,
+        yy - k.woodWidth / 2,
+        right,
+        yy + k.woodWidth / 2,
+        pane - 0.005,
+        pane + k.woodDepth,
+        gold,
+      );
+    }
+  }
+}
+
 function mainFacade(o, w, n, d, { west = false, south = false } = {}) {
   cornice(o, w, 17.7, d);
   balustrade(
@@ -342,7 +542,18 @@ function mainFacade(o, w, n, d, { west = false, south = false } = {}) {
   ashlar(o, w, d);
   if (west) rect(o, -w / 6, 0, w / 6, 1.0, -3.2, 17.7);
   if (south)
-    for (const sg of [-1, 1]) B(o, 'stone', sg * w * 0.375, -3.2, 0.26, w / 4, 20.9, 0.52, stone);
+    for (const sg of [-1, 1])
+      B(
+        d === 3 ? withoutFront(o, southControls.facade.projectionFrontZ) : o,
+        'stone',
+        sg * w * 0.375,
+        -3.2,
+        0.26,
+        w / 4,
+        20.9,
+        0.52,
+        stone,
+      );
   for (let i = 0; i < n; i++) {
     const x = -w / 2 + ((i + 0.5) * w) / n;
     const f = facing(
@@ -352,11 +563,14 @@ function mainFacade(o, w, n, d, { west = false, south = false } = {}) {
       west && Math.abs(x) < w / 6 ? 1.02 : south && Math.abs(x) > w / 4 ? 0.54 : 0,
     );
     window(f, x, 1.0, 1.85, 2.8, d, { arch: true });
-    window(f, x, 5.65, 1.92, 4.05, d);
-    window(f, x, 11.55, 1.92, 4.3, d);
+    if (!(south && d === 3 && (i < 3 || i >= n - 3))) {
+      window(f, x, 5.65, 1.92, 4.05, d);
+      window(f, x, 11.55, 1.92, 4.3, d);
+    }
     if (i === 0) pilaster(f, -w / 2 + 0.45, 5, 12.4, d);
     pilaster(f, -w / 2 + ((i + 1) * w) / n, 5, 12.4, d);
   }
+  if (south && d === 3) southRecessedWindows(o, w, n);
   if (west) {
     const w1 = w / 3;
     for (const x of [-w1 / 2, -w1 / 6, w1 / 6, w1 / 2])
@@ -658,6 +872,9 @@ export function chatsworthStreet(o) {
   chatsworth(o, undefined, 2);
 }
 const surfaces = {
+  windowStone: { slot: 'trim', graph: 'concrete_plain', roughness: 0.88, metallic: 0 },
+  windowWood: { slot: 'trim', graph: 'wood_plain', roughness: 0.82, metallic: 0 },
+  windowGlass: { ...landmarkSurfaces.glass, localRef: ref },
   stone: { slot: 'wall', graph: 'stone_sandstone', roughness: 0.88, metallic: 0 },
   roof: { slot: 'roof', graph: 'metal_painted', roughness: 0.75, metallic: 0.24 },
   wood: { slot: 'trim', graph: 'wood_plain', roughness: 0.82, metallic: 0 },
@@ -676,6 +893,8 @@ export const chatsworthModel = {
   qaCameras: [
     { name: 'front', position: [-115, 49, 85], lookAt: [0, 9, 0] },
     { name: 'back', position: [125, 85, -140], lookAt: [7, 10, -75] },
+    { name: 'south-window-architraves', position: [31, 17, 44], lookAt: [21, 11, 27] },
+    { name: 'south-window-recess', position: [-28, 9, 36], lookAt: [-25.68, 7.6, 27] },
   ],
   build: chatsworth,
   surfaces,
@@ -696,7 +915,7 @@ export const chatsworthModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from six individually inspected local Qualla photographs, four-page official visitor plan, Historic England architectural description and aerial/map context. Dimensions, hidden roof joins and fine ornament remain estimates; visitor plan is not a measured survey.',
+    'Current construction uses exact native photographer-CC0 south front after Qualla-first search, replacing twelve south-end windows with real pockets and closed stone/wood joinery. Earlier attribution/private-plan/aerial controls are historical and excluded. Full main house/connected north wing scope retained pending broader cleared exterior review. Dimensions, recess depths, molding profiles, hidden roof joins and current condition remain estimates.',
     'Main house, courtyard, attached north wing, orangery, belvedere and west-return gateway only. Separate stables, gardens, sculpture, interiors, furnishings, vegetation and photographic pixels excluded.',
     'Independent unmodified Terrarium elevations retained. Elevations beneath structures are interpolated evidence, not a building survey; footprint replacement remains disabled.',
     'Carved capitals, pediment relief, urn ornament, window surrounds and balusters are simplified progressively with distance; no physical-device performance measurement claimed.',

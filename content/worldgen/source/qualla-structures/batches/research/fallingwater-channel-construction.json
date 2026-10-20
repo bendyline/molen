@@ -1,0 +1,60 @@
+{
+  "model": "fallingwater",
+  "date": "2026-10-18",
+  "status": "river-built-covered-stair-and-theater-integration-pending",
+  "inputHash": "sha256:c5b20a3b232db86a2395d0682702ae62945e64b95a66de23bc2537d327870c71",
+  "sourceHash": "sha256:42d0d537765afc8062b8de08f01b7ec4a679dd860e6164a72ad66f33c4df9117",
+  "runtimeHash": "sha256:c1561576ec3da7fa983d0ab5b16d3d6b3dc1e664f888509f3f3175bf4cc76680",
+  "built": [
+    "Shaped rock channel with native source-ground boundary",
+    "Two cascades and irregular foam sheets",
+    "Hanging landing clear of water",
+    "Adaptive geological boundary across all four detail levels"
+  ],
+  "controls": "content/worldgen/source/places/dp/dpp/fallingwater/rock-channel-controls.json",
+  "actualCurrentFramesInspected": 51,
+  "portableFrames": 13,
+  "sharedFrames": 13,
+  "mediumFiV2Frames": 25,
+  "triangles": [
+    974,
+    3876,
+    15070,
+    42482
+  ],
+  "drawCalls": [
+    1,
+    5,
+    5,
+    5
+  ],
+  "coverageSamplesPerLevel": 1032,
+  "additionalEdgeSamplesPerLevel": 342,
+  "maxSampledEdgeDifferenceMeters": [
+    0.032811303162019634,
+    0.03323201747829696,
+    0.0023477303831498375,
+    0.0023477303831498375
+  ],
+  "landingWaterClearanceMeters": 0.24985070256323016,
+  "terrainFrameSceneFilesUnchanged": 5,
+  "nativeSourceValuesChanged": 0,
+  "storyWrites": 0,
+  "earthPlacementChanged": false,
+  "verification": "node packages/worldgen/scripts/check-fallingwater-channel.mjs",
+  "review": "content/worldgen/source/places/dp/dpp/fallingwater/CONSTRUCTION-REVIEW.md",
+  "reviewBackdropRepair": {
+    "file": "examples/world-explorer/test/visual/medium-fi.ts",
+    "reason": "Do not cut the deeper flat backdrop unless actual model geometry extends below it. This closes the distant sky gap beneath the finite source hill.",
+    "currentFixtureHash": "sha256:de51fd65694b9cb79be14472244ac34c3a094f199ee6479568994f5fd2a5629c",
+    "remainingSourceValuesUnchanged": true
+  },
+  "diagnosticAerial": "research/fallingwater-naip-alignment-diagnostic.json",
+  "remaining": [
+    "Build actual covered-stair excavation/retaining interfaces and theater/guest uphill joins from already cleared original evidence.",
+    "Preserve native ground under open cantilevers/bridge; do not reinstate the rejected whole-house floor opening.",
+    "Complete the bounded geographic review and story annotation only after those interfaces pass."
+  ],
+  "historical": true,
+  "supersededBy": "fallingwater-site-construction.json"
+}

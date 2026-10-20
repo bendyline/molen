@@ -1,0 +1,15 @@
+# Liebermann Villa — completed exterior
+
+Full restored villa exterior accepted at the agreed approximate medium-fi scope. The exact1518×1177public-domain1918MeinHausinWannsee painting already published on Qualla was inspected individually first. It supports the lake facade, paired storeys, central tall openings/pilasters, raised terrace and left loggia. Berlin heritage record09075511 independently identifies the broad two-storey plaster body, natural-stone base, hipped roof, large street eyebrow dormer, monumental Ionic columns, central lake pediment over three window axes and open left lake loggia. Restoring architects Nedelykov/Moreira independently describe the final simple hipped roof, seven lake-facing window axes, tall garden doors, sand-coloured rough plaster, pale sandstone bands/frames, shell-limestone details and green timber shutters. Museum restoration history identifies the2003–06restored building as the same historic architecture. Existing geometry agrees with those controls and the native mapped envelope. No new geometry was required. Exact roof pitch/eyebrow curve, colours, side openings, terrace depth, small side entrance/pergola and capital/railing profiles remain bounded medium-fi approximations; the artwork is not a photograph or measured elevation. Full original main-villa/upper-terrace scope retained; wider garden, separate garden house, interiors, furniture and vegetation excluded. Native Berlin DGM1 ground and placement remain unchanged. No reference pixels embedded.
+
+The only active image is the exact public-domain painting already published on Qualla. Its original media record lacked source-category metadata; the existing primary Commons categories were restored on that exact record without changing the image, licence, artist or any other field. The retained primary snapshot is reference-rights/commons-mein-haus.json.
+
+Independent architectural text controls are recorded in architectural-evidence.json. They distinguish the restored standing house from a historical depiction and identify its two different principal facades, hipped roof, eyebrow dormer, materials and window hierarchy. No diagrams or copyrighted modern photographs are used. The separate Berlin museum painting was inspected as a lead but not adopted as a reference.
+
+Geometry, source/runtime and all four distance levels remain unchanged. All fourteen existing portable/shared-material views were actually inspected and retained; nineteen fresh version2 context/detail views identify the current runtime and all four levels. Exact regeneration, asset integrity, geometry/material budgets, source/scene/terrain schemas and repeated30tick states pass. Native Berlin DGM1 ground, mapped footprint and global placement remain identical.
+
+Source: sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716
+
+Runtime: sha256:0e8fa4a39300df97a98cff72b8e3cd1d91083f4c5fccc1860ac72877a0a4af4e
+
+Input: sha256:85eddc6e9723386f8a97721256769f8c547a60c886fa84162dca0007e1cf1ac7

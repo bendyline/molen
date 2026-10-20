@@ -1,0 +1,422 @@
+{
+  "planId": "flagstaff_house_hong_kong",
+  "id": "flagstaff_house_hong_kong",
+  "assetId": "molen.worldgen.structure.flagstaff_house_hong_kong",
+  "title": "Flagstaff House (Hong Kong)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.1625,
+    "latitude": 22.27849
+  },
+  "size": [
+    35.599998474121094,
+    15.833109617233276,
+    24.479999542236328
+  ],
+  "actualBounds": {
+    "min": [
+      -17.799999237060547,
+      -3.799999952316284,
+      -11.899999618530273
+    ],
+    "max": [
+      17.799999237060547,
+      12.033109664916992,
+      12.579999923706055
+    ]
+  },
+  "visualBrief": "Original two-storey Greek Revival house with deep white colonnaded verandahs, dark framed sash windows, closed internal lower-front louvers behind recessed lattice and white paired paneled entrance doors with physical fanlight, panelled upper balustrade, white louvred side galleries, shallow hipped tiled roof and four pink chimneys. Later gallery and connecting passage excluded.",
+  "nativeAxes": {
+    "x": "east-southeast along the main facade",
+    "y": "up",
+    "z": "south-southwest toward the park"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:HK_OldMilitaryHeadquarterOffice.JPG"
+  ],
+  "stories": [
+    {
+      "id": "flagstaff-house-hong-kong-wp",
+      "url": "https://qualla.com/flagstaff-house-hong-kong/"
+    }
+  ],
+  "referenceInputHash": "sha256:593456ab98d66c04a681f24187a2e8fc1cb3c1f5971e7019a01726b3b61e1411",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-flagstaff-house-hong-kong.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-flagstaff-house-hong-kong.mjs",
+    "level": "skyline",
+    "export": "flagstaffHouseSkyline",
+    "errorMeters": 0.55,
+    "surfaces": {
+      "frontWall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "openingReveal": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "darkJoinery": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "whiteJoinery": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "glazingStock": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "doorHardware": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "edge": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "flagstaffHouseDistrict",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "frontWall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "openingReveal": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "darkJoinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "whiteJoinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glazingStock": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "doorHardware": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "flagstaffHouseStreet",
+        "errorMeters": 0.32,
+        "surfaces": {
+          "frontWall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "openingReveal": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "darkJoinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "whiteJoinery": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "glazingStock": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "doorHardware": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "edge": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.6
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Park-front forecourt[0,14], Y=0 at27m HKPD in unmodified official5m DTM. Front deck.55m and broad low steps retain photographed contact; source ground falls about3m toward the hidden rear. Foundation continues beneath it without flattening the independent grid. Coarse ground accuracy and unseen rear foundation remain explicit limitations.",
+    "anchor": [
+      114.1625,
+      22.27849
+    ],
+    "heading": -0.21,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.16247166844943,
+        22.278366999345977
+      ],
+      "modelHeight": 0,
+      "basis": "Park-side forecourt just beyond the central entrance steps; independent ground reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184414344307"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:a6fddc423733175b0eee0b8e5cc5b67e13591c37db7dd19f18cb4ace4b457114",
+    "notes": "Main mapped envelope about35m by23m. Two-storey house with deep verandahs, classical columns, shutters, white louvres, low panelled upper railing, hipped tiled roof and four visible roof chimneys. Heights and partly hidden rear details are estimates, not measured elevations."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Current construction uses exact native same-photographer public-domain2007front after Qualla-first93records; first own-photo grant/native upload identity bound. True arched entrance/white paired paneled doors/closed fanlight stocks/eight lower-front recessed internal louvers built. Earlier attribution/private/aerial controls excluded; full main-house/verandas/columns/hipped roof retained pending broader exterior/roof review. Dimensions, bay counts, columns/upper rail/rear details and present condition remain estimates, not measured elevations.",
+    "Original house only. The later K.S.Lo Gallery and narrow connecting passage, temporary exhibition banners, interiors, garden objects, trees and fine signage are excluded.",
+    "The official5m DTM has published±5m accuracy at90% confidence; rear ground and foundation cannot be certified from the front photograph. Source terrain remains unmodified. Close new joinery has real recess/closed stocks/metric UVs. Three original lower geometry streams remain exact; conservative LODerror estimates.55/.4/.32m account for recess depth without claiming measured geometric-error certification. Fine columns/upper rail/side galleries/roof profiles remain original estimates pending wider cleared evidence.",
+    "Placement preview only; generic-footprint replacement disabled. Photographic pixels are not redistributed and no physical-device performance or survey accuracy is claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        24,
+        53
+      ],
+      "lookAt": [
+        0,
+        4.5,
+        5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -32,
+        22,
+        -38
+      ],
+      "lookAt": [
+        0,
+        4,
+        -1
+      ]
+    },
+    {
+      "name": "arched-entrance",
+      "position": [
+        2.7,
+        3.1,
+        11
+      ],
+      "lookAt": [
+        0,
+        2.45,
+        8
+      ]
+    },
+    {
+      "name": "internal-louvers",
+      "position": [
+        -5.6,
+        2.9,
+        10.8
+      ],
+      "lookAt": [
+        -6.76,
+        2.4,
+        8
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 22783,
+    "vertices": 68349,
+    "materials": 5,
+    "bytes": 2737216,
+    "sha256": "sha256:844f525a6ed40eb5469101ca20d594625ae9dd96be6abc3dee27bbdc88b76cec"
+  }
+}

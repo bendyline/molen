@@ -11,7 +11,7 @@
   },
   "size": [
     143.4572982788086,
-    49.69999921321869,
+    48.403799414634705,
     139.27769470214844
   ],
   "actualBounds": {
@@ -22,7 +22,7 @@
     ],
     "max": [
       89.96009826660156,
-      48.29999923706055,
+      47.00379943847656,
       64.1364974975586
     ]
   },
@@ -38,7 +38,7 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Hotel_del_Coronado_Front.jpg"
+    "https://commons.wikimedia.org/wiki/File:Coronado_panorama.jpg"
   ],
   "stories": [
     {
@@ -46,7 +46,7 @@
       "url": "https://qualla.com/hotel-del-coronado/"
     }
   ],
-  "referenceInputHash": "b8d8cdcab991c7039d4120eff967292201c86483d5f583d7e0634edf1e92c2ad",
+  "referenceInputHash": "107c8b36728d08d1f1ef07cf0568110da582d76d9afb76fcb608afdfc5f7fee1",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-hotel-del-coronado.mjs"
   },
@@ -59,7 +59,7 @@
     "module": "packages/worldgen/scripts/structure-hotel-del-coronado.mjs",
     "level": "skyline",
     "export": "coronadoSkyline",
-    "errorMeters": 1,
+    "errorMeters": 10.5,
     "surfaces": {
       "wall": {
         "slot": "wall",
@@ -199,8 +199,8 @@
     ],
     "source": "https://build.protomaps.com/20261012.pmtiles",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:afd3a3cc8f11378a635a6596eeba7272ecd08ead62b8302ad644f21d56cf5f49",
-    "notes": "Courtyard and main footprint establish the frame. The slender north connector and large polygonal service pavilion are outside this historic-hotel scope; their original map coordinates are preserved as provenance. Main rotunda, three smaller turrets, stepped roof wings, balconies and dormers follow the dated local photos."
+    "mapGeometryHash": "sha256:3ec58905870470fc348d898e976b38b458bf0aecce32ea18af77e97c5938fd15",
+    "notes": "Native courtyard/full historic hotel footprint and existing heading retained. Independent original HABS1971plan/sections control the ballroom correction. Native perimeter still includes later north service projections, which remain separately excluded as before. Main body/current fine exterior and restoration compatibility remain pending."
   },
   "sharedSurfaces": [
     {
@@ -241,11 +241,14 @@
     }
   ],
   "limitations": [
-    "Original medium-fi historic hotel exterior derived from the mapped open courtyard and individually inspected Qualla 2006–2019 photographs; not an architectural survey.",
+    "Mapped historic hotel and open courtyard retained. Current comparison starts with a cleared public-domain Lambert panorama and original government HABS1971drawings4/6/7; earlier CC photos and resort-map artwork are excluded. Historic exterior is modeled at medium-fi; later restoration details are outside the dated evidence.",
     "White painted wood, red shingle roofs, verandas, dormers and twelve-sided ballroom tower are retained. Exact floor heights, roof intersections, hidden facade rhythm, ornament and stair joins are interpretations.",
     "The later connected north service pavilion, separate modern resort neighborhoods, pool complex, utility buildings, landscaping and interiors are excluded.",
     "This dated-reference exterior does not claim every 2021–2025 porch/courtyard restoration detail. Flagpoles are modeled without animated flags.",
-    "Independent ground is preserved. Other host terrain sources may differ. Reference images are not embedded or redistributed."
+    "Independent ground is preserved. Other host terrain sources may differ. Reference images are not embedded or redistributed.",
+    "HABS1971sheet7 reconstructs the historical ballroom from original drawings, early photographs and field measurements. Relative lower floor, balcony, eave, belvedere floor, roof and flagpole levels now follow its labels. The existing interpreted ballroom floor+3.9m and native horizontal envelope remain unchanged; no current floor-to-ground or section-width survey claim.",
+    "Lower ballroom glazed storey replaces the former tall solid gray foundation. Original survey controls put roof tip38.9774m and flagpole tip47.0038m in this retained model frame. Belvedere wall height, apron/dormer positions, exact current window divisions and restored finishes remain interpretations.",
+    "The northern kitchen now has a separate wall volume, hipped roof and interpreted service glazing at all detail levels. Its exposed corners retain the native vector boundary. Fixed-scale HABS plan registration gives 2.54m control RMS and 6.49/7.18m approximate ballroom/kitchen check differences; no survey accuracy is claimed. The closer levels retain the native foundation perimeter. The conservative skyline allowance remains 10.5m; no global mesh-distance certificate is claimed."
   ],
   "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
   "qaCameras": [
@@ -274,16 +277,81 @@
         16,
         -10
       ]
+    },
+    {
+      "name": "ballroom-detail",
+      "position": [
+        110,
+        15,
+        100
+      ],
+      "lookAt": [
+        63,
+        12,
+        39
+      ]
+    },
+    {
+      "name": "belvedere-detail",
+      "position": [
+        87,
+        38,
+        72
+      ],
+      "lookAt": [
+        63,
+        32,
+        39
+      ]
+    },
+    {
+      "name": "lower-storey-detail",
+      "position": [
+        90,
+        4,
+        73
+      ],
+      "lookAt": [
+        63,
+        3.3,
+        39
+      ]
+    },
+    {
+      "name": "courtyard-detail",
+      "position": [
+        2,
+        29,
+        0
+      ],
+      "lookAt": [
+        2,
+        9,
+        -16
+      ]
+    },
+    {
+      "name": "kitchen-detail",
+      "position": [
+        31,
+        24,
+        -108
+      ],
+      "lookAt": [
+        40,
+        9,
+        -57
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 58094,
-    "vertices": 174282,
+    "triangles": 58658,
+    "vertices": 175974,
     "materials": 5,
-    "bytes": 6974524,
-    "sha256": "sha256:cd70feb764c1a87d00d7fc0c05d5df1591e50549e9aea9a86b5c81da3125a9ce"
+    "bytes": 7042204,
+    "sha256": "sha256:045d285a16d8643b34f48f9143dfc0a54bb7a72dc6dcb1169252a644330fd209"
   }
 }

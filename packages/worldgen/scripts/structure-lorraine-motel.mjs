@@ -158,22 +158,37 @@ function sign(o, detail) {
     [10.55, 9.0, 23.25],
     [11, 9.7, 23.25],
   ];
-  for (const [a, b, d] of [
-    [0, 1, 3],
-    [1, 2, 3],
+  // A thin closed plate preserves the arrow from both sides of the freestanding sign.
+  const back = pts.map((p) => [p[0], p[1], p[2] - 0.12]);
+  for (const [ring, normal] of [
+    [pts, [0, 0, 1]],
+    [back, [0, 0, -1]],
   ])
-    o.addTriangle(
-      'metal',
-      'palette:#ffffff',
-      [pts[a], pts[b], pts[d]],
-      [0, 0, 1],
-      [
-        [0, 0],
-        [1, 0],
-        [0, 1],
-      ],
-      c.red,
-    );
+    for (const [a, b, d] of [
+      [0, 1, 3],
+      [1, 2, 3],
+    ])
+      o.addTriangle(
+        'metal',
+        'palette:#ffffff',
+        [ring[a], ring[b], ring[d]],
+        normal,
+        [
+          [0, 0],
+          [1, 0],
+          [0, 1],
+        ],
+        c.red,
+      );
+  for (let i = 0; i < pts.length; i++) {
+    const next = (i + 1) % pts.length,
+      a = pts[i],
+      b = pts[next],
+      dx = b[0] - a[0],
+      dy = b[1] - a[1],
+      length = Math.hypot(dx, dy);
+    quad(o, 'metal', [a, b, back[next], back[i]], [-dy / length, dx / length, 0], c.red);
+  }
 }
 function stairs(o, x, z) {
   for (let i = 0; i < 12; i++)
@@ -264,8 +279,8 @@ export const lorraineModel = {
   },
   limitations: [
     'Original medium-fi preserved motel exterior and sign; modern museum envelope, interiors, historic cars and neighboring buildings are outside scope.',
-    'Protomaps frontage and separate balcony polygon control location and alignment. Room widths, wall depths, roof heights and sign position are photographic estimates. The museum donor map is schematic and is not used as geodetic coordinates.',
-    'Hidden rear is a simplified attachment surface. Fine sign typography, room numbers, flowers and hardware are simplified. Photos remain local Qualla references and are not embedded.',
+    'Protomaps frontage and separate balcony polygon control location and alignment. Room widths, wall depths, roof heights and sign position are photographic estimates from inspected public-domain views. The museum donor map is excluded from current imagery approval and supplies no geodetic coordinates.',
+    'Hidden rear is a simplified attachment surface. Fine sign typography, room numbers, flowers and hardware are simplified. Cleared Qualla and supporting public-domain photographs remain local reference inputs and are not embedded.',
     'Independent coarse host terrain is retained for contact review; it is not a survey. No footprint suppression is requested for the combined museum polygon.',
   ],
 };

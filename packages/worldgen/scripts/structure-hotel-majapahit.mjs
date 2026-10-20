@@ -110,7 +110,39 @@ function upNormal(p) {
 function edgeFrame(o, a, b) {
   return facing(o, Math.atan2(a[1] - b[1], b[0] - a[0]), (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
 }
-function hip(o, x, z, w, l, y, rise) {
+/** Split convex roof polygons around the portico's independently photographed roof join. */
+function withoutRectangle(polygon, rectangle) {
+  const clip = (points, axis, value, sign) => {
+    const out = [];
+    for (let i = 0; i < points.length; i++) {
+      const a = points[i],
+        b = points[(i + 1) % points.length],
+        da = (a[axis] - value) * sign,
+        db = (b[axis] - value) * sign;
+      if (da >= 0) out.push(a);
+      if (da >= 0 !== db >= 0) {
+        const t = da / (da - db);
+        out.push(a.map((v, k) => v + (b[k] - v) * t));
+      }
+    }
+    return out;
+  };
+  const pieces = [];
+  let inside = polygon;
+  for (const [axis, value, sign] of [
+    [0, rectangle[0], 1],
+    [0, rectangle[1], -1],
+    [2, rectangle[2], 1],
+    [2, rectangle[3], -1],
+  ]) {
+    const outside = clip(inside, axis, value, -sign);
+    if (outside.length >= 3) pieces.push(outside);
+    inside = clip(inside, axis, value, sign);
+    if (inside.length < 3) break;
+  }
+  return pieces;
+}
+function hip(o, x, z, w, l, y, rise, detail) {
   const a = [x - w / 2, y, z - l / 2],
     b = [x + w / 2, y, z - l / 2],
     c = [x + w / 2, y, z + l / 2],
@@ -138,19 +170,23 @@ function hip(o, x, z, w, l, y, rise) {
         [c, d, ridge[0], ridge[1]],
         [d, a, ridge[0]],
       ];
-  for (const p of faces)
-    for (let i = 1; i < p.length - 1; i++) {
-      const t = [p[0], p[i], p[i + 1]];
-      o.addTriangle(
-        'roof',
-        ref,
-        t,
-        upNormal(t),
-        t.map((v) => [v[0], v[2]]),
-        roof,
-      );
-    }
-  beam(o, 'roof', ridge[0], ridge[1], 0.18, 0.17, roof);
+  for (const face of faces) {
+    const pieces =
+      x === -5 && z === -18 ? withoutRectangle(face, [-16.6, 6.6, -33.1, -28.95]) : [face];
+    for (const p of pieces)
+      for (let i = 1; i < p.length - 1; i++) {
+        const t = [p[0], p[i], p[i + 1]];
+        o.addTriangle(
+          'roof',
+          ref,
+          t,
+          upNormal(t),
+          t.map((v) => [v[0], v[2]]),
+          roof,
+        );
+      }
+  }
+  if (detail > 1) beam(o, 'roof', ridge[0], ridge[1], 0.18, 0.17, roof);
 }
 function win(o, x, y, z, w, h, d) {
   if (!d) return;
@@ -176,12 +212,12 @@ function archShape(o, x, y, z, w, h, n, slot = 'glass', col = glass) {
   }
   o.addConvexPolygon(slot, ref, p, [0, 0, 1], (p) => [p[0], p[1]], col);
 }
-function balustrade(o, x, y, z, w, d, stoneRail = false) {
+function balustrade(o, x, y, z, w, d, stoneRail = false, curved = false) {
   B(o, 'wall', x, y, z, w, 0.12, 0.22, stone);
   B(o, stoneRail ? 'wall' : 'metal', x, y + 0.83, z, w, 0.12, 0.23, stoneRail ? stone : iron);
   if (d < 2) return;
   for (let u = -w / 2 + 0.22; u < w / 2; u += d === 2 ? 0.65 : stoneRail ? 0.49 : 0.28) {
-    if (stoneRail && d > 2 && w > 5)
+    if (stoneRail && d > 2 && (w > 5 || curved))
       loft(
         o,
         'wall',
@@ -305,7 +341,9 @@ function portico(o, d) {
     );
     B(f, 'metal', x, 9.7, 0, 1, 0.3, 1, trim);
   }
-  B(f, 'wall', 0, 10.1, -0.8, w, 1.05, 2.1, wall);
+  // White soffit and upper rear wall close the photographed portico, above its doors.
+  B(f, 'wall', 0, 10.1, -1.5, w, 1.05, 3.5, wall);
+  B(f, 'wall', 0, 8.9, -2.75, w, 1.3, 0.8, wall);
   B(f, 'wall', 0, 10.15, 0.18, w + 0.55, 0.2, 0.45, stone);
   const tri = [
     [-w / 2, 11.15, 0.23],
@@ -345,7 +383,7 @@ function portico(o, d) {
       const a = arc[i],
         b = arc[i + 1],
         rr = edgeFrame(f, b, a);
-      balustrade(rr, 0, 4.84, 0, Math.hypot(b[0] - a[0], b[1] - a[1]), d, true);
+      balustrade(rr, 0, 4.84, 0, Math.hypot(b[0] - a[0], b[1] - a[1]), d, true, true);
     }
 }
 function entrance(o, d) {
@@ -451,7 +489,7 @@ export function majapahit(o, frame, d = 3) {
     [-5, -18, 54, 30],
     [-5.5, 19, 22, 44],
   ])
-    hip(o, x, z, w, l, 9.1, Math.min(w, l) * 0.22);
+    hip(o, x, z, w, l, 9.1, Math.min(w, l) * 0.22, d);
   // Front two gardens and broad rear garden; directions put +Z toward each courtyard.
   for (const [a, b] of [
     [
@@ -575,13 +613,17 @@ export const majapahitModel = {
   qaCameras: [
     { name: 'front', position: [-65, 30, 182], lookAt: [-7, 8, 63] },
     { name: 'back', position: [110, 100, -170], lookAt: [-5, 6, -30] },
+    { name: 'courtyard-detail', position: [-21, 6, 28], lookAt: [-28, 4.8, 15] },
+    { name: 'portico-detail', position: [-9, 8, -53], lookAt: [-5, 7, -31] },
+    { name: 'entrance-detail', position: [-30, 10, 95], lookAt: [-7, 8, 63] },
   ],
   build: majapahit,
   surfaces,
   quality: 'medium-fi-exterior',
   reviewStatus: 'review-in-qa.json',
-  geographicStatus: 'preview-proposal',
-  groundContactBasis: 'Jalan Tunjungan entrance approach [-7,80]; independent terrain evidence.',
+  geographicStatus: 'preview',
+  groundContactBasis:
+    'Original DeltaDTM v1.1.1 one arcsecond coastal source, independently reproduced across existing320m review extent. Existing dry Jalan Tunjungan approach[-7,80] gives datum3.0098565mEGM2008. Footing, anchor, heading and reference unchanged; rejected Terrarium retained. Subsequent photograph-directed portico roof/ceiling/backwall and curved-baluster repair leaves ground and lower architecture unchanged.5m review spacing interpolates approximately30m source; another host field requires review.',
   runtimeLodOverlay: {
     module: 'packages/worldgen/scripts/structure-hotel-majapahit.mjs',
     level: 'skyline',
@@ -594,9 +636,9 @@ export const majapahitModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior based on individually inspected Qualla entrance, courtyard and classical crosswing photographs; interiors excluded.',
-    'Mapped compound and official aerial view control layout; heights, gallery depths, window spacing, roof joins and hidden elevations remain photographic estimates.',
+    'Full historic exterior reviewed with the exact published Qualla FishynilaCC0 entrance original and independent primary architectural field observations, municipal heritage text and current operator balcony description. Earlier private/attribution imagery is excluded; interiors excluded.',
+    'Mapped compound/open gardens retained. Primary architectural text controls Art Deco front, colonnaded curved-beam verandas, two-storey central crosswing, pediment, white balustrades and courtyard balcony. Heights, roof pitches/colour/joins, window spacing, gallery depths, precise ornament and hidden elevations remain medium-fi estimates.',
     'Later eastern pool/service wing excluded by an explicit scope cut. Simplified original relief; no photo textures or exact crests/lettering copied.',
-    'Independent coarse Terrarium ground remains unmodified; local foundations and host terrain compatibility are approximate.',
+    'Independent original DeltaDTM v1.1.1 coastal DTM replaces rejected Terrarium after existing geometry. Source one arcsecond(approximately30m);5m review spacing is interpolation, not source resolution or surveyed floor accuracy. Frame,dry reference,footing and lower architecture unchanged;later photo-directed portico roof/ceiling/backwall and curved-baluster repair uses fixed architectural controls. No NODATA filling, flattening, cutout or footprint replacement. Another host field requires contact review.',
   ],
 };

@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.hollywood_sign",
-  "reviewedOn": "2026-10-14",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:ba34af7eaa8254d7420e4d058ff6bf7ed98725985f3bc44fe6c31cc35c4a9a2c",
-  "sourceHash": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d",
-  "runtimeHash": "sha256:4f93ecdff3e87818fd9e7bd1d5b2c9c17bb81319e60d0612b811dd5daf3b5faf",
-  "captureReportHash": "sha256:32a875ecd4aff73447fda53611a1acc1bf3a91f77e0dfd25c74e96aaa6538fe3",
+  "inputHash": "sha256:78872864cf9082b363f2b895b11bc62423825c277ec1d3129fef251f8dcbfeba",
+  "sourceHash": "sha256:76c0eef97a3e60e01a847e73e92295a091495344e48d15f319d406a9e1fbcfc4",
+  "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+  "captureReportHash": "sha256:8baa3d8f0d43318850af2ccba3fedf94cd04740c1e935986916f05609944409c",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:8baa3d8f0d43318850af2ccba3fedf94cd04740c1e935986916f05609944409c",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/l-supports-rear.png",
+      "shots/low-l-post-detail.png"
     ],
-    "notes": "Inspected all seven current portable frames and full front render against the individually inspected Qualla aerial front and rear panorama. Nine custom white letter forms, openings, corrugated faces, independent angles, steel rear girts, twenty posts and ladders remain readable. Replaced the implausible terrain-driven panel arch with photograph-derived panel heights; raised the rear camera above the hill. Footings meet unmodified USGS elevation. Terrain and structural joints remain generalized."
+    "notes": "All nine current portable views inspected, including two new rear details. L upper negative spaces are clear, post/girt/ladder extents follow letter profiles and diagonal ends stay within O corners. Final rear cameras were moved above the unchanged uphill source field after initial views from inside the hill were rejected. Front panel geometry remains exact."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:e5ad925d5d760576ec5b03e1beb4118ec1d9e45538bc1a012145d5128960494f",
+    "captureReportHash": "sha256:dcdb925dd7421f7ab00ec71b0970ea6060939208d6a93d6d27203efee57edafb",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,25 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/l-supports-rear.png",
+      "shots/shared/low-l-post-detail.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected seven current shared-material views and full rear frame. White painted metal panels and gray frame retain metric surface bindings. North-up panel lines, heading, terrain reference transform, graph reads and unload pass. Flat ground is only a material/transform fixture; actual hill contact is assessed in preserved-terrain portable and medium-fi captures."
+    "notes": "All nine current shared-material views inspected, including mapped overlay and both rear details. Metal/concrete bindings and open letter negative spaces retain legibility. Placement transform and unload pass. Flat fixture establishes material/transform behavior; source-native portable/medium-fi views carry the hill context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:ee729033b88939c65a58b47df509bdc531312aec11e2def4c91e4d74572b5685",
+    "captureReportHash": "sha256:e4d7becde645e6a4d5ca9898fd506c27735582f888952c5ffa97c9d3ce8b337f",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +68,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/l-supports-rear.png",
+      "medium-fi/low-l-post-detail.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected nineteen current frames across lighting, quality, front/back, silhouette and all four forced detail levels. HOLLYWOOD remains legible at the distant detail levels; close levels retain the rear frame and corrugation. Shadow response changes with the renderer quality preset. Surrounding blocks are synthetic style fixtures. No physical-device performance measurement is claimed."
+    "notes": "All 21 current version-2 frames inspected across light/quality, source-native terrain, front/back, rear close-ups and all four forced levels. Separate L stem/foot framing and bounded brace endpoints persist. White-front/gray-back panels and corrugation retained. Synthetic neighbors are style context."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,24 +94,24 @@
       ],
       "maxPngEncodingErrorMeters": 0.0009263721466368224
     },
-    "notes": "Nine individual OSM letter centerlines establish panel centers and angles; anchor [-118.32168815,34.134047800000005], heading 0, +X east and +Z south. Ground under Y is datum 480.9181 m. USGS 3DEP replaces the initial coarse Terrarium research grid: original elevation was not flattened or fitted. Panel lower edges follow the local front photograph independently of terrain; feet sample the USGS grid and enter it by 0.8 m. Export pixel spacing is not native DEM accuracy. Runtime contact with a different host DEM remains uncertain. Footprint suppression stays off."
+    "notes": "Original nine OSM letter centerlines, anchor [-118.32168815,34.134047800000005], heading 0 and +X east/+Z south retained. Original USGS 3DEP provider-relative datum 480.9181 m, ground under Y and all source elevations unchanged. Source range -4.15881..1.73275 m at mapped vertices and original 0.8 m footing penetration retained; forty actual footing-surface probes pass. Native source spacing is not a claim of elevation accuracy. Initial close cameras were inside uphill terrain; final cameras were raised above it, with no changes to ground or architecture. Current source-native/overlay views inspected. Another host DEM and exact engineering levels remain uncertain."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Current nine-letter steel sign and immediate supports; surrounding broadcast facility, fences and vegetation excluded.",
-    "notes": "Original medium-fi exterior from two individually inspected local Qualla photographs. Trust sources establish 45 ft panel height, twenty main posts and steel/corrugated construction. Custom H/O/L/Y/W/D forms, narrow depth, separate orientations, six girts, I-section posts and ladders are retained. Small fasteners, exact engineering sections and photographic panel offsets are generalized. Published 450 ft total length conflicts with mapped span around 105 m; mapped placement is retained with the discrepancy documented. Reference images are not embedded or redistributed."
+    "scope": "Current nine-letter medium-fi steel sign, mapped letter panels and exterior rear structure; former HOLLYWOODLAND, fences, broadcast buildings and landscape objects excluded.",
+    "notes": "Exact native Blake Everett CC0 rear original already cleared in Qualla was individually inspected; primary own-work grant/revision, no-attribution/no-restrictions metadata and original SHA-1/SHA-256 bound. No new reference photo downloaded. Older CC or additionally flagged images excluded as current controls. Built profile-aware post tops, girts and ladder extents; separate tall-stem/low-foot L braces; diagonal endpoints attach to the actual panel spans instead of extending above O corners. All nine original letter panel Float32 position triangles remain exact, including mapped centers/angles, shapes, width corrections and height offsets. Original twenty footing locations and independent source ground retained. Member sections, hidden engineering, paint color, exact metric dimensions and current condition remain photographic approximations. Previously documented width discrepancy remains unresolved; no new survey, engineering certification or embedded photograph pixels."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:d67e097f3d585d84444f995bc08a903d7c076c757176479e642e96a26e547633",
+    "recipeHash": "sha256:c6bb3727d24c24f4cd1bf6381557369316a5cddc6d81868e8bac1ec089271617",
     "levels": [
       {
         "name": "skyline",
         "file": "model.skyline.glb",
-        "hash": "sha256:289aae42875482f2bad99231d4ff594790e2ddb27e83b1ac2e72c8e4541e22f5",
+        "hash": "sha256:8c4d354ce8bfc89064835317ac54636ee3e6e29747b4e8f79cb3d92e6f0d4472",
         "bytes": 64192,
-        "gzipBytes": 13022,
+        "gzipBytes": 13031,
         "triangles": 884,
         "cpuBytes": 62760,
         "gpuBytes": 62760,
@@ -104,9 +121,9 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:c87b50e96748ccdb5e8769a69f182e98434140dba244474a73440118b28dc2e1",
+        "hash": "sha256:5cdcefd325dca3ec9b547be0f90a350815c37e0e12e551682a84ee1f256aec69",
         "bytes": 116028,
-        "gzipBytes": 26783,
+        "gzipBytes": 27877,
         "triangles": 1532,
         "cpuBytes": 113304,
         "gpuBytes": 113304,
@@ -116,44 +133,2315 @@
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:2fd2666959c8c425a397f4f304b647866a5f8ece81bba941605e5edceacdcb9b",
-        "bytes": 394028,
-        "gzipBytes": 85541,
-        "triangles": 5096,
-        "cpuBytes": 391296,
-        "gpuBytes": 391296,
+        "hash": "sha256:023ef42e224d3824c649d578b283ce8761a30645bc93308f7ea2a92f22c93a04",
+        "bytes": 393092,
+        "gzipBytes": 87255,
+        "triangles": 5084,
+        "cpuBytes": 390360,
+        "gpuBytes": 390360,
         "errorMeters": 0.08,
         "drawCalls": 2
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:d9d07b4a1bef63fecf29bf6d0376e38c43a123ae85cff898320b1864ce025678",
-        "bytes": 1656040,
-        "gzipBytes": 273564,
-        "triangles": 13784,
-        "cpuBytes": 1654080,
-        "gpuBytes": 1654080,
+        "hash": "sha256:ca7a1f24418a68806541f9b226b2579cbe7f44ea9c4a2a45207cc15d4e484114",
+        "bytes": 1622920,
+        "gzipBytes": 270806,
+        "triangles": 13508,
+        "cpuBytes": 1620960,
+        "gpuBytes": 1620960,
         "errorMeters": 0,
         "drawCalls": 2
       }
     ],
-    "notes": "All four current hash-bound detail levels pass strict geometry/draw budgets and were inspected. Skyline preserves all letter openings; district adds girts, street adds braces and coarse corrugation, closeup adds ladders and fine ribs. Error thresholds are authoring limits, not independently measured mesh distances."
+    "notes": "884/1532/5084/13508 triangles, 1/2/2/2 draws pass strict limits. Nine exact original letter panel position-triangle fingerprints match across all levels. Structural girt/brace/ladder details simplify at distance; declared error bounds are authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 13784,
+    "sourceTriangles": 13508,
     "sourceMaterials": 2,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 884,
+        "drawCalls": 1,
+        "retainedPanels": [
+          {
+            "order": 1,
+            "name": "H",
+            "triangles": 44,
+            "hash": "sha256:0075bc193cca4367d965811929e589abc9bea3e4dff11deecb90a254b5edcdea"
+          },
+          {
+            "order": 2,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:9be4bdd0e2ef1646d2e694347064dc402ca306e0dbe7609ec2858044d71ac181"
+          },
+          {
+            "order": 3,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:47a03d93dd086d2440b3f9deaf5aaf2a51d6a9b66310c94ff4e99dbed0652b49"
+          },
+          {
+            "order": 4,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:af566b5e002df7f10aba515227ffcbd0837e2287dca63cc89fb40cf01bc0fea9"
+          },
+          {
+            "order": 5,
+            "name": "Y",
+            "triangles": 32,
+            "hash": "sha256:4c17efbc813711c1b5c04107e43c426fe315064e3d0317f1be7df5e3ea7ff53a"
+          },
+          {
+            "order": 6,
+            "name": "W",
+            "triangles": 48,
+            "hash": "sha256:9a7b56e85d3cb8ced6ad7c663dc260c7c45b8d80325e568f4b9769d450ce1df2"
+          },
+          {
+            "order": 7,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:189311cc6919051d004625b9dd6e7344bc606acebe723a81ee05b5ba02b5c468"
+          },
+          {
+            "order": 8,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:ebbf7b428a90ed1409b4a2a0312627f8be8b6aecedb12199566862adda930cff"
+          },
+          {
+            "order": 9,
+            "name": "D",
+            "triangles": 48,
+            "hash": "sha256:7d7006f7368ef63634c4b2853a9eafa49d366c02c2f3dd35c2a18a1bbe35f0ca"
+          }
+        ],
+        "controls": 62,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": -0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": 0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": -0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": 0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": -0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": 0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": -0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": 0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          }
+        ]
+      },
+      {
+        "level": "district",
+        "triangles": 1532,
+        "drawCalls": 2,
+        "retainedPanels": [
+          {
+            "order": 1,
+            "name": "H",
+            "triangles": 44,
+            "hash": "sha256:0075bc193cca4367d965811929e589abc9bea3e4dff11deecb90a254b5edcdea"
+          },
+          {
+            "order": 2,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:9be4bdd0e2ef1646d2e694347064dc402ca306e0dbe7609ec2858044d71ac181"
+          },
+          {
+            "order": 3,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:47a03d93dd086d2440b3f9deaf5aaf2a51d6a9b66310c94ff4e99dbed0652b49"
+          },
+          {
+            "order": 4,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:af566b5e002df7f10aba515227ffcbd0837e2287dca63cc89fb40cf01bc0fea9"
+          },
+          {
+            "order": 5,
+            "name": "Y",
+            "triangles": 32,
+            "hash": "sha256:4c17efbc813711c1b5c04107e43c426fe315064e3d0317f1be7df5e3ea7ff53a"
+          },
+          {
+            "order": 6,
+            "name": "W",
+            "triangles": 48,
+            "hash": "sha256:9a7b56e85d3cb8ced6ad7c663dc260c7c45b8d80325e568f4b9769d450ce1df2"
+          },
+          {
+            "order": 7,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:189311cc6919051d004625b9dd6e7344bc606acebe723a81ee05b5ba02b5c468"
+          },
+          {
+            "order": 8,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:ebbf7b428a90ed1409b4a2a0312627f8be8b6aecedb12199566862adda930cff"
+          },
+          {
+            "order": 9,
+            "name": "D",
+            "triangles": 48,
+            "hash": "sha256:7d7006f7368ef63634c4b2853a9eafa49d366c02c2f3dd35c2a18a1bbe35f0ca"
+          }
+        ],
+        "controls": 62,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": -0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": 0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": -0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": 0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": -0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": 0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": -0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": 0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          }
+        ]
+      },
+      {
+        "level": "street",
+        "triangles": 5084,
+        "drawCalls": 2,
+        "retainedPanels": [
+          {
+            "order": 1,
+            "name": "H",
+            "triangles": 44,
+            "hash": "sha256:0075bc193cca4367d965811929e589abc9bea3e4dff11deecb90a254b5edcdea"
+          },
+          {
+            "order": 2,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:9be4bdd0e2ef1646d2e694347064dc402ca306e0dbe7609ec2858044d71ac181"
+          },
+          {
+            "order": 3,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:47a03d93dd086d2440b3f9deaf5aaf2a51d6a9b66310c94ff4e99dbed0652b49"
+          },
+          {
+            "order": 4,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:af566b5e002df7f10aba515227ffcbd0837e2287dca63cc89fb40cf01bc0fea9"
+          },
+          {
+            "order": 5,
+            "name": "Y",
+            "triangles": 32,
+            "hash": "sha256:4c17efbc813711c1b5c04107e43c426fe315064e3d0317f1be7df5e3ea7ff53a"
+          },
+          {
+            "order": 6,
+            "name": "W",
+            "triangles": 48,
+            "hash": "sha256:9a7b56e85d3cb8ced6ad7c663dc260c7c45b8d80325e568f4b9769d450ce1df2"
+          },
+          {
+            "order": 7,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:189311cc6919051d004625b9dd6e7344bc606acebe723a81ee05b5ba02b5c468"
+          },
+          {
+            "order": 8,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:ebbf7b428a90ed1409b4a2a0312627f8be8b6aecedb12199566862adda930cff"
+          },
+          {
+            "order": 9,
+            "name": "D",
+            "triangles": 48,
+            "hash": "sha256:7d7006f7368ef63634c4b2853a9eafa49d366c02c2f3dd35c2a18a1bbe35f0ca"
+          }
+        ],
+        "controls": 62,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": -0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": 0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": -0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": 0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": -0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": 0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": -0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": 0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          }
+        ]
+      },
+      {
+        "level": "closeup",
+        "triangles": 13508,
+        "drawCalls": 2,
+        "retainedPanels": [
+          {
+            "order": 1,
+            "name": "H",
+            "triangles": 44,
+            "hash": "sha256:0075bc193cca4367d965811929e589abc9bea3e4dff11deecb90a254b5edcdea"
+          },
+          {
+            "order": 2,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:9be4bdd0e2ef1646d2e694347064dc402ca306e0dbe7609ec2858044d71ac181"
+          },
+          {
+            "order": 3,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:47a03d93dd086d2440b3f9deaf5aaf2a51d6a9b66310c94ff4e99dbed0652b49"
+          },
+          {
+            "order": 4,
+            "name": "L",
+            "triangles": 20,
+            "hash": "sha256:af566b5e002df7f10aba515227ffcbd0837e2287dca63cc89fb40cf01bc0fea9"
+          },
+          {
+            "order": 5,
+            "name": "Y",
+            "triangles": 32,
+            "hash": "sha256:4c17efbc813711c1b5c04107e43c426fe315064e3d0317f1be7df5e3ea7ff53a"
+          },
+          {
+            "order": 6,
+            "name": "W",
+            "triangles": 48,
+            "hash": "sha256:9a7b56e85d3cb8ced6ad7c663dc260c7c45b8d80325e568f4b9769d450ce1df2"
+          },
+          {
+            "order": 7,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:189311cc6919051d004625b9dd6e7344bc606acebe723a81ee05b5ba02b5c468"
+          },
+          {
+            "order": 8,
+            "name": "O",
+            "triangles": 64,
+            "hash": "sha256:ebbf7b428a90ed1409b4a2a0312627f8be8b6aecedb12199566862adda930cff"
+          },
+          {
+            "order": 9,
+            "name": "D",
+            "triangles": 48,
+            "hash": "sha256:7d7006f7368ef63634c4b2853a9eafa49d366c02c2f3dd35c2a18a1bbe35f0ca"
+          }
+        ],
+        "controls": 62,
+        "failed": 0,
+        "controlResults": [
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.5270097468549695,
+            "actualY": -3.5270097255706787
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 1,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.8925701061892368,
+            "actualY": -0.8925700783729553
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -0.9453596827672868,
+            "actualY": -0.9453597068786621
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.6594544870681489,
+            "actualY": 0.6594544649124146
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 2,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.5884902646702017,
+            "actualY": 1.5884902477264404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.8850363001966912,
+            "actualY": 1.8850363492965698
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 3,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 3
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 2.0471514918006504,
+            "actualY": 2.047151565551758
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 1.5521030122163666,
+            "actualY": 1.552103042602539
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.1,
+            "yy": 12
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 4
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 8
+          },
+          {
+            "name": "L upper negative space has no invented full rectangle",
+            "pass": true,
+            "order": 4,
+            "fraction": 0.39,
+            "yy": 12
+          },
+          {
+            "name": "physical tall-stem rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "physical short-foot rear support retained",
+            "pass": true,
+            "order": 4
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 1.1087626055431656,
+            "actualY": 1.1087626218795776
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 5,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.2440723343173204,
+            "actualY": -0.2440723329782486
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": -0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.43,
+            "dx": 0.24,
+            "expectedY": 0.774820382696862,
+            "actualY": 0.7748203873634338
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": -0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": -0.15,
+            "dx": 0.24,
+            "expectedY": 0.638991766148979,
+            "actualY": 0.6389917731285095
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": -0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.15,
+            "dx": 0.24,
+            "expectedY": 0.6195726713817067,
+            "actualY": 0.6195726990699768
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": -0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 6,
+            "fraction": 0.43,
+            "dx": 0.24,
+            "expectedY": 0.6545915487084699,
+            "actualY": 0.6545915603637695
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": 0.10727542157956123,
+            "actualY": 0.10727541893720627
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -0.4617840052845395,
+            "actualY": -0.4617840051651001
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 7,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -1.1725657082870498,
+            "actualY": -1.1725656986236572
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": -2.6488508588008246,
+            "actualY": -2.648850917816162
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": -0.39
+          },
+          {
+            "name": "diagonal braces do not project above O corners",
+            "pass": true,
+            "order": 8,
+            "fraction": 0.39
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": -0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": -0.39,
+            "dx": 0.24,
+            "expectedY": -3.3483590582350873,
+            "actualY": -3.3483591079711914
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": -0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          },
+          {
+            "name": "original independent-ground footing surface retained",
+            "pass": true,
+            "order": 9,
+            "fraction": 0.39,
+            "dx": 0.24,
+            "expectedY": 0.035155425307766566,
+            "actualY": 0.03515542671084404
+          }
+        ]
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact source regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; terrain PNG round-trip error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/9q/9q5/hollywood_sign/verify-supports.mjs"
+    ],
+    "notes": "Targeted generation/import/exact regeneration, asset integrity, strict LOD/material budgets and source/imported normals/winding/UVs pass. Each imported level passes exact pre-change nine-panel fingerprints, forty original-ground footing probes, L upper-air/tall-stem/short-foot controls and O-corner brace bounds. No unrelated model regenerated or blanket revalidated."
   },
   "limitations": [
-    "Original medium-fi current nine-letter steel sign based on inspected local Qualla front and rear photographs, individual OSM letter lines and independent terrain. Not an engineering survey.",
+    "Started with cleared Qualla imagery. Current support construction uses the exact inspected Blake Everett CC0 rear original; older attribution-licensed or additionally restricted imagery is excluded as a current control. Individual OSM letter lines and source ground retained. Not an engineering survey.",
+    "Post tops and girt lengths follow letter profiles. The L framework has separate tall-stem and low-foot braces instead of a full rectangle beyond the panel. Member sections, attachment details and hidden engineering remain approximate.",
     "Letter height is 13.716 m (45 ft). The Trust booklet reports 450 ft overall length, while mapped endpoints span about 105 m; mapped positions are retained and this discrepancy remains unresolved.",
     "First O and second L widths are adjusted from short mapped lines to match the photographic proportions; all centers and angles remain mapped. Corrugation, beam sections, joints and ladders are simplified.",
     "Photographic comparison sets approximate panel heights independently of USGS terrain-sampled feet. Native DEM resolution and vertical accuracy are unknown; exact ground contact remains host-terrain dependent.",
@@ -162,6 +2450,79 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:987ae8f079f5e0aa7891a8dd90882ed64042f63b647851ef7261acf7906ecc9d",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:78872864cf9082b363f2b895b11bc62423825c277ec1d3129fef251f8dcbfeba",
+    "referenceInputHash": "d51879862ec9f145a21a89f24d7900c1e492458d17bff37ce448eadf7162859b",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/qualla-rear-08.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:ab3fcffa4e937e4557ba618f222ca13c0e933993c4307ec53bbf24a361048da8",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/5/f/los-angeles-hollywood-wk/aerial-hollywood-sign.jpg",
+        "reason": "Not selected as current control: primary record includes an additional restrictions flag."
+      },
+      {
+        "path": "_m/9/q/5/f/mulholland-dam-wp/view-from-behind-hollywood-sig.jpg",
+        "reason": "Earlier attribution-licensed rear photograph excluded."
+      },
+      {
+        "path": "_m/9/q/5/f/mulholland-dam-wp/hollywood-los-angeles-ca-09.jpg",
+        "reason": "Not selected: primary record includes an additional restrictions flag."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with cleared Qualla published/candidate corpus and individually inspected local front and two rear originals. Selected only native rear 08, whose primary own-work CC0 grant has no additional restrictions flag. Reused the same Qualla bytes; primary metadata only was fetched. Older attribution-licensed rear and additionally flagged originals are excluded as current construction controls. Exact creator/revision and native image SHA-1/SHA-256 are bound."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "hollywood_sign",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:78872864cf9082b363f2b895b11bc62423825c277ec1d3129fef251f8dcbfeba",
+    "sourceHash": "sha256:76c0eef97a3e60e01a847e73e92295a091495344e48d15f319d406a9e1fbcfc4",
+    "runtimeHash": "sha256:33c46de079699afd63489f0fd697a3f5cb117ecc9a774611dc3b02480564389e",
+    "built": [
+      "Profile-aware post tops and horizontal girt lengths",
+      "Separate L tall-stem and low-foot bracing",
+      "Diagonal brace ends bounded to actual panel spans",
+      "Ladder extents stop at the supported panel"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      884,
+      1532,
+      5084,
+      13508
+    ],
+    "drawCalls": [
+      1,
+      2,
+      2,
+      2
+    ],
+    "limits": "Exact native Blake Everett CC0 rear original already cleared in Qualla was individually inspected; primary own-work grant/revision, no-attribution/no-restrictions metadata and original SHA-1/SHA-256 bound. No new reference photo downloaded. Older CC or additionally flagged images excluded as current controls. Built profile-aware post tops, girts and ladder extents; separate tall-stem/low-foot L braces; diagonal endpoints attach to the actual panel spans instead of extending above O corners. All nine original letter panel Float32 position triangles remain exact, including mapped centers/angles, shapes, width corrections and height offsets. Original twenty footing locations and independent source ground retained. Member sections, hidden engineering, paint color, exact metric dimensions and current condition remain photographic approximations. Previously documented width discrepancy remains unresolved; no new survey, engineering certification or embedded photograph pixels.",
+    "retainedLetterPanels": 9,
+    "retainedFootings": 20,
+    "downloadedNewPhotographs": 0,
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 1,
+      "repeatChanges": 0
+    }
   }
 }

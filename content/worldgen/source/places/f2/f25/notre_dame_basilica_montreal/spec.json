@@ -1,0 +1,382 @@
+{
+  "planId": "notre_dame_basilica_montreal",
+  "id": "notre_dame_basilica_montreal",
+  "assetId": "molen.worldgen.structure.notre_dame_basilica_montreal",
+  "title": "Notre-Dame Basilica, Montreal",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -73.55622788675505,
+    "latitude": 45.50451955799404
+  },
+  "size": [
+    49.482505798339844,
+    70.19999980926514,
+    67.84941482543945
+  ],
+  "actualBounds": {
+    "min": [
+      -23.850000381469727,
+      -5.199999809265137,
+      -32.609413146972656
+    ],
+    "max": [
+      25.632505416870117,
+      65,
+      35.2400016784668
+    ]
+  },
+  "visualBrief": "Principal Montreal limestone Gothic Revival basilica: twin square65m towers with paired lancets,louvres,rose windows,octagonal corner colonnettes,crenels and eight slender pinnacle tips; deeply recessed triple entrance portico,three statuary niches with robed saints,blind pointed arcade and central cross; low-pitched copper main roof,four wide transomed nave bays per side,raised rear end bay,roofline pinnacles,lower masonry,basement entrance canopy and raised east-tower door/stair. Native western low projection remains estimated. Rear Sacred Heart chapel,adjacent seminary,interiors,scaffolding,banners and street scenery excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Exterior_of_Notre-Dame_de_Montréal_Basilica.jpg"
+  ],
+  "stories": [
+    {
+      "id": "notre-dame-basilica-montreal-wp",
+      "url": "https://qualla.com/notre-dame-basilica-montreal/"
+    }
+  ],
+  "referenceInputHash": "sha256:32547b7f5929216ff0f0d50c35694bbb370f94ddd8896d53de4cc35a721af56b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-notre-dame-basilica-montreal.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-notre-dame-basilica-montreal.mjs",
+    "level": "skyline",
+    "export": "notreDameBasilicaMontrealSkyline",
+    "errorMeters": 2.3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45,
+        "metallic": 0.02
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.81,
+        "metallic": 0.12
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_copper",
+        "roughness": 0.83,
+        "metallic": 0.55
+      },
+      "sculpture": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "notreDameBasilicaMontrealDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.83,
+            "metallic": 0.55
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "notreDameBasilicaMontrealStreet",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0.02
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.81,
+            "metallic": 0.12
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_copper",
+            "roughness": 0.83,
+            "metallic": 0.55
+          },
+          "sculpture": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "medium-fi-exterior-bounded-preview-review-in-qa",
+  "geographicProposal": {
+    "status": "reviewed-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Primary CPRQ side photos establish the lower masonry storey and basement entrance. Fixed architectural foot and stairs are checked against the original unchanged NRCan DTM;bounded source preview,not survey. No pad,cutout or adaptive foundations.",
+    "anchor": [
+      -73.55622788675505,
+      45.50451955799404
+    ],
+    "heading": -2.03903222960386,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -73.5566510856497,
+        45.50466956313624
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Place d’Armes public pavement4.5m in front of facade center, outside church and raised entrance stair. Fixed before ground sampling and model geometry."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184376409624"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:41f59b294a983d78c9fd519bc87e8e2a5a58d0446e4db5d729300c1c7ab159df"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_copper",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.8
+      ]
+    }
+  ],
+  "limitations": [
+    "Photo-directed medium-fi exterior,not a survey,scan or navigable interior. Fine Gothic carving,tracery,louvre slats and statue anatomy simplified; side articulation follows primary CPRQ photos;western hidden details,vestibule height and rear interface remain estimates.",
+    "Foundation publishes65m body length,37m width and65m towers above forecourt. Native40.8m facade includes tower/buttress projections. Main65m rear interface explicitly inferred within103m merged parent; rear chapel and dependencies excluded. No whole-parent footprint replacement.",
+    "Published65m tower height used as approximate pinnacle bound.29m main eave,33m low roof ridge,lower floor/base and all facade levels are photographic estimates.",
+    "Original NRCan bare-earth ground and dry pavement reference remain unchanged. Primary side photos establish a missing lower masonry storey,basement doorway/canopy,raised entrance stair and roofline articulation. Fixed lower-storey/subgrade foot-5.2m,crypt door floor-3.2m and main floor+.6m are architectural approximations,not terrain-derived per-vertex fitting. Bounded source-ground contact must pass current QA before activation;no pad or cutout.",
+    "Two accepted local originals control facade/colour;three primary CPRQ full side/rear photos control lower masonry,side bays,pinnacles and copper roof. Temporary scaffolds,banners,night illumination,adjacent seminary,forecourt monuments,traffic and interiors excluded. Photos are inspected controls,not redistributed texture pixels; shared material graphs."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "place-darmes-front",
+      "position": [
+        0,
+        30,
+        123
+      ],
+      "lookAt": [
+        0,
+        30,
+        31
+      ]
+    },
+    {
+      "name": "triple-portico",
+      "position": [
+        0,
+        9,
+        62
+      ],
+      "lookAt": [
+        0,
+        8,
+        31
+      ]
+    },
+    {
+      "name": "statuary-arcade",
+      "position": [
+        12,
+        27,
+        57
+      ],
+      "lookAt": [
+        0,
+        25,
+        32
+      ]
+    },
+    {
+      "name": "west-tower",
+      "position": [
+        44,
+        40,
+        65
+      ],
+      "lookAt": [
+        16,
+        38,
+        28
+      ]
+    },
+    {
+      "name": "tower-crown-tracery",
+      "position": [
+        36,
+        59,
+        54
+      ],
+      "lookAt": [
+        16,
+        53,
+        28
+      ]
+    },
+    {
+      "name": "low-roof",
+      "position": [
+        75,
+        69,
+        -60
+      ],
+      "lookAt": [
+        0,
+        29,
+        -4
+      ]
+    },
+    {
+      "name": "rear-chapel-exclusion",
+      "position": [
+        -60,
+        40,
+        -95
+      ],
+      "lookAt": [
+        0,
+        18,
+        -26
+      ]
+    },
+    {
+      "name": "east-lower-masonry",
+      "position": [
+        -68,
+        9,
+        -9
+      ],
+      "lookAt": [
+        -20,
+        7,
+        -7
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 34914,
+    "vertices": 104742,
+    "materials": 6,
+    "bytes": 4193412,
+    "sha256": "sha256:e66266daedb7016dc0b3d00b80b5d29997c9ffcea3299b5bfd7eb092a3d6e07d"
+  }
+}

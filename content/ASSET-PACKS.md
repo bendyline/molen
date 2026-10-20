@@ -198,6 +198,15 @@ An optional `reviewLod` on a QA camera chooses the derivative in the medium-fi f
 portable and shared source captures still show the detailed master. `qaLodCameras` adds
 browser-only detail cameras for changed derivatives without altering source review views.
 
+Complete each model in one authoring cycle: resolve usable references, build its defining
+geometry, import and check its runtime levels, inspect the affected views and ground contact,
+then record readiness and story links. Do not defer those steps to a second batch-wide artistic
+review. Reuse current evidence when the rendered inputs are unchanged; metadata or naming
+corrections alone do not require new captures. Reopen a completed model only for a relevant
+geometry, material, terrain or placement change, invalid supporting evidence, or an observed
+failure. Concentrate review cameras on the silhouette, defining details, shared materials,
+ground contact and actual runtime levels; avoid duplicate views that add no coverage.
+
 Refresh the catalog, galleries and aggregate texture inventory once per meaningful batch.
 For Qualla-linked structures, also refresh the [story backlog and Qualla model annotations](worldgen/source/qualla-structures/README.md#remembering-model-coverage-in-qualla)
 after the source, registration, placement and readiness catalogs are current. The explicit
@@ -269,6 +278,10 @@ repeatable loading benchmark and device-testing limitations.
 
 ### Finalize a model batch
 
+This is an aggregate consistency and source-reproducibility checkpoint. Per-model visual
+reviews and integration should already be complete; do not restart them here unless the
+checkpoint exposes a relevant change or failure.
+
 1. Edit the generator, spec, material graph or texture. Iterate with the bundle's own command,
    for example `node packages/worldgen/scripts/generate-stadium-models.mjs --ids=N0692`.
 2. Once the batch is stable, run `pnpm assets:build --update-lock`. It regenerates, re-imports and rewrites
@@ -328,7 +341,7 @@ deterministic:
   derived textures and embed or reference their bytes. Lantern Dungeon re-derives its maps only
   with `--derive-textures`.
 
-The Assets and Update asset lock workflows pin Node 24.18.0 and Python 3.12. When another workflow has to build from
+The Assets and Update asset lock workflows pin Node 24 (`.node-version`) and Python 3.12. When another workflow has to build from
 source, it switches to Node 24 for the build only. Pillow is pinned by
 `examples/lantern-dungeon/tools/requirements.txt`. If a runner-image update ever changes a byte,
 the weekly scheduled run reports it before a model change is blamed for it.

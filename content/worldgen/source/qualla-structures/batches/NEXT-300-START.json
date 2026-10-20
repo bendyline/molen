@@ -1,0 +1,95 @@
+{
+  "format": "molen/structure-batch-checkpoint@1",
+  "updatedOn": "2026-10-19",
+  "core100": {
+    "complete": true,
+    "ready": 100,
+    "goalStatus": "complete",
+    "ownerAcceptedModels": [
+      "hangar_37",
+      "humayuns_tomb",
+      "taj_mahal_palace_hotel"
+    ],
+    "exactFixed100SourceRegeneration": true
+  },
+  "batch": "qualla-batch-002",
+  "counts": {
+    "target": 300,
+    "ready": 2,
+    "started": 2,
+    "pilotsReady": 0,
+    "technicallyValidated": 2,
+    "publicDomainImageryVerified": 2,
+    "publicDomainFidelityReviewed": 2
+  },
+  "completed": [
+    {
+      "model": "biloxi_lighthouse",
+      "name": "Biloxi Lighthouse",
+      "sourcePath": "content/worldgen/source/places/dj/dj2/biloxi_lighthouse",
+      "inputHash": "sha256:50846f497eb1e8f291626ec020a64258646709816cff02be7ec61fbcb2cb5e44",
+      "sourceHash": "sha256:182bc01b6a3341d661e44fe8494f3bebebd6ed0b49d4e2f9429ebe7b24933e00",
+      "runtimeHash": "sha256:c37bb83db9b97a486f1a2880fec808f2fd8732d49572758a3b0c0220fa41f3b2",
+      "currentFramesInspected": 33,
+      "detailLevelTriangles": [
+        968,
+        2516,
+        4260,
+        6324
+      ],
+      "storyIds": [
+        "biloxi-lighthouse-wp"
+      ],
+      "storyWrites": 1,
+      "repeatChanges": 0,
+      "limitations": [
+        "Approximate19.5m overall height and photographic proportions; source heights vary with measurement convention. USCG historic tower photos/drawing control surviving iron silhouette, not every restored fitting. Hidden openings, pane count, doorway facing and weathervane are medium-fi interpretations.",
+        "Native quantized footprint supplies location, not a survey. Coastal host terrain is approximate; no terrain fitting or neighborhood reconstruction. Demolished keeper house, roads, fence and temporary restoration works excluded.",
+        "Original geometry; public-domain Coast Guard references remain in Qualla and are not used as textures."
+      ]
+    },
+    {
+      "model": "bent_pyramid",
+      "name": "Bent Pyramid",
+      "sourcePath": "content/worldgen/source/places/st/stq/bent_pyramid",
+      "inputHash": "sha256:7344bf7c9fff028eac4be5f265df7fcdd5773023df127a2c7e1411676abfd01f",
+      "sourceHash": "sha256:27c5444eb2ceaa8c821503d89e231a9fe7a4c2511600b70fd69ebecd3326802a",
+      "runtimeHash": "sha256:b0e0b58f24e4b80bd3205f1177798b85d73b6f6715a028891ccc6e13928fc922",
+      "currentFramesInspected": 33,
+      "detailLevelTriangles": [
+        462,
+        1810,
+        8466,
+        28346
+      ],
+      "storyIds": [
+        "bent-pyramid-wp"
+      ],
+      "storyWrites": 1,
+      "repeatChanges": 0,
+      "limitations": [
+        "Approximate surviving188m base and104.71m overall height; native mapped plan is coarser/narrower and remains the geographic control. Native building-part47.04m breakpoint adopted; article rounds this to49m. No survey claim.",
+        "One inspected clear public-domain Qualla panorama controls identifying pale casing, bend and dark weathered crown. Stone loss/color patch positions, hidden faces and exact portal depths are medium-fi interpretations; original pixels are not textures.",
+        "The coarse source DEM has artificial pyramid returns outside the native cutout and may obscure lower casing in geographic views. This is a recorded host-terrain limitation; pyramid geometry is not fitted to it.",
+        "Main pyramid exterior only. Satellite pyramid and detached structures, enclosure/causeway, modern visitor stair and interior are excluded. Footing extends1m below visualization datum; no fitted terrain platform or reshaped elevation field."
+      ]
+    }
+  ],
+  "checks": {
+    "newModelSourceRegeneration": "exact",
+    "assetVerification": "passed",
+    "fourLodsEach": "passed",
+    "mediumFiAudit": "passed without findings",
+    "sceneValidationAnd30TickSimulation": "passed",
+    "workflowRegressionTests": 15,
+    "touchedCodeLint": "passed",
+    "next1000OwnershipConflicts": 0,
+    "storyAnnotationRepeatChanges": 0
+  },
+  "next": {
+    "model": "bloukrans_bridge",
+    "name": "Bloukrans Bridge",
+    "work": "Build,inspect,integrate and story-link in one pass. Do not reopen accepted core100 or completed new models."
+  },
+  "qualityScope": "Approximate recognizable medium-fi exterior. Public-domain Qualla imagery first. Record hidden-detail and host-terrain limitations, fix visible defects during construction, and proceed without a separate whole-batch finalization phase."
+}

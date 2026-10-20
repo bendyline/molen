@@ -1,0 +1,406 @@
+{
+  "planId": "sintra_national_palace",
+  "id": "sintra_national_palace",
+  "assetId": "molen.worldgen.structure.sintra_national_palace",
+  "title": "Sintra National Palace",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -9.390695018527039,
+    "latitude": 38.79775082844275
+  },
+  "size": [
+    101.23852157592773,
+    48.135780334472656,
+    99.3948745727539
+  ],
+  "actualBounds": {
+    "min": [
+      -46.933692932128906,
+      -8.837581634521484,
+      -60.9897346496582
+    ],
+    "max": [
+      54.30482864379883,
+      39.29819869995117,
+      38.4051399230957
+    ]
+  },
+  "visualBrief": "Native irregular palace ranges and four open courts/lightwells, two33m kitchen-floor-to-top open-mouthed white conical chimneys, tall northwest Coats-of-Arms tower with hipped red roof and stone fret cornice, stepped upper royal ranges and kitchen. Southeast main hall has four real pointed exterior arcade recesses, five deep paired cusp-headed upper window groups, serrated pale parapet, raised stone landing, broad13-tread stair, balustrades and two-tier fountain. Lower front flanking masses and porch connection, eastern Manueline wing with six original abstract carved paired window groups and two three-arch open loggias, low basement lights/doors, yellow corner bands and red tiled roofs. Separate native western entry range, own retaining/terrace walls and Patim porch/straight stair. Town buildings, interiors, literal heraldry, temporary works and vegetation excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Sintra_2006.JPG"
+  ],
+  "stories": [
+    {
+      "id": "sintra-national-palace-wp",
+      "url": "https://qualla.com/sintra-national-palace/"
+    }
+  ],
+  "referenceInputHash": "sha256:8eb33043d18293b398868927b0da02b7115a89901eeed1d2db3c7464e71de3f8",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-sintra-national-palace.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-sintra-national-palace.mjs",
+    "level": "skyline",
+    "export": "sintraSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_flat",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.02
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.83,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.15
+      },
+      "inlay": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "sintraDistrict",
+        "errorMeters": 3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "inlay": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "sintraStreet",
+        "errorMeters": 1.5,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_flat",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.02
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.83,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.15
+          },
+          "inlay": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2.1,
+    "cameraYaw": 0,
+    "groundY": -8
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent public DGT July2024 classified LiDAR:127 original byte chunks,911745 unchanged decoded class2 ground points preserved before geometry. Fixed12-neighbor inverse squared distance derivative on2m125x125grid;210.5518m Cascais dry forecourt datum at[-6,38]. Maximum nearest ground gap22.123m under covered areas; hidden-ground interpolation uncertain. No source terrain fitting/flattening. Compatible host required; default coarse terrain not certified. Roof/terrace class6 observations remain separate structural controls.",
+    "anchor": [
+      -9.390695018527039,
+      38.79775082844275
+    ],
+    "heading": 0.44571388079493024,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -9.390568598127453,
+        38.797419583993644
+      ],
+      "modelHeight": 0,
+      "basis": "Dry exterior southeast forecourt, exact2m review node; preliminary north-up[22.968062,39.874132]. Separate from roofs, raised courts and kitchen. Chosen before geometry; class2 support verified. Datum is pure vertical translation, no terrain values altered."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/52776559766250",
+      "buildings/35184544807594",
+      "buildings/35184544807588",
+      "buildings/35184544807587"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:911e7aad6e11ef7cc4eac472b1c0a55b9d9199f68ed807573106dda741b53bb5"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_flat",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.6,
+        1.8
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "No source model, runtime asset, final map frame, heightfield, placement proposal, QA approval or story completion annotation has been created for this target. Counts remain73 ready/79 authored/79 started.",
+    "Operator33m height is kitchen floor to chimney top; all other vertical dimensions must be explicit proportional estimates.",
+    "Dated exterior finish/roof/threshold details differ across references; current2026 chapel conservation is not reflected in2015/2019 images.",
+    "Owner page9 is a visitor illustration; no claim of measured construction drawings. Independent ground must precede geometry.",
+    "Native main building has six inner rings: four actual mapped open courts/lightwells and two circular kitchen chimney boundaries. The latter are occupied by modeled chimneys, not extra courtyards. Scope also retains the separate native western terrace entry range, southwest front-flanking mass, northeast porch connection and own retaining/terrace structure; town buildings are excluded.",
+    "Actual aerial/owner overview place the four pointed main front spans on the southeast-facing native edge14→13. The west outline is not the main arcade. +X follows this facade toward the Manueline wing; +Z faces the exterior forecourt. Cartographic simplification and dated photos limit precision.",
+    "Official July2024 DGT classified LiDAR point observations constrain roof and terrace levels separately from class2 terrain. Class6 returns are not ground; palace-floor levels inferred from class6 surface distributions are dimensional observations, not a surveyed plan. Chimney33m is measured from kitchen floor to top.",
+    "Independent public class2 ground is frozen before geometry. There are no class2 returns under most palace roofs/courts: fixed inverse-distance interpolation across these gaps is an independent terrain approximation, not measured subterranean ground. No fitting, flattening or editing to match the building; compatible host terrain is required and default coarse Earth terrain is not certified.",
+    "Dated local2011–2019 photos and public2024 LiDAR describe permanent exterior features; current2026 chapel restoration finish not asserted. Intermediate roof ridges/eaves, unknown back-face bay counts, carved details, terraces, Patim/stair placement and construction thresholds are interpretations. Four front arches are exterior recesses with back walls, not four through-gateways. Original abstract carving/geometry replaces exact heraldry/inscriptions. This model remains in review until current geometry, all detail levels, terrain/placement and actual renders pass."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "main-arcade",
+      "position": [
+        -3,
+        10,
+        70
+      ],
+      "lookAt": [
+        -3,
+        10,
+        28
+      ]
+    },
+    {
+      "name": "manueline-wing",
+      "position": [
+        65,
+        15,
+        65
+      ],
+      "lookAt": [
+        38,
+        12,
+        20
+      ]
+    },
+    {
+      "name": "kitchen-chimneys",
+      "position": [
+        67,
+        39,
+        40
+      ],
+      "lookAt": [
+        25,
+        28,
+        -2
+      ]
+    },
+    {
+      "name": "raised-courts",
+      "position": [
+        -3,
+        32,
+        12
+      ],
+      "lookAt": [
+        6,
+        12,
+        14
+      ]
+    },
+    {
+      "name": "rear-tower",
+      "position": [
+        -77,
+        37,
+        -85
+      ],
+      "lookAt": [
+        -25,
+        24,
+        -53
+      ]
+    },
+    {
+      "name": "west-terraces",
+      "position": [
+        -75,
+        24,
+        25
+      ],
+      "lookAt": [
+        -29,
+        14,
+        -1
+      ]
+    },
+    {
+      "name": "window-recess",
+      "position": [
+        -1,
+        12,
+        42
+      ],
+      "lookAt": [
+        -1,
+        12,
+        31
+      ]
+    },
+    {
+      "name": "loggia-openings",
+      "position": [
+        63,
+        15,
+        38
+      ],
+      "lookAt": [
+        50,
+        12,
+        21
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 29790,
+    "vertices": 89370,
+    "materials": 7,
+    "bytes": 3578736,
+    "sha256": "sha256:aed65aba3e5533d775964d0aa4b15548c80ea58d89db34a2f6f3670f9e00b4ef"
+  }
+}

@@ -1,5 +1,6 @@
 /** Hemingway House: measured gallery proportions, flat roofs and photographed ironwork. */
 import './install-deterministic-math.mjs';
+import fs from 'node:fs';
 import { beam, loft, normalFor } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
@@ -146,7 +147,16 @@ function shutter(o, x, y, z, w, h, sign, d) {
     );
   }
 }
-function opening(o, x, y, z, w, h, d, { door = false, closed = false, shutters = true } = {}) {
+function opening(
+  o,
+  x,
+  y,
+  z,
+  w,
+  h,
+  d,
+  { door = false, closed = false, shutters = true, entranceIron = false } = {},
+) {
   if (!d) return;
   const n = d > 1 ? 12 : 6;
   arc(o, 'glass', x, y, z + 0.07, w, h, closed ? yellow : glass, n);
@@ -165,7 +175,8 @@ function opening(o, x, y, z, w, h, d, { door = false, closed = false, shutters =
       face(o, 'wood', x, y + (sy - y) * yy, z + 0.135, w - 0.07, 0.045, white);
     if (door)
       for (const s of [-1, 1]) {
-        face(o, 'wood', x + s * w * 0.25, y + 0.09, z + 0.14, w * 0.39, 0.4, white);
+        if (!(entranceIron && d > 2))
+          face(o, 'wood', x + s * w * 0.25, y + 0.09, z + 0.14, w * 0.39, 0.4, white);
         if (d > 2) face(o, 'metal', x + s * 0.08, y + 1.15, z + 0.15, 0.025, 0.13, iron);
       }
   }
@@ -178,6 +189,97 @@ function opening(o, x, y, z, w, h, d, { door = false, closed = false, shutters =
   }
   B(o, 'wall', x, y - 0.055, z + 0.1, w + 0.2, 0.08, 0.23, pale);
   B(o, 'wall', x, y + h + 0.04, z + 0.06, 0.2, 0.25, 0.1, pale);
+}
+/** Closed painted metal sections, with real gaps over the retained dark glazing. */
+function entranceIronwork(o) {
+  const c = JSON.parse(
+      fs.readFileSync(
+        new URL(
+          '../../../content/worldgen/source/places/dh/dhm/hemingway_house/entrance-construction-controls.json',
+          import.meta.url,
+        ),
+      ),
+    ),
+    spring = c.bottom + c.height - c.width * 0.36,
+    z = c.wallZ + 0.19,
+    uv = (p, n) => {
+      const axis = n.map(Math.abs).indexOf(Math.max(...n.map(Math.abs)));
+      return p.map((v) => v.filter((_, i) => i !== axis));
+    },
+    metric = {
+      addQuad: (s, r, p, n, _u, color) => o.addQuad(s, r, p, n, uv(p, n), color),
+      addConvexPolygon: (s, r, p, n, _u, color) => {
+        const u = uv(p, n);
+        return o.addConvexPolygon(s, r, p, n, (v) => u[p.indexOf(v)], color);
+      },
+    },
+    rod = (a, b, width = c.rodWidth) =>
+      beam(
+        metric,
+        'doorIron',
+        [c.centerX + a[0], a[1], z],
+        [c.centerX + b[0], b[1], z],
+        c.beamDepth,
+        width,
+        white,
+      );
+  for (let i = 0; i < 24; i++) {
+    const a = (i * Math.PI) / 24,
+      b = ((i + 1) * Math.PI) / 24,
+      at = (angle, outside, front) => [
+        c.centerX + (outside ? 0.7325 : 0.6675) * Math.cos(angle),
+        spring + (outside ? 0.5325 : 0.4675) * Math.sin(angle),
+        z + ((front ? 1 : -1) * c.beamDepth) / 2,
+      ];
+    // A joined, closed annulus avoids the exposed end seams of separate bent bars.
+    for (const p of [
+      [at(a, false, true), at(a, true, true), at(b, true, true), at(b, false, true)],
+      [at(a, true, false), at(a, false, false), at(b, false, false), at(b, true, false)],
+      [at(a, true, true), at(a, true, false), at(b, true, false), at(b, true, true)],
+      [at(a, false, false), at(a, false, true), at(b, false, true), at(b, false, false)],
+    ])
+      metric.addQuad('doorIron', ref, p, normalFor(...p), null, white);
+    for (const angle of i === 0 ? [a] : i === 23 ? [b] : []) {
+      const p = [
+        at(angle, true, true),
+        at(angle, false, true),
+        at(angle, false, false),
+        at(angle, true, false),
+      ];
+      metric.addQuad('doorIron', ref, p, [0, -1, 0], null, white);
+    }
+  }
+  for (const x of [-0.7, 0, 0.7]) rod([x, c.bottom], [x, spring], 0.065);
+  for (const y of [c.bottom, spring]) rod([-0.7, y], [0.7, y], 0.065);
+  for (const a of c.fanlightAngles)
+    rod([0, spring], [c.fanlightRadius * Math.cos(a), spring + c.fanlightRise * Math.sin(a)]);
+  for (const x of c.panelCenters) {
+    const l = x - c.panelWidth / 2,
+      r = x + c.panelWidth / 2,
+      lo = c.panelBottom,
+      hi = c.panelTop,
+      mid = (lo + hi) / 2;
+    for (const xx of [l, r]) rod([xx, lo], [xx, hi], 0.045);
+    for (const y of [lo, hi]) rod([l, y], [r, y], 0.045);
+    const diamond = [
+      [x, lo + 0.06],
+      [r - 0.04, mid],
+      [x, hi - 0.06],
+      [l + 0.04, mid],
+    ];
+    for (let i = 0; i < 4; i++) rod(diamond[i], diamond[(i + 1) % 4], 0.015);
+    // Original simplified scroll interpretation, rather than an exact ornamental trace.
+    for (const sx of [-1, 1])
+      for (const sy of [-1, 1]) {
+        const points = Array.from({ length: 17 }, (_, i) => {
+          const t = i / 16,
+            a = t * Math.PI * 1.65,
+            radius = 0.075 * (1 - t * 0.65);
+          return [x + sx * (0.17 + radius * Math.cos(a)), mid + sy * (0.2 + radius * Math.sin(a))];
+        });
+        for (let i = 1; i < points.length; i++) rod(points[i - 1], points[i], 0.012);
+      }
+  }
 }
 function round(o, x, z, y, h, d) {
   if (d < 2) {
@@ -475,6 +577,7 @@ function hemingway(o, _frame, d = 3) {
   for (const x of [-3.48, -0.55, 1.67, 3.82]) {
     opening(front, x, 0.47, 0.015, x === -0.55 ? 1.48 : 1.3, x === -0.55 ? 3.05 : 2.64, d, {
       door: x === -0.55,
+      entranceIron: x === -0.55,
       shutters: x !== -0.55,
     });
     opening(front, x, 4.46, 0.015, 1.3, 2.67, d);
@@ -579,6 +682,7 @@ function hemingway(o, _frame, d = 3) {
         rgb('969284'),
       );
     for (const x of [-2.05, -1.5]) face(front, 'metal', x, 1.75, 0.1, 0.35, 0.45, iron);
+    entranceIronwork(o);
   }
 }
 export function hemingwaySkyline(o) {
@@ -597,6 +701,7 @@ const surfaces = {
   metal: { ...landmarkSurfaces.metal, doubleSided: true },
   roof: { slot: 'roof', graph: 'metal_corrugated', roughness: 0.82, metallic: 0.25 },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
+  doorIron: { slot: 'trim', graph: 'metal_painted', roughness: 0.65, metallic: 0.25 },
 };
 export const hemingwayModel = {
   id: 'hemingway_house',
@@ -611,6 +716,7 @@ export const hemingwayModel = {
   qaCameras: [
     { name: 'front', position: [15, 8.8, 30], lookAt: [0, 4, 2] },
     { name: 'back', position: [-22, 15, -27], lookAt: [0, 4, 0] },
+    { name: 'entrance-ironwork', position: [2.5, 2.4, 11.5], lookAt: [-0.55, 2.0, 5.55] },
   ],
   build: hemingway,
   surfaces,
@@ -631,6 +737,7 @@ export const hemingwayModel = {
     },
   },
   limitations: [
+    'New close-only front entrance frame, three fanlight spokes and paired lower scroll/diamond grilles use the exact native Highsmith photograph under an explicit photographer public-domain dedication after the cleared Qualla search. Physical rod sizes, frame depth and simplified scrolls are estimates. Earlier attribution imagery and unverified HABS originals excluded as current construction controls; full fixed exterior scope retained pending broader public-domain review.',
     'Original medium-fi exterior informed by individually inspected Qualla photographs (2006, 2009, 2019), HABS FL-179 architectural description and measured drawings. Main facade and gallery dimensions follow the measured plans; fine dimensions, parapet height and ornamental profiles remain interpreted.',
     'Surviving museum exterior only; interiors, detached studio, removed studio catwalk, pool, cats, visitors, furniture and garden structures excluded. Historic roof and rear-ell evidence guide portions obscured in local photos.',
     'Coarse mapped envelope is approximately one metre inside some measured gallery edges; it is retained as evidence without stretching the building. Placement is an approximate terrain-relative preview, with footprint replacement disabled.',

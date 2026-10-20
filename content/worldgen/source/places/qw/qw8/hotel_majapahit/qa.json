@@ -1,12 +1,13 @@
 {
   "format": "molen/structure-qa@1",
+  "status": "completed",
   "assetId": "molen.worldgen.structure.hotel_majapahit",
-  "reviewedOn": "2026-10-15",
+  "date": "2026-10-17",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:32bf6005681b83381ca9007abf98081c5ff941d24d2ebf5fbd4d365d5ed87a77",
-  "sourceHash": "sha256:2294d609457f9a47bdb801af508a5de2bdf82e181312bd58f4b7b1043f8b4670",
-  "runtimeHash": "sha256:eb73ba09de9e6ae5a41f992c87ea777fd95bd89392900c5c790ec2b2d954a1fd",
-  "captureReportHash": "sha256:18e60c7f53c02d6bf322545a818f7e884005a57452bf3d048c80cf89bbc68d71",
+  "inputHash": "sha256:322ebbaad7d4ab8cf2195e1d2c9934aac05540479f8b90dfe14864ea3e3912e8",
+  "sourceHash": "sha256:fa80946f2a03c9ecd74fffd0fe115f962a9e59868416f72d7e0815433b191954",
+  "runtimeHash": "sha256:ef0be4d2d06883c9afc2cf61a9b822ba345eb056b83ceee7d965e6119b31ca0d",
+  "captureReportHash": "sha256:ef566099a3d59730d9fb37803899ab7f69346c0091e8e9ae5f0fd5b56a36816b",
   "visualReview": {
     "status": "passed",
     "inspectedFrames": [
@@ -16,13 +17,17 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/courtyard-detail.png",
+      "shots/portico-detail.png",
+      "shots/entrance-detail.png"
     ],
-    "notes": "Inspected all seven current portable frames and all corrected geometry contact sheets. Twin Art Deco beacons, five upper window groups, entrance canopy, three open garden spaces, red hipped roofs and pedimented crosswing are retained. Courtyard room-core setbacks and pediment roof backing were corrected. Portable terrain visibly obscures some ground-floor detail; geographic acceptance remains pending."
+    "notes": "Ten current portable views inspected and retained against the cleared QuallaCC0 entrance original and independent primary architectural text. Entrance canopy/beacons, open curved-beam verandas, garden compound and classical pediment/balcony agree at approximate medium-fi scope. No private photo remains active.",
+    "captureReportHash": "sha256:ef566099a3d59730d9fb37803899ab7f69346c0091e8e9ae5f0fd5b56a36816b"
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:1981a6039b3828593af4aae147f54a6eaeb768cfbf97aa4b618b4e4089692b52",
+    "captureReportHash": "sha256:1e2b0cd23f96d41ebe609e281d398b7d7808e74f034330c93eafd2782e278798",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +35,34 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/courtyard-detail.png",
+      "shots/shared/portico-detail.png",
+      "shots/shared/entrance-detail.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material frames and placement overlay, plus the full close-up courtyard view before setback correction. Stucco, roof tile, membrane and painted metal are shared metric surfaces; glass remains local. Flat ground is a material fixture, not an accepted terrain solution."
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.membrane": {
+        "path": "materials/membrane.matgraph.json",
+        "hash": "sha256:1f5c0060cfb4a9e495e92459d29d48a3952a8555b5ec924a358e33cb25334ac5"
+      },
+      "matgraph:molen.worldgen.material.tile_flat": {
+        "path": "materials/tile_flat.matgraph.json",
+        "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      }
+    },
+    "notes": "Ten current shared-material views inspected and retained, including north-up native mapped compound. Geometry, LODs, material graphs, placement and image bytes unchanged. Cream plaster, pale concrete/stone, painted metal and red tile palette remain medium-fi approximations; flat fixture is separate from independent ground."
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:08922f9bb02e880398b7c8c466e9a566512015ad5e8727eee26ddd36e89727c2",
+    "captureReportHash": "sha256:184e46923371e7ac502542d72b3f79ffd7e3b1459b0f244606982e341b0a037c",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,114 +79,259 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/courtyard-detail.png",
+      "medium-fi/portico-detail.png",
+      "medium-fi/entrance-detail.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline retains three garden voids and entrance beacons; district simplifies arcade openings, while street and closeup restore open gallery geometry. All four hard triangle ceilings pass. Synthetic neighboring buildings are style fixtures; no physical-device performance measurement claimed."
-  },
-  "geographicReview": {
-    "status": "needs-review",
-    "placementHash": "sha256:98059d13fbc335eb535cf6fafd2fff75b2339a35f3c61654f27944f8bceeea10",
-    "mapGeometryHash": "sha256:aba93126e592e4a60330bccfc85b2ae9967acdb51d650364557b2b147727f888",
-    "terrain": {
-      "path": "terrain-grid.json",
-      "hash": "sha256:af216091a46295facfe0b7a9a930b65f94e3d12d7e0607ca841731070581dc2e",
-      "descriptorHash": "sha256:82b3805db08e9ea94d786ecf8d0a8f947c877bb19424c340ec0885e115ce72ed",
-      "heightfieldHash": "sha256:1b8f62595abbc84425f0564bdfb8ce7f1aa714ecdce4bf242cd99610d1f00d1c",
-      "modelDatumElevationMeters": 7.9889,
-      "sourcePixelGroundSpacing": 4.739016737325117,
-      "footprintRelativeRangeMeters": [
-        -4.0250561054,
-        4.9231818895999995
-      ],
-      "maxPngEncodingErrorMeters": 0.00011482896804881904
-    },
-    "notes": "Mapped horizontal placement and historic scope cut were reviewed: anchor [112.7401,-7.25975], heading -0.7380960723288366, +X southeast across wings and +Z southwest toward Jalan Tunjungan. Coarse unmodified Terrarium data varies by several metres over the compound and visibly obscures lower arcades. Geographic review is NOT accepted. Official BIG DEMNAS service was researched but direct acquisition timed out; resolve with suitable independent ground data or an explicitly reviewed host terrain policy before completing this model. No terrain was flattened to make the model pass."
+    "notes": "Twenty-two current version2 frames inspected and retained, including entrance/courtyard/portico, context lighting and all four actual runtime levels. Defining compound, roof hierarchy and entrance survive at skyline; arcades, balustrades, roof joins and window detail resolve at closer levels. Synthetic neighbors are style fixtures, not Surabaya."
   },
   "fidelityReview": {
     "target": "medium-fi",
-    "status": "needs-review",
-    "scope": "Historic Hotel Majapahit entrance, principal courtyard wings and classical crosswing; later eastern pool/service wing and interiors excluded.",
-    "notes": "Four individually inspected local originals and the official Accor elevated view control recognizable exterior forms. Roof joins, gallery depths, facade dimensions and hidden elevations are approximate. Later eastern pool/service wing is excluded. Flat-material fixture supports architectural review, but site-contact fidelity remains unresolved."
+    "status": "passed",
+    "scope": "Historic hotel scope with central spine and garden openings; eastern pool/service extension excluded.",
+    "notes": "Full fixed historic-hotel exterior accepted at the agreed approximate medium-fi scope, including Art Deco entrance, courtyard wings and classical crosswing; later eastern pool/service extension remains excluded. Started with the exact already-cleared Qualla2022FishynilaCC0 sidewalk original, individually inspected for entrance canopy, white soffit, supports, glazing and part of a beacon. Independent primary architectural writing fills the partial-photo coverage: Dyah Kusuma Wardhani’s2017site account describes Art Deco entrance, garden-facing colonnaded passages and a two-storey central suite between the wings; Maureen Nuradi’s2019architectural observations identify long shaded verandas and curved beams between columns on both garden wings; Richard/Roosandriantini’s2023field study records curved and pedimented gables, diminishing square entrance tower, white balustrades and roof ornaments. The municipal heritage record describes the raised central restaurant’s curved west/front portion, and the current operator confirms the courtyard-facing wrap-around balcony. These agree with the retained model’s defining features and native mapped compound/open gardens. Detailed roof pitches/joins/colour, precise opening spacing, balcony curvature, ornamental profiles, hidden elevations and minor current fixtures remain medium-fi estimates. No whole-building photographic survey claimed or required. Earlier private/attribution images are excluded. All42current model views were inspected and retained with unchanged geometry, source/runtime/four LODs, native map/ground, placement, cameras and materials. No reference pixels embedded. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:94b730a6baffd586a95b60a34e869f14a9d3616c62aa59d610511c6d76c4795a",
+    "recipeHash": "sha256:ff7a309f345cbbfa3cfefdfffe1fc2975e464c9f499b7696d4c5bb8a3fb0e2e6",
     "levels": [
       {
         "name": "skyline",
-        "file": "model.skyline.glb",
-        "hash": "sha256:4f673a8a4098d95bf548e7e5d66120dd657837d491b32348ac47b48820c866b6",
-        "bytes": 76136,
-        "gzipBytes": 12902,
-        "triangles": 967,
-        "cpuBytes": 74744,
-        "gpuBytes": 74744,
-        "errorMeters": 1.2,
-        "drawCalls": 1
+        "triangles": 927,
+        "drawCalls": 1,
+        "hash": "sha256:16509de630ebc3b7fae4b23b97f70026931dfb31334af1b43ad94277f0d9657f",
+        "controls": 1960,
+        "failures": []
       },
       {
         "name": "district",
-        "file": "model.district.glb",
-        "hash": "sha256:a77c4c63b095d235e760296594149080706526478e42ac988b4f4180cb0a85a0",
-        "bytes": 294552,
-        "gzipBytes": 59983,
-        "triangles": 3987,
-        "cpuBytes": 288488,
-        "gpuBytes": 288488,
-        "errorMeters": 0.5,
-        "drawCalls": 5
+        "triangles": 3947,
+        "drawCalls": 5,
+        "hash": "sha256:d9890ea579627b7e2a089f1b05d1376c4e407e2adead447094709cc689b1eb6f",
+        "controls": 3363,
+        "failures": []
       },
       {
         "name": "street",
-        "file": "model.street.glb",
-        "hash": "sha256:7bab4b3b66e48ba2c86b54f6de23efcc4ea862f7dc955ec2582b61a8dffaf7c4",
-        "bytes": 1122128,
-        "gzipBytes": 220203,
-        "triangles": 15457,
-        "cpuBytes": 1116044,
-        "gpuBytes": 1116044,
-        "errorMeters": 0.2,
-        "drawCalls": 5
+        "triangles": 15477,
+        "drawCalls": 5,
+        "hash": "sha256:c13fc0377b27cb80bbed72cd35a90655a3d20878ee85970fd459d775f0e46980",
+        "controls": 3363,
+        "failures": []
       },
       {
         "name": "closeup",
-        "file": "model.closeup.glb",
-        "hash": "sha256:8daed2f862dbd2ad729a8a8f40512acc69c2d3b5e2acc1a23118db075a083d4a",
-        "bytes": 6008352,
-        "gzipBytes": 903402,
-        "triangles": 50045,
-        "cpuBytes": 6005400,
-        "gpuBytes": 6005400,
-        "errorMeters": 0,
-        "drawCalls": 5
+        "triangles": 51425,
+        "drawCalls": 5,
+        "hash": "sha256:264333395f52893364525b8cb063387a0cdf8feb5169f54b6ca2208d59272a83",
+        "controls": 3363,
+        "failures": []
       }
     ],
-    "notes": "All four current detail levels were inspected and pass their hard triangle/byte budgets. Exact current levels are retained here. Error values are authoring budgets, not measured deviations."
+    "notes": "927/3947/15477/51425triangles;draws1/5/5/5. Raw and imported Float32 attributes,normals,winding,UVs and strict budgets pass.1960/3363/3363/3363controls include11993actual low-wall contact samples,three garden air probes,physical street/closeup arcade air,upward roof faces,and9portico roof/ceiling/backwall probes per level. Sampled coverage,not unique surveyed points or measured global LOD error."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
-    "sourceRegeneration": "exact",
-    "sourceRuntimeVerified": true,
-    "sourceTriangles": 50045,
-    "sourceMaterials": 5,
-    "runtimeLodsVerified": 4,
-    "embeddedImages": 0,
-    "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "script": "verify-geometry.mjs",
+    "reportHash": "sha256:5446286a9cbf01cbd3ae1c24698b1801bd9b7419fb444ad8185c58a29f9430ca",
+    "failures": 0,
+    "controlsByLevel": [
+      1960,
+      3363,
+      3363,
+      3363
+    ],
+    "allFourLevelsChecked": true,
+    "terrainContact": {
+      "probes": 11993,
+      "relativeGroundRange": [
+        -0.37125391377964334,
+        0.22760212184976414
+      ],
+      "source": "Original DeltaDTM v1.1.1 one arcsecond pixels; existing320m source review",
+      "sourceGridHash": "sha256:19cd471f9a43b27f418f3b4ad58b55c9426c2fe462bbcf1363d47908b0060931",
+      "nativeFrameDryReferenceAndSourceGroundUnchanged": true,
+      "architectureRepair": "Photographic portico ceiling/backwall, roof notch and curved balusters; footing unchanged."
+    },
+    "scope": "Historic hotel entrance, courtyard wings and classical crosswing; later pool/service extension excluded. Sampled actual low wall contacts and three gardens;not surveyed floors or a measured global LOD error.",
+    "integration": {
+      "repeatTicks": 30,
+      "stateHash": "sha256:364815c4bcf2027b2bbd1539bbf94a7e7726ca95953e5975c77f61c79925af72"
+    },
+    "notes": " Current2026-10-19targeted check retains exact source/runtime/four LOD and native ground identities, with registered source/scene/terrain schema checks and repeat30tick state."
   },
-  "limitations": [
-    "Original medium-fi exterior based on individually inspected Qualla entrance, courtyard and classical crosswing photographs; interiors excluded.",
-    "Mapped compound and official aerial view control layout; heights, gallery depths, window spacing, roof joins and hidden elevations remain photographic estimates.",
-    "Later eastern pool/service wing excluded by an explicit scope cut. Simplified original relief; no photo textures or exact crests/lettering copied.",
-    "Independent coarse Terrarium ground remains unmodified; local foundations and host terrain compatibility are approximate."
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:3df59adcc4981c5e6c58e8f0d5bc4b2234cd494cefbff60763e055e7b517be1a",
+    "mapGeometryHash": "sha256:aba93126e592e4a60330bccfc85b2ae9967acdb51d650364557b2b147727f888",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:19cd471f9a43b27f418f3b4ad58b55c9426c2fe462bbcf1363d47908b0060931",
+      "descriptorHash": "sha256:33d5fa3c6f599a3f536838e03d94635e8caec065b5463e386822716b48b737ac",
+      "heightfieldHash": "sha256:0fcdbc69a78e68d6e01c2240fd17372cb800f85fe4d32b6617254c8fb3affd30",
+      "modelDatumElevationMeters": 3.0098565144787823,
+      "sourcePixelGroundSpacing": {
+        "eastWestMeters": 30.674332993621537,
+        "northSouthMeters": 30.92222222222222
+      },
+      "sourceResolutionArcSeconds": 1,
+      "reviewStepMeters": 5,
+      "reviewExtentMeters": 320,
+      "originalRangeFilesVerified": 3,
+      "fullTiffOrArchiveChecksumVerified": false,
+      "independentlyDecodedOriginalPixels": 262144,
+      "bitwisePredictorAgreement": true,
+      "reviewValuesVerified": 4225,
+      "maxPngEncodingErrorMeters": 0.000030514402487469283,
+      "sourceHeightsUnchanged": true,
+      "frozenBeforeGeometry": false,
+      "acquisitionPhase": "post-initial-geometry-independent-replacement;field-frozen-before-photo-directed-portico-repair",
+      "footprintRelativeRangeMeters": [
+        -0.37125391377964334,
+        0.22760212184976414
+      ],
+      "terrainProbes": 11993,
+      "acceptedForPlacement": true
+    },
+    "notes": "Independent original DeltaDTM v1.1.1 CC-BY4.0 one arcsecond source replaces rejected urban Terrarium after initial geometry. Rejected complete field/two original tiles and pre-replacement identities retained. Original ZIP64directory,TIFFprefix and compressed block retained with HTTP206range responses. Two independent predictors agree on262144pixels;all4225saved review values reproduce offline with no NODATA filling. Fixed dry[-7,80]reference gives3.0098565mEGM2008datum.11993sampled physical low-wall contacts span-.371254..+.227603m and imported wall rays pass all4levels. Photo-directed portico upper roof/soffit/backwall/baluster repair occurs after ground comparison;field/frame/reference/footing/lower architecture unchanged and pre-repair field hashes verified. Original320m review extent retained.5m grid spacing interpolates~30m source,not surveyed floors. No flattening,cutout or footprint replacement. Bounded source-relative preview;another host field needs its own review."
+  },
+  "validation": {
+    "schemas": [
+      "source.json",
+      "scene.json",
+      "terrain-review.terrain.json",
+      "structure-placements"
+    ],
+    "assetIntegrity": true,
+    "sourceHash": "sha256:fa80946f2a03c9ecd74fffd0fe115f962a9e59868416f72d7e0815433b191954",
+    "runtimeHash": "sha256:ef0be4d2d06883c9afc2cf61a9b822ba345eb056b83ceee7d965e6119b31ca0d",
+    "runtimePackFiles": 6,
+    "repeatTicks": 30,
+    "stateHash": "sha256:364815c4bcf2027b2bbd1539bbf94a7e7726ca95953e5975c77f61c79925af72",
+    "activePlacement": "hotel-majapahit",
+    "defaultPreviewQuery": true,
+    "geographicAcceptance": "bounded-original-deltadtm-one-arcsecond-land-source",
+    "storyAnnotation": true,
+    "status": "passed",
+    "exactSourceRegeneration": true,
+    "sourceAndRuntimeHashesVerified": true,
+    "lodBudgetCheck": true,
+    "targetedAuthoringLint": true,
+    "khronosValidated": false,
+    "independentOriginalGroundVerification": {
+      "status": "passed",
+      "originalRangeFilesVerified": 3,
+      "fullMemberCrcVerified": false,
+      "independentlyDecodedOriginalPixels": 262144,
+      "bitwisePredictorAgreement": true,
+      "reviewValuesVerified": 4225,
+      "maximumRoundingErrorMeters": 4.999120148951874e-7,
+      "maximumPngEncodingErrorMeters": 0.000030514402487469283,
+      "datumMetersEGM2008": 3.0098565144787823,
+      "sourceHeightsUnchanged": true,
+      "sourceResolutionArcSeconds": 1,
+      "nativeFrameAndDryReferenceUnchanged": true
+    },
+    "inspectedCurrentFrames": 42,
+    "completed": true
+  },
+  "referenceInspectionHashes": [
+    {
+      "path": "_m/q/w/8/n/hotel-majapahit-wp/hero.jpg",
+      "hash": "sha256:77a1c6666d95f9df5d209a23ee9ac81602eaa9e999ad0399dd8f162474e8a480"
+    },
+    {
+      "path": "_m/q/w/8/n/hotel-majapahit-wp/2016-majapahit-hotel-2.jpg",
+      "hash": "sha256:cc045d92e95912f71ff9ce735deb1eee90f9b11abc23b62b8e4224f024731b4e"
+    },
+    {
+      "path": "_m/q/w/8/n/hotel-majapahit-wp/hotel-majapahit-2025-01.jpg",
+      "hash": "sha256:5ebc6143816df805bde48307a7e7b06a543902de05b355d060684c260cb56281"
+    },
+    {
+      "path": "_m/q/w/8/n/hotel-majapahit-wp/im-majapahit-hotel-5.jpg",
+      "hash": "sha256:a8eddec199668086ecc1f50fce9c5a4bfd68553b1aae142c3e8cc4c1a38dc48d"
+    }
   ],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:bbe51706260704b431d5a567f9f344ce5b3c79b31b4584631574eb755b2684eb",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+  "limitations": [
+    "Full historic exterior reviewed with the exact published Qualla FishynilaCC0 entrance original and independent primary architectural field observations, municipal heritage text and current operator balcony description. Earlier private/attribution imagery is excluded; interiors excluded.",
+    "Mapped compound/open gardens retained. Primary architectural text controls Art Deco front, colonnaded curved-beam verandas, two-storey central crosswing, pediment, white balustrades and courtyard balcony. Heights, roof pitches/colour/joins, window spacing, gallery depths, precise ornament and hidden elevations remain medium-fi estimates.",
+    "Later eastern pool/service wing excluded by an explicit scope cut. Simplified original relief; no photo textures or exact crests/lettering copied.",
+    "Independent original DeltaDTM v1.1.1 coastal DTM replaces rejected Terrarium after existing geometry. Source one arcsecond(approximately30m);5m review spacing is interpolation, not source resolution or surveyed floor accuracy. Frame,dry reference,footing and lower architecture unchanged;later photo-directed portico roof/ceiling/backwall and curved-baluster repair uses fixed architectural controls. No NODATA filling, flattening, cutout or footprint replacement. Another host field requires contact review."
+  ],
+  "reviewedOn": "2026-10-19",
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:322ebbaad7d4ab8cf2195e1d2c9934aac05540479f8b90dfe14864ea3e3912e8",
+    "referenceInputHash": "sha256:eff66c35d13748a1b3ac9bc366007f89c66adc5a9bcb5eae2f667532ed592d28",
+    "acceptedReferencePaths": [
+      "_m/q/w/8/n/hotel-majapahit-wp/hotel-majapahit-trotoar.jpg"
+    ],
+    "auxiliaryReferencePaths": [],
+    "imageryEvidenceHash": "sha256:d673c0ac18620593dab1c1baf1116fa5571c2eb7bc028e938eeafd64fb5cd6cc",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/q/w/8/n/hotel-majapahit-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:HotelMajapahit.jpg",
+        "reason": "Earlier attribution-only photograph excluded from the active all-imagery review."
+      },
+      {
+        "path": "_m/q/w/8/n/hotel-majapahit-wp/2016-majapahit-hotel-2.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:2016_Majapahit_hotel_2.jpg",
+        "reason": "Earlier attribution-only photograph excluded from the active all-imagery review."
+      },
+      {
+        "path": "_m/q/w/8/n/hotel-majapahit-wp/hotel-majapahit-2025-01.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Hotel_Majapahit,_2025_(01).jpg",
+        "reason": "Earlier attribution-only photograph excluded from the active all-imagery review."
+      },
+      {
+        "path": "_m/q/w/8/n/hotel-majapahit-wp/im-majapahit-hotel-5.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Surabaya_Java_532.jpg",
+        "reason": "Earlier attribution-only photograph excluded from the active all-imagery review."
+      },
+      {
+        "url": "https://www.ahstatic.com/photos/b066_ho_07_p_2048x1536.jpg",
+        "reason": "Earlier private/operator/aerial image excluded; no newly adopted visual control."
+      },
+      {
+        "url": "https://all.accor.com/hotel/B066/index.en.shtml",
+        "reason": "Earlier private/operator/aerial image excluded; no newly adopted visual control."
+      },
+      {
+        "url": "https://www.google.com/maps/@-7.259726,112.740077,19z/data=!3m1!1e3",
+        "reason": "Earlier private/operator/aerial image excluded; no newly adopted visual control."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Full fixed historic-hotel exterior accepted at the agreed approximate medium-fi scope, including Art Deco entrance, courtyard wings and classical crosswing; later eastern pool/service extension remains excluded. Started with the exact already-cleared Qualla2022FishynilaCC0 sidewalk original, individually inspected for entrance canopy, white soffit, supports, glazing and part of a beacon. Independent primary architectural writing fills the partial-photo coverage: Dyah Kusuma Wardhani’s2017site account describes Art Deco entrance, garden-facing colonnaded passages and a two-storey central suite between the wings; Maureen Nuradi’s2019architectural observations identify long shaded verandas and curved beams between columns on both garden wings; Richard/Roosandriantini’s2023field study records curved and pedimented gables, diminishing square entrance tower, white balustrades and roof ornaments. The municipal heritage record describes the raised central restaurant’s curved west/front portion, and the current operator confirms the courtyard-facing wrap-around balcony. These agree with the retained model’s defining features and native mapped compound/open gardens. Detailed roof pitches/joins/colour, precise opening spacing, balcony curvature, ornamental profiles, hidden elevations and minor current fixtures remain medium-fi estimates. No whole-building photographic survey claimed or required. Earlier private/attribution images are excluded. All42current model views were inspected and retained with unchanged geometry, source/runtime/four LODs, native map/ground, placement, cameras and materials. No reference pixels embedded. Exact published Qualla paths, metadata, public-domain/CC0 attribution and bytes agree. No supplemental imagery was needed."
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:322ebbaad7d4ab8cf2195e1d2c9934aac05540479f8b90dfe14864ea3e3912e8",
+    "sourceHash": "sha256:fa80946f2a03c9ecd74fffd0fe115f962a9e59868416f72d7e0815433b191954",
+    "runtimeHash": "sha256:ef0be4d2d06883c9afc2cf61a9b822ba345eb056b83ceee7d965e6119b31ca0d",
+    "notes": "Full fixed historic-hotel exterior accepted at the agreed approximate medium-fi scope, including Art Deco entrance, courtyard wings and classical crosswing; later eastern pool/service extension remains excluded. Started with the exact already-cleared Qualla2022FishynilaCC0 sidewalk original, individually inspected for entrance canopy, white soffit, supports, glazing and part of a beacon. Independent primary architectural writing fills the partial-photo coverage: Dyah Kusuma Wardhani’s2017site account describes Art Deco entrance, garden-facing colonnaded passages and a two-storey central suite between the wings; Maureen Nuradi’s2019architectural observations identify long shaded verandas and curved beams between columns on both garden wings; Richard/Roosandriantini’s2023field study records curved and pedimented gables, diminishing square entrance tower, white balustrades and roof ornaments. The municipal heritage record describes the raised central restaurant’s curved west/front portion, and the current operator confirms the courtyard-facing wrap-around balcony. These agree with the retained model’s defining features and native mapped compound/open gardens. Detailed roof pitches/joins/colour, precise opening spacing, balcony curvature, ornamental profiles, hidden elevations and minor current fixtures remain medium-fi estimates. No whole-building photographic survey claimed or required. Earlier private/attribution images are excluded. All42current model views were inspected and retained with unchanged geometry, source/runtime/four LODs, native map/ground, placement, cameras and materials. No reference pixels embedded.",
+    "renderReuse": {
+      "reason": "Only reference selection, architectural evidence and non-rendered limitations changed. Graphics specification (apart from reference URLs/fingerprint and limitations), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
+      "originalInputHash": "sha256:f92e8c3f40101c6ab1d4f3602b0eadb87da401cda0b430b2daca81deae96554f",
+      "reviewInputHash": "sha256:322ebbaad7d4ab8cf2195e1d2c9934aac05540479f8b90dfe14864ea3e3912e8",
+      "sourceHash": "sha256:fa80946f2a03c9ecd74fffd0fe115f962a9e59868416f72d7e0815433b191954",
+      "runtimeHash": "sha256:ef0be4d2d06883c9afc2cf61a9b822ba345eb056b83ceee7d965e6119b31ca0d",
+      "originalCaptureReports": {
+        "capture-report.json": "sha256:12859065559af1f2607714874aef0b2225a90b4a3db9581f2dde24bb6ebb194e",
+        "shared-capture-report.json": "sha256:18faba887a61abe223bed2a40311959d477c0b592ad1e02c609118e067d03e62",
+        "medium-fi-report.json": "sha256:dccb9ea2a1ea666d387d5f29cdb7ba8fb0f9eb13c2ad0d759beeff945ff43696"
+      }
+    },
+    "previousImageryReview": null
   }
 }

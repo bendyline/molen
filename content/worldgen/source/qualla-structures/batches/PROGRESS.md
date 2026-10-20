@@ -1,6 +1,8 @@
 # Qualla compat — local 100 — completion progress
 
-**41 / 100 completed. 5 / 5 pilots completed.** 42 models started; 58 not started.
+**100 / 100 completed. 5 / 5 pilots completed.** 100 models started; 0 not started.
+
+100 models retain their technical validation; 100 reference sets currently meet the public-domain Qualla imagery policy. Source replacements need renewed visual review before completion.
 
 Goal: finish the five pilots, then all remaining local models, using Qualla photographs and synchronizing story annotations after each verified completion. Every next-1,000 candidate and collection member remains assigned to the other device.
 
@@ -35,7 +37,7 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 25 | [Stonewall Inn](https://qualla.com/stonewall-inn/) | Complete | All required evidence current |
 | 26 | [The Ritz Hotel, London](https://qualla.com/the-ritz-hotel-london/) | Complete | All required evidence current |
 | 27 | [Hotel des Indes (The Hague)](https://qualla.com/hotel-des-indes-the-hague/) | Complete | All required evidence current |
-| 28 | [Hotel Majapahit](https://qualla.com/hotel-majapahit/) | In review | medium-fi-fidelity-review-missing-or-unbound; geographic-review-missing-or-unbound |
+| 28 | [Hotel Majapahit](https://qualla.com/hotel-majapahit/) | Complete | All required evidence current |
 | 29 | [Jamaica Inn](https://qualla.com/jamaica-inn/) | Complete | All required evidence current |
 | 30 | [Ponce de Leon Hotel](https://qualla.com/ponce-de-leon-hotel/) | Complete | All required evidence current |
 | 31 | [The Fairmont Banff Springs Hotel](https://qualla.com/banff-springs-hotel-ghost/) | Complete | All required evidence current |
@@ -50,63 +52,63 @@ Completion is recomputed from current evidence; editing geometry, source referen
 | 40 | [Beethoven House](https://qualla.com/beethoven-house/) | Complete | All required evidence current |
 | 41 | [Bach House (Eisenach)](https://qualla.com/bach-house-eisenach/) | Complete | All required evidence current |
 | 42 | [Chatsworth House](https://qualla.com/chatsworth-house/) | Complete | All required evidence current |
-| 43 | [Stowe House](https://qualla.com/stowe-house/) | Not started | source-model-missing |
-| 44 | [Cadmans Cottage](https://qualla.com/cadmans-cottage/) | Not started | source-model-missing |
-| 45 | [Blue House (Hong Kong)](https://qualla.com/blue-house-hong-kong/) | Not started | source-model-missing |
-| 46 | [Flagstaff House, Hong Kong](https://qualla.com/flagstaff-house-hong-kong/) | Not started | source-model-missing |
-| 47 | [Old Parliament House, Canberra](https://qualla.com/old-parliament-house-canberra/) | Not started | source-model-missing |
-| 48 | [Parliament House, Canberra](https://qualla.com/parliament-house-canberra/) | Not started | source-model-missing |
-| 49 | [Taipei Guest House](https://qualla.com/taipei-guest-house/) | Not started | source-model-missing |
-| 50 | [Taipei Story House](https://qualla.com/taipei-story-house/) | Not started | source-model-missing |
-| 51 | [Gateway of India](https://qualla.com/gateway-of-india/) | Not started | source-model-missing |
-| 52 | [Hiroshima Peace Memorial](https://qualla.com/hiroshima-peace-memorial/) | Not started | source-model-missing |
-| 53 | [Washington Monument (Baltimore)](https://qualla.com/washington-monument-baltimore/) | Not started | source-model-missing |
-| 54 | [Phoenix Shot Tower](https://qualla.com/phoenix-shot-tower/) | Not started | source-model-missing |
-| 55 | [Nusretiye Clock Tower](https://qualla.com/nusretiye-clock-tower/) | Not started | source-model-missing |
-| 56 | [Kobe Port Tower](https://qualla.com/kobe-port-tower/) | Not started | source-model-missing |
-| 57 | [Kyoto Tower](https://qualla.com/kyoto-tower/) | Not started | source-model-missing |
-| 58 | [White Tower of Thessaloniki](https://qualla.com/white-tower-of-thessaloniki/) | Not started | source-model-missing |
-| 59 | [Tower of the Winds](https://qualla.com/tower-of-the-winds/) | Not started | source-model-missing |
-| 60 | [Grand Central Terminal](https://qualla.com/grand-central-terminal/) | Not started | source-model-missing |
-| 61 | [Hoboken Terminal](https://qualla.com/hoboken-terminal/) | Not started | source-model-missing |
-| 62 | [Clevedon Pier](https://qualla.com/clevedon-pier/) | Not started | source-model-missing |
-| 63 | [Penarth Pier](https://qualla.com/penarth-pier/) | Not started | source-model-missing |
-| 64 | [Saltburn Pier](https://qualla.com/saltburn-pier/) | Not started | source-model-missing |
-| 65 | [Santa Monica Pier](https://qualla.com/santa-monica-pier/) | Not started | source-model-missing |
-| 66 | [Ryman Auditorium](https://qualla.com/ryman-auditorium/) | Not started | source-model-missing |
-| 67 | [Royal Albert Hall](https://qualla.com/royal-albert-hall/) | Not started | source-model-missing |
-| 68 | [Apollo Theater](https://qualla.com/apollo-theater/) | Not started | source-model-missing |
-| 69 | [Castro Theatre](https://qualla.com/castro-theatre/) | Not started | source-model-missing |
-| 70 | [Grauman's Chinese Theatre](https://qualla.com/grauman-s-chinese-theatre/) | Not started | source-model-missing |
-| 71 | [Spreckels Organ Pavilion](https://qualla.com/spreckels-organ-pavilion/) | Not started | source-model-missing |
-| 72 | [Belfry of Ghent](https://qualla.com/belfry-of-ghent/) | Not started | source-model-missing |
-| 73 | [Dom Tower of Utrecht](https://qualla.com/dom-tower-of-utrecht/) | Not started | source-model-missing |
-| 74 | [Tribune Tower](https://qualla.com/tribune-tower/) | Not started | source-model-missing |
-| 75 | [Freedom Tower (Miami)](https://qualla.com/freedom-tower-miami/) | Not started | source-model-missing |
-| 76 | [Buckingham Palace](https://qualla.com/buckingham-palace/) | Not started | source-model-missing |
-| 77 | [Château de Chenonceau](https://qualla.com/chateau-de-chenonceau/) | Not started | source-model-missing |
-| 78 | [Château de Chambord](https://qualla.com/chateau-de-chambord/) | Not started | source-model-missing |
-| 79 | [Dresden Castle](https://qualla.com/dresden-castle/) | Not started | source-model-missing |
-| 80 | [Sintra National Palace](https://qualla.com/sintra-national-palace/) | Not started | source-model-missing |
-| 81 | [Nagoya Castle](https://qualla.com/nagoya-castle/) | Not started | source-model-missing |
-| 82 | [Matsumoto Castle](https://qualla.com/matsumoto-castle/) | Not started | source-model-missing |
-| 83 | [Fort Zeelandia](https://qualla.com/fort-zeelandia-taiwan/) | Not started | source-model-missing |
-| 84 | [Castle Clinton](https://qualla.com/castle-clinton/) | Not started | source-model-missing |
-| 85 | [El Morro](https://qualla.com/old-san-juan-el-morro/) | Not started | source-model-missing |
-| 86 | [Trevi Fountain](https://qualla.com/trevi-fountain/) | Not started | source-model-missing |
-| 87 | [Belém Tower](https://qualla.com/belem-tower/) | Not started | source-model-missing |
-| 88 | [Jerónimos Monastery](https://qualla.com/jeronimos-monastery/) | Not started | source-model-missing |
-| 89 | [Alcatraz Federal Penitentiary](https://qualla.com/alcatraz-federal-penitentiary/) | Not started | source-model-missing |
-| 90 | [Alcatraz Island Lighthouse](https://qualla.com/alcatraz-island-lighthouse/) | Not started | source-model-missing |
-| 91 | [Absecon Lighthouse](https://qualla.com/absecon-lighthouse/) | Not started | source-model-missing |
-| 92 | [Presidential Office Building, Taipei](https://qualla.com/presidential-office-building-taipei/) | Not started | source-model-missing |
-| 93 | [Sun Yat-sen Memorial Hall (Taipei)](https://qualla.com/sun-yat-sen-memorial-hall-taipei/) | Not started | source-model-missing |
-| 94 | [Taipei Confucius Temple](https://qualla.com/taipei-confucius-temple/) | Not started | source-model-missing |
-| 95 | [Hayashi Department Store](https://qualla.com/hayashi-department-store/) | Not started | source-model-missing |
-| 96 | [Bradbury Building](https://qualla.com/bradbury-building/) | Not started | source-model-missing |
-| 97 | [New York Stock Exchange](https://qualla.com/new-york-stock-exchange/) | Not started | source-model-missing |
-| 98 | [Humayun's Tomb](https://qualla.com/humayun-s-tomb/) | Not started | source-model-missing |
-| 99 | [Taj Mahal Palace Hotel](https://qualla.com/taj-mahal-palace-hotel/) | Not started | source-model-missing |
-| 100 | [Notre-Dame Basilica (Montreal)](https://qualla.com/notre-dame-basilica-montreal/) | Not started | source-model-missing |
+| 43 | [Stowe House](https://qualla.com/stowe-house/) | Complete | All required evidence current |
+| 44 | [Cadmans Cottage](https://qualla.com/cadmans-cottage/) | Complete | All required evidence current |
+| 45 | [Blue House (Hong Kong)](https://qualla.com/blue-house-hong-kong/) | Complete | All required evidence current |
+| 46 | [Flagstaff House, Hong Kong](https://qualla.com/flagstaff-house-hong-kong/) | Complete | All required evidence current |
+| 47 | [Old Parliament House, Canberra](https://qualla.com/old-parliament-house-canberra/) | Complete | All required evidence current |
+| 48 | [Parliament House, Canberra](https://qualla.com/parliament-house-canberra/) | Complete | All required evidence current |
+| 49 | [Taipei Guest House](https://qualla.com/taipei-guest-house/) | Complete | All required evidence current |
+| 50 | [Taipei Story House](https://qualla.com/taipei-story-house/) | Complete | All required evidence current |
+| 51 | [Gateway of India](https://qualla.com/gateway-of-india/) | Complete | All required evidence current |
+| 52 | [Hiroshima Peace Memorial](https://qualla.com/hiroshima-peace-memorial/) | Complete | All required evidence current |
+| 53 | [Washington Monument (Baltimore)](https://qualla.com/washington-monument-baltimore/) | Complete | All required evidence current |
+| 54 | [Phoenix Shot Tower](https://qualla.com/phoenix-shot-tower/) | Complete | All required evidence current |
+| 55 | [Nusretiye Clock Tower](https://qualla.com/nusretiye-clock-tower/) | Complete | All required evidence current |
+| 56 | [Kobe Port Tower](https://qualla.com/kobe-port-tower/) | Complete | All required evidence current |
+| 57 | [Kyoto Tower](https://qualla.com/kyoto-tower/) | Complete | All required evidence current |
+| 58 | [White Tower of Thessaloniki](https://qualla.com/white-tower-of-thessaloniki/) | Complete | All required evidence current |
+| 59 | [Tower of the Winds](https://qualla.com/tower-of-the-winds/) | Complete | All required evidence current |
+| 60 | [Grand Central Terminal](https://qualla.com/grand-central-terminal/) | Complete | All required evidence current |
+| 61 | [Hoboken Terminal](https://qualla.com/hoboken-terminal/) | Complete | All required evidence current |
+| 62 | [Clevedon Pier](https://qualla.com/clevedon-pier/) | Complete | All required evidence current |
+| 63 | [Penarth Pier](https://qualla.com/penarth-pier/) | Complete | All required evidence current |
+| 64 | [Saltburn Pier](https://qualla.com/saltburn-pier/) | Complete | All required evidence current |
+| 65 | [Santa Monica Pier](https://qualla.com/santa-monica-pier/) | Complete | All required evidence current |
+| 66 | [Ryman Auditorium](https://qualla.com/ryman-auditorium/) | Complete | All required evidence current |
+| 67 | [Royal Albert Hall](https://qualla.com/royal-albert-hall/) | Complete | All required evidence current |
+| 68 | [Apollo Theater](https://qualla.com/apollo-theater/) | Complete | All required evidence current |
+| 69 | [Castro Theatre](https://qualla.com/castro-theatre/) | Complete | All required evidence current |
+| 70 | [Grauman's Chinese Theatre](https://qualla.com/grauman-s-chinese-theatre/) | Complete | All required evidence current |
+| 71 | [Spreckels Organ Pavilion](https://qualla.com/spreckels-organ-pavilion/) | Complete | All required evidence current |
+| 72 | [Belfry of Ghent](https://qualla.com/belfry-of-ghent/) | Complete | All required evidence current |
+| 73 | [Dom Tower of Utrecht](https://qualla.com/dom-tower-of-utrecht/) | Complete | All required evidence current |
+| 74 | [Tribune Tower](https://qualla.com/tribune-tower/) | Complete | All required evidence current |
+| 75 | [Freedom Tower (Miami)](https://qualla.com/freedom-tower-miami/) | Complete | All required evidence current |
+| 76 | [Buckingham Palace](https://qualla.com/buckingham-palace/) | Complete | All required evidence current |
+| 77 | [Château de Chenonceau](https://qualla.com/chateau-de-chenonceau/) | Complete | All required evidence current |
+| 78 | [Château de Chambord](https://qualla.com/chateau-de-chambord/) | Complete | All required evidence current |
+| 79 | [Dresden Castle](https://qualla.com/dresden-castle/) | Complete | All required evidence current |
+| 80 | [Sintra National Palace](https://qualla.com/sintra-national-palace/) | Complete | All required evidence current |
+| 81 | [Nagoya Castle](https://qualla.com/nagoya-castle/) | Complete | All required evidence current |
+| 82 | [Matsumoto Castle](https://qualla.com/matsumoto-castle/) | Complete | All required evidence current |
+| 83 | [Fort Zeelandia](https://qualla.com/fort-zeelandia-taiwan/) | Complete | All required evidence current |
+| 84 | [Castle Clinton](https://qualla.com/castle-clinton/) | Complete | All required evidence current |
+| 85 | [El Morro](https://qualla.com/castillo-san-felipe-del-morro/) | Complete | All required evidence current |
+| 86 | [Trevi Fountain](https://qualla.com/trevi-fountain/) | Complete | All required evidence current |
+| 87 | [Belém Tower](https://qualla.com/belem-tower/) | Complete | All required evidence current |
+| 88 | [Jerónimos Monastery](https://qualla.com/jeronimos-monastery/) | Complete | All required evidence current |
+| 89 | [Alcatraz Federal Penitentiary](https://qualla.com/alcatraz-federal-penitentiary/) | Complete | All required evidence current |
+| 90 | [Alcatraz Island Lighthouse](https://qualla.com/alcatraz-island-lighthouse/) | Complete | All required evidence current |
+| 91 | [Absecon Lighthouse](https://qualla.com/absecon-lighthouse/) | Complete | All required evidence current |
+| 92 | [Presidential Office Building, Taipei](https://qualla.com/presidential-office-building-taipei/) | Complete | All required evidence current |
+| 93 | [Sun Yat-sen Memorial Hall (Taipei)](https://qualla.com/sun-yat-sen-memorial-hall-taipei/) | Complete | All required evidence current |
+| 94 | [Taipei Confucius Temple](https://qualla.com/taipei-confucius-temple/) | Complete | All required evidence current |
+| 95 | [Hayashi Department Store](https://qualla.com/hayashi-department-store/) | Complete | All required evidence current |
+| 96 | [Bradbury Building](https://qualla.com/bradbury-building/) | Complete | All required evidence current |
+| 97 | [New York Stock Exchange](https://qualla.com/new-york-stock-exchange/) | Complete | All required evidence current |
+| 98 | [Humayun's Tomb](https://qualla.com/humayun-s-tomb/) | Complete | All required evidence current |
+| 99 | [Taj Mahal Palace Hotel](https://qualla.com/taj-mahal-palace-hotel/) | Complete | All required evidence current |
+| 100 | [Notre-Dame Basilica (Montreal)](https://qualla.com/notre-dame-basilica-montreal/) | Complete | All required evidence current |
 
-Refresh with `node content/worldgen/source/qualla-structures/progress.mjs`, then run `sync-qualla.mjs --write` to reconcile story annotations.
+Refresh with `node content/worldgen/source/qualla-structures/progress.mjs`, then run `sync-completed.mjs --ids=<reviewed-model> --write` for bounded completed-story updates.

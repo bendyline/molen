@@ -10,7 +10,7 @@ import type { JsonValue } from '@bendyline/molen-schema';
 import {
   createTerrainSemanticObject,
   disposeTerrainSemanticObject,
-  setTerrainGroundCutout,
+  setTerrainGroundCutouts,
   type TerrainLandcoverGenerator,
   type TerrainPyramidTileLayerContext,
   type TerrainSemanticMeshOptions,
@@ -629,16 +629,22 @@ export function createWorldgenSemanticRenderers(
           if (entry.scale !== undefined) mesh.scale.set(...entry.scale);
           const placed = entry.bounds ? clipStructureObject(mesh, context.tileSize) : mesh;
           if (entry.groundCutout) {
+            const outlines = [
+              entry.groundCutout.outline,
+              ...(entry.groundCutout.additionalOutlines ?? []),
+            ];
             if (entry.bounds) {
               mesh.updateMatrix();
-              setTerrainGroundCutout(
+              setTerrainGroundCutouts(
                 placed,
-                entry.groundCutout.outline.map(([px, pz]) => {
-                  const p = new THREE.Vector3(px, 0, pz).applyMatrix4(mesh.matrix);
-                  return [p.x, p.z];
-                }),
+                outlines.map((outline) =>
+                  outline.map(([px, pz]) => {
+                    const p = new THREE.Vector3(px, 0, pz).applyMatrix4(mesh.matrix);
+                    return [p.x, p.z];
+                  }),
+                ),
               );
-            } else setTerrainGroundCutout(placed, entry.groundCutout.outline);
+            } else setTerrainGroundCutouts(placed, outlines);
           }
           placed.traverse((part) => {
             part.castShadow = true;

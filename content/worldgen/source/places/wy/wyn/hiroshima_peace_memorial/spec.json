@@ -1,0 +1,307 @@
+{
+  "planId": "hiroshima_peace_memorial",
+  "id": "hiroshima_peace_memorial",
+  "assetId": "molen.worldgen.structure.hiroshima_peace_memorial",
+  "title": "Hiroshima Peace Memorial",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 132.45352185,
+    "latitude": 34.39546766
+  },
+  "size": [
+    47.352439880371094,
+    25.837361931800842,
+    32.31741523742676
+  ],
+  "actualBounds": {
+    "min": [
+      -23.782360076904297,
+      -0.8500000238418579,
+      -20.887414932250977
+    ],
+    "max": [
+      23.570079803466797,
+      24.987361907958984,
+      11.430000305175781
+    ]
+  },
+  "visualBrief": "Preserved roofless exhibition hall ruin: asymmetrical jagged red-brick/grey plaster walls, actual open window and doorway holes, curved front end bays, projecting stone entrance, tall perforated oval masonry drum, bare skeletal steel dome, open rear courtyard and preservation braces. No reconstruction of original roofs or floors.",
+  "nativeAxes": {
+    "x": "south-southeast along the river-facing facade",
+    "y": "up",
+    "z": "west-southwest toward Motoyasu River"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:20181111_Atomic_Bomb_Dome-5.jpg",
+    "https://commons.wikimedia.org/wiki/File:20190317_Atomic_Bomb_Dome-1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "hiroshima-peace-memorial-wp",
+      "url": "https://qualla.com/hiroshima-peace-memorial/"
+    }
+  ],
+  "referenceInputHash": "d47b2d646d878ec208085377cbb61c877b018d24316401600ad5e28f2d3ebcb2",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-hiroshima-peace-memorial.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-hiroshima-peace-memorial.mjs",
+    "level": "skyline",
+    "export": "hiroshimaPeaceMemorialSkyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "plaster": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.22
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "hiroshimaPeaceMemorialDistrict",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          }
+        }
+      },
+      "street": {
+        "export": "hiroshimaPeaceMemorialStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "plaster": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.22
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.7
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry river-facing path[0,13] gives datum4.4071m in preserved official GSI1A elevation tiles. Unmodified mapped ground spans about-0.525..+0.468m across the ruin. Wall foundations reach-.85m without exposed undersides; doorway and low window thresholds remain visible. Bounded64m land-side review excludes the river bed. Generic-footprint replacement disabled; other host terrain remains host-dependent.",
+    "anchor": [
+      132.45352185,
+      34.39546766
+    ],
+    "heading": -1.36,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        132.45338345778282,
+        34.395443225013864
+      ],
+      "modelHeight": 0,
+      "basis": "Dry river-facing path beyond the surviving entrance, independently sampled from GSI elevation tiles."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185803619021",
+      "buildings/52776559639530",
+      "buildings/35185803619015",
+      "buildings/52776577760215",
+      "buildings/35185803619017",
+      "buildings/35185803619018",
+      "buildings/35185803619024",
+      "buildings/35185803619023",
+      "buildings/35185803619020",
+      "buildings/35185803619016",
+      "buildings/35185803619022",
+      "buildings/35185803619019"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:47c9ca5593757ec3571f0faf6376fb6f5e866b720520a47ed23643b4d9903c83",
+    "notes": "Mapped envelope roughly46m along facade by31m deep, including curved end bays and projecting vestibule. Main unholed footprint and roof-tagged oval are controls only, never solid extrusions. Preserve missing roofs/floors, jagged brick wall tops and open windows. Heights/openings and hidden ruin surfaces remain medium-fi estimates; nominal25m overall scale and official oval11m by8m by4m dome control."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Original medium-fi representation of the preserved ruin, reviewed first against three cleared public-domain Qualla photographs and a verified creator-CC0 riverfront original. Mapped vector parts control the generalized envelope and courtyard. Earlier attribution-licensed imagery, uncleared official drawings and aerial imagery are excluded from current approval. Nominal25m height and roughly11m by8m by4m dome dimensions guide scale from official text. Wall heights, jagged outlines, masonry patches, hidden windows and exact steel/bracing layout remain estimates, not a measured conservation survey.",
+    "No original complete roofs, floors or main staircase reconstructed. Small surviving south-court spiral stair and modern preservation rods are simplified. River walls, surrounding city, park trees/fences/signs and temporary protective coverings excluded.",
+    "Photographic pixels not redistributed. GSI independent elevation sources retained unchanged for the bounded64m land-side ground review. Current foundations/contact and signed orientation reviewed as a preview; river bed and other host terrain compatibility remain unverified. Footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        11,
+        69
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -18,
+        17,
+        34
+      ],
+      "lookAt": [
+        -1,
+        15,
+        4
+      ]
+    },
+    {
+      "name": "south-detail",
+      "position": [
+        42,
+        16,
+        18
+      ],
+      "lookAt": [
+        2,
+        11,
+        -1
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        46,
+        28,
+        -54
+      ],
+      "lookAt": [
+        0,
+        9,
+        -4
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 19410,
+    "vertices": 58230,
+    "materials": 4,
+    "bytes": 2332112,
+    "sha256": "sha256:ee7f5e3366b14a08bff474e61be555de3af8605dc0c8a332dcce0a1568d777e2"
+  }
+}

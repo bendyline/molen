@@ -57,6 +57,19 @@ const placement = z
           .min(3)
           .max(512)
           .refine(validGroundOutline, 'ground cutout must be a simple polygon with positive area'),
+        additionalOutlines: z
+          .array(
+            z
+              .array(z.tuple([finite, finite]))
+              .min(3)
+              .max(512)
+              .refine(
+                validGroundOutline,
+                'ground cutout must be a simple polygon with positive area',
+              ),
+          )
+          .max(63)
+          .optional(),
         basis: z.string().trim().min(1),
       })
       .optional(),

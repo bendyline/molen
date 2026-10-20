@@ -1,0 +1,607 @@
+{
+  "planId": "parliament_house_canberra",
+  "id": "parliament_house_canberra",
+  "assetId": "molen.worldgen.structure.parliament_house_canberra",
+  "title": "Parliament House (Canberra)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 149.12444444444444,
+    "latitude": -35.308055555555555
+  },
+  "size": [
+    336.2329406738281,
+    119,
+    452.3535461425781
+  ],
+  "actualBounds": {
+    "min": [
+      -175.37301635742188,
+      -18,
+      -241.83486938476562
+    ],
+    "max": [
+      160.85992431640625,
+      101,
+      210.5186767578125
+    ]
+  },
+  "visualBrief": "Paired office/chamber wings with courts, curved retaining walls and grass-covered ramp roofs, round Senate and angular House chamber skylight roofs, open white marble north entrance, central glass skylights and four curved steel flag-mast legs with tall uprights and Australian flag. Published native forecourt plan retains three asymmetric water patches, connecting bridges, planted island beds and a plain mosaic square.",
+  "nativeAxes": {
+    "x": "northwest across the legislative axis",
+    "y": "up",
+    "z": "northeast along the land axis toward the public forecourt"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Parliament_house1.jpg",
+    "https://commons.wikimedia.org/wiki/File:Parliament_house3.jpg",
+    "https://commons.wikimedia.org/wiki/File:MGT_Parliament_House_001.jpg"
+  ],
+  "stories": [
+    {
+      "id": "parliament-house-canberra-wp",
+      "url": "https://qualla.com/parliament-house-canberra/"
+    }
+  ],
+  "referenceInputHash": "e4c03e6452258822418b4c6e02801a3c4b147f587374c02574396fd3d76cbd80",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-parliament-house-canberra.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-parliament-house-canberra.mjs",
+    "level": "skyline",
+    "export": "parliamentSkyline",
+    "errorMeters": 5.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "marble": {
+        "slot": "wall",
+        "graph": "stone_marble",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_stainless",
+        "roughness": 0.55,
+        "metallic": 0.75
+      },
+      "grass": {
+        "slot": "roof",
+        "localRef": "palette:#feffff",
+        "roughness": 1,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "parliamentDistrict",
+        "errorMeters": 1.2,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "grass": {
+            "slot": "roof",
+            "localRef": "palette:#feffff",
+            "roughness": 1,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "parliamentStreet",
+        "errorMeters": 0.25,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "marble": {
+            "slot": "wall",
+            "graph": "stone_marble",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_stainless",
+            "roughness": 0.55,
+            "metallic": 0.75
+          },
+          "grass": {
+            "slot": "roof",
+            "localRef": "palette:#feffff",
+            "roughness": 1,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Bounded source-relative preview using original ACT2020LiDAR-derived2m contours acquired before the new forecourt shell. Absolute elevations are unchanged;the original nominal contact[-7,128],anchor,heading,building/paving/roof levels and all generated geometry are retained. Real model-owned forecourt deck/garage shell covers its own opening. Original coarse Terrarium files are archived unchanged. Exact AHD slab/garage levels and another live host terrain remain unverified.",
+    "anchor": [
+      149.12444444444444,
+      -35.308055555555555
+    ],
+    "heading": 2.508,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        149.12534074476304,
+        -35.30716612308274
+      ],
+      "modelHeight": 0,
+      "basis": "Public forecourt in front of the main entrance, independent host-ground reference. Architectural grass roofs remain model geometry, not replacement terrain."
+    },
+    "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -44.30019,
+          104.50095
+        ],
+        [
+          28.36197,
+          104.63643
+        ],
+        [
+          31.04694,
+          104.1757
+        ],
+        [
+          80.10231,
+          209.63769
+        ],
+        [
+          -92.71737,
+          210.21429
+        ]
+      ],
+      "basis": "Own mapped forecourt deck and physical basement support envelope only. Primary text establishes garage below forecourt/pool. Continuous modeled roof/slab/floor and perimeter walls cover this opening;actual basin/bridges/island remain above the garage roof. Original architectural levels and published source elevations are retained. Source field is independently acquired ACTcontours;old Terrarium is archived unchanged. No whole-building pad or courtyard fill."
+    },
+    "featureIds": [
+      "buildings/35184887000716",
+      "buildings/35184887000717",
+      "buildings/35184883955870",
+      "buildings/35184889002696",
+      "buildings/35184889002697",
+      "buildings/35184883955871",
+      "buildings/35184890787068",
+      "buildings/35184890225234",
+      "buildings/35184890225237",
+      "buildings/35184885069038",
+      "buildings/35184890225230",
+      "buildings/35184890787063",
+      "buildings/35184890787064",
+      "buildings/35184890787065",
+      "buildings/35184890787066",
+      "buildings/35184890787067",
+      "buildings/35184890225235",
+      "buildings/35184883955873",
+      "buildings/35184890225239",
+      "buildings/35184883955872",
+      "buildings/35184890225236",
+      "buildings/35184377124437",
+      "buildings/52776560962450",
+      "buildings/35184890225238",
+      "buildings/35184883695934",
+      "buildings/35184885160862",
+      "buildings/35184885069040",
+      "buildings/35184885082914",
+      "buildings/35184890225233",
+      "buildings/35184883695935",
+      "buildings/35184885069037",
+      "buildings/35184890542226",
+      "buildings/35184890542230",
+      "buildings/35184890542229",
+      "buildings/35184890542228",
+      "buildings/35184890542239",
+      "buildings/35184890225232",
+      "buildings/35184890542227",
+      "buildings/35184890542231",
+      "buildings/35184890225231",
+      "buildings/35184884025142",
+      "buildings/52776560962449",
+      "buildings/35184885069039",
+      "buildings/35184890542232",
+      "buildings/35184890542233",
+      "buildings/35184885082920",
+      "buildings/35184885534252",
+      "buildings/35184890542235",
+      "buildings/35184885148598",
+      "buildings/35184885814877",
+      "buildings/35184889884780",
+      "buildings/35184885082916",
+      "buildings/35184884025161",
+      "buildings/35184883695936",
+      "buildings/35184884780020",
+      "buildings/35184889884782",
+      "buildings/35184889884783",
+      "buildings/35184884025165",
+      "buildings/35184884780021",
+      "buildings/35184883695937",
+      "buildings/35184884927898",
+      "buildings/35184886716867",
+      "buildings/35184886716868",
+      "buildings/52776561313550",
+      "buildings/52776578513002",
+      "buildings/35184889884781",
+      "buildings/35184884025168",
+      "buildings/35184889024357",
+      "buildings/35184889024360",
+      "buildings/35184886716869",
+      "buildings/35184884927897",
+      "buildings/35184885069042",
+      "buildings/35184884025150",
+      "buildings/35184883458973",
+      "buildings/35184884260428",
+      "buildings/35184884025139",
+      "buildings/35184884025175",
+      "buildings/35184883458974",
+      "buildings/35184889024353",
+      "buildings/35184884256277",
+      "buildings/35184885069041",
+      "buildings/35184886602930",
+      "buildings/35184889884785",
+      "buildings/35184889884786",
+      "buildings/35184884780693",
+      "buildings/35184884025159",
+      "buildings/35184890221701",
+      "buildings/35184890563256",
+      "buildings/35184884927893",
+      "buildings/35184888350852",
+      "buildings/35184889884787",
+      "buildings/35184890563253",
+      "buildings/35184580779982",
+      "buildings/52776561313452",
+      "buildings/35184583140765",
+      "buildings/35184889884784",
+      "buildings/35184889884778",
+      "buildings/35184889884779",
+      "buildings/35184885082924",
+      "buildings/35184884927896",
+      "buildings/35184884025145",
+      "buildings/35185250565591",
+      "buildings/35184884927894",
+      "buildings/35185250565592",
+      "buildings/35184884779571",
+      "buildings/35184890221699",
+      "buildings/35184890221700",
+      "buildings/35184884779572",
+      "buildings/35184889884777",
+      "buildings/35184884927895",
+      "buildings/35184884025137",
+      "buildings/35184885082928",
+      "buildings/35184884025148",
+      "buildings/35184883267332",
+      "buildings/35184883295897",
+      "buildings/35184884780694",
+      "buildings/35184883455698",
+      "buildings/35184883455695",
+      "buildings/35184883458965",
+      "buildings/35184883455693",
+      "buildings/35184883455692",
+      "buildings/35184883458967",
+      "buildings/35184883455689",
+      "buildings/35184883455687",
+      "buildings/35184883458969",
+      "buildings/35184883455685",
+      "buildings/35184883455683",
+      "buildings/35184883455720",
+      "buildings/35184890221697",
+      "buildings/35184883458970",
+      "buildings/35184883455719",
+      "buildings/35184883455682",
+      "buildings/35184883455681",
+      "buildings/35184883455721",
+      "buildings/35184883455718",
+      "buildings/35184883458971",
+      "buildings/35184883455680",
+      "buildings/35184883455715",
+      "buildings/35184883458959",
+      "buildings/35184890221695",
+      "buildings/35184890221696",
+      "buildings/35184883455713",
+      "buildings/35184885069044",
+      "buildings/35184883455711",
+      "buildings/35184883458960",
+      "buildings/35184883455709",
+      "buildings/35184883455706",
+      "buildings/35184884025133",
+      "buildings/35184883458962",
+      "buildings/35184883295895",
+      "buildings/35184883455705",
+      "buildings/35184884025135",
+      "buildings/35184883295893",
+      "buildings/35184883455702",
+      "buildings/35184883295891",
+      "buildings/35184883458964",
+      "buildings/35184883295888",
+      "buildings/35184883455700",
+      "buildings/35184883295886",
+      "buildings/35184883295883",
+      "buildings/35184883295820",
+      "buildings/35184883295879",
+      "buildings/35184883295881",
+      "buildings/35184883295821",
+      "buildings/35184883295877",
+      "buildings/35184883295824",
+      "buildings/35184883295874",
+      "buildings/35184883295828",
+      "buildings/35184883295832",
+      "buildings/35184883295869",
+      "buildings/35184883295835",
+      "buildings/35184883295840",
+      "buildings/35184883295844",
+      "buildings/35184883295864",
+      "buildings/35184883295854",
+      "buildings/35184883295859",
+      "buildings/35184883295849",
+      "buildings/35184884025152",
+      "buildings/35184890221694",
+      "buildings/35184885069043",
+      "buildings/35184884025125",
+      "buildings/35184884256278",
+      "buildings/35184884806875",
+      "buildings/35184884025157",
+      "buildings/35184890542221",
+      "buildings/35184890542222",
+      "buildings/35184884806878",
+      "buildings/35184884806881",
+      "buildings/35184890542224",
+      "buildings/35184890542225",
+      "buildings/35184891127489",
+      "buildings/35184890542220",
+      "buildings/35184884779570",
+      "buildings/35184884025155",
+      "buildings/35184891127476",
+      "buildings/35184891127481",
+      "buildings/35184891127487",
+      "buildings/35184891127488",
+      "buildings/35184885082932",
+      "buildings/35184891127482",
+      "buildings/35184891127477",
+      "buildings/35184891127484",
+      "buildings/35184891127485",
+      "buildings/35184884025130",
+      "buildings/35184884779573",
+      "buildings/35184891127478",
+      "buildings/35184890542223",
+      "buildings/35184891127480",
+      "buildings/35184891127483",
+      "buildings/35184885082935",
+      "buildings/35184884779574",
+      "buildings/35184884779569",
+      "buildings/35184885069046",
+      "buildings/35184884025123",
+      "buildings/35184884779567",
+      "buildings/35184884779568",
+      "buildings/35184885069045",
+      "buildings/35184884025121"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:9685695986cf76d45d022cba5f8b1d9517b7c5285e2f05ad520cede81a9abe6c",
+    "notes": "Original mapped wings/courts,anchor,heading,contact reference,building/grass-roof levels and native terrain retained. Real garage below the forecourt is established by primary construction text. Added own forecourt deck/substructure is an exterior interpretation within the mapped paving outline;exact hidden slab/floor/wall dimensions are estimates,not a garage survey. Earlier CC photographs and rights-unverified/copyrighted aerial/construction images are excluded from current construction."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_stainless",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1,
+        1
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_marble",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Current visual references are exact creator-released public-domain2006roof-side/forecourt originals and a2010distant silhouette original. Earlier CC-BY-SA photographs,rights-unverified/copyrighted aerials and engineering illustrations are excluded. OSM vectors and primary architecture/construction/flag-mast text facts remain controls. Office elevations,court details,roof grades and partly hidden joins are estimates,not a survey.",
+    "Architectural grass roofs are real sloping model geometry. Original ends/grades remain estimates. Original ACT2020two-metre contour elevations replace rejected coarse Terrarium without fitting architecture or source heights;native data smoothing is retained. Exact AHD floor/roof grades are not surveyed.",
+    "Four narrow office courts on each side and executive court remain open. Original OSM water/pedestrian/grass vertices control the flared forecourt,asymmetric three-part basin,bridges and planted island. Public-domain2006forecourt photo confirms the pool/curb/open entrance topology. The196m²mosaic is a plain14m square;painting omitted. Basin depths remain exterior estimates. Fine rooftop plant,interiors,detached buildings,roads,security furniture and temporary objects excluded.",
+    "Primary text establishes real parking below the forecourt/pool. Only a bounded exterior deck/support envelope within the mapped paving is represented. Hidden slab,floor and wall dimensions are estimates declared before geometry,not surveyed garage levels or dimensions inferred from entry clearance,project-wide excavation or DEM. Street/close levels have a hollow shell;coarse levels simplify its concealed volume. Actual parking grid,ramps and navigable interior are excluded.",
+    "Flag top is81m above an estimated20m roof deck, based on the Parliamentary Services maintenance account. Curved leg profiles, connection details and simplified flag graphics are estimates; no structural engineering claim.",
+    "Bounded source-relative placement;the retained[-7,128]nominal forecourt reference yields596mAHD from original ACTcontours,not an independently surveyed deck elevation. Source terrain can interpolate beneath structural decks. Another live host field needs its own contact review. Footprint replacement disabled;no physical-device performance claim."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -7,
+        54,
+        305
+      ],
+      "lookAt": [
+        -7,
+        25,
+        40
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -65,
+        26,
+        180
+      ],
+      "lookAt": [
+        -7,
+        8,
+        100
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        260,
+        200,
+        -390
+      ],
+      "lookAt": [
+        -7,
+        12,
+        -35
+      ]
+    },
+    {
+      "name": "forecourt-plan",
+      "position": [
+        -6,
+        225,
+        178
+      ],
+      "lookAt": [
+        -6,
+        0,
+        160
+      ]
+    },
+    {
+      "name": "forecourt-approach",
+      "position": [
+        -45,
+        5,
+        220
+      ],
+      "lookAt": [
+        -6,
+        1,
+        150
+      ]
+    },
+    {
+      "name": "deck-edge-detail",
+      "position": [
+        -115,
+        8,
+        230
+      ],
+      "lookAt": [
+        -10,
+        -1.5,
+        175
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 54197,
+    "vertices": 162591,
+    "materials": 6,
+    "bytes": 6507220,
+    "sha256": "sha256:4d81e00e8b6c44d769ba986ddcfac28675e52851f65a02cf35d39db7cec97495"
+  }
+}

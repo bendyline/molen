@@ -1,0 +1,68 @@
+{
+  "format": "molen/structure-dimension-controls@1",
+  "title": "Sintra National Palace",
+  "primaryControls": {
+    "chimneyFloorToTopMeters": 33,
+    "basis": "Primary palace operator account:33m from kitchen floor to top, not above roof; two conical chimneys",
+    "mainFrontPointedArcadeSpans": 4,
+    "manuelinePrincipalPairedWindowGroups": {
+      "rows": 2,
+      "groupsPerRow": 3
+    },
+    "manuelineOpenRoundLoggias": {
+      "rows": 2,
+      "archesPerRow": 3
+    },
+    "countsBasis": "Actually inspected2019/2015 local originals; owner oblique visitor illustration used for arrangement, not scale"
+  },
+  "nativeControls": {
+    "sourceUrl": "https://build.protomaps.com/20261012.pmtiles",
+    "anchor": [
+      -9.390695018527039,
+      38.79775082844275
+    ],
+    "heading": 0.44571388079493024,
+    "ownWholeFootprints": 4,
+    "mainFrontNativeEdgeIndices": [
+      14,
+      13
+    ],
+    "mainFrontLengthMeters": 23.21107377478211,
+    "mainNativeInnerBoundaries": 6,
+    "mappedCourtOrLightwellBoundaries": 4,
+    "occupiedChimneyBoundaries": 2,
+    "detachedWesternEntryRange": true,
+    "mapHeightAttributes": false
+  },
+  "independentSourceSurfaceObservations": {
+    "dataset": "DGT public July2024 classified LiDAR",
+    "heightDatum": "Cascais EPSG5780",
+    "separateFromGround": true,
+    "frontFacadeProfile": "lidar-front-profile.json",
+    "palaceRegionHistograms": "lidar-surface-controls.json",
+    "notes": "Class6 returns contain roofs, walls and elevated court/terrace surfaces. Broad distributions are not direct eave dimensions; interpretation against actual photos remains necessary. No class6 point drives ground terrain."
+  },
+  "provisionalAbsoluteElevationsMeters": {
+    "mainFrontArcadeFloor": 212.6,
+    "mainFrontEave": 228.5,
+    "mainFrontRoofRidge": 232.8,
+    "mainLargeCourtFloor": 219.15,
+    "rearNarrowCourtFloor": 224.5,
+    "kitchenChimneyTop": 249.85,
+    "kitchenFloorBy33mOperatorControl": 216.85,
+    "rearCoatsOfArmsTowerEave": 240.3,
+    "rearCoatsOfArmsTowerRoofTop": 246.9,
+    "manuelineRangeEave": 225.4,
+    "manuelineRangeRoofMaximum": 231.9,
+    "westernEntryRoofApproxMaximum": 225
+  },
+  "modelDatumElevationMeters": 210.5518,
+  "limitations": "Provisional elevations are observations interpreted from classified point distributions, not construction measurements or an approved model. Roof segmentation, intermediate roofs/eaves, unseen facades, floor connections, bay proportions, carved ornament and stairs still require authored geometry and actual render verification. Operator33m and observed4/6/6 opening counts are separate controls.",
+  "authoredInterpretation": {
+    "mainLargeCourtFloor": "219.15m; provisional218.95m slab clipped the fixed independently interpolated ground by at most0.068m at three boundary samples. Structure floor raised0.20m within observed class6 floor distribution; original terrain/grid unchanged. This is a conservative model threshold, not a surveyed finished floor.",
+    "lowestFrontStairTread": "Own treads reduce drop slightly to retain at least0.0396m fixed-terrain clearance; actual riser engineering is approximate.",
+    "roofMethod": "Piecewise interpreted hipped ranges clipped to native outer/court polygons. Coplanar roof faces merged before triangulation; vertical transitions face outward from taller ranges. Separate aligned west/east front pavilion hips; exact small valleys/flashings are not surveyed.",
+    "permanentDetails": "Four real pointed front recesses with back doors, two three-arch open loggias with Tuscan columns,11 principal paired groups plus smaller loggia middle light,3 separate basement lights/3 offset doors, stepped close-view Moorish parapet teeth. Fine historic carving/heraldry replaced by original abstract geometry.",
+    "distanceLevels": "Skyline keeps native massing, chimney silhouettes and all4 own court floors. District uses applied minor panes/coarser cusp/round profiles. Street retains principal recesses with triangular tooth proxies. Close restores stepped teeth, denser original carved/wood-frame details."
+  }
+}

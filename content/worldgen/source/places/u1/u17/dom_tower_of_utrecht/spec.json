@@ -1,0 +1,426 @@
+{
+  "planId": "dom_tower_of_utrecht",
+  "id": "dom_tower_of_utrecht",
+  "assetId": "molen.worldgen.structure.dom_tower_of_utrecht",
+  "title": "Dom Tower of Utrecht",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 5.12130931019783,
+    "latitude": 52.09065272884794
+  },
+  "size": [
+    21.600000381469727,
+    116.31999969482422,
+    21.600000381469727
+  ],
+  "actualBounds": {
+    "min": [
+      -10.800000190734863,
+      -4,
+      -10.800000190734863
+    ],
+    "max": [
+      10.800000190734863,
+      112.31999969482422,
+      10.800000190734863
+    ]
+  },
+  "visualBrief": "Detached Utrecht DomTower: native two square stages and open octagonal lantern. Deep continuous pointed ground passage with layered portal moldings/ribbed soffit and own ground-following paving. Warm brick blind Gothic niches/pale stone quoins, glazed lower lights/physical galleries with pierced pointed/trefoil tracery and crocketed pinnacles. Four green skeletal square clocks/gold Roman rings/hands, real second-stage pointed openings/physical mullions/louvers/iron ties. Giant two-light lantern sections/stone tracery band/deep molded arches/corner buttresses/gables/upper green railing. Short slate/lead octagonal cap/cross and original gilded SaintMartin horseman vane. No cathedral nave/choir/visitorreception/neighbors/scaffold/interior bell machinery.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Domtoren_vanaf_de_Stadhuisbrug.JPG"
+  ],
+  "stories": [
+    {
+      "id": "dom-tower-of-utrecht-wp",
+      "url": "https://qualla.com/dom-tower-of-utrecht/"
+    }
+  ],
+  "referenceInputHash": "sha256:375482be9d34d026ebfa85f9ecc05a1c3b0796fec98ba594e7914981c1a19611",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-dom-tower-of-utrecht.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-dom-tower-of-utrecht.mjs",
+    "level": "skyline",
+    "export": "domTowerOfUtrechtSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.93,
+        "metallic": 0
+      },
+      "masonry": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.52,
+        "metallic": 0.04
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.85,
+        "metallic": 0.1
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.84,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.69,
+        "metallic": 0.2,
+        "doubleSided": true
+      },
+      "gold": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.68,
+        "doubleSided": true
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "domTowerOfUtrechtDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.68,
+            "doubleSided": true
+          }
+        }
+      },
+      "street": {
+        "export": "domTowerOfUtrechtStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.93,
+            "metallic": 0
+          },
+          "masonry": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.52,
+            "metallic": 0.04
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.85,
+            "metallic": 0.1
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.84,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.69,
+            "metallic": 0.2,
+            "doubleSided": true
+          },
+          "gold": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.68,
+            "doubleSided": true
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "One unchanged independentTerrariumtile/2mgrid, dryDomplein east passage approach[13,0]datum13.5078m. Own passage paving samples unchanged terrain+.06m; buried-4mfootings. No flattening/datum fitting; urban DEM/threshold engineering remain uncertain.",
+    "anchor": [
+      5.12130931019783,
+      52.09065272884794
+    ],
+    "heading": 0.31579769320781215,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        5.121489979175315,
+        52.09068899791561
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Domplein east passage approach clear of own tower footprint and neighboring structures."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185922892564",
+      "buildings/35184814819000",
+      "buildings/35184814819001",
+      "buildings/35185027303543"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:2f751a6070133b4aea855b7d1bd0a83205b1b417deb71c5a97e198399b37cc61"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Appearance combines2006–2012day geometry detail and2024post-restoration night exterior, with1958RCEdetails used only where corroborated later. No claim to current2026block-by-block repair finish.",
+    "Native lower~19.5×19.5m/second~16.8×16.6m/octagonal lantern outline retained; official38.6/68.08/94.08/106.75/112.32mstage/top controls. Widths/portal/window/crown/moldings/threshold engineering remain proportional estimates.",
+    "23×23m/5.5mfoundation excavation is historical comparison only, not aboveground footprint. No cathedral choir/nave/bridgechapel, separate1920svisitor reception, surrounding shops/square/streetlights/scaffolds/people or interiors/bell mechanism.",
+    "Original Gothic tracery/crockets/gargoyle/vane silhouette approximate detail; not literal fine carvings, text, coatsofarms or photo textures.",
+    "Independent terrain acquired before geometry without flattening or fitting. Passage floor uses own sampled ground approach; host dataset compatibility remains uncertain."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -95,
+        43,
+        0
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ]
+    },
+    {
+      "name": "portal-detail",
+      "position": [
+        -27,
+        5,
+        5
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "lower-detail",
+      "position": [
+        -27,
+        26,
+        24
+      ],
+      "lookAt": [
+        0,
+        23,
+        0
+      ]
+    },
+    {
+      "name": "clock-detail",
+      "position": [
+        -25,
+        53,
+        23
+      ],
+      "lookAt": [
+        0,
+        51,
+        0
+      ]
+    },
+    {
+      "name": "gallery-detail",
+      "position": [
+        -27,
+        42,
+        18
+      ],
+      "lookAt": [
+        0,
+        40,
+        0
+      ]
+    },
+    {
+      "name": "lantern-detail",
+      "position": [
+        22,
+        85,
+        24
+      ],
+      "lookAt": [
+        0,
+        82,
+        0
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        21,
+        110,
+        24
+      ],
+      "lookAt": [
+        0,
+        100,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        51,
+        49,
+        -61
+      ],
+      "lookAt": [
+        0,
+        45,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 59614,
+    "vertices": 178842,
+    "materials": 7,
+    "bytes": 7157604,
+    "sha256": "sha256:e4f5fd9d0a101d1342a03e60de50a81d20f646d0825c36c1fbd9b60883fb6e3b"
+  }
+}

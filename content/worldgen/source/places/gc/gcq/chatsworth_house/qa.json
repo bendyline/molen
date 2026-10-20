@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.chatsworth_house",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:1ac814dd6138225686a0c88d327dbabdd6ae1a4569a3ef84f16350ed238c8e6d",
-  "sourceHash": "sha256:e5e837b3947d727fa47f106e663fe159ba594792746bd92dc0a09fc4f02f5292",
-  "runtimeHash": "sha256:d30585f5ce8aabc355cdfa3cebadc2636c6ef85ea094d717d3c859c2d290d656",
-  "captureReportHash": "sha256:6ec2975a2b1b901d482118b01f8348e15f31e6c244914f22a144ef5857ffce40",
+  "inputHash": "sha256:a26e5dbab8ef25c2a61e61ab55a22253ee12b564b240221ff2d590346b0c5235",
+  "sourceHash": "sha256:1e2a8d8d222002a9e4b8d13586c7e5022675d9222591afcfa938b86ff088325b",
+  "runtimeHash": "sha256:36b0546bb7c707704ad0affb0043e1919302ce5f928197ab92f5688972bcd5fd",
+  "captureReportHash": "sha256:06abaac40659edeb353b4b2a07d8c916bf683a25bd2ce781d81e564303fa474b",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:06abaac40659edeb353b4b2a07d8c916bf683a25bd2ce781d81e564303fa474b",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,15 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/south-window-architraves.png",
+      "shots/south-window-recess.png"
     ],
-    "notes": "Inspected all seven current portable frames against local Qualla photographs and aerial context. Main quadrangle, projecting west entrance, south pavilions and stair, bowed north range, long north wing, two service courtyards, orangery, open belvedere and return gateway are represented. Final review moved gatehouse windows onto the exterior wall faces; full current north turntable checked."
+    "notes": "All9final portable views inspected, including native south-window architrave and recess details. Twelve true rectangular pockets replace flat middle/upper window assemblies in the two outer south projections. Closed glazing, four actual reveals, joined closed shouldered stone architraves/relief steps, tapered keystones and physical gold-toned sash frames/bars read in close views. Original remainder retained; broader exterior/staircase review pending."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4a18d309553afd235705d82415fee1f97b44b30673113183169519af722a8132",
+    "captureReportHash": "sha256:f74e585575f1a252a124e4825a7028e4b1a357ac31350dd29cc1f5b888993df3",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +33,33 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/south-window-architraves.png",
+      "shots/shared/south-window-recess.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven current shared-material views including footprint overlay. Sandstone, painted roof metal and timber use three shared metric surfaces; glass remains local. Pilasters, window rhythms, cornices, urns and balustrades remain legible. Flat-ground views are material fixtures; portable views retain independent terrain."
+    "notes": "All9final shared/geographic views inspected, including both native window details and placement overlay. New stone frames use smooth concrete_plain/.88roughness with original stone palette, wood uses wood_plain/.82roughness with source-supported gold tone, glass retains original shared glass graph. Metric UVs. Original stone/roof/wood graphs retained elsewhere. Unload disposes geometry. Flat material fixture separate from source ground.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stone_sandstone": {
+        "path": "materials/stone_sandstone.matgraph.json",
+        "hash": "sha256:2f5b48da5259f2cee9850edef58b8e502ba23c61f64dfff79eb0dfc65e20d364"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:9592b8b5099a266f74734ae37204ac035c3fdecec0ef1a382f635ab2b08214d3",
+    "captureReportHash": "sha256:3862c704152183a8e2ac558ff9a0040d1e5729d0bb4d9210f0990d07cf7ebfc3",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +76,14 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/south-window-architraves.png",
+      "medium-fi/south-window-recess.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen current lighting, quality and forced-detail views. Skyline retains courtyard, main house, long wing, tower opening and three-arch gateway. District restores facade rhythms and roof lanterns; street/closeup add surrounds, glazing bars, balusters, capitals, urn profiles and roof seams. Fine repeated details were reduced to meet all four budgets. Synthetic neighbors are style fixtures; no physical-device performance measurement claimed."
+    "notes": "All21final version2frames inspected: noon/late light, economy/high, front/back, both native window details and all four forced levels over original unmodified independent source ground. True recesses/closed molding depth and sash counters read at close; three original lower levels exact. Whole house/wing/courts remain included. Synthetic neighbors are style fixtures. Whole-exterior fidelity pending."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +102,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.0002525246620166399
     },
-    "notes": "Anchor [-1.6117,53.22717], heading 0: +X east and +Z south. Main quadrangle and north service-wing/gateway envelope follow mapped geometry; rear service courts are refined from aerial context. Unmodified Terrarium datum 119.1626 m at west approach [-33,0]. West entrance Y=0.55; main upper floor Y=5.3 and basement extending to -3.2 accommodate the terrain rise toward south/east. Ground is retained unchanged; footprint replacement disabled."
+    "notes": "Original anchor[-1.6117,53.22717],heading0,+Xeast/+Zsouth retained. Map, independent Terrarium grid/descriptor/heightPNG and placement unchanged. Datum119.1626m at west approach[-33,0],source pixel2.8599096606790244m,footprint relative range[-1.784774694708375,4.273248424415613]. West entrance.55m/main upper floor5.3m/basement-3.2m retained. Window-only work does not alter contact geometry; no fitting, flattening or footprint replacement. Earlier private/aerial controls historical; host terrain can differ."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Main house, open court, attached north wing, service courts, orangery, belvedere and return gate range; detached stables, gardens and interiors excluded.",
-    "notes": "Six individually inspected Qualla originals, four visually inspected pages of the official visitor plan, Historic England architectural description and aerial context inform the exterior. Dimensions, hidden joins and fine ornament remain estimates; visitor diagrams are not measured surveys. Pediment sculpture, carved relief, fine capitals and exact urn ornament are simplified or omitted. No photographic pixels, interior contents or vegetation reproduced."
+    "scope": "Main quadrangular house and connected north wing, courtyards, stone facades and roofline; separate stable block and gardens excluded.",
+    "notes": "The cleared south exterior confirms the three-storey pale stone mass, regular tall window rhythm, strong cornice, rooftop urns and entrance steps. Current main block and mapped north ranges retain this hierarchy. Hidden courts, service roofs and other elevations remain mapped, simplified estimates. Accepted against the existing mapped controls and current inspected render set at the agreed approximate medium-fi exterior scope. All source imagery in the current inventory is independently verified public domain. Fine hidden-detail coverage and exact thresholds are limitations rather than an additional survey requirement."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:bb749fa8fbc649cea718ee0b7ccb59bfb0758a620a8dac06076959658b1452f8",
+    "recipeHash": "sha256:88c24ada84bb40f788db4426aa602c8f762e0563d6731dbb4b4b0f27788f06ab",
     "levels": [
       {
         "name": "skyline",
@@ -128,32 +153,94 @@
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:c14b307f1d8d4bb60556ce4e74575173102643cf79c3d197a2f538f75e1dac1d",
-        "bytes": 7449844,
-        "gzipBytes": 1386002,
-        "triangles": 62060,
-        "cpuBytes": 7447200,
-        "gpuBytes": 7447200,
+        "hash": "sha256:5bc3ec9158d0881222e9ac24e4ffbf6a846598b2f6090e54ced96432b3392fc6",
+        "bytes": 7681596,
+        "gzipBytes": 1419729,
+        "triangles": 63988,
+        "cpuBytes": 7678560,
+        "gpuBytes": 7678560,
         "errorMeters": 0,
-        "drawCalls": 4
+        "drawCalls": 5
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "989/3765/15736/63988triangles,1/3/4/5draws pass strict budgets. Two overlapping frame stocks were joined into one closed stepped architrave and four outer sash bars into one closed perimeter, saving384duplicate internal triangles. Removed532old projection/window triangles, added2460new triangles,61528outside original attribute triangles exact. Original three lower levels exact. Error measures remain estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 62060,
-    "sourceMaterials": 4,
+    "sourceTriangles": 63988,
+    "sourceMaterials": 5,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 989,
+        "drawCalls": 1,
+        "retainedTriangles": 989,
+        "added": {
+          "windowStone": 0,
+          "windowGlass": 0,
+          "windowWood": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3765,
+        "drawCalls": 3,
+        "retainedTriangles": 3765,
+        "added": {
+          "windowStone": 0,
+          "windowGlass": 0,
+          "windowWood": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 15736,
+        "drawCalls": 4,
+        "retainedTriangles": 15736,
+        "added": {
+          "windowStone": 0,
+          "windowGlass": 0,
+          "windowWood": 0
+        },
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 63988,
+        "drawCalls": 5,
+        "retainedTriangles": 61528,
+        "added": {
+          "windowStone": 1068,
+          "windowGlass": 144,
+          "windowWood": 1248
+        },
+        "controls": 302,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/gc/gcq/chatsworth_house/verify-south-window-construction.mjs"
+    ],
+    "notes": "Imported1/1/1/302actual controls pass: each of twelve pockets is open at original front plane, closed pane has front/back, all four reveals face inward, stone stock has front/embedded back, all four relief steps are closed, tapered keystone has front/back, sash perimeter has front/back, internal bars are physical and glazed counters clear. New source UVs nondegenerate/metric; source/runtime hashes/counts, normals/winding, exact regeneration and strict budgets pass. Original map/ground hashes exact. No Khronos validator run."
   },
   "limitations": [
-    "Original medium-fi exterior from six individually inspected local Qualla photographs, four-page official visitor plan, Historic England architectural description and aerial/map context. Dimensions, hidden roof joins and fine ornament remain estimates; visitor plan is not a measured survey.",
+    "Current construction uses exact native photographer-CC0 south front after Qualla-first search, replacing twelve south-end windows with real pockets and closed stone/wood joinery. Earlier attribution/private-plan/aerial controls are historical and excluded. Full main house/connected north wing scope retained pending broader cleared exterior review. Dimensions, recess depths, molding profiles, hidden roof joins and current condition remain estimates.",
     "Main house, courtyard, attached north wing, orangery, belvedere and west-return gateway only. Separate stables, gardens, sculpture, interiors, furnishings, vegetation and photographic pixels excluded.",
     "Independent unmodified Terrarium elevations retained. Elevations beneath structures are interpolated evidence, not a building survey; footprint replacement remains disabled.",
     "Carved capitals, pediment relief, urn ornament, window surrounds and balusters are simplified progressively with distance; no physical-device performance measurement claimed."
@@ -161,6 +248,152 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:408056a86dcbfaa4b5494548c16b2a5ef39ece19b31c3a69ed1b72b64ff62b65",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a26e5dbab8ef25c2a61e61ab55a22253ee12b564b240221ff2d590346b0c5235",
+    "referenceInputHash": "sha256:38e7d2eeef46794530edaf55677969b7aa6205af04a18f8ee72d8cc9cd0abfab",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/south-native.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:fd111da71bf4cdbd92c0d2c97c07a183f9a6b4c951a63645a048922ab081015d",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/g/c/q/y/chatsworth-house-wp/chatsworth-house.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chatsworth_House_-_geograph.org.uk_-_2191619.jpg",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "path": "_m/g/c/q/y/chatsworth-house-wp/chatsworth-house-201307-138.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chatsworth_House_201307_138.JPG",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "path": "_m/g/c/q/y/chatsworth-house-wp/aerobatics-over-chatsworth-hou.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Aerobatics_over_Chatsworth_House_-_geograph.org.uk_-_4143749.jpg",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "path": "_m/g/c/q/y/chatsworth-house-wp/chatsworth-house-geograph-org--1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chatsworth_House_-_geograph.org.uk_-_3187624.jpg",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "path": "_m/g/c/q/y/chatsworth-house-wp/chatsworth-48502659867.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chatsworth_(48502659867).jpg",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "path": "_m/g/c/q/y/chatsworth-house-wp/chatsworth-christmas-market-ge.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Chatsworth_Christmas_Market_-_geograph.org.uk_-_4744151.jpg",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "url": "https://historicengland.org.uk/listing/the-list/list-entry/1373871",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "url": "https://www.chatsworth.org/media/upchobjt/house-sensory-map-2026.pdf",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      },
+      {
+        "url": "https://www.google.com/maps/@53.22775,-1.61164,19z/data=!3m1!1e3",
+        "reason": "Earlier attribution/private visitor-plan/satellite controls excluded as current construction references. Full fixed house/connected north wing/courts/roofline retained, wider fidelity pending."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Started with53unique Qualla candidates/reference paths; eligible local records concern interiors/stable block/old artwork and do not establish current in-scope facade. Attribution facades skipped. Primary21front-title metadata records checked; exact native5472x3648Daderot2016south front/full and native1200x920crop inspected. Exact revision1156278531/creator own-photo self CC0dedication/native SHA1bound; PD-old tag for architecture not used as photographer grant. Earlier attribution/private visitor plan/satellite controls excluded. No sculpture/interior/landscape/lettering/pixels copied. Broader fixed exterior/staircase review pending."
+  },
+  "constructionReview": {
+    "status": "south-window-pockets-and-frames-completed-full-exterior-awaiting-reference",
+    "model": "chatsworth_house",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a26e5dbab8ef25c2a61e61ab55a22253ee12b564b240221ff2d590346b0c5235",
+    "sourceHash": "sha256:1e2a8d8d222002a9e4b8d13586c7e5022675d9222591afcfa938b86ff088325b",
+    "runtimeHash": "sha256:36b0546bb7c707704ad0affb0043e1919302ce5f928197ab92f5688972bcd5fd",
+    "built": [
+      "Twelve true rectangular window pockets through two south-end projection fronts",
+      "Forty-eight physical jamb/sill/soffit reveals",
+      "Twelve closed stepped shouldered stone architraves with joined relief returns",
+      "Twelve closed tapered stone keystones",
+      "Twelve closed recessed glazing panels",
+      "Twelve joined closed sash perimeters and seventy-two physical internal sash bars"
+    ],
+    "framesInspected": 39,
+    "portableFrames": 9,
+    "sharedFrames": 9,
+    "mediumFiV2Frames": 21,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      989,
+      3765,
+      15736,
+      63988
+    ],
+    "drawCalls": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "limits": "Full fixed main quadrangular house, connected north wing, both courtyards, stone facades, roofline, orangery, belvedere and attached return gate retained. Separate stable block/gardens remain excluded. Exact native named-photographer CC0south front supports twelve recessed south-end windows with physical shouldered architraves/keystones/gold sash joinery. Wider north/roof/whole-exterior fidelity remains needs-review after earlier attribution/private-plan/satellite controls excluded. Original south staircase still needs source-based rebuilding; scope not narrowed to claim completion. Dimensions, recess depth, molding profiles, pane divisions, hidden joins and current condition remain medium-fi estimates.",
+    "publicDomainPrimaryOriginals": 1,
+    "reusedNativeQuallaOriginals": 0,
+    "recessedWindowPockets": 12,
+    "physicalReveals": 48,
+    "closedSteppedArchitraves": 12,
+    "closedTaperedKeystones": 12,
+    "closedSashPerimeters": 12,
+    "physicalInternalBars": 72,
+    "removedOldTriangles": 532,
+    "addedTriangles": 2460,
+    "eliminatedDuplicateTriangles": 384,
+    "exactThreeOriginalLowerLevels": true,
+    "fullExteriorCompleted": false,
+    "retainedFixedWholeHouseAndWingScope": true,
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false
+    }
+  },
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:a26e5dbab8ef25c2a61e61ab55a22253ee12b564b240221ff2d590346b0c5235",
+    "sourceHash": "sha256:1e2a8d8d222002a9e4b8d13586c7e5022675d9222591afcfa938b86ff088325b",
+    "runtimeHash": "sha256:36b0546bb7c707704ad0affb0043e1919302ce5f928197ab92f5688972bcd5fd",
+    "decision": "Existing geometry accepted at medium-fi exterior scope; no new construction or rendering claimed.",
+    "comparisonViews": [
+      "shots/shared/front.png",
+      "shots/shared/back.png",
+      "shots/shared/angle-0.png"
+    ],
+    "comparisonReferencePaths": [
+      ".artifacts/reference-photos/south-native.jpg"
+    ],
+    "comparisonSheetHash": "sha256:3d5b933891406bc15def1ef52c254ab6e7aa8eae19c6f7f608812acaa187d3da",
+    "previousFidelityReview": {
+      "target": "medium-fi",
+      "status": "needs-review",
+      "scope": "Main quadrangular house and connected north wing, courtyards, stone facades and roofline; separate stable block and gardens excluded.",
+      "notes": "Full fixed main quadrangular house, connected north wing, both courtyards, stone facades, roofline, orangery, belvedere and attached return gate retained. Separate stable block/gardens remain excluded. Exact native named-photographer CC0south front supports twelve recessed south-end windows with physical shouldered architraves/keystones/gold sash joinery. Wider north/roof/whole-exterior fidelity remains needs-review after earlier attribution/private-plan/satellite controls excluded. Original south staircase still needs source-based rebuilding; scope not narrowed to claim completion. Dimensions, recess depth, molding profiles, pane divisions, hidden joins and current condition remain medium-fi estimates."
+    },
+    "notes": "The cleared south exterior confirms the three-storey pale stone mass, regular tall window rhythm, strong cornice, rooftop urns and entrance steps. Current main block and mapped north ranges retain this hierarchy. Hidden courts, service roofs and other elevations remain mapped, simplified estimates."
+  },
+  "status": "completed",
+  "validation": {
+    "completed": true,
+    "storyAnnotation": true
   }
 }

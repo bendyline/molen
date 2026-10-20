@@ -1,14 +1,15 @@
 {
   "format": "molen/structure-qa@1",
   "assetId": "molen.worldgen.structure.ponce_de_leon_hotel",
-  "reviewedOn": "2026-10-15",
+  "reviewedOn": "2026-10-18",
   "reviewedBy": "Codex",
-  "inputHash": "sha256:f2c33517fef8d5846f8e37b325c0f7b7fb0d6121db7197f21ebf0c3e56b360be",
-  "sourceHash": "sha256:037945043c7cd3400007455a7219568467f9e110d973acf39c82b264556d3ddd",
-  "runtimeHash": "sha256:81bcf443990cc1a70167fc91f408cdd2487989dcc86ba1e6eccbef9aded11c5f",
-  "captureReportHash": "sha256:1cdc76e4836eb1081adbca650526c3fb4a5377e26a315e733a323dd11eaadf7f",
+  "inputHash": "sha256:2ec423fa9f60adafd91318e86b11b64d9e4df498ae5f03e3401651f182b89641",
+  "sourceHash": "sha256:33c646cd8cf201e0daa877671e33f9c54493f06dff2cb90a4524eba421f4259c",
+  "runtimeHash": "sha256:ec435b85026fa5d2ee903d0844739bbe100cda3701e4da1d6f9c080c0dffe4ed",
+  "captureReportHash": "sha256:49178802e86384d526ce2a1a1fa9ca6521e4aed3bd11bf5ba9ecc8aadba1dbed",
   "visualReview": {
     "status": "passed",
+    "captureReportHash": "sha256:49178802e86384d526ce2a1a1fa9ca6521e4aed3bd11bf5ba9ecc8aadba1dbed",
     "inspectedFrames": [
       "preview.png",
       "shots/turntable/angle_0.png",
@@ -16,13 +17,16 @@
       "shots/turntable/angle_2.png",
       "shots/turntable/angle_3.png",
       "shots/front.png",
-      "shots/back.png"
+      "shots/back.png",
+      "shots/tower-five-bays.png",
+      "shots/tower-spiral-shafts.png",
+      "shots/central-upper-gallery.png"
     ],
-    "notes": "Inspected all seven final portable views against six individually viewed Qualla originals and the NPS architectural description. Paired water towers, four King Street miradors, open courtyard galleries, central solarium, dining oval and rear carriage bridges remain distinct. Review corrected obscured mirador openings, side-wall window contact, projecting timber balconies, rear openings and the central paired windows."
+    "notes": "All10final portable views inspected, including native tower-five-bays, spiral-shafts and central-upper-gallery closeups. Five real openings on each tower face, physical twisted shafts visible after removing old flat trim and white recessed cores match the visible photographic arrangement. Nine central recesses have shaded soffits, rear glazing/lead frames and projecting spiral relief. Existing skyline, dome, tiled roofs, entry court and dining/service masses retained."
   },
   "sharedSurfaceReview": {
     "status": "passed",
-    "captureReportHash": "sha256:4f984d9c5e36f47e01232f889601bbe40e29947ae0f916b1f14db0daabb09133",
+    "captureReportHash": "sha256:78be158e43326ca0e1bb4c10a7d89d8365b8d86da771af7969cf088ed158adb7",
     "inspectedFrames": [
       "shots/shared/angle-0.png",
       "shots/shared/angle-1.png",
@@ -30,13 +34,38 @@
       "shots/shared/angle-3.png",
       "shots/shared/front.png",
       "shots/shared/back.png",
+      "shots/shared/tower-five-bays.png",
+      "shots/shared/tower-spiral-shafts.png",
+      "shots/shared/central-upper-gallery.png",
       "shots/shared/placement.png"
     ],
-    "notes": "Inspected all seven final shared-material views including the footprint overlay. Wall, brick, tile, timber and metal use shared metric surfaces; glass remains local. Flat ground is a material fixture; portable views retain independent terrain."
+    "notes": "All10final shared-material views inspected, including native tower detail and mapped overlay. Terracotta shafts and white cores remain distinct from tiled roof, wood and glazing. Original placement hash, map outline and unload pass. Flat fixture establishes shared materials/transform; source-native portable ground carries original context.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      },
+      "matgraph:molen.worldgen.material.tile_flat": {
+        "path": "materials/tile_flat.matgraph.json",
+        "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
+      },
+      "matgraph:molen.worldgen.material.brick": {
+        "path": "materials/brick.matgraph.json",
+        "hash": "sha256:0d83da52c63819c2636fa92d7942aaf998d11bcda0dc871ba475d82ab852cd1f"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      }
+    }
   },
   "mediumFiReview": {
     "status": "passed",
-    "captureReportHash": "sha256:52cdafdeaf9b44f755b1f959565de4ab85381b915af990cdf00b272724f3eb9e",
+    "captureReportHash": "sha256:50228f33c0cd28d1bc35475c02fcfa8523934b1d23562d0f0af5258e769acc66",
     "inspectedFrames": [
       "medium-fi/street-noon-economy.png",
       "medium-fi/street-noon-high.png",
@@ -53,12 +82,15 @@
       "medium-fi/silhouette.png",
       "medium-fi/front.png",
       "medium-fi/back.png",
+      "medium-fi/tower-five-bays.png",
+      "medium-fi/tower-spiral-shafts.png",
+      "medium-fi/central-upper-gallery.png",
       "medium-fi/transition-skyline.png",
       "medium-fi/transition-district.png",
       "medium-fi/transition-street.png",
       "medium-fi/transition-closeup.png"
     ],
-    "notes": "Inspected all nineteen final lighting, quality and forced-detail views. Skyline preserves the U-shaped hotel, paired towers, miradors, dining oval and service range; district and street restore the major galleries, openings and roof elements. All four levels remain within hard budgets. Synthetic neighbors are style fixtures; no physical-device performance measurement is claimed."
+    "notes": "All22final version2frames inspected in noon/late light, economy/high quality, front/back, source ground, three detail cameras and four forced levels. Five-bay tower and nine-axis central identities retained in district/street. Close shafts have physical relief; lower simplifications remain legible. Hexagonal street cores and closed triangular corner profiles fit budget. Synthetic neighbors supply style context only."
   },
   "geographicReview": {
     "status": "passed",
@@ -77,17 +109,17 @@
       ],
       "maxPngEncodingErrorMeters": 0.000030630111694351925
     },
-    "notes": "Mapped main hotel outline, courtyard hole and original rear service footprint remain bound to the geographic review. Anchor [-81.3148,29.89265], heading 0.285: +X east-northeast along King Street, +Z south-southeast toward the street. Independent unmodified Terrarium datum 1.7939 m uses the King Street approach [-1.3,53]; foundations extend to -2 m. Footprint suppression remains off."
+    "notes": "Original anchor[-81.3148,29.89265],heading0.285 retained: +X east-northeast along KingStreet,+Z south-southeast toward street. Original mapped main/court/dining/service envelope, courtyard void and connecting carriageways retained. Map and all three terrain files byte-identical. Original unmodified Terrarium datum1.7939m at[-1.3,53],relative footprint range-0.1258..1.2510m and foundations-2m retained; no terrain flattening/height fitting or new pads. Another host DEM and survey-accurate levels remain outside this review."
   },
   "fidelityReview": {
     "target": "medium-fi",
     "status": "passed",
-    "scope": "Historic Ponce de Leon main hotel, dining oval and connected original service block; separate boiler/chimney, Artists Studios, later facilities and interiors excluded.",
-    "notes": "Six individually inspected Qualla originals, the NPS NHL architectural description, official Flagler tour descriptions and satellite roof context control the model. NPS 165-foot overall tower height governs the skyline; conflicting lower map height tags are retained as evidence. Other vertical dimensions, hidden elevations, roof joins and fine ornament remain interpretations. Dated photographs govern finishes; temporary restoration works, exact inscriptions and fine sculpture are excluded. No photo pixels copied."
+    "scope": "Historic main hotel, open forecourt, dining oval and connected original service block. Separate boiler house/chimney, Artists Studios, later college facilities and interiors excluded, as in the original fixed scope.",
+    "notes": "Historic main Ponce de Leon hotel, courtyard, dining oval and connected original service block retained. Started with cleared Qualla candidates; ambiguous uploader/creator and unknown archive-image rights were not adopted. Two exact native Highsmith originals, primary catalog URLs and explicit photographer public-domain dedication verified. Full originals and native tower/central-gallery crops inspected. Corrected both tower loggias to five arches on each of eight faces;32closed spiral shafts,8single shared corner columns and recessed white cores. Corrected central upper front to nine physical recessed arches with curved soffits/jambs/sill floors, recessed glazing, simple lead frames and8spiral shaft reliefs. Overall skyline, tower/cone heights, central dome, lower courtyard galleries, entry, dining/bridges, service block and geographic envelope retained. All original geometry outside tower loggias/central upper room retained exactly; source ground and placement unchanged. One-turn six-flute tower shafts, half-turn five-flute gallery shafts,1.15m gallery depth and2.4m core radius are original medium-fi estimates. Partly concealed tank sections, hidden rear/service elevations, exact roof joins, present condition and detailed carving/glazing remain approximations. References dated broadly1980–2006. Main/dining/service scope is not reduced; no interiors, copied photo pixels, exact inscriptions or new terrain fitting."
   },
   "runtimeLodReview": {
     "status": "passed",
-    "recipeHash": "sha256:261dfdbe4dabdd0c641a7defa9d5877d96315804066015da013ac2b18142c52e",
+    "recipeHash": "sha256:b7264862b4aca4523be346b6d561315bc211125ff1fbb354a43a53b2131e3b49",
     "levels": [
       {
         "name": "skyline",
@@ -104,56 +136,114 @@
       {
         "name": "district",
         "file": "model.district.glb",
-        "hash": "sha256:cd8a0e1a5262a7f28e1c23c177a6c8dd794bf13b3910d7168217d823110bd954",
-        "bytes": 307044,
-        "gzipBytes": 59126,
-        "triangles": 3930,
-        "cpuBytes": 299772,
-        "gpuBytes": 299772,
+        "hash": "sha256:3c53a04fb4ce268855382f46e80ae3aca2e39560189c5f620a4abc39ad3c3518",
+        "bytes": 308828,
+        "gzipBytes": 59577,
+        "triangles": 3957,
+        "cpuBytes": 301556,
+        "gpuBytes": 301556,
         "errorMeters": 0.55,
         "drawCalls": 6
       },
       {
         "name": "street",
         "file": "model.street.glb",
-        "hash": "sha256:1df4fe9135aa8f1fd90d9bfcfb1059f2a98d18a74a44e94f0a7f5daf694107ae",
-        "bytes": 1104004,
-        "gzipBytes": 221681,
-        "triangles": 15941,
-        "cpuBytes": 1096700,
-        "gpuBytes": 1096700,
+        "hash": "sha256:ba28b4b2349be43ae9b1d9263febcbd67d2d9b937956cfbe21c41453e29e8c0c",
+        "bytes": 1101704,
+        "gzipBytes": 221186,
+        "triangles": 15840,
+        "cpuBytes": 1094400,
+        "gpuBytes": 1094400,
         "errorMeters": 0.2,
         "drawCalls": 6
       },
       {
         "name": "closeup",
         "file": "model.closeup.glb",
-        "hash": "sha256:9cd61e5b02a4ec31ba878a38c571c784a9d39a3ad82f225ed1eda4a87ffdd793",
-        "bytes": 5725324,
-        "gzipBytes": 998228,
-        "triangles": 47683,
-        "cpuBytes": 5721960,
-        "gpuBytes": 5721960,
+        "hash": "sha256:0134fbabaf94ca4324c2e67fdc070a1771dc60edd93a1d378a38460610d70abb",
+        "bytes": 7644968,
+        "gzipBytes": 1452979,
+        "triangles": 63680,
+        "cpuBytes": 7641600,
+        "gpuBytes": 7641600,
         "errorMeters": 0,
         "drawCalls": 6
       }
     ],
-    "notes": "All four current levels were visually inspected and pass budgets; exact triangle and byte counts are recorded in levels. Error values are authoring budgets, not measured deviations."
+    "notes": "858/3957/15840/63680triangles and1/6/6/6draws pass strict limits. Skyline geometry exact. Other levels retain all original attributes outside two tower loggias and central upper room. District/street changes add27district triangles and remove101street triangles; close adds15997. Lower levels retain five tower bays and nine central axes; spiral detail/recessed gallery geometry is close-only. Errors remain authoring estimates."
   },
   "geometryValidation": {
     "status": "passed",
-    "sourceBundleSceneTerrainSchema": true,
     "sourceRegeneration": "exact",
     "sourceRuntimeVerified": true,
-    "sourceTriangles": 47683,
+    "sourceTriangles": 63680,
     "sourceMaterials": 6,
     "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 858,
+        "drawCalls": 1,
+        "addedTriangles": 0,
+        "retainedTriangles": 858,
+        "shaftSideTriangles": 0,
+        "shaftCapTriangles": 0,
+        "controls": 1,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3957,
+        "drawCalls": 6,
+        "addedTriangles": 27,
+        "retainedTriangles": 3594,
+        "shaftSideTriangles": 0,
+        "shaftCapTriangles": 0,
+        "controls": 10,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 15840,
+        "drawCalls": 6,
+        "addedTriangles": -101,
+        "retainedTriangles": 13621,
+        "shaftSideTriangles": 0,
+        "shaftCapTriangles": 0,
+        "controls": 164,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 63680,
+        "drawCalls": 6,
+        "addedTriangles": 15997,
+        "retainedTriangles": 42563,
+        "shaftSideTriangles": 11520,
+        "shaftCapTriangles": 640,
+        "controls": 365,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png"
+    ],
     "embeddedImages": 0,
     "khronosValidated": false,
-    "notes": "Exact regeneration, ordinary import verification, four current LOD checks and strict medium-fi audit passed. Source bundle, scene and terrain schemas pass; independent terrain PNG encoding error is recorded above. No independent Khronos-validator run is claimed."
+    "verification": [
+      "node content/worldgen/source/places/dj/djq/ponce_de_leon_hotel/verify-tower-loggias.mjs"
+    ],
+    "notes": "Actual imported1/10/164/365controls pass, covering real five-bay voids/soffits/floors,11520tower spiral side triangles/640caps, shaft supports, white cores, all nine central openings/jambs/sill floors/arched soffits, rear glazing/physical lead frames and eight projecting central spiral reliefs. Original skyline/surrounding attributes and map/ground unchanged. Targeted generation/import/exact source, integrity, normals/winding/UVs and strict LOD/material budgets pass. Original narrower comparison baselines remain unchanged; corrected bands include original arch trims to36.43m, derived only after reconstructed original geometry matched all saved immutable fingerprints. Combined central baseline derived before its edit from the same verified original."
   },
   "limitations": [
-    "Original medium-fi exterior based on six individually inspected local Qualla originals, NPS architectural description and mapped component footprints.",
+    "New tower loggias use exact primary Highsmith public-domain exterior photographs after starting with cleared Qualla candidates. Five bays on each of eight faces; physical simplified spiral shafts and single shared corner columns at close range.",
+    "Six flutes and one shaft turn are original medium-fi simplifications, not exact historic carving or measured pitch. Native photographic dimensions, column profiles and concealed elevations remain estimates.",
+    "Central upper gallery corrected to nine front arches; close range has actual recessed openings,1.15m-deep reveals and a closed rear room wall. Depth is an authoring estimate; lower levels use opaque opening silhouettes.",
+    "Central gallery includes recessed glazing, simple physical lead frames and eight five-flute half-turn shaft reliefs. These are original simplified profiles; precise decorative glazing and historic carving are not reproduced.",
+    "Recessed white tower-core enclosures follow the visible native photograph;2.4m radius and hidden cylindrical section are estimates. Street uses closed triangular corner-column profiles and hexagonal cores.",
     "NPS 165-foot tower height governs overall skyline; inconsistent lower map height tags are retained as source evidence. Other vertical dimensions, roof joins and hidden elevations remain estimates.",
     "Main hotel, dining oval and connected original service block included. Separate boiler house/chimney, Artists Studios, later college facilities, interior decoration, fine sculpture and exact inscriptions excluded.",
     "Dated local photographs govern finishes; temporary roof-restoration works visible in current satellite context are excluded. Independent terrain remains unflattened and host-dependent."
@@ -161,6 +251,127 @@
   "identityMigration": {
     "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
     "previousInputHash": "sha256:858f21495859ce06691b06af2bbd1ef8a6bb038c5770d4919cd727d20365e697",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed."
+    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
+    "historical": true
+  },
+  "referenceMetadataRefresh": {
+    "date": "2026-10-16",
+    "previousInputHash": "sha256:f2c33517fef8d5846f8e37b325c0f7b7fb0d6121db7197f21ebf0c3e56b360be",
+    "currentReferenceInputHash": "2ad2c952edde39f34b2cde126f0ff7b6617325066f16a48f666eb5340edc3b39",
+    "selectedImageBytesUnchanged": true,
+    "sourceRuntimeMapPlacementTerrainUnchanged": true,
+    "framesInspected": {
+      "portable": 7,
+      "shared": 7,
+      "context": 19
+    },
+    "assetIntegrity": true,
+    "threeSchemas": true,
+    "runtimePackFiles": 6,
+    "repeat30TickHash": "sha256:417ecf95b2c3b62f148364d93935d48f6c917f97ae89cafd302eff3e4a8782a0",
+    "scopeCorrection": null
+  },
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:2ec423fa9f60adafd91318e86b11b64d9e4df498ae5f03e3401651f182b89641",
+    "referenceInputHash": "10932775f4309527cd2cd2ef7a391a32a37fc64f26aed08bb77c1972147d4029",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/courtyard-13683.jp2",
+      ".artifacts/reference-photos/central-exterior-13782a.tif"
+    ],
+    "imageryEvidenceHash": "sha256:5a365d33be3475d20ea4534669b035c3d64fc1a2127e1956988c1922b4ee158e",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/flagler-college-ponce-de-leon-.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Flagler_College,_Ponce_de_Leon_Hotel,_St._Augustine_FL,_South_courtyard_view_20160707_1.jpg",
+        "reason": "Earlier imagery excluded as current tower-construction control; current review uses exact primary Highsmith originals."
+      },
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/hero.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Flagler_College_(St._Augustine,_Florida)_001.jpg",
+        "reason": "Earlier imagery excluded as current tower-construction control; current review uses exact primary Highsmith originals."
+      },
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/ponce-de-leon-hotel-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Ponce_de_Leon_Hotel_1.jpg",
+        "reason": "Earlier imagery excluded as current tower-construction control; current review uses exact primary Highsmith originals."
+      },
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/flagler-college-st-augustine-f-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Flagler_College_(St._Augustine,_Florida)_002.jpg",
+        "reason": "Earlier imagery excluded as current tower-construction control; current review uses exact primary Highsmith originals."
+      },
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/dining-room-windows-ponce-de-l-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Dining_Room_Windows,_Ponce_de_Leon_Hotel,_St._Augustine.jpg",
+        "reason": "Earlier imagery excluded as current tower-construction control; current review uses exact primary Highsmith originals."
+      },
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/dining-room-windows-ponce-de-l.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Dining_Room_Windows,_Ponce_de_Leon_Hotel,_Cordova_Street,_St._Augustine_01.jpg",
+        "reason": "Earlier imagery excluded as current tower-construction control; current review uses exact primary Highsmith originals."
+      },
+      {
+        "path": "_m/d/j/q/4/ponce-de-leon-hotel-wp/flagler-college-2005-sept-fl-1.jpg",
+        "reason": "Not adopted as a current geometry control: original upload names Russell Poore while releasing account is FloNight; no inference about creator/account ownership. Native source inspected during search only."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "Qualla first; no attribution photograph or unclear archive grant adopted for new work. Two exact native Highsmith originals from primary LOC catalogs are bound to explicit photographer public-domain dedication, native file URLs and local hashes. Native full/cropped architecture inspected.2005Qualla upload with different creator/uploader names excluded from controls without questions. No copied photo texture. Hidden elevations and exact craft/condition remain estimates."
+  },
+  "constructionReview": {
+    "status": "completed-for-bounded-medium-fi-exterior",
+    "model": "ponce_de_leon_hotel",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:2ec423fa9f60adafd91318e86b11b64d9e4df498ae5f03e3401651f182b89641",
+    "sourceHash": "sha256:33c646cd8cf201e0daa877671e33f9c54493f06dff2cb90a4524eba421f4259c",
+    "runtimeHash": "sha256:ec435b85026fa5d2ee903d0844739bbe100cda3701e4da1d6f9c080c0dffe4ed",
+    "built": [
+      "Five real arches on each of eight tower faces",
+      "32closed six-flute spiral tower shafts and eight shared corner columns",
+      "Recessed white tower-core enclosures",
+      "Nine actual recessed central upper-gallery arches with curved soffits/jambs/sill floors",
+      "Recessed gallery glazing, physical lead frames and eight small spiral shaft reliefs"
+    ],
+    "framesInspected": 42,
+    "portableFrames": 10,
+    "sharedFrames": 10,
+    "mediumFiV2Frames": 22,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 0,
+    "triangles": [
+      858,
+      3957,
+      15840,
+      63680
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Historic main Ponce de Leon hotel, courtyard, dining oval and connected original service block retained. Started with cleared Qualla candidates; ambiguous uploader/creator and unknown archive-image rights were not adopted. Two exact native Highsmith originals, primary catalog URLs and explicit photographer public-domain dedication verified. Full originals and native tower/central-gallery crops inspected. Corrected both tower loggias to five arches on each of eight faces;32closed spiral shafts,8single shared corner columns and recessed white cores. Corrected central upper front to nine physical recessed arches with curved soffits/jambs/sill floors, recessed glazing, simple lead frames and8spiral shaft reliefs. Overall skyline, tower/cone heights, central dome, lower courtyard galleries, entry, dining/bridges, service block and geographic envelope retained. All original geometry outside tower loggias/central upper room retained exactly; source ground and placement unchanged. One-turn six-flute tower shafts, half-turn five-flute gallery shafts,1.15m gallery depth and2.4m core radius are original medium-fi estimates. Partly concealed tank sections, hidden rear/service elevations, exact roof joins, present condition and detailed carving/glazing remain approximations. References dated broadly1980–2006. Main/dining/service scope is not reduced; no interiors, copied photo pixels, exact inscriptions or new terrain fitting.",
+    "publicDomainPrimaryOriginals": 2,
+    "towerArches": 40,
+    "towerSpiralShafts": 32,
+    "sharedCornerColumns": 8,
+    "centralArches": 9,
+    "centralSpiralReliefs": 8,
+    "exactOriginalSkyline": true,
+    "retainedFixedMainDiningServiceScope": true,
+    "storyState": "ready",
+    "completedStorySync": {
+      "linkedStories": 1,
+      "writtenArticles": 0,
+      "repeatChanges": 0,
+      "existingAnnotationConfirmedCurrent": true
+    }
   }
 }

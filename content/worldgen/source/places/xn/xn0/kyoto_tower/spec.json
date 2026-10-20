@@ -1,0 +1,308 @@
+{
+  "planId": "kyoto_tower",
+  "id": "kyoto_tower",
+  "assetId": "molen.worldgen.structure.kyoto_tower",
+  "title": "Kyoto Tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 135.75932934880257,
+    "latitude": 34.987552236423376
+  },
+  "size": [
+    53.163089752197266,
+    131.80000001192093,
+    45.31669044494629
+  ],
+  "actualBounds": {
+    "min": [
+      -27.070789337158203,
+      -0.800000011920929,
+      -18.631290435791016
+    ],
+    "max": [
+      26.092300415039062,
+      131,
+      26.685400009155273
+    ]
+  },
+  "visualBrief": "Smooth white candle/lighthouse shell with orange-red two-tier glazed observation cage, white upper service drum and flat-faced banded antenna, inverted dark lower bowl, actual nine-storey hotel/commercial podium with light lower frontage, dark upper bands, southeast chamfer, window belts and own roof/service blocks. Neighbor buildings and Kyoto Station fixtures excluded.",
+  "nativeAxes": {
+    "x": "east toward Karasuma-dori",
+    "y": "up",
+    "z": "south toward Kyoto Station and Shiokoji-dori"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Kyoto_Tower_1.JPG",
+    "https://commons.wikimedia.org/wiki/File:Kyoto_Tower_5.JPG"
+  ],
+  "stories": [
+    {
+      "id": "kyoto-tower-wp",
+      "url": "https://qualla.com/kyoto-tower/"
+    }
+  ],
+  "referenceInputHash": "4be533931c5529f2734e27d0c4c9394f43b29c4eef27a4cc1a2b7a88cfc53c2e",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-kyoto-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-kyoto-tower.mjs",
+    "level": "skyline",
+    "export": "kyotoTowerSkyline",
+    "errorMeters": 1.5,
+    "surfaces": {
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.15
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "membrane",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.3,
+        "metallic": 0.08
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "kyotoTowerDistrict",
+        "errorMeters": 0.5,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.08
+          }
+        }
+      },
+      "street": {
+        "export": "kyotoTowerStreet",
+        "errorMeters": 0.15,
+        "surfaces": {
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.15
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "membrane",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.3,
+            "metallic": 0.08
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry south sidewalk[10,28.5] establishes independent GSI1A datum28.2078m; all16641 samples valid, three retained original tiles include checked unused5A fallback. Native mapped footprint spans-.131..+.402m. Own foundation reaches-.8m; south entry threshold+.2m clears unchanged approach, while upper window belts clear grade on the rising rear side. Actual mapped podium/tower axis and southeast chamfer reviewed as a bounded preview. Footprint replacement disabled.",
+    "anchor": [
+      135.75932934880257,
+      34.987552236423376
+    ],
+    "heading": 0,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        135.75943899567085,
+        34.9872962177385
+      ],
+      "modelHeight": 0,
+      "basis": "Dry south sidewalk immediately outside own hotel facade, toward Kyoto Station; not podium roof or street canopy."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184611032518",
+      "buildings/35184611032524",
+      "buildings/35184611032525",
+      "buildings/35184611032521",
+      "buildings/35184611032520",
+      "buildings/35184611032522",
+      "buildings/35184611032519",
+      "buildings/35184611032523",
+      "buildings/35184492463089"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:232bf44d258077531aa3f4d87eaa6782333d6b3f40edaa83a1a5de5d23af7672",
+    "notes": "Mapped root outline53.1m by44.3m includes southeast chamfer. Tower axis lies3.55m north of podium midpoint and roughly15.6m from the story coordinate. Root hotel and tower height parts are separate physical components, not a131m solid root extrusion."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.membrane",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        4,
+        4
+      ]
+    }
+  ],
+  "limitations": [
+    "Started with two cleared published Qualla2011 creator-CC0 originals; independently verified creator-CC0 Brakeet2019 tower/hotel and Mr.ちゅらさん2024 exterior photographs fill missing coverage. Earlier attribution-licensed and aerial imagery are excluded from current approval. White shaft remains white; temporary coloured lighting is not baked into materials. Own supporting hotel/commercial podium included; separate buildings, station canopies/trees/signs and interiors excluded. No photographic pixels redistributed.",
+    "Mapped30.8m podium and height-coded tower parts plus primary131m total/100m observation guide vertical hierarchy. Smooth shaft profile, cage-rib count/gauges, window divisions, rear facades, roof/mechanical details and entrance positions remain original medium-fi estimates, not surveyed construction geometry. Small signs/branding and roof furniture omitted.",
+    "Independent original GSI1A terrain retained unchanged with all16641 valid source samples. Own foundation/south entrance contact reviewed as a bounded preview; other host terrain remains unverified and footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        65,
+        270
+      ],
+      "lookAt": [
+        0,
+        61,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -17,
+        105,
+        29
+      ],
+      "lookAt": [
+        0,
+        102,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        153,
+        82,
+        -220
+      ],
+      "lookAt": [
+        0,
+        60,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        45,
+        23,
+        63
+      ],
+      "lookAt": [
+        2,
+        16,
+        4
+      ]
+    },
+    {
+      "name": "bowl-detail",
+      "position": [
+        -18,
+        48,
+        30
+      ],
+      "lookAt": [
+        0,
+        42,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 47302,
+    "vertices": 141906,
+    "materials": 4,
+    "bytes": 5679016,
+    "sha256": "sha256:7f7c70a919b8f03f165724112e702d8d9c4dcf897cdac6d175dac0e49a51e375"
+  }
+}

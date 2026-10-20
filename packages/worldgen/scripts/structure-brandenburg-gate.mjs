@@ -1,30 +1,36 @@
 /** Original medium-fi Brandenburg Gate exterior. Map controls plan; Qualla photos control forms. */
 import './install-deterministic-math.mjs';
 import { beam, loft, normalFor, radialRing, sphere } from './authored-structure-mesh.mjs';
-import { B, c } from './landmark-model-helpers.mjs';
+import { B, c, landmarkSurfaces } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
 
 const cx = 0.43,
   cz = -1.3,
   axes = [-15.1, -9.25, -3.5, 3.5, 9.25, 15.1];
-function column(o, x, z, y, h, r, small = false) {
-  const count = small ? 16 : 40;
+function column(o, x, z, y, h, r, small = false, coarse = false) {
+  const count = coarse ? 8 : small ? 16 : 40;
   const ring = (yy, rr) =>
     Array.from({ length: count }, (_, i) => {
-      const a = (i / count) * Math.PI * 2,
+      const a = -(i / count) * Math.PI * 2,
         rad = rr * (i % 2 ? 0.94 : 1);
       return [x + Math.cos(a) * rad, yy, z + Math.sin(a) * rad];
     });
   loft(
     o,
     'concrete',
-    [
-      ring(-2.5, r),
-      ring(y, r),
-      ring(y + 0.25, r),
-      ring(y + h - 0.55, r * 0.82),
-      radialRing(y + h - 0.27, r * 1.13, r * 1.13, count, [x, z]),
-    ],
+    coarse
+      ? [
+          ring(-2.5, r),
+          ring(y + h - 0.55, r * 0.82),
+          radialRing(y + h - 0.27, r * 1.13, r * 1.13, count, [x, z]),
+        ]
+      : [
+          ring(-2.5, r),
+          ring(y, r),
+          ring(y + 0.25, r),
+          ring(y + h - 0.55, r * 0.82),
+          radialRing(y + h - 0.27, r * 1.13, r * 1.13, count, [x, z]),
+        ],
     c.sand,
   );
   B(o, 'concrete', x, y + h - 0.27, z, r * 2.55, 0.27, r * 2.55, 'sand');
@@ -73,12 +79,13 @@ function pavilion(o, x, detail) {
   }
   for (const dx of [-5.2, -1.73, 1.73, 5.2])
     for (const zz of [4.6, 22.2]) {
-      if (detail) column(o, x + dx, zz, 0.1, 8.9, 0.55, true);
+      if (detail) column(o, x + dx, zz, 0.1, 8.9, 0.55, true, detail === 'district');
       else B(o, 'concrete', x + dx, -2.5, zz, 1.05, 11.5, 1.05, 'sand');
     }
   if (detail) {
     for (const sign of [-1, 1])
-      for (const zz of [7.7, 11.7, 15.7, 19.7]) column(o, x + sign * 5.2, zz, 0.1, 8.9, 0.55, true);
+      for (const zz of [7.7, 11.7, 15.7, 19.7])
+        column(o, x + sign * 5.2, zz, 0.1, 8.9, 0.55, true, detail === 'district');
     for (const zz of [20.47, 6.83]) {
       B(o, 'metal', x, 0.15, zz, 2.2, 3.7, 0.08, 'dark');
       B(o, 'concrete', x, 3.85, zz, 2.9, 0.22, 0.5, 'cream');
@@ -110,7 +117,7 @@ function pavilion(o, x, detail) {
     );
   for (const dx of detail ? [-6.7, 0, 6.7] : [-6.7, 6.7])
     for (const zz of detail ? [-5.6, 3.4] : [-5.6]) {
-      if (detail) column(o, x + dx, zz, 0.1, 9.7, 0.55, true);
+      if (detail) column(o, x + dx, zz, 0.1, 9.7, 0.55, true, detail === 'district');
       else B(o, 'concrete', x + dx, -2.5, zz, 1.05, 12.3, 1.05, 'sand');
     }
 }
@@ -245,7 +252,7 @@ function gate(o, detail) {
     const x = cx + dx;
     B(o, 'concrete', x, -2.5, cz, 1.65, 16, 8.8, 'sand');
     for (const z of [cz - 5, cz + 5]) {
-      if (detail) column(o, x, z, 0, 13.4, 1);
+      if (detail) column(o, x, z, 0, 13.4, 1, false, detail === 'district');
       else B(o, 'concrete', x, -2.5, z, 1.8, 15.9, 1.8, 'sand');
     }
   }
@@ -260,7 +267,7 @@ function gate(o, detail) {
     [19.7, 9.4, 0.3, 7],
   ])
     B(o, 'concrete', cx, y, cz, w, h, d, 'sand');
-  if (detail) {
+  if (detail === true) {
     for (const sign of [-1, 1]) {
       const z = cz + sign * 6.45;
       for (let i = 0; i < 25; i++) {
@@ -303,13 +310,16 @@ function gate(o, detail) {
   }
   pavilion(o, -25.65, detail);
   pavilion(o, 25.55, detail);
-  sculpture(o, detail);
+  sculpture(o, detail === true);
 }
 export function brandenburg(o) {
   gate(o, true);
 }
 export function brandenburgSkyline(o) {
   gate(o, false);
+}
+export function brandenburgDistrict(o) {
+  gate(o, 'district');
 }
 export const brandenburgModel = {
   id: 'brandenburg_gate',
@@ -331,8 +341,17 @@ export const brandenburgModel = {
     level: 'skyline',
     export: 'brandenburgSkyline',
     errorMeters: 0.6,
+    authoredLevels: {
+      district: {
+        export: 'brandenburgDistrict',
+        errorMeters: 0.6,
+        surfaces: {
+          ...landmarkSurfaces,
+          glass: { ...landmarkSurfaces.glass, localRef: 'palette:#ffffff' },
+        },
+      },
+    },
     caps: {
-      district: { triangles: 4000, errorMeters: 0.3, prune: true },
       street: { triangles: 16000, errorMeters: 0.16, prune: true },
     },
   },

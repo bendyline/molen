@@ -1,0 +1,476 @@
+{
+  "planId": "blue_house_hong_kong",
+  "id": "blue_house_hong_kong",
+  "assetId": "molen.worldgen.structure.blue_house_hong_kong",
+  "title": "Blue House (Hong Kong)",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 114.17413163703797,
+    "latitude": 22.27389313485632
+  },
+  "size": [
+    22.76125144958496,
+    17.377787590026855,
+    15.483166694641113
+  ],
+  "actualBounds": {
+    "min": [
+      -13.811251640319824,
+      -2.5,
+      -9.983166694641113
+    ],
+    "max": [
+      8.949999809265137,
+      14.877787590026855,
+      5.5
+    ]
+  },
+  "visualBrief": "Four connected Hong Kong shophouse units: three blue and one white end unit, three tiers of cantilevered balconies with concrete corbels and ornamental ironwork, paired glazed doors, shopfronts and clinic canopy; shallow gable roof and modern rear access stairs.",
+  "nativeAxes": {
+    "x": "south-southwest along the four shop units",
+    "y": "up",
+    "z": "west-northwest toward Stone Nullah Lane"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Blue_House_in_2020.jpg"
+  ],
+  "stories": [
+    {
+      "id": "blue-house-hong-kong-wp",
+      "url": "https://qualla.com/blue-house-hong-kong/"
+    }
+  ],
+  "referenceInputHash": "sha256:e09ce90b0371893ebbfebf8585ca3992e8e82d94278bb1de96b9928d2aab237b",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-blue-house-hong-kong.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-blue-house-hong-kong.mjs",
+    "level": "skyline",
+    "export": "blueHouseSkyline",
+    "errorMeters": 0.6,
+    "surfaces": {
+      "balconyIron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3,
+        "doubleSided": true
+      },
+      "balconyWood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "doorWall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "doorReveal": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "doorWood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "doorGlass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      },
+      "doorIron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3,
+        "doubleSided": true
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "plaster_lime",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "tile_ceramic",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.8,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "roughness": 0.3,
+        "metallic": 0.12,
+        "localRef": "palette:#ffffff"
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "blueHouseDistrict",
+        "errorMeters": 0.45,
+        "surfaces": {
+          "balconyIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "balconyWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "doorWall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "doorReveal": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "doorWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "doorGlass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "doorIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      },
+      "street": {
+        "export": "blueHouseStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "balconyIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "balconyWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "doorWall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "doorReveal": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "doorWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "doorGlass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          },
+          "doorIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "plaster_lime",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "tile_ceramic",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.8,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "roughness": 0.3,
+            "metallic": 0.12,
+            "localRef": "palette:#ffffff"
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 0.5
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Northern Stone Nullah Lane approach[-6.5,6.5], Y=0 against unmodified official Hong Kong5m DTM, datum11mHKPD. The source rises about1m southward; shop thresholds .18/.58/1.18/1.2 and rear first landing1.18 retain photographed individual steps without changing the ground.",
+    "anchor": [
+      114.17413163703797,
+      22.27389313485632
+    ],
+    "heading": -1.91,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        114.1740931290678,
+        22.27396762654829
+      ],
+      "modelHeight": 0,
+      "basis": "Northern Stone Nullah Lane approach near the clinic, outside the balcony, independent host ground reference."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184777881883"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:175d1699cd3b9a800d5d81f2dbbf0a6678d5983664f523ba6ddca1de51a148b9",
+    "notes": "Four-unit street frontage about17.1m. Mapped north wall is oblique and rear service outline is toothed; principal roof and hidden joins remain photographic estimates. Four storeys with cantilevered balconies/corbels, paired glazed doors and shallow gable ends. No measured survey."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.plaster_lime",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_ceramic",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        2.4
+      ]
+    }
+  ],
+  "limitations": [
+    "Current construction uses exact native named-photographer CC0 2020 front/corner after Qualla-first111records. Twelve front paired-door pockets and closed ornamental railings built from inspected native detail. Earlier attribution/private/aerial controls are historical and excluded; full original four-unit house/white74A/roof/rear access/shopfront scope retained, broader rear/hidden roof fidelity pending. Dimensions, recesses, iron profiles and current condition remain estimates.",
+    "Four contiguous72–74A Stone Nullah Lane units only, including white-painted74A. Separate Yellow/Orange Houses, courtyard landscaping, neighboring bridges, interiors, signs lettering and street furniture excluded.",
+    "Close front ironwork uses physical elliptical/circular/side-loop stocks and twelve paired-door recesses; all three original lower levels remain exact. LODerror estimates increased conservatively for new recess depth, not measured geometric-error certification. Rear stair positioning/hidden details retained as estimates pending wider cleared evidence.",
+    "Independent terrain compatibility is recorded in qa.json. Footprint replacement disabled; no photographic pixels redistributed and no physical-device performance measurement claimed."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -5,
+        12,
+        36
+      ],
+      "lookAt": [
+        -0.5,
+        6.5,
+        3
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        27,
+        24,
+        -34
+      ],
+      "lookAt": [
+        -2,
+        6.5,
+        -4
+      ]
+    },
+    {
+      "name": "balcony-ironwork",
+      "position": [
+        -1,
+        9.1,
+        10
+      ],
+      "lookAt": [
+        -2.12,
+        7.9,
+        5.37
+      ]
+    },
+    {
+      "name": "paired-door-recess",
+      "position": [
+        -4.5,
+        9,
+        7.7
+      ],
+      "lookAt": [
+        -2.12,
+        8.7,
+        3.2
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 34050,
+    "vertices": 102150,
+    "materials": 6,
+    "bytes": 4089688,
+    "sha256": "sha256:390b65becd079edd2f34e7a0e78c0ea5bb0cc8180cb1d1a7ea37f33eda85e41c"
+  }
+}

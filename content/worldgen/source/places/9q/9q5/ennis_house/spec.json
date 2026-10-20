@@ -38,8 +38,7 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:EnnisHouse.jpg",
-    "https://commons.wikimedia.org/wiki/File:Ennis_House_3.jpg"
+    "https://www.loc.gov/item/ca0227/"
   ],
   "stories": [
     {
@@ -47,7 +46,7 @@
       "url": "https://qualla.com/ennis-house/"
     }
   ],
-  "referenceInputHash": "35ca31df6cbce0af2014178ae3641e23fa5a69eebc8f0f8a33a09b82152f407f",
+  "referenceInputHash": "sha256:c7bc1a1374fe725f2771851ca963f84da4d9401fa124d6d7460415848fde3ec2",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-ennis-house.mjs"
   },
@@ -92,6 +91,18 @@
         "roughness": 0.24,
         "metallic": 0.14,
         "localRef": "palette:#feffff"
+      },
+      "gateIron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.68,
+        "metallic": 0.4
+      },
+      "gateWall": {
+        "slot": "wall",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
       }
     },
     "authoredLevels": {
@@ -129,6 +140,18 @@
             "roughness": 0.24,
             "metallic": 0.14,
             "localRef": "palette:#feffff"
+          },
+          "gateIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.4
+          },
+          "gateWall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
           }
         }
       },
@@ -166,18 +189,36 @@
             "roughness": 0.24,
             "metallic": 0.14,
             "localRef": "palette:#feffff"
+          },
+          "gateIron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.68,
+            "metallic": 0.4
+          },
+          "gateWall": {
+            "slot": "wall",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
           }
         }
       }
     }
   },
   "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
   "fidelityStatus": "review-in-qa.json",
   "reviewStatus": "review-in-qa.json",
   "geographicProposal": {
     "status": "preview-proposal",
     "groundContactReviewed": true,
-    "groundContactBasis": "Western motor-court paving at local [-18,2], model Y=0; independent USGS 3DEP ground datum.",
+    "groundContactBasis": "Western motor-court paving at local [-18,2], model Y=0; original USGS datum independently corroborated by B23 ground returns. Raised bridge and sloping covered entrance are separate architectural levels.",
     "anchor": [
       -118.2929,
       34.11622
@@ -195,6 +236,27 @@
       "basis": "Flat western motor-court paving, visible in satellite context; avoids the sloping street outside the northwest gate."
     },
     "replaceFootprint": false,
+    "groundCutout": {
+      "outline": [
+        [
+          -24.15,
+          -11.95
+        ],
+        [
+          -15.45,
+          -11.95
+        ],
+        [
+          -15.45,
+          -2.05
+        ],
+        [
+          -24.15,
+          -2.05
+        ]
+      ],
+      "basis": "Only the authored sloping entrance paving beneath the bridge and its short street/court transitions. USGS B23 points show the bridge deck incorrectly represented as ground by the interpolated raster. Preserve every original height sample and the whole-house datum; the solid model floor replaces rendered ground triangles in this bounded passage. Approximate floor and registration, not a surveyed threshold."
+    },
     "featureIds": [
       "buildings/35184798746946"
     ],
@@ -233,9 +295,10 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior based on individually inspected Qualla photographs, HABS CA-1942 elevation/description, 1928 Architectural Record plan/perspective and satellite roof context. Room dimensions, roof heights and precise relief are interpreted, not surveyed.",
+    "Original government HABS CA-1942 west elevation and gate detail by Jean Davis,1969, establish the textile-block hierarchy and measured15ft10.75in portal. Gate figures, rods and relief are simplified. Current condition and unseen faces are approximate; earlier attribution/private/satellite imagery is excluded from the current review.",
+    "The retained mapped full compound and HABS exterior are corroborated by public USGS B23 point measurements acquired2023-01-08 through2024-01-07. Court datum is unchanged; bridge depth/height and the raised sloping entrance are corrected as approximate architecture. This derived local registration conservatively allows2m horizontal uncertainty, without an independent epoch/datum correction; inferred under-bridge paving is not an observed navigable survey.",
     "House, linked garage/servant wing, bridge, court, terraces and pool basin included. Interiors, vegetation, neighboring houses, vehicles, temporary scaffolds, furniture and photo pixels excluded.",
-    "Independent USGS CA_LosAngeles_B23 bare-earth evidence is preserved unmodified. Terrain under buildings is source-interpolated, and host datasets may differ; placement remains a preview with footprint replacement disabled.",
+    "Original USGS raster, review grid and source heights remain exact. A bounded rendered-ground opening exists only under the authored solid entrance paving; the original raster interpolates bridge returns across this covered passage. Isolated portable views use a flat floor below the foundations; medium-fi views retain the original ground and exercise the opening. Host datasets may differ; placement remains a preview with footprint replacement disabled.",
     "16-inch block course spacing is retained; ornate block relief and leaded-glass geometry are simplified at medium-fi and progressively omitted at distant detail levels."
   ],
   "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
@@ -265,16 +328,42 @@
         3,
         -2
       ]
+    },
+    {
+      "name": "gate-ironwork",
+      "position": [
+        -20.8,
+        3,
+        -17.5
+      ],
+      "lookAt": [
+        -19.8,
+        2.6,
+        -10.25
+      ]
+    },
+    {
+      "name": "service-gate",
+      "position": [
+        -16.1,
+        2.65,
+        -13.25
+      ],
+      "lookAt": [
+        -16.55,
+        2.4,
+        -10.25
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 60816,
-    "vertices": 182448,
+    "triangles": 58598,
+    "vertices": 175794,
     "materials": 5,
-    "bytes": 7301024,
-    "sha256": "sha256:fa7b28b9a6b7206756ff505a32057ff9152cb32b276397775b60aa022384f0eb"
+    "bytes": 7034864,
+    "sha256": "sha256:cc95f51402fd150a43b2b654a2217284901ff4ff30b434e7dd49f07a0b0ac996"
   }
 }

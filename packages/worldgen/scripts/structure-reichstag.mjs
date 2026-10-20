@@ -318,7 +318,7 @@ function dome(o, d) {
   const cx = 2.26,
     cz = 0.85,
     count = d === 0 ? 16 : d === 1 ? 24 : 48,
-    levels = d === 0 ? 6 : d === 1 ? 9 : 17;
+    levels = d === 0 ? 6 : d === 1 ? 8 : 17;
   const p = (i, j) => {
     const t = j / levels,
       rr = 20 * Math.sqrt(1 - (0.96824583655 * t) ** 2),
@@ -427,7 +427,17 @@ function hip(o, x, z, w, dep, y, rise, tw, td) {
   ];
   loft(o, 'roof', [ring(y, w, dep), ring(y + rise, tw, td)], roof);
 }
-function reichstag(o, frame, d = 3) {
+function porticoCeiling(o, x, d) {
+  // The CC0 underside photograph resolves beams running back from the six
+  // columns and crossing ties. Solid members leave shallow open coffers below
+  // a continuous soffit; section sizes and concealed joints remain estimates.
+  B(o, 'wall', x, 23.05, 48.025, 29, 0.12, 9.65, trim);
+  for (const dx of [-14, -8.4, -2.8, 2.8, 8.4, 14])
+    B(o, 'wall', x + dx, 22.55, 48.025, 0.42, 0.52, 9.65, stone);
+  for (const z of d === 1 ? [46.4, 49.6] : [44, 46.8, 49.5, 52.1])
+    B(o, 'wall', x, 22.67, z, 28, 0.4, 0.32, stone);
+}
+export function reichstag(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base), 'utf8'));
   const rings = frame.geometry.rings.map((r) => r.map((p) => p.slice()));
   // Cut back the wall behind the visitor columns, retaining the mapped portico footprint at plinth level.
@@ -473,6 +483,7 @@ function reichstag(o, frame, d = 3) {
   pediment(o, xx, 24.7, 53.05, 32.5, 6.5, d);
   B(o, 'roof', xx, 24.75, 48.1, 31, 0.2, 9, roof);
   const steps = d > 2 ? 20 : d > 1 ? 10 : d ? 5 : 3;
+  if (!d) B(o, 'foundation', xx, 3.2, 48.1, 30, 0.2, 10, trim);
   B(o, 'foundation', xx, -0.2, 59.5, 30, 3.6, 13, trim);
   for (let i = 0; i < steps; i++)
     B(
@@ -488,8 +499,10 @@ function reichstag(o, frame, d = 3) {
     );
   if (d) {
     face(o, 'glass', xx, 3.45, 43.25, 27.4, 19.1, glass);
-    for (const x of [-9, -4.5, 0, 4.5, 9]) face(o, 'trim', xx + x, 3.45, 43.3, 0.14, 19.1, metal);
-    for (const y of [10, 15, 20]) face(o, 'trim', xx, y, 43.31, 27, 0.14, metal);
+    for (const x of [-9, -4.5, 0, 4.5, 9])
+      B(o, 'trim', xx + x, 3.45, 43.36, 0.14, 19.1, 0.22, metal);
+    for (const y of [10, 15, 20]) B(o, 'trim', xx, y, 43.36, 27, 0.14, 0.22, metal);
+    porticoCeiling(o, xx, d);
     for (const [x, z] of [
       [-32.4, 43.5],
       [35, 43.9],
@@ -670,6 +683,8 @@ export const reichstagModel = {
   qaCameras: [
     { name: 'front', position: [1.6, 31, 205], lookAt: [1.6, 22, 0] },
     { name: 'back', position: [-145, 95, -150], lookAt: [0, 20, 0] },
+    { name: 'portico-ceiling', position: [1.6, 8, 78], lookAt: [1.6, 21.7, 47] },
+    { name: 'entrance-frame', position: [-17, 10, 72], lookAt: [1.6, 16, 45] },
   ],
   build: reichstag,
   surfaces,
@@ -695,7 +710,8 @@ export const reichstagModel = {
     },
   },
   limitations: [
-    'Original medium-fi present exterior, using individually inspected 2014 west-front and 2017 northeast Qualla photographs; not a survey or photogrammetric reconstruction.',
+    'Original medium-fi present exterior. Current construction controls are individually inspected native 2014 Daderot and 2019 Leonhard Lenz own-work CC0 west photographs, selected after checking cleared Qualla media. Earlier attribution-licensed views are excluded from current controls; hidden side/east architecture remains an inherited mapped approximation.',
+    'West entrance mullions and coffer beams are solid geometry. The photographs control their visible arrangement; member sections, ceiling depth, hidden joints and exact bay proportions are estimates. The opaque entrance glazing is an exterior boundary, with no parliamentary rooms modeled.',
     'Mapped outline, courtyard voids and tower positions are generalized. Roof terrace, courtyard facades, side details and ornament are conservative interpretations.',
     'Dome diameter 40 m and rise 23.5 m follow Bundestag figures; base is approximately 24 m above forecourt. Rounded published total heights differ slightly. Top opening modeled approximately 10 m; another official page says 8 m.',
     'The dome has 24 ribs and 17 horizontal divisions at close range, with four bottom glazing rows omitted. Internal ramps and reflector cone are simplified exterior-visible cues; parliamentary rooms are excluded.',

@@ -1,0 +1,562 @@
+{
+  "planId": "chateau_de_chambord",
+  "id": "chateau_de_chambord",
+  "assetId": "molen.worldgen.structure.chateau_de_chambord",
+  "title": "Château de Chambord",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 1.517028,
+    "latitude": 47.616242
+  },
+  "size": [
+    157.45516967773438,
+    60,
+    112.86859512329102
+  ],
+  "actualBounds": {
+    "min": [
+      -81.2656478881836,
+      -4,
+      -32.90774154663086
+    ],
+    "max": [
+      76.18952178955078,
+      56,
+      79.96085357666016
+    ]
+  },
+  "visualBrief": "Connected native château with open courtyard: square keep/four great round towers, four separate steep hipped pavilion roofs, central open stone lantern to56m, six restored open corner lanterns, chapel/royal side wings, recessed connecting galleries and low enclosure/two flat front towers. Three-storey pilaster/moulding facade grid, crossed windows and upper open gallery bays, true courtyard entrance portal, supported exterior circular staircases, native roof dormers/chimneys/stair turrets with original restrained circular/diamond inlays and abstract relief. Current2025 aerial controls silhouette and restored blue-grey lead; older close photos control stone/window forms. Gardens, detached buildings, moat, interiors, people and photo textures excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:2022.10.29.141056_Château_de_Chambord_France.jpg",
+    "https://commons.wikimedia.org/wiki/File:2022.10.29.141105_Château_de_Chambord_France.jpg"
+  ],
+  "stories": [
+    {
+      "id": "chateau-de-chambord-wp",
+      "url": "https://qualla.com/chateau-de-chambord/"
+    }
+  ],
+  "referenceInputHash": "sha256:e37a014267336102b88c202989fe1b555aba74d5def3ac5ed9fdba12e50fea59",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-chateau-de-chambord.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-chateau-de-chambord.mjs",
+    "level": "skyline",
+    "export": "chambordSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "lead": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.45
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.4,
+        "metallic": 0.05
+      },
+      "wood": {
+        "slot": "door",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "inlay": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.8,
+        "metallic": 0.15
+      },
+      "paving": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.97,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "chambordDistrict",
+        "errorMeters": 1.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "inlay": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "chambordStreet",
+        "errorMeters": 0.4,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "lead": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.4,
+            "metallic": 0.05
+          },
+          "wood": {
+            "slot": "door",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "inlay": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.8,
+            "metallic": 0.15
+          },
+          "paving": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.97,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.3,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent official IGN field acquired before geometry:25921 unchanged provider values on2m grid,77.73m dry entrance datum at[0,74], original request/response hashes retained. Native own-outline ground−2.230..+0.356m; foundations continue to−4m, courtyard paving follows unchanged samples. Baseline Terrarium84.0464m entrance/building returns is preserved and rejected. Effective source resolution and surveyed accuracy remain unspecified. Compatible host field required; footprint replacement disabled.",
+    "anchor": [
+      1.517028,
+      47.616242
+    ],
+    "heading": 0.7207060929181248,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        1.517678769094817,
+        47.61574254656249
+      ],
+      "modelHeight": 0,
+      "basis": "Dry paved approach immediately outside the main low enclosure entrance; avoid raised roofs, moat and vegetation."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185335389972",
+      "buildings/35185335389975",
+      "buildings/35185335389955",
+      "buildings/35185335389956",
+      "buildings/35185335389971",
+      "buildings/35185335389984",
+      "buildings/35184613079421",
+      "buildings/35184818418831",
+      "buildings/35185335389966",
+      "buildings/35185335389953",
+      "buildings/35185335389950",
+      "buildings/35185335389952",
+      "buildings/35184818418834",
+      "buildings/35185335389973",
+      "buildings/35185335389939",
+      "buildings/35185335389995",
+      "buildings/35185335389946",
+      "buildings/35185335435467",
+      "buildings/35185335389974",
+      "buildings/35185335389992",
+      "buildings/35185335389986",
+      "buildings/35185335389937",
+      "buildings/35185335389989",
+      "buildings/35185335389994",
+      "buildings/35185335389943",
+      "buildings/35185335389935",
+      "buildings/35185335389990",
+      "buildings/35185335389991",
+      "buildings/35185335389976",
+      "buildings/35185335389947",
+      "buildings/35185335389965",
+      "buildings/35185335435475",
+      "buildings/35185335435483",
+      "buildings/35185335389940",
+      "buildings/35185335389957",
+      "buildings/35185335435471",
+      "buildings/35185335389970",
+      "buildings/35185335389993",
+      "buildings/35185335389987",
+      "buildings/35185335389958",
+      "buildings/35185335389988",
+      "buildings/35185335389933",
+      "buildings/35185335435479",
+      "buildings/35185335389934",
+      "buildings/35185335389967",
+      "buildings/35185335435482",
+      "buildings/35185335389931",
+      "buildings/35185335389979",
+      "buildings/35185335389985",
+      "buildings/35185335389977",
+      "buildings/35185335389982",
+      "buildings/35185335435466",
+      "buildings/35185335435478",
+      "buildings/35185335389938",
+      "buildings/35185335389951",
+      "buildings/35185335435474",
+      "buildings/35185335389954",
+      "buildings/35185335435470",
+      "buildings/35185335389978",
+      "buildings/35185335389948",
+      "buildings/35185335389980",
+      "buildings/35185335389959",
+      "buildings/35185335389924",
+      "buildings/35185335389962",
+      "buildings/35185335389949",
+      "buildings/35185335389960",
+      "buildings/35185335389961",
+      "buildings/35185335389963",
+      "buildings/35185335389941",
+      "buildings/35185335389944",
+      "buildings/35185335389964",
+      "buildings/35185335389981",
+      "buildings/35185335389945",
+      "buildings/35185335389942",
+      "buildings/35185335389983",
+      "buildings/35185335389997",
+      "buildings/35185335389996",
+      "buildings/35185335389936",
+      "buildings/35185335435465",
+      "buildings/35184818418839",
+      "buildings/35185335389919",
+      "buildings/35185335389929",
+      "buildings/35185335389969",
+      "buildings/35184818418823",
+      "buildings/35185335389920",
+      "buildings/35185335389968",
+      "buildings/35185335435484",
+      "buildings/35185335389927",
+      "buildings/35185335435468",
+      "buildings/35185335435473",
+      "buildings/35185335435481",
+      "buildings/35185335435469",
+      "buildings/35185335389930",
+      "buildings/35185335389928",
+      "buildings/35185335435480",
+      "buildings/35185335389922",
+      "buildings/35185335389932",
+      "buildings/35185335435488",
+      "buildings/35185335435476",
+      "buildings/35185335435477",
+      "buildings/35185335435472",
+      "buildings/35185335713655",
+      "buildings/35185335713648",
+      "buildings/35185335713651",
+      "buildings/35185335435489",
+      "buildings/35185335389923",
+      "buildings/35185335713652",
+      "buildings/35185335389918",
+      "buildings/35185335435490",
+      "buildings/35185335435487",
+      "buildings/35185335713658",
+      "buildings/35185335713647",
+      "buildings/35185335713650",
+      "buildings/35185335435492",
+      "buildings/35185335435485",
+      "buildings/35185335713656",
+      "buildings/35185335435486",
+      "buildings/35185335435491",
+      "buildings/35185335713657",
+      "buildings/35185335389917",
+      "buildings/35185335435495",
+      "buildings/35185335713654",
+      "buildings/35185335713665",
+      "buildings/35185335435496",
+      "buildings/35185335435494",
+      "buildings/35185335713649",
+      "buildings/35185335389921",
+      "buildings/35185335713653",
+      "buildings/35185335389925",
+      "buildings/35185335435493",
+      "buildings/35185335713663",
+      "buildings/35185335713660",
+      "buildings/35185335389926",
+      "buildings/35185428958246",
+      "buildings/35185335713664",
+      "buildings/35185335713666",
+      "buildings/35185335389915",
+      "buildings/35185819181761",
+      "buildings/35185335713659",
+      "buildings/35185335713661",
+      "buildings/35185335389916",
+      "buildings/35185335713662",
+      "buildings/35185335713668",
+      "buildings/35185335713667"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:5588cff83bb4f9b7d7185f34c63be50e52b6e3a86f8466f29fa0e7ebcbede364"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Eight local originals individually inspected and all40 candidate contact views reviewed. Historical facade/plan engravings, interiors, Quebec, Montsoreau, Schwerin, Waddesdon and Zamosc do not control the current Chambord exterior.",
+    "Main connected château, keep/four drums, chapel/royal wings and two tall outer towers, low court enclosure/two flat front towers, current roof skyline and immediate thresholds only. Moats, formal gardens, bridges in the park, detached service buildings, interiors, trees, people, cars and flag cloth excluded.",
+    "Current2025 aerial controls overall massing and restored lantern finish. Earlier2007–2013 photos control visible stone/window details, not current lead polychromy or gilding. Original simplified abstract carving only, no literal heraldry or inscriptions.",
+    "Nominal156m frontage and56m central lantern height are owner controls. Native connected outline is approximately157.1×112.5m; preserve it rather than forcing a nominal bounding rectangle. Other heights and fine dimensions are map/photo estimates, not surveys.",
+    "Independent unchanged IGN provider terrain was acquired and verified before geometry. The 2m review grid and 0.01m response rounding do not establish effective native resolution or surveyed accuracy. Default coarse Terrarium compatibility is not certified; use a compatible host field. Footprint replacement disabled.",
+    "Four authored levels simplify small details: distant applied windows and reduced lantern/roof ornament; street exterior stairs use a helical ramp; close uses actual treads and open landing shafts. Balusters, stair arcade columns, crown tracery, chimney relief and thresholds are original proportional approximations, with no interior or engineering reconstruction."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -1.5,
+        24,
+        158
+      ],
+      "lookAt": [
+        -1.5,
+        18,
+        18
+      ]
+    },
+    {
+      "name": "keep-court",
+      "position": [
+        21,
+        20,
+        55
+      ],
+      "lookAt": [
+        0,
+        13,
+        22
+      ]
+    },
+    {
+      "name": "garden-front",
+      "position": [
+        1,
+        28,
+        -105
+      ],
+      "lookAt": [
+        0,
+        20,
+        -20
+      ]
+    },
+    {
+      "name": "roof-village",
+      "position": [
+        75,
+        75,
+        72
+      ],
+      "lookAt": [
+        0,
+        34,
+        0
+      ]
+    },
+    {
+      "name": "central-lantern",
+      "position": [
+        21,
+        47,
+        24
+      ],
+      "lookAt": [
+        0,
+        37,
+        0
+      ]
+    },
+    {
+      "name": "royal-stair",
+      "position": [
+        34,
+        17,
+        12
+      ],
+      "lookAt": [
+        50.5,
+        13,
+        -14.6
+      ]
+    },
+    {
+      "name": "chapel-wing",
+      "position": [
+        -108,
+        28,
+        -2
+      ],
+      "lookAt": [
+        -66,
+        20,
+        -12
+      ]
+    },
+    {
+      "name": "entry-portal",
+      "position": [
+        6.52,
+        4,
+        91
+      ],
+      "lookAt": [
+        -1.48,
+        3,
+        64
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63940,
+    "vertices": 191820,
+    "materials": 8,
+    "bytes": 7677176,
+    "sha256": "sha256:4bfac6fd78061041eb1072ab3a264a0fb2d9254c3ed28ff306abaa3f47db0acc"
+  }
+}

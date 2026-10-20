@@ -8,7 +8,7 @@ Authoring state: **review-in-qa.json**. Current completion evidence is in [qa.js
 
 - [Fraunces Tavern](https://qualla.com/fraunces-tavern/)
 
-Original medium-fi exterior of the restored 54 Pearl Street corner building, informed by individually inspected Qualla 2010/2014 photographs and supplemental details plus official city architectural descriptions. Not a survey or exact 1783 reconstruction.
+Current exterior/entrance construction uses an individually inspected native Jim Henderson 2008 own-work public-domain exterior, after checking cleared Qualla images first. Earlier attribution-licensed photos are excluded as current controls; official factual city architectural descriptions retained. Not a survey or exact 1783 reconstruction.
 
 101 Broad Street, 58 Pearl Street, other museum buildings, interiors and the narrow mapped rear connector are excluded. Scope clipping is an explicit authoring boundary.
 
@@ -18,4 +18,6 @@ Twelve-over-twelve sash, jack arches, paneled cornice and roof balusters are sim
 
 Independent terrain remains unchanged with foundation below the sidewalk datum. Exact contact can differ with another host DEM.
 
-Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=fraunces_tavern`. Add `--check` to verify exact regeneration. 19895 triangles; 6 materials; no embedded photographs.
+Added actual slim stair handrails, vertical posts and level landing returns. Original steps retained. Rail heights, sections, post spacing, concealed connections and current condition remain fixed photographic estimates; the 2008 image does not measure later alterations.
+
+Build: `node packages/worldgen/scripts/generate-authored-places.mjs --ids=fraunces_tavern`. Add `--check` to verify exact regeneration. 20087 triangles; 6 materials; no embedded photographs.

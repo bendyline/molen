@@ -1,0 +1,501 @@
+{
+  "planId": "ryman_auditorium",
+  "id": "ryman_auditorium",
+  "assetId": "molen.worldgen.structure.ryman_auditorium",
+  "title": "Ryman Auditorium",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -86.77849531173706,
+    "latitude": 36.16124727162706
+  },
+  "size": [
+    37.12249946594238,
+    25.786792755126953,
+    111.5686206817627
+  ],
+  "actualBounds": {
+    "min": [
+      -17.600000381469727,
+      -4,
+      -82.1261215209961
+    ],
+    "max": [
+      19.522499084472656,
+      21.786792755126953,
+      29.4424991607666
+    ]
+  },
+  "visualBrief": "Surviving red-brick Gothic auditorium on sloping limestone base, steep dark gabled roof with two rear chimneys, ornate white-banded front with twin deeply recessed door portals/stairs, grouped lancets/offset buttresses/Union Gospel panel and large traceried gable light. Long side paired stained-glass bays, real recessed side stair portals and downpipes. Separately bounded modern rear wing with copper screen/open covered entrance, concrete steps and lower glazed pavilion. No neighboring towers or honky-tonks/interior.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2010630827/"
+  ],
+  "stories": [
+    {
+      "id": "ryman-auditorium-wp",
+      "url": "https://qualla.com/ryman-auditorium/"
+    }
+  ],
+  "referenceInputHash": "sha256:8a19ef1d9c4d4dca7f84e6e647266d6b6e4ac4d3e2d328d17d114055164368ce",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-ryman-auditorium.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-ryman-auditorium.mjs",
+    "level": "skyline",
+    "export": "rymanAuditoriumSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "lancetHood": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "lancetMoulding": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "windowJoinery": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.96,
+        "metallic": 0,
+        "doubleSided": true
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.87,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "slate",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.78,
+        "metallic": 0.14,
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "door",
+        "graph": "wood_plain",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "copper": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.82,
+        "metallic": 0.2
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "rymanAuditoriumDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "lancetHood": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "lancetMoulding": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "windowJoinery": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.14,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "rymanAuditoriumStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "lancetHood": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "lancetMoulding": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "windowJoinery": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.96,
+            "metallic": 0,
+            "doubleSided": true
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.87,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "slate",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.78,
+            "metallic": 0.14,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "door",
+            "graph": "wood_plain",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "copper": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.82,
+            "metallic": 0.2
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unchanged original Terrarium tile/3m review grid resolve broad southward slope. Dry FifthAve sidewalk[-13,28] datum137.5265m, fixed historic/modern limestone foundation below grade to-4m. Floor/water table.9m, entry flights use separately sampled end grades without altering terrain. Exact thresholds/paving/hidden foundations remain estimates; bounded preview, footprint replacement disabled.",
+    "anchor": [
+      -86.77849531173706,
+      36.16124727162706
+    ],
+    "heading": -1.091525531704845,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -86.7788384539507,
+        36.161234907320484
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Fifth Avenue sidewalk near northwestern frontage, outside roof, main stair flights and street carriageway."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184502994738",
+      "buildings/35184836748316",
+      "buildings/35185056057617"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:1e23822638a7768723a8bb1450aeff09fdde052ebb793916bacd4b3f13a414d8"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "door",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.slate",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.5,
+        1.6
+      ]
+    }
+  ],
+  "limitations": [
+    "Current2007–2023 historic exterior combined with built2015rear wing/pavilion. Source photographs/text inform exterior rather than a survey; fine tracery/trim/window colors/hidden faces and unmeasured roof heights are original proportional estimates.",
+    "Native generalized historic plan34.5mfront/50.03msides retained; primary120ft/178ft nominal includes offsets/vestibule. Exact plan chainages and facade bay spacing remain approximate, no forced stretching.",
+    "Independent original Terrarium heights remain unchanged.3m review grid/source3.857mpixels are not threshold surveys. Dry reference137.5265m/floor.9m/fixed-4m foundation and stair end levels are bounded authoring pose; host terrain compatibility remains dataset-dependent.",
+    "Copper-screen hole pitch is coarsened geometrically at close/street; district uses geometric dark marks. Modern rooflight/service envelope and rear hidden facades are approximate native-plan masses subordinate to historic roof. Rear gable light is boarded per NPS description rather than duplicating front tracery.",
+    "No original lost parapet crockets, actual signage/artwork/textures, interiors/pews/stage, neighboring towers/honky-tonks, trees/crowds/vehicles or photo pixels embedded. Shared metric material graphs and original palette colors only."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -42,
+        23,
+        65
+      ],
+      "lookAt": [
+        0,
+        10,
+        24
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -8,
+        7.5,
+        39
+      ],
+      "lookAt": [
+        -4.4,
+        4,
+        24
+      ]
+    },
+    {
+      "name": "lancet-detail",
+      "position": [
+        -8,
+        10.3,
+        31
+      ],
+      "lookAt": [
+        -5.4,
+        9.1,
+        25.015
+      ]
+    },
+    {
+      "name": "gable-detail",
+      "position": [
+        8,
+        21,
+        42
+      ],
+      "lookAt": [
+        0,
+        15,
+        25
+      ]
+    },
+    {
+      "name": "side-detail",
+      "position": [
+        -31,
+        9,
+        -2
+      ],
+      "lookAt": [
+        -17.25,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        30,
+        2.5,
+        -6
+      ],
+      "lookAt": [
+        17.25,
+        0.5,
+        -13
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -29,
+        37,
+        -3
+      ],
+      "lookAt": [
+        0,
+        16,
+        -5
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        48,
+        18,
+        -73
+      ],
+      "lookAt": [
+        5,
+        5,
+        -48
+      ]
+    },
+    {
+      "name": "pavilion-detail",
+      "position": [
+        28,
+        11,
+        -88
+      ],
+      "lookAt": [
+        7,
+        3,
+        -72
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63963,
+    "vertices": 191889,
+    "materials": 7,
+    "bytes": 7679708,
+    "sha256": "sha256:d06b54eea0e31e926751d0e79f9985be5498f5da5da8412ec49dc9c520330eea"
+  }
+}

@@ -1,15 +1,15 @@
 {
   "format": "molen/structure-shared-capture@1",
   "assetId": "molen.worldgen.structure.getty_villa",
-  "inputHash": "sha256:81311ba7d283ab75f0a4e57fd706cdfa822706c169d657d43b112eb9e07041e0",
-  "sourceHash": "sha256:2901d070218f4e76f6929327acb53c8211a8220041be58e5b258755514078fbd",
-  "runtimeHash": "sha256:bb536ce00ffcd4717af0ad4c4532bc39ebe0267adb54d02321bb1e69e2828d23",
+  "inputHash": "sha256:d4fe3dd35ed13d1e8b8ee25edc26d3bd7d4458cf2035b02aa6b3f48e2224feeb",
+  "sourceHash": "sha256:fb2f7233b8c3034ddd48608668fd37c29e896861166b53946657ab2d6516e91e",
+  "runtimeHash": "sha256:03350c8c1ebce1d7fcd59de611590f3f93a0e15125303927123564aebd77eaf9",
   "reviewGroundY": null,
-  "fixtureHash": "sha256:3a145293930bdf1262b201ee4d813201b0bba43b68023c0e04ac1edbc1897a8e",
+  "fixtureHash": "sha256:3d4e062a0d69434f9993eeb088d730adfac8f59898924a503c68798bd8cf5ea1",
   "footprintEvidenceHash": "sha256:0a79edc7f90fcdb62e92a1c0a840db9af8e1cf531b6f80b7c029375ac516224e",
   "footprintLabel": "Main museum and inner court, long outer peristyle, west entrance portico and attached south viewing terrace; ancillary campus buildings excluded.",
-  "reflectionMode": "sky-pmrem",
-  "clippingMode": "bounds",
+  "reflectionMode": "none",
+  "clippingMode": "legacy",
   "placementHash": "sha256:645ff421300fd5aea7c3fa0fa08656bb6471e6bf67b13161efc62715356c14a1",
   "materialGraphs": {
     "matgraph:molen.worldgen.material.brick": {
@@ -24,6 +24,10 @@
       "path": "materials/tile_flat.matgraph.json",
       "hash": "sha256:8af796755a889556872b1c1679cd0210e9668c5d145f2be9f65fcb3bb90e0448"
     },
+    "matgraph:molen.worldgen.material.concrete_plain": {
+      "path": "materials/concrete_plain.matgraph.json",
+      "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+    },
     "matgraph:molen.worldgen.material.stone_limestone": {
       "path": "materials/stone_limestone.matgraph.json",
       "hash": "sha256:3f87e7efbab669638d9bf0c0b57b84d15ec8a32c25da2ec9ac8e08a12473ddb7"
@@ -32,7 +36,7 @@
   "frames": [
     {
       "path": "shots/shared/angle-0.png",
-      "hash": "sha256:124802c59e8f41ca15c3e7fd3dc2d4bf86f78d2a3205770064a32e5671579972",
+      "hash": "sha256:a3ac0bee56209b8a2a412f7d9aba54f4e01f844ffceb2fd7e2efa83e9ad1fadd",
       "camera": {
         "name": "angle-0",
         "angle": 0.6
@@ -47,8 +51,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -63,10 +67,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -92,19 +97,21 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 7,
-        "renderedTriangles": 63479
+        "draws": 8,
+        "renderedTriangles": 63707
       }
     },
     {
       "path": "shots/shared/angle-1.png",
-      "hash": "sha256:64585a24d5775752fa7438a1347fd4a242ec1a6dd883a39354053ee86124ce43",
+      "hash": "sha256:e2d6cac19a88d7f6e23a81bea8e564ca678edd5f9845c81bec014c4af1ecaaea",
       "camera": {
         "name": "angle-1",
         "angle": 2.1707963267948966
@@ -119,8 +126,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -135,10 +142,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -164,19 +172,21 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 7,
-        "renderedTriangles": 63479
+        "draws": 8,
+        "renderedTriangles": 63707
       }
     },
     {
       "path": "shots/shared/angle-2.png",
-      "hash": "sha256:a4b3dd6964824803597b43474096066513a8d3a8be1d473d12ace69b5723faac",
+      "hash": "sha256:ac38d6fa8e17473a05fa82a1733c4f5a66fdeab7365f114a302212a1807b34ce",
       "camera": {
         "name": "angle-2",
         "angle": 3.741592653589793
@@ -191,8 +201,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -207,10 +217,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -236,19 +247,21 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 7,
-        "renderedTriangles": 63479
+        "draws": 8,
+        "renderedTriangles": 63707
       }
     },
     {
       "path": "shots/shared/angle-3.png",
-      "hash": "sha256:795976bf1ac5bab2c87d414b1aecd8a45743640724d4c2da4d1d122fdaf505de",
+      "hash": "sha256:4ed73835a5356fbfeb172471883bae10d860fcf65c76bc08a21b8e66c8989c74",
       "camera": {
         "name": "angle-3",
         "angle": 5.312388980384689
@@ -263,8 +276,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -279,10 +292,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -308,19 +322,21 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 7,
-        "renderedTriangles": 63479
+        "draws": 8,
+        "renderedTriangles": 63707
       }
     },
     {
       "path": "shots/shared/front.png",
-      "hash": "sha256:75c74899bbd33da97fc78e50ef125372da9b90d053297b57023b0b96f67775b7",
+      "hash": "sha256:dcd2cf37c19cd834d22b5b3e78ccb0d419b810bfdf88183351f6bebdf307615d",
       "camera": {
         "name": "front",
         "position": [
@@ -344,8 +360,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -360,10 +376,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -389,19 +406,21 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 7,
-        "renderedTriangles": 63479
+        "draws": 8,
+        "renderedTriangles": 63707
       }
     },
     {
       "path": "shots/shared/back.png",
-      "hash": "sha256:f12f4fb1dc7e16621530d047e97bcdd2d96da2c12185ba2a975d9d86ddb3aa9f",
+      "hash": "sha256:26bb9f8682a6a0f3d5cacc1f1db4c8edbe210fd0d714eca5930f073cc69a20c7",
       "camera": {
         "name": "back",
         "position": [
@@ -425,8 +444,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -441,10 +460,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -470,19 +490,189 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 7,
-        "renderedTriangles": 63479
+        "draws": 8,
+        "renderedTriangles": 63707
+      }
+    },
+    {
+      "path": "shots/shared/pool-coping.png",
+      "hash": "sha256:77f703dca8bdb50e0ab665183ab1d19297b5ba7b52465cf7a9c18df514b6692f",
+      "camera": {
+        "name": "pool-coping",
+        "position": [
+          -1.2,
+          3.8,
+          -11
+        ],
+        "lookAt": [
+          -1.2,
+          1.3,
+          -4.5
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.getty_villa",
+        "mode": "geographic-flat-terrain",
+        "placementId": "getty-villa",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": -0.6,
+        "meshes": 7,
+        "triangles": 63705,
+        "bounds": {
+          "min": [
+            -86.95496998365047,
+            -10,
+            -88.93545620715504
+          ],
+          "max": [
+            76.47764852710222,
+            13.864999771118164,
+            96.24577781946458
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
+        },
+        "loads": [
+          "molen.worldgen.structure.getty_villa"
+        ],
+        "selectionBounds": [
+          -118.56643769898868,
+          34.04394014864076,
+          -118.56366230101129,
+          34.04623983576803
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "getty-villa",
+            "coordinate": [
+              -118.56514374824181,
+              34.04567646886418
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "getty-villa"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 63707
+      }
+    },
+    {
+      "path": "shots/shared/pool-profile.png",
+      "hash": "sha256:915acaac54efc23838f259ed49bf1946da0825610773d225e56abd80cdba13c8",
+      "camera": {
+        "name": "pool-profile",
+        "position": [
+          -7.8,
+          2.6,
+          -8.8
+        ],
+        "lookAt": [
+          -2.3,
+          1.2,
+          -4.8
+        ]
+      },
+      "state": {
+        "asset": "molen.worldgen.structure.getty_villa",
+        "mode": "geographic-flat-terrain",
+        "placementId": "getty-villa",
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "heading": -0.6,
+        "meshes": 7,
+        "triangles": 63705,
+        "bounds": {
+          "min": [
+            -86.95496998365047,
+            -10,
+            -88.93545620715504
+          ],
+          "max": [
+            76.47764852710222,
+            13.864999771118164,
+            96.24577781946458
+          ]
+        },
+        "reviewGroundY": 0,
+        "surfaces": {
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
+        },
+        "loads": [
+          "molen.worldgen.structure.getty_villa"
+        ],
+        "selectionBounds": [
+          -118.56643769898868,
+          34.04394014864076,
+          -118.56366230101129,
+          34.04623983576803
+        ],
+        "terrainSamples": [
+          {
+            "placementId": "getty-villa",
+            "coordinate": [
+              -118.56514374824181,
+              34.04567646886418
+            ],
+            "height": 0
+          }
+        ],
+        "visibleStructures": [
+          "getty-villa"
+        ],
+        "groundCutoutActive": false,
+        "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
+        "surfaceReads": {
+          "molen.worldgen.material.brick": 1,
+          "molen.worldgen.material.stucco": 1,
+          "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
+          "molen.worldgen.material.stone_limestone": 1
+        },
+        "draws": 8,
+        "renderedTriangles": 63707
       }
     },
     {
       "path": "shots/shared/placement.png",
-      "hash": "sha256:03a6b50552cc74a32245ea90006793dafea0f3bb60236ed44de738eda1322317",
+      "hash": "sha256:14509d07ff336874191ce853e4086cb2e02f172743768b9774b8a7afabc2936e",
       "camera": {
         "name": "placement",
         "placement": true
@@ -497,8 +687,8 @@
           0
         ],
         "heading": -0.6,
-        "meshes": 6,
-        "triangles": 63477,
+        "meshes": 7,
+        "triangles": 63705,
         "bounds": {
           "min": [
             -86.95496998365047,
@@ -513,10 +703,11 @@
         },
         "reviewGroundY": 0,
         "surfaces": {
-          "worldgen:matgraph:molen.worldgen.material.brick": "2e6fa15e-4176-4b7c-8633-af7652f190dc",
-          "worldgen:matgraph:molen.worldgen.material.stucco": "228552ed-a3eb-4466-96be-b822607d062f",
-          "worldgen:matgraph:molen.worldgen.material.tile_flat": "40137b4c-9f6c-4e6a-b99c-01be4700e522",
-          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "9cf3f957-384e-41e0-b9f9-7eb73efae1c9"
+          "worldgen:matgraph:molen.worldgen.material.brick": "7312449b-73b5-4285-b82a-04c8fdc0ca18",
+          "worldgen:matgraph:molen.worldgen.material.stucco": "f3c0fc31-e02e-47b7-9b67-e4fb54cca4d2",
+          "worldgen:matgraph:molen.worldgen.material.tile_flat": "9cbe0e87-804c-4aac-bf8e-34b56f5f4e49",
+          "worldgen:matgraph:molen.worldgen.material.concrete_plain": "723a28bf-6701-463b-94cb-b0d58f86593e",
+          "worldgen:matgraph:molen.worldgen.material.stone_limestone": "8138df05-686a-4d65-9c84-9a1e70f92006"
         },
         "loads": [
           "molen.worldgen.structure.getty_villa"
@@ -542,14 +733,16 @@
         ],
         "groundCutoutActive": false,
         "groundCoversCutoutProbe": null,
+        "groundCutoutProbes": 0,
         "surfaceReads": {
           "molen.worldgen.material.brick": 1,
           "molen.worldgen.material.stucco": 1,
           "molen.worldgen.material.tile_flat": 1,
+          "molen.worldgen.material.concrete_plain": 1,
           "molen.worldgen.material.stone_limestone": 1
         },
-        "draws": 8,
-        "renderedTriangles": 63479
+        "draws": 9,
+        "renderedTriangles": 63707
       }
     }
   ],
@@ -563,11 +756,5 @@
     "unchanged": true
   },
   "errors": [],
-  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity.",
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:36f4645f838de61afde8aa6bff5b736516b6877079acf24e931c302fe5dbd4e9",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:74d20895418c86926c7036b67beaf237d343420829bf747dcb987ed4bbe8c25a"
-  }
+  "scope": "Actual viewer model/material loading and geographic placement on flat test terrain. This checks rendering and transforms, not terrain-data accuracy or maximum fidelity."
 }

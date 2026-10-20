@@ -1,6 +1,7 @@
 export {
   markTerrainGroundSurface,
   setTerrainGroundCutout,
+  setTerrainGroundCutouts,
   subtractTerrainGroundGeometry,
   TerrainGroundCutoutController,
   type TerrainGroundOutline,

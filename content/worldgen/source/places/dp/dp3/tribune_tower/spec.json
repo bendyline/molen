@@ -1,0 +1,376 @@
+{
+  "planId": "tribune_tower",
+  "id": "tribune_tower",
+  "assetId": "molen.worldgen.structure.tribune_tower",
+  "title": "Tribune Tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -87.62369692325592,
+    "latitude": 41.8903818111051
+  },
+  "size": [
+    31.019639015197754,
+    149.8000030517578,
+    32.43400764465332
+  ],
+  "actualBounds": {
+    "min": [
+      -15.503399848937988,
+      -4,
+      -16.21084213256836
+    ],
+    "max": [
+      15.516239166259766,
+      145.8000030517578,
+      16.22316551208496
+    ]
+  },
+  "visualBrief": "Historic Chicago TribuneTower: own native chamfered eight-sided shaft with Indiana limestone raised vertical piers, individually divided recessed glazing/dark horizontal spandrels, elaborate lower Gothic lights/inset bronze doors and pointed west mainportal, original simplified foliate relief/embedded historic fragment patches. Stepped inward central Gothic crown with round-arched glazed lights, eight independent outer buttress piers/actual curved open flying spans/pierced tracery and galleries/clustered ribs/crocketed pinnacles/small abstract gargoyles. Flat upper cap/metal guard/flagpole, no invented spire. Historic tower only; Radio/TV/printingplant/newglasswings/courtyard/newTribuneEast/neighbors/statue/interiors excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Chicago_tribune_building.jpg",
+    "https://commons.wikimedia.org/wiki/File:Chicago_Grattacielo_Gotico.jpg"
+  ],
+  "stories": [
+    {
+      "id": "tribune-tower-wp",
+      "url": "https://qualla.com/tribune-tower/"
+    }
+  ],
+  "referenceInputHash": "sha256:0a3e9b1604b72b3d83836735198611fc95ce2ca5fbf92cb2e98c8f6bca5f8bce",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-tribune-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-tribune-tower.mjs",
+    "level": "skyline",
+    "export": "tribuneTowerSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "wall": {
+        "slot": "wall",
+        "graph": "stone_limestone_weathered",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "spandrel": {
+        "slot": "trim",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.44,
+        "metallic": 0.08
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.3,
+        "doubleSided": true
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "concrete_plain",
+        "roughness": 0.92,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "tribuneTowerDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "spandrel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "tribuneTowerStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "wall": {
+            "slot": "wall",
+            "graph": "stone_limestone_weathered",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "spandrel": {
+            "slot": "trim",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.44,
+            "metallic": 0.08
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.3,
+            "doubleSided": true
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "concrete_plain",
+            "roughness": 0.92,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0,
+    "groundY": -4
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Unmodified independent Terrarium terrain acquired before geometry, dry westMichiganAvenue approach[-19,0] datum; buried-4mfooting. NativeurbanDEM/thresholdengineering/otherhostdatasets approximate; no flattening or terrain fitting.",
+    "anchor": [
+      -87.62369692325592,
+      41.8903818111051
+    ],
+    "heading": 0.010203705122253168,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -87.6239261881906,
+        41.890380069575876
+      ],
+      "modelHeight": 0,
+      "basis": "DryMichiganAvenue westentranceapproachclearofhistoricfootprint; noothercomplexfootprint used."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184499195870"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:beec0599837fe16c4921a2a37d57d5aeed92f4a866f2ad2eb3fd08138782bf0e"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone_weathered",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Historic tower exterior interpreted from2007–2013details and2021conversion aerial; restoredfacade corroboratedbyconversionarchitect. No claim of surveyed2026condition.",
+    "Native chamfered tower outline/141mapheight and141.7marchitectural/145.8mtipCTBUH controls. Intermediatefloor/terrace/crown/window/rail/ornamentdimensions proportionalestimates; Qualla462ft/native141m differfromdatabase141.7m.",
+    "Historic toweronly. Exclude distinctRadio/TV/printingplant/recentglassadditions/elevatedcourtyard/pool/newTribuneEasttower, Wrigley/InterContinental/neighbors/plaza/statue/trees/streetfixtures/interiors. No invented central Gothicspire.",
+    "Original simplifiedGothictracery/animal-likegargoyle/foliatepanel and embeddedfragmentpatches; no literal sculpturalreplicas/inscriptions/signage/photo textures or completefragmentinventory. Flagpole retained, time-varyingflagcloth/antennas omitted.",
+    "Independentground acquiredbeforegeometry unchanged; publicurbanDEM/nativeground/datumandthresholdengineering remain approximate andhostdependent. Footprintreplacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -139,
+        62,
+        0
+      ],
+      "lookAt": [
+        0,
+        63,
+        0
+      ]
+    },
+    {
+      "name": "entry-detail",
+      "position": [
+        -28,
+        5,
+        5
+      ],
+      "lookAt": [
+        -14,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "lower-detail",
+      "position": [
+        -29,
+        13,
+        22
+      ],
+      "lookAt": [
+        -11,
+        10,
+        5
+      ]
+    },
+    {
+      "name": "shaft-detail",
+      "position": [
+        -30,
+        52,
+        25
+      ],
+      "lookAt": [
+        -10,
+        48,
+        5
+      ]
+    },
+    {
+      "name": "crown-detail",
+      "position": [
+        -37,
+        121,
+        34
+      ],
+      "lookAt": [
+        0,
+        119,
+        0
+      ]
+    },
+    {
+      "name": "buttress-detail",
+      "position": [
+        27,
+        126,
+        25
+      ],
+      "lookAt": [
+        7,
+        121,
+        6
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        25,
+        151,
+        -24
+      ],
+      "lookAt": [
+        0,
+        136,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        119,
+        78,
+        -112
+      ],
+      "lookAt": [
+        0,
+        66,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 59462,
+    "vertices": 178386,
+    "materials": 5,
+    "bytes": 7138588,
+    "sha256": "sha256:b9261b42e16bf7a770fdd605dd261ef36e153a58a0721c1985c820aeffb9f1d5"
+  }
+}

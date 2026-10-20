@@ -276,7 +276,17 @@ function dormer(o, x, z, y, w, h, depth, d, color = roof) {
     }
   }
 }
-function roofscape(o, x, z, w, l, y, rise, d, { color = roof, tiers = 1, gables = false } = {}) {
+function roofscape(
+  o,
+  x,
+  z,
+  w,
+  l,
+  y,
+  rise,
+  d,
+  { color = roof, tiers = 1, gables = false, maxwell = false } = {},
+) {
   hip(o, x, z, w, l, y, rise, color);
   if (d < 2) return;
   for (const [a, span, depth] of [
@@ -299,6 +309,14 @@ function roofscape(o, x, z, w, l, y, rise, d, { color = roof, tiers = 1, gables 
         zz = depth / 2 - slope * frac + 0.3,
         n = Math.max(1, count - tier);
       for (let i = 0; i < n; i++) {
+        if (
+          maxwell &&
+          d > 2 &&
+          Math.abs(a) === Math.PI / 2 &&
+          tier === 1 &&
+          Math.abs(i - (n - 1) / 2) < 1
+        )
+          continue;
         const xx = ((i - (n - 1) / 2) * (span - 4) * (1 - frac * 0.8)) / n;
         dormer(q, xx, zz, yy, tier ? 1.5 : 2.2, tier ? 1.45 : 2.3, 2.7, d, color);
       }
@@ -358,14 +376,14 @@ function block(
   top,
   rise,
   d,
-  { paired = false, gables = false, tiers = 1, color = roof, windows = true } = {},
+  { paired = false, gables = false, tiers = 1, color = roof, windows = true, maxwell = false } = {},
 ) {
   B(o, 'wall', x, -4, z, w, top + 4, l, wall);
   if (d) B(o, 'trim', x, -4, z, w + 0.04, lo + 4, l + 0.04, trim);
   if (d > 1)
     for (let y = lo + 4; y < top; y += 3.4) B(o, 'trim', x, y, z, w + 0.12, 0.16, l + 0.12, trim);
   if (d) band(o, x, top - 0.45, z, w, l, d);
-  roofscape(o, x, z, w + 0.7, l + 0.7, top, rise, d, { color, tiers, gables });
+  roofscape(o, x, z, w + 0.7, l + 0.7, top, rise, d, { color, tiers, gables, maxwell });
   if (windows)
     for (const [a, span, depth] of [
       [0, w, l],
@@ -438,11 +456,184 @@ function archWall(o, w, depth, lo, top, d, doors) {
     }
   }
 }
+/** Closed extrusion of a convex Y/Z profile across X. */
+function roofProfile(o, points, width, color) {
+  const area = points.reduce((s, a, i) => {
+    const b = points[(i + 1) % points.length];
+    return s + a[0] * b[1] - b[0] * a[1];
+  }, 0);
+  if (area < 0) points = [...points].reverse();
+  loft(
+    o,
+    'roof',
+    [-width / 2, width / 2].map((x) => points.map(([y, z]) => [x, y, z])),
+    color,
+  );
+}
+function maxwellRoofDetails(o) {
+  const c = JSON.parse(fs.readFileSync(new URL('roof-vent-construction-controls.json', base))),
+    copper = rgb('675f54'),
+    dark = rgb('292a28'),
+    edge = rgb('83745e'),
+    west = c.westStack,
+    east = c.eastStacks,
+    bank = c.banks;
+  loft(
+    o,
+    'roof',
+    west.rings.map(([y, r]) => radialRing(y, r, r, west.sides, west.center)),
+    copper,
+  );
+  B(o, 'roof', west.center[0], 75.2, west.center[1], 0.05, 0.3, 0.05, copper);
+  // Raised diamond seams on the eight flat copper shaft faces.
+  for (let k = 0; k < west.sides; k++) {
+    const a = (-k * Math.PI * 2) / west.sides,
+      b = (-(k + 1) * Math.PI * 2) / west.sides,
+      mid = (a + b) / 2,
+      pt = (t, y) => [
+        west.center[0] + 0.72 * ((1 - t) * Math.cos(a) + t * Math.cos(b)) + 0.012 * Math.cos(mid),
+        y,
+        west.center[1] + 0.72 * ((1 - t) * Math.sin(a) + t * Math.sin(b)) + 0.012 * Math.sin(mid),
+      ];
+    for (let i = 0; i < 4; i++)
+      for (const flip of [false, true])
+        beam(
+          o,
+          'roof',
+          pt(flip ? 0.1 : 0.9, 67.7 + i * 1.42),
+          pt(flip ? 0.9 : 0.1, 69.12 + i * 1.42),
+          0.025,
+          0.025,
+          edge,
+        );
+  }
+  const rect = (y, w, dep) =>
+    [
+      [-w / 2, -dep / 2],
+      [-w / 2, dep / 2],
+      [w / 2, dep / 2],
+      [w / 2, -dep / 2],
+    ].map(([x, z]) => [x, y, z]);
+  for (const [x, z] of east.centers) {
+    const q = facing(o, Math.PI / 2, x, z);
+    B(q, 'roof', 0, east.low, 0, east.width, east.shaftTop - east.low, east.depth, copper);
+    for (const y of [68.4, 69.4, 70.3])
+      B(q, 'roof', 0, y, 0, east.width + 0.05, 0.055, east.depth + 0.05, edge);
+    loft(q, 'roof', [rect(east.shaftTop, 1.85, 1.9), rect(east.hoodTop, 1.05, 1.16)], copper);
+    const patch = [
+      [-0.82, 70.48, 0.945],
+      [0.82, 70.48, 0.945],
+      [0.48, 71.7, 0.62],
+      [-0.48, 71.7, 0.62],
+    ];
+    quad(q, 'roof', patch, [0, 0.3, 1], dark);
+    for (let i = 0; i < 6; i++) {
+      const y = 70.6 + i * 0.18,
+        t = (y - 70.4) / 1.4;
+      B(q, 'roof', 0, y, 0.95 - t * 0.37 + 0.055, 1.85 - t * 0.8, 0.045, 0.1, edge);
+    }
+  }
+  for (const a of bank.angles) {
+    const q = facing(o, a),
+      cheek = [
+        [bank.bottom, bank.front],
+        [bank.header, bank.front],
+        [bank.rearTop, bank.back],
+        [bank.rearTop - 0.3, bank.back],
+      ];
+    for (const sg of [-1, 1])
+      roofProfile(facing(q, 0, sg * (bank.width / 2 + 0.06), 0), cheek, 0.12, copper);
+    roofProfile(
+      q,
+      [
+        [bank.header, bank.front + 0.04],
+        [bank.header + 0.12, bank.front + 0.04],
+        [bank.rearTop + 0.12, bank.back],
+        [bank.rearTop, bank.back],
+      ],
+      bank.width + 0.24,
+      copper,
+    );
+    B(
+      q,
+      'roof',
+      0,
+      bank.bottom,
+      bank.front - 0.12,
+      bank.width,
+      bank.sill - bank.bottom,
+      0.24,
+      copper,
+    );
+    B(
+      q,
+      'roof',
+      0,
+      bank.openingTop,
+      bank.front - 0.12,
+      bank.width,
+      bank.header - bank.openingTop,
+      0.24,
+      copper,
+    );
+    const gaps = [
+      -bank.width / 2,
+      ...bank.bayCenters.flatMap((x) => [x - bank.bayWidth / 2, x + bank.bayWidth / 2]),
+      bank.width / 2,
+    ];
+    for (let i = 0; i < gaps.length; i += 2)
+      B(
+        q,
+        'roof',
+        (gaps[i] + gaps[i + 1]) / 2,
+        bank.sill,
+        bank.front - 0.12,
+        gaps[i + 1] - gaps[i],
+        bank.openingTop - bank.sill,
+        0.24,
+        copper,
+      );
+    for (const x of bank.bayCenters) {
+      B(
+        q,
+        'roof',
+        x,
+        bank.sill,
+        bank.front - 0.28,
+        bank.bayWidth,
+        bank.openingTop - bank.sill,
+        0.08,
+        dark,
+      );
+      for (let i = 0; i < bank.bladeCount; i++) {
+        const y = bank.bladeFirstY + i * bank.bladePitch,
+          z = bank.bladeFront;
+        roofProfile(
+          facing(q, 0, x, 0),
+          [
+            [y - 0.025, z + 0.15],
+            [y + 0.025, z + 0.15],
+            [y + 0.14, z - 0.15],
+            [y + 0.09, z - 0.15],
+          ],
+          bank.bayWidth,
+          edge,
+        );
+      }
+    }
+  }
+}
 export function frontenac(o, frame, d = 3) {
   frame ??= JSON.parse(fs.readFileSync(new URL('map-frame.json', base), 'utf8'));
   // Independent source footprint remains visible in the map overlay; individual blocks retain both open courts.
   // Maxwell tower: 77 m architectural skyline budget, using the cited 77 m record and photographic proportions.
-  block(o, 0, 0, 20.5, 41.6, 2, 51.5, 21.5, d, { gables: true, tiers: 3, color: rgb('675f54') });
+  block(o, 0, 0, 20.5, 41.6, 2, 51.5, 21.5, d, {
+    gables: true,
+    tiers: 3,
+    color: rgb('675f54'),
+    maxwell: true,
+  });
+  if (d > 2) maxwellRoofDetails(o);
   if (d > 0)
     for (const x of [-10, 10])
       for (const z of [-20.2, 20.2])
@@ -606,6 +797,8 @@ export const frontenacModel = {
   qaCameras: [
     { name: 'front', position: [97, 69, 196], lookAt: [-14, 29, 5] },
     { name: 'back', position: [-138, 90, -185], lookAt: [-16, 27, -5] },
+    { name: 'west-roof-vents', position: [-32, 72, 22], lookAt: [-3, 65, 0] },
+    { name: 'east-roof-stacks', position: [30, 74, 24], lookAt: [3, 67, 4] },
   ],
   build: frontenac,
   surfaces,
@@ -626,7 +819,8 @@ export const frontenacModel = {
     },
   },
   limitations: [
-    'Original medium-fi surviving exterior interpreted from three individually inspected 2013–2016 Qualla photographs, the 1927 ground-floor plan, CIEQ phase silhouette, heritage descriptions and mapped roof parts.',
+    'New tower roof work uses five exact native photographer-own CC0 originals from2020/2022/2024 after cleared Qualla search, including native octagonal chimney/diamond seams and opposite paired hooded vent stacks. Earlier attribution/private later plan/satellite imagery excluded as current construction control. Fixed full hotel/tower/wings/roofs/retaining terrace scope retained.',
+    'Built one octagonal copper-clad stack with physical diamond seams, two rectangular copper shafts with louvered tapered hoods and two five-bay physical louver banks. Three lower levels retained. All roof details, positions, sizes,12blades per bank bay and.24m recess are medium-fi authoring estimates; exact mechanical interiors are excluded.',
     'Central tower height follows the 77 m architectural record approximately; official tourism rounds to 80 m. Individual storeys, roof junctions, hidden service elevations and sculptural ornament are photographic interpretations, not a measured survey.',
     'Later western ranges are represented by massing; interiors, whole Dufferin promenade, separate kiosks, landscaping and later unverified rooftop changes are excluded.',
     'Independent NRCan DTM retains real southwest rise and river cliff. Small hotel terraces are simplified; runtime terrain may differ. Footprint suppression remains disabled.',

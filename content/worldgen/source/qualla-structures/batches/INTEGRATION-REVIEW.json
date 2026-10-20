@@ -1,0 +1,2354 @@
+{
+  "format": "molen/structure-integration-audit@1",
+  "reviewedOn": "2026-10-15",
+  "reviewer": "Codex",
+  "branch": {
+    "name": "main",
+    "startingHead": "6b2ff5030e08812437d8bd503e239169a319f812",
+    "gitMutations": false
+  },
+  "counts": {
+    "produced": 42,
+    "validatedComplete": 41,
+    "drafts": 1,
+    "pilotsComplete": 5,
+    "batchTarget": 100
+  },
+  "scope": "Audit of the 42 already-authored local models before resuming production. No new model was added. Integration means reproducible source, valid registered runtime assets and regional pack membership; placement previews remain approximate, with procedural footprint replacement disabled.",
+  "checks": {
+    "trackedSourceRecipesPreviewsSidecars": {
+      "models": 42,
+      "missing": 0
+    },
+    "sourceRegeneration": {
+      "models": 42,
+      "exactByteMatches": 42
+    },
+    "sourceRebuild": {
+      "command": "pnpm assets:build --jobs=2",
+      "exitCode": 0,
+      "seconds": 505,
+      "glbsBuilt": 3512,
+      "initialBundle": {
+        "release": "assets-4d9ad42476708266",
+        "key": "4d9ad42476708266d3ba8b3b2ef74271fca5b8ab46faf879ec0012727caca668"
+      },
+      "metadataChangesReported": 140,
+      "localMetadataRepairs": [
+        "brandenburg_gate",
+        "hearst_castle",
+        "liebermann_villa",
+        "lincoln_memorial"
+      ],
+      "note": "The verifying build retained committed text and reported 140 metadata differences; the four local LOD fingerprints were refreshed. Other-device metadata was left as committed. Five unrelated tracked Lantern source outputs were restored to their pre-build bytes."
+    },
+    "sourceBundles": {
+      "command": "pnpm source:check",
+      "verified": 820,
+      "bulkCapturesTracked": 0
+    },
+    "canonicalRuntimePaths": {
+      "command": "node packages/worldgen/scripts/validate-structure-asset-paths.mjs",
+      "verified": 564
+    },
+    "schemas": {
+      "sourceBundles": 42,
+      "scenes": 42,
+      "terrainDescriptors": 42
+    },
+    "assetIntegrity": {
+      "models": 42,
+      "verified": 42
+    },
+    "simulation": {
+      "models": 42,
+      "ticksEach": 30,
+      "repeatHashesMatch": 42
+    },
+    "detailLevels": {
+      "models": 42,
+      "verified": 168,
+      "strictMediumFiFindings": 0,
+      "independentKhronosValidator": false
+    },
+    "regionalRuntimePacks": {
+      "models": 42,
+      "exactRuntimeAndLodMembers": 210,
+      "geographicArchives": 21,
+      "earthPlacementQueries": "41 previews included; Majapahit draft excluded",
+      "publication": false
+    },
+    "workflowTestsPassed": 25,
+    "sourceAuthoringTestsPassed": 30,
+    "batchOwnership": "All 100 entries checked against every next-1000 candidate and collection member; no overlap."
+  },
+  "visualReview": {
+    "existingBatchOverview": "Inspected front, rear, mapped-placement and skyline views across all 42 produced models in seven local overview sheets. Earlier source-local image hashes and reviews remain part of each model evidence chain.",
+    "freshCaptureReview": {
+      "models": [
+        "brandenburg_gate",
+        "hearst_castle",
+        "liebermann_villa",
+        "lincoln_memorial"
+      ],
+      "framesPerModel": 33,
+      "totalFramesInspected": 132,
+      "sets": [
+        "portable and lit terrain scene",
+        "shared materials and mapped placement fixture",
+        "medium-fi lighting, rendering modes, silhouette and all four detail levels"
+      ],
+      "referenceImages": "Selected local Qualla originals inspected again for the four refreshed reviews."
+    },
+    "limits": [
+      "Medium-fi exterior visualization; hidden details and some dimensions are estimates, not surveys.",
+      "Shared placement fixtures use flat ground; independent source terrain is retained in portable/context scenes.",
+      "No new physical-device performance measurement or full live-terrain activation approval is claimed."
+    ]
+  },
+  "draft": {
+    "model": "hotel_majapahit",
+    "reason": "Independent host-terrain evidence varies by several metres and obscures lower arcades. Geometry is retained; placement status is draft and automatic world rendering excludes it.",
+    "storyAnnotation": "Existing Qualla link updated to needs-review with no active placement; immediate rerun made zero changes."
+  },
+  "storySynchronization": {
+    "modelNameMigrationCheck": "No existing old-name links remain for the renamed assets.",
+    "fullRefresh": "Blocked by unrelated unresolved merge conflicts in ../qualla-internal/catalog/e9wq.json and meta.json.",
+    "newAnnotationPending": [
+      "chatsworth-house-wp"
+    ],
+    "earlierRelocationReview": "Hollywood Sign catalog location differs from the generated story path; normal full sync must retain that guard."
+  },
+  "results": [
+    {
+      "order": 1,
+      "key": "lorraine_motel",
+      "asset": "molen.worldgen.structure.lorraine_motel",
+      "sourcePath": "content/worldgen/source/places/9y/9yp/lorraine_motel",
+      "sourceHash": "sha256:335d4371be8987e8b7605d6229017c563b1e1bdbf063b5af0739d743df9fc8b1",
+      "runtimeHash": "sha256:e1a2abc446b3f82bcc49461c25ef92fddc4c3d63499d22d3d9801054214ed432",
+      "triangles": 7554,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:f7288b5f6b298f4fd0f892f47f81ccd9d0ed242a076dd125b75df3f27e211bb9",
+          "triangles": 738,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:694fe52c8da697c9b48e553a2050634f1667c00e0d3aece3fa05519d9a4a962d",
+          "triangles": 3975,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:6a80c579978e9fc6d085eea0e1e2754a9ef22d86b2a017ab7062b285631a6f78",
+          "triangles": 7554,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:6a80c579978e9fc6d085eea0e1e2754a9ef22d86b2a017ab7062b285631a6f78",
+          "triangles": 7554,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:48419a6ef336797a34f0f3c640f296e0b2b510e037bbd7712b1fd2b2ec03489b"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:d6ab334065444b7ef4c4a2e75ecad69cc4d05a98f3ed9c72c412fbab553b8b67",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "lorraine-motel"
+    },
+    {
+      "order": 2,
+      "key": "fords_theatre",
+      "asset": "molen.worldgen.structure.fords_theatre",
+      "sourcePath": "content/worldgen/source/places/dq/dqc/fords_theatre",
+      "sourceHash": "sha256:293914866bc196ee8ed97d3f7892fbc5db56a836773d84e668a0f1c03a8bd083",
+      "runtimeHash": "sha256:c0184d981fa26df9adb65c362cd196541cd0e3bfb21163683dd579057d99c700",
+      "triangles": 8034,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:06d2d9e0ab6f4f001487446d34be36d0ec2485b9ad20da6466037da61c55796e",
+          "triangles": 409,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:118a366422650fa2940027158de540f1b09baeb7d410ee936fcbc6c8230f20b3",
+          "triangles": 3652,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:6af35fbf48f43798f00ff6906fe7160f25c1863b6633f6d58aa92dc78287e706",
+          "triangles": 8034,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:6af35fbf48f43798f00ff6906fe7160f25c1863b6633f6d58aa92dc78287e706",
+          "triangles": 8034,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:ef0a1e4ead86527af3705a20693fd81b8af1d17fe731fcd28555c07ab95bea84"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:dd3eee55a7dcf882cc90a749e13d4b589d7fc54e616fbe6ff473d70ac0efc014",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "fords-theatre"
+    },
+    {
+      "order": 3,
+      "key": "anne_frank_house",
+      "asset": "molen.worldgen.structure.anne_frank_house",
+      "sourcePath": "content/worldgen/source/places/u1/u17/anne_frank_house",
+      "sourceHash": "sha256:b8eb6ce7debe12d118c078792fd841d56753bd0aa0592a7235e7f8d9d9a9be70",
+      "runtimeHash": "sha256:35a6879f2b6cdf6c93d874c35ee9de3917d8136309e76400e186ff84c4d95e2f",
+      "triangles": 2448,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:7972b62a397810ed3e6879ec097517e369dac5a6df7c085cf7b2ba87a7e2b19d",
+          "triangles": 492,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:0e5ec4e0f4afe66b852d2c5ce0069171dc4c365288aa7caec41d49d7845f5e67",
+          "triangles": 2448,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:0e5ec4e0f4afe66b852d2c5ce0069171dc4c365288aa7caec41d49d7845f5e67",
+          "triangles": 2448,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:0e5ec4e0f4afe66b852d2c5ce0069171dc4c365288aa7caec41d49d7845f5e67",
+          "triangles": 2448,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:0288f502e6ae25759055648d992c475e10777615512add3614ab40545736fd3a"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:49613341bb0c7a27b8e731efc62ce48bc99f94f0cd6c190b422716c352affd8c",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "anne-frank-house"
+    },
+    {
+      "order": 4,
+      "key": "brandenburg_gate",
+      "asset": "molen.worldgen.structure.brandenburg_gate",
+      "sourcePath": "content/worldgen/source/places/u3/u33/brandenburg_gate",
+      "sourceHash": "sha256:d84942a49a54992e85e61015ff04305e1e050eaf79c9d0e8fb2c610a90a3fd2c",
+      "runtimeHash": "sha256:6e628e7fda2c263aa77e0f6faed9b09003faab4badfb81d7e56a66e0cac1b81c",
+      "triangles": 20448,
+      "materials": 3,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:00c7f377679d178b928b3f787649ab65d034d156d87104767a8d7c561fab4f96",
+          "triangles": 944,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:3131d7df386c244e7e6b9ce9268cc2318735aab71e5d663fd373c8d4c820279f",
+          "triangles": 3731,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "hash": "sha256:5a806b24833eda7f69e25ba00dfe5a0349d28666ab2052a721e5a314588dc26d",
+          "triangles": 15652,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:7d30c18e70021300b5c8c34ae31972c080dea8c0e386baa5d9024721fd04c592",
+          "triangles": 20448,
+          "drawCalls": 3
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:8f77cb1bb9e621f69a57d19919a2bd3fb9db360ea86de921ee1910e517606ff7"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:abfeb3ebee360677310f1bd6a317076cddc2f1b71dd41aec28af73d9755dc37a",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "brandenburg-gate"
+    },
+    {
+      "order": 5,
+      "key": "watergate_complex",
+      "asset": "molen.worldgen.structure.watergate_complex",
+      "sourcePath": "content/worldgen/source/places/dq/dqc/watergate_complex",
+      "sourceHash": "sha256:f82d7bd8d2c1e7e5a8ccadb2a1c482753fd744a59e9f3bef22e5bfd78384e801",
+      "runtimeHash": "sha256:0fc3f96d399e424ae48d0af3dccb7022ef38cbd8cace52c399503b6a09db8091",
+      "triangles": 49972,
+      "materials": 3,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:aca1a250293c2e2b0cdb0f46dade5560c9054a26580508a95bcd4f8f68aaf825",
+          "triangles": 868,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:6d81cc433a6c16e15d82d30bc0a51ef399e50aaeb7c8c5729969e2f9c979e3be",
+          "triangles": 3562,
+          "drawCalls": 2
+        },
+        {
+          "name": "street",
+          "hash": "sha256:3c0c6bef5c472f11a60b0bf9931630d1010793693294a240f305defeeb6243a9",
+          "triangles": 14468,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:3bc14f1b8eba1c260ad8d6400cfc1a2c98794ae2b9b7967e5649ac799f9deb52",
+          "triangles": 49972,
+          "drawCalls": 3
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:01311a6fb73ab3eef92cfe1a883cbd603c76c8b0a11fd9fa6be45e6958fda3bb"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:765d1f66b21a024ffb68ad2e37f6d174cdcd479703813ac6383c20e26e1436d3",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "watergate-complex"
+    },
+    {
+      "order": 6,
+      "key": "kensington_palace_gardens_13",
+      "asset": "molen.worldgen.structure.kensington_palace_gardens_13",
+      "sourcePath": "content/worldgen/source/places/gc/gcp/kensington_palace_gardens_13",
+      "sourceHash": "sha256:6774e4e77b3e785aa8642a686ea79b271cb319d4fa857d4f6f88d0dd40443a63",
+      "runtimeHash": "sha256:8ebdf9cbc447494316085c3532a552b3bd1fde76d68771f39c74f9846e3ab9f7",
+      "triangles": 44448,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:f2e2721e75f01aa5694d1b8eb262d400c601da3d6446a703ffc9937b117dfba9",
+          "triangles": 592,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:f736a9303f830003be5bc332cc3af415616aa7ba0a80a6ae4176b92244bde58f",
+          "triangles": 1908,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:c64c6d4a9584de282a63238fd045fcca830378dbbfce1aeb70eaf53d4151b481",
+          "triangles": 13824,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:e91fd805dc8fcd793f434f77dc24a4c642dd2af17cbb0f0bc31c8e9a86aa93ea",
+          "triangles": 44448,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:25e3a6527e9e2d9441bc5c1c9c2a8dc4601285b97067d1bed2e4aff364bd2f17"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:8309a79c8e280d14be8e6602cbac720c58c58747424f3f9b85f1398292c86f06",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "kensington-palace-gardens-13"
+    },
+    {
+      "order": 7,
+      "key": "eastern_state_penitentiary",
+      "asset": "molen.worldgen.structure.eastern_state_penitentiary",
+      "sourcePath": "content/worldgen/source/places/dr/dr4/eastern_state_penitentiary",
+      "sourceHash": "sha256:949806ec27a97d0ba5bcad5721cffe79bf529cc10bacfcb658005efcfe3e9c27",
+      "runtimeHash": "sha256:f146d9e9f99c5a8dd6a5b440975dcb0885b263cbd3158be25015627c64786067",
+      "triangles": 24901,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:d18b4d6da447a3c7e4e3cb77c5a726e0176593b7e2aa4a2418ed2168e726347a",
+          "triangles": 556,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:4e9762087464b4ef753f352022ff4a0e1ab9aeb07a1a2255c75dd3dd05c0120d",
+          "triangles": 3749,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:674cb924066682a77825606f589a647ad42e336914324788db0f4eaf26a96be2",
+          "triangles": 9253,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:1fafbbeeb5ab4f8896d214b0563fa830d250b25990b3580a4069fba74b46eee3",
+          "triangles": 24901,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:22973f7d5f4abdd69f1e11f4d915b30fe25658fe78338967c4e468ee39d7295e"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:cd879d7bd91920eb6ce2a9316b67538542e0f7f1c9ac5a3ad3aa0f98048f1e67",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "eastern-state-penitentiary"
+    },
+    {
+      "order": 8,
+      "key": "fallingwater",
+      "asset": "molen.worldgen.structure.fallingwater",
+      "sourcePath": "content/worldgen/source/places/dp/dpp/fallingwater",
+      "sourceHash": "sha256:b5ee038ccda5d8b530d65730bb332eab3cd712446ee21afb82c6c808835f5687",
+      "runtimeHash": "sha256:3c54367737c5aee629409a7995fcd87c7e43a6e2a3300f93e4b5010aa0a7756d",
+      "triangles": 8096,
+      "materials": 4,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:c0195a6d49ece1af994e9d7eed93111163544e376fdc0df5d07c4492c5d6b4c3",
+          "triangles": 758,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:2fab4461381d858ed6fdc85827556b999de645c8dc87965f4195ae9338332a5a",
+          "triangles": 3860,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "hash": "sha256:48d70df34334ba1b76156304f383385a551c6503df35773cd3ec2b10e019b4db",
+          "triangles": 8096,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:1fd4d9d1a271910a5aa44266b14c66862301cb51f079786c645bcdbb8aecb26d",
+          "triangles": 8096,
+          "drawCalls": 4
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:6560b73a2630ce82ea725bd4acd4444f6254394f8d9c80abb544369cf598a7e2"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:cad5b764c9c2145660087fb9252a919704970af07488dc3bd2e373215ea54bf0",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "fallingwater"
+    },
+    {
+      "order": 9,
+      "key": "faneuil_hall",
+      "asset": "molen.worldgen.structure.faneuil_hall",
+      "sourcePath": "content/worldgen/source/places/dr/drt/faneuil_hall",
+      "sourceHash": "sha256:c2c981aa687ac43396c802c28caf6b666d915aa0079b4355812fc7400bd11237",
+      "runtimeHash": "sha256:4f34e5317c1866dca13d7e6b1e98c36b08ff7b930b6a23b798bb9564761a1c52",
+      "triangles": 17196,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:9e9ab8a113beaec30948439ec3b255aecc9e2e2576b7dc3b61bfebab13eddd05",
+          "triangles": 818,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:b9a94f6542914469ea8d3d507c83c2e578505278454fb8ea3c36295c19cc1d6a",
+          "triangles": 3948,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:b099738c2ec328d65efbf1e96a808b4169ac891df148c57032f00936858b76bb",
+          "triangles": 14532,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:20cb7a76dd3e5c312f607b5d97f33f14b31b5baed53e13b9394e797ccd3b2e2f",
+          "triangles": 17196,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:6a68b9a36df73a5d21f6d99e8264f9bbb0fc2bd694ca2f9669f38b55125fe6f5"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:1b3e36bdc60b1eae49592a0942e7a7210e576b405604a2c9b63b51bfe682a00f",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "faneuil-hall"
+    },
+    {
+      "order": 10,
+      "key": "ford_island_control_tower",
+      "asset": "molen.worldgen.structure.ford_island_control_tower",
+      "sourcePath": "content/worldgen/source/places/87/87z/ford_island_control_tower",
+      "sourceHash": "sha256:6d99a3f58fdb06068940d93d5ef63808033770e851195d64ad92fae857cb41d1",
+      "runtimeHash": "sha256:5c9d8b2f3da3db49a8d0815fe0cf9a8dbde7786f27bad7e1bc86e5565ff74ee1",
+      "triangles": 16666,
+      "materials": 3,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:7f3e2e4ceb82a4bbb79ea3e4e727d7397c986ba83b9549cb635159f575847dc0",
+          "triangles": 992,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:e8939460d66cc3cb9c552766e58e60e2c8061473cf6d2b6ed4134663682d124d",
+          "triangles": 3338,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "hash": "sha256:69d8262abd9ace959e3b87e5e74686f7dbf4fc2febe301e9639b7dbc4c86cd6b",
+          "triangles": 13878,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:731debd7998a3860e808a6202bec9bd8a1698a735b8804238c39cb427a07084d",
+          "triangles": 16666,
+          "drawCalls": 3
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:0f74dd5bd79d956e88aacf2f6c943d42e5d08956a97036752369695c680b3b03"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:49b25816ef7c75ce9e5afd51865f2ea4379e90674cb9ef327fd7b6b5ea643af4",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "ford-island-control-tower"
+    },
+    {
+      "order": 11,
+      "key": "hearst_castle",
+      "asset": "molen.worldgen.structure.hearst_castle",
+      "sourcePath": "content/worldgen/source/places/9q/9q3/hearst_castle",
+      "sourceHash": "sha256:6eef20ad92c594c54843956509dc7a5a32e6f6bd71546be9a4d72599b5557738",
+      "runtimeHash": "sha256:aaaac3668babd1188af74032ec5516d7734fd95dbe1b1359094c29f840829737",
+      "triangles": 25176,
+      "materials": 4,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:422278c264b68b049da015c49b2f4bf83d319462582522ab2e340c23267749c9",
+          "triangles": 609,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:5803c294ed790c84859eb96822cefa4ca36b6893f0a25023e0cc19d340f5f1e6",
+          "triangles": 2603,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "hash": "sha256:5a70c2740057e86042d0e2a4861e72be9fc6fa8a540ed6466d8c0eac31e204dc",
+          "triangles": 15472,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:0e550986f499f76d3684130f33240057dd27ed40d79505652f96ba83440dff36",
+          "triangles": 25176,
+          "drawCalls": 4
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:669f814456c275393a85260d11f74a6f92d31a1fcfc7d9944819d98e63d0736f"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:fd273446c1efac1d2c7ecd6a8c18baaa78841381f1ea727dc38d2df983b89aaa",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hearst-castle"
+    },
+    {
+      "order": 12,
+      "key": "hollywood_sign",
+      "asset": "molen.worldgen.structure.hollywood_sign",
+      "sourcePath": "content/worldgen/source/places/9q/9q5/hollywood_sign",
+      "sourceHash": "sha256:cd96d3e1a74bd5be80cab0362efae8aa127e451c73337a0fbb6f9ff2be1a1c7d",
+      "runtimeHash": "sha256:4f93ecdff3e87818fd9e7bd1d5b2c9c17bb81319e60d0612b811dd5daf3b5faf",
+      "triangles": 13784,
+      "materials": 2,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:289aae42875482f2bad99231d4ff594790e2ddb27e83b1ac2e72c8e4541e22f5",
+          "triangles": 884,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:c87b50e96748ccdb5e8769a69f182e98434140dba244474a73440118b28dc2e1",
+          "triangles": 1532,
+          "drawCalls": 2
+        },
+        {
+          "name": "street",
+          "hash": "sha256:2fd2666959c8c425a397f4f304b647866a5f8ece81bba941605e5edceacdcb9b",
+          "triangles": 5096,
+          "drawCalls": 2
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:d9d07b4a1bef63fecf29bf6d0376e38c43a123ae85cff898320b1864ce025678",
+          "triangles": 13784,
+          "drawCalls": 2
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:1343dd3779017a88d94f7941e5dc5ccb9a0da77385793ee32dfa53fb7dfef148"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:ba34af7eaa8254d7420e4d058ff6bf7ed98725985f3bc44fe6c31cc35c4a9a2c",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hollywood-sign"
+    },
+    {
+      "order": 13,
+      "key": "hotel_del_coronado",
+      "asset": "molen.worldgen.structure.hotel_del_coronado",
+      "sourcePath": "content/worldgen/source/places/9m/9mu/hotel_del_coronado",
+      "sourceHash": "sha256:cd70feb764c1a87d00d7fc0c05d5df1591e50549e9aea9a86b5c81da3125a9ce",
+      "runtimeHash": "sha256:820df9637891c525719c6bdeeb48bd9e0d1da9978bfa9bb299661138a8a8f516",
+      "triangles": 58094,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:3acf98174f4438df46a02193e64ac736f27f7c8cd72d49fbdd419cb6e8b38cb0",
+          "triangles": 982,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:bda289b17283697896bbc24f9a7fa1e097e36b2d14b11caa2cab4d9215e98121",
+          "triangles": 3888,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:242bfd0347255f921138381a410dea98391bbfce805620dbabb014be31e81db0",
+          "triangles": 15698,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:89149d1f32c2719c30ae2536b7abe68339a8774d61d8ac98ead20dfe7eabbc1b",
+          "triangles": 58094,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:b82d888a72607ebb0131a2eee18358cecbc8fa0231e906cb582b8f9e1fbcde3a"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:884ce67e6bf3431a8eff344ded55073070ced167aea406477e6829b2ba856358",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hotel-del-coronado"
+    },
+    {
+      "order": 14,
+      "key": "hangar_37",
+      "asset": "molen.worldgen.structure.hangar_37",
+      "sourcePath": "content/worldgen/source/places/87/87z/hangar_37",
+      "sourceHash": "sha256:69cd159411f06b2a586986af5f1d0c6bc1d3962c8606f438589c920b7907dcef",
+      "runtimeHash": "sha256:678dfdd2a2e7168c51cfd0c2de6c42c77239fd0075c70a84b855bfc91743fdb7",
+      "triangles": 2318,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:ce609f6982a450e98311dbee2f4519d36aa46ea5582a704d700ec163f0d1f048",
+          "triangles": 262,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:d35decbf00c53218a7941118a869f635e86a58a0cb90de00ed9100b26ae4c3b9",
+          "triangles": 606,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:8d99f37c700e35d80e2959ae69bb7d61f9c8a6c5469ec3074154a9c5619eb58e",
+          "triangles": 1458,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:078574727947a57b6c45aac83478c2c3a1b0f99d8f7e016cce2ed6348f1d65d7",
+          "triangles": 2318,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:1f0359e208e54a1bf18270f9dd6edc0244c23d859da829523fe9de9316ee9b9c"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:ef11acf36f20f2a225b27544b930ba8c61ac54e7ffdd7e0963f1cf912287927b",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hangar-37"
+    },
+    {
+      "order": 15,
+      "key": "reichstag",
+      "asset": "molen.worldgen.structure.reichstag",
+      "sourcePath": "content/worldgen/source/places/u3/u33/reichstag",
+      "sourceHash": "sha256:5fa548651c3c7aa23bd696f892b6a918a60a7fd74e619510fd5c213e3128e508",
+      "runtimeHash": "sha256:f0751f5e5179e12fb66e10098ba7e9dbc2fbad3402e819929c01dd7adcbdd6b9",
+      "triangles": 35333,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:908184770e1f780aef3a2c68fb8ca13dae857c3f07854994157cdf6adb0c36f0",
+          "triangles": 668,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:4e12bcb426d04e7d37f4b099ce0b255446d480f2262e898559629218fada563d",
+          "triangles": 3894,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:4116f0084aa254762da73a55a50dbb404f93cc2ce994485687315f2631d48e2f",
+          "triangles": 14469,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:18a3abc9b5d72e89ee70bc4c5d47d354113694ea933b48d5d302b1e6f312602d",
+          "triangles": 35333,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:91ad1c67495797c8004f6e4ad8dd69c8eb85140c65e1be7e0c5b8261944580e0"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:bb91a53ce3dc1f4693ae80bd39d078fcdbca229192c14dfc6a0d1434682d1119",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "reichstag"
+    },
+    {
+      "order": 16,
+      "key": "robben_island_lighthouse",
+      "asset": "molen.worldgen.structure.robben_island_lighthouse",
+      "sourcePath": "content/worldgen/source/places/k3/k3v/robben_island_lighthouse",
+      "sourceHash": "sha256:f9b60d2e67bbd2622e1c3cece1b94d6af14e72bd37afc8c8d26517b0e4819ebc",
+      "runtimeHash": "sha256:a41840adb8ebdbdce61bf27ad3a3881e771d6c878213fd2d5d2fc21670d8e880",
+      "triangles": 15008,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:c266a8055af22d21aa163a734a55b475d7e05a77a45e783006a8578270bb9c81",
+          "triangles": 832,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:58164d849d0a0072422d1d3723b32655edf76143a99267cae25c696e8ef9e93e",
+          "triangles": 2186,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:1ae84c1346bc332a88c04763ecc23334f5408a10ba552a969351a2089ddb16f0",
+          "triangles": 8096,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:88083c822fec8cc4bf44ff24c2c7643d286121fbcc86fa831737c77ca820171b",
+          "triangles": 15008,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:c3bedc9cbae383646bbe39691f5582ad4b0291978b61a84344293cb78e414b54"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:e9fb1d471ea59981d7968983439e69e18b9eb7ce2da121e51cd8faf9cb0af8c3",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "robben-island-lighthouse"
+    },
+    {
+      "order": 17,
+      "key": "robben_island_prison",
+      "asset": "molen.worldgen.structure.robben_island_prison",
+      "sourcePath": "content/worldgen/source/places/k3/k3v/robben_island_prison",
+      "sourceHash": "sha256:b92ec0729bf31c833168bea630d2b4e845b472373102c64b3714ec174fd5fcb2",
+      "runtimeHash": "sha256:153275e73e8ccea8ac8a28cc20095be2a10c5d3c76cbca757e78235af5ef3ab5",
+      "triangles": 63280,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:1d13498973517f1ca2196765db44cca9dfa1b6d6792bf74214ac80153ff23843",
+          "triangles": 912,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:e6442cb7b805fbd31feb3f58db651ace8fdca91aad788eb053054773999f31d0",
+          "triangles": 3688,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:bc62d78696d9da8d1ee8f4b8d077abf30d6e21d6ff1221acc94b6dbd09fa8963",
+          "triangles": 15756,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:7d10c3df0b7f0082603d04ab6dabedb269f083745bad5f8520c60e2c056ca6d8",
+          "triangles": 63280,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:f7b3eb9a20723fc5c3be5cf368c2ba2ecdf21b02174a490f7c7cf1a6827e7d91"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:9daf19593cf623e3269a61e6f2122eab7ce928e87fdfe071ed7fd3d0d7465498",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "robben-island-prison"
+    },
+    {
+      "order": 18,
+      "key": "winchester_mystery_house",
+      "asset": "molen.worldgen.structure.winchester_mystery_house",
+      "sourcePath": "content/worldgen/source/places/9q/9q9/winchester_mystery_house",
+      "sourceHash": "sha256:80bfae3b5f7cd0369e9afc04b0349f81af71ad266868689ba1fcc0f1c1e0dc8f",
+      "runtimeHash": "sha256:8742115f7874f804d65f3ef2a16c79af1f2a11bea85ae3a7b383270aa7524a40",
+      "triangles": 23918,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:352662d1225afcc30a0271f73a7eb8b77c176702a96d480387dd20ac01ae078f",
+          "triangles": 532,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:5ebdb86686a35e6442023ff8aa7d77de662cd12dd3bebd2f3e30fd8393e1af56",
+          "triangles": 3681,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:606fabd836574674172ab8eb03da62e8acb0d00e2ec660f3b51895576bb6f093",
+          "triangles": 12501,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:035da0a87eef98635ab17e24298d387de36f28890f2be3d4e23abf0fc53d2830",
+          "triangles": 23918,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:a5972b162f293d20bc4a335868dcc77ba5556e8df41b7fe5f245f30012a66b28"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:5aa2f76b400eb53be029077cf2db566d639968ed6786e502f091b53470395a61",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "winchester-mystery-house"
+    },
+    {
+      "order": 19,
+      "key": "liebermann_villa",
+      "asset": "molen.worldgen.structure.liebermann_villa",
+      "sourcePath": "content/worldgen/source/places/u3/u33/liebermann_villa",
+      "sourceHash": "sha256:caeb9599bb6ca948de69bb525c9e311dc031d9ee86e743b7e8c5de526201a716",
+      "runtimeHash": "sha256:0e8fa4a39300df97a98cff72b8e3cd1d91083f4c5fccc1860ac72877a0a4af4e",
+      "triangles": 22869,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:c184ba9173ea7d35291125a8cdb2816f20ef913b14ebd678350d42cefcd423af",
+          "triangles": 915,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:f7a60a9351c5a79c067e275d8154617fdbfb3149c51c2de0c62f04a8e2cf5d64",
+          "triangles": 1549,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:f17c07c9d3c84b39c1dc6b211bd55c0238e1b86295ef71843cef6ab3150413c0",
+          "triangles": 6349,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:7c13978ab58aaa36be6d89f1e38e2afda15982b9826f3867fe8d2514423ebddc",
+          "triangles": 22869,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:418d059816dddf4c44fd87626e189a4fa7973576f886855dac87bcc528f4ae11"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:ca998b7e0f84b62f77eddf86aa91de92d322677440ad292d3a9bc253fd1ab15f",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "liebermann-villa"
+    },
+    {
+      "order": 20,
+      "key": "lincoln_memorial",
+      "asset": "molen.worldgen.structure.lincoln_memorial",
+      "sourcePath": "content/worldgen/source/places/dq/dqc/lincoln_memorial",
+      "sourceHash": "sha256:65114f38f35aa849ac1993e4da821bd76f3b5dc2580bfdc0c02bd5bd68e3967e",
+      "runtimeHash": "sha256:a7e8a13060035967e0e59aee71cbdb0c7345908cbbcad77d33aab4b831b9457b",
+      "triangles": 62870,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:b41b1349a628d5a0c605014e2b06d3d5c344e65c3c6504d1174d4f9ee0d1baaf",
+          "triangles": 982,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:cf3e70df50429343fbb5a2f185b470319e5f8e923482871c574db67147368346",
+          "triangles": 2798,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "hash": "sha256:d3fe2ed2cdd4f981f03cfbc85d673269ef712b172a7f113c1627125dca4b72a6",
+          "triangles": 13998,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:70fb59828511577d8291a879307eb647569de5dbe697d3edacf86acb50c75439",
+          "triangles": 62870,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:7c93b82fcce80b4abedc77b83b3cb6200ec2bceb00bbcd04ed24816b79a30da8"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:f802b5999e37cf8fc4b2f0c458670136c0e737e10cc10a9872b2428da30e5acd",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "lincoln-memorial"
+    },
+    {
+      "order": 21,
+      "key": "jefferson_memorial",
+      "asset": "molen.worldgen.structure.jefferson_memorial",
+      "sourcePath": "content/worldgen/source/places/dq/dqc/jefferson_memorial",
+      "sourceHash": "sha256:1937e8d85a72d89a7b5205d8555dc2998328b30059cbeab01665c97e40d94fe1",
+      "runtimeHash": "sha256:3d40ecb8a11bac1373b04880ec7de215fee3329d38f924898aa7b5efe2801fe4",
+      "triangles": 63310,
+      "materials": 4,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:babe0738ee04f186b199838eaa943ffa11281cb74d4d679ca70036d0354615cb",
+          "triangles": 966,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:80a8fb9ad55fa58f009111a61429700c2a02d8e4c0151c14dff69307af4be66a",
+          "triangles": 3298,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "hash": "sha256:527cacffc9c9a4184efec23f42bba1afe2795dfa661e8929a81c76637b0cf5fb",
+          "triangles": 15642,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:3fd7bc2911b915380912e34e138d655e648dee7b11f09af88a4e656d0c278ae6",
+          "triangles": 63310,
+          "drawCalls": 4
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:3444970d66670f5d7c38728537eb65acf9a6713f3bc0026d68f4cd2e9ea12191"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:d83f57447fd09e75b4c085aebb272e2655cdb3b3181ee9f1e320f597625cdb90",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "jefferson-memorial"
+    },
+    {
+      "order": 22,
+      "key": "arizona_biltmore",
+      "asset": "molen.worldgen.structure.arizona_biltmore",
+      "sourcePath": "content/worldgen/source/places/9t/9tb/arizona_biltmore",
+      "sourceHash": "sha256:b14ec9c1a46027756d2955d626f7006155309120dbed98fbe5c6e91c87d0ceb4",
+      "runtimeHash": "sha256:a3fabc24465a0f83eefb6df63d5ff9856d37ae983ae2f030c47a7a4e6b601494",
+      "triangles": 60176,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:d67c997b8945a1206255734fe3d88af4aee5779b857272ac26a0106e94a065aa",
+          "triangles": 928,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:658a056de16704768b3a1de33bf7ca500594521f330767bc4859e1294e15fda0",
+          "triangles": 3152,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:6298a5dc82f4b07566d719e7b3c11a1b2ebef9762fd06b9d3317950df2d6958b",
+          "triangles": 12974,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:ccc9bc65fd1d4142b35e3e940315b510d1a70d7ac7a2cd8a35fdd0787cad7fc4",
+          "triangles": 60176,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:16e59f96a03175c58ecdcc23190da2f1bf5d228869474e99260c97dba9ebe01b"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:57b74486a444b4973cf94b81f662f3ecac2192e4e55bc19050e562be6ed15655",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "arizona-biltmore"
+    },
+    {
+      "order": 23,
+      "key": "hotel_chelsea",
+      "asset": "molen.worldgen.structure.hotel_chelsea",
+      "sourcePath": "content/worldgen/source/places/dr/dr5/hotel_chelsea",
+      "sourceHash": "sha256:7619de4f17d6dcde2fb569f4cb22d4200a1db4c8040b4f7c6ffd30cccdf796d6",
+      "runtimeHash": "sha256:95baea2db13da7d48b7238cf4570149c9e826a88963d648a1d6e03fd64f061db",
+      "triangles": 43677,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:b719d8a0df14a79dcebb16013693694714947306cf13bccc11adc25f2544be13",
+          "triangles": 880,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:fcced91d6d61656889eafcf4d2fbe9f5d7ee1b681a8478401fcb5f6240a32601",
+          "triangles": 3787,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:748d88e14984b9928b27a04d091da0c48a98b834d50cb8dbc8e174c10bbcbf36",
+          "triangles": 13199,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:d847c557e6965e1ed268dc9674072a96f22998104f4af8e24f3cded8162e8065",
+          "triangles": 43677,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:003e93a5df10defa8ba9e9b673877a93f42569503cbcffd4a4b7f8612de6ffdd"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:0db42d27b5875758e37640a5fd645e9976286cd9158fbc2eaf68c9978d1bcf9f",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hotel-chelsea"
+    },
+    {
+      "order": 24,
+      "key": "fraunces_tavern",
+      "asset": "molen.worldgen.structure.fraunces_tavern",
+      "sourcePath": "content/worldgen/source/places/dr/dr5/fraunces_tavern",
+      "sourceHash": "sha256:6d1be3fd4b2d1723eacde09deaf801c3c3b7db6c853a8dd344a7e98590bb7c15",
+      "runtimeHash": "sha256:bc4a0b38eb4b8fef80b393a92872e46a0ad93f2ec4d723c104059714287585e0",
+      "triangles": 19895,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:44206137d820ac06fa1922535e1d2d4cfef23d8c21fe9b148fab10f8efdf9527",
+          "triangles": 646,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:ca9b032be780e9716e42074ac3224d04f37c36461cda981060fa1a1630a6c0c1",
+          "triangles": 2163,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:e3ba5067ea63cd8dff1bebf5531d6cc2df011e387ab718e2086768598851182f",
+          "triangles": 9013,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:d7841574ac5c239f07c66bb0e54814c9728c100fdab541e22390f8258c0e8be1",
+          "triangles": 19895,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:651a1a6d616c9c5e9d9900790e36e28964c20b15d6e955985791777c60142bf8"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:fe919329168f1571b8ad4a046f58fd37562683ca38d89b8d8fa1efe6c001f60a",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "fraunces-tavern"
+    },
+    {
+      "order": 25,
+      "key": "stonewall_inn",
+      "asset": "molen.worldgen.structure.stonewall_inn",
+      "sourcePath": "content/worldgen/source/places/dr/dr5/stonewall_inn",
+      "sourceHash": "sha256:115729d6a60055925a94babd2ca29844ad7f81ca31f08d4c616cd090ca79c541",
+      "runtimeHash": "sha256:6514fa55c852b576cd7ed2b74164089aa716ec18304e4bb8cba21bfa225ab69b",
+      "triangles": 7733,
+      "materials": 7,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:2da3fe0254ffbe5cd1ec04cac613a3065e351073d528ae13c1a6f4db9252d09f",
+          "triangles": 338,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:d0d30e2f8a65ddda80d2aed1f51a8d16e81b4d9357be038ef6e0ea389cbb797d",
+          "triangles": 2969,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:8a0509311ffe096cc7df9293e1abd802ef617d8fa07f2093ed0ba4c41b8b1892",
+          "triangles": 5171,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:1e1ddb08090bb59028f35ca32bcf4568f2770b0187c7586698bd0d066bd82883",
+          "triangles": 7733,
+          "drawCalls": 7
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:97bc01be5d077f96f65598b431941c58345d92e31a902aa8c52b02c16eea8b42"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:5c0d7bd54ff3ef61ac455bb6de4115ed0c654a445c4cf99636ae5dd1cd6b0ee3",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "stonewall-inn"
+    },
+    {
+      "order": 26,
+      "key": "ritz_london",
+      "asset": "molen.worldgen.structure.ritz_london",
+      "sourcePath": "content/worldgen/source/places/gc/gcp/ritz_london",
+      "sourceHash": "sha256:2cfffb531492dd64b2cff8710749e22438c76cafa82671b569f49e4366a44d27",
+      "runtimeHash": "sha256:ad30f0f28c73fb376f773add84ff530518e1e402de0e68391c2740c269b92493",
+      "triangles": 54267,
+      "materials": 7,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:94c5544c2de7da79a0f39e72b45fffca0163494645ea69630b8ebb6f03947a17",
+          "triangles": 876,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:fb40f09db0731d54c813ccbed058c53fd0eebd529d64f631ec25fda859314815",
+          "triangles": 3331,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:137e0bcee374dbfa5fd8731d1545947eee4c51b676eca4e04b8735ca59efadee",
+          "triangles": 15535,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:654f242c910b556d21be46bf7b03f5752db922543d7f771f14c4b20c893e4bae",
+          "triangles": 54267,
+          "drawCalls": 7
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:d0674cd69c89475d30869b375dd19943ce92d11082f890b09fe0697dad8e2dfd"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:a028f547beb9407b0792e26e1178f6750929f04a578d5375a963079242964d1b",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "ritz-london"
+    },
+    {
+      "order": 27,
+      "key": "hotel_des_indes",
+      "asset": "molen.worldgen.structure.hotel_des_indes",
+      "sourcePath": "content/worldgen/source/places/u1/u17/hotel_des_indes",
+      "sourceHash": "sha256:93f683fb111df4746d95341fdfc9b5149e229ea372800355438299c6853d3941",
+      "runtimeHash": "sha256:b04d7f80ac61c5753ef46e4db71893d39fdb6de981bda8a4e32163bf44e0793b",
+      "triangles": 28305,
+      "materials": 7,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:e387c097ce18261f0afa9866bbba67e3d5c1ad0ac76c5820f3185621a81bc91c",
+          "triangles": 461,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:4dbfc31b730d4ab039ceda349a017286150990116bafc2fa747f6dc76d3cf51b",
+          "triangles": 1969,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:88196e9077e4b0482eab0f2fa3902b61381cc1e2a21bf71750b07fdc76b77fb9",
+          "triangles": 7093,
+          "drawCalls": 7
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:a6a49620173face07bf2f4a234039c3b228fc845f51c87ebd514c65d345d08c5",
+          "triangles": 28305,
+          "drawCalls": 7
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:a8640d97620f47aca34b5f8c8791090f019898bf689cc8ca9610961bc56c27d0"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:bc6b24b230135d659b697291fc8be381c116fd919f4da79d3850394d632fd690",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hotel-des-indes"
+    },
+    {
+      "order": 28,
+      "key": "hotel_majapahit",
+      "asset": "molen.worldgen.structure.hotel_majapahit",
+      "sourcePath": "content/worldgen/source/places/qw/qw8/hotel_majapahit",
+      "sourceHash": "sha256:2294d609457f9a47bdb801af508a5de2bdf82e181312bd58f4b7b1043f8b4670",
+      "runtimeHash": "sha256:eb73ba09de9e6ae5a41f992c87ea777fd95bd89392900c5c790ec2b2d954a1fd",
+      "triangles": 50045,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:4f673a8a4098d95bf548e7e5d66120dd657837d491b32348ac47b48820c866b6",
+          "triangles": 967,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:a77c4c63b095d235e760296594149080706526478e42ac988b4f4180cb0a85a0",
+          "triangles": 3987,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:7bab4b3b66e48ba2c86b54f6de23efcc4ea862f7dc955ec2582b61a8dffaf7c4",
+          "triangles": 15457,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:8daed2f862dbd2ad729a8a8f40512acc69c2d3b5e2acc1a23118db075a083d4a",
+          "triangles": 50045,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:364815c4bcf2027b2bbd1539bbf94a7e7726ca95953e5975c77f61c79925af72"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "draft",
+      "replaceFootprint": false,
+      "verifiedReadiness": "needs-review",
+      "blockers": [
+        "medium-fi-fidelity-review-missing-or-unbound",
+        "runtime-placement-inactive",
+        "geographic-review-missing-or-unbound"
+      ],
+      "reviewInputHash": "sha256:32bf6005681b83381ca9007abf98081c5ff941d24d2ebf5fbd4d365d5ed87a77",
+      "sourceEvidence": "qa.json",
+      "activePlacement": null
+    },
+    {
+      "order": 29,
+      "key": "jamaica_inn",
+      "asset": "molen.worldgen.structure.jamaica_inn",
+      "sourcePath": "content/worldgen/source/places/gb/gbu/jamaica_inn",
+      "sourceHash": "sha256:84c4ada72079177085c100ac719ca4fc8ee389c4fcb11f20d0f8aa2fb97120f9",
+      "runtimeHash": "sha256:44cbb51aea45480ad87a8f449b7a4834c4fb2825067f9b0b87841f824571a1af",
+      "triangles": 8905,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:ac092813e6e697abb8491457fd84e470181ff1bddd8c84a95601576b37933f98",
+          "triangles": 369,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:defa9c8e9834e3735340512ff9af7d43341cc332a38cc8f7c701d13ce24b8932",
+          "triangles": 507,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:004a3685ae800205bdd880db9f615e6ed727dc18f3840251bb1ce47225b77823",
+          "triangles": 5605,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:f8caad8b2290a579a6bb394699ff5c7795c974eb2a684f4347d6128b07424721",
+          "triangles": 8905,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:85d8d32b53447ca77d2939fbda5f19709aaf496d095d2dd9e0377b20e1566cd3"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:1cd1cdc2156a73cef69823cb0ef0ca5f582372f7ecc42af52c909cd3e7f7c0fb",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "jamaica-inn"
+    },
+    {
+      "order": 30,
+      "key": "ponce_de_leon_hotel",
+      "asset": "molen.worldgen.structure.ponce_de_leon_hotel",
+      "sourcePath": "content/worldgen/source/places/dj/djq/ponce_de_leon_hotel",
+      "sourceHash": "sha256:037945043c7cd3400007455a7219568467f9e110d973acf39c82b264556d3ddd",
+      "runtimeHash": "sha256:81bcf443990cc1a70167fc91f408cdd2487989dcc86ba1e6eccbef9aded11c5f",
+      "triangles": 47683,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:8b9b9895e82154fad8897ec1d7e875a086f81af9e136f967047541d80c6baad0",
+          "triangles": 858,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:cd8a0e1a5262a7f28e1c23c177a6c8dd794bf13b3910d7168217d823110bd954",
+          "triangles": 3930,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:1df4fe9135aa8f1fd90d9bfcfb1059f2a98d18a74a44e94f0a7f5daf694107ae",
+          "triangles": 15941,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:9cd61e5b02a4ec31ba878a38c571c784a9d39a3ad82f225ed1eda4a87ffdd793",
+          "triangles": 47683,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:417ecf95b2c3b62f148364d93935d48f6c917f97ae89cafd302eff3e4a8782a0"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:f2c33517fef8d5846f8e37b325c0f7b7fb0d6121db7197f21ebf0c3e56b360be",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "ponce-de-leon-hotel"
+    },
+    {
+      "order": 31,
+      "key": "banff_springs_hotel",
+      "asset": "molen.worldgen.structure.banff_springs_hotel",
+      "sourcePath": "content/worldgen/source/places/c3/c3j/banff_springs_hotel",
+      "sourceHash": "sha256:f2996b493d3f94d6b5044ec9ff58e530f7bc25055d21d5991ca0b8b35f6eaff5",
+      "runtimeHash": "sha256:3464c424bf1a137e2a539bcf305e51d98f9772403ba0f02428d1ce23268386e3",
+      "triangles": 55422,
+      "materials": 4,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:e230e87a7d69ac3e189993974b7e824bed7dea5c2c1ae24ba411b015c04e97a9",
+          "triangles": 958,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:50c6156684379e9902ea31e4a045ac64e873225518554675982f69b7aa5dba7d",
+          "triangles": 3348,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "hash": "sha256:53a8d858f44a8fb7b99e1c93fcfb7f99f7a570d64f5f4bd2de2f52166863a510",
+          "triangles": 14930,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:b45890e9020d2fb60553c9cbb47c599c1dd73ae7e7574b022c6a847219b6a997",
+          "triangles": 55422,
+          "drawCalls": 4
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:f51a0bfbf8c8ffcc7c08c652de1fe8ffef85a85ba6890a3b1a34902458dee544"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:77aaebb141bcf435f2d3cec7737cf291e4b9d4a33d29a165f0ad9f02dcaa0195",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "banff-springs-hotel"
+    },
+    {
+      "order": 32,
+      "key": "palace_hotel",
+      "asset": "molen.worldgen.structure.palace_hotel",
+      "sourcePath": "content/worldgen/source/places/9q/9q8/palace_hotel",
+      "sourceHash": "sha256:f60c9517012a62678fbb12dd7e180095d0d2b75ef048c5183c5a519bf77ff6f9",
+      "runtimeHash": "sha256:240393cc0f663443e55a13b44aa3d518d3a612c8f80246d8203f1cca4e7097c5",
+      "triangles": 58133,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:36ad53553541dcfd04bcee3efb73fc35cba558d0cadc5cf6eaa484ccff152919",
+          "triangles": 881,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:e2100f2b3395f9d6bda5205cb2b9ee7ded6d182ab32b5c9deaa3863c9ca7a293",
+          "triangles": 2928,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:67284eac394658f68fe2c711426c927017faa730d83bb896918df344cf01e511",
+          "triangles": 14571,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:579a9a2fb1fef2cc0bcee1bdfa4a0798d499f3de3cae51c3b25fb73cf91f38e5",
+          "triangles": 58133,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:feaae89acc596de4a50f67e66905cb20e5fe41c3ff554a7a778fca829469be8e"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:bd721cb642321de4460fed3a9c5a096156725f701cfa9df297e035f968f19572",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "palace-hotel"
+    },
+    {
+      "order": 33,
+      "key": "chateau_frontenac",
+      "asset": "molen.worldgen.structure.chateau_frontenac",
+      "sourcePath": "content/worldgen/source/places/f2/f2m/chateau_frontenac",
+      "sourceHash": "sha256:0fd47c18560ee91a39a232d4ddcd18e2f1b4beaf5bef09cb970fb84104b2a632",
+      "runtimeHash": "sha256:bb56978414d00f5df6d3639e4edd85a6c3e53482164b06e543e96a02798deb77",
+      "triangles": 46146,
+      "materials": 4,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:333c8b899445a6468761556f5e16c7532a49a931cf914596f17d864a94126aff",
+          "triangles": 986,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:3ae003cf1f7063c8a082158758b2afaef3f7f3f7286438c1edab4d2d8e9713aa",
+          "triangles": 3834,
+          "drawCalls": 4
+        },
+        {
+          "name": "street",
+          "hash": "sha256:7183784efa7a2b9d0bc28141b3a6df86f87afcd9a78231812ed7c72cc425fab0",
+          "triangles": 14994,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:5e03d2624a7c7678f17b7ac9150a3a0162ae617bc20857d24df1730805b6e56e",
+          "triangles": 46146,
+          "drawCalls": 4
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:aa8113282cde90f1d2db07355d2e7eb270a5e2ee470e57c6426fb0846477fd24"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:7d9d814f06393aa23562f19ac36878edad52d973b7f6c4debf48638ea1d2eedf",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "chateau-frontenac"
+    },
+    {
+      "order": 34,
+      "key": "chateau_laurier",
+      "asset": "molen.worldgen.structure.chateau_laurier",
+      "sourcePath": "content/worldgen/source/places/f2/f24/chateau_laurier",
+      "sourceHash": "sha256:c79935600a563608dddebc2d5e8e814748d32bd9190ce31dc20ab254a6655559",
+      "runtimeHash": "sha256:35b9c801a816329ad3f438d5f68a724acf9a6e9737e5413966851508c75112c2",
+      "triangles": 53105,
+      "materials": 3,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:750193fa446a3e457e8173e2e04c984100e869e23bd3c6d56e44f5ba99b4a8d5",
+          "triangles": 777,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:f153001fb3b214b41fe3c84480c0c140919fb296a7b9a879a6edd9f62f5c66c4",
+          "triangles": 3279,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "hash": "sha256:0905b2340a6a6d18c92bedad9245fce6f48799be2a1efff279b1b4ae2bc29020",
+          "triangles": 15874,
+          "drawCalls": 3
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:c86ecfe6c9d2a5281b20f2e275bb24621f98bac760d4a3d32e5a19a32e1368d6",
+          "triangles": 53105,
+          "drawCalls": 3
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:bf2bb030efb0f89e89d0642e838cc20af17a843a9b2bd984af01d680820c9354"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:ed124e1ba2e66de6b1c19c5822103e0215498a746bf99728def823af4b084d09",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "chateau-laurier"
+    },
+    {
+      "order": 35,
+      "key": "hemingway_house",
+      "asset": "molen.worldgen.structure.hemingway_house",
+      "sourcePath": "content/worldgen/source/places/dh/dhm/hemingway_house",
+      "sourceHash": "sha256:f6ca2031962be0ff19a4dd425541391f7d5d6442fbf72307969f6d9e3b26ba15",
+      "runtimeHash": "sha256:cfd8b857182103b0a06584152110b635eff158d1d002cc84dd109bb223d94336",
+      "triangles": 36694,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:1629b753ced554e5a07cf82c5410b6cebeb45ef6ab6c5e0429cba1c14977d8b7",
+          "triangles": 902,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:14e61e88cb28a902122b291fbe95fc8bc8f7b3ba5b519688a40b36c7b9bf558f",
+          "triangles": 2254,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:efe1ded2eceabfc81db4a96bb709a0a8e09d453fdb757a801f0291c13b886960",
+          "triangles": 13678,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:67d0aa7ca2e174f0dbe61ca92541175e81526cc08d51f40698cc94479149d618",
+          "triangles": 36694,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:acfb3300f46135ffbd1ae51d1d43bf9369d7e0a52237064d46f627ee24ed29a7"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:8b350b79c3d7841460b27f81eec3cf88bc5d00a7393f4f0afc97053d44bc4cc0",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hemingway-house"
+    },
+    {
+      "order": 36,
+      "key": "ennis_house",
+      "asset": "molen.worldgen.structure.ennis_house",
+      "sourcePath": "content/worldgen/source/places/9q/9q5/ennis_house",
+      "sourceHash": "sha256:fa7b28b9a6b7206756ff505a32057ff9152cb32b276397775b60aa022384f0eb",
+      "runtimeHash": "sha256:9d70eb5c0e48c914b0c6f72c6e2410a50293e03f5cb86741435caf4cefbff80b",
+      "triangles": 60816,
+      "materials": 5,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:c13ed4b254423a59dc80a3bc90b82e359f3289e002d1ef1b7c279a5be9ea8158",
+          "triangles": 878,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:8f3b75a060003a4315e809f3f3a1600c9c4e7c58eb5c91c540deacc9a1eda7d5",
+          "triangles": 2064,
+          "drawCalls": 5
+        },
+        {
+          "name": "street",
+          "hash": "sha256:a684e4e56d9b47bc8c1e73d18d59aa12a329811be44270fbe7168a7cc83136e2",
+          "triangles": 12526,
+          "drawCalls": 5
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:fb12dd8b4fbdffbc0d80f854db4c0491fc0bd03a06d49f04b50063deeca02d50",
+          "triangles": 60816,
+          "drawCalls": 5
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:632a44d8a15c120a01a1c7f504706a96edc3f3b3190d3ad9353e8769dd4917d0"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:4f55b738d8242ab5576e4c9bd9e54eaf46d93ce5383d8c983ac7e286c5ee1595",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "ennis-house"
+    },
+    {
+      "order": 37,
+      "key": "hollyhock_house",
+      "asset": "molen.worldgen.structure.hollyhock_house",
+      "sourcePath": "content/worldgen/source/places/9q/9q5/hollyhock_house",
+      "sourceHash": "sha256:76c0bd1d88b51510ec0164131eb41f9b5cd0109a7839d48e7e5991d4246a7d8e",
+      "runtimeHash": "sha256:49b23eee1de1ca14ad13df4a070e63869ff5e488668868a802c9f53b0d8da260",
+      "triangles": 28990,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:5efd2193051df20b3f381f5432e25245275918009aaf2e4f1591bb3059db2e5e",
+          "triangles": 836,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:d5246110e964956a63a03859d495f64845a0314ff50ea27966590030cae6bcf1",
+          "triangles": 3802,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:60d996922d9d63079277492110ecdb2d3d08d92ac111da711bc9bd24b043f308",
+          "triangles": 13938,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:79daaa4d3969dfbf90fd3631e141f91916920461773a638f2f2d0e1523862685",
+          "triangles": 28990,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:e998c30c1108c47b9b037c57f9b6a9577d9f9ee1aa245546b3018f5be44ca1f3"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:535746af1a3da67baac48174e4d80929335d1673b9672b66f62c0fd74f663097",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "hollyhock-house"
+    },
+    {
+      "order": 38,
+      "key": "gamble_house",
+      "asset": "molen.worldgen.structure.gamble_house",
+      "sourcePath": "content/worldgen/source/places/9q/9q5/gamble_house",
+      "sourceHash": "sha256:94198b90b55af09814cf37fd9d12a994fb3dac9047f8ba57f3520a597efa32fc",
+      "runtimeHash": "sha256:9a3839796c71ecd3bc08f056ff6d6d7ba027e33228bed0528f8175011dda7f3e",
+      "triangles": 28706,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:9c45087e8ad3f9d45090337b9670195d829e0290160246f6ad7b7a03f54d9b63",
+          "triangles": 638,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:f6953052ea81b10fb3574075dbd6311b97add1fc4e199f735ad41de67632d208",
+          "triangles": 3942,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:ddd76cc51e01c0919f591cd553f9a210cdae7d9831564119e4416ddffa8f3f36",
+          "triangles": 13830,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:f036cd95899d28aeac8e7f7cde774d0909d02f6db606f2888614b7571d11e1ad",
+          "triangles": 28706,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:5e98eec03ee9dbb5a65b07bff23862c9a735214b749d5597f9f47670c041e78a"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:83ddc3a50b29cd42dec35d0f70add6575c9cf1497a7de13ac4e749dede537bf9",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "gamble-house"
+    },
+    {
+      "order": 39,
+      "key": "getty_villa",
+      "asset": "molen.worldgen.structure.getty_villa",
+      "sourcePath": "content/worldgen/source/places/9q/9q5/getty_villa",
+      "sourceHash": "sha256:2901d070218f4e76f6929327acb53c8211a8220041be58e5b258755514078fbd",
+      "runtimeHash": "sha256:bb536ce00ffcd4717af0ad4c4532bc39ebe0267adb54d02321bb1e69e2828d23",
+      "triangles": 63477,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:86eaa7a8cc8c200c58932d6a11763d8a5c83a03060262de7ce8caa84c5f9ba23",
+          "triangles": 904,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:2aad79ed8e1a95dad2ca33733dd95c2e5042663b4d9ecf7d66cdbe33b060a538",
+          "triangles": 3929,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:8bdd2340ecca7ce5f96cf86477fb8ccb823c71282ef4fe56fa840bb8d7766cb1",
+          "triangles": 14065,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:931e873745a2a141821ba5c7d7f8e868a610caba722bf528650bf928dd1d8dcb",
+          "triangles": 63477,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:9156a3295c2a90192cea2ddc6c21b463c9eef56e3d9c6b1551b5d006d6656041"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:81311ba7d283ab75f0a4e57fd706cdfa822706c169d657d43b112eb9e07041e0",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "getty-villa"
+    },
+    {
+      "order": 40,
+      "key": "beethoven_house",
+      "asset": "molen.worldgen.structure.beethoven_house",
+      "sourcePath": "content/worldgen/source/places/u1/u1j/beethoven_house",
+      "sourceHash": "sha256:102ca8b1df837c1bb710059a9fd74514953cded983ebd884cf227c4e811c5781",
+      "runtimeHash": "sha256:4eddd89b3023ebd67e2e626bb7262521c64f114d8103db13856bff4475effb00",
+      "triangles": 7510,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:6cef7a762853c7bd891d378f3cefb7d009078d450bd60966b068a1ebd77a2457",
+          "triangles": 166,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:16bfa9f86b1b8e94fc54a2d34583a8d0f0fa26b3fabfd86d89cb566689511af6",
+          "triangles": 2196,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:662a77d64c1b748957b2fa420a5e2949c6bfb993924b72a0a40523cf122b4349",
+          "triangles": 6978,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:68595825c9190b9add93180b92a8bd3f1c80de3f7b0da1c6f75159de9da0c9f9",
+          "triangles": 7510,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:a1423c45fc89a5abe9822ef767b6c201ed874a36fd73ed870f49505e9b9e1396"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:1252df5ce7d7b1e1fdcb73ba9e249395bd0c629a750017c812447bb8ae92dd76",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "beethoven-house"
+    },
+    {
+      "order": 41,
+      "key": "bach_house",
+      "asset": "molen.worldgen.structure.bach_house",
+      "sourcePath": "content/worldgen/source/places/u1/u1p/bach_house",
+      "sourceHash": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e",
+      "runtimeHash": "sha256:016463585bb282f89009f4d45441331a69e49ee38a16ac76057fc752615c2747",
+      "triangles": 25937,
+      "materials": 6,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:4339728e9a674d0e7cae909a90778b277196264fd6672719607c6c4e77eb9848",
+          "triangles": 367,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:568069ab0c4d5dfc27edb32084a262e270c50be153022c71feb85de5371e60c3",
+          "triangles": 1199,
+          "drawCalls": 6
+        },
+        {
+          "name": "street",
+          "hash": "sha256:728c0050c2e518a78c3fe3f03db24375d2db94ffe110dfaced47b0086abea53e",
+          "triangles": 8153,
+          "drawCalls": 6
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:a70d606fe0506e081fc5ec2606e31f6e83153735341489c3de40dcd3adb5bd70",
+          "triangles": 25937,
+          "drawCalls": 6
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:4714ffe407355d52437970486b13e6348bffb5ab22edc35b6c316d5cf4bcac6c"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:61b4af70be0dabc915cd50c1f3205f50e127ecb5c5c3b080eab338455393be78",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "bach-house"
+    },
+    {
+      "order": 42,
+      "key": "chatsworth_house",
+      "asset": "molen.worldgen.structure.chatsworth_house",
+      "sourcePath": "content/worldgen/source/places/gc/gcq/chatsworth_house",
+      "sourceHash": "sha256:e5e837b3947d727fa47f106e663fe159ba594792746bd92dc0a09fc4f02f5292",
+      "runtimeHash": "sha256:d30585f5ce8aabc355cdfa3cebadc2636c6ef85ea094d717d3c859c2d290d656",
+      "triangles": 62060,
+      "materials": 4,
+      "detailLevels": [
+        {
+          "name": "skyline",
+          "hash": "sha256:311f71070676928747f11468079e34c9bf65bfa1b486b0706b206a2deffd4f83",
+          "triangles": 989,
+          "drawCalls": 1
+        },
+        {
+          "name": "district",
+          "hash": "sha256:904d2725ba1991cc048c9b531dff046d77559e29301502ac966c2fcda9623142",
+          "triangles": 3765,
+          "drawCalls": 3
+        },
+        {
+          "name": "street",
+          "hash": "sha256:6e4e1096edc44485b5d44f707efe57e520bf431ced283c4a2752c272e4275f4c",
+          "triangles": 15736,
+          "drawCalls": 4
+        },
+        {
+          "name": "closeup",
+          "hash": "sha256:c14b307f1d8d4bb60556ce4e74575173102643cf79c3d197a2f538f75e1dac1d",
+          "triangles": 62060,
+          "drawCalls": 4
+        }
+      ],
+      "sceneValidation": "passed",
+      "sourceValidation": "passed",
+      "terrainValidation": "passed",
+      "assetIntegrity": "passed",
+      "simulation": {
+        "ticks": 30,
+        "repeatStateHash": "sha256:2d6b8671724bb07237f9bf1b4e7c65cb2c5c897cbfff4bf155fd929725f2d841"
+      },
+      "packMembership": "passed",
+      "spatialQuery": "passed",
+      "placementStatus": "preview",
+      "replaceFootprint": false,
+      "verifiedReadiness": "ready",
+      "blockers": [],
+      "reviewInputHash": "sha256:1ac814dd6138225686a0c88d327dbabdd6ae1a4569a3ef84f16350ed238c8e6d",
+      "sourceEvidence": "qa.json",
+      "activePlacement": "chatsworth-house"
+    }
+  ]
+}

@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Bachhaus_in_Eisenach.jpg",
-    "https://commons.wikimedia.org/wiki/File:Bachhaus_Eisenach,_R%C3%BCckseite.jpg"
+    "https://commons.wikimedia.org/wiki/File:Gedenktafel_Bachhaus-2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Geburtshaus_Bach.jpg"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/bach-house-eisenach/"
     }
   ],
-  "referenceInputHash": "a7b170cdaa049e84616f3d8c6bd45cd148508a847ee4abf3a307349a9b5a96c4",
+  "referenceInputHash": "sha256:0af5bd93aa2500d7c69769b2297312f452aec1cbad8fb0239f65a5edba0482bb",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-bach-house.mjs"
   },
@@ -97,6 +97,36 @@
         "roughness": 0.3,
         "metallic": 0.12,
         "localRef": "palette:#ffffff"
+      },
+      "facadeStucco": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.92,
+        "metallic": 0
+      },
+      "portalStone": {
+        "slot": "trim",
+        "graph": "concrete_plain",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "portalWood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
+      },
+      "portalMetal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.65,
+        "metallic": 0.28
+      },
+      "facadeShutters": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.85,
+        "metallic": 0
       }
     },
     "authoredLevels": {
@@ -139,6 +169,36 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "facadeStucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "portalStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "portalWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "portalMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "facadeShutters": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
           }
         }
       },
@@ -181,6 +241,36 @@
             "roughness": 0.3,
             "metallic": 0.12,
             "localRef": "palette:#ffffff"
+          },
+          "facadeStucco": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.92,
+            "metallic": 0
+          },
+          "portalStone": {
+            "slot": "trim",
+            "graph": "concrete_plain",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "portalWood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
+          },
+          "portalMetal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.65,
+            "metallic": 0.28
+          },
+          "facadeShutters": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.85,
+            "metallic": 0
           }
         }
       }
@@ -229,6 +319,15 @@
       ]
     },
     {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
       "ref": "matgraph:molen.worldgen.material.wood_plain",
       "slot": "trim",
       "uv": "repeats",
@@ -238,7 +337,7 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
       "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
@@ -247,8 +346,8 @@
       ]
     },
     {
-      "ref": "matgraph:molen.worldgen.material.stucco",
-      "slot": "wall",
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
       "uv": "repeats",
       "repeatMeters": [
         2,
@@ -266,7 +365,7 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior from two primary and three supplemental individually inspected Qualla originals, official museum history and aerial/map control. Hidden ends, exact dimensions and the small rear projection remain photographic estimates; no surveyed plan.",
+    "New rounded bay cove and actual recessed portal/solid paired carved door from native cleared Qualla public-domain plaque and exact native photographer-PD-self front exterior/detail. Two unsupported lower shutter leaves removed and six upper bay leaves narrowed to source-supported paired half-widths, preventing doorway/adjacent shutter intersections. Three original lower levels and every original attribute outside324replaced facade/shutter triangles retained. Original full historic house/steps/rear projection scope retained; contemporary extension remains separately scoped future structure. Earlier attribution/private/aerial imagery excluded as current controls. Wider rear/hidden roof review pending; cove radius/recess depths/door craft/hardware/shutter hinge spacing, dimensions, hidden ends and rear projection remain medium-fi estimates, not survey data.",
     "Surviving historic house only. The timber frame is plastered, so no exposed frame grid is invented. Contemporary museum extension, neighboring buildings, garden landscaping, interiors and photo pixels excluded.",
     "Roof weathering, curved tile profiles, leaded glass, door carving and iron grilles are authored approximations. Small ornament is simplified with distance; no exact lettering reproduced.",
     "Independent unmodified Terrarium ground retained; urban interpolation is not survey accuracy and host terrain may differ. Footprint replacement disabled. No physical-device performance measurement claimed."
@@ -298,16 +397,42 @@
         5,
         0
       ]
+    },
+    {
+      "name": "bay-cove",
+      "position": [
+        10.1,
+        2.25,
+        10
+      ],
+      "lookAt": [
+        8,
+        3,
+        4.65
+      ]
+    },
+    {
+      "name": "carved-entry",
+      "position": [
+        1.5,
+        3.4,
+        10.3
+      ],
+      "lookAt": [
+        3.75,
+        2.7,
+        4.3
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 25937,
-    "vertices": 77811,
-    "materials": 6,
-    "bytes": 3116136,
-    "sha256": "sha256:79c052baaad138bfe5ce71efa2dfec2e4a23e494b0fbe5465902fc12ad4e658e"
+    "triangles": 26661,
+    "vertices": 79983,
+    "materials": 7,
+    "bytes": 3203480,
+    "sha256": "sha256:4a8fd70bfe9fb2b462d8bd5e630b4ffd53aff368e308cc55b34ac4e1ffc96065"
   }
 }

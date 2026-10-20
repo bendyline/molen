@@ -1,0 +1,393 @@
+{
+  "planId": "taipei_confucius_temple",
+  "id": "taipei_confucius_temple",
+  "assetId": "molen.worldgen.structure.taipei_confucius_temple",
+  "title": "Taipei Confucius Temple",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 121.51661440730095,
+    "latitude": 25.07295298758495
+  },
+  "size": [
+    108.90259552001953,
+    13.600000381469727,
+    129.5
+  ],
+  "actualBounds": {
+    "min": [
+      -60.49174499511719,
+      -1,
+      -34.25
+    ],
+    "max": [
+      48.410850524902344,
+      12.600000381469727,
+      95.25
+    ]
+  },
+  "visualBrief": "Native ceremonial compound with double-eaved Dacheng Hall, seven-tier ridge pagoda and Tong Tian cylinders, separate Chongsheng rear shrine, open lower side colonnades, Yi/Lingxing gates and true side passages, four outer arched gates, south screen wall, approximate masonry enclosures and three-arch Pan Bridge. Orange ceramic roofs, red brick, gray granite columns, green/blue/gold timber and ridge ornament; own platforms and stairs only. Modern Minglun Hall, service buildings, park, pond water, interior ritual objects and temporary ceremony fixtures excluded.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://tcmb.culture.tw/zh-tw/detail?id=292378&indexCode=Culture_Object"
+  ],
+  "stories": [
+    {
+      "id": "taipei-confucius-temple-wp",
+      "url": "https://qualla.com/taipei-confucius-temple/"
+    }
+  ],
+  "referenceInputHash": "sha256:6ac344f4090632d8698a54afc20b4c5a8161d80350f9309a870def86e5c23146",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-taipei-confucius-temple.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-taipei-confucius-temple.mjs",
+    "level": "skyline",
+    "export": "taipeiConfuciusTempleSkyline",
+    "errorMeters": 3,
+    "surfaces": {
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.95,
+        "metallic": 0
+      },
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_granite",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "wood": {
+        "slot": "trim",
+        "graph": "wood_plain",
+        "roughness": 0.86,
+        "metallic": 0
+      },
+      "tile": {
+        "slot": "roof",
+        "graph": "tile_glazed",
+        "roughness": 0.58,
+        "metallic": 0
+      },
+      "window": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.82,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "taipeiConfuciusTempleDistrict",
+        "errorMeters": 1.8,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.58,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "taipeiConfuciusTempleStreet",
+        "errorMeters": 1.6,
+        "surfaces": {
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.95,
+            "metallic": 0
+          },
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_granite",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "wood": {
+            "slot": "trim",
+            "graph": "wood_plain",
+            "roughness": 0.86,
+            "metallic": 0
+          },
+          "tile": {
+            "slot": "roof",
+            "graph": "tile_glazed",
+            "roughness": 0.58,
+            "metallic": 0
+          },
+          "window": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.82,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1,
+    "terrain": {
+      "descriptor": "terrain-review.terrain.json",
+      "heightmap": "terrain-review.height.png"
+    }
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "medium-fi-exterior-source-preview-reviewed-in-qa",
+  "geographicProposal": {
+    "status": "bounded-preview",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Original fifteen individual native polygons and signed mainhall frame fixed before source ground/geometry. Dry frontcourtyard[0,70], outside PanPond, gives3.1712m relative provider datum. Retained published third-party claimedNLSC2024 20mDTM independently decoded;17.3m pixels interpolated at1m, original official raster/private conversion unavailable. Floors/plinths/stairs follow photographed architecture; source terrain unchanged. No generic footprint replacement or whole-campus terrain pad.",
+    "anchor": [
+      121.51661440730095,
+      25.07295298758495
+    ],
+    "heading": -0.06933313366308694,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        121.51656631226639,
+        25.07232568054697
+      ],
+      "modelHeight": 0,
+      "basis": "Dry central frontforecourt beyond LingxingGate and north of PanPond; fixed before terrain/geometry. PondPOI lies further south; do not anchor in water."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35184653835706",
+      "buildings/35184653835705",
+      "buildings/35184653835713",
+      "buildings/35184653835714",
+      "buildings/35184653835710",
+      "buildings/35184653835708",
+      "buildings/35184833865218",
+      "buildings/35184833865219",
+      "buildings/35184833865220",
+      "buildings/35184653835712",
+      "buildings/35184653835716",
+      "buildings/35185834919576",
+      "buildings/35185834919579",
+      "buildings/35185834919585",
+      "buildings/35184833865221"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:f3afb329d6944f72f1713c097fa0bf8e55c59a523413f4a2e9e948e57a143ab8",
+    "notes": "Each mapped component kept at its own actual relative position; mainhall doublehip/7storey ridgepagoda/TongTiancyclinders,lowerconnectingwings,Yi andLingxingfront gates andChongshengrearshrine. ModernwesternMinglunHall and services omitted. Fine dragon/ceramic/woodcarvings necessarily simplified volumetric medium-fi, not copied pixels. Four exactNLSCPHOTO2tiles, originalpixels/nativeoverlay actuallyinspected. Native15component positions match templeboardplan, includingoutergates; finebridge/enclosure dimensions and artworkstillapproximate. Localphoto5entrancelabelisnotreliablecomponentidentity; omittedasbody/roofauthority in favorof7officialphotos."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_granite",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.tile_glazed",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.25,
+        2.1
+      ]
+    }
+  ],
+  "limitations": [
+    "Approximate photographic exterior with bounded source-ground preview; source/story completion requires current QA. Native map controls are quantized, not surveyed elevations or doorway dimensions.",
+    "Each native component has its own mapped location. Quantized footprints/roof-wall interpretation, hidden elevations, outergate details, roof profiles and PanBridge dimensions are photographic estimates, not survey/photogrammetry.",
+    "Official42Dachengcolumns include unmodeled interior; exterior circulation and ceramic/dragon/flower carvings are deliberately simplified volumetric medium-fi. No photo pixels or baked lighting used.",
+    "Third-party published ground is attributed by publisher to2024NLSC20mDTM; original official raster/private encoding unavailable.1m review grid is interpolation only. Compatible source preview and another host DEM need independent contact review.",
+    "Modern Minglun Hall, toilets/services, neighboring temples, park, PanPond water, interior ritual objects, signage and temporary ceremony installations excluded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "whole-compound",
+      "position": [
+        -98,
+        100,
+        120
+      ],
+      "lookAt": [
+        -7,
+        3,
+        30
+      ]
+    },
+    {
+      "name": "dacheng-front",
+      "position": [
+        0,
+        7,
+        30
+      ],
+      "lookAt": [
+        0,
+        6,
+        0
+      ]
+    },
+    {
+      "name": "ridge-and-swallowtails",
+      "position": [
+        18,
+        17,
+        18
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "lingxing-gate",
+      "position": [
+        4,
+        5,
+        87
+      ],
+      "lookAt": [
+        1,
+        4,
+        57
+      ]
+    },
+    {
+      "name": "yi-gate-side-passage",
+      "position": [
+        16,
+        3.5,
+        48
+      ],
+      "lookAt": [
+        8,
+        3,
+        34
+      ]
+    },
+    {
+      "name": "open-main-court",
+      "position": [
+        11,
+        4,
+        25
+      ],
+      "lookAt": [
+        -8,
+        3,
+        6
+      ]
+    },
+    {
+      "name": "rear-shrine",
+      "position": [
+        4,
+        5,
+        -11
+      ],
+      "lookAt": [
+        0,
+        4,
+        -25
+      ]
+    },
+    {
+      "name": "pan-bridge-arches",
+      "position": [
+        -9,
+        3.5,
+        82
+      ],
+      "lookAt": [
+        0.7,
+        0.6,
+        86.6
+      ]
+    },
+    {
+      "name": "outer-gates-and-bridge",
+      "position": [
+        -37,
+        13,
+        106
+      ],
+      "lookAt": [
+        -14,
+        2,
+        78
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 61478,
+    "vertices": 184434,
+    "materials": 5,
+    "bytes": 7380560,
+    "sha256": "sha256:683ac59f202365c3cac85f9024655da9a6cf483e54e30dd1d5d324f129b06c89"
+  }
+}

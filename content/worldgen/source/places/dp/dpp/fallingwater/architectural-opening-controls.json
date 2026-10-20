@@ -1,0 +1,24 @@
+{
+  "format": "molen/architectural-opening-controls@1",
+  "date": "2026-10-17",
+  "method": "Boolean union of physical occupied-floor footprints, with intersections across detail-level simplifications for main floor, curved stair and covered stair flights. No terrain heights used to choose the opening. Input segment endpoints snapped to one micrometer solely for robust polygon clipping.",
+  "vertices": 319,
+  "sourceControls": [
+    "main-survey-controls.json",
+    "survey-controls.json"
+  ],
+  "terrainChanged": false,
+  "geometryInputs": [
+    "Original HABS first/second/third floors and guest house first-floor plan",
+    "Main floors and guest/theater floor solids",
+    "Real canopy bridge, curved stair, flights and landings",
+    "New raised-pool stone terrace and pool body"
+  ],
+  "limitations": [
+    "Only the authored medium-fi footprint is asserted; no georeferenced excavation survey.",
+    "Actual raw and imported floor coverage and affected source-ground views must pass before completion."
+  ],
+  "status": "draft-not-active",
+  "visualFinding": "Physical floor coverage passes, but the single connected opening exposes visible voids under cantilevers and narrow stair edges; not activated in model or world placements.",
+  "next": "Use actual excavation/retaining limits; preserve terrain beneath open cantilevers and bridge. Do not activate a broad floor-union opening."
+}

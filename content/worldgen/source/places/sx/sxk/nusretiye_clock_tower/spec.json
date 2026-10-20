@@ -1,0 +1,277 @@
+{
+  "planId": "nusretiye_clock_tower",
+  "id": "nusretiye_clock_tower",
+  "assetId": "molen.worldgen.structure.nusretiye_clock_tower",
+  "title": "Nusretiye Clock Tower",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": 28.982883095741272,
+    "latitude": 41.026709423472866
+  },
+  "size": [
+    5.5,
+    24.600000739097595,
+    5.5
+  ],
+  "actualBounds": {
+    "min": [
+      -2.75,
+      -0.8999999761581421,
+      -2.75
+    ],
+    "max": [
+      2.75,
+      23.700000762939453,
+      2.75
+    ]
+  },
+  "visualBrief": "Restored square stone clock tower with exposed lower plinth, paired columns, deep arched entrance, rectangular and round-headed upper openings, stepped cornices, two white Ottoman-style dials, floral scroll crown and integral black flagmast. Surrounding mosque, museums, sculptures and square excluded.",
+  "nativeAxes": {
+    "x": "northeast toward the Nusretiye Mosque side",
+    "y": "up",
+    "z": "southeast toward sea and Istanbul Modern"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://www.loc.gov/item/2003672034/"
+  ],
+  "stories": [
+    {
+      "id": "nusretiye-clock-tower-wp",
+      "url": "https://qualla.com/nusretiye-clock-tower/"
+    }
+  ],
+  "referenceInputHash": "sha256:307d90e671fa8ebf5fc94085edb441239f3e034cfaca33b808a4a9f5acf15b25",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-nusretiye-clock-tower.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-nusretiye-clock-tower.mjs",
+    "level": "skyline",
+    "export": "nusretiyeClockTowerSkyline",
+    "errorMeters": 0.8,
+    "surfaces": {
+      "stone": {
+        "slot": "wall",
+        "graph": "stone_limestone",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_limestone",
+        "roughness": 0.88,
+        "metallic": 0
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.75,
+        "metallic": 0.2
+      },
+      "dial": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.45,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "nusretiyeClockTowerDistrict",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.2
+          },
+          "dial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "nusretiyeClockTowerStreet",
+        "errorMeters": 0.1,
+        "surfaces": {
+          "stone": {
+            "slot": "wall",
+            "graph": "stone_limestone",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_limestone",
+            "roughness": 0.88,
+            "metallic": 0
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.75,
+            "metallic": 0.2
+          },
+          "dial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.45,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 1.2
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Dry sea-facing square pavement[0,4.3] establishes native Terrarium datum9.1322m. Preserved ground spans+.054..+.664m around the actual own plinth, whose footing reaches-.9m and cap stands1.31m. Entrance threshold1.42m remains above the own cap. Southeast-facing entrance and rotated tower reviewed from2024 original and aerial; coarse map context is generalized. Bounded preview only, footprint replacement disabled.",
+    "anchor": [
+      28.982883095741272,
+      41.026709423472866
+    ],
+    "heading": 0.7853981633974483,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        28.982919301401424,
+        41.02668210979016
+      ],
+      "modelHeight": 0,
+      "basis": "Dry square pavement immediately outside the sea-facing own plinth; not the tower body, museum or sculpture."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185526687246"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:466092220d68f3e6fac4183573169527eb5d3d39632c04cc7c99771173dcfb43",
+    "notes": "Generalized square map polygon retained for provenance, not extruded as the masonry. Actual model follows the smaller rotated stepped tower from2024 photo. Two clocks on sea/land faces; other faces have floral stone panels."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_limestone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2.4,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Restored2024 exterior: newly exposed lower plinth and repaired two land/sea clocks from primary caretaker record. Fixed batch four-clock wording is not used for geometry. Older2012 original controls silhouette only.",
+    "Masonry height15.2m and23.7m integral flagmast height are photo-derived estimates against generalized map14m/7.4m footprint; no surveyed scale claim. Fine floral relief and Ottoman-style hour marks are original approximations, not facsimiles. Hidden elevations/openings remain conservative symmetric interpretations.",
+    "Neighboring mosque, museums, modern sphere sculpture, chain security perimeter, surrounding square pavement and interiors excluded. Cloth flag omitted; integral flagmast retained. No photographic pixels redistributed. Independent native terrain unchanged; own plinth contact reviewed as a bounded preview. Coarse urban/coastal terrain and compatibility with other host terrain remain limitations; footprint replacement disabled."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        13,
+        51
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -5.5,
+        15.1,
+        10.2
+      ],
+      "lookAt": [
+        0,
+        12.9,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -26,
+        16,
+        -39
+      ],
+      "lookAt": [
+        0,
+        11,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        7,
+        5.5,
+        11
+      ],
+      "lookAt": [
+        0,
+        3.2,
+        0
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 56852,
+    "vertices": 170556,
+    "materials": 4,
+    "bytes": 6825000,
+    "sha256": "sha256:8b2eed134de96a5c79bc0022b25011b8babf63315db69d32cf9c3df05bf6cc42"
+  }
+}

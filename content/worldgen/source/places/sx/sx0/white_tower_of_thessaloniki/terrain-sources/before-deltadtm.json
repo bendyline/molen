@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-17",
+  "phase": "post-existing-geometry-independent-ground-replacement",
+  "snapshot": {
+    "key": "white_tower_of_thessaloniki",
+    "structureId": "QS-2d35b84c7f17",
+    "sourcePath": "content/worldgen/source/places/sx/sx0/white_tower_of_thessaloniki",
+    "inputHash": "sha256:4fa835a27f9f91f20a61e272ed0f7b636b29e3d1851d54a070b94981c4a27627",
+    "sourceHash": "sha256:2c28f90604a62df78261279a807eb4698c3ad98879f3cf5868ad203cfcdc98ad",
+    "runtimeHash": "sha256:db804883d22eae4461e037c6c83015f1a441328e161bbbc210dcd1a0dcd66090",
+    "lods": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:4cd143a808d794c23b3251fce7f0e911cb35006c839dc490df6c82a7a97f5f84",
+        "bytes": 78704,
+        "gzipBytes": 13041,
+        "triangles": 998,
+        "cpuBytes": 77268,
+        "gpuBytes": 77268,
+        "errorMeters": 0.9,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:0e78397c800a83690d8bee3703201637951c5c872e6ea5ffd591338a7ddc6269",
+        "bytes": 281152,
+        "gzipBytes": 50451,
+        "triangles": 3810,
+        "cpuBytes": 273780,
+        "gpuBytes": 273780,
+        "errorMeters": 0.35,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:f365496897d3b35b662f3538f8434191b913ddd03685b0bace6e60581389e789",
+        "bytes": 1128468,
+        "gzipBytes": 211660,
+        "triangles": 15854,
+        "cpuBytes": 1121052,
+        "gpuBytes": 1121052,
+        "errorMeters": 0.12,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:e3d3b130f1725dd283a972e3e21e7580933e3f67dfb21132907b2a6ce761ab88",
+        "bytes": 3868872,
+        "gzipBytes": 742266,
+        "triangles": 32212,
+        "cpuBytes": 3865440,
+        "gpuBytes": 3865440,
+        "errorMeters": 0,
+        "drawCalls": 6
+      }
+    ],
+    "anchor": [
+      22.948382198810577,
+      40.626329681399405
+    ],
+    "heading": 2.24,
+    "terrainContact": {
+      "local": [
+        0,
+        13
+      ],
+      "modelY": 0,
+      "basis": "Dry street-side approach immediately outside narrow tower footing; avoids sea, vegetation and roof."
+    },
+    "files": {
+      "spec.json": "sha256:46f95a62940b7459a4a246afa31aaee98a45380902814eb9092f0c48b943d0db",
+      "map-frame.json": "sha256:83a9eafae0e00bb4ac8314867145a99a116d6cb7a5251f44ef8fb2ccad06c9df",
+      "reference-images.json": "sha256:43b3e8737e8ea68cdb9b90d1e2b89dfce14f39b1e4337bf29eefdc405cf9fe79",
+      "terrain-grid.json": "sha256:6d1cf40bf3757480290726bd4d6163fdd40d14bf406ff5df45d08056a1d18f94",
+      "terrain-review.terrain.json": "sha256:81f0b1ecfbcd98f22d03cd6d7f79ecf056551139617cbd972cafcd6aeeeca464",
+      "terrain-review.height.png": "sha256:042edc0219d49245fc16d294dc1c064ba3074d98ef9dafb9e64f59958a86bf64"
+    }
+  },
+  "rejectedGeographicReview": {
+    "status": "needs-review",
+    "placementHash": "sha256:24b6bc9dd6e68921c475e04458e12fd2dc548b26eae6af23cc6f4375a47354fa",
+    "mapGeometryHash": "sha256:83a9eafae0e00bb4ac8314867145a99a116d6cb7a5251f44ef8fb2ccad06c9df",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:6d1cf40bf3757480290726bd4d6163fdd40d14bf406ff5df45d08056a1d18f94",
+      "descriptorHash": "sha256:81f0b1ecfbcd98f22d03cd6d7f79ecf056551139617cbd972cafcd6aeeeca464",
+      "heightfieldHash": "sha256:042edc0219d49245fc16d294dc1c064ba3074d98ef9dafb9e64f59958a86bf64",
+      "modelDatumElevationMeters": 8.7168,
+      "sourcePixelGroundSpacing": 3.625848579637765,
+      "footprintRelativeRangeMeters": [
+        -2.6671014381174984,
+        -0.07092993968399952
+      ],
+      "maxPngEncodingErrorMeters": 0.0001222671508793738,
+      "originalTilesVerified": 1
+    },
+    "notes": "Mapped circular root35185102115249 and upper cylinder35185102115179, anchor[22.948382198810577,40.626329681399405], heading2.24: +X southeast,+Z east-northeast toward street-side main door. Body diameter21.7m follows primary operator, outer corbel22.64m and12m turret match map approximately. Original native Terrarium grid65-square2m preserved unchanged, datum8.7168m at dry street-side approach[0,13]. Mapped footprint ranges about-2.67..-.07m; southwest foundation to-.65m is unsupported. Better independent local ground evidence needed. No flattening/fitting, artificial plinth or water used to hide mismatch. Draft excluded from default Earth query; no ready story annotation, footprint replacement disabled."
+  },
+  "changes": "No architecture, native frame, dry reference, geometry height, or footing altered. Rejected source field retained verbatim. New bounded 32m land review window follows 22m building and entrance scope; excludes nearby sea, beyond scope. Not higher resolution than original one arcsecond."
+}

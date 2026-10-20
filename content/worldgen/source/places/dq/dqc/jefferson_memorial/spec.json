@@ -38,8 +38,8 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Thomas-jefferson-memorial-front-view.jpg",
-    "https://commons.wikimedia.org/wiki/File:JeffersonMemorialNorth.jpg"
+    "https://commons.wikimedia.org/wiki/File:JeffersonMemorialNorth.jpg",
+    "https://commons.wikimedia.org/wiki/File:JeffersonMemorialNE.jpg"
   ],
   "stories": [
     {
@@ -47,7 +47,7 @@
       "url": "https://qualla.com/jefferson-memorial/"
     }
   ],
-  "referenceInputHash": "912b29ea671eeb07e02af6cdcacb7a36f3441ebf2587d22d1a110aacd09e589d",
+  "referenceInputHash": "0d15e26b49ceb95883da8a4145eb17a37398c22f49c030db087119a46bd2d872",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-jefferson-memorial.mjs"
   },
@@ -60,7 +60,7 @@
     "module": "packages/worldgen/scripts/structure-jefferson-memorial.mjs",
     "level": "skyline",
     "export": "jeffersonSkyline",
-    "errorMeters": 0.8,
+    "errorMeters": 2.6,
     "surfaces": {
       "marble": {
         "slot": "wall",
@@ -226,8 +226,8 @@
     ],
     "source": "https://build.protomaps.com/20261012.pmtiles",
     "mapGeometrySource": "map-frame.json",
-    "mapGeometryHash": "sha256:a377aeda757bc4df52ab7c1fe291371daac6b8a4001cb544095af218a1d47e3d",
-    "notes": "Map controls position and envelope, not column count or heights. The mapped front has seven columns; the photographs and NPS documentation establish eight plus four side columns. Twenty-six outer and sixteen inner columns are modeled. HABS measured heights take precedence over rounded/conflicting public statistics."
+    "mapGeometryHash": "sha256:3955918b91337107e8ba6f02a16e433f4e8a70ce3c34d906184ed7d711fc6ae0",
+    "notes": "Map controls position and envelope, not column count or heights. The mapped front has seven columns; the photographs and NPS documentation establish eight plus four side columns. Twenty-six outer and sixteen inner columns are modeled. HABS measured heights take precedence over rounded/conflicting public statistics. Section-based main-floor-to-dome total29.16555m is retained; the north-elevation dimension chain gives29.708475m. The0.542925m discrepancy is documented rather than claiming a unified survey datum."
   },
   "sharedSurfaces": [
     {
@@ -259,8 +259,8 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior from individually inspected Qualla photographs and HABS 1994 measured north elevation and longitudinal section; not a survey or photogrammetric reconstruction.",
-    "NPS establishes 26 outer, 12 portico and 16 inner columns. Map part counts and public rounded heights conflict; measured HABS proportions control the model. Fine volutes, dome masonry and hidden pier openings are simplified.",
+    "Started with three cleared published Qualla CC0 aerials, supplemented by a verified creator-CC0 front photograph, explicit NPS public-domain cleaned-dome original and native original HABS1994 north elevation/longitudinal section. All native title blocks and drawing credits inspected; earlier attribution-licensed images excluded from current approval. Not a survey or photogrammetric reconstruction.",
+    "NPS text establishes26 outer,12 portico and16 inner columns. Map part counts are incomplete. The measured north elevation supplies12.519025m stylobate-to-architrave height; the longitudinal section supplies approximately29.16555m main-floor-to-dome height. The elevation chain instead totals29.708475m; this0.542925m original-source discrepancy is retained in survey-controls.json. Overall model proportions follow the section. Fine volutes, dome masonry and hidden pier openings are simplified.",
     "Main circular steps, north stair flight and immediate raised supporting terrace included; wider gardens, Tidal Basin, distant approachway, undercroft and modern accessibility equipment excluded. Vertical stair levels are approximate relative to the independent terrain contact.",
     "Standing statue and pediment relief are original simplified silhouettes, not portrait-quality sculptures. Inscriptions, exact coffer pattern and detailed interiors are excluded; no photo pixels are embedded.",
     "Independent terrain is preserved unchanged and foundation extends beneath it. Another host DEM can change exact ground contact."
@@ -281,6 +281,32 @@
       ]
     },
     {
+      "name": "portico-detail",
+      "position": [
+        19,
+        19,
+        43
+      ],
+      "lookAt": [
+        9,
+        15.5,
+        27
+      ]
+    },
+    {
+      "name": "chamber-detail",
+      "position": [
+        0,
+        9,
+        12
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
       "name": "back",
       "position": [
         90,
@@ -298,10 +324,10 @@
     "optimize": false
   },
   "mesh": {
-    "triangles": 63310,
-    "vertices": 189930,
+    "triangles": 63386,
+    "vertices": 190158,
     "materials": 4,
-    "bytes": 7599988,
-    "sha256": "sha256:1937e8d85a72d89a7b5205d8555dc2998328b30059cbeab01665c97e40d94fe1"
+    "bytes": 7609108,
+    "sha256": "sha256:d4708c889d7858d394bd2b5e0ef71b69ca8e90424a0c48bb0a1977419e65bf47"
   }
 }

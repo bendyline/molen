@@ -1,9 +1,14 @@
 {
   "format": "molen/medium-fi-review@1",
+  "captureVersion": 2,
   "assetId": "molen.worldgen.structure.jefferson_memorial",
-  "sourceHash": "sha256:1937e8d85a72d89a7b5205d8555dc2998328b30059cbeab01665c97e40d94fe1",
-  "runtimeHash": "sha256:3d40ecb8a11bac1373b04880ec7de215fee3329d38f924898aa7b5efe2801fe4",
-  "fixtureHash": "sha256:24ce965a195fa44816bc49b50a71ce32e4eab62e630fe35116dcf166642f84a1",
+  "renderedAsset": {
+    "assetId": "molen.worldgen.structure.jefferson_memorial",
+    "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17"
+  },
+  "sourceHash": "sha256:d4708c889d7858d394bd2b5e0ef71b69ca8e90424a0c48bb0a1977419e65bf47",
+  "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+  "fixtureHash": "sha256:4cc8280a664feb8b3bbdcc1bd79515d9eee540bafe2b94936baedd428ec2ea21",
   "rig": {
     "palette": {
       "dayZenith": "#2f7fd3",
@@ -28,48 +33,48 @@
     {
       "name": "skyline",
       "file": "model.skyline.glb",
-      "hash": "sha256:babe0738ee04f186b199838eaa943ffa11281cb74d4d679ca70036d0354615cb",
+      "hash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
       "bytes": 76908,
-      "gzipBytes": 13884,
+      "gzipBytes": 14141,
       "triangles": 966,
       "cpuBytes": 75492,
       "gpuBytes": 75492,
-      "errorMeters": 0.8,
+      "errorMeters": 2.6,
       "drawCalls": 1
     },
     {
       "name": "district",
       "file": "model.district.glb",
-      "hash": "sha256:80a8fb9ad55fa58f009111a61429700c2a02d8e4c0151c14dff69307af4be66a",
-      "bytes": 236508,
-      "gzipBytes": 46954,
-      "triangles": 3298,
-      "cpuBytes": 231576,
-      "gpuBytes": 231576,
+      "hash": "sha256:9bdf31a7c4d60f2ffc61557672ebc9005e761c41d88333a78b2ce101432d2d54",
+      "bytes": 250480,
+      "gzipBytes": 49288,
+      "triangles": 3454,
+      "cpuBytes": 245544,
+      "gpuBytes": 245544,
       "errorMeters": 0.3,
       "drawCalls": 4
     },
     {
       "name": "street",
       "file": "model.street.glb",
-      "hash": "sha256:527cacffc9c9a4184efec23f42bba1afe2795dfa661e8929a81c76637b0cf5fb",
-      "bytes": 1134520,
-      "gzipBytes": 217599,
-      "triangles": 15642,
-      "cpuBytes": 1129572,
-      "gpuBytes": 1129572,
+      "hash": "sha256:c63c02918f3b581f48f30fc809e731f61ced56eeae84d15d6a755135297b3a0f",
+      "bytes": 1147144,
+      "gzipBytes": 220261,
+      "triangles": 15766,
+      "cpuBytes": 1142196,
+      "gpuBytes": 1142196,
       "errorMeters": 0.1,
       "drawCalls": 4
     },
     {
       "name": "closeup",
       "file": "model.closeup.glb",
-      "hash": "sha256:3fd7bc2911b915380912e34e138d655e648dee7b11f09af88a4e656d0c278ae6",
-      "bytes": 7599800,
-      "gzipBytes": 1416843,
-      "triangles": 63310,
-      "cpuBytes": 7597200,
-      "gpuBytes": 7597200,
+      "hash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
+      "bytes": 7608920,
+      "gzipBytes": 1418533,
+      "triangles": 63386,
+      "cpuBytes": 7606320,
+      "gpuBytes": 7606320,
       "errorMeters": 0,
       "drawCalls": 4
     }
@@ -90,14 +95,17 @@
   "frames": [
     {
       "path": "medium-fi/street-noon-economy.png",
-      "hash": "sha256:1a9d28a9cf29bac6614234aaec133ab175b4d9c7d381bd6c8c127f0fe0f4535e",
+      "hash": "sha256:75b67a850390eb047cf7c9addf684e1863d8e8fc0a683060431dde1ffa19c992",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -123,19 +131,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-noon-high.png",
-      "hash": "sha256:b936bfa8475bfaa673ff029710601f90911040a08700fad58b4b0775b0732b69",
+      "hash": "sha256:efe710db1e9e2919ed391db328f65ef71cd5f93bbee75d34c9e8e874ec339b14",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -161,19 +173,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-economy.png",
-      "hash": "sha256:3f63c77de71be23a3361253e0f1ef6451f701d9f13643a90ce56248ba805760b",
+      "hash": "sha256:f184f6e6e6196b56e889278a82f38a2b37fbc62bb5c8612ac51c9104b2db94fc",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -199,19 +215,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/street-late-high.png",
-      "hash": "sha256:ef4a0ee3638b975d9558780ef8e74f0dbcb74049bc957edcc8e982646fa4a85c",
+      "hash": "sha256:6582a90b875936c3fa5e891162b09af2175e05cd55a009f0eeccc570cc23d1d9",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "street",
         "time": "late",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -237,19 +257,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-economy.png",
-      "hash": "sha256:2edfaf38469cc179d56e1602d7869e9e11acbaed79399e47595e668c00b0d99b",
+      "hash": "sha256:bb018561168b96a6c79652bec8ff9c8a2c292d839c02485c12ee284b0b2ad6e7",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:9bdf31a7c4d60f2ffc61557672ebc9005e761c41d88333a78b2ce101432d2d54",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 17732,
+        "triangles": 17888,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -275,19 +299,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-noon-high.png",
-      "hash": "sha256:a5e838ee0049028d165fb6cebde007d24acafc2324ff32afba28d8e436b04451",
+      "hash": "sha256:1ad55155cc3793c7211ccc112cad7449b417855cde8b139f6155546c585814b1",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:9bdf31a7c4d60f2ffc61557672ebc9005e761c41d88333a78b2ce101432d2d54",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 17732,
+        "triangles": 17888,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -313,19 +341,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-economy.png",
-      "hash": "sha256:72c2cf8a592073996ad4b39c1aec789c4a4331aeb6eb2801e2a379f1e018255e",
+      "hash": "sha256:6769e75ebc5b6e6f687e32a48520e28c57a2ead5808cb85c1564c42dd0fcdd6f",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:9bdf31a7c4d60f2ffc61557672ebc9005e761c41d88333a78b2ce101432d2d54",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "economy",
         "drawCalls": 10,
-        "triangles": 17732,
+        "triangles": 17888,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -351,19 +383,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/block-late-high.png",
-      "hash": "sha256:464d8b735a44182e275da3c1b712d53121a001c3a5b3f8ea364e7d3598c82ac1",
+      "hash": "sha256:b63851b55859e5cb25aa0edf49ffeff4fba0c428d29cca2e85ab53b128eedbf9",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:9bdf31a7c4d60f2ffc61557672ebc9005e761c41d88333a78b2ce101432d2d54",
         "level": "district",
         "distance": "block",
         "time": "late",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 17732,
+        "triangles": 17888,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -389,13 +425,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-economy.png",
-      "hash": "sha256:db0143626277636afce5198be7150ece01d085a98bbd33a3549a4b4cb6c72e9d",
+      "hash": "sha256:1c4e2be165fbafeca2c022c606f4fa7813af07899158445cdf84e56eeee18327",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -427,13 +467,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-noon-high.png",
-      "hash": "sha256:3d9b4207bd00dbdab0ae4902f748486b28e7a27d6f5c6dd11550eb76111abea3",
+      "hash": "sha256:712bedf97b02bf36006dd6791285a452e5d0f76ece5343f6b18cd77e4f64006e",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -465,13 +509,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-economy.png",
-      "hash": "sha256:f227e56ec15cbb1bcc39444048da18250a0af353d9827c761a988db17b7444ac",
+      "hash": "sha256:f0d10ddcab05beb43089b587ede5e8a7a61d7f93a509ddb62438874cccf4c420",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -503,13 +551,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/skyline-late-high.png",
-      "hash": "sha256:98689db9a9dc452cc576fc1fed364dda0ae9c391f55d7b5a206dd357fbe3c23d",
+      "hash": "sha256:22222f7c5e32b0615a364af00edfb8bb11c18644bb1693e8677232532b892213",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
         "level": "skyline",
         "distance": "skyline",
         "time": "late",
@@ -541,13 +593,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/silhouette.png",
-      "hash": "sha256:5b95783d313a0eab655289fefd5d9fd55e7324bf71efecb7bdc176860503f2aa",
+      "hash": "sha256:eab29b2d0a961cbbe3a3e473cca0cbe648e4d0430a45058db2373ec11f77262b",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
         "level": "skyline",
         "distance": "skyline",
         "time": "noon",
@@ -579,19 +635,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/front.png",
-      "hash": "sha256:cc8dfe9b6b42031c0be5901d16b5a3e868e2ed7d3bb83cf3d0d98224b41ed971",
+      "hash": "sha256:fd916643e22e02d5fa587ebff795f2823daa5afce5e272fa6defca122088b384",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -617,19 +677,107 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
-      "path": "medium-fi/back.png",
-      "hash": "sha256:b156f83134d37c494541b78fcb6ffd9d79d0e808755addd51f26d434276bc4d2",
+      "path": "medium-fi/portico-detail.png",
+      "hash": "sha256:cc6e748469c7cd636fb52e3c58c329281cf3887d537c0414769d258294bade66",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "street",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.height.png"
+        },
+        "position": [
+          19,
+          19,
+          43
+        ],
+        "lookAt": [
+          9,
+          15.5,
+          27
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/chamber-detail.png",
+      "hash": "sha256:0b703723e240166416232f5523fbeb65b81fcfe642bae9bdb912312a5d009eea",
+      "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 77820,
+        "groundY": -5,
+        "terrainFixture": {
+          "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
+          "heightmap": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.height.png"
+        },
+        "position": [
+          0,
+          9,
+          12
+        ],
+        "lookAt": [
+          0,
+          9,
+          0
+        ],
+        "graphReads": {
+          "molen.worldgen.material.brick_longformat": 1,
+          "molen.worldgen.material.tile_glazed": 1,
+          "molen.worldgen.material.window_punched": 1,
+          "molen.worldgen.material.stone_marble": 1,
+          "molen.worldgen.material.metal_bronze_cast": 1,
+          "molen.worldgen.material.stone_granite": 1
+        },
+        "neighborStyle": "molen.worldgen.catalog.siheyuan",
+        "contextScale": 1,
+        "cameraYaw": 0,
+        "reflections": "none"
+      }
+    },
+    {
+      "path": "medium-fi/back.png",
+      "hash": "sha256:b287087b361952cd391f9c0610d6ae987fcc340b3b895485351a4c69fc81ebce",
+      "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
+        "level": "closeup",
+        "distance": "street",
+        "time": "noon",
+        "mode": "high",
+        "drawCalls": 10,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -655,13 +803,17 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-skyline.png",
-      "hash": "sha256:1199d1178c59492ee7fea098af3ac2459d257bf1ce14d4e41e65d6a4db7bc1d1",
+      "hash": "sha256:669a1c12bbefe4e404c3cc6bac8603f2e5381dc3a12500e41f962a1ab4ecf685",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:2a74b83b32f7eddf9b56712c36d9846a63ea071c62fb0b00b1c5c138a2228110",
         "level": "skyline",
         "distance": "block",
         "time": "noon",
@@ -693,19 +845,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-district.png",
-      "hash": "sha256:a5e838ee0049028d165fb6cebde007d24acafc2324ff32afba28d8e436b04451",
+      "hash": "sha256:1ad55155cc3793c7211ccc112cad7449b417855cde8b139f6155546c585814b1",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:9bdf31a7c4d60f2ffc61557672ebc9005e761c41d88333a78b2ce101432d2d54",
         "level": "district",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 17732,
+        "triangles": 17888,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -731,19 +887,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-street.png",
-      "hash": "sha256:336b8a13a8b70a45f6f461978219cee5d6edce718ac77cd30e02a9470bffa062",
+      "hash": "sha256:18ab03fd0f10f09c7bd0ccd5a8b393a5ce94c884accf49b064de40b1a0100287",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:c63c02918f3b581f48f30fc809e731f61ced56eeae84d15d6a755135297b3a0f",
         "level": "street",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 30076,
+        "triangles": 30200,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -769,19 +929,23 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     },
     {
       "path": "medium-fi/transition-closeup.png",
-      "hash": "sha256:f3cc697010b77487c93624b2d56a28a539db33db86a77360a7356017449c3370",
+      "hash": "sha256:4ec08a4d25b433fde8bf61067417e758cbd454bcc1e39f92dc2b8b165667b8d5",
       "state": {
+        "assetId": "molen.worldgen.structure.jefferson_memorial",
+        "runtimeHash": "sha256:11226cc4378587695ba0b899915a18dded31f0d042b15faf6836226ec8397d17",
+        "lodHash": "sha256:55c04987732f0d33204157433219548d3211715f7b0f7f3ea8a2bc0f69d0cec5",
         "level": "closeup",
         "distance": "block",
         "time": "noon",
         "mode": "high",
         "drawCalls": 10,
-        "triangles": 77744,
+        "triangles": 77820,
         "groundY": -5,
         "terrainFixture": {
           "descriptor": "content/worldgen/source/places/dq/dqc/jefferson_memorial/terrain-review.terrain.json",
@@ -807,15 +971,10 @@
         },
         "neighborStyle": "molen.worldgen.catalog.siheyuan",
         "contextScale": 1,
-        "reflections": "sky-pmrem"
+        "cameraYaw": 0,
+        "reflections": "none"
       }
     }
   ],
-  "errors": [],
-  "identityMigration": {
-    "record": "content/worldgen/source/qualla-structures/batches/naming-migration.json",
-    "previousInputHash": "sha256:0ccab82a4a6ae0d697d6e98d35a9795f9288c8474d2af015c08fa4decd6dbe08",
-    "basis": "Identity-only rename; exact source/runtime/LOD/heightfield/capture bytes verified unchanged. Existing visual inspection findings retained. No new capture or changed geometry is claimed.",
-    "previousReportHash": "sha256:e1df0f19c336ee40bc2e1b240e802b83a0887c18aa6a0e6fecc9f7aa9b602e97"
-  }
+  "errors": []
 }

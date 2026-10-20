@@ -1,5 +1,6 @@
 /** Gamble House: individual overlapping gables and three open sleeping porches. */
 import './install-deterministic-math.mjs';
+import fs from 'node:fs';
 import { beam, normalFor } from './authored-structure-mesh.mjs';
 import { B, landmarkSurfaces, rgb } from './landmark-model-helpers.mjs';
 import { quad } from './structure-mesh.mjs';
@@ -285,12 +286,88 @@ function terrace(o, x, z, w, dep, top, d) {
 }
 function planter(o, x, z, y, d) {
   B(o, 'stone', x, y, z, 0.82, 0.75, 0.82, stone);
+  if (d > 2) {
+    hollowPlanter(o, x, z, y);
+    return;
+  }
   if (d) {
     B(o, 'stone', x, y + 0.75, z, 1.03, 0.1, 1.03, stone);
     B(o, 'stone', x, y + 0.86, z, 0.74, 0.42, 0.74, stone);
     B(o, 'wood', x, y + 1.29, z, 0.58, 0.02, 0.58, timber);
     for (const zz of [z - 0.4, z + 0.4]) B(o, 'stone', x, y + 1.23, zz, 0.84, 0.12, 0.1, stone);
     for (const xx of [x - 0.4, x + 0.4]) B(o, 'stone', xx, y + 1.23, z, 0.1, 0.12, 0.84, stone);
+  }
+}
+/** Open tapered bowl; the base below it remains the original masonry plinth. */
+function hollowPlanter(o, x, z, y) {
+  const c = JSON.parse(
+      fs.readFileSync(
+        new URL(
+          '../../../content/worldgen/source/places/9q/9q5/gamble_house/planter-construction-controls.json',
+          import.meta.url,
+        ),
+      ),
+    ),
+    color = rgb('b49c86'),
+    ring = ([height, width, radius]) => {
+      const p = [];
+      for (let corner = 0; corner < 4; corner++) {
+        const a = (corner * Math.PI) / 2,
+          cx = (corner === 0 || corner === 3 ? 1 : -1) * (width / 2 - radius),
+          cz = (corner < 2 ? 1 : -1) * (width / 2 - radius);
+        for (let j = 0; j <= c.cornerSegments; j++) {
+          const angle = a + (j * Math.PI) / (2 * c.cornerSegments);
+          p.push([cx + radius * Math.cos(angle), y + height, cz + radius * Math.sin(angle)]);
+        }
+      }
+      return p;
+    },
+    uv = (p, n) => {
+      const axis = n.map(Math.abs).indexOf(Math.max(...n.map(Math.abs)));
+      return p.map((v) => v.filter((_, i) => i !== axis));
+    },
+    f = facing(o, 0, x, z),
+    metric = {
+      addQuad: (s, r, p, n, _u, col) => f.addQuad(s, r, p, n, uv(p, n), col),
+      addConvexPolygon: (s, r, p, n, _u, col) => {
+        const u = uv(p, n);
+        return f.addConvexPolygon(s, r, p, n, (v) => u[p.indexOf(v)], col);
+      },
+    },
+    join = (a, b, kind = 'outer') => {
+      for (let i = 0; i < a.length; i++) {
+        const k = (i + 1) % a.length,
+          p = [a[i], a[k], b[k], b[i]],
+          n = normalFor(...p),
+          radial = n[0] * (a[i][0] + a[k][0]) + n[2] * (a[i][2] + a[k][2]);
+        if ((kind === 'rim' ? n[1] : kind === 'inner' ? -radial : radial) < 0) p.reverse();
+        metric.addQuad('bowl', ref, p, normalFor(...p), null, color);
+      }
+    },
+    outer = c.outerProfile.map(ring),
+    innerTop = ring(c.innerTop),
+    innerFloor = ring(c.innerFloor);
+  for (let i = 1; i < outer.length; i++) join(outer[i - 1], outer[i]);
+  // Up-facing annulus, inside walls and separate floor leave the mouth genuinely open.
+  join(outer.at(-1), innerTop, 'rim');
+  join(innerTop, innerFloor, 'inner');
+  metric.addConvexPolygon('bowl', ref, innerFloor, [0, 1, 0], null, color);
+  metric.addConvexPolygon('bowl', ref, outer[0], [0, -1, 0], null, color);
+  for (let side = 0; side < c.ornamentFaces; side++) {
+    const face = facing(metric, (side * Math.PI) / 2);
+    for (const xx of [-0.23, 0.23]) {
+      for (const sign of [-1, 1])
+        beam(
+          face,
+          'bowl',
+          [xx + sign * 0.055, y + 1.005, 0.431],
+          [xx + sign * 0.055, y + 1.205, 0.517],
+          0.04,
+          0.07,
+          color,
+        );
+      B(face, 'bowl', xx, y + 1.18, 0.517, 0.15, 0.045, 0.07, color);
+    }
   }
 }
 function gamble(o, _frame, d = 3) {
@@ -417,6 +494,7 @@ const surfaces = {
   stone: { slot: 'trim', graph: 'concrete_plain', roughness: 0.9, metallic: 0 },
   brick: { slot: 'wall', graph: 'brick', roughness: 0.9, metallic: 0 },
   glass: { ...landmarkSurfaces.glass, localRef: ref },
+  bowl: { slot: 'trim', graph: 'concrete_plain', roughness: 0.9, metallic: 0 },
 };
 export const gambleModel = {
   id: 'gamble_house',
@@ -431,6 +509,8 @@ export const gambleModel = {
   qaCameras: [
     { name: 'front', position: [22, 14, 57], lookAt: [0, 4, 2] },
     { name: 'back', position: [-30, 17, -49], lookAt: [0, 4, -1] },
+    { name: 'front-planters', position: [13.8, 4.9, 18.3], lookAt: [10.7, 2.55, 13] },
+    { name: 'planter-mouth', position: [11.8, 4.3, 14.4], lookAt: [10.7, 2.53, 13] },
   ],
   build: gamble,
   surfaces,
@@ -451,7 +531,7 @@ export const gambleModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from inspected local Qualla front/rear photographs, porch and entry details, local HABS construction section, online first-floor plan and aerial roof context. Dimensions, upper room boundaries and hidden roof joins are estimates, not survey data.',
+    'New five open tapered front bowls from inspected native cleared Qualla photographer-public-domain porch and exact native Highsmith public-domain front/detail. Original three lower levels and every original attribute outside420upper planter triangles retained. Whole fixed main house/gables/three open sleeping porches/attached terraces retained pending wider cleared exterior review; earlier attribution/private/satellite and uncleared HABS controls excluded. Bowl profiles, dimensions, concealed rear faces, ornaments, upper-room boundaries and hidden roof joins are medium-fi estimates, not survey data.',
     'Main house and attached terraces only. Detached garage, interiors, furniture, vegetation, visitors and photographic pixels excluded.',
     'Independent unmodified USGS CA_LosAngeles_B23 bare-earth tile retained. Ground under structures is interpolated by the source product; host terrain can differ. Footprint replacement remains disabled.',
     'Cedar shakes, art-glass branches, beam-end profiles, terrace fieldstones and chimney brackets are simplified at medium-fi scale and omitted progressively at distance. No physical-device frame-rate measurement claimed.',

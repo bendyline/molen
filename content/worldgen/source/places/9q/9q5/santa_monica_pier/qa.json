@@ -1,0 +1,546 @@
+{
+  "format": "molen/structure-qa@1",
+  "assetId": "molen.worldgen.structure.santa_monica_pier",
+  "reviewedOn": "2026-10-19",
+  "reviewedBy": "Codex",
+  "inputHash": "sha256:fd0d6222a366eb055f6deb0198d61907f30867f6fe848f9be23e2181f4e8aa6d",
+  "sourceHash": "sha256:338704a2583c4efe5c6e5a28394536e2013c59e8e02b67cde9e91b413e16ffc8",
+  "runtimeHash": "sha256:aa87468b698b60637696832a3138136d10e3879d19fe4170a1c4495f48f293e7",
+  "captureReportHash": "sha256:5d0c3805248588f48def8dc2bdece86618b9ff6543876d913c432fe53c804577",
+  "visualReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:5d0c3805248588f48def8dc2bdece86618b9ff6543876d913c432fe53c804577",
+    "inspectedFrames": [
+      "preview.png",
+      "shots/turntable/angle_0.png",
+      "shots/turntable/angle_1.png",
+      "shots/turntable/angle_2.png",
+      "shots/turntable/angle_3.png",
+      "shots/front.png",
+      "shots/front-detail.png",
+      "shots/back.png",
+      "shots/roof-detail.png",
+      "shots/base-detail.png",
+      "shots/wheel-detail.png",
+      "shots/head-detail.png",
+      "shots/park-detail.png",
+      "shots/lamp-detail.png",
+      "shots/lamp-base-detail.png"
+    ],
+    "notes": "All 15 current portable views inspected, including whole pier/park/wheel/coaster/Looff/head/underside and native lamp/foot details. New lamps have actual stock depth and open gooseneck/hook spaces. Three lower meshes retain their original simplified lamps and every raw attribute. Full exterior scope remains; current carousel roof coverage pending."
+  },
+  "sharedSurfaceReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:31652ef6250f30218b2b180eeb43d8435cea94d66153deea3c464007d59c1794",
+    "inspectedFrames": [
+      "shots/shared/angle-0.png",
+      "shots/shared/angle-1.png",
+      "shots/shared/angle-2.png",
+      "shots/shared/angle-3.png",
+      "shots/shared/front.png",
+      "shots/shared/front-detail.png",
+      "shots/shared/back.png",
+      "shots/shared/roof-detail.png",
+      "shots/shared/base-detail.png",
+      "shots/shared/wheel-detail.png",
+      "shots/shared/head-detail.png",
+      "shots/shared/park-detail.png",
+      "shots/shared/lamp-detail.png",
+      "shots/shared/lamp-base-detail.png",
+      "shots/shared/placement.png"
+    ],
+    "notes": "All 15 current shared/geographic views inspected. New dark lamp stock binds painted metal roughness .8/metallic .12; white glass drops are opaque palette glazing, roughness .65. Six close draw calls, no photographic pixels or emissive texture embedded. Current unload disposal passes. Flat material fixture and bounded independent coastal preview remain distinct.",
+    "materialGraphs": {
+      "matgraph:molen.worldgen.material.stucco": {
+        "path": "materials/stucco.matgraph.json",
+        "hash": "sha256:d96343590b745615051aa42e86e1117bce5a4b4f7607fa129a99d6b1bece8119"
+      },
+      "matgraph:molen.worldgen.material.wood_plain": {
+        "path": "materials/wood_plain.matgraph.json",
+        "hash": "sha256:7d14a802ed2d5c801ac15c44549b866fbc5d03f4bd333101d09f13a280c7a3b2"
+      },
+      "matgraph:molen.worldgen.material.metal_painted": {
+        "path": "materials/metal_painted.matgraph.json",
+        "hash": "sha256:023f6fcdd13f0245029945a23d7238aff4b8c4ee08dc6342bbffd2f767bdea56"
+      },
+      "matgraph:molen.worldgen.material.concrete_plain": {
+        "path": "materials/concrete_plain.matgraph.json",
+        "hash": "sha256:084d319308d660e35652327476457a28b053525d92f59d407b38b7e28efb3030"
+      }
+    }
+  },
+  "mediumFiReview": {
+    "status": "passed",
+    "captureReportHash": "sha256:cfb6204eb555cd734cc6637aad006395203f7c5ce6f0605f5129a1ca1e1158f0",
+    "inspectedFrames": [
+      "medium-fi/street-noon-economy.png",
+      "medium-fi/street-noon-high.png",
+      "medium-fi/street-late-economy.png",
+      "medium-fi/street-late-high.png",
+      "medium-fi/block-noon-economy.png",
+      "medium-fi/block-noon-high.png",
+      "medium-fi/block-late-economy.png",
+      "medium-fi/block-late-high.png",
+      "medium-fi/skyline-noon-economy.png",
+      "medium-fi/skyline-noon-high.png",
+      "medium-fi/skyline-late-economy.png",
+      "medium-fi/skyline-late-high.png",
+      "medium-fi/silhouette.png",
+      "medium-fi/front.png",
+      "medium-fi/front-detail.png",
+      "medium-fi/back.png",
+      "medium-fi/roof-detail.png",
+      "medium-fi/base-detail.png",
+      "medium-fi/wheel-detail.png",
+      "medium-fi/head-detail.png",
+      "medium-fi/park-detail.png",
+      "medium-fi/lamp-detail.png",
+      "medium-fi/lamp-base-detail.png",
+      "medium-fi/transition-skyline.png",
+      "medium-fi/transition-district.png",
+      "medium-fi/transition-street.png",
+      "medium-fi/transition-closeup.png"
+    ],
+    "notes": "All 27 current version2 frames inspected across two lighting/quality levels, full silhouette, ten details and four forced levels. Original lower meshes remain exact. Whole pier remains thin in distant views; close lamp cameras resolve solid curved arms, hooked braces, glass drops and deck-attached columns. Generic neighbors are style fixtures; no physical-device performance claim."
+  },
+  "geographicReview": {
+    "status": "passed",
+    "placementHash": "sha256:05dd81e60b24c155c859c34e06882a0c6dbc58f712f29b8bd80e57b315026931",
+    "mapGeometryHash": "sha256:a3b069ca52cfeba73f85efaac90ee56009780db81ae99b38528573e75a85ab91",
+    "terrain": {
+      "path": "terrain-grid.json",
+      "hash": "sha256:aa8e6469689f6834cd808b10f4597b5f7bc2d149a9f28bbac47c047c9e2aafc6",
+      "descriptorHash": "sha256:8766d56939ab0b73794e23cfbd202ebd08ce8ac20dd3c945e8ba787a86deeb1d",
+      "heightfieldHash": "sha256:c2d808b353abe0ed582c8500f76acfb6682b743275e3d6ca15c3480431ceafc1",
+      "modelDatumElevationMeters": 5.706,
+      "sourcePixelGroundSpacing": 3.9601714824600758,
+      "reviewStepMeters": 17,
+      "originalTilesVerified": 4,
+      "nativeOutlineRelativeRangeMeters": [
+        -5.991188675961076,
+        0.69836989887561
+      ],
+      "lowerDeckRelativeGroundRangeMeters": [
+        -5.818107031644836,
+        -5.59495294117647
+      ],
+      "dryContactGridInterpolationMeters": -0.02123194684540941,
+      "maxPngEncodingErrorMeters": 0.0012090492248528761
+    },
+    "notes": "All nine original map/ground/dimension/native tile files remain hash exact. Anchor [-118.49861111111,34.008611111111], southwest heading -2.36514456rad, dry beach reference [-298.77213,-92.35321] and absolute datum 5.706m retained. Original 65-square 17m review grid uses native 3.96017m pixels; dry interpolation -.02123m, whole outline relative ground -5.99119..+.69837m. Main deck Y3, low head landing Y1.4 and pile bottoms -10m unchanged. All 57 new post feet overlap retained deck by .02m; imported deck contact checks pass. Original lower-platform range -5.81811..-5.59495m retained. No terrain fitting, flattening, new pad or footprint replacement. Coastal DEM interpolation, vertical/tidal/seabed uncertainty and hidden foundation engineering remain bounded-preview limitations."
+  },
+  "fidelityReview": {
+    "target": "medium-fi",
+    "status": "passed",
+    "scope": "Combined timber municipal/pleasure pier, open piles/rails/neck/wide head, yellow-roof restaurant/harbor office, arched Looff carousel with swept roof/cupola and static Pacific Wheel/West Coaster.",
+    "notes": "The exact cleared local 2009 Jelson25 aerial and its native Looff crop already show the surviving swept concave grey roof, low polygonal cupola, three octagonal corner towers, repeated lower arches and paired upper windows. The previous post-2021-roof blocker incorrectly treated a photograph date as an alteration date; no roof change in 2021 is established or needed to explain this geometry. The independently read Santa Monica Conservancy architectural description corroborates the surviving three towers, pointed upper windows, cupola and removal of original ornament; its photographs are not used. Existing 2023 Idealites and 2024 Alexis Doine CC0 originals corroborate the white open Pacific Wheel, red/yellow gondolas, yellow coaster, pier piles, rails, broad park platform, narrow municipal neck and yellow-roof head/harbor office. The cleared local head original supports the already built 57 stepped lamp columns and hooked goosenecks. All 57 existing current portable/shared/version2 context frames inspected, including Looff front/roof and all four runtime levels. Full fixed pier, supports, carousel building, wheel/coaster and head scope retained. Hidden elevations, exact roof curvature, paint, window subdivisions, fine ornament, park kiosks and pile/ride chainages remain bounded medium-fi interpretations using the native mapped envelope. No survey, engineering or exact present restoration claim. Native map, unmodified terrain, placement, source/runtime/LOD bytes and rendered images remain unchanged; no new model construction or capture is claimed. Accepted at the agreed approximate medium-fi exterior scope. No reference pixels are embedded. Previously used attribution/private imagery is excluded from this current review."
+  },
+  "runtimeLodReview": {
+    "status": "passed",
+    "recipeHash": "sha256:d206276e6a884faa30144f084dfa2726be93a023581b952b9f307bc3150d6d6a",
+    "levels": [
+      {
+        "name": "skyline",
+        "file": "model.skyline.glb",
+        "hash": "sha256:85b0573eb8815a62a6aca884ee2872e7e79d7a9447b1176a470214f3b218d1c6",
+        "bytes": 71624,
+        "gzipBytes": 14367,
+        "triangles": 931,
+        "cpuBytes": 70208,
+        "gpuBytes": 70208,
+        "errorMeters": 3,
+        "drawCalls": 1
+      },
+      {
+        "name": "district",
+        "file": "model.district.glb",
+        "hash": "sha256:54e0fbee510957977c1e3ca1ccb3a8c1ce2ba757f98402a08b770c3a459e2fd2",
+        "bytes": 213036,
+        "gzipBytes": 55279,
+        "triangles": 3691,
+        "cpuBytes": 205748,
+        "gpuBytes": 205748,
+        "errorMeters": 1.4,
+        "drawCalls": 6
+      },
+      {
+        "name": "street",
+        "file": "model.street.glb",
+        "hash": "sha256:ff13c7d00ad55907784c3f3f5c2ead7a13917edecf1218575c3ff51a58796531",
+        "bytes": 1156580,
+        "gzipBytes": 249507,
+        "triangles": 15970,
+        "cpuBytes": 1149216,
+        "gpuBytes": 1149216,
+        "errorMeters": 0.4,
+        "drawCalls": 6
+      },
+      {
+        "name": "closeup",
+        "file": "model.closeup.glb",
+        "hash": "sha256:3234a5ef9f9ab046d5d2d7b56bd0d743826a91d869863fa9ddb712aace6c84bb",
+        "bytes": 7677060,
+        "gzipBytes": 1438430,
+        "triangles": 63947,
+        "cpuBytes": 7673640,
+        "gpuBytes": 7673640,
+        "errorMeters": 0,
+        "drawCalls": 6
+      }
+    ],
+    "notes": "931/3691/15970/63947 triangles and 1/6/6/6 draw calls pass strict budgets. Replace 4248 old close lamp triangles with 5301 physical stock/glass triangles. Remove 1032 wholly enclosed close tower-face triangles while retaining window-edge trim; 3096 original exterior first hits remain equal. Preserve 58646 other close triangle attributes exactly and all three lower raw streams. Existing 3/1.4/.4m errors remain authoring estimates."
+  },
+  "geometryValidation": {
+    "status": "passed",
+    "sourceRegeneration": "exact",
+    "sourceRuntimeVerified": true,
+    "sourceTriangles": 63947,
+    "sourceMaterials": 6,
+    "runtimeLodsVerified": 4,
+    "actualImportedChecks": [
+      {
+        "level": "skyline",
+        "triangles": 931,
+        "drawCalls": 1,
+        "retainedTriangles": 931,
+        "added": {},
+        "controls": 9,
+        "originalOpeningChecks": 8,
+        "deckContacts": 0,
+        "lampSurfaceChecks": 0,
+        "embeddedBoundaryEdges": 0,
+        "failed": 0
+      },
+      {
+        "level": "district",
+        "triangles": 3691,
+        "drawCalls": 6,
+        "retainedTriangles": 3691,
+        "added": {},
+        "controls": 10,
+        "originalOpeningChecks": 9,
+        "deckContacts": 0,
+        "lampSurfaceChecks": 0,
+        "embeddedBoundaryEdges": 0,
+        "failed": 0
+      },
+      {
+        "level": "street",
+        "triangles": 15970,
+        "drawCalls": 6,
+        "retainedTriangles": 15970,
+        "added": {},
+        "controls": 13,
+        "originalOpeningChecks": 11,
+        "deckContacts": 0,
+        "lampSurfaceChecks": 0,
+        "embeddedBoundaryEdges": 0,
+        "failed": 0
+      },
+      {
+        "level": "closeup",
+        "triangles": 63947,
+        "drawCalls": 6,
+        "retainedTriangles": 58646,
+        "added": {
+          "lampMetal": 4959,
+          "lampGlass": 342
+        },
+        "controls": 925,
+        "originalOpeningChecks": 11,
+        "deckContacts": 57,
+        "lampSurfaceChecks": 798,
+        "embeddedBoundaryEdges": 741,
+        "failed": 0
+      }
+    ],
+    "retainedMapAndTerrainFiles": [
+      "map-frame.json",
+      "terrain-grid.json",
+      "terrain-review.terrain.json",
+      "terrain-review.height.png",
+      "dimension-controls.json",
+      "terrain-sources/15-5597-13088.png",
+      "terrain-sources/15-5597-13089.png",
+      "terrain-sources/15-5598-13088.png",
+      "terrain-sources/15-5598-13089.png"
+    ],
+    "embeddedImages": 0,
+    "khronosValidated": false,
+    "verification": [
+      "node content/worldgen/source/places/9q/9q5/santa_monica_pier/verify-lamp-construction.mjs"
+    ],
+    "notes": "Imported 9/10/13/925 controls pass, including all 39 original void rays, deck/low-landing surfaces, 57 post contacts, 798 lamp stock/glass/shade checks and 57 open gooseneck counters. New stock has nondegenerate metric UVs and finite correctly wound geometry. Across metal/glass groups all edges pair except 741 deliberately embedded boundary edges at post feet, arch ends and hook starts; exposed hook tips are capped and shade/glass share a physical rim. Enclosed tower optimization reproduces 3096 original exterior first hits with window-edge trim retained. Nine original source inputs frozen; source regeneration and four imported levels verified."
+  },
+  "referenceInspectionHashes": [
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/panorama-santa-monica.jpg",
+      "hash": "sha256:baa2f0777c1a281327590c1b29a84b23e05be193923f277d39d7c4312543ee2f"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-seen.jpg",
+      "hash": "sha256:e20aded204a77415074724eae8550f777fc49c400428b6b643904d5176987235"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/fishermen-anglers-sant.jpg",
+      "hash": "sha256:ea1c9990f2e59b10afe18732e72a53027c84ef32d894abffcffae5d13d07d9fc"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/los-angeles-aerial-santa-monic.jpg",
+      "hash": "sha256:378a56c0873a9737cad33b0e856e190aac5629d33ad524141fb14542a07356c7"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/pacific-park-santa-mon.jpg",
+      "hash": "sha256:1182abcd62e6bbc64e3c0b1e1b03108db1996f1b4eac716b0248acff3fde52fc"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-1.jpg",
+      "hash": "sha256:b3ddee162b08e0c06b396f099aad02bead4bc95b9439db74219fda62ab16919f"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-cali.jpg",
+      "hash": "sha256:c9e63af865ed49fcb923e85ba4d278f2c8f1f4523b6e19dfff1da20a4040b029"
+    },
+    {
+      "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-looff-hip.jpg",
+      "hash": "sha256:5ead2f0edfcad6bcfcee5947a9a4a62e5e0812f0705ec8af260c4c4d32f95e04"
+    }
+  ],
+  "limitations": [
+    "Selected surviving2005–2025 exterior; current post2008 wheel and2021 stripped carousel roof control era. No original onion dome/crenellations/lost attractions, ride simulation, people/cars/boats, beach or surrounding city.",
+    "Native map footprint/orientation retained. Pile stations, fine facades/hidden sides/roof profiles and coaster chainages/heights are original proportional estimates, not a scan or engineering model. Minor park kiosks and rides simplified into main roof masses.",
+    "Independent coastal terrain remains unchanged.17m review grid/approximately4m source pixels are not surveyed marine levels. Dry reference5.706m and deck3m are bounded authoring pose; full pier bridge/raised road approach beyond own deck excluded.",
+    "Operator85ft size used for approximately26m overall wheel; conflicting130ft marketing phrase not interpreted as wheel diameter or tall pedestal. Twenty gondolas and open truss frame modeled statically without LED pixel fixtures.",
+    "No reference photograph pixels or generated bitmap textures embedded. Shared metric material graphs and native palette colors only; no interior carousel machinery."
+  ],
+  "imageryReview": {
+    "policy": "qualla-public-domain-imagery@1",
+    "status": "passed",
+    "scope": "all-model-reference-imagery",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:fd0d6222a366eb055f6deb0198d61907f30867f6fe848f9be23e2181f4e8aa6d",
+    "referenceInputHash": "sha256:37c930353b7693a0fe3d5f8623a63cf7320aac88f743e5b70f16540d01be83b0",
+    "acceptedReferencePaths": [],
+    "auxiliaryReferencePaths": [
+      ".artifacts/reference-photos/jelson-2009-aerial-native.jpg",
+      ".artifacts/reference-photos/jelson-2009-head-native.jpg",
+      ".artifacts/reference-photos/idealites-2023-park-native.jpg",
+      ".artifacts/reference-photos/doine-2024-pier-native.jpg"
+    ],
+    "imageryEvidenceHash": "sha256:5b00b2538ca1e1f10a62042530ec3dca6d31eb54cc91983093f3f4cc8805468d",
+    "excludedHistoricalImagery": [
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/panorama-santa-monica.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_Panorama.jpg",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/panorama-santa-monica.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_Panorama.jpg",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/los-angeles-aerial-santa-monic.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Los_Angeles_Aerial_Santa_Monica_Pier_1.JPG",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/pacific-park-santa-mon.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Pacific_Park_-_Santa_Monica_Pier.jpg",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-1.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:DJI_20250315131503_0166_D.jpg",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-cali.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_-_October_2021.jpg",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-looff-hip.jpg",
+        "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_pier_edit1.jpg",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "url": "https://npgallery.nps.gov/NRHP/GetAsset/c9de8f87-cb9a-4bb1-8548-4b1104e5474e/",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "url": "https://smconservancy.org/property/looff-hippodrome-2/",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "url": "https://pacpark.com/the-pacific-wheel/",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "url": "https://pacpark.com/santa-monica-amusement-park/ferris-wheel/",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      },
+      {
+        "url": "https://www.google.com/maps/@34.0090,-118.4976,18z/data=!3m1!1e3",
+        "reason": "Historical attribution/private or unbound imagery excluded from the current public-domain inventory. Full fixed exterior reviewed using only the four exact cleared originals; factual architectural text is considered independently."
+      }
+    ],
+    "inventoryStatus": "passed",
+    "notes": "The exact cleared local 2009 Jelson25 aerial and its native Looff crop already show the surviving swept concave grey roof, low polygonal cupola, three octagonal corner towers, repeated lower arches and paired upper windows. The previous post-2021-roof blocker incorrectly treated a photograph date as an alteration date; no roof change in 2021 is established or needed to explain this geometry. The independently read Santa Monica Conservancy architectural description corroborates the surviving three towers, pointed upper windows, cupola and removal of original ornament; its photographs are not used. Existing 2023 Idealites and 2024 Alexis Doine CC0 originals corroborate the white open Pacific Wheel, red/yellow gondolas, yellow coaster, pier piles, rails, broad park platform, narrow municipal neck and yellow-roof head/harbor office. The cleared local head original supports the already built 57 stepped lamp columns and hooked goosenecks. All 57 existing current portable/shared/version2 context frames inspected, including Looff front/roof and all four runtime levels. Full fixed pier, supports, carousel building, wheel/coaster and head scope retained. Hidden elevations, exact roof curvature, paint, window subdivisions, fine ornament, park kiosks and pile/ride chainages remain bounded medium-fi interpretations using the native mapped envelope. No survey, engineering or exact present restoration claim. Native map, unmodified terrain, placement, source/runtime/LOD bytes and rendered images remain unchanged; no new model construction or capture is claimed. Qualla-first search precedes the exact independently cleared supplemental original; primary dedication and native catalog identity agree."
+  },
+  "constructionReview": {
+    "status": "solid-lamps-completed-full-pier-awaiting-reference",
+    "model": "santa_monica_pier",
+    "reviewedOn": "2026-10-18",
+    "inputHash": "sha256:d74bc4295fdc3b6e257ef4bf615381973367e90667fbac6196ae9aa1c975b05b",
+    "sourceHash": "sha256:338704a2583c4efe5c6e5a28394536e2013c59e8e02b67cde9e91b413e16ffc8",
+    "runtimeHash": "sha256:aa87468b698b60637696832a3138136d10e3879d19fe4170a1c4495f48f293e7",
+    "built": [
+      "57 physical stepped lamp columns with solid six-segment goosenecks and three-segment hooked braces",
+      "57 conical dark shades and six-sided white glass drops; physical rims and deck contacts",
+      "Two old lamp placements inside mapped head buildings removed; all three lower meshes unchanged",
+      "57 current renders inspected; new imported geometry/LOD/material checks pass; full current exterior review pending"
+    ],
+    "framesInspected": 57,
+    "portableFrames": 15,
+    "sharedFrames": 15,
+    "mediumFiV2Frames": 27,
+    "terrainFilesChanged": 0,
+    "mapFrameChanged": false,
+    "placementChanged": false,
+    "storyWrites": 1,
+    "triangles": [
+      931,
+      3691,
+      15970,
+      63947
+    ],
+    "drawCalls": [
+      1,
+      6,
+      6,
+      6
+    ],
+    "limits": "Full fixed combined pier, piles, rails, neck, broad head, yellow-roof restaurant, harbor office, Looff carousel with current swept roof/cupola, static Pacific Wheel and West Coaster retained. New 57 solid stepped lamp columns, six-segment goosenecks, three-segment inward hooks, dark conical shades and white glass drops built from cleared local Qualla Jelson25 PD-self head photograph. Fine casting/fluting, exact profiles and spacing remain original medium-fi interpretations. Two old grid lamps inside mapped head buildings removed. Current cleared broad views support pier/park/head relations; the 2009 aerial predates the selected post2021 carousel roof. Current carousel facade/roof coverage and full exterior fidelity remain pending. No full-model completion claim.",
+    "exactNativePhotographs": 4,
+    "reusedNativeQuallaPhotographs": 2,
+    "physicalLamps": 57,
+    "lampDeckContacts": 57,
+    "lampSurfaceChecks": 798,
+    "originalOpeningsPreserved": 39,
+    "preservedExteriorRays": 3096,
+    "removedEnclosedTowerTriangles": 1032,
+    "retainedOutsideCloseTriangles": 58646,
+    "retainedOriginalLowerTriangles": [
+      931,
+      3691,
+      15970
+    ],
+    "storyState": "needs-review",
+    "completedStorySync": {
+      "writtenArticles": 1,
+      "repeatChanges": 0,
+      "fullExteriorCompleted": false
+    }
+  },
+  "validation": {
+    "storyAnnotation": true,
+    "completed": true
+  },
+  "status": "completed",
+  "coreFinalizationReview": {
+    "status": "passed",
+    "reviewedOn": "2026-10-19",
+    "inputHash": "sha256:fd0d6222a366eb055f6deb0198d61907f30867f6fe848f9be23e2181f4e8aa6d",
+    "sourceHash": "sha256:338704a2583c4efe5c6e5a28394536e2013c59e8e02b67cde9e91b413e16ffc8",
+    "runtimeHash": "sha256:aa87468b698b60637696832a3138136d10e3879d19fe4170a1c4495f48f293e7",
+    "notes": "The exact cleared local 2009 Jelson25 aerial and its native Looff crop already show the surviving swept concave grey roof, low polygonal cupola, three octagonal corner towers, repeated lower arches and paired upper windows. The previous post-2021-roof blocker incorrectly treated a photograph date as an alteration date; no roof change in 2021 is established or needed to explain this geometry. The independently read Santa Monica Conservancy architectural description corroborates the surviving three towers, pointed upper windows, cupola and removal of original ornament; its photographs are not used. Existing 2023 Idealites and 2024 Alexis Doine CC0 originals corroborate the white open Pacific Wheel, red/yellow gondolas, yellow coaster, pier piles, rails, broad park platform, narrow municipal neck and yellow-roof head/harbor office. The cleared local head original supports the already built 57 stepped lamp columns and hooked goosenecks. All 57 existing current portable/shared/version2 context frames inspected, including Looff front/roof and all four runtime levels. Full fixed pier, supports, carousel building, wheel/coaster and head scope retained. Hidden elevations, exact roof curvature, paint, window subdivisions, fine ornament, park kiosks and pile/ride chainages remain bounded medium-fi interpretations using the native mapped envelope. No survey, engineering or exact present restoration claim. Native map, unmodified terrain, placement, source/runtime/LOD bytes and rendered images remain unchanged; no new model construction or capture is claimed.",
+    "renderReuse": {
+      "reason": "Only reference selection/interpretation, inventory and historical-source annotations changed. Graphics specification (apart from reference URLs/fingerprint), source/runtime/LOD bytes, scene, map, terrain, placement, material bindings, cameras and every image byte are unchanged. Retain the original inspected renders; no fresh capture is claimed.",
+      "originalInputHash": "sha256:d74bc4295fdc3b6e257ef4bf615381973367e90667fbac6196ae9aa1c975b05b",
+      "reviewInputHash": "sha256:fd0d6222a366eb055f6deb0198d61907f30867f6fe848f9be23e2181f4e8aa6d",
+      "sourceHash": "sha256:338704a2583c4efe5c6e5a28394536e2013c59e8e02b67cde9e91b413e16ffc8",
+      "runtimeHash": "sha256:aa87468b698b60637696832a3138136d10e3879d19fe4170a1c4495f48f293e7",
+      "originalCaptureReports": {
+        "capture-report.json": "sha256:51424a7179032f82d23cf3c12c63ec0f103d0d4c7973ad2214e0813b43e8f14a",
+        "shared-capture-report.json": "sha256:133b6426072d3191e252ac1db37aa6e3a457115f71a747200e11007691d768b1",
+        "medium-fi-report.json": "sha256:8446fc6dd79b0f5a8160d4d2113366d6dacab61173cd4d85aedf2bdec4d09bf9"
+      }
+    },
+    "previousImageryReview": {
+      "policy": "qualla-public-domain-imagery@1",
+      "status": "passed",
+      "scope": "all-model-reference-imagery",
+      "reviewedOn": "2026-10-18",
+      "inputHash": "sha256:d74bc4295fdc3b6e257ef4bf615381973367e90667fbac6196ae9aa1c975b05b",
+      "referenceInputHash": "sha256:99ceb9a15c301cbe74252c062f8c7119ec1467fde992dac7d5c869ed82a5219e",
+      "acceptedReferencePaths": [],
+      "auxiliaryReferencePaths": [
+        ".artifacts/reference-photos/jelson-2009-aerial-native.jpg",
+        ".artifacts/reference-photos/jelson-2009-head-native.jpg",
+        ".artifacts/reference-photos/idealites-2023-park-native.jpg",
+        ".artifacts/reference-photos/doine-2024-pier-native.jpg"
+      ],
+      "imageryEvidenceHash": "sha256:0da0540625d6b54ad8c17eaa9f18860695158a68064251bbe74b4ca42aa57f3f",
+      "excludedHistoricalImagery": [
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/panorama-santa-monica.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_Panorama.jpg",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/panorama-santa-monica.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_Panorama.jpg",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/los-angeles-aerial-santa-monic.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Los_Angeles_Aerial_Santa_Monica_Pier_1.JPG",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/pacific-park-santa-mon.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Pacific_Park_-_Santa_Monica_Pier.jpg",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-1.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:DJI_20250315131503_0166_D.jpg",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-pier-cali.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_Pier_-_October_2021.jpg",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "path": "_m/9/q/5/9/santa-monica-pier-wp/santa-monica-looff-hip.jpg",
+          "url": "https://commons.wikimedia.org/wiki/File:Santa_Monica_pier_edit1.jpg",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "url": "https://npgallery.nps.gov/NRHP/GetAsset/c9de8f87-cb9a-4bb1-8548-4b1104e5474e/",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "url": "https://smconservancy.org/property/looff-hippodrome-2/",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "url": "https://pacpark.com/the-pacific-wheel/",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "url": "https://pacpark.com/santa-monica-amusement-park/ferris-wheel/",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        },
+        {
+          "url": "https://www.google.com/maps/@34.0090,-118.4976,18z/data=!3m1!1e3",
+          "reason": "Historical private/attribution-only orunverified control excluded from current public-domain inventory. Full fixed exterior scope retained; wider/current Looff facade/roof review still pending."
+        }
+      ],
+      "inventoryStatus": "passed",
+      "notes": "Qualla-first 55 unique local paths scanned. Two exact local Jelson25 2009 natives (3517x1555 aerial, 4752x3168 head) inspected under primary Ownwork/PD-self grants and native hashes. Named Ownwork/self-CC0 Idealites2023 park and AlexisDoine2024 wide originals inspected/adopted after the local search; all four exact native grants, revisions, dimensions, SHA1/SHA256 and rights snapshots bound. Ambiguous transfers, attribution-only files, unrelated/interior/night views and rate-limited downloads excluded. Full pier/park/head forms and lamp craft supported; 2009 Looff aerial cannot certify selected post2021 roof. Whole current facade/roof review pending."
+    }
+  }
+}

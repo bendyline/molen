@@ -38,8 +38,7 @@
     "materialBudget": 6
   },
   "referencePages": [
-    "https://commons.wikimedia.org/wiki/File:Stonewall_Inn_5_pride_weekend_2016.jpg",
-    "https://commons.wikimedia.org/wiki/File:Stonewall_Inn,_NYC_(May_2014)_-_2.JPG"
+    "https://commons.wikimedia.org/wiki/File:Stonewall_was_a_riot!.jpg"
   ],
   "stories": [
     {
@@ -47,7 +46,7 @@
       "url": "https://qualla.com/stonewall-inn/"
     }
   ],
-  "referenceInputHash": "3fb0dee627adc1cfff0118e1dc5befd2a41efe682125f297f2b9b03869050d6b",
+  "referenceInputHash": "sha256:c85ec0e53a1c6fe3158fdf6f2664e0e7b3ba0be93d5f2e29cd6a47172733804f",
   "sourceGeometry": {
     "module": "packages/worldgen/scripts/structure-stonewall-inn.mjs"
   },
@@ -285,11 +284,14 @@
     }
   ],
   "limitations": [
-    "Original medium-fi exterior of 51–53 Christopher Street, using individually inspected local 2014/2016 photos, official city designation photo/map and current NPS visitor-center photograph. No exact 1969 reconstruction.",
+    "Full fixed51–53exterior reviewed using the inspected2025creator CC0 photograph of53and primary LPC/EDG architectural descriptions. The2024visitor entry at51has a real segmental recess, paired doors and lowered threshold, replacing the obsolete raised round stoop. No exact1969reconstruction or measured accessibility certification.",
+    "Earlier attribution-licensed photographs and the prior NPS visitor-center image are excluded as current construction controls. The latter exact asset grant was not established; its existing geometry remains an unapproved approximation.",
     "Both individual mapped footprints are retained; taller neighboring buildings, interiors, crowds and temporary banners are excluded.",
     "Vertical dimensions and hidden rear/roof details are approximations. The 51 rear-wing upper-story termination, skylight spacing and equipment positions are interpreted from limited evidence.",
     "Small pride flags, window baskets, lanterns and storefront lettering are simplified original geometry. The red sign is colored geometry, not a physically simulated neon tube. No photo pixels or official visitor-center logos are embedded.",
-    "Map heights are coarse controls, with parapets interpreted from facade photographs. Independent terrain is unchanged; exact contact can differ with another host DEM."
+    "Map heights are coarse controls, with parapets interpreted from facade photographs. Independent terrain is unchanged; exact contact can differ with another host DEM.",
+    "Portal widths and arch-head heights retained from prior authored layout. Recess backs at z13.97 imply about0.34m depth; actual jambs, soffits, fanlights and door details remain estimates. Both53rounded thresholds, map and USGS ground retained;51entry is lowered to the original model street datum as an approximate representation of the documented2024access change.",
+    "The main door leaves have black three-by-three glazing frames and two simplified beveled lower panels each. The side leaf is plain with simplified hinges/pull; prior generic pale door-window sills and diamond ornament removed. Exact hardware, profiles and glazing subdivision remain photographic interpretations."
   ],
   "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
   "qaCameras": [
@@ -318,16 +320,55 @@
         3,
         0
       ]
+    },
+    {
+      "name": "main-portal",
+      "position": [
+        0.6,
+        2.8,
+        18.3
+      ],
+      "lookAt": [
+        -1.69,
+        1.45,
+        14.05
+      ]
+    },
+    {
+      "name": "side-portal",
+      "position": [
+        -9.5,
+        2.5,
+        17.5
+      ],
+      "lookAt": [
+        -7.62,
+        1.4,
+        14.05
+      ]
+    },
+    {
+      "name": "visitor-portal",
+      "position": [
+        7.4,
+        2.4,
+        17.8
+      ],
+      "lookAt": [
+        4.48,
+        1.2,
+        14.1
+      ]
     }
   ],
   "importOptions": {
     "optimize": false
   },
   "mesh": {
-    "triangles": 7733,
-    "vertices": 23199,
+    "triangles": 8076,
+    "vertices": 24228,
     "materials": 7,
-    "bytes": 931956,
-    "sha256": "sha256:115729d6a60055925a94babd2ca29844ad7f81ca31f08d4c616cd090ca79c541"
+    "bytes": 973120,
+    "sha256": "sha256:3964911242e00f0f339de983a11f8a1d5e2c33825a8850917dc21653527f976f"
   }
 }

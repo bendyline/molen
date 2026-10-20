@@ -1,0 +1,7 @@
+# Lincoln Memorial roof construction — 2026-10-18
+
+Built a continuous covered peristyle joining the original cella to the outer entablature, closing unintended overhead gaps. Replaced flat roof fields with three closed pitched rooflight volumes, a wider center field, opaque blue-gray panes, slope-following framing and a separate membrane terrace. Retained38mapped column positions, temple floor/body/attic/top height, steps, source map/ground and placement.
+
+Started with cleared Qualla imagery. Exact native Sean Dudley public-domain original reused and individually inspected, including native colonnade crop. Cleared edited Highsmith aerial led to the exact original LOCJP2; full/native roof crop inspected under the photographer explicit primary public-domain dedication and catalog/file/hash binding. Earlier attribution imagery excluded. Rooflight dimensions/elevations, framing, concealed joints and present glazing condition remain estimates; aerial dated2006. Existing seated silhouette retained; no new portrait/interior/undercroft work. Temporary ramp excluded.
+
+All39current renders inspected. Four levels982/2786/13650/62834triangles;1/5/6/6draws. Targeted source/import/exact regeneration, normals/winding/UVs and strict budgets pass. Actual imported peristyle/column/portal/rooflight/terrace controls63/85/85/85 pass. Original map and three terrain files remain byte-identical; no height fitting or artificial ground correction. Current hashes and limits in qa.json.

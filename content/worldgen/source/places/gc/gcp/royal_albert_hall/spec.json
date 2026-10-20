@@ -1,0 +1,475 @@
+{
+  "planId": "royal_albert_hall",
+  "id": "royal_albert_hall",
+  "assetId": "molen.worldgen.structure.royal_albert_hall",
+  "title": "Royal Albert Hall",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -0.17741069197654724,
+    "latitude": 51.50102041130077
+  },
+  "size": [
+    95.90499877929688,
+    39.599998474121094,
+    105.90499877929688
+  ],
+  "actualBounds": {
+    "min": [
+      -47.95249938964844,
+      -3,
+      -53.752498626708984
+    ],
+    "max": [
+      47.95249938964844,
+      36.599998474121094,
+      52.15250015258789
+    ]
+  },
+  "visualBrief": "Five-stage elliptical red-brick/buff terracotta hall, square lower and round upper window rings, pale pilasters/cornices/open balustrades, brown mosaic band with original abstract pale relief rhythm, stepped upper drum, opaque gridded glazed dome with30radial ribs/white intermediate pediment ring and low oval lantern. Three large N/E/W recessed arched porches and smaller pedimented/oculus south porch with entrance flights. No auditorium interior, adjacent college/mansions, detached chimney/memorials or photo pixels.",
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Frieze_on_the_Royal_Albert_Hall_2008_04.jpg",
+    "https://commons.wikimedia.org/wiki/File:Albert_Hall_2011_3.jpg",
+    "https://commons.wikimedia.org/wiki/File:Albert_Hall_2011_2.jpg",
+    "https://commons.wikimedia.org/wiki/File:Albert_Hall_2011_1.jpg"
+  ],
+  "stories": [
+    {
+      "id": "royal-albert-hall-wp",
+      "url": "https://qualla.com/royal-albert-hall/"
+    }
+  ],
+  "referenceInputHash": "sha256:c738ac96a6a0ade29cd6b0572a8c34c0ca642bdc6d2508b54dafd6701c23b014",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-royal-albert-hall.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-royal-albert-hall.mjs",
+    "level": "skyline",
+    "export": "royalAlbertHallSkyline",
+    "errorMeters": 2,
+    "surfaces": {
+      "castBaluster": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "corniceConsole": {
+        "slot": "trim",
+        "graph": "stone_sandstone_raw",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "brick": {
+        "slot": "wall",
+        "graph": "brick",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "base": {
+        "slot": "foundation",
+        "graph": "stone_sandstone",
+        "roughness": 0.94,
+        "metallic": 0
+      },
+      "trim": {
+        "slot": "trim",
+        "graph": "stone_sandstone",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "roof": {
+        "slot": "roof",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.42,
+        "metallic": 0.12
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.76,
+        "metallic": 0.17
+      },
+      "mosaic": {
+        "slot": "trim",
+        "graph": "brick",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.32,
+        "metallic": 0.12
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "royalAlbertHallDistrict",
+        "errorMeters": 0.8,
+        "surfaces": {
+          "castBaluster": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "corniceConsole": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.17
+          },
+          "mosaic": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.12
+          }
+        }
+      },
+      "street": {
+        "export": "royalAlbertHallStreet",
+        "errorMeters": 0.3,
+        "surfaces": {
+          "castBaluster": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "corniceConsole": {
+            "slot": "trim",
+            "graph": "stone_sandstone_raw",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "brick": {
+            "slot": "wall",
+            "graph": "brick",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "base": {
+            "slot": "foundation",
+            "graph": "stone_sandstone",
+            "roughness": 0.94,
+            "metallic": 0
+          },
+          "trim": {
+            "slot": "trim",
+            "graph": "stone_sandstone",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "roof": {
+            "slot": "roof",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.42,
+            "metallic": 0.12
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.76,
+            "metallic": 0.17
+          },
+          "mosaic": {
+            "slot": "trim",
+            "graph": "brick",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.32,
+            "metallic": 0.12
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "groundY": -3
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Two unchanged original Terrarium tiles, dry north sidewalk[-12,49] datum18.3328m,3m review grid/source2.974m spacing. Broad native ground range within fixed below-grade foundation-3m and first-stage plinth; entry stairs continue below sample end grades. Exact thresholds/paving remain estimates; bounded preview, footprint replacement disabled.",
+    "anchor": [
+      -0.17741069197654724,
+      51.50102041130077
+    ],
+    "heading": -3.0137422116259307,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -0.17732909452763593,
+        51.50147073562507
+      ],
+      "modelHeight": 0,
+      "basis": "Dry north-front sidewalk beside the entrance porch, outside roof/stair projections and street carriageway."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "buildings/35185324367837",
+      "buildings/35184744949239",
+      "buildings/35185324367838",
+      "buildings/35184744949237",
+      "buildings/35185324367836",
+      "buildings/35185324367835",
+      "buildings/35184744949238",
+      "buildings/35185324367833",
+      "buildings/35184744949240",
+      "buildings/35185324367834",
+      "buildings/35184744949241",
+      "buildings/35185324367832"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:3bc73416f559364bbdb5cfa15897576796f5043a7884716c6eff45ebd4a0103d"
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.8,
+        1.5
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.brick",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.92,
+        0.9
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stone_sandstone_raw",
+      "slot": "trim",
+      "uv": "repeats",
+      "repeatMeters": [
+        1.2,
+        1.2
+      ]
+    }
+  ],
+  "limitations": [
+    "Surviving2012–14 exterior plus current aerial controls form;1986 roof used only as historical comparison and2018temporary scaffolds excluded. Source photographs and primary descriptions inform exterior rather than a surveyed mesh.",
+    "Native smooth-ellipse approximation of core73.314m by83.845m and roof58.394m by68.863m with four separately bounded porches; all native vertices retained as controls. Primary MOLA nominal dimensions/street-relative roof36.6m guide vertical hierarchy; database part height43.8/46.6m not treated as same surveyed datum.",
+    "Sixty facade bays and30roof divisions preserve visible rhythm; exact bay positions/fine relief/thresholds/doorways and roof glazing subdivisions are original proportional estimates. Original abstract pale figures suggest frieze rhythm without reproducing its artwork or inscriptions.",
+    "South lower central arched entrance is proportional reconstruction from1986roof view and2014south photograph; current lower face is partly screened by the separate1851memorial. Door9 image controls recessed threshold details rather than external door count.",
+    "Glazing is intentionally opaque for the exterior library. Frieze/pilaster relief and ornamental capitals are simplified; no seating interior/basement, adjacent buildings, detached chimney/memorials, temporary scaffolds/vegetation/crowds/vehicles or photo pixels.",
+    "Unchanged original terrain, dry reference18.3328m/fixed-3m foundation/estimated entry thresholds are bounded authoring pose; host terrain compatibility remains dataset-dependent."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        0,
+        23,
+        96
+      ],
+      "lookAt": [
+        0,
+        14,
+        40
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        -12,
+        11,
+        66
+      ],
+      "lookAt": [
+        0,
+        7,
+        49
+      ]
+    },
+    {
+      "name": "arcade-detail",
+      "position": [
+        -31,
+        15,
+        49
+      ],
+      "lookAt": [
+        -24,
+        12,
+        31
+      ]
+    },
+    {
+      "name": "frieze-detail",
+      "position": [
+        22,
+        24,
+        53
+      ],
+      "lookAt": [
+        18,
+        21,
+        36
+      ]
+    },
+    {
+      "name": "baluster-detail",
+      "position": [
+        25,
+        19.8,
+        40
+      ],
+      "lookAt": [
+        20.7,
+        18,
+        34.6
+      ]
+    },
+    {
+      "name": "console-detail",
+      "position": [
+        25,
+        24,
+        40
+      ],
+      "lookAt": [
+        20.7,
+        22.15,
+        34.6
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        40,
+        52,
+        39
+      ],
+      "lookAt": [
+        0,
+        32,
+        5
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -32,
+        5,
+        47
+      ],
+      "lookAt": [
+        -23,
+        3,
+        32
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        79,
+        25,
+        -16
+      ],
+      "lookAt": [
+        41,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        20,
+        24,
+        -88
+      ],
+      "lookAt": [
+        0,
+        13,
+        -44
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63569,
+    "vertices": 190707,
+    "materials": 8,
+    "bytes": 7632788,
+    "sha256": "sha256:74e9e3712d1ac1219f8c3124c8e2b8797944e8bfa31928956c281defd874b2e1"
+  }
+}

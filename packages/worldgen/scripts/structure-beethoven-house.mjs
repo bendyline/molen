@@ -137,8 +137,8 @@ function basket(o, x, y, w, d) {
     B(o, 'metal', xx, y - 0.12, 0.38, 0.018, 0.3, 0.025, iron);
   }
 }
-function roofPlane(o, bounds, yAt, holes, d) {
-  const r = [
+function roofPlane(o, bounds, yAt, holes, d, perimeter) {
+  const r = perimeter ?? [
       [bounds[0], bounds[1]],
       [bounds[2], bounds[1]],
       [bounds[2], bounds[3]],
@@ -167,7 +167,18 @@ function roofPlane(o, bounds, yAt, holes, d) {
     const rows = d > 2 ? Math.ceil(Math.abs(bounds[3] - bounds[1]) / 0.2) : 8;
     for (let j = 1; j < rows; j++) {
       const z = bounds[1] + ((bounds[3] - bounds[1]) * j) / rows;
-      let spans = [[bounds[0], bounds[2]]];
+      // Clip courses to the actual roof outline, including a hipped end.
+      const crossings = [];
+      for (let i = 0; i < r.length; i++) {
+        const a = r[i],
+          b = r[(i + 1) % r.length];
+        if ((a[1] <= z && b[1] > z) || (b[1] <= z && a[1] > z))
+          crossings.push(a[0] + ((z - a[1]) * (b[0] - a[0])) / (b[1] - a[1]));
+      }
+      crossings.sort((a, b) => a - b);
+      let spans = [];
+      for (let i = 0; i + 1 < crossings.length; i += 2)
+        spans.push([crossings[i], crossings[i + 1]]);
       for (const hole of holes) {
         if (z <= hole[0][1] || z >= hole[2][1]) continue;
         const a = hole[0][0],
@@ -294,28 +305,81 @@ function mainRoof(o, d) {
   }
 }
 function wingRoof(o, d) {
+  // Emil Koch's CC0 museum photograph shows the surviving two-pitch mansard
+  // and its hipped garden end, rather than a bare triangular gable.
   const f = facing(o, Math.PI / 2, -2.2, -12.5),
-    y = (_x, z) => 9.1 - Math.abs(z) * 1.05;
-  roofPlane(f, [-7.4, 0, 7.4, 2.32], y, [], d);
-  roofPlane(f, [-7.4, -2.32, 7.4, 0], y, [], d);
-  for (const sign of [-1, 1]) {
-    const p = [
-      [sign * 7.05, 6.5, -2.2],
-      [sign * 7.05, 6.5, 2.2],
-      [sign * 7.05, 9.1, 0],
-    ];
-    f.addTriangle(
-      'wall',
-      ref,
-      p,
-      [sign, 0, 0],
-      p.map((v) => [v[2], v[1]]),
-      yellow,
-    );
+    lower = (_x, z) => 6.65 + (2.32 - Math.abs(z)) * 2,
+    upper = (_x, z) => 9.3 - Math.abs(z) * (0.65 / 1.32);
+  const holes = d
+    ? [-3.7, 3.0].map((x) => [
+        [x - 0.58, 1.32],
+        [x + 0.58, 1.32],
+        [x + 0.58, 1.94],
+        [x - 0.58, 1.94],
+      ])
+    : [];
+  roofPlane(f, [-7.4, 1.32, 7.4, 2.32], lower, holes, d, [
+    [-7.4, 1.32],
+    [6.25, 1.32],
+    [7.4, 2.32],
+    [-7.4, 2.32],
+  ]);
+  roofPlane(f, [-7.4, -2.32, 7.4, -1.32], lower, [], d, [
+    [-7.4, -2.32],
+    [7.4, -2.32],
+    [6.25, -1.32],
+    [-7.4, -1.32],
+  ]);
+  for (const sign of [-1, 1])
+    roofPlane(f, [-7.4, Math.min(0, sign * 1.32), 6.25, Math.max(0, sign * 1.32)], upper, [], d, [
+      [-7.4, 0],
+      [5.3, 0],
+      [6.25, sign * 1.32],
+      [-7.4, sign * 1.32],
+    ]);
+  const endY = (x) => 6.65 + (7.4 - x) * (2 / 1.15),
+    endHole = d
+      ? [
+          [
+            [6.43, -0.58],
+            [7.15, -0.58],
+            [7.15, 0.58],
+            [6.43, 0.58],
+          ],
+        ]
+      : [];
+  roofPlane(f, [6.25, -2.32, 7.4, 2.32], endY, endHole, d, [
+    [6.25, -1.32],
+    [7.4, -2.32],
+    [7.4, 2.32],
+    [6.25, 1.32],
+  ]);
+  const cap = [
+    [5.3, 9.3, 0],
+    [6.25, 8.65, -1.32],
+    [6.25, 8.65, 1.32],
+  ];
+  let n = normalFor(...cap);
+  if (n[1] < 0) n = n.map((v) => -v);
+  f.addTriangle(
+    'roof',
+    ref,
+    cap,
+    n,
+    cap.map((v) => [v[0], v[2]]),
+    slate,
+  );
+  if (d) {
+    B(f, 'roof', -1.05, 9.26, 0, 12.8, 0.12, 0.15, slate);
+    for (const xx of [-3.7, 3.0])
+      dormer(f, xx, 1.94, d, { low: 7.16, top: 8.62, w: 1.13, depth: 0.72 });
+    dormer(facing(f, Math.PI / 2, 7.15, 0), 0, 0, d, {
+      low: 7.16,
+      top: 8.62,
+      w: 1.13,
+      depth: 0.72,
+    });
   }
-  if (d) B(f, 'roof', 0, 9.06, 0, 14.9, 0.12, 0.15, slate);
-  for (const xx of d ? [-3.7, 3.0] : [])
-    dormer(f, xx, 1.9, d, { low: 7.16, top: 8.62, w: 1.13, depth: 1.28 });
 }
 function swag(o, x, y, w, h, z, d, c = red) {
   const n = d > 2 ? 12 : 5,
@@ -484,6 +548,10 @@ export function beethoven(o, _frame, d = 3) {
   for (const x of [-5.4, -2.8, 2.8, 5.4]) window(wing, x, 1.0, 1.05, 1.7, d);
   window(wing, 0, 0.65, 1.2, 2.6, d, { shutters: false, door: true });
   trellis(wing, 13.5, 3.05, 0.55, d);
+  const gardenEnd = facing(o, Math.PI, -2.2, -19.56);
+  window(gardenEnd, 0, 3.85, 1.05, 1.65, d, { shutters: false });
+  window(gardenEnd, 0, 1.0, 1.05, 1.7, d, { shutters: false });
+  basket(gardenEnd, 0, 3.85, 1.05, d);
   if (d) {
     B(o, 'metal', -0.1, 0.5, -18.9, 0.065, 6.1, 0.065, slate);
     B(o, 'metal', -0.1, 0.5, -6.1, 0.065, 6.1, 0.065, slate);
@@ -560,7 +628,7 @@ export const beethovenModel = {
   cell: 'u1/u1j',
   title: 'Beethoven House',
   brief:
-    'Bonngasse 20: narrow three-storey pink street facade, paired white casements and green/red shutters, carved stone portal and paneled green door, slate roof with two curved dormers; yellow rear elevation and lower garden wing beside the paved courtyard.',
+    'Bonngasse 20: narrow three-storey pink street facade, paired white casements and green/red shutters, carved stone portal and paneled green door, slate roof with two curved dormers; yellow rear elevation and lower garden wing with a hipped mansard roof, end windows and courtyard dormers beside the paved courtyard.',
   camera: [27, 23, 32],
   lookAt: [0, 5, -6],
   qaCameras: [
@@ -586,7 +654,7 @@ export const beethovenModel = {
     },
   },
   limitations: [
-    'Original medium-fi exterior from five individually inspected local Qualla street/courtyard/garden/portal photographs, official museum building history and aerial roof context. Hidden party walls, exact dimensions, roof joins and small ornament are estimates; no surveyed plan used.',
+    'Original medium-fi exterior reviewed against Emil Koch street and garden photographs explicitly released CC0 by Wien Museum, official museum building history and native mapped footprint. Earlier attribution-only imagery and aerial photography are excluded from the current review. Paint colours, hidden party walls, exact dimensions, roof joins and small ornament are estimates; no surveyed plan used.',
     'Bonngasse 20 front building, connected lower birthplace garden wing and courtyard hardscape only. Bonngasse 18, research/concert buildings, sculpture, vegetation, interiors, people and photographic pixels excluded.',
     'Independent unmodified Terrarium ground retained. Urban elevation interpolation is not survey accuracy; host terrain may differ. Footprint replacement remains disabled.',
     'Shutter panels, door relief, dormer caps, trellis, slate courses and garden gate are simplified progressively at distance. No physical-device performance measurement claimed.',

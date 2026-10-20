@@ -1,0 +1,31 @@
+{
+  "format": "molen/terrain-source-evidence@1",
+  "dataset": "Hong Kong Lands Department5m-grid DTM",
+  "coordinateSystem": "Hong Kong1980 Grid EPSG:2326",
+  "verticalDatum": "Hong Kong Principal Datum",
+  "accuracy": "\u00b15m at90% confidence per official product metadata",
+  "metadataUrl": "https://www.landsd.gov.hk/en/spatial-data/open-data/kf_dtm.html",
+  "metadataFileHash": "sha256:b2f9a34a96c452c12eb015f14e43b690c3682bd403301968e3b2edd4102e29de",
+  "source": {
+    "url": "https://www.landsd.gov.hk/landsd_psi_data/SMO/data/Whole_HK_DTM_5m.zip",
+    "archiveSha256": "sha256:785718f462ae6de3c9e1fed2bf9fe5affe1c1d739c0a969fd62cf3680b4b33ab",
+    "path": "terrain-source.asc",
+    "sha256": "sha256:7c376a3b289d542e9fa5bdd64cdc49ab69c4be97c1ee2f3b016be0cbbc99f6a3",
+    "sourceMember": "Whole_HK_DTM_5m.asc",
+    "originalGridCellBounds": [
+      6927,
+      6467,
+      6988,
+      6528
+    ]
+  },
+  "nativeSubsetHeader": {
+    "ncols": 62,
+    "nrows": 62,
+    "xllcorner": 834632.5,
+    "yllcorner": 815357.5,
+    "cellsize": 5,
+    "nodata": -9999
+  },
+  "method": "Unmodified original5m terrain cells clipped to a local ASCII grid, WGS84 positions projected to Hong Kong1980 Grid (EPSG:2326) and bilinearly sampled at pixel centers. Values are not flattened or fitted to architecture. Source integer-height quantization and published accuracy remain; the2m local grid is oversampled evidence, not finer source resolution."
+}

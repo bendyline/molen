@@ -397,8 +397,7 @@ function groundAt(point: THREE.Vector3): boolean {
     ).intersectObject(ground).length > 0
   );
 }
-function cutoutProbe(): THREE.Vector3 | undefined {
-  const outline = active?.placement?.groundCutout?.outline;
+function cutoutProbe(outline: [number, number][]): THREE.Vector3 | undefined {
   if (!outline || !object || !geographicRenderers) return undefined;
   const points = outline.map(([x, z]) => new THREE.Vector2(x, z));
   let selected: number[] | undefined,
@@ -437,16 +436,25 @@ function cutoutProbe(): THREE.Vector3 | undefined {
   object.updateWorldMatrix(true, false);
   return object.localToWorld(center);
 }
+function cutoutProbes(): THREE.Vector3[] {
+  const cutout = active?.placement?.groundCutout;
+  return cutout
+    ? [cutout.outline, ...(cutout.additionalOutlines ?? [])]
+        .map(cutoutProbe)
+        .filter((p): p is THREE.Vector3 => !!p)
+    : [];
+}
 function verifyGroundLifecycle() {
-  const probe = cutoutProbe();
-  if (!probe || !object)
+  const probes = cutoutProbes();
+  if (!probes.length || !object)
     return { applicable: false, unchanged: ground.geometry === uncutGroundGeometry };
   object.visible = false;
   groundCutouts.update(scene);
-  const hiddenRestored = groundAt(probe) && ground.geometry === uncutGroundGeometry;
+  const hiddenRestored = probes.every(groundAt) && ground.geometry === uncutGroundGeometry;
   object.visible = true;
   groundCutouts.update(scene);
-  const visibleOpen = !groundAt(probe) && ground.geometry !== uncutGroundGeometry;
+  const visibleOpen =
+    probes.every((probe) => !groundAt(probe)) && ground.geometry !== uncutGroundGeometry;
   return { applicable: true, hiddenRestored, visibleOpen };
 }
 
@@ -502,7 +510,8 @@ function telemetry() {
     })),
     visibleStructures,
     groundCutoutActive: ground.geometry !== uncutGroundGeometry,
-    groundCoversCutoutProbe: cutoutProbe() ? groundAt(cutoutProbe() as THREE.Vector3) : null,
+    groundCoversCutoutProbe: cutoutProbes().length ? cutoutProbes().some(groundAt) : null,
+    groundCutoutProbes: cutoutProbes().length,
     surfaceReads: { ...reads },
     draws: renderer.info.render.calls,
     renderedTriangles: renderer.info.render.triangles,

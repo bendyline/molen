@@ -1,0 +1,64 @@
+{
+  "format": "molen/structure-site-construction@1",
+  "assetId": "molen.worldgen.structure.parliament_house_canberra",
+  "scope": "Physical substructure immediately below the mapped own forecourt;not a surveyed garage layout or navigable interior.",
+  "deckOutline": [
+    [
+      -44.30019,
+      104.50095
+    ],
+    [
+      28.36197,
+      104.63643
+    ],
+    [
+      31.04694,
+      104.1757
+    ],
+    [
+      80.10231,
+      209.63769
+    ],
+    [
+      -92.71737,
+      210.21429
+    ]
+  ],
+  "horizontalBasis": "Original OSM pedestrian outer boundary from forecourt-frame.json,bounded to the own flared paving footprint. The precise underground garage extent is not surveyed;only the modeled roof/deck support envelope is represented.",
+  "levels": {
+    "existingPavingTop": -0.3,
+    "existingPavingBottom": -0.65,
+    "existingBasinBottom": -1.2,
+    "garageRoofTop": -1.25,
+    "garageSoffit": -1.65,
+    "garageFloorTop": -5.55,
+    "garageFloorBottom": -5.8,
+    "wallTop": -0.65,
+    "perimeterWallThickness": 0.4
+  },
+  "verticalBasis": "Original paving,basin,building and grass-roof levels retained. Hidden deck/slab/floor/wall dimensions are bounded medium-fi exterior estimates declared before geometry;not measured as-built/civil levels,not derived from DEM,parking-entry clearance or project-wide excavation depth. No interior parking arrangement or exact garage envelope claimed.",
+  "facts": [
+    {
+      "sourceUrl": "https://engineeringcanberra.com.au/the-new-parliament-house/",
+      "textFacts": [
+        "Parking for cars and tourist buses is below the forecourt,outside the main parliamentary building.",
+        "Stairs lead from parking to the forecourt.",
+        "Reinforced concrete waffle slab construction and the curved beam supporting the forecourt pool are described."
+      ],
+      "scope": "Primary construction-history text facts only;its copyrighted illustrations are excluded."
+    },
+    {
+      "sourceUrl": "https://www.aph.gov.au/~/media/Estimates/Live/commttee/S8317.ashx",
+      "textFacts": [
+        "2005official evidence discusses a forecourt pond leak above the garage."
+      ],
+      "scope": "Existence/topology only;no floor/deck measurements inferred."
+    }
+  ],
+  "constraints": [
+    "No native source height,anchor,heading,original floor/paving/roof grade or contact-reference edit.",
+    "Preserve nine open office/executive courts and actual basin/bridge/island topology.",
+    "No generic whole-building pad,ground fitting or buried invented interior layout.",
+    "Geographic activation remains held until the new physical shell and actual source-ground joins are inspected."
+  ]
+}

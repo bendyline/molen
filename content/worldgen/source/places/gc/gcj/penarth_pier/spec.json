@@ -1,0 +1,589 @@
+{
+  "planId": "penarth_pier",
+  "id": "penarth_pier",
+  "assetId": "molen.worldgen.structure.penarth_pier",
+  "title": "Penarth Pier",
+  "category": "landmark",
+  "quality": "medium-fi-exterior",
+  "referenceCoordinate": {
+    "longitude": -3.167106907814741,
+    "latitude": 51.43519737561861
+  },
+  "size": [
+    194.79384994506836,
+    30.649999618530273,
+    46.79999923706055
+  ],
+  "actualBounds": {
+    "min": [
+      -24.299999237060547,
+      -15.5,
+      -23.399999618530273
+    ],
+    "max": [
+      170.4938507080078,
+      15.149999618530273,
+      23.399999618530273
+    ]
+  },
+  "visualBrief": "Restored white concrete shore pavilion with four silver square Moghul domes/finials and diamond grilles, zinc barrel roof/four tall dormer windows per side/11 ribs/ridge vents, curved seaward glass colonnade/two terraces/upper observatory, convex landward lobby/low curving shop wings and projecting clock. Complete surviving timber deck on iron neck piles/concrete end frames, white/green traceried railings/lamps, two open-porch shelters, broad open head/ticket hut and landing edge. Lost1931 theatre and neighboring promenade buildings excluded.",
+  "nativeAxes": {
+    "x": "east-southeast seaward along pier",
+    "y": "up",
+    "z": "south-southwest across pier"
+  },
+  "appearance": {
+    "standard": "docs-src/guide/medium-fi.md",
+    "colorEncoding": "sRGB palette decoded to linear COLOR_0",
+    "materialBudget": 6
+  },
+  "referencePages": [
+    "https://commons.wikimedia.org/wiki/File:Penarth_13._srpnja_2024.jpg",
+    "https://commons.wikimedia.org/wiki/File:Penarth_2024.jpg"
+  ],
+  "stories": [
+    {
+      "id": "penarth-pier-wp",
+      "url": "https://qualla.com/penarth-pier/"
+    }
+  ],
+  "referenceInputHash": "sha256:b1df29cdaa2d7d46d8901e8a53b0994a2d2636fdbc4b57cc4d40eae8fb57e625",
+  "sourceGeometry": {
+    "module": "packages/worldgen/scripts/structure-penarth-pier.mjs"
+  },
+  "recipeDependencies": {
+    "landmark-model-helpers.mjs": "sha256:00384d17ea16de37cfc9924105d69f8ff7a3ddea73da447cf9dc184a4948cf4e",
+    "authored-structure-mesh.mjs": "sha256:e7976e638e643b30bab20d197f315c4f9bf81cb33d2b01c862dbc8522823528f",
+    "structure-mesh.mjs": "sha256:fedcdf78d28b4f1fb3e928402efaecf01b44d7a4980c59dd32d5867ea662fd1c"
+  },
+  "runtimeLodOverlay": {
+    "module": "packages/worldgen/scripts/structure-penarth-pier.mjs",
+    "level": "skyline",
+    "export": "penarthPierSkyline",
+    "errorMeters": 2.5,
+    "surfaces": {
+      "railWhite": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.1
+      },
+      "railGreen": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.1
+      },
+      "wall": {
+        "slot": "wall",
+        "graph": "stucco",
+        "roughness": 0.91,
+        "metallic": 0
+      },
+      "concrete": {
+        "slot": "foundation",
+        "graph": "concrete_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "iron": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.16,
+        "doubleSided": true
+      },
+      "green": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.86,
+        "metallic": 0.1,
+        "doubleSided": true
+      },
+      "metal": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.8,
+        "metallic": 0.18,
+        "doubleSided": true
+      },
+      "wood": {
+        "slot": "wall",
+        "graph": "wood_plain",
+        "roughness": 0.96,
+        "metallic": 0
+      },
+      "clap": {
+        "slot": "wall",
+        "graph": "wood_painted_lap",
+        "roughness": 0.9,
+        "metallic": 0
+      },
+      "zinc": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.45
+      },
+      "roof": {
+        "slot": "roof",
+        "graph": "metal_painted",
+        "roughness": 0.7,
+        "metallic": 0.45
+      },
+      "seam": {
+        "slot": "trim",
+        "graph": "metal_painted",
+        "roughness": 0.84,
+        "metallic": 0.25,
+        "doubleSided": true
+      },
+      "glass": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.36,
+        "metallic": 0.1
+      },
+      "dial": {
+        "slot": "window",
+        "localRef": "palette:#ffffff",
+        "roughness": 0.75,
+        "metallic": 0
+      }
+    },
+    "authoredLevels": {
+      "district": {
+        "export": "penarthPierDistrict",
+        "errorMeters": 1,
+        "surfaces": {
+          "railWhite": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "railGreen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.16,
+            "doubleSided": true
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "clap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "seam": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.25,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.1
+          },
+          "dial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      },
+      "street": {
+        "export": "penarthPierStreet",
+        "errorMeters": 0.35,
+        "surfaces": {
+          "railWhite": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "railGreen": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1
+          },
+          "wall": {
+            "slot": "wall",
+            "graph": "stucco",
+            "roughness": 0.91,
+            "metallic": 0
+          },
+          "concrete": {
+            "slot": "foundation",
+            "graph": "concrete_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "iron": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.16,
+            "doubleSided": true
+          },
+          "green": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.86,
+            "metallic": 0.1,
+            "doubleSided": true
+          },
+          "metal": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.8,
+            "metallic": 0.18,
+            "doubleSided": true
+          },
+          "wood": {
+            "slot": "wall",
+            "graph": "wood_plain",
+            "roughness": 0.96,
+            "metallic": 0
+          },
+          "clap": {
+            "slot": "wall",
+            "graph": "wood_painted_lap",
+            "roughness": 0.9,
+            "metallic": 0
+          },
+          "zinc": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "roof": {
+            "slot": "roof",
+            "graph": "metal_painted",
+            "roughness": 0.7,
+            "metallic": 0.45
+          },
+          "seam": {
+            "slot": "trim",
+            "graph": "metal_painted",
+            "roughness": 0.84,
+            "metallic": 0.25,
+            "doubleSided": true
+          },
+          "glass": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.36,
+            "metallic": 0.1
+          },
+          "dial": {
+            "slot": "window",
+            "localRef": "palette:#ffffff",
+            "roughness": 0.75,
+            "metallic": 0
+          }
+        }
+      }
+    }
+  },
+  "fidelityTarget": "medium-fi",
+  "mediumFiContext": {
+    "scale": 2,
+    "cameraYaw": 0
+  },
+  "fidelityStatus": "review-in-qa.json",
+  "reviewStatus": "review-in-qa.json",
+  "geographicProposal": {
+    "status": "preview-proposal",
+    "groundContactReviewed": true,
+    "groundContactBasis": "Independent Welsh Government1m DTM, survey2022-04-01, dry Esplanade[-25,0] datum8.4271m. Native DSM deck median9.0200m guides model deck.6m; ridge around19.2m and dome cells22.3m guide proportional heights. Rejected Terrarium ocean16m plateau preserved. Ground unmodified; dry approach and own outlines clear deck, fixed supports reach below reviewed ground. Bounded preview only: actual pile/tidal/landing accuracy remains unverified; footprint replacement disabled.",
+    "anchor": [
+      -3.167106907814741,
+      51.43519737561861
+    ],
+    "heading": -0.25926266043204693,
+    "ground": "terrain",
+    "elevationMode": "terrain-contact",
+    "groundModelY": 0,
+    "terrainReference": {
+      "anchor": [
+        -3.16745511515351,
+        51.43525495016148
+      ],
+      "modelHeight": 0,
+      "basis": "Dry Esplanade pavement immediately west of the convex pavilion entrance, clear of deck/roof/water and north/south shop wings."
+    },
+    "replaceFootprint": false,
+    "featureIds": [
+      "landuse/35184399050161",
+      "buildings/35184462307034",
+      "buildings/35185668166572",
+      "buildings/35185668166573",
+      "buildings/35185668166574",
+      "buildings/35185668166575",
+      "buildings/35185668166576",
+      "buildings/35185668166578",
+      "buildings/35185668166577",
+      "buildings/35185416435725",
+      "buildings/35185416435726",
+      "buildings/35185416435728"
+    ],
+    "source": "https://build.protomaps.com/20261012.pmtiles",
+    "mapGeometrySource": "map-frame.json",
+    "mapGeometryHash": "sha256:dd502464b1fe6f2679af947d5e229d626a050e00c1f850e43e7f0d7a4baf0ab0",
+    "notes": "Surviving post2013 zinc-clad pavilion and pier only. Mapped components separate broad head and own pavilion/shop wings; dimensions remain approximate. Large central pier-head theatre lost1931 excluded."
+  },
+  "sharedSurfaces": [
+    {
+      "ref": "matgraph:molen.worldgen.material.concrete_plain",
+      "slot": "foundation",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.metal_painted",
+      "slot": "roof",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_plain",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        0.25
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.wood_painted_lap",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        1.6
+      ]
+    },
+    {
+      "ref": "matgraph:molen.worldgen.material.stucco",
+      "slot": "wall",
+      "uv": "repeats",
+      "repeatMeters": [
+        2,
+        2
+      ]
+    }
+  ],
+  "limitations": [
+    "Mapped shelter footprints extend up to1.3m past the generalized landuse deck ring. Four authored bulge-edge vertices are explicitly widened to retain porch floors/outer rails; original map ring is preserved. Shore-wing foundations extend to fixed-8m and marine supports to-15.5m beneath reviewed grade; hidden foundations and embedment are visual estimates.",
+    "Selected post2013 restored exterior. Closed close-level white cast-metal fan panels have four original simplified open counters each and green framing, interpreted from the exact cleared Qualla2024native; casting profile/counts are not a survey. Broader roof curves, scale seams, lattice, heights, hidden walls, support spacing and finials remain estimates. Cleared full-pavilion/support imagery is still required for whole-model fidelity; full fixed exterior scope is retained.",
+    "Main body about35x17m/shore wings46m; full envelope193m agrees broadly with primary about200m. Current mapped broad head28m differs legacy15m landing-stage description. Native outline retained; exact original chainages/alteration history not inferred.",
+    "Independent1m Welsh DTM is unchanged; source interpolation under roof/deck is not survey certainty or seabed/tide measurement. Fixed supports/landing poses and host terrain compatibility remain approximate. Bounded geographic preview requires current review; footprint replacement disabled.",
+    "No lost seaward wooden theatre, neighboring apartments/baths/promende buildings, separate K6 kiosk, beach/sea/boats, people/temporary signs/flags/string lights, loose furniture or interiors. Clock marks are original simplified glyphs without copied brand text. No source pixels embedded."
+  ],
+  "sourceLicense": "Original authored geometry under repository license; map controls © OpenStreetMap contributors, ODbL-1.0. Reference photographs are not redistributed.",
+  "qaCameras": [
+    {
+      "name": "front",
+      "position": [
+        -65,
+        23,
+        65
+      ],
+      "lookAt": [
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "front-detail",
+      "position": [
+        58,
+        18,
+        3
+      ],
+      "lookAt": [
+        16,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        65,
+        25,
+        -70
+      ],
+      "lookAt": [
+        2,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "base-detail",
+      "position": [
+        -36,
+        8,
+        36
+      ],
+      "lookAt": [
+        -15,
+        3,
+        15
+      ]
+    },
+    {
+      "name": "roof-detail",
+      "position": [
+        -8,
+        37,
+        32
+      ],
+      "lookAt": [
+        0,
+        9,
+        0
+      ]
+    },
+    {
+      "name": "pier-detail",
+      "position": [
+        95,
+        3,
+        47
+      ],
+      "lookAt": [
+        105,
+        -3,
+        0
+      ]
+    },
+    {
+      "name": "head-detail",
+      "position": [
+        184,
+        15,
+        34
+      ],
+      "lookAt": [
+        150,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "lattice-detail",
+      "position": [
+        24,
+        10,
+        18
+      ],
+      "lookAt": [
+        14.6,
+        8.5,
+        5.6
+      ]
+    },
+    {
+      "name": "balustrade-detail",
+      "position": [
+        110,
+        2.6,
+        8
+      ],
+      "lookAt": [
+        110,
+        1.25,
+        3.8
+      ]
+    },
+    {
+      "name": "head-balustrade-detail",
+      "position": [
+        140,
+        2.4,
+        15.5
+      ],
+      "lookAt": [
+        140,
+        1.25,
+        10.9
+      ]
+    }
+  ],
+  "importOptions": {
+    "optimize": false
+  },
+  "mesh": {
+    "triangles": 63574,
+    "vertices": 190722,
+    "materials": 7,
+    "bytes": 7633048,
+    "sha256": "sha256:64c642bb528f87b70f620339968058a8fac71d7a65a151541e4b4fd7dccaa678"
+  }
+}

@@ -1,0 +1,13 @@
+> Historical gate-only construction report. The entrance/bridge/ground conflict described below was resolved on2026-10-19. Current complete fixed-scope review: [CORE-FINALIZATION.md](CORE-FINALIZATION.md) and [qa.json](qa.json).
+
+# Ennis House gate construction —2026-10-18
+
+Built a4.84505mouter portal group from the measured15ft10.75inHABSdimension: paired closed solid leaves, stepped keywork, elongated loops, central rectangular lattices, flanking abstract closed figure plates/curls, and a separate pedestrian leaf. Side masonry/lintel contain two actual cut openings and join retained old bridge piers.424old flat metal triangles removed;3384iron/72masonry triangles added with meter UVs. Original three lower levels and every other original attribute exact.
+
+Cleared Qualla imagery checked first.49reference/candidate records provide attribution exteriors or unrelated PD/film-title candidates. Exact native9634x7584original government HABS CA-1942sheet by Jean Davis1969then retrieved after primary43file category/catalog check. Complete native west elevation, gate crop and titleblock inspected; original-drawing public-domain grant, government direction/creator/delineator/native file/size/hash/caption bound. Photogrammetric measurement credit is not a copied private image credit. Earlier attribution/private/satellite controls excluded; no image pixels copied.
+
+All39FINALcurrent views inspected:9portable,9shared/geographic fixture,21medium-fi.878/2064/12526/63848triangles,1/5/5/5draws. Actual imported fronts/backs, elongated loops, real main/service gaps, closed figure plates, keywork/masonry/top cap, exact retained attributes and metric UVs pass. Source/runtime hashes, exact regeneration, normals/winding/strict limits pass.
+
+Ground review remains unresolved. Source-ground images visibly show the original unmodified USGS terrain crossing the entrance. Bilinear grid at gate[-19.8,-9.9] is2.58491m above datum; service[-16.55,-9.9] is.85370m; leaf bottoms are.08m. Adjacent approach[-19.8,-12] is1.56078m and inside[-19.8,-8] is3.68764m. Raw evidence/datum255.9812m at motor court[-18,2], foundations-10m, map/terrain/placement unchanged. No height fitting/flattening/suppression applied. Flat shared fixture proves new geometry/materials only, not source-ground contact. Portable/geographic review therefore stays needs-review.
+
+Full fixed main house, bridge, garage/servants wing, terraces/pool basin/retaining walls still included. Wider hidden roof/current restoration public-domain review remains pending; no full completion claim. Placement of gate group, remaining dimensions, rods/depths, closed leaf state and abstract figure craft remain medium-fi estimates. Neighboring buildings/vegetation/interiors excluded as before.
